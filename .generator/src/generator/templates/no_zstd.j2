@@ -1,0 +1,13 @@
+{% include "partial_header.j2" %}
+//go:build !cgo
+package {{ package_name }}
+
+import (
+	"bytes"
+	"errors"
+)
+
+func compressZstd(body []byte) (*bytes.Buffer, error) {
+	return nil, errors.New("zstd not supported")
+}
+

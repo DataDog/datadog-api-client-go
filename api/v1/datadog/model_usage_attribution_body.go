@@ -17,9 +17,13 @@ type UsageAttributionBody struct {
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
-	// The source of the usage attribution tag configuration and the selected tags in the format `<source_org_name>:<selected tag 1>-<selected tag 2>-<selected tag 3>`.
+	// The source of the usage attribution tag configuration and the selected tags in the format `<source_org_name>:::<selected tag 1>///<selected tag 2>///<selected tag 3>`.
 	TagConfigSource *string `json:"tag_config_source,omitempty"`
-	// Usage Summary by tag name.
+	// Tag keys and values.
+	//
+	// A `null` value here means that the requested tag breakdown cannot be applied because it does not match the [tags
+	// configured for usage attribution](https://docs.datadoghq.com/account_management/billing/usage_attribution/#getting-started).
+	// In this scenario the API returns the total usage, not broken down by tags.
 	Tags map[string][]string `json:"tags,omitempty"`
 	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
 	UpdatedAt *string `json:"updated_at,omitempty"`

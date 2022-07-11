@@ -2,7 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-package common
+package datadog
 
 import (
 	"bytes"
@@ -35,22 +35,86 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Datadog API V2 Collection API v1.0.
+// APIClient manages communication with the Datadog API V1 Collection API v1.0.
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
-	Cfg *Configuration
+	cfg    *Configuration
+	common service // Reuse a single struct instead of allocating one for each service on the heap.
+
+	// API Services
+
+	AuthenticationApi *AuthenticationApiService
+
+	AWSIntegrationApi *AWSIntegrationApiService
+
+	AWSLogsIntegrationApi *AWSLogsIntegrationApiService
+
+	AzureIntegrationApi *AzureIntegrationApiService
+
+	DashboardListsApi *DashboardListsApiService
+
+	DashboardsApi *DashboardsApiService
+
+	DowntimesApi *DowntimesApiService
+
+	EventsApi *EventsApiService
+
+	GCPIntegrationApi *GCPIntegrationApiService
+
+	HostsApi *HostsApiService
+
+	IPRangesApi *IPRangesApiService
+
+	KeyManagementApi *KeyManagementApiService
+
+	LogsApi *LogsApiService
+
+	LogsIndexesApi *LogsIndexesApiService
+
+	LogsPipelinesApi *LogsPipelinesApiService
+
+	MetricsApi *MetricsApiService
+
+	MonitorsApi *MonitorsApiService
+
+	NotebooksApi *NotebooksApiService
+
+	OrganizationsApi *OrganizationsApiService
+
+	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
+
+	SecurityMonitoringApi *SecurityMonitoringApiService
+
+	ServiceChecksApi *ServiceChecksApiService
+
+	ServiceLevelObjectiveCorrectionsApi *ServiceLevelObjectiveCorrectionsApiService
+
+	ServiceLevelObjectivesApi *ServiceLevelObjectivesApiService
+
+	SlackIntegrationApi *SlackIntegrationApiService
+
+	SnapshotsApi *SnapshotsApiService
+
+	SyntheticsApi *SyntheticsApiService
+
+	TagsApi *TagsApiService
+
+	UsageMeteringApi *UsageMeteringApiService
+
+	UsersApi *UsersApiService
+
+	WebhooksIntegrationApi *WebhooksIntegrationApiService
 }
 
 // FormFile holds parameters for a file in multipart/form-data request.
 type FormFile struct {
-	FormFileName string
-	FileName     string
-	FileBytes    []byte
+	formFileName string
+	fileName     string
+	fileBytes    []byte
 }
 
-// Service holds APIClient
-type Service struct {
-	Client *APIClient
+type service struct {
+	client *APIClient
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
@@ -61,13 +125,71 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	}
 
 	c := &APIClient{}
-	c.Cfg = cfg
+	c.cfg = cfg
+	c.common.client = c
+
+	// API Services
+	c.AuthenticationApi = (*AuthenticationApiService)(&c.common)
+	c.AWSIntegrationApi = (*AWSIntegrationApiService)(&c.common)
+	c.AWSLogsIntegrationApi = (*AWSLogsIntegrationApiService)(&c.common)
+	c.AzureIntegrationApi = (*AzureIntegrationApiService)(&c.common)
+	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
+	c.DashboardsApi = (*DashboardsApiService)(&c.common)
+	c.DowntimesApi = (*DowntimesApiService)(&c.common)
+	c.EventsApi = (*EventsApiService)(&c.common)
+	c.GCPIntegrationApi = (*GCPIntegrationApiService)(&c.common)
+	c.HostsApi = (*HostsApiService)(&c.common)
+	c.IPRangesApi = (*IPRangesApiService)(&c.common)
+	c.KeyManagementApi = (*KeyManagementApiService)(&c.common)
+	c.LogsApi = (*LogsApiService)(&c.common)
+	c.LogsIndexesApi = (*LogsIndexesApiService)(&c.common)
+	c.LogsPipelinesApi = (*LogsPipelinesApiService)(&c.common)
+	c.MetricsApi = (*MetricsApiService)(&c.common)
+	c.MonitorsApi = (*MonitorsApiService)(&c.common)
+	c.NotebooksApi = (*NotebooksApiService)(&c.common)
+	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
+	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
+	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
+	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
+	c.ServiceLevelObjectiveCorrectionsApi = (*ServiceLevelObjectiveCorrectionsApiService)(&c.common)
+	c.ServiceLevelObjectivesApi = (*ServiceLevelObjectivesApiService)(&c.common)
+	c.SlackIntegrationApi = (*SlackIntegrationApiService)(&c.common)
+	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
+	c.SyntheticsApi = (*SyntheticsApiService)(&c.common)
+	c.TagsApi = (*TagsApiService)(&c.common)
+	c.UsageMeteringApi = (*UsageMeteringApiService)(&c.common)
+	c.UsersApi = (*UsersApiService)(&c.common)
+	c.WebhooksIntegrationApi = (*WebhooksIntegrationApiService)(&c.common)
 
 	return c
 }
 
 func atoi(in string) (int, error) {
 	return strconv.Atoi(in)
+}
+
+// selectHeaderContentType selects a content type from the available list.
+func selectHeaderContentType(contentTypes []string) string {
+	if len(contentTypes) == 0 {
+		return ""
+	}
+	if contains(contentTypes, "application/json") {
+		return "application/json"
+	}
+	return contentTypes[0] // use the first content type specified in 'consumes'
+}
+
+// selectHeaderAccept joins all accept types and returns them.
+func selectHeaderAccept(accepts []string) string {
+	if len(accepts) == 0 {
+		return ""
+	}
+
+	if contains(accepts, "application/json") {
+		return "application/json"
+	}
+
+	return strings.Join(accepts, ",")
 }
 
 // contains is a case insensitive match, finding needle in a haystack.
@@ -94,8 +216,8 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 	return nil
 }
 
-// ParameterToString convert interface{} parameters to string, using a delimiter if format is provided.
-func ParameterToString(obj interface{}, collectionFormat string) string {
+// parameterToString convert interface{} parameters to string, using a delimiter if format is provided.
+func parameterToString(obj interface{}, collectionFormat string) string {
 	var delimiter string
 
 	switch collectionFormat {
@@ -132,7 +254,7 @@ func parameterToJson(obj interface{}) (string, error) {
 
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
-	if c.Cfg.Debug {
+	if c.cfg.Debug {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
 			return nil, err
@@ -148,12 +270,12 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		log.Printf("\n%s\n", string(dump))
 	}
 
-	resp, err := c.Cfg.HTTPClient.Do(request)
+	resp, err := c.cfg.HTTPClient.Do(request)
 	if err != nil {
 		return resp, err
 	}
 
-	if c.Cfg.Debug {
+	if c.cfg.Debug {
 		dump, err := httputil.DumpResponse(resp, true)
 		if err != nil {
 			return resp, err
@@ -166,7 +288,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 // GetConfig allows modification of underlying config for alternate implementations and testing.
 // Caution: modifying the configuration while live can cause data races and potentially unwanted behavior.
 func (c *APIClient) GetConfig() *Configuration {
-	return c.Cfg
+	return c.cfg
 }
 
 // PrepareRequest build the request.
@@ -217,11 +339,11 @@ func (c *APIClient) PrepareRequest(
 		}
 		if formFile != nil {
 			w.Boundary()
-			part, err := w.CreateFormFile(formFile.FormFileName, filepath.Base(formFile.FileName))
+			part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 			if err != nil {
 				return nil, err
 			}
-			_, err = part.Write(formFile.FileBytes)
+			_, err = part.Write(formFile.fileBytes)
 			if err != nil {
 				return nil, err
 			}
@@ -252,13 +374,13 @@ func (c *APIClient) PrepareRequest(
 	}
 
 	// Override request host, if applicable
-	if c.Cfg.Host != "" {
-		url.Host = c.Cfg.Host
+	if c.cfg.Host != "" {
+		url.Host = c.cfg.Host
 	}
 
 	// Override request scheme, if applicable
-	if c.Cfg.Scheme != "" {
-		url.Scheme = c.Cfg.Scheme
+	if c.cfg.Scheme != "" {
+		url.Scheme = c.cfg.Scheme
 	}
 
 	// Adding Query Param
@@ -320,7 +442,7 @@ func (c *APIClient) PrepareRequest(
 	}
 
 	// Add the user agent to the request.
-	localVarRequest.Header.Add("User-Agent", c.Cfg.UserAgent)
+	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
 
 	if ctx != nil {
 		// add context to the request
@@ -350,19 +472,18 @@ func (c *APIClient) PrepareRequest(
 		}
 	}
 
-	for header, value := range c.Cfg.DefaultHeader {
+	for header, value := range c.cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
 
-	if !c.Cfg.Compress {
+	if !c.cfg.Compress {
 		// gzip is on by default, so disable it by setting encoding to identity
 		localVarRequest.Header.Add("Accept-Encoding", "identity")
 	}
 	return localVarRequest, nil
 }
 
-// Decode unmarshal bytes into an interface
-func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error) {
+func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
 	if len(b) == 0 {
 		return nil
 	}
@@ -407,8 +528,8 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	return err
 }
 
-// ReportError Prevent trying to import "fmt".
-func ReportError(format string, a ...interface{}) error {
+// Prevent trying to import "fmt".
+func reportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
 }
 
@@ -471,22 +592,22 @@ func detectContentType(body interface{}) string {
 
 // GenericOpenAPIError Provides access to the body, error and model on returned errors.
 type GenericOpenAPIError struct {
-	ErrorBody    []byte
-	ErrorMessage string
-	ErrorModel   interface{}
+	body  []byte
+	error string
+	model interface{}
 }
 
 // Error returns non-empty string if there was an error.
 func (e GenericOpenAPIError) Error() string {
-	return e.ErrorMessage
+	return e.error
 }
 
 // Body returns the raw bytes of the response.
 func (e GenericOpenAPIError) Body() []byte {
-	return e.ErrorBody
+	return e.body
 }
 
 // Model returns the unpacked model of the error.
 func (e GenericOpenAPIError) Model() interface{} {
-	return e.ErrorModel
+	return e.model
 }
