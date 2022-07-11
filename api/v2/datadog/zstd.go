@@ -15,10 +15,10 @@ import (
 func compressZstd(body []byte) (*bytes.Buffer, error) {
 	var buf bytes.Buffer
 	compressor := zstd.NewWriter(&buf)
-	if _, err = compressor.Write(body); err != nil {
+	if _, err := compressor.Write(body); err != nil {
 		return nil, err
 	}
-	if err = compressor.Close(); err != nil {
+	if err := compressor.Close(); err != nil {
 		return nil, err
 	}
 	return &buf, nil
