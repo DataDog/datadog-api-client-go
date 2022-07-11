@@ -70,6 +70,8 @@ def cli(input, output):
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
         "utils.go": env.get_template("utils.j2"),
+        "zstd.go": env.get_template("zstd.j2"),
+        "no_zstd.go": env.get_template("no_zstd.j2"),
     }
 
     apis = openapi.apis(spec)

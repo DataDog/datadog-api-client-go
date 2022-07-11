@@ -27,7 +27,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/DataDog/zstd"
 	"golang.org/x/oauth2"
 )
 
@@ -419,15 +418,10 @@ func (c *APIClient) PrepareRequest(
 			}
 			body = &buf
 		} else if headerParams["Content-Encoding"] == "zstd1" {
-			var buf bytes.Buffer
-			compressor := zstd.NewWriter(&buf)
-			if _, err = compressor.Write(body.Bytes()); err != nil {
+			body, err = compressZstd(body.Bytes())
+			if err != nil {
 				return nil, err
 			}
-			if err = compressor.Close(); err != nil {
-				return nil, err
-			}
-			body = &buf
 		}
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
