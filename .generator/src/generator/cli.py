@@ -26,9 +26,6 @@ def cli(specs, output):
     """
     Generate a Go code snippet from OpenAPI specification.
     """
-    # spec = openapi.load(input)
-    # version = input.parent.name
-
     env = Environment(loader=FileSystemLoader(str(pathlib.Path(__file__).parent / "templates")))
 
     env.filters["accept_headers"] = openapi.accept_headers
