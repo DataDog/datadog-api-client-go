@@ -7,6 +7,8 @@ import dateutil.parser
 
 from .utils import snake_case, camel_case, untitle_case, schema_name
 
+PRIMITIVE_TYPES = ["string", "number", "boolean", "integer"]
+
 KEYWORDS = {
     "break",
     "case",
@@ -212,11 +214,17 @@ def reference_to_value(schema, value, print_nullable=True):
     type_format = schema.get("format")
     nullable = schema.get("nullable", False)
 
+    prefix = ""
+    if type_name in PRIMITIVE_TYPES:
+        prefix = "common."
+    else:
+        prefix = "datadog."
+
     if nullable and print_nullable:
         if value == "nil":
-            formatter = "*common.NewNullable{function_name}({value})"
+            formatter = "*{prefix}NewNullable{function_name}({value})"
         else:
-            formatter = "*common.NewNullable{function_name}(common.Ptr{function_name}({value}))"
+            formatter = "*{prefix}NewNullable{function_name}({prefix}Ptr{function_name}({value}))"
     else:
         formatter = "common.Ptr{function_name}({value})"
 
@@ -227,7 +235,7 @@ def reference_to_value(schema, value, print_nullable=True):
             "int64": "Int64",
             None: "Int",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "number":
         function_name = {
@@ -235,7 +243,7 @@ def reference_to_value(schema, value, print_nullable=True):
             "double": "Float64",
             None: "Float32",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "string":
         function_name = {
@@ -244,16 +252,16 @@ def reference_to_value(schema, value, print_nullable=True):
             "email": "String",
             None: "String",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "boolean":
-        return formatter.format(function_name="Bool", value=value)
+        return formatter.format(prefix=prefix, function_name="Bool", value=value)
 
     if nullable:
         function_name = schema_name(schema)
         if function_name is None:
             raise NotImplementedError(f"nullable {schema} is not supported")
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
     return f"&{value}"
 
 

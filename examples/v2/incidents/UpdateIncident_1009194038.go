@@ -22,7 +22,7 @@ func main() {
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Relationships: &datadog.IncidentUpdateRelationships{
 				CommanderUser: &datadog.NullableRelationshipToUser{
-					Data: *common.NewNullableNullableRelationshipToUserData(nil),
+					Data: *datadog.NewNullableNullableRelationshipToUserData(nil),
 				},
 			},
 		},
