@@ -26,10 +26,10 @@ func main() {
 						StorageAccount: "account-name",
 						Type:           datadog.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 					}},
-				IncludeTags:                datadog.PtrBool(false),
+				IncludeTags:                common.PtrBool(false),
 				Name:                       "Nginx Archive",
 				Query:                      "source:nginx",
-				RehydrationMaxScanSizeInGb: *common.NewNullableInt64(datadog.PtrInt64(100)),
+				RehydrationMaxScanSizeInGb: *common.NewNullableInt64(common.PtrInt64(100)),
 				RehydrationTags: []string{
 					"team:intake",
 					"team:app",

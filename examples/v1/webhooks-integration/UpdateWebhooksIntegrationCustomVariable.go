@@ -17,7 +17,7 @@ func main() {
 	WebhookCustomVariableName := os.Getenv("WEBHOOK_CUSTOM_VARIABLE_NAME")
 
 	body := datadog.WebhooksIntegrationCustomVariableUpdateRequest{
-		Value: datadog.PtrString("variable-updated"),
+		Value: common.PtrString("variable-updated"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

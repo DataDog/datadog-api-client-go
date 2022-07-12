@@ -19,22 +19,22 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
-						Title:      datadog.PtrString("Metrics HOP"),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString("Metrics HOP"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: datadog.PtrBool(false),
+						ShowLegend: common.PtrBool(false),
 						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 						Xaxis: &datadog.DistributionWidgetXAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Yaxis: &datadog.DistributionWidgetYAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Requests: []datadog.DistributionWidgetRequest{
 							{
@@ -46,7 +46,7 @@ func main() {
 									}},
 								RequestType: datadog.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 								Style: &datadog.WidgetStyle{
-									Palette: datadog.PtrString("dog_classic"),
+									Palette: common.PtrString("dog_classic"),
 								},
 							},
 						},

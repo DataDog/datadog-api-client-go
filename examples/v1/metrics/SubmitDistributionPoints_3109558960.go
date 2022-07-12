@@ -20,7 +20,7 @@ func main() {
 				Metric: "system.load.1.dist",
 				Points: [][]datadog.DistributionPointItem{
 					{
-						{DistributionPointTimestamp: datadog.PtrFloat64(float64(time.Now().Unix()))},
+						{DistributionPointTimestamp: common.PtrFloat64(float64(time.Now().Unix()))},
 						{DistributionPointData: &[]float64{
 							1.0,
 							2.0,

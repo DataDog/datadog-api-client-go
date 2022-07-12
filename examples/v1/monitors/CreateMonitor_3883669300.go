@@ -14,18 +14,18 @@ import (
 
 func main() {
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_RUM_formula_and_functions_monitor_returns_OK_response"),
+		Name:    common.PtrString("Example-Create_a_RUM_formula_and_functions_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_RUM_ALERT,
 		Query:   `formula("query2 / query1 * 100").last("15m") >= 0.8`,
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: common.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreatearumformulaandfunctionsmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			Thresholds: &datadog.MonitorThresholds{
-				Critical: datadog.PtrFloat64(0.8),
+				Critical: common.PtrFloat64(0.8),
 			},
 			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
 				datadog.MonitorFormulaAndFunctionQueryDefinition{

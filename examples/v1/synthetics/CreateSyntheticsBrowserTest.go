@@ -18,17 +18,17 @@ func main() {
 			Assertions: []datadog.SyntheticsAssertion{},
 			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
-					Example: datadog.PtrString("content-type"),
+					Example: common.PtrString("content-type"),
 					Name:    "PROPERTY",
-					Pattern: datadog.PtrString("content-type"),
+					Pattern: common.PtrString("content-type"),
 					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: datadog.SyntheticsTestRequest{
 				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Url:    datadog.PtrString("https://datadoghq.com"),
+				Url:    common.PtrString("https://datadoghq.com"),
 			},
-			SetCookie: datadog.PtrString("name:test"),
+			SetCookie: common.PtrString("name:test"),
 		},
 		Locations: []string{
 			"aws:us-east-2",
@@ -36,21 +36,21 @@ func main() {
 		Message: "Test message",
 		Name:    "Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned: datadog.PtrBool(false),
-			AllowInsecure:    datadog.PtrBool(true),
+			AcceptSelfSigned: common.PtrBool(false),
+			AllowInsecure:    common.PtrBool(true),
 			DeviceIds: []datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_TABLET,
 			},
-			DisableCors:        datadog.PtrBool(true),
-			FollowRedirects:    datadog.PtrBool(true),
-			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(1),
-			NoScreenshot:       datadog.PtrBool(true),
+			DisableCors:        common.PtrBool(true),
+			FollowRedirects:    common.PtrBool(true),
+			MinFailureDuration: common.PtrInt64(10),
+			MinLocationFailed:  common.PtrInt64(1),
+			NoScreenshot:       common.PtrBool(true),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
-				Interval: datadog.PtrFloat64(10),
+				Count:    common.PtrInt64(3),
+				Interval: common.PtrFloat64(10),
 			},
-			TickEvery: datadog.PtrInt64(300),
+			TickEvery: common.PtrInt64(300),
 		},
 		Tags: []string{
 			"testing:browser",
@@ -58,9 +58,9 @@ func main() {
 		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 		Steps: []datadog.SyntheticsStep{
 			{
-				AllowFailure: datadog.PtrBool(false),
-				IsCritical:   datadog.PtrBool(true),
-				Name:         datadog.PtrString("Refresh page"),
+				AllowFailure: common.PtrBool(false),
+				IsCritical:   common.PtrBool(true),
+				Name:         common.PtrString("Refresh page"),
 				Params:       new(interface{}),
 				Type:         datadog.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
 			},

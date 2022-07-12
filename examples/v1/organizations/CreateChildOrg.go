@@ -15,11 +15,11 @@ import (
 func main() {
 	body := datadog.OrganizationCreateBody{
 		Billing: &datadog.OrganizationBilling{
-			Type: datadog.PtrString("parent_billing"),
+			Type: common.PtrString("parent_billing"),
 		},
 		Name: "New child org",
 		Subscription: &datadog.OrganizationSubscription{
-			Type: datadog.PtrString("pro"),
+			Type: common.PtrString("pro"),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

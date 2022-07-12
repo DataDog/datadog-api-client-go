@@ -21,8 +21,8 @@ func main() {
 			Id:   UserDataID,
 			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.UserUpdateAttributes{
-				Name:     datadog.PtrString("updated"),
-				Disabled: datadog.PtrBool(true),
+				Name:     common.PtrString("updated"),
+				Disabled: common.PtrBool(true),
 			},
 		},
 	}

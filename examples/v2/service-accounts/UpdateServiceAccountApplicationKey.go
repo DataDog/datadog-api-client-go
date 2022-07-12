@@ -16,7 +16,7 @@ func main() {
 	body := datadog.ApplicationKeyUpdateRequest{
 		Data: datadog.ApplicationKeyUpdateData{
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: datadog.PtrString("Application Key for managing dashboards"),
+				Name: common.PtrString("Application Key for managing dashboards"),
 				Scopes: []string{
 					"dashboards_read",
 					"dashboards_write",

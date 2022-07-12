@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.ServiceLevelObjectiveRequest{
 		Type:        datadog.SLOTYPE_METRIC,
-		Description: *common.NewNullableString(datadog.PtrString("string")),
+		Description: *common.NewNullableString(common.PtrString("string")),
 		Groups: []string{
 			"env:test",
 			"role:mysql",
@@ -33,10 +33,10 @@ func main() {
 		Thresholds: []datadog.SLOThreshold{
 			{
 				Target:         95.0,
-				TargetDisplay:  datadog.PtrString("95.0"),
+				TargetDisplay:  common.PtrString("95.0"),
 				Timeframe:      datadog.SLOTIMEFRAME_SEVEN_DAYS,
-				Warning:        datadog.PtrFloat64(98),
-				WarningDisplay: datadog.PtrString("98.0"),
+				Warning:        common.PtrFloat64(98),
+				WarningDisplay: common.PtrString("98.0"),
 			},
 		},
 	}

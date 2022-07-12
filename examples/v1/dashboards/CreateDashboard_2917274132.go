@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_manage_status_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -30,18 +30,18 @@ func main() {
 						SummaryType:       datadog.WIDGETSUMMARYTYPE_MONITORS.Ptr(),
 						DisplayFormat:     datadog.WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS_AND_LIST.Ptr(),
 						ColorPreference:   datadog.WIDGETCOLORPREFERENCE_TEXT.Ptr(),
-						HideZeroCounts:    datadog.PtrBool(true),
-						ShowLastTriggered: datadog.PtrBool(false),
+						HideZeroCounts:    common.PtrBool(true),
+						ShowLastTriggered: common.PtrBool(false),
 						Query:             "",
 						Sort:              datadog.WIDGETMONITORSUMMARYSORT_STATUS_ASCENDING.Ptr(),
-						Count:             datadog.PtrInt64(50),
-						Start:             datadog.PtrInt64(0),
+						Count:             common.PtrInt64(50),
+						Start:             common.PtrInt64(0),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

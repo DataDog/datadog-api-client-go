@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_log_stream_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,14 +26,14 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					LogStreamWidgetDefinition: &datadog.LogStreamWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM,
 						Indexes: []string{
 							"main",
 						},
-						Query: datadog.PtrString(""),
+						Query: common.PtrString(""),
 						Sort: &datadog.WidgetFieldSort{
 							Column: "time",
 							Order:  datadog.WIDGETSORT_DESCENDING,
@@ -42,15 +42,15 @@ func main() {
 							"host",
 							"service",
 						},
-						ShowDateColumn:    datadog.PtrBool(true),
-						ShowMessageColumn: datadog.PtrBool(true),
+						ShowDateColumn:    common.PtrBool(true),
+						ShowMessageColumn: common.PtrBool(true),
 						MessageDisplay:    datadog.WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM.Ptr(),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

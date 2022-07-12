@@ -14,18 +14,18 @@ import (
 
 func main() {
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_ci_pipelines_formula_and_functions_monitor_returns_OK_response"),
+		Name:    common.PtrString("Example-Create_a_ci_pipelines_formula_and_functions_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `formula("query1 / query2 * 100").last("15m") >= 0.8`,
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: common.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreateacipipelinesformulaandfunctionsmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			Thresholds: &datadog.MonitorThresholds{
-				Critical: datadog.PtrFloat64(0.8),
+				Critical: common.PtrFloat64(0.8),
 			},
 			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
 				datadog.MonitorFormulaAndFunctionQueryDefinition{

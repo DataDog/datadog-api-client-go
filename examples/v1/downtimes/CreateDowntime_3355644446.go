@@ -19,13 +19,13 @@ func main() {
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadog.Downtime{
-		Message:  datadog.PtrString("Example-Schedule_a_monitor_downtime_returns_OK_response"),
-		Start:    datadog.PtrInt64(time.Now().Unix()),
-		Timezone: datadog.PtrString("Etc/UTC"),
+		Message:  common.PtrString("Example-Schedule_a_monitor_downtime_returns_OK_response"),
+		Start:    common.PtrInt64(time.Now().Unix()),
+		Timezone: common.PtrString("Etc/UTC"),
 		Scope: []string{
 			"test:examplescheduleamonitordowntimereturnsokresponse",
 		},
-		MonitorId: *common.NewNullableInt64(datadog.PtrInt64(MonitorID)),
+		MonitorId: *common.NewNullableInt64(common.PtrInt64(MonitorID)),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

@@ -19,7 +19,7 @@ func main() {
 	body := datadog.Dashboard{
 		LayoutType:  datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:       "Example-Update_a_dashboard_returns_OK_response with list_stream widget",
-		Description: *common.NewNullableString(datadog.PtrString("Updated description")),
+		Description: *common.NewNullableString(common.PtrString("Updated description")),
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{

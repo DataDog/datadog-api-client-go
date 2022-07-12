@@ -15,12 +15,12 @@ import (
 
 func main() {
 	body := datadog.LogsListRequest{
-		Index: datadog.PtrString("main"),
-		Query: datadog.PtrString("host:Test*"),
+		Index: common.PtrString("main"),
+		Query: common.PtrString("host:Test*"),
 		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
 		Time: datadog.LogsListRequestTime{
 			From:     time.Now().Add(time.Hour * -1),
-			Timezone: datadog.PtrString("Europe/Paris"),
+			Timezone: common.PtrString("Europe/Paris"),
 			To:       time.Now(),
 		},
 	}

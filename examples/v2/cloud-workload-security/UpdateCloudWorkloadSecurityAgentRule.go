@@ -19,9 +19,9 @@ func main() {
 	body := datadog.CloudWorkloadSecurityAgentRuleUpdateRequest{
 		Data: datadog.CloudWorkloadSecurityAgentRuleUpdateData{
 			Attributes: datadog.CloudWorkloadSecurityAgentRuleUpdateAttributes{
-				Description: datadog.PtrString("Test Agent rule"),
-				Enabled:     datadog.PtrBool(true),
-				Expression:  datadog.PtrString(`exec.file.name == "sh"`),
+				Description: common.PtrString("Test Agent rule"),
+				Enabled:     common.PtrBool(true),
+				Expression:  common.PtrString(`exec.file.name == "sh"`),
 			},
 			Type: datadog.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},

@@ -26,18 +26,18 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					EventTimelineWidgetDefinition: &datadog.EventTimelineWidgetDefinition{
-						Title:         datadog.PtrString(""),
-						TitleSize:     datadog.PtrString("16"),
+						Title:         common.PtrString(""),
+						TitleSize:     common.PtrString("16"),
 						TitleAlign:    datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:          datadog.EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE,
 						Query:         "status:error priority:all",
-						TagsExecution: datadog.PtrString("and"),
+						TagsExecution: common.PtrString("and"),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

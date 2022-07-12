@@ -14,8 +14,8 @@ import (
 
 func main() {
 	body := datadog.AWSAccountDeleteRequest{
-		AccountId: datadog.PtrString("1234567"),
-		RoleName:  datadog.PtrString("DatadogAWSIntegrationRole"),
+		AccountId: common.PtrString("1234567"),
+		RoleName:  common.PtrString("DatadogAWSIntegrationRole"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

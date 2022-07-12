@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.LogsPipeline{
 		Filter: &datadog.LogsFilter{
-			Query: datadog.PtrString("source:python"),
+			Query: common.PtrString("source:python"),
 		},
 		Name: "",
 		Processors: []datadog.LogsProcessor{
@@ -25,11 +25,11 @@ func main() {
 						MatchRules: `rule_name_1 foo
 rule_name_2 bar
 `,
-						SupportRules: datadog.PtrString(`rule_name_1 foo
+						SupportRules: common.PtrString(`rule_name_1 foo
 rule_name_2 bar
 `),
 					},
-					IsEnabled: datadog.PtrBool(false),
+					IsEnabled: common.PtrBool(false),
 					Samples:   []string{},
 					Source:    "message",
 					Type:      datadog.LOGSGROKPARSERTYPE_GROK_PARSER,

@@ -17,15 +17,15 @@ func main() {
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_monitor_returns_OK_response"),
+		Name:    common.PtrString("Example-Create_a_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: common.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreateamonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
 		RestrictedRoles: []string{
 			RoleDataID,
 		},

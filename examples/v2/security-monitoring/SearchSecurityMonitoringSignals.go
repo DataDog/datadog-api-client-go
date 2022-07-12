@@ -16,13 +16,13 @@ import (
 func main() {
 	body := datadog.SecurityMonitoringSignalListRequest{
 		Filter: &datadog.SecurityMonitoringSignalListRequestFilter{
-			From:  datadog.PtrTime(time.Date(2019, 1, 2, 9, 42, 36, 320000, time.UTC)),
-			Query: datadog.PtrString("security:attack status:high"),
-			To:    datadog.PtrTime(time.Date(2019, 1, 3, 9, 42, 36, 320000, time.UTC)),
+			From:  common.PtrTime(time.Date(2019, 1, 2, 9, 42, 36, 320000, time.UTC)),
+			Query: common.PtrString("security:attack status:high"),
+			To:    common.PtrTime(time.Date(2019, 1, 3, 9, 42, 36, 320000, time.UTC)),
 		},
 		Page: &datadog.SecurityMonitoringSignalListRequestPage{
-			Cursor: datadog.PtrString("eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ=="),
-			Limit:  datadog.PtrInt32(25),
+			Cursor: common.PtrString("eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ=="),
+			Limit:  common.PtrInt32(25),
 		},
 		Sort: datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}

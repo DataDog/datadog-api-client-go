@@ -21,7 +21,7 @@ func main() {
 			Id:   ApplicationKeyDataID,
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: datadog.PtrString("Application Key for managing dashboards-updated"),
+				Name: common.PtrString("Application Key for managing dashboards-updated"),
 			},
 		},
 	}

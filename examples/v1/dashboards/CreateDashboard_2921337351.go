@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_trace_service_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,18 +26,18 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					ServiceSummaryWidgetDefinition: &datadog.ServiceSummaryWidgetDefinition{
-						Title:            datadog.PtrString("Service Summary"),
+						Title:            common.PtrString("Service Summary"),
 						Time:             &datadog.WidgetTime{},
 						Type:             datadog.SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE,
 						Env:              "none",
 						Service:          "",
 						SpanName:         "",
-						ShowHits:         datadog.PtrBool(true),
-						ShowErrors:       datadog.PtrBool(true),
-						ShowLatency:      datadog.PtrBool(true),
-						ShowBreakdown:    datadog.PtrBool(true),
-						ShowDistribution: datadog.PtrBool(true),
-						ShowResourceList: datadog.PtrBool(false),
+						ShowHits:         common.PtrBool(true),
+						ShowErrors:       common.PtrBool(true),
+						ShowLatency:      common.PtrBool(true),
+						ShowBreakdown:    common.PtrBool(true),
+						ShowDistribution: common.PtrBool(true),
+						ShowResourceList: common.PtrBool(false),
 						SizeFormat:       datadog.WIDGETSIZEFORMAT_MEDIUM.Ptr(),
 						DisplayFormat:    datadog.WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN.Ptr(),
 					}},
@@ -45,7 +45,7 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

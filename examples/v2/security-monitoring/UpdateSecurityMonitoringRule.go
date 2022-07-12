@@ -25,14 +25,14 @@ func main() {
 				Action: datadog.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
 			},
 		},
-		HasExtendedTitle: datadog.PtrBool(true),
+		HasExtendedTitle: common.PtrBool(true),
 		Options: &datadog.SecurityMonitoringRuleOptions{
-			DecreaseCriticalityBasedOnEnv: datadog.PtrBool(false),
+			DecreaseCriticalityBasedOnEnv: common.PtrBool(false),
 			DetectionMethod:               datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
 			EvaluationWindow:              datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
 			HardcodedEvaluatorType:        datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
 			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
-				BaselineUserLocations: datadog.PtrBool(true),
+				BaselineUserLocations: common.PtrBool(true),
 			},
 			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES.Ptr(),
 			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES.Ptr(),
@@ -51,7 +51,7 @@ func main() {
 			},
 		},
 		Tags:    []string{},
-		Version: datadog.PtrInt32(1),
+		Version: common.PtrInt32(1),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

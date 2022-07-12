@@ -24,7 +24,7 @@ func main() {
 			{
 				Target:    97.0,
 				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
-				Warning:   datadog.PtrFloat64(98.0),
+				Warning:   common.PtrFloat64(98.0),
 			},
 		},
 		Query: &datadog.ServiceLevelObjectiveQuery{

@@ -216,9 +216,9 @@ def reference_to_value(schema, value, print_nullable=True):
         if value == "nil":
             formatter = "*common.NewNullable{function_name}({value})"
         else:
-            formatter = "*common.NewNullable{function_name}(datadog.Ptr{function_name}({value}))"
+            formatter = "*common.NewNullable{function_name}(common.Ptr{function_name}({value}))"
     else:
-        formatter = "datadog.Ptr{function_name}({value})"
+        formatter = "common.Ptr{function_name}({value})"
 
     if type_name == "integer":
         function_name = {

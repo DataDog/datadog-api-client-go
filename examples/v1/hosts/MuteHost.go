@@ -14,9 +14,9 @@ import (
 
 func main() {
 	body := datadog.HostMuteSettings{
-		End:      datadog.PtrInt64(1579098130),
-		Message:  datadog.PtrString("Muting this host for a test!"),
-		Override: datadog.PtrBool(false),
+		End:      common.PtrInt64(1579098130),
+		Message:  common.PtrString("Muting this host for a test!"),
+		Override: common.PtrBool(false),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

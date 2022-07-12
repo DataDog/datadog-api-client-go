@@ -18,11 +18,11 @@ func main() {
 		Series: []datadog.Series{
 			{
 				Metric: "system.load.1",
-				Type:   datadog.PtrString("gauge"),
+				Type:   common.PtrString("gauge"),
 				Points: [][]*float64{
 					{
-						datadog.PtrFloat64(float64(time.Now().Unix())),
-						datadog.PtrFloat64(1.1),
+						common.PtrFloat64(float64(time.Now().Unix())),
+						common.PtrFloat64(1.1),
 					},
 				},
 				Tags: []string{

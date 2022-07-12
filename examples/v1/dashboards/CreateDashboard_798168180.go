@@ -19,8 +19,8 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					TableWidgetDefinition: &datadog.TableWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
 						Requests: []datadog.TableWidgetRequest{
@@ -29,14 +29,14 @@ func main() {
 								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionApmDependencyStatsQueryDefinition: &datadog.FormulaAndFunctionApmDependencyStatsQueryDefinition{
-											PrimaryTagValue: datadog.PtrString("edge-eu1.prod.dog"),
+											PrimaryTagValue: common.PtrString("edge-eu1.prod.dog"),
 											Stat:            datadog.FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION,
 											ResourceName:    "DELETE FROM monitor_history.monitor_state_change_history WHERE org_id = ? AND monitor_id IN ? AND group = ?",
 											Name:            "query1",
 											Service:         "cassandra",
 											DataSource:      datadog.FORMULAANDFUNCTIONAPMDEPENDENCYSTATSDATASOURCE_APM_DEPENDENCY_STATS,
 											Env:             "ci",
-											PrimaryTagName:  datadog.PtrString("datacenter"),
+											PrimaryTagName:  common.PtrString("datacenter"),
 											OperationName:   "cassandra.query",
 										}},
 								},

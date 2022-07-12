@@ -21,11 +21,11 @@ func main() {
 		Data: &datadog.SLOCorrectionCreateData{
 			Attributes: &datadog.SLOCorrectionCreateRequestAttributes{
 				Category:    datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
-				Description: datadog.PtrString("Example-Create_an_SLO_correction_returns_OK_response"),
-				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
+				Description: common.PtrString("Example-Create_an_SLO_correction_returns_OK_response"),
+				End:         common.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
 				SloId:       SloData0ID,
 				Start:       time.Now().Unix(),
-				Timezone:    datadog.PtrString("UTC"),
+				Timezone:    common.PtrString("UTC"),
 			},
 			Type: datadog.SLOCORRECTIONTYPE_CORRECTION,
 		},

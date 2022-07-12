@@ -20,12 +20,12 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
-						TitleSize:  datadog.PtrString("16"),
-						Title:      datadog.PtrString(""),
+						TitleSize:  common.PtrString("16"),
+						Title:      common.PtrString(""),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Precision:  datadog.PtrInt64(2),
+						Precision:  common.PtrInt64(2),
 						Time:       &datadog.WidgetTime{},
-						Autoscale:  datadog.PtrBool(true),
+						Autoscale:  common.PtrBool(true),
 						Requests: []datadog.QueryValueWidgetRequest{
 							{
 								Formulas: []datadog.WidgetFormula{
@@ -49,7 +49,7 @@ func main() {
 						TimeseriesBackground: &datadog.TimeseriesBackground{
 							Type: datadog.TIMESERIESBACKGROUNDTYPE_AREA,
 							Yaxis: &datadog.WidgetAxis{
-								IncludeZero: datadog.PtrBool(true),
+								IncludeZero: common.PtrBool(true),
 							},
 						},
 					}},

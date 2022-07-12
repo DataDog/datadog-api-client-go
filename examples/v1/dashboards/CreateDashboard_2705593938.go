@@ -19,8 +19,8 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					SunburstWidgetDefinition: &datadog.SunburstWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
 						Requests: []datadog.SunburstWidgetRequest{

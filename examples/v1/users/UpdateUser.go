@@ -15,10 +15,10 @@ import (
 func main() {
 	body := datadog.User{
 		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-		Disabled:   datadog.PtrBool(false),
-		Email:      datadog.PtrString("test@datadoghq.com"),
-		Handle:     datadog.PtrString("test@datadoghq.com"),
-		Name:       datadog.PtrString("test user"),
+		Disabled:   common.PtrBool(false),
+		Email:      common.PtrString("test@datadoghq.com"),
+		Handle:     common.PtrString("test@datadoghq.com"),
+		Name:       common.PtrString("test user"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

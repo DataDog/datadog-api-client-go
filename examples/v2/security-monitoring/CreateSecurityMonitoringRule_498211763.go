@@ -21,15 +21,15 @@ func main() {
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  []string{},
 				DistinctFields: []string{},
-				Metric:         datadog.PtrString(""),
+				Metric:         common.PtrString(""),
 			},
 		},
 		Filters: []datadog.SecurityMonitoringFilter{},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
 			{
-				Name:          datadog.PtrString(""),
+				Name:          common.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
-				Condition:     datadog.PtrString("a > 0"),
+				Condition:     common.PtrString("a > 0"),
 				Notifications: []string{},
 			},
 		},

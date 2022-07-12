@@ -19,8 +19,8 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					ChangeWidgetDefinition: &datadog.ChangeWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.CHANGEWIDGETDEFINITIONTYPE_CHANGE,
@@ -53,7 +53,7 @@ func main() {
 								},
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 								CompareTo:      datadog.WIDGETCOMPARETO_HOUR_BEFORE.Ptr(),
-								IncreaseGood:   datadog.PtrBool(true),
+								IncreaseGood:   common.PtrBool(true),
 								OrderBy:        datadog.WIDGETORDERBY_CHANGE.Ptr(),
 								ChangeType:     datadog.WIDGETCHANGETYPE_ABSOLUTE.Ptr(),
 								OrderDir:       datadog.WIDGETSORT_DESCENDING.Ptr(),

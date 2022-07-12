@@ -15,12 +15,12 @@ import (
 func main() {
 	body := datadog.LogsAggregateRequest{
 		Filter: &datadog.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
+			From: common.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
 			},
-			Query: datadog.PtrString("*"),
-			To:    datadog.PtrString("now"),
+			Query: common.PtrString("*"),
+			To:    common.PtrString("now"),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

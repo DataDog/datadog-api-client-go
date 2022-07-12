@@ -21,7 +21,7 @@ func main() {
 			Id:   RoleDataID,
 			Type: datadog.ROLESTYPE_ROLES,
 			Attributes: datadog.RoleUpdateAttributes{
-				Name: datadog.PtrString("developers-updated"),
+				Name: common.PtrString("developers-updated"),
 			},
 		},
 	}

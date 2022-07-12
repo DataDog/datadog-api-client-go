@@ -15,11 +15,11 @@ import (
 
 func main() {
 	body := datadog.Downtime{
-		Message: datadog.PtrString("Example-Schedule_a_downtime_with_until_occurrences"),
+		Message: common.PtrString("Example-Schedule_a_downtime_with_until_occurrences"),
 		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
-			Period:           datadog.PtrInt32(1),
-			Type:             datadog.PtrString("weeks"),
-			UntilOccurrences: *common.NewNullableInt32(datadog.PtrInt32(3)),
+			Period:           common.PtrInt32(1),
+			Type:             common.PtrString("weeks"),
+			UntilOccurrences: *common.NewNullableInt32(common.PtrInt32(3)),
 			WeekDays: []string{
 				"Mon",
 				"Tue",
@@ -31,9 +31,9 @@ func main() {
 		Scope: []string{
 			"*",
 		},
-		Start:    datadog.PtrInt64(time.Now().Unix()),
-		End:      *common.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
-		Timezone: datadog.PtrString("Etc/UTC"),
+		Start:    common.PtrInt64(time.Now().Unix()),
+		End:      *common.NewNullableInt64(common.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
+		Timezone: common.PtrString("Etc/UTC"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

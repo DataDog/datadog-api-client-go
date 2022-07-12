@@ -22,14 +22,14 @@ func main() {
 	body := datadog.AuthNMappingUpdateRequest{
 		Data: datadog.AuthNMappingUpdateData{
 			Attributes: &datadog.AuthNMappingUpdateAttributes{
-				AttributeKey:   datadog.PtrString("member-of"),
-				AttributeValue: datadog.PtrString("Development"),
+				AttributeKey:   common.PtrString("member-of"),
+				AttributeValue: common.PtrString("Development"),
 			},
 			Id: AuthnMappingDataID,
 			Relationships: &datadog.AuthNMappingUpdateRelationships{
 				Role: &datadog.RelationshipToRole{
 					Data: &datadog.RelationshipToRoleData{
-						Id:   datadog.PtrString(RoleDataID),
+						Id:   common.PtrString(RoleDataID),
 						Type: datadog.ROLESTYPE_ROLES.Ptr(),
 					},
 				},

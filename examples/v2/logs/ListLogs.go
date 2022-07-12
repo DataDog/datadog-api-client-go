@@ -15,16 +15,16 @@ import (
 func main() {
 	body := datadog.LogsListRequest{
 		Filter: &datadog.LogsQueryFilter{
-			Query: datadog.PtrString("datadog-agent"),
+			Query: common.PtrString("datadog-agent"),
 			Indexes: []string{
 				"main",
 			},
-			From: datadog.PtrString("2020-09-17T11:48:36+01:00"),
-			To:   datadog.PtrString("2020-09-17T12:48:36+01:00"),
+			From: common.PtrString("2020-09-17T11:48:36+01:00"),
+			To:   common.PtrString("2020-09-17T12:48:36+01:00"),
 		},
 		Sort: datadog.LOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 		Page: &datadog.LogsListRequestPage{
-			Limit: datadog.PtrInt32(5),
+			Limit: common.PtrInt32(5),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

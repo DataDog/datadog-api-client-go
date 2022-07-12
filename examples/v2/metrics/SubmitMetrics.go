@@ -21,8 +21,8 @@ func main() {
 				Type:   datadog.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
 				Points: []datadog.MetricPoint{
 					{
-						Timestamp: datadog.PtrInt64(time.Now().Unix()),
-						Value:     datadog.PtrFloat64(0.7),
+						Timestamp: common.PtrInt64(time.Now().Unix()),
+						Value:     common.PtrFloat64(0.7),
 					},
 				},
 			},

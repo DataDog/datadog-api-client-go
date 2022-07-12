@@ -28,15 +28,15 @@ func main() {
 					FreeTextWidgetDefinition: &datadog.FreeTextWidgetDefinition{
 						Type:      datadog.FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT,
 						Text:      "Example free text",
-						Color:     datadog.PtrString("#4d4d4d"),
-						FontSize:  datadog.PtrString("auto"),
+						Color:     common.PtrString("#4d4d4d"),
+						FontSize:  common.PtrString("auto"),
 						TextAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

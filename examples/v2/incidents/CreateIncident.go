@@ -26,7 +26,7 @@ func main() {
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
 							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
-							Value: *common.NewNullableString(datadog.PtrString("resolved")),
+							Value: *common.NewNullableString(common.PtrString("resolved")),
 						}},
 				},
 			},

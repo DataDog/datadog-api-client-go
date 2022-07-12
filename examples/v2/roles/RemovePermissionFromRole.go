@@ -21,7 +21,7 @@ func main() {
 
 	body := datadog.RelationshipToPermission{
 		Data: &datadog.RelationshipToPermissionData{
-			Id:   datadog.PtrString(PermissionID),
+			Id:   common.PtrString(PermissionID),
 			Type: datadog.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
 		},
 	}

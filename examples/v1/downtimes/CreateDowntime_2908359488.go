@@ -15,11 +15,11 @@ import (
 
 func main() {
 	body := datadog.Downtime{
-		Message: datadog.PtrString("Example-Schedule_a_downtime_until_date"),
+		Message: common.PtrString("Example-Schedule_a_downtime_until_date"),
 		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
-			Period:    datadog.PtrInt32(1),
-			Type:      datadog.PtrString("weeks"),
-			UntilDate: *common.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
+			Period:    common.PtrInt32(1),
+			Type:      common.PtrString("weeks"),
+			UntilDate: *common.NewNullableInt64(common.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
 			WeekDays: []string{
 				"Mon",
 				"Tue",
@@ -31,10 +31,10 @@ func main() {
 		Scope: []string{
 			"*",
 		},
-		Start:                         datadog.PtrInt64(time.Now().Unix()),
-		End:                           *common.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
-		Timezone:                      datadog.PtrString("Etc/UTC"),
-		MuteFirstRecoveryNotification: datadog.PtrBool(true),
+		Start:                         common.PtrInt64(time.Now().Unix()),
+		End:                           *common.NewNullableInt64(common.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
+		Timezone:                      common.PtrString("Etc/UTC"),
+		MuteFirstRecoveryNotification: common.PtrBool(true),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

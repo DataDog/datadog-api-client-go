@@ -17,31 +17,31 @@ func main() {
 		Compute: []datadog.LogsCompute{
 			{
 				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
-				Interval:    datadog.PtrString("5m"),
+				Interval:    common.PtrString("5m"),
 				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
 			},
 		},
 		Filter: &datadog.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
+			From: common.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
 			},
-			Query: datadog.PtrString("*"),
-			To:    datadog.PtrString("now"),
+			Query: common.PtrString("*"),
+			To:    common.PtrString("now"),
 		},
 		GroupBy: []datadog.LogsGroupBy{
 			{
 				Facet: "host",
 				Missing: &datadog.LogsGroupByMissing{
-					LogsGroupByMissingString: datadog.PtrString("miss")},
+					LogsGroupByMissingString: common.PtrString("miss")},
 				Sort: &datadog.LogsAggregateSort{
 					Type:        datadog.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
 					Order:       datadog.LOGSSORTORDER_ASCENDING.Ptr(),
 					Aggregation: datadog.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
-					Metric:      datadog.PtrString("@duration"),
+					Metric:      common.PtrString("@duration"),
 				},
 				Total: &datadog.LogsGroupByTotal{
-					LogsGroupByTotalString: datadog.PtrString("recall")},
+					LogsGroupByTotalString: common.PtrString("recall")},
 			},
 		},
 	}

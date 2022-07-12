@@ -14,9 +14,9 @@ import (
 
 func main() {
 	body := datadog.MetricMetadata{
-		PerUnit: datadog.PtrString("second"),
-		Type:    datadog.PtrString("count"),
-		Unit:    datadog.PtrString("byte"),
+		PerUnit: common.PtrString("second"),
+		Type:    common.PtrString("count"),
+		Unit:    common.PtrString("byte"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

@@ -15,16 +15,16 @@ import (
 func main() {
 	body := datadog.RUMSearchEventsRequest{
 		Filter: &datadog.RUMQueryFilter{
-			From:  datadog.PtrString("now-15m"),
-			Query: datadog.PtrString("@type:session AND @session.type:user"),
-			To:    datadog.PtrString("now"),
+			From:  common.PtrString("now-15m"),
+			Query: common.PtrString("@type:session AND @session.type:user"),
+			To:    common.PtrString("now"),
 		},
 		Options: &datadog.RUMQueryOptions{
-			TimeOffset: datadog.PtrInt64(0),
-			Timezone:   datadog.PtrString("GMT"),
+			TimeOffset: common.PtrInt64(0),
+			Timezone:   common.PtrString("GMT"),
 		},
 		Page: &datadog.RUMQueryPageOptions{
-			Limit: datadog.PtrInt32(25),
+			Limit: common.PtrInt32(25),
 		},
 		Sort: datadog.RUMSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}

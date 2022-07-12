@@ -21,18 +21,18 @@ func main() {
 					"@usr.id",
 				},
 				DistinctFields: []string{},
-				Metric:         datadog.PtrString("@network.client.geoip"),
+				Metric:         common.PtrString("@network.client.geoip"),
 				Query:          "*",
 			},
 		},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
 			{
-				Name:          datadog.PtrString(""),
+				Name:          common.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
 				Notifications: []string{},
 			},
 		},
-		HasExtendedTitle: datadog.PtrBool(true),
+		HasExtendedTitle: common.PtrBool(true),
 		Message:          "test",
 		IsEnabled:        true,
 		Options: datadog.SecurityMonitoringRuleOptions{
@@ -41,7 +41,7 @@ func main() {
 			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
 			DetectionMethod:   datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
 			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
-				BaselineUserLocations: datadog.PtrBool(false),
+				BaselineUserLocations: common.PtrBool(false),
 			},
 		},
 		Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",

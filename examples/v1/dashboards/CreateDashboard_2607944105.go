@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_check_status_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,7 +26,7 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					CheckStatusWidgetDefinition: &datadog.CheckStatusWidgetDefinition{
-						TitleSize:  datadog.PtrString("16"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS,
 						Check:      "datadog.agent.up",
@@ -39,7 +39,7 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

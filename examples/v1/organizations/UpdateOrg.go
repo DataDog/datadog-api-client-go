@@ -15,38 +15,38 @@ import (
 func main() {
 	body := datadog.Organization{
 		Billing: &datadog.OrganizationBilling{
-			Type: datadog.PtrString("parent_billing"),
+			Type: common.PtrString("parent_billing"),
 		},
-		Description: datadog.PtrString("some description"),
-		Name:        datadog.PtrString("New child org"),
-		PublicId:    datadog.PtrString("abcdef12345"),
+		Description: common.PtrString("some description"),
+		Name:        common.PtrString("New child org"),
+		PublicId:    common.PtrString("abcdef12345"),
 		Settings: &datadog.OrganizationSettings{
-			PrivateWidgetShare: datadog.PtrBool(false),
+			PrivateWidgetShare: common.PtrBool(false),
 			Saml: &datadog.OrganizationSettingsSaml{
-				Enabled: datadog.PtrBool(false),
+				Enabled: common.PtrBool(false),
 			},
 			SamlAutocreateAccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 			SamlAutocreateUsersDomains: &datadog.OrganizationSettingsSamlAutocreateUsersDomains{
 				Domains: []string{
 					"example.com",
 				},
-				Enabled: datadog.PtrBool(false),
+				Enabled: common.PtrBool(false),
 			},
-			SamlCanBeEnabled: datadog.PtrBool(false),
-			SamlIdpEndpoint:  datadog.PtrString("https://my.saml.endpoint"),
+			SamlCanBeEnabled: common.PtrBool(false),
+			SamlIdpEndpoint:  common.PtrString("https://my.saml.endpoint"),
 			SamlIdpInitiatedLogin: &datadog.OrganizationSettingsSamlIdpInitiatedLogin{
-				Enabled: datadog.PtrBool(false),
+				Enabled: common.PtrBool(false),
 			},
-			SamlIdpMetadataUploaded: datadog.PtrBool(false),
-			SamlLoginUrl:            datadog.PtrString("https://my.saml.login.url"),
+			SamlIdpMetadataUploaded: common.PtrBool(false),
+			SamlLoginUrl:            common.PtrString("https://my.saml.login.url"),
 			SamlStrictMode: &datadog.OrganizationSettingsSamlStrictMode{
-				Enabled: datadog.PtrBool(false),
+				Enabled: common.PtrBool(false),
 			},
 		},
 		Subscription: &datadog.OrganizationSubscription{
-			Type: datadog.PtrString("pro"),
+			Type: common.PtrString("pro"),
 		},
-		Trial: datadog.PtrBool(false),
+		Trial: common.PtrBool(false),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

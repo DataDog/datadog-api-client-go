@@ -23,10 +23,10 @@ func main() {
 						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadog.TimeseriesWidgetRequest{
 							{
-								Q:            datadog.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
-								OnRightYaxis: datadog.PtrBool(false),
+								Q:            common.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
+								OnRightYaxis: common.PtrBool(false),
 								Style: &datadog.WidgetRequestStyle{
-									Palette:   datadog.PtrString("warm"),
+									Palette:   common.PtrString("warm"),
 									LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
 									LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
 								},

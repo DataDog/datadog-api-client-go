@@ -26,7 +26,7 @@ func main() {
 								ProfileMetricsQuery: &datadog.LogQueryDefinition{
 									Compute: &datadog.LogsQueryCompute{
 										Aggregation: "sum",
-										Facet:       datadog.PtrString("@prof_core_cpu_cores"),
+										Facet:       common.PtrString("@prof_core_cpu_cores"),
 									},
 									Search: &datadog.LogQueryDefinitionSearch{
 										Query: "runtime:jvm",
@@ -34,11 +34,11 @@ func main() {
 									GroupBy: []datadog.LogQueryDefinitionGroupBy{
 										{
 											Facet: "service",
-											Limit: datadog.PtrInt64(10),
+											Limit: common.PtrInt64(10),
 											Sort: &datadog.LogQueryDefinitionGroupBySort{
 												Aggregation: "sum",
 												Order:       datadog.WIDGETSORT_DESCENDING,
-												Facet:       datadog.PtrString("@prof_core_cpu_cores"),
+												Facet:       common.PtrString("@prof_core_cpu_cores"),
 											},
 										},
 									},

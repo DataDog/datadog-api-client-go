@@ -17,28 +17,28 @@ func main() {
 		Compute: []datadog.RUMCompute{
 			{
 				Aggregation: datadog.RUMAGGREGATIONFUNCTION_PERCENTILE_90,
-				Metric:      datadog.PtrString("@view.time_spent"),
+				Metric:      common.PtrString("@view.time_spent"),
 				Type:        datadog.RUMCOMPUTETYPE_TOTAL.Ptr(),
 			},
 		},
 		Filter: &datadog.RUMQueryFilter{
-			From:  datadog.PtrString("now-15m"),
-			Query: datadog.PtrString("@type:view AND @session.type:user"),
-			To:    datadog.PtrString("now"),
+			From:  common.PtrString("now-15m"),
+			Query: common.PtrString("@type:view AND @session.type:user"),
+			To:    common.PtrString("now"),
 		},
 		GroupBy: []datadog.RUMGroupBy{
 			{
 				Facet: "@view.time_spent",
-				Limit: datadog.PtrInt64(10),
+				Limit: common.PtrInt64(10),
 				Total: &datadog.RUMGroupByTotal{
-					RUMGroupByTotalBoolean: datadog.PtrBool(false)},
+					RUMGroupByTotalBoolean: common.PtrBool(false)},
 			},
 		},
 		Options: &datadog.RUMQueryOptions{
-			Timezone: datadog.PtrString("GMT"),
+			Timezone: common.PtrString("GMT"),
 		},
 		Page: &datadog.RUMQueryPageOptions{
-			Limit: datadog.PtrInt32(25),
+			Limit: common.PtrInt32(25),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

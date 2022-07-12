@@ -15,27 +15,27 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu",
-		Description: *common.NewNullableString(datadog.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
+		Description: *common.NewNullableString(common.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{
 					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
-						Title:      datadog.PtrString("Events Platform - Request latency HOP"),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString("Events Platform - Request latency HOP"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: datadog.PtrBool(false),
+						ShowLegend: common.PtrBool(false),
 						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 						Xaxis: &datadog.DistributionWidgetXAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Yaxis: &datadog.DistributionWidgetYAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Requests: []datadog.DistributionWidgetRequest{
 							{
@@ -46,7 +46,7 @@ func main() {
 										},
 										DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
 										Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-											Metric:      datadog.PtrString("@duration"),
+											Metric:      common.PtrString("@duration"),
 											Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_MIN,
 										},
 										Name: "query1",

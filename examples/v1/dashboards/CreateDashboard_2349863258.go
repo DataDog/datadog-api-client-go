@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_query_value_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,8 +26,8 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
@@ -45,14 +45,14 @@ func main() {
 								},
 							},
 						},
-						Autoscale: datadog.PtrBool(true),
-						Precision: datadog.PtrInt64(2),
+						Autoscale: common.PtrBool(true),
+						Precision: common.PtrInt64(2),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

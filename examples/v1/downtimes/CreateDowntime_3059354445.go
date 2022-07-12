@@ -15,18 +15,18 @@ import (
 
 func main() {
 	body := datadog.Downtime{
-		Message: datadog.PtrString("Example-Schedule_a_downtime_once_a_year"),
+		Message: common.PtrString("Example-Schedule_a_downtime_once_a_year"),
 		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
-			Period: datadog.PtrInt32(1),
-			Type:   datadog.PtrString("years"),
+			Period: common.PtrInt32(1),
+			Type:   common.PtrString("years"),
 		}),
 		Scope: []string{
 			"*",
 		},
-		Start:                         datadog.PtrInt64(time.Now().Unix()),
-		End:                           *common.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
-		Timezone:                      datadog.PtrString("Etc/UTC"),
-		MuteFirstRecoveryNotification: datadog.PtrBool(true),
+		Start:                         common.PtrInt64(time.Now().Unix()),
+		End:                           *common.NewNullableInt64(common.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
+		Timezone:                      common.PtrString("Etc/UTC"),
+		MuteFirstRecoveryNotification: common.PtrBool(true),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

@@ -19,7 +19,7 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					TreeMapWidgetDefinition: &datadog.TreeMapWidgetDefinition{
-						Title: datadog.PtrString(""),
+						Title: common.PtrString(""),
 						Type:  datadog.TREEMAPWIDGETDEFINITIONTYPE_TREEMAP,
 						Requests: []datadog.TreeMapWidgetRequest{
 							{

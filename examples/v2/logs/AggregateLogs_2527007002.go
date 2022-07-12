@@ -17,17 +17,17 @@ func main() {
 		Compute: []datadog.LogsCompute{
 			{
 				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
-				Interval:    datadog.PtrString("5m"),
+				Interval:    common.PtrString("5m"),
 				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
 			},
 		},
 		Filter: &datadog.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
+			From: common.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
 			},
-			Query: datadog.PtrString("*"),
-			To:    datadog.PtrString("now"),
+			Query: common.PtrString("*"),
+			To:    common.PtrString("now"),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

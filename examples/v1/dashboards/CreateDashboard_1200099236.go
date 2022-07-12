@@ -26,28 +26,28 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					HostMapWidgetDefinition: &datadog.HostMapWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
 						Requests: datadog.HostMapWidgetDefinitionRequests{
 							Fill: &datadog.HostMapRequest{
-								Q: datadog.PtrString("avg:system.cpu.user{*} by {host}"),
+								Q: common.PtrString("avg:system.cpu.user{*} by {host}"),
 							},
 						},
 						NodeType:      datadog.WIDGETNODETYPE_HOST.Ptr(),
-						NoMetricHosts: datadog.PtrBool(true),
-						NoGroupHosts:  datadog.PtrBool(true),
+						NoMetricHosts: common.PtrBool(true),
+						NoGroupHosts:  common.PtrBool(true),
 						Style: &datadog.HostMapWidgetDefinitionStyle{
-							Palette:     datadog.PtrString("green_to_orange"),
-							PaletteFlip: datadog.PtrBool(false),
+							Palette:     common.PtrString("green_to_orange"),
+							PaletteFlip: common.PtrBool(false),
 						},
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

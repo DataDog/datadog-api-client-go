@@ -19,8 +19,8 @@ func main() {
 	body := datadog.OpsgenieServiceUpdateRequest{
 		Data: datadog.OpsgenieServiceUpdateData{
 			Attributes: datadog.OpsgenieServiceUpdateAttributes{
-				Name:           datadog.PtrString("fake-opsgenie-service-name--updated"),
-				OpsgenieApiKey: datadog.PtrString("00000000-0000-0000-0000-000000000000"),
+				Name:           common.PtrString("fake-opsgenie-service-name--updated"),
+				OpsgenieApiKey: common.PtrString("00000000-0000-0000-0000-000000000000"),
 				Region:         datadog.OPSGENIESERVICEREGIONTYPE_EU.Ptr(),
 			},
 			Id:   OpsgenieServiceDataID,

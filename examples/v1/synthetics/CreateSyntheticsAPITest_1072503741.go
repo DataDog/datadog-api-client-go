@@ -24,8 +24,8 @@ func main() {
 					}},
 			},
 			Request: &datadog.SyntheticsTestRequest{
-				Host: datadog.PtrString("datadoghq.com"),
-				Port: datadog.PtrInt64(443),
+				Host: common.PtrString("datadoghq.com"),
+				Port: common.PtrInt64(443),
 			},
 		},
 		Locations: []string{
@@ -34,9 +34,9 @@ func main() {
 		Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
 		Name:    "Example-Create_an_API_SSL_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:           datadog.PtrBool(true),
-			CheckCertificateRevocation: datadog.PtrBool(true),
-			TickEvery:                  datadog.PtrInt64(60),
+			AcceptSelfSigned:           common.PtrBool(true),
+			CheckCertificateRevocation: common.PtrBool(true),
+			TickEvery:                  common.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
 		Tags: []string{

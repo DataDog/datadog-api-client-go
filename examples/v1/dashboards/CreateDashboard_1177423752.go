@@ -26,16 +26,16 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					HeatMapWidgetDefinition: &datadog.HeatMapWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.HEATMAPWIDGETDEFINITIONTYPE_HEATMAP,
 						Requests: []datadog.HeatMapWidgetRequest{
 							{
-								Q: datadog.PtrString("avg:system.cpu.user{*} by {service}"),
+								Q: common.PtrString("avg:system.cpu.user{*} by {service}"),
 								Style: &datadog.WidgetStyle{
-									Palette: datadog.PtrString("dog_classic"),
+									Palette: common.PtrString("dog_classic"),
 								},
 							},
 						},
@@ -44,7 +44,7 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

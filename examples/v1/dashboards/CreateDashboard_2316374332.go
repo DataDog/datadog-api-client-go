@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_alert_value_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -28,20 +28,20 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					AlertValueWidgetDefinition: &datadog.AlertValueWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE,
 						AlertId:    "7",
-						Unit:       datadog.PtrString("auto"),
+						Unit:       common.PtrString("auto"),
 						TextAlign:  datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Precision:  datadog.PtrInt64(2),
+						Precision:  common.PtrInt64(2),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

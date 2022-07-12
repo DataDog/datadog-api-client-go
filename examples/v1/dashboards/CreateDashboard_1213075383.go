@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_toplist_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,8 +26,8 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					ToplistWidgetDefinition: &datadog.ToplistWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
@@ -46,7 +46,7 @@ func main() {
 									{
 										Formula: "query1",
 										Limit: &datadog.WidgetFormulaLimit{
-											Count: datadog.PtrInt64(10),
+											Count: common.PtrInt64(10),
 											Order: datadog.QUERYSORTORDER_DESC.Ptr(),
 										},
 									},
@@ -59,7 +59,7 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

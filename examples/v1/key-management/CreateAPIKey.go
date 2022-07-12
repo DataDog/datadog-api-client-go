@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadog.ApiKey{
-		Name: datadog.PtrString("example user"),
+		Name: common.PtrString("example user"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

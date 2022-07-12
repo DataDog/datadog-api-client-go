@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_event_stream_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -26,19 +26,19 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					EventStreamWidgetDefinition: &datadog.EventStreamWidgetDefinition{
-						Title:         datadog.PtrString(""),
-						TitleSize:     datadog.PtrString("16"),
+						Title:         common.PtrString(""),
+						TitleSize:     common.PtrString("16"),
 						TitleAlign:    datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:          datadog.EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM,
 						Query:         "example-query",
-						TagsExecution: datadog.PtrString("and"),
+						TagsExecution: common.PtrString("and"),
 						EventSize:     datadog.WIDGETEVENTSIZE_SMALL.Ptr(),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

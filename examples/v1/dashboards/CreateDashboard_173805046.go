@@ -18,7 +18,7 @@ func main() {
 
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_slo_widget",
-		Description: *common.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -29,23 +29,23 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					SLOWidgetDefinition: &datadog.SLOWidgetDefinition{
-						TitleSize:  datadog.PtrString("16"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.SLOWIDGETDEFINITIONTYPE_SLO,
 						ViewType:   "detail",
 						TimeWindows: []datadog.WidgetTimeWindows{
 							datadog.WIDGETTIMEWINDOWS_SEVEN_DAYS,
 						},
-						SloId:            datadog.PtrString(SloData0ID),
-						ShowErrorBudget:  datadog.PtrBool(true),
+						SloId:            common.PtrString(SloData0ID),
+						ShowErrorBudget:  common.PtrBool(true),
 						ViewMode:         datadog.WIDGETVIEWMODE_OVERALL.Ptr(),
-						GlobalTimeTarget: datadog.PtrString("0"),
+						GlobalTimeTarget: common.PtrString("0"),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())

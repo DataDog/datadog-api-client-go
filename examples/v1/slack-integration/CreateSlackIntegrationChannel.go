@@ -15,12 +15,12 @@ import (
 func main() {
 	body := datadog.SlackIntegrationChannel{
 		Display: &datadog.SlackIntegrationChannelDisplay{
-			Message:  datadog.PtrBool(true),
-			Notified: datadog.PtrBool(true),
-			Snapshot: datadog.PtrBool(true),
-			Tags:     datadog.PtrBool(true),
+			Message:  common.PtrBool(true),
+			Notified: common.PtrBool(true),
+			Snapshot: common.PtrBool(true),
+			Tags:     common.PtrBool(true),
 		},
-		Name: datadog.PtrString("#general"),
+		Name: common.PtrString("#general"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

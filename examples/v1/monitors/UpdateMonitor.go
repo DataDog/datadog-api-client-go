@@ -18,14 +18,14 @@ func main() {
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadog.MonitorUpdateRequest{
-		Name: datadog.PtrString("My monitor-updated"),
+		Name: common.PtrString("My monitor-updated"),
 		Options: &datadog.MonitorOptions{
 			EvaluationDelay:  *common.NewNullableInt64(nil),
-			NewGroupDelay:    *common.NewNullableInt64(datadog.PtrInt64(600)),
+			NewGroupDelay:    *common.NewNullableInt64(common.PtrInt64(600)),
 			NewHostDelay:     *common.NewNullableInt64(nil),
 			RenotifyInterval: *common.NewNullableInt64(nil),
 			Thresholds: &datadog.MonitorThresholds{
-				Critical: datadog.PtrFloat64(2),
+				Critical: common.PtrFloat64(2),
 				Warning:  *common.NewNullableFloat64(nil),
 			},
 			TimeoutH: *common.NewNullableInt64(nil),

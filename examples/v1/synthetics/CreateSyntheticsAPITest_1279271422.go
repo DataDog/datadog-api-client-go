@@ -17,15 +17,15 @@ func main() {
 		Config: datadog.SyntheticsAPITestConfig{
 			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
-					Example: datadog.PtrString("content-type"),
+					Example: common.PtrString("content-type"),
 					Name:    "PROPERTY",
-					Pattern: datadog.PtrString("content-type"),
+					Pattern: common.PtrString("content-type"),
 					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Steps: []datadog.SyntheticsAPIStep{
 				{
-					AllowFailure: datadog.PtrBool(true),
+					AllowFailure: common.PtrBool(true),
 					Assertions: []datadog.SyntheticsAssertion{
 						datadog.SyntheticsAssertion{
 							SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
@@ -34,16 +34,16 @@ func main() {
 								Target:   200,
 							}},
 					},
-					IsCritical: datadog.PtrBool(true),
+					IsCritical: common.PtrBool(true),
 					Name:       "request is sent",
 					Request: datadog.SyntheticsTestRequest{
 						Method:  datadog.HTTPMETHOD_GET.Ptr(),
-						Timeout: datadog.PtrFloat64(10),
-						Url:     datadog.PtrString("https://datadoghq.com"),
+						Timeout: common.PtrFloat64(10),
+						Url:     common.PtrString("https://datadoghq.com"),
 					},
 					Retry: &datadog.SyntheticsTestOptionsRetry{
-						Count:    datadog.PtrInt64(5),
-						Interval: datadog.PtrFloat64(1000),
+						Count:    common.PtrInt64(5),
+						Interval: common.PtrFloat64(1000),
 					},
 					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP,
 				},
@@ -55,18 +55,18 @@ func main() {
 		Message: "BDD test payload: synthetics_api_test_multi_step_payload.json",
 		Name:    "Example-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:   datadog.PtrBool(false),
-			AllowInsecure:      datadog.PtrBool(true),
-			FollowRedirects:    datadog.PtrBool(true),
-			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(1),
-			MonitorName:        datadog.PtrString("Example-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response"),
-			MonitorPriority:    datadog.PtrInt32(5),
+			AcceptSelfSigned:   common.PtrBool(false),
+			AllowInsecure:      common.PtrBool(true),
+			FollowRedirects:    common.PtrBool(true),
+			MinFailureDuration: common.PtrInt64(10),
+			MinLocationFailed:  common.PtrInt64(1),
+			MonitorName:        common.PtrString("Example-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response"),
+			MonitorPriority:    common.PtrInt32(5),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
-				Interval: datadog.PtrFloat64(1000),
+				Count:    common.PtrInt64(3),
+				Interval: common.PtrFloat64(1000),
 			},
-			TickEvery: datadog.PtrInt64(60),
+			TickEvery: common.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_MULTI.Ptr(),
 		Tags: []string{

@@ -17,14 +17,14 @@ func main() {
 		ExclusionFilters: []datadog.LogsExclusion{
 			{
 				Filter: &datadog.LogsExclusionFilter{
-					Query:      datadog.PtrString("*"),
+					Query:      common.PtrString("*"),
 					SampleRate: 1.0,
 				},
 				Name: "payment",
 			},
 		},
 		Filter: datadog.LogsFilter{
-			Query: datadog.PtrString("source:python"),
+			Query: common.PtrString("source:python"),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

@@ -22,21 +22,21 @@ func main() {
 		Description: "Example description",
 		Name:        "MY_VARIABLE",
 		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Field: datadog.PtrString("content-type"),
+			Field: common.PtrString("content-type"),
 			Parser: datadog.SyntheticsVariableParser{
 				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: datadog.PtrString(".*"),
+				Value: common.PtrString(".*"),
 			},
 			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 		},
-		ParseTestPublicId: datadog.PtrString("abc-def-123"),
+		ParseTestPublicId: common.PtrString("abc-def-123"),
 		Tags: []string{
 			"team:front",
 			"test:workflow-1",
 		},
 		Value: datadog.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(true),
-			Value:  datadog.PtrString("value"),
+			Secure: common.PtrBool(true),
+			Value:  common.PtrString("value"),
 		},
 	}
 	ctx := common.NewDefaultContext(context.Background())

@@ -17,7 +17,7 @@ func main() {
 	WebhookName := os.Getenv("WEBHOOK_NAME")
 
 	body := datadog.WebhooksIntegrationUpdateRequest{
-		Url: datadog.PtrString("https://example.com/webhook-updated"),
+		Url: common.PtrString("https://example.com/webhook-updated"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

@@ -14,11 +14,11 @@ import (
 
 func main() {
 	body := datadog.AWSAccount{
-		AccountId: datadog.PtrString("123456789012"),
+		AccountId: common.PtrString("123456789012"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
 		},
-		CspmResourceCollectionEnabled: datadog.PtrBool(true),
+		CspmResourceCollectionEnabled: common.PtrBool(true),
 		ExcludedRegions: []string{
 			"us-east-1",
 			"us-west-2",
@@ -29,9 +29,9 @@ func main() {
 		HostTags: []string{
 			"$KEY:$VALUE",
 		},
-		MetricsCollectionEnabled:  datadog.PtrBool(false),
-		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("datadog-role"),
+		MetricsCollectionEnabled:  common.PtrBool(false),
+		ResourceCollectionEnabled: common.PtrBool(true),
+		RoleName:                  common.PtrString("datadog-role"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

@@ -15,16 +15,16 @@ import (
 func main() {
 	body := datadog.AuditLogsSearchEventsRequest{
 		Filter: &datadog.AuditLogsQueryFilter{
-			From:  datadog.PtrString("now-15m"),
-			Query: datadog.PtrString("@type:session AND @session.type:user"),
-			To:    datadog.PtrString("now"),
+			From:  common.PtrString("now-15m"),
+			Query: common.PtrString("@type:session AND @session.type:user"),
+			To:    common.PtrString("now"),
 		},
 		Options: &datadog.AuditLogsQueryOptions{
-			TimeOffset: datadog.PtrInt64(0),
-			Timezone:   datadog.PtrString("GMT"),
+			TimeOffset: common.PtrInt64(0),
+			Timezone:   common.PtrString("GMT"),
 		},
 		Page: &datadog.AuditLogsQueryPageOptions{
-			Limit: datadog.PtrInt32(25),
+			Limit: common.PtrInt32(25),
 		},
 		Sort: datadog.AUDITLOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}

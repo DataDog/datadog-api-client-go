@@ -19,13 +19,13 @@ func main() {
 	body := datadog.AuthNMappingCreateRequest{
 		Data: datadog.AuthNMappingCreateData{
 			Attributes: &datadog.AuthNMappingCreateAttributes{
-				AttributeKey:   datadog.PtrString("examplecreateanauthnmappingreturnsokresponse"),
-				AttributeValue: datadog.PtrString("Example-Create_an_AuthN_Mapping_returns_OK_response"),
+				AttributeKey:   common.PtrString("examplecreateanauthnmappingreturnsokresponse"),
+				AttributeValue: common.PtrString("Example-Create_an_AuthN_Mapping_returns_OK_response"),
 			},
 			Relationships: &datadog.AuthNMappingCreateRelationships{
 				Role: &datadog.RelationshipToRole{
 					Data: &datadog.RelationshipToRoleData{
-						Id:   datadog.PtrString(RoleDataID),
+						Id:   common.PtrString(RoleDataID),
 						Type: datadog.ROLESTYPE_ROLES.Ptr(),
 					},
 				},

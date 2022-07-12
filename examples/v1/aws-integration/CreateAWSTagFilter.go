@@ -14,9 +14,9 @@ import (
 
 func main() {
 	body := datadog.AWSTagFilterCreateRequest{
-		AccountId:    datadog.PtrString("1234567"),
+		AccountId:    common.PtrString("1234567"),
 		Namespace:    datadog.AWSNAMESPACE_ELB.Ptr(),
-		TagFilterStr: datadog.PtrString("prod*"),
+		TagFilterStr: common.PtrString("prod*"),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

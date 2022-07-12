@@ -18,8 +18,8 @@ func main() {
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
 	body := datadog.Downtime{
-		Message:                       datadog.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
-		MuteFirstRecoveryNotification: datadog.PtrBool(true),
+		Message:                       common.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
+		MuteFirstRecoveryNotification: common.PtrBool(true),
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

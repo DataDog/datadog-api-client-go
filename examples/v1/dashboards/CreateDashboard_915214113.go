@@ -26,8 +26,8 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					GeomapWidgetDefinition: &datadog.GeomapWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.GEOMAPWIDGETDEFINITIONTYPE_GEOMAP,
@@ -37,7 +37,7 @@ func main() {
 									{
 										Formula: "query1",
 										Limit: &datadog.WidgetFormulaLimit{
-											Count: datadog.PtrInt64(250),
+											Count: common.PtrInt64(250),
 											Order: datadog.QUERYSORTORDER_DESC.Ptr(),
 										},
 									},
@@ -59,7 +59,7 @@ func main() {
 											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{
 												{
 													Facet: "@geo.country_iso_code",
-													Limit: datadog.PtrInt64(250),
+													Limit: common.PtrInt64(250),
 													Sort: &datadog.FormulaAndFunctionEventQueryGroupBySort{
 														Order:       datadog.QUERYSORTORDER_DESC.Ptr(),
 														Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
@@ -83,7 +83,7 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := common.NewDefaultContext(context.Background())
