@@ -15,45 +15,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ServiceLevelObjectiveCorrectionsApiService service type
-type ServiceLevelObjectiveCorrectionsApiService common.Service
+// ServiceLevelObjectiveCorrectionsApi service type
+type ServiceLevelObjectiveCorrectionsApi common.Service
 
 type apiCreateSLOCorrectionRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectiveCorrectionsApiService
-	body       *SLOCorrectionCreateRequest
+	ctx  _context.Context
+	Api  *ServiceLevelObjectiveCorrectionsApi
+	body *SLOCorrectionCreateRequest
 }
 
-func (a *ServiceLevelObjectiveCorrectionsApiService) buildCreateSLOCorrectionRequest(ctx _context.Context, body SLOCorrectionCreateRequest) (apiCreateSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildCreateSLOCorrectionRequest(ctx _context.Context, body SLOCorrectionCreateRequest) (apiCreateSLOCorrectionRequest, error) {
 	req := apiCreateSLOCorrectionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateSLOCorrection Create an SLO correction.
 // Create an SLO Correction.
-func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _context.Context, body SLOCorrectionCreateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) CreateSLOCorrection(ctx _context.Context, body SLOCorrectionCreateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSLOCorrectionRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSLOCorrectionExecute(req)
+	return req.Api.createSLOCorrectionExecute(req)
 }
 
 // createSLOCorrectionExecute executes the request.
-func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(r apiCreateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) createSLOCorrectionExecute(r apiCreateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApiService.CreateSLOCorrection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApi.CreateSLOCorrection")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -173,13 +173,13 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(
 
 type apiDeleteSLOCorrectionRequest struct {
 	ctx             _context.Context
-	ApiService      *ServiceLevelObjectiveCorrectionsApiService
+	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 }
 
-func (a *ServiceLevelObjectiveCorrectionsApiService) buildDeleteSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiDeleteSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildDeleteSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiDeleteSLOCorrectionRequest, error) {
 	req := apiDeleteSLOCorrectionRequest{
-		ApiService:      a,
+		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
@@ -188,23 +188,23 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildDeleteSLOCorrectionReq
 
 // DeleteSLOCorrection Delete an SLO correction.
 // Permanently delete the specified SLO correction object.
-func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSLOCorrectionRequest(ctx, sloCorrectionId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteSLOCorrectionExecute(req)
+	return req.Api.deleteSLOCorrectionExecute(req)
 }
 
 // deleteSLOCorrectionExecute executes the request.
-func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(r apiDeleteSLOCorrectionRequest) (*_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) deleteSLOCorrectionExecute(r apiDeleteSLOCorrectionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApiService.DeleteSLOCorrection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -301,13 +301,13 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(
 
 type apiGetSLOCorrectionRequest struct {
 	ctx             _context.Context
-	ApiService      *ServiceLevelObjectiveCorrectionsApiService
+	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 }
 
-func (a *ServiceLevelObjectiveCorrectionsApiService) buildGetSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiGetSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildGetSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiGetSLOCorrectionRequest, error) {
 	req := apiGetSLOCorrectionRequest{
-		ApiService:      a,
+		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
@@ -316,25 +316,25 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildGetSLOCorrectionReques
 
 // GetSLOCorrection Get an SLO correction for an SLO.
 // Get an SLO correction.
-func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOCorrectionRequest(ctx, sloCorrectionId)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOCorrectionExecute(req)
+	return req.Api.getSLOCorrectionExecute(req)
 }
 
 // getSLOCorrectionExecute executes the request.
-func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r apiGetSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) getSLOCorrectionExecute(r apiGetSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApiService.GetSLOCorrection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -439,39 +439,39 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r a
 }
 
 type apiListSLOCorrectionRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectiveCorrectionsApiService
+	ctx _context.Context
+	Api *ServiceLevelObjectiveCorrectionsApi
 }
 
-func (a *ServiceLevelObjectiveCorrectionsApiService) buildListSLOCorrectionRequest(ctx _context.Context) (apiListSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildListSLOCorrectionRequest(ctx _context.Context) (apiListSLOCorrectionRequest, error) {
 	req := apiListSLOCorrectionRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListSLOCorrection Get all SLO corrections.
 // Get all Service Level Objective corrections.
-func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrection(ctx _context.Context) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrection(ctx _context.Context) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSLOCorrectionRequest(ctx)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSLOCorrectionExecute(req)
+	return req.Api.listSLOCorrectionExecute(req)
 }
 
 // listSLOCorrectionExecute executes the request.
-func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r apiListSLOCorrectionRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) listSLOCorrectionExecute(r apiListSLOCorrectionRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApiService.ListSLOCorrection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -567,14 +567,14 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r 
 
 type apiUpdateSLOCorrectionRequest struct {
 	ctx             _context.Context
-	ApiService      *ServiceLevelObjectiveCorrectionsApiService
+	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 	body            *SLOCorrectionUpdateRequest
 }
 
-func (a *ServiceLevelObjectiveCorrectionsApiService) buildUpdateSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (apiUpdateSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildUpdateSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (apiUpdateSLOCorrectionRequest, error) {
 	req := apiUpdateSLOCorrectionRequest{
-		ApiService:      a,
+		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 		body:            &body,
@@ -584,25 +584,25 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildUpdateSLOCorrectionReq
 
 // UpdateSLOCorrection Update an SLO correction.
 // Update the specified SLO correction object.
-func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSLOCorrectionRequest(ctx, sloCorrectionId, body)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSLOCorrectionExecute(req)
+	return req.Api.updateSLOCorrectionExecute(req)
 }
 
 // updateSLOCorrectionExecute executes the request.
-func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(r apiUpdateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) updateSLOCorrectionExecute(r apiUpdateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApiService.UpdateSLOCorrection")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -721,9 +721,9 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ServiceLevelObjectiveCorrectionsApi Returns new ServiceLevelObjectiveCorrectionsApi service.
-func ServiceLevelObjectiveCorrectionsApi(client *common.APIClient) *ServiceLevelObjectiveCorrectionsApiService {
-	return &ServiceLevelObjectiveCorrectionsApiService{
+// NewServiceLevelObjectiveCorrectionsApi Returns NewServiceLevelObjectiveCorrectionsApi.
+func NewServiceLevelObjectiveCorrectionsApi(client *common.APIClient) *ServiceLevelObjectiveCorrectionsApi {
+	return &ServiceLevelObjectiveCorrectionsApi{
 		Client: client,
 	}
 }

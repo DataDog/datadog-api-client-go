@@ -23,8 +23,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	sloApi := datadog.ServiceLevelObjectivesApi(Client(ctx))
-	api := datadog.DashboardsApi(Client(ctx))
+	sloApi := datadog.NewServiceLevelObjectivesApi(Client(ctx))
+	api := datadog.NewDashboardsApi(Client(ctx))
 
 	// create SLO for referencing in SLO widget (we're borrowing these from api_slo_test.go)
 	testEventSLO := getTestEventSLO(ctx, t)
@@ -1155,7 +1155,7 @@ func TestDashboardGetAll(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.DashboardsApi(Client(ctx))
+	api := datadog.NewDashboardsApi(Client(ctx))
 
 	getAllResponse, httpresp, err := api.ListDashboards(ctx)
 	if err != nil {
@@ -1183,7 +1183,7 @@ func TestDashboardCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardsApi(Client(ctx))
+			api := datadog.NewDashboardsApi(Client(ctx))
 
 			_, httpresp, err := api.CreateDashboard(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1210,7 +1210,7 @@ func TestDashboardListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardsApi(Client(ctx))
+			api := datadog.NewDashboardsApi(Client(ctx))
 
 			_, httpresp, err := api.ListDashboards(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1238,7 +1238,7 @@ func TestDashboardDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardsApi(Client(ctx))
+			api := datadog.NewDashboardsApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteDashboard(ctx, "123-abc-xyz")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1272,7 +1272,7 @@ func TestDashboardUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardsApi(Client(ctx))
+			api := datadog.NewDashboardsApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateDashboard(ctx, "123-abc-xyz", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1300,7 +1300,7 @@ func TestDashboardGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardsApi(Client(ctx))
+			api := datadog.NewDashboardsApi(Client(ctx))
 
 			_, httpresp, err := api.GetDashboard(ctx, "123-abc-xyz")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1312,7 +1312,7 @@ func TestDashboardGetErrors(t *testing.T) {
 }
 
 func deleteDashboard(ctx context.Context, t *testing.T, dashboardID string) {
-	api := datadog.DashboardsApi(Client(ctx))
+	api := datadog.NewDashboardsApi(Client(ctx))
 
 	_, httpresp, err := api.DeleteDashboard(ctx, dashboardID)
 	if err != nil && httpresp.StatusCode != 404 {

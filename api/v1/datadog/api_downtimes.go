@@ -15,18 +15,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// DowntimesApiService service type
-type DowntimesApiService common.Service
+// DowntimesApi service type
+type DowntimesApi common.Service
 
 type apiCancelDowntimeRequest struct {
 	ctx        _context.Context
-	ApiService *DowntimesApiService
+	Api        *DowntimesApi
 	downtimeId int64
 }
 
-func (a *DowntimesApiService) buildCancelDowntimeRequest(ctx _context.Context, downtimeId int64) (apiCancelDowntimeRequest, error) {
+func (a *DowntimesApi) buildCancelDowntimeRequest(ctx _context.Context, downtimeId int64) (apiCancelDowntimeRequest, error) {
 	req := apiCancelDowntimeRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 	}
@@ -35,23 +35,23 @@ func (a *DowntimesApiService) buildCancelDowntimeRequest(ctx _context.Context, d
 
 // CancelDowntime Cancel a downtime.
 // Cancel a downtime.
-func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
+func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
 	req, err := a.buildCancelDowntimeRequest(ctx, downtimeId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.cancelDowntimeExecute(req)
+	return req.Api.cancelDowntimeExecute(req)
 }
 
 // cancelDowntimeExecute executes the request.
-func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) (*_nethttp.Response, error) {
+func (a *DowntimesApi) cancelDowntimeExecute(r apiCancelDowntimeRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CancelDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.CancelDowntime")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -147,41 +147,41 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 }
 
 type apiCancelDowntimesByScopeRequest struct {
-	ctx        _context.Context
-	ApiService *DowntimesApiService
-	body       *CancelDowntimesByScopeRequest
+	ctx  _context.Context
+	Api  *DowntimesApi
+	body *CancelDowntimesByScopeRequest
 }
 
-func (a *DowntimesApiService) buildCancelDowntimesByScopeRequest(ctx _context.Context, body CancelDowntimesByScopeRequest) (apiCancelDowntimesByScopeRequest, error) {
+func (a *DowntimesApi) buildCancelDowntimesByScopeRequest(ctx _context.Context, body CancelDowntimesByScopeRequest) (apiCancelDowntimesByScopeRequest, error) {
 	req := apiCancelDowntimesByScopeRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CancelDowntimesByScope Cancel downtimes by scope.
 // Delete all downtimes that match the scope of `X`.
-func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
+func (a *DowntimesApi) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	req, err := a.buildCancelDowntimesByScopeRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue CanceledDowntimesIds
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.cancelDowntimesByScopeExecute(req)
+	return req.Api.cancelDowntimesByScopeExecute(req)
 }
 
 // cancelDowntimesByScopeExecute executes the request.
-func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
+func (a *DowntimesApi) cancelDowntimesByScopeExecute(r apiCancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CanceledDowntimesIds
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CancelDowntimesByScope")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.CancelDowntimesByScope")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -300,41 +300,41 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 }
 
 type apiCreateDowntimeRequest struct {
-	ctx        _context.Context
-	ApiService *DowntimesApiService
-	body       *Downtime
+	ctx  _context.Context
+	Api  *DowntimesApi
+	body *Downtime
 }
 
-func (a *DowntimesApiService) buildCreateDowntimeRequest(ctx _context.Context, body Downtime) (apiCreateDowntimeRequest, error) {
+func (a *DowntimesApi) buildCreateDowntimeRequest(ctx _context.Context, body Downtime) (apiCreateDowntimeRequest, error) {
 	req := apiCreateDowntimeRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateDowntime Schedule a downtime.
 // Schedule a downtime.
-func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildCreateDowntimeRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue Downtime
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createDowntimeExecute(req)
+	return req.Api.createDowntimeExecute(req)
 }
 
 // createDowntimeExecute executes the request.
-func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) createDowntimeExecute(r apiCreateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CreateDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.CreateDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -445,13 +445,13 @@ func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) 
 
 type apiGetDowntimeRequest struct {
 	ctx        _context.Context
-	ApiService *DowntimesApiService
+	Api        *DowntimesApi
 	downtimeId int64
 }
 
-func (a *DowntimesApiService) buildGetDowntimeRequest(ctx _context.Context, downtimeId int64) (apiGetDowntimeRequest, error) {
+func (a *DowntimesApi) buildGetDowntimeRequest(ctx _context.Context, downtimeId int64) (apiGetDowntimeRequest, error) {
 	req := apiGetDowntimeRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 	}
@@ -460,25 +460,25 @@ func (a *DowntimesApiService) buildGetDowntimeRequest(ctx _context.Context, down
 
 // GetDowntime Get a downtime.
 // Get downtime detail by `downtime_id`.
-func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildGetDowntimeRequest(ctx, downtimeId)
 	if err != nil {
 		var localVarReturnValue Downtime
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getDowntimeExecute(req)
+	return req.Api.getDowntimeExecute(req)
 }
 
 // getDowntimeExecute executes the request.
-func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) getDowntimeExecute(r apiGetDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.GetDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.GetDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -584,7 +584,7 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 
 type apiListDowntimesRequest struct {
 	ctx         _context.Context
-	ApiService  *DowntimesApiService
+	Api         *DowntimesApi
 	currentOnly *bool
 }
 
@@ -605,10 +605,10 @@ func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *Lis
 	return r
 }
 
-func (a *DowntimesApiService) buildListDowntimesRequest(ctx _context.Context, o ...ListDowntimesOptionalParameters) (apiListDowntimesRequest, error) {
+func (a *DowntimesApi) buildListDowntimesRequest(ctx _context.Context, o ...ListDowntimesOptionalParameters) (apiListDowntimesRequest, error) {
 	req := apiListDowntimesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -623,25 +623,25 @@ func (a *DowntimesApiService) buildListDowntimesRequest(ctx _context.Context, o 
 
 // ListDowntimes Get all downtimes.
 // Get all scheduled downtimes.
-func (a *DowntimesApiService) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
 	req, err := a.buildListDowntimesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue []Downtime
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listDowntimesExecute(req)
+	return req.Api.listDowntimesExecute(req)
 }
 
 // listDowntimesExecute executes the request.
-func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) listDowntimesExecute(r apiListDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.ListDowntimes")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.ListDowntimes")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -739,41 +739,41 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 }
 
 type apiListMonitorDowntimesRequest struct {
-	ctx        _context.Context
-	ApiService *DowntimesApiService
-	monitorId  int64
+	ctx       _context.Context
+	Api       *DowntimesApi
+	monitorId int64
 }
 
-func (a *DowntimesApiService) buildListMonitorDowntimesRequest(ctx _context.Context, monitorId int64) (apiListMonitorDowntimesRequest, error) {
+func (a *DowntimesApi) buildListMonitorDowntimesRequest(ctx _context.Context, monitorId int64) (apiListMonitorDowntimesRequest, error) {
 	req := apiListMonitorDowntimesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		monitorId:  monitorId,
+		Api:       a,
+		ctx:       ctx,
+		monitorId: monitorId,
 	}
 	return req, nil
 }
 
 // ListMonitorDowntimes Get all downtimes for a monitor.
 // Get all active downtimes for the specified monitor.
-func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	req, err := a.buildListMonitorDowntimesRequest(ctx, monitorId)
 	if err != nil {
 		var localVarReturnValue []Downtime
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listMonitorDowntimesExecute(req)
+	return req.Api.listMonitorDowntimesExecute(req)
 }
 
 // listMonitorDowntimesExecute executes the request.
-func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) listMonitorDowntimesExecute(r apiListMonitorDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.ListMonitorDowntimes")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.ListMonitorDowntimes")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -879,14 +879,14 @@ func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDownti
 
 type apiUpdateDowntimeRequest struct {
 	ctx        _context.Context
-	ApiService *DowntimesApiService
+	Api        *DowntimesApi
 	downtimeId int64
 	body       *Downtime
 }
 
-func (a *DowntimesApiService) buildUpdateDowntimeRequest(ctx _context.Context, downtimeId int64, body Downtime) (apiUpdateDowntimeRequest, error) {
+func (a *DowntimesApi) buildUpdateDowntimeRequest(ctx _context.Context, downtimeId int64, body Downtime) (apiUpdateDowntimeRequest, error) {
 	req := apiUpdateDowntimeRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 		body:       &body,
@@ -896,25 +896,25 @@ func (a *DowntimesApiService) buildUpdateDowntimeRequest(ctx _context.Context, d
 
 // UpdateDowntime Update a downtime.
 // Update a single downtime by `downtime_id`.
-func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildUpdateDowntimeRequest(ctx, downtimeId, body)
 	if err != nil {
 		var localVarReturnValue Downtime
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateDowntimeExecute(req)
+	return req.Api.updateDowntimeExecute(req)
 }
 
 // updateDowntimeExecute executes the request.
-func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
+func (a *DowntimesApi) updateDowntimeExecute(r apiUpdateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.UpdateDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApi.UpdateDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1033,9 +1033,9 @@ func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DowntimesApi Returns new DowntimesApi service.
-func DowntimesApi(client *common.APIClient) *DowntimesApiService {
-	return &DowntimesApiService{
+// NewDowntimesApi Returns NewDowntimesApi.
+func NewDowntimesApi(client *common.APIClient) *DowntimesApi {
+	return &DowntimesApi{
 		Client: client,
 	}
 }

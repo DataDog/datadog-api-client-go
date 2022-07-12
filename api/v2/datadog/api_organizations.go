@@ -15,13 +15,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// OrganizationsApiService service type
-type OrganizationsApiService common.Service
+// OrganizationsApi service type
+type OrganizationsApi common.Service
 
 type apiUploadIdPMetadataRequest struct {
-	ctx        _context.Context
-	ApiService *OrganizationsApiService
-	idpFile    **os.File
+	ctx     _context.Context
+	Api     *OrganizationsApi
+	idpFile **os.File
 }
 
 // UploadIdPMetadataOptionalParameters holds optional parameters for UploadIdPMetadata.
@@ -41,10 +41,10 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
 	return r
 }
 
-func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
+func (a *OrganizationsApi) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
 	req := apiUploadIdPMetadataRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -61,23 +61,23 @@ func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Con
 // Endpoint for uploading IdP metadata for SAML setup.
 //
 // Use this endpoint to upload or replace IdP metadata for SAML login configuration.
-func (a *OrganizationsApiService) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
+func (a *OrganizationsApi) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
 	req, err := a.buildUploadIdPMetadataRequest(ctx, o...)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.uploadIdPMetadataExecute(req)
+	return req.Api.uploadIdPMetadataExecute(req)
 }
 
 // uploadIdPMetadataExecute executes the request.
-func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadataRequest) (*_nethttp.Response, error) {
+func (a *OrganizationsApi) uploadIdPMetadataExecute(r apiUploadIdPMetadataRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OrganizationsApiService.UploadIdPMetadata")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OrganizationsApi.UploadIdPMetadata")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -184,9 +184,9 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 	return localVarHTTPResponse, nil
 }
 
-// OrganizationsApi Returns new OrganizationsApi service.
-func OrganizationsApi(client *common.APIClient) *OrganizationsApiService {
-	return &OrganizationsApiService{
+// NewOrganizationsApi Returns NewOrganizationsApi.
+func NewOrganizationsApi(client *common.APIClient) *OrganizationsApi {
+	return &OrganizationsApi{
 		Client: client,
 	}
 }

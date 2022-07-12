@@ -19,12 +19,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// UsageMeteringApiService service type
-type UsageMeteringApiService common.Service
+// UsageMeteringApi service type
+type UsageMeteringApi common.Service
 
 type apiGetDailyCustomReportsRequest struct {
 	ctx        _context.Context
-	ApiService *UsageMeteringApiService
+	Api        *UsageMeteringApi
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -69,10 +69,10 @@ func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetD
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetDailyCustomReportsRequest(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (apiGetDailyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetDailyCustomReportsRequest(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (apiGetDailyCustomReportsRequest, error) {
 	req := apiGetDailyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -90,18 +90,18 @@ func (a *UsageMeteringApiService) buildGetDailyCustomReportsRequest(ctx _context
 
 // GetDailyCustomReports Get the list of available daily custom reports.
 // Get daily custom reports.
-func (a *UsageMeteringApiService) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetDailyCustomReportsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getDailyCustomReportsExecute(req)
+	return req.Api.getDailyCustomReportsExecute(req)
 }
 
 // getDailyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -109,13 +109,13 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	)
 
 	operationId := "v1.GetDailyCustomReports"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetDailyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -223,7 +223,7 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 
 type apiGetHourlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
+	Api                *UsageMeteringApi
 	startHr            *time.Time
 	usageType          *HourlyUsageAttributionUsageType
 	endHr              *time.Time
@@ -270,12 +270,12 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(inc
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
 	req := apiGetHourlyUsageAttributionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
-		usageType:  &usageType,
+		Api:       a,
+		ctx:       ctx,
+		startHr:   &startHr,
+		usageType: &usageType,
 	}
 
 	if len(o) > 1 {
@@ -307,18 +307,18 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
-func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetHourlyUsageAttributionRequest(ctx, startHr, usageType, o...)
 	if err != nil {
 		var localVarReturnValue HourlyUsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getHourlyUsageAttributionExecute(req)
+	return req.Api.getHourlyUsageAttributionExecute(req)
 }
 
 // getHourlyUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -326,13 +326,13 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	)
 
 	operationId := "v1.GetHourlyUsageAttribution"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetHourlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetHourlyUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -447,10 +447,10 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 }
 
 type apiGetIncidentManagementRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetIncidentManagementOptionalParameters holds optional parameters for GetIncidentManagement.
@@ -470,11 +470,11 @@ func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetIncidentManagementRequest(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (apiGetIncidentManagementRequest, error) {
+func (a *UsageMeteringApi) buildGetIncidentManagementRequest(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (apiGetIncidentManagementRequest, error) {
 	req := apiGetIncidentManagementRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -489,25 +489,25 @@ func (a *UsageMeteringApiService) buildGetIncidentManagementRequest(ctx _context
 
 // GetIncidentManagement Get hourly usage for incident management.
 // Get hourly usage for incident management.
-func (a *UsageMeteringApiService) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentManagementRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIncidentManagementResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIncidentManagementExecute(req)
+	return req.Api.getIncidentManagementExecute(req)
 }
 
 // getIncidentManagementExecute executes the request.
-func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentManagementRequest) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getIncidentManagementExecute(r apiGetIncidentManagementRequest) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIncidentManagementResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetIncidentManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetIncidentManagement")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -618,10 +618,10 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 }
 
 type apiGetIngestedSpansRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetIngestedSpansOptionalParameters holds optional parameters for GetIngestedSpans.
@@ -641,11 +641,11 @@ func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetInge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetIngestedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (apiGetIngestedSpansRequest, error) {
+func (a *UsageMeteringApi) buildGetIngestedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (apiGetIngestedSpansRequest, error) {
 	req := apiGetIngestedSpansRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -660,25 +660,25 @@ func (a *UsageMeteringApiService) buildGetIngestedSpansRequest(ctx _context.Cont
 
 // GetIngestedSpans Get hourly usage for ingested spans.
 // Get hourly usage for ingested spans.
-func (a *UsageMeteringApiService) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIngestedSpansRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIngestedSpansResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIngestedSpansExecute(req)
+	return req.Api.getIngestedSpansExecute(req)
 }
 
 // getIngestedSpansExecute executes the request.
-func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansRequest) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getIngestedSpansExecute(r apiGetIngestedSpansRequest) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIngestedSpansResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetIngestedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetIngestedSpans")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -790,7 +790,7 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 
 type apiGetMonthlyCustomReportsRequest struct {
 	ctx        _context.Context
-	ApiService *UsageMeteringApiService
+	Api        *UsageMeteringApi
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -835,10 +835,10 @@ func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetMonthlyCustomReportsRequest(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (apiGetMonthlyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetMonthlyCustomReportsRequest(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (apiGetMonthlyCustomReportsRequest, error) {
 	req := apiGetMonthlyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -856,18 +856,18 @@ func (a *UsageMeteringApiService) buildGetMonthlyCustomReportsRequest(ctx _conte
 
 // GetMonthlyCustomReports Get the list of available monthly custom reports.
 // Get monthly custom reports.
-func (a *UsageMeteringApiService) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyCustomReportsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getMonthlyCustomReportsExecute(req)
+	return req.Api.getMonthlyCustomReportsExecute(req)
 }
 
 // getMonthlyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -875,13 +875,13 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	)
 
 	operationId := "v1.GetMonthlyCustomReports"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -989,7 +989,7 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 
 type apiGetMonthlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
+	Api                *UsageMeteringApi
 	startMonth         *time.Time
 	fields             *MonthlyUsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1052,9 +1052,9 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(in
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
 	req := apiGetMonthlyUsageAttributionRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
@@ -1091,18 +1091,18 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
-func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
 		var localVarReturnValue MonthlyUsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getMonthlyUsageAttributionExecute(req)
+	return req.Api.getMonthlyUsageAttributionExecute(req)
 }
 
 // getMonthlyUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1110,13 +1110,13 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	)
 
 	operationId := "v1.GetMonthlyUsageAttribution"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetMonthlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1237,34 +1237,34 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 }
 
 type apiGetSpecifiedDailyCustomReportsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	reportId   string
+	ctx      _context.Context
+	Api      *UsageMeteringApi
+	reportId string
 }
 
-func (a *UsageMeteringApiService) buildGetSpecifiedDailyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedDailyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetSpecifiedDailyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedDailyCustomReportsRequest, error) {
 	req := apiGetSpecifiedDailyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		Api:      a,
+		ctx:      ctx,
+		reportId: reportId,
 	}
 	return req, nil
 }
 
 // GetSpecifiedDailyCustomReports Get specified daily custom reports.
 // Get specified daily custom reports.
-func (a *UsageMeteringApiService) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedDailyCustomReportsRequest(ctx, reportId)
 	if err != nil {
 		var localVarReturnValue UsageSpecifiedCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSpecifiedDailyCustomReportsExecute(req)
+	return req.Api.getSpecifiedDailyCustomReportsExecute(req)
 }
 
 // getSpecifiedDailyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifiedDailyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifiedDailyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1272,13 +1272,13 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	)
 
 	operationId := "v1.GetSpecifiedDailyCustomReports"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetSpecifiedDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedDailyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1383,34 +1383,34 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 }
 
 type apiGetSpecifiedMonthlyCustomReportsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	reportId   string
+	ctx      _context.Context
+	Api      *UsageMeteringApi
+	reportId string
 }
 
-func (a *UsageMeteringApiService) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedMonthlyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedMonthlyCustomReportsRequest, error) {
 	req := apiGetSpecifiedMonthlyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		Api:      a,
+		ctx:      ctx,
+		reportId: reportId,
 	}
 	return req, nil
 }
 
 // GetSpecifiedMonthlyCustomReports Get specified monthly custom reports.
 // Get specified monthly custom reports.
-func (a *UsageMeteringApiService) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedMonthlyCustomReportsRequest(ctx, reportId)
 	if err != nil {
 		var localVarReturnValue UsageSpecifiedCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSpecifiedMonthlyCustomReportsExecute(req)
+	return req.Api.getSpecifiedMonthlyCustomReportsExecute(req)
 }
 
 // getSpecifiedMonthlyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpecifiedMonthlyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpecifiedMonthlyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1418,13 +1418,13 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	)
 
 	operationId := "v1.GetSpecifiedMonthlyCustomReports"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetSpecifiedMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedMonthlyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1538,10 +1538,10 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 }
 
 type apiGetUsageAnalyzedLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageAnalyzedLogsOptionalParameters holds optional parameters for GetUsageAnalyzedLogs.
@@ -1561,11 +1561,11 @@ func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAnalyzedLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (apiGetUsageAnalyzedLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAnalyzedLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (apiGetUsageAnalyzedLogsRequest, error) {
 	req := apiGetUsageAnalyzedLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -1580,25 +1580,25 @@ func (a *UsageMeteringApiService) buildGetUsageAnalyzedLogsRequest(ctx _context.
 
 // GetUsageAnalyzedLogs Get hourly usage for analyzed logs.
 // Get hourly usage for analyzed logs (Security Monitoring).
-func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAnalyzedLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageAnalyzedLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAnalyzedLogsExecute(req)
+	return req.Api.getUsageAnalyzedLogsExecute(req)
 }
 
 // getUsageAnalyzedLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogsRequest) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogsRequest) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAnalyzedLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAnalyzedLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAnalyzedLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1710,7 +1710,7 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 
 type apiGetUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
+	Api                *UsageMeteringApi
 	startMonth         *time.Time
 	fields             *UsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1773,9 +1773,9 @@ func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsage
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (apiGetUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (apiGetUsageAttributionRequest, error) {
 	req := apiGetUsageAttributionRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
@@ -1798,18 +1798,18 @@ func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.C
 
 // GetUsageAttribution Get usage attribution.
 // Get usage attribution.
-func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
 		var localVarReturnValue UsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAttributionExecute(req)
+	return req.Api.getUsageAttributionExecute(req)
 }
 
 // getUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1817,13 +1817,13 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	)
 
 	operationId := "v1.GetUsageAttribution"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1944,10 +1944,10 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 }
 
 type apiGetUsageAuditLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageAuditLogsOptionalParameters holds optional parameters for GetUsageAuditLogs.
@@ -1967,11 +1967,11 @@ func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAuditLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (apiGetUsageAuditLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAuditLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (apiGetUsageAuditLogsRequest, error) {
 	req := apiGetUsageAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -1986,25 +1986,25 @@ func (a *UsageMeteringApiService) buildGetUsageAuditLogsRequest(ctx _context.Con
 
 // GetUsageAuditLogs Get hourly usage for audit logs.
 // Get hourly usage for audit logs.
-func (a *UsageMeteringApiService) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAuditLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageAuditLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAuditLogsExecute(req)
+	return req.Api.getUsageAuditLogsExecute(req)
 }
 
 // getUsageAuditLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLogsRequest) (UsageAuditLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAuditLogsExecute(r apiGetUsageAuditLogsRequest) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAuditLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2115,9 +2115,9 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 }
 
 type apiGetUsageBillableSummaryRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	month      *time.Time
+	ctx   _context.Context
+	Api   *UsageMeteringApi
+	month *time.Time
 }
 
 // GetUsageBillableSummaryOptionalParameters holds optional parameters for GetUsageBillableSummary.
@@ -2137,10 +2137,10 @@ func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageBillableSummaryRequest(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (apiGetUsageBillableSummaryRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageBillableSummaryRequest(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (apiGetUsageBillableSummaryRequest, error) {
 	req := apiGetUsageBillableSummaryRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -2155,25 +2155,25 @@ func (a *UsageMeteringApiService) buildGetUsageBillableSummaryRequest(ctx _conte
 
 // GetUsageBillableSummary Get billable usage across your account.
 // Get billable usage across your account.
-func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageBillableSummaryRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageBillableSummaryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageBillableSummaryExecute(req)
+	return req.Api.getUsageBillableSummaryExecute(req)
 }
 
 // getUsageBillableSummaryExecute executes the request.
-func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBillableSummaryRequest) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageBillableSummaryExecute(r apiGetUsageBillableSummaryRequest) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageBillableSummaryResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageBillableSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageBillableSummary")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2280,10 +2280,10 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 }
 
 type apiGetUsageCIAppRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCIAppOptionalParameters holds optional parameters for GetUsageCIApp.
@@ -2303,11 +2303,11 @@ func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCI
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (apiGetUsageCIAppRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCIAppRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (apiGetUsageCIAppRequest, error) {
 	req := apiGetUsageCIAppRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -2322,25 +2322,25 @@ func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context
 
 // GetUsageCIApp Get hourly usage for CI Visibility.
 // Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
-func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCIAppRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCIVisibilityResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCIAppExecute(req)
+	return req.Api.getUsageCIAppExecute(req)
 }
 
 // getUsageCIAppExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCIVisibilityResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCIApp")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCIApp")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2451,10 +2451,10 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 }
 
 type apiGetUsageCWSRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCWSOptionalParameters holds optional parameters for GetUsageCWS.
@@ -2474,11 +2474,11 @@ func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCWSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (apiGetUsageCWSRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCWSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (apiGetUsageCWSRequest, error) {
 	req := apiGetUsageCWSRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -2493,25 +2493,25 @@ func (a *UsageMeteringApiService) buildGetUsageCWSRequest(ctx _context.Context, 
 
 // GetUsageCWS Get hourly usage for Cloud Workload Security.
 // Get hourly usage for Cloud Workload Security.
-func (a *UsageMeteringApiService) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCWSRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCWSResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCWSExecute(req)
+	return req.Api.getUsageCWSExecute(req)
 }
 
 // getUsageCWSExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCWSResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCWS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCWS")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2622,10 +2622,10 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 }
 
 type apiGetUsageCloudSecurityPostureManagementRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCloudSecurityPostureManagementOptionalParameters holds optional parameters for GetUsageCloudSecurityPostureManagement.
@@ -2645,11 +2645,11 @@ func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(end
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCloudSecurityPostureManagementRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (apiGetUsageCloudSecurityPostureManagementRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCloudSecurityPostureManagementRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (apiGetUsageCloudSecurityPostureManagementRequest, error) {
 	req := apiGetUsageCloudSecurityPostureManagementRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -2664,25 +2664,25 @@ func (a *UsageMeteringApiService) buildGetUsageCloudSecurityPostureManagementReq
 
 // GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM.
 // Get hourly usage for Cloud Security Posture Management (CSPM).
-func (a *UsageMeteringApiService) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCloudSecurityPostureManagementRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCloudSecurityPostureManagementResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCloudSecurityPostureManagementExecute(req)
+	return req.Api.getUsageCloudSecurityPostureManagementExecute(req)
 }
 
 // getUsageCloudSecurityPostureManagementExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(r apiGetUsageCloudSecurityPostureManagementRequest) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCloudSecurityPostureManagementExecute(r apiGetUsageCloudSecurityPostureManagementRequest) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCloudSecurityPostureManagementResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCloudSecurityPostureManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCloudSecurityPostureManagement")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2793,10 +2793,10 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 }
 
 type apiGetUsageDBMRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageDBMOptionalParameters holds optional parameters for GetUsageDBM.
@@ -2816,11 +2816,11 @@ func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageDBMRequest(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (apiGetUsageDBMRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageDBMRequest(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (apiGetUsageDBMRequest, error) {
 	req := apiGetUsageDBMRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -2835,25 +2835,25 @@ func (a *UsageMeteringApiService) buildGetUsageDBMRequest(ctx _context.Context, 
 
 // GetUsageDBM Get hourly usage for Database Monitoring.
 // Get hourly usage for Database Monitoring
-func (a *UsageMeteringApiService) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageDBMRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageDBMResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageDBMExecute(req)
+	return req.Api.getUsageDBMExecute(req)
 }
 
 // getUsageDBMExecute executes the request.
-func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBMResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBMResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageDBMResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageDBM")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageDBM")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2964,10 +2964,10 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 }
 
 type apiGetUsageFargateRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageFargateOptionalParameters holds optional parameters for GetUsageFargate.
@@ -2987,11 +2987,11 @@ func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsage
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageFargateRequest(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (apiGetUsageFargateRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageFargateRequest(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (apiGetUsageFargateRequest, error) {
 	req := apiGetUsageFargateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3006,25 +3006,25 @@ func (a *UsageMeteringApiService) buildGetUsageFargateRequest(ctx _context.Conte
 
 // GetUsageFargate Get hourly usage for Fargate.
 // Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
-func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageFargateRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageFargateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageFargateExecute(req)
+	return req.Api.getUsageFargateExecute(req)
 }
 
 // getUsageFargateExecute executes the request.
-func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateRequest) (UsageFargateResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageFargateExecute(r apiGetUsageFargateRequest) (UsageFargateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageFargateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageFargate")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageFargate")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3135,10 +3135,10 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 }
 
 type apiGetUsageHostsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageHostsOptionalParameters holds optional parameters for GetUsageHosts.
@@ -3158,11 +3158,11 @@ func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHo
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (apiGetUsageHostsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (apiGetUsageHostsRequest, error) {
 	req := apiGetUsageHostsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3177,25 +3177,25 @@ func (a *UsageMeteringApiService) buildGetUsageHostsRequest(ctx _context.Context
 
 // GetUsageHosts Get hourly usage for hosts and containers.
 // Get hourly usage for hosts and containers.
-func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageHostsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageHostsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageHostsExecute(req)
+	return req.Api.getUsageHostsExecute(req)
 }
 
 // getUsageHostsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest) (UsageHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageHostsExecute(r apiGetUsageHostsRequest) (UsageHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageHostsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3306,10 +3306,10 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 }
 
 type apiGetUsageIndexedSpansRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageIndexedSpansOptionalParameters holds optional parameters for GetUsageIndexedSpans.
@@ -3329,11 +3329,11 @@ func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageIndexedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (apiGetUsageIndexedSpansRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageIndexedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (apiGetUsageIndexedSpansRequest, error) {
 	req := apiGetUsageIndexedSpansRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3348,25 +3348,25 @@ func (a *UsageMeteringApiService) buildGetUsageIndexedSpansRequest(ctx _context.
 
 // GetUsageIndexedSpans Get hourly usage for indexed spans.
 // Get hourly usage for indexed spans.
-func (a *UsageMeteringApiService) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageIndexedSpansRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIndexedSpansResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageIndexedSpansExecute(req)
+	return req.Api.getUsageIndexedSpansExecute(req)
 }
 
 // getUsageIndexedSpansExecute executes the request.
-func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpansRequest) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpansRequest) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIndexedSpansResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageIndexedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageIndexedSpans")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3477,10 +3477,10 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 }
 
 type apiGetUsageInternetOfThingsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageInternetOfThingsOptionalParameters holds optional parameters for GetUsageInternetOfThings.
@@ -3500,11 +3500,11 @@ func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) 
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageInternetOfThingsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (apiGetUsageInternetOfThingsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageInternetOfThingsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (apiGetUsageInternetOfThingsRequest, error) {
 	req := apiGetUsageInternetOfThingsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3519,25 +3519,25 @@ func (a *UsageMeteringApiService) buildGetUsageInternetOfThingsRequest(ctx _cont
 
 // GetUsageInternetOfThings Get hourly usage for IoT.
 // Get hourly usage for IoT.
-func (a *UsageMeteringApiService) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageInternetOfThingsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIoTResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageInternetOfThingsExecute(req)
+	return req.Api.getUsageInternetOfThingsExecute(req)
 }
 
 // getUsageInternetOfThingsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageInternetOfThingsRequest) (UsageIoTResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageInternetOfThingsExecute(r apiGetUsageInternetOfThingsRequest) (UsageIoTResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIoTResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageInternetOfThings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageInternetOfThings")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3648,10 +3648,10 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 }
 
 type apiGetUsageLambdaRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLambdaOptionalParameters holds optional parameters for GetUsageLambda.
@@ -3671,11 +3671,11 @@ func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageL
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLambdaRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (apiGetUsageLambdaRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLambdaRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (apiGetUsageLambdaRequest, error) {
 	req := apiGetUsageLambdaRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3690,25 +3690,25 @@ func (a *UsageMeteringApiService) buildGetUsageLambdaRequest(ctx _context.Contex
 
 // GetUsageLambda Get hourly usage for Lambda.
 // Get hourly usage for lambda.
-func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLambdaResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLambdaExecute(req)
+	return req.Api.getUsageLambdaExecute(req)
 }
 
 // getUsageLambdaExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (UsageLambdaResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (UsageLambdaResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLambdaResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLambda")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLambda")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3819,10 +3819,10 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 }
 
 type apiGetUsageLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLogsOptionalParameters holds optional parameters for GetUsageLogs.
@@ -3842,11 +3842,11 @@ func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLog
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (apiGetUsageLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (apiGetUsageLogsRequest, error) {
 	req := apiGetUsageLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -3861,25 +3861,25 @@ func (a *UsageMeteringApiService) buildGetUsageLogsRequest(ctx _context.Context,
 
 // GetUsageLogs Get hourly usage for Logs.
 // Get hourly usage for logs.
-func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsExecute(req)
+	return req.Api.getUsageLogsExecute(req)
 }
 
 // getUsageLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3990,11 +3990,11 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 }
 
 type apiGetUsageLogsByIndexRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	indexName  *[]string
+	ctx       _context.Context
+	Api       *UsageMeteringApi
+	startHr   *time.Time
+	endHr     *time.Time
+	indexName *[]string
 }
 
 // GetUsageLogsByIndexOptionalParameters holds optional parameters for GetUsageLogsByIndex.
@@ -4021,11 +4021,11 @@ func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsByIndexRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (apiGetUsageLogsByIndexRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsByIndexRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (apiGetUsageLogsByIndexRequest, error) {
 	req := apiGetUsageLogsByIndexRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4041,25 +4041,25 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByIndexRequest(ctx _context.C
 
 // GetUsageLogsByIndex Get hourly usage for Logs by Index.
 // Get hourly usage for logs by index.
-func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByIndexRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsByIndexResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsByIndexExecute(req)
+	return req.Api.getUsageLogsByIndexExecute(req)
 }
 
 // getUsageLogsByIndexExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRequest) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRequest) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsByIndexResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogsByIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogsByIndex")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4181,10 +4181,10 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 }
 
 type apiGetUsageLogsByRetentionRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLogsByRetentionOptionalParameters holds optional parameters for GetUsageLogsByRetention.
@@ -4204,11 +4204,11 @@ func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsByRetentionRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (apiGetUsageLogsByRetentionRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsByRetentionRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (apiGetUsageLogsByRetentionRequest, error) {
 	req := apiGetUsageLogsByRetentionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4223,25 +4223,25 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByRetentionRequest(ctx _conte
 
 // GetUsageLogsByRetention Get hourly logs usage by retention.
 // Get hourly usage for indexed logs by retention period.
-func (a *UsageMeteringApiService) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByRetentionRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsByRetentionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsByRetentionExecute(req)
+	return req.Api.getUsageLogsByRetentionExecute(req)
 }
 
 // getUsageLogsByRetentionExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRetentionRequest) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRetentionRequest) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsByRetentionResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogsByRetention")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogsByRetention")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4352,10 +4352,10 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 }
 
 type apiGetUsageNetworkFlowsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageNetworkFlowsOptionalParameters holds optional parameters for GetUsageNetworkFlows.
@@ -4375,11 +4375,11 @@ func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageNetworkFlowsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (apiGetUsageNetworkFlowsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageNetworkFlowsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (apiGetUsageNetworkFlowsRequest, error) {
 	req := apiGetUsageNetworkFlowsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4394,25 +4394,25 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkFlowsRequest(ctx _context.
 
 // GetUsageNetworkFlows Get hourly usage for Network Flows.
 // Get hourly usage for network flows.
-func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkFlowsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageNetworkFlowsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageNetworkFlowsExecute(req)
+	return req.Api.getUsageNetworkFlowsExecute(req)
 }
 
 // getUsageNetworkFlowsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlowsRequest) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlowsRequest) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageNetworkFlowsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageNetworkFlows")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageNetworkFlows")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4523,10 +4523,10 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageNetworkHostsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageNetworkHostsOptionalParameters holds optional parameters for GetUsageNetworkHosts.
@@ -4546,11 +4546,11 @@ func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageNetworkHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (apiGetUsageNetworkHostsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageNetworkHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (apiGetUsageNetworkHostsRequest, error) {
 	req := apiGetUsageNetworkHostsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4565,25 +4565,25 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkHostsRequest(ctx _context.
 
 // GetUsageNetworkHosts Get hourly usage for Network Hosts.
 // Get hourly usage for network hosts.
-func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkHostsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageNetworkHostsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageNetworkHostsExecute(req)
+	return req.Api.getUsageNetworkHostsExecute(req)
 }
 
 // getUsageNetworkHostsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetworkHostsRequest) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageNetworkHostsExecute(r apiGetUsageNetworkHostsRequest) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageNetworkHostsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageNetworkHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageNetworkHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4694,10 +4694,10 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageOnlineArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageOnlineArchiveOptionalParameters holds optional parameters for GetUsageOnlineArchive.
@@ -4717,11 +4717,11 @@ func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageOnlineArchiveRequest(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (apiGetUsageOnlineArchiveRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageOnlineArchiveRequest(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (apiGetUsageOnlineArchiveRequest, error) {
 	req := apiGetUsageOnlineArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4736,25 +4736,25 @@ func (a *UsageMeteringApiService) buildGetUsageOnlineArchiveRequest(ctx _context
 
 // GetUsageOnlineArchive Get hourly usage for Online Archive.
 // Get hourly usage for Online Archive.
-func (a *UsageMeteringApiService) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageOnlineArchiveRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageOnlineArchiveResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageOnlineArchiveExecute(req)
+	return req.Api.getUsageOnlineArchiveExecute(req)
 }
 
 // getUsageOnlineArchiveExecute executes the request.
-func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchiveRequest) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchiveRequest) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageOnlineArchiveResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageOnlineArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageOnlineArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4865,10 +4865,10 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 }
 
 type apiGetUsageProfilingRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageProfilingOptionalParameters holds optional parameters for GetUsageProfiling.
@@ -4888,11 +4888,11 @@ func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageProfilingRequest(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (apiGetUsageProfilingRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageProfilingRequest(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (apiGetUsageProfilingRequest, error) {
 	req := apiGetUsageProfilingRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -4907,25 +4907,25 @@ func (a *UsageMeteringApiService) buildGetUsageProfilingRequest(ctx _context.Con
 
 // GetUsageProfiling Get hourly usage for profiled hosts.
 // Get hourly usage for profiled hosts.
-func (a *UsageMeteringApiService) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageProfilingRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageProfilingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageProfilingExecute(req)
+	return req.Api.getUsageProfilingExecute(req)
 }
 
 // getUsageProfilingExecute executes the request.
-func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilingRequest) (UsageProfilingResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageProfilingExecute(r apiGetUsageProfilingRequest) (UsageProfilingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageProfilingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageProfiling")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageProfiling")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5036,11 +5036,11 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 }
 
 type apiGetUsageRumSessionsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	typeVar    *string
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
+	typeVar *string
 }
 
 // GetUsageRumSessionsOptionalParameters holds optional parameters for GetUsageRumSessions.
@@ -5067,11 +5067,11 @@ func (r *GetUsageRumSessionsOptionalParameters) WithType(typeVar string) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageRumSessionsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (apiGetUsageRumSessionsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageRumSessionsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (apiGetUsageRumSessionsRequest, error) {
 	req := apiGetUsageRumSessionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -5087,25 +5087,25 @@ func (a *UsageMeteringApiService) buildGetUsageRumSessionsRequest(ctx _context.C
 
 // GetUsageRumSessions Get hourly usage for RUM Sessions.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
-func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumSessionsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageRumSessionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageRumSessionsExecute(req)
+	return req.Api.getUsageRumSessionsExecute(req)
 }
 
 // getUsageRumSessionsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRequest) (UsageRumSessionsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRequest) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageRumSessionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageRumSessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageRumSessions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5219,10 +5219,10 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 }
 
 type apiGetUsageRumUnitsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageRumUnitsOptionalParameters holds optional parameters for GetUsageRumUnits.
@@ -5242,11 +5242,11 @@ func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsag
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageRumUnitsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (apiGetUsageRumUnitsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageRumUnitsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (apiGetUsageRumUnitsRequest, error) {
 	req := apiGetUsageRumUnitsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -5261,25 +5261,25 @@ func (a *UsageMeteringApiService) buildGetUsageRumUnitsRequest(ctx _context.Cont
 
 // GetUsageRumUnits Get hourly usage for RUM Units.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Units.
-func (a *UsageMeteringApiService) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumUnitsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageRumUnitsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageRumUnitsExecute(req)
+	return req.Api.getUsageRumUnitsExecute(req)
 }
 
 // getUsageRumUnitsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest) (UsageRumUnitsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageRumUnitsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageRumUnits")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageRumUnits")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5390,10 +5390,10 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 }
 
 type apiGetUsageSDSRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSDSOptionalParameters holds optional parameters for GetUsageSDS.
@@ -5413,11 +5413,11 @@ func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSDSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (apiGetUsageSDSRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSDSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (apiGetUsageSDSRequest, error) {
 	req := apiGetUsageSDSRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -5432,25 +5432,25 @@ func (a *UsageMeteringApiService) buildGetUsageSDSRequest(ctx _context.Context, 
 
 // GetUsageSDS Get hourly usage for Sensitive Data Scanner.
 // Get hourly usage for Sensitive Data Scanner.
-func (a *UsageMeteringApiService) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSDSRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSDSResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSDSExecute(req)
+	return req.Api.getUsageSDSExecute(req)
 }
 
 // getUsageSDSExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSDSResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSDS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSDS")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5561,10 +5561,10 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 }
 
 type apiGetUsageSNMPRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSNMPOptionalParameters holds optional parameters for GetUsageSNMP.
@@ -5584,11 +5584,11 @@ func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNM
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSNMPRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (apiGetUsageSNMPRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSNMPRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (apiGetUsageSNMPRequest, error) {
 	req := apiGetUsageSNMPRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -5603,25 +5603,25 @@ func (a *UsageMeteringApiService) buildGetUsageSNMPRequest(ctx _context.Context,
 
 // GetUsageSNMP Get hourly usage for SNMP devices.
 // Get hourly usage for SNMP devices.
-func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSNMPRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSNMPResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSNMPExecute(req)
+	return req.Api.getUsageSNMPExecute(req)
 }
 
 // getUsageSNMPExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageSNMPResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageSNMPResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSNMPResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSNMP")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSNMP")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5733,7 +5733,7 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 
 type apiGetUsageSummaryRequest struct {
 	ctx               _context.Context
-	ApiService        *UsageMeteringApiService
+	Api               *UsageMeteringApi
 	startMonth        *time.Time
 	endMonth          *time.Time
 	includeOrgDetails *bool
@@ -5763,9 +5763,9 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDeta
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSummaryRequest(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (apiGetUsageSummaryRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSummaryRequest(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (apiGetUsageSummaryRequest, error) {
 	req := apiGetUsageSummaryRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 	}
@@ -5783,25 +5783,25 @@ func (a *UsageMeteringApiService) buildGetUsageSummaryRequest(ctx _context.Conte
 
 // GetUsageSummary Get usage across your multi-org account.
 // Get usage across your multi-org account. You must have the multi-org feature enabled.
-func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSummaryRequest(ctx, startMonth, o...)
 	if err != nil {
 		var localVarReturnValue UsageSummaryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSummaryExecute(req)
+	return req.Api.getUsageSummaryExecute(req)
 }
 
 // getUsageSummaryExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (UsageSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (UsageSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSummaryResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSummary")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5915,10 +5915,10 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 }
 
 type apiGetUsageSyntheticsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsOptionalParameters holds optional parameters for GetUsageSynthetics.
@@ -5938,11 +5938,11 @@ func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (apiGetUsageSyntheticsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (apiGetUsageSyntheticsRequest, error) {
 	req := apiGetUsageSyntheticsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -5957,25 +5957,25 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsRequest(ctx _context.Co
 
 // GetUsageSynthetics Get hourly usage for Synthetics Checks.
 // Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
-func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsExecute(req)
+	return req.Api.getUsageSyntheticsExecute(req)
 }
 
 // getUsageSyntheticsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequest) (UsageSyntheticsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequest) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSynthetics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSynthetics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6086,10 +6086,10 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 }
 
 type apiGetUsageSyntheticsAPIRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsAPIOptionalParameters holds optional parameters for GetUsageSyntheticsAPI.
@@ -6109,11 +6109,11 @@ func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsAPIRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (apiGetUsageSyntheticsAPIRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsAPIRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (apiGetUsageSyntheticsAPIRequest, error) {
 	req := apiGetUsageSyntheticsAPIRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -6128,25 +6128,25 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsAPIRequest(ctx _context
 
 // GetUsageSyntheticsAPI Get hourly usage for Synthetics API Checks.
 // Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
-func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsAPIRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsAPIResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsAPIExecute(req)
+	return req.Api.getUsageSyntheticsAPIExecute(req)
 }
 
 // getUsageSyntheticsAPIExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsAPIRequest) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsAPIRequest) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsAPIResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSyntheticsAPI")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSyntheticsAPI")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6257,10 +6257,10 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 }
 
 type apiGetUsageSyntheticsBrowserRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsBrowserOptionalParameters holds optional parameters for GetUsageSyntheticsBrowser.
@@ -6280,11 +6280,11 @@ func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time)
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsBrowserRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (apiGetUsageSyntheticsBrowserRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsBrowserRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (apiGetUsageSyntheticsBrowserRequest, error) {
 	req := apiGetUsageSyntheticsBrowserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -6299,25 +6299,25 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsBrowserRequest(ctx _con
 
 // GetUsageSyntheticsBrowser Get hourly usage for Synthetics Browser Checks.
 // Get hourly usage for synthetics browser checks.
-func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsBrowserRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsBrowserResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsBrowserExecute(req)
+	return req.Api.getUsageSyntheticsBrowserExecute(req)
 }
 
 // getUsageSyntheticsBrowserExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsageSyntheticsBrowserRequest) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsBrowserExecute(r apiGetUsageSyntheticsBrowserRequest) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsBrowserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSyntheticsBrowser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSyntheticsBrowser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6428,10 +6428,10 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 }
 
 type apiGetUsageTimeseriesRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	Api     *UsageMeteringApi
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageTimeseriesOptionalParameters holds optional parameters for GetUsageTimeseries.
@@ -6451,11 +6451,11 @@ func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageTimeseriesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (apiGetUsageTimeseriesRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageTimeseriesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (apiGetUsageTimeseriesRequest, error) {
 	req := apiGetUsageTimeseriesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		Api:     a,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
@@ -6470,25 +6470,25 @@ func (a *UsageMeteringApiService) buildGetUsageTimeseriesRequest(ctx _context.Co
 
 // GetUsageTimeseries Get hourly usage for custom metrics.
 // Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
-func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTimeseriesRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageTimeseriesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageTimeseriesExecute(req)
+	return req.Api.getUsageTimeseriesExecute(req)
 }
 
 // getUsageTimeseriesExecute executes the request.
-func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequest) (UsageTimeseriesResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequest) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageTimeseriesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageTimeseries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageTimeseries")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6600,7 +6600,7 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 
 type apiGetUsageTopAvgMetricsRequest struct {
 	ctx          _context.Context
-	ApiService   *UsageMeteringApiService
+	Api          *UsageMeteringApi
 	month        *time.Time
 	day          *time.Time
 	names        *[]string
@@ -6653,10 +6653,10 @@ func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId 
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageTopAvgMetricsRequest(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (apiGetUsageTopAvgMetricsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageTopAvgMetricsRequest(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (apiGetUsageTopAvgMetricsRequest, error) {
 	req := apiGetUsageTopAvgMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -6675,25 +6675,25 @@ func (a *UsageMeteringApiService) buildGetUsageTopAvgMetricsRequest(ctx _context
 
 // GetUsageTopAvgMetrics Get all custom metrics by hourly average.
 // Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
-func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTopAvgMetricsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageTopAvgMetricsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageTopAvgMetricsExecute(req)
+	return req.Api.getUsageTopAvgMetricsExecute(req)
 }
 
 // getUsageTopAvgMetricsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetricsRequest) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetricsRequest) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageTopAvgMetricsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageTopAvgMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageTopAvgMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6819,9 +6819,9 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UsageMeteringApi Returns new UsageMeteringApi service.
-func UsageMeteringApi(client *common.APIClient) *UsageMeteringApiService {
-	return &UsageMeteringApiService{
+// NewUsageMeteringApi Returns NewUsageMeteringApi.
+func NewUsageMeteringApi(client *common.APIClient) *UsageMeteringApi {
+	return &UsageMeteringApi{
 		Client: client,
 	}
 }

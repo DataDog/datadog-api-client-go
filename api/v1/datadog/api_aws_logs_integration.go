@@ -14,20 +14,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AWSLogsIntegrationApiService service type
-type AWSLogsIntegrationApiService common.Service
+// AWSLogsIntegrationApi service type
+type AWSLogsIntegrationApi common.Service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	ctx  _context.Context
+	Api  *AWSLogsIntegrationApi
+	body *AWSAccountAndLambdaRequest
 }
 
-func (a *AWSLogsIntegrationApiService) buildCheckAWSLogsLambdaAsyncRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCheckAWSLogsLambdaAsyncRequest, error) {
+func (a *AWSLogsIntegrationApi) buildCheckAWSLogsLambdaAsyncRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCheckAWSLogsLambdaAsyncRequest, error) {
 	req := apiCheckAWSLogsLambdaAsyncRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -41,25 +41,25 @@ func (a *AWSLogsIntegrationApiService) buildCheckAWSLogsLambdaAsyncRequest(ctx _
 // - Returns a status of 'waiting' while checking.
 // - Returns a status of 'checked and ok' if the Lambda exists.
 // - Returns a status of 'error' if the Lambda does not exist.
-func (a *AWSLogsIntegrationApiService) CheckAWSLogsLambdaAsync(ctx _context.Context, body AWSAccountAndLambdaRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, body AWSAccountAndLambdaRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	req, err := a.buildCheckAWSLogsLambdaAsyncRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSLogsAsyncResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.checkAWSLogsLambdaAsyncExecute(req)
+	return req.Api.checkAWSLogsLambdaAsyncExecute(req)
 }
 
 // checkAWSLogsLambdaAsyncExecute executes the request.
-func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogsLambdaAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogsLambdaAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AWSLogsAsyncResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CheckAWSLogsLambdaAsync")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -169,16 +169,16 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 }
 
 type apiCheckAWSLogsServicesAsyncRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	ctx  _context.Context
+	Api  *AWSLogsIntegrationApi
+	body *AWSLogsServicesRequest
 }
 
-func (a *AWSLogsIntegrationApiService) buildCheckAWSLogsServicesAsyncRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiCheckAWSLogsServicesAsyncRequest, error) {
+func (a *AWSLogsIntegrationApi) buildCheckAWSLogsServicesAsyncRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiCheckAWSLogsServicesAsyncRequest, error) {
 	req := apiCheckAWSLogsServicesAsyncRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -194,25 +194,25 @@ func (a *AWSLogsIntegrationApiService) buildCheckAWSLogsServicesAsyncRequest(ctx
 // - Returns a status of `waiting` while checking.
 // - Returns a status of `checked and ok` if the Lambda exists.
 // - Returns a status of `error` if the Lambda does not exist.
-func (a *AWSLogsIntegrationApiService) CheckAWSLogsServicesAsync(ctx _context.Context, body AWSLogsServicesRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, body AWSLogsServicesRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	req, err := a.buildCheckAWSLogsServicesAsyncRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSLogsAsyncResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.checkAWSLogsServicesAsyncExecute(req)
+	return req.Api.checkAWSLogsServicesAsyncExecute(req)
 }
 
 // checkAWSLogsServicesAsyncExecute executes the request.
-func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLogsServicesAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLogsServicesAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AWSLogsAsyncResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CheckAWSLogsServicesAsync")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -322,41 +322,41 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 }
 
 type apiCreateAWSLambdaARNRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	ctx  _context.Context
+	Api  *AWSLogsIntegrationApi
+	body *AWSAccountAndLambdaRequest
 }
 
-func (a *AWSLogsIntegrationApiService) buildCreateAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCreateAWSLambdaARNRequest, error) {
+func (a *AWSLogsIntegrationApi) buildCreateAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCreateAWSLambdaARNRequest, error) {
 	req := apiCreateAWSLambdaARNRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateAWSLambdaARN Add AWS Log Lambda ARN.
 // Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
-func (a *AWSLogsIntegrationApiService) CreateAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateAWSLambdaARNRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAWSLambdaARNExecute(req)
+	return req.Api.createAWSLambdaARNExecute(req)
 }
 
 // createAWSLambdaARNExecute executes the request.
-func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CreateAWSLambdaARN")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CreateAWSLambdaARN")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -466,41 +466,41 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 }
 
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	ctx  _context.Context
+	Api  *AWSLogsIntegrationApi
+	body *AWSAccountAndLambdaRequest
 }
 
-func (a *AWSLogsIntegrationApiService) buildDeleteAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiDeleteAWSLambdaARNRequest, error) {
+func (a *AWSLogsIntegrationApi) buildDeleteAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiDeleteAWSLambdaARNRequest, error) {
 	req := apiDeleteAWSLambdaARNRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAWSLambdaARN Delete an AWS Logs integration.
 // Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
-func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAWSLambdaARNRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAWSLambdaARNExecute(req)
+	return req.Api.deleteAWSLambdaARNExecute(req)
 }
 
 // deleteAWSLambdaARNExecute executes the request.
-func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.DeleteAWSLambdaARN")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -610,41 +610,41 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 }
 
 type apiEnableAWSLogServicesRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	ctx  _context.Context
+	Api  *AWSLogsIntegrationApi
+	body *AWSLogsServicesRequest
 }
 
-func (a *AWSLogsIntegrationApiService) buildEnableAWSLogServicesRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiEnableAWSLogServicesRequest, error) {
+func (a *AWSLogsIntegrationApi) buildEnableAWSLogServicesRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiEnableAWSLogServicesRequest, error) {
 	req := apiEnableAWSLogServicesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // EnableAWSLogServices Enable an AWS Logs integration.
 // Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the configuration.
-func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context, body AWSLogsServicesRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body AWSLogsServicesRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildEnableAWSLogServicesRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.enableAWSLogServicesExecute(req)
+	return req.Api.enableAWSLogServicesExecute(req)
 }
 
 // enableAWSLogServicesExecute executes the request.
-func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAWSLogServicesRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogServicesRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.EnableAWSLogServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.EnableAWSLogServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -754,39 +754,39 @@ func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAW
 }
 
 type apiListAWSLogsIntegrationsRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
+	ctx _context.Context
+	Api *AWSLogsIntegrationApi
 }
 
-func (a *AWSLogsIntegrationApiService) buildListAWSLogsIntegrationsRequest(ctx _context.Context) (apiListAWSLogsIntegrationsRequest, error) {
+func (a *AWSLogsIntegrationApi) buildListAWSLogsIntegrationsRequest(ctx _context.Context) (apiListAWSLogsIntegrationsRequest, error) {
 	req := apiListAWSLogsIntegrationsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListAWSLogsIntegrations List all AWS Logs integrations.
 // List all Datadog-AWS Logs integrations configured in your Datadog account.
-func (a *AWSLogsIntegrationApiService) ListAWSLogsIntegrations(ctx _context.Context) ([]AWSLogsListResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSLogsIntegrationsRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []AWSLogsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSLogsIntegrationsExecute(req)
+	return req.Api.listAWSLogsIntegrationsExecute(req)
 }
 
 // listAWSLogsIntegrationsExecute executes the request.
-func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListAWSLogsIntegrationsRequest) ([]AWSLogsListResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsIntegrationsRequest) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []AWSLogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.ListAWSLogsIntegrations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -890,39 +890,39 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListA
 }
 
 type apiListAWSLogsServicesRequest struct {
-	ctx        _context.Context
-	ApiService *AWSLogsIntegrationApiService
+	ctx _context.Context
+	Api *AWSLogsIntegrationApi
 }
 
-func (a *AWSLogsIntegrationApiService) buildListAWSLogsServicesRequest(ctx _context.Context) (apiListAWSLogsServicesRequest, error) {
+func (a *AWSLogsIntegrationApi) buildListAWSLogsServicesRequest(ctx _context.Context) (apiListAWSLogsServicesRequest, error) {
 	req := apiListAWSLogsServicesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListAWSLogsServices Get list of AWS log ready services.
 // Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
-func (a *AWSLogsIntegrationApiService) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSLogsServicesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []AWSLogsListServicesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSLogsServicesExecute(req)
+	return req.Api.listAWSLogsServicesExecute(req)
 }
 
 // listAWSLogsServicesExecute executes the request.
-func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLogsServicesRequest) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
+func (a *AWSLogsIntegrationApi) listAWSLogsServicesExecute(r apiListAWSLogsServicesRequest) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []AWSLogsListServicesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.ListAWSLogsServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.ListAWSLogsServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1016,9 +1016,9 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AWSLogsIntegrationApi Returns new AWSLogsIntegrationApi service.
-func AWSLogsIntegrationApi(client *common.APIClient) *AWSLogsIntegrationApiService {
-	return &AWSLogsIntegrationApiService{
+// NewAWSLogsIntegrationApi Returns NewAWSLogsIntegrationApi.
+func NewAWSLogsIntegrationApi(client *common.APIClient) *AWSLogsIntegrationApi {
+	return &AWSLogsIntegrationApi{
 		Client: client,
 	}
 }

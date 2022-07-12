@@ -15,20 +15,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// LogsMetricsApiService service type
-type LogsMetricsApiService common.Service
+// LogsMetricsApi service type
+type LogsMetricsApi common.Service
 
 type apiCreateLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	body       *LogsMetricCreateRequest
+	ctx  _context.Context
+	Api  *LogsMetricsApi
+	body *LogsMetricCreateRequest
 }
 
-func (a *LogsMetricsApiService) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
 	req := apiCreateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -36,25 +36,25 @@ func (a *LogsMetricsApiService) buildCreateLogsMetricRequest(ctx _context.Contex
 // CreateLogsMetric Create a log-based metric.
 // Create a metric based on your ingested logs in your organization.
 // Returns the log-based metric object from the request body when the request is successful.
-func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateLogsMetricRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createLogsMetricExecute(req)
+	return req.Api.createLogsMetricExecute(req)
 }
 
 // createLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) createLogsMetricExecute(r apiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.CreateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.CreateLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -173,39 +173,39 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 }
 
 type apiDeleteLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
+	ctx      _context.Context
+	Api      *LogsMetricsApi
+	metricId string
 }
 
-func (a *LogsMetricsApiService) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
 	req := apiDeleteLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+		Api:      a,
+		ctx:      ctx,
+		metricId: metricId,
 	}
 	return req, nil
 }
 
 // DeleteLogsMetric Delete a log-based metric.
 // Delete a specific log-based metric from your organization.
-func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
+func (a *LogsMetricsApi) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteLogsMetricRequest(ctx, metricId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteLogsMetricExecute(req)
+	return req.Api.deleteLogsMetricExecute(req)
 }
 
 // deleteLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
+func (a *LogsMetricsApi) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.DeleteLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.DeleteLogsMetric")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -301,41 +301,41 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 }
 
 type apiGetLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
+	ctx      _context.Context
+	Api      *LogsMetricsApi
+	metricId string
 }
 
-func (a *LogsMetricsApiService) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
 	req := apiGetLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+		Api:      a,
+		ctx:      ctx,
+		metricId: metricId,
 	}
 	return req, nil
 }
 
 // GetLogsMetric Get a log-based metric.
 // Get a specific log-based metric from your organization.
-func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetLogsMetricRequest(ctx, metricId)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getLogsMetricExecute(req)
+	return req.Api.getLogsMetricExecute(req)
 }
 
 // getLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.GetLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.GetLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -440,39 +440,39 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 }
 
 type apiListLogsMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
+	ctx _context.Context
+	Api *LogsMetricsApi
 }
 
-func (a *LogsMetricsApiService) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
+func (a *LogsMetricsApi) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
 	req := apiListLogsMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListLogsMetrics Get all log-based metrics.
 // Get the list of configured log-based metrics with their definitions.
-func (a *LogsMetricsApiService) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListLogsMetricsRequest(ctx)
 	if err != nil {
 		var localVarReturnValue LogsMetricsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listLogsMetricsExecute(req)
+	return req.Api.listLogsMetricsExecute(req)
 }
 
 // listLogsMetricsExecute executes the request.
-func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) listLogsMetricsExecute(r apiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.ListLogsMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.ListLogsMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -567,18 +567,18 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 }
 
 type apiUpdateLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
-	body       *LogsMetricUpdateRequest
+	ctx      _context.Context
+	Api      *LogsMetricsApi
+	metricId string
+	body     *LogsMetricUpdateRequest
 }
 
-func (a *LogsMetricsApiService) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
 	req := apiUpdateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
-		body:       &body,
+		Api:      a,
+		ctx:      ctx,
+		metricId: metricId,
+		body:     &body,
 	}
 	return req, nil
 }
@@ -586,25 +586,25 @@ func (a *LogsMetricsApiService) buildUpdateLogsMetricRequest(ctx _context.Contex
 // UpdateLogsMetric Update a log-based metric.
 // Update a specific log-based metric from your organization.
 // Returns the log-based metric object from the request body when the request is successful.
-func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateLogsMetricRequest(ctx, metricId, body)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateLogsMetricExecute(req)
+	return req.Api.updateLogsMetricExecute(req)
 }
 
 // updateLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) updateLogsMetricExecute(r apiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.UpdateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.UpdateLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -723,9 +723,9 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// LogsMetricsApi Returns new LogsMetricsApi service.
-func LogsMetricsApi(client *common.APIClient) *LogsMetricsApiService {
-	return &LogsMetricsApiService{
+// NewLogsMetricsApi Returns NewLogsMetricsApi.
+func NewLogsMetricsApi(client *common.APIClient) *LogsMetricsApi {
+	return &LogsMetricsApi{
 		Client: client,
 	}
 }

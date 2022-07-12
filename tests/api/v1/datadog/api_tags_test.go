@@ -29,7 +29,7 @@ func TestTags(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	api := datadog.TagsApi(Client(ctx))
+	api := datadog.NewTagsApi(Client(ctx))
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
 	hostname := *tests.UniqueEntityName(ctx, t)
@@ -149,7 +149,7 @@ func TestTagsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.TagsApi(Client(ctx))
+			api := datadog.NewTagsApi(Client(ctx))
 
 			_, httpresp, err := api.ListHostTags(ctx, *datadog.NewListHostTagsOptionalParameters().
 				WithSource("nosource"))
@@ -178,7 +178,7 @@ func TestTagsGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.TagsApi(Client(ctx))
+			api := datadog.NewTagsApi(Client(ctx))
 
 			_, httpresp, err := api.GetHostTags(ctx, "notahostname1234")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -206,7 +206,7 @@ func TestTagsCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.TagsApi(Client(ctx))
+			api := datadog.NewTagsApi(Client(ctx))
 
 			_, httpresp, err := api.CreateHostTags(ctx, "notahostname1234", datadog.HostTags{})
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -234,7 +234,7 @@ func TestTagsUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.TagsApi(Client(ctx))
+			api := datadog.NewTagsApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateHostTags(ctx, "notahostname1234", datadog.HostTags{})
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -262,7 +262,7 @@ func TestTagsDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.TagsApi(Client(ctx))
+			api := datadog.NewTagsApi(Client(ctx))
 
 			httpresp, err := api.DeleteHostTags(ctx, "notahostname1234")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

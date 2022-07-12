@@ -14,20 +14,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AWSIntegrationApiService service type
-type AWSIntegrationApiService common.Service
+// AWSIntegrationApi service type
+type AWSIntegrationApi common.Service
 
 type apiCreateAWSAccountRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	ctx  _context.Context
+	Api  *AWSIntegrationApi
+	body *AWSAccount
 }
 
-func (a *AWSIntegrationApiService) buildCreateAWSAccountRequest(ctx _context.Context, body AWSAccount) (apiCreateAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildCreateAWSAccountRequest(ctx _context.Context, body AWSAccount) (apiCreateAWSAccountRequest, error) {
 	req := apiCreateAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -37,25 +37,25 @@ func (a *AWSIntegrationApiService) buildCreateAWSAccountRequest(ctx _context.Con
 // Using the `POST` method updates your integration configuration
 // by adding your new configuration to the existing one in your Datadog organization.
 // A unique AWS Account ID for role based authentication.
-func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateAWSAccountRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSAccountCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAWSAccountExecute(req)
+	return req.Api.createAWSAccountExecute(req)
 }
 
 // createAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccountRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createAWSAccountExecute(r apiCreateAWSAccountRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -174,41 +174,41 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 }
 
 type apiCreateAWSTagFilterRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterCreateRequest
+	ctx  _context.Context
+	Api  *AWSIntegrationApi
+	body *AWSTagFilterCreateRequest
 }
 
-func (a *AWSIntegrationApiService) buildCreateAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterCreateRequest) (apiCreateAWSTagFilterRequest, error) {
+func (a *AWSIntegrationApi) buildCreateAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterCreateRequest) (apiCreateAWSTagFilterRequest, error) {
 	req := apiCreateAWSTagFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateAWSTagFilter Set an AWS tag filter.
 // Set an AWS tag filter.
-func (a *AWSIntegrationApiService) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateAWSTagFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAWSTagFilterExecute(req)
+	return req.Api.createAWSTagFilterExecute(req)
 }
 
 // createAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createAWSTagFilterExecute(r apiCreateAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateAWSTagFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -318,41 +318,41 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 }
 
 type apiCreateNewAWSExternalIDRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	ctx  _context.Context
+	Api  *AWSIntegrationApi
+	body *AWSAccount
 }
 
-func (a *AWSIntegrationApiService) buildCreateNewAWSExternalIDRequest(ctx _context.Context, body AWSAccount) (apiCreateNewAWSExternalIDRequest, error) {
+func (a *AWSIntegrationApi) buildCreateNewAWSExternalIDRequest(ctx _context.Context, body AWSAccount) (apiCreateNewAWSExternalIDRequest, error) {
 	req := apiCreateNewAWSExternalIDRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateNewAWSExternalID Generate a new external ID.
 // Generate a new AWS external ID for a given AWS account ID and role name pair.
-func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateNewAWSExternalIDRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSAccountCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createNewAWSExternalIDExecute(req)
+	return req.Api.createNewAWSExternalIDExecute(req)
 }
 
 // createNewAWSExternalIDExecute executes the request.
-func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewAWSExternalIDRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(r apiCreateNewAWSExternalIDRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateNewAWSExternalID")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateNewAWSExternalID")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -462,41 +462,41 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 }
 
 type apiDeleteAWSAccountRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccountDeleteRequest
+	ctx  _context.Context
+	Api  *AWSIntegrationApi
+	body *AWSAccountDeleteRequest
 }
 
-func (a *AWSIntegrationApiService) buildDeleteAWSAccountRequest(ctx _context.Context, body AWSAccountDeleteRequest) (apiDeleteAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildDeleteAWSAccountRequest(ctx _context.Context, body AWSAccountDeleteRequest) (apiDeleteAWSAccountRequest, error) {
 	req := apiDeleteAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAWSAccount Delete an AWS integration.
 // Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAWSAccountRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAWSAccountExecute(req)
+	return req.Api.deleteAWSAccountExecute(req)
 }
 
 // deleteAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.DeleteAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.DeleteAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -615,41 +615,41 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 }
 
 type apiDeleteAWSTagFilterRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterDeleteRequest
+	ctx  _context.Context
+	Api  *AWSIntegrationApi
+	body *AWSTagFilterDeleteRequest
 }
 
-func (a *AWSIntegrationApiService) buildDeleteAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterDeleteRequest) (apiDeleteAWSTagFilterRequest, error) {
+func (a *AWSIntegrationApi) buildDeleteAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterDeleteRequest) (apiDeleteAWSTagFilterRequest, error) {
 	req := apiDeleteAWSTagFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAWSTagFilter Delete a tag filtering entry.
 // Delete a tag filtering entry.
-func (a *AWSIntegrationApiService) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAWSTagFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAWSTagFilterExecute(req)
+	return req.Api.deleteAWSTagFilterExecute(req)
 }
 
 // deleteAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.DeleteAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.DeleteAWSTagFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -760,7 +760,7 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 
 type apiListAWSAccountsRequest struct {
 	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
+	Api         *AWSIntegrationApi
 	accountId   *string
 	roleName    *string
 	accessKeyId *string
@@ -797,10 +797,10 @@ func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) 
 	return r
 }
 
-func (a *AWSIntegrationApiService) buildListAWSAccountsRequest(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (apiListAWSAccountsRequest, error) {
+func (a *AWSIntegrationApi) buildListAWSAccountsRequest(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (apiListAWSAccountsRequest, error) {
 	req := apiListAWSAccountsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -817,25 +817,25 @@ func (a *AWSIntegrationApiService) buildListAWSAccountsRequest(ctx _context.Cont
 
 // ListAWSAccounts List all AWS integrations.
 // List all Datadog-AWS integrations available in your Datadog organization.
-func (a *AWSIntegrationApiService) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSAccountsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AWSAccountListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSAccountsExecute(req)
+	return req.Api.listAWSAccountsExecute(req)
 }
 
 // listAWSAccountsExecute executes the request.
-func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRequest) (AWSAccountListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAWSAccountsExecute(r apiListAWSAccountsRequest) (AWSAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAWSAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAWSAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -948,41 +948,41 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 }
 
 type apiListAWSTagFiltersRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	accountId  *string
+	ctx       _context.Context
+	Api       *AWSIntegrationApi
+	accountId *string
 }
 
-func (a *AWSIntegrationApiService) buildListAWSTagFiltersRequest(ctx _context.Context, accountId string) (apiListAWSTagFiltersRequest, error) {
+func (a *AWSIntegrationApi) buildListAWSTagFiltersRequest(ctx _context.Context, accountId string) (apiListAWSTagFiltersRequest, error) {
 	req := apiListAWSTagFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		accountId:  &accountId,
+		Api:       a,
+		ctx:       ctx,
+		accountId: &accountId,
 	}
 	return req, nil
 }
 
 // ListAWSTagFilters Get all AWS tag filters.
 // Get all AWS tag filters.
-func (a *AWSIntegrationApiService) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSTagFiltersRequest(ctx, accountId)
 	if err != nil {
 		var localVarReturnValue AWSTagFilterListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSTagFiltersExecute(req)
+	return req.Api.listAWSTagFiltersExecute(req)
 }
 
 // listAWSTagFiltersExecute executes the request.
-func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFiltersRequest) (AWSTagFilterListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAWSTagFiltersExecute(r apiListAWSTagFiltersRequest) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AWSTagFilterListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAWSTagFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAWSTagFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1090,39 +1090,39 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 }
 
 type apiListAvailableAWSNamespacesRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
+	ctx _context.Context
+	Api *AWSIntegrationApi
 }
 
-func (a *AWSIntegrationApiService) buildListAvailableAWSNamespacesRequest(ctx _context.Context) (apiListAvailableAWSNamespacesRequest, error) {
+func (a *AWSIntegrationApi) buildListAvailableAWSNamespacesRequest(ctx _context.Context) (apiListAvailableAWSNamespacesRequest, error) {
 	req := apiListAvailableAWSNamespacesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListAvailableAWSNamespaces List namespace rules.
 // List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.
-func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
 	req, err := a.buildListAvailableAWSNamespacesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAvailableAWSNamespacesExecute(req)
+	return req.Api.listAvailableAWSNamespacesExecute(req)
 }
 
 // listAvailableAWSNamespacesExecute executes the request.
-func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAvailableAWSNamespacesRequest) ([]string, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAvailableAWSNamespacesExecute(r apiListAvailableAWSNamespacesRequest) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []string
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAvailableAWSNamespaces")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAvailableAWSNamespaces")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1218,7 +1218,7 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 
 type apiUpdateAWSAccountRequest struct {
 	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
+	Api         *AWSIntegrationApi
 	body        *AWSAccount
 	accountId   *string
 	roleName    *string
@@ -1256,11 +1256,11 @@ func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string)
 	return r
 }
 
-func (a *AWSIntegrationApiService) buildUpdateAWSAccountRequest(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (apiUpdateAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildUpdateAWSAccountRequest(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (apiUpdateAWSAccountRequest, error) {
 	req := apiUpdateAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -1277,25 +1277,25 @@ func (a *AWSIntegrationApiService) buildUpdateAWSAccountRequest(ctx _context.Con
 
 // UpdateAWSAccount Update an AWS integration.
 // Update a Datadog-Amazon Web Services integration.
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAWSAccountRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAWSAccountExecute(req)
+	return req.Api.updateAWSAccountExecute(req)
 }
 
 // updateAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) updateAWSAccountExecute(r apiUpdateAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.UpdateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.UpdateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1422,9 +1422,9 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AWSIntegrationApi Returns new AWSIntegrationApi service.
-func AWSIntegrationApi(client *common.APIClient) *AWSIntegrationApiService {
-	return &AWSIntegrationApiService{
+// NewAWSIntegrationApi Returns NewAWSIntegrationApi.
+func NewAWSIntegrationApi(client *common.APIClient) *AWSIntegrationApi {
+	return &AWSIntegrationApi{
 		Client: client,
 	}
 }

@@ -17,20 +17,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ServiceLevelObjectivesApiService service type
-type ServiceLevelObjectivesApiService common.Service
+// ServiceLevelObjectivesApi service type
+type ServiceLevelObjectivesApi common.Service
 
 type apiCheckCanDeleteSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ctx _context.Context
+	Api *ServiceLevelObjectivesApi
+	ids *string
 }
 
-func (a *ServiceLevelObjectivesApiService) buildCheckCanDeleteSLORequest(ctx _context.Context, ids string) (apiCheckCanDeleteSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildCheckCanDeleteSLORequest(ctx _context.Context, ids string) (apiCheckCanDeleteSLORequest, error) {
 	req := apiCheckCanDeleteSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		ids:        &ids,
+		Api: a,
+		ctx: ctx,
+		ids: &ids,
 	}
 	return req, nil
 }
@@ -38,25 +38,25 @@ func (a *ServiceLevelObjectivesApiService) buildCheckCanDeleteSLORequest(ctx _co
 // CheckCanDeleteSLO Check if SLOs can be safely deleted.
 // Check if an SLO can be safely deleted. For example,
 // assure an SLO can be deleted without disrupting a dashboard.
-func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildCheckCanDeleteSLORequest(ctx, ids)
 	if err != nil {
 		var localVarReturnValue CheckCanDeleteSLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.checkCanDeleteSLOExecute(req)
+	return req.Api.checkCanDeleteSLOExecute(req)
 }
 
 // checkCanDeleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CheckCanDeleteSLOResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.CheckCanDeleteSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CheckCanDeleteSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -173,41 +173,41 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 }
 
 type apiCreateSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	body       *ServiceLevelObjectiveRequest
+	ctx  _context.Context
+	Api  *ServiceLevelObjectivesApi
+	body *ServiceLevelObjectiveRequest
 }
 
-func (a *ServiceLevelObjectivesApiService) buildCreateSLORequest(ctx _context.Context, body ServiceLevelObjectiveRequest) (apiCreateSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildCreateSLORequest(ctx _context.Context, body ServiceLevelObjectiveRequest) (apiCreateSLORequest, error) {
 	req := apiCreateSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateSLO Create an SLO object.
 // Create a service level objective object.
-func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSLORequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSLOExecute(req)
+	return req.Api.createSLOExecute(req)
 }
 
 // createSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.CreateSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CreateSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -317,10 +317,10 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 }
 
 type apiDeleteSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	force      *string
+	ctx   _context.Context
+	Api   *ServiceLevelObjectivesApi
+	sloId string
+	force *string
 }
 
 // DeleteSLOOptionalParameters holds optional parameters for DeleteSLO.
@@ -340,11 +340,11 @@ func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptional
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildDeleteSLORequest(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (apiDeleteSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildDeleteSLORequest(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (apiDeleteSLORequest, error) {
 	req := apiDeleteSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		Api:   a,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
@@ -362,25 +362,25 @@ func (a *ServiceLevelObjectivesApiService) buildDeleteSLORequest(ctx _context.Co
 //
 // If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
 // a 409 conflict error because the SLO is referenced in a dashboard.
-func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteSLORequest(ctx, sloId, o...)
 	if err != nil {
 		var localVarReturnValue SLODeleteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteSLOExecute(req)
+	return req.Api.deleteSLOExecute(req)
 }
 
 // deleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue SLODeleteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.DeleteSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -497,16 +497,16 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 }
 
 type apiDeleteSLOTimeframeInBulkRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	body       *map[string][]SLOTimeframe
+	ctx  _context.Context
+	Api  *ServiceLevelObjectivesApi
+	body *map[string][]SLOTimeframe
 }
 
-func (a *ServiceLevelObjectivesApiService) buildDeleteSLOTimeframeInBulkRequest(ctx _context.Context, body map[string][]SLOTimeframe) (apiDeleteSLOTimeframeInBulkRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildDeleteSLOTimeframeInBulkRequest(ctx _context.Context, body map[string][]SLOTimeframe) (apiDeleteSLOTimeframeInBulkRequest, error) {
 	req := apiDeleteSLOTimeframeInBulkRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -517,25 +517,25 @@ func (a *ServiceLevelObjectivesApiService) buildDeleteSLOTimeframeInBulkRequest(
 // This endpoint facilitates deletion of one or more thresholds for one or more
 // service level objective objects. If all thresholds are deleted, the service level
 // objective object is deleted as well.
-func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteSLOTimeframeInBulkRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SLOBulkDeleteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteSLOTimeframeInBulkExecute(req)
+	return req.Api.deleteSLOTimeframeInBulkExecute(req)
 }
 
 // deleteSLOTimeframeInBulkExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SLOBulkDeleteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.DeleteSLOTimeframeInBulk")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -646,7 +646,7 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 
 type apiGetSLORequest struct {
 	ctx                    _context.Context
-	ApiService             *ServiceLevelObjectivesApiService
+	Api                    *ServiceLevelObjectivesApi
 	sloId                  string
 	withConfiguredAlertIds *bool
 }
@@ -668,11 +668,11 @@ func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAler
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLORequest(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (apiGetSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLORequest(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (apiGetSLORequest, error) {
 	req := apiGetSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		Api:   a,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
@@ -687,25 +687,25 @@ func (a *ServiceLevelObjectivesApiService) buildGetSLORequest(ctx _context.Conte
 
 // GetSLO Get an SLO's details.
 // Get a service level objective object.
-func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLORequest(ctx, sloId, o...)
 	if err != nil {
 		var localVarReturnValue SLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOExecute(req)
+	return req.Api.getSLOExecute(req)
 }
 
 // getSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.GetSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -813,41 +813,41 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 }
 
 type apiGetSLOCorrectionsRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
+	ctx   _context.Context
+	Api   *ServiceLevelObjectivesApi
+	sloId string
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLOCorrectionsRequest(ctx _context.Context, sloId string) (apiGetSLOCorrectionsRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLOCorrectionsRequest(ctx _context.Context, sloId string) (apiGetSLOCorrectionsRequest, error) {
 	req := apiGetSLOCorrectionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		Api:   a,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 	return req, nil
 }
 
 // GetSLOCorrections Get Corrections For an SLO.
 // Get corrections applied to an SLO
-func (a *ServiceLevelObjectivesApiService) GetSLOCorrections(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLOCorrections(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOCorrectionsRequest(ctx, sloId)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOCorrectionsExecute(req)
+	return req.Api.getSLOCorrectionsExecute(req)
 }
 
 // getSLOCorrectionsExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOCorrectionsRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrectionsRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.GetSLOCorrections")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOCorrections")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -962,7 +962,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 
 type apiGetSLOHistoryRequest struct {
 	ctx             _context.Context
-	ApiService      *ServiceLevelObjectivesApiService
+	Api             *ServiceLevelObjectivesApi
 	sloId           string
 	fromTs          *int64
 	toTs            *int64
@@ -994,13 +994,13 @@ func (r *GetSLOHistoryOptionalParameters) WithApplyCorrection(applyCorrection bo
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLOHistoryRequest(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (apiGetSLOHistoryRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLOHistoryRequest(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (apiGetSLOHistoryRequest, error) {
 	req := apiGetSLOHistoryRequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
-		fromTs:     &fromTs,
-		toTs:       &toTs,
+		Api:    a,
+		ctx:    ctx,
+		sloId:  sloId,
+		fromTs: &fromTs,
+		toTs:   &toTs,
 	}
 
 	if len(o) > 1 {
@@ -1023,18 +1023,18 @@ func (a *ServiceLevelObjectivesApiService) buildGetSLOHistoryRequest(ctx _contex
 //
 // **Note:** There are different response formats for event based and time based SLOs.
 // Examples of both are shown.
-func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOHistoryRequest(ctx, sloId, fromTs, toTs, o...)
 	if err != nil {
 		var localVarReturnValue SLOHistoryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOHistoryExecute(req)
+	return req.Api.getSLOHistoryExecute(req)
 }
 
 // getSLOHistoryExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1042,13 +1042,13 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 	)
 
 	operationId := "v1.GetSLOHistory"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.GetSLOHistory")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOHistory")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1177,7 +1177,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 
 type apiListSLOsRequest struct {
 	ctx          _context.Context
-	ApiService   *ServiceLevelObjectivesApiService
+	Api          *ServiceLevelObjectivesApi
 	ids          *string
 	query        *string
 	tagsQuery    *string
@@ -1238,10 +1238,10 @@ func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalP
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildListSLOsRequest(ctx _context.Context, o ...ListSLOsOptionalParameters) (apiListSLOsRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildListSLOsRequest(ctx _context.Context, o ...ListSLOsOptionalParameters) (apiListSLOsRequest, error) {
 	req := apiListSLOsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1261,25 +1261,25 @@ func (a *ServiceLevelObjectivesApiService) buildListSLOsRequest(ctx _context.Con
 
 // ListSLOs Get all SLOs.
 // Get a list of service level objective objects for your organization.
-func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSLOsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSLOsExecute(req)
+	return req.Api.listSLOsExecute(req)
 }
 
 // listSLOsExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.ListSLOs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.ListSLOs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1411,7 +1411,7 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 
 type apiSearchSLORequest struct {
 	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
+	Api        *ServiceLevelObjectivesApi
 	query      *string
 	pageSize   *int64
 	pageNumber *int64
@@ -1448,10 +1448,10 @@ func (r *SearchSLOOptionalParameters) WithPageNumber(pageNumber int64) *SearchSL
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
 	req := apiSearchSLORequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1468,18 +1468,18 @@ func (a *ServiceLevelObjectivesApiService) buildSearchSLORequest(ctx _context.Co
 
 // SearchSLO Search for SLOs.
 // Get a list of service level objective objects for your organization.
-func (a *ServiceLevelObjectivesApiService) SearchSLO(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) SearchSLO(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchSLORequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SearchSLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchSLOExecute(req)
+	return req.Api.searchSLOExecute(req)
 }
 
 // searchSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLORequest) (SearchSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (SearchSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1487,13 +1487,13 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 	)
 
 	operationId := "v1.SearchSLO"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.SearchSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.SearchSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1606,43 +1606,43 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 }
 
 type apiUpdateSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	body       *ServiceLevelObjective
+	ctx   _context.Context
+	Api   *ServiceLevelObjectivesApi
+	sloId string
+	body  *ServiceLevelObjective
 }
 
-func (a *ServiceLevelObjectivesApiService) buildUpdateSLORequest(ctx _context.Context, sloId string, body ServiceLevelObjective) (apiUpdateSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildUpdateSLORequest(ctx _context.Context, sloId string, body ServiceLevelObjective) (apiUpdateSLORequest, error) {
 	req := apiUpdateSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
-		body:       &body,
+		Api:   a,
+		ctx:   ctx,
+		sloId: sloId,
+		body:  &body,
 	}
 	return req, nil
 }
 
 // UpdateSLO Update an SLO.
 // Update the specified service level objective object.
-func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSLORequest(ctx, sloId, body)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSLOExecute(req)
+	return req.Api.updateSLOExecute(req)
 }
 
 // updateSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApiService.UpdateSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.UpdateSLO")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1761,9 +1761,9 @@ func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLOReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ServiceLevelObjectivesApi Returns new ServiceLevelObjectivesApi service.
-func ServiceLevelObjectivesApi(client *common.APIClient) *ServiceLevelObjectivesApiService {
-	return &ServiceLevelObjectivesApiService{
+// NewServiceLevelObjectivesApi Returns NewServiceLevelObjectivesApi.
+func NewServiceLevelObjectivesApi(client *common.APIClient) *ServiceLevelObjectivesApi {
+	return &ServiceLevelObjectivesApi{
 		Client: client,
 	}
 }

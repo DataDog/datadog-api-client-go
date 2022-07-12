@@ -15,13 +15,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// HostsApiService service type
-type HostsApiService common.Service
+// HostsApi service type
+type HostsApi common.Service
 
 type apiGetHostTotalsRequest struct {
-	ctx        _context.Context
-	ApiService *HostsApiService
-	from       *int64
+	ctx  _context.Context
+	Api  *HostsApi
+	from *int64
 }
 
 // GetHostTotalsOptionalParameters holds optional parameters for GetHostTotals.
@@ -41,10 +41,10 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 	return r
 }
 
-func (a *HostsApiService) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
+func (a *HostsApi) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
 	req := apiGetHostTotalsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -60,25 +60,25 @@ func (a *HostsApiService) buildGetHostTotalsRequest(ctx _context.Context, o ...G
 // GetHostTotals Get the total number of active hosts.
 // This endpoint returns the total number of active and up hosts in your Datadog account.
 // Active means the host has reported in the past hour, and up means it has reported in the past two hours.
-func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+func (a *HostsApi) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
 	req, err := a.buildGetHostTotalsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue HostTotals
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getHostTotalsExecute(req)
+	return req.Api.getHostTotalsExecute(req)
 }
 
 // getHostTotalsExecute executes the request.
-func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
+func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue HostTotals
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.GetHostTotals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.GetHostTotals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -186,7 +186,7 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 
 type apiListHostsRequest struct {
 	ctx                   _context.Context
-	ApiService            *HostsApiService
+	Api                   *HostsApi
 	filter                *string
 	sortField             *string
 	sortDir               *string
@@ -263,10 +263,10 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 	return r
 }
 
-func (a *HostsApiService) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
+func (a *HostsApi) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
 	req := apiListHostsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -291,25 +291,25 @@ func (a *HostsApiService) buildListHostsRequest(ctx _context.Context, o ...ListH
 // Hosts live within the past 3 hours are included by default.
 // Retention is 7 days.
 // Results are paginated with a max of 1000 results at a time.
-func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+func (a *HostsApi) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListHostsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue HostListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listHostsExecute(req)
+	return req.Api.listHostsExecute(req)
 }
 
 // listHostsExecute executes the request.
-func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
+func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue HostListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.ListHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.ListHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -437,43 +437,43 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 }
 
 type apiMuteHostRequest struct {
-	ctx        _context.Context
-	ApiService *HostsApiService
-	hostName   string
-	body       *HostMuteSettings
+	ctx      _context.Context
+	Api      *HostsApi
+	hostName string
+	body     *HostMuteSettings
 }
 
-func (a *HostsApiService) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
+func (a *HostsApi) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
 	req := apiMuteHostRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
-		body:       &body,
+		Api:      a,
+		ctx:      ctx,
+		hostName: hostName,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // MuteHost Mute a host.
 // Mute a host.
-func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApi) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
 	req, err := a.buildMuteHostRequest(ctx, hostName, body)
 	if err != nil {
 		var localVarReturnValue HostMuteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.muteHostExecute(req)
+	return req.Api.muteHostExecute(req)
 }
 
 // muteHostExecute executes the request.
-func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue HostMuteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.MuteHost")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.MuteHost")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -584,41 +584,41 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 }
 
 type apiUnmuteHostRequest struct {
-	ctx        _context.Context
-	ApiService *HostsApiService
-	hostName   string
+	ctx      _context.Context
+	Api      *HostsApi
+	hostName string
 }
 
-func (a *HostsApiService) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
+func (a *HostsApi) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
 	req := apiUnmuteHostRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		Api:      a,
+		ctx:      ctx,
+		hostName: hostName,
 	}
 	return req, nil
 }
 
 // UnmuteHost Unmute a host.
 // Unmutes a host. This endpoint takes no JSON arguments.
-func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApi) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
 	req, err := a.buildUnmuteHostRequest(ctx, hostName)
 	if err != nil {
 		var localVarReturnValue HostMuteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.unmuteHostExecute(req)
+	return req.Api.unmuteHostExecute(req)
 }
 
 // unmuteHostExecute executes the request.
-func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApi) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue HostMuteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.UnmuteHost")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.UnmuteHost")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -722,9 +722,9 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// HostsApi Returns new HostsApi service.
-func HostsApi(client *common.APIClient) *HostsApiService {
-	return &HostsApiService{
+// NewHostsApi Returns NewHostsApi.
+func NewHostsApi(client *common.APIClient) *HostsApi {
+	return &HostsApi{
 		Client: client,
 	}
 }

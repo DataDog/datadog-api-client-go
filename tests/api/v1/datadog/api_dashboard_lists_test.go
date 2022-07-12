@@ -22,7 +22,7 @@ func TestDashboardListLifecycle(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.DashboardListsApi(Client(ctx))
+	api := datadog.NewDashboardListsApi(Client(ctx))
 
 	testDashboardList := datadog.DashboardList{
 		Name: *tests.UniqueEntityName(ctx, t),
@@ -88,7 +88,7 @@ func TestDashboardListListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.ListDashboardLists(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -117,7 +117,7 @@ func TestDashboardListCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.CreateDashboardList(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -145,7 +145,7 @@ func TestDashboardListGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.GetDashboardList(ctx, 1234)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -175,7 +175,7 @@ func TestDashboardListUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateDashboardList(ctx, 1234, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -203,7 +203,7 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteDashboardList(ctx, 1234)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -215,7 +215,7 @@ func TestDashboardListDeleteErrors(t *testing.T) {
 }
 
 func deleteDashboardList(ctx context.Context, t *testing.T, dashboardListID int64) {
-	api := datadog.DashboardListsApi(Client(ctx))
+	api := datadog.NewDashboardListsApi(Client(ctx))
 
 	_, httpresp, err := api.DeleteDashboardList(ctx, dashboardListID)
 	if err != nil {

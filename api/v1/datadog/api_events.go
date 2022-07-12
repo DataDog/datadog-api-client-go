@@ -15,20 +15,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// EventsApiService service type
-type EventsApiService common.Service
+// EventsApi service type
+type EventsApi common.Service
 
 type apiCreateEventRequest struct {
-	ctx        _context.Context
-	ApiService *EventsApiService
-	body       *EventCreateRequest
+	ctx  _context.Context
+	Api  *EventsApi
+	body *EventCreateRequest
 }
 
-func (a *EventsApiService) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
+func (a *EventsApi) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
 	req := apiCreateEventRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -36,25 +36,25 @@ func (a *EventsApiService) buildCreateEventRequest(ctx _context.Context, body Ev
 // CreateEvent Post an event.
 // This endpoint allows you to post events to the stream.
 // Tag them, set priority and event aggregate them with other events.
-func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
+func (a *EventsApi) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateEventRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue EventCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createEventExecute(req)
+	return req.Api.createEventExecute(req)
 }
 
 // createEventExecute executes the request.
-func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
+func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue EventCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.CreateEvent")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.CreateEvent")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -141,16 +141,16 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 }
 
 type apiGetEventRequest struct {
-	ctx        _context.Context
-	ApiService *EventsApiService
-	eventId    int64
+	ctx     _context.Context
+	Api     *EventsApi
+	eventId int64
 }
 
-func (a *EventsApiService) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
+func (a *EventsApi) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
 	req := apiGetEventRequest{
-		ApiService: a,
-		ctx:        ctx,
-		eventId:    eventId,
+		Api:     a,
+		ctx:     ctx,
+		eventId: eventId,
 	}
 	return req, nil
 }
@@ -160,25 +160,25 @@ func (a *EventsApiService) buildGetEventRequest(ctx _context.Context, eventId in
 //
 // **Note**: If the event you’re querying contains markdown formatting of any kind,
 // you may see characters such as `%`,`\`,`n` in your output.
-func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
+func (a *EventsApi) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetEventRequest(ctx, eventId)
 	if err != nil {
 		var localVarReturnValue EventResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getEventExecute(req)
+	return req.Api.getEventExecute(req)
 }
 
 // getEventExecute executes the request.
-func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
+func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue EventResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.GetEvent")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.GetEvent")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -284,7 +284,7 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 
 type apiListEventsRequest struct {
 	ctx              _context.Context
-	ApiService       *EventsApiService
+	Api              *EventsApi
 	start            *int64
 	end              *int64
 	priority         *EventPriority
@@ -347,12 +347,12 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 	return r
 }
 
-func (a *EventsApiService) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
+func (a *EventsApi) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
 	req := apiListEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		Api:   a,
+		ctx:   ctx,
+		start: &start,
+		end:   &end,
 	}
 
 	if len(o) > 1 {
@@ -380,25 +380,25 @@ func (a *EventsApiService) buildListEventsRequest(ctx _context.Context, start in
 // - This endpoint returns a maximum of `1000` most recent results. To return additional results,
 // identify the last timestamp of the last result and set that as the `end` query time to
 // paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
-func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
+func (a *EventsApi) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListEventsRequest(ctx, start, end, o...)
 	if err != nil {
 		var localVarReturnValue EventListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listEventsExecute(req)
+	return req.Api.listEventsExecute(req)
 }
 
 // listEventsExecute executes the request.
-func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
+func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue EventListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.ListEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.ListEvents")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -527,9 +527,9 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// EventsApi Returns new EventsApi service.
-func EventsApi(client *common.APIClient) *EventsApiService {
-	return &EventsApiService{
+// NewEventsApi Returns NewEventsApi.
+func NewEventsApi(client *common.APIClient) *EventsApi {
+	return &EventsApi{
 		Client: client,
 	}
 }

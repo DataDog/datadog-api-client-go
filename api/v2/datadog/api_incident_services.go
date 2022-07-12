@@ -17,38 +17,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// IncidentServicesApiService service type
-type IncidentServicesApiService common.Service
+// IncidentServicesApi service type
+type IncidentServicesApi common.Service
 
 type apiCreateIncidentServiceRequest struct {
-	ctx        _context.Context
-	ApiService *IncidentServicesApiService
-	body       *IncidentServiceCreateRequest
+	ctx  _context.Context
+	Api  *IncidentServicesApi
+	body *IncidentServiceCreateRequest
 }
 
-func (a *IncidentServicesApiService) buildCreateIncidentServiceRequest(ctx _context.Context, body IncidentServiceCreateRequest) (apiCreateIncidentServiceRequest, error) {
+func (a *IncidentServicesApi) buildCreateIncidentServiceRequest(ctx _context.Context, body IncidentServiceCreateRequest) (apiCreateIncidentServiceRequest, error) {
 	req := apiCreateIncidentServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateIncidentService Create a new incident service.
 // Creates a new incident service.
-func (a *IncidentServicesApiService) CreateIncidentService(ctx _context.Context, body IncidentServiceCreateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) CreateIncidentService(ctx _context.Context, body IncidentServiceCreateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateIncidentServiceRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue IncidentServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createIncidentServiceExecute(req)
+	return req.Api.createIncidentServiceExecute(req)
 }
 
 // createIncidentServiceExecute executes the request.
-func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) createIncidentServiceExecute(r apiCreateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -56,13 +56,13 @@ func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateInc
 	)
 
 	operationId := "v2.CreateIncidentService"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApiService.CreateIncidentService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApi.CreateIncidentService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -190,46 +190,46 @@ func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateInc
 }
 
 type apiDeleteIncidentServiceRequest struct {
-	ctx        _context.Context
-	ApiService *IncidentServicesApiService
-	serviceId  string
+	ctx       _context.Context
+	Api       *IncidentServicesApi
+	serviceId string
 }
 
-func (a *IncidentServicesApiService) buildDeleteIncidentServiceRequest(ctx _context.Context, serviceId string) (apiDeleteIncidentServiceRequest, error) {
+func (a *IncidentServicesApi) buildDeleteIncidentServiceRequest(ctx _context.Context, serviceId string) (apiDeleteIncidentServiceRequest, error) {
 	req := apiDeleteIncidentServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		serviceId:  serviceId,
+		Api:       a,
+		ctx:       ctx,
+		serviceId: serviceId,
 	}
 	return req, nil
 }
 
 // DeleteIncidentService Delete an existing incident service.
 // Deletes an existing incident service.
-func (a *IncidentServicesApiService) DeleteIncidentService(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
+func (a *IncidentServicesApi) DeleteIncidentService(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteIncidentServiceRequest(ctx, serviceId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteIncidentServiceExecute(req)
+	return req.Api.deleteIncidentServiceExecute(req)
 }
 
 // deleteIncidentServiceExecute executes the request.
-func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteIncidentServiceRequest) (*_nethttp.Response, error) {
+func (a *IncidentServicesApi) deleteIncidentServiceExecute(r apiDeleteIncidentServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
 	operationId := "v2.DeleteIncidentService"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApiService.DeleteIncidentService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApi.DeleteIncidentService")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -343,10 +343,10 @@ func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteInc
 }
 
 type apiGetIncidentServiceRequest struct {
-	ctx        _context.Context
-	ApiService *IncidentServicesApiService
-	serviceId  string
-	include    *IncidentRelatedObject
+	ctx       _context.Context
+	Api       *IncidentServicesApi
+	serviceId string
+	include   *IncidentRelatedObject
 }
 
 // GetIncidentServiceOptionalParameters holds optional parameters for GetIncidentService.
@@ -366,11 +366,11 @@ func (r *GetIncidentServiceOptionalParameters) WithInclude(include IncidentRelat
 	return r
 }
 
-func (a *IncidentServicesApiService) buildGetIncidentServiceRequest(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (apiGetIncidentServiceRequest, error) {
+func (a *IncidentServicesApi) buildGetIncidentServiceRequest(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (apiGetIncidentServiceRequest, error) {
 	req := apiGetIncidentServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		serviceId:  serviceId,
+		Api:       a,
+		ctx:       ctx,
+		serviceId: serviceId,
 	}
 
 	if len(o) > 1 {
@@ -386,18 +386,18 @@ func (a *IncidentServicesApiService) buildGetIncidentServiceRequest(ctx _context
 // GetIncidentService Get details of an incident service.
 // Get details of an incident service. If the `include[users]` query parameter is provided,
 // the included attribute will contain the users related to these incident services.
-func (a *IncidentServicesApiService) GetIncidentService(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (IncidentServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentServiceRequest(ctx, serviceId, o...)
 	if err != nil {
 		var localVarReturnValue IncidentServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIncidentServiceExecute(req)
+	return req.Api.getIncidentServiceExecute(req)
 }
 
 // getIncidentServiceExecute executes the request.
-func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) getIncidentServiceExecute(r apiGetIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -405,13 +405,13 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 	)
 
 	operationId := "v2.GetIncidentService"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApiService.GetIncidentService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApi.GetIncidentService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -538,7 +538,7 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 
 type apiListIncidentServicesRequest struct {
 	ctx        _context.Context
-	ApiService *IncidentServicesApiService
+	Api        *IncidentServicesApi
 	include    *IncidentRelatedObject
 	pageSize   *int64
 	pageOffset *int64
@@ -583,10 +583,10 @@ func (r *ListIncidentServicesOptionalParameters) WithFilter(filter string) *List
 	return r
 }
 
-func (a *IncidentServicesApiService) buildListIncidentServicesRequest(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (apiListIncidentServicesRequest, error) {
+func (a *IncidentServicesApi) buildListIncidentServicesRequest(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (apiListIncidentServicesRequest, error) {
 	req := apiListIncidentServicesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -604,18 +604,18 @@ func (a *IncidentServicesApiService) buildListIncidentServicesRequest(ctx _conte
 
 // ListIncidentServices Get a list of all incident services.
 // Get all incident services uploaded for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident services.
-func (a *IncidentServicesApiService) ListIncidentServices(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (IncidentServicesResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) ListIncidentServices(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (IncidentServicesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListIncidentServicesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue IncidentServicesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listIncidentServicesExecute(req)
+	return req.Api.listIncidentServicesExecute(req)
 }
 
 // listIncidentServicesExecute executes the request.
-func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncidentServicesRequest) (IncidentServicesResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) listIncidentServicesExecute(r apiListIncidentServicesRequest) (IncidentServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -623,13 +623,13 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 	)
 
 	operationId := "v2.ListIncidentServices"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApiService.ListIncidentServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApi.ListIncidentServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -763,36 +763,36 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 }
 
 type apiUpdateIncidentServiceRequest struct {
-	ctx        _context.Context
-	ApiService *IncidentServicesApiService
-	serviceId  string
-	body       *IncidentServiceUpdateRequest
+	ctx       _context.Context
+	Api       *IncidentServicesApi
+	serviceId string
+	body      *IncidentServiceUpdateRequest
 }
 
-func (a *IncidentServicesApiService) buildUpdateIncidentServiceRequest(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (apiUpdateIncidentServiceRequest, error) {
+func (a *IncidentServicesApi) buildUpdateIncidentServiceRequest(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (apiUpdateIncidentServiceRequest, error) {
 	req := apiUpdateIncidentServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		serviceId:  serviceId,
-		body:       &body,
+		Api:       a,
+		ctx:       ctx,
+		serviceId: serviceId,
+		body:      &body,
 	}
 	return req, nil
 }
 
 // UpdateIncidentService Update an existing incident service.
 // Updates an existing incident service. Only provide the attributes which should be updated as this request is a partial update.
-func (a *IncidentServicesApiService) UpdateIncidentService(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) UpdateIncidentService(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateIncidentServiceRequest(ctx, serviceId, body)
 	if err != nil {
 		var localVarReturnValue IncidentServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateIncidentServiceExecute(req)
+	return req.Api.updateIncidentServiceExecute(req)
 }
 
 // updateIncidentServiceExecute executes the request.
-func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
+func (a *IncidentServicesApi) updateIncidentServiceExecute(r apiUpdateIncidentServiceRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -800,13 +800,13 @@ func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateInc
 	)
 
 	operationId := "v2.UpdateIncidentService"
-	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApiService.UpdateIncidentService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentServicesApi.UpdateIncidentService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -934,9 +934,9 @@ func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateInc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// IncidentServicesApi Returns new IncidentServicesApi service.
-func IncidentServicesApi(client *common.APIClient) *IncidentServicesApiService {
-	return &IncidentServicesApiService{
+// NewIncidentServicesApi Returns NewIncidentServicesApi.
+func NewIncidentServicesApi(client *common.APIClient) *IncidentServicesApi {
+	return &IncidentServicesApi{
 		Client: client,
 	}
 }

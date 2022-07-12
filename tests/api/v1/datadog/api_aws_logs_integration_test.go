@@ -50,7 +50,7 @@ func TestAddAndSaveAWSLogs(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	testawsacc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testawsacc)
@@ -78,7 +78,7 @@ func TestListAWSLogsServices(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	listServicesOutput, httpresp, err := api.ListAWSLogsServices(ctx)
 	if err != nil {
@@ -98,7 +98,7 @@ func TestListAndDeleteAWSLogs(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	testAWSAcc, testLambdaAcc, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
@@ -175,7 +175,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	testAWSAcc, testLambdaAcc, _ := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
@@ -214,7 +214,7 @@ func TestCheckServicesAsync(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	testAWSAcc, _, testServices := generateUniqueAWSLambdaAccounts(ctx, t)
 	defer retryDeleteAccount(ctx, t, testAWSAcc)
@@ -237,7 +237,7 @@ func TestAWSLogsList400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
@@ -265,7 +265,7 @@ func TestAWSLogsList403Error(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.ListAWSLogsIntegrations(context.Background())
@@ -280,7 +280,7 @@ func TestAWSLogsAdd400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
@@ -308,7 +308,7 @@ func TestAWSLogsAdd403Error(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.CreateAWSLambdaARN(context.Background(), datadog.AWSAccountAndLambdaRequest{})
@@ -323,7 +323,7 @@ func TestAWSLogsDelete400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
@@ -351,7 +351,7 @@ func TestAWSLogsDelete403Error(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.DeleteAWSLambdaARN(context.Background(), datadog.AWSAccountAndLambdaRequest{})
@@ -368,7 +368,7 @@ func TestAWSLogsServicesListErrors(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSLogsIntegrationApi(Client(ctx))
+	api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.ListAWSLogsServices(context.Background())
@@ -397,7 +397,7 @@ func TestAWSLogsServicesEnableErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSLogsIntegrationApi(Client(ctx))
+			api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.EnableAWSLogServices(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -426,7 +426,7 @@ func TestAWSLogsServicesCheckErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSLogsIntegrationApi(Client(ctx))
+			api := datadog.NewAWSLogsIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.CheckAWSLogsServicesAsync(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

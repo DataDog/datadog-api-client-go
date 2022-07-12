@@ -19,7 +19,7 @@ func TestLogsList(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
-	api := datadog.LogsApi(client)
+	api := datadog.NewLogsApi(client)
 
 	suffix := tests.UniqueEntityName(ctx, t)
 
@@ -137,7 +137,7 @@ func TestGetLogsNilBody(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
-	api := datadog.LogsApi(client)
+	api := datadog.NewLogsApi(client)
 
 	_, httpResp, err := api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters())
 	if err != nil {
@@ -154,7 +154,7 @@ func TestLogsListGet(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
-	api := datadog.LogsApi(client)
+	api := datadog.NewLogsApi(client)
 
 	now := tests.ClockFromContext(ctx).Now()
 	suffix := tests.UniqueEntityName(ctx, t)

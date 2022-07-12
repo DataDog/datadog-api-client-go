@@ -14,43 +14,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// IPRangesApiService service type
-type IPRangesApiService common.Service
+// IPRangesApi service type
+type IPRangesApi common.Service
 
 type apiGetIPRangesRequest struct {
-	ctx        _context.Context
-	ApiService *IPRangesApiService
+	ctx _context.Context
+	Api *IPRangesApi
 }
 
-func (a *IPRangesApiService) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
+func (a *IPRangesApi) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
 	req := apiGetIPRangesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // GetIPRanges List IP Ranges.
 // Get information about Datadog IP ranges.
-func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
+func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
 	req, err := a.buildGetIPRangesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue IPRanges
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIPRangesExecute(req)
+	return req.Api.getIPRangesExecute(req)
 }
 
 // getIPRangesExecute executes the request.
-func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
+func (a *IPRangesApi) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue IPRanges
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.IPRangesApiService.GetIPRanges")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.IPRangesApi.GetIPRanges")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -107,9 +107,9 @@ func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRang
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// IPRangesApi Returns new IPRangesApi service.
-func IPRangesApi(client *common.APIClient) *IPRangesApiService {
-	return &IPRangesApiService{
+// NewIPRangesApi Returns NewIPRangesApi.
+func NewIPRangesApi(client *common.APIClient) *IPRangesApi {
+	return &IPRangesApi{
 		Client: client,
 	}
 }

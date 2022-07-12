@@ -31,7 +31,7 @@ func TestApiKeyFunctions(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.KeyManagementApi(Client(ctx))
+	api := datadog.NewKeyManagementApi(Client(ctx))
 
 	// TODO remove when API keys support non secret primary identifiers
 	// NOTE do not forget to replace time -> c.Clock
@@ -153,7 +153,7 @@ func TestAPIKeysMgmtCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.CreateAPIKey(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -181,7 +181,7 @@ func TestAPIKeysMgmtGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.GetAPIKey(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -212,7 +212,7 @@ func TestAPIKeysMgmtUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateAPIKey(ctx, "whatever", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -229,7 +229,7 @@ func TestAPIKeysMgmtDelete400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.KeyManagementApi(Client(ctx))
+	api := datadog.NewKeyManagementApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/key-mgmt/invalid_number_of_keys_400.json")
 	if err != nil {
@@ -265,7 +265,7 @@ func TestAPIKeysMgmtDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteAPIKey(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -292,7 +292,7 @@ func TestAppKeysMgmtListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.ListApplicationKeys(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -321,7 +321,7 @@ func TestAppKeysMgmtCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.CreateApplicationKey(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -349,7 +349,7 @@ func TestAppKeysMgmtGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.GetApplicationKey(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -380,7 +380,7 @@ func TestAppKeysMgmtUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateApplicationKey(ctx, "whatever", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -408,7 +408,7 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.KeyManagementApi(Client(ctx))
+			api := datadog.NewKeyManagementApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteApplicationKey(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -420,7 +420,7 @@ func TestAppKeysMgmtDeleteErrors(t *testing.T) {
 }
 
 func deleteAPIKey(ctx context.Context, t *testing.T, apiKeyValue string) {
-	api := datadog.KeyManagementApi(Client(ctx))
+	api := datadog.NewKeyManagementApi(Client(ctx))
 
 	_, httpresp, err := api.DeleteAPIKey(ctx, apiKeyValue)
 	if httpresp.StatusCode != 200 || err != nil {
@@ -429,7 +429,7 @@ func deleteAPIKey(ctx context.Context, t *testing.T, apiKeyValue string) {
 }
 
 func deleteAppKey(ctx context.Context, t *testing.T, appKeyHash string) {
-	api := datadog.KeyManagementApi(Client(ctx))
+	api := datadog.NewKeyManagementApi(Client(ctx))
 
 	_, httpresp, err := api.DeleteApplicationKey(ctx, appKeyHash)
 	if httpresp.StatusCode != 200 || err != nil {

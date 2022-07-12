@@ -15,20 +15,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// UsersApiService service type
-type UsersApiService common.Service
+// UsersApi service type
+type UsersApi common.Service
 
 type apiCreateUserRequest struct {
-	ctx        _context.Context
-	ApiService *UsersApiService
-	body       *User
+	ctx  _context.Context
+	Api  *UsersApi
+	body *User
 }
 
-func (a *UsersApiService) buildCreateUserRequest(ctx _context.Context, body User) (apiCreateUserRequest, error) {
+func (a *UsersApi) buildCreateUserRequest(ctx _context.Context, body User) (apiCreateUserRequest, error) {
 	req := apiCreateUserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -38,25 +38,25 @@ func (a *UsersApiService) buildCreateUserRequest(ctx _context.Context, body User
 //
 // **Note**: Users can only be created with the admin access role
 // if application keys belong to administrators.
-func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateUserRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue UserResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createUserExecute(req)
+	return req.Api.createUserExecute(req)
 }
 
 // createUserExecute executes the request.
-func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApiService.CreateUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.CreateUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -176,13 +176,13 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 
 type apiDisableUserRequest struct {
 	ctx        _context.Context
-	ApiService *UsersApiService
+	Api        *UsersApi
 	userHandle string
 }
 
-func (a *UsersApiService) buildDisableUserRequest(ctx _context.Context, userHandle string) (apiDisableUserRequest, error) {
+func (a *UsersApi) buildDisableUserRequest(ctx _context.Context, userHandle string) (apiDisableUserRequest, error) {
 	req := apiDisableUserRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
@@ -194,25 +194,25 @@ func (a *UsersApiService) buildDisableUserRequest(ctx _context.Context, userHand
 //
 // **Note**: This endpoint can only be used with application keys belonging to
 // administrators.
-func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
+func (a *UsersApi) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	req, err := a.buildDisableUserRequest(ctx, userHandle)
 	if err != nil {
 		var localVarReturnValue UserDisableResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.disableUserExecute(req)
+	return req.Api.disableUserExecute(req)
 }
 
 // disableUserExecute executes the request.
-func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
+func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue UserDisableResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApiService.DisableUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.DisableUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -327,13 +327,13 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisab
 
 type apiGetUserRequest struct {
 	ctx        _context.Context
-	ApiService *UsersApiService
+	Api        *UsersApi
 	userHandle string
 }
 
-func (a *UsersApiService) buildGetUserRequest(ctx _context.Context, userHandle string) (apiGetUserRequest, error) {
+func (a *UsersApi) buildGetUserRequest(ctx _context.Context, userHandle string) (apiGetUserRequest, error) {
 	req := apiGetUserRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
@@ -342,25 +342,25 @@ func (a *UsersApiService) buildGetUserRequest(ctx _context.Context, userHandle s
 
 // GetUser Get user details.
 // Get a user's details.
-func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUserRequest(ctx, userHandle)
 	if err != nil {
 		var localVarReturnValue UserResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUserExecute(req)
+	return req.Api.getUserExecute(req)
 }
 
 // getUserExecute executes the request.
-func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApiService.GetUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.GetUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -465,39 +465,39 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 }
 
 type apiListUsersRequest struct {
-	ctx        _context.Context
-	ApiService *UsersApiService
+	ctx _context.Context
+	Api *UsersApi
 }
 
-func (a *UsersApiService) buildListUsersRequest(ctx _context.Context) (apiListUsersRequest, error) {
+func (a *UsersApi) buildListUsersRequest(ctx _context.Context) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListUsers List all users.
 // List all users for your organization.
-func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
+func (a *UsersApi) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListUsersRequest(ctx)
 	if err != nil {
 		var localVarReturnValue UserListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listUsersExecute(req)
+	return req.Api.listUsersExecute(req)
 }
 
 // listUsersExecute executes the request.
-func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
+func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UserListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApiService.ListUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.ListUsers")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -593,14 +593,14 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListRespo
 
 type apiUpdateUserRequest struct {
 	ctx        _context.Context
-	ApiService *UsersApiService
+	Api        *UsersApi
 	userHandle string
 	body       *User
 }
 
-func (a *UsersApiService) buildUpdateUserRequest(ctx _context.Context, userHandle string, body User) (apiUpdateUserRequest, error) {
+func (a *UsersApi) buildUpdateUserRequest(ctx _context.Context, userHandle string, body User) (apiUpdateUserRequest, error) {
 	req := apiUpdateUserRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 		body:       &body,
@@ -612,25 +612,25 @@ func (a *UsersApiService) buildUpdateUserRequest(ctx _context.Context, userHandl
 // Update a user information.
 //
 // **Note**: It can only be used with application keys belonging to administrators.
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateUserRequest(ctx, userHandle, body)
 	if err != nil {
 		var localVarReturnValue UserResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateUserExecute(req)
+	return req.Api.updateUserExecute(req)
 }
 
 // updateUserExecute executes the request.
-func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApi) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApiService.UpdateUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.UpdateUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -749,9 +749,9 @@ func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserRespons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UsersApi Returns new UsersApi service.
-func UsersApi(client *common.APIClient) *UsersApiService {
-	return &UsersApiService{
+// NewUsersApi Returns NewUsersApi.
+func NewUsersApi(client *common.APIClient) *UsersApi {
+	return &UsersApi{
 		Client: client,
 	}
 }

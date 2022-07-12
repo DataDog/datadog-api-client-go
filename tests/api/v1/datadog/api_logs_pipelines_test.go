@@ -21,7 +21,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.LogsPipelinesApi(Client(ctx))
+	api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 	// Create a pipeline
 	grokParser := datadog.NewLogsGrokParserWithDefaults()
@@ -287,7 +287,7 @@ func TestUpdateLogsPipelineOrder(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.LogsPipelinesApi(Client(ctx))
+	api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 	pipelineOrder, httpresp, err := api.GetLogsPipelineOrder(ctx)
 	if err != nil {
@@ -323,7 +323,7 @@ func TestLogsPipelinesOrderGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.GetLogsPipelineOrder(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -353,7 +353,7 @@ func TestLogsPipelinesOrderUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateLogsPipelineOrder(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -386,7 +386,7 @@ func TestLogsPipelinesListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.ListLogsPipelines(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -415,7 +415,7 @@ func TestLogsPipelinesCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.CreateLogsPipeline(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -449,7 +449,7 @@ func TestLogsPipelinesGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.GetLogsPipeline(ctx, "id")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -483,7 +483,7 @@ func TestLogsPipelinesDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			httpresp, err := api.DeleteLogsPipeline(ctx, "id")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -518,7 +518,7 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsPipelinesApi(Client(ctx))
+			api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateLogsPipeline(ctx, "id", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -536,7 +536,7 @@ func TestLogsPipelinesUpdateErrors(t *testing.T) {
 }
 
 func deleteLogsPipeline(ctx context.Context, t *testing.T, pipelineID string) {
-	api := datadog.LogsPipelinesApi(Client(ctx))
+	api := datadog.NewLogsPipelinesApi(Client(ctx))
 
 	httpresp, err := api.DeleteLogsPipeline(ctx, pipelineID)
 	if err != nil && httpresp.StatusCode != 404 {

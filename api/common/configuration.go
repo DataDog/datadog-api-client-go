@@ -157,7 +157,7 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
-			"v1.IPRangesApiService.GetIPRanges": {
+			"v1.IPRangesApi.GetIPRanges": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
@@ -204,7 +204,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v1.ServiceLevelObjectivesApiService.SearchSLO": {
+			"v1.ServiceLevelObjectivesApi.SearchSLO": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
@@ -254,7 +254,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v1.LogsApiService.SubmitLog": {
+			"v1.LogsApi.SubmitLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
@@ -305,7 +305,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v2.LogsApiService.SubmitLog": {
+			"v2.LogsApi.SubmitLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",

@@ -15,45 +15,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// OpsgenieIntegrationApiService service type
-type OpsgenieIntegrationApiService common.Service
+// OpsgenieIntegrationApi service type
+type OpsgenieIntegrationApi common.Service
 
 type apiCreateOpsgenieServiceRequest struct {
-	ctx        _context.Context
-	ApiService *OpsgenieIntegrationApiService
-	body       *OpsgenieServiceCreateRequest
+	ctx  _context.Context
+	Api  *OpsgenieIntegrationApi
+	body *OpsgenieServiceCreateRequest
 }
 
-func (a *OpsgenieIntegrationApiService) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
 	req := apiCreateOpsgenieServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateOpsgenieService Create a new service object.
 // Create a new service object in the Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateOpsgenieServiceRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createOpsgenieServiceExecute(req)
+	return req.Api.createOpsgenieServiceExecute(req)
 }
 
 // createOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.CreateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.CreateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -173,13 +173,13 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 
 type apiDeleteOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
+	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 }
 
-func (a *OpsgenieIntegrationApiService) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
 	req := apiDeleteOpsgenieServiceRequest{
-		ApiService:           a,
+		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -188,23 +188,23 @@ func (a *OpsgenieIntegrationApiService) buildDeleteOpsgenieServiceRequest(ctx _c
 
 // DeleteOpsgenieService Delete a single service object.
 // Delete a single service object in the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteOpsgenieServiceRequest(ctx, integrationServiceId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteOpsgenieServiceExecute(req)
+	return req.Api.deleteOpsgenieServiceExecute(req)
 }
 
 // deleteOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDeleteOpsgenieServiceRequest) (*_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgenieServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.DeleteOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.DeleteOpsgenieService")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -310,13 +310,13 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 
 type apiGetOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
+	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 }
 
-func (a *OpsgenieIntegrationApiService) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
 	req := apiGetOpsgenieServiceRequest{
-		ApiService:           a,
+		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -325,25 +325,25 @@ func (a *OpsgenieIntegrationApiService) buildGetOpsgenieServiceRequest(ctx _cont
 
 // GetOpsgenieService Get a single service object.
 // Get a single service from the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetOpsgenieServiceRequest(ctx, integrationServiceId)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getOpsgenieServiceExecute(req)
+	return req.Api.getOpsgenieServiceExecute(req)
 }
 
 // getOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.GetOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.GetOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -466,39 +466,39 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 }
 
 type apiListOpsgenieServicesRequest struct {
-	ctx        _context.Context
-	ApiService *OpsgenieIntegrationApiService
+	ctx _context.Context
+	Api *OpsgenieIntegrationApi
 }
 
-func (a *OpsgenieIntegrationApiService) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
+func (a *OpsgenieIntegrationApi) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
 	req := apiListOpsgenieServicesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListOpsgenieServices Get all service objects.
 // Get a list of all services from the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListOpsgenieServicesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue OpsgenieServicesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listOpsgenieServicesExecute(req)
+	return req.Api.listOpsgenieServicesExecute(req)
 }
 
 // listOpsgenieServicesExecute executes the request.
-func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOpsgenieServicesRequest) (OpsgenieServicesResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieServicesRequest) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServicesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.ListOpsgenieServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.ListOpsgenieServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -594,14 +594,14 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 
 type apiUpdateOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
+	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 	body                 *OpsgenieServiceUpdateRequest
 }
 
-func (a *OpsgenieIntegrationApiService) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
 	req := apiUpdateOpsgenieServiceRequest{
-		ApiService:           a,
+		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 		body:                 &body,
@@ -611,25 +611,25 @@ func (a *OpsgenieIntegrationApiService) buildUpdateOpsgenieServiceRequest(ctx _c
 
 // UpdateOpsgenieService Update a single service object.
 // Update a single service object in the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateOpsgenieServiceRequest(ctx, integrationServiceId, body)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateOpsgenieServiceExecute(req)
+	return req.Api.updateOpsgenieServiceExecute(req)
 }
 
 // updateOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) updateOpsgenieServiceExecute(r apiUpdateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.UpdateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.UpdateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -757,9 +757,9 @@ func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdate
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// OpsgenieIntegrationApi Returns new OpsgenieIntegrationApi service.
-func OpsgenieIntegrationApi(client *common.APIClient) *OpsgenieIntegrationApiService {
-	return &OpsgenieIntegrationApiService{
+// NewOpsgenieIntegrationApi Returns NewOpsgenieIntegrationApi.
+func NewOpsgenieIntegrationApi(client *common.APIClient) *OpsgenieIntegrationApi {
+	return &OpsgenieIntegrationApi{
 		Client: client,
 	}
 }

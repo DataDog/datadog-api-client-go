@@ -30,8 +30,8 @@ func TestHosts(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	api := datadog.HostsApi(Client(ctx))
-	tagsApi := datadog.TagsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
+	tagsApi := datadog.NewTagsApi(Client(ctx))
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
 	hostname := *tests.UniqueEntityName(ctx, t)
@@ -129,7 +129,7 @@ func TestHostTotalsMocked(t *testing.T) {
 	var expected datadog.HostTotals
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.GetHostTotals(ctx, *datadog.NewGetHostTotalsOptionalParameters().WithFrom(123))
 	if err != nil {
 		t.Errorf("Failed to get host totals: %v", err)
@@ -169,7 +169,7 @@ func TestHostsSearchMocked(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
@@ -200,7 +200,7 @@ func TestHostsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.HostsApi(Client(ctx))
+			api := datadog.NewHostsApi(Client(ctx))
 
 			_, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 				WithCount(-1))
@@ -229,7 +229,7 @@ func TestHostsGetTotalsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.HostsApi(Client(ctx))
+			api := datadog.NewHostsApi(Client(ctx))
 
 			_, httpresp, err := api.GetHostTotals(ctx, *datadog.NewGetHostTotalsOptionalParameters().
 				WithFrom(tests.ClockFromContext(ctx).Now().Unix() + 60))
@@ -248,7 +248,7 @@ func TestHostsMuteErrors(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 
 	// Mute host a first time in order to trigger a 400
 	hostname := *tests.UniqueEntityName(ctx, t)
@@ -274,7 +274,7 @@ func TestHostsMuteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.HostsApi(Client(ctx))
+			api := datadog.NewHostsApi(Client(ctx))
 
 			_, httpresp, err := api.MuteHost(ctx, hostname, datadog.HostMuteSettings{})
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -302,7 +302,7 @@ func TestHostsUnmuteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.HostsApi(Client(ctx))
+			api := datadog.NewHostsApi(Client(ctx))
 
 			hostname := *tests.UniqueEntityName(ctx, t)
 			_, httpresp, err := api.UnmuteHost(ctx, hostname)
@@ -346,7 +346,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
@@ -393,7 +393,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
@@ -440,7 +440,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
@@ -487,7 +487,7 @@ func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
@@ -535,7 +535,7 @@ func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).
@@ -582,7 +582,7 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 	var expected datadog.HostListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.HostsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().
 		WithFilter("filter string").
 		WithCount(4).WithFrom(123).
@@ -608,8 +608,8 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	api := datadog.HostsApi(Client(ctx))
-	tagsApi := datadog.TagsApi(Client(ctx))
+	api := datadog.NewHostsApi(Client(ctx))
+	tagsApi := datadog.NewTagsApi(Client(ctx))
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
 	hostname := *tests.UniqueEntityName(ctx, t)

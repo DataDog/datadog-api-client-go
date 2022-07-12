@@ -15,18 +15,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// MetricsApiService service type
-type MetricsApiService common.Service
+// MetricsApi service type
+type MetricsApi common.Service
 
 type apiGetMetricMetadataRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 }
 
-func (a *MetricsApiService) buildGetMetricMetadataRequest(ctx _context.Context, metricName string) (apiGetMetricMetadataRequest, error) {
+func (a *MetricsApi) buildGetMetricMetadataRequest(ctx _context.Context, metricName string) (apiGetMetricMetadataRequest, error) {
 	req := apiGetMetricMetadataRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -35,25 +35,25 @@ func (a *MetricsApiService) buildGetMetricMetadataRequest(ctx _context.Context, 
 
 // GetMetricMetadata Get metric metadata.
 // Get metadata about a specific metric.
-func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApi) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
 	req, err := a.buildGetMetricMetadataRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricMetadata
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getMetricMetadataExecute(req)
+	return req.Api.getMetricMetadataExecute(req)
 }
 
 // getMetricMetadataExecute executes the request.
-func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricMetadata
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.GetMetricMetadata")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.GetMetricMetadata")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -158,11 +158,11 @@ func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataReque
 }
 
 type apiListActiveMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	from       *int64
-	host       *string
-	tagFilter  *string
+	ctx       _context.Context
+	Api       *MetricsApi
+	from      *int64
+	host      *string
+	tagFilter *string
 }
 
 // ListActiveMetricsOptionalParameters holds optional parameters for ListActiveMetrics.
@@ -189,11 +189,11 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 	return r
 }
 
-func (a *MetricsApiService) buildListActiveMetricsRequest(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (apiListActiveMetricsRequest, error) {
+func (a *MetricsApi) buildListActiveMetricsRequest(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (apiListActiveMetricsRequest, error) {
 	req := apiListActiveMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		from:       &from,
+		Api:  a,
+		ctx:  ctx,
+		from: &from,
 	}
 
 	if len(o) > 1 {
@@ -209,25 +209,25 @@ func (a *MetricsApiService) buildListActiveMetricsRequest(ctx _context.Context, 
 
 // ListActiveMetrics Get active metrics list.
 // Get the list of actively reporting metrics from a given time until now.
-func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListActiveMetricsRequest(ctx, from, o...)
 	if err != nil {
 		var localVarReturnValue MetricsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listActiveMetricsExecute(req)
+	return req.Api.listActiveMetricsExecute(req)
 }
 
 // listActiveMetricsExecute executes the request.
-func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.ListActiveMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.ListActiveMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -341,41 +341,41 @@ func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsReque
 }
 
 type apiListMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	q          *string
+	ctx _context.Context
+	Api *MetricsApi
+	q   *string
 }
 
-func (a *MetricsApiService) buildListMetricsRequest(ctx _context.Context, q string) (apiListMetricsRequest, error) {
+func (a *MetricsApi) buildListMetricsRequest(ctx _context.Context, q string) (apiListMetricsRequest, error) {
 	req := apiListMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		q:          &q,
+		Api: a,
+		ctx: ctx,
+		q:   &q,
 	}
 	return req, nil
 }
 
 // ListMetrics Search metrics.
 // Search for metrics from the last 24 hours in Datadog.
-func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
 	req, err := a.buildListMetricsRequest(ctx, q)
 	if err != nil {
 		var localVarReturnValue MetricSearchResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listMetricsExecute(req)
+	return req.Api.listMetricsExecute(req)
 }
 
 // listMetricsExecute executes the request.
-func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricSearchResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.ListMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.ListMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -483,45 +483,45 @@ func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricS
 }
 
 type apiQueryMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	from       *int64
-	to         *int64
-	query      *string
+	ctx   _context.Context
+	Api   *MetricsApi
+	from  *int64
+	to    *int64
+	query *string
 }
 
-func (a *MetricsApiService) buildQueryMetricsRequest(ctx _context.Context, from int64, to int64, query string) (apiQueryMetricsRequest, error) {
+func (a *MetricsApi) buildQueryMetricsRequest(ctx _context.Context, from int64, to int64, query string) (apiQueryMetricsRequest, error) {
 	req := apiQueryMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		from:       &from,
-		to:         &to,
-		query:      &query,
+		Api:   a,
+		ctx:   ctx,
+		from:  &from,
+		to:    &to,
+		query: &query,
 	}
 	return req, nil
 }
 
 // QueryMetrics Query timeseries points.
 // Query timeseries points.
-func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
 	req, err := a.buildQueryMetricsRequest(ctx, from, to, query)
 	if err != nil {
 		var localVarReturnValue MetricsQueryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.queryMetricsExecute(req)
+	return req.Api.queryMetricsExecute(req)
 }
 
 // queryMetricsExecute executes the request.
-func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricsQueryResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.QueryMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.QueryMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -638,7 +638,7 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 
 type apiSubmitDistributionPointsRequest struct {
 	ctx             _context.Context
-	ApiService      *MetricsApiService
+	Api             *MetricsApi
 	body            *DistributionPointsPayload
 	contentEncoding *DistributionPointsContentEncoding
 }
@@ -660,11 +660,11 @@ func (r *SubmitDistributionPointsOptionalParameters) WithContentEncoding(content
 	return r
 }
 
-func (a *MetricsApiService) buildSubmitDistributionPointsRequest(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (apiSubmitDistributionPointsRequest, error) {
+func (a *MetricsApi) buildSubmitDistributionPointsRequest(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (apiSubmitDistributionPointsRequest, error) {
 	req := apiSubmitDistributionPointsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -679,25 +679,25 @@ func (a *MetricsApiService) buildSubmitDistributionPointsRequest(ctx _context.Co
 
 // SubmitDistributionPoints Submit distribution points.
 // The distribution points end-point allows you to post distribution data that can be graphed on Datadog’s dashboards.
-func (a *MetricsApiService) SubmitDistributionPoints(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) SubmitDistributionPoints(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitDistributionPointsRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitDistributionPointsExecute(req)
+	return req.Api.submitDistributionPointsExecute(req)
 }
 
 // submitDistributionPointsExecute executes the request.
-func (a *MetricsApiService) submitDistributionPointsExecute(r apiSubmitDistributionPointsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPointsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.SubmitDistributionPoints")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.SubmitDistributionPoints")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -816,7 +816,7 @@ func (a *MetricsApiService) submitDistributionPointsExecute(r apiSubmitDistribut
 
 type apiSubmitMetricsRequest struct {
 	ctx             _context.Context
-	ApiService      *MetricsApiService
+	Api             *MetricsApi
 	body            *MetricsPayload
 	contentEncoding *MetricContentEncoding
 }
@@ -838,11 +838,11 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 	return r
 }
 
-func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
+func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -867,25 +867,25 @@ func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body
 // - 50 bytes for the timeseries
 // - The full payload is approximately 100 bytes. However, with the DogStatsD API,
 // compression is applied, which reduces the payload size.
-func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitMetricsExecute(req)
+	return req.Api.submitMetricsExecute(req)
 }
 
 // submitMetricsExecute executes the request.
-func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.SubmitMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.SubmitMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1004,14 +1004,14 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 
 type apiUpdateMetricMetadataRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 	body       *MetricMetadata
 }
 
-func (a *MetricsApiService) buildUpdateMetricMetadataRequest(ctx _context.Context, metricName string, body MetricMetadata) (apiUpdateMetricMetadataRequest, error) {
+func (a *MetricsApi) buildUpdateMetricMetadataRequest(ctx _context.Context, metricName string, body MetricMetadata) (apiUpdateMetricMetadataRequest, error) {
 	req := apiUpdateMetricMetadataRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -1021,25 +1021,25 @@ func (a *MetricsApiService) buildUpdateMetricMetadataRequest(ctx _context.Contex
 
 // UpdateMetricMetadata Edit metric metadata.
 // Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
-func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApi) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
 	req, err := a.buildUpdateMetricMetadataRequest(ctx, metricName, body)
 	if err != nil {
 		var localVarReturnValue MetricMetadata
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateMetricMetadataExecute(req)
+	return req.Api.updateMetricMetadataExecute(req)
 }
 
 // updateMetricMetadataExecute executes the request.
-func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApi) updateMetricMetadataExecute(r apiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue MetricMetadata
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApiService.UpdateMetricMetadata")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.UpdateMetricMetadata")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1158,9 +1158,9 @@ func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// MetricsApi Returns new MetricsApi service.
-func MetricsApi(client *common.APIClient) *MetricsApiService {
-	return &MetricsApiService{
+// NewMetricsApi Returns NewMetricsApi.
+func NewMetricsApi(client *common.APIClient) *MetricsApi {
+	return &MetricsApi{
 		Client: client,
 	}
 }

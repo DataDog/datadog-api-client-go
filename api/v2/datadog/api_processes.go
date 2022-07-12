@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ProcessesApiService service type
-type ProcessesApiService common.Service
+// ProcessesApi service type
+type ProcessesApi common.Service
 
 type apiListProcessesRequest struct {
 	ctx        _context.Context
-	ApiService *ProcessesApiService
+	Api        *ProcessesApi
 	search     *string
 	tags       *string
 	from       *int64
@@ -80,10 +80,10 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 	return r
 }
 
-func (a *ProcessesApiService) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
+func (a *ProcessesApi) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
 	req := apiListProcessesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -103,18 +103,18 @@ func (a *ProcessesApiService) buildListProcessesRequest(ctx _context.Context, o 
 
 // ListProcesses Get all processes.
 // Get all processes for your organization.
-func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListProcessesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue ProcessSummariesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listProcessesExecute(req)
+	return req.Api.listProcessesExecute(req)
 }
 
 // ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
-func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan ProcessSummary, func(), error) {
+func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan ProcessSummary, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(1000)
 	if len(o) == 0 {
@@ -133,7 +133,7 @@ func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, 
 				break
 			}
 
-			resp, _, err := req.ApiService.listProcessesExecute(req)
+			resp, _, err := req.Api.listProcessesExecute(req)
 			if err != nil {
 				break
 			}
@@ -175,14 +175,14 @@ func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, 
 }
 
 // listProcessesExecute executes the request.
-func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApi) listProcessesExecute(r apiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ProcessSummariesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ProcessesApiService.ListProcesses")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ProcessesApi.ListProcesses")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -303,9 +303,9 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ProcessesApi Returns new ProcessesApi service.
-func ProcessesApi(client *common.APIClient) *ProcessesApiService {
-	return &ProcessesApiService{
+// NewProcessesApi Returns NewProcessesApi.
+func NewProcessesApi(client *common.APIClient) *ProcessesApi {
+	return &ProcessesApi{
 		Client: client,
 	}
 }

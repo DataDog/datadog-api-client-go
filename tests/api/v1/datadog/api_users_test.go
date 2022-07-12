@@ -46,7 +46,7 @@ func TestCreateUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
@@ -85,7 +85,7 @@ func TestUpdateUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
@@ -122,7 +122,7 @@ func TestDisableUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
@@ -152,7 +152,7 @@ func TestListUsers(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	// Assert User Created with proper fields
 	userListResponse, httpresp, err := api.ListUsers(ctx)
@@ -183,7 +183,7 @@ func TestUserCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsersApi(Client(ctx))
+			api := datadog.NewUsersApi(Client(ctx))
 
 			_, httpresp, err := api.CreateUser(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -199,7 +199,7 @@ func TestUserCreate409Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/user/error_409.json")
 	if err != nil {
@@ -234,7 +234,7 @@ func TestUserListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsersApi(Client(ctx))
+			api := datadog.NewUsersApi(Client(ctx))
 
 			_, httpresp, err := api.ListUsers(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -262,7 +262,7 @@ func TestUserGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsersApi(Client(ctx))
+			api := datadog.NewUsersApi(Client(ctx))
 
 			_, httpresp, err := api.GetUser(ctx, "notahandle")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -279,7 +279,7 @@ func TestUserUpdateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	// Create user
 	testUser := generateUniqueUser(ctx, t)
@@ -307,7 +307,7 @@ func TestUserUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsersApi(Client(ctx))
+			api := datadog.NewUsersApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateUser(ctx, tc.ID, badUser)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -324,7 +324,7 @@ func TestUserDisableErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	// Create user and disable it to trigger 400
 	testUser := generateUniqueUser(ctx, t)
@@ -349,7 +349,7 @@ func TestUserDisableErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsersApi(Client(ctx))
+			api := datadog.NewUsersApi(Client(ctx))
 
 			_, httpresp, err := api.DisableUser(ctx, tc.ID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -361,7 +361,7 @@ func TestUserDisableErrors(t *testing.T) {
 }
 
 func disableUser(ctx context.Context, t *testing.T, userID string) {
-	api := datadog.UsersApi(Client(ctx))
+	api := datadog.NewUsersApi(Client(ctx))
 
 	_, httpresp, err := api.DisableUser(ctx, userID)
 	if httpresp.StatusCode != 200 || err != nil {

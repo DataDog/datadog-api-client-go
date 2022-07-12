@@ -15,45 +15,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AuthNMappingsApiService service type
-type AuthNMappingsApiService common.Service
+// AuthNMappingsApi service type
+type AuthNMappingsApi common.Service
 
 type apiCreateAuthNMappingRequest struct {
-	ctx        _context.Context
-	ApiService *AuthNMappingsApiService
-	body       *AuthNMappingCreateRequest
+	ctx  _context.Context
+	Api  *AuthNMappingsApi
+	body *AuthNMappingCreateRequest
 }
 
-func (a *AuthNMappingsApiService) buildCreateAuthNMappingRequest(ctx _context.Context, body AuthNMappingCreateRequest) (apiCreateAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildCreateAuthNMappingRequest(ctx _context.Context, body AuthNMappingCreateRequest) (apiCreateAuthNMappingRequest, error) {
 	req := apiCreateAuthNMappingRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateAuthNMapping Create an AuthN Mapping.
 // Create an AuthN Mapping.
-func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateAuthNMappingRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAuthNMappingExecute(req)
+	return req.Api.createAuthNMappingExecute(req)
 }
 
 // createAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.CreateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.CreateAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -173,13 +173,13 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 
 type apiDeleteAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	Api            *AuthNMappingsApi
 	authnMappingId string
 }
 
-func (a *AuthNMappingsApiService) buildDeleteAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiDeleteAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildDeleteAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiDeleteAuthNMappingRequest, error) {
 	req := apiDeleteAuthNMappingRequest{
-		ApiService:     a,
+		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -188,23 +188,23 @@ func (a *AuthNMappingsApiService) buildDeleteAuthNMappingRequest(ctx _context.Co
 
 // DeleteAuthNMapping Delete an AuthN Mapping.
 // Delete an AuthN Mapping specified by AuthN Mapping UUID.
-func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
+func (a *AuthNMappingsApi) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteAuthNMappingExecute(req)
+	return req.Api.deleteAuthNMappingExecute(req)
 }
 
 // deleteAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
+func (a *AuthNMappingsApi) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.DeleteAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.DeleteAuthNMapping")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -301,13 +301,13 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 
 type apiGetAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	Api            *AuthNMappingsApi
 	authnMappingId string
 }
 
-func (a *AuthNMappingsApiService) buildGetAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiGetAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildGetAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiGetAuthNMappingRequest, error) {
 	req := apiGetAuthNMappingRequest{
-		ApiService:     a,
+		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -316,25 +316,25 @@ func (a *AuthNMappingsApiService) buildGetAuthNMappingRequest(ctx _context.Conte
 
 // GetAuthNMapping Get an AuthN Mapping by UUID.
 // Get an AuthN Mapping specified by the AuthN Mapping UUID.
-func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getAuthNMappingExecute(req)
+	return req.Api.getAuthNMappingExecute(req)
 }
 
 // getAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.GetAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.GetAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -440,7 +440,7 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 
 type apiListAuthNMappingsRequest struct {
 	ctx        _context.Context
-	ApiService *AuthNMappingsApiService
+	Api        *AuthNMappingsApi
 	pageSize   *int64
 	pageNumber *int64
 	sort       *AuthNMappingsSort
@@ -485,10 +485,10 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 	return r
 }
 
-func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (apiListAuthNMappingsRequest, error) {
+func (a *AuthNMappingsApi) buildListAuthNMappingsRequest(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (apiListAuthNMappingsRequest, error) {
 	req := apiListAuthNMappingsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -506,25 +506,25 @@ func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Con
 
 // ListAuthNMappings List all AuthN Mappings.
 // List all AuthN Mappings in the org.
-func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuthNMappingsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuthNMappingsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAuthNMappingsExecute(req)
+	return req.Api.listAuthNMappingsExecute(req)
 }
 
 // listAuthNMappingsExecute executes the request.
-func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.ListAuthNMappings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.ListAuthNMappings")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -632,14 +632,14 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 
 type apiUpdateAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	Api            *AuthNMappingsApi
 	authnMappingId string
 	body           *AuthNMappingUpdateRequest
 }
 
-func (a *AuthNMappingsApiService) buildUpdateAuthNMappingRequest(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (apiUpdateAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildUpdateAuthNMappingRequest(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (apiUpdateAuthNMappingRequest, error) {
 	req := apiUpdateAuthNMappingRequest{
-		ApiService:     a,
+		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 		body:           &body,
@@ -649,25 +649,25 @@ func (a *AuthNMappingsApiService) buildUpdateAuthNMappingRequest(ctx _context.Co
 
 // UpdateAuthNMapping Edit an AuthN Mapping.
 // Edit an AuthN Mapping.
-func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAuthNMappingRequest(ctx, authnMappingId, body)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAuthNMappingExecute(req)
+	return req.Api.updateAuthNMappingExecute(req)
 }
 
 // updateAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.UpdateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.UpdateAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -804,9 +804,9 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AuthNMappingsApi Returns new AuthNMappingsApi service.
-func AuthNMappingsApi(client *common.APIClient) *AuthNMappingsApiService {
-	return &AuthNMappingsApiService{
+// NewAuthNMappingsApi Returns NewAuthNMappingsApi.
+func NewAuthNMappingsApi(client *common.APIClient) *AuthNMappingsApi {
+	return &AuthNMappingsApi{
 		Client: client,
 	}
 }

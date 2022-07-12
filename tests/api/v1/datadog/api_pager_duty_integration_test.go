@@ -29,7 +29,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.PagerDutyIntegrationApi(Client(ctx))
+	api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 	// Add single service object to the PagerDuty Integration
 	serviceBody := generatePagerDutyService(ctx, t)
@@ -85,7 +85,7 @@ func TestPagerDutyServicesCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.PagerDutyIntegrationApi(Client(ctx))
+			api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 			service, httpresp, err := api.CreatePagerDutyIntegrationService(ctx, tc.Body)
 			if err == nil {
@@ -116,7 +116,7 @@ func TestPagerDutyServicesGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.PagerDutyIntegrationApi(Client(ctx))
+			api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 			pgService := generatePagerDutyService(ctx, t)
 
@@ -136,7 +136,7 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 	defer finish()
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
-	api := datadog.PagerDutyIntegrationApi(Client(ctx))
+	api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 	service := generatePagerDutyService(ctx, t)
 	_, _, err := api.CreatePagerDutyIntegrationService(ctx, service)
@@ -164,7 +164,7 @@ func TestPagerDutyServicesUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.PagerDutyIntegrationApi(Client(ctx))
+			api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 			httpresp, err := api.UpdatePagerDutyIntegrationService(ctx, tc.ServiceName, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -192,7 +192,7 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.PagerDutyIntegrationApi(Client(ctx))
+			api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 			pgService := generatePagerDutyService(ctx, t)
 
@@ -207,7 +207,7 @@ func TestPagerDutyServicesDeleteErrors(t *testing.T) {
 }
 
 func deletePagerDutyService(ctx context.Context, t *testing.T, serviceName string) {
-	api := datadog.PagerDutyIntegrationApi(Client(ctx))
+	api := datadog.NewPagerDutyIntegrationApi(Client(ctx))
 
 	httpresp, err := api.DeletePagerDutyIntegrationService(ctx, serviceName)
 	if httpresp.StatusCode != 204 || err != nil {

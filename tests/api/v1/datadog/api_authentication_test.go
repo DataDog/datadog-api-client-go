@@ -34,7 +34,7 @@ func TestAuthenticationValidate(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			api := datadog.AuthenticationApi(Client(ctx))
+			api := datadog.NewAuthenticationApi(Client(ctx))
 			validation, httpresp, err := api.Validate(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if err == nil {

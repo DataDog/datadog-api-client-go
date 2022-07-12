@@ -21,7 +21,7 @@ func TestGetGraphSnapshot(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.SnapshotsApi(Client(ctx))
+	api := datadog.NewSnapshotsApi(Client(ctx))
 
 	start := tests.ClockFromContext(ctx).Now().Unix()
 	end := start + 24*60*60
@@ -68,7 +68,7 @@ func TestGraphGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SnapshotsApi(Client(ctx))
+			api := datadog.NewSnapshotsApi(Client(ctx))
 
 			_, httpresp, err := api.GetGraphSnapshot(ctx, 345, 123)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

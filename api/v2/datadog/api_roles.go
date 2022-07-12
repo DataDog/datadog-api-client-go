@@ -15,47 +15,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// RolesApiService service type
-type RolesApiService common.Service
+// RolesApi service type
+type RolesApi common.Service
 
 type apiAddPermissionToRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RelationshipToPermission
 }
 
-func (a *RolesApiService) buildAddPermissionToRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiAddPermissionToRoleRequest, error) {
+func (a *RolesApi) buildAddPermissionToRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiAddPermissionToRoleRequest, error) {
 	req := apiAddPermissionToRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // AddPermissionToRole Grant permission to a role.
 // Adds a permission to a role.
-func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildAddPermissionToRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue PermissionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.addPermissionToRoleExecute(req)
+	return req.Api.addPermissionToRoleExecute(req)
 }
 
 // addPermissionToRoleExecute executes the request.
-func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) addPermissionToRoleExecute(r apiAddPermissionToRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.AddPermissionToRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.AddPermissionToRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -175,43 +175,43 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 }
 
 type apiAddUserToRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RelationshipToUser
 }
 
-func (a *RolesApiService) buildAddUserToRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiAddUserToRoleRequest, error) {
+func (a *RolesApi) buildAddUserToRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiAddUserToRoleRequest, error) {
 	req := apiAddUserToRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // AddUserToRole Add a user to a role.
 // Adds a user to a role.
-func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	req, err := a.buildAddUserToRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue UsersResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.addUserToRoleExecute(req)
+	return req.Api.addUserToRoleExecute(req)
 }
 
 // addUserToRoleExecute executes the request.
-func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) addUserToRoleExecute(r apiAddUserToRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.AddUserToRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.AddUserToRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -331,43 +331,43 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 }
 
 type apiCloneRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RoleCloneRequest
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RoleCloneRequest
 }
 
-func (a *RolesApiService) buildCloneRoleRequest(ctx _context.Context, roleId string, body RoleCloneRequest) (apiCloneRoleRequest, error) {
+func (a *RolesApi) buildCloneRoleRequest(ctx _context.Context, roleId string, body RoleCloneRequest) (apiCloneRoleRequest, error) {
 	req := apiCloneRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // CloneRole Create a new role by cloning an existing role.
 // Clone an existing role
-func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApi) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
 	req, err := a.buildCloneRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue RoleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.cloneRoleExecute(req)
+	return req.Api.cloneRoleExecute(req)
 }
 
 // cloneRoleExecute executes the request.
-func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApi) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RoleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.CloneRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.CloneRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -496,41 +496,41 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 }
 
 type apiCreateRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	body       *RoleCreateRequest
+	ctx  _context.Context
+	Api  *RolesApi
+	body *RoleCreateRequest
 }
 
-func (a *RolesApiService) buildCreateRoleRequest(ctx _context.Context, body RoleCreateRequest) (apiCreateRoleRequest, error) {
+func (a *RolesApi) buildCreateRoleRequest(ctx _context.Context, body RoleCreateRequest) (apiCreateRoleRequest, error) {
 	req := apiCreateRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateRole Create role.
 // Create a new role for your organization.
-func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
+func (a *RolesApi) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateRoleRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue RoleCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createRoleExecute(req)
+	return req.Api.createRoleExecute(req)
 }
 
 // createRoleExecute executes the request.
-func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateResponse, *_nethttp.Response, error) {
+func (a *RolesApi) createRoleExecute(r apiCreateRoleRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RoleCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.CreateRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.CreateRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -640,39 +640,39 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 }
 
 type apiDeleteRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
 }
 
-func (a *RolesApiService) buildDeleteRoleRequest(ctx _context.Context, roleId string) (apiDeleteRoleRequest, error) {
+func (a *RolesApi) buildDeleteRoleRequest(ctx _context.Context, roleId string) (apiDeleteRoleRequest, error) {
 	req := apiDeleteRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
 	}
 	return req, nil
 }
 
 // DeleteRole Delete role.
 // Disables a role.
-func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
+func (a *RolesApi) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteRoleRequest(ctx, roleId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteRoleExecute(req)
+	return req.Api.deleteRoleExecute(req)
 }
 
 // deleteRoleExecute executes the request.
-func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.Response, error) {
+func (a *RolesApi) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.DeleteRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.DeleteRole")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -768,41 +768,41 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 }
 
 type apiGetRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
 }
 
-func (a *RolesApiService) buildGetRoleRequest(ctx _context.Context, roleId string) (apiGetRoleRequest, error) {
+func (a *RolesApi) buildGetRoleRequest(ctx _context.Context, roleId string) (apiGetRoleRequest, error) {
 	req := apiGetRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
 	}
 	return req, nil
 }
 
 // GetRole Get a role.
 // Get a role in the organization specified by the role’s `role_id`.
-func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApi) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetRoleRequest(ctx, roleId)
 	if err != nil {
 		var localVarReturnValue RoleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getRoleExecute(req)
+	return req.Api.getRoleExecute(req)
 }
 
 // getRoleExecute executes the request.
-func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApi) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue RoleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.GetRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.GetRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -907,39 +907,39 @@ func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_n
 }
 
 type apiListPermissionsRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
+	ctx _context.Context
+	Api *RolesApi
 }
 
-func (a *RolesApiService) buildListPermissionsRequest(ctx _context.Context) (apiListPermissionsRequest, error) {
+func (a *RolesApi) buildListPermissionsRequest(ctx _context.Context) (apiListPermissionsRequest, error) {
 	req := apiListPermissionsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListPermissions List permissions.
 // Returns a list of all permissions, including name, description, and ID.
-func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListPermissionsRequest(ctx)
 	if err != nil {
 		var localVarReturnValue PermissionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listPermissionsExecute(req)
+	return req.Api.listPermissionsExecute(req)
 }
 
 // listPermissionsExecute executes the request.
-func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) listPermissionsExecute(r apiListPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListPermissions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.ListPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1043,41 +1043,41 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 }
 
 type apiListRolePermissionsRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
 }
 
-func (a *RolesApiService) buildListRolePermissionsRequest(ctx _context.Context, roleId string) (apiListRolePermissionsRequest, error) {
+func (a *RolesApi) buildListRolePermissionsRequest(ctx _context.Context, roleId string) (apiListRolePermissionsRequest, error) {
 	req := apiListRolePermissionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
 	}
 	return req, nil
 }
 
 // ListRolePermissions List permissions for a role.
 // Returns a list of all permissions for a single role.
-func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListRolePermissionsRequest(ctx, roleId)
 	if err != nil {
 		var localVarReturnValue PermissionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listRolePermissionsExecute(req)
+	return req.Api.listRolePermissionsExecute(req)
 }
 
 // listRolePermissionsExecute executes the request.
-func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) listRolePermissionsExecute(r apiListRolePermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRolePermissions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.ListRolePermissions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1183,7 +1183,7 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 
 type apiListRoleUsersRequest struct {
 	ctx        _context.Context
-	ApiService *RolesApiService
+	Api        *RolesApi
 	roleId     string
 	pageSize   *int64
 	pageNumber *int64
@@ -1229,11 +1229,11 @@ func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUse
 	return r
 }
 
-func (a *RolesApiService) buildListRoleUsersRequest(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (apiListRoleUsersRequest, error) {
+func (a *RolesApi) buildListRoleUsersRequest(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (apiListRoleUsersRequest, error) {
 	req := apiListRoleUsersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
 	}
 
 	if len(o) > 1 {
@@ -1251,25 +1251,25 @@ func (a *RolesApiService) buildListRoleUsersRequest(ctx _context.Context, roleId
 
 // ListRoleUsers Get all users of a role.
 // Gets all users of a role.
-func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	req, err := a.buildListRoleUsersRequest(ctx, roleId, o...)
 	if err != nil {
 		var localVarReturnValue UsersResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listRoleUsersExecute(req)
+	return req.Api.listRoleUsersExecute(req)
 }
 
 // listRoleUsersExecute executes the request.
-func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) listRoleUsersExecute(r apiListRoleUsersRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRoleUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.ListRoleUsers")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1387,7 +1387,7 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 
 type apiListRolesRequest struct {
 	ctx        _context.Context
-	ApiService *RolesApiService
+	Api        *RolesApi
 	pageSize   *int64
 	pageNumber *int64
 	sort       *RolesSort
@@ -1432,10 +1432,10 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 	return r
 }
 
-func (a *RolesApiService) buildListRolesRequest(ctx _context.Context, o ...ListRolesOptionalParameters) (apiListRolesRequest, error) {
+func (a *RolesApi) buildListRolesRequest(ctx _context.Context, o ...ListRolesOptionalParameters) (apiListRolesRequest, error) {
 	req := apiListRolesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1453,25 +1453,25 @@ func (a *RolesApiService) buildListRolesRequest(ctx _context.Context, o ...ListR
 
 // ListRoles List roles.
 // Returns all roles, including their names and their unique identifiers.
-func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
+func (a *RolesApi) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListRolesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue RolesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listRolesExecute(req)
+	return req.Api.listRolesExecute(req)
 }
 
 // listRolesExecute executes the request.
-func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse, *_nethttp.Response, error) {
+func (a *RolesApi) listRolesExecute(r apiListRolesRequest) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue RolesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRoles")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.ListRoles")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1578,43 +1578,43 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 }
 
 type apiRemovePermissionFromRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RelationshipToPermission
 }
 
-func (a *RolesApiService) buildRemovePermissionFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiRemovePermissionFromRoleRequest, error) {
+func (a *RolesApi) buildRemovePermissionFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiRemovePermissionFromRoleRequest, error) {
 	req := apiRemovePermissionFromRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // RemovePermissionFromRole Revoke permission.
 // Removes a permission from a role.
-func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildRemovePermissionFromRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue PermissionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.removePermissionFromRoleExecute(req)
+	return req.Api.removePermissionFromRoleExecute(req)
 }
 
 // removePermissionFromRoleExecute executes the request.
-func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionFromRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) removePermissionFromRoleExecute(r apiRemovePermissionFromRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.RemovePermissionFromRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.RemovePermissionFromRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1734,43 +1734,43 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 }
 
 type apiRemoveUserFromRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RelationshipToUser
 }
 
-func (a *RolesApiService) buildRemoveUserFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiRemoveUserFromRoleRequest, error) {
+func (a *RolesApi) buildRemoveUserFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiRemoveUserFromRoleRequest, error) {
 	req := apiRemoveUserFromRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // RemoveUserFromRole Remove a user from a role.
 // Removes a user from a role.
-func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	req, err := a.buildRemoveUserFromRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue UsersResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.removeUserFromRoleExecute(req)
+	return req.Api.removeUserFromRoleExecute(req)
 }
 
 // removeUserFromRoleExecute executes the request.
-func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleRequest) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApi) removeUserFromRoleExecute(r apiRemoveUserFromRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.RemoveUserFromRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.RemoveUserFromRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1890,43 +1890,43 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 }
 
 type apiUpdateRoleRequest struct {
-	ctx        _context.Context
-	ApiService *RolesApiService
-	roleId     string
-	body       *RoleUpdateRequest
+	ctx    _context.Context
+	Api    *RolesApi
+	roleId string
+	body   *RoleUpdateRequest
 }
 
-func (a *RolesApiService) buildUpdateRoleRequest(ctx _context.Context, roleId string, body RoleUpdateRequest) (apiUpdateRoleRequest, error) {
+func (a *RolesApi) buildUpdateRoleRequest(ctx _context.Context, roleId string, body RoleUpdateRequest) (apiUpdateRoleRequest, error) {
 	req := apiUpdateRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		roleId: roleId,
+		body:   &body,
 	}
 	return req, nil
 }
 
 // UpdateRole Update a role.
 // Edit a role. Can only be used with application keys belonging to administrators.
-func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+func (a *RolesApi) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateRoleRequest(ctx, roleId, body)
 	if err != nil {
 		var localVarReturnValue RoleUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateRoleExecute(req)
+	return req.Api.updateRoleExecute(req)
 }
 
 // updateRoleExecute executes the request.
-func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+func (a *RolesApi) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue RoleUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.UpdateRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApi.UpdateRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2054,9 +2054,9 @@ func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// RolesApi Returns new RolesApi service.
-func RolesApi(client *common.APIClient) *RolesApiService {
-	return &RolesApiService{
+// NewRolesApi Returns NewRolesApi.
+func NewRolesApi(client *common.APIClient) *RolesApi {
+	return &RolesApi{
 		Client: client,
 	}
 }

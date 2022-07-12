@@ -26,7 +26,7 @@ func TestListOrgs(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 	defer gock.Off()
 
 	// Setup fixture data
@@ -61,7 +61,7 @@ func TestCreateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 	defer gock.Off()
 
 	// Setup fixture data
@@ -122,7 +122,7 @@ func TestUpdateOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 	defer gock.Off()
 
 	// Setup fixture data
@@ -173,7 +173,7 @@ func TestGetOrg(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 	defer gock.Off()
 
 	// Setup fixture data
@@ -224,7 +224,7 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 	defer gock.Off()
 
 	// Setup fixture data
@@ -261,7 +261,7 @@ func TestOrgsCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.OrganizationsApi(Client(ctx))
+			api := datadog.NewOrganizationsApi(Client(ctx))
 
 			_, httpresp, err := api.CreateChildOrg(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -288,7 +288,7 @@ func TestOrgsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.OrganizationsApi(Client(ctx))
+			api := datadog.NewOrganizationsApi(Client(ctx))
 
 			_, httpresp, err := api.ListOrgs(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -316,7 +316,7 @@ func TestOrgsGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.OrganizationsApi(Client(ctx))
+			api := datadog.NewOrganizationsApi(Client(ctx))
 
 			_, httpresp, err := api.GetOrg(ctx, "lsqdkjf")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -344,7 +344,7 @@ func TestOrgsUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.OrganizationsApi(Client(ctx))
+			api := datadog.NewOrganizationsApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateOrg(ctx, "lsqdkjf", datadog.Organization{})
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -373,7 +373,7 @@ func TestOrgsUploadIdpErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tcc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.OrganizationsApi(Client(ctx))
+			api := datadog.NewOrganizationsApi(Client(ctx))
 
 			// Get random file
 			file, _ := os.Open("fixtures/orgs/error_415.json")
@@ -394,7 +394,7 @@ func TestOrgsUploadIdp415Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.OrganizationsApi(Client(ctx))
+	api := datadog.NewOrganizationsApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/orgs/error_415.json")
 	if err != nil {

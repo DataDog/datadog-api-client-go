@@ -15,45 +15,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// LogsArchivesApiService service type
-type LogsArchivesApiService common.Service
+// LogsArchivesApi service type
+type LogsArchivesApi common.Service
 
 type apiAddReadRoleToArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
+	body      *RelationshipToRole
 }
 
-func (a *LogsArchivesApiService) buildAddReadRoleToArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiAddReadRoleToArchiveRequest, error) {
+func (a *LogsArchivesApi) buildAddReadRoleToArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiAddReadRoleToArchiveRequest, error) {
 	req := apiAddReadRoleToArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
+		body:      &body,
 	}
 	return req, nil
 }
 
 // AddReadRoleToArchive Grant role to an archive.
 // Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
-func (a *LogsArchivesApiService) AddReadRoleToArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) AddReadRoleToArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	req, err := a.buildAddReadRoleToArchiveRequest(ctx, archiveId, body)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.addReadRoleToArchiveExecute(req)
+	return req.Api.addReadRoleToArchiveExecute(req)
 }
 
 // addReadRoleToArchiveExecute executes the request.
-func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) addReadRoleToArchiveExecute(r apiAddReadRoleToArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.AddReadRoleToArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.AddReadRoleToArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -164,41 +164,41 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 }
 
 type apiCreateLogsArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	body       *LogsArchiveCreateRequest
+	ctx  _context.Context
+	Api  *LogsArchivesApi
+	body *LogsArchiveCreateRequest
 }
 
-func (a *LogsArchivesApiService) buildCreateLogsArchiveRequest(ctx _context.Context, body LogsArchiveCreateRequest) (apiCreateLogsArchiveRequest, error) {
+func (a *LogsArchivesApi) buildCreateLogsArchiveRequest(ctx _context.Context, body LogsArchiveCreateRequest) (apiCreateLogsArchiveRequest, error) {
 	req := apiCreateLogsArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateLogsArchive Create an archive.
 // Create an archive in your organization.
-func (a *LogsArchivesApiService) CreateLogsArchive(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) CreateLogsArchive(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	req, err := a.buildCreateLogsArchiveRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue LogsArchive
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createLogsArchiveExecute(req)
+	return req.Api.createLogsArchiveExecute(req)
 }
 
 // createLogsArchiveExecute executes the request.
-func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) createLogsArchiveExecute(r apiCreateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.CreateLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.CreateLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -308,39 +308,39 @@ func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchive
 }
 
 type apiDeleteLogsArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
 }
 
-func (a *LogsArchivesApiService) buildDeleteLogsArchiveRequest(ctx _context.Context, archiveId string) (apiDeleteLogsArchiveRequest, error) {
+func (a *LogsArchivesApi) buildDeleteLogsArchiveRequest(ctx _context.Context, archiveId string) (apiDeleteLogsArchiveRequest, error) {
 	req := apiDeleteLogsArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
 	}
 	return req, nil
 }
 
 // DeleteLogsArchive Delete an archive.
 // Delete a given archive from your organization.
-func (a *LogsArchivesApiService) DeleteLogsArchive(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) DeleteLogsArchive(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteLogsArchiveRequest(ctx, archiveId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteLogsArchiveExecute(req)
+	return req.Api.deleteLogsArchiveExecute(req)
 }
 
 // deleteLogsArchiveExecute executes the request.
-func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) deleteLogsArchiveExecute(r apiDeleteLogsArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.DeleteLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.DeleteLogsArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -445,41 +445,41 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 }
 
 type apiGetLogsArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
 }
 
-func (a *LogsArchivesApiService) buildGetLogsArchiveRequest(ctx _context.Context, archiveId string) (apiGetLogsArchiveRequest, error) {
+func (a *LogsArchivesApi) buildGetLogsArchiveRequest(ctx _context.Context, archiveId string) (apiGetLogsArchiveRequest, error) {
 	req := apiGetLogsArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
 	}
 	return req, nil
 }
 
 // GetLogsArchive Get an archive.
 // Get a specific archive from your organization.
-func (a *LogsArchivesApiService) GetLogsArchive(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) GetLogsArchive(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
 	req, err := a.buildGetLogsArchiveRequest(ctx, archiveId)
 	if err != nil {
 		var localVarReturnValue LogsArchive
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getLogsArchiveExecute(req)
+	return req.Api.getLogsArchiveExecute(req)
 }
 
 // getLogsArchiveExecute executes the request.
-func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) getLogsArchiveExecute(r apiGetLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.GetLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.GetLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -593,14 +593,14 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 }
 
 type apiGetLogsArchiveOrderRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
+	ctx _context.Context
+	Api *LogsArchivesApi
 }
 
-func (a *LogsArchivesApiService) buildGetLogsArchiveOrderRequest(ctx _context.Context) (apiGetLogsArchiveOrderRequest, error) {
+func (a *LogsArchivesApi) buildGetLogsArchiveOrderRequest(ctx _context.Context) (apiGetLogsArchiveOrderRequest, error) {
 	req := apiGetLogsArchiveOrderRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
@@ -608,25 +608,25 @@ func (a *LogsArchivesApiService) buildGetLogsArchiveOrderRequest(ctx _context.Co
 // GetLogsArchiveOrder Get archive order.
 // Get the current order of your archives.
 // This endpoint takes no JSON arguments.
-func (a *LogsArchivesApiService) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req, err := a.buildGetLogsArchiveOrderRequest(ctx)
 	if err != nil {
 		var localVarReturnValue LogsArchiveOrder
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getLogsArchiveOrderExecute(req)
+	return req.Api.getLogsArchiveOrderExecute(req)
 }
 
 // getLogsArchiveOrderExecute executes the request.
-func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) getLogsArchiveOrderExecute(r apiGetLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchiveOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.GetLogsArchiveOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.GetLogsArchiveOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -721,41 +721,41 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 }
 
 type apiListArchiveReadRolesRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
 }
 
-func (a *LogsArchivesApiService) buildListArchiveReadRolesRequest(ctx _context.Context, archiveId string) (apiListArchiveReadRolesRequest, error) {
+func (a *LogsArchivesApi) buildListArchiveReadRolesRequest(ctx _context.Context, archiveId string) (apiListArchiveReadRolesRequest, error) {
 	req := apiListArchiveReadRolesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
 	}
 	return req, nil
 }
 
 // ListArchiveReadRoles List read roles for an archive.
 // Returns all read roles a given archive is restricted to.
-func (a *LogsArchivesApiService) ListArchiveReadRoles(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) ListArchiveReadRoles(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListArchiveReadRolesRequest(ctx, archiveId)
 	if err != nil {
 		var localVarReturnValue RolesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listArchiveReadRolesExecute(req)
+	return req.Api.listArchiveReadRolesExecute(req)
 }
 
 // listArchiveReadRolesExecute executes the request.
-func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveReadRolesRequest) (RolesResponse, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) listArchiveReadRolesExecute(r apiListArchiveReadRolesRequest) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue RolesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.ListArchiveReadRoles")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.ListArchiveReadRoles")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -869,39 +869,39 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 }
 
 type apiListLogsArchivesRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
+	ctx _context.Context
+	Api *LogsArchivesApi
 }
 
-func (a *LogsArchivesApiService) buildListLogsArchivesRequest(ctx _context.Context) (apiListLogsArchivesRequest, error) {
+func (a *LogsArchivesApi) buildListLogsArchivesRequest(ctx _context.Context) (apiListLogsArchivesRequest, error) {
 	req := apiListLogsArchivesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListLogsArchives Get all archives.
 // Get the list of configured logs archives with their definitions.
-func (a *LogsArchivesApiService) ListLogsArchives(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) ListLogsArchives(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
 	req, err := a.buildListLogsArchivesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue LogsArchives
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listLogsArchivesExecute(req)
+	return req.Api.listLogsArchivesExecute(req)
 }
 
 // listLogsArchivesExecute executes the request.
-func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRequest) (LogsArchives, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) listLogsArchivesExecute(r apiListLogsArchivesRequest) (LogsArchives, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchives
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.ListLogsArchives")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.ListLogsArchives")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -996,41 +996,41 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 }
 
 type apiRemoveRoleFromArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
+	body      *RelationshipToRole
 }
 
-func (a *LogsArchivesApiService) buildRemoveRoleFromArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiRemoveRoleFromArchiveRequest, error) {
+func (a *LogsArchivesApi) buildRemoveRoleFromArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiRemoveRoleFromArchiveRequest, error) {
 	req := apiRemoveRoleFromArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
+		body:      &body,
 	}
 	return req, nil
 }
 
 // RemoveRoleFromArchive Revoke role from an archive.
 // Removes a role from an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
-func (a *LogsArchivesApiService) RemoveRoleFromArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) RemoveRoleFromArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	req, err := a.buildRemoveRoleFromArchiveRequest(ctx, archiveId, body)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.removeRoleFromArchiveExecute(req)
+	return req.Api.removeRoleFromArchiveExecute(req)
 }
 
 // removeRoleFromArchiveExecute executes the request.
-func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFromArchiveRequest) (*_nethttp.Response, error) {
+func (a *LogsArchivesApi) removeRoleFromArchiveExecute(r apiRemoveRoleFromArchiveRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.RemoveRoleFromArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.RemoveRoleFromArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1141,18 +1141,18 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 }
 
 type apiUpdateLogsArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *LogsArchiveCreateRequest
+	ctx       _context.Context
+	Api       *LogsArchivesApi
+	archiveId string
+	body      *LogsArchiveCreateRequest
 }
 
-func (a *LogsArchivesApiService) buildUpdateLogsArchiveRequest(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (apiUpdateLogsArchiveRequest, error) {
+func (a *LogsArchivesApi) buildUpdateLogsArchiveRequest(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (apiUpdateLogsArchiveRequest, error) {
 	req := apiUpdateLogsArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		Api:       a,
+		ctx:       ctx,
+		archiveId: archiveId,
+		body:      &body,
 	}
 	return req, nil
 }
@@ -1162,25 +1162,25 @@ func (a *LogsArchivesApiService) buildUpdateLogsArchiveRequest(ctx _context.Cont
 //
 // **Note**: Using this method updates your archive configuration by **replacing**
 // your current configuration with the new one sent to your Datadog organization.
-func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	req, err := a.buildUpdateLogsArchiveRequest(ctx, archiveId, body)
 	if err != nil {
 		var localVarReturnValue LogsArchive
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateLogsArchiveExecute(req)
+	return req.Api.updateLogsArchiveExecute(req)
 }
 
 // updateLogsArchiveExecute executes the request.
-func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) updateLogsArchiveExecute(r apiUpdateLogsArchiveRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.UpdateLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.UpdateLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1300,16 +1300,16 @@ func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchive
 }
 
 type apiUpdateLogsArchiveOrderRequest struct {
-	ctx        _context.Context
-	ApiService *LogsArchivesApiService
-	body       *LogsArchiveOrder
+	ctx  _context.Context
+	Api  *LogsArchivesApi
+	body *LogsArchiveOrder
 }
 
-func (a *LogsArchivesApiService) buildUpdateLogsArchiveOrderRequest(ctx _context.Context, body LogsArchiveOrder) (apiUpdateLogsArchiveOrderRequest, error) {
+func (a *LogsArchivesApi) buildUpdateLogsArchiveOrderRequest(ctx _context.Context, body LogsArchiveOrder) (apiUpdateLogsArchiveOrderRequest, error) {
 	req := apiUpdateLogsArchiveOrderRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -1320,25 +1320,25 @@ func (a *LogsArchivesApiService) buildUpdateLogsArchiveOrderRequest(ctx _context
 //
 // **Note**: Using the `PUT` method updates your archive's order by replacing the current order
 // with the new one.
-func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req, err := a.buildUpdateLogsArchiveOrderRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue LogsArchiveOrder
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateLogsArchiveOrderExecute(req)
+	return req.Api.updateLogsArchiveOrderExecute(req)
 }
 
 // updateLogsArchiveOrderExecute executes the request.
-func (a *LogsArchivesApiService) updateLogsArchiveOrderExecute(r apiUpdateLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
+func (a *LogsArchivesApi) updateLogsArchiveOrderExecute(r apiUpdateLogsArchiveOrderRequest) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue LogsArchiveOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.UpdateLogsArchiveOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApi.UpdateLogsArchiveOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1456,9 +1456,9 @@ func (a *LogsArchivesApiService) updateLogsArchiveOrderExecute(r apiUpdateLogsAr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// LogsArchivesApi Returns new LogsArchivesApi service.
-func LogsArchivesApi(client *common.APIClient) *LogsArchivesApiService {
-	return &LogsArchivesApiService{
+// NewLogsArchivesApi Returns NewLogsArchivesApi.
+func NewLogsArchivesApi(client *common.APIClient) *LogsArchivesApi {
+	return &LogsArchivesApi{
 		Client: client,
 	}
 }

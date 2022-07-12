@@ -51,7 +51,7 @@ func initializeClientV1(ctx context.Context) {
 
 func createDashboardList(ctx context.Context, t *testing.T) error {
 	initializeClientV1(ctx)
-	api := datadogV1.DashboardListsApi(testAPIClientV1)
+	api := datadogV1.NewDashboardListsApi(testAPIClientV1)
 	res, httpresp, err := api.CreateDashboardList(testAuthV1, datadogV1.DashboardList{Name: *tests.UniqueEntityName(ctx, t)})
 	if err != nil || httpresp.StatusCode != 200 {
 		return fmt.Errorf("error creating dashboard list: %v", err.(common.GenericOpenAPIError).Body())
@@ -61,7 +61,7 @@ func createDashboardList(ctx context.Context, t *testing.T) error {
 }
 
 func deleteDashboardList() {
-	api := datadogV1.DashboardListsApi(testAPIClientV1)
+	api := datadogV1.NewDashboardListsApi(testAPIClientV1)
 	api.DeleteDashboardList(testAuthV1, dashboardListID)
 }
 
@@ -71,7 +71,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.DashboardListsApi(Client(ctx))
+	api := datadog.NewDashboardListsApi(Client(ctx))
 
 	err := createDashboardList(ctx, t)
 	defer deleteDashboardList()
@@ -187,7 +187,7 @@ func TestDashboardListGetItemsErrors(t *testing.T) {
 			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
 			defer stop()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.GetDashboardListItems(ctx, 1234)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -226,7 +226,7 @@ func TestDashboardListCreateItemsErrors(t *testing.T) {
 			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
 			defer stop()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.CreateDashboardListItems(ctx, tc.ID, *datadog.NewDashboardListAddItemsRequest())
 			assert.IsType(common.GenericOpenAPIError{}, err, "%v", err)
@@ -266,7 +266,7 @@ func TestDashboardListUpdateItemsErrors(t *testing.T) {
 			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
 			defer stop()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateDashboardListItems(ctx, tc.ID, *datadog.NewDashboardListUpdateItemsRequest())
 			assert.IsType(common.GenericOpenAPIError{}, err, "%v", err)
@@ -306,7 +306,7 @@ func TestDashboardListDeleteItemsErrors(t *testing.T) {
 			ctx, stop := WithRecorder(tc.Ctx(ctx), t)
 			defer stop()
 			assert := tests.Assert(ctx, t)
-			api := datadog.DashboardListsApi(Client(ctx))
+			api := datadog.NewDashboardListsApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteDashboardListItems(ctx, tc.ID, *datadog.NewDashboardListDeleteItemsRequest())
 			assert.IsType(common.GenericOpenAPIError{}, err, "%v", err)

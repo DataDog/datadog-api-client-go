@@ -61,7 +61,7 @@ func TestCreateAWSAccount(t *testing.T) {
 	retryCreateAccount(ctx, t, testAWSAccount)
 	defer retryDeleteAccount(ctx, t, testAWSAccount)
 
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 	awsAccts, httpresp, err := api.
 		ListAWSAccounts(ctx, *datadog.NewListAWSAccountsOptionalParameters().
 			WithAccountId(testAWSAccount.GetAccountId()).
@@ -91,7 +91,7 @@ func TestUpdateAWSAccount(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 
@@ -152,7 +152,7 @@ func TestGenerateNewExternalId(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	testAWSAccount := generateUniqueAWSAccount(ctx, t)
 	// Lets first create the account for us to generate a new id against
@@ -174,7 +174,7 @@ func TestListNamespaces(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	namespaces, httpresp, err := api.ListAvailableAWSNamespaces(ctx)
 	if err != nil {
@@ -212,7 +212,7 @@ func TestAWSIntegrationGenerateExternalIDErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSIntegrationApi(Client(ctx))
+			api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.CreateNewAWSExternalID(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -241,7 +241,7 @@ func TestAWSIntegrationCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSIntegrationApi(Client(ctx))
+			api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.CreateAWSAccount(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -271,7 +271,7 @@ func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 			ctx, finish := WithRecorder(ctx, t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSIntegrationApi(Client(ctx))
+			api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 			testAWSAccount.RoleName = test
 			_, httpresp, _ := api.CreateAWSAccount(ctx, testAWSAccount)
@@ -298,7 +298,7 @@ func TestAWSIntegrationDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSIntegrationApi(Client(ctx))
+			api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteAWSAccount(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -315,7 +315,7 @@ func TestAWSIntegrationGetAll403Error(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.ListAWSAccounts(context.Background())
@@ -331,7 +331,7 @@ func TestAWSIntegrationGetAll400Error(t *testing.T) {
 	ctx = WithClient(ctx)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/aws/error_400.json")
 	if err != nil {
@@ -358,7 +358,7 @@ func TestAWSIntegrationListNamespacesErrors(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.ListAvailableAWSNamespaces(context.Background())
@@ -386,7 +386,7 @@ func TestAWSIntegrationUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AWSIntegrationApi(Client(ctx))
+			api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateAWSAccount(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -403,7 +403,7 @@ func retryDeleteAccount(ctx context.Context, t *testing.T, awsAccount datadog.AW
 	body.AccountId = awsAccount.AccountId
 	body.RoleName = awsAccount.RoleName
 
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := api.DeleteAWSAccount(ctx, *body)
 		if httpresp.StatusCode == 502 {
@@ -417,7 +417,7 @@ func retryDeleteAccount(ctx context.Context, t *testing.T, awsAccount datadog.AW
 }
 
 func retryCreateAccount(ctx context.Context, t *testing.T, awsAccount datadog.AWSAccount) {
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := api.CreateAWSAccount(ctx, awsAccount)
 		if httpresp.StatusCode == 502 {
@@ -431,7 +431,7 @@ func retryCreateAccount(ctx context.Context, t *testing.T, awsAccount datadog.AW
 }
 
 func retryUpdateAccount(ctx context.Context, t *testing.T, body datadog.AWSAccount, accountID string, roleName string) {
-	api := datadog.AWSIntegrationApi(Client(ctx))
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := api.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().
 			WithAccountId(accountID).

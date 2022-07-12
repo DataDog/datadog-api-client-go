@@ -15,47 +15,47 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// SecurityMonitoringApiService service type
-type SecurityMonitoringApiService common.Service
+// SecurityMonitoringApi service type
+type SecurityMonitoringApi common.Service
 
 type apiAddSecurityMonitoringSignalToIncidentRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *AddSignalToIncidentRequest
+	ctx      _context.Context
+	Api      *SecurityMonitoringApi
+	signalId string
+	body     *AddSignalToIncidentRequest
 }
 
-func (a *SecurityMonitoringApiService) buildAddSecurityMonitoringSignalToIncidentRequest(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (apiAddSecurityMonitoringSignalToIncidentRequest, error) {
+func (a *SecurityMonitoringApi) buildAddSecurityMonitoringSignalToIncidentRequest(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (apiAddSecurityMonitoringSignalToIncidentRequest, error) {
 	req := apiAddSecurityMonitoringSignalToIncidentRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		Api:      a,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // AddSecurityMonitoringSignalToIncident Add a security signal to an incident.
 // Add a security signal to an incident. This makes it possible to search for signals by incident within the signal explorer and to view the signals on the incident timeline.
-func (a *SecurityMonitoringApiService) AddSecurityMonitoringSignalToIncident(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) AddSecurityMonitoringSignalToIncident(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildAddSecurityMonitoringSignalToIncidentRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SuccessfulSignalUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.addSecurityMonitoringSignalToIncidentExecute(req)
+	return req.Api.addSecurityMonitoringSignalToIncidentExecute(req)
 }
 
 // addSecurityMonitoringSignalToIncidentExecute executes the request.
-func (a *SecurityMonitoringApiService) addSecurityMonitoringSignalToIncidentExecute(r apiAddSecurityMonitoringSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r apiAddSecurityMonitoringSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.AddSecurityMonitoringSignalToIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.AddSecurityMonitoringSignalToIncident")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -175,43 +175,43 @@ func (a *SecurityMonitoringApiService) addSecurityMonitoringSignalToIncidentExec
 }
 
 type apiEditSecurityMonitoringSignalAssigneeRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *SignalAssigneeUpdateRequest
+	ctx      _context.Context
+	Api      *SecurityMonitoringApi
+	signalId string
+	body     *SignalAssigneeUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
+func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
 	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		Api:      a,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
-func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalAssigneeRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SuccessfulSignalUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.editSecurityMonitoringSignalAssigneeExecute(req)
+	return req.Api.editSecurityMonitoringSignalAssigneeExecute(req)
 }
 
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
-func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.EditSecurityMonitoringSignalAssignee")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -331,43 +331,43 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 }
 
 type apiEditSecurityMonitoringSignalStateRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *SignalStateUpdateRequest
+	ctx      _context.Context
+	Api      *SecurityMonitoringApi
+	signalId string
+	body     *SignalStateUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
+func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
 	req := apiEditSecurityMonitoringSignalStateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		Api:      a,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
-func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalStateRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SuccessfulSignalUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.editSecurityMonitoringSignalStateExecute(req)
+	return req.Api.editSecurityMonitoringSignalStateExecute(req)
 }
 
 // editSecurityMonitoringSignalStateExecute executes the request.
-func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.EditSecurityMonitoringSignalState")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.EditSecurityMonitoringSignalState")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -486,9 +486,9 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SecurityMonitoringApi Returns new SecurityMonitoringApi service.
-func SecurityMonitoringApi(client *common.APIClient) *SecurityMonitoringApiService {
-	return &SecurityMonitoringApiService{
+// NewSecurityMonitoringApi Returns NewSecurityMonitoringApi.
+func NewSecurityMonitoringApi(client *common.APIClient) *SecurityMonitoringApi {
+	return &SecurityMonitoringApi{
 		Client: client,
 	}
 }

@@ -17,7 +17,7 @@ func TestLogsList(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.LogsApi(Client(ctx))
+	api := datadog.NewLogsApi(Client(ctx))
 
 	now := tests.ClockFromContext(ctx).Now()
 	nanoNow := now.UnixNano()
@@ -139,7 +139,7 @@ func TestLogsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.LogsApi(Client(ctx))
+			api := datadog.NewLogsApi(Client(ctx))
 
 			_, httpresp, err := api.ListLogs(ctx, tc.Body)
 			openAPIErr, ok := err.(common.GenericOpenAPIError)

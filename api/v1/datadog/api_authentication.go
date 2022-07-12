@@ -14,43 +14,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AuthenticationApiService service type
-type AuthenticationApiService common.Service
+// AuthenticationApi service type
+type AuthenticationApi common.Service
 
 type apiValidateRequest struct {
-	ctx        _context.Context
-	ApiService *AuthenticationApiService
+	ctx _context.Context
+	Api *AuthenticationApi
 }
 
-func (a *AuthenticationApiService) buildValidateRequest(ctx _context.Context) (apiValidateRequest, error) {
+func (a *AuthenticationApi) buildValidateRequest(ctx _context.Context) (apiValidateRequest, error) {
 	req := apiValidateRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // Validate Validate API key.
 // Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
-func (a *AuthenticationApiService) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
+func (a *AuthenticationApi) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	req, err := a.buildValidateRequest(ctx)
 	if err != nil {
 		var localVarReturnValue AuthenticationValidationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.validateExecute(req)
+	return req.Api.validateExecute(req)
 }
 
 // validateExecute executes the request.
-func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
+func (a *AuthenticationApi) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuthenticationValidationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AuthenticationApiService.Validate")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AuthenticationApi.Validate")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -130,9 +130,9 @@ func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (Authen
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AuthenticationApi Returns new AuthenticationApi service.
-func AuthenticationApi(client *common.APIClient) *AuthenticationApiService {
-	return &AuthenticationApiService{
+// NewAuthenticationApi Returns NewAuthenticationApi.
+func NewAuthenticationApi(client *common.APIClient) *AuthenticationApi {
+	return &AuthenticationApi{
 		Client: client,
 	}
 }

@@ -51,7 +51,7 @@ func TestGCPCreate(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.GCPIntegrationApi(Client(ctx))
+	api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
@@ -70,7 +70,7 @@ func TestGCPListandDelete(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.GCPIntegrationApi(Client(ctx))
+	api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
@@ -110,7 +110,7 @@ func TestUpdateGCPAccount(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.GCPIntegrationApi(Client(ctx))
+	api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, testGCPUpdateAcct := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
@@ -149,7 +149,7 @@ func TestGCPList400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.GCPIntegrationApi(Client(ctx))
+	api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/gcp/error_400.json")
 	if err != nil {
@@ -186,7 +186,7 @@ func TestGCPListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.GCPIntegrationApi(Client(ctx))
+			api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.ListGCPIntegration(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -215,7 +215,7 @@ func TestGCPCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.GCPIntegrationApi(Client(ctx))
+			api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.CreateGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -244,7 +244,7 @@ func TestGCPDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.GCPIntegrationApi(Client(ctx))
+			api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -273,7 +273,7 @@ func TestGCPUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.GCPIntegrationApi(Client(ctx))
+			api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -285,7 +285,7 @@ func TestGCPUpdateErrors(t *testing.T) {
 }
 
 func uninstallGCPIntegration(ctx context.Context, t *testing.T, account datadog.GCPAccount) {
-	api := datadog.GCPIntegrationApi(Client(ctx))
+	api := datadog.NewGCPIntegrationApi(Client(ctx))
 
 	_, httpresp, err := api.DeleteGCPIntegration(ctx, account)
 	if httpresp.StatusCode != 200 || err != nil {

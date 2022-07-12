@@ -16,20 +16,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// SecurityMonitoringApiService service type
-type SecurityMonitoringApiService common.Service
+// SecurityMonitoringApi service type
+type SecurityMonitoringApi common.Service
 
 type apiCreateSecurityFilterRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityFilterCreateRequest
+	ctx  _context.Context
+	Api  *SecurityMonitoringApi
+	body *SecurityFilterCreateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
 	req := apiCreateSecurityFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -39,25 +39,25 @@ func (a *SecurityMonitoringApiService) buildCreateSecurityFilterRequest(ctx _con
 //
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
-func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSecurityFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSecurityFilterExecute(req)
+	return req.Api.createSecurityFilterExecute(req)
 }
 
 // createSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.CreateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -176,41 +176,41 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 }
 
 type apiCreateSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringRuleCreatePayload
+	ctx  _context.Context
+	Api  *SecurityMonitoringApi
+	body *SecurityMonitoringRuleCreatePayload
 }
 
-func (a *SecurityMonitoringApiService) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
 	req := apiCreateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateSecurityMonitoringRule Create a detection rule.
 // Create a detection rule.
-func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSecurityMonitoringRuleRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSecurityMonitoringRuleExecute(req)
+	return req.Api.createSecurityMonitoringRuleExecute(req)
 }
 
 // createSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.CreateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -321,13 +321,13 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 
 type apiDeleteSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	Api              *SecurityMonitoringApi
 	securityFilterId string
 }
 
-func (a *SecurityMonitoringApiService) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
 	req := apiDeleteSecurityFilterRequest{
-		ApiService:       a,
+		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -336,23 +336,23 @@ func (a *SecurityMonitoringApiService) buildDeleteSecurityFilterRequest(ctx _con
 
 // DeleteSecurityFilter Delete a security filter.
 // Delete a specific security filter.
-func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSecurityFilterRequest(ctx, securityFilterId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteSecurityFilterExecute(req)
+	return req.Api.deleteSecurityFilterExecute(req)
 }
 
 // deleteSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.DeleteSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityFilter")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -448,39 +448,39 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 }
 
 type apiDeleteSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ctx    _context.Context
+	Api    *SecurityMonitoringApi
+	ruleId string
 }
 
-func (a *SecurityMonitoringApiService) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
 	req := apiDeleteSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+		Api:    a,
+		ctx:    ctx,
+		ruleId: ruleId,
 	}
 	return req, nil
 }
 
 // DeleteSecurityMonitoringRule Delete an existing rule.
 // Delete an existing rule. Default rules cannot be deleted.
-func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSecurityMonitoringRuleRequest(ctx, ruleId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteSecurityMonitoringRuleExecute(req)
+	return req.Api.deleteSecurityMonitoringRuleExecute(req)
 }
 
 // deleteSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityMonitoringRule")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -577,13 +577,13 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 
 type apiGetSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	Api              *SecurityMonitoringApi
 	securityFilterId string
 }
 
-func (a *SecurityMonitoringApiService) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
 	req := apiGetSecurityFilterRequest{
-		ApiService:       a,
+		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -595,25 +595,25 @@ func (a *SecurityMonitoringApiService) buildGetSecurityFilterRequest(ctx _contex
 //
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
-func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSecurityFilterRequest(ctx, securityFilterId)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSecurityFilterExecute(req)
+	return req.Api.getSecurityFilterExecute(req)
 }
 
 // getSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.GetSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -718,41 +718,41 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 }
 
 type apiGetSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ctx    _context.Context
+	Api    *SecurityMonitoringApi
+	ruleId string
 }
 
-func (a *SecurityMonitoringApiService) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
 	req := apiGetSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+		Api:    a,
+		ctx:    ctx,
+		ruleId: ruleId,
 	}
 	return req, nil
 }
 
 // GetSecurityMonitoringRule Get a rule's details.
 // Get a rule's details.
-func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSecurityMonitoringRuleRequest(ctx, ruleId)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSecurityMonitoringRuleExecute(req)
+	return req.Api.getSecurityMonitoringRuleExecute(req)
 }
 
 // getSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.GetSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -848,39 +848,39 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 }
 
 type apiListSecurityFiltersRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ctx _context.Context
+	Api *SecurityMonitoringApi
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
 	req := apiListSecurityFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
-func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityFiltersRequest(ctx)
 	if err != nil {
 		var localVarReturnValue SecurityFiltersResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityFiltersExecute(req)
+	return req.Api.listSecurityFiltersExecute(req)
 }
 
 // listSecurityFiltersExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -976,7 +976,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	Api        *SecurityMonitoringApi
 	pageSize   *int64
 	pageNumber *int64
 }
@@ -1005,10 +1005,10 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
 	req := apiListSecurityMonitoringRulesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1024,25 +1024,25 @@ func (a *SecurityMonitoringApiService) buildListSecurityMonitoringRulesRequest(c
 
 // ListSecurityMonitoringRules List rules.
 // List rules.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityMonitoringRulesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringListRulesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityMonitoringRulesExecute(req)
+	return req.Api.listSecurityMonitoringRulesExecute(req)
 }
 
 // listSecurityMonitoringRulesExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringListRulesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityMonitoringRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringRules")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1144,7 +1144,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 
 type apiListSecurityMonitoringSignalsRequest struct {
 	ctx         _context.Context
-	ApiService  *SecurityMonitoringApiService
+	Api         *SecurityMonitoringApi
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -1205,10 +1205,10 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1230,18 +1230,18 @@ func (a *SecurityMonitoringApiService) buildListSecurityMonitoringSignalsRequest
 // The list endpoint returns security signals that match a search query.
 // Both this endpoint and the POST endpoint can be used interchangeably when listing
 // security signals.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityMonitoringSignalsExecute(req)
+	return req.Api.listSecurityMonitoringSignalsExecute(req)
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1260,7 +1260,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 				break
 			}
 
-			resp, _, err := req.ApiService.listSecurityMonitoringSignalsExecute(req)
+			resp, _, err := req.Api.listSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -1302,14 +1302,14 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 }
 
 // listSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1431,9 +1431,9 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 }
 
 type apiSearchSecurityMonitoringSignalsRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringSignalListRequest
+	ctx  _context.Context
+	Api  *SecurityMonitoringApi
+	body *SecurityMonitoringSignalListRequest
 }
 
 // SearchSecurityMonitoringSignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringSignals.
@@ -1453,10 +1453,10 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
+func (a *SecurityMonitoringApi) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
 	req := apiSearchSecurityMonitoringSignalsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1473,18 +1473,18 @@ func (a *SecurityMonitoringApiService) buildSearchSecurityMonitoringSignalsReque
 // Returns security signals that match a search query.
 // Both this endpoint and the GET endpoint can be used interchangeably for listing
 // security signals.
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+	return req.Api.searchSecurityMonitoringSignalsExecute(req)
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1509,7 +1509,7 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 				break
 			}
 
-			resp, _, err := req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+			resp, _, err := req.Api.searchSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -1551,14 +1551,14 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 }
 
 // searchSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.SearchSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1666,14 +1666,14 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 
 type apiUpdateSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	Api              *SecurityMonitoringApi
 	securityFilterId string
 	body             *SecurityFilterUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
 	req := apiUpdateSecurityFilterRequest{
-		ApiService:       a,
+		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 		body:             &body,
@@ -1684,25 +1684,25 @@ func (a *SecurityMonitoringApiService) buildUpdateSecurityFilterRequest(ctx _con
 // UpdateSecurityFilter Update a security filter.
 // Update a specific security filter.
 // Returns the security filter object when the request is successful.
-func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSecurityFilterRequest(ctx, securityFilterId, body)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSecurityFilterExecute(req)
+	return req.Api.updateSecurityFilterExecute(req)
 }
 
 // updateSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.UpdateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1831,18 +1831,18 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 }
 
 type apiUpdateSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
-	body       *SecurityMonitoringRuleUpdatePayload
+	ctx    _context.Context
+	Api    *SecurityMonitoringApi
+	ruleId string
+	body   *SecurityMonitoringRuleUpdatePayload
 }
 
-func (a *SecurityMonitoringApiService) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
 	req := apiUpdateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
-		body:       &body,
+		Api:    a,
+		ctx:    ctx,
+		ruleId: ruleId,
+		body:   &body,
 	}
 	return req, nil
 }
@@ -1851,25 +1851,25 @@ func (a *SecurityMonitoringApiService) buildUpdateSecurityMonitoringRuleRequest(
 // Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
 // must be included. For example, when modifying a query all queries must be included.
 // Default rules can only be updated to be enabled and to change notifications.
-func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSecurityMonitoringRuleRequest(ctx, ruleId, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSecurityMonitoringRuleExecute(req)
+	return req.Api.updateSecurityMonitoringRuleExecute(req)
 }
 
 // updateSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1997,9 +1997,9 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SecurityMonitoringApi Returns new SecurityMonitoringApi service.
-func SecurityMonitoringApi(client *common.APIClient) *SecurityMonitoringApiService {
-	return &SecurityMonitoringApiService{
+// NewSecurityMonitoringApi Returns NewSecurityMonitoringApi.
+func NewSecurityMonitoringApi(client *common.APIClient) *SecurityMonitoringApi {
+	return &SecurityMonitoringApi{
 		Client: client,
 	}
 }

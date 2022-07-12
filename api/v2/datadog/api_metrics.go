@@ -15,20 +15,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// MetricsApiService service type
-type MetricsApiService common.Service
+// MetricsApi service type
+type MetricsApi common.Service
 
 type apiCreateBulkTagsMetricsConfigurationRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigCreateRequest
+	ctx  _context.Context
+	Api  *MetricsApi
+	body *MetricBulkTagConfigCreateRequest
 }
 
-func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
+func (a *MetricsApi) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
 	req := apiCreateBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -40,25 +40,25 @@ func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _
 // If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
 // expect deterministic ordering of concurrent calls.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue MetricBulkTagConfigResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createBulkTagsMetricsConfigurationExecute(req)
+	return req.Api.createBulkTagsMetricsConfigurationExecute(req)
 }
 
 // createBulkTagsMetricsConfigurationExecute executes the request.
-func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.CreateBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.CreateBulkTagsMetricsConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -178,14 +178,14 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 
 type apiCreateTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 	body       *MetricTagConfigurationCreateRequest
 }
 
-func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
+func (a *MetricsApi) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
 	req := apiCreateTagConfigurationRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -198,25 +198,25 @@ func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Cont
 // Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
 // on any count, rate, or gauge metric.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createTagConfigurationExecute(req)
+	return req.Api.createTagConfigurationExecute(req)
 }
 
 // createTagConfigurationExecute executes the request.
-func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.CreateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.CreateTagConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -336,16 +336,16 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 }
 
 type apiDeleteBulkTagsMetricsConfigurationRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigDeleteRequest
+	ctx  _context.Context
+	Api  *MetricsApi
+	body *MetricBulkTagConfigDeleteRequest
 }
 
-func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
+func (a *MetricsApi) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
 	req := apiDeleteBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -355,25 +355,25 @@ func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _
 // Metrics are selected by passing a metric name prefix.
 // Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue MetricBulkTagConfigResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteBulkTagsMetricsConfigurationExecute(req)
+	return req.Api.deleteBulkTagsMetricsConfigurationExecute(req)
 }
 
 // deleteBulkTagsMetricsConfigurationExecute executes the request.
-func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.DeleteBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.DeleteBulkTagsMetricsConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -493,13 +493,13 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 
 type apiDeleteTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 }
 
-func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
+func (a *MetricsApi) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
 	req := apiDeleteTagConfigurationRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -509,23 +509,23 @@ func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Cont
 // DeleteTagConfiguration Delete a tag configuration.
 // Deletes a metric's tag configuration. Can only be used with application
 // keys from users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
+func (a *MetricsApi) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteTagConfigurationRequest(ctx, metricName)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteTagConfigurationExecute(req)
+	return req.Api.deleteTagConfigurationExecute(req)
 }
 
 // deleteTagConfigurationExecute executes the request.
-func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
+func (a *MetricsApi) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.DeleteTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.DeleteTagConfiguration")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -622,7 +622,7 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 
 type apiEstimateMetricsOutputSeriesRequest struct {
 	ctx                   _context.Context
-	ApiService            *MetricsApiService
+	Api                   *MetricsApi
 	metricName            string
 	filterGroups          *string
 	filterHoursAgo        *int32
@@ -676,9 +676,9 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 	return r
 }
 
-func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
+func (a *MetricsApi) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
 	req := apiEstimateMetricsOutputSeriesRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -699,25 +699,25 @@ func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context
 
 // EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
 // Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
-func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEstimateMetricsOutputSeriesRequest(ctx, metricName, o...)
 	if err != nil {
 		var localVarReturnValue MetricEstimateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.estimateMetricsOutputSeriesExecute(req)
+	return req.Api.estimateMetricsOutputSeriesExecute(req)
 }
 
 // estimateMetricsOutputSeriesExecute executes the request.
-func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricEstimateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.EstimateMetricsOutputSeries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.EstimateMetricsOutputSeries")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -847,13 +847,13 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 
 type apiListTagConfigurationByNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 }
 
-func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
+func (a *MetricsApi) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
 	req := apiListTagConfigurationByNameRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -862,25 +862,25 @@ func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.
 
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
-func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationByNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagConfigurationByNameExecute(req)
+	return req.Api.listTagConfigurationByNameExecute(req)
 }
 
 // listTagConfigurationByNameExecute executes the request.
-func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagConfigurationByName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagConfigurationByName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -986,7 +986,7 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 
 type apiListTagConfigurationsRequest struct {
 	ctx                      _context.Context
-	ApiService               *MetricsApiService
+	Api                      *MetricsApi
 	filterConfigured         *bool
 	filterTagsConfigured     *string
 	filterMetricType         *MetricTagConfigurationMetricTypes
@@ -1047,10 +1047,10 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 	return r
 }
 
-func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
+func (a *MetricsApi) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
 	req := apiListTagConfigurationsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -1071,25 +1071,25 @@ func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Conte
 // ListTagConfigurations List tag configurations.
 // Returns all configured count/gauge/rate/distribution metric names
 // (with additional filters if specified).
-func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagConfigurationsExecute(req)
+	return req.Api.listTagConfigurationsExecute(req)
 }
 
 // listTagConfigurationsExecute executes the request.
-func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagConfigurations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagConfigurations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1212,13 +1212,13 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 
 type apiListTagsByMetricNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 }
 
-func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
+func (a *MetricsApi) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
 	req := apiListTagsByMetricNameRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1227,25 +1227,25 @@ func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Contex
 
 // ListTagsByMetricName List tags by metric name.
 // View indexed tag key-value pairs for a given metric name.
-func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagsByMetricNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricAllTagsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagsByMetricNameExecute(req)
+	return req.Api.listTagsByMetricNameExecute(req)
 }
 
 // listTagsByMetricNameExecute executes the request.
-func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricAllTagsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagsByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagsByMetricName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1360,13 +1360,13 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 
 type apiListVolumesByMetricNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 }
 
-func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
+func (a *MetricsApi) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
 	req := apiListVolumesByMetricNameRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1377,25 +1377,25 @@ func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Con
 // View distinct metrics volumes for the given metric name.
 //
 // Custom metrics generated in-app from other products will return `null` for ingested volumes.
-func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListVolumesByMetricNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricVolumesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listVolumesByMetricNameExecute(req)
+	return req.Api.listVolumesByMetricNameExecute(req)
 }
 
 // listVolumesByMetricNameExecute executes the request.
-func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricVolumesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListVolumesByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListVolumesByMetricName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1510,7 +1510,7 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 
 type apiSubmitMetricsRequest struct {
 	ctx             _context.Context
-	ApiService      *MetricsApiService
+	Api             *MetricsApi
 	body            *MetricPayload
 	contentEncoding *MetricContentEncoding
 }
@@ -1532,11 +1532,11 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 	return r
 }
 
-func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
+func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -1560,25 +1560,25 @@ func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body
 // - 20 bytes for the metric names
 // - 50 bytes for the timeseries
 // - The full payload is approximately 100 bytes.
-func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitMetricsExecute(req)
+	return req.Api.submitMetricsExecute(req)
 }
 
 // submitMetricsExecute executes the request.
-func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.SubmitMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.SubmitMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1697,14 +1697,14 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 
 type apiUpdateTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
+	Api        *MetricsApi
 	metricName string
 	body       *MetricTagConfigurationUpdateRequest
 }
 
-func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
+func (a *MetricsApi) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
 	req := apiUpdateTagConfigurationRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -1716,25 +1716,25 @@ func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Cont
 // Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
 // of a count, rate, or gauge metric.
 // Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateTagConfigurationExecute(req)
+	return req.Api.updateTagConfigurationExecute(req)
 }
 
 // updateTagConfigurationExecute executes the request.
-func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.UpdateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.UpdateTagConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1853,9 +1853,9 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// MetricsApi Returns new MetricsApi service.
-func MetricsApi(client *common.APIClient) *MetricsApiService {
-	return &MetricsApiService{
+// NewMetricsApi Returns NewMetricsApi.
+func NewMetricsApi(client *common.APIClient) *MetricsApi {
+	return &MetricsApi{
 		Client: client,
 	}
 }

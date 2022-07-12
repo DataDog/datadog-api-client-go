@@ -47,7 +47,7 @@ func TestSlackIntegrationGetAllChannelsMocked(t *testing.T) {
 	var expected []datadog.SlackIntegrationChannel
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannels(ctx, staticAccountName)
 	if err != nil {
 		t.Errorf("Failed to get slack integration all channels: %v", err)
@@ -74,7 +74,7 @@ func TestSlackIntegrationGetAllChannelsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SlackIntegrationApi(Client(ctx))
+			api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			_, httpresp, err := api.GetSlackIntegrationChannels(ctx, uniqueAccountName)
@@ -112,7 +112,7 @@ func TestSlackIntegrationCreateChannelMocked(t *testing.T) {
 	var expected datadog.SlackIntegrationChannel
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 	channelPayload := datadog.NewSlackIntegrationChannel()
 	channelPayload.SetName(staticChannelName)
@@ -149,7 +149,7 @@ func TestSlackIntegrationCreateChannelErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SlackIntegrationApi(Client(ctx))
+			api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			_, httpresp, err := api.CreateSlackIntegrationChannel(ctx, uniqueAccountName, tc.Body)
@@ -166,7 +166,7 @@ func TestSlackIntegrationCreateChannel404Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 	data, err := tests.ReadFixture("fixtures/slack-integration/error_404.json")
 	if err != nil {
@@ -213,7 +213,7 @@ func TestSlackIntegrationGetChannelMocked(t *testing.T) {
 	var expected datadog.SlackIntegrationChannel
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannel(ctx, staticAccountName, staticChannelName)
 	if err != nil {
 		t.Errorf("Failed to get slack integration channel: %v", err)
@@ -239,7 +239,7 @@ func TestSlackIntegrationGetChannelErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SlackIntegrationApi(Client(ctx))
+			api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)
@@ -257,7 +257,7 @@ func TestSlackIntegrationGetChannel404Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 	data, err := tests.ReadFixture("fixtures/slack-integration/error_404.json")
 	if err != nil {
@@ -304,7 +304,7 @@ func TestSlackIntegrationUpdateChannelMocked(t *testing.T) {
 	var expected datadog.SlackIntegrationChannel
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 	channelPayload := datadog.NewSlackIntegrationChannel()
 	channelPayload.SetName(staticChannelName)
 	channelPayload.Display = &datadog.SlackIntegrationChannelDisplay{
@@ -340,7 +340,7 @@ func TestSlackIntegrationUpdateChannelErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SlackIntegrationApi(Client(ctx))
+			api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)
@@ -358,7 +358,7 @@ func TestSlackIntegrationUpdateChannel404Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 	data, err := tests.ReadFixture("fixtures/slack-integration/error_404.json")
 	if err != nil {
@@ -392,7 +392,7 @@ func TestSlackIntegrationRemoveChannelMocked(t *testing.T) {
 		Delete(fmt.Sprintf("/api/v1/integration/slack/configuration/accounts/%s/channels/%s", staticAccountName, staticChannelName)).
 		Reply(204)
 
-	api := datadog.SlackIntegrationApi(Client(ctx))
+	api := datadog.NewSlackIntegrationApi(Client(ctx))
 	httpResp, err := api.RemoveSlackIntegrationChannel(ctx, staticAccountName, staticChannelName)
 	if err != nil {
 		t.Errorf("Failed to remove slack integration channel: %v", err)
@@ -417,7 +417,7 @@ func TestSlackIntegrationRemoveChannelErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.SlackIntegrationApi(Client(ctx))
+			api := datadog.NewSlackIntegrationApi(Client(ctx))
 
 			uniqueAccountName := *tests.UniqueEntityName(ctx, t)
 			uniqueChannelName := *tests.UniqueEntityName(ctx, t)

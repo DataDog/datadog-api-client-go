@@ -14,20 +14,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ServiceChecksApiService service type
-type ServiceChecksApiService common.Service
+// ServiceChecksApi service type
+type ServiceChecksApi common.Service
 
 type apiSubmitServiceCheckRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceChecksApiService
-	body       *[]ServiceCheck
+	ctx  _context.Context
+	Api  *ServiceChecksApi
+	body *[]ServiceCheck
 }
 
-func (a *ServiceChecksApiService) buildSubmitServiceCheckRequest(ctx _context.Context, body []ServiceCheck) (apiSubmitServiceCheckRequest, error) {
+func (a *ServiceChecksApi) buildSubmitServiceCheckRequest(ctx _context.Context, body []ServiceCheck) (apiSubmitServiceCheckRequest, error) {
 	req := apiSubmitServiceCheckRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -38,25 +38,25 @@ func (a *ServiceChecksApiService) buildSubmitServiceCheckRequest(ctx _context.Co
 // **Notes**:
 // - A valid API key is required.
 // - Service checks can be submitted up to 10 minutes in the past.
-func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *ServiceChecksApi) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitServiceCheckRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitServiceCheckExecute(req)
+	return req.Api.submitServiceCheckExecute(req)
 }
 
 // submitServiceCheckExecute executes the request.
-func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *ServiceChecksApi) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceChecksApiService.SubmitServiceCheck")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceChecksApi.SubmitServiceCheck")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -169,9 +169,9 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ServiceChecksApi Returns new ServiceChecksApi service.
-func ServiceChecksApi(client *common.APIClient) *ServiceChecksApiService {
-	return &ServiceChecksApiService{
+// NewServiceChecksApi Returns NewServiceChecksApi.
+func NewServiceChecksApi(client *common.APIClient) *ServiceChecksApi {
+	return &ServiceChecksApi{
 		Client: client,
 	}
 }

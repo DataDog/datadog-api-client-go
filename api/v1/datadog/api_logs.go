@@ -14,20 +14,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// LogsApiService service type
-type LogsApiService common.Service
+// LogsApi service type
+type LogsApi common.Service
 
 type apiListLogsRequest struct {
-	ctx        _context.Context
-	ApiService *LogsApiService
-	body       *LogsListRequest
+	ctx  _context.Context
+	Api  *LogsApi
+	body *LogsListRequest
 }
 
-func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, body LogsListRequest) (apiListLogsRequest, error) {
+func (a *LogsApi) buildListLogsRequest(ctx _context.Context, body LogsListRequest) (apiListLogsRequest, error) {
 	req := apiListLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -42,25 +42,25 @@ func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, body LogsLis
 //
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
-func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
+func (a *LogsApi) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListLogsRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue LogsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listLogsExecute(req)
+	return req.Api.listLogsExecute(req)
 }
 
 // listLogsExecute executes the request.
-func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
+func (a *LogsApi) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue LogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApiService.ListLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApi.ListLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -171,7 +171,7 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 
 type apiSubmitLogRequest struct {
 	ctx             _context.Context
-	ApiService      *LogsApiService
+	Api             *LogsApi
 	body            *[]HTTPLogItem
 	contentEncoding *ContentEncoding
 	ddtags          *string
@@ -201,11 +201,11 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 	return r
 }
 
-func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
+func (a *LogsApi) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
 	req := apiSubmitLogRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -239,25 +239,25 @@ func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTP
 // - 403: Permission issue (likely using an invalid API Key)
 // - 413: Payload too large (batch is above 5MB uncompressed)
 // - 5xx: Internal error, request should be retried after some time
-func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
+func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildSubmitLogRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitLogExecute(req)
+	return req.Api.submitLogExecute(req)
 }
 
 // submitLogExecute executes the request.
-func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
+func (a *LogsApi) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApiService.SubmitLog")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApi.SubmitLog")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -350,9 +350,9 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// LogsApi Returns new LogsApi service.
-func LogsApi(client *common.APIClient) *LogsApiService {
-	return &LogsApiService{
+// NewLogsApi Returns NewLogsApi.
+func NewLogsApi(client *common.APIClient) *LogsApi {
+	return &LogsApi{
 		Client: client,
 	}
 }

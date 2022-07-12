@@ -14,20 +14,20 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AzureIntegrationApiService service type
-type AzureIntegrationApiService common.Service
+// AzureIntegrationApi service type
+type AzureIntegrationApi common.Service
 
 type apiCreateAzureIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	ctx  _context.Context
+	Api  *AzureIntegrationApi
+	body *AzureAccount
 }
 
-func (a *AzureIntegrationApiService) buildCreateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiCreateAzureIntegrationRequest, error) {
+func (a *AzureIntegrationApi) buildCreateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiCreateAzureIntegrationRequest, error) {
 	req := apiCreateAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -40,25 +40,25 @@ func (a *AzureIntegrationApiService) buildCreateAzureIntegrationRequest(ctx _con
 //
 // Using the `PUT` method updates your integration configuration by replacing your
 // current configuration with the new one sent to your Datadog organization.
-func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateAzureIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAzureIntegrationExecute(req)
+	return req.Api.createAzureIntegrationExecute(req)
 }
 
 // createAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.CreateAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.CreateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -168,41 +168,41 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 }
 
 type apiDeleteAzureIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	ctx  _context.Context
+	Api  *AzureIntegrationApi
+	body *AzureAccount
 }
 
-func (a *AzureIntegrationApiService) buildDeleteAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiDeleteAzureIntegrationRequest, error) {
+func (a *AzureIntegrationApi) buildDeleteAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiDeleteAzureIntegrationRequest, error) {
 	req := apiDeleteAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAzureIntegration Delete an Azure integration.
 // Delete a given Datadog-Azure integration from your Datadog account.
-func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) DeleteAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAzureIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAzureIntegrationExecute(req)
+	return req.Api.deleteAzureIntegrationExecute(req)
 }
 
 // deleteAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.DeleteAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.DeleteAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -312,39 +312,39 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 }
 
 type apiListAzureIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *AzureIntegrationApiService
+	ctx _context.Context
+	Api *AzureIntegrationApi
 }
 
-func (a *AzureIntegrationApiService) buildListAzureIntegrationRequest(ctx _context.Context) (apiListAzureIntegrationRequest, error) {
+func (a *AzureIntegrationApi) buildListAzureIntegrationRequest(ctx _context.Context) (apiListAzureIntegrationRequest, error) {
 	req := apiListAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListAzureIntegration List all Azure integrations.
 // List all Datadog-Azure integrations configured in your Datadog account.
-func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
 	req, err := a.buildListAzureIntegrationRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []AzureAccount
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAzureIntegrationExecute(req)
+	return req.Api.listAzureIntegrationExecute(req)
 }
 
 // listAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureIntegrationRequest) ([]AzureAccount, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrationRequest) ([]AzureAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []AzureAccount
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.ListAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.ListAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -448,41 +448,41 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 }
 
 type apiUpdateAzureHostFiltersRequest struct {
-	ctx        _context.Context
-	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	ctx  _context.Context
+	Api  *AzureIntegrationApi
+	body *AzureAccount
 }
 
-func (a *AzureIntegrationApiService) buildUpdateAzureHostFiltersRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureHostFiltersRequest, error) {
+func (a *AzureIntegrationApi) buildUpdateAzureHostFiltersRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureHostFiltersRequest, error) {
 	req := apiUpdateAzureHostFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // UpdateAzureHostFilters Update Azure integration host filters.
 // Update the defined list of host filters for a given Datadog-Azure integration.
-func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) UpdateAzureHostFilters(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAzureHostFiltersRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAzureHostFiltersExecute(req)
+	return req.Api.updateAzureHostFiltersExecute(req)
 }
 
 // updateAzureHostFiltersExecute executes the request.
-func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAzureHostFiltersRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHostFiltersRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.UpdateAzureHostFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.UpdateAzureHostFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -592,16 +592,16 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 }
 
 type apiUpdateAzureIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	ctx  _context.Context
+	Api  *AzureIntegrationApi
+	body *AzureAccount
 }
 
-func (a *AzureIntegrationApiService) buildUpdateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureIntegrationRequest, error) {
+func (a *AzureIntegrationApi) buildUpdateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureIntegrationRequest, error) {
 	req := apiUpdateAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -610,25 +610,25 @@ func (a *AzureIntegrationApiService) buildUpdateAzureIntegrationRequest(ctx _con
 // Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
 // Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
 // use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
-func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAzureIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAzureIntegrationExecute(req)
+	return req.Api.updateAzureIntegrationExecute(req)
 }
 
 // updateAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AzureIntegrationApi) updateAzureIntegrationExecute(r apiUpdateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.UpdateAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.UpdateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -737,9 +737,9 @@ func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAz
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AzureIntegrationApi Returns new AzureIntegrationApi service.
-func AzureIntegrationApi(client *common.APIClient) *AzureIntegrationApiService {
-	return &AzureIntegrationApiService{
+// NewAzureIntegrationApi Returns NewAzureIntegrationApi.
+func NewAzureIntegrationApi(client *common.APIClient) *AzureIntegrationApi {
+	return &AzureIntegrationApi{
 		Client: client,
 	}
 }

@@ -42,7 +42,7 @@ func TestUsageAnalyzedLogs(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageAnalyzedLogs(ctx, startHr, *datadog.NewGetUsageAnalyzedLogsOptionalParameters().WithEndHr(endHr))
@@ -59,7 +59,7 @@ func TestUsageFargate(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageFargate(ctx, startHr, *datadog.NewGetUsageFargateOptionalParameters().WithEndHr(endHr))
@@ -76,7 +76,7 @@ func TestUsageHosts(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageHosts(ctx, startHr, *datadog.NewGetUsageHostsOptionalParameters().WithEndHr(endHr))
@@ -93,7 +93,7 @@ func TestUsageLogs(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageLogs(ctx, startHr, *datadog.NewGetUsageLogsOptionalParameters().WithEndHr(endHr))
@@ -110,7 +110,7 @@ func TestUsageSynthetics(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageSynthetics(ctx, startHr, *datadog.NewGetUsageSyntheticsOptionalParameters().WithEndHr(endHr))
@@ -127,7 +127,7 @@ func TestUsageSyntheticsAPI(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageSyntheticsAPI(ctx, startHr, *datadog.NewGetUsageSyntheticsAPIOptionalParameters().WithEndHr(endHr))
@@ -144,7 +144,7 @@ func TestUsageSyntheticsBrowser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageSyntheticsBrowser(ctx, startHr, *datadog.NewGetUsageSyntheticsBrowserOptionalParameters().WithEndHr(endHr))
@@ -161,7 +161,7 @@ func TestUsageTimeseries(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageTimeseries(ctx, startHr, *datadog.NewGetUsageTimeseriesOptionalParameters().WithEndHr(endHr))
@@ -178,7 +178,7 @@ func TestUsageTopAvgMetrics(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	usage, httpresp, err := api.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsOptionalParameters().WithMonth(tests.ClockFromContext(ctx).Now()))
 	if err != nil {
@@ -194,7 +194,7 @@ func TestUsageIndexedSpans(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageIndexedSpans(ctx, startHr, *datadog.NewGetUsageIndexedSpansOptionalParameters().WithEndHr(endHr))
@@ -211,7 +211,7 @@ func TestUsageLogsByIndex(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageLogsByIndex(ctx, startHr, *datadog.NewGetUsageLogsByIndexOptionalParameters().WithEndHr(endHr))
@@ -228,7 +228,7 @@ func TestUsageLambda(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageLambda(ctx, startHr, *datadog.NewGetUsageLambdaOptionalParameters().WithEndHr(endHr))
@@ -245,7 +245,7 @@ func TestUsageNetworkHosts(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageNetworkHosts(ctx, startHr, *datadog.NewGetUsageNetworkHostsOptionalParameters().WithEndHr(endHr))
@@ -262,7 +262,7 @@ func TestUsageNetworkFlows(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageNetworkFlows(ctx, startHr, *datadog.NewGetUsageNetworkFlowsOptionalParameters().WithEndHr(endHr))
@@ -279,7 +279,7 @@ func TestUsageRumSessions(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr))
@@ -296,7 +296,7 @@ func TestUsageMobileRumSessions(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType("mobile"))
@@ -313,7 +313,7 @@ func TestUsageSNMP(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	usage, httpresp, err := api.GetUsageSNMP(ctx, startHr, *datadog.NewGetUsageSNMPOptionalParameters().WithEndHr(endHr))
@@ -330,7 +330,7 @@ func TestUsageProfiling(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 
@@ -348,7 +348,7 @@ func TestUsageIngestedSpans(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 
@@ -366,7 +366,7 @@ func TestUsageIncidentManagement(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 
@@ -384,7 +384,7 @@ func TestUsageLogsByRetention(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 
@@ -426,7 +426,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	var expected datadog.UsageBillableSummaryResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageBillableSummary(ctx)
 	if err != nil {
 		t.Errorf("Failed to get Billable Usage Summary: %v", err)
@@ -464,7 +464,7 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	reportID := currentDate.Format("2006-01-02")                       // this is only a date format example YYYY-MM-DD
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, reportID)
 	if err != nil {
 		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
@@ -488,7 +488,7 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	reportID := currentDate.Format("2006-01-02")                       // this is only a date format example YYYY-MM-DD
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, reportID)
 	if err != nil {
 		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
@@ -508,7 +508,7 @@ func TestDailyCustomReports(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetDailyCustomReports", true)
 	usage, httpresp, err := api.GetDailyCustomReports(ctx)
@@ -530,7 +530,7 @@ func TestMonthlyCustomReports(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetMonthlyCustomReports", true)
 	usage, httpresp, err := api.GetMonthlyCustomReports(ctx)
@@ -581,7 +581,7 @@ func TestUsageSummary(t *testing.T) {
 	var expected datadog.UsageSummaryResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageSummary(ctx, startMonth, *datadog.NewGetUsageSummaryOptionalParameters().WithEndMonth(endMonth).WithIncludeOrgDetails(includeOrgDetails))
 	if err != nil {
 		t.Errorf("Failed to get Usage Summary: %v", err)
@@ -656,7 +656,7 @@ func TestUsageAttribution(t *testing.T) {
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
 
 	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageAttribution(ctx, startMonth, "*")
 	if err != nil {
 		t.Errorf("Error getting Usage Attribution: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
@@ -684,7 +684,7 @@ func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageAnalyzedLogs(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -712,7 +712,7 @@ func TestUsageGetHostsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageHosts(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -740,7 +740,7 @@ func TestUsageGetLogsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageLogs(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -768,7 +768,7 @@ func TestUsageGetLogsByIndexErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageLogsByIndex(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -796,7 +796,7 @@ func TestUsageGetSNMPErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageSNMP(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -824,7 +824,7 @@ func TestUsageGetBillableSummaryErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageBillableSummary(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -840,7 +840,7 @@ func TestUsageGetBillableSummary400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
 	if err != nil {
@@ -877,7 +877,7 @@ func TestUsageTimeSeriesErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageTimeseries(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -905,7 +905,7 @@ func TestUsageTopAvgMetricsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsOptionalParameters().WithMonth(tests.ClockFromContext(ctx).Now().AddDate(-2, 0, 0)))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -933,7 +933,7 @@ func TestUsageIndexedSpansErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageIndexedSpans(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -961,7 +961,7 @@ func TestUsageSyntheticsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageSynthetics(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -989,7 +989,7 @@ func TestUsageSyntheticsAPIErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageSyntheticsAPI(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1017,7 +1017,7 @@ func TestUsageSyntheticsBrowserErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageSyntheticsBrowser(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1045,7 +1045,7 @@ func TestUsageFargateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageFargate(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1073,7 +1073,7 @@ func TestUsageLambdaErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageLambda(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1101,7 +1101,7 @@ func TestUsageRumSessionErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageRumSessions(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1118,7 +1118,7 @@ func TestUsageRumSessionBadType(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	startHr, endHr := getStartEndHr(ctx)
 	_, httpresp, err := api.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType("invalid"))
@@ -1145,7 +1145,7 @@ func TestUsageNetworkHostsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageNetworkHosts(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1173,7 +1173,7 @@ func TestUsageNetworkFlowsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageNetworkFlows(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1202,7 +1202,7 @@ func TestUsageSummaryErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageSummary(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1218,7 +1218,7 @@ func TestUsageGetSummary400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.UsageMeteringApi(Client(ctx))
+	api := datadog.NewUsageMeteringApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/usage/error_400.json")
 	if err != nil {
@@ -1258,7 +1258,7 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, "2010-01-01")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1286,7 +1286,7 @@ func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
 			_, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, "whatever")
@@ -1314,7 +1314,7 @@ func TestGetSpecifiedMonthlyCustomReports404Error(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
 			_, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, "2010-01-01")
@@ -1342,7 +1342,7 @@ func TestGetDailyCustomReportsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetDailyCustomReports", true)
 			_, httpresp, err := api.GetDailyCustomReports(ctx)
@@ -1370,7 +1370,7 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetMonthlyCustomReports", true)
 			_, httpresp, err := api.GetMonthlyCustomReports(ctx)
@@ -1399,7 +1399,7 @@ func TestGetUsageProfilingErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetUsageProfiling(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1427,7 +1427,7 @@ func TestGetIngestedSpansErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetIngestedSpans(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1455,7 +1455,7 @@ func TestGetIncidentManagementErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetIncidentManagement(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -1482,7 +1482,7 @@ func TestGetUsageAttributionErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.UsageMeteringApi(Client(ctx))
+			api := datadog.NewUsageMeteringApi(Client(ctx))
 
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
 			_, httpresp, err := api.GetUsageAttribution(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0), "*")

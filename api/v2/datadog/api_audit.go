@@ -15,12 +15,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AuditApiService service type
-type AuditApiService common.Service
+// AuditApi service type
+type AuditApi common.Service
 
 type apiListAuditLogsRequest struct {
 	ctx         _context.Context
-	ApiService  *AuditApiService
+	Api         *AuditApi
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -81,10 +81,10 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 	return r
 }
 
-func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
+func (a *AuditApi) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
 	req := apiListAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -109,18 +109,18 @@ func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...L
 // Use this endpoint to see your latest Audit Logs events.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuditLogsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuditLogsEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAuditLogsExecute(req)
+	return req.Api.listAuditLogsExecute(req)
 }
 
 // ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
-func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -139,7 +139,7 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 				break
 			}
 
-			resp, _, err := req.ApiService.listAuditLogsExecute(req)
+			resp, _, err := req.Api.listAuditLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -181,14 +181,14 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 }
 
 // listAuditLogsExecute executes the request.
-func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApiService.ListAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApi.ListAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -310,9 +310,9 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 }
 
 type apiSearchAuditLogsRequest struct {
-	ctx        _context.Context
-	ApiService *AuditApiService
-	body       *AuditLogsSearchEventsRequest
+	ctx  _context.Context
+	Api  *AuditApi
+	body *AuditLogsSearchEventsRequest
 }
 
 // SearchAuditLogsOptionalParameters holds optional parameters for SearchAuditLogs.
@@ -332,10 +332,10 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 	return r
 }
 
-func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
+func (a *AuditApi) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
 	req := apiSearchAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -355,18 +355,18 @@ func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ..
 // Use this endpoint to build complex Audit Logs events filtering and search.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchAuditLogsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuditLogsEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchAuditLogsExecute(req)
+	return req.Api.searchAuditLogsExecute(req)
 }
 
 // SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
-func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -391,7 +391,7 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 				break
 			}
 
-			resp, _, err := req.ApiService.searchAuditLogsExecute(req)
+			resp, _, err := req.Api.searchAuditLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -433,14 +433,14 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 }
 
 // searchAuditLogsExecute executes the request.
-func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApiService.SearchAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApi.SearchAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -546,9 +546,9 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AuditApi Returns new AuditApi service.
-func AuditApi(client *common.APIClient) *AuditApiService {
-	return &AuditApiService{
+// NewAuditApi Returns NewAuditApi.
+func NewAuditApi(client *common.APIClient) *AuditApi {
+	return &AuditApi{
 		Client: client,
 	}
 }

@@ -86,7 +86,7 @@ func TestDeserializationUnknownNestedOneOfInList(t *testing.T) {
 	// Mock the synthetics API.
 	URL, err := testV1.Client(ctx).GetConfig().ServerURLWithContext(ctx, "SyntheticsApiService.GetAPITest")
 	assert.NoError(err)
-	api := datadogV1.SyntheticsApi(testV1.Client(ctx))
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	gock.New(URL).
 		Get("synthetics/tests/api/public_id").
@@ -112,7 +112,7 @@ func TestDeserializationUnknownNestedEnumInList(t *testing.T) {
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV1.SyntheticsApi(testV1.Client(ctx))
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -202,7 +202,7 @@ func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV1.SyntheticsApi(testV1.Client(ctx))
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -265,7 +265,7 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV1.SyntheticsApi(testV1.Client(ctx))
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -331,7 +331,7 @@ func TestDeserializationUnknownNestedOneOf(t *testing.T) {
 	defer finish()
 	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV2.LogsArchivesApi(testV2.Client(ctx))
+	api := datadogV2.NewLogsArchivesApi(testV2.Client(ctx))
 
 	responseBody := `
 {

@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// SnapshotsApiService service type
-type SnapshotsApiService common.Service
+// SnapshotsApi service type
+type SnapshotsApi common.Service
 
 type apiGetGraphSnapshotRequest struct {
 	ctx         _context.Context
-	ApiService  *SnapshotsApiService
+	Api         *SnapshotsApi
 	start       *int64
 	end         *int64
 	metricQuery *string
@@ -82,12 +82,12 @@ func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSna
 	return r
 }
 
-func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
+func (a *SnapshotsApi) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
 	req := apiGetGraphSnapshotRequest{
-		ApiService: a,
-		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		Api:   a,
+		ctx:   ctx,
+		start: &start,
+		end:   &end,
 	}
 
 	if len(o) > 1 {
@@ -108,25 +108,25 @@ func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context,
 // GetGraphSnapshot Take graph snapshots.
 // Take graph snapshots.
 // **Note**: When a snapshot is created, there is some delay before it is available.
-func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
+func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
 	req, err := a.buildGetGraphSnapshotRequest(ctx, start, end, o...)
 	if err != nil {
 		var localVarReturnValue GraphSnapshot
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getGraphSnapshotExecute(req)
+	return req.Api.getGraphSnapshotExecute(req)
 }
 
 // getGraphSnapshotExecute executes the request.
-func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (GraphSnapshot, *_nethttp.Response, error) {
+func (a *SnapshotsApi) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue GraphSnapshot
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SnapshotsApiService.GetGraphSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SnapshotsApi.GetGraphSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -255,9 +255,9 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SnapshotsApi Returns new SnapshotsApi service.
-func SnapshotsApi(client *common.APIClient) *SnapshotsApiService {
-	return &SnapshotsApiService{
+// NewSnapshotsApi Returns NewSnapshotsApi.
+func NewSnapshotsApi(client *common.APIClient) *SnapshotsApi {
+	return &SnapshotsApi{
 		Client: client,
 	}
 }

@@ -38,7 +38,7 @@ func TestEventLifecycle(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	testEvent.SetTitle(*tests.UniqueEntityName(ctx, t))
-	api := datadog.EventsApi(Client(ctx))
+	api := datadog.NewEventsApi(Client(ctx))
 
 	// Create event
 	marshalledEvent, _ := json.Marshal(testEvent)
@@ -124,7 +124,7 @@ func TestEventListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.EventsApi(Client(ctx))
+			api := datadog.NewEventsApi(Client(ctx))
 
 			_, httpresp, err := api.ListEvents(ctx, 345, 123)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -152,7 +152,7 @@ func TestEventGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.EventsApi(Client(ctx))
+			api := datadog.NewEventsApi(Client(ctx))
 
 			_, httpresp, err := api.GetEvent(ctx, 1234)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

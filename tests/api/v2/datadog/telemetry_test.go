@@ -15,7 +15,7 @@ func TestTelemetryHeaders(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.DashboardListsApi(Client(ctx))
+	api := datadog.NewDashboardListsApi(Client(ctx))
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "DashboardListsApiService.GetDashboardListItems")

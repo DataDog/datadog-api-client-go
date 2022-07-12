@@ -53,7 +53,7 @@ func TestAzureCreate(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	testAzureAcct, _, _ := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
@@ -72,7 +72,7 @@ func TestAzureListandDelete(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	testAzureAcct, _, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
@@ -117,7 +117,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters := generateUniqueAzureAccount(ctx, t)
 	defer uninstallAzureIntegration(ctx, t, testAzureAcct)
@@ -178,7 +178,7 @@ func TestAzureList400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/azure/error_400.json")
 	if err != nil {
@@ -206,7 +206,7 @@ func TestAzure403Error(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	// 403 Forbidden
 	_, httpresp, err := api.ListAzureIntegration(context.Background())
@@ -234,7 +234,7 @@ func TestAzureCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AzureIntegrationApi(Client(ctx))
+			api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.CreateAzureIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -263,7 +263,7 @@ func TestAzureDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AzureIntegrationApi(Client(ctx))
+			api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.DeleteAzureIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -292,7 +292,7 @@ func TestAzureUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AzureIntegrationApi(Client(ctx))
+			api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateAzureIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -321,7 +321,7 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			api := datadog.AzureIntegrationApi(Client(ctx))
+			api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateAzureHostFilters(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -333,7 +333,7 @@ func TestAzureUpdateHostFiltersErrors(t *testing.T) {
 }
 
 func uninstallAzureIntegration(ctx context.Context, t *testing.T, account datadog.AzureAccount) {
-	api := datadog.AzureIntegrationApi(Client(ctx))
+	api := datadog.NewAzureIntegrationApi(Client(ctx))
 
 	toDelete := datadog.AzureAccount{ClientId: account.ClientId, TenantName: account.TenantName}
 	if account.NewClientId != nil {

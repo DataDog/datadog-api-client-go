@@ -14,45 +14,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// GCPIntegrationApiService service type
-type GCPIntegrationApiService common.Service
+// GCPIntegrationApi service type
+type GCPIntegrationApi common.Service
 
 type apiCreateGCPIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	ctx  _context.Context
+	Api  *GCPIntegrationApi
+	body *GCPAccount
 }
 
-func (a *GCPIntegrationApiService) buildCreateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiCreateGCPIntegrationRequest, error) {
+func (a *GCPIntegrationApi) buildCreateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiCreateGCPIntegrationRequest, error) {
 	req := apiCreateGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateGCPIntegration Create a GCP integration.
 // Create a Datadog-GCP integration.
-func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateGCPIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createGCPIntegrationExecute(req)
+	return req.Api.createGCPIntegrationExecute(req)
 }
 
 // createGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApiService.CreateGCPIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.CreateGCPIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -162,41 +162,41 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 }
 
 type apiDeleteGCPIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	ctx  _context.Context
+	Api  *GCPIntegrationApi
+	body *GCPAccount
 }
 
-func (a *GCPIntegrationApiService) buildDeleteGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiDeleteGCPIntegrationRequest, error) {
+func (a *GCPIntegrationApi) buildDeleteGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiDeleteGCPIntegrationRequest, error) {
 	req := apiDeleteGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteGCPIntegration Delete a GCP integration.
 // Delete a given Datadog-GCP integration.
-func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteGCPIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteGCPIntegrationExecute(req)
+	return req.Api.deleteGCPIntegrationExecute(req)
 }
 
 // deleteGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApiService.DeleteGCPIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.DeleteGCPIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -306,39 +306,39 @@ func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPInt
 }
 
 type apiListGCPIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *GCPIntegrationApiService
+	ctx _context.Context
+	Api *GCPIntegrationApi
 }
 
-func (a *GCPIntegrationApiService) buildListGCPIntegrationRequest(ctx _context.Context) (apiListGCPIntegrationRequest, error) {
+func (a *GCPIntegrationApi) buildListGCPIntegrationRequest(ctx _context.Context) (apiListGCPIntegrationRequest, error) {
 	req := apiListGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListGCPIntegration List all GCP integrations.
 // List all Datadog-GCP integrations configured in your Datadog account.
-func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	req, err := a.buildListGCPIntegrationRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []GCPAccount
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listGCPIntegrationExecute(req)
+	return req.Api.listGCPIntegrationExecute(req)
 }
 
 // listGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []GCPAccount
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApiService.ListGCPIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.ListGCPIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -442,16 +442,16 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 }
 
 type apiUpdateGCPIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	ctx  _context.Context
+	Api  *GCPIntegrationApi
+	body *GCPAccount
 }
 
-func (a *GCPIntegrationApiService) buildUpdateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiUpdateGCPIntegrationRequest, error) {
+func (a *GCPIntegrationApi) buildUpdateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiUpdateGCPIntegrationRequest, error) {
 	req := apiUpdateGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -461,25 +461,25 @@ func (a *GCPIntegrationApiService) buildUpdateGCPIntegrationRequest(ctx _context
 // Requires a `project_id` and `client_email`, however these fields cannot be updated.
 // If you need to update these fields, delete and use the create (`POST`) endpoint.
 // The unspecified fields will keep their original values.
-func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateGCPIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateGCPIntegrationExecute(req)
+	return req.Api.updateGCPIntegrationExecute(req)
 }
 
 // updateGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
+func (a *GCPIntegrationApi) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApiService.UpdateGCPIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.UpdateGCPIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -588,9 +588,9 @@ func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPInt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GCPIntegrationApi Returns new GCPIntegrationApi service.
-func GCPIntegrationApi(client *common.APIClient) *GCPIntegrationApiService {
-	return &GCPIntegrationApiService{
+// NewGCPIntegrationApi Returns NewGCPIntegrationApi.
+func NewGCPIntegrationApi(client *common.APIClient) *GCPIntegrationApi {
+	return &GCPIntegrationApi{
 		Client: client,
 	}
 }

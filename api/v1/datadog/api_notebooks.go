@@ -15,45 +15,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// NotebooksApiService service type
-type NotebooksApiService common.Service
+// NotebooksApi service type
+type NotebooksApi common.Service
 
 type apiCreateNotebookRequest struct {
-	ctx        _context.Context
-	ApiService *NotebooksApiService
-	body       *NotebookCreateRequest
+	ctx  _context.Context
+	Api  *NotebooksApi
+	body *NotebookCreateRequest
 }
 
-func (a *NotebooksApiService) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
+func (a *NotebooksApi) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
 	req := apiCreateNotebookRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		Api:  a,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateNotebook Create a notebook.
 // Create a notebook using the specified options.
-func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateNotebookRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createNotebookExecute(req)
+	return req.Api.createNotebookExecute(req)
 }
 
 // createNotebookExecute executes the request.
-func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) createNotebookExecute(r apiCreateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.CreateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.CreateNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -164,13 +164,13 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 
 type apiDeleteNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
+	Api        *NotebooksApi
 	notebookId int64
 }
 
-func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
+func (a *NotebooksApi) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
 	req := apiDeleteNotebookRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -179,23 +179,23 @@ func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, n
 
 // DeleteNotebook Delete a notebook.
 // Delete a notebook using the specified ID.
-func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
+func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteNotebookRequest(ctx, notebookId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteNotebookExecute(req)
+	return req.Api.deleteNotebookExecute(req)
 }
 
 // deleteNotebookExecute executes the request.
-func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_nethttp.Response, error) {
+func (a *NotebooksApi) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.DeleteNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.DeleteNotebook")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -301,13 +301,13 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 
 type apiGetNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
+	Api        *NotebooksApi
 	notebookId int64
 }
 
-func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
+func (a *NotebooksApi) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
 	req := apiGetNotebookRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -316,25 +316,25 @@ func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, note
 
 // GetNotebook Get a notebook.
 // Get a notebook using the specified notebook ID.
-func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetNotebookRequest(ctx, notebookId)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getNotebookExecute(req)
+	return req.Api.getNotebookExecute(req)
 }
 
 // getNotebookExecute executes the request.
-func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) getNotebookExecute(r apiGetNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.GetNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.GetNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -449,7 +449,7 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 
 type apiListNotebooksRequest struct {
 	ctx                 _context.Context
-	ApiService          *NotebooksApiService
+	Api                 *NotebooksApi
 	authorHandle        *string
 	excludeAuthorHandle *string
 	start               *int64
@@ -542,10 +542,10 @@ func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebook
 	return r
 }
 
-func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
+func (a *NotebooksApi) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
 	req := apiListNotebooksRequest{
-		ApiService: a,
-		ctx:        ctx,
+		Api: a,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -570,25 +570,25 @@ func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o 
 // ListNotebooks Get all notebooks.
 // Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
 // `name` or author `handle`.
-func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	req, err := a.buildListNotebooksRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue NotebooksResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listNotebooksExecute(req)
+	return req.Api.listNotebooksExecute(req)
 }
 
 // listNotebooksExecute executes the request.
-func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (NotebooksResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) listNotebooksExecute(r apiListNotebooksRequest) (NotebooksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue NotebooksResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.ListNotebooks")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.ListNotebooks")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -723,14 +723,14 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 
 type apiUpdateNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
+	Api        *NotebooksApi
 	notebookId int64
 	body       *NotebookUpdateRequest
 }
 
-func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
+func (a *NotebooksApi) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
 	req := apiUpdateNotebookRequest{
-		ApiService: a,
+		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 		body:       &body,
@@ -740,25 +740,25 @@ func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, n
 
 // UpdateNotebook Update a notebook.
 // Update a notebook using the specified ID.
-func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateNotebookRequest(ctx, notebookId, body)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateNotebookExecute(req)
+	return req.Api.updateNotebookExecute(req)
 }
 
 // updateNotebookExecute executes the request.
-func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) updateNotebookExecute(r apiUpdateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.UpdateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.UpdateNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -886,9 +886,9 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NotebooksApi Returns new NotebooksApi service.
-func NotebooksApi(client *common.APIClient) *NotebooksApiService {
-	return &NotebooksApiService{
+// NewNotebooksApi Returns NewNotebooksApi.
+func NewNotebooksApi(client *common.APIClient) *NotebooksApi {
+	return &NotebooksApi{
 		Client: client,
 	}
 }
