@@ -21,7 +21,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MetricsApi(apiClient)
+	api := datadog.NewMetricsApi(apiClient)
 	resp, r, err := api.UpdateMetricMetadata(ctx, "metric_name", body)
 
 	if err != nil {

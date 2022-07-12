@@ -33,7 +33,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsIndexesApi(apiClient)
+	api := datadog.NewLogsIndexesApi(apiClient)
 	resp, r, err := api.CreateLogsIndex(ctx, body)
 
 	if err != nil {

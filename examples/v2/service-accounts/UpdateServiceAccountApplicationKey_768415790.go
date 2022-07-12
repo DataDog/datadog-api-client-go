@@ -31,7 +31,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceAccountsApi(apiClient)
+	api := datadog.NewServiceAccountsApi(apiClient)
 	resp, r, err := api.UpdateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, ServiceAccountApplicationKeyDataID, body)
 
 	if err != nil {

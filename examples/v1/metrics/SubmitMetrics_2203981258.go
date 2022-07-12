@@ -34,7 +34,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MetricsApi(apiClient)
+	api := datadog.NewMetricsApi(apiClient)
 	resp, r, err := api.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters().WithContentEncoding(datadog.METRICCONTENTENCODING_DEFLATE))
 
 	if err != nil {

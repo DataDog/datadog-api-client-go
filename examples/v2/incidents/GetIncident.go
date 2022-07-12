@@ -20,7 +20,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetIncident", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.IncidentsApi(apiClient)
+	api := datadog.NewIncidentsApi(apiClient)
 	resp, r, err := api.GetIncident(ctx, IncidentDataID, *datadog.NewGetIncidentOptionalParameters())
 
 	if err != nil {

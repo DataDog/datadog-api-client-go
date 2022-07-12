@@ -20,7 +20,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListIncidentServices", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.IncidentServicesApi(apiClient)
+	api := datadog.NewIncidentServicesApi(apiClient)
 	resp, r, err := api.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName))
 
 	if err != nil {

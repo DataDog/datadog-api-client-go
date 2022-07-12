@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.GCPIntegrationApi(apiClient)
+	api := datadog.NewGCPIntegrationApi(apiClient)
 	resp, r, err := api.ListGCPIntegration(ctx)
 
 	if err != nil {

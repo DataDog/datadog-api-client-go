@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DowntimesApi(apiClient)
+	api := datadog.NewDowntimesApi(apiClient)
 	r, err := api.CancelDowntime(ctx, DowntimeID)
 
 	if err != nil {

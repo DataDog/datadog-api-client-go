@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetUsageBillableSummary(ctx, *datadog.NewGetUsageBillableSummaryOptionalParameters())
 
 	if err != nil {

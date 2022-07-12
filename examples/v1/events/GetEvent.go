@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.EventsApi(apiClient)
+	api := datadog.NewEventsApi(apiClient)
 	resp, r, err := api.GetEvent(ctx, 9223372036854775807)
 
 	if err != nil {

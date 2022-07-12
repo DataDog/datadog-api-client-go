@@ -39,7 +39,7 @@ rule_name_2 bar
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsPipelinesApi(apiClient)
+	api := datadog.NewLogsPipelinesApi(apiClient)
 	resp, r, err := api.UpdateLogsPipeline(ctx, "pipeline_id", body)
 
 	if err != nil {

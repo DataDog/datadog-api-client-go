@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.KeyManagementApi(apiClient)
+	api := datadog.NewKeyManagementApi(apiClient)
 	r, err := api.DeleteCurrentUserApplicationKey(ctx, ApplicationKeyDataID)
 
 	if err != nil {

@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AzureIntegrationApi(apiClient)
+	api := datadog.NewAzureIntegrationApi(apiClient)
 	resp, r, err := api.ListAzureIntegration(ctx)
 
 	if err != nil {

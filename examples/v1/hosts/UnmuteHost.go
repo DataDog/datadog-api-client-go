@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.HostsApi(apiClient)
+	api := datadog.NewHostsApi(apiClient)
 	resp, r, err := api.UnmuteHost(ctx, "host_name")
 
 	if err != nil {

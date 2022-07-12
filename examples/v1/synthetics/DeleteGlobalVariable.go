@@ -15,7 +15,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SyntheticsApi(apiClient)
+	api := datadog.NewSyntheticsApi(apiClient)
 	r, err := api.DeleteGlobalVariable(ctx, "variable_id")
 
 	if err != nil {

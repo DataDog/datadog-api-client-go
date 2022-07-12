@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MonitorsApi(apiClient)
+	api := datadog.NewMonitorsApi(apiClient)
 	resp, r, err := api.GetMonitor(ctx, MonitorID, *datadog.NewGetMonitorOptionalParameters())
 
 	if err != nil {

@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MetricsApi(apiClient)
+	api := datadog.NewMetricsApi(apiClient)
 	resp, r, err := api.EstimateMetricsOutputSeries(ctx, "system.cpu.idle", *datadog.NewEstimateMetricsOutputSeriesOptionalParameters().WithFilterGroups("app,host").WithFilterNumAggregations(4))
 
 	if err != nil {

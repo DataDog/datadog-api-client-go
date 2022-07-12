@@ -17,7 +17,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MetricsApi(apiClient)
+	api := datadog.NewMetricsApi(apiClient)
 	resp, r, err := api.QueryMetrics(ctx, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), "system.cpu.idle{*}")
 
 	if err != nil {

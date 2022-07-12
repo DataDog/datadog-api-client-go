@@ -55,7 +55,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("{{ version }}.{{ operation }}", true)
 {%- endfor %}
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.{{ context.api_instance.name }}Api(apiClient)
+	api := datadog.New{{ context.api_instance.name }}Api(apiClient)
 {%- if response_has_three_values %}
 	resp, r, err := api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
 

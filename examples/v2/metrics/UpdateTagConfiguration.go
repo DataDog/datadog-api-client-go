@@ -30,7 +30,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MetricsApi(apiClient)
+	api := datadog.NewMetricsApi(apiClient)
 	resp, r, err := api.UpdateTagConfiguration(ctx, MetricTagConfigurationDataID, body)
 
 	if err != nil {

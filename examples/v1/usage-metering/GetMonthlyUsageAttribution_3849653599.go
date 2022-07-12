@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetMonthlyUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_USAGE, *datadog.NewGetMonthlyUsageAttributionOptionalParameters().WithNextRecordId(MonthlyUsageAttributionMetadataPaginationNextRecordID))
 
 	if err != nil {

@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuthenticationApi(apiClient)
+	api := datadog.NewAuthenticationApi(apiClient)
 	resp, r, err := api.Validate(ctx)
 
 	if err != nil {

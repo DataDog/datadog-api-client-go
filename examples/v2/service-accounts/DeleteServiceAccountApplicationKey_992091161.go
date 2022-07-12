@@ -21,7 +21,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceAccountsApi(apiClient)
+	api := datadog.NewServiceAccountsApi(apiClient)
 	r, err := api.DeleteServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, ServiceAccountApplicationKeyDataID)
 
 	if err != nil {

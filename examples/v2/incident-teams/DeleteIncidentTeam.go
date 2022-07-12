@@ -19,7 +19,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentTeam", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.IncidentTeamsApi(apiClient)
+	api := datadog.NewIncidentTeamsApi(apiClient)
 	r, err := api.DeleteIncidentTeam(ctx, TeamDataID)
 
 	if err != nil {

@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DashboardListsApi(apiClient)
+	api := datadog.NewDashboardListsApi(apiClient)
 	resp, r, err := api.GetDashboardListItems(ctx, DashboardListID)
 
 	if err != nil {

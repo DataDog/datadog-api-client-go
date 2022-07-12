@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NotebooksApi(apiClient)
+	api := datadog.NewNotebooksApi(apiClient)
 	resp, r, err := api.ListNotebooks(ctx, *datadog.NewListNotebooksOptionalParameters())
 
 	if err != nil {

@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsMetricsApi(apiClient)
+	api := datadog.NewLogsMetricsApi(apiClient)
 	r, err := api.DeleteLogsMetric(ctx, LogsMetricDataID)
 
 	if err != nil {

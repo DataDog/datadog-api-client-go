@@ -37,7 +37,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AWSIntegrationApi(apiClient)
+	api := datadog.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.CreateAWSAccount(ctx, body)
 
 	if err != nil {

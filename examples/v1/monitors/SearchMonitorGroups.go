@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.MonitorsApi(apiClient)
+	api := datadog.NewMonitorsApi(apiClient)
 	resp, r, err := api.SearchMonitorGroups(ctx, *datadog.NewSearchMonitorGroupsOptionalParameters())
 
 	if err != nil {

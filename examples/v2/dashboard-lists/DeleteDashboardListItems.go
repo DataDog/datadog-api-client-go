@@ -24,7 +24,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DashboardListsApi(apiClient)
+	api := datadog.NewDashboardListsApi(apiClient)
 	resp, r, err := api.DeleteDashboardListItems(ctx, 9223372036854775807, body)
 
 	if err != nil {

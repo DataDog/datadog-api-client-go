@@ -36,7 +36,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuthNMappingsApi(apiClient)
+	api := datadog.NewAuthNMappingsApi(apiClient)
 	resp, r, err := api.CreateAuthNMapping(ctx, body)
 
 	if err != nil {

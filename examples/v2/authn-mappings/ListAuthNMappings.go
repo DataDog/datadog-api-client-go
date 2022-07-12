@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuthNMappingsApi(apiClient)
+	api := datadog.NewAuthNMappingsApi(apiClient)
 	resp, r, err := api.ListAuthNMappings(ctx, *datadog.NewListAuthNMappingsOptionalParameters())
 
 	if err != nil {

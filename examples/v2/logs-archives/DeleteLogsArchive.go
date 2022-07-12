@@ -15,7 +15,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsArchivesApi(apiClient)
+	api := datadog.NewLogsArchivesApi(apiClient)
 	r, err := api.DeleteLogsArchive(ctx, "archive_id")
 
 	if err != nil {

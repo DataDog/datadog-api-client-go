@@ -41,7 +41,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsArchivesApi(apiClient)
+	api := datadog.NewLogsArchivesApi(apiClient)
 	resp, r, err := api.UpdateLogsArchive(ctx, "archive_id", body)
 
 	if err != nil {

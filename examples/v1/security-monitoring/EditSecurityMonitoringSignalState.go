@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SecurityMonitoringApi(apiClient)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.EditSecurityMonitoringSignalState(ctx, "AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE", body)
 
 	if err != nil {

@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.CloudWorkloadSecurityApi(apiClient)
+	api := datadog.NewCloudWorkloadSecurityApi(apiClient)
 	r, err := api.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
 
 	if err != nil {

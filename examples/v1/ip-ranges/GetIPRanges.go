@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.IPRangesApi(apiClient)
+	api := datadog.NewIPRangesApi(apiClient)
 	resp, r, err := api.GetIPRanges(ctx)
 
 	if err != nil {

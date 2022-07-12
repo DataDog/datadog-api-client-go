@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuthNMappingsApi(apiClient)
+	api := datadog.NewAuthNMappingsApi(apiClient)
 	r, err := api.DeleteAuthNMapping(ctx, AuthnMappingDataID)
 
 	if err != nil {

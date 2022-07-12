@@ -31,7 +31,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SyntheticsApi(apiClient)
+	api := datadog.NewSyntheticsApi(apiClient)
 	resp, r, err := api.CreatePrivateLocation(ctx, body)
 
 	if err != nil {

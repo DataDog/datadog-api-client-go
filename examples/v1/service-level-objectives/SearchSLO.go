@@ -20,7 +20,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.SearchSLO", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceLevelObjectivesApi(apiClient)
+	api := datadog.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.SearchSLO(ctx, *datadog.NewSearchSLOOptionalParameters().WithQuery(SloData0Name).WithPageSize(20).WithPageNumber(0))
 
 	if err != nil {

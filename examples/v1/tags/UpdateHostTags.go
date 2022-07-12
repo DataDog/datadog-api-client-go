@@ -22,7 +22,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.TagsApi(apiClient)
+	api := datadog.NewTagsApi(apiClient)
 	resp, r, err := api.UpdateHostTags(ctx, "host_name", body, *datadog.NewUpdateHostTagsOptionalParameters())
 
 	if err != nil {

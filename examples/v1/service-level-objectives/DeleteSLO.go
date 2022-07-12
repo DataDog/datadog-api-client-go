@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceLevelObjectivesApi(apiClient)
+	api := datadog.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.DeleteSLO(ctx, SloData0ID, *datadog.NewDeleteSLOOptionalParameters())
 
 	if err != nil {

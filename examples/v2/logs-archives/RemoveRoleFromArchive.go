@@ -21,7 +21,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsArchivesApi(apiClient)
+	api := datadog.NewLogsArchivesApi(apiClient)
 	r, err := api.RemoveRoleFromArchive(ctx, "archive_id", body)
 
 	if err != nil {

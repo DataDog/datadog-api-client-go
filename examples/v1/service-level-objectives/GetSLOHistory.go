@@ -21,7 +21,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.GetSLOHistory", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceLevelObjectivesApi(apiClient)
+	api := datadog.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.GetSLOHistory(ctx, SloData0ID, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), *datadog.NewGetSLOHistoryOptionalParameters())
 
 	if err != nil {

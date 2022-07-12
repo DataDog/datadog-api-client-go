@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DowntimesApi(apiClient)
+	api := datadog.NewDowntimesApi(apiClient)
 	resp, r, err := api.ListDowntimes(ctx, *datadog.NewListDowntimesOptionalParameters())
 
 	if err != nil {

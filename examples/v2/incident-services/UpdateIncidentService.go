@@ -28,7 +28,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateIncidentService", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.IncidentServicesApi(apiClient)
+	api := datadog.NewIncidentServicesApi(apiClient)
 	resp, r, err := api.UpdateIncidentService(ctx, ServiceDataID, body)
 
 	if err != nil {

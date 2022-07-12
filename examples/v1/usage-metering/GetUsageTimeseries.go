@@ -17,7 +17,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetUsageTimeseries(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageTimeseriesOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {

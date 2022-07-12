@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AWSLogsIntegrationApi(apiClient)
+	api := datadog.NewAWSLogsIntegrationApi(apiClient)
 	resp, r, err := api.DeleteAWSLambdaARN(ctx, body)
 
 	if err != nil {

@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ProcessesApi(apiClient)
+	api := datadog.NewProcessesApi(apiClient)
 	resp, r, err := api.ListProcesses(ctx, *datadog.NewListProcessesOptionalParameters().WithSearch("process-agent").WithTags("testing:true").WithPageLimit(2))
 
 	if err != nil {

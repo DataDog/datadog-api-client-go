@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceAccountsApi(apiClient)
+	api := datadog.NewServiceAccountsApi(apiClient)
 	resp, r, err := api.ListServiceAccountApplicationKeys(ctx, "00000000-0000-1234-0000-000000000000", *datadog.NewListServiceAccountApplicationKeysOptionalParameters())
 
 	if err != nil {

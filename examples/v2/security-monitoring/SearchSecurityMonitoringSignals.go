@@ -29,7 +29,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SecurityMonitoringApi(apiClient)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.SearchSecurityMonitoringSignals(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 
 	if err != nil {

@@ -25,7 +25,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsApi(apiClient)
+	api := datadog.NewLogsApi(apiClient)
 	resp, r, err := api.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters().WithContentEncoding(datadog.CONTENTENCODING_DEFLATE))
 
 	if err != nil {

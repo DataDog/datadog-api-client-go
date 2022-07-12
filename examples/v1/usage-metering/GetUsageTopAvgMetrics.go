@@ -17,7 +17,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetUsageTopAvgMetrics(ctx, *datadog.NewGetUsageTopAvgMetricsOptionalParameters().WithDay(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {

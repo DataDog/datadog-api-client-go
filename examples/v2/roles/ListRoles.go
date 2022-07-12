@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.RolesApi(apiClient)
+	api := datadog.NewRolesApi(apiClient)
 	resp, r, err := api.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().WithFilter(RoleDataAttributesName))
 
 	if err != nil {

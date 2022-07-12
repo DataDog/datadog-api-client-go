@@ -29,7 +29,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.KeyManagementApi(apiClient)
+	api := datadog.NewKeyManagementApi(apiClient)
 	resp, r, err := api.CreateCurrentUserApplicationKey(ctx, body)
 
 	if err != nil {

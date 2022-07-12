@@ -21,7 +21,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.HostsApi(apiClient)
+	api := datadog.NewHostsApi(apiClient)
 	resp, r, err := api.MuteHost(ctx, "host_name", body)
 
 	if err != nil {

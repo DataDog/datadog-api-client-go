@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.RUMApi(apiClient)
+	api := datadog.NewRUMApi(apiClient)
 	resp, r, err := api.ListRUMEvents(ctx, *datadog.NewListRUMEventsOptionalParameters())
 
 	if err != nil {

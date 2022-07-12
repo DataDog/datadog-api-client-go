@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.HostsApi(apiClient)
+	api := datadog.NewHostsApi(apiClient)
 	resp, r, err := api.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter("env:ci"))
 
 	if err != nil {

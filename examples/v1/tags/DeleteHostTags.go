@@ -15,7 +15,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.TagsApi(apiClient)
+	api := datadog.NewTagsApi(apiClient)
 	r, err := api.DeleteHostTags(ctx, "host_name", *datadog.NewDeleteHostTagsOptionalParameters())
 
 	if err != nil {

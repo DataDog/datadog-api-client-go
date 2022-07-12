@@ -30,7 +30,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsApi(apiClient)
+	api := datadog.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
 
 	if err != nil {

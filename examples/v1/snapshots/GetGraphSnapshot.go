@@ -17,7 +17,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SnapshotsApi(apiClient)
+	api := datadog.NewSnapshotsApi(apiClient)
 	resp, r, err := api.GetGraphSnapshot(ctx, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), *datadog.NewGetGraphSnapshotOptionalParameters().WithMetricQuery("avg:system.load.1{*}").WithTitle("System load").WithHeight(400).WithWidth(600))
 
 	if err != nil {

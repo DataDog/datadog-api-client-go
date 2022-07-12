@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsMetricsApi(apiClient)
+	api := datadog.NewLogsMetricsApi(apiClient)
 	resp, r, err := api.GetLogsMetric(ctx, LogsMetricDataID)
 
 	if err != nil {

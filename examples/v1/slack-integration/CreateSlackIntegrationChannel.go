@@ -25,7 +25,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SlackIntegrationApi(apiClient)
+	api := datadog.NewSlackIntegrationApi(apiClient)
 	resp, r, err := api.CreateSlackIntegrationChannel(ctx, "account_name", body)
 
 	if err != nil {

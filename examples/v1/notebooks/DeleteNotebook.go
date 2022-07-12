@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NotebooksApi(apiClient)
+	api := datadog.NewNotebooksApi(apiClient)
 	r, err := api.DeleteNotebook(ctx, NotebookDataID)
 
 	if err != nil {

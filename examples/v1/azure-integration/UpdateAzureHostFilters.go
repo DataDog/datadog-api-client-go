@@ -28,7 +28,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AzureIntegrationApi(apiClient)
+	api := datadog.NewAzureIntegrationApi(apiClient)
 	resp, r, err := api.UpdateAzureHostFilters(ctx, body)
 
 	if err != nil {

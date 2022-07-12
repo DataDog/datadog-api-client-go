@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.WebhooksIntegrationApi(apiClient)
+	api := datadog.NewWebhooksIntegrationApi(apiClient)
 	r, err := api.DeleteWebhooksIntegration(ctx, WebhookName)
 
 	if err != nil {

@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsersApi(apiClient)
+	api := datadog.NewUsersApi(apiClient)
 	resp, r, err := api.GetUser(ctx, "00000000-0000-9999-0000-000000000000")
 
 	if err != nil {

@@ -83,7 +83,7 @@ y = 6;
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NotebooksApi(apiClient)
+	api := datadog.NewNotebooksApi(apiClient)
 	resp, r, err := api.UpdateNotebook(ctx, NotebookDataID, body)
 
 	if err != nil {

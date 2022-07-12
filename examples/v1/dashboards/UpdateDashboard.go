@@ -47,7 +47,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DashboardsApi(apiClient)
+	api := datadog.NewDashboardsApi(apiClient)
 	resp, r, err := api.UpdateDashboard(ctx, DashboardID, body)
 
 	if err != nil {

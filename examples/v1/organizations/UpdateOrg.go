@@ -51,7 +51,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.OrganizationsApi(apiClient)
+	api := datadog.NewOrganizationsApi(apiClient)
 	resp, r, err := api.UpdateOrg(ctx, "abc123", body)
 
 	if err != nil {

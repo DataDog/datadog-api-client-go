@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.RolesApi(apiClient)
+	api := datadog.NewRolesApi(apiClient)
 	r, err := api.DeleteRole(ctx, RoleDataID)
 
 	if err != nil {

@@ -17,7 +17,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetSpecifiedDailyCustomReports(ctx, "2022-03-20")
 
 	if err != nil {

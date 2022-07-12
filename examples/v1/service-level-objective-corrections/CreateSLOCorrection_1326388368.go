@@ -34,7 +34,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceLevelObjectiveCorrectionsApi(apiClient)
+	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
 	resp, r, err := api.CreateSLOCorrection(ctx, body)
 
 	if err != nil {

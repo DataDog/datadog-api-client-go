@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuditApi(apiClient)
+	api := datadog.NewAuditApi(apiClient)
 	resp, r, err := api.ListAuditLogs(ctx, *datadog.NewListAuditLogsOptionalParameters())
 
 	if err != nil {

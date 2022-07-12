@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsArchivesApi(apiClient)
+	api := datadog.NewLogsArchivesApi(apiClient)
 	resp, r, err := api.ListArchiveReadRoles(ctx, "archive_id")
 
 	if err != nil {

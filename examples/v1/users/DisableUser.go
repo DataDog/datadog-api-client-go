@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsersApi(apiClient)
+	api := datadog.NewUsersApi(apiClient)
 	resp, r, err := api.DisableUser(ctx, "test@datadoghq.com")
 
 	if err != nil {

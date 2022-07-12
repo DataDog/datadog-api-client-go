@@ -31,7 +31,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AuditApi(apiClient)
+	api := datadog.NewAuditApi(apiClient)
 	resp, r, err := api.SearchAuditLogs(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
 
 	if err != nil {

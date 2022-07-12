@@ -20,7 +20,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.WebhooksIntegrationApi(apiClient)
+	api := datadog.NewWebhooksIntegrationApi(apiClient)
 	resp, r, err := api.CreateWebhooksIntegration(ctx, body)
 
 	if err != nil {

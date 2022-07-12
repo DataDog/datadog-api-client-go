@@ -30,7 +30,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.OpsgenieIntegrationApi(apiClient)
+	api := datadog.NewOpsgenieIntegrationApi(apiClient)
 	resp, r, err := api.UpdateOpsgenieService(ctx, OpsgenieServiceDataID, body)
 
 	if err != nil {

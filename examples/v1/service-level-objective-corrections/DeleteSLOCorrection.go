@@ -15,7 +15,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceLevelObjectiveCorrectionsApi(apiClient)
+	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
 	r, err := api.DeleteSLOCorrection(ctx, "slo_correction_id")
 
 	if err != nil {

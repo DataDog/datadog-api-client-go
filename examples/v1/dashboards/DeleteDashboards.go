@@ -26,7 +26,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.DashboardsApi(apiClient)
+	api := datadog.NewDashboardsApi(apiClient)
 	r, err := api.DeleteDashboards(ctx, body)
 
 	if err != nil {

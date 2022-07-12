@@ -36,7 +36,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.AWSIntegrationApi(apiClient)
+	api := datadog.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().WithAccountId("123456789012").WithRoleName("datadog-role"))
 
 	if err != nil {

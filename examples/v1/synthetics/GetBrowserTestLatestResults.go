@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SyntheticsApi(apiClient)
+	api := datadog.NewSyntheticsApi(apiClient)
 	resp, r, err := api.GetBrowserTestLatestResults(ctx, "public_id", *datadog.NewGetBrowserTestLatestResultsOptionalParameters())
 
 	if err != nil {

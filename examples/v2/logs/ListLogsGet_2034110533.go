@@ -17,7 +17,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsApi(apiClient)
+	api := datadog.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().WithFilterQuery("datadog-agent").WithFilterIndex("main").WithFilterFrom(time.Date(2020, 9, 17, 11, 48, 36, 0, time.UTC)).WithFilterTo(time.Date(2020, 9, 17, 12, 48, 36, 0, time.UTC)).WithPageLimit(5))
 
 	if err != nil {

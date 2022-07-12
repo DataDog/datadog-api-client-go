@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL, *datadog.NewGetUsageAttributionOptionalParameters().WithOffset(0).WithLimit(1))
 
 	if err != nil {

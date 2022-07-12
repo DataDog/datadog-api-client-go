@@ -15,7 +15,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.OrganizationsApi(apiClient)
+	api := datadog.NewOrganizationsApi(apiClient)
 	r, err := api.UploadIdPMetadata(ctx, *datadog.NewUploadIdPMetadataOptionalParameters().WithIdpFile(func() *os.File {
 		fp, _ := os.Open("fixtures/organizations/saml_configurations/valid_idp_metadata.xml")
 		return fp

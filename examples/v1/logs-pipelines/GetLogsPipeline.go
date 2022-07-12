@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.LogsPipelinesApi(apiClient)
+	api := datadog.NewLogsPipelinesApi(apiClient)
 	resp, r, err := api.GetLogsPipeline(ctx, "pipeline_id")
 
 	if err != nil {

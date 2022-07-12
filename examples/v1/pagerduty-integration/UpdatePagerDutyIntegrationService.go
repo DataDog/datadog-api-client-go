@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.PagerDutyIntegrationApi(apiClient)
+	api := datadog.NewPagerDutyIntegrationApi(apiClient)
 	r, err := api.UpdatePagerDutyIntegrationService(ctx, "service_name", body)
 
 	if err != nil {

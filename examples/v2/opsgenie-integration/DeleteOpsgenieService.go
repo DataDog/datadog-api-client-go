@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.OpsgenieIntegrationApi(apiClient)
+	api := datadog.NewOpsgenieIntegrationApi(apiClient)
 	r, err := api.DeleteOpsgenieService(ctx, OpsgenieServiceDataID)
 
 	if err != nil {

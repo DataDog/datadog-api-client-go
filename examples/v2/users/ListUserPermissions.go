@@ -19,7 +19,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsersApi(apiClient)
+	api := datadog.NewUsersApi(apiClient)
 	resp, r, err := api.ListUserPermissions(ctx, UserDataID)
 
 	if err != nil {

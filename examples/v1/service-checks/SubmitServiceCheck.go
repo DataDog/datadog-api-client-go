@@ -26,7 +26,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.ServiceChecksApi(apiClient)
+	api := datadog.NewServiceChecksApi(apiClient)
 	resp, r, err := api.SubmitServiceCheck(ctx, body)
 
 	if err != nil {

@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.GetHourlyUsageAttribution", true)
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.UsageMeteringApi(apiClient)
+	api := datadog.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetHourlyUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.HOURLYUSAGEATTRIBUTIONUSAGETYPE_INFRA_HOST_USAGE, *datadog.NewGetHourlyUsageAttributionOptionalParameters())
 
 	if err != nil {

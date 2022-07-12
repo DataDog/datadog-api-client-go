@@ -16,7 +16,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.OrganizationsApi(apiClient)
+	api := datadog.NewOrganizationsApi(apiClient)
 	resp, r, err := api.UploadIdPForOrg(ctx, "abc123", func() *os.File { fp, _ := os.Open("./idp_metadata.xml"); return fp }())
 
 	if err != nil {

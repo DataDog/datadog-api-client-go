@@ -18,7 +18,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
-	api := datadog.SecurityMonitoringApi(apiClient)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
 	r, err := api.DeleteSecurityFilter(ctx, SecurityFilterDataID)
 
 	if err != nil {
