@@ -21,7 +21,7 @@ func main() {
 		Scope: []string{
 			"test:examplescheduleadowntimereturnsokresponse",
 		},
-		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
+		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
 			Type:   common.PtrString("weeks"),
 			Period: common.PtrInt32(1),
 			WeekDays: []string{

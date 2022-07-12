@@ -25,7 +25,7 @@ func main() {
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Relationships: &datadog.IncidentUpdateRelationships{
 				CommanderUser: &datadog.NullableRelationshipToUser{
-					Data: *common.datadog.NewNullableNullableRelationshipToUserData(&datadog.NullableRelationshipToUserData{
+					Data: *datadog.NewNullableNullableRelationshipToUserData(&datadog.NullableRelationshipToUserData{
 						Id:   UserDataID,
 						Type: datadog.USERSTYPE_USERS,
 					}),

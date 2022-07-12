@@ -32,7 +32,7 @@ func main() {
 			},
 			Relationships: &datadog.IncidentCreateRelationships{
 				CommanderUser: datadog.NullableRelationshipToUser{
-					Data: *common.datadog.NewNullableNullableRelationshipToUserData(&datadog.NullableRelationshipToUserData{
+					Data: *datadog.NewNullableNullableRelationshipToUserData(&datadog.NullableRelationshipToUserData{
 						Type: datadog.USERSTYPE_USERS,
 						Id:   UserDataID,
 					}),

@@ -16,7 +16,7 @@ import (
 func main() {
 	body := datadog.Downtime{
 		Message: common.PtrString("Example-Schedule_a_downtime_until_date"),
-		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
+		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
 			Period:    common.PtrInt32(1),
 			Type:      common.PtrString("weeks"),
 			UntilDate: *common.NewNullableInt64(common.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),

@@ -127,7 +127,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
     type_format = schema.get("format")
     nullable = render_nullable and schema.get("nullable", False)
 
-    nullable_prefix = "common.NewNullable" if  render_new else "common.Nullable"
+    nullable_prefix = "common.NewNullable" if render_new else "common.Nullable"
 
     if type_name == "integer":
         return {
@@ -689,7 +689,7 @@ def format_data_with_schema_dict(
         warnings.warn(f"No schema matched for {data}")
 
     if nullable:
-        return f"*common.{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
+        return f"*{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
 
     if in_list:
         return f"{{\n{parameters}}}"
