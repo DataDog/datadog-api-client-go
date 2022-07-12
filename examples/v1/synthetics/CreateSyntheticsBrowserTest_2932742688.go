@@ -53,7 +53,7 @@ func main() {
 			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
 				IsEnabled:     true,
 				ApplicationId: common.PtrString("mockApplicationId"),
-				ClientTokenId: common.PtrInt64(123456),
+				ClientTokenId: common.PtrInt64(12345),
 			},
 			TickEvery: common.PtrInt64(300),
 			Ci: &datadog.SyntheticsTestCiOptions{
