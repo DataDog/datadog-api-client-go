@@ -26,6 +26,9 @@ func main() {
 		End:                           *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
 		Timezone:                      datadog.PtrString("Etc/UTC"),
 		MuteFirstRecoveryNotification: datadog.PtrBool(true),
+		MonitorTags: []string{
+			"tag0",
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
