@@ -314,8 +314,6 @@ func NewConfiguration() *Configuration {
 			"SearchSLO":                        false,
 			"GetSLOHistory":                    false,
 			"GetUsageAttribution":              false,
-			"GetHourlyUsageAttribution":        false,
-			"GetMonthlyUsageAttribution":       false,
 		},
 	}
 	return cfg
