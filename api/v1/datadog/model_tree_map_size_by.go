@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// TreeMapSizeBy The attribute used to determine size in the widget.
+// TreeMapSizeBy (deprecated) The attribute formerly used to determine size in the widget.
 type TreeMapSizeBy string
 
 // List of TreeMapSizeBy.
