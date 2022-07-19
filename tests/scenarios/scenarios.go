@@ -141,14 +141,14 @@ func ToVarName(param string) (varName string) {
 	isToUpper := true
 
 	for _, v := range param {
-		if isToUpper {
-			varName += strings.ToUpper(string(v))
-			isToUpper = false
+		if v == '_' {
+			isToUpper = true
+		} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+			isToUpper = true
 		} else {
-			if v == '_' {
-				isToUpper = true
-			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
-				isToUpper = true
+			if isToUpper {
+				varName += strings.ToUpper(string(v))
+				isToUpper = false
 			} else {
 				varName += string(v)
 			}

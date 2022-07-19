@@ -9,16 +9,23 @@ import (
 	"fmt"
 )
 
-// TreeMapWidgetDefinition The treemap visualization found on the Host Dashboards comes from the output of `ps auxww`. This is not continuously run on your hosts. Instead, it’s run once on Agent start/restart. The treemap is only supported for process data on a single host dashboard — this may not be reused in other dashboards or for other metrics.
+// TreeMapWidgetDefinition The treemap visualization enables you to display hierarchical and nested data. It is well suited for queries that describe part-whole relationships, such as resource usage by availability zone, data center, or team.
 type TreeMapWidgetDefinition struct {
-	// The attribute used to determine color in the widget.
+	// (deprecated) The attribute formerly used to determine color in the widget.
+	// Deprecated
 	ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
-	// The attribute used to group elements in the widget.
+	// List of custom links.
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+	// (deprecated) The attribute formerly used to group elements in the widget.
+	// Deprecated
 	GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
-	// List of top list widget requests.
+	// List of treemap widget requests.
 	Requests []TreeMapWidgetRequest `json:"requests"`
-	// The attribute used to determine size in the widget.
+	// (deprecated) The attribute formerly used to determine size in the widget.
+	// Deprecated
 	SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
 	Title *string `json:"title,omitempty"`
 	// Type of the treemap widget.
@@ -54,6 +61,7 @@ func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 }
 
 // GetColorBy returns the ColorBy field value if set, zero value otherwise.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetColorBy() TreeMapColorBy {
 	if o == nil || o.ColorBy == nil {
 		var ret TreeMapColorBy
@@ -64,6 +72,7 @@ func (o *TreeMapWidgetDefinition) GetColorBy() TreeMapColorBy {
 
 // GetColorByOk returns a tuple with the ColorBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetColorByOk() (*TreeMapColorBy, bool) {
 	if o == nil || o.ColorBy == nil {
 		return nil, false
@@ -81,11 +90,45 @@ func (o *TreeMapWidgetDefinition) HasColorBy() bool {
 }
 
 // SetColorBy gets a reference to the given TreeMapColorBy and assigns it to the ColorBy field.
+// Deprecated
 func (o *TreeMapWidgetDefinition) SetColorBy(v TreeMapColorBy) {
 	o.ColorBy = &v
 }
 
+// GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
+func (o *TreeMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
+	if o == nil || o.CustomLinks == nil {
+		var ret []WidgetCustomLink
+		return ret
+	}
+	return o.CustomLinks
+}
+
+// GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TreeMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) {
+	if o == nil || o.CustomLinks == nil {
+		return nil, false
+	}
+	return &o.CustomLinks, true
+}
+
+// HasCustomLinks returns a boolean if a field has been set.
+func (o *TreeMapWidgetDefinition) HasCustomLinks() bool {
+	if o != nil && o.CustomLinks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
+func (o *TreeMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
+	o.CustomLinks = v
+}
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetGroupBy() TreeMapGroupBy {
 	if o == nil || o.GroupBy == nil {
 		var ret TreeMapGroupBy
@@ -96,6 +139,7 @@ func (o *TreeMapWidgetDefinition) GetGroupBy() TreeMapGroupBy {
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetGroupByOk() (*TreeMapGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
@@ -113,6 +157,7 @@ func (o *TreeMapWidgetDefinition) HasGroupBy() bool {
 }
 
 // SetGroupBy gets a reference to the given TreeMapGroupBy and assigns it to the GroupBy field.
+// Deprecated
 func (o *TreeMapWidgetDefinition) SetGroupBy(v TreeMapGroupBy) {
 	o.GroupBy = &v
 }
@@ -141,6 +186,7 @@ func (o *TreeMapWidgetDefinition) SetRequests(v []TreeMapWidgetRequest) {
 }
 
 // GetSizeBy returns the SizeBy field value if set, zero value otherwise.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetSizeBy() TreeMapSizeBy {
 	if o == nil || o.SizeBy == nil {
 		var ret TreeMapSizeBy
@@ -151,6 +197,7 @@ func (o *TreeMapWidgetDefinition) GetSizeBy() TreeMapSizeBy {
 
 // GetSizeByOk returns a tuple with the SizeBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TreeMapWidgetDefinition) GetSizeByOk() (*TreeMapSizeBy, bool) {
 	if o == nil || o.SizeBy == nil {
 		return nil, false
@@ -168,8 +215,41 @@ func (o *TreeMapWidgetDefinition) HasSizeBy() bool {
 }
 
 // SetSizeBy gets a reference to the given TreeMapSizeBy and assigns it to the SizeBy field.
+// Deprecated
 func (o *TreeMapWidgetDefinition) SetSizeBy(v TreeMapSizeBy) {
 	o.SizeBy = &v
+}
+
+// GetTime returns the Time field value if set, zero value otherwise.
+func (o *TreeMapWidgetDefinition) GetTime() WidgetTime {
+	if o == nil || o.Time == nil {
+		var ret WidgetTime
+		return ret
+	}
+	return *o.Time
+}
+
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TreeMapWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
+	if o == nil || o.Time == nil {
+		return nil, false
+	}
+	return o.Time, true
+}
+
+// HasTime returns a boolean if a field has been set.
+func (o *TreeMapWidgetDefinition) HasTime() bool {
+	if o != nil && o.Time != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
+func (o *TreeMapWidgetDefinition) SetTime(v WidgetTime) {
+	o.Time = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -236,12 +316,18 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.ColorBy != nil {
 		toSerialize["color_by"] = o.ColorBy
 	}
+	if o.CustomLinks != nil {
+		toSerialize["custom_links"] = o.CustomLinks
+	}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
 	toSerialize["requests"] = o.Requests
 	if o.SizeBy != nil {
 		toSerialize["size_by"] = o.SizeBy
+	}
+	if o.Time != nil {
+		toSerialize["time"] = o.Time
 	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
@@ -262,12 +348,14 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorBy  *TreeMapColorBy             `json:"color_by,omitempty"`
-		GroupBy  *TreeMapGroupBy             `json:"group_by,omitempty"`
-		Requests []TreeMapWidgetRequest      `json:"requests"`
-		SizeBy   *TreeMapSizeBy              `json:"size_by,omitempty"`
-		Title    *string                     `json:"title,omitempty"`
-		Type     TreeMapWidgetDefinitionType `json:"type"`
+		ColorBy     *TreeMapColorBy             `json:"color_by,omitempty"`
+		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
+		GroupBy     *TreeMapGroupBy             `json:"group_by,omitempty"`
+		Requests    []TreeMapWidgetRequest      `json:"requests"`
+		SizeBy      *TreeMapSizeBy              `json:"size_by,omitempty"`
+		Time        *WidgetTime                 `json:"time,omitempty"`
+		Title       *string                     `json:"title,omitempty"`
+		Type        TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -321,9 +409,18 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.ColorBy = all.ColorBy
+	o.CustomLinks = all.CustomLinks
 	o.GroupBy = all.GroupBy
 	o.Requests = all.Requests
 	o.SizeBy = all.SizeBy
+	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Time = all.Time
 	o.Title = all.Title
 	o.Type = all.Type
 	return nil

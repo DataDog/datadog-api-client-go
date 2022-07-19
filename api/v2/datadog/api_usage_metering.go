@@ -390,6 +390,238 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiGetHourlyUsageRequest struct {
+	ctx                      _context.Context
+	ApiService               *UsageMeteringApiService
+	filterTimestampStart     *time.Time
+	filterProductFamilies    *string
+	filterTimestampEnd       *time.Time
+	filterIncludeDescendants *bool
+	filterVersions           *string
+	pageLimit                *int32
+	pageNextRecordId         *string
+}
+
+// GetHourlyUsageOptionalParameters holds optional parameters for GetHourlyUsage.
+type GetHourlyUsageOptionalParameters struct {
+	FilterTimestampEnd       *time.Time
+	FilterIncludeDescendants *bool
+	FilterVersions           *string
+	PageLimit                *int32
+	PageNextRecordId         *string
+}
+
+// NewGetHourlyUsageOptionalParameters creates an empty struct for parameters.
+func NewGetHourlyUsageOptionalParameters() *GetHourlyUsageOptionalParameters {
+	this := GetHourlyUsageOptionalParameters{}
+	return &this
+}
+
+// WithFilterTimestampEnd sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithFilterTimestampEnd(filterTimestampEnd time.Time) *GetHourlyUsageOptionalParameters {
+	r.FilterTimestampEnd = &filterTimestampEnd
+	return r
+}
+
+// WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetHourlyUsageOptionalParameters {
+	r.FilterIncludeDescendants = &filterIncludeDescendants
+	return r
+}
+
+// WithFilterVersions sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithFilterVersions(filterVersions string) *GetHourlyUsageOptionalParameters {
+	r.FilterVersions = &filterVersions
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithPageLimit(pageLimit int32) *GetHourlyUsageOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageNextRecordId sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithPageNextRecordId(pageNextRecordId string) *GetHourlyUsageOptionalParameters {
+	r.PageNextRecordId = &pageNextRecordId
+	return r
+}
+
+func (a *UsageMeteringApiService) buildGetHourlyUsageRequest(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (apiGetHourlyUsageRequest, error) {
+	req := apiGetHourlyUsageRequest{
+		ApiService:            a,
+		ctx:                   ctx,
+		filterTimestampStart:  &filterTimestampStart,
+		filterProductFamilies: &filterProductFamilies,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type GetHourlyUsageOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterTimestampEnd = o[0].FilterTimestampEnd
+		req.filterIncludeDescendants = o[0].FilterIncludeDescendants
+		req.filterVersions = o[0].FilterVersions
+		req.pageLimit = o[0].PageLimit
+		req.pageNextRecordId = o[0].PageNextRecordId
+	}
+	return req, nil
+}
+
+// GetHourlyUsage Get hourly usage by product family.
+// Get hourly usage by product family
+func (a *UsageMeteringApiService) GetHourlyUsage(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (HourlyUsageResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetHourlyUsageRequest(ctx, filterTimestampStart, filterProductFamilies, o...)
+	if err != nil {
+		var localVarReturnValue HourlyUsageResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return req.ApiService.getHourlyUsageExecute(req)
+}
+
+// getHourlyUsageExecute executes the request.
+func (a *UsageMeteringApiService) getHourlyUsageExecute(r apiGetHourlyUsageRequest) (HourlyUsageResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue HourlyUsageResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetHourlyUsage")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/hourly_usage"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.filterTimestampStart == nil {
+		return localVarReturnValue, nil, reportError("filterTimestampStart is required and must be specified")
+	}
+	if r.filterProductFamilies == nil {
+		return localVarReturnValue, nil, reportError("filterProductFamilies is required and must be specified")
+	}
+	localVarQueryParams.Add("filter[timestamp][start]", parameterToString(*r.filterTimestampStart, ""))
+	localVarQueryParams.Add("filter[product_families]", parameterToString(*r.filterProductFamilies, ""))
+	if r.filterTimestampEnd != nil {
+		localVarQueryParams.Add("filter[timestamp][end]", parameterToString(*r.filterTimestampEnd, ""))
+	}
+	if r.filterIncludeDescendants != nil {
+		localVarQueryParams.Add("filter[include_descendants]", parameterToString(*r.filterIncludeDescendants, ""))
+	}
+	if r.filterVersions != nil {
+		localVarQueryParams.Add("filter[versions]", parameterToString(*r.filterVersions, ""))
+	}
+	if r.pageLimit != nil {
+		localVarQueryParams.Add("page[limit]", parameterToString(*r.pageLimit, ""))
+	}
+	if r.pageNextRecordId != nil {
+		localVarQueryParams.Add("page[next_record_id]", parameterToString(*r.pageNextRecordId, ""))
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiGetUsageApplicationSecurityMonitoringRequest struct {
 	ctx     _context.Context
 	Api     *UsageMeteringApi
