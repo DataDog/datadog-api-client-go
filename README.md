@@ -90,7 +90,7 @@ credentials, and then run `go run example.go`.
 This client includes access to Datadog API endpoints while they are in an unstable state and may undergo breaking changes. An extra configuration step is required to enable these endpoints:
 
 ```go
-    configuration.SetUnstableOperationEnabled("<OperationName>", true)
+    configuration.SetUnstableOperationEnabled("<APIVersion>.<OperationName>", true)
 ```
 
 where `<OperationName>` is the name of the method used to interact with that endpoint. For example: `GetLogsIndex`, or `UpdateLogsIndex`
@@ -144,7 +144,7 @@ import (
 func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("ListIncidents", true)
+	configuration.SetUnstableOperationEnabled("v2.ListIncidents", true)
 	apiClient := common.NewAPIClient(configuration)
 	incidentsApi := datadog.NewIncidentsApi(apiClient)
 
