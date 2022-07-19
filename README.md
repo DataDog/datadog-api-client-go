@@ -9,7 +9,7 @@ This repository contains a Go API client for the [Datadog API](https://docs.data
 ## Layout
 
 This repository contains per-major-version API client packages. Right
-now, Datadog has two API versions, `v1` and `v2`.
+now, Datadog has two API versions, `v1`, `v2` and the common package, `common`.
 
 ### The API v1 Client
 
@@ -27,6 +27,14 @@ The client library for Datadog API v2 is located in the `api/v2/datadog` directo
 import "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 ```
 
+### The Common Package
+
+The common package for Datadog API is located in the `api/common` directory. Import it with
+
+```go
+import "github.com/DataDog/datadog-api-client-go/api/common"
+```
+
 ## Getting Started
 
 Here's an example creating a user:
@@ -38,14 +46,16 @@ import (
     "context"
     "fmt"
     "os"
+
+    "github.com/DataDog/datadog-api-client-go/api/common"
     datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
     ctx := context.WithValue(
         context.Background(),
-        datadog.ContextAPIKeys,
-        map[string]datadog.APIKey{
+        common.ContextAPIKeys,
+        map[string]common.APIKey{
             "apiKeyAuth": {
                 Key: os.Getenv("DD_CLIENT_API_KEY"),
             },
@@ -57,10 +67,11 @@ func main() {
 
     body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users")))
 
-    configuration := datadog.NewConfiguration()
+    configuration := common.NewConfiguration()
+    apiClient := common.NewAPIClient(configuration)
+    usersApi := datadog.NewUsersApi(apiClient)
 
-    apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.UsersApi.CreateUser(ctx, body)
+    resp, r, err := usersApi.CreateUser(ctx, body)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error creating user: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -90,7 +101,7 @@ When talking to a different server, like the `eu` instance, change the `ContextS
 
 ```go
     ctx = context.WithValue(ctx,
-        datadog.ContextServerVariables,
+        common.ContextServerVariables,
         map[string]string{
             "site": "datadoghq.eu",
     })
@@ -126,16 +137,18 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListIncidents", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, _, err := apiClient.IncidentsApi.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters())
+	apiClient := common.NewAPIClient(configuration)
+	incidentsApi := datadog.NewIncidentsApi(apiClient)
 
+	resp, _, err := incidentsApi.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)
 	}
