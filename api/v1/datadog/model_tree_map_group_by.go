@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// TreeMapGroupBy The attribute used to group elements in the widget.
+// TreeMapGroupBy (deprecated) The attribute formerly used to group elements in the widget.
 type TreeMapGroupBy string
 
 // List of TreeMapGroupBy.

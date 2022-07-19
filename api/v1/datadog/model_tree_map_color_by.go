@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// TreeMapColorBy The attribute used to determine color in the widget.
+// TreeMapColorBy (deprecated) The attribute formerly used to determine color in the widget.
 type TreeMapColorBy string
 
 // List of TreeMapColorBy.
