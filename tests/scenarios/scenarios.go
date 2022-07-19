@@ -141,14 +141,14 @@ func ToVarName(param string) (varName string) {
 	isToUpper := true
 
 	for _, v := range param {
-		if isToUpper {
-			varName += strings.ToUpper(string(v))
-			isToUpper = false
+		if v == '_' {
+			isToUpper = true
+		} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+			isToUpper = true
 		} else {
-			if v == '_' {
-				isToUpper = true
-			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
-				isToUpper = true
+			if isToUpper {
+				varName += strings.ToUpper(string(v))
+				isToUpper = false
 			} else {
 				varName += string(v)
 			}
@@ -454,7 +454,6 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return nil, fmt.Errorf("unknown type '%T' to convert", t)
 	}
 }
-
 
 func readChannel(ch interface{}) ([]interface{}, error) {
 	t := reflect.TypeOf(ch)
