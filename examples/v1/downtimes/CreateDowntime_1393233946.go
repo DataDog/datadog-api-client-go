@@ -34,6 +34,9 @@ func main() {
 		Start:    common.PtrInt64(time.Now().Unix()),
 		End:      *common.NewNullableInt64(common.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
 		Timezone: common.PtrString("Etc/UTC"),
+		MonitorTags: []string{
+			"tag0",
+		},
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()

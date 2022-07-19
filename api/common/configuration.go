@@ -359,9 +359,7 @@ func NewConfiguration() *Configuration {
 		},
 		unstableOperations: map[string]bool{
 			"v1.GetDailyCustomReports":            false,
-			"v1.GetHourlyUsageAttribution":        false,
 			"v1.GetMonthlyCustomReports":          false,
-			"v1.GetMonthlyUsageAttribution":       false,
 			"v1.GetSpecifiedDailyCustomReports":   false,
 			"v1.GetSpecifiedMonthlyCustomReports": false,
 			"v1.GetUsageAttribution":              false,

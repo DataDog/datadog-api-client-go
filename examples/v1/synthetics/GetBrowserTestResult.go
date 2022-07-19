@@ -17,7 +17,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetBrowserTestResult(ctx, "public_id", "result_id")
+	resp, r, err := api.GetBrowserTestResult(ctx, "2yy-sem-mjh", "5671719892074090418")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestResult`: %v\n", err)

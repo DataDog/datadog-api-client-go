@@ -17,7 +17,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetBrowserTestLatestResults(ctx, "public_id", *datadog.NewGetBrowserTestLatestResultsOptionalParameters())
+	resp, r, err := api.GetBrowserTestLatestResults(ctx, "2yy-sem-mjh", *datadog.NewGetBrowserTestLatestResultsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", err)

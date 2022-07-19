@@ -17,7 +17,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetAPITestResult(ctx, "public_id", "result_id")
+	resp, r, err := api.GetAPITestResult(ctx, "hwb-332-3xe", "3420446318379485707")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITestResult`: %v\n", err)

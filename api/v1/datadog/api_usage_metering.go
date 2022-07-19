@@ -325,13 +325,6 @@ func (a *UsageMeteringApi) getHourlyUsageAttributionExecute(r apiGetHourlyUsageA
 		localVarReturnValue HourlyUsageAttributionResponse
 	)
 
-	operationId := "v1.GetHourlyUsageAttribution"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetHourlyUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1108,13 +1101,6 @@ func (a *UsageMeteringApi) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsag
 		localVarPostBody    interface{}
 		localVarReturnValue MonthlyUsageAttributionResponse
 	)
-
-	operationId := "v1.GetMonthlyUsageAttribution"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyUsageAttribution")
 	if err != nil {
