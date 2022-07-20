@@ -8,23 +8,25 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.OrganizationCreateBody{
 		Billing: &datadog.OrganizationBilling{
-			Type: datadog.PtrString("parent_billing"),
+			Type: common.PtrString("parent_billing"),
 		},
 		Name: "New child org",
 		Subscription: &datadog.OrganizationSubscription{
-			Type: datadog.PtrString("pro"),
+			Type: common.PtrString("pro"),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewOrganizationsApi(apiClient)
+	resp, r, err := api.CreateChildOrg(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg`: %v\n", err)

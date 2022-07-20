@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -22,10 +23,10 @@ func main() {
 						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadog.TimeseriesWidgetRequest{
 							{
-								Q:            datadog.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
-								OnRightYaxis: datadog.PtrBool(false),
+								Q:            common.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
+								OnRightYaxis: common.PtrBool(false),
 								Style: &datadog.WidgetRequestStyle{
-									Palette:   datadog.PtrString("warm"),
+									Palette:   common.PtrString("warm"),
 									LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
 									LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
 								},
@@ -36,10 +37,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

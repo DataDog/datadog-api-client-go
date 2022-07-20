@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// RUMApiService RUMApi service.
-type RUMApiService service
+// RUMApi service type
+type RUMApi common.Service
 
 type apiAggregateRUMEventsRequest struct {
-	ctx        _context.Context
-	ApiService *RUMApiService
-	body       *RUMAggregateRequest
+	ctx  _context.Context
+	body *RUMAggregateRequest
 }
 
-func (a *RUMApiService) buildAggregateRUMEventsRequest(ctx _context.Context, body RUMAggregateRequest) (apiAggregateRUMEventsRequest, error) {
+func (a *RUMApi) buildAggregateRUMEventsRequest(ctx _context.Context, body RUMAggregateRequest) (apiAggregateRUMEventsRequest, error) {
 	req := apiAggregateRUMEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // AggregateRUMEvents Aggregate RUM events.
 // The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
-func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
+func (a *RUMApi) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	req, err := a.buildAggregateRUMEventsRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue RUMAnalyticsAggregateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.aggregateRUMEventsExecute(req)
+	return a.aggregateRUMEventsExecute(req)
 }
 
 // aggregateRUMEventsExecute executes the request.
-func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
+func (a *RUMApi) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RUMAnalyticsAggregateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.AggregateRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApi.AggregateRUMEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/rum/analytics/aggregate"
@@ -62,32 +62,16 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,44 +115,44 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -178,7 +162,6 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 
 type apiListRUMEventsRequest struct {
 	ctx         _context.Context
-	ApiService  *RUMApiService
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -239,14 +222,13 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 	return r
 }
 
-func (a *RUMApiService) buildListRUMEventsRequest(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (apiListRUMEventsRequest, error) {
+func (a *RUMApi) buildListRUMEventsRequest(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (apiListRUMEventsRequest, error) {
 	req := apiListRUMEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -267,18 +249,18 @@ func (a *RUMApiService) buildListRUMEventsRequest(ctx _context.Context, o ...Lis
 // Use this endpoint to see your latest RUM events.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
+func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListRUMEventsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue RUMEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listRUMEventsExecute(req)
+	return a.listRUMEventsExecute(req)
 }
 
 // ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
-func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan RUMEvent, func(), error) {
+func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan RUMEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -297,7 +279,7 @@ func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...L
 				break
 			}
 
-			resp, _, err := req.ApiService.listRUMEventsExecute(req)
+			resp, _, err := a.listRUMEventsExecute(req)
 			if err != nil {
 				break
 			}
@@ -339,16 +321,16 @@ func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...L
 }
 
 // listRUMEventsExecute executes the request.
-func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
+func (a *RUMApi) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue RUMEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.ListRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApi.ListRUMEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/rum/events"
@@ -357,35 +339,28 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", parameterToString(*r.filterQuery, ""))
+		localVarQueryParams.Add("filter[query]", common.ParameterToString(*r.filterQuery, ""))
 	}
 	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", parameterToString(*r.filterFrom, ""))
+		localVarQueryParams.Add("filter[from]", common.ParameterToString(*r.filterFrom, ""))
 	}
 	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", parameterToString(*r.filterTo, ""))
+		localVarQueryParams.Add("filter[to]", common.ParameterToString(*r.filterTo, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
 	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", parameterToString(*r.pageCursor, ""))
+		localVarQueryParams.Add("page[cursor]", common.ParameterToString(*r.pageCursor, ""))
 	}
 	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", parameterToString(*r.pageLimit, ""))
+		localVarQueryParams.Add("page[limit]", common.ParameterToString(*r.pageLimit, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -399,7 +374,7 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -411,12 +386,12 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -429,44 +404,44 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -475,16 +450,14 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 }
 
 type apiSearchRUMEventsRequest struct {
-	ctx        _context.Context
-	ApiService *RUMApiService
-	body       *RUMSearchEventsRequest
+	ctx  _context.Context
+	body *RUMSearchEventsRequest
 }
 
-func (a *RUMApiService) buildSearchRUMEventsRequest(ctx _context.Context, body RUMSearchEventsRequest) (apiSearchRUMEventsRequest, error) {
+func (a *RUMApi) buildSearchRUMEventsRequest(ctx _context.Context, body RUMSearchEventsRequest) (apiSearchRUMEventsRequest, error) {
 	req := apiSearchRUMEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -496,18 +469,18 @@ func (a *RUMApiService) buildSearchRUMEventsRequest(ctx _context.Context, body R
 // Use this endpoint to build complex RUM events filtering and search.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
+func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchRUMEventsRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue RUMEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchRUMEventsExecute(req)
+	return a.searchRUMEventsExecute(req)
 }
 
 // SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
-func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan RUMEvent, func(), error) {
+func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan RUMEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if body.Page == nil {
@@ -528,7 +501,7 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 				break
 			}
 
-			resp, _, err := req.ApiService.searchRUMEventsExecute(req)
+			resp, _, err := a.searchRUMEventsExecute(req)
 			if err != nil {
 				break
 			}
@@ -570,16 +543,16 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 }
 
 // searchRUMEventsExecute executes the request.
-func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
+func (a *RUMApi) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RUMEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.SearchRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApi.SearchRUMEvents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/rum/events/search"
@@ -588,32 +561,16 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -627,7 +584,7 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -639,12 +596,12 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -657,47 +614,54 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewRUMApi Returns NewRUMApi.
+func NewRUMApi(client *common.APIClient) *RUMApi {
+	return &RUMApi{
+		Client: client,
+	}
 }

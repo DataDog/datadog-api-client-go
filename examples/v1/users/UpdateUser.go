@@ -8,21 +8,23 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.User{
 		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-		Disabled:   datadog.PtrBool(false),
-		Email:      datadog.PtrString("test@datadoghq.com"),
-		Handle:     datadog.PtrString("test@datadoghq.com"),
-		Name:       datadog.PtrString("test user"),
+		Disabled:   common.PtrBool(false),
+		Email:      common.PtrString("test@datadoghq.com"),
+		Handle:     common.PtrString("test@datadoghq.com"),
+		Name:       common.PtrString("test user"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.UpdateUser(ctx, "test@datadoghq.com", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewUsersApi(apiClient)
+	resp, r, err := api.UpdateUser(ctx, "test@datadoghq.com", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser`: %v\n", err)

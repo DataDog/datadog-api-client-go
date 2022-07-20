@@ -8,14 +8,16 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsApi.GetEvent(ctx, 9223372036854775807)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewEventsApi(apiClient)
+	resp, r, err := api.GetEvent(ctx, 9223372036854775807)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.GetEvent`: %v\n", err)

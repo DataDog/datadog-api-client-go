@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -20,18 +21,19 @@ func main() {
 			Attributes: datadog.SecurityFilterUpdateAttributes{
 				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{},
 				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS.Ptr(),
-				IsEnabled:        datadog.PtrBool(true),
-				Name:             datadog.PtrString("Example-Update_a_security_filter_returns_OK_response"),
-				Query:            datadog.PtrString("service:ExampleUpdateasecurityfilterreturnsOKresponse"),
-				Version:          datadog.PtrInt32(1),
+				IsEnabled:        common.PtrBool(true),
+				Name:             common.PtrString("Example-Update_a_security_filter_returns_OK_response"),
+				Query:            common.PtrString("service:ExampleUpdateasecurityfilterreturnsOKresponse"),
+				Version:          common.PtrInt32(1),
 			},
 			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, SecurityFilterDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.UpdateSecurityFilter(ctx, SecurityFilterDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityFilter`: %v\n", err)

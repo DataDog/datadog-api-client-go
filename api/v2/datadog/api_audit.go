@@ -11,14 +11,15 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AuditApiService AuditApi service.
-type AuditApiService service
+// AuditApi service type
+type AuditApi common.Service
 
 type apiListAuditLogsRequest struct {
 	ctx         _context.Context
-	ApiService  *AuditApiService
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -79,14 +80,13 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 	return r
 }
 
-func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
+func (a *AuditApi) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
 	req := apiListAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -107,18 +107,18 @@ func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...L
 // Use this endpoint to see your latest Audit Logs events.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuditLogsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuditLogsEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAuditLogsExecute(req)
+	return a.listAuditLogsExecute(req)
 }
 
 // ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
-func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -137,7 +137,7 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 				break
 			}
 
-			resp, _, err := req.ApiService.listAuditLogsExecute(req)
+			resp, _, err := a.listAuditLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -179,16 +179,16 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 }
 
 // listAuditLogsExecute executes the request.
-func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.ListAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApi.ListAuditLogs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/audit/events"
@@ -197,35 +197,28 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", parameterToString(*r.filterQuery, ""))
+		localVarQueryParams.Add("filter[query]", common.ParameterToString(*r.filterQuery, ""))
 	}
 	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", parameterToString(*r.filterFrom, ""))
+		localVarQueryParams.Add("filter[from]", common.ParameterToString(*r.filterFrom, ""))
 	}
 	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", parameterToString(*r.filterTo, ""))
+		localVarQueryParams.Add("filter[to]", common.ParameterToString(*r.filterTo, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
 	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", parameterToString(*r.pageCursor, ""))
+		localVarQueryParams.Add("page[cursor]", common.ParameterToString(*r.pageCursor, ""))
 	}
 	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", parameterToString(*r.pageLimit, ""))
+		localVarQueryParams.Add("page[limit]", common.ParameterToString(*r.pageLimit, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -239,7 +232,7 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -251,12 +244,12 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -269,44 +262,44 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -315,9 +308,8 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 }
 
 type apiSearchAuditLogsRequest struct {
-	ctx        _context.Context
-	ApiService *AuditApiService
-	body       *AuditLogsSearchEventsRequest
+	ctx  _context.Context
+	body *AuditLogsSearchEventsRequest
 }
 
 // SearchAuditLogsOptionalParameters holds optional parameters for SearchAuditLogs.
@@ -337,14 +329,13 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 	return r
 }
 
-func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
+func (a *AuditApi) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
 	req := apiSearchAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -360,18 +351,18 @@ func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ..
 // Use this endpoint to build complex Audit Logs events filtering and search.
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchAuditLogsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuditLogsEventsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchAuditLogsExecute(req)
+	return a.searchAuditLogsExecute(req)
 }
 
 // SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
-func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -396,7 +387,7 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 				break
 			}
 
-			resp, _, err := req.ApiService.searchAuditLogsExecute(req)
+			resp, _, err := a.searchAuditLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -438,16 +429,16 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 }
 
 // searchAuditLogsExecute executes the request.
-func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApi) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.SearchAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApi.SearchAuditLogs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/audit/events/search"
@@ -455,30 +446,14 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -492,7 +467,7 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -504,12 +479,12 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -522,47 +497,54 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewAuditApi Returns NewAuditApi.
+func NewAuditApi(client *common.APIClient) *AuditApi {
+	return &AuditApi{
+		Client: client,
+	}
 }

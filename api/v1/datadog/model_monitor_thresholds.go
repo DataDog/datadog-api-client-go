@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // MonitorThresholds List of the different monitor threshold available.
@@ -13,15 +15,15 @@ type MonitorThresholds struct {
 	// The monitor `CRITICAL` threshold.
 	Critical *float64 `json:"critical,omitempty"`
 	// The monitor `CRITICAL` recovery threshold.
-	CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
+	CriticalRecovery common.NullableFloat64 `json:"critical_recovery,omitempty"`
 	// The monitor `OK` threshold.
-	Ok NullableFloat64 `json:"ok,omitempty"`
+	Ok common.NullableFloat64 `json:"ok,omitempty"`
 	// The monitor UNKNOWN threshold.
-	Unknown NullableFloat64 `json:"unknown,omitempty"`
+	Unknown common.NullableFloat64 `json:"unknown,omitempty"`
 	// The monitor `WARNING` threshold.
-	Warning NullableFloat64 `json:"warning,omitempty"`
+	Warning common.NullableFloat64 `json:"warning,omitempty"`
 	// The monitor `WARNING` recovery threshold.
-	WarningRecovery NullableFloat64 `json:"warning_recovery,omitempty"`
+	WarningRecovery common.NullableFloat64 `json:"warning_recovery,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -104,7 +106,7 @@ func (o *MonitorThresholds) HasCriticalRecovery() bool {
 	return false
 }
 
-// SetCriticalRecovery gets a reference to the given NullableFloat64 and assigns it to the CriticalRecovery field.
+// SetCriticalRecovery gets a reference to the given common.NullableFloat64 and assigns it to the CriticalRecovery field.
 func (o *MonitorThresholds) SetCriticalRecovery(v float64) {
 	o.CriticalRecovery.Set(&v)
 }
@@ -147,7 +149,7 @@ func (o *MonitorThresholds) HasOk() bool {
 	return false
 }
 
-// SetOk gets a reference to the given NullableFloat64 and assigns it to the Ok field.
+// SetOk gets a reference to the given common.NullableFloat64 and assigns it to the Ok field.
 func (o *MonitorThresholds) SetOk(v float64) {
 	o.Ok.Set(&v)
 }
@@ -190,7 +192,7 @@ func (o *MonitorThresholds) HasUnknown() bool {
 	return false
 }
 
-// SetUnknown gets a reference to the given NullableFloat64 and assigns it to the Unknown field.
+// SetUnknown gets a reference to the given common.NullableFloat64 and assigns it to the Unknown field.
 func (o *MonitorThresholds) SetUnknown(v float64) {
 	o.Unknown.Set(&v)
 }
@@ -233,7 +235,7 @@ func (o *MonitorThresholds) HasWarning() bool {
 	return false
 }
 
-// SetWarning gets a reference to the given NullableFloat64 and assigns it to the Warning field.
+// SetWarning gets a reference to the given common.NullableFloat64 and assigns it to the Warning field.
 func (o *MonitorThresholds) SetWarning(v float64) {
 	o.Warning.Set(&v)
 }
@@ -276,7 +278,7 @@ func (o *MonitorThresholds) HasWarningRecovery() bool {
 	return false
 }
 
-// SetWarningRecovery gets a reference to the given NullableFloat64 and assigns it to the WarningRecovery field.
+// SetWarningRecovery gets a reference to the given common.NullableFloat64 and assigns it to the WarningRecovery field.
 func (o *MonitorThresholds) SetWarningRecovery(v float64) {
 	o.WarningRecovery.Set(&v)
 }
@@ -326,12 +328,12 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Critical         *float64        `json:"critical,omitempty"`
-		CriticalRecovery NullableFloat64 `json:"critical_recovery,omitempty"`
-		Ok               NullableFloat64 `json:"ok,omitempty"`
-		Unknown          NullableFloat64 `json:"unknown,omitempty"`
-		Warning          NullableFloat64 `json:"warning,omitempty"`
-		WarningRecovery  NullableFloat64 `json:"warning_recovery,omitempty"`
+		Critical         *float64               `json:"critical,omitempty"`
+		CriticalRecovery common.NullableFloat64 `json:"critical_recovery,omitempty"`
+		Ok               common.NullableFloat64 `json:"ok,omitempty"`
+		Unknown          common.NullableFloat64 `json:"unknown,omitempty"`
+		Warning          common.NullableFloat64 `json:"warning,omitempty"`
+		WarningRecovery  common.NullableFloat64 `json:"warning_recovery,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

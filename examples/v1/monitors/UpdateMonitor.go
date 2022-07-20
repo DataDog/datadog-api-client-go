@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -17,23 +18,24 @@ func main() {
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadog.MonitorUpdateRequest{
-		Name: datadog.PtrString("My monitor-updated"),
+		Name: common.PtrString("My monitor-updated"),
 		Options: &datadog.MonitorOptions{
-			EvaluationDelay:  *datadog.NewNullableInt64(nil),
-			NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-			NewHostDelay:     *datadog.NewNullableInt64(nil),
-			RenotifyInterval: *datadog.NewNullableInt64(nil),
+			EvaluationDelay:  *common.NewNullableInt64(nil),
+			NewGroupDelay:    *common.NewNullableInt64(common.PtrInt64(600)),
+			NewHostDelay:     *common.NewNullableInt64(nil),
+			RenotifyInterval: *common.NewNullableInt64(nil),
 			Thresholds: &datadog.MonitorThresholds{
-				Critical: datadog.PtrFloat64(2),
-				Warning:  *datadog.NewNullableFloat64(nil),
+				Critical: common.PtrFloat64(2),
+				Warning:  *common.NewNullableFloat64(nil),
 			},
-			TimeoutH: *datadog.NewNullableInt64(nil),
+			TimeoutH: *common.NewNullableInt64(nil),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, MonitorID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewMonitorsApi(apiClient)
+	resp, r, err := api.UpdateMonitor(ctx, MonitorID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor`: %v\n", err)

@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AuthNMappingsApiService AuthNMappingsApi service.
-type AuthNMappingsApiService service
+// AuthNMappingsApi service type
+type AuthNMappingsApi common.Service
 
 type apiCreateAuthNMappingRequest struct {
-	ctx        _context.Context
-	ApiService *AuthNMappingsApiService
-	body       *AuthNMappingCreateRequest
+	ctx  _context.Context
+	body *AuthNMappingCreateRequest
 }
 
-func (a *AuthNMappingsApiService) buildCreateAuthNMappingRequest(ctx _context.Context, body AuthNMappingCreateRequest) (apiCreateAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildCreateAuthNMappingRequest(ctx _context.Context, body AuthNMappingCreateRequest) (apiCreateAuthNMappingRequest, error) {
 	req := apiCreateAuthNMappingRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateAuthNMapping Create an AuthN Mapping.
 // Create an AuthN Mapping.
-func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateAuthNMappingRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAuthNMappingExecute(req)
+	return a.createAuthNMappingExecute(req)
 }
 
 // createAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.CreateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.CreateAuthNMapping")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/authn_mappings"
@@ -62,32 +62,16 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,53 +115,53 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -187,13 +171,11 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 
 type apiDeleteAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
 	authnMappingId string
 }
 
-func (a *AuthNMappingsApiService) buildDeleteAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiDeleteAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildDeleteAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiDeleteAuthNMappingRequest, error) {
 	req := apiDeleteAuthNMappingRequest{
-		ApiService:     a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -202,45 +184,38 @@ func (a *AuthNMappingsApiService) buildDeleteAuthNMappingRequest(ctx _context.Co
 
 // DeleteAuthNMapping Delete an AuthN Mapping.
 // Delete an AuthN Mapping specified by AuthN Mapping UUID.
-func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
+func (a *AuthNMappingsApi) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteAuthNMappingExecute(req)
+	return a.deleteAuthNMappingExecute(req)
 }
 
 // deleteAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
+func (a *AuthNMappingsApi) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.DeleteAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.DeleteAuthNMapping")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/authn_mappings/{authn_mapping_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(parameterToString(r.authnMappingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(common.ParameterToString(r.authnMappingId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -254,7 +229,7 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -266,12 +241,12 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -284,35 +259,35 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -322,13 +297,11 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 
 type apiGetAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
 	authnMappingId string
 }
 
-func (a *AuthNMappingsApiService) buildGetAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiGetAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildGetAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiGetAuthNMappingRequest, error) {
 	req := apiGetAuthNMappingRequest{
-		ApiService:     a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -337,47 +310,40 @@ func (a *AuthNMappingsApiService) buildGetAuthNMappingRequest(ctx _context.Conte
 
 // GetAuthNMapping Get an AuthN Mapping by UUID.
 // Get an AuthN Mapping specified by the AuthN Mapping UUID.
-func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getAuthNMappingExecute(req)
+	return a.getAuthNMappingExecute(req)
 }
 
 // getAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.GetAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.GetAuthNMapping")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/authn_mappings/{authn_mapping_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(parameterToString(r.authnMappingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(common.ParameterToString(r.authnMappingId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -391,7 +357,7 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -403,12 +369,12 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -421,44 +387,44 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -468,7 +434,6 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 
 type apiListAuthNMappingsRequest struct {
 	ctx        _context.Context
-	ApiService *AuthNMappingsApiService
 	pageSize   *int64
 	pageNumber *int64
 	sort       *AuthNMappingsSort
@@ -513,14 +478,13 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 	return r
 }
 
-func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (apiListAuthNMappingsRequest, error) {
+func (a *AuthNMappingsApi) buildListAuthNMappingsRequest(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (apiListAuthNMappingsRequest, error) {
 	req := apiListAuthNMappingsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListAuthNMappingsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListAuthNMappingsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -534,27 +498,27 @@ func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Con
 
 // ListAuthNMappings List all AuthN Mappings.
 // List all AuthN Mappings in the org.
-func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuthNMappingsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AuthNMappingsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAuthNMappingsExecute(req)
+	return a.listAuthNMappingsExecute(req)
 }
 
 // listAuthNMappingsExecute executes the request.
-func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.ListAuthNMappings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.ListAuthNMappings")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/authn_mappings"
@@ -563,29 +527,22 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
 	if r.filter != nil {
-		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
+		localVarQueryParams.Add("filter", common.ParameterToString(*r.filter, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -599,7 +556,7 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -611,12 +568,12 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -629,35 +586,35 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -667,14 +624,12 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 
 type apiUpdateAuthNMappingRequest struct {
 	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
 	authnMappingId string
 	body           *AuthNMappingUpdateRequest
 }
 
-func (a *AuthNMappingsApiService) buildUpdateAuthNMappingRequest(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (apiUpdateAuthNMappingRequest, error) {
+func (a *AuthNMappingsApi) buildUpdateAuthNMappingRequest(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (apiUpdateAuthNMappingRequest, error) {
 	req := apiUpdateAuthNMappingRequest{
-		ApiService:     a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 		body:           &body,
@@ -684,62 +639,46 @@ func (a *AuthNMappingsApiService) buildUpdateAuthNMappingRequest(ctx _context.Co
 
 // UpdateAuthNMapping Edit an AuthN Mapping.
 // Edit an AuthN Mapping.
-func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAuthNMappingRequest(ctx, authnMappingId, body)
 	if err != nil {
 		var localVarReturnValue AuthNMappingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAuthNMappingExecute(req)
+	return a.updateAuthNMappingExecute(req)
 }
 
 // updateAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
+func (a *AuthNMappingsApi) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.UpdateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApi.UpdateAuthNMapping")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/authn_mappings/{authn_mapping_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(parameterToString(r.authnMappingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"authn_mapping_id"+"}", _neturl.PathEscape(common.ParameterToString(r.authnMappingId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -753,7 +692,7 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -765,12 +704,12 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -783,74 +722,81 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewAuthNMappingsApi Returns NewAuthNMappingsApi.
+func NewAuthNMappingsApi(client *common.APIClient) *AuthNMappingsApi {
+	return &AuthNMappingsApi{
+		Client: client,
+	}
 }

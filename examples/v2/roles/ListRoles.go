@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	// there is a valid "role" in the system
 	RoleDataAttributesName := os.Getenv("ROLE_DATA_ATTRIBUTES_NAME")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().WithFilter(RoleDataAttributesName))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewRolesApi(apiClient)
+	resp, r, err := api.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().WithFilter(RoleDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles`: %v\n", err)

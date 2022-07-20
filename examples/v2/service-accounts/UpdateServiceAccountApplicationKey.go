@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,7 +16,7 @@ func main() {
 	body := datadog.ApplicationKeyUpdateRequest{
 		Data: datadog.ApplicationKeyUpdateData{
 			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: datadog.PtrString("Application Key for managing dashboards"),
+				Name: common.PtrString("Application Key for managing dashboards"),
 				Scopes: []string{
 					"dashboards_read",
 					"dashboards_write",
@@ -26,10 +27,11 @@ func main() {
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.UpdateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewServiceAccountsApi(apiClient)
+	resp, r, err := api.UpdateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.UpdateServiceAccountApplicationKey`: %v\n", err)

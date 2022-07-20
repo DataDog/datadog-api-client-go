@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -36,7 +37,7 @@ func main() {
 				Proxy: &datadog.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},
-				Url: datadog.PtrString("https://example.com"),
+				Url: common.PtrString("https://example.com"),
 			},
 			Variables: []datadog.SyntheticsBrowserVariable{
 				{
@@ -63,8 +64,8 @@ func main() {
 			},
 			Retry: &datadog.SyntheticsTestOptionsRetry{},
 			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
-				ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-				ClientTokenId: datadog.PtrInt64(12345),
+				ApplicationId: common.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+				ClientTokenId: common.PtrInt64(12345),
 				IsEnabled:     true,
 			},
 		},
@@ -79,10 +80,11 @@ func main() {
 		},
 		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdateBrowserTest(ctx, "public_id", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSyntheticsApi(apiClient)
+	resp, r, err := api.UpdateBrowserTest(ctx, "public_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateBrowserTest`: %v\n", err)

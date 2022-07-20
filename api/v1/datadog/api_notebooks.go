@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// NotebooksApiService NotebooksApi service.
-type NotebooksApiService service
+// NotebooksApi service type
+type NotebooksApi common.Service
 
 type apiCreateNotebookRequest struct {
-	ctx        _context.Context
-	ApiService *NotebooksApiService
-	body       *NotebookCreateRequest
+	ctx  _context.Context
+	body *NotebookCreateRequest
 }
 
-func (a *NotebooksApiService) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
+func (a *NotebooksApi) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
 	req := apiCreateNotebookRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateNotebook Create a notebook.
 // Create a notebook using the specified options.
-func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateNotebookRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createNotebookExecute(req)
+	return a.createNotebookExecute(req)
 }
 
 // createNotebookExecute executes the request.
-func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) createNotebookExecute(r apiCreateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.CreateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.CreateNotebook")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/notebooks"
@@ -62,32 +62,16 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,44 +115,44 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -178,13 +162,11 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 
 type apiDeleteNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
 	notebookId int64
 }
 
-func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
+func (a *NotebooksApi) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
 	req := apiDeleteNotebookRequest{
-		ApiService: a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -193,45 +175,38 @@ func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, n
 
 // DeleteNotebook Delete a notebook.
 // Delete a notebook using the specified ID.
-func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
+func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteNotebookRequest(ctx, notebookId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteNotebookExecute(req)
+	return a.deleteNotebookExecute(req)
 }
 
 // deleteNotebookExecute executes the request.
-func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_nethttp.Response, error) {
+func (a *NotebooksApi) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.DeleteNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.DeleteNotebook")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/notebooks/{notebook_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(parameterToString(r.notebookId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(common.ParameterToString(r.notebookId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -245,7 +220,7 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -257,12 +232,12 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -275,44 +250,44 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -322,13 +297,11 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 
 type apiGetNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
 	notebookId int64
 }
 
-func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
+func (a *NotebooksApi) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
 	req := apiGetNotebookRequest{
-		ApiService: a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -337,47 +310,40 @@ func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, note
 
 // GetNotebook Get a notebook.
 // Get a notebook using the specified notebook ID.
-func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetNotebookRequest(ctx, notebookId)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getNotebookExecute(req)
+	return a.getNotebookExecute(req)
 }
 
 // getNotebookExecute executes the request.
-func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) getNotebookExecute(r apiGetNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.GetNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.GetNotebook")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/notebooks/{notebook_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(parameterToString(r.notebookId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(common.ParameterToString(r.notebookId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -391,7 +357,7 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -403,12 +369,12 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -421,53 +387,53 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -477,7 +443,6 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 
 type apiListNotebooksRequest struct {
 	ctx                 _context.Context
-	ApiService          *NotebooksApiService
 	authorHandle        *string
 	excludeAuthorHandle *string
 	start               *int64
@@ -570,14 +535,13 @@ func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebook
 	return r
 }
 
-func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
+func (a *NotebooksApi) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
 	req := apiListNotebooksRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListNotebooksOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListNotebooksOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -598,27 +562,27 @@ func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o 
 // ListNotebooks Get all notebooks.
 // Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
 // `name` or author `handle`.
-func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	req, err := a.buildListNotebooksRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue NotebooksResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listNotebooksExecute(req)
+	return a.listNotebooksExecute(req)
 }
 
 // listNotebooksExecute executes the request.
-func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (NotebooksResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) listNotebooksExecute(r apiListNotebooksRequest) (NotebooksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue NotebooksResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.ListNotebooks")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.ListNotebooks")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/notebooks"
@@ -627,47 +591,40 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.authorHandle != nil {
-		localVarQueryParams.Add("author_handle", parameterToString(*r.authorHandle, ""))
+		localVarQueryParams.Add("author_handle", common.ParameterToString(*r.authorHandle, ""))
 	}
 	if r.excludeAuthorHandle != nil {
-		localVarQueryParams.Add("exclude_author_handle", parameterToString(*r.excludeAuthorHandle, ""))
+		localVarQueryParams.Add("exclude_author_handle", common.ParameterToString(*r.excludeAuthorHandle, ""))
 	}
 	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+		localVarQueryParams.Add("start", common.ParameterToString(*r.start, ""))
 	}
 	if r.count != nil {
-		localVarQueryParams.Add("count", parameterToString(*r.count, ""))
+		localVarQueryParams.Add("count", common.ParameterToString(*r.count, ""))
 	}
 	if r.sortField != nil {
-		localVarQueryParams.Add("sort_field", parameterToString(*r.sortField, ""))
+		localVarQueryParams.Add("sort_field", common.ParameterToString(*r.sortField, ""))
 	}
 	if r.sortDir != nil {
-		localVarQueryParams.Add("sort_dir", parameterToString(*r.sortDir, ""))
+		localVarQueryParams.Add("sort_dir", common.ParameterToString(*r.sortDir, ""))
 	}
 	if r.query != nil {
-		localVarQueryParams.Add("query", parameterToString(*r.query, ""))
+		localVarQueryParams.Add("query", common.ParameterToString(*r.query, ""))
 	}
 	if r.includeCells != nil {
-		localVarQueryParams.Add("include_cells", parameterToString(*r.includeCells, ""))
+		localVarQueryParams.Add("include_cells", common.ParameterToString(*r.includeCells, ""))
 	}
 	if r.isTemplate != nil {
-		localVarQueryParams.Add("is_template", parameterToString(*r.isTemplate, ""))
+		localVarQueryParams.Add("is_template", common.ParameterToString(*r.isTemplate, ""))
 	}
 	if r.typeVar != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.typeVar, ""))
+		localVarQueryParams.Add("type", common.ParameterToString(*r.typeVar, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -681,7 +638,7 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -693,12 +650,12 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -711,44 +668,44 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -758,14 +715,12 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 
 type apiUpdateNotebookRequest struct {
 	ctx        _context.Context
-	ApiService *NotebooksApiService
 	notebookId int64
 	body       *NotebookUpdateRequest
 }
 
-func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
+func (a *NotebooksApi) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
 	req := apiUpdateNotebookRequest{
-		ApiService: a,
 		ctx:        ctx,
 		notebookId: notebookId,
 		body:       &body,
@@ -775,62 +730,46 @@ func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, n
 
 // UpdateNotebook Update a notebook.
 // Update a notebook using the specified ID.
-func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateNotebookRequest(ctx, notebookId, body)
 	if err != nil {
 		var localVarReturnValue NotebookResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateNotebookExecute(req)
+	return a.updateNotebookExecute(req)
 }
 
 // updateNotebookExecute executes the request.
-func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApi) updateNotebookExecute(r apiUpdateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.UpdateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApi.UpdateNotebook")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/notebooks/{notebook_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(parameterToString(r.notebookId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"notebook_id"+"}", _neturl.PathEscape(common.ParameterToString(r.notebookId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -844,7 +783,7 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -856,12 +795,12 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -874,65 +813,72 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewNotebooksApi Returns NewNotebooksApi.
+func NewNotebooksApi(client *common.APIClient) *NotebooksApi {
+	return &NotebooksApi{
+		Client: client,
+	}
 }

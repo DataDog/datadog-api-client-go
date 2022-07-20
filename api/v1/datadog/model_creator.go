@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // Creator Object describing the creator of the shared element.
@@ -15,7 +17,7 @@ type Creator struct {
 	// Handle of the creator.
 	Handle *string `json:"handle,omitempty"`
 	// Name of the creator.
-	Name NullableString `json:"name,omitempty"`
+	Name common.NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -130,7 +132,7 @@ func (o *Creator) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given common.NullableString and assigns it to the Name field.
 func (o *Creator) SetName(v string) {
 	o.Name.Set(&v)
 }
@@ -171,9 +173,9 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email  *string        `json:"email,omitempty"`
-		Handle *string        `json:"handle,omitempty"`
-		Name   NullableString `json:"name,omitempty"`
+		Email  *string               `json:"email,omitempty"`
+		Handle *string               `json:"handle,omitempty"`
+		Name   common.NullableString `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

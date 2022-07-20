@@ -8,12 +8,13 @@ from . import formatter
 from . import utils
 
 PACKAGE_NAME = "datadog"
+COMMON_PACKAGE_NAME = "common"
 
 
 @click.command()
-@click.option(
-    "-i",
-    "--input",
+@click.argument(
+    "specs",
+    nargs=-1,
     type=click.Path(exists=True, file_okay=True, dir_okay=False, path_type=pathlib.Path),
 )
 @click.option(
@@ -21,14 +22,10 @@ PACKAGE_NAME = "datadog"
     "--output",
     type=click.Path(path_type=pathlib.Path),
 )
-def cli(input, output):
+def cli(specs, output):
     """
-    Generate a Ruby code snippet from OpenAPI specification.
+    Generate a Go code snippet from OpenAPI specification.
     """
-    spec = openapi.load(input)
-
-    version = input.parent.name
-
     env = Environment(loader=FileSystemLoader(str(pathlib.Path(__file__).parent / "templates")))
 
     env.filters["accept_headers"] = openapi.accept_headers
@@ -55,13 +52,12 @@ def cli(input, output):
     env.globals["get_type_for_attribute"] = openapi.get_type_for_attribute
     env.globals["get_type_for_parameter"] = openapi.get_type_for_parameter
     env.globals["get_type"] = openapi.type_to_go
-    env.globals["openapi"] = spec
     env.globals["package_name"] = PACKAGE_NAME
-    env.globals["version"] = version
     env.globals["get_default"] = openapi.get_default
     env.globals["get_container"] = openapi.get_container
     env.globals["get_container_type"] = openapi.get_container_type
     env.globals["get_type_at_path"] = openapi.get_type_at_path
+    env.globals["common_package_name"] = COMMON_PACKAGE_NAME
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")
@@ -74,26 +70,52 @@ def cli(input, output):
         "no_zstd.go": env.get_template("no_zstd.j2"),
     }
 
-    apis = openapi.apis(spec)
-    models = openapi.models(spec)
+    test_scenarios_files = {
+        "api_mappings.go": env.get_template("scenarios_api_mappings.j2"),
+    }
 
     output.mkdir(parents=True, exist_ok=True)
 
+    all_specs = {}
+    all_apis = {}
+    for spec_path in specs:
+        spec = openapi.load(spec_path)
+        version = spec_path.parent.name
+        all_specs[version] = spec
+
+        apis = openapi.apis(spec)
+        all_apis[version] = apis
+        models = openapi.models(spec)
+
+        env.globals["openapi"] = spec
+        env.globals["version"] = version
+
+        resources_dir = output / version / "datadog"
+        resources_dir.mkdir(parents=True, exist_ok=True)
+
+        for name, model in models.items():
+            filename = "model_" + formatter.model_filename(name) + ".go"
+            model_path = resources_dir / filename
+            model_path.parent.mkdir(parents=True, exist_ok=True)
+            with model_path.open("w") as fp:
+                fp.write(model_j2.render(name=name, model=model, models=models))
+
+        for name, operations in apis.items():
+            filename = "api_" + formatter.snake_case(name) + ".go"
+            api_path = resources_dir / filename
+            api_path.parent.mkdir(parents=True, exist_ok=True)
+            with api_path.open("w") as fp:
+                fp.write(api_j2.render(name=name, operations=operations))
+
+    common_package_output = pathlib.Path(f"../api/{COMMON_PACKAGE_NAME}")
+    common_package_output.mkdir(parents=True, exist_ok=True)
     for name, template in extra_files.items():
-        filename = output / name
+        filename = common_package_output / name
         with filename.open("w") as fp:
-            fp.write(template.render(apis=apis, models=models))
+            fp.write(template.render(apis=all_apis, all_specs=all_specs))
 
-    for name, model in models.items():
-        filename = "model_" + formatter.model_filename(name) + ".go"
-        model_path = output / filename
-        model_path.parent.mkdir(parents=True, exist_ok=True)
-        with model_path.open("w") as fp:
-            fp.write(model_j2.render(name=name, model=model, models=models))
-
-    for name, operations in apis.items():
-        filename = "api_" + formatter.snake_case(name) + ".go"
-        api_path = output / filename
-        api_path.parent.mkdir(parents=True, exist_ok=True)
-        with api_path.open("w") as fp:
-            fp.write(api_j2.render(name=name, operations=operations))
+    scenarios_test_output = pathlib.Path("../tests/scenarios/")
+    for name, template in test_scenarios_files.items():
+        filename = scenarios_test_output / name
+        with filename.open("w") as fp:
+            fp.write(template.render(apis=all_apis, all_specs=all_specs))

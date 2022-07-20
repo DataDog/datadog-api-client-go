@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
@@ -21,7 +23,7 @@ type LogsArchiveCreateRequestAttributes struct {
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// Maximum scan size for rehydration from this archive.
-	RehydrationMaxScanSizeInGb NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
+	RehydrationMaxScanSizeInGb common.NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -182,7 +184,7 @@ func (o *LogsArchiveCreateRequestAttributes) HasRehydrationMaxScanSizeInGb() boo
 	return false
 }
 
-// SetRehydrationMaxScanSizeInGb gets a reference to the given NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
+// SetRehydrationMaxScanSizeInGb gets a reference to the given common.NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
 func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGb(v int64) {
 	o.RehydrationMaxScanSizeInGb.Set(&v)
 }
@@ -267,7 +269,7 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		IncludeTags                *bool                               `json:"include_tags,omitempty"`
 		Name                       string                              `json:"name"`
 		Query                      string                              `json:"query"`
-		RehydrationMaxScanSizeInGb NullableInt64                       `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationMaxScanSizeInGb common.NullableInt64                `json:"rehydration_max_scan_size_in_gb,omitempty"`
 		RehydrationTags            []string                            `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

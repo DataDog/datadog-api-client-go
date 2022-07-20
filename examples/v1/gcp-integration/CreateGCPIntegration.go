@@ -8,30 +8,32 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.GCPAccount{
-		AuthProviderX509CertUrl: datadog.PtrString("https://www.googleapis.com/oauth2/v1/certs"),
-		AuthUri:                 datadog.PtrString("https://accounts.google.com/o/oauth2/auth"),
-		ClientEmail:             datadog.PtrString("api-dev@datadog-sandbox.iam.gserviceaccount.com"),
-		ClientId:                datadog.PtrString("123456712345671234567"),
-		ClientX509CertUrl:       datadog.PtrString("https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL"),
+		AuthProviderX509CertUrl: common.PtrString("https://www.googleapis.com/oauth2/v1/certs"),
+		AuthUri:                 common.PtrString("https://accounts.google.com/o/oauth2/auth"),
+		ClientEmail:             common.PtrString("api-dev@datadog-sandbox.iam.gserviceaccount.com"),
+		ClientId:                common.PtrString("123456712345671234567"),
+		ClientX509CertUrl:       common.PtrString("https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL"),
 		Errors: []string{
 			"*",
 		},
-		HostFilters:  datadog.PtrString("key:value,filter:example"),
-		PrivateKey:   datadog.PtrString("private_key"),
-		PrivateKeyId: datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
-		ProjectId:    datadog.PtrString("datadog-apitest"),
-		TokenUri:     datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
-		Type:         datadog.PtrString("service_account"),
+		HostFilters:  common.PtrString("key:value,filter:example"),
+		PrivateKey:   common.PtrString("private_key"),
+		PrivateKeyId: common.PtrString("123456789abcdefghi123456789abcdefghijklm"),
+		ProjectId:    common.PtrString("datadog-apitest"),
+		TokenUri:     common.PtrString("https://accounts.google.com/o/oauth2/token"),
+		Type:         common.PtrString("service_account"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.GCPIntegrationApi.CreateGCPIntegration(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewGCPIntegrationApi(apiClient)
+	resp, r, err := api.CreateGCPIntegration(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration`: %v\n", err)

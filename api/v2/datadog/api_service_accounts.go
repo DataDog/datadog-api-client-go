@@ -11,21 +11,21 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ServiceAccountsApiService ServiceAccountsApi service.
-type ServiceAccountsApiService service
+// ServiceAccountsApi service type
+type ServiceAccountsApi common.Service
 
 type apiCreateServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
 	serviceAccountId string
 	body             *ApplicationKeyCreateRequest
 }
 
-func (a *ServiceAccountsApiService) buildCreateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (apiCreateServiceAccountApplicationKeyRequest, error) {
+func (a *ServiceAccountsApi) buildCreateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (apiCreateServiceAccountApplicationKeyRequest, error) {
 	req := apiCreateServiceAccountApplicationKeyRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		body:             &body,
@@ -35,62 +35,46 @@ func (a *ServiceAccountsApiService) buildCreateServiceAccountApplicationKeyReque
 
 // CreateServiceAccountApplicationKey Create an application key for this service account.
 // Create an application key for this service account.
-func (a *ServiceAccountsApiService) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateServiceAccountApplicationKeyRequest(ctx, serviceAccountId, body)
 	if err != nil {
 		var localVarReturnValue ApplicationKeyResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createServiceAccountApplicationKeyExecute(req)
+	return a.createServiceAccountApplicationKeyExecute(req)
 }
 
 // createServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r apiCreateServiceAccountApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) createServiceAccountApplicationKeyExecute(r apiCreateServiceAccountApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.CreateServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApi.CreateServiceAccountApplicationKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/application_keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(parameterToString(r.serviceAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceAccountId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -104,7 +88,7 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -116,12 +100,12 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -134,44 +118,44 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -181,14 +165,12 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 
 type apiDeleteServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
 	serviceAccountId string
 	appKeyId         string
 }
 
-func (a *ServiceAccountsApiService) buildDeleteServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiDeleteServiceAccountApplicationKeyRequest, error) {
+func (a *ServiceAccountsApi) buildDeleteServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiDeleteServiceAccountApplicationKeyRequest, error) {
 	req := apiDeleteServiceAccountApplicationKeyRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -198,46 +180,39 @@ func (a *ServiceAccountsApiService) buildDeleteServiceAccountApplicationKeyReque
 
 // DeleteServiceAccountApplicationKey Delete an application key for this service account.
 // Delete an application key owned by this service account.
-func (a *ServiceAccountsApiService) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
+func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteServiceAccountApplicationKeyExecute(req)
+	return a.deleteServiceAccountApplicationKeyExecute(req)
 }
 
 // deleteServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r apiDeleteServiceAccountApplicationKeyRequest) (*_nethttp.Response, error) {
+func (a *ServiceAccountsApi) deleteServiceAccountApplicationKeyExecute(r apiDeleteServiceAccountApplicationKeyRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.DeleteServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApi.DeleteServiceAccountApplicationKey")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(parameterToString(r.serviceAccountId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(parameterToString(r.appKeyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(common.ParameterToString(r.appKeyId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -251,7 +226,7 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -263,12 +238,12 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -281,35 +256,35 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -319,14 +294,12 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 
 type apiGetServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
 	serviceAccountId string
 	appKeyId         string
 }
 
-func (a *ServiceAccountsApiService) buildGetServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiGetServiceAccountApplicationKeyRequest, error) {
+func (a *ServiceAccountsApi) buildGetServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiGetServiceAccountApplicationKeyRequest, error) {
 	req := apiGetServiceAccountApplicationKeyRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -336,48 +309,41 @@ func (a *ServiceAccountsApiService) buildGetServiceAccountApplicationKeyRequest(
 
 // GetServiceAccountApplicationKey Get one application key for this service account.
 // Get an application key owned by this service account.
-func (a *ServiceAccountsApiService) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId)
 	if err != nil {
 		var localVarReturnValue PartialApplicationKeyResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getServiceAccountApplicationKeyExecute(req)
+	return a.getServiceAccountApplicationKeyExecute(req)
 }
 
 // getServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r apiGetServiceAccountApplicationKeyRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) getServiceAccountApplicationKeyExecute(r apiGetServiceAccountApplicationKeyRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PartialApplicationKeyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.GetServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApi.GetServiceAccountApplicationKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(parameterToString(r.serviceAccountId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(parameterToString(r.appKeyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(common.ParameterToString(r.appKeyId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -391,7 +357,7 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -403,12 +369,12 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -421,44 +387,44 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -468,7 +434,6 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 
 type apiListServiceAccountApplicationKeysRequest struct {
 	ctx                  _context.Context
-	ApiService           *ServiceAccountsApiService
 	serviceAccountId     string
 	pageSize             *int64
 	pageNumber           *int64
@@ -530,15 +495,14 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
 	return r
 }
 
-func (a *ServiceAccountsApiService) buildListServiceAccountApplicationKeysRequest(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (apiListServiceAccountApplicationKeysRequest, error) {
+func (a *ServiceAccountsApi) buildListServiceAccountApplicationKeysRequest(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (apiListServiceAccountApplicationKeysRequest, error) {
 	req := apiListServiceAccountApplicationKeysRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -554,65 +518,58 @@ func (a *ServiceAccountsApiService) buildListServiceAccountApplicationKeysReques
 
 // ListServiceAccountApplicationKeys List application keys for this service account.
 // List all application keys available for this service account.
-func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	req, err := a.buildListServiceAccountApplicationKeysRequest(ctx, serviceAccountId, o...)
 	if err != nil {
 		var localVarReturnValue ListApplicationKeysResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listServiceAccountApplicationKeysExecute(req)
+	return a.listServiceAccountApplicationKeysExecute(req)
 }
 
 // listServiceAccountApplicationKeysExecute executes the request.
-func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r apiListServiceAccountApplicationKeysRequest) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) listServiceAccountApplicationKeysExecute(r apiListServiceAccountApplicationKeysRequest) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ListApplicationKeysResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.ListServiceAccountApplicationKeys")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApi.ListServiceAccountApplicationKeys")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/application_keys"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(parameterToString(r.serviceAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceAccountId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
 	if r.filter != nil {
-		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
+		localVarQueryParams.Add("filter", common.ParameterToString(*r.filter, ""))
 	}
 	if r.filterCreatedAtStart != nil {
-		localVarQueryParams.Add("filter[created_at][start]", parameterToString(*r.filterCreatedAtStart, ""))
+		localVarQueryParams.Add("filter[created_at][start]", common.ParameterToString(*r.filterCreatedAtStart, ""))
 	}
 	if r.filterCreatedAtEnd != nil {
-		localVarQueryParams.Add("filter[created_at][end]", parameterToString(*r.filterCreatedAtEnd, ""))
+		localVarQueryParams.Add("filter[created_at][end]", common.ParameterToString(*r.filterCreatedAtEnd, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -626,7 +583,7 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -638,12 +595,12 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -656,53 +613,53 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -712,15 +669,13 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 
 type apiUpdateServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
 	serviceAccountId string
 	appKeyId         string
 	body             *ApplicationKeyUpdateRequest
 }
 
-func (a *ServiceAccountsApiService) buildUpdateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateServiceAccountApplicationKeyRequest, error) {
+func (a *ServiceAccountsApi) buildUpdateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateServiceAccountApplicationKeyRequest, error) {
 	req := apiUpdateServiceAccountApplicationKeyRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -731,63 +686,47 @@ func (a *ServiceAccountsApiService) buildUpdateServiceAccountApplicationKeyReque
 
 // UpdateServiceAccountApplicationKey Edit an application key for this service account.
 // Edit an application key owned by this service account.
-func (a *ServiceAccountsApiService) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId, body)
 	if err != nil {
 		var localVarReturnValue PartialApplicationKeyResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateServiceAccountApplicationKeyExecute(req)
+	return a.updateServiceAccountApplicationKeyExecute(req)
 }
 
 // updateServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r apiUpdateServiceAccountApplicationKeyRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) updateServiceAccountApplicationKeyExecute(r apiUpdateServiceAccountApplicationKeyRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue PartialApplicationKeyResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.UpdateServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApi.UpdateServiceAccountApplicationKey")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(parameterToString(r.serviceAccountId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(parameterToString(r.appKeyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_account_id"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceAccountId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"app_key_id"+"}", _neturl.PathEscape(common.ParameterToString(r.appKeyId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -801,7 +740,7 @@ func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -813,12 +752,12 @@ func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -831,56 +770,63 @@ func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewServiceAccountsApi Returns NewServiceAccountsApi.
+func NewServiceAccountsApi(client *common.APIClient) *ServiceAccountsApi {
+	return &ServiceAccountsApi{
+		Client: client,
+	}
 }

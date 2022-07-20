@@ -8,33 +8,34 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu",
-		Description: *datadog.NewNullableString(datadog.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
+		Description: *common.NewNullableString(common.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{
 					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
-						Title:      datadog.PtrString("Events Platform - Request latency HOP"),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString("Events Platform - Request latency HOP"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: datadog.PtrBool(false),
+						ShowLegend: common.PtrBool(false),
 						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 						Xaxis: &datadog.DistributionWidgetXAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Yaxis: &datadog.DistributionWidgetYAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Requests: []datadog.DistributionWidgetRequest{
 							{
@@ -45,7 +46,7 @@ func main() {
 										},
 										DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
 										Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-											Metric:      datadog.PtrString("@duration"),
+											Metric:      common.PtrString("@duration"),
 											Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_MIN,
 										},
 										Name: "query1",
@@ -68,10 +69,11 @@ func main() {
 		},
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

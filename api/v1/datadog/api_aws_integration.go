@@ -10,22 +10,22 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// AWSIntegrationApiService AWSIntegrationApi service.
-type AWSIntegrationApiService service
+// AWSIntegrationApi service type
+type AWSIntegrationApi common.Service
 
 type apiCreateAWSAccountRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	ctx  _context.Context
+	body *AWSAccount
 }
 
-func (a *AWSIntegrationApiService) buildCreateAWSAccountRequest(ctx _context.Context, body AWSAccount) (apiCreateAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildCreateAWSAccountRequest(ctx _context.Context, body AWSAccount) (apiCreateAWSAccountRequest, error) {
 	req := apiCreateAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -35,27 +35,27 @@ func (a *AWSIntegrationApiService) buildCreateAWSAccountRequest(ctx _context.Con
 // Using the `POST` method updates your integration configuration
 // by adding your new configuration to the existing one in your Datadog organization.
 // A unique AWS Account ID for role based authentication.
-func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateAWSAccountRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSAccountCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAWSAccountExecute(req)
+	return a.createAWSAccountExecute(req)
 }
 
 // createAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccountRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createAWSAccountExecute(r apiCreateAWSAccountRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateAWSAccount")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -64,32 +64,16 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -103,7 +87,7 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -115,12 +99,12 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -133,53 +117,53 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -188,43 +172,41 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 }
 
 type apiCreateAWSTagFilterRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterCreateRequest
+	ctx  _context.Context
+	body *AWSTagFilterCreateRequest
 }
 
-func (a *AWSIntegrationApiService) buildCreateAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterCreateRequest) (apiCreateAWSTagFilterRequest, error) {
+func (a *AWSIntegrationApi) buildCreateAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterCreateRequest) (apiCreateAWSTagFilterRequest, error) {
 	req := apiCreateAWSTagFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateAWSTagFilter Set an AWS tag filter.
 // Set an AWS tag filter.
-func (a *AWSIntegrationApiService) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateAWSTagFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createAWSTagFilterExecute(req)
+	return a.createAWSTagFilterExecute(req)
 }
 
 // createAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createAWSTagFilterExecute(r apiCreateAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateAWSTagFilter")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws/filtering"
@@ -233,32 +215,16 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -272,7 +238,7 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -284,12 +250,12 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -302,44 +268,44 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -348,43 +314,41 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 }
 
 type apiCreateNewAWSExternalIDRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	ctx  _context.Context
+	body *AWSAccount
 }
 
-func (a *AWSIntegrationApiService) buildCreateNewAWSExternalIDRequest(ctx _context.Context, body AWSAccount) (apiCreateNewAWSExternalIDRequest, error) {
+func (a *AWSIntegrationApi) buildCreateNewAWSExternalIDRequest(ctx _context.Context, body AWSAccount) (apiCreateNewAWSExternalIDRequest, error) {
 	req := apiCreateNewAWSExternalIDRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateNewAWSExternalID Generate a new external ID.
 // Generate a new AWS external ID for a given AWS account ID and role name pair.
-func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateNewAWSExternalIDRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue AWSAccountCreateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createNewAWSExternalIDExecute(req)
+	return a.createNewAWSExternalIDExecute(req)
 }
 
 // createNewAWSExternalIDExecute executes the request.
-func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewAWSExternalIDRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(r apiCreateNewAWSExternalIDRequest) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateNewAWSExternalID")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.CreateNewAWSExternalID")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws/generate_new_external_id"
@@ -393,32 +357,16 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -432,7 +380,7 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -444,12 +392,12 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -462,44 +410,44 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -508,43 +456,41 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 }
 
 type apiDeleteAWSAccountRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSAccountDeleteRequest
+	ctx  _context.Context
+	body *AWSAccountDeleteRequest
 }
 
-func (a *AWSIntegrationApiService) buildDeleteAWSAccountRequest(ctx _context.Context, body AWSAccountDeleteRequest) (apiDeleteAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildDeleteAWSAccountRequest(ctx _context.Context, body AWSAccountDeleteRequest) (apiDeleteAWSAccountRequest, error) {
 	req := apiDeleteAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAWSAccount Delete an AWS integration.
 // Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.
-func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAWSAccountRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAWSAccountExecute(req)
+	return a.deleteAWSAccountExecute(req)
 }
 
 // deleteAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.DeleteAWSAccount")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -553,32 +499,16 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -592,7 +522,7 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -604,12 +534,12 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -622,53 +552,53 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -677,43 +607,41 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 }
 
 type apiDeleteAWSTagFilterRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterDeleteRequest
+	ctx  _context.Context
+	body *AWSTagFilterDeleteRequest
 }
 
-func (a *AWSIntegrationApiService) buildDeleteAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterDeleteRequest) (apiDeleteAWSTagFilterRequest, error) {
+func (a *AWSIntegrationApi) buildDeleteAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterDeleteRequest) (apiDeleteAWSTagFilterRequest, error) {
 	req := apiDeleteAWSTagFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // DeleteAWSTagFilter Delete a tag filtering entry.
 // Delete a tag filtering entry.
-func (a *AWSIntegrationApiService) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteAWSTagFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteAWSTagFilterExecute(req)
+	return a.deleteAWSTagFilterExecute(req)
 }
 
 // deleteAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.DeleteAWSTagFilter")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws/filtering"
@@ -722,32 +650,16 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -761,7 +673,7 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -773,12 +685,12 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -791,44 +703,44 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -838,7 +750,6 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 
 type apiListAWSAccountsRequest struct {
 	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
 	accountId   *string
 	roleName    *string
 	accessKeyId *string
@@ -875,14 +786,13 @@ func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) 
 	return r
 }
 
-func (a *AWSIntegrationApiService) buildListAWSAccountsRequest(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (apiListAWSAccountsRequest, error) {
+func (a *AWSIntegrationApi) buildListAWSAccountsRequest(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (apiListAWSAccountsRequest, error) {
 	req := apiListAWSAccountsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListAWSAccountsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListAWSAccountsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -895,27 +805,27 @@ func (a *AWSIntegrationApiService) buildListAWSAccountsRequest(ctx _context.Cont
 
 // ListAWSAccounts List all AWS integrations.
 // List all Datadog-AWS integrations available in your Datadog organization.
-func (a *AWSIntegrationApiService) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSAccountsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue AWSAccountListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSAccountsExecute(req)
+	return a.listAWSAccountsExecute(req)
 }
 
 // listAWSAccountsExecute executes the request.
-func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRequest) (AWSAccountListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAWSAccountsExecute(r apiListAWSAccountsRequest) (AWSAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AWSAccountListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAWSAccounts")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -924,26 +834,19 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.accountId != nil {
-		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
+		localVarQueryParams.Add("account_id", common.ParameterToString(*r.accountId, ""))
 	}
 	if r.roleName != nil {
-		localVarQueryParams.Add("role_name", parameterToString(*r.roleName, ""))
+		localVarQueryParams.Add("role_name", common.ParameterToString(*r.roleName, ""))
 	}
 	if r.accessKeyId != nil {
-		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
+		localVarQueryParams.Add("access_key_id", common.ParameterToString(*r.accessKeyId, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -957,7 +860,7 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -969,12 +872,12 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -987,44 +890,44 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1033,43 +936,41 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 }
 
 type apiListAWSTagFiltersRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
-	accountId  *string
+	ctx       _context.Context
+	accountId *string
 }
 
-func (a *AWSIntegrationApiService) buildListAWSTagFiltersRequest(ctx _context.Context, accountId string) (apiListAWSTagFiltersRequest, error) {
+func (a *AWSIntegrationApi) buildListAWSTagFiltersRequest(ctx _context.Context, accountId string) (apiListAWSTagFiltersRequest, error) {
 	req := apiListAWSTagFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		accountId:  &accountId,
+		ctx:       ctx,
+		accountId: &accountId,
 	}
 	return req, nil
 }
 
 // ListAWSTagFilters Get all AWS tag filters.
 // Get all AWS tag filters.
-func (a *AWSIntegrationApiService) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAWSTagFiltersRequest(ctx, accountId)
 	if err != nil {
 		var localVarReturnValue AWSTagFilterListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAWSTagFiltersExecute(req)
+	return a.listAWSTagFiltersExecute(req)
 }
 
 // listAWSTagFiltersExecute executes the request.
-func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFiltersRequest) (AWSTagFilterListResponse, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAWSTagFiltersExecute(r apiListAWSTagFiltersRequest) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue AWSTagFilterListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSTagFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAWSTagFilters")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws/filtering"
@@ -1078,21 +979,14 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.accountId == nil {
-		return localVarReturnValue, nil, reportError("accountId is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("accountId is required and must be specified")
 	}
-	localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
+	localVarQueryParams.Add("account_id", common.ParameterToString(*r.accountId, ""))
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1106,7 +1000,7 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1118,12 +1012,12 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1136,44 +1030,44 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1182,41 +1076,39 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 }
 
 type apiListAvailableAWSNamespacesRequest struct {
-	ctx        _context.Context
-	ApiService *AWSIntegrationApiService
+	ctx _context.Context
 }
 
-func (a *AWSIntegrationApiService) buildListAvailableAWSNamespacesRequest(ctx _context.Context) (apiListAvailableAWSNamespacesRequest, error) {
+func (a *AWSIntegrationApi) buildListAvailableAWSNamespacesRequest(ctx _context.Context) (apiListAvailableAWSNamespacesRequest, error) {
 	req := apiListAvailableAWSNamespacesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListAvailableAWSNamespaces List namespace rules.
 // List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.
-func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
 	req, err := a.buildListAvailableAWSNamespacesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue []string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listAvailableAWSNamespacesExecute(req)
+	return a.listAvailableAWSNamespacesExecute(req)
 }
 
 // listAvailableAWSNamespacesExecute executes the request.
-func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAvailableAWSNamespacesRequest) ([]string, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) listAvailableAWSNamespacesExecute(r apiListAvailableAWSNamespacesRequest) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.ListAvailableAWSNamespaces")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws/available_namespace_rules"
@@ -1224,18 +1116,11 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1249,7 +1134,7 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1261,12 +1146,12 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1279,35 +1164,35 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1317,7 +1202,6 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 
 type apiUpdateAWSAccountRequest struct {
 	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
 	body        *AWSAccount
 	accountId   *string
 	roleName    *string
@@ -1355,15 +1239,14 @@ func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string)
 	return r
 }
 
-func (a *AWSIntegrationApiService) buildUpdateAWSAccountRequest(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (apiUpdateAWSAccountRequest, error) {
+func (a *AWSIntegrationApi) buildUpdateAWSAccountRequest(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (apiUpdateAWSAccountRequest, error) {
 	req := apiUpdateAWSAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type UpdateAWSAccountOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type UpdateAWSAccountOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1376,27 +1259,27 @@ func (a *AWSIntegrationApiService) buildUpdateAWSAccountRequest(ctx _context.Con
 
 // UpdateAWSAccount Update an AWS integration.
 // Update a Datadog-Amazon Web Services integration.
-func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAWSAccountRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue interface{}
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateAWSAccountExecute(req)
+	return a.updateAWSAccountExecute(req)
 }
 
 // updateAWSAccountExecute executes the request.
-func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
+func (a *AWSIntegrationApi) updateAWSAccountExecute(r apiUpdateAWSAccountRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.UpdateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApi.UpdateAWSAccount")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/aws"
@@ -1405,41 +1288,25 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
 	if r.accountId != nil {
-		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
+		localVarQueryParams.Add("account_id", common.ParameterToString(*r.accountId, ""))
 	}
 	if r.roleName != nil {
-		localVarQueryParams.Add("role_name", parameterToString(*r.roleName, ""))
+		localVarQueryParams.Add("role_name", common.ParameterToString(*r.roleName, ""))
 	}
 	if r.accessKeyId != nil {
-		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
+		localVarQueryParams.Add("access_key_id", common.ParameterToString(*r.accessKeyId, ""))
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1453,7 +1320,7 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1465,12 +1332,12 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1483,56 +1350,63 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewAWSIntegrationApi Returns NewAWSIntegrationApi.
+func NewAWSIntegrationApi(client *common.APIClient) *AWSIntegrationApi {
+	return &AWSIntegrationApi{
+		Client: client,
+	}
 }

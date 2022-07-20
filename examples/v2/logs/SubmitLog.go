@@ -8,26 +8,28 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
 	body := []datadog.HTTPLogItem{
 		{
-			Ddsource: datadog.PtrString("nginx"),
-			Ddtags:   datadog.PtrString("env:staging,version:5.1"),
-			Hostname: datadog.PtrString("i-012345678"),
+			Ddsource: common.PtrString("nginx"),
+			Ddtags:   common.PtrString("env:staging,version:5.1"),
+			Hostname: common.PtrString("i-012345678"),
 			Message:  "2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World",
-			Service:  datadog.PtrString("payment"),
+			Service:  common.PtrString("payment"),
 			AdditionalProperties: map[string]string{
 				"status": "error",
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters())
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewLogsApi(apiClient)
+	resp, r, err := api.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.SubmitLog`: %v\n", err)

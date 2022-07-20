@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -25,10 +26,10 @@ func main() {
 						StorageAccount: "account-name",
 						Type:           datadog.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 					}},
-				IncludeTags:                datadog.PtrBool(false),
+				IncludeTags:                common.PtrBool(false),
 				Name:                       "Nginx Archive",
 				Query:                      "source:nginx",
-				RehydrationMaxScanSizeInGb: *datadog.NewNullableInt64(datadog.PtrInt64(100)),
+				RehydrationMaxScanSizeInGb: *common.NewNullableInt64(common.PtrInt64(100)),
 				RehydrationTags: []string{
 					"team:intake",
 					"team:app",
@@ -37,10 +38,11 @@ func main() {
 			Type: "archives",
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewLogsArchivesApi(apiClient)
+	resp, r, err := api.CreateLogsArchive(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive`: %v\n", err)

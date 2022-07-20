@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_scatterplot_widget",
-		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -25,8 +26,8 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					ScatterPlotWidgetDefinition: &datadog.ScatterPlotWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
@@ -36,12 +37,12 @@ func main() {
 									{
 										Formula:   "query1",
 										Dimension: datadog.SCATTERPLOTDIMENSION_X,
-										Alias:     datadog.PtrString(""),
+										Alias:     common.PtrString(""),
 									},
 									{
 										Formula:   "query2",
 										Dimension: datadog.SCATTERPLOTDIMENSION_Y,
-										Alias:     datadog.PtrString(""),
+										Alias:     common.PtrString(""),
 									},
 								},
 								Queries: []datadog.FormulaAndFunctionQueryDefinition{
@@ -64,16 +65,16 @@ func main() {
 							},
 						},
 						Xaxis: &datadog.WidgetAxis{
-							Scale:       datadog.PtrString("linear"),
-							IncludeZero: datadog.PtrBool(true),
-							Min:         datadog.PtrString("auto"),
-							Max:         datadog.PtrString("auto"),
+							Scale:       common.PtrString("linear"),
+							IncludeZero: common.PtrBool(true),
+							Min:         common.PtrString("auto"),
+							Max:         common.PtrString("auto"),
 						},
 						Yaxis: &datadog.WidgetAxis{
-							Scale:       datadog.PtrString("linear"),
-							IncludeZero: datadog.PtrBool(true),
-							Min:         datadog.PtrString("auto"),
-							Max:         datadog.PtrString("auto"),
+							Scale:       common.PtrString("linear"),
+							IncludeZero: common.PtrBool(true),
+							Min:         common.PtrString("auto"),
+							Max:         common.PtrString("auto"),
 						},
 						ColorByGroups: []string{},
 					}},
@@ -81,13 +82,14 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

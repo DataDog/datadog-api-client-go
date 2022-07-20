@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// WebhooksIntegrationApiService WebhooksIntegrationApi service.
-type WebhooksIntegrationApiService service
+// WebhooksIntegrationApi service type
+type WebhooksIntegrationApi common.Service
 
 type apiCreateWebhooksIntegrationRequest struct {
-	ctx        _context.Context
-	ApiService *WebhooksIntegrationApiService
-	body       *WebhooksIntegration
+	ctx  _context.Context
+	body *WebhooksIntegration
 }
 
-func (a *WebhooksIntegrationApiService) buildCreateWebhooksIntegrationRequest(ctx _context.Context, body WebhooksIntegration) (apiCreateWebhooksIntegrationRequest, error) {
+func (a *WebhooksIntegrationApi) buildCreateWebhooksIntegrationRequest(ctx _context.Context, body WebhooksIntegration) (apiCreateWebhooksIntegrationRequest, error) {
 	req := apiCreateWebhooksIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateWebhooksIntegration Create a webhooks integration.
 // Creates an endpoint with the name `<WEBHOOK_NAME>`.
-func (a *WebhooksIntegrationApiService) CreateWebhooksIntegration(ctx _context.Context, body WebhooksIntegration) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) CreateWebhooksIntegration(ctx _context.Context, body WebhooksIntegration) (WebhooksIntegration, *_nethttp.Response, error) {
 	req, err := a.buildCreateWebhooksIntegrationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegration
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createWebhooksIntegrationExecute(req)
+	return a.createWebhooksIntegrationExecute(req)
 }
 
 // createWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCreateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) createWebhooksIntegrationExecute(r apiCreateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.CreateWebhooksIntegration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/webhooks"
@@ -62,32 +62,16 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,44 +115,44 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -177,43 +161,41 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 }
 
 type apiCreateWebhooksIntegrationCustomVariableRequest struct {
-	ctx        _context.Context
-	ApiService *WebhooksIntegrationApiService
-	body       *WebhooksIntegrationCustomVariable
+	ctx  _context.Context
+	body *WebhooksIntegrationCustomVariable
 }
 
-func (a *WebhooksIntegrationApiService) buildCreateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, body WebhooksIntegrationCustomVariable) (apiCreateWebhooksIntegrationCustomVariableRequest, error) {
+func (a *WebhooksIntegrationApi) buildCreateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, body WebhooksIntegrationCustomVariable) (apiCreateWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiCreateWebhooksIntegrationCustomVariableRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateWebhooksIntegrationCustomVariable Create a custom variable.
 // Creates an endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
-func (a *WebhooksIntegrationApiService) CreateWebhooksIntegrationCustomVariable(ctx _context.Context, body WebhooksIntegrationCustomVariable) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) CreateWebhooksIntegrationCustomVariable(ctx _context.Context, body WebhooksIntegrationCustomVariable) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateWebhooksIntegrationCustomVariableRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createWebhooksIntegrationCustomVariableExecute(req)
+	return a.createWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // createWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableExecute(r apiCreateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) createWebhooksIntegrationCustomVariableExecute(r apiCreateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.CreateWebhooksIntegrationCustomVariable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/custom-variables"
@@ -222,32 +204,16 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -261,7 +227,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -273,12 +239,12 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -291,44 +257,44 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -338,13 +304,11 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 
 type apiDeleteWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	ApiService  *WebhooksIntegrationApiService
 	webhookName string
 }
 
-func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiDeleteWebhooksIntegrationRequest, error) {
+func (a *WebhooksIntegrationApi) buildDeleteWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiDeleteWebhooksIntegrationRequest, error) {
 	req := apiDeleteWebhooksIntegrationRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		webhookName: webhookName,
 	}
@@ -353,45 +317,38 @@ func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationRequest(ct
 
 // DeleteWebhooksIntegration Delete a webhook.
 // Deletes the endpoint with the name `<WEBHOOK NAME>`.
-func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegration(ctx _context.Context, webhookName string) (*_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) DeleteWebhooksIntegration(ctx _context.Context, webhookName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteWebhooksIntegrationRequest(ctx, webhookName)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteWebhooksIntegrationExecute(req)
+	return a.deleteWebhooksIntegrationExecute(req)
 }
 
 // deleteWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDeleteWebhooksIntegrationRequest) (*_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationExecute(r apiDeleteWebhooksIntegrationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.DeleteWebhooksIntegration")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/webhooks/{webhook_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(parameterToString(r.webhookName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(common.ParameterToString(r.webhookName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -405,7 +362,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -417,12 +374,12 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -435,35 +392,35 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -473,13 +430,11 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 
 type apiDeleteWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	ApiService         *WebhooksIntegrationApiService
 	customVariableName string
 }
 
-func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiDeleteWebhooksIntegrationCustomVariableRequest, error) {
+func (a *WebhooksIntegrationApi) buildDeleteWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiDeleteWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiDeleteWebhooksIntegrationCustomVariableRequest{
-		ApiService:         a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 	}
@@ -488,45 +443,38 @@ func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationCustomVari
 
 // DeleteWebhooksIntegrationCustomVariable Delete a custom variable.
 // Deletes the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
-func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (*_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) DeleteWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteWebhooksIntegrationCustomVariableRequest(ctx, customVariableName)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteWebhooksIntegrationCustomVariableExecute(req)
+	return a.deleteWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // deleteWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableExecute(r apiDeleteWebhooksIntegrationCustomVariableRequest) (*_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationCustomVariableExecute(r apiDeleteWebhooksIntegrationCustomVariableRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.DeleteWebhooksIntegrationCustomVariable")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(parameterToString(r.customVariableName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(common.ParameterToString(r.customVariableName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -540,7 +488,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -552,12 +500,12 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -570,35 +518,35 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -608,13 +556,11 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 
 type apiGetWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	ApiService  *WebhooksIntegrationApiService
 	webhookName string
 }
 
-func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiGetWebhooksIntegrationRequest, error) {
+func (a *WebhooksIntegrationApi) buildGetWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiGetWebhooksIntegrationRequest, error) {
 	req := apiGetWebhooksIntegrationRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		webhookName: webhookName,
 	}
@@ -623,47 +569,40 @@ func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationRequest(ctx _
 
 // GetWebhooksIntegration Get a webhook integration.
 // Gets the content of the webhook with the name `<WEBHOOK_NAME>`.
-func (a *WebhooksIntegrationApiService) GetWebhooksIntegration(ctx _context.Context, webhookName string) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) GetWebhooksIntegration(ctx _context.Context, webhookName string) (WebhooksIntegration, *_nethttp.Response, error) {
 	req, err := a.buildGetWebhooksIntegrationRequest(ctx, webhookName)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegration
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getWebhooksIntegrationExecute(req)
+	return a.getWebhooksIntegrationExecute(req)
 }
 
 // getWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) getWebhooksIntegrationExecute(r apiGetWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.GetWebhooksIntegration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/webhooks/{webhook_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(parameterToString(r.webhookName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(common.ParameterToString(r.webhookName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -677,7 +616,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -689,12 +628,12 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -707,53 +646,53 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -763,13 +702,11 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 
 type apiGetWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	ApiService         *WebhooksIntegrationApiService
 	customVariableName string
 }
 
-func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiGetWebhooksIntegrationCustomVariableRequest, error) {
+func (a *WebhooksIntegrationApi) buildGetWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiGetWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiGetWebhooksIntegrationCustomVariableRequest{
-		ApiService:         a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 	}
@@ -781,47 +718,40 @@ func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationCustomVariabl
 //
 // If the custom variable is secret, the value does not return in the
 // response payload.
-func (a *WebhooksIntegrationApiService) GetWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) GetWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetWebhooksIntegrationCustomVariableRequest(ctx, customVariableName)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getWebhooksIntegrationCustomVariableExecute(req)
+	return a.getWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // getWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExecute(r apiGetWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) getWebhooksIntegrationCustomVariableExecute(r apiGetWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.GetWebhooksIntegrationCustomVariable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(parameterToString(r.customVariableName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(common.ParameterToString(r.customVariableName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -835,7 +765,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -847,12 +777,12 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -865,53 +795,53 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -921,14 +851,12 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 
 type apiUpdateWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	ApiService  *WebhooksIntegrationApiService
 	webhookName string
 	body        *WebhooksIntegrationUpdateRequest
 }
 
-func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationRequest(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (apiUpdateWebhooksIntegrationRequest, error) {
+func (a *WebhooksIntegrationApi) buildUpdateWebhooksIntegrationRequest(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (apiUpdateWebhooksIntegrationRequest, error) {
 	req := apiUpdateWebhooksIntegrationRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		webhookName: webhookName,
 		body:        &body,
@@ -938,62 +866,46 @@ func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationRequest(ct
 
 // UpdateWebhooksIntegration Update a webhook.
 // Updates the endpoint with the name `<WEBHOOK_NAME>`.
-func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegration(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) UpdateWebhooksIntegration(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	req, err := a.buildUpdateWebhooksIntegrationRequest(ctx, webhookName, body)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegration
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateWebhooksIntegrationExecute(req)
+	return a.updateWebhooksIntegrationExecute(req)
 }
 
 // updateWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUpdateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) updateWebhooksIntegrationExecute(r apiUpdateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.UpdateWebhooksIntegration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/webhooks/{webhook_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(parameterToString(r.webhookName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"webhook_name"+"}", _neturl.PathEscape(common.ParameterToString(r.webhookName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1007,7 +919,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1019,12 +931,12 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1037,53 +949,53 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1093,14 +1005,12 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 
 type apiUpdateWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	ApiService         *WebhooksIntegrationApiService
 	customVariableName string
 	body               *WebhooksIntegrationCustomVariableUpdateRequest
 }
 
-func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (apiUpdateWebhooksIntegrationCustomVariableRequest, error) {
+func (a *WebhooksIntegrationApi) buildUpdateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (apiUpdateWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiUpdateWebhooksIntegrationCustomVariableRequest{
-		ApiService:         a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 		body:               &body,
@@ -1110,62 +1020,46 @@ func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationCustomVari
 
 // UpdateWebhooksIntegrationCustomVariable Update a custom variable.
 // Updates the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
-func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) UpdateWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateWebhooksIntegrationCustomVariableRequest(ctx, customVariableName, body)
 	if err != nil {
 		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateWebhooksIntegrationCustomVariableExecute(req)
+	return a.updateWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // updateWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableExecute(r apiUpdateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApi) updateWebhooksIntegrationCustomVariableExecute(r apiUpdateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(parameterToString(r.customVariableName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_variable_name"+"}", _neturl.PathEscape(common.ParameterToString(r.customVariableName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1179,7 +1073,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1191,12 +1085,12 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1209,56 +1103,63 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewWebhooksIntegrationApi Returns NewWebhooksIntegrationApi.
+func NewWebhooksIntegrationApi(client *common.APIClient) *WebhooksIntegrationApi {
+	return &WebhooksIntegrationApi{
+		Client: client,
+	}
 }

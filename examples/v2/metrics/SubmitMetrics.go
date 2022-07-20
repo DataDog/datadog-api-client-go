@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -20,17 +21,18 @@ func main() {
 				Type:   datadog.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
 				Points: []datadog.MetricPoint{
 					{
-						Timestamp: datadog.PtrInt64(time.Now().Unix()),
-						Value:     datadog.PtrFloat64(0.7),
+						Timestamp: common.PtrInt64(time.Now().Unix()),
+						Value:     common.PtrFloat64(0.7),
 					},
 				},
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters())
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

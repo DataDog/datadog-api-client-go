@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -23,11 +24,12 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("UpdateIncidentTeam", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.UpdateIncidentTeam(ctx, TeamDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.UpdateIncidentTeam", true)
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewIncidentTeamsApi(apiClient)
+	resp, r, err := api.UpdateIncidentTeam(ctx, TeamDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.UpdateIncidentTeam`: %v\n", err)

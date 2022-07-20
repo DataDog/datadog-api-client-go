@@ -8,39 +8,40 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_APM_Stats",
-		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{
 					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
-						Title:      datadog.PtrString("APM Stats - Request latency HOP"),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString("APM Stats - Request latency HOP"),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: datadog.PtrBool(false),
+						ShowLegend: common.PtrBool(false),
 						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 						Xaxis: &datadog.DistributionWidgetXAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Yaxis: &datadog.DistributionWidgetYAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
+							Max:         common.PtrString("auto"),
+							IncludeZero: common.PtrBool(true),
+							Scale:       common.PtrString("linear"),
+							Min:         common.PtrString("auto"),
 						},
 						Requests: []datadog.DistributionWidgetRequest{
 							{
 								Query: &datadog.DistributionWidgetHistogramRequestQuery{
 									FormulaAndFunctionApmResourceStatsQueryDefinition: &datadog.FormulaAndFunctionApmResourceStatsQueryDefinition{
-										PrimaryTagValue: datadog.PtrString("*"),
+										PrimaryTagValue: common.PtrString("*"),
 										Stat:            datadog.FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_DISTRIBUTION,
 										DataSource:      datadog.FORMULAANDFUNCTIONAPMRESOURCESTATSDATASOURCE_APM_RESOURCE_STATS,
 										Name:            "query1",
@@ -49,12 +50,12 @@ func main() {
 											"resource_name",
 										},
 										Env:            "staging",
-										PrimaryTagName: datadog.PtrString("datacenter"),
-										OperationName:  datadog.PtrString("universal.http.client"),
+										PrimaryTagName: common.PtrString("datacenter"),
+										OperationName:  common.PtrString("universal.http.client"),
 									}},
 								RequestType: datadog.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 								Style: &datadog.WidgetStyle{
-									Palette: datadog.PtrString("dog_classic"),
+									Palette: common.PtrString("dog_classic"),
 								},
 							},
 						},
@@ -69,10 +70,11 @@ func main() {
 		},
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

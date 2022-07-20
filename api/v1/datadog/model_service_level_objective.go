@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // ServiceLevelObjective A service level objective object includes a service level indicator, thresholds
@@ -22,7 +24,7 @@ type ServiceLevelObjective struct {
 	//
 	// Always included in service level objective responses (but may be `null`).
 	// Optional in create/update requests.
-	Description NullableString `json:"description,omitempty"`
+	Description common.NullableString `json:"description,omitempty"`
 	// A list of (up to 100) monitor groups that narrow the scope of a monitor service level objective.
 	//
 	// Included in service level objective responses if it is not empty. Optional in
@@ -179,7 +181,7 @@ func (o *ServiceLevelObjective) HasDescription() bool {
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given common.NullableString and assigns it to the Description field.
 func (o *ServiceLevelObjective) SetDescription(v string) {
 	o.Description.Set(&v)
 }
@@ -544,7 +546,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt   *int64                      `json:"created_at,omitempty"`
 		Creator     *Creator                    `json:"creator,omitempty"`
-		Description NullableString              `json:"description,omitempty"`
+		Description common.NullableString       `json:"description,omitempty"`
 		Groups      []string                    `json:"groups,omitempty"`
 		Id          *string                     `json:"id,omitempty"`
 		ModifiedAt  *int64                      `json:"modified_at,omitempty"`

@@ -8,17 +8,18 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.AWSAccount{
-		AccountId: datadog.PtrString("1234567"),
+		AccountId: common.PtrString("1234567"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
 			"opswork":      false,
 		},
-		CspmResourceCollectionEnabled: datadog.PtrBool(true),
+		CspmResourceCollectionEnabled: common.PtrBool(true),
 		ExcludedRegions: []string{
 			"us-east-1",
 			"us-west-2",
@@ -29,14 +30,15 @@ func main() {
 		HostTags: []string{
 			"$KEY:$VALUE",
 		},
-		MetricsCollectionEnabled:  datadog.PtrBool(false),
-		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("DatadogAWSIntegrationRole"),
+		MetricsCollectionEnabled:  common.PtrBool(false),
+		ResourceCollectionEnabled: common.PtrBool(true),
+		RoleName:                  common.PtrString("DatadogAWSIntegrationRole"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.CreateNewAWSExternalID(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewAWSIntegrationApi(apiClient)
+	resp, r, err := api.CreateNewAWSExternalID(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateNewAWSExternalID`: %v\n", err)

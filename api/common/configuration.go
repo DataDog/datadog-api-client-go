@@ -2,7 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-package datadog
+package common
 
 import (
 	"context"
@@ -157,7 +157,155 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
-			"LogsApiService.SubmitLog": {
+			"v1.IPRangesApi.GetIPRanges": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The regional site for Datadog customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"datadoghq.eu",
+								"ddog-gov.com",
+							},
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "ip-ranges",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "ip-ranges.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.datadoghq.com",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "ip-ranges",
+						},
+					},
+				},
+			},
+			"v1.ServiceLevelObjectivesApi.SearchSLO": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The regional site for Datadog customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"ddog-gov.com",
+							},
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "api.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+			},
+			"v1.LogsApi.SubmitLog": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The regional site for Datadog customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"datadoghq.eu",
+								"ddog-gov.com",
+							},
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "http-intake.logs.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "http-intake.logs",
+						},
+					},
+				},
+			},
+			"v2.LogsApi.SubmitLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
@@ -210,21 +358,28 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"ListIncidents":         false,
-			"CreateIncident":        false,
-			"DeleteIncident":        false,
-			"GetIncident":           false,
-			"UpdateIncident":        false,
-			"ListIncidentServices":  false,
-			"CreateIncidentService": false,
-			"DeleteIncidentService": false,
-			"GetIncidentService":    false,
-			"UpdateIncidentService": false,
-			"ListIncidentTeams":     false,
-			"CreateIncidentTeam":    false,
-			"DeleteIncidentTeam":    false,
-			"GetIncidentTeam":       false,
-			"UpdateIncidentTeam":    false,
+			"v1.GetDailyCustomReports":            false,
+			"v1.GetMonthlyCustomReports":          false,
+			"v1.GetSpecifiedDailyCustomReports":   false,
+			"v1.GetSpecifiedMonthlyCustomReports": false,
+			"v1.GetUsageAttribution":              false,
+			"v1.GetSLOHistory":                    false,
+			"v1.SearchSLO":                        false,
+			"v2.CreateIncident":                   false,
+			"v2.DeleteIncident":                   false,
+			"v2.GetIncident":                      false,
+			"v2.ListIncidents":                    false,
+			"v2.UpdateIncident":                   false,
+			"v2.CreateIncidentService":            false,
+			"v2.DeleteIncidentService":            false,
+			"v2.GetIncidentService":               false,
+			"v2.ListIncidentServices":             false,
+			"v2.UpdateIncidentService":            false,
+			"v2.CreateIncidentTeam":               false,
+			"v2.DeleteIncidentTeam":               false,
+			"v2.GetIncidentTeam":                  false,
+			"v2.ListIncidentTeams":                false,
+			"v2.UpdateIncidentTeam":               false,
 		},
 	}
 	return cfg
@@ -274,7 +429,7 @@ func getServerIndex(ctx context.Context) (int, error) {
 		if index, ok := si.(int); ok {
 			return index, nil
 		}
-		return 0, reportError("invalid type %T should be int", si)
+		return 0, ReportError("invalid type %T should be int", si)
 	}
 	return 0, nil
 }
@@ -284,7 +439,7 @@ func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) 
 	if osi != nil {
 		operationIndices, ok := osi.(map[string]int)
 		if !ok {
-			return 0, reportError("invalid type %T should be map[string]int", osi)
+			return 0, ReportError("invalid type %T should be map[string]int", osi)
 		}
 		index, ok := operationIndices[endpoint]
 		if ok {
@@ -300,7 +455,7 @@ func getServerVariables(ctx context.Context) (map[string]string, error) {
 		if variables, ok := sv.(map[string]string); ok {
 			return variables, nil
 		}
-		return nil, reportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
+		return nil, ReportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
 	}
 	return nil, nil
 }
@@ -310,7 +465,7 @@ func getServerOperationVariables(ctx context.Context, endpoint string) (map[stri
 	if osv != nil {
 		operationVariables, ok := osv.(map[string]map[string]string)
 		if !ok {
-			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
+			return nil, ReportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
 		}
 		variables, ok := operationVariables[endpoint]
 		if ok {

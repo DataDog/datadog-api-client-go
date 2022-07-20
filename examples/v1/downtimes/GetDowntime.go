@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,10 +17,11 @@ func main() {
 	// there is a valid "downtime" in the system
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, DowntimeID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDowntimesApi(apiClient)
+	resp, r, err := api.GetDowntime(ctx, DowntimeID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime`: %v\n", err)

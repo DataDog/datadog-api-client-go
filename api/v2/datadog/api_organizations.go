@@ -11,15 +11,16 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"os"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// OrganizationsApiService OrganizationsApi service.
-type OrganizationsApiService service
+// OrganizationsApi service type
+type OrganizationsApi common.Service
 
 type apiUploadIdPMetadataRequest struct {
-	ctx        _context.Context
-	ApiService *OrganizationsApiService
-	idpFile    **os.File
+	ctx     _context.Context
+	idpFile **os.File
 }
 
 // UploadIdPMetadataOptionalParameters holds optional parameters for UploadIdPMetadata.
@@ -39,14 +40,13 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
 	return r
 }
 
-func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
+func (a *OrganizationsApi) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
 	req := apiUploadIdPMetadataRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type UploadIdPMetadataOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type UploadIdPMetadataOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -59,25 +59,25 @@ func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Con
 // Endpoint for uploading IdP metadata for SAML setup.
 //
 // Use this endpoint to upload or replace IdP metadata for SAML login configuration.
-func (a *OrganizationsApiService) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
+func (a *OrganizationsApi) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
 	req, err := a.buildUploadIdPMetadataRequest(ctx, o...)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.uploadIdPMetadataExecute(req)
+	return a.uploadIdPMetadataExecute(req)
 }
 
 // uploadIdPMetadataExecute executes the request.
-func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadataRequest) (*_nethttp.Response, error) {
+func (a *OrganizationsApi) uploadIdPMetadataExecute(r apiUploadIdPMetadataRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UploadIdPMetadata")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OrganizationsApi.UploadIdPMetadata")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/saml_configurations/idp_metadata"
@@ -85,39 +85,24 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "multipart/form-data"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	formFile := FormFile{}
-	formFile.formFileName = "idp_file"
+	formFile := common.FormFile{}
+	formFile.FormFileName = "idp_file"
 	var localVarFile *os.File
 	if r.idpFile != nil {
 		localVarFile = *r.idpFile
 	}
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)
-		formFile.fileBytes = fbs
-		formFile.fileName = localVarFile.Name()
+		formFile.FileBytes = fbs
+		formFile.FileName = localVarFile.Name()
 		localVarFile.Close()
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -131,7 +116,7 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -143,12 +128,12 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, &formFile)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, &formFile)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -161,38 +146,45 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+// NewOrganizationsApi Returns NewOrganizationsApi.
+func NewOrganizationsApi(client *common.APIClient) *OrganizationsApi {
+	return &OrganizationsApi{
+		Client: client,
+	}
 }

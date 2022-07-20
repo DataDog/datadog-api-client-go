@@ -8,16 +8,17 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.AWSAccount{
-		AccountId: datadog.PtrString("123456789012"),
+		AccountId: common.PtrString("123456789012"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
 		},
-		CspmResourceCollectionEnabled: datadog.PtrBool(true),
+		CspmResourceCollectionEnabled: common.PtrBool(true),
 		ExcludedRegions: []string{
 			"us-east-1",
 			"us-west-2",
@@ -28,14 +29,15 @@ func main() {
 		HostTags: []string{
 			"$KEY:$VALUE",
 		},
-		MetricsCollectionEnabled:  datadog.PtrBool(false),
-		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("datadog-role"),
+		MetricsCollectionEnabled:  common.PtrBool(false),
+		ResourceCollectionEnabled: common.PtrBool(true),
+		RoleName:                  common.PtrString("datadog-role"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().WithAccountId("123456789012").WithRoleName("datadog-role"))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewAWSIntegrationApi(apiClient)
+	resp, r, err := api.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().WithAccountId("123456789012").WithRoleName("datadog-role"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount`: %v\n", err)

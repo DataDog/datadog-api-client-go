@@ -27,7 +27,7 @@ def get_name(schema):
     return name
 
 
-def type_to_go(schema, alternative_name=None, render_nullable=False):
+def type_to_go(schema, alternative_name=None, render_nullable=False, render_new=False):
     """Return Go type name for the type."""
     if render_nullable and schema.get("nullable", False):
         prefix = "Nullable"
@@ -39,7 +39,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
         return "interface{}"
 
     if "enum" not in schema:
-        name = formatter.simple_type(schema, render_nullable=render_nullable)
+        name = formatter.simple_type(schema, render_nullable=render_nullable, render_new=render_new)
         if name is not None:
             return name
 

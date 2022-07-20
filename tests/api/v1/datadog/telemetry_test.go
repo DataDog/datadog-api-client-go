@@ -4,7 +4,9 @@ import (
 	"context"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -13,6 +15,7 @@ func TestTelemetryHeaders(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewAWSIntegrationApi(Client(ctx))
 
 	// Mock a random endpoint and make sure we send the operation id header. Return an arbitrary success response code.
 	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "AWSIntegrationApiService.ListAWSAccounts")
@@ -23,7 +26,7 @@ func TestTelemetryHeaders(t *testing.T) {
 		Reply(299)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).AWSIntegrationApi.ListAWSAccounts(ctx)
+	_, httpresp, err := api.ListAWSAccounts(ctx)
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 }

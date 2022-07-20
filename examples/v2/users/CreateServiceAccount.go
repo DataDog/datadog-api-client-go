@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -19,7 +20,7 @@ func main() {
 		Data: datadog.ServiceAccountCreateData{
 			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.ServiceAccountCreateAttributes{
-				Name:           datadog.PtrString("Test API Client"),
+				Name:           common.PtrString("Test API Client"),
 				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
 				ServiceAccount: true,
 			},
@@ -27,7 +28,7 @@ func main() {
 				Roles: &datadog.RelationshipToRoles{
 					Data: []datadog.RelationshipToRoleData{
 						{
-							Id:   datadog.PtrString(RoleDataID),
+							Id:   common.PtrString(RoleDataID),
 							Type: datadog.ROLESTYPE_ROLES.Ptr(),
 						},
 					},
@@ -35,10 +36,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.CreateServiceAccount(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewUsersApi(apiClient)
+	resp, r, err := api.CreateServiceAccount(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateServiceAccount`: %v\n", err)

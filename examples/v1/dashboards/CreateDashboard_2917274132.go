@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_manage_status_widget",
-		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -29,24 +30,25 @@ func main() {
 						SummaryType:       datadog.WIDGETSUMMARYTYPE_MONITORS.Ptr(),
 						DisplayFormat:     datadog.WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS_AND_LIST.Ptr(),
 						ColorPreference:   datadog.WIDGETCOLORPREFERENCE_TEXT.Ptr(),
-						HideZeroCounts:    datadog.PtrBool(true),
-						ShowLastTriggered: datadog.PtrBool(false),
+						HideZeroCounts:    common.PtrBool(true),
+						ShowLastTriggered: common.PtrBool(false),
 						Query:             "",
 						Sort:              datadog.WIDGETMONITORSUMMARYSORT_STATUS_ASCENDING.Ptr(),
-						Count:             datadog.PtrInt64(50),
-						Start:             datadog.PtrInt64(0),
+						Count:             common.PtrInt64(50),
+						Start:             common.PtrInt64(0),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

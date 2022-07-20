@@ -11,22 +11,22 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// LogsMetricsApiService LogsMetricsApi service.
-type LogsMetricsApiService service
+// LogsMetricsApi service type
+type LogsMetricsApi common.Service
 
 type apiCreateLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	body       *LogsMetricCreateRequest
+	ctx  _context.Context
+	body *LogsMetricCreateRequest
 }
 
-func (a *LogsMetricsApiService) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
 	req := apiCreateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -34,27 +34,27 @@ func (a *LogsMetricsApiService) buildCreateLogsMetricRequest(ctx _context.Contex
 // CreateLogsMetric Create a log-based metric.
 // Create a metric based on your ingested logs in your organization.
 // Returns the log-based metric object from the request body when the request is successful.
-func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateLogsMetricRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createLogsMetricExecute(req)
+	return a.createLogsMetricExecute(req)
 }
 
 // createLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) createLogsMetricExecute(r apiCreateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.CreateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.CreateLogsMetric")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/logs/config/metrics"
@@ -63,32 +63,16 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -102,7 +86,7 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -114,12 +98,12 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -132,53 +116,53 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -187,61 +171,52 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 }
 
 type apiDeleteLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
+	ctx      _context.Context
+	metricId string
 }
 
-func (a *LogsMetricsApiService) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
 	req := apiDeleteLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+		ctx:      ctx,
+		metricId: metricId,
 	}
 	return req, nil
 }
 
 // DeleteLogsMetric Delete a log-based metric.
 // Delete a specific log-based metric from your organization.
-func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
+func (a *LogsMetricsApi) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteLogsMetricRequest(ctx, metricId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteLogsMetricExecute(req)
+	return a.deleteLogsMetricExecute(req)
 }
 
 // deleteLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
+func (a *LogsMetricsApi) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.DeleteLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.DeleteLogsMetric")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/logs/config/metrics/{metric_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(parameterToString(r.metricId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(common.ParameterToString(r.metricId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -255,7 +230,7 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -267,12 +242,12 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -285,35 +260,35 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -322,63 +297,54 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 }
 
 type apiGetLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
+	ctx      _context.Context
+	metricId string
 }
 
-func (a *LogsMetricsApiService) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
 	req := apiGetLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+		ctx:      ctx,
+		metricId: metricId,
 	}
 	return req, nil
 }
 
 // GetLogsMetric Get a log-based metric.
 // Get a specific log-based metric from your organization.
-func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetLogsMetricRequest(ctx, metricId)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getLogsMetricExecute(req)
+	return a.getLogsMetricExecute(req)
 }
 
 // getLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.GetLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.GetLogsMetric")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/logs/config/metrics/{metric_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(parameterToString(r.metricId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(common.ParameterToString(r.metricId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -392,7 +358,7 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -404,12 +370,12 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -422,44 +388,44 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -468,41 +434,39 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 }
 
 type apiListLogsMetricsRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
+	ctx _context.Context
 }
 
-func (a *LogsMetricsApiService) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
+func (a *LogsMetricsApi) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
 	req := apiListLogsMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListLogsMetrics Get all log-based metrics.
 // Get the list of configured log-based metrics with their definitions.
-func (a *LogsMetricsApiService) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListLogsMetricsRequest(ctx)
 	if err != nil {
 		var localVarReturnValue LogsMetricsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listLogsMetricsExecute(req)
+	return a.listLogsMetricsExecute(req)
 }
 
 // listLogsMetricsExecute executes the request.
-func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) listLogsMetricsExecute(r apiListLogsMetricsRequest) (LogsMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.ListLogsMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.ListLogsMetrics")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/logs/config/metrics"
@@ -510,18 +474,11 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -535,7 +492,7 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -547,12 +504,12 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -565,35 +522,35 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -602,18 +559,16 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 }
 
 type apiUpdateLogsMetricRequest struct {
-	ctx        _context.Context
-	ApiService *LogsMetricsApiService
-	metricId   string
-	body       *LogsMetricUpdateRequest
+	ctx      _context.Context
+	metricId string
+	body     *LogsMetricUpdateRequest
 }
 
-func (a *LogsMetricsApiService) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
+func (a *LogsMetricsApi) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
 	req := apiUpdateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
-		body:       &body,
+		ctx:      ctx,
+		metricId: metricId,
+		body:     &body,
 	}
 	return req, nil
 }
@@ -621,62 +576,46 @@ func (a *LogsMetricsApiService) buildUpdateLogsMetricRequest(ctx _context.Contex
 // UpdateLogsMetric Update a log-based metric.
 // Update a specific log-based metric from your organization.
 // Returns the log-based metric object from the request body when the request is successful.
-func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateLogsMetricRequest(ctx, metricId, body)
 	if err != nil {
 		var localVarReturnValue LogsMetricResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateLogsMetricExecute(req)
+	return a.updateLogsMetricExecute(req)
 }
 
 // updateLogsMetricExecute executes the request.
-func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
+func (a *LogsMetricsApi) updateLogsMetricExecute(r apiUpdateLogsMetricRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.UpdateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApi.UpdateLogsMetric")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/logs/config/metrics/{metric_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(parameterToString(r.metricId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_id"+"}", _neturl.PathEscape(common.ParameterToString(r.metricId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -690,7 +629,7 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -702,12 +641,12 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -720,56 +659,63 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewLogsMetricsApi Returns NewLogsMetricsApi.
+func NewLogsMetricsApi(client *common.APIClient) *LogsMetricsApi {
+	return &LogsMetricsApi{
+		Client: client,
+	}
 }

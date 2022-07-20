@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func TestConfigurationServers(t *testing.T) {
-	configuration := datadog.NewConfiguration()
+	configuration := common.NewConfiguration()
 
 	testCases := []struct {
 		URL       string
@@ -43,7 +43,7 @@ func TestConfigurationServers(t *testing.T) {
 }
 
 func TestConfigurationServersAccess(t *testing.T) {
-	configuration := datadog.NewConfiguration()
+	configuration := common.NewConfiguration()
 	testCases := []struct {
 		Index int
 		Err   string

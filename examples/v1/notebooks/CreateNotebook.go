@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -39,18 +40,18 @@ y = 6;
 									Requests: []datadog.TimeseriesWidgetRequest{
 										{
 											DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-											Q:           datadog.PtrString("avg:system.load.1{*}"),
+											Q:           common.PtrString("avg:system.load.1{*}"),
 											Style: &datadog.WidgetRequestStyle{
 												LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
 												LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
-												Palette:   datadog.PtrString("dog_classic"),
+												Palette:   common.PtrString("dog_classic"),
 											},
 										},
 									},
-									ShowLegend: datadog.PtrBool(true),
+									ShowLegend: common.PtrBool(true),
 									Type:       datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 									Yaxis: &datadog.WidgetAxis{
-										Scale: datadog.PtrString("linear"),
+										Scale: common.PtrString("linear"),
 									},
 								},
 								GraphSize: datadog.NOTEBOOKGRAPHSIZE_MEDIUM.Ptr(),
@@ -73,10 +74,11 @@ y = 6;
 			Type: datadog.NOTEBOOKRESOURCETYPE_NOTEBOOKS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.CreateNotebook(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewNotebooksApi(apiClient)
+	resp, r, err := api.CreateNotebook(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.CreateNotebook`: %v\n", err)

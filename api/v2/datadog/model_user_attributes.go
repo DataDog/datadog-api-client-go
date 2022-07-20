@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // UserAttributes Attributes of user object returned by the API.
@@ -24,13 +26,13 @@ type UserAttributes struct {
 	// Time that the user was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Name of the user.
-	Name NullableString `json:"name,omitempty"`
+	Name common.NullableString `json:"name,omitempty"`
 	// Whether the user is a service account.
 	ServiceAccount *bool `json:"service_account,omitempty"`
 	// Status of the user.
 	Status *string `json:"status,omitempty"`
 	// Title of the user.
-	Title NullableString `json:"title,omitempty"`
+	Title common.NullableString `json:"title,omitempty"`
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -275,7 +277,7 @@ func (o *UserAttributes) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given common.NullableString and assigns it to the Name field.
 func (o *UserAttributes) SetName(v string) {
 	o.Name.Set(&v)
 }
@@ -382,7 +384,7 @@ func (o *UserAttributes) HasTitle() bool {
 	return false
 }
 
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+// SetTitle gets a reference to the given common.NullableString and assigns it to the Title field.
 func (o *UserAttributes) SetTitle(v string) {
 	o.Title.Set(&v)
 }
@@ -487,17 +489,17 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt      *time.Time     `json:"created_at,omitempty"`
-		Disabled       *bool          `json:"disabled,omitempty"`
-		Email          *string        `json:"email,omitempty"`
-		Handle         *string        `json:"handle,omitempty"`
-		Icon           *string        `json:"icon,omitempty"`
-		ModifiedAt     *time.Time     `json:"modified_at,omitempty"`
-		Name           NullableString `json:"name,omitempty"`
-		ServiceAccount *bool          `json:"service_account,omitempty"`
-		Status         *string        `json:"status,omitempty"`
-		Title          NullableString `json:"title,omitempty"`
-		Verified       *bool          `json:"verified,omitempty"`
+		CreatedAt      *time.Time            `json:"created_at,omitempty"`
+		Disabled       *bool                 `json:"disabled,omitempty"`
+		Email          *string               `json:"email,omitempty"`
+		Handle         *string               `json:"handle,omitempty"`
+		Icon           *string               `json:"icon,omitempty"`
+		ModifiedAt     *time.Time            `json:"modified_at,omitempty"`
+		Name           common.NullableString `json:"name,omitempty"`
+		ServiceAccount *bool                 `json:"service_account,omitempty"`
+		Status         *string               `json:"status,omitempty"`
+		Title          common.NullableString `json:"title,omitempty"`
+		Verified       *bool                 `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

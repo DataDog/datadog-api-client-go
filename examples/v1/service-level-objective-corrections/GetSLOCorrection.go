@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	// there is a valid "correction" for "slo"
 	CorrectionDataID := os.Getenv("CORRECTION_DATA_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection(ctx, CorrectionDataID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
+	resp, r, err := api.GetSLOCorrection(ctx, CorrectionDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.GetSLOCorrection`: %v\n", err)

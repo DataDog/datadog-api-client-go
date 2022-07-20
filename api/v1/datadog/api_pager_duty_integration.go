@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// PagerDutyIntegrationApiService PagerDutyIntegrationApi service.
-type PagerDutyIntegrationApiService service
+// PagerDutyIntegrationApi service type
+type PagerDutyIntegrationApi common.Service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
-	ApiService *PagerDutyIntegrationApiService
-	body       *PagerDutyService
+	ctx  _context.Context
+	body *PagerDutyService
 }
 
-func (a *PagerDutyIntegrationApiService) buildCreatePagerDutyIntegrationServiceRequest(ctx _context.Context, body PagerDutyService) (apiCreatePagerDutyIntegrationServiceRequest, error) {
+func (a *PagerDutyIntegrationApi) buildCreatePagerDutyIntegrationServiceRequest(ctx _context.Context, body PagerDutyService) (apiCreatePagerDutyIntegrationServiceRequest, error) {
 	req := apiCreatePagerDutyIntegrationServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreatePagerDutyIntegrationService Create a new service object.
 // Create a new service object in the PagerDuty integration.
-func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req, err := a.buildCreatePagerDutyIntegrationServiceRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue PagerDutyServiceName
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
+	return a.createPagerDutyIntegrationServiceExecute(req)
 }
 
 // createPagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecute(r apiCreatePagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) createPagerDutyIntegrationServiceExecute(r apiCreatePagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue PagerDutyServiceName
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.CreatePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApi.CreatePagerDutyIntegrationService")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services"
@@ -62,32 +62,16 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,44 +115,44 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -178,13 +162,11 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 
 type apiDeletePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
-func (a *PagerDutyIntegrationApiService) buildDeletePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiDeletePagerDutyIntegrationServiceRequest, error) {
+func (a *PagerDutyIntegrationApi) buildDeletePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiDeletePagerDutyIntegrationServiceRequest, error) {
 	req := apiDeletePagerDutyIntegrationServiceRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
@@ -193,45 +175,38 @@ func (a *PagerDutyIntegrationApiService) buildDeletePagerDutyIntegrationServiceR
 
 // DeletePagerDutyIntegrationService Delete a single service object.
 // Delete a single service object in the Datadog-PagerDuty integration.
-func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeletePagerDutyIntegrationServiceRequest(ctx, serviceName)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
+	return a.deletePagerDutyIntegrationServiceExecute(req)
 }
 
 // deletePagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecute(r apiDeletePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) deletePagerDutyIntegrationServiceExecute(r apiDeletePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.DeletePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApi.DeletePagerDutyIntegrationService")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -245,7 +220,7 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -257,12 +232,12 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -275,35 +250,35 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -313,13 +288,11 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 
 type apiGetPagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
-func (a *PagerDutyIntegrationApiService) buildGetPagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiGetPagerDutyIntegrationServiceRequest, error) {
+func (a *PagerDutyIntegrationApi) buildGetPagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiGetPagerDutyIntegrationServiceRequest, error) {
 	req := apiGetPagerDutyIntegrationServiceRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
@@ -328,47 +301,40 @@ func (a *PagerDutyIntegrationApiService) buildGetPagerDutyIntegrationServiceRequ
 
 // GetPagerDutyIntegrationService Get a single service object.
 // Get service name in the Datadog-PagerDuty integration.
-func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req, err := a.buildGetPagerDutyIntegrationServiceRequest(ctx, serviceName)
 	if err != nil {
 		var localVarReturnValue PagerDutyServiceName
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
+	return a.getPagerDutyIntegrationServiceExecute(req)
 }
 
 // getPagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r apiGetPagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) getPagerDutyIntegrationServiceExecute(r apiGetPagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PagerDutyServiceName
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.GetPagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApi.GetPagerDutyIntegrationService")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -382,7 +348,7 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -394,12 +360,12 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -412,44 +378,44 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -459,14 +425,12 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 
 type apiUpdatePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 	body        *PagerDutyServiceKey
 }
 
-func (a *PagerDutyIntegrationApiService) buildUpdatePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (apiUpdatePagerDutyIntegrationServiceRequest, error) {
+func (a *PagerDutyIntegrationApi) buildUpdatePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (apiUpdatePagerDutyIntegrationServiceRequest, error) {
 	req := apiUpdatePagerDutyIntegrationServiceRequest{
-		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 		body:        &body,
@@ -476,60 +440,44 @@ func (a *PagerDutyIntegrationApiService) buildUpdatePagerDutyIntegrationServiceR
 
 // UpdatePagerDutyIntegrationService Update a single service object.
 // Update a single service object in the Datadog-PagerDuty integration.
-func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
 	req, err := a.buildUpdatePagerDutyIntegrationServiceRequest(ctx, serviceName, body)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)
+	return a.updatePagerDutyIntegrationServiceExecute(req)
 }
 
 // updatePagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecute(r apiUpdatePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApi) updatePagerDutyIntegrationServiceExecute(r apiUpdatePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.UpdatePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/integration/pagerduty/configuration/services/{service_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(parameterToString(r.serviceName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_name"+"}", _neturl.PathEscape(common.ParameterToString(r.serviceName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+		return nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -543,7 +491,7 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -555,12 +503,12 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -573,47 +521,54 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+// NewPagerDutyIntegrationApi Returns NewPagerDutyIntegrationApi.
+func NewPagerDutyIntegrationApi(client *common.APIClient) *PagerDutyIntegrationApi {
+	return &PagerDutyIntegrationApi{
+		Client: client,
+	}
 }

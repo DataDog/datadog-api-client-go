@@ -269,9 +269,19 @@ func SetClient(ctx gobdd.Context, value interface{}) {
 
 // GetClient get reflected value of client instance.
 func GetClient(ctx gobdd.Context) reflect.Value {
-	client, _ := GetClientVersion(ctx, GetVersion(ctx))
+	client, _ := ctx.Get(clientKeys{})
 
-	return client
+	return client.(reflect.Value)
+}
+
+// GetApiByVersionAndName get reflected value of api.
+func GetApiByVersionAndName(ctx gobdd.Context, version string, name string) reflect.Value {
+	api, ok := apiMappings[version][name]
+	if !ok {
+		GetT(ctx).Fatalf("invalid api: %s", name)
+	}
+
+	return api
 }
 
 // SetVersion sets package version.

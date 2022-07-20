@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -30,8 +31,8 @@ func main() {
 			},
 			ConfigVariables: []datadog.SyntheticsConfigVariable{},
 			Request: &datadog.SyntheticsTestRequest{
-				Url:     datadog.PtrString("ws://datadoghq.com"),
-				Message: datadog.PtrString("message"),
+				Url:     common.PtrString("ws://datadoghq.com"),
+				Message: common.PtrString("message"),
 			},
 		},
 		Locations: []string{
@@ -40,18 +41,18 @@ func main() {
 		Message: "BDD test payload: synthetics_api_test_websocket_payload.json",
 		Name:    "Example-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:   datadog.PtrBool(false),
-			AllowInsecure:      datadog.PtrBool(true),
-			FollowRedirects:    datadog.PtrBool(true),
-			MinFailureDuration: datadog.PtrInt64(10),
-			MinLocationFailed:  datadog.PtrInt64(1),
-			MonitorName:        datadog.PtrString("Example-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response"),
-			MonitorPriority:    datadog.PtrInt32(5),
+			AcceptSelfSigned:   common.PtrBool(false),
+			AllowInsecure:      common.PtrBool(true),
+			FollowRedirects:    common.PtrBool(true),
+			MinFailureDuration: common.PtrInt64(10),
+			MinLocationFailed:  common.PtrInt64(1),
+			MonitorName:        common.PtrString("Example-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response"),
+			MonitorPriority:    common.PtrInt32(5),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
-				Interval: datadog.PtrFloat64(10),
+				Count:    common.PtrInt64(3),
+				Interval: common.PtrFloat64(10),
 			},
-			TickEvery: datadog.PtrInt64(60),
+			TickEvery: common.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET.Ptr(),
 		Tags: []string{
@@ -59,10 +60,11 @@ func main() {
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

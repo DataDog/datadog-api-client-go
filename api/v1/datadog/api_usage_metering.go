@@ -15,14 +15,15 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// UsageMeteringApiService UsageMeteringApi service.
-type UsageMeteringApiService service
+// UsageMeteringApi service type
+type UsageMeteringApi common.Service
 
 type apiGetDailyCustomReportsRequest struct {
 	ctx        _context.Context
-	ApiService *UsageMeteringApiService
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -67,14 +68,13 @@ func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetD
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetDailyCustomReportsRequest(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (apiGetDailyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetDailyCustomReportsRequest(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (apiGetDailyCustomReportsRequest, error) {
 	req := apiGetDailyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetDailyCustomReportsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetDailyCustomReportsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -88,34 +88,34 @@ func (a *UsageMeteringApiService) buildGetDailyCustomReportsRequest(ctx _context
 
 // GetDailyCustomReports Get the list of available daily custom reports.
 // Get daily custom reports.
-func (a *UsageMeteringApiService) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetDailyCustomReportsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getDailyCustomReportsExecute(req)
+	return a.getDailyCustomReportsExecute(req)
 }
 
 // getDailyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCustomReportsResponse
 	)
 
-	operationId := "GetDailyCustomReports"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetDailyCustomReports"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetDailyCustomReports")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/daily_custom_reports"
@@ -124,29 +124,22 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
 	if r.sortDir != nil {
-		localVarQueryParams.Add("sort_dir", parameterToString(*r.sortDir, ""))
+		localVarQueryParams.Add("sort_dir", common.ParameterToString(*r.sortDir, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -160,7 +153,7 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -172,12 +165,12 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -190,35 +183,35 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -228,7 +221,6 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 
 type apiGetHourlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
 	startHr            *time.Time
 	usageType          *HourlyUsageAttributionUsageType
 	endHr              *time.Time
@@ -275,16 +267,15 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(inc
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
 	req := apiGetHourlyUsageAttributionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
-		usageType:  &usageType,
+		ctx:       ctx,
+		startHr:   &startHr,
+		usageType: &usageType,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetHourlyUsageAttributionOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetHourlyUsageAttributionOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -312,27 +303,27 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
-func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetHourlyUsageAttributionRequest(ctx, startHr, usageType, o...)
 	if err != nil {
 		var localVarReturnValue HourlyUsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getHourlyUsageAttributionExecute(req)
+	return a.getHourlyUsageAttributionExecute(req)
 }
 
 // getHourlyUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue HourlyUsageAttributionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetHourlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetHourlyUsageAttribution")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/hourly-attribution"
@@ -341,37 +332,30 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
 	if r.usageType == nil {
-		return localVarReturnValue, nil, reportError("usageType is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("usageType is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
-	localVarQueryParams.Add("usage_type", parameterToString(*r.usageType, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("usage_type", common.ParameterToString(*r.usageType, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
 	if r.nextRecordId != nil {
-		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+		localVarQueryParams.Add("next_record_id", common.ParameterToString(*r.nextRecordId, ""))
 	}
 	if r.tagBreakdownKeys != nil {
-		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
+		localVarQueryParams.Add("tag_breakdown_keys", common.ParameterToString(*r.tagBreakdownKeys, ""))
 	}
 	if r.includeDescendants != nil {
-		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
+		localVarQueryParams.Add("include_descendants", common.ParameterToString(*r.includeDescendants, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -385,7 +369,7 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -397,12 +381,12 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -415,35 +399,35 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -452,10 +436,9 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 }
 
 type apiGetIncidentManagementRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetIncidentManagementOptionalParameters holds optional parameters for GetIncidentManagement.
@@ -475,15 +458,14 @@ func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetIncidentManagementRequest(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (apiGetIncidentManagementRequest, error) {
+func (a *UsageMeteringApi) buildGetIncidentManagementRequest(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (apiGetIncidentManagementRequest, error) {
 	req := apiGetIncidentManagementRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetIncidentManagementOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetIncidentManagementOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -494,27 +476,27 @@ func (a *UsageMeteringApiService) buildGetIncidentManagementRequest(ctx _context
 
 // GetIncidentManagement Get hourly usage for incident management.
 // Get hourly usage for incident management.
-func (a *UsageMeteringApiService) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentManagementRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIncidentManagementResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIncidentManagementExecute(req)
+	return a.getIncidentManagementExecute(req)
 }
 
 // getIncidentManagementExecute executes the request.
-func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentManagementRequest) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getIncidentManagementExecute(r apiGetIncidentManagementRequest) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIncidentManagementResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIncidentManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetIncidentManagement")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/incident-management"
@@ -523,24 +505,17 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -554,7 +529,7 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -566,12 +541,12 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -584,44 +559,44 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -630,10 +605,9 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 }
 
 type apiGetIngestedSpansRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetIngestedSpansOptionalParameters holds optional parameters for GetIngestedSpans.
@@ -653,15 +627,14 @@ func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetInge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetIngestedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (apiGetIngestedSpansRequest, error) {
+func (a *UsageMeteringApi) buildGetIngestedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (apiGetIngestedSpansRequest, error) {
 	req := apiGetIngestedSpansRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetIngestedSpansOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetIngestedSpansOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -672,27 +645,27 @@ func (a *UsageMeteringApiService) buildGetIngestedSpansRequest(ctx _context.Cont
 
 // GetIngestedSpans Get hourly usage for ingested spans.
 // Get hourly usage for ingested spans.
-func (a *UsageMeteringApiService) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIngestedSpansRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIngestedSpansResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIngestedSpansExecute(req)
+	return a.getIngestedSpansExecute(req)
 }
 
 // getIngestedSpansExecute executes the request.
-func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansRequest) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getIngestedSpansExecute(r apiGetIngestedSpansRequest) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIngestedSpansResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIngestedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetIngestedSpans")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/ingested-spans"
@@ -701,24 +674,17 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -732,7 +698,7 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -744,12 +710,12 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -762,44 +728,44 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -809,7 +775,6 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 
 type apiGetMonthlyCustomReportsRequest struct {
 	ctx        _context.Context
-	ApiService *UsageMeteringApiService
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -854,14 +819,13 @@ func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetMonthlyCustomReportsRequest(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (apiGetMonthlyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetMonthlyCustomReportsRequest(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (apiGetMonthlyCustomReportsRequest, error) {
 	req := apiGetMonthlyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetMonthlyCustomReportsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetMonthlyCustomReportsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -875,34 +839,34 @@ func (a *UsageMeteringApiService) buildGetMonthlyCustomReportsRequest(ctx _conte
 
 // GetMonthlyCustomReports Get the list of available monthly custom reports.
 // Get monthly custom reports.
-func (a *UsageMeteringApiService) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyCustomReportsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getMonthlyCustomReportsExecute(req)
+	return a.getMonthlyCustomReportsExecute(req)
 }
 
 // getMonthlyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCustomReportsResponse
 	)
 
-	operationId := "GetMonthlyCustomReports"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetMonthlyCustomReports"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyCustomReports")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monthly_custom_reports"
@@ -911,29 +875,22 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
 	if r.sortDir != nil {
-		localVarQueryParams.Add("sort_dir", parameterToString(*r.sortDir, ""))
+		localVarQueryParams.Add("sort_dir", common.ParameterToString(*r.sortDir, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -947,7 +904,7 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -959,12 +916,12 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -977,35 +934,35 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1015,7 +972,6 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 
 type apiGetMonthlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
 	startMonth         *time.Time
 	fields             *MonthlyUsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1078,16 +1034,15 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(in
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
 	req := apiGetMonthlyUsageAttributionRequest{
-		ApiService: a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetMonthlyUsageAttributionOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetMonthlyUsageAttributionOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1117,27 +1072,27 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
-func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
 		var localVarReturnValue MonthlyUsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getMonthlyUsageAttributionExecute(req)
+	return a.getMonthlyUsageAttributionExecute(req)
 }
 
 // getMonthlyUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MonthlyUsageAttributionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyUsageAttribution")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/monthly-attribution"
@@ -1146,43 +1101,36 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startMonth == nil {
-		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startMonth is required and must be specified")
 	}
 	if r.fields == nil {
-		return localVarReturnValue, nil, reportError("fields is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("fields is required and must be specified")
 	}
-	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
-	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
+	localVarQueryParams.Add("start_month", common.ParameterToString(*r.startMonth, ""))
+	localVarQueryParams.Add("fields", common.ParameterToString(*r.fields, ""))
 	if r.endMonth != nil {
-		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+		localVarQueryParams.Add("end_month", common.ParameterToString(*r.endMonth, ""))
 	}
 	if r.sortDirection != nil {
-		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
+		localVarQueryParams.Add("sort_direction", common.ParameterToString(*r.sortDirection, ""))
 	}
 	if r.sortName != nil {
-		localVarQueryParams.Add("sort_name", parameterToString(*r.sortName, ""))
+		localVarQueryParams.Add("sort_name", common.ParameterToString(*r.sortName, ""))
 	}
 	if r.tagBreakdownKeys != nil {
-		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
+		localVarQueryParams.Add("tag_breakdown_keys", common.ParameterToString(*r.tagBreakdownKeys, ""))
 	}
 	if r.nextRecordId != nil {
-		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+		localVarQueryParams.Add("next_record_id", common.ParameterToString(*r.nextRecordId, ""))
 	}
 	if r.includeDescendants != nil {
-		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
+		localVarQueryParams.Add("include_descendants", common.ParameterToString(*r.includeDescendants, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1196,7 +1144,7 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1208,12 +1156,12 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1226,35 +1174,35 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1263,70 +1211,61 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 }
 
 type apiGetSpecifiedDailyCustomReportsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	reportId   string
+	ctx      _context.Context
+	reportId string
 }
 
-func (a *UsageMeteringApiService) buildGetSpecifiedDailyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedDailyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetSpecifiedDailyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedDailyCustomReportsRequest, error) {
 	req := apiGetSpecifiedDailyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		ctx:      ctx,
+		reportId: reportId,
 	}
 	return req, nil
 }
 
 // GetSpecifiedDailyCustomReports Get specified daily custom reports.
 // Get specified daily custom reports.
-func (a *UsageMeteringApiService) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedDailyCustomReportsRequest(ctx, reportId)
 	if err != nil {
 		var localVarReturnValue UsageSpecifiedCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSpecifiedDailyCustomReportsExecute(req)
+	return a.getSpecifiedDailyCustomReportsExecute(req)
 }
 
 // getSpecifiedDailyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifiedDailyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifiedDailyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
 
-	operationId := "GetSpecifiedDailyCustomReports"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetSpecifiedDailyCustomReports"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedDailyCustomReports")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/daily_custom_reports/{report_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(parameterToString(r.reportId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(common.ParameterToString(r.reportId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1340,7 +1279,7 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1352,12 +1291,12 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1370,44 +1309,44 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1416,70 +1355,61 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 }
 
 type apiGetSpecifiedMonthlyCustomReportsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	reportId   string
+	ctx      _context.Context
+	reportId string
 }
 
-func (a *UsageMeteringApiService) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedMonthlyCustomReportsRequest, error) {
+func (a *UsageMeteringApi) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedMonthlyCustomReportsRequest, error) {
 	req := apiGetSpecifiedMonthlyCustomReportsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		ctx:      ctx,
+		reportId: reportId,
 	}
 	return req, nil
 }
 
 // GetSpecifiedMonthlyCustomReports Get specified monthly custom reports.
 // Get specified monthly custom reports.
-func (a *UsageMeteringApiService) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedMonthlyCustomReportsRequest(ctx, reportId)
 	if err != nil {
 		var localVarReturnValue UsageSpecifiedCustomReportsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSpecifiedMonthlyCustomReportsExecute(req)
+	return a.getSpecifiedMonthlyCustomReportsExecute(req)
 }
 
 // getSpecifiedMonthlyCustomReportsExecute executes the request.
-func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpecifiedMonthlyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpecifiedMonthlyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
 
-	operationId := "GetSpecifiedMonthlyCustomReports"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetSpecifiedMonthlyCustomReports"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedMonthlyCustomReports")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monthly_custom_reports/{report_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(parameterToString(r.reportId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(common.ParameterToString(r.reportId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1493,7 +1423,7 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1505,12 +1435,12 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1523,53 +1453,53 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1578,10 +1508,9 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 }
 
 type apiGetUsageAnalyzedLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageAnalyzedLogsOptionalParameters holds optional parameters for GetUsageAnalyzedLogs.
@@ -1601,15 +1530,14 @@ func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAnalyzedLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (apiGetUsageAnalyzedLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAnalyzedLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (apiGetUsageAnalyzedLogsRequest, error) {
 	req := apiGetUsageAnalyzedLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageAnalyzedLogsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageAnalyzedLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1620,27 +1548,27 @@ func (a *UsageMeteringApiService) buildGetUsageAnalyzedLogsRequest(ctx _context.
 
 // GetUsageAnalyzedLogs Get hourly usage for analyzed logs.
 // Get hourly usage for analyzed logs (Security Monitoring).
-func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAnalyzedLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageAnalyzedLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAnalyzedLogsExecute(req)
+	return a.getUsageAnalyzedLogsExecute(req)
 }
 
 // getUsageAnalyzedLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogsRequest) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogsRequest) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAnalyzedLogsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAnalyzedLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAnalyzedLogs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/analyzed_logs"
@@ -1649,24 +1577,17 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1680,7 +1601,7 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1692,12 +1613,12 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1710,44 +1631,44 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1757,7 +1678,6 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 
 type apiGetUsageAttributionRequest struct {
 	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
 	startMonth         *time.Time
 	fields             *UsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1820,16 +1740,15 @@ func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsage
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (apiGetUsageAttributionRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (apiGetUsageAttributionRequest, error) {
 	req := apiGetUsageAttributionRequest{
-		ApiService: a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageAttributionOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageAttributionOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1845,34 +1764,34 @@ func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.C
 
 // GetUsageAttribution Get usage attribution.
 // Get usage attribution.
-func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
 		var localVarReturnValue UsageAttributionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAttributionExecute(req)
+	return a.getUsageAttributionExecute(req)
 }
 
 // getUsageAttributionExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAttributionResponse
 	)
 
-	operationId := "GetUsageAttribution"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetUsageAttribution"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAttribution")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/attribution"
@@ -1881,43 +1800,36 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startMonth == nil {
-		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startMonth is required and must be specified")
 	}
 	if r.fields == nil {
-		return localVarReturnValue, nil, reportError("fields is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("fields is required and must be specified")
 	}
-	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
-	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
+	localVarQueryParams.Add("start_month", common.ParameterToString(*r.startMonth, ""))
+	localVarQueryParams.Add("fields", common.ParameterToString(*r.fields, ""))
 	if r.endMonth != nil {
-		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+		localVarQueryParams.Add("end_month", common.ParameterToString(*r.endMonth, ""))
 	}
 	if r.sortDirection != nil {
-		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
+		localVarQueryParams.Add("sort_direction", common.ParameterToString(*r.sortDirection, ""))
 	}
 	if r.sortName != nil {
-		localVarQueryParams.Add("sort_name", parameterToString(*r.sortName, ""))
+		localVarQueryParams.Add("sort_name", common.ParameterToString(*r.sortName, ""))
 	}
 	if r.includeDescendants != nil {
-		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
+		localVarQueryParams.Add("include_descendants", common.ParameterToString(*r.includeDescendants, ""))
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		localVarQueryParams.Add("offset", common.ParameterToString(*r.offset, ""))
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		localVarQueryParams.Add("limit", common.ParameterToString(*r.limit, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1931,7 +1843,7 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1943,12 +1855,12 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1961,35 +1873,35 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1998,10 +1910,9 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 }
 
 type apiGetUsageAuditLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageAuditLogsOptionalParameters holds optional parameters for GetUsageAuditLogs.
@@ -2021,15 +1932,14 @@ func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageAuditLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (apiGetUsageAuditLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageAuditLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (apiGetUsageAuditLogsRequest, error) {
 	req := apiGetUsageAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageAuditLogsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageAuditLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2040,27 +1950,27 @@ func (a *UsageMeteringApiService) buildGetUsageAuditLogsRequest(ctx _context.Con
 
 // GetUsageAuditLogs Get hourly usage for audit logs.
 // Get hourly usage for audit logs.
-func (a *UsageMeteringApiService) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAuditLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageAuditLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageAuditLogsExecute(req)
+	return a.getUsageAuditLogsExecute(req)
 }
 
 // getUsageAuditLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLogsRequest) (UsageAuditLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageAuditLogsExecute(r apiGetUsageAuditLogsRequest) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAuditLogsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAuditLogs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/audit_logs"
@@ -2069,24 +1979,17 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2100,7 +2003,7 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2112,12 +2015,12 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2130,44 +2033,44 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2176,9 +2079,8 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 }
 
 type apiGetUsageBillableSummaryRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	month      *time.Time
+	ctx   _context.Context
+	month *time.Time
 }
 
 // GetUsageBillableSummaryOptionalParameters holds optional parameters for GetUsageBillableSummary.
@@ -2198,14 +2100,13 @@ func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageBillableSummaryRequest(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (apiGetUsageBillableSummaryRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageBillableSummaryRequest(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (apiGetUsageBillableSummaryRequest, error) {
 	req := apiGetUsageBillableSummaryRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageBillableSummaryOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageBillableSummaryOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2216,27 +2117,27 @@ func (a *UsageMeteringApiService) buildGetUsageBillableSummaryRequest(ctx _conte
 
 // GetUsageBillableSummary Get billable usage across your account.
 // Get billable usage across your account.
-func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageBillableSummaryRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageBillableSummaryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageBillableSummaryExecute(req)
+	return a.getUsageBillableSummaryExecute(req)
 }
 
 // getUsageBillableSummaryExecute executes the request.
-func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBillableSummaryRequest) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageBillableSummaryExecute(r apiGetUsageBillableSummaryRequest) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageBillableSummaryResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageBillableSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageBillableSummary")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/billable-summary"
@@ -2245,20 +2146,13 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.month != nil {
-		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
+		localVarQueryParams.Add("month", common.ParameterToString(*r.month, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2272,7 +2166,7 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2284,12 +2178,12 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2302,44 +2196,44 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2348,10 +2242,9 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 }
 
 type apiGetUsageCIAppRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCIAppOptionalParameters holds optional parameters for GetUsageCIApp.
@@ -2371,15 +2264,14 @@ func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCI
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (apiGetUsageCIAppRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCIAppRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (apiGetUsageCIAppRequest, error) {
 	req := apiGetUsageCIAppRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageCIAppOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageCIAppOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2390,27 +2282,27 @@ func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context
 
 // GetUsageCIApp Get hourly usage for CI Visibility.
 // Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
-func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCIAppRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCIVisibilityResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCIAppExecute(req)
+	return a.getUsageCIAppExecute(req)
 }
 
 // getUsageCIAppExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCIVisibilityResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCIApp")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCIApp")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/ci-app"
@@ -2419,24 +2311,17 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2450,7 +2335,7 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2462,12 +2347,12 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2480,44 +2365,44 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2526,10 +2411,9 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 }
 
 type apiGetUsageCWSRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCWSOptionalParameters holds optional parameters for GetUsageCWS.
@@ -2549,15 +2433,14 @@ func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCWSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (apiGetUsageCWSRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCWSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (apiGetUsageCWSRequest, error) {
 	req := apiGetUsageCWSRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageCWSOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageCWSOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2568,27 +2451,27 @@ func (a *UsageMeteringApiService) buildGetUsageCWSRequest(ctx _context.Context, 
 
 // GetUsageCWS Get hourly usage for Cloud Workload Security.
 // Get hourly usage for Cloud Workload Security.
-func (a *UsageMeteringApiService) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCWSRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCWSResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCWSExecute(req)
+	return a.getUsageCWSExecute(req)
 }
 
 // getUsageCWSExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCWSResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCWS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCWS")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/cws"
@@ -2597,24 +2480,17 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2628,7 +2504,7 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2640,12 +2516,12 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2658,44 +2534,44 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2704,10 +2580,9 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 }
 
 type apiGetUsageCloudSecurityPostureManagementRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageCloudSecurityPostureManagementOptionalParameters holds optional parameters for GetUsageCloudSecurityPostureManagement.
@@ -2727,15 +2602,14 @@ func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(end
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageCloudSecurityPostureManagementRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (apiGetUsageCloudSecurityPostureManagementRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageCloudSecurityPostureManagementRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (apiGetUsageCloudSecurityPostureManagementRequest, error) {
 	req := apiGetUsageCloudSecurityPostureManagementRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageCloudSecurityPostureManagementOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageCloudSecurityPostureManagementOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2746,27 +2620,27 @@ func (a *UsageMeteringApiService) buildGetUsageCloudSecurityPostureManagementReq
 
 // GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM.
 // Get hourly usage for Cloud Security Posture Management (CSPM).
-func (a *UsageMeteringApiService) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCloudSecurityPostureManagementRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageCloudSecurityPostureManagementResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageCloudSecurityPostureManagementExecute(req)
+	return a.getUsageCloudSecurityPostureManagementExecute(req)
 }
 
 // getUsageCloudSecurityPostureManagementExecute executes the request.
-func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(r apiGetUsageCloudSecurityPostureManagementRequest) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageCloudSecurityPostureManagementExecute(r apiGetUsageCloudSecurityPostureManagementRequest) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCloudSecurityPostureManagementResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCloudSecurityPostureManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageCloudSecurityPostureManagement")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/cspm"
@@ -2775,24 +2649,17 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2806,7 +2673,7 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2818,12 +2685,12 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2836,44 +2703,44 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2882,10 +2749,9 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 }
 
 type apiGetUsageDBMRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageDBMOptionalParameters holds optional parameters for GetUsageDBM.
@@ -2905,15 +2771,14 @@ func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageDBMRequest(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (apiGetUsageDBMRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageDBMRequest(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (apiGetUsageDBMRequest, error) {
 	req := apiGetUsageDBMRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageDBMOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageDBMOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2924,27 +2789,27 @@ func (a *UsageMeteringApiService) buildGetUsageDBMRequest(ctx _context.Context, 
 
 // GetUsageDBM Get hourly usage for Database Monitoring.
 // Get hourly usage for Database Monitoring
-func (a *UsageMeteringApiService) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageDBMRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageDBMResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageDBMExecute(req)
+	return a.getUsageDBMExecute(req)
 }
 
 // getUsageDBMExecute executes the request.
-func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBMResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBMResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageDBMResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageDBM")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageDBM")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/dbm"
@@ -2953,24 +2818,17 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2984,7 +2842,7 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2996,12 +2854,12 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3014,44 +2872,44 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3060,10 +2918,9 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 }
 
 type apiGetUsageFargateRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageFargateOptionalParameters holds optional parameters for GetUsageFargate.
@@ -3083,15 +2940,14 @@ func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsage
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageFargateRequest(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (apiGetUsageFargateRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageFargateRequest(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (apiGetUsageFargateRequest, error) {
 	req := apiGetUsageFargateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageFargateOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageFargateOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3102,27 +2958,27 @@ func (a *UsageMeteringApiService) buildGetUsageFargateRequest(ctx _context.Conte
 
 // GetUsageFargate Get hourly usage for Fargate.
 // Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
-func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageFargateRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageFargateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageFargateExecute(req)
+	return a.getUsageFargateExecute(req)
 }
 
 // getUsageFargateExecute executes the request.
-func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateRequest) (UsageFargateResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageFargateExecute(r apiGetUsageFargateRequest) (UsageFargateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageFargateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageFargate")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageFargate")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/fargate"
@@ -3131,24 +2987,17 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3162,7 +3011,7 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3174,12 +3023,12 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3192,44 +3041,44 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3238,10 +3087,9 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 }
 
 type apiGetUsageHostsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageHostsOptionalParameters holds optional parameters for GetUsageHosts.
@@ -3261,15 +3109,14 @@ func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHo
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (apiGetUsageHostsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (apiGetUsageHostsRequest, error) {
 	req := apiGetUsageHostsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageHostsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageHostsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3280,27 +3127,27 @@ func (a *UsageMeteringApiService) buildGetUsageHostsRequest(ctx _context.Context
 
 // GetUsageHosts Get hourly usage for hosts and containers.
 // Get hourly usage for hosts and containers.
-func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageHostsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageHostsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageHostsExecute(req)
+	return a.getUsageHostsExecute(req)
 }
 
 // getUsageHostsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest) (UsageHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageHostsExecute(r apiGetUsageHostsRequest) (UsageHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageHostsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageHosts")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/hosts"
@@ -3309,24 +3156,17 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3340,7 +3180,7 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3352,12 +3192,12 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3370,44 +3210,44 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3416,10 +3256,9 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 }
 
 type apiGetUsageIndexedSpansRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageIndexedSpansOptionalParameters holds optional parameters for GetUsageIndexedSpans.
@@ -3439,15 +3278,14 @@ func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageIndexedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (apiGetUsageIndexedSpansRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageIndexedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (apiGetUsageIndexedSpansRequest, error) {
 	req := apiGetUsageIndexedSpansRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageIndexedSpansOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageIndexedSpansOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3458,27 +3296,27 @@ func (a *UsageMeteringApiService) buildGetUsageIndexedSpansRequest(ctx _context.
 
 // GetUsageIndexedSpans Get hourly usage for indexed spans.
 // Get hourly usage for indexed spans.
-func (a *UsageMeteringApiService) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageIndexedSpansRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIndexedSpansResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageIndexedSpansExecute(req)
+	return a.getUsageIndexedSpansExecute(req)
 }
 
 // getUsageIndexedSpansExecute executes the request.
-func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpansRequest) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpansRequest) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIndexedSpansResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageIndexedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageIndexedSpans")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/indexed-spans"
@@ -3487,24 +3325,17 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3518,7 +3349,7 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3530,12 +3361,12 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3548,44 +3379,44 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3594,10 +3425,9 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 }
 
 type apiGetUsageInternetOfThingsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageInternetOfThingsOptionalParameters holds optional parameters for GetUsageInternetOfThings.
@@ -3617,15 +3447,14 @@ func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) 
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageInternetOfThingsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (apiGetUsageInternetOfThingsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageInternetOfThingsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (apiGetUsageInternetOfThingsRequest, error) {
 	req := apiGetUsageInternetOfThingsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageInternetOfThingsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageInternetOfThingsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3636,27 +3465,27 @@ func (a *UsageMeteringApiService) buildGetUsageInternetOfThingsRequest(ctx _cont
 
 // GetUsageInternetOfThings Get hourly usage for IoT.
 // Get hourly usage for IoT.
-func (a *UsageMeteringApiService) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageInternetOfThingsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageIoTResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageInternetOfThingsExecute(req)
+	return a.getUsageInternetOfThingsExecute(req)
 }
 
 // getUsageInternetOfThingsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageInternetOfThingsRequest) (UsageIoTResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageInternetOfThingsExecute(r apiGetUsageInternetOfThingsRequest) (UsageIoTResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageIoTResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageInternetOfThings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageInternetOfThings")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/iot"
@@ -3665,24 +3494,17 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3696,7 +3518,7 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3708,12 +3530,12 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3726,44 +3548,44 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3772,10 +3594,9 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 }
 
 type apiGetUsageLambdaRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLambdaOptionalParameters holds optional parameters for GetUsageLambda.
@@ -3795,15 +3616,14 @@ func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageL
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLambdaRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (apiGetUsageLambdaRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLambdaRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (apiGetUsageLambdaRequest, error) {
 	req := apiGetUsageLambdaRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageLambdaOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageLambdaOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3814,27 +3634,27 @@ func (a *UsageMeteringApiService) buildGetUsageLambdaRequest(ctx _context.Contex
 
 // GetUsageLambda Get hourly usage for Lambda.
 // Get hourly usage for lambda.
-func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLambdaResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLambdaExecute(req)
+	return a.getUsageLambdaExecute(req)
 }
 
 // getUsageLambdaExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (UsageLambdaResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (UsageLambdaResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLambdaResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLambda")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLambda")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/aws_lambda"
@@ -3843,24 +3663,17 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3874,7 +3687,7 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -3886,12 +3699,12 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3904,44 +3717,44 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -3950,10 +3763,9 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 }
 
 type apiGetUsageLogsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLogsOptionalParameters holds optional parameters for GetUsageLogs.
@@ -3973,15 +3785,14 @@ func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLog
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (apiGetUsageLogsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (apiGetUsageLogsRequest, error) {
 	req := apiGetUsageLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageLogsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -3992,27 +3803,27 @@ func (a *UsageMeteringApiService) buildGetUsageLogsRequest(ctx _context.Context,
 
 // GetUsageLogs Get hourly usage for Logs.
 // Get hourly usage for logs.
-func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsExecute(req)
+	return a.getUsageLogsExecute(req)
 }
 
 // getUsageLogsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageLogsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/logs"
@@ -4021,24 +3832,17 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4052,7 +3856,7 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4064,12 +3868,12 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4082,44 +3886,44 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4128,11 +3932,10 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 }
 
 type apiGetUsageLogsByIndexRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	indexName  *[]string
+	ctx       _context.Context
+	startHr   *time.Time
+	endHr     *time.Time
+	indexName *[]string
 }
 
 // GetUsageLogsByIndexOptionalParameters holds optional parameters for GetUsageLogsByIndex.
@@ -4159,15 +3962,14 @@ func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsByIndexRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (apiGetUsageLogsByIndexRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsByIndexRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (apiGetUsageLogsByIndexRequest, error) {
 	req := apiGetUsageLogsByIndexRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageLogsByIndexOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageLogsByIndexOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -4179,27 +3981,27 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByIndexRequest(ctx _context.C
 
 // GetUsageLogsByIndex Get hourly usage for Logs by Index.
 // Get hourly usage for logs by index.
-func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByIndexRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsByIndexResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsByIndexExecute(req)
+	return a.getUsageLogsByIndexExecute(req)
 }
 
 // getUsageLogsByIndexExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRequest) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRequest) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsByIndexResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogsByIndex")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/logs_by_index"
@@ -4208,35 +4010,28 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
 	if r.indexName != nil {
 		t := *r.indexName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("index_name", parameterToString(s.Index(i), "multi"))
+				localVarQueryParams.Add("index_name", common.ParameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			localVarQueryParams.Add("index_name", parameterToString(t, "multi"))
+			localVarQueryParams.Add("index_name", common.ParameterToString(t, "multi"))
 		}
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4250,7 +4045,7 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4262,12 +4057,12 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4280,44 +4075,44 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4326,10 +4121,9 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 }
 
 type apiGetUsageLogsByRetentionRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageLogsByRetentionOptionalParameters holds optional parameters for GetUsageLogsByRetention.
@@ -4349,15 +4143,14 @@ func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageLogsByRetentionRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (apiGetUsageLogsByRetentionRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageLogsByRetentionRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (apiGetUsageLogsByRetentionRequest, error) {
 	req := apiGetUsageLogsByRetentionRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageLogsByRetentionOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageLogsByRetentionOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -4368,27 +4161,27 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByRetentionRequest(ctx _conte
 
 // GetUsageLogsByRetention Get hourly logs usage by retention.
 // Get hourly usage for indexed logs by retention period.
-func (a *UsageMeteringApiService) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByRetentionRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageLogsByRetentionResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageLogsByRetentionExecute(req)
+	return a.getUsageLogsByRetentionExecute(req)
 }
 
 // getUsageLogsByRetentionExecute executes the request.
-func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRetentionRequest) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRetentionRequest) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageLogsByRetentionResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByRetention")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageLogsByRetention")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/logs-by-retention"
@@ -4397,24 +4190,17 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4428,7 +4214,7 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4440,12 +4226,12 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4458,44 +4244,44 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4504,10 +4290,9 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 }
 
 type apiGetUsageNetworkFlowsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageNetworkFlowsOptionalParameters holds optional parameters for GetUsageNetworkFlows.
@@ -4527,15 +4312,14 @@ func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageNetworkFlowsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (apiGetUsageNetworkFlowsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageNetworkFlowsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (apiGetUsageNetworkFlowsRequest, error) {
 	req := apiGetUsageNetworkFlowsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageNetworkFlowsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageNetworkFlowsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -4546,27 +4330,27 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkFlowsRequest(ctx _context.
 
 // GetUsageNetworkFlows Get hourly usage for Network Flows.
 // Get hourly usage for network flows.
-func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkFlowsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageNetworkFlowsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageNetworkFlowsExecute(req)
+	return a.getUsageNetworkFlowsExecute(req)
 }
 
 // getUsageNetworkFlowsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlowsRequest) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlowsRequest) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageNetworkFlowsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkFlows")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageNetworkFlows")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/network_flows"
@@ -4575,24 +4359,17 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4606,7 +4383,7 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4618,12 +4395,12 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4636,44 +4413,44 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4682,10 +4459,9 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageNetworkHostsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageNetworkHostsOptionalParameters holds optional parameters for GetUsageNetworkHosts.
@@ -4705,15 +4481,14 @@ func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *Get
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageNetworkHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (apiGetUsageNetworkHostsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageNetworkHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (apiGetUsageNetworkHostsRequest, error) {
 	req := apiGetUsageNetworkHostsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageNetworkHostsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageNetworkHostsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -4724,27 +4499,27 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkHostsRequest(ctx _context.
 
 // GetUsageNetworkHosts Get hourly usage for Network Hosts.
 // Get hourly usage for network hosts.
-func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkHostsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageNetworkHostsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageNetworkHostsExecute(req)
+	return a.getUsageNetworkHostsExecute(req)
 }
 
 // getUsageNetworkHostsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetworkHostsRequest) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageNetworkHostsExecute(r apiGetUsageNetworkHostsRequest) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageNetworkHostsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageNetworkHosts")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/network_hosts"
@@ -4753,24 +4528,17 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4784,7 +4552,7 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4796,12 +4564,12 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4814,44 +4582,44 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -4860,10 +4628,9 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageOnlineArchiveRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageOnlineArchiveOptionalParameters holds optional parameters for GetUsageOnlineArchive.
@@ -4883,15 +4650,14 @@ func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageOnlineArchiveRequest(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (apiGetUsageOnlineArchiveRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageOnlineArchiveRequest(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (apiGetUsageOnlineArchiveRequest, error) {
 	req := apiGetUsageOnlineArchiveRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageOnlineArchiveOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageOnlineArchiveOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -4902,27 +4668,27 @@ func (a *UsageMeteringApiService) buildGetUsageOnlineArchiveRequest(ctx _context
 
 // GetUsageOnlineArchive Get hourly usage for Online Archive.
 // Get hourly usage for Online Archive.
-func (a *UsageMeteringApiService) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageOnlineArchiveRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageOnlineArchiveResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageOnlineArchiveExecute(req)
+	return a.getUsageOnlineArchiveExecute(req)
 }
 
 // getUsageOnlineArchiveExecute executes the request.
-func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchiveRequest) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchiveRequest) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageOnlineArchiveResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageOnlineArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageOnlineArchive")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/online-archive"
@@ -4931,24 +4697,17 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4962,7 +4721,7 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -4974,12 +4733,12 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4992,44 +4751,44 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5038,10 +4797,9 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 }
 
 type apiGetUsageProfilingRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageProfilingOptionalParameters holds optional parameters for GetUsageProfiling.
@@ -5061,15 +4819,14 @@ func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageProfilingRequest(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (apiGetUsageProfilingRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageProfilingRequest(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (apiGetUsageProfilingRequest, error) {
 	req := apiGetUsageProfilingRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageProfilingOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageProfilingOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5080,27 +4837,27 @@ func (a *UsageMeteringApiService) buildGetUsageProfilingRequest(ctx _context.Con
 
 // GetUsageProfiling Get hourly usage for profiled hosts.
 // Get hourly usage for profiled hosts.
-func (a *UsageMeteringApiService) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageProfilingRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageProfilingResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageProfilingExecute(req)
+	return a.getUsageProfilingExecute(req)
 }
 
 // getUsageProfilingExecute executes the request.
-func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilingRequest) (UsageProfilingResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageProfilingExecute(r apiGetUsageProfilingRequest) (UsageProfilingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageProfilingResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageProfiling")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageProfiling")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/profiling"
@@ -5109,24 +4866,17 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5140,7 +4890,7 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5152,12 +4902,12 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5170,44 +4920,44 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5216,11 +4966,10 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 }
 
 type apiGetUsageRumSessionsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	typeVar    *string
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
+	typeVar *string
 }
 
 // GetUsageRumSessionsOptionalParameters holds optional parameters for GetUsageRumSessions.
@@ -5247,15 +4996,14 @@ func (r *GetUsageRumSessionsOptionalParameters) WithType(typeVar string) *GetUsa
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageRumSessionsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (apiGetUsageRumSessionsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageRumSessionsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (apiGetUsageRumSessionsRequest, error) {
 	req := apiGetUsageRumSessionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageRumSessionsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageRumSessionsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5267,27 +5015,27 @@ func (a *UsageMeteringApiService) buildGetUsageRumSessionsRequest(ctx _context.C
 
 // GetUsageRumSessions Get hourly usage for RUM Sessions.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
-func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumSessionsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageRumSessionsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageRumSessionsExecute(req)
+	return a.getUsageRumSessionsExecute(req)
 }
 
 // getUsageRumSessionsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRequest) (UsageRumSessionsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRequest) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageRumSessionsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumSessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageRumSessions")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/rum_sessions"
@@ -5296,27 +5044,20 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
 	if r.typeVar != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.typeVar, ""))
+		localVarQueryParams.Add("type", common.ParameterToString(*r.typeVar, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5330,7 +5071,7 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5342,12 +5083,12 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5360,44 +5101,44 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5406,10 +5147,9 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 }
 
 type apiGetUsageRumUnitsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageRumUnitsOptionalParameters holds optional parameters for GetUsageRumUnits.
@@ -5429,15 +5169,14 @@ func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsag
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageRumUnitsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (apiGetUsageRumUnitsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageRumUnitsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (apiGetUsageRumUnitsRequest, error) {
 	req := apiGetUsageRumUnitsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageRumUnitsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageRumUnitsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5448,27 +5187,27 @@ func (a *UsageMeteringApiService) buildGetUsageRumUnitsRequest(ctx _context.Cont
 
 // GetUsageRumUnits Get hourly usage for RUM Units.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Units.
-func (a *UsageMeteringApiService) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumUnitsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageRumUnitsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageRumUnitsExecute(req)
+	return a.getUsageRumUnitsExecute(req)
 }
 
 // getUsageRumUnitsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest) (UsageRumUnitsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageRumUnitsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumUnits")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageRumUnits")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/rum"
@@ -5477,24 +5216,17 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5508,7 +5240,7 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5520,12 +5252,12 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5538,44 +5270,44 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5584,10 +5316,9 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 }
 
 type apiGetUsageSDSRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSDSOptionalParameters holds optional parameters for GetUsageSDS.
@@ -5607,15 +5338,14 @@ func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSO
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSDSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (apiGetUsageSDSRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSDSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (apiGetUsageSDSRequest, error) {
 	req := apiGetUsageSDSRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSDSOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSDSOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5626,27 +5356,27 @@ func (a *UsageMeteringApiService) buildGetUsageSDSRequest(ctx _context.Context, 
 
 // GetUsageSDS Get hourly usage for Sensitive Data Scanner.
 // Get hourly usage for Sensitive Data Scanner.
-func (a *UsageMeteringApiService) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSDSRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSDSResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSDSExecute(req)
+	return a.getUsageSDSExecute(req)
 }
 
 // getUsageSDSExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDSResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSDSResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSDS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSDS")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/sds"
@@ -5655,24 +5385,17 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5686,7 +5409,7 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5698,12 +5421,12 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5716,44 +5439,44 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5762,10 +5485,9 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 }
 
 type apiGetUsageSNMPRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSNMPOptionalParameters holds optional parameters for GetUsageSNMP.
@@ -5785,15 +5507,14 @@ func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNM
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSNMPRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (apiGetUsageSNMPRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSNMPRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (apiGetUsageSNMPRequest, error) {
 	req := apiGetUsageSNMPRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSNMPOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSNMPOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5804,27 +5525,27 @@ func (a *UsageMeteringApiService) buildGetUsageSNMPRequest(ctx _context.Context,
 
 // GetUsageSNMP Get hourly usage for SNMP devices.
 // Get hourly usage for SNMP devices.
-func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSNMPRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSNMPResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSNMPExecute(req)
+	return a.getUsageSNMPExecute(req)
 }
 
 // getUsageSNMPExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageSNMPResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageSNMPResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSNMPResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSNMP")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSNMP")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/snmp"
@@ -5833,24 +5554,17 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5864,7 +5578,7 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -5876,12 +5590,12 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5894,44 +5608,44 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -5941,7 +5655,6 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 
 type apiGetUsageSummaryRequest struct {
 	ctx               _context.Context
-	ApiService        *UsageMeteringApiService
 	startMonth        *time.Time
 	endMonth          *time.Time
 	includeOrgDetails *bool
@@ -5971,15 +5684,14 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDeta
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSummaryRequest(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (apiGetUsageSummaryRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSummaryRequest(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (apiGetUsageSummaryRequest, error) {
 	req := apiGetUsageSummaryRequest{
-		ApiService: a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSummaryOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSummaryOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -5991,27 +5703,27 @@ func (a *UsageMeteringApiService) buildGetUsageSummaryRequest(ctx _context.Conte
 
 // GetUsageSummary Get usage across your multi-org account.
 // Get usage across your multi-org account. You must have the multi-org feature enabled.
-func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSummaryRequest(ctx, startMonth, o...)
 	if err != nil {
 		var localVarReturnValue UsageSummaryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSummaryExecute(req)
+	return a.getUsageSummaryExecute(req)
 }
 
 // getUsageSummaryExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (UsageSummaryResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (UsageSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSummaryResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSummary")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/summary"
@@ -6020,27 +5732,20 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startMonth == nil {
-		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startMonth is required and must be specified")
 	}
-	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	localVarQueryParams.Add("start_month", common.ParameterToString(*r.startMonth, ""))
 	if r.endMonth != nil {
-		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+		localVarQueryParams.Add("end_month", common.ParameterToString(*r.endMonth, ""))
 	}
 	if r.includeOrgDetails != nil {
-		localVarQueryParams.Add("include_org_details", parameterToString(*r.includeOrgDetails, ""))
+		localVarQueryParams.Add("include_org_details", common.ParameterToString(*r.includeOrgDetails, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6054,7 +5759,7 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6066,12 +5771,12 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6084,44 +5789,44 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -6130,10 +5835,9 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 }
 
 type apiGetUsageSyntheticsRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsOptionalParameters holds optional parameters for GetUsageSynthetics.
@@ -6153,15 +5857,14 @@ func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (apiGetUsageSyntheticsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (apiGetUsageSyntheticsRequest, error) {
 	req := apiGetUsageSyntheticsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSyntheticsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSyntheticsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -6172,27 +5875,27 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsRequest(ctx _context.Co
 
 // GetUsageSynthetics Get hourly usage for Synthetics Checks.
 // Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
-func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsExecute(req)
+	return a.getUsageSyntheticsExecute(req)
 }
 
 // getUsageSyntheticsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequest) (UsageSyntheticsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequest) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSynthetics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSynthetics")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/synthetics"
@@ -6201,24 +5904,17 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6232,7 +5928,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6244,12 +5940,12 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6262,44 +5958,44 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -6308,10 +6004,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 }
 
 type apiGetUsageSyntheticsAPIRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsAPIOptionalParameters holds optional parameters for GetUsageSyntheticsAPI.
@@ -6331,15 +6026,14 @@ func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *Ge
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsAPIRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (apiGetUsageSyntheticsAPIRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsAPIRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (apiGetUsageSyntheticsAPIRequest, error) {
 	req := apiGetUsageSyntheticsAPIRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -6350,27 +6044,27 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsAPIRequest(ctx _context
 
 // GetUsageSyntheticsAPI Get hourly usage for Synthetics API Checks.
 // Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
-func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsAPIRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsAPIResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsAPIExecute(req)
+	return a.getUsageSyntheticsAPIExecute(req)
 }
 
 // getUsageSyntheticsAPIExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsAPIRequest) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsAPIRequest) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsAPIResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsAPI")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSyntheticsAPI")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/synthetics_api"
@@ -6379,24 +6073,17 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6410,7 +6097,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6422,12 +6109,12 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6440,44 +6127,44 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -6486,10 +6173,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 }
 
 type apiGetUsageSyntheticsBrowserRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageSyntheticsBrowserOptionalParameters holds optional parameters for GetUsageSyntheticsBrowser.
@@ -6509,15 +6195,14 @@ func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time)
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageSyntheticsBrowserRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (apiGetUsageSyntheticsBrowserRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageSyntheticsBrowserRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (apiGetUsageSyntheticsBrowserRequest, error) {
 	req := apiGetUsageSyntheticsBrowserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -6528,27 +6213,27 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsBrowserRequest(ctx _con
 
 // GetUsageSyntheticsBrowser Get hourly usage for Synthetics Browser Checks.
 // Get hourly usage for synthetics browser checks.
-func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsBrowserRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageSyntheticsBrowserResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageSyntheticsBrowserExecute(req)
+	return a.getUsageSyntheticsBrowserExecute(req)
 }
 
 // getUsageSyntheticsBrowserExecute executes the request.
-func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsageSyntheticsBrowserRequest) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageSyntheticsBrowserExecute(r apiGetUsageSyntheticsBrowserRequest) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSyntheticsBrowserResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsBrowser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageSyntheticsBrowser")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/synthetics_browser"
@@ -6557,24 +6242,17 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6588,7 +6266,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6600,12 +6278,12 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6618,44 +6296,44 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -6664,10 +6342,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 }
 
 type apiGetUsageTimeseriesRequest struct {
-	ctx        _context.Context
-	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
 }
 
 // GetUsageTimeseriesOptionalParameters holds optional parameters for GetUsageTimeseries.
@@ -6687,15 +6364,14 @@ func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageTimeseriesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (apiGetUsageTimeseriesRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageTimeseriesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (apiGetUsageTimeseriesRequest, error) {
 	req := apiGetUsageTimeseriesRequest{
-		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx:     ctx,
+		startHr: &startHr,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageTimeseriesOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageTimeseriesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -6706,27 +6382,27 @@ func (a *UsageMeteringApiService) buildGetUsageTimeseriesRequest(ctx _context.Co
 
 // GetUsageTimeseries Get hourly usage for custom metrics.
 // Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
-func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTimeseriesRequest(ctx, startHr, o...)
 	if err != nil {
 		var localVarReturnValue UsageTimeseriesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageTimeseriesExecute(req)
+	return a.getUsageTimeseriesExecute(req)
 }
 
 // getUsageTimeseriesExecute executes the request.
-func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequest) (UsageTimeseriesResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequest) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageTimeseriesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTimeseries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageTimeseries")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/timeseries"
@@ -6735,24 +6411,17 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.startHr == nil {
-		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
 	}
-	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
 	if r.endHr != nil {
-		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6766,7 +6435,7 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6778,12 +6447,12 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -6796,44 +6465,44 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -6843,7 +6512,6 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 
 type apiGetUsageTopAvgMetricsRequest struct {
 	ctx          _context.Context
-	ApiService   *UsageMeteringApiService
 	month        *time.Time
 	day          *time.Time
 	names        *[]string
@@ -6896,14 +6564,13 @@ func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId 
 	return r
 }
 
-func (a *UsageMeteringApiService) buildGetUsageTopAvgMetricsRequest(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (apiGetUsageTopAvgMetricsRequest, error) {
+func (a *UsageMeteringApi) buildGetUsageTopAvgMetricsRequest(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (apiGetUsageTopAvgMetricsRequest, error) {
 	req := apiGetUsageTopAvgMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -6918,27 +6585,27 @@ func (a *UsageMeteringApiService) buildGetUsageTopAvgMetricsRequest(ctx _context
 
 // GetUsageTopAvgMetrics Get all custom metrics by hourly average.
 // Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
-func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTopAvgMetricsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue UsageTopAvgMetricsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getUsageTopAvgMetricsExecute(req)
+	return a.getUsageTopAvgMetricsExecute(req)
 }
 
 // getUsageTopAvgMetricsExecute executes the request.
-func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetricsRequest) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetricsRequest) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue UsageTopAvgMetricsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTopAvgMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageTopAvgMetrics")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/usage/top_avg_metrics"
@@ -6947,40 +6614,33 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.month != nil {
-		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
+		localVarQueryParams.Add("month", common.ParameterToString(*r.month, ""))
 	}
 	if r.day != nil {
-		localVarQueryParams.Add("day", parameterToString(*r.day, ""))
+		localVarQueryParams.Add("day", common.ParameterToString(*r.day, ""))
 	}
 	if r.names != nil {
 		t := *r.names
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("names", parameterToString(s.Index(i), "multi"))
+				localVarQueryParams.Add("names", common.ParameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			localVarQueryParams.Add("names", parameterToString(t, "multi"))
+			localVarQueryParams.Add("names", common.ParameterToString(t, "multi"))
 		}
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		localVarQueryParams.Add("limit", common.ParameterToString(*r.limit, ""))
 	}
 	if r.nextRecordId != nil {
-		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+		localVarQueryParams.Add("next_record_id", common.ParameterToString(*r.nextRecordId, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -6994,7 +6654,7 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -7006,12 +6666,12 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -7024,47 +6684,54 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewUsageMeteringApi Returns NewUsageMeteringApi.
+func NewUsageMeteringApi(client *common.APIClient) *UsageMeteringApi {
+	return &UsageMeteringApi{
+		Client: client,
+	}
 }

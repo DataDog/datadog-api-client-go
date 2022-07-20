@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_event_stream_widget",
-		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Description: *common.NewNullableString(common.PtrString("")),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -25,25 +26,26 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					EventStreamWidgetDefinition: &datadog.EventStreamWidgetDefinition{
-						Title:         datadog.PtrString(""),
-						TitleSize:     datadog.PtrString("16"),
+						Title:         common.PtrString(""),
+						TitleSize:     common.PtrString("16"),
 						TitleAlign:    datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:          datadog.EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM,
 						Query:         "example-query",
-						TagsExecution: datadog.PtrString("and"),
+						TagsExecution: common.PtrString("and"),
 						EventSize:     datadog.WIDGETEVENTSIZE_SMALL.Ptr(),
 					}},
 			},
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

@@ -4,7 +4,7 @@
 
 //go:build !cgo
 
-package datadog
+package common
 
 import (
 	"bytes"

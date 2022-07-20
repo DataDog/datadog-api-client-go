@@ -8,26 +8,28 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.AzureAccount{
-		Automute:     datadog.PtrBool(true),
-		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
-		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		Automute:     common.PtrBool(true),
+		ClientId:     common.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientSecret: common.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
 		Errors: []string{
 			"*",
 		},
-		HostFilters:   datadog.PtrString("key:value,filter:example"),
-		NewClientId:   datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
-		NewTenantName: datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
-		TenantName:    datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		HostFilters:   common.PtrString("key:value,filter:example"),
+		NewClientId:   common.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
+		NewTenantName: common.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
+		TenantName:    common.PtrString("testc44-1234-5678-9101-cc00736ftest"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewAzureIntegrationApi(apiClient)
+	resp, r, err := api.UpdateAzureHostFilters(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters`: %v\n", err)

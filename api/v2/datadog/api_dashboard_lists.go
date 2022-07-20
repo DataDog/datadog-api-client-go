@@ -11,21 +11,21 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// DashboardListsApiService DashboardListsApi service.
-type DashboardListsApiService service
+// DashboardListsApi service type
+type DashboardListsApi common.Service
 
 type apiCreateDashboardListItemsRequest struct {
 	ctx             _context.Context
-	ApiService      *DashboardListsApiService
 	dashboardListId int64
 	body            *DashboardListAddItemsRequest
 }
 
-func (a *DashboardListsApiService) buildCreateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (apiCreateDashboardListItemsRequest, error) {
+func (a *DashboardListsApi) buildCreateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (apiCreateDashboardListItemsRequest, error) {
 	req := apiCreateDashboardListItemsRequest{
-		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
@@ -35,62 +35,46 @@ func (a *DashboardListsApiService) buildCreateDashboardListItemsRequest(ctx _con
 
 // CreateDashboardListItems Add Items to a Dashboard List.
 // Add dashboards to an existing dashboard list.
-func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateDashboardListItemsRequest(ctx, dashboardListId, body)
 	if err != nil {
 		var localVarReturnValue DashboardListAddItemsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createDashboardListItemsExecute(req)
+	return a.createDashboardListItemsExecute(req)
 }
 
 // createDashboardListItemsExecute executes the request.
-func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDashboardListItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) createDashboardListItemsExecute(r apiCreateDashboardListItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue DashboardListAddItemsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApi.CreateDashboardListItems")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardListId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(common.ParameterToString(r.dashboardListId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -104,7 +88,7 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -116,12 +100,12 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -134,53 +118,53 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -190,14 +174,12 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 
 type apiDeleteDashboardListItemsRequest struct {
 	ctx             _context.Context
-	ApiService      *DashboardListsApiService
 	dashboardListId int64
 	body            *DashboardListDeleteItemsRequest
 }
 
-func (a *DashboardListsApiService) buildDeleteDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (apiDeleteDashboardListItemsRequest, error) {
+func (a *DashboardListsApi) buildDeleteDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (apiDeleteDashboardListItemsRequest, error) {
 	req := apiDeleteDashboardListItemsRequest{
-		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
@@ -207,62 +189,46 @@ func (a *DashboardListsApiService) buildDeleteDashboardListItemsRequest(ctx _con
 
 // DeleteDashboardListItems Delete items from a dashboard list.
 // Delete dashboards from an existing dashboard list.
-func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteDashboardListItemsRequest(ctx, dashboardListId, body)
 	if err != nil {
 		var localVarReturnValue DashboardListDeleteItemsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteDashboardListItemsExecute(req)
+	return a.deleteDashboardListItemsExecute(req)
 }
 
 // deleteDashboardListItemsExecute executes the request.
-func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDashboardListItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) deleteDashboardListItemsExecute(r apiDeleteDashboardListItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue DashboardListDeleteItemsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.DeleteDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApi.DeleteDashboardListItems")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardListId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(common.ParameterToString(r.dashboardListId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -276,7 +242,7 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -288,12 +254,12 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -306,53 +272,53 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -362,13 +328,11 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 
 type apiGetDashboardListItemsRequest struct {
 	ctx             _context.Context
-	ApiService      *DashboardListsApiService
 	dashboardListId int64
 }
 
-func (a *DashboardListsApiService) buildGetDashboardListItemsRequest(ctx _context.Context, dashboardListId int64) (apiGetDashboardListItemsRequest, error) {
+func (a *DashboardListsApi) buildGetDashboardListItemsRequest(ctx _context.Context, dashboardListId int64) (apiGetDashboardListItemsRequest, error) {
 	req := apiGetDashboardListItemsRequest{
-		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 	}
@@ -377,47 +341,40 @@ func (a *DashboardListsApiService) buildGetDashboardListItemsRequest(ctx _contex
 
 // GetDashboardListItems Get items of a Dashboard List.
 // Fetch the dashboard list’s dashboard definitions.
-func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
+func (a *DashboardListsApi) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
 	req, err := a.buildGetDashboardListItemsRequest(ctx, dashboardListId)
 	if err != nil {
 		var localVarReturnValue DashboardListItems
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getDashboardListItemsExecute(req)
+	return a.getDashboardListItemsExecute(req)
 }
 
 // getDashboardListItemsExecute executes the request.
-func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboardListItemsRequest) (DashboardListItems, *_nethttp.Response, error) {
+func (a *DashboardListsApi) getDashboardListItemsExecute(r apiGetDashboardListItemsRequest) (DashboardListItems, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue DashboardListItems
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.GetDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApi.GetDashboardListItems")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardListId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(common.ParameterToString(r.dashboardListId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -431,7 +388,7 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -443,12 +400,12 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -461,44 +418,44 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -508,14 +465,12 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 
 type apiUpdateDashboardListItemsRequest struct {
 	ctx             _context.Context
-	ApiService      *DashboardListsApiService
 	dashboardListId int64
 	body            *DashboardListUpdateItemsRequest
 }
 
-func (a *DashboardListsApiService) buildUpdateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (apiUpdateDashboardListItemsRequest, error) {
+func (a *DashboardListsApi) buildUpdateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (apiUpdateDashboardListItemsRequest, error) {
 	req := apiUpdateDashboardListItemsRequest{
-		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
@@ -525,62 +480,46 @@ func (a *DashboardListsApiService) buildUpdateDashboardListItemsRequest(ctx _con
 
 // UpdateDashboardListItems Update items of a dashboard list.
 // Update dashboards of an existing dashboard list.
-func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateDashboardListItemsRequest(ctx, dashboardListId, body)
 	if err != nil {
 		var localVarReturnValue DashboardListUpdateItemsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateDashboardListItemsExecute(req)
+	return a.updateDashboardListItemsExecute(req)
 }
 
 // updateDashboardListItemsExecute executes the request.
-func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDashboardListItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) updateDashboardListItemsExecute(r apiUpdateDashboardListItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue DashboardListUpdateItemsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.UpdateDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApi.UpdateDashboardListItems")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/dashboard/lists/manual/{dashboard_list_id}/dashboards"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(parameterToString(r.dashboardListId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"dashboard_list_id"+"}", _neturl.PathEscape(common.ParameterToString(r.dashboardListId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -594,7 +533,7 @@ func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDa
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -606,12 +545,12 @@ func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDa
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -624,56 +563,63 @@ func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDa
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewDashboardListsApi Returns NewDashboardListsApi.
+func NewDashboardListsApi(client *common.APIClient) *DashboardListsApi {
+	return &DashboardListsApi{
+		Client: client,
+	}
 }

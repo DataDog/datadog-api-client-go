@@ -12,22 +12,22 @@ import (
 	_neturl "net/url"
 	"strings"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// SecurityMonitoringApiService SecurityMonitoringApi service.
-type SecurityMonitoringApiService service
+// SecurityMonitoringApi service type
+type SecurityMonitoringApi common.Service
 
 type apiCreateSecurityFilterRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityFilterCreateRequest
+	ctx  _context.Context
+	body *SecurityFilterCreateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
 	req := apiCreateSecurityFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -37,27 +37,27 @@ func (a *SecurityMonitoringApiService) buildCreateSecurityFilterRequest(ctx _con
 //
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
-func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSecurityFilterRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSecurityFilterExecute(req)
+	return a.createSecurityFilterExecute(req)
 }
 
 // createSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityFilter")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters"
@@ -66,32 +66,16 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -105,7 +89,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -117,12 +101,12 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -135,53 +119,53 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -190,43 +174,41 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 }
 
 type apiCreateSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringRuleCreatePayload
+	ctx  _context.Context
+	body *SecurityMonitoringRuleCreatePayload
 }
 
-func (a *SecurityMonitoringApiService) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
 	req := apiCreateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateSecurityMonitoringRule Create a detection rule.
 // Create a detection rule.
-func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSecurityMonitoringRuleRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSecurityMonitoringRuleExecute(req)
+	return a.createSecurityMonitoringRuleExecute(req)
 }
 
 // createSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityMonitoringRule")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules"
@@ -235,32 +217,16 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -274,7 +240,7 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -286,12 +252,12 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -304,44 +270,44 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -351,13 +317,11 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 
 type apiDeleteSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
 	securityFilterId string
 }
 
-func (a *SecurityMonitoringApiService) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
 	req := apiDeleteSecurityFilterRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -366,45 +330,38 @@ func (a *SecurityMonitoringApiService) buildDeleteSecurityFilterRequest(ctx _con
 
 // DeleteSecurityFilter Delete a security filter.
 // Delete a specific security filter.
-func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSecurityFilterRequest(ctx, securityFilterId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteSecurityFilterExecute(req)
+	return a.deleteSecurityFilterExecute(req)
 }
 
 // deleteSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityFilter")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(parameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(common.ParameterToString(r.securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -418,7 +375,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -430,12 +387,12 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -448,35 +405,35 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -485,61 +442,52 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 }
 
 type apiDeleteSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ctx    _context.Context
+	ruleId string
 }
 
-func (a *SecurityMonitoringApiService) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
 	req := apiDeleteSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+		ctx:    ctx,
+		ruleId: ruleId,
 	}
 	return req, nil
 }
 
 // DeleteSecurityMonitoringRule Delete an existing rule.
 // Delete an existing rule. Default rules cannot be deleted.
-func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSecurityMonitoringRuleRequest(ctx, ruleId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteSecurityMonitoringRuleExecute(req)
+	return a.deleteSecurityMonitoringRuleExecute(req)
 }
 
 // deleteSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityMonitoringRule")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(parameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(common.ParameterToString(r.ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -553,7 +501,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -565,12 +513,12 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -583,35 +531,35 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -620,80 +568,62 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 }
 
 type apiEditSecurityMonitoringSignalAssigneeRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *SecurityMonitoringSignalAssigneeUpdateRequest
+	ctx      _context.Context
+	signalId string
+	body     *SecurityMonitoringSignalAssigneeUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
+func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
 	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
-func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalAssigneeRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.editSecurityMonitoringSignalAssigneeExecute(req)
+	return a.editSecurityMonitoringSignalAssigneeExecute(req)
 }
 
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
-func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.EditSecurityMonitoringSignalAssignee")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/assignee"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(parameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(common.ParameterToString(r.signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -707,7 +637,7 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -719,12 +649,12 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -737,53 +667,53 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -792,80 +722,62 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 }
 
 type apiEditSecurityMonitoringSignalIncidentsRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *SecurityMonitoringSignalIncidentsUpdateRequest
+	ctx      _context.Context
+	signalId string
+	body     *SecurityMonitoringSignalIncidentsUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalIncidentsRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (apiEditSecurityMonitoringSignalIncidentsRequest, error) {
+func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalIncidentsRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (apiEditSecurityMonitoringSignalIncidentsRequest, error) {
 	req := apiEditSecurityMonitoringSignalIncidentsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // EditSecurityMonitoringSignalIncidents Change the related incidents of a security signal.
 // Change the related incidents for a security signal.
-func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalIncidents(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalIncidentsRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.editSecurityMonitoringSignalIncidentsExecute(req)
+	return a.editSecurityMonitoringSignalIncidentsExecute(req)
 }
 
 // editSecurityMonitoringSignalIncidentsExecute executes the request.
-func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalIncidentsExecute(r apiEditSecurityMonitoringSignalIncidentsRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(r apiEditSecurityMonitoringSignalIncidentsRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.EditSecurityMonitoringSignalIncidents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalIncidents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/incidents"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(parameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(common.ParameterToString(r.signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -879,7 +791,7 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalIncidentsExec
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -891,12 +803,12 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalIncidentsExec
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -909,53 +821,53 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalIncidentsExec
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -964,80 +876,62 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalIncidentsExec
 }
 
 type apiEditSecurityMonitoringSignalStateRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	signalId   string
-	body       *SecurityMonitoringSignalStateUpdateRequest
+	ctx      _context.Context
+	signalId string
+	body     *SecurityMonitoringSignalStateUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
+func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
 	req := apiEditSecurityMonitoringSignalStateRequest{
-		ApiService: a,
-		ctx:        ctx,
-		signalId:   signalId,
-		body:       &body,
+		ctx:      ctx,
+		signalId: signalId,
+		body:     &body,
 	}
 	return req, nil
 }
 
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
-func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalStateRequest(ctx, signalId, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.editSecurityMonitoringSignalStateExecute(req)
+	return a.editSecurityMonitoringSignalStateExecute(req)
 }
 
 // editSecurityMonitoringSignalStateExecute executes the request.
-func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.EditSecurityMonitoringSignalState")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalState")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/state"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(parameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(common.ParameterToString(r.signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1051,7 +945,7 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1063,12 +957,12 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1081,53 +975,53 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1137,13 +1031,11 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 
 type apiGetSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
 	securityFilterId string
 }
 
-func (a *SecurityMonitoringApiService) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
 	req := apiGetSecurityFilterRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -1155,47 +1047,40 @@ func (a *SecurityMonitoringApiService) buildGetSecurityFilterRequest(ctx _contex
 //
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
-func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSecurityFilterRequest(ctx, securityFilterId)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSecurityFilterExecute(req)
+	return a.getSecurityFilterExecute(req)
 }
 
 // getSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityFilter")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(parameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(common.ParameterToString(r.securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1209,7 +1094,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1221,12 +1106,12 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1239,44 +1124,44 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1285,63 +1170,54 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 }
 
 type apiGetSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ctx    _context.Context
+	ruleId string
 }
 
-func (a *SecurityMonitoringApiService) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
 	req := apiGetSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+		ctx:    ctx,
+		ruleId: ruleId,
 	}
 	return req, nil
 }
 
 // GetSecurityMonitoringRule Get a rule's details.
 // Get a rule's details.
-func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSecurityMonitoringRuleRequest(ctx, ruleId)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSecurityMonitoringRuleExecute(req)
+	return a.getSecurityMonitoringRuleExecute(req)
 }
 
 // getSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringRule")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(parameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(common.ParameterToString(r.ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1355,7 +1231,7 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1367,12 +1243,12 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1385,35 +1261,35 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1422,41 +1298,39 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 }
 
 type apiListSecurityFiltersRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ctx _context.Context
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
 	req := apiListSecurityFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
-func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityFiltersRequest(ctx)
 	if err != nil {
 		var localVarReturnValue SecurityFiltersResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityFiltersExecute(req)
+	return a.listSecurityFiltersExecute(req)
 }
 
 // listSecurityFiltersExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFiltersResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityFilters")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters"
@@ -1464,18 +1338,11 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1489,7 +1356,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1501,12 +1368,12 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1519,35 +1386,35 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1557,7 +1424,6 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
 	pageSize   *int64
 	pageNumber *int64
 }
@@ -1586,14 +1452,13 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
 	req := apiListSecurityMonitoringRulesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1605,27 +1470,27 @@ func (a *SecurityMonitoringApiService) buildListSecurityMonitoringRulesRequest(c
 
 // ListSecurityMonitoringRules List rules.
 // List rules.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityMonitoringRulesRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringListRulesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityMonitoringRulesExecute(req)
+	return a.listSecurityMonitoringRulesExecute(req)
 }
 
 // listSecurityMonitoringRulesExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringListRulesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringRules")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules"
@@ -1634,23 +1499,16 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1664,7 +1522,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1676,12 +1534,12 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1694,35 +1552,35 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1732,7 +1590,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 
 type apiListSecurityMonitoringSignalsRequest struct {
 	ctx         _context.Context
-	ApiService  *SecurityMonitoringApiService
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -1793,14 +1650,13 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
+func (a *SecurityMonitoringApi) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1818,18 +1674,18 @@ func (a *SecurityMonitoringApiService) buildListSecurityMonitoringSignalsRequest
 // The list endpoint returns security signals that match a search query.
 // Both this endpoint and the POST endpoint can be used interchangeably when listing
 // security signals.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSecurityMonitoringSignalsExecute(req)
+	return a.listSecurityMonitoringSignalsExecute(req)
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1848,7 +1704,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 				break
 			}
 
-			resp, _, err := req.ApiService.listSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.listSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -1890,16 +1746,16 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 }
 
 // listSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringSignals")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals"
@@ -1908,35 +1764,28 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", parameterToString(*r.filterQuery, ""))
+		localVarQueryParams.Add("filter[query]", common.ParameterToString(*r.filterQuery, ""))
 	}
 	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", parameterToString(*r.filterFrom, ""))
+		localVarQueryParams.Add("filter[from]", common.ParameterToString(*r.filterFrom, ""))
 	}
 	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", parameterToString(*r.filterTo, ""))
+		localVarQueryParams.Add("filter[to]", common.ParameterToString(*r.filterTo, ""))
 	}
 	if r.sort != nil {
-		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
+		localVarQueryParams.Add("sort", common.ParameterToString(*r.sort, ""))
 	}
 	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", parameterToString(*r.pageCursor, ""))
+		localVarQueryParams.Add("page[cursor]", common.ParameterToString(*r.pageCursor, ""))
 	}
 	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", parameterToString(*r.pageLimit, ""))
+		localVarQueryParams.Add("page[limit]", common.ParameterToString(*r.pageLimit, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1950,7 +1799,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1962,12 +1811,12 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1980,44 +1829,44 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2026,9 +1875,8 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 }
 
 type apiSearchSecurityMonitoringSignalsRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringSignalListRequest
+	ctx  _context.Context
+	body *SecurityMonitoringSignalListRequest
 }
 
 // SearchSecurityMonitoringSignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringSignals.
@@ -2048,14 +1896,13 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 	return r
 }
 
-func (a *SecurityMonitoringApiService) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
+func (a *SecurityMonitoringApi) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
 	req := apiSearchSecurityMonitoringSignalsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -2068,18 +1915,18 @@ func (a *SecurityMonitoringApiService) buildSearchSecurityMonitoringSignalsReque
 // Returns security signals that match a search query.
 // Both this endpoint and the GET endpoint can be used interchangeably for listing
 // security signals.
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalsListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+	return a.searchSecurityMonitoringSignalsExecute(req)
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -2104,7 +1951,7 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 				break
 			}
 
-			resp, _, err := req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.searchSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -2146,16 +1993,16 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 }
 
 // searchSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.SearchSecurityMonitoringSignals")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/search"
@@ -2163,30 +2010,14 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2200,7 +2031,7 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2212,12 +2043,12 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2230,44 +2061,44 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2277,14 +2108,12 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 
 type apiUpdateSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
 	securityFilterId string
 	body             *SecurityFilterUpdateRequest
 }
 
-func (a *SecurityMonitoringApiService) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
+func (a *SecurityMonitoringApi) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
 	req := apiUpdateSecurityFilterRequest{
-		ApiService:       a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 		body:             &body,
@@ -2295,62 +2124,46 @@ func (a *SecurityMonitoringApiService) buildUpdateSecurityFilterRequest(ctx _con
 // UpdateSecurityFilter Update a security filter.
 // Update a specific security filter.
 // Returns the security filter object when the request is successful.
-func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSecurityFilterRequest(ctx, securityFilterId, body)
 	if err != nil {
 		var localVarReturnValue SecurityFilterResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSecurityFilterExecute(req)
+	return a.updateSecurityFilterExecute(req)
 }
 
 // updateSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityFilter")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(parameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(common.ParameterToString(r.securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2364,7 +2177,7 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2376,12 +2189,12 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2394,62 +2207,62 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2458,18 +2271,16 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 }
 
 type apiUpdateSecurityMonitoringRuleRequest struct {
-	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
-	ruleId     string
-	body       *SecurityMonitoringRuleUpdatePayload
+	ctx    _context.Context
+	ruleId string
+	body   *SecurityMonitoringRuleUpdatePayload
 }
 
-func (a *SecurityMonitoringApiService) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
+func (a *SecurityMonitoringApi) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
 	req := apiUpdateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
-		body:       &body,
+		ctx:    ctx,
+		ruleId: ruleId,
+		body:   &body,
 	}
 	return req, nil
 }
@@ -2478,62 +2289,46 @@ func (a *SecurityMonitoringApiService) buildUpdateSecurityMonitoringRuleRequest(
 // Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
 // must be included. For example, when modifying a query all queries must be included.
 // Default rules can only be updated to be enabled and to change notifications.
-func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSecurityMonitoringRuleRequest(ctx, ruleId, body)
 	if err != nil {
 		var localVarReturnValue SecurityMonitoringRuleResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSecurityMonitoringRuleExecute(req)
+	return a.updateSecurityMonitoringRuleExecute(req)
 }
 
 // updateSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityMonitoringRule")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(parameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(common.ParameterToString(r.ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2547,7 +2342,7 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -2559,12 +2354,12 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2577,65 +2372,72 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewSecurityMonitoringApi Returns NewSecurityMonitoringApi.
+func NewSecurityMonitoringApi(client *common.APIClient) *SecurityMonitoringApi {
+	return &SecurityMonitoringApi{
+		Client: client,
+	}
 }

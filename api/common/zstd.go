@@ -2,15 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-//go:build !cgo
+//go:build cgo
 
-package datadog
+package common
 
 import (
 	"bytes"
-	"errors"
+
+	"github.com/DataDog/zstd"
 )
 
 func compressZstd(body []byte) (*bytes.Buffer, error) {
-	return nil, errors.New("zstd not supported")
+	var buf bytes.Buffer
+	compressor := zstd.NewWriter(&buf)
+	if _, err := compressor.Write(body); err != nil {
+		return nil, err
+	}
+	if err := compressor.Close(); err != nil {
+		return nil, err
+	}
+	return &buf, nil
 }

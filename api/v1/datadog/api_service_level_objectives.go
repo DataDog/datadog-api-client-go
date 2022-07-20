@@ -13,22 +13,22 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// ServiceLevelObjectivesApiService ServiceLevelObjectivesApi service.
-type ServiceLevelObjectivesApiService service
+// ServiceLevelObjectivesApi service type
+type ServiceLevelObjectivesApi common.Service
 
 type apiCheckCanDeleteSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ctx _context.Context
+	ids *string
 }
 
-func (a *ServiceLevelObjectivesApiService) buildCheckCanDeleteSLORequest(ctx _context.Context, ids string) (apiCheckCanDeleteSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildCheckCanDeleteSLORequest(ctx _context.Context, ids string) (apiCheckCanDeleteSLORequest, error) {
 	req := apiCheckCanDeleteSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		ids:        &ids,
+		ctx: ctx,
+		ids: &ids,
 	}
 	return req, nil
 }
@@ -36,27 +36,27 @@ func (a *ServiceLevelObjectivesApiService) buildCheckCanDeleteSLORequest(ctx _co
 // CheckCanDeleteSLO Check if SLOs can be safely deleted.
 // Check if an SLO can be safely deleted. For example,
 // assure an SLO can be deleted without disrupting a dashboard.
-func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildCheckCanDeleteSLORequest(ctx, ids)
 	if err != nil {
 		var localVarReturnValue CheckCanDeleteSLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.checkCanDeleteSLOExecute(req)
+	return a.checkCanDeleteSLOExecute(req)
 }
 
 // checkCanDeleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CheckCanDeleteSLOResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.CheckCanDeleteSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CheckCanDeleteSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/can_delete"
@@ -65,21 +65,14 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.ids == nil {
-		return localVarReturnValue, nil, reportError("ids is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("ids is required and must be specified")
 	}
-	localVarQueryParams.Add("ids", parameterToString(*r.ids, ""))
+	localVarQueryParams.Add("ids", common.ParameterToString(*r.ids, ""))
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -93,7 +86,7 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -105,12 +98,12 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -123,53 +116,53 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v CheckCanDeleteSLOResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -178,43 +171,41 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 }
 
 type apiCreateSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	body       *ServiceLevelObjectiveRequest
+	ctx  _context.Context
+	body *ServiceLevelObjectiveRequest
 }
 
-func (a *ServiceLevelObjectivesApiService) buildCreateSLORequest(ctx _context.Context, body ServiceLevelObjectiveRequest) (apiCreateSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildCreateSLORequest(ctx _context.Context, body ServiceLevelObjectiveRequest) (apiCreateSLORequest, error) {
 	req := apiCreateSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateSLO Create an SLO object.
 // Create a service level objective object.
-func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSLORequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createSLOExecute(req)
+	return a.createSLOExecute(req)
 }
 
 // createSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.CreateSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CreateSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo"
@@ -223,32 +214,16 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -262,7 +237,7 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -274,12 +249,12 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -292,44 +267,44 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -338,10 +313,9 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 }
 
 type apiDeleteSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	force      *string
+	ctx   _context.Context
+	sloId string
+	force *string
 }
 
 // DeleteSLOOptionalParameters holds optional parameters for DeleteSLO.
@@ -361,15 +335,14 @@ func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptional
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildDeleteSLORequest(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (apiDeleteSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildDeleteSLORequest(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (apiDeleteSLORequest, error) {
 	req := apiDeleteSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type DeleteSLOOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type DeleteSLOOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -383,50 +356,43 @@ func (a *ServiceLevelObjectivesApiService) buildDeleteSLORequest(ctx _context.Co
 //
 // If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
 // a 409 conflict error because the SLO is referenced in a dashboard.
-func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteSLORequest(ctx, sloId, o...)
 	if err != nil {
 		var localVarReturnValue SLODeleteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteSLOExecute(req)
+	return a.deleteSLOExecute(req)
 }
 
 // deleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue SLODeleteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.DeleteSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(common.ParameterToString(r.sloId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.force != nil {
-		localVarQueryParams.Add("force", parameterToString(*r.force, ""))
+		localVarQueryParams.Add("force", common.ParameterToString(*r.force, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -440,7 +406,7 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -452,12 +418,12 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -470,53 +436,53 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v SLODeleteResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -525,16 +491,14 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 }
 
 type apiDeleteSLOTimeframeInBulkRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	body       *map[string][]SLOTimeframe
+	ctx  _context.Context
+	body *map[string][]SLOTimeframe
 }
 
-func (a *ServiceLevelObjectivesApiService) buildDeleteSLOTimeframeInBulkRequest(ctx _context.Context, body map[string][]SLOTimeframe) (apiDeleteSLOTimeframeInBulkRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildDeleteSLOTimeframeInBulkRequest(ctx _context.Context, body map[string][]SLOTimeframe) (apiDeleteSLOTimeframeInBulkRequest, error) {
 	req := apiDeleteSLOTimeframeInBulkRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -545,27 +509,27 @@ func (a *ServiceLevelObjectivesApiService) buildDeleteSLOTimeframeInBulkRequest(
 // This endpoint facilitates deletion of one or more thresholds for one or more
 // service level objective objects. If all thresholds are deleted, the service level
 // objective object is deleted as well.
-func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteSLOTimeframeInBulkRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue SLOBulkDeleteResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteSLOTimeframeInBulkExecute(req)
+	return a.deleteSLOTimeframeInBulkExecute(req)
 }
 
 // deleteSLOTimeframeInBulkExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SLOBulkDeleteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.DeleteSLOTimeframeInBulk")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/bulk_delete"
@@ -574,32 +538,16 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -613,7 +561,7 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -625,12 +573,12 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -643,44 +591,44 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -690,7 +638,6 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 
 type apiGetSLORequest struct {
 	ctx                    _context.Context
-	ApiService             *ServiceLevelObjectivesApiService
 	sloId                  string
 	withConfiguredAlertIds *bool
 }
@@ -712,15 +659,14 @@ func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAler
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLORequest(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (apiGetSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLORequest(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (apiGetSLORequest, error) {
 	req := apiGetSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetSLOOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetSLOOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -731,50 +677,43 @@ func (a *ServiceLevelObjectivesApiService) buildGetSLORequest(ctx _context.Conte
 
 // GetSLO Get an SLO's details.
 // Get a service level objective object.
-func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLORequest(ctx, sloId, o...)
 	if err != nil {
 		var localVarReturnValue SLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOExecute(req)
+	return a.getSLOExecute(req)
 }
 
 // getSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(common.ParameterToString(r.sloId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.withConfiguredAlertIds != nil {
-		localVarQueryParams.Add("with_configured_alert_ids", parameterToString(*r.withConfiguredAlertIds, ""))
+		localVarQueryParams.Add("with_configured_alert_ids", common.ParameterToString(*r.withConfiguredAlertIds, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -788,7 +727,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -800,12 +739,12 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -818,44 +757,44 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -864,63 +803,54 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 }
 
 type apiGetSLOCorrectionsRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
+	ctx   _context.Context
+	sloId string
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLOCorrectionsRequest(ctx _context.Context, sloId string) (apiGetSLOCorrectionsRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLOCorrectionsRequest(ctx _context.Context, sloId string) (apiGetSLOCorrectionsRequest, error) {
 	req := apiGetSLOCorrectionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
+		ctx:   ctx,
+		sloId: sloId,
 	}
 	return req, nil
 }
 
 // GetSLOCorrections Get Corrections For an SLO.
 // Get corrections applied to an SLO
-func (a *ServiceLevelObjectivesApiService) GetSLOCorrections(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLOCorrections(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOCorrectionsRequest(ctx, sloId)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOCorrectionsExecute(req)
+	return a.getSLOCorrectionsExecute(req)
 }
 
 // getSLOCorrectionsExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOCorrectionsRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrectionsRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOCorrectionListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOCorrections")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOCorrections")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}/corrections"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(common.ParameterToString(r.sloId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -934,7 +864,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -946,12 +876,12 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -964,53 +894,53 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1020,7 +950,6 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 
 type apiGetSLOHistoryRequest struct {
 	ctx             _context.Context
-	ApiService      *ServiceLevelObjectivesApiService
 	sloId           string
 	fromTs          *int64
 	toTs            *int64
@@ -1052,17 +981,16 @@ func (r *GetSLOHistoryOptionalParameters) WithApplyCorrection(applyCorrection bo
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildGetSLOHistoryRequest(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (apiGetSLOHistoryRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildGetSLOHistoryRequest(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (apiGetSLOHistoryRequest, error) {
 	req := apiGetSLOHistoryRequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
-		fromTs:     &fromTs,
-		toTs:       &toTs,
+		ctx:    ctx,
+		sloId:  sloId,
+		fromTs: &fromTs,
+		toTs:   &toTs,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetSLOHistoryOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetSLOHistoryOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1081,68 +1009,61 @@ func (a *ServiceLevelObjectivesApiService) buildGetSLOHistoryRequest(ctx _contex
 //
 // **Note:** There are different response formats for event based and time based SLOs.
 // Examples of both are shown.
-func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOHistoryRequest(ctx, sloId, fromTs, toTs, o...)
 	if err != nil {
 		var localVarReturnValue SLOHistoryResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getSLOHistoryExecute(req)
+	return a.getSLOHistoryExecute(req)
 }
 
 // getSLOHistoryExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOHistoryResponse
 	)
 
-	operationId := "GetSLOHistory"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.GetSLOHistory"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOHistory")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOHistory")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}/history"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(common.ParameterToString(r.sloId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.fromTs == nil {
-		return localVarReturnValue, nil, reportError("fromTs is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("fromTs is required and must be specified")
 	}
 	if r.toTs == nil {
-		return localVarReturnValue, nil, reportError("toTs is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("toTs is required and must be specified")
 	}
-	localVarQueryParams.Add("from_ts", parameterToString(*r.fromTs, ""))
-	localVarQueryParams.Add("to_ts", parameterToString(*r.toTs, ""))
+	localVarQueryParams.Add("from_ts", common.ParameterToString(*r.fromTs, ""))
+	localVarQueryParams.Add("to_ts", common.ParameterToString(*r.toTs, ""))
 	if r.target != nil {
-		localVarQueryParams.Add("target", parameterToString(*r.target, ""))
+		localVarQueryParams.Add("target", common.ParameterToString(*r.target, ""))
 	}
 	if r.applyCorrection != nil {
-		localVarQueryParams.Add("apply_correction", parameterToString(*r.applyCorrection, ""))
+		localVarQueryParams.Add("apply_correction", common.ParameterToString(*r.applyCorrection, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1156,7 +1077,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1168,12 +1089,12 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1186,53 +1107,53 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1242,7 +1163,6 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 
 type apiListSLOsRequest struct {
 	ctx          _context.Context
-	ApiService   *ServiceLevelObjectivesApiService
 	ids          *string
 	query        *string
 	tagsQuery    *string
@@ -1303,14 +1223,13 @@ func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalP
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildListSLOsRequest(ctx _context.Context, o ...ListSLOsOptionalParameters) (apiListSLOsRequest, error) {
+func (a *ServiceLevelObjectivesApi) buildListSLOsRequest(ctx _context.Context, o ...ListSLOsOptionalParameters) (apiListSLOsRequest, error) {
 	req := apiListSLOsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListSLOsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListSLOsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1326,27 +1245,27 @@ func (a *ServiceLevelObjectivesApiService) buildListSLOsRequest(ctx _context.Con
 
 // ListSLOs Get all SLOs.
 // Get a list of service level objective objects for your organization.
-func (a *ServiceLevelObjectivesApiService) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSLOsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listSLOsExecute(req)
+	return a.listSLOsExecute(req)
 }
 
 // listSLOsExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.ListSLOs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.ListSLOs")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo"
@@ -1355,35 +1274,28 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.ids != nil {
-		localVarQueryParams.Add("ids", parameterToString(*r.ids, ""))
+		localVarQueryParams.Add("ids", common.ParameterToString(*r.ids, ""))
 	}
 	if r.query != nil {
-		localVarQueryParams.Add("query", parameterToString(*r.query, ""))
+		localVarQueryParams.Add("query", common.ParameterToString(*r.query, ""))
 	}
 	if r.tagsQuery != nil {
-		localVarQueryParams.Add("tags_query", parameterToString(*r.tagsQuery, ""))
+		localVarQueryParams.Add("tags_query", common.ParameterToString(*r.tagsQuery, ""))
 	}
 	if r.metricsQuery != nil {
-		localVarQueryParams.Add("metrics_query", parameterToString(*r.metricsQuery, ""))
+		localVarQueryParams.Add("metrics_query", common.ParameterToString(*r.metricsQuery, ""))
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		localVarQueryParams.Add("limit", common.ParameterToString(*r.limit, ""))
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		localVarQueryParams.Add("offset", common.ParameterToString(*r.offset, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1397,7 +1309,7 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1409,12 +1321,12 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1427,53 +1339,53 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1483,7 +1395,6 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 
 type apiSearchSLORequest struct {
 	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
 	query      *string
 	pageSize   *int64
 	pageNumber *int64
@@ -1520,14 +1431,13 @@ func (r *SearchSLOOptionalParameters) WithPageNumber(pageNumber int64) *SearchSL
 	return r
 }
 
-func (a *ServiceLevelObjectivesApiService) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
 	req := apiSearchSLORequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type SearchSLOOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type SearchSLOOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1540,34 +1450,34 @@ func (a *ServiceLevelObjectivesApiService) buildSearchSLORequest(ctx _context.Co
 
 // SearchSLO Search for SLOs.
 // Get a list of service level objective objects for your organization.
-func (a *ServiceLevelObjectivesApiService) SearchSLO(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) SearchSLO(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchSLORequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue SearchSLOResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.searchSLOExecute(req)
+	return a.searchSLOExecute(req)
 }
 
 // searchSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLORequest) (SearchSLOResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (SearchSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SearchSLOResponse
 	)
 
-	operationId := "SearchSLO"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v1.SearchSLO"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.SearchSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.SearchSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/search"
@@ -1576,26 +1486,19 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.query != nil {
-		localVarQueryParams.Add("query", parameterToString(*r.query, ""))
+		localVarQueryParams.Add("query", common.ParameterToString(*r.query, ""))
 	}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
+		localVarQueryParams.Add("page[number]", common.ParameterToString(*r.pageNumber, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1609,7 +1512,7 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1621,12 +1524,12 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1639,44 +1542,44 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1685,80 +1588,62 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 }
 
 type apiUpdateSLORequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	body       *ServiceLevelObjective
+	ctx   _context.Context
+	sloId string
+	body  *ServiceLevelObjective
 }
 
-func (a *ServiceLevelObjectivesApiService) buildUpdateSLORequest(ctx _context.Context, sloId string, body ServiceLevelObjective) (apiUpdateSLORequest, error) {
+func (a *ServiceLevelObjectivesApi) buildUpdateSLORequest(ctx _context.Context, sloId string, body ServiceLevelObjective) (apiUpdateSLORequest, error) {
 	req := apiUpdateSLORequest{
-		ApiService: a,
-		ctx:        ctx,
-		sloId:      sloId,
-		body:       &body,
+		ctx:   ctx,
+		sloId: sloId,
+		body:  &body,
 	}
 	return req, nil
 }
 
 // UpdateSLO Update an SLO.
 // Update the specified service level objective object.
-func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSLORequest(ctx, sloId, body)
 	if err != nil {
 		var localVarReturnValue SLOListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateSLOExecute(req)
+	return a.updateSLOExecute(req)
 }
 
 // updateSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
+func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue SLOListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.UpdateSLO")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.UpdateSLO")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/slo/{slo_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(parameterToString(r.sloId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slo_id"+"}", _neturl.PathEscape(common.ParameterToString(r.sloId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1772,7 +1657,7 @@ func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLOReques
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1784,12 +1669,12 @@ func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLOReques
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1802,56 +1687,63 @@ func (a *ServiceLevelObjectivesApiService) updateSLOExecute(r apiUpdateSLOReques
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewServiceLevelObjectivesApi Returns NewServiceLevelObjectivesApi.
+func NewServiceLevelObjectivesApi(client *common.APIClient) *ServiceLevelObjectivesApi {
+	return &ServiceLevelObjectivesApi{
+		Client: client,
+	}
 }

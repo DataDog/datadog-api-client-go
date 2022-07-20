@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -19,7 +20,7 @@ func main() {
 				Metric: "system.load.1.dist",
 				Points: [][]datadog.DistributionPointItem{
 					{
-						{DistributionPointTimestamp: datadog.PtrFloat64(float64(time.Now().Unix()))},
+						{DistributionPointTimestamp: common.PtrFloat64(float64(time.Now().Unix()))},
 						{DistributionPointData: &[]float64{
 							1.0,
 							2.0,
@@ -29,10 +30,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitDistributionPoints(ctx, body, *datadog.NewSubmitDistributionPointsOptionalParameters())
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitDistributionPoints(ctx, body, *datadog.NewSubmitDistributionPointsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitDistributionPoints`: %v\n", err)

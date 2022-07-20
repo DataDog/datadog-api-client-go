@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // SLOHistoryMetricsSeriesMetadataUnit An Object of metric units.
@@ -17,11 +19,11 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	// The unit of the metric, for instance `byte`.
 	Name *string `json:"name,omitempty"`
 	// The plural Unit of metric, for instance `bytes`.
-	Plural NullableString `json:"plural,omitempty"`
+	Plural common.NullableString `json:"plural,omitempty"`
 	// The scale factor of metric unit, for instance `1.0`.
 	ScaleFactor *float64 `json:"scale_factor,omitempty"`
 	// A shorter and abbreviated version of the metric unit, for instance `B`.
-	ShortName NullableString `json:"short_name,omitempty"`
+	ShortName common.NullableString `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -168,7 +170,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasPlural() bool {
 	return false
 }
 
-// SetPlural gets a reference to the given NullableString and assigns it to the Plural field.
+// SetPlural gets a reference to the given common.NullableString and assigns it to the Plural field.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPlural(v string) {
 	o.Plural.Set(&v)
 }
@@ -243,7 +245,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasShortName() bool {
 	return false
 }
 
-// SetShortName gets a reference to the given NullableString and assigns it to the ShortName field.
+// SetShortName gets a reference to the given common.NullableString and assigns it to the ShortName field.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortName(v string) {
 	o.ShortName.Set(&v)
 }
@@ -293,12 +295,12 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Family      *string        `json:"family,omitempty"`
-		Id          *int64         `json:"id,omitempty"`
-		Name        *string        `json:"name,omitempty"`
-		Plural      NullableString `json:"plural,omitempty"`
-		ScaleFactor *float64       `json:"scale_factor,omitempty"`
-		ShortName   NullableString `json:"short_name,omitempty"`
+		Family      *string               `json:"family,omitempty"`
+		Id          *int64                `json:"id,omitempty"`
+		Name        *string               `json:"name,omitempty"`
+		Plural      common.NullableString `json:"plural,omitempty"`
+		ScaleFactor *float64              `json:"scale_factor,omitempty"`
+		ShortName   common.NullableString `json:"short_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

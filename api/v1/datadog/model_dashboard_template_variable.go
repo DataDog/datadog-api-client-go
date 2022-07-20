@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // DashboardTemplateVariable Template variable.
@@ -14,11 +16,11 @@ type DashboardTemplateVariable struct {
 	// The list of values that the template variable drop-down is limited to.
 	AvailableValues []string `json:"available_values,omitempty"`
 	// The default value for the template variable on dashboard load.
-	Default NullableString `json:"default,omitempty"`
+	Default common.NullableString `json:"default,omitempty"`
 	// The name of the variable.
 	Name string `json:"name"`
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
-	Prefix NullableString `json:"prefix,omitempty"`
+	Prefix common.NullableString `json:"prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -103,7 +105,7 @@ func (o *DashboardTemplateVariable) HasDefault() bool {
 	return false
 }
 
-// SetDefault gets a reference to the given NullableString and assigns it to the Default field.
+// SetDefault gets a reference to the given common.NullableString and assigns it to the Default field.
 func (o *DashboardTemplateVariable) SetDefault(v string) {
 	o.Default.Set(&v)
 }
@@ -169,7 +171,7 @@ func (o *DashboardTemplateVariable) HasPrefix() bool {
 	return false
 }
 
-// SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
+// SetPrefix gets a reference to the given common.NullableString and assigns it to the Prefix field.
 func (o *DashboardTemplateVariable) SetPrefix(v string) {
 	o.Prefix.Set(&v)
 }
@@ -214,10 +216,10 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		AvailableValues []string       `json:"available_values,omitempty"`
-		Default         NullableString `json:"default,omitempty"`
-		Name            string         `json:"name"`
-		Prefix          NullableString `json:"prefix,omitempty"`
+		AvailableValues []string              `json:"available_values,omitempty"`
+		Default         common.NullableString `json:"default,omitempty"`
+		Name            string                `json:"name"`
+		Prefix          common.NullableString `json:"prefix,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

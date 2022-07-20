@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -20,18 +21,19 @@ func main() {
 		Data: &datadog.SLOCorrectionUpdateData{
 			Attributes: &datadog.SLOCorrectionUpdateRequestAttributes{
 				Category:    datadog.SLOCORRECTIONCATEGORY_DEPLOYMENT.Ptr(),
-				Description: datadog.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
-				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
-				Start:       datadog.PtrInt64(time.Now().Unix()),
-				Timezone:    datadog.PtrString("UTC"),
+				Description: common.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
+				End:         common.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
+				Start:       common.PtrInt64(time.Now().Unix()),
+				Timezone:    common.PtrString("UTC"),
 			},
 			Type: datadog.SLOCORRECTIONTYPE_CORRECTION.Ptr(),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, CorrectionDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
+	resp, r, err := api.UpdateSLOCorrection(ctx, CorrectionDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection`: %v\n", err)

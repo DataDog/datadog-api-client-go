@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,11 +16,12 @@ func main() {
 	// there is a valid "service" in the system
 	ServiceDataAttributesName := os.Getenv("SERVICE_DATA_ATTRIBUTES_NAME")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentServicesApi.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.ListIncidentServices", true)
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewIncidentServicesApi(apiClient)
+	resp, r, err := api.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.ListIncidentServices`: %v\n", err)

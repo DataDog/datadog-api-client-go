@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -25,7 +26,7 @@ func main() {
 								ProfileMetricsQuery: &datadog.LogQueryDefinition{
 									Compute: &datadog.LogsQueryCompute{
 										Aggregation: "sum",
-										Facet:       datadog.PtrString("@prof_core_cpu_cores"),
+										Facet:       common.PtrString("@prof_core_cpu_cores"),
 									},
 									Search: &datadog.LogQueryDefinitionSearch{
 										Query: "runtime:jvm",
@@ -33,11 +34,11 @@ func main() {
 									GroupBy: []datadog.LogQueryDefinitionGroupBy{
 										{
 											Facet: "service",
-											Limit: datadog.PtrInt64(10),
+											Limit: common.PtrInt64(10),
 											Sort: &datadog.LogQueryDefinitionGroupBySort{
 												Aggregation: "sum",
 												Order:       datadog.WIDGETSORT_DESCENDING,
-												Facet:       datadog.PtrString("@prof_core_cpu_cores"),
+												Facet:       common.PtrString("@prof_core_cpu_cores"),
 											},
 										},
 									},
@@ -48,10 +49,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

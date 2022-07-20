@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // LogsArchiveAttributes The attributes associated with the archive.
@@ -21,7 +23,7 @@ type LogsArchiveAttributes struct {
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// Maximum scan size for rehydration from this archive.
-	RehydrationMaxScanSizeInGb NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
+	RehydrationMaxScanSizeInGb common.NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	// The state of the archive.
@@ -186,7 +188,7 @@ func (o *LogsArchiveAttributes) HasRehydrationMaxScanSizeInGb() bool {
 	return false
 }
 
-// SetRehydrationMaxScanSizeInGb gets a reference to the given NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
+// SetRehydrationMaxScanSizeInGb gets a reference to the given common.NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
 func (o *LogsArchiveAttributes) SetRehydrationMaxScanSizeInGb(v int64) {
 	o.RehydrationMaxScanSizeInGb.Set(&v)
 }
@@ -306,7 +308,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		IncludeTags                *bool                          `json:"include_tags,omitempty"`
 		Name                       string                         `json:"name"`
 		Query                      string                         `json:"query"`
-		RehydrationMaxScanSizeInGb NullableInt64                  `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationMaxScanSizeInGb common.NullableInt64           `json:"rehydration_max_scan_size_in_gb,omitempty"`
 		RehydrationTags            []string                       `json:"rehydration_tags,omitempty"`
 		State                      *LogsArchiveState              `json:"state,omitempty"`
 	}{}

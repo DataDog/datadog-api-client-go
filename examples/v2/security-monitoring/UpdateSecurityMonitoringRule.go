@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -24,14 +25,14 @@ func main() {
 				Action: datadog.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
 			},
 		},
-		HasExtendedTitle: datadog.PtrBool(true),
+		HasExtendedTitle: common.PtrBool(true),
 		Options: &datadog.SecurityMonitoringRuleOptions{
-			DecreaseCriticalityBasedOnEnv: datadog.PtrBool(false),
+			DecreaseCriticalityBasedOnEnv: common.PtrBool(false),
 			DetectionMethod:               datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
 			EvaluationWindow:              datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
 			HardcodedEvaluatorType:        datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
 			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
-				BaselineUserLocations: datadog.PtrBool(true),
+				BaselineUserLocations: common.PtrBool(true),
 			},
 			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES.Ptr(),
 			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES.Ptr(),
@@ -51,12 +52,13 @@ func main() {
 			},
 		},
 		Tags:    []string{},
-		Version: datadog.PtrInt32(1),
+		Version: common.PtrInt32(1),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, "rule_id", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.UpdateSecurityMonitoringRule(ctx, "rule_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule`: %v\n", err)

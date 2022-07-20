@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_heatmap_widget",
-		Description: *datadog.NewNullableString(nil),
+		Description: *common.NewNullableString(nil),
 		Widgets: []datadog.Widget{
 			{
 				Layout: &datadog.WidgetLayout{
@@ -25,16 +26,16 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					HeatMapWidgetDefinition: &datadog.HeatMapWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.HEATMAPWIDGETDEFINITIONTYPE_HEATMAP,
 						Requests: []datadog.HeatMapWidgetRequest{
 							{
-								Q: datadog.PtrString("avg:system.cpu.user{*} by {service}"),
+								Q: common.PtrString("avg:system.cpu.user{*} by {service}"),
 								Style: &datadog.WidgetStyle{
-									Palette: datadog.PtrString("dog_classic"),
+									Palette: common.PtrString("dog_classic"),
 								},
 							},
 						},
@@ -43,13 +44,14 @@ func main() {
 		},
 		TemplateVariables: []datadog.DashboardTemplateVariable{},
 		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
+		IsReadOnly:        common.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
@@ -16,6 +17,7 @@ func TestLogsList(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewLogsApi(Client(ctx))
 
 	now := tests.ClockFromContext(ctx).Now()
 	nanoNow := now.UnixNano()
@@ -49,12 +51,12 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	logsRequest := datadog.LogsListRequest{
-		Query: datadog.PtrString(fmt.Sprintf("source:%s", source)),
+		Query: common.PtrString(fmt.Sprintf("source:%s", source)),
 		Time: datadog.LogsListRequestTime{
 			From: now.Add(time.Duration(-3600) * time.Second),
 			To:   now.Add(time.Duration(3600) * time.Second),
 		},
-		Limit: datadog.PtrInt32(2),
+		Limit: common.PtrInt32(2),
 		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
 	}
 
@@ -62,9 +64,9 @@ func TestLogsList(t *testing.T) {
 
 	// Make sure that both log items are indexed
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
+		logsResponse, httpresp, err = api.ListLogs(ctx, logsRequest)
 		if err != nil {
-			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Fatalf("Error listing logs: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 		}
 		return 200 == httpresp.StatusCode && 2 == len(logsResponse.GetLogs())
 	})
@@ -76,9 +78,9 @@ func TestLogsList(t *testing.T) {
 	logsRequest.SetLimit(1)
 
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
+		logsResponse, httpresp, err = api.ListLogs(ctx, logsRequest)
 		if err != nil {
-			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Fatalf("Error listing logs: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 		}
 		return 200 == httpresp.StatusCode && len(logsResponse.GetNextLogId()) > 0
 	})
@@ -100,9 +102,9 @@ func TestLogsList(t *testing.T) {
 
 	assert.Equal(200, httpresp.StatusCode)
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
+		logsResponse, httpresp, err = api.ListLogs(ctx, logsRequest)
 		if err != nil {
-			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Fatalf("Error listing logs: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 		}
 		return 200 == httpresp.StatusCode && len(logsResponse.GetLogs()) > 0
 	})
@@ -137,9 +139,10 @@ func TestLogsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewLogsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).LogsApi.ListLogs(ctx, tc.Body)
-			openAPIErr, ok := err.(datadog.GenericOpenAPIError)
+			_, httpresp, err := api.ListLogs(ctx, tc.Body)
+			openAPIErr, ok := err.(common.GenericOpenAPIError)
 			if !ok {
 				t.Fatalf("Unexpected error %T: %v", err, err)
 			}

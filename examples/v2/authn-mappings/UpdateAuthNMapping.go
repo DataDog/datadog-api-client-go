@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -21,14 +22,14 @@ func main() {
 	body := datadog.AuthNMappingUpdateRequest{
 		Data: datadog.AuthNMappingUpdateData{
 			Attributes: &datadog.AuthNMappingUpdateAttributes{
-				AttributeKey:   datadog.PtrString("member-of"),
-				AttributeValue: datadog.PtrString("Development"),
+				AttributeKey:   common.PtrString("member-of"),
+				AttributeValue: common.PtrString("Development"),
 			},
 			Id: AuthnMappingDataID,
 			Relationships: &datadog.AuthNMappingUpdateRelationships{
 				Role: &datadog.RelationshipToRole{
 					Data: &datadog.RelationshipToRoleData{
-						Id:   datadog.PtrString(RoleDataID),
+						Id:   common.PtrString(RoleDataID),
 						Type: datadog.ROLESTYPE_ROLES.Ptr(),
 					},
 				},
@@ -36,10 +37,11 @@ func main() {
 			Type: datadog.AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthNMappingsApi.UpdateAuthNMapping(ctx, AuthnMappingDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewAuthNMappingsApi(apiClient)
+	resp, r, err := api.UpdateAuthNMapping(ctx, AuthnMappingDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.UpdateAuthNMapping`: %v\n", err)

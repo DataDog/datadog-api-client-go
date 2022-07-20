@@ -11,17 +11,18 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// TagsApiService TagsApi service.
-type TagsApiService service
+// TagsApi service type
+type TagsApi common.Service
 
 type apiCreateHostTagsRequest struct {
-	ctx        _context.Context
-	ApiService *TagsApiService
-	hostName   string
-	body       *HostTags
-	source     *string
+	ctx      _context.Context
+	hostName string
+	body     *HostTags
+	source   *string
 }
 
 // CreateHostTagsOptionalParameters holds optional parameters for CreateHostTags.
@@ -41,16 +42,15 @@ func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHost
 	return r
 }
 
-func (a *TagsApiService) buildCreateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (apiCreateHostTagsRequest, error) {
+func (a *TagsApi) buildCreateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (apiCreateHostTagsRequest, error) {
 	req := apiCreateHostTagsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
-		body:       &body,
+		ctx:      ctx,
+		hostName: hostName,
+		body:     &body,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type CreateHostTagsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type CreateHostTagsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -62,65 +62,49 @@ func (a *TagsApiService) buildCreateHostTagsRequest(ctx _context.Context, hostNa
 // CreateHostTags Add tags to a host.
 // This endpoint allows you to add new tags to a host,
 // optionally specifying where these tags come from.
-func (a *TagsApiService) CreateHostTags(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	req, err := a.buildCreateHostTagsRequest(ctx, hostName, body, o...)
 	if err != nil {
 		var localVarReturnValue HostTags
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createHostTagsExecute(req)
+	return a.createHostTagsExecute(req)
 }
 
 // createHostTagsExecute executes the request.
-func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.CreateHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.CreateHostTags")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(common.ParameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
 	if r.source != nil {
-		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
+		localVarQueryParams.Add("source", common.ParameterToString(*r.source, ""))
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -134,7 +118,7 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -146,12 +130,12 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -164,44 +148,44 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -210,10 +194,9 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 }
 
 type apiDeleteHostTagsRequest struct {
-	ctx        _context.Context
-	ApiService *TagsApiService
-	hostName   string
-	source     *string
+	ctx      _context.Context
+	hostName string
+	source   *string
 }
 
 // DeleteHostTagsOptionalParameters holds optional parameters for DeleteHostTags.
@@ -233,15 +216,14 @@ func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHost
 	return r
 }
 
-func (a *TagsApiService) buildDeleteHostTagsRequest(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (apiDeleteHostTagsRequest, error) {
+func (a *TagsApi) buildDeleteHostTagsRequest(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (apiDeleteHostTagsRequest, error) {
 	req := apiDeleteHostTagsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx:      ctx,
+		hostName: hostName,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type DeleteHostTagsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type DeleteHostTagsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -253,48 +235,41 @@ func (a *TagsApiService) buildDeleteHostTagsRequest(ctx _context.Context, hostNa
 // DeleteHostTags Remove host tags.
 // This endpoint allows you to remove all user-assigned tags
 // for a single host.
-func (a *TagsApiService) DeleteHostTags(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (*_nethttp.Response, error) {
+func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteHostTagsRequest(ctx, hostName, o...)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteHostTagsExecute(req)
+	return a.deleteHostTagsExecute(req)
 }
 
 // deleteHostTagsExecute executes the request.
-func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.Response, error) {
+func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.DeleteHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.DeleteHostTags")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(common.ParameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.source != nil {
-		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
+		localVarQueryParams.Add("source", common.ParameterToString(*r.source, ""))
 	}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -308,7 +283,7 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -320,12 +295,12 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -338,35 +313,35 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -375,10 +350,9 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 }
 
 type apiGetHostTagsRequest struct {
-	ctx        _context.Context
-	ApiService *TagsApiService
-	hostName   string
-	source     *string
+	ctx      _context.Context
+	hostName string
+	source   *string
 }
 
 // GetHostTagsOptionalParameters holds optional parameters for GetHostTags.
@@ -398,15 +372,14 @@ func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOp
 	return r
 }
 
-func (a *TagsApiService) buildGetHostTagsRequest(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (apiGetHostTagsRequest, error) {
+func (a *TagsApi) buildGetHostTagsRequest(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (apiGetHostTagsRequest, error) {
 	req := apiGetHostTagsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx:      ctx,
+		hostName: hostName,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetHostTagsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetHostTagsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -417,50 +390,43 @@ func (a *TagsApiService) buildGetHostTagsRequest(ctx _context.Context, hostName 
 
 // GetHostTags Get host tags.
 // Return the list of tags that apply to a given host.
-func (a *TagsApiService) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	req, err := a.buildGetHostTagsRequest(ctx, hostName, o...)
 	if err != nil {
 		var localVarReturnValue HostTags
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getHostTagsExecute(req)
+	return a.getHostTagsExecute(req)
 }
 
 // getHostTagsExecute executes the request.
-func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.GetHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.GetHostTags")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(common.ParameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.source != nil {
-		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
+		localVarQueryParams.Add("source", common.ParameterToString(*r.source, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -474,7 +440,7 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -486,12 +452,12 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -504,44 +470,44 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -550,9 +516,8 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 }
 
 type apiListHostTagsRequest struct {
-	ctx        _context.Context
-	ApiService *TagsApiService
-	source     *string
+	ctx    _context.Context
+	source *string
 }
 
 // ListHostTagsOptionalParameters holds optional parameters for ListHostTags.
@@ -572,14 +537,13 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 	return r
 }
 
-func (a *TagsApiService) buildListHostTagsRequest(ctx _context.Context, o ...ListHostTagsOptionalParameters) (apiListHostTagsRequest, error) {
+func (a *TagsApi) buildListHostTagsRequest(ctx _context.Context, o ...ListHostTagsOptionalParameters) (apiListHostTagsRequest, error) {
 	req := apiListHostTagsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListHostTagsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListHostTagsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -590,27 +554,27 @@ func (a *TagsApiService) buildListHostTagsRequest(ctx _context.Context, o ...Lis
 
 // ListHostTags Get Tags.
 // Return a mapping of tags to hosts for your whole infrastructure.
-func (a *TagsApiService) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
+func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
 	req, err := a.buildListHostTagsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue TagToHosts
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listHostTagsExecute(req)
+	return a.listHostTagsExecute(req)
 }
 
 // listHostTagsExecute executes the request.
-func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_nethttp.Response, error) {
+func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue TagToHosts
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.ListHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.ListHostTags")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts"
@@ -619,20 +583,13 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.source != nil {
-		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
+		localVarQueryParams.Add("source", common.ParameterToString(*r.source, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -646,7 +603,7 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -658,12 +615,12 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -676,44 +633,44 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -722,11 +679,10 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 }
 
 type apiUpdateHostTagsRequest struct {
-	ctx        _context.Context
-	ApiService *TagsApiService
-	hostName   string
-	body       *HostTags
-	source     *string
+	ctx      _context.Context
+	hostName string
+	body     *HostTags
+	source   *string
 }
 
 // UpdateHostTagsOptionalParameters holds optional parameters for UpdateHostTags.
@@ -746,16 +702,15 @@ func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHost
 	return r
 }
 
-func (a *TagsApiService) buildUpdateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (apiUpdateHostTagsRequest, error) {
+func (a *TagsApi) buildUpdateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (apiUpdateHostTagsRequest, error) {
 	req := apiUpdateHostTagsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
-		body:       &body,
+		ctx:      ctx,
+		hostName: hostName,
+		body:     &body,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type UpdateHostTagsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type UpdateHostTagsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -767,65 +722,49 @@ func (a *TagsApiService) buildUpdateHostTagsRequest(ctx _context.Context, hostNa
 // UpdateHostTags Update host tags.
 // This endpoint allows you to update/replace all tags in
 // an integration source with those supplied in the request.
-func (a *TagsApiService) UpdateHostTags(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	req, err := a.buildUpdateHostTagsRequest(ctx, hostName, body, o...)
 	if err != nil {
 		var localVarReturnValue HostTags
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateHostTagsExecute(req)
+	return a.updateHostTagsExecute(req)
 }
 
 // updateHostTagsExecute executes the request.
-func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TagsApiService.UpdateHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.UpdateHostTags")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/tags/hosts/{host_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(parameterToString(r.hostName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"host_name"+"}", _neturl.PathEscape(common.ParameterToString(r.hostName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
 	if r.source != nil {
-		localVarQueryParams.Add("source", parameterToString(*r.source, ""))
+		localVarQueryParams.Add("source", common.ParameterToString(*r.source, ""))
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -839,7 +778,7 @@ func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (Host
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -851,12 +790,12 @@ func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (Host
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -869,47 +808,54 @@ func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (Host
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewTagsApi Returns NewTagsApi.
+func NewTagsApi(client *common.APIClient) *TagsApi {
+	return &TagsApi{
+		Client: client,
+	}
 }

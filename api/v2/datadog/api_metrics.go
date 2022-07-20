@@ -11,22 +11,22 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// MetricsApiService MetricsApi service.
-type MetricsApiService service
+// MetricsApi service type
+type MetricsApi common.Service
 
 type apiCreateBulkTagsMetricsConfigurationRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigCreateRequest
+	ctx  _context.Context
+	body *MetricBulkTagConfigCreateRequest
 }
 
-func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
+func (a *MetricsApi) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
 	req := apiCreateBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -38,27 +38,27 @@ func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _
 // If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
 // expect deterministic ordering of concurrent calls.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue MetricBulkTagConfigResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createBulkTagsMetricsConfigurationExecute(req)
+	return a.createBulkTagsMetricsConfigurationExecute(req)
 }
 
 // createBulkTagsMetricsConfigurationExecute executes the request.
-func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.CreateBulkTagsMetricsConfiguration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/config/bulk-tags"
@@ -67,32 +67,16 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -106,7 +90,7 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -118,12 +102,12 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -136,53 +120,53 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -192,14 +176,12 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 
 type apiCreateTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 	body       *MetricTagConfigurationCreateRequest
 }
 
-func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
+func (a *MetricsApi) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
 	req := apiCreateTagConfigurationRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -212,62 +194,46 @@ func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Cont
 // Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
 // on any count, rate, or gauge metric.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createTagConfigurationExecute(req)
+	return a.createTagConfigurationExecute(req)
 }
 
 // createTagConfigurationExecute executes the request.
-func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.CreateTagConfiguration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -281,7 +247,7 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -293,12 +259,12 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -311,53 +277,53 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -366,16 +332,14 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 }
 
 type apiDeleteBulkTagsMetricsConfigurationRequest struct {
-	ctx        _context.Context
-	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigDeleteRequest
+	ctx  _context.Context
+	body *MetricBulkTagConfigDeleteRequest
 }
 
-func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
+func (a *MetricsApi) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
 	req := apiDeleteBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
@@ -385,27 +349,27 @@ func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _
 // Metrics are selected by passing a metric name prefix.
 // Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue MetricBulkTagConfigResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.deleteBulkTagsMetricsConfigurationExecute(req)
+	return a.deleteBulkTagsMetricsConfigurationExecute(req)
 }
 
 // deleteBulkTagsMetricsConfigurationExecute executes the request.
-func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.DeleteBulkTagsMetricsConfiguration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/config/bulk-tags"
@@ -414,32 +378,16 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -453,7 +401,7 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -465,12 +413,12 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -483,53 +431,53 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -539,13 +487,11 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 
 type apiDeleteTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 }
 
-func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
+func (a *MetricsApi) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
 	req := apiDeleteTagConfigurationRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -555,45 +501,38 @@ func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Cont
 // DeleteTagConfiguration Delete a tag configuration.
 // Deletes a metric's tag configuration. Can only be used with application
 // keys from users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
+func (a *MetricsApi) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteTagConfigurationRequest(ctx, metricName)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteTagConfigurationExecute(req)
+	return a.deleteTagConfigurationExecute(req)
 }
 
 // deleteTagConfigurationExecute executes the request.
-func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
+func (a *MetricsApi) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.DeleteTagConfiguration")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -607,7 +546,7 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -619,12 +558,12 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -637,35 +576,35 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -675,7 +614,6 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 
 type apiEstimateMetricsOutputSeriesRequest struct {
 	ctx                   _context.Context
-	ApiService            *MetricsApiService
 	metricName            string
 	filterGroups          *string
 	filterHoursAgo        *int32
@@ -729,15 +667,14 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 	return r
 }
 
-func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
+func (a *MetricsApi) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
 	req := apiEstimateMetricsOutputSeriesRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type EstimateMetricsOutputSeriesOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type EstimateMetricsOutputSeriesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -752,62 +689,55 @@ func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context
 
 // EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
 // Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
-func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEstimateMetricsOutputSeriesRequest(ctx, metricName, o...)
 	if err != nil {
 		var localVarReturnValue MetricEstimateResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.estimateMetricsOutputSeriesExecute(req)
+	return a.estimateMetricsOutputSeriesExecute(req)
 }
 
 // estimateMetricsOutputSeriesExecute executes the request.
-func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricEstimateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.EstimateMetricsOutputSeries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.EstimateMetricsOutputSeries")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/estimate"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.filterGroups != nil {
-		localVarQueryParams.Add("filter[groups]", parameterToString(*r.filterGroups, ""))
+		localVarQueryParams.Add("filter[groups]", common.ParameterToString(*r.filterGroups, ""))
 	}
 	if r.filterHoursAgo != nil {
-		localVarQueryParams.Add("filter[hours_ago]", parameterToString(*r.filterHoursAgo, ""))
+		localVarQueryParams.Add("filter[hours_ago]", common.ParameterToString(*r.filterHoursAgo, ""))
 	}
 	if r.filterNumAggregations != nil {
-		localVarQueryParams.Add("filter[num_aggregations]", parameterToString(*r.filterNumAggregations, ""))
+		localVarQueryParams.Add("filter[num_aggregations]", common.ParameterToString(*r.filterNumAggregations, ""))
 	}
 	if r.filterPct != nil {
-		localVarQueryParams.Add("filter[pct]", parameterToString(*r.filterPct, ""))
+		localVarQueryParams.Add("filter[pct]", common.ParameterToString(*r.filterPct, ""))
 	}
 	if r.filterTimespanH != nil {
-		localVarQueryParams.Add("filter[timespan_h]", parameterToString(*r.filterTimespanH, ""))
+		localVarQueryParams.Add("filter[timespan_h]", common.ParameterToString(*r.filterTimespanH, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -821,7 +751,7 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -833,12 +763,12 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -851,53 +781,53 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -907,13 +837,11 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 
 type apiListTagConfigurationByNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 }
 
-func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
+func (a *MetricsApi) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
 	req := apiListTagConfigurationByNameRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -922,47 +850,40 @@ func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.
 
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
-func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationByNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagConfigurationByNameExecute(req)
+	return a.listTagConfigurationByNameExecute(req)
 }
 
 // listTagConfigurationByNameExecute executes the request.
-func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurationByName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagConfigurationByName")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -976,7 +897,7 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -988,12 +909,12 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1006,44 +927,44 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1053,7 +974,6 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 
 type apiListTagConfigurationsRequest struct {
 	ctx                      _context.Context
-	ApiService               *MetricsApiService
 	filterConfigured         *bool
 	filterTagsConfigured     *string
 	filterMetricType         *MetricTagConfigurationMetricTypes
@@ -1114,14 +1034,13 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 	return r
 }
 
-func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
+func (a *MetricsApi) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
 	req := apiListTagConfigurationsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListTagConfigurationsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListTagConfigurationsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1138,27 +1057,27 @@ func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Conte
 // ListTagConfigurations List tag configurations.
 // Returns all configured count/gauge/rate/distribution metric names
 // (with additional filters if specified).
-func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagConfigurationsExecute(req)
+	return a.listTagConfigurationsExecute(req)
 }
 
 // listTagConfigurationsExecute executes the request.
-func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagConfigurations")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics"
@@ -1167,35 +1086,28 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.filterConfigured != nil {
-		localVarQueryParams.Add("filter[configured]", parameterToString(*r.filterConfigured, ""))
+		localVarQueryParams.Add("filter[configured]", common.ParameterToString(*r.filterConfigured, ""))
 	}
 	if r.filterTagsConfigured != nil {
-		localVarQueryParams.Add("filter[tags_configured]", parameterToString(*r.filterTagsConfigured, ""))
+		localVarQueryParams.Add("filter[tags_configured]", common.ParameterToString(*r.filterTagsConfigured, ""))
 	}
 	if r.filterMetricType != nil {
-		localVarQueryParams.Add("filter[metric_type]", parameterToString(*r.filterMetricType, ""))
+		localVarQueryParams.Add("filter[metric_type]", common.ParameterToString(*r.filterMetricType, ""))
 	}
 	if r.filterIncludePercentiles != nil {
-		localVarQueryParams.Add("filter[include_percentiles]", parameterToString(*r.filterIncludePercentiles, ""))
+		localVarQueryParams.Add("filter[include_percentiles]", common.ParameterToString(*r.filterIncludePercentiles, ""))
 	}
 	if r.filterTags != nil {
-		localVarQueryParams.Add("filter[tags]", parameterToString(*r.filterTags, ""))
+		localVarQueryParams.Add("filter[tags]", common.ParameterToString(*r.filterTags, ""))
 	}
 	if r.windowSeconds != nil {
-		localVarQueryParams.Add("window[seconds]", parameterToString(*r.windowSeconds, ""))
+		localVarQueryParams.Add("window[seconds]", common.ParameterToString(*r.windowSeconds, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1209,7 +1121,7 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1221,12 +1133,12 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1239,44 +1151,44 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1286,13 +1198,11 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 
 type apiListTagsByMetricNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 }
 
-func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
+func (a *MetricsApi) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
 	req := apiListTagsByMetricNameRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1301,47 +1211,40 @@ func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Contex
 
 // ListTagsByMetricName List tags by metric name.
 // View indexed tag key-value pairs for a given metric name.
-func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagsByMetricNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricAllTagsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listTagsByMetricNameExecute(req)
+	return a.listTagsByMetricNameExecute(req)
 }
 
 // listTagsByMetricNameExecute executes the request.
-func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricAllTagsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagsByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListTagsByMetricName")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/all-tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1355,7 +1258,7 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1367,12 +1270,12 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1385,53 +1288,53 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1441,13 +1344,11 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 
 type apiListVolumesByMetricNameRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 }
 
-func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
+func (a *MetricsApi) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
 	req := apiListVolumesByMetricNameRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1458,47 +1359,40 @@ func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Con
 // View distinct metrics volumes for the given metric name.
 //
 // Custom metrics generated in-app from other products will return `null` for ingested volumes.
-func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListVolumesByMetricNameRequest(ctx, metricName)
 	if err != nil {
 		var localVarReturnValue MetricVolumesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listVolumesByMetricNameExecute(req)
+	return a.listVolumesByMetricNameExecute(req)
 }
 
 // listVolumesByMetricNameExecute executes the request.
-func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricVolumesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListVolumesByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.ListVolumesByMetricName")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/volumes"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1512,7 +1406,7 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1524,12 +1418,12 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1542,53 +1436,53 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1598,7 +1492,6 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 
 type apiSubmitMetricsRequest struct {
 	ctx             _context.Context
-	ApiService      *MetricsApiService
 	body            *MetricPayload
 	contentEncoding *MetricContentEncoding
 }
@@ -1620,15 +1513,14 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 	return r
 }
 
-func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
+func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1648,27 +1540,27 @@ func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body
 // - 20 bytes for the metric names
 // - 50 bytes for the timeseries
 // - The full payload is approximately 100 bytes.
-func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
 	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.submitMetricsExecute(req)
+	return a.submitMetricsExecute(req)
 }
 
 // submitMetricsExecute executes the request.
-func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
+func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.SubmitMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.SubmitMetrics")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/series"
@@ -1677,36 +1569,20 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	if r.contentEncoding != nil {
-		localVarHeaderParams["Content-Encoding"] = parameterToString(*r.contentEncoding, "")
+		localVarHeaderParams["Content-Encoding"] = common.ParameterToString(*r.contentEncoding, "")
 	}
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1718,12 +1594,12 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1736,62 +1612,62 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 408 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1801,14 +1677,12 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 
 type apiUpdateTagConfigurationRequest struct {
 	ctx        _context.Context
-	ApiService *MetricsApiService
 	metricName string
 	body       *MetricTagConfigurationUpdateRequest
 }
 
-func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
+func (a *MetricsApi) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
 	req := apiUpdateTagConfigurationRequest{
-		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -1820,62 +1694,46 @@ func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Cont
 // Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
 // of a count, rate, or gauge metric.
 // Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
-func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
 		var localVarReturnValue MetricTagConfigurationResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateTagConfigurationExecute(req)
+	return a.updateTagConfigurationExecute(req)
 }
 
 // updateTagConfigurationExecute executes the request.
-func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApi.UpdateTagConfiguration")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(common.ParameterToString(r.metricName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1889,7 +1747,7 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -1901,12 +1759,12 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1919,56 +1777,63 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewMetricsApi Returns NewMetricsApi.
+func NewMetricsApi(client *common.APIClient) *MetricsApi {
+	return &MetricsApi{
+		Client: client,
+	}
 }

@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // MonitorGroupSearchResult A single monitor group search result.
@@ -17,7 +19,7 @@ type MonitorGroupSearchResult struct {
 	// Latest timestamp the monitor group was in NO_DATA state.
 	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
 	// Latest timestamp the monitor group triggered.
-	LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
+	LastTriggeredTs common.NullableInt64 `json:"last_triggered_ts,omitempty"`
 	// The ID of the monitor.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// The name of the monitor.
@@ -170,7 +172,7 @@ func (o *MonitorGroupSearchResult) HasLastTriggeredTs() bool {
 	return false
 }
 
-// SetLastTriggeredTs gets a reference to the given NullableInt64 and assigns it to the LastTriggeredTs field.
+// SetLastTriggeredTs gets a reference to the given common.NullableInt64 and assigns it to the LastTriggeredTs field.
 func (o *MonitorGroupSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
@@ -322,7 +324,7 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		Group           *string               `json:"group,omitempty"`
 		GroupTags       []string              `json:"group_tags,omitempty"`
 		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
-		LastTriggeredTs NullableInt64         `json:"last_triggered_ts,omitempty"`
+		LastTriggeredTs common.NullableInt64  `json:"last_triggered_ts,omitempty"`
 		MonitorId       *int64                `json:"monitor_id,omitempty"`
 		MonitorName     *string               `json:"monitor_name,omitempty"`
 		Status          *MonitorOverallStates `json:"status,omitempty"`

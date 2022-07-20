@@ -11,49 +11,49 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// OpsgenieIntegrationApiService OpsgenieIntegrationApi service.
-type OpsgenieIntegrationApiService service
+// OpsgenieIntegrationApi service type
+type OpsgenieIntegrationApi common.Service
 
 type apiCreateOpsgenieServiceRequest struct {
-	ctx        _context.Context
-	ApiService *OpsgenieIntegrationApiService
-	body       *OpsgenieServiceCreateRequest
+	ctx  _context.Context
+	body *OpsgenieServiceCreateRequest
 }
 
-func (a *OpsgenieIntegrationApiService) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
 	req := apiCreateOpsgenieServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateOpsgenieService Create a new service object.
 // Create a new service object in the Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateOpsgenieServiceRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createOpsgenieServiceExecute(req)
+	return a.createOpsgenieServiceExecute(req)
 }
 
 // createOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.CreateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.CreateOpsgenieService")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services"
@@ -62,32 +62,16 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -101,7 +85,7 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -113,12 +97,12 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -131,53 +115,53 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -187,13 +171,11 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 
 type apiDeleteOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
 	integrationServiceId string
 }
 
-func (a *OpsgenieIntegrationApiService) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
 	req := apiDeleteOpsgenieServiceRequest{
-		ApiService:           a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -202,45 +184,38 @@ func (a *OpsgenieIntegrationApiService) buildDeleteOpsgenieServiceRequest(ctx _c
 
 // DeleteOpsgenieService Delete a single service object.
 // Delete a single service object in the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteOpsgenieServiceRequest(ctx, integrationServiceId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteOpsgenieServiceExecute(req)
+	return a.deleteOpsgenieServiceExecute(req)
 }
 
 // deleteOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDeleteOpsgenieServiceRequest) (*_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgenieServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.DeleteOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.DeleteOpsgenieService")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(parameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(common.ParameterToString(r.integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -254,7 +229,7 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -266,12 +241,12 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -284,44 +259,44 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -331,13 +306,11 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 
 type apiGetOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
 	integrationServiceId string
 }
 
-func (a *OpsgenieIntegrationApiService) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
 	req := apiGetOpsgenieServiceRequest{
-		ApiService:           a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -346,47 +319,40 @@ func (a *OpsgenieIntegrationApiService) buildGetOpsgenieServiceRequest(ctx _cont
 
 // GetOpsgenieService Get a single service object.
 // Get a single service from the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetOpsgenieServiceRequest(ctx, integrationServiceId)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getOpsgenieServiceExecute(req)
+	return a.getOpsgenieServiceExecute(req)
 }
 
 // getOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.GetOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.GetOpsgenieService")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(parameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(common.ParameterToString(r.integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -400,7 +366,7 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -412,12 +378,12 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -430,62 +396,62 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -494,41 +460,39 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 }
 
 type apiListOpsgenieServicesRequest struct {
-	ctx        _context.Context
-	ApiService *OpsgenieIntegrationApiService
+	ctx _context.Context
 }
 
-func (a *OpsgenieIntegrationApiService) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
+func (a *OpsgenieIntegrationApi) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
 	req := apiListOpsgenieServicesRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 	return req, nil
 }
 
 // ListOpsgenieServices Get all service objects.
 // Get a list of all services from the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListOpsgenieServicesRequest(ctx)
 	if err != nil {
 		var localVarReturnValue OpsgenieServicesResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listOpsgenieServicesExecute(req)
+	return a.listOpsgenieServicesExecute(req)
 }
 
 // listOpsgenieServicesExecute executes the request.
-func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOpsgenieServicesRequest) (OpsgenieServicesResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieServicesRequest) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServicesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.ListOpsgenieServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.ListOpsgenieServices")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services"
@@ -536,18 +500,11 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -561,7 +518,7 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -573,12 +530,12 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -591,35 +548,35 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -629,14 +586,12 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 
 type apiUpdateOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	ApiService           *OpsgenieIntegrationApiService
 	integrationServiceId string
 	body                 *OpsgenieServiceUpdateRequest
 }
 
-func (a *OpsgenieIntegrationApiService) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
+func (a *OpsgenieIntegrationApi) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
 	req := apiUpdateOpsgenieServiceRequest{
-		ApiService:           a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 		body:                 &body,
@@ -646,62 +601,46 @@ func (a *OpsgenieIntegrationApiService) buildUpdateOpsgenieServiceRequest(ctx _c
 
 // UpdateOpsgenieService Update a single service object.
 // Update a single service object in the Datadog Opsgenie integration.
-func (a *OpsgenieIntegrationApiService) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateOpsgenieServiceRequest(ctx, integrationServiceId, body)
 	if err != nil {
 		var localVarReturnValue OpsgenieServiceResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateOpsgenieServiceExecute(req)
+	return a.updateOpsgenieServiceExecute(req)
 }
 
 // updateOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) updateOpsgenieServiceExecute(r apiUpdateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.UpdateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.UpdateOpsgenieService")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(parameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(common.ParameterToString(r.integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -715,7 +654,7 @@ func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdate
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -727,12 +666,12 @@ func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdate
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -745,65 +684,72 @@ func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdate
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewOpsgenieIntegrationApi Returns NewOpsgenieIntegrationApi.
+func NewOpsgenieIntegrationApi(client *common.APIClient) *OpsgenieIntegrationApi {
+	return &OpsgenieIntegrationApi{
+		Client: client,
+	}
 }

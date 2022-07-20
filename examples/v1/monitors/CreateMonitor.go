@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,23 +17,24 @@ func main() {
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_monitor_returns_OK_response"),
+		Name:    common.PtrString("Example-Create_a_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: common.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreateamonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
 		RestrictedRoles: []string{
 			RoleDataID,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewMonitorsApi(apiClient)
+	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor`: %v\n", err)

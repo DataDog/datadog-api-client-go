@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -14,10 +15,11 @@ func main() {
 	// there is a valid "application_key" in the system
 	ApplicationKeyDataID := os.Getenv("APPLICATION_KEY_DATA_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.KeyManagementApi.DeleteCurrentUserApplicationKey(ctx, ApplicationKeyDataID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewKeyManagementApi(apiClient)
+	r, err := api.DeleteCurrentUserApplicationKey(ctx, ApplicationKeyDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteCurrentUserApplicationKey`: %v\n", err)

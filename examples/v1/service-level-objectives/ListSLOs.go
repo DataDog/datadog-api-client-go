@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	// there is a valid "slo" in the system
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.ListSLOs(ctx, *datadog.NewListSLOsOptionalParameters().WithIds(SloData0ID))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewServiceLevelObjectivesApi(apiClient)
+	resp, r, err := api.ListSLOs(ctx, *datadog.NewListSLOsOptionalParameters().WithIds(SloData0ID))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.ListSLOs`: %v\n", err)

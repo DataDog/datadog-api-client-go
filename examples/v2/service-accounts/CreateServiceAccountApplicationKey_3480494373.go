@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -28,10 +29,11 @@ func main() {
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewServiceAccountsApi(apiClient)
+	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountApplicationKey`: %v\n", err)

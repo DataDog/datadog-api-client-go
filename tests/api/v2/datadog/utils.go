@@ -18,18 +18,18 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/net/publicsuffix"
-
-	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/tests"
+
+	"golang.org/x/net/publicsuffix"
 )
 
 // WithFakeAuth avoids issue of API returning `text/html` instead of `application/json`
 func WithFakeAuth(ctx context.Context) context.Context {
 	return context.WithValue(
 		ctx,
-		datadog.ContextAPIKeys,
-		map[string]datadog.APIKey{
+		common.ContextAPIKeys,
+		map[string]common.APIKey{
 			"apiKeyAuth": {
 				Key: "FAKE_KEY",
 			},
@@ -44,8 +44,8 @@ func WithFakeAuth(ctx context.Context) context.Context {
 func WithTestAuth(ctx context.Context) context.Context {
 	return context.WithValue(
 		ctx,
-		datadog.ContextAPIKeys,
-		map[string]datadog.APIKey{
+		common.ContextAPIKeys,
+		map[string]common.APIKey{
 			"apiKeyAuth": {
 				Key: os.Getenv("DD_TEST_CLIENT_API_KEY"),
 			},
@@ -65,12 +65,12 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	if site, ok := os.LookupEnv("DD_TEST_SITE"); ok {
 		ctx = context.WithValue(
 			ctx,
-			datadog.ContextServerIndex,
+			common.ContextServerIndex,
 			2,
 		)
 		ctx = context.WithValue(
 			ctx,
-			datadog.ContextServerVariables,
+			common.ContextServerVariables,
 			map[string]string{"site": site},
 		)
 	}
@@ -78,8 +78,8 @@ func NewDefaultContext(ctx context.Context) context.Context {
 }
 
 // NewConfiguration return configuration with known options.
-func NewConfiguration() *datadog.Configuration {
-	config := datadog.NewConfiguration()
+func NewConfiguration() *common.Configuration {
+	config := common.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
 	return config
 }
@@ -93,23 +93,23 @@ var (
 // WithClient sets client for unit tests in context.
 func WithClient(ctx context.Context) context.Context {
 	ctx = NewDefaultContext(ctx)
-	return context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
+	return context.WithValue(ctx, clientKey, common.NewAPIClient(NewConfiguration()))
 }
 
 // ClientFromContext returns client and indication if it was successful.
-func ClientFromContext(ctx context.Context) (*datadog.APIClient, bool) {
+func ClientFromContext(ctx context.Context) (*common.APIClient, bool) {
 	if ctx == nil {
 		return nil, false
 	}
 	v := ctx.Value(clientKey)
-	if c, ok := v.(*datadog.APIClient); ok {
+	if c, ok := v.(*common.APIClient); ok {
 		return c, true
 	}
 	return nil, false
 }
 
 // Client returns client from context.
-func Client(ctx context.Context) *datadog.APIClient {
+func Client(ctx context.Context) *common.APIClient {
 	c, ok := ClientFromContext(ctx)
 	if !ok {
 		log.Fatal("client is not configured")
@@ -138,7 +138,7 @@ func WithRecorder(ctx context.Context, t *testing.T) (context.Context, func()) {
 	}
 }
 
-func getTestDomain(ctx context.Context, client *datadog.APIClient) (string, error) {
+func getTestDomain(ctx context.Context, client *common.APIClient) (string, error) {
 	baseURL, err := client.GetConfig().ServerURLWithContext(ctx, "")
 	if err != nil {
 		return "", fmt.Errorf("could not generate base url: %v", err)
@@ -171,7 +171,7 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 	if err != nil {
 		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
 	}
-	keys := ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
+	keys := ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey)
 	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
 	request.Header.Add("DD-APPLICATION-KEY", keys["appKeyAuth"].Key)
 	request.Header.Set("Content-Type", "application/json")

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -23,8 +24,8 @@ func main() {
 					}},
 			},
 			Request: &datadog.SyntheticsTestRequest{
-				Host: datadog.PtrString("datadoghq.com"),
-				Port: datadog.PtrInt64(443),
+				Host: common.PtrString("datadoghq.com"),
+				Port: common.PtrInt64(443),
 			},
 		},
 		Locations: []string{
@@ -33,9 +34,9 @@ func main() {
 		Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
 		Name:    "Example-Create_an_API_SSL_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:           datadog.PtrBool(true),
-			CheckCertificateRevocation: datadog.PtrBool(true),
-			TickEvery:                  datadog.PtrInt64(60),
+			AcceptSelfSigned:           common.PtrBool(true),
+			CheckCertificateRevocation: common.PtrBool(true),
+			TickEvery:                  common.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
 		Tags: []string{
@@ -43,10 +44,11 @@ func main() {
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

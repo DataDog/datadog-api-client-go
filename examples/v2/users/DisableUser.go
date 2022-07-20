@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -14,10 +15,11 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.UsersApi.DisableUser(ctx, UserDataID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewUsersApi(apiClient)
+	r, err := api.DisableUser(ctx, UserDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DisableUser`: %v\n", err)

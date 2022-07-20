@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,12 +17,13 @@ func main() {
 	WebhookCustomVariableName := os.Getenv("WEBHOOK_CUSTOM_VARIABLE_NAME")
 
 	body := datadog.WebhooksIntegrationCustomVariableUpdateRequest{
-		Value: datadog.PtrString("variable-updated"),
+		Value: common.PtrString("variable-updated"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable(ctx, WebhookCustomVariableName, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewWebhooksIntegrationApi(apiClient)
+	resp, r, err := api.UpdateWebhooksIntegrationCustomVariable(ctx, WebhookCustomVariableName, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.UpdateWebhooksIntegrationCustomVariable`: %v\n", err)

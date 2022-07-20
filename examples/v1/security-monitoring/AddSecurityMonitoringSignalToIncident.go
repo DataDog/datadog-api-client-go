@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	body := datadog.AddSignalToIncidentRequest{
 		IncidentId: 2609,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.AddSecurityMonitoringSignalToIncident(ctx, "AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.AddSecurityMonitoringSignalToIncident(ctx, "AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.AddSecurityMonitoringSignalToIncident`: %v\n", err)

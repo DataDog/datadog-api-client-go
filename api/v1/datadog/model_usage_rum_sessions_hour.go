@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // UsageRumSessionsHour Number of RUM Sessions recorded for each hour for a given organization.
@@ -20,13 +22,13 @@ type UsageRumSessionsHour struct {
 	// Contains the number of RUM Replay Sessions (data available beginning November 1, 2021).
 	ReplaySessionCount *int64 `json:"replay_session_count,omitempty"`
 	// Contains the number of browser RUM Lite Sessions.
-	SessionCount NullableInt64 `json:"session_count,omitempty"`
+	SessionCount common.NullableInt64 `json:"session_count,omitempty"`
 	// Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020).
-	SessionCountAndroid NullableInt64 `json:"session_count_android,omitempty"`
+	SessionCountAndroid common.NullableInt64 `json:"session_count_android,omitempty"`
 	// Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020).
-	SessionCountIos NullableInt64 `json:"session_count_ios,omitempty"`
+	SessionCountIos common.NullableInt64 `json:"session_count_ios,omitempty"`
 	// Contains the number of mobile RUM Sessions on React Native (data available beginning May 1, 2022).
-	SessionCountReactnative NullableInt64 `json:"session_count_reactnative,omitempty"`
+	SessionCountReactnative common.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -205,7 +207,7 @@ func (o *UsageRumSessionsHour) HasSessionCount() bool {
 	return false
 }
 
-// SetSessionCount gets a reference to the given NullableInt64 and assigns it to the SessionCount field.
+// SetSessionCount gets a reference to the given common.NullableInt64 and assigns it to the SessionCount field.
 func (o *UsageRumSessionsHour) SetSessionCount(v int64) {
 	o.SessionCount.Set(&v)
 }
@@ -248,7 +250,7 @@ func (o *UsageRumSessionsHour) HasSessionCountAndroid() bool {
 	return false
 }
 
-// SetSessionCountAndroid gets a reference to the given NullableInt64 and assigns it to the SessionCountAndroid field.
+// SetSessionCountAndroid gets a reference to the given common.NullableInt64 and assigns it to the SessionCountAndroid field.
 func (o *UsageRumSessionsHour) SetSessionCountAndroid(v int64) {
 	o.SessionCountAndroid.Set(&v)
 }
@@ -291,7 +293,7 @@ func (o *UsageRumSessionsHour) HasSessionCountIos() bool {
 	return false
 }
 
-// SetSessionCountIos gets a reference to the given NullableInt64 and assigns it to the SessionCountIos field.
+// SetSessionCountIos gets a reference to the given common.NullableInt64 and assigns it to the SessionCountIos field.
 func (o *UsageRumSessionsHour) SetSessionCountIos(v int64) {
 	o.SessionCountIos.Set(&v)
 }
@@ -334,7 +336,7 @@ func (o *UsageRumSessionsHour) HasSessionCountReactnative() bool {
 	return false
 }
 
-// SetSessionCountReactnative gets a reference to the given NullableInt64 and assigns it to the SessionCountReactnative field.
+// SetSessionCountReactnative gets a reference to the given common.NullableInt64 and assigns it to the SessionCountReactnative field.
 func (o *UsageRumSessionsHour) SetSessionCountReactnative(v int64) {
 	o.SessionCountReactnative.Set(&v)
 }
@@ -394,14 +396,14 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                    *time.Time    `json:"hour,omitempty"`
-		OrgName                 *string       `json:"org_name,omitempty"`
-		PublicId                *string       `json:"public_id,omitempty"`
-		ReplaySessionCount      *int64        `json:"replay_session_count,omitempty"`
-		SessionCount            NullableInt64 `json:"session_count,omitempty"`
-		SessionCountAndroid     NullableInt64 `json:"session_count_android,omitempty"`
-		SessionCountIos         NullableInt64 `json:"session_count_ios,omitempty"`
-		SessionCountReactnative NullableInt64 `json:"session_count_reactnative,omitempty"`
+		Hour                    *time.Time           `json:"hour,omitempty"`
+		OrgName                 *string              `json:"org_name,omitempty"`
+		PublicId                *string              `json:"public_id,omitempty"`
+		ReplaySessionCount      *int64               `json:"replay_session_count,omitempty"`
+		SessionCount            common.NullableInt64 `json:"session_count,omitempty"`
+		SessionCountAndroid     common.NullableInt64 `json:"session_count_android,omitempty"`
+		SessionCountIos         common.NullableInt64 `json:"session_count_ios,omitempty"`
+		SessionCountReactnative common.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

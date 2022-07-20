@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // HourlyUsageMeasurement Usage amount for a given usage type.
@@ -13,7 +15,7 @@ type HourlyUsageMeasurement struct {
 	// Type of usage.
 	UsageType *string `json:"usage_type,omitempty"`
 	// Contains the number measured for the given usage_type during the hour.
-	Value NullableInt64 `json:"value,omitempty"`
+	Value common.NullableInt64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -96,7 +98,7 @@ func (o *HourlyUsageMeasurement) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given NullableInt64 and assigns it to the Value field.
+// SetValue gets a reference to the given common.NullableInt64 and assigns it to the Value field.
 func (o *HourlyUsageMeasurement) SetValue(v int64) {
 	o.Value.Set(&v)
 }
@@ -134,8 +136,8 @@ func (o HourlyUsageMeasurement) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageMeasurement) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		UsageType *string       `json:"usage_type,omitempty"`
-		Value     NullableInt64 `json:"value,omitempty"`
+		UsageType *string              `json:"usage_type,omitempty"`
+		Value     common.NullableInt64 `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

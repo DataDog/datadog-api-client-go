@@ -12,19 +12,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 var testEvent = datadog.Event{
-	Text: datadog.PtrString("example text"),
+	Text: common.PtrString("example text"),
 	Tags: []string{
 		"test",
 		"client:go",
 	},
 	Priority:       *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
-	SourceTypeName: datadog.PtrString("datadog-api-client-go"),
+	SourceTypeName: common.PtrString("datadog-api-client-go"),
 }
 
 type createEventResponse struct {
@@ -38,6 +38,7 @@ func TestEventLifecycle(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	testEvent.SetTitle(*tests.UniqueEntityName(ctx, t))
+	api := datadog.NewEventsApi(Client(ctx))
 
 	// Create event
 	marshalledEvent, _ := json.Marshal(testEvent)
@@ -57,9 +58,9 @@ func TestEventLifecycle(t *testing.T) {
 
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		// Check event existence
-		fetchedEventResponse, httpresp, err = Client(ctx).EventsApi.GetEvent(ctx, event.GetId())
+		fetchedEventResponse, httpresp, err = api.GetEvent(ctx, event.GetId())
 		if err != nil {
-			t.Logf("Error fetching Event %v: Response %s: %v", event.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Logf("Error fetching Event %v: Response %s: %v", event.GetId(), err.(common.GenericOpenAPIError).Body(), err)
 			return false
 		}
 		return true
@@ -83,12 +84,12 @@ func TestEventLifecycle(t *testing.T) {
 	// some time for our event to show up in the response
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		var matchedEvent = false
-		eventListResponse, httpresp, err = Client(ctx).EventsApi.ListEvents(ctx, start, end, *datadog.NewListEventsOptionalParameters().WithPriority("normal").
+		eventListResponse, httpresp, err = api.ListEvents(ctx, start, end, *datadog.NewListEventsOptionalParameters().WithPriority("normal").
 			WithSources("datadog-api-client-go").
 			WithTags("test,client:go").
 			WithUnaggregated(true))
 		if err != nil {
-			t.Logf("Error fetching events: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Logf("Error fetching events: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 		} else {
 			events := eventListResponse.GetEvents()
 			for e := range events {
@@ -123,10 +124,11 @@ func TestEventListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewEventsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).EventsApi.ListEvents(ctx, 345, 123)
+			_, httpresp, err := api.ListEvents(ctx, 345, 123)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -150,10 +152,11 @@ func TestEventGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewEventsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).EventsApi.GetEvent(ctx, 1234)
+			_, httpresp, err := api.GetEvent(ctx, 1234)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})

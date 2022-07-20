@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -25,7 +26,7 @@ func main() {
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
 							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
-							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
+							Value: *common.NewNullableString(common.PtrString("resolved")),
 						}},
 				},
 			},
@@ -39,11 +40,12 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("CreateIncident", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsApi.CreateIncident(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateIncident", true)
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewIncidentsApi(apiClient)
+	resp, r, err := api.CreateIncident(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.CreateIncident`: %v\n", err)

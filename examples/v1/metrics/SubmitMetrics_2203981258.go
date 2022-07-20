@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -17,11 +18,11 @@ func main() {
 		Series: []datadog.Series{
 			{
 				Metric: "system.load.1",
-				Type:   datadog.PtrString("gauge"),
+				Type:   common.PtrString("gauge"),
 				Points: [][]*float64{
 					{
-						datadog.PtrFloat64(float64(time.Now().Unix())),
-						datadog.PtrFloat64(1.1),
+						common.PtrFloat64(float64(time.Now().Unix())),
+						common.PtrFloat64(1.1),
 					},
 				},
 				Tags: []string{
@@ -30,10 +31,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters().WithContentEncoding(datadog.METRICCONTENTENCODING_DEFLATE))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters().WithContentEncoding(datadog.METRICCONTENTENCODING_DEFLATE))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

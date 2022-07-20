@@ -8,14 +8,16 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SlackIntegrationApi.GetSlackIntegrationChannel(ctx, "account_name", "channel_name")
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSlackIntegrationApi(apiClient)
+	resp, r, err := api.GetSlackIntegrationChannel(ctx, "account_name", "channel_name")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.GetSlackIntegrationChannel`: %v\n", err)

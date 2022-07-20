@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -20,15 +21,15 @@ func main() {
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  []string{},
 				DistinctFields: []string{},
-				Metric:         datadog.PtrString(""),
+				Metric:         common.PtrString(""),
 			},
 		},
 		Filters: []datadog.SecurityMonitoringFilter{},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
 			{
-				Name:          datadog.PtrString(""),
+				Name:          common.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
-				Condition:     datadog.PtrString("a > 0"),
+				Condition:     common.PtrString("a > 0"),
 				Notifications: []string{},
 			},
 		},
@@ -42,10 +43,11 @@ func main() {
 		IsEnabled: true,
 		Type:      datadog.SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY.Ptr(),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.CreateSecurityMonitoringRule(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)

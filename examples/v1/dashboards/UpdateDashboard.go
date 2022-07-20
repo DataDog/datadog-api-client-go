@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -18,7 +19,7 @@ func main() {
 	body := datadog.Dashboard{
 		LayoutType:  datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:       "Example-Update_a_dashboard_returns_OK_response with list_stream widget",
-		Description: *datadog.NewNullableString(datadog.PtrString("Updated description")),
+		Description: *common.NewNullableString(common.PtrString("Updated description")),
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{
@@ -43,10 +44,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.UpdateDashboard(ctx, DashboardID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.UpdateDashboard(ctx, DashboardID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard`: %v\n", err)

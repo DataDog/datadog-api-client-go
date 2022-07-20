@@ -14,9 +14,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -27,7 +28,7 @@ func TestMetrics(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 
-	api := Client(ctx).MetricsApi
+	api := datadog.NewMetricsApi(Client(ctx))
 	now := tests.ClockFromContext(ctx).Now().Unix()
 
 	// the API would replace everything by underscores anyway, making us unable to search for metric by this value
@@ -50,7 +51,7 @@ func TestMetrics(t *testing.T) {
 	err = tests.Retry(10*time.Second, 10, func() bool {
 		metrics, httpresp, err := api.ListActiveMetrics(ctx, now)
 		if err != nil {
-			t.Logf("Error getting list of active metrics: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+			t.Logf("Error getting list of active metrics: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 			return false
 		}
 		if httpresp.StatusCode != 200 {
@@ -74,7 +75,7 @@ func TestMetrics(t *testing.T) {
 	// Test query
 	queryResult, httpresp, err := api.QueryMetrics(ctx, now-100, now+100, testQuery)
 	if err != nil {
-		t.Errorf("Error making query %s: Response %s: %v", testQuery, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error making query %s: Response %s: %v", testQuery, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal([]string{"host"}, queryResult.GetGroupBy())
@@ -89,8 +90,8 @@ func TestMetrics(t *testing.T) {
 	assert.Equal("avg", series.GetAggr())
 	assert.Equal(testMetric, series.GetDisplayName())
 	assert.Equal(testMetric, series.GetMetric())
-	assert.Equal(series.GetPointlist()[0][0], datadog.PtrFloat64(float64(series.GetStart())))
-	assert.Equal(series.GetPointlist()[1][0], datadog.PtrFloat64(float64(series.GetEnd())))
+	assert.Equal(series.GetPointlist()[0][0], common.PtrFloat64(float64(series.GetStart())))
+	assert.Equal(series.GetPointlist()[1][0], common.PtrFloat64(float64(series.GetEnd())))
 	assert.Equal(10.5, *series.GetPointlist()[0][1])
 	assert.Equal(11., *series.GetPointlist()[1][1])
 
@@ -98,7 +99,7 @@ func TestMetrics(t *testing.T) {
 	searchQuery := fmt.Sprintf("metrics:%s", testMetric)
 	searchResult, httpresp, err := api.ListMetrics(ctx, searchQuery)
 	if err != nil {
-		t.Errorf("Error searching metrics %s: Response %s: %v", searchQuery, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error searching metrics %s: Response %s: %v", searchQuery, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	metrics := searchResult.Results.GetMetrics()
@@ -108,7 +109,7 @@ func TestMetrics(t *testing.T) {
 	// Test metric metadata
 	metadata, httpresp, err := api.GetMetricMetadata(ctx, testMetric)
 	if err != nil {
-		t.Errorf("Error getting metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error getting metric metadata for %s: Response %s: %v", testMetric, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Nil(metadata.Description)
@@ -120,17 +121,17 @@ func TestMetrics(t *testing.T) {
 	assert.Nil(metadata.Type)
 
 	newMetadata := datadog.MetricMetadata{
-		Description:    datadog.PtrString("description"),
-		PerUnit:        datadog.PtrString("second"),
-		Unit:           datadog.PtrString("byte"),
-		ShortName:      datadog.PtrString("short_name"),
-		StatsdInterval: datadog.PtrInt64(20),
-		Type:           datadog.PtrString("count"),
+		Description:    common.PtrString("description"),
+		PerUnit:        common.PtrString("second"),
+		Unit:           common.PtrString("byte"),
+		ShortName:      common.PtrString("short_name"),
+		StatsdInterval: common.PtrInt64(20),
+		Type:           common.PtrString("count"),
 	}
 
 	metadata, httpresp, err = api.UpdateMetricMetadata(ctx, testMetric, newMetadata)
 	if err != nil {
-		t.Errorf("Error editing metric metadata for %s: Response %s: %v", testMetric, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error editing metric metadata for %s: Response %s: %v", testMetric, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal("description", metadata.GetDescription())
@@ -153,7 +154,7 @@ func TestMetricListActive(t *testing.T) {
 	var expected datadog.MetricsListResponse
 	json.Unmarshal([]byte(data), &expected)
 
-	api := Client(ctx).MetricsApi
+	api := datadog.NewMetricsApi(Client(ctx))
 
 	metrics, _, err := api.ListActiveMetrics(ctx, 1, *datadog.NewListActiveMetricsOptionalParameters().WithHost("host"))
 	assert.Nil(err)
@@ -167,6 +168,7 @@ func TestMetricsListActive400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewMetricsApi(Client(ctx))
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
 	res, err := tests.ReadFixture("fixtures/metrics/error_400.json")
@@ -178,9 +180,9 @@ func TestMetricsListActive400Error(t *testing.T) {
 	gock.New(URL).Get("/api/v1/metrics").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MetricsApi.ListActiveMetrics(ctx, -1)
+	_, httpresp, err := api.ListActiveMetrics(ctx, -1)
 	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -203,10 +205,11 @@ func TestMetricsListActiveErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewMetricsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).MetricsApi.ListActiveMetrics(ctx, -1)
+			_, httpresp, err := api.ListActiveMetrics(ctx, -1)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -230,10 +233,11 @@ func TestMetricsMetadataGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewMetricsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).MetricsApi.GetMetricMetadata(ctx, "ametric")
+			_, httpresp, err := api.GetMetricMetadata(ctx, "ametric")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -246,6 +250,7 @@ func TestMetricsMetadataUpdate400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewMetricsApi(Client(ctx))
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
 	res, err := tests.ReadFixture("fixtures/metrics/error_400.json")
@@ -257,9 +262,9 @@ func TestMetricsMetadataUpdate400Error(t *testing.T) {
 	gock.New(URL).Put("/api/v1/metrics/ametric").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MetricsApi.UpdateMetricMetadata(ctx, "ametric", datadog.MetricMetadata{})
+	_, httpresp, err := api.UpdateMetricMetadata(ctx, "ametric", datadog.MetricMetadata{})
 	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -282,10 +287,11 @@ func TestMetricsMetadataUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewMetricsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).MetricsApi.UpdateMetricMetadata(ctx, "ametric", tc.Body)
+			_, httpresp, err := api.UpdateMetricMetadata(ctx, "ametric", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -298,6 +304,7 @@ func TestMetricsList400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewMetricsApi(Client(ctx))
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
 	res, err := tests.ReadFixture("fixtures/metrics/error_400.json")
@@ -309,9 +316,9 @@ func TestMetricsList400Error(t *testing.T) {
 	gock.New(URL).Get("/api/v1/search").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MetricsApi.ListMetrics(ctx, "")
+	_, httpresp, err := api.ListMetrics(ctx, "")
 	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -334,10 +341,11 @@ func TestMetricsListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewMetricsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).MetricsApi.ListMetrics(ctx, "somequery")
+			_, httpresp, err := api.ListMetrics(ctx, "somequery")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -350,6 +358,7 @@ func TestMetricsQuery400Error(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewMetricsApi(Client(ctx))
 
 	// Error 400 cannot be triggered from the client due to client side validation, so mock it
 	res, err := tests.ReadFixture("fixtures/metrics/error_400.json")
@@ -361,9 +370,9 @@ func TestMetricsQuery400Error(t *testing.T) {
 	gock.New(URL).Get("/api/v1/query").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MetricsApi.QueryMetrics(ctx, 0, 0, "")
+	_, httpresp, err := api.QueryMetrics(ctx, 0, 0, "")
 	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -386,10 +395,11 @@ func TestMetricsQueryErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewMetricsApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).MetricsApi.QueryMetrics(ctx, 0, 0, "somequery")
+			_, httpresp, err := api.QueryMetrics(ctx, 0, 0, "somequery")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})

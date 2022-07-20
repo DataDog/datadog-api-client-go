@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"gopkg.in/h2non/gock.v1"
@@ -38,7 +39,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 									AccountId: "711111111111",
 									RoleName:  "DatadogGoClientTestIntegrationRole",
 								},
-								Path: datadog.PtrString("/path/blou"),
+								Path: common.PtrString("/path/blou"),
 								Type: "s3",
 							},
 						},
@@ -63,8 +64,8 @@ func TestLogsArchivesCreate(t *testing.T) {
 									ClientId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 									TenantId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 								},
-								Path:           datadog.PtrString("/path/blou"),
-								Region:         datadog.PtrString("my-region"),
+								Path:           common.PtrString("/path/blou"),
+								Region:         common.PtrString("my-region"),
 								StorageAccount: "storageAccount",
 								Type:           "azure",
 							},
@@ -90,7 +91,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 									ClientEmail: "email@email.com",
 									ProjectId:   "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 								},
-								Path: datadog.PtrString("/path/blou"),
+								Path: common.PtrString("/path/blou"),
 								Type: "gcs",
 							},
 						},
@@ -110,6 +111,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 
 			client := Client(ctx)
 			assert := tests.Assert(ctx, t)
+			api := datadog.NewLogsArchivesApi(client)
 
 			outputArchiveStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", tc.archiveType, "create"))
 			outputArchive := datadog.LogsArchive{}
@@ -121,7 +123,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 			gock.New(URL).Post("/api/v2/logs/config/archives").MatchType("json").JSON(tc.archive).Reply(200).Type("json").BodyString(outputArchiveStr)
 			defer gock.Off()
 
-			result, httpresp, err := client.LogsArchivesApi.CreateLogsArchive(ctx, tc.archive)
+			result, httpresp, err := api.CreateLogsArchive(ctx, tc.archive)
 			assert.NoError(err)
 			assert.Equal(httpresp.StatusCode, 200)
 			assert.Equal(result, outputArchive)
@@ -135,6 +137,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
+	api := datadog.NewLogsArchivesApi(client)
 	archiveType := "s3"
 	action := "update"
 	inputArchive := datadog.LogsArchiveCreateRequest{
@@ -147,7 +150,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 							AccountId: "711111111111",
 							RoleName:  "DatadogGoClientTestIntegrationRole",
 						},
-						Path: datadog.PtrString("/path/blou"),
+						Path: common.PtrString("/path/blou"),
 						Type: "s3",
 					},
 				},
@@ -166,7 +169,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	id := "FOObartotO"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchive(ctx, id, inputArchive)
+	result, httpresp, err := api.UpdateLogsArchive(ctx, id, inputArchive)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, outputArchive)
 }
@@ -177,6 +180,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
+	api := datadog.NewLogsArchivesApi(client)
 	id := "FOObartotO"
 	action := "getbyid"
 	archiveType := "s3"
@@ -187,7 +191,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.GetLogsArchive(ctx, id)
+	result, httpresp, err := api.GetLogsArchive(ctx, id)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, outputArchive)
 }
@@ -199,11 +203,12 @@ func TestLogsArchivesDelete(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	id := "FOObartotO"
 	client := Client(ctx)
+	api := datadog.NewLogsArchivesApi(client)
 	URL, err := client.GetConfig().ServerURLWithContext(ctx, "LogsArchivesApiService.DeleteLogsArchive")
 	assert.NoError(err)
 	gock.New(URL).Delete(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(204)
 	defer gock.Off()
-	httpresp, err := client.LogsArchivesApi.DeleteLogsArchive(ctx, id)
+	httpresp, err := api.DeleteLogsArchive(ctx, id)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 204)
 }
@@ -214,6 +219,7 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewLogsArchivesApi(client)
 	action := "getall"
 	archiveType := "s3"
 	outputArchivesStr := readFixture(t, fmt.Sprintf("fixtures/logs/archives/%s/out/%s.json", archiveType, action))
@@ -223,7 +229,7 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archives").Reply(200).Type("json").JSON(outputArchivesStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx)
+	result, httpresp, err := api.ListLogsArchives(ctx)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.True(len(result.Data) > 0)
@@ -235,6 +241,7 @@ func TestGetLogsArchiveOrder(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
+	api := datadog.NewLogsArchivesApi(client)
 	assert := tests.Assert(ctx, t)
 
 	fileName := "default"
@@ -246,7 +253,7 @@ func TestGetLogsArchiveOrder(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.GetLogsArchiveOrder(ctx)
+	result, httpresp, err := api.GetLogsArchiveOrder(ctx)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(outputArchiveOrder, result)
@@ -258,6 +265,7 @@ func TestUpdateLogsArchiveOrder(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	client := Client(ctx)
+	api := datadog.NewLogsArchivesApi(client)
 	assert := tests.Assert(ctx, t)
 	input := createUpdatedLogsArchiveOrder(t)
 
@@ -270,7 +278,7 @@ func TestUpdateLogsArchiveOrder(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Put("/api/v2/logs/config/archive-order").Reply(200).Type("json").JSON(outputArchiveOrderStr)
 	defer gock.Off()
-	result, httpresp, err := client.LogsArchivesApi.UpdateLogsArchiveOrder(ctx, *input)
+	result, httpresp, err := api.UpdateLogsArchiveOrder(ctx, *input)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(outputArchiveOrder, result)

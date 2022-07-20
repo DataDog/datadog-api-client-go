@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -18,8 +19,8 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					TableWidgetDefinition: &datadog.TableWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
 						Requests: []datadog.TableWidgetRequest{
@@ -28,14 +29,14 @@ func main() {
 								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionApmResourceStatsQueryDefinition: &datadog.FormulaAndFunctionApmResourceStatsQueryDefinition{
-											PrimaryTagValue: datadog.PtrString("edge-eu1.prod.dog"),
+											PrimaryTagValue: common.PtrString("edge-eu1.prod.dog"),
 											Stat:            datadog.FORMULAANDFUNCTIONAPMRESOURCESTATNAME_HITS,
 											Name:            "query1",
 											Service:         "cassandra",
 											DataSource:      datadog.FORMULAANDFUNCTIONAPMRESOURCESTATSDATASOURCE_APM_RESOURCE_STATS,
 											Env:             "ci",
-											PrimaryTagName:  datadog.PtrString("datacenter"),
-											OperationName:   datadog.PtrString("cassandra.query"),
+											PrimaryTagName:  common.PtrString("datacenter"),
+											OperationName:   common.PtrString("cassandra.query"),
 											GroupBy: []string{
 												"resource_name",
 											},
@@ -54,10 +55,11 @@ func main() {
 		},
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

@@ -8,28 +8,30 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
 	body := datadog.LogsListRequest{
 		Filter: &datadog.LogsQueryFilter{
-			Query: datadog.PtrString("datadog-agent"),
+			Query: common.PtrString("datadog-agent"),
 			Indexes: []string{
 				"main",
 			},
-			From: datadog.PtrString("2020-09-17T11:48:36+01:00"),
-			To:   datadog.PtrString("2020-09-17T12:48:36+01:00"),
+			From: common.PtrString("2020-09-17T11:48:36+01:00"),
+			To:   common.PtrString("2020-09-17T12:48:36+01:00"),
 		},
 		Sort: datadog.LOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 		Page: &datadog.LogsListRequestPage{
-			Limit: datadog.PtrInt32(5),
+			Limit: common.PtrInt32(5),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewLogsApi(apiClient)
+	resp, r, err := api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs`: %v\n", err)

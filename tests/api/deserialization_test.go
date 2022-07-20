@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	datadogV2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -13,7 +14,7 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
+func TestDeserializationUnknownNestedOneOfInList(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
@@ -85,6 +86,7 @@ func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
 	// Mock the synthetics API.
 	URL, err := testV1.Client(ctx).GetConfig().ServerURLWithContext(ctx, "SyntheticsApiService.GetAPITest")
 	assert.NoError(err)
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	gock.New(URL).
 		Get("synthetics/tests/api/public_id").
@@ -93,7 +95,7 @@ func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := testV1.Client(ctx).SyntheticsApi.GetAPITest(ctx, "public_id")
+	resp, httpresp, err := api.GetAPITest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// Root object deserializes correctly
@@ -102,14 +104,15 @@ func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
 	assert.Len(resp.Config.GetAssertions(), 3)
 	// Unknown assertion is Unparsed
 	assert.Equal("A non existent operator", resp.Config.GetAssertions()[2].UnparsedObject.(map[string]interface{})["operator"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(common.ContainsUnparsedObject(resp))
 }
 
-func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
+func TestDeserializationUnknownNestedEnumInList(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -183,7 +186,7 @@ func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := testV1.Client(ctx).SyntheticsApi.GetBrowserTest(ctx, "public_id")
+	resp, httpresp, err := api.GetBrowserTest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// Root object deserializes correctly
@@ -191,7 +194,7 @@ func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
 	// Options object has the 3 expected device IDs
 	assert.Len(resp.Options.GetDeviceIds(), 3)
 	assert.Equal(datadogV1.SyntheticsDeviceID("A non existent device ID"), resp.Options.GetDeviceIds()[2])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(common.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
@@ -199,6 +202,7 @@ func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -246,14 +250,14 @@ func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := testV1.Client(ctx).SyntheticsApi.GetBrowserTest(ctx, "public_id")
+	resp, httpresp, err := api.GetBrowserTest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// Root object is unparsed
 	assert.NotNil(resp.UnparsedObject)
 	assert.Equal("A non existent test type", resp.UnparsedObject["type"])
 	assert.Equal("Check on www.10.0.0.1.xip.io", resp.UnparsedObject["name"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(common.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownNestedEnum(t *testing.T) {
@@ -261,6 +265,7 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
 
 	responseBody := `
 {
@@ -308,7 +313,7 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := testV1.Client(ctx).SyntheticsApi.GetAPITest(ctx, "public_id")
+	resp, httpresp, err := api.GetAPITest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// UnparsedObject is propagated up
@@ -318,14 +323,15 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	assert.NotNil(resp.Config.Request.UnparsedObject)
 	assert.Equal("A non existent method", resp.Config.Request.UnparsedObject["method"])
 	assert.Equal(float64(30), resp.Config.Request.UnparsedObject["timeout"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(common.ContainsUnparsedObject(resp))
 }
 
-func TestDeserializationUnkownNestedOneOf(t *testing.T) {
+func TestDeserializationUnknownNestedOneOf(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadogV2.NewLogsArchivesApi(testV2.Client(ctx))
 
 	responseBody := `
 {
@@ -363,7 +369,7 @@ func TestDeserializationUnkownNestedOneOf(t *testing.T) {
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := testV2.Client(ctx).LogsArchivesApi.CreateLogsArchive(ctx, datadogV2.LogsArchiveCreateRequest{})
+	resp, httpresp, err := api.CreateLogsArchive(ctx, datadogV2.LogsArchiveCreateRequest{})
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// Root object is properly deserialized
@@ -372,5 +378,5 @@ func TestDeserializationUnkownNestedOneOf(t *testing.T) {
 	// OneOf is unparsed
 	assert.NotNil(resp.Data.Attributes.Destination.Get().UnparsedObject)
 	assert.Equal("A non existent destination", resp.Data.Attributes.Destination.Get().UnparsedObject.(map[string]interface{})["type"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(common.ContainsUnparsedObject(resp))
 }

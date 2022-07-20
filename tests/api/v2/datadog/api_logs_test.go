@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func TestLogsList(t *testing.T) {
@@ -19,6 +19,7 @@ func TestLogsList(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
+	api := datadog.NewLogsApi(client)
 
 	suffix := tests.UniqueEntityName(ctx, t)
 
@@ -40,7 +41,7 @@ func TestLogsList(t *testing.T) {
 
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
+		response, httpResp, err = api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
 	})
 
@@ -51,7 +52,7 @@ func TestLogsList(t *testing.T) {
 	// Sort works correctly
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_ASCENDING)
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
+		response, httpResp, err = api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -71,7 +72,7 @@ func TestLogsList(t *testing.T) {
 	request.SetSort(datadog.LOGSSORT_TIMESTAMP_DESCENDING)
 
 	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
+		response, httpResp, err = api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -93,7 +94,7 @@ func TestLogsList(t *testing.T) {
 	page.SetLimit(1)
 	request.SetPage(*page)
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
+		response, httpResp, err = api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -112,7 +113,7 @@ func TestLogsList(t *testing.T) {
 
 	request.Page.SetCursor(cursor)
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
+		response, httpResp, err = api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters().WithBody(*request))
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
@@ -136,8 +137,9 @@ func TestGetLogsNilBody(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
+	api := datadog.NewLogsApi(client)
 
-	_, httpResp, err := client.LogsApi.ListLogs(ctx, *datadog.NewListLogsOptionalParameters())
+	_, httpResp, err := api.ListLogs(ctx, *datadog.NewListLogsOptionalParameters())
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
 	}
@@ -152,6 +154,7 @@ func TestLogsListGet(t *testing.T) {
 	defer finish()
 	assert := tests.Assert(ctx, t)
 	client := Client(ctx)
+	api := datadog.NewLogsApi(client)
 
 	now := tests.ClockFromContext(ctx).Now()
 	suffix := tests.UniqueEntityName(ctx, t)
@@ -169,7 +172,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
+		response, httpResp, err = api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to))
@@ -182,7 +185,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Sort works correctly
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
+		response, httpResp, err = api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -205,7 +208,7 @@ func TestLogsListGet(t *testing.T) {
 	assert.Equal("test-log-list-2 "+*suffix, attributes.GetMessage())
 
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
+		response, httpResp, err = api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -229,7 +232,7 @@ func TestLogsListGet(t *testing.T) {
 
 	// Paging
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
+		response, httpResp, err = api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -251,7 +254,7 @@ func TestLogsListGet(t *testing.T) {
 	firstID := response.GetData()[0].GetId()
 
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-		response, httpResp, err = client.LogsApi.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
+		response, httpResp, err = api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to).
@@ -272,7 +275,7 @@ func TestLogsListGet(t *testing.T) {
 	assert.NotEqual(firstID, secondID)
 }
 
-func sendLogs(ctx context.Context, t *testing.T, client *datadog.APIClient, suffix string) error {
+func sendLogs(ctx context.Context, t *testing.T, client *common.APIClient, suffix string) error {
 	now := tests.ClockFromContext(ctx).Now()
 	source := fmt.Sprintf("go-client-test-%s", suffix)
 	firstMessage := fmt.Sprintf("test-log-list-1 %s", suffix)

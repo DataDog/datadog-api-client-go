@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -21,27 +22,28 @@ func main() {
 		Description: "Example description",
 		Name:        "MY_VARIABLE",
 		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Field: datadog.PtrString("content-type"),
+			Field: common.PtrString("content-type"),
 			Parser: datadog.SyntheticsVariableParser{
 				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: datadog.PtrString(".*"),
+				Value: common.PtrString(".*"),
 			},
 			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 		},
-		ParseTestPublicId: datadog.PtrString("abc-def-123"),
+		ParseTestPublicId: common.PtrString("abc-def-123"),
 		Tags: []string{
 			"team:front",
 			"test:workflow-1",
 		},
 		Value: datadog.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(true),
-			Value:  datadog.PtrString("value"),
+			Secure: common.PtrBool(true),
+			Value:  common.PtrString("value"),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateGlobalVariable(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateGlobalVariable(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable`: %v\n", err)

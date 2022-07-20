@@ -10,9 +10,10 @@ import (
 	"context"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -22,11 +23,12 @@ func TestIPRanges(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewIPRangesApi(Client(ctx))
 
 	// Get IP ranges
-	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx)
+	ipRanges, httpresp, err := api.GetIPRanges(ctx)
 	if err != nil {
-		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error getting IP ranges: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.NotEmpty(ipRanges.Agents.GetPrefixesIpv4())
@@ -44,13 +46,14 @@ func TestIPRangesMocked(t *testing.T) {
 	ctx = WithClient(WithFakeAuth(ctx))
 	defer gock.Off()
 	assert := tests.Assert(ctx, t)
+	api := datadog.NewIPRangesApi(Client(ctx))
 
 	data, err := tests.ReadFixture("fixtures/ip-ranges/ip-ranges.json")
 	if err != nil {
 		t.Errorf("Failed to read fixture: %s", err)
 	}
 
-	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "IPRangesApiService.GetIPRanges")
+	URL, err := Client(ctx).GetConfig().ServerURLWithContext(ctx, "v1.IPRangesApi.GetIPRanges")
 	assert.NoError(err)
 	gock.New(URL).
 		Get("/").
@@ -58,9 +61,9 @@ func TestIPRangesMocked(t *testing.T) {
 		JSON(data)
 
 	// Get IP ranges
-	ipRanges, httpresp, err := Client(ctx).IPRangesApi.GetIPRanges(ctx)
+	ipRanges, httpresp, err := api.GetIPRanges(ctx)
 	if err != nil {
-		t.Errorf("Error getting IP ranges: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Errorf("Error getting IP ranges: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(int64(11), ipRanges.GetVersion())

@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // DowntimeRecurrence An object defining the recurrence of the downtime.
@@ -24,10 +26,10 @@ type DowntimeRecurrence struct {
 	Type *string `json:"type,omitempty"`
 	// The date at which the recurrence should end as a POSIX timestamp.
 	// `until_occurences` and `until_date` are mutually exclusive.
-	UntilDate NullableInt64 `json:"until_date,omitempty"`
+	UntilDate common.NullableInt64 `json:"until_date,omitempty"`
 	// How many times the downtime is rescheduled.
 	// `until_occurences` and `until_date` are mutually exclusive.
-	UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
+	UntilOccurrences common.NullableInt32 `json:"until_occurrences,omitempty"`
 	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`.
 	// Only applicable when type is weeks. First letter must be capitalized.
 	WeekDays []string `json:"week_days,omitempty"`
@@ -177,7 +179,7 @@ func (o *DowntimeRecurrence) HasUntilDate() bool {
 	return false
 }
 
-// SetUntilDate gets a reference to the given NullableInt64 and assigns it to the UntilDate field.
+// SetUntilDate gets a reference to the given common.NullableInt64 and assigns it to the UntilDate field.
 func (o *DowntimeRecurrence) SetUntilDate(v int64) {
 	o.UntilDate.Set(&v)
 }
@@ -220,7 +222,7 @@ func (o *DowntimeRecurrence) HasUntilOccurrences() bool {
 	return false
 }
 
-// SetUntilOccurrences gets a reference to the given NullableInt32 and assigns it to the UntilOccurrences field.
+// SetUntilOccurrences gets a reference to the given common.NullableInt32 and assigns it to the UntilOccurrences field.
 func (o *DowntimeRecurrence) SetUntilOccurrences(v int32) {
 	o.UntilOccurrences.Set(&v)
 }
@@ -303,12 +305,12 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Period           *int32        `json:"period,omitempty"`
-		Rrule            *string       `json:"rrule,omitempty"`
-		Type             *string       `json:"type,omitempty"`
-		UntilDate        NullableInt64 `json:"until_date,omitempty"`
-		UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
-		WeekDays         []string      `json:"week_days,omitempty"`
+		Period           *int32               `json:"period,omitempty"`
+		Rrule            *string              `json:"rrule,omitempty"`
+		Type             *string              `json:"type,omitempty"`
+		UntilDate        common.NullableInt64 `json:"until_date,omitempty"`
+		UntilOccurrences common.NullableInt32 `json:"until_occurrences,omitempty"`
+		WeekDays         []string             `json:"week_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

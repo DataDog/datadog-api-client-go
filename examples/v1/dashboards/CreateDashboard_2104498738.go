@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,11 +17,11 @@ func main() {
 		Title: "Example-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget",
 		Widgets: []datadog.Widget{
 			{
-				Id: datadog.PtrInt64(5346764334358972),
+				Id: common.PtrInt64(5346764334358972),
 				Definition: datadog.WidgetDefinition{
 					ScatterPlotWidgetDefinition: &datadog.ScatterPlotWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
+						Title:      common.PtrString(""),
+						TitleSize:  common.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 						Requests: datadog.ScatterPlotWidgetDefinitionRequests{
@@ -29,12 +30,12 @@ func main() {
 									{
 										Formula:   "query1",
 										Dimension: datadog.SCATTERPLOTDIMENSION_X,
-										Alias:     datadog.PtrString("my-query1"),
+										Alias:     common.PtrString("my-query1"),
 									},
 									{
 										Formula:   "query2",
 										Dimension: datadog.SCATTERPLOTDIMENSION_Y,
-										Alias:     datadog.PtrString("my-query2"),
+										Alias:     common.PtrString("my-query2"),
 									},
 								},
 								Queries: []datadog.FormulaAndFunctionQueryDefinition{
@@ -67,10 +68,11 @@ func main() {
 		},
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

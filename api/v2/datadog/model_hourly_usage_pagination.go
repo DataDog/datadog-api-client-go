@@ -6,12 +6,14 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // HourlyUsagePagination The metadata for the current pagination.
 type HourlyUsagePagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
-	NextRecordId NullableString `json:"next_record_id,omitempty"`
+	NextRecordId common.NullableString `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -62,7 +64,7 @@ func (o *HourlyUsagePagination) HasNextRecordId() bool {
 	return false
 }
 
-// SetNextRecordId gets a reference to the given NullableString and assigns it to the NextRecordId field.
+// SetNextRecordId gets a reference to the given common.NullableString and assigns it to the NextRecordId field.
 func (o *HourlyUsagePagination) SetNextRecordId(v string) {
 	o.NextRecordId.Set(&v)
 }
@@ -97,7 +99,7 @@ func (o HourlyUsagePagination) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsagePagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		NextRecordId NullableString `json:"next_record_id,omitempty"`
+		NextRecordId common.NullableString `json:"next_record_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

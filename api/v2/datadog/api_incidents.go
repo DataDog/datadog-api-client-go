@@ -13,56 +13,56 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// IncidentsApiService IncidentsApi service.
-type IncidentsApiService service
+// IncidentsApi service type
+type IncidentsApi common.Service
 
 type apiCreateIncidentRequest struct {
-	ctx        _context.Context
-	ApiService *IncidentsApiService
-	body       *IncidentCreateRequest
+	ctx  _context.Context
+	body *IncidentCreateRequest
 }
 
-func (a *IncidentsApiService) buildCreateIncidentRequest(ctx _context.Context, body IncidentCreateRequest) (apiCreateIncidentRequest, error) {
+func (a *IncidentsApi) buildCreateIncidentRequest(ctx _context.Context, body IncidentCreateRequest) (apiCreateIncidentRequest, error) {
 	req := apiCreateIncidentRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx:  ctx,
+		body: &body,
 	}
 	return req, nil
 }
 
 // CreateIncident Create an incident.
 // Create an incident.
-func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateIncidentRequest(ctx, body)
 	if err != nil {
 		var localVarReturnValue IncidentResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.createIncidentExecute(req)
+	return a.createIncidentExecute(req)
 }
 
 // createIncidentExecute executes the request.
-func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) createIncidentExecute(r apiCreateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue IncidentResponse
 	)
 
-	operationId := "CreateIncident"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v2.CreateIncident"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.CreateIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.CreateIncident")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/incidents"
@@ -71,32 +71,16 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -110,7 +94,7 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -122,12 +106,12 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -140,62 +124,62 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -205,13 +189,11 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 
 type apiDeleteIncidentRequest struct {
 	ctx        _context.Context
-	ApiService *IncidentsApiService
 	incidentId string
 }
 
-func (a *IncidentsApiService) buildDeleteIncidentRequest(ctx _context.Context, incidentId string) (apiDeleteIncidentRequest, error) {
+func (a *IncidentsApi) buildDeleteIncidentRequest(ctx _context.Context, incidentId string) (apiDeleteIncidentRequest, error) {
 	req := apiDeleteIncidentRequest{
-		ApiService: a,
 		ctx:        ctx,
 		incidentId: incidentId,
 	}
@@ -220,52 +202,45 @@ func (a *IncidentsApiService) buildDeleteIncidentRequest(ctx _context.Context, i
 
 // DeleteIncident Delete an existing incident.
 // Deletes an existing incident from the users organization.
-func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
+func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteIncidentRequest(ctx, incidentId)
 	if err != nil {
 		return nil, err
 	}
 
-	return req.ApiService.deleteIncidentExecute(req)
+	return a.deleteIncidentExecute(req)
 }
 
 // deleteIncidentExecute executes the request.
-func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) (*_nethttp.Response, error) {
+func (a *IncidentsApi) deleteIncidentExecute(r apiDeleteIncidentRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	operationId := "DeleteIncident"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v2.DeleteIncident"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.DeleteIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.DeleteIncident")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/incidents/{incident_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(common.ParameterToString(r.incidentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -279,7 +254,7 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -291,12 +266,12 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarHTTPResponse, err
 	}
@@ -309,53 +284,53 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -365,7 +340,6 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 
 type apiGetIncidentRequest struct {
 	ctx        _context.Context
-	ApiService *IncidentsApiService
 	incidentId string
 	include    *[]IncidentRelatedObject
 }
@@ -387,15 +361,14 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 	return r
 }
 
-func (a *IncidentsApiService) buildGetIncidentRequest(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (apiGetIncidentRequest, error) {
+func (a *IncidentsApi) buildGetIncidentRequest(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (apiGetIncidentRequest, error) {
 	req := apiGetIncidentRequest{
-		ApiService: a,
 		ctx:        ctx,
 		incidentId: incidentId,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetIncidentOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetIncidentOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -406,57 +379,50 @@ func (a *IncidentsApiService) buildGetIncidentRequest(ctx _context.Context, inci
 
 // GetIncident Get the details of an incident.
 // Get the details of an incident by `incident_id`.
-func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentRequest(ctx, incidentId, o...)
 	if err != nil {
 		var localVarReturnValue IncidentResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.getIncidentExecute(req)
+	return a.getIncidentExecute(req)
 }
 
 // getIncidentExecute executes the request.
-func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) getIncidentExecute(r apiGetIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue IncidentResponse
 	)
 
-	operationId := "GetIncident"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v2.GetIncident"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.GetIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.GetIncident")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/incidents/{incident_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(common.ParameterToString(r.incidentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		localVarQueryParams.Add("include", common.ParameterToString(*r.include, "csv"))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -470,7 +436,7 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -482,12 +448,12 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -500,62 +466,62 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -565,7 +531,6 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 
 type apiListIncidentsRequest struct {
 	ctx        _context.Context
-	ApiService *IncidentsApiService
 	include    *[]IncidentRelatedObject
 	pageSize   *int64
 	pageOffset *int64
@@ -602,14 +567,13 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 	return r
 }
 
-func (a *IncidentsApiService) buildListIncidentsRequest(ctx _context.Context, o ...ListIncidentsOptionalParameters) (apiListIncidentsRequest, error) {
+func (a *IncidentsApi) buildListIncidentsRequest(ctx _context.Context, o ...ListIncidentsOptionalParameters) (apiListIncidentsRequest, error) {
 	req := apiListIncidentsRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type ListIncidentsOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type ListIncidentsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -622,18 +586,18 @@ func (a *IncidentsApiService) buildListIncidentsRequest(ctx _context.Context, o 
 
 // ListIncidents Get a list of incidents.
 // Get all incidents for the user's organization.
-func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListIncidentsRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue IncidentsResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.listIncidentsExecute(req)
+	return a.listIncidentsExecute(req)
 }
 
 // ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
-func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
+func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int64(10)
 	if len(o) == 0 {
@@ -652,7 +616,7 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 				break
 			}
 
-			resp, _, err := req.ApiService.listIncidentsExecute(req)
+			resp, _, err := a.listIncidentsExecute(req)
 			if err != nil {
 				break
 			}
@@ -686,23 +650,23 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 }
 
 // listIncidentsExecute executes the request.
-func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (IncidentsResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) listIncidentsExecute(r apiListIncidentsRequest) (IncidentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue IncidentsResponse
 	)
 
-	operationId := "ListIncidents"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v2.ListIncidents"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.ListIncidents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.ListIncidents")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/incidents"
@@ -711,26 +675,19 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		localVarQueryParams.Add("include", common.ParameterToString(*r.include, "csv"))
 	}
 	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
+		localVarQueryParams.Add("page[size]", common.ParameterToString(*r.pageSize, ""))
 	}
 	if r.pageOffset != nil {
-		localVarQueryParams.Add("page[offset]", parameterToString(*r.pageOffset, ""))
+		localVarQueryParams.Add("page[offset]", common.ParameterToString(*r.pageOffset, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -744,7 +701,7 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -756,12 +713,12 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -774,62 +731,62 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -839,7 +796,6 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 
 type apiUpdateIncidentRequest struct {
 	ctx        _context.Context
-	ApiService *IncidentsApiService
 	incidentId string
 	body       *IncidentUpdateRequest
 	include    *[]IncidentRelatedObject
@@ -862,16 +818,15 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 	return r
 }
 
-func (a *IncidentsApiService) buildUpdateIncidentRequest(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (apiUpdateIncidentRequest, error) {
+func (a *IncidentsApi) buildUpdateIncidentRequest(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (apiUpdateIncidentRequest, error) {
 	req := apiUpdateIncidentRequest{
-		ApiService: a,
 		ctx:        ctx,
 		incidentId: incidentId,
 		body:       &body,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -882,72 +837,56 @@ func (a *IncidentsApiService) buildUpdateIncidentRequest(ctx _context.Context, i
 
 // UpdateIncident Update an existing incident.
 // Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
-func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateIncidentRequest(ctx, incidentId, body, o...)
 	if err != nil {
 		var localVarReturnValue IncidentResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.ApiService.updateIncidentExecute(req)
+	return a.updateIncidentExecute(req)
 }
 
 // updateIncidentExecute executes the request.
-func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) updateIncidentExecute(r apiUpdateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue IncidentResponse
 	)
 
-	operationId := "UpdateIncident"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "v2.UpdateIncident"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.UpdateIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.UpdateIncident")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/incidents/{incident_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(common.ParameterToString(r.incidentId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("body is required and must be specified")
 	}
 	if r.include != nil {
-		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+		localVarQueryParams.Add("include", common.ParameterToString(*r.include, "csv"))
 	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -961,7 +900,7 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -973,12 +912,12 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -991,65 +930,72 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// NewIncidentsApi Returns NewIncidentsApi.
+func NewIncidentsApi(client *common.APIClient) *IncidentsApi {
+	return &IncidentsApi{
+		Client: client,
+	}
 }

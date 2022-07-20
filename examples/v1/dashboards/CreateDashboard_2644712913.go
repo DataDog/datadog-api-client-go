@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -19,12 +20,12 @@ func main() {
 			{
 				Definition: datadog.WidgetDefinition{
 					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
-						TitleSize:  datadog.PtrString("16"),
-						Title:      datadog.PtrString(""),
+						TitleSize:  common.PtrString("16"),
+						Title:      common.PtrString(""),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Precision:  datadog.PtrInt64(2),
+						Precision:  common.PtrInt64(2),
 						Time:       &datadog.WidgetTime{},
-						Autoscale:  datadog.PtrBool(true),
+						Autoscale:  common.PtrBool(true),
 						Requests: []datadog.QueryValueWidgetRequest{
 							{
 								Formulas: []datadog.WidgetFormula{
@@ -55,10 +56,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

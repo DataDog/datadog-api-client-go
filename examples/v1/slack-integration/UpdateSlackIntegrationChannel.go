@@ -8,23 +8,25 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.SlackIntegrationChannel{
 		Display: &datadog.SlackIntegrationChannelDisplay{
-			Message:  datadog.PtrBool(true),
-			Notified: datadog.PtrBool(true),
-			Snapshot: datadog.PtrBool(true),
-			Tags:     datadog.PtrBool(true),
+			Message:  common.PtrBool(true),
+			Notified: common.PtrBool(true),
+			Snapshot: common.PtrBool(true),
+			Tags:     common.PtrBool(true),
 		},
-		Name: datadog.PtrString("#general"),
+		Name: common.PtrString("#general"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, "account_name", "channel_name", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewSlackIntegrationApi(apiClient)
+	resp, r, err := api.UpdateSlackIntegrationChannel(ctx, "account_name", "channel_name", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.UpdateSlackIntegrationChannel`: %v\n", err)

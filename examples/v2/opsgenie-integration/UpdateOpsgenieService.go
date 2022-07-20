@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -18,18 +19,19 @@ func main() {
 	body := datadog.OpsgenieServiceUpdateRequest{
 		Data: datadog.OpsgenieServiceUpdateData{
 			Attributes: datadog.OpsgenieServiceUpdateAttributes{
-				Name:           datadog.PtrString("fake-opsgenie-service-name--updated"),
-				OpsgenieApiKey: datadog.PtrString("00000000-0000-0000-0000-000000000000"),
+				Name:           common.PtrString("fake-opsgenie-service-name--updated"),
+				OpsgenieApiKey: common.PtrString("00000000-0000-0000-0000-000000000000"),
 				Region:         datadog.OPSGENIESERVICEREGIONTYPE_EU.Ptr(),
 			},
 			Id:   OpsgenieServiceDataID,
 			Type: datadog.OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OpsgenieIntegrationApi.UpdateOpsgenieService(ctx, OpsgenieServiceDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NewOpsgenieIntegrationApi(apiClient)
+	resp, r, err := api.UpdateOpsgenieService(ctx, OpsgenieServiceDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OpsgenieIntegrationApi.UpdateOpsgenieService`: %v\n", err)
