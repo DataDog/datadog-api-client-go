@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 1.16.0 / 2022-07-20
+
+### Fixed
+* Add synthetics results api replay only tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1595
+### Added
+* Add estimated ingested spans to usage attribution by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1581
+* Add v2 Security monitoring signals triage operations. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1571
+* docs(dataviz): update Treemap widget definition with deprecated properties + updated description [VIZZ-2305] by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1596
+* Add hourly usage v2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1577
+* Add metrics field in the RuleQuery by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1578
+### Changed
+* Add description of metric type enums by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1583
+* remove x-unstable property for usage attribution endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1594
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.15.1...v1.16.0
+
 ## 1.15.1 / 2022-07-11
 
 ### Fixed
