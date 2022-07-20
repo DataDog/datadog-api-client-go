@@ -47,6 +47,7 @@ func main() {
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				DistinctFields: []string{},
 				GroupByFields:  []string{},
+				Metrics:        []string{},
 			},
 		},
 		Tags:    []string{},
