@@ -24,7 +24,6 @@ type UsageMeteringApi common.Service
 
 type apiGetDailyCustomReportsRequest struct {
 	ctx        _context.Context
-	Api        *UsageMeteringApi
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -71,7 +70,6 @@ func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetD
 
 func (a *UsageMeteringApi) buildGetDailyCustomReportsRequest(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (apiGetDailyCustomReportsRequest, error) {
 	req := apiGetDailyCustomReportsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -97,7 +95,7 @@ func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetD
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getDailyCustomReportsExecute(req)
+	return a.getDailyCustomReportsExecute(req)
 }
 
 // getDailyCustomReportsExecute executes the request.
@@ -109,7 +107,7 @@ func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomRepor
 	)
 
 	operationId := "v1.GetDailyCustomReports"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -223,7 +221,6 @@ func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomRepor
 
 type apiGetHourlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	Api                *UsageMeteringApi
 	startHr            *time.Time
 	usageType          *HourlyUsageAttributionUsageType
 	endHr              *time.Time
@@ -272,7 +269,6 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(inc
 
 func (a *UsageMeteringApi) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
 	req := apiGetHourlyUsageAttributionRequest{
-		Api:       a,
 		ctx:       ctx,
 		startHr:   &startHr,
 		usageType: &usageType,
@@ -314,7 +310,7 @@ func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, start
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getHourlyUsageAttributionExecute(req)
+	return a.getHourlyUsageAttributionExecute(req)
 }
 
 // getHourlyUsageAttributionExecute executes the request.
@@ -441,7 +437,6 @@ func (a *UsageMeteringApi) getHourlyUsageAttributionExecute(r apiGetHourlyUsageA
 
 type apiGetIncidentManagementRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -465,7 +460,6 @@ func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *Ge
 
 func (a *UsageMeteringApi) buildGetIncidentManagementRequest(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (apiGetIncidentManagementRequest, error) {
 	req := apiGetIncidentManagementRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -489,7 +483,7 @@ func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr t
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getIncidentManagementExecute(req)
+	return a.getIncidentManagementExecute(req)
 }
 
 // getIncidentManagementExecute executes the request.
@@ -612,7 +606,6 @@ func (a *UsageMeteringApi) getIncidentManagementExecute(r apiGetIncidentManageme
 
 type apiGetIngestedSpansRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -636,7 +629,6 @@ func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetInge
 
 func (a *UsageMeteringApi) buildGetIngestedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (apiGetIngestedSpansRequest, error) {
 	req := apiGetIngestedSpansRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -660,7 +652,7 @@ func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.T
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getIngestedSpansExecute(req)
+	return a.getIngestedSpansExecute(req)
 }
 
 // getIngestedSpansExecute executes the request.
@@ -783,7 +775,6 @@ func (a *UsageMeteringApi) getIngestedSpansExecute(r apiGetIngestedSpansRequest)
 
 type apiGetMonthlyCustomReportsRequest struct {
 	ctx        _context.Context
-	Api        *UsageMeteringApi
 	pageSize   *int64
 	pageNumber *int64
 	sortDir    *UsageSortDirection
@@ -830,7 +821,6 @@ func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *Ge
 
 func (a *UsageMeteringApi) buildGetMonthlyCustomReportsRequest(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (apiGetMonthlyCustomReportsRequest, error) {
 	req := apiGetMonthlyCustomReportsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -856,7 +846,7 @@ func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...Ge
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getMonthlyCustomReportsExecute(req)
+	return a.getMonthlyCustomReportsExecute(req)
 }
 
 // getMonthlyCustomReportsExecute executes the request.
@@ -868,7 +858,7 @@ func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomR
 	)
 
 	operationId := "v1.GetMonthlyCustomReports"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -982,7 +972,6 @@ func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomR
 
 type apiGetMonthlyUsageAttributionRequest struct {
 	ctx                _context.Context
-	Api                *UsageMeteringApi
 	startMonth         *time.Time
 	fields             *MonthlyUsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1047,7 +1036,6 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(in
 
 func (a *UsageMeteringApi) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
 	req := apiGetMonthlyUsageAttributionRequest{
-		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
@@ -1091,7 +1079,7 @@ func (a *UsageMeteringApi) GetMonthlyUsageAttribution(ctx _context.Context, star
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getMonthlyUsageAttributionExecute(req)
+	return a.getMonthlyUsageAttributionExecute(req)
 }
 
 // getMonthlyUsageAttributionExecute executes the request.
@@ -1224,13 +1212,11 @@ func (a *UsageMeteringApi) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsag
 
 type apiGetSpecifiedDailyCustomReportsRequest struct {
 	ctx      _context.Context
-	Api      *UsageMeteringApi
 	reportId string
 }
 
 func (a *UsageMeteringApi) buildGetSpecifiedDailyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedDailyCustomReportsRequest, error) {
 	req := apiGetSpecifiedDailyCustomReportsRequest{
-		Api:      a,
 		ctx:      ctx,
 		reportId: reportId,
 	}
@@ -1246,7 +1232,7 @@ func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSpecifiedDailyCustomReportsExecute(req)
+	return a.getSpecifiedDailyCustomReportsExecute(req)
 }
 
 // getSpecifiedDailyCustomReportsExecute executes the request.
@@ -1258,7 +1244,7 @@ func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifi
 	)
 
 	operationId := "v1.GetSpecifiedDailyCustomReports"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -1370,13 +1356,11 @@ func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifi
 
 type apiGetSpecifiedMonthlyCustomReportsRequest struct {
 	ctx      _context.Context
-	Api      *UsageMeteringApi
 	reportId string
 }
 
 func (a *UsageMeteringApi) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _context.Context, reportId string) (apiGetSpecifiedMonthlyCustomReportsRequest, error) {
 	req := apiGetSpecifiedMonthlyCustomReportsRequest{
-		Api:      a,
 		ctx:      ctx,
 		reportId: reportId,
 	}
@@ -1392,7 +1376,7 @@ func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSpecifiedMonthlyCustomReportsExecute(req)
+	return a.getSpecifiedMonthlyCustomReportsExecute(req)
 }
 
 // getSpecifiedMonthlyCustomReportsExecute executes the request.
@@ -1404,7 +1388,7 @@ func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpeci
 	)
 
 	operationId := "v1.GetSpecifiedMonthlyCustomReports"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -1525,7 +1509,6 @@ func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpeci
 
 type apiGetUsageAnalyzedLogsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -1549,7 +1532,6 @@ func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *Get
 
 func (a *UsageMeteringApi) buildGetUsageAnalyzedLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (apiGetUsageAnalyzedLogsRequest, error) {
 	req := apiGetUsageAnalyzedLogsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -1573,7 +1555,7 @@ func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageAnalyzedLogsExecute(req)
+	return a.getUsageAnalyzedLogsExecute(req)
 }
 
 // getUsageAnalyzedLogsExecute executes the request.
@@ -1696,7 +1678,6 @@ func (a *UsageMeteringApi) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogs
 
 type apiGetUsageAttributionRequest struct {
 	ctx                _context.Context
-	Api                *UsageMeteringApi
 	startMonth         *time.Time
 	fields             *UsageAttributionSupportedMetrics
 	endMonth           *time.Time
@@ -1761,7 +1742,6 @@ func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsage
 
 func (a *UsageMeteringApi) buildGetUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (apiGetUsageAttributionRequest, error) {
 	req := apiGetUsageAttributionRequest{
-		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 		fields:     &fields,
@@ -1791,7 +1771,7 @@ func (a *UsageMeteringApi) GetUsageAttribution(ctx _context.Context, startMonth 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageAttributionExecute(req)
+	return a.getUsageAttributionExecute(req)
 }
 
 // getUsageAttributionExecute executes the request.
@@ -1803,7 +1783,7 @@ func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRe
 	)
 
 	operationId := "v1.GetUsageAttribution"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -1931,7 +1911,6 @@ func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRe
 
 type apiGetUsageAuditLogsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -1955,7 +1934,6 @@ func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 
 func (a *UsageMeteringApi) buildGetUsageAuditLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (apiGetUsageAuditLogsRequest, error) {
 	req := apiGetUsageAuditLogsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -1979,7 +1957,7 @@ func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageAuditLogsExecute(req)
+	return a.getUsageAuditLogsExecute(req)
 }
 
 // getUsageAuditLogsExecute executes the request.
@@ -2102,7 +2080,6 @@ func (a *UsageMeteringApi) getUsageAuditLogsExecute(r apiGetUsageAuditLogsReques
 
 type apiGetUsageBillableSummaryRequest struct {
 	ctx   _context.Context
-	Api   *UsageMeteringApi
 	month *time.Time
 }
 
@@ -2125,7 +2102,6 @@ func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *
 
 func (a *UsageMeteringApi) buildGetUsageBillableSummaryRequest(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (apiGetUsageBillableSummaryRequest, error) {
 	req := apiGetUsageBillableSummaryRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -2148,7 +2124,7 @@ func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...Ge
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageBillableSummaryExecute(req)
+	return a.getUsageBillableSummaryExecute(req)
 }
 
 // getUsageBillableSummaryExecute executes the request.
@@ -2267,7 +2243,6 @@ func (a *UsageMeteringApi) getUsageBillableSummaryExecute(r apiGetUsageBillableS
 
 type apiGetUsageCIAppRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -2291,7 +2266,6 @@ func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCI
 
 func (a *UsageMeteringApi) buildGetUsageCIAppRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (apiGetUsageCIAppRequest, error) {
 	req := apiGetUsageCIAppRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -2315,7 +2289,7 @@ func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageCIAppExecute(req)
+	return a.getUsageCIAppExecute(req)
 }
 
 // getUsageCIAppExecute executes the request.
@@ -2438,7 +2412,6 @@ func (a *UsageMeteringApi) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (Usag
 
 type apiGetUsageCWSRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -2462,7 +2435,6 @@ func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSO
 
 func (a *UsageMeteringApi) buildGetUsageCWSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (apiGetUsageCWSRequest, error) {
 	req := apiGetUsageCWSRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -2486,7 +2458,7 @@ func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageCWSExecute(req)
+	return a.getUsageCWSExecute(req)
 }
 
 // getUsageCWSExecute executes the request.
@@ -2609,7 +2581,6 @@ func (a *UsageMeteringApi) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWS
 
 type apiGetUsageCloudSecurityPostureManagementRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -2633,7 +2604,6 @@ func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(end
 
 func (a *UsageMeteringApi) buildGetUsageCloudSecurityPostureManagementRequest(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (apiGetUsageCloudSecurityPostureManagementRequest, error) {
 	req := apiGetUsageCloudSecurityPostureManagementRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -2657,7 +2627,7 @@ func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.C
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageCloudSecurityPostureManagementExecute(req)
+	return a.getUsageCloudSecurityPostureManagementExecute(req)
 }
 
 // getUsageCloudSecurityPostureManagementExecute executes the request.
@@ -2780,7 +2750,6 @@ func (a *UsageMeteringApi) getUsageCloudSecurityPostureManagementExecute(r apiGe
 
 type apiGetUsageDBMRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -2804,7 +2773,6 @@ func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMO
 
 func (a *UsageMeteringApi) buildGetUsageDBMRequest(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (apiGetUsageDBMRequest, error) {
 	req := apiGetUsageDBMRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -2828,7 +2796,7 @@ func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageDBMExecute(req)
+	return a.getUsageDBMExecute(req)
 }
 
 // getUsageDBMExecute executes the request.
@@ -2951,7 +2919,6 @@ func (a *UsageMeteringApi) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBM
 
 type apiGetUsageFargateRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -2975,7 +2942,6 @@ func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsage
 
 func (a *UsageMeteringApi) buildGetUsageFargateRequest(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (apiGetUsageFargateRequest, error) {
 	req := apiGetUsageFargateRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -2999,7 +2965,7 @@ func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageFargateExecute(req)
+	return a.getUsageFargateExecute(req)
 }
 
 // getUsageFargateExecute executes the request.
@@ -3122,7 +3088,6 @@ func (a *UsageMeteringApi) getUsageFargateExecute(r apiGetUsageFargateRequest) (
 
 type apiGetUsageHostsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -3146,7 +3111,6 @@ func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHo
 
 func (a *UsageMeteringApi) buildGetUsageHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (apiGetUsageHostsRequest, error) {
 	req := apiGetUsageHostsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -3170,7 +3134,7 @@ func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageHostsExecute(req)
+	return a.getUsageHostsExecute(req)
 }
 
 // getUsageHostsExecute executes the request.
@@ -3293,7 +3257,6 @@ func (a *UsageMeteringApi) getUsageHostsExecute(r apiGetUsageHostsRequest) (Usag
 
 type apiGetUsageIndexedSpansRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -3317,7 +3280,6 @@ func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *Get
 
 func (a *UsageMeteringApi) buildGetUsageIndexedSpansRequest(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (apiGetUsageIndexedSpansRequest, error) {
 	req := apiGetUsageIndexedSpansRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -3341,7 +3303,7 @@ func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageIndexedSpansExecute(req)
+	return a.getUsageIndexedSpansExecute(req)
 }
 
 // getUsageIndexedSpansExecute executes the request.
@@ -3464,7 +3426,6 @@ func (a *UsageMeteringApi) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpans
 
 type apiGetUsageInternetOfThingsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -3488,7 +3449,6 @@ func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) 
 
 func (a *UsageMeteringApi) buildGetUsageInternetOfThingsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (apiGetUsageInternetOfThingsRequest, error) {
 	req := apiGetUsageInternetOfThingsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -3512,7 +3472,7 @@ func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startH
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageInternetOfThingsExecute(req)
+	return a.getUsageInternetOfThingsExecute(req)
 }
 
 // getUsageInternetOfThingsExecute executes the request.
@@ -3635,7 +3595,6 @@ func (a *UsageMeteringApi) getUsageInternetOfThingsExecute(r apiGetUsageInternet
 
 type apiGetUsageLambdaRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -3659,7 +3618,6 @@ func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageL
 
 func (a *UsageMeteringApi) buildGetUsageLambdaRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (apiGetUsageLambdaRequest, error) {
 	req := apiGetUsageLambdaRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -3683,7 +3641,7 @@ func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Tim
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageLambdaExecute(req)
+	return a.getUsageLambdaExecute(req)
 }
 
 // getUsageLambdaExecute executes the request.
@@ -3806,7 +3764,6 @@ func (a *UsageMeteringApi) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (Us
 
 type apiGetUsageLogsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -3830,7 +3787,6 @@ func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLog
 
 func (a *UsageMeteringApi) buildGetUsageLogsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (apiGetUsageLogsRequest, error) {
 	req := apiGetUsageLogsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -3854,7 +3810,7 @@ func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageLogsExecute(req)
+	return a.getUsageLogsExecute(req)
 }
 
 // getUsageLogsExecute executes the request.
@@ -3977,7 +3933,6 @@ func (a *UsageMeteringApi) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageL
 
 type apiGetUsageLogsByIndexRequest struct {
 	ctx       _context.Context
-	Api       *UsageMeteringApi
 	startHr   *time.Time
 	endHr     *time.Time
 	indexName *[]string
@@ -4009,7 +3964,6 @@ func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string
 
 func (a *UsageMeteringApi) buildGetUsageLogsByIndexRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (apiGetUsageLogsByIndexRequest, error) {
 	req := apiGetUsageLogsByIndexRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4034,7 +3988,7 @@ func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr tim
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageLogsByIndexExecute(req)
+	return a.getUsageLogsByIndexExecute(req)
 }
 
 // getUsageLogsByIndexExecute executes the request.
@@ -4168,7 +4122,6 @@ func (a *UsageMeteringApi) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRe
 
 type apiGetUsageLogsByRetentionRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -4192,7 +4145,6 @@ func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *
 
 func (a *UsageMeteringApi) buildGetUsageLogsByRetentionRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (apiGetUsageLogsByRetentionRequest, error) {
 	req := apiGetUsageLogsByRetentionRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4216,7 +4168,7 @@ func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageLogsByRetentionExecute(req)
+	return a.getUsageLogsByRetentionExecute(req)
 }
 
 // getUsageLogsByRetentionExecute executes the request.
@@ -4339,7 +4291,6 @@ func (a *UsageMeteringApi) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRet
 
 type apiGetUsageNetworkFlowsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -4363,7 +4314,6 @@ func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *Get
 
 func (a *UsageMeteringApi) buildGetUsageNetworkFlowsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (apiGetUsageNetworkFlowsRequest, error) {
 	req := apiGetUsageNetworkFlowsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4387,7 +4337,7 @@ func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageNetworkFlowsExecute(req)
+	return a.getUsageNetworkFlowsExecute(req)
 }
 
 // getUsageNetworkFlowsExecute executes the request.
@@ -4510,7 +4460,6 @@ func (a *UsageMeteringApi) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlows
 
 type apiGetUsageNetworkHostsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -4534,7 +4483,6 @@ func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *Get
 
 func (a *UsageMeteringApi) buildGetUsageNetworkHostsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (apiGetUsageNetworkHostsRequest, error) {
 	req := apiGetUsageNetworkHostsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4558,7 +4506,7 @@ func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageNetworkHostsExecute(req)
+	return a.getUsageNetworkHostsExecute(req)
 }
 
 // getUsageNetworkHostsExecute executes the request.
@@ -4681,7 +4629,6 @@ func (a *UsageMeteringApi) getUsageNetworkHostsExecute(r apiGetUsageNetworkHosts
 
 type apiGetUsageOnlineArchiveRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -4705,7 +4652,6 @@ func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *Ge
 
 func (a *UsageMeteringApi) buildGetUsageOnlineArchiveRequest(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (apiGetUsageOnlineArchiveRequest, error) {
 	req := apiGetUsageOnlineArchiveRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4729,7 +4675,7 @@ func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr t
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageOnlineArchiveExecute(req)
+	return a.getUsageOnlineArchiveExecute(req)
 }
 
 // getUsageOnlineArchiveExecute executes the request.
@@ -4852,7 +4798,6 @@ func (a *UsageMeteringApi) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchi
 
 type apiGetUsageProfilingRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -4876,7 +4821,6 @@ func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 
 func (a *UsageMeteringApi) buildGetUsageProfilingRequest(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (apiGetUsageProfilingRequest, error) {
 	req := apiGetUsageProfilingRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -4900,7 +4844,7 @@ func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageProfilingExecute(req)
+	return a.getUsageProfilingExecute(req)
 }
 
 // getUsageProfilingExecute executes the request.
@@ -5023,7 +4967,6 @@ func (a *UsageMeteringApi) getUsageProfilingExecute(r apiGetUsageProfilingReques
 
 type apiGetUsageRumSessionsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 	typeVar *string
@@ -5055,7 +4998,6 @@ func (r *GetUsageRumSessionsOptionalParameters) WithType(typeVar string) *GetUsa
 
 func (a *UsageMeteringApi) buildGetUsageRumSessionsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (apiGetUsageRumSessionsRequest, error) {
 	req := apiGetUsageRumSessionsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -5080,7 +5022,7 @@ func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr tim
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageRumSessionsExecute(req)
+	return a.getUsageRumSessionsExecute(req)
 }
 
 // getUsageRumSessionsExecute executes the request.
@@ -5206,7 +5148,6 @@ func (a *UsageMeteringApi) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRe
 
 type apiGetUsageRumUnitsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -5230,7 +5171,6 @@ func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsag
 
 func (a *UsageMeteringApi) buildGetUsageRumUnitsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (apiGetUsageRumUnitsRequest, error) {
 	req := apiGetUsageRumUnitsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -5254,7 +5194,7 @@ func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.T
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageRumUnitsExecute(req)
+	return a.getUsageRumUnitsExecute(req)
 }
 
 // getUsageRumUnitsExecute executes the request.
@@ -5377,7 +5317,6 @@ func (a *UsageMeteringApi) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest)
 
 type apiGetUsageSDSRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -5401,7 +5340,6 @@ func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSO
 
 func (a *UsageMeteringApi) buildGetUsageSDSRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (apiGetUsageSDSRequest, error) {
 	req := apiGetUsageSDSRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -5425,7 +5363,7 @@ func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSDSExecute(req)
+	return a.getUsageSDSExecute(req)
 }
 
 // getUsageSDSExecute executes the request.
@@ -5548,7 +5486,6 @@ func (a *UsageMeteringApi) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDS
 
 type apiGetUsageSNMPRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -5572,7 +5509,6 @@ func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNM
 
 func (a *UsageMeteringApi) buildGetUsageSNMPRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (apiGetUsageSNMPRequest, error) {
 	req := apiGetUsageSNMPRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -5596,7 +5532,7 @@ func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSNMPExecute(req)
+	return a.getUsageSNMPExecute(req)
 }
 
 // getUsageSNMPExecute executes the request.
@@ -5719,7 +5655,6 @@ func (a *UsageMeteringApi) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageS
 
 type apiGetUsageSummaryRequest struct {
 	ctx               _context.Context
-	Api               *UsageMeteringApi
 	startMonth        *time.Time
 	endMonth          *time.Time
 	includeOrgDetails *bool
@@ -5751,7 +5686,6 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDeta
 
 func (a *UsageMeteringApi) buildGetUsageSummaryRequest(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (apiGetUsageSummaryRequest, error) {
 	req := apiGetUsageSummaryRequest{
-		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 	}
@@ -5776,7 +5710,7 @@ func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSummaryExecute(req)
+	return a.getUsageSummaryExecute(req)
 }
 
 // getUsageSummaryExecute executes the request.
@@ -5902,7 +5836,6 @@ func (a *UsageMeteringApi) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (
 
 type apiGetUsageSyntheticsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -5926,7 +5859,6 @@ func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 
 func (a *UsageMeteringApi) buildGetUsageSyntheticsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (apiGetUsageSyntheticsRequest, error) {
 	req := apiGetUsageSyntheticsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -5950,7 +5882,7 @@ func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSyntheticsExecute(req)
+	return a.getUsageSyntheticsExecute(req)
 }
 
 // getUsageSyntheticsExecute executes the request.
@@ -6073,7 +6005,6 @@ func (a *UsageMeteringApi) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequ
 
 type apiGetUsageSyntheticsAPIRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -6097,7 +6028,6 @@ func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *Ge
 
 func (a *UsageMeteringApi) buildGetUsageSyntheticsAPIRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (apiGetUsageSyntheticsAPIRequest, error) {
 	req := apiGetUsageSyntheticsAPIRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -6121,7 +6051,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr t
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSyntheticsAPIExecute(req)
+	return a.getUsageSyntheticsAPIExecute(req)
 }
 
 // getUsageSyntheticsAPIExecute executes the request.
@@ -6244,7 +6174,6 @@ func (a *UsageMeteringApi) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsA
 
 type apiGetUsageSyntheticsBrowserRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -6268,7 +6197,6 @@ func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time)
 
 func (a *UsageMeteringApi) buildGetUsageSyntheticsBrowserRequest(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (apiGetUsageSyntheticsBrowserRequest, error) {
 	req := apiGetUsageSyntheticsBrowserRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -6292,7 +6220,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, start
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageSyntheticsBrowserExecute(req)
+	return a.getUsageSyntheticsBrowserExecute(req)
 }
 
 // getUsageSyntheticsBrowserExecute executes the request.
@@ -6415,7 +6343,6 @@ func (a *UsageMeteringApi) getUsageSyntheticsBrowserExecute(r apiGetUsageSynthet
 
 type apiGetUsageTimeseriesRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -6439,7 +6366,6 @@ func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 
 func (a *UsageMeteringApi) buildGetUsageTimeseriesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (apiGetUsageTimeseriesRequest, error) {
 	req := apiGetUsageTimeseriesRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -6463,7 +6389,7 @@ func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageTimeseriesExecute(req)
+	return a.getUsageTimeseriesExecute(req)
 }
 
 // getUsageTimeseriesExecute executes the request.
@@ -6586,7 +6512,6 @@ func (a *UsageMeteringApi) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequ
 
 type apiGetUsageTopAvgMetricsRequest struct {
 	ctx          _context.Context
-	Api          *UsageMeteringApi
 	month        *time.Time
 	day          *time.Time
 	names        *[]string
@@ -6641,7 +6566,6 @@ func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId 
 
 func (a *UsageMeteringApi) buildGetUsageTopAvgMetricsRequest(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (apiGetUsageTopAvgMetricsRequest, error) {
 	req := apiGetUsageTopAvgMetricsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -6668,7 +6592,7 @@ func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetU
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageTopAvgMetricsExecute(req)
+	return a.getUsageTopAvgMetricsExecute(req)
 }
 
 // getUsageTopAvgMetricsExecute executes the request.

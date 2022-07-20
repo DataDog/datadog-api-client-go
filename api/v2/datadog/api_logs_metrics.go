@@ -20,13 +20,11 @@ type LogsMetricsApi common.Service
 
 type apiCreateLogsMetricRequest struct {
 	ctx  _context.Context
-	Api  *LogsMetricsApi
 	body *LogsMetricCreateRequest
 }
 
 func (a *LogsMetricsApi) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
 	req := apiCreateLogsMetricRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -43,7 +41,7 @@ func (a *LogsMetricsApi) CreateLogsMetric(ctx _context.Context, body LogsMetricC
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createLogsMetricExecute(req)
+	return a.createLogsMetricExecute(req)
 }
 
 // createLogsMetricExecute executes the request.
@@ -174,13 +172,11 @@ func (a *LogsMetricsApi) createLogsMetricExecute(r apiCreateLogsMetricRequest) (
 
 type apiDeleteLogsMetricRequest struct {
 	ctx      _context.Context
-	Api      *LogsMetricsApi
 	metricId string
 }
 
 func (a *LogsMetricsApi) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
 	req := apiDeleteLogsMetricRequest{
-		Api:      a,
 		ctx:      ctx,
 		metricId: metricId,
 	}
@@ -195,7 +191,7 @@ func (a *LogsMetricsApi) DeleteLogsMetric(ctx _context.Context, metricId string)
 		return nil, err
 	}
 
-	return req.Api.deleteLogsMetricExecute(req)
+	return a.deleteLogsMetricExecute(req)
 }
 
 // deleteLogsMetricExecute executes the request.
@@ -302,13 +298,11 @@ func (a *LogsMetricsApi) deleteLogsMetricExecute(r apiDeleteLogsMetricRequest) (
 
 type apiGetLogsMetricRequest struct {
 	ctx      _context.Context
-	Api      *LogsMetricsApi
 	metricId string
 }
 
 func (a *LogsMetricsApi) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
 	req := apiGetLogsMetricRequest{
-		Api:      a,
 		ctx:      ctx,
 		metricId: metricId,
 	}
@@ -324,7 +318,7 @@ func (a *LogsMetricsApi) GetLogsMetric(ctx _context.Context, metricId string) (L
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsMetricExecute(req)
+	return a.getLogsMetricExecute(req)
 }
 
 // getLogsMetricExecute executes the request.
@@ -441,12 +435,10 @@ func (a *LogsMetricsApi) getLogsMetricExecute(r apiGetLogsMetricRequest) (LogsMe
 
 type apiListLogsMetricsRequest struct {
 	ctx _context.Context
-	Api *LogsMetricsApi
 }
 
 func (a *LogsMetricsApi) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
 	req := apiListLogsMetricsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -461,7 +453,7 @@ func (a *LogsMetricsApi) ListLogsMetrics(ctx _context.Context) (LogsMetricsRespo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsMetricsExecute(req)
+	return a.listLogsMetricsExecute(req)
 }
 
 // listLogsMetricsExecute executes the request.
@@ -568,14 +560,12 @@ func (a *LogsMetricsApi) listLogsMetricsExecute(r apiListLogsMetricsRequest) (Lo
 
 type apiUpdateLogsMetricRequest struct {
 	ctx      _context.Context
-	Api      *LogsMetricsApi
 	metricId string
 	body     *LogsMetricUpdateRequest
 }
 
 func (a *LogsMetricsApi) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
 	req := apiUpdateLogsMetricRequest{
-		Api:      a,
 		ctx:      ctx,
 		metricId: metricId,
 		body:     &body,
@@ -593,7 +583,7 @@ func (a *LogsMetricsApi) UpdateLogsMetric(ctx _context.Context, metricId string,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsMetricExecute(req)
+	return a.updateLogsMetricExecute(req)
 }
 
 // updateLogsMetricExecute executes the request.

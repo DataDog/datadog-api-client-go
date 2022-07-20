@@ -20,7 +20,6 @@ type AuditApi common.Service
 
 type apiListAuditLogsRequest struct {
 	ctx         _context.Context
-	Api         *AuditApi
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -83,7 +82,6 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 
 func (a *AuditApi) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
 	req := apiListAuditLogsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -116,7 +114,7 @@ func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptiona
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAuditLogsExecute(req)
+	return a.listAuditLogsExecute(req)
 }
 
 // ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
@@ -139,7 +137,7 @@ func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAu
 				break
 			}
 
-			resp, _, err := req.Api.listAuditLogsExecute(req)
+			resp, _, err := a.listAuditLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -311,7 +309,6 @@ func (a *AuditApi) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEve
 
 type apiSearchAuditLogsRequest struct {
 	ctx  _context.Context
-	Api  *AuditApi
 	body *AuditLogsSearchEventsRequest
 }
 
@@ -334,7 +331,6 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 
 func (a *AuditApi) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
 	req := apiSearchAuditLogsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -362,7 +358,7 @@ func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOpt
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.searchAuditLogsExecute(req)
+	return a.searchAuditLogsExecute(req)
 }
 
 // SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
@@ -391,7 +387,7 @@ func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...Sear
 				break
 			}
 
-			resp, _, err := req.Api.searchAuditLogsExecute(req)
+			resp, _, err := a.searchAuditLogsExecute(req)
 			if err != nil {
 				break
 			}

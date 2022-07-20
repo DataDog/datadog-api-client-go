@@ -20,13 +20,11 @@ type WebhooksIntegrationApi common.Service
 
 type apiCreateWebhooksIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *WebhooksIntegrationApi
 	body *WebhooksIntegration
 }
 
 func (a *WebhooksIntegrationApi) buildCreateWebhooksIntegrationRequest(ctx _context.Context, body WebhooksIntegration) (apiCreateWebhooksIntegrationRequest, error) {
 	req := apiCreateWebhooksIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *WebhooksIntegrationApi) CreateWebhooksIntegration(ctx _context.Context,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createWebhooksIntegrationExecute(req)
+	return a.createWebhooksIntegrationExecute(req)
 }
 
 // createWebhooksIntegrationExecute executes the request.
@@ -164,13 +162,11 @@ func (a *WebhooksIntegrationApi) createWebhooksIntegrationExecute(r apiCreateWeb
 
 type apiCreateWebhooksIntegrationCustomVariableRequest struct {
 	ctx  _context.Context
-	Api  *WebhooksIntegrationApi
 	body *WebhooksIntegrationCustomVariable
 }
 
 func (a *WebhooksIntegrationApi) buildCreateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, body WebhooksIntegrationCustomVariable) (apiCreateWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiCreateWebhooksIntegrationCustomVariableRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -186,7 +182,7 @@ func (a *WebhooksIntegrationApi) CreateWebhooksIntegrationCustomVariable(ctx _co
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createWebhooksIntegrationCustomVariableExecute(req)
+	return a.createWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // createWebhooksIntegrationCustomVariableExecute executes the request.
@@ -308,13 +304,11 @@ func (a *WebhooksIntegrationApi) createWebhooksIntegrationCustomVariableExecute(
 
 type apiDeleteWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	Api         *WebhooksIntegrationApi
 	webhookName string
 }
 
 func (a *WebhooksIntegrationApi) buildDeleteWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiDeleteWebhooksIntegrationRequest, error) {
 	req := apiDeleteWebhooksIntegrationRequest{
-		Api:         a,
 		ctx:         ctx,
 		webhookName: webhookName,
 	}
@@ -329,7 +323,7 @@ func (a *WebhooksIntegrationApi) DeleteWebhooksIntegration(ctx _context.Context,
 		return nil, err
 	}
 
-	return req.Api.deleteWebhooksIntegrationExecute(req)
+	return a.deleteWebhooksIntegrationExecute(req)
 }
 
 // deleteWebhooksIntegrationExecute executes the request.
@@ -436,13 +430,11 @@ func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationExecute(r apiDeleteWeb
 
 type apiDeleteWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	Api                *WebhooksIntegrationApi
 	customVariableName string
 }
 
 func (a *WebhooksIntegrationApi) buildDeleteWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiDeleteWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiDeleteWebhooksIntegrationCustomVariableRequest{
-		Api:                a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 	}
@@ -457,7 +449,7 @@ func (a *WebhooksIntegrationApi) DeleteWebhooksIntegrationCustomVariable(ctx _co
 		return nil, err
 	}
 
-	return req.Api.deleteWebhooksIntegrationCustomVariableExecute(req)
+	return a.deleteWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // deleteWebhooksIntegrationCustomVariableExecute executes the request.
@@ -564,13 +556,11 @@ func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationCustomVariableExecute(
 
 type apiGetWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	Api         *WebhooksIntegrationApi
 	webhookName string
 }
 
 func (a *WebhooksIntegrationApi) buildGetWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiGetWebhooksIntegrationRequest, error) {
 	req := apiGetWebhooksIntegrationRequest{
-		Api:         a,
 		ctx:         ctx,
 		webhookName: webhookName,
 	}
@@ -586,7 +576,7 @@ func (a *WebhooksIntegrationApi) GetWebhooksIntegration(ctx _context.Context, we
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getWebhooksIntegrationExecute(req)
+	return a.getWebhooksIntegrationExecute(req)
 }
 
 // getWebhooksIntegrationExecute executes the request.
@@ -712,13 +702,11 @@ func (a *WebhooksIntegrationApi) getWebhooksIntegrationExecute(r apiGetWebhooksI
 
 type apiGetWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	Api                *WebhooksIntegrationApi
 	customVariableName string
 }
 
 func (a *WebhooksIntegrationApi) buildGetWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiGetWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiGetWebhooksIntegrationCustomVariableRequest{
-		Api:                a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 	}
@@ -737,7 +725,7 @@ func (a *WebhooksIntegrationApi) GetWebhooksIntegrationCustomVariable(ctx _conte
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getWebhooksIntegrationCustomVariableExecute(req)
+	return a.getWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // getWebhooksIntegrationCustomVariableExecute executes the request.
@@ -863,14 +851,12 @@ func (a *WebhooksIntegrationApi) getWebhooksIntegrationCustomVariableExecute(r a
 
 type apiUpdateWebhooksIntegrationRequest struct {
 	ctx         _context.Context
-	Api         *WebhooksIntegrationApi
 	webhookName string
 	body        *WebhooksIntegrationUpdateRequest
 }
 
 func (a *WebhooksIntegrationApi) buildUpdateWebhooksIntegrationRequest(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (apiUpdateWebhooksIntegrationRequest, error) {
 	req := apiUpdateWebhooksIntegrationRequest{
-		Api:         a,
 		ctx:         ctx,
 		webhookName: webhookName,
 		body:        &body,
@@ -887,7 +873,7 @@ func (a *WebhooksIntegrationApi) UpdateWebhooksIntegration(ctx _context.Context,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateWebhooksIntegrationExecute(req)
+	return a.updateWebhooksIntegrationExecute(req)
 }
 
 // updateWebhooksIntegrationExecute executes the request.
@@ -1019,14 +1005,12 @@ func (a *WebhooksIntegrationApi) updateWebhooksIntegrationExecute(r apiUpdateWeb
 
 type apiUpdateWebhooksIntegrationCustomVariableRequest struct {
 	ctx                _context.Context
-	Api                *WebhooksIntegrationApi
 	customVariableName string
 	body               *WebhooksIntegrationCustomVariableUpdateRequest
 }
 
 func (a *WebhooksIntegrationApi) buildUpdateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (apiUpdateWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiUpdateWebhooksIntegrationCustomVariableRequest{
-		Api:                a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 		body:               &body,
@@ -1043,7 +1027,7 @@ func (a *WebhooksIntegrationApi) UpdateWebhooksIntegrationCustomVariable(ctx _co
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateWebhooksIntegrationCustomVariableExecute(req)
+	return a.updateWebhooksIntegrationCustomVariableExecute(req)
 }
 
 // updateWebhooksIntegrationCustomVariableExecute executes the request.

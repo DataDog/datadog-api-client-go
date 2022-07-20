@@ -19,12 +19,10 @@ type IPRangesApi common.Service
 
 type apiGetIPRangesRequest struct {
 	ctx _context.Context
-	Api *IPRangesApi
 }
 
 func (a *IPRangesApi) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
 	req := apiGetIPRangesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -39,7 +37,7 @@ func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Res
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getIPRangesExecute(req)
+	return a.getIPRangesExecute(req)
 }
 
 // getIPRangesExecute executes the request.

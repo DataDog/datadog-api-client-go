@@ -20,13 +20,11 @@ type MetricsApi common.Service
 
 type apiGetMetricMetadataRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 }
 
 func (a *MetricsApi) buildGetMetricMetadataRequest(ctx _context.Context, metricName string) (apiGetMetricMetadataRequest, error) {
 	req := apiGetMetricMetadataRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -42,7 +40,7 @@ func (a *MetricsApi) GetMetricMetadata(ctx _context.Context, metricName string) 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getMetricMetadataExecute(req)
+	return a.getMetricMetadataExecute(req)
 }
 
 // getMetricMetadataExecute executes the request.
@@ -159,7 +157,6 @@ func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (Me
 
 type apiListActiveMetricsRequest struct {
 	ctx       _context.Context
-	Api       *MetricsApi
 	from      *int64
 	host      *string
 	tagFilter *string
@@ -191,7 +188,6 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 
 func (a *MetricsApi) buildListActiveMetricsRequest(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (apiListActiveMetricsRequest, error) {
 	req := apiListActiveMetricsRequest{
-		Api:  a,
 		ctx:  ctx,
 		from: &from,
 	}
@@ -216,7 +212,7 @@ func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...Li
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listActiveMetricsExecute(req)
+	return a.listActiveMetricsExecute(req)
 }
 
 // listActiveMetricsExecute executes the request.
@@ -342,13 +338,11 @@ func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (Me
 
 type apiListMetricsRequest struct {
 	ctx _context.Context
-	Api *MetricsApi
 	q   *string
 }
 
 func (a *MetricsApi) buildListMetricsRequest(ctx _context.Context, q string) (apiListMetricsRequest, error) {
 	req := apiListMetricsRequest{
-		Api: a,
 		ctx: ctx,
 		q:   &q,
 	}
@@ -364,7 +358,7 @@ func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchRe
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listMetricsExecute(req)
+	return a.listMetricsExecute(req)
 }
 
 // listMetricsExecute executes the request.
@@ -484,7 +478,6 @@ func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchRe
 
 type apiQueryMetricsRequest struct {
 	ctx   _context.Context
-	Api   *MetricsApi
 	from  *int64
 	to    *int64
 	query *string
@@ -492,7 +485,6 @@ type apiQueryMetricsRequest struct {
 
 func (a *MetricsApi) buildQueryMetricsRequest(ctx _context.Context, from int64, to int64, query string) (apiQueryMetricsRequest, error) {
 	req := apiQueryMetricsRequest{
-		Api:   a,
 		ctx:   ctx,
 		from:  &from,
 		to:    &to,
@@ -510,7 +502,7 @@ func (a *MetricsApi) QueryMetrics(ctx _context.Context, from int64, to int64, qu
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.queryMetricsExecute(req)
+	return a.queryMetricsExecute(req)
 }
 
 // queryMetricsExecute executes the request.
@@ -638,7 +630,6 @@ func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQuery
 
 type apiSubmitDistributionPointsRequest struct {
 	ctx             _context.Context
-	Api             *MetricsApi
 	body            *DistributionPointsPayload
 	contentEncoding *DistributionPointsContentEncoding
 }
@@ -662,7 +653,6 @@ func (r *SubmitDistributionPointsOptionalParameters) WithContentEncoding(content
 
 func (a *MetricsApi) buildSubmitDistributionPointsRequest(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (apiSubmitDistributionPointsRequest, error) {
 	req := apiSubmitDistributionPointsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -686,7 +676,7 @@ func (a *MetricsApi) SubmitDistributionPoints(ctx _context.Context, body Distrib
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitDistributionPointsExecute(req)
+	return a.submitDistributionPointsExecute(req)
 }
 
 // submitDistributionPointsExecute executes the request.
@@ -816,7 +806,6 @@ func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPoin
 
 type apiSubmitMetricsRequest struct {
 	ctx             _context.Context
-	Api             *MetricsApi
 	body            *MetricsPayload
 	contentEncoding *MetricContentEncoding
 }
@@ -840,7 +829,6 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 
 func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -874,7 +862,7 @@ func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricsPayload, o 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitMetricsExecute(req)
+	return a.submitMetricsExecute(req)
 }
 
 // submitMetricsExecute executes the request.
@@ -1004,14 +992,12 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 
 type apiUpdateMetricMetadataRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 	body       *MetricMetadata
 }
 
 func (a *MetricsApi) buildUpdateMetricMetadataRequest(ctx _context.Context, metricName string, body MetricMetadata) (apiUpdateMetricMetadataRequest, error) {
 	req := apiUpdateMetricMetadataRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -1028,7 +1014,7 @@ func (a *MetricsApi) UpdateMetricMetadata(ctx _context.Context, metricName strin
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateMetricMetadataExecute(req)
+	return a.updateMetricMetadataExecute(req)
 }
 
 // updateMetricMetadataExecute executes the request.

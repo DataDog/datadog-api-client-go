@@ -19,13 +19,11 @@ type LogsApi common.Service
 
 type apiListLogsRequest struct {
 	ctx  _context.Context
-	Api  *LogsApi
 	body *LogsListRequest
 }
 
 func (a *LogsApi) buildListLogsRequest(ctx _context.Context, body LogsListRequest) (apiListLogsRequest, error) {
 	req := apiListLogsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -49,7 +47,7 @@ func (a *LogsApi) ListLogs(ctx _context.Context, body LogsListRequest) (LogsList
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsExecute(req)
+	return a.listLogsExecute(req)
 }
 
 // listLogsExecute executes the request.
@@ -171,7 +169,6 @@ func (a *LogsApi) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_net
 
 type apiSubmitLogRequest struct {
 	ctx             _context.Context
-	Api             *LogsApi
 	body            *[]HTTPLogItem
 	contentEncoding *ContentEncoding
 	ddtags          *string
@@ -203,7 +200,6 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 
 func (a *LogsApi) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
 	req := apiSubmitLogRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -246,7 +242,7 @@ func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...Submi
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitLogExecute(req)
+	return a.submitLogExecute(req)
 }
 
 // submitLogExecute executes the request.

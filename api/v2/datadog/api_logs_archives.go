@@ -20,14 +20,12 @@ type LogsArchivesApi common.Service
 
 type apiAddReadRoleToArchiveRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 	body      *RelationshipToRole
 }
 
 func (a *LogsArchivesApi) buildAddReadRoleToArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiAddReadRoleToArchiveRequest, error) {
 	req := apiAddReadRoleToArchiveRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 		body:      &body,
@@ -43,7 +41,7 @@ func (a *LogsArchivesApi) AddReadRoleToArchive(ctx _context.Context, archiveId s
 		return nil, err
 	}
 
-	return req.Api.addReadRoleToArchiveExecute(req)
+	return a.addReadRoleToArchiveExecute(req)
 }
 
 // addReadRoleToArchiveExecute executes the request.
@@ -165,13 +163,11 @@ func (a *LogsArchivesApi) addReadRoleToArchiveExecute(r apiAddReadRoleToArchiveR
 
 type apiCreateLogsArchiveRequest struct {
 	ctx  _context.Context
-	Api  *LogsArchivesApi
 	body *LogsArchiveCreateRequest
 }
 
 func (a *LogsArchivesApi) buildCreateLogsArchiveRequest(ctx _context.Context, body LogsArchiveCreateRequest) (apiCreateLogsArchiveRequest, error) {
 	req := apiCreateLogsArchiveRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -187,7 +183,7 @@ func (a *LogsArchivesApi) CreateLogsArchive(ctx _context.Context, body LogsArchi
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createLogsArchiveExecute(req)
+	return a.createLogsArchiveExecute(req)
 }
 
 // createLogsArchiveExecute executes the request.
@@ -309,13 +305,11 @@ func (a *LogsArchivesApi) createLogsArchiveExecute(r apiCreateLogsArchiveRequest
 
 type apiDeleteLogsArchiveRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 }
 
 func (a *LogsArchivesApi) buildDeleteLogsArchiveRequest(ctx _context.Context, archiveId string) (apiDeleteLogsArchiveRequest, error) {
 	req := apiDeleteLogsArchiveRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 	}
@@ -330,7 +324,7 @@ func (a *LogsArchivesApi) DeleteLogsArchive(ctx _context.Context, archiveId stri
 		return nil, err
 	}
 
-	return req.Api.deleteLogsArchiveExecute(req)
+	return a.deleteLogsArchiveExecute(req)
 }
 
 // deleteLogsArchiveExecute executes the request.
@@ -446,13 +440,11 @@ func (a *LogsArchivesApi) deleteLogsArchiveExecute(r apiDeleteLogsArchiveRequest
 
 type apiGetLogsArchiveRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 }
 
 func (a *LogsArchivesApi) buildGetLogsArchiveRequest(ctx _context.Context, archiveId string) (apiGetLogsArchiveRequest, error) {
 	req := apiGetLogsArchiveRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 	}
@@ -468,7 +460,7 @@ func (a *LogsArchivesApi) GetLogsArchive(ctx _context.Context, archiveId string)
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsArchiveExecute(req)
+	return a.getLogsArchiveExecute(req)
 }
 
 // getLogsArchiveExecute executes the request.
@@ -594,12 +586,10 @@ func (a *LogsArchivesApi) getLogsArchiveExecute(r apiGetLogsArchiveRequest) (Log
 
 type apiGetLogsArchiveOrderRequest struct {
 	ctx _context.Context
-	Api *LogsArchivesApi
 }
 
 func (a *LogsArchivesApi) buildGetLogsArchiveOrderRequest(ctx _context.Context) (apiGetLogsArchiveOrderRequest, error) {
 	req := apiGetLogsArchiveOrderRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -615,7 +605,7 @@ func (a *LogsArchivesApi) GetLogsArchiveOrder(ctx _context.Context) (LogsArchive
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsArchiveOrderExecute(req)
+	return a.getLogsArchiveOrderExecute(req)
 }
 
 // getLogsArchiveOrderExecute executes the request.
@@ -722,13 +712,11 @@ func (a *LogsArchivesApi) getLogsArchiveOrderExecute(r apiGetLogsArchiveOrderReq
 
 type apiListArchiveReadRolesRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 }
 
 func (a *LogsArchivesApi) buildListArchiveReadRolesRequest(ctx _context.Context, archiveId string) (apiListArchiveReadRolesRequest, error) {
 	req := apiListArchiveReadRolesRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 	}
@@ -744,7 +732,7 @@ func (a *LogsArchivesApi) ListArchiveReadRoles(ctx _context.Context, archiveId s
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listArchiveReadRolesExecute(req)
+	return a.listArchiveReadRolesExecute(req)
 }
 
 // listArchiveReadRolesExecute executes the request.
@@ -870,12 +858,10 @@ func (a *LogsArchivesApi) listArchiveReadRolesExecute(r apiListArchiveReadRolesR
 
 type apiListLogsArchivesRequest struct {
 	ctx _context.Context
-	Api *LogsArchivesApi
 }
 
 func (a *LogsArchivesApi) buildListLogsArchivesRequest(ctx _context.Context) (apiListLogsArchivesRequest, error) {
 	req := apiListLogsArchivesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -890,7 +876,7 @@ func (a *LogsArchivesApi) ListLogsArchives(ctx _context.Context) (LogsArchives, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsArchivesExecute(req)
+	return a.listLogsArchivesExecute(req)
 }
 
 // listLogsArchivesExecute executes the request.
@@ -997,14 +983,12 @@ func (a *LogsArchivesApi) listLogsArchivesExecute(r apiListLogsArchivesRequest) 
 
 type apiRemoveRoleFromArchiveRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 	body      *RelationshipToRole
 }
 
 func (a *LogsArchivesApi) buildRemoveRoleFromArchiveRequest(ctx _context.Context, archiveId string, body RelationshipToRole) (apiRemoveRoleFromArchiveRequest, error) {
 	req := apiRemoveRoleFromArchiveRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 		body:      &body,
@@ -1020,7 +1004,7 @@ func (a *LogsArchivesApi) RemoveRoleFromArchive(ctx _context.Context, archiveId 
 		return nil, err
 	}
 
-	return req.Api.removeRoleFromArchiveExecute(req)
+	return a.removeRoleFromArchiveExecute(req)
 }
 
 // removeRoleFromArchiveExecute executes the request.
@@ -1142,14 +1126,12 @@ func (a *LogsArchivesApi) removeRoleFromArchiveExecute(r apiRemoveRoleFromArchiv
 
 type apiUpdateLogsArchiveRequest struct {
 	ctx       _context.Context
-	Api       *LogsArchivesApi
 	archiveId string
 	body      *LogsArchiveCreateRequest
 }
 
 func (a *LogsArchivesApi) buildUpdateLogsArchiveRequest(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (apiUpdateLogsArchiveRequest, error) {
 	req := apiUpdateLogsArchiveRequest{
-		Api:       a,
 		ctx:       ctx,
 		archiveId: archiveId,
 		body:      &body,
@@ -1169,7 +1151,7 @@ func (a *LogsArchivesApi) UpdateLogsArchive(ctx _context.Context, archiveId stri
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsArchiveExecute(req)
+	return a.updateLogsArchiveExecute(req)
 }
 
 // updateLogsArchiveExecute executes the request.
@@ -1301,13 +1283,11 @@ func (a *LogsArchivesApi) updateLogsArchiveExecute(r apiUpdateLogsArchiveRequest
 
 type apiUpdateLogsArchiveOrderRequest struct {
 	ctx  _context.Context
-	Api  *LogsArchivesApi
 	body *LogsArchiveOrder
 }
 
 func (a *LogsArchivesApi) buildUpdateLogsArchiveOrderRequest(ctx _context.Context, body LogsArchiveOrder) (apiUpdateLogsArchiveOrderRequest, error) {
 	req := apiUpdateLogsArchiveOrderRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -1327,7 +1307,7 @@ func (a *LogsArchivesApi) UpdateLogsArchiveOrder(ctx _context.Context, body Logs
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsArchiveOrderExecute(req)
+	return a.updateLogsArchiveOrderExecute(req)
 }
 
 // updateLogsArchiveOrderExecute executes the request.

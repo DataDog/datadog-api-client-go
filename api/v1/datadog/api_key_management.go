@@ -20,13 +20,11 @@ type KeyManagementApi common.Service
 
 type apiCreateAPIKeyRequest struct {
 	ctx  _context.Context
-	Api  *KeyManagementApi
 	body *ApiKey
 }
 
 func (a *KeyManagementApi) buildCreateAPIKeyRequest(ctx _context.Context, body ApiKey) (apiCreateAPIKeyRequest, error) {
 	req := apiCreateAPIKeyRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *KeyManagementApi) CreateAPIKey(ctx _context.Context, body ApiKey) (ApiK
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAPIKeyExecute(req)
+	return a.createAPIKeyExecute(req)
 }
 
 // createAPIKeyExecute executes the request.
@@ -164,13 +162,11 @@ func (a *KeyManagementApi) createAPIKeyExecute(r apiCreateAPIKeyRequest) (ApiKey
 
 type apiCreateApplicationKeyRequest struct {
 	ctx  _context.Context
-	Api  *KeyManagementApi
 	body *ApplicationKey
 }
 
 func (a *KeyManagementApi) buildCreateApplicationKeyRequest(ctx _context.Context, body ApplicationKey) (apiCreateApplicationKeyRequest, error) {
 	req := apiCreateApplicationKeyRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -186,7 +182,7 @@ func (a *KeyManagementApi) CreateApplicationKey(ctx _context.Context, body Appli
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createApplicationKeyExecute(req)
+	return a.createApplicationKeyExecute(req)
 }
 
 // createApplicationKeyExecute executes the request.
@@ -317,13 +313,11 @@ func (a *KeyManagementApi) createApplicationKeyExecute(r apiCreateApplicationKey
 
 type apiDeleteAPIKeyRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 	key string
 }
 
 func (a *KeyManagementApi) buildDeleteAPIKeyRequest(ctx _context.Context, key string) (apiDeleteAPIKeyRequest, error) {
 	req := apiDeleteAPIKeyRequest{
-		Api: a,
 		ctx: ctx,
 		key: key,
 	}
@@ -339,7 +333,7 @@ func (a *KeyManagementApi) DeleteAPIKey(ctx _context.Context, key string) (ApiKe
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteAPIKeyExecute(req)
+	return a.deleteAPIKeyExecute(req)
 }
 
 // deleteAPIKeyExecute executes the request.
@@ -465,13 +459,11 @@ func (a *KeyManagementApi) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) (ApiKey
 
 type apiDeleteApplicationKeyRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 	key string
 }
 
 func (a *KeyManagementApi) buildDeleteApplicationKeyRequest(ctx _context.Context, key string) (apiDeleteApplicationKeyRequest, error) {
 	req := apiDeleteApplicationKeyRequest{
-		Api: a,
 		ctx: ctx,
 		key: key,
 	}
@@ -487,7 +479,7 @@ func (a *KeyManagementApi) DeleteApplicationKey(ctx _context.Context, key string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteApplicationKeyExecute(req)
+	return a.deleteApplicationKeyExecute(req)
 }
 
 // deleteApplicationKeyExecute executes the request.
@@ -604,13 +596,11 @@ func (a *KeyManagementApi) deleteApplicationKeyExecute(r apiDeleteApplicationKey
 
 type apiGetAPIKeyRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 	key string
 }
 
 func (a *KeyManagementApi) buildGetAPIKeyRequest(ctx _context.Context, key string) (apiGetAPIKeyRequest, error) {
 	req := apiGetAPIKeyRequest{
-		Api: a,
 		ctx: ctx,
 		key: key,
 	}
@@ -626,7 +616,7 @@ func (a *KeyManagementApi) GetAPIKey(ctx _context.Context, key string) (ApiKeyRe
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getAPIKeyExecute(req)
+	return a.getAPIKeyExecute(req)
 }
 
 // getAPIKeyExecute executes the request.
@@ -743,13 +733,11 @@ func (a *KeyManagementApi) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKeyRespon
 
 type apiGetApplicationKeyRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 	key string
 }
 
 func (a *KeyManagementApi) buildGetApplicationKeyRequest(ctx _context.Context, key string) (apiGetApplicationKeyRequest, error) {
 	req := apiGetApplicationKeyRequest{
-		Api: a,
 		ctx: ctx,
 		key: key,
 	}
@@ -765,7 +753,7 @@ func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, key string) (
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getApplicationKeyExecute(req)
+	return a.getApplicationKeyExecute(req)
 }
 
 // getApplicationKeyExecute executes the request.
@@ -882,12 +870,10 @@ func (a *KeyManagementApi) getApplicationKeyExecute(r apiGetApplicationKeyReques
 
 type apiListAPIKeysRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 }
 
 func (a *KeyManagementApi) buildListAPIKeysRequest(ctx _context.Context) (apiListAPIKeysRequest, error) {
 	req := apiListAPIKeysRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -902,7 +888,7 @@ func (a *KeyManagementApi) ListAPIKeys(ctx _context.Context) (ApiKeyListResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAPIKeysExecute(req)
+	return a.listAPIKeysExecute(req)
 }
 
 // listAPIKeysExecute executes the request.
@@ -1009,12 +995,10 @@ func (a *KeyManagementApi) listAPIKeysExecute(r apiListAPIKeysRequest) (ApiKeyLi
 
 type apiListApplicationKeysRequest struct {
 	ctx _context.Context
-	Api *KeyManagementApi
 }
 
 func (a *KeyManagementApi) buildListApplicationKeysRequest(ctx _context.Context) (apiListApplicationKeysRequest, error) {
 	req := apiListApplicationKeysRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -1029,7 +1013,7 @@ func (a *KeyManagementApi) ListApplicationKeys(ctx _context.Context) (Applicatio
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listApplicationKeysExecute(req)
+	return a.listApplicationKeysExecute(req)
 }
 
 // listApplicationKeysExecute executes the request.
@@ -1136,14 +1120,12 @@ func (a *KeyManagementApi) listApplicationKeysExecute(r apiListApplicationKeysRe
 
 type apiUpdateAPIKeyRequest struct {
 	ctx  _context.Context
-	Api  *KeyManagementApi
 	key  string
 	body *ApiKey
 }
 
 func (a *KeyManagementApi) buildUpdateAPIKeyRequest(ctx _context.Context, key string, body ApiKey) (apiUpdateAPIKeyRequest, error) {
 	req := apiUpdateAPIKeyRequest{
-		Api:  a,
 		ctx:  ctx,
 		key:  key,
 		body: &body,
@@ -1160,7 +1142,7 @@ func (a *KeyManagementApi) UpdateAPIKey(ctx _context.Context, key string, body A
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAPIKeyExecute(req)
+	return a.updateAPIKeyExecute(req)
 }
 
 // updateAPIKeyExecute executes the request.
@@ -1292,14 +1274,12 @@ func (a *KeyManagementApi) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) (ApiKey
 
 type apiUpdateApplicationKeyRequest struct {
 	ctx  _context.Context
-	Api  *KeyManagementApi
 	key  string
 	body *ApplicationKey
 }
 
 func (a *KeyManagementApi) buildUpdateApplicationKeyRequest(ctx _context.Context, key string, body ApplicationKey) (apiUpdateApplicationKeyRequest, error) {
 	req := apiUpdateApplicationKeyRequest{
-		Api:  a,
 		ctx:  ctx,
 		key:  key,
 		body: &body,
@@ -1316,7 +1296,7 @@ func (a *KeyManagementApi) UpdateApplicationKey(ctx _context.Context, key string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateApplicationKeyExecute(req)
+	return a.updateApplicationKeyExecute(req)
 }
 
 // updateApplicationKeyExecute executes the request.

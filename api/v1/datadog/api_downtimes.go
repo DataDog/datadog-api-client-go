@@ -20,13 +20,11 @@ type DowntimesApi common.Service
 
 type apiCancelDowntimeRequest struct {
 	ctx        _context.Context
-	Api        *DowntimesApi
 	downtimeId int64
 }
 
 func (a *DowntimesApi) buildCancelDowntimeRequest(ctx _context.Context, downtimeId int64) (apiCancelDowntimeRequest, error) {
 	req := apiCancelDowntimeRequest{
-		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 	}
@@ -41,7 +39,7 @@ func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId int64) (*
 		return nil, err
 	}
 
-	return req.Api.cancelDowntimeExecute(req)
+	return a.cancelDowntimeExecute(req)
 }
 
 // cancelDowntimeExecute executes the request.
@@ -148,13 +146,11 @@ func (a *DowntimesApi) cancelDowntimeExecute(r apiCancelDowntimeRequest) (*_neth
 
 type apiCancelDowntimesByScopeRequest struct {
 	ctx  _context.Context
-	Api  *DowntimesApi
 	body *CancelDowntimesByScopeRequest
 }
 
 func (a *DowntimesApi) buildCancelDowntimesByScopeRequest(ctx _context.Context, body CancelDowntimesByScopeRequest) (apiCancelDowntimesByScopeRequest, error) {
 	req := apiCancelDowntimesByScopeRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -170,7 +166,7 @@ func (a *DowntimesApi) CancelDowntimesByScope(ctx _context.Context, body CancelD
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.cancelDowntimesByScopeExecute(req)
+	return a.cancelDowntimesByScopeExecute(req)
 }
 
 // cancelDowntimesByScopeExecute executes the request.
@@ -301,13 +297,11 @@ func (a *DowntimesApi) cancelDowntimesByScopeExecute(r apiCancelDowntimesByScope
 
 type apiCreateDowntimeRequest struct {
 	ctx  _context.Context
-	Api  *DowntimesApi
 	body *Downtime
 }
 
 func (a *DowntimesApi) buildCreateDowntimeRequest(ctx _context.Context, body Downtime) (apiCreateDowntimeRequest, error) {
 	req := apiCreateDowntimeRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -323,7 +317,7 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body Downtime) (Down
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createDowntimeExecute(req)
+	return a.createDowntimeExecute(req)
 }
 
 // createDowntimeExecute executes the request.
@@ -445,13 +439,11 @@ func (a *DowntimesApi) createDowntimeExecute(r apiCreateDowntimeRequest) (Downti
 
 type apiGetDowntimeRequest struct {
 	ctx        _context.Context
-	Api        *DowntimesApi
 	downtimeId int64
 }
 
 func (a *DowntimesApi) buildGetDowntimeRequest(ctx _context.Context, downtimeId int64) (apiGetDowntimeRequest, error) {
 	req := apiGetDowntimeRequest{
-		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 	}
@@ -467,7 +459,7 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId int64) (Down
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getDowntimeExecute(req)
+	return a.getDowntimeExecute(req)
 }
 
 // getDowntimeExecute executes the request.
@@ -584,7 +576,6 @@ func (a *DowntimesApi) getDowntimeExecute(r apiGetDowntimeRequest) (Downtime, *_
 
 type apiListDowntimesRequest struct {
 	ctx         _context.Context
-	Api         *DowntimesApi
 	currentOnly *bool
 }
 
@@ -607,7 +598,6 @@ func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *Lis
 
 func (a *DowntimesApi) buildListDowntimesRequest(ctx _context.Context, o ...ListDowntimesOptionalParameters) (apiListDowntimesRequest, error) {
 	req := apiListDowntimesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -630,7 +620,7 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listDowntimesExecute(req)
+	return a.listDowntimesExecute(req)
 }
 
 // listDowntimesExecute executes the request.
@@ -740,13 +730,11 @@ func (a *DowntimesApi) listDowntimesExecute(r apiListDowntimesRequest) ([]Downti
 
 type apiListMonitorDowntimesRequest struct {
 	ctx       _context.Context
-	Api       *DowntimesApi
 	monitorId int64
 }
 
 func (a *DowntimesApi) buildListMonitorDowntimesRequest(ctx _context.Context, monitorId int64) (apiListMonitorDowntimesRequest, error) {
 	req := apiListMonitorDowntimesRequest{
-		Api:       a,
 		ctx:       ctx,
 		monitorId: monitorId,
 	}
@@ -762,7 +750,7 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listMonitorDowntimesExecute(req)
+	return a.listMonitorDowntimesExecute(req)
 }
 
 // listMonitorDowntimesExecute executes the request.
@@ -879,14 +867,12 @@ func (a *DowntimesApi) listMonitorDowntimesExecute(r apiListMonitorDowntimesRequ
 
 type apiUpdateDowntimeRequest struct {
 	ctx        _context.Context
-	Api        *DowntimesApi
 	downtimeId int64
 	body       *Downtime
 }
 
 func (a *DowntimesApi) buildUpdateDowntimeRequest(ctx _context.Context, downtimeId int64, body Downtime) (apiUpdateDowntimeRequest, error) {
 	req := apiUpdateDowntimeRequest{
-		Api:        a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
 		body:       &body,
@@ -903,7 +889,7 @@ func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId int64, bo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateDowntimeExecute(req)
+	return a.updateDowntimeExecute(req)
 }
 
 // updateDowntimeExecute executes the request.

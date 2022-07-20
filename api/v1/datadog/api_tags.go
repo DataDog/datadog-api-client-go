@@ -20,7 +20,6 @@ type TagsApi common.Service
 
 type apiCreateHostTagsRequest struct {
 	ctx      _context.Context
-	Api      *TagsApi
 	hostName string
 	body     *HostTags
 	source   *string
@@ -45,7 +44,6 @@ func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHost
 
 func (a *TagsApi) buildCreateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (apiCreateHostTagsRequest, error) {
 	req := apiCreateHostTagsRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 		body:     &body,
@@ -71,7 +69,7 @@ func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body Hos
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createHostTagsExecute(req)
+	return a.createHostTagsExecute(req)
 }
 
 // createHostTagsExecute executes the request.
@@ -197,7 +195,6 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 
 type apiDeleteHostTagsRequest struct {
 	ctx      _context.Context
-	Api      *TagsApi
 	hostName string
 	source   *string
 }
@@ -221,7 +218,6 @@ func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHost
 
 func (a *TagsApi) buildDeleteHostTagsRequest(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (apiDeleteHostTagsRequest, error) {
 	req := apiDeleteHostTagsRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 	}
@@ -245,7 +241,7 @@ func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...Del
 		return nil, err
 	}
 
-	return req.Api.deleteHostTagsExecute(req)
+	return a.deleteHostTagsExecute(req)
 }
 
 // deleteHostTagsExecute executes the request.
@@ -355,7 +351,6 @@ func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.R
 
 type apiGetHostTagsRequest struct {
 	ctx      _context.Context
-	Api      *TagsApi
 	hostName string
 	source   *string
 }
@@ -379,7 +374,6 @@ func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOp
 
 func (a *TagsApi) buildGetHostTagsRequest(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (apiGetHostTagsRequest, error) {
 	req := apiGetHostTagsRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 	}
@@ -403,7 +397,7 @@ func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHos
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getHostTagsExecute(req)
+	return a.getHostTagsExecute(req)
 }
 
 // getHostTagsExecute executes the request.
@@ -523,7 +517,6 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 
 type apiListHostTagsRequest struct {
 	ctx    _context.Context
-	Api    *TagsApi
 	source *string
 }
 
@@ -546,7 +539,6 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 
 func (a *TagsApi) buildListHostTagsRequest(ctx _context.Context, o ...ListHostTagsOptionalParameters) (apiListHostTagsRequest, error) {
 	req := apiListHostTagsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -569,7 +561,7 @@ func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalPa
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listHostTagsExecute(req)
+	return a.listHostTagsExecute(req)
 }
 
 // listHostTagsExecute executes the request.
@@ -688,7 +680,6 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 
 type apiUpdateHostTagsRequest struct {
 	ctx      _context.Context
-	Api      *TagsApi
 	hostName string
 	body     *HostTags
 	source   *string
@@ -713,7 +704,6 @@ func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHost
 
 func (a *TagsApi) buildUpdateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (apiUpdateHostTagsRequest, error) {
 	req := apiUpdateHostTagsRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 		body:     &body,
@@ -739,7 +729,7 @@ func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body Hos
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateHostTagsExecute(req)
+	return a.updateHostTagsExecute(req)
 }
 
 // updateHostTagsExecute executes the request.

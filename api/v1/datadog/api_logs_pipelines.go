@@ -20,13 +20,11 @@ type LogsPipelinesApi common.Service
 
 type apiCreateLogsPipelineRequest struct {
 	ctx  _context.Context
-	Api  *LogsPipelinesApi
 	body *LogsPipeline
 }
 
 func (a *LogsPipelinesApi) buildCreateLogsPipelineRequest(ctx _context.Context, body LogsPipeline) (apiCreateLogsPipelineRequest, error) {
 	req := apiCreateLogsPipelineRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *LogsPipelinesApi) CreateLogsPipeline(ctx _context.Context, body LogsPip
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createLogsPipelineExecute(req)
+	return a.createLogsPipelineExecute(req)
 }
 
 // createLogsPipelineExecute executes the request.
@@ -164,13 +162,11 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 
 type apiDeleteLogsPipelineRequest struct {
 	ctx        _context.Context
-	Api        *LogsPipelinesApi
 	pipelineId string
 }
 
 func (a *LogsPipelinesApi) buildDeleteLogsPipelineRequest(ctx _context.Context, pipelineId string) (apiDeleteLogsPipelineRequest, error) {
 	req := apiDeleteLogsPipelineRequest{
-		Api:        a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
 	}
@@ -186,7 +182,7 @@ func (a *LogsPipelinesApi) DeleteLogsPipeline(ctx _context.Context, pipelineId s
 		return nil, err
 	}
 
-	return req.Api.deleteLogsPipelineExecute(req)
+	return a.deleteLogsPipelineExecute(req)
 }
 
 // deleteLogsPipelineExecute executes the request.
@@ -293,13 +289,11 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 
 type apiGetLogsPipelineRequest struct {
 	ctx        _context.Context
-	Api        *LogsPipelinesApi
 	pipelineId string
 }
 
 func (a *LogsPipelinesApi) buildGetLogsPipelineRequest(ctx _context.Context, pipelineId string) (apiGetLogsPipelineRequest, error) {
 	req := apiGetLogsPipelineRequest{
-		Api:        a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
 	}
@@ -316,7 +310,7 @@ func (a *LogsPipelinesApi) GetLogsPipeline(ctx _context.Context, pipelineId stri
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsPipelineExecute(req)
+	return a.getLogsPipelineExecute(req)
 }
 
 // getLogsPipelineExecute executes the request.
@@ -433,12 +427,10 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 
 type apiGetLogsPipelineOrderRequest struct {
 	ctx _context.Context
-	Api *LogsPipelinesApi
 }
 
 func (a *LogsPipelinesApi) buildGetLogsPipelineOrderRequest(ctx _context.Context) (apiGetLogsPipelineOrderRequest, error) {
 	req := apiGetLogsPipelineOrderRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -454,7 +446,7 @@ func (a *LogsPipelinesApi) GetLogsPipelineOrder(ctx _context.Context) (LogsPipel
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsPipelineOrderExecute(req)
+	return a.getLogsPipelineOrderExecute(req)
 }
 
 // getLogsPipelineOrderExecute executes the request.
@@ -561,12 +553,10 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 
 type apiListLogsPipelinesRequest struct {
 	ctx _context.Context
-	Api *LogsPipelinesApi
 }
 
 func (a *LogsPipelinesApi) buildListLogsPipelinesRequest(ctx _context.Context) (apiListLogsPipelinesRequest, error) {
 	req := apiListLogsPipelinesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -582,7 +572,7 @@ func (a *LogsPipelinesApi) ListLogsPipelines(ctx _context.Context) ([]LogsPipeli
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsPipelinesExecute(req)
+	return a.listLogsPipelinesExecute(req)
 }
 
 // listLogsPipelinesExecute executes the request.
@@ -689,14 +679,12 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 
 type apiUpdateLogsPipelineRequest struct {
 	ctx        _context.Context
-	Api        *LogsPipelinesApi
 	pipelineId string
 	body       *LogsPipeline
 }
 
 func (a *LogsPipelinesApi) buildUpdateLogsPipelineRequest(ctx _context.Context, pipelineId string, body LogsPipeline) (apiUpdateLogsPipelineRequest, error) {
 	req := apiUpdateLogsPipelineRequest{
-		Api:        a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
 		body:       &body,
@@ -716,7 +704,7 @@ func (a *LogsPipelinesApi) UpdateLogsPipeline(ctx _context.Context, pipelineId s
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsPipelineExecute(req)
+	return a.updateLogsPipelineExecute(req)
 }
 
 // updateLogsPipelineExecute executes the request.
@@ -839,13 +827,11 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 
 type apiUpdateLogsPipelineOrderRequest struct {
 	ctx  _context.Context
-	Api  *LogsPipelinesApi
 	body *LogsPipelinesOrder
 }
 
 func (a *LogsPipelinesApi) buildUpdateLogsPipelineOrderRequest(ctx _context.Context, body LogsPipelinesOrder) (apiUpdateLogsPipelineOrderRequest, error) {
 	req := apiUpdateLogsPipelineOrderRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -865,7 +851,7 @@ func (a *LogsPipelinesApi) UpdateLogsPipelineOrder(ctx _context.Context, body Lo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsPipelineOrderExecute(req)
+	return a.updateLogsPipelineOrderExecute(req)
 }
 
 // updateLogsPipelineOrderExecute executes the request.

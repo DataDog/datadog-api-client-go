@@ -19,7 +19,6 @@ type ProcessesApi common.Service
 
 type apiListProcessesRequest struct {
 	ctx        _context.Context
-	Api        *ProcessesApi
 	search     *string
 	tags       *string
 	from       *int64
@@ -82,7 +81,6 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 
 func (a *ProcessesApi) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
 	req := apiListProcessesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -110,7 +108,7 @@ func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOpt
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listProcessesExecute(req)
+	return a.listProcessesExecute(req)
 }
 
 // ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
@@ -133,7 +131,7 @@ func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...Li
 				break
 			}
 
-			resp, _, err := req.Api.listProcessesExecute(req)
+			resp, _, err := a.listProcessesExecute(req)
 			if err != nil {
 				break
 			}

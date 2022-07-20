@@ -19,13 +19,11 @@ type ServiceChecksApi common.Service
 
 type apiSubmitServiceCheckRequest struct {
 	ctx  _context.Context
-	Api  *ServiceChecksApi
 	body *[]ServiceCheck
 }
 
 func (a *ServiceChecksApi) buildSubmitServiceCheckRequest(ctx _context.Context, body []ServiceCheck) (apiSubmitServiceCheckRequest, error) {
 	req := apiSubmitServiceCheckRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -45,7 +43,7 @@ func (a *ServiceChecksApi) SubmitServiceCheck(ctx _context.Context, body []Servi
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitServiceCheckExecute(req)
+	return a.submitServiceCheckExecute(req)
 }
 
 // submitServiceCheckExecute executes the request.

@@ -19,13 +19,11 @@ type GCPIntegrationApi common.Service
 
 type apiCreateGCPIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *GCPIntegrationApi
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildCreateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiCreateGCPIntegrationRequest, error) {
 	req := apiCreateGCPIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -41,7 +39,7 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createGCPIntegrationExecute(req)
+	return a.createGCPIntegrationExecute(req)
 }
 
 // createGCPIntegrationExecute executes the request.
@@ -163,13 +161,11 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegratio
 
 type apiDeleteGCPIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *GCPIntegrationApi
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildDeleteGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiDeleteGCPIntegrationRequest, error) {
 	req := apiDeleteGCPIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -185,7 +181,7 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteGCPIntegrationExecute(req)
+	return a.deleteGCPIntegrationExecute(req)
 }
 
 // deleteGCPIntegrationExecute executes the request.
@@ -307,12 +303,10 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegratio
 
 type apiListGCPIntegrationRequest struct {
 	ctx _context.Context
-	Api *GCPIntegrationApi
 }
 
 func (a *GCPIntegrationApi) buildListGCPIntegrationRequest(ctx _context.Context) (apiListGCPIntegrationRequest, error) {
 	req := apiListGCPIntegrationRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -327,7 +321,7 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listGCPIntegrationExecute(req)
+	return a.listGCPIntegrationExecute(req)
 }
 
 // listGCPIntegrationExecute executes the request.
@@ -443,13 +437,11 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationReq
 
 type apiUpdateGCPIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *GCPIntegrationApi
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildUpdateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiUpdateGCPIntegrationRequest, error) {
 	req := apiUpdateGCPIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -468,7 +460,7 @@ func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPA
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateGCPIntegrationExecute(req)
+	return a.updateGCPIntegrationExecute(req)
 }
 
 // updateGCPIntegrationExecute executes the request.

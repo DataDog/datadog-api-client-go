@@ -21,13 +21,11 @@ type OrganizationsApi common.Service
 
 type apiCreateChildOrgRequest struct {
 	ctx  _context.Context
-	Api  *OrganizationsApi
 	body *OrganizationCreateBody
 }
 
 func (a *OrganizationsApi) buildCreateChildOrgRequest(ctx _context.Context, body OrganizationCreateBody) (apiCreateChildOrgRequest, error) {
 	req := apiCreateChildOrgRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -52,7 +50,7 @@ func (a *OrganizationsApi) CreateChildOrg(ctx _context.Context, body Organizatio
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createChildOrgExecute(req)
+	return a.createChildOrgExecute(req)
 }
 
 // createChildOrgExecute executes the request.
@@ -174,13 +172,11 @@ func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (Or
 
 type apiDowngradeOrgRequest struct {
 	ctx      _context.Context
-	Api      *OrganizationsApi
 	publicId string
 }
 
 func (a *OrganizationsApi) buildDowngradeOrgRequest(ctx _context.Context, publicId string) (apiDowngradeOrgRequest, error) {
 	req := apiDowngradeOrgRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -196,7 +192,7 @@ func (a *OrganizationsApi) DowngradeOrg(ctx _context.Context, publicId string) (
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.downgradeOrgExecute(req)
+	return a.downgradeOrgExecute(req)
 }
 
 // downgradeOrgExecute executes the request.
@@ -313,13 +309,11 @@ func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDow
 
 type apiGetOrgRequest struct {
 	ctx      _context.Context
-	Api      *OrganizationsApi
 	publicId string
 }
 
 func (a *OrganizationsApi) buildGetOrgRequest(ctx _context.Context, publicId string) (apiGetOrgRequest, error) {
 	req := apiGetOrgRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -335,7 +329,7 @@ func (a *OrganizationsApi) GetOrg(ctx _context.Context, publicId string) (Organi
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getOrgExecute(req)
+	return a.getOrgExecute(req)
 }
 
 // getOrgExecute executes the request.
@@ -452,12 +446,10 @@ func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationRespon
 
 type apiListOrgsRequest struct {
 	ctx _context.Context
-	Api *OrganizationsApi
 }
 
 func (a *OrganizationsApi) buildListOrgsRequest(ctx _context.Context) (apiListOrgsRequest, error) {
 	req := apiListOrgsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -472,7 +464,7 @@ func (a *OrganizationsApi) ListOrgs(ctx _context.Context) (OrganizationListRespo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listOrgsExecute(req)
+	return a.listOrgsExecute(req)
 }
 
 // listOrgsExecute executes the request.
@@ -579,14 +571,12 @@ func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationLi
 
 type apiUpdateOrgRequest struct {
 	ctx      _context.Context
-	Api      *OrganizationsApi
 	publicId string
 	body     *Organization
 }
 
 func (a *OrganizationsApi) buildUpdateOrgRequest(ctx _context.Context, publicId string, body Organization) (apiUpdateOrgRequest, error) {
 	req := apiUpdateOrgRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		body:     &body,
@@ -603,7 +593,7 @@ func (a *OrganizationsApi) UpdateOrg(ctx _context.Context, publicId string, body
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateOrgExecute(req)
+	return a.updateOrgExecute(req)
 }
 
 // updateOrgExecute executes the request.
@@ -726,14 +716,12 @@ func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (Organization
 
 type apiUploadIdPForOrgRequest struct {
 	ctx      _context.Context
-	Api      *OrganizationsApi
 	publicId string
 	idpFile  **os.File
 }
 
 func (a *OrganizationsApi) buildUploadIdPForOrgRequest(ctx _context.Context, publicId string, idpFile *os.File) (apiUploadIdPForOrgRequest, error) {
 	req := apiUploadIdPForOrgRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		idpFile:  &idpFile,
@@ -755,7 +743,7 @@ func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.uploadIdPForOrgExecute(req)
+	return a.uploadIdPForOrgExecute(req)
 }
 
 // uploadIdPForOrgExecute executes the request.

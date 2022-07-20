@@ -20,13 +20,11 @@ type ServiceLevelObjectiveCorrectionsApi common.Service
 
 type apiCreateSLOCorrectionRequest struct {
 	ctx  _context.Context
-	Api  *ServiceLevelObjectiveCorrectionsApi
 	body *SLOCorrectionCreateRequest
 }
 
 func (a *ServiceLevelObjectiveCorrectionsApi) buildCreateSLOCorrectionRequest(ctx _context.Context, body SLOCorrectionCreateRequest) (apiCreateSLOCorrectionRequest, error) {
 	req := apiCreateSLOCorrectionRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) CreateSLOCorrection(ctx _context.C
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSLOCorrectionExecute(req)
+	return a.createSLOCorrectionExecute(req)
 }
 
 // createSLOCorrectionExecute executes the request.
@@ -173,13 +171,11 @@ func (a *ServiceLevelObjectiveCorrectionsApi) createSLOCorrectionExecute(r apiCr
 
 type apiDeleteSLOCorrectionRequest struct {
 	ctx             _context.Context
-	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 }
 
 func (a *ServiceLevelObjectiveCorrectionsApi) buildDeleteSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiDeleteSLOCorrectionRequest, error) {
 	req := apiDeleteSLOCorrectionRequest{
-		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
@@ -194,7 +190,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) DeleteSLOCorrection(ctx _context.C
 		return nil, err
 	}
 
-	return req.Api.deleteSLOCorrectionExecute(req)
+	return a.deleteSLOCorrectionExecute(req)
 }
 
 // deleteSLOCorrectionExecute executes the request.
@@ -301,13 +297,11 @@ func (a *ServiceLevelObjectiveCorrectionsApi) deleteSLOCorrectionExecute(r apiDe
 
 type apiGetSLOCorrectionRequest struct {
 	ctx             _context.Context
-	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 }
 
 func (a *ServiceLevelObjectiveCorrectionsApi) buildGetSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string) (apiGetSLOCorrectionRequest, error) {
 	req := apiGetSLOCorrectionRequest{
-		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
@@ -323,7 +317,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) GetSLOCorrection(ctx _context.Cont
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSLOCorrectionExecute(req)
+	return a.getSLOCorrectionExecute(req)
 }
 
 // getSLOCorrectionExecute executes the request.
@@ -440,12 +434,10 @@ func (a *ServiceLevelObjectiveCorrectionsApi) getSLOCorrectionExecute(r apiGetSL
 
 type apiListSLOCorrectionRequest struct {
 	ctx _context.Context
-	Api *ServiceLevelObjectiveCorrectionsApi
 }
 
 func (a *ServiceLevelObjectiveCorrectionsApi) buildListSLOCorrectionRequest(ctx _context.Context) (apiListSLOCorrectionRequest, error) {
 	req := apiListSLOCorrectionRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -460,7 +452,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrection(ctx _context.Con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listSLOCorrectionExecute(req)
+	return a.listSLOCorrectionExecute(req)
 }
 
 // listSLOCorrectionExecute executes the request.
@@ -567,14 +559,12 @@ func (a *ServiceLevelObjectiveCorrectionsApi) listSLOCorrectionExecute(r apiList
 
 type apiUpdateSLOCorrectionRequest struct {
 	ctx             _context.Context
-	Api             *ServiceLevelObjectiveCorrectionsApi
 	sloCorrectionId string
 	body            *SLOCorrectionUpdateRequest
 }
 
 func (a *ServiceLevelObjectiveCorrectionsApi) buildUpdateSLOCorrectionRequest(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (apiUpdateSLOCorrectionRequest, error) {
 	req := apiUpdateSLOCorrectionRequest{
-		Api:             a,
 		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 		body:            &body,
@@ -591,7 +581,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) UpdateSLOCorrection(ctx _context.C
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateSLOCorrectionExecute(req)
+	return a.updateSLOCorrectionExecute(req)
 }
 
 // updateSLOCorrectionExecute executes the request.

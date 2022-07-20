@@ -20,13 +20,11 @@ type RUMApi common.Service
 
 type apiAggregateRUMEventsRequest struct {
 	ctx  _context.Context
-	Api  *RUMApi
 	body *RUMAggregateRequest
 }
 
 func (a *RUMApi) buildAggregateRUMEventsRequest(ctx _context.Context, body RUMAggregateRequest) (apiAggregateRUMEventsRequest, error) {
 	req := apiAggregateRUMEventsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *RUMApi) AggregateRUMEvents(ctx _context.Context, body RUMAggregateReque
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.aggregateRUMEventsExecute(req)
+	return a.aggregateRUMEventsExecute(req)
 }
 
 // aggregateRUMEventsExecute executes the request.
@@ -164,7 +162,6 @@ func (a *RUMApi) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest) (RUMA
 
 type apiListRUMEventsRequest struct {
 	ctx         _context.Context
-	Api         *RUMApi
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -227,7 +224,6 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 
 func (a *RUMApi) buildListRUMEventsRequest(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (apiListRUMEventsRequest, error) {
 	req := apiListRUMEventsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -260,7 +256,7 @@ func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalP
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listRUMEventsExecute(req)
+	return a.listRUMEventsExecute(req)
 }
 
 // ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
@@ -283,7 +279,7 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 				break
 			}
 
-			resp, _, err := req.Api.listRUMEventsExecute(req)
+			resp, _, err := a.listRUMEventsExecute(req)
 			if err != nil {
 				break
 			}
@@ -455,13 +451,11 @@ func (a *RUMApi) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEventsRespo
 
 type apiSearchRUMEventsRequest struct {
 	ctx  _context.Context
-	Api  *RUMApi
 	body *RUMSearchEventsRequest
 }
 
 func (a *RUMApi) buildSearchRUMEventsRequest(ctx _context.Context, body RUMSearchEventsRequest) (apiSearchRUMEventsRequest, error) {
 	req := apiSearchRUMEventsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -482,7 +476,7 @@ func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsReque
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.searchRUMEventsExecute(req)
+	return a.searchRUMEventsExecute(req)
 }
 
 // SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
@@ -507,7 +501,7 @@ func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSea
 				break
 			}
 
-			resp, _, err := req.Api.searchRUMEventsExecute(req)
+			resp, _, err := a.searchRUMEventsExecute(req)
 			if err != nil {
 				break
 			}

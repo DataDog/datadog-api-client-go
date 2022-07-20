@@ -20,13 +20,11 @@ type LogsIndexesApi common.Service
 
 type apiCreateLogsIndexRequest struct {
 	ctx  _context.Context
-	Api  *LogsIndexesApi
 	body *LogsIndex
 }
 
 func (a *LogsIndexesApi) buildCreateLogsIndexRequest(ctx _context.Context, body LogsIndex) (apiCreateLogsIndexRequest, error) {
 	req := apiCreateLogsIndexRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *LogsIndexesApi) CreateLogsIndex(ctx _context.Context, body LogsIndex) (
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createLogsIndexExecute(req)
+	return a.createLogsIndexExecute(req)
 }
 
 // createLogsIndexExecute executes the request.
@@ -164,13 +162,11 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 
 type apiGetLogsIndexRequest struct {
 	ctx  _context.Context
-	Api  *LogsIndexesApi
 	name string
 }
 
 func (a *LogsIndexesApi) buildGetLogsIndexRequest(ctx _context.Context, name string) (apiGetLogsIndexRequest, error) {
 	req := apiGetLogsIndexRequest{
-		Api:  a,
 		ctx:  ctx,
 		name: name,
 	}
@@ -186,7 +182,7 @@ func (a *LogsIndexesApi) GetLogsIndex(ctx _context.Context, name string) (LogsIn
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsIndexExecute(req)
+	return a.getLogsIndexExecute(req)
 }
 
 // getLogsIndexExecute executes the request.
@@ -303,12 +299,10 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 
 type apiGetLogsIndexOrderRequest struct {
 	ctx _context.Context
-	Api *LogsIndexesApi
 }
 
 func (a *LogsIndexesApi) buildGetLogsIndexOrderRequest(ctx _context.Context) (apiGetLogsIndexOrderRequest, error) {
 	req := apiGetLogsIndexOrderRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -323,7 +317,7 @@ func (a *LogsIndexesApi) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrd
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getLogsIndexOrderExecute(req)
+	return a.getLogsIndexOrderExecute(req)
 }
 
 // getLogsIndexOrderExecute executes the request.
@@ -430,12 +424,10 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest)
 
 type apiListLogIndexesRequest struct {
 	ctx _context.Context
-	Api *LogsIndexesApi
 }
 
 func (a *LogsIndexesApi) buildListLogIndexesRequest(ctx _context.Context) (apiListLogIndexesRequest, error) {
 	req := apiListLogIndexesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -451,7 +443,7 @@ func (a *LogsIndexesApi) ListLogIndexes(ctx _context.Context) (LogsIndexListResp
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogIndexesExecute(req)
+	return a.listLogIndexesExecute(req)
 }
 
 // listLogIndexesExecute executes the request.
@@ -558,14 +550,12 @@ func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (Logs
 
 type apiUpdateLogsIndexRequest struct {
 	ctx  _context.Context
-	Api  *LogsIndexesApi
 	name string
 	body *LogsIndexUpdateRequest
 }
 
 func (a *LogsIndexesApi) buildUpdateLogsIndexRequest(ctx _context.Context, name string, body LogsIndexUpdateRequest) (apiUpdateLogsIndexRequest, error) {
 	req := apiUpdateLogsIndexRequest{
-		Api:  a,
 		ctx:  ctx,
 		name: name,
 		body: &body,
@@ -586,7 +576,7 @@ func (a *LogsIndexesApi) UpdateLogsIndex(ctx _context.Context, name string, body
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsIndexExecute(req)
+	return a.updateLogsIndexExecute(req)
 }
 
 // updateLogsIndexExecute executes the request.
@@ -709,13 +699,11 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 
 type apiUpdateLogsIndexOrderRequest struct {
 	ctx  _context.Context
-	Api  *LogsIndexesApi
 	body *LogsIndexesOrder
 }
 
 func (a *LogsIndexesApi) buildUpdateLogsIndexOrderRequest(ctx _context.Context, body LogsIndexesOrder) (apiUpdateLogsIndexOrderRequest, error) {
 	req := apiUpdateLogsIndexOrderRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -732,7 +720,7 @@ func (a *LogsIndexesApi) UpdateLogsIndexOrder(ctx _context.Context, body LogsInd
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateLogsIndexOrderExecute(req)
+	return a.updateLogsIndexOrderExecute(req)
 }
 
 // updateLogsIndexOrderExecute executes the request.

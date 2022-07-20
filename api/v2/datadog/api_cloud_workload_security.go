@@ -21,13 +21,11 @@ type CloudWorkloadSecurityApi common.Service
 
 type apiCreateCloudWorkloadSecurityAgentRuleRequest struct {
 	ctx  _context.Context
-	Api  *CloudWorkloadSecurityApi
 	body *CloudWorkloadSecurityAgentRuleCreateRequest
 }
 
 func (a *CloudWorkloadSecurityApi) buildCreateCloudWorkloadSecurityAgentRuleRequest(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (apiCreateCloudWorkloadSecurityAgentRuleRequest, error) {
 	req := apiCreateCloudWorkloadSecurityAgentRuleRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -43,7 +41,7 @@ func (a *CloudWorkloadSecurityApi) CreateCloudWorkloadSecurityAgentRule(ctx _con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createCloudWorkloadSecurityAgentRuleExecute(req)
+	return a.createCloudWorkloadSecurityAgentRuleExecute(req)
 }
 
 // createCloudWorkloadSecurityAgentRuleExecute executes the request.
@@ -174,13 +172,11 @@ func (a *CloudWorkloadSecurityApi) createCloudWorkloadSecurityAgentRuleExecute(r
 
 type apiDeleteCloudWorkloadSecurityAgentRuleRequest struct {
 	ctx         _context.Context
-	Api         *CloudWorkloadSecurityApi
 	agentRuleId string
 }
 
 func (a *CloudWorkloadSecurityApi) buildDeleteCloudWorkloadSecurityAgentRuleRequest(ctx _context.Context, agentRuleId string) (apiDeleteCloudWorkloadSecurityAgentRuleRequest, error) {
 	req := apiDeleteCloudWorkloadSecurityAgentRuleRequest{
-		Api:         a,
 		ctx:         ctx,
 		agentRuleId: agentRuleId,
 	}
@@ -195,7 +191,7 @@ func (a *CloudWorkloadSecurityApi) DeleteCloudWorkloadSecurityAgentRule(ctx _con
 		return nil, err
 	}
 
-	return req.Api.deleteCloudWorkloadSecurityAgentRuleExecute(req)
+	return a.deleteCloudWorkloadSecurityAgentRuleExecute(req)
 }
 
 // deleteCloudWorkloadSecurityAgentRuleExecute executes the request.
@@ -302,12 +298,10 @@ func (a *CloudWorkloadSecurityApi) deleteCloudWorkloadSecurityAgentRuleExecute(r
 
 type apiDownloadCloudWorkloadPolicyFileRequest struct {
 	ctx _context.Context
-	Api *CloudWorkloadSecurityApi
 }
 
 func (a *CloudWorkloadSecurityApi) buildDownloadCloudWorkloadPolicyFileRequest(ctx _context.Context) (apiDownloadCloudWorkloadPolicyFileRequest, error) {
 	req := apiDownloadCloudWorkloadPolicyFileRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -324,7 +318,7 @@ func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.downloadCloudWorkloadPolicyFileExecute(req)
+	return a.downloadCloudWorkloadPolicyFileExecute(req)
 }
 
 // downloadCloudWorkloadPolicyFileExecute executes the request.
@@ -431,13 +425,11 @@ func (a *CloudWorkloadSecurityApi) downloadCloudWorkloadPolicyFileExecute(r apiD
 
 type apiGetCloudWorkloadSecurityAgentRuleRequest struct {
 	ctx         _context.Context
-	Api         *CloudWorkloadSecurityApi
 	agentRuleId string
 }
 
 func (a *CloudWorkloadSecurityApi) buildGetCloudWorkloadSecurityAgentRuleRequest(ctx _context.Context, agentRuleId string) (apiGetCloudWorkloadSecurityAgentRuleRequest, error) {
 	req := apiGetCloudWorkloadSecurityAgentRuleRequest{
-		Api:         a,
 		ctx:         ctx,
 		agentRuleId: agentRuleId,
 	}
@@ -453,7 +445,7 @@ func (a *CloudWorkloadSecurityApi) GetCloudWorkloadSecurityAgentRule(ctx _contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getCloudWorkloadSecurityAgentRuleExecute(req)
+	return a.getCloudWorkloadSecurityAgentRuleExecute(req)
 }
 
 // getCloudWorkloadSecurityAgentRuleExecute executes the request.
@@ -570,12 +562,10 @@ func (a *CloudWorkloadSecurityApi) getCloudWorkloadSecurityAgentRuleExecute(r ap
 
 type apiListCloudWorkloadSecurityAgentRulesRequest struct {
 	ctx _context.Context
-	Api *CloudWorkloadSecurityApi
 }
 
 func (a *CloudWorkloadSecurityApi) buildListCloudWorkloadSecurityAgentRulesRequest(ctx _context.Context) (apiListCloudWorkloadSecurityAgentRulesRequest, error) {
 	req := apiListCloudWorkloadSecurityAgentRulesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -590,7 +580,7 @@ func (a *CloudWorkloadSecurityApi) ListCloudWorkloadSecurityAgentRules(ctx _cont
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listCloudWorkloadSecurityAgentRulesExecute(req)
+	return a.listCloudWorkloadSecurityAgentRulesExecute(req)
 }
 
 // listCloudWorkloadSecurityAgentRulesExecute executes the request.
@@ -697,14 +687,12 @@ func (a *CloudWorkloadSecurityApi) listCloudWorkloadSecurityAgentRulesExecute(r 
 
 type apiUpdateCloudWorkloadSecurityAgentRuleRequest struct {
 	ctx         _context.Context
-	Api         *CloudWorkloadSecurityApi
 	agentRuleId string
 	body        *CloudWorkloadSecurityAgentRuleUpdateRequest
 }
 
 func (a *CloudWorkloadSecurityApi) buildUpdateCloudWorkloadSecurityAgentRuleRequest(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (apiUpdateCloudWorkloadSecurityAgentRuleRequest, error) {
 	req := apiUpdateCloudWorkloadSecurityAgentRuleRequest{
-		Api:         a,
 		ctx:         ctx,
 		agentRuleId: agentRuleId,
 		body:        &body,
@@ -722,7 +710,7 @@ func (a *CloudWorkloadSecurityApi) UpdateCloudWorkloadSecurityAgentRule(ctx _con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateCloudWorkloadSecurityAgentRuleExecute(req)
+	return a.updateCloudWorkloadSecurityAgentRuleExecute(req)
 }
 
 // updateCloudWorkloadSecurityAgentRuleExecute executes the request.

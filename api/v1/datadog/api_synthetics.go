@@ -21,13 +21,11 @@ type SyntheticsApi common.Service
 
 type apiCreateGlobalVariableRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsGlobalVariable
 }
 
 func (a *SyntheticsApi) buildCreateGlobalVariableRequest(ctx _context.Context, body SyntheticsGlobalVariable) (apiCreateGlobalVariableRequest, error) {
 	req := apiCreateGlobalVariableRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -43,7 +41,7 @@ func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body Syntheti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createGlobalVariableExecute(req)
+	return a.createGlobalVariableExecute(req)
 }
 
 // createGlobalVariableExecute executes the request.
@@ -165,13 +163,11 @@ func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableReq
 
 type apiCreatePrivateLocationRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsPrivateLocation
 }
 
 func (a *SyntheticsApi) buildCreatePrivateLocationRequest(ctx _context.Context, body SyntheticsPrivateLocation) (apiCreatePrivateLocationRequest, error) {
 	req := apiCreatePrivateLocationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -187,7 +183,7 @@ func (a *SyntheticsApi) CreatePrivateLocation(ctx _context.Context, body Synthet
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createPrivateLocationExecute(req)
+	return a.createPrivateLocationExecute(req)
 }
 
 // createPrivateLocationExecute executes the request.
@@ -309,13 +305,11 @@ func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationR
 
 type apiCreateSyntheticsAPITestRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsAPITest
 }
 
 func (a *SyntheticsApi) buildCreateSyntheticsAPITestRequest(ctx _context.Context, body SyntheticsAPITest) (apiCreateSyntheticsAPITestRequest, error) {
 	req := apiCreateSyntheticsAPITestRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -331,7 +325,7 @@ func (a *SyntheticsApi) CreateSyntheticsAPITest(ctx _context.Context, body Synth
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSyntheticsAPITestExecute(req)
+	return a.createSyntheticsAPITestExecute(req)
 }
 
 // createSyntheticsAPITestExecute executes the request.
@@ -462,13 +456,11 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPIT
 
 type apiCreateSyntheticsBrowserTestRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsBrowserTest
 }
 
 func (a *SyntheticsApi) buildCreateSyntheticsBrowserTestRequest(ctx _context.Context, body SyntheticsBrowserTest) (apiCreateSyntheticsBrowserTestRequest, error) {
 	req := apiCreateSyntheticsBrowserTestRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -484,7 +476,7 @@ func (a *SyntheticsApi) CreateSyntheticsBrowserTest(ctx _context.Context, body S
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSyntheticsBrowserTestExecute(req)
+	return a.createSyntheticsBrowserTestExecute(req)
 }
 
 // createSyntheticsBrowserTestExecute executes the request.
@@ -615,13 +607,11 @@ func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(r apiCreateSynthetics
 
 type apiDeleteGlobalVariableRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	variableId string
 }
 
 func (a *SyntheticsApi) buildDeleteGlobalVariableRequest(ctx _context.Context, variableId string) (apiDeleteGlobalVariableRequest, error) {
 	req := apiDeleteGlobalVariableRequest{
-		Api:        a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
@@ -636,7 +626,7 @@ func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId st
 		return nil, err
 	}
 
-	return req.Api.deleteGlobalVariableExecute(req)
+	return a.deleteGlobalVariableExecute(req)
 }
 
 // deleteGlobalVariableExecute executes the request.
@@ -752,13 +742,11 @@ func (a *SyntheticsApi) deleteGlobalVariableExecute(r apiDeleteGlobalVariableReq
 
 type apiDeletePrivateLocationRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	locationId string
 }
 
 func (a *SyntheticsApi) buildDeletePrivateLocationRequest(ctx _context.Context, locationId string) (apiDeletePrivateLocationRequest, error) {
 	req := apiDeletePrivateLocationRequest{
-		Api:        a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
@@ -773,7 +761,7 @@ func (a *SyntheticsApi) DeletePrivateLocation(ctx _context.Context, locationId s
 		return nil, err
 	}
 
-	return req.Api.deletePrivateLocationExecute(req)
+	return a.deletePrivateLocationExecute(req)
 }
 
 // deletePrivateLocationExecute executes the request.
@@ -871,13 +859,11 @@ func (a *SyntheticsApi) deletePrivateLocationExecute(r apiDeletePrivateLocationR
 
 type apiDeleteTestsRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsDeleteTestsPayload
 }
 
 func (a *SyntheticsApi) buildDeleteTestsRequest(ctx _context.Context, body SyntheticsDeleteTestsPayload) (apiDeleteTestsRequest, error) {
 	req := apiDeleteTestsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -893,7 +879,7 @@ func (a *SyntheticsApi) DeleteTests(ctx _context.Context, body SyntheticsDeleteT
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteTestsExecute(req)
+	return a.deleteTestsExecute(req)
 }
 
 // deleteTestsExecute executes the request.
@@ -1024,14 +1010,12 @@ func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsD
 
 type apiEditGlobalVariableRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	variableId string
 	body       *SyntheticsGlobalVariable
 }
 
 func (a *SyntheticsApi) buildEditGlobalVariableRequest(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (apiEditGlobalVariableRequest, error) {
 	req := apiEditGlobalVariableRequest{
-		Api:        a,
 		ctx:        ctx,
 		variableId: variableId,
 		body:       &body,
@@ -1048,7 +1032,7 @@ func (a *SyntheticsApi) EditGlobalVariable(ctx _context.Context, variableId stri
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editGlobalVariableExecute(req)
+	return a.editGlobalVariableExecute(req)
 }
 
 // editGlobalVariableExecute executes the request.
@@ -1171,13 +1155,11 @@ func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest
 
 type apiGetAPITestRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetAPITestRequest(ctx _context.Context, publicId string) (apiGetAPITestRequest, error) {
 	req := apiGetAPITestRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -1194,7 +1176,7 @@ func (a *SyntheticsApi) GetAPITest(ctx _context.Context, publicId string) (Synth
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getAPITestExecute(req)
+	return a.getAPITestExecute(req)
 }
 
 // getAPITestExecute executes the request.
@@ -1311,7 +1293,6 @@ func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPI
 
 type apiGetAPITestLatestResultsRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	fromTs   *int64
 	toTs     *int64
@@ -1351,7 +1332,6 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 
 func (a *SyntheticsApi) buildGetAPITestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (apiGetAPITestLatestResultsRequest, error) {
 	req := apiGetAPITestLatestResultsRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -1377,7 +1357,7 @@ func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId s
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getAPITestLatestResultsExecute(req)
+	return a.getAPITestLatestResultsExecute(req)
 }
 
 // getAPITestLatestResultsExecute executes the request.
@@ -1511,14 +1491,12 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResu
 
 type apiGetAPITestResultRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	resultId string
 }
 
 func (a *SyntheticsApi) buildGetAPITestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetAPITestResultRequest, error) {
 	req := apiGetAPITestResultRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		resultId: resultId,
@@ -1535,7 +1513,7 @@ func (a *SyntheticsApi) GetAPITestResult(ctx _context.Context, publicId string, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getAPITestResultExecute(req)
+	return a.getAPITestResultExecute(req)
 }
 
 // getAPITestResultExecute executes the request.
@@ -1653,13 +1631,11 @@ func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (S
 
 type apiGetBrowserTestRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetBrowserTestRequest(ctx _context.Context, publicId string) (apiGetBrowserTestRequest, error) {
 	req := apiGetBrowserTestRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -1676,7 +1652,7 @@ func (a *SyntheticsApi) GetBrowserTest(ctx _context.Context, publicId string) (S
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getBrowserTestExecute(req)
+	return a.getBrowserTestExecute(req)
 }
 
 // getBrowserTestExecute executes the request.
@@ -1793,7 +1769,6 @@ func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (Synth
 
 type apiGetBrowserTestLatestResultsRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	fromTs   *int64
 	toTs     *int64
@@ -1833,7 +1808,6 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 
 func (a *SyntheticsApi) buildGetBrowserTestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (apiGetBrowserTestLatestResultsRequest, error) {
 	req := apiGetBrowserTestLatestResultsRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -1859,7 +1833,7 @@ func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, public
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getBrowserTestLatestResultsExecute(req)
+	return a.getBrowserTestLatestResultsExecute(req)
 }
 
 // getBrowserTestLatestResultsExecute executes the request.
@@ -1993,14 +1967,12 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLa
 
 type apiGetBrowserTestResultRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	resultId string
 }
 
 func (a *SyntheticsApi) buildGetBrowserTestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetBrowserTestResultRequest, error) {
 	req := apiGetBrowserTestResultRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		resultId: resultId,
@@ -2017,7 +1989,7 @@ func (a *SyntheticsApi) GetBrowserTestResult(ctx _context.Context, publicId stri
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getBrowserTestResultExecute(req)
+	return a.getBrowserTestResultExecute(req)
 }
 
 // getBrowserTestResultExecute executes the request.
@@ -2135,13 +2107,11 @@ func (a *SyntheticsApi) getBrowserTestResultExecute(r apiGetBrowserTestResultReq
 
 type apiGetGlobalVariableRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	variableId string
 }
 
 func (a *SyntheticsApi) buildGetGlobalVariableRequest(ctx _context.Context, variableId string) (apiGetGlobalVariableRequest, error) {
 	req := apiGetGlobalVariableRequest{
-		Api:        a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
@@ -2157,7 +2127,7 @@ func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId strin
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getGlobalVariableExecute(req)
+	return a.getGlobalVariableExecute(req)
 }
 
 // getGlobalVariableExecute executes the request.
@@ -2274,13 +2244,11 @@ func (a *SyntheticsApi) getGlobalVariableExecute(r apiGetGlobalVariableRequest) 
 
 type apiGetPrivateLocationRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	locationId string
 }
 
 func (a *SyntheticsApi) buildGetPrivateLocationRequest(ctx _context.Context, locationId string) (apiGetPrivateLocationRequest, error) {
 	req := apiGetPrivateLocationRequest{
-		Api:        a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
@@ -2296,7 +2264,7 @@ func (a *SyntheticsApi) GetPrivateLocation(ctx _context.Context, locationId stri
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getPrivateLocationExecute(req)
+	return a.getPrivateLocationExecute(req)
 }
 
 // getPrivateLocationExecute executes the request.
@@ -2404,13 +2372,11 @@ func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest
 
 type apiGetSyntheticsCIBatchRequest struct {
 	ctx     _context.Context
-	Api     *SyntheticsApi
 	batchId string
 }
 
 func (a *SyntheticsApi) buildGetSyntheticsCIBatchRequest(ctx _context.Context, batchId string) (apiGetSyntheticsCIBatchRequest, error) {
 	req := apiGetSyntheticsCIBatchRequest{
-		Api:     a,
 		ctx:     ctx,
 		batchId: batchId,
 	}
@@ -2426,7 +2392,7 @@ func (a *SyntheticsApi) GetSyntheticsCIBatch(ctx _context.Context, batchId strin
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSyntheticsCIBatchExecute(req)
+	return a.getSyntheticsCIBatchExecute(req)
 }
 
 // getSyntheticsCIBatchExecute executes the request.
@@ -2534,13 +2500,11 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchReq
 
 type apiGetTestRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetTestRequest(ctx _context.Context, publicId string) (apiGetTestRequest, error) {
 	req := apiGetTestRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 	}
@@ -2556,7 +2520,7 @@ func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (Syntheti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getTestExecute(req)
+	return a.getTestExecute(req)
 }
 
 // getTestExecute executes the request.
@@ -2673,12 +2637,10 @@ func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetai
 
 type apiListGlobalVariablesRequest struct {
 	ctx _context.Context
-	Api *SyntheticsApi
 }
 
 func (a *SyntheticsApi) buildListGlobalVariablesRequest(ctx _context.Context) (apiListGlobalVariablesRequest, error) {
 	req := apiListGlobalVariablesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -2693,7 +2655,7 @@ func (a *SyntheticsApi) ListGlobalVariables(ctx _context.Context) (SyntheticsLis
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listGlobalVariablesExecute(req)
+	return a.listGlobalVariablesExecute(req)
 }
 
 // listGlobalVariablesExecute executes the request.
@@ -2800,12 +2762,10 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesReque
 
 type apiListLocationsRequest struct {
 	ctx _context.Context
-	Api *SyntheticsApi
 }
 
 func (a *SyntheticsApi) buildListLocationsRequest(ctx _context.Context) (apiListLocationsRequest, error) {
 	req := apiListLocationsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -2821,7 +2781,7 @@ func (a *SyntheticsApi) ListLocations(ctx _context.Context) (SyntheticsLocations
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLocationsExecute(req)
+	return a.listLocationsExecute(req)
 }
 
 // listLocationsExecute executes the request.
@@ -2919,12 +2879,10 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 
 type apiListTestsRequest struct {
 	ctx _context.Context
-	Api *SyntheticsApi
 }
 
 func (a *SyntheticsApi) buildListTestsRequest(ctx _context.Context) (apiListTestsRequest, error) {
 	req := apiListTestsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -2939,7 +2897,7 @@ func (a *SyntheticsApi) ListTests(ctx _context.Context) (SyntheticsListTestsResp
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listTestsExecute(req)
+	return a.listTestsExecute(req)
 }
 
 // listTestsExecute executes the request.
@@ -3055,13 +3013,11 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 
 type apiTriggerCITestsRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsCITestBody
 }
 
 func (a *SyntheticsApi) buildTriggerCITestsRequest(ctx _context.Context, body SyntheticsCITestBody) (apiTriggerCITestsRequest, error) {
 	req := apiTriggerCITestsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -3077,7 +3033,7 @@ func (a *SyntheticsApi) TriggerCITests(ctx _context.Context, body SyntheticsCITe
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.triggerCITestsExecute(req)
+	return a.triggerCITestsExecute(req)
 }
 
 // triggerCITestsExecute executes the request.
@@ -3190,13 +3146,11 @@ func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (Synth
 
 type apiTriggerTestsRequest struct {
 	ctx  _context.Context
-	Api  *SyntheticsApi
 	body *SyntheticsTriggerBody
 }
 
 func (a *SyntheticsApi) buildTriggerTestsRequest(ctx _context.Context, body SyntheticsTriggerBody) (apiTriggerTestsRequest, error) {
 	req := apiTriggerTestsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -3212,7 +3166,7 @@ func (a *SyntheticsApi) TriggerTests(ctx _context.Context, body SyntheticsTrigge
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.triggerTestsExecute(req)
+	return a.triggerTestsExecute(req)
 }
 
 // triggerTestsExecute executes the request.
@@ -3325,14 +3279,12 @@ func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (Synthetic
 
 type apiUpdateAPITestRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	body     *SyntheticsAPITest
 }
 
 func (a *SyntheticsApi) buildUpdateAPITestRequest(ctx _context.Context, publicId string, body SyntheticsAPITest) (apiUpdateAPITestRequest, error) {
 	req := apiUpdateAPITestRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		body:     &body,
@@ -3349,7 +3301,7 @@ func (a *SyntheticsApi) UpdateAPITest(ctx _context.Context, publicId string, bod
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAPITestExecute(req)
+	return a.updateAPITestExecute(req)
 }
 
 // updateAPITestExecute executes the request.
@@ -3481,14 +3433,12 @@ func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (Synthet
 
 type apiUpdateBrowserTestRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	body     *SyntheticsBrowserTest
 }
 
 func (a *SyntheticsApi) buildUpdateBrowserTestRequest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (apiUpdateBrowserTestRequest, error) {
 	req := apiUpdateBrowserTestRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		body:     &body,
@@ -3505,7 +3455,7 @@ func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateBrowserTestExecute(req)
+	return a.updateBrowserTestExecute(req)
 }
 
 // updateBrowserTestExecute executes the request.
@@ -3637,14 +3587,12 @@ func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) 
 
 type apiUpdatePrivateLocationRequest struct {
 	ctx        _context.Context
-	Api        *SyntheticsApi
 	locationId string
 	body       *SyntheticsPrivateLocation
 }
 
 func (a *SyntheticsApi) buildUpdatePrivateLocationRequest(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (apiUpdatePrivateLocationRequest, error) {
 	req := apiUpdatePrivateLocationRequest{
-		Api:        a,
 		ctx:        ctx,
 		locationId: locationId,
 		body:       &body,
@@ -3661,7 +3609,7 @@ func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId s
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updatePrivateLocationExecute(req)
+	return a.updatePrivateLocationExecute(req)
 }
 
 // updatePrivateLocationExecute executes the request.
@@ -3775,14 +3723,12 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationR
 
 type apiUpdateTestPauseStatusRequest struct {
 	ctx      _context.Context
-	Api      *SyntheticsApi
 	publicId string
 	body     *SyntheticsUpdateTestPauseStatusPayload
 }
 
 func (a *SyntheticsApi) buildUpdateTestPauseStatusRequest(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (apiUpdateTestPauseStatusRequest, error) {
 	req := apiUpdateTestPauseStatusRequest{
-		Api:      a,
 		ctx:      ctx,
 		publicId: publicId,
 		body:     &body,
@@ -3799,7 +3745,7 @@ func (a *SyntheticsApi) UpdateTestPauseStatus(ctx _context.Context, publicId str
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateTestPauseStatusExecute(req)
+	return a.updateTestPauseStatusExecute(req)
 }
 
 // updateTestPauseStatusExecute executes the request.

@@ -19,13 +19,11 @@ type AWSIntegrationApi common.Service
 
 type apiCreateAWSAccountRequest struct {
 	ctx  _context.Context
-	Api  *AWSIntegrationApi
 	body *AWSAccount
 }
 
 func (a *AWSIntegrationApi) buildCreateAWSAccountRequest(ctx _context.Context, body AWSAccount) (apiCreateAWSAccountRequest, error) {
 	req := apiCreateAWSAccountRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -44,7 +42,7 @@ func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccou
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAWSAccountExecute(req)
+	return a.createAWSAccountExecute(req)
 }
 
 // createAWSAccountExecute executes the request.
@@ -175,13 +173,11 @@ func (a *AWSIntegrationApi) createAWSAccountExecute(r apiCreateAWSAccountRequest
 
 type apiCreateAWSTagFilterRequest struct {
 	ctx  _context.Context
-	Api  *AWSIntegrationApi
 	body *AWSTagFilterCreateRequest
 }
 
 func (a *AWSIntegrationApi) buildCreateAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterCreateRequest) (apiCreateAWSTagFilterRequest, error) {
 	req := apiCreateAWSTagFilterRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -197,7 +193,7 @@ func (a *AWSIntegrationApi) CreateAWSTagFilter(ctx _context.Context, body AWSTag
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAWSTagFilterExecute(req)
+	return a.createAWSTagFilterExecute(req)
 }
 
 // createAWSTagFilterExecute executes the request.
@@ -319,13 +315,11 @@ func (a *AWSIntegrationApi) createAWSTagFilterExecute(r apiCreateAWSTagFilterReq
 
 type apiCreateNewAWSExternalIDRequest struct {
 	ctx  _context.Context
-	Api  *AWSIntegrationApi
 	body *AWSAccount
 }
 
 func (a *AWSIntegrationApi) buildCreateNewAWSExternalIDRequest(ctx _context.Context, body AWSAccount) (apiCreateNewAWSExternalIDRequest, error) {
 	req := apiCreateNewAWSExternalIDRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -341,7 +335,7 @@ func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context, body AW
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createNewAWSExternalIDExecute(req)
+	return a.createNewAWSExternalIDExecute(req)
 }
 
 // createNewAWSExternalIDExecute executes the request.
@@ -463,13 +457,11 @@ func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(r apiCreateNewAWSExter
 
 type apiDeleteAWSAccountRequest struct {
 	ctx  _context.Context
-	Api  *AWSIntegrationApi
 	body *AWSAccountDeleteRequest
 }
 
 func (a *AWSIntegrationApi) buildDeleteAWSAccountRequest(ctx _context.Context, body AWSAccountDeleteRequest) (apiDeleteAWSAccountRequest, error) {
 	req := apiDeleteAWSAccountRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -485,7 +477,7 @@ func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccou
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteAWSAccountExecute(req)
+	return a.deleteAWSAccountExecute(req)
 }
 
 // deleteAWSAccountExecute executes the request.
@@ -616,13 +608,11 @@ func (a *AWSIntegrationApi) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest
 
 type apiDeleteAWSTagFilterRequest struct {
 	ctx  _context.Context
-	Api  *AWSIntegrationApi
 	body *AWSTagFilterDeleteRequest
 }
 
 func (a *AWSIntegrationApi) buildDeleteAWSTagFilterRequest(ctx _context.Context, body AWSTagFilterDeleteRequest) (apiDeleteAWSTagFilterRequest, error) {
 	req := apiDeleteAWSTagFilterRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -638,7 +628,7 @@ func (a *AWSIntegrationApi) DeleteAWSTagFilter(ctx _context.Context, body AWSTag
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteAWSTagFilterExecute(req)
+	return a.deleteAWSTagFilterExecute(req)
 }
 
 // deleteAWSTagFilterExecute executes the request.
@@ -760,7 +750,6 @@ func (a *AWSIntegrationApi) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterReq
 
 type apiListAWSAccountsRequest struct {
 	ctx         _context.Context
-	Api         *AWSIntegrationApi
 	accountId   *string
 	roleName    *string
 	accessKeyId *string
@@ -799,7 +788,6 @@ func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) 
 
 func (a *AWSIntegrationApi) buildListAWSAccountsRequest(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (apiListAWSAccountsRequest, error) {
 	req := apiListAWSAccountsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -824,7 +812,7 @@ func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAc
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAWSAccountsExecute(req)
+	return a.listAWSAccountsExecute(req)
 }
 
 // listAWSAccountsExecute executes the request.
@@ -949,13 +937,11 @@ func (a *AWSIntegrationApi) listAWSAccountsExecute(r apiListAWSAccountsRequest) 
 
 type apiListAWSTagFiltersRequest struct {
 	ctx       _context.Context
-	Api       *AWSIntegrationApi
 	accountId *string
 }
 
 func (a *AWSIntegrationApi) buildListAWSTagFiltersRequest(ctx _context.Context, accountId string) (apiListAWSTagFiltersRequest, error) {
 	req := apiListAWSTagFiltersRequest{
-		Api:       a,
 		ctx:       ctx,
 		accountId: &accountId,
 	}
@@ -971,7 +957,7 @@ func (a *AWSIntegrationApi) ListAWSTagFilters(ctx _context.Context, accountId st
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAWSTagFiltersExecute(req)
+	return a.listAWSTagFiltersExecute(req)
 }
 
 // listAWSTagFiltersExecute executes the request.
@@ -1091,12 +1077,10 @@ func (a *AWSIntegrationApi) listAWSTagFiltersExecute(r apiListAWSTagFiltersReque
 
 type apiListAvailableAWSNamespacesRequest struct {
 	ctx _context.Context
-	Api *AWSIntegrationApi
 }
 
 func (a *AWSIntegrationApi) buildListAvailableAWSNamespacesRequest(ctx _context.Context) (apiListAvailableAWSNamespacesRequest, error) {
 	req := apiListAvailableAWSNamespacesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -1111,7 +1095,7 @@ func (a *AWSIntegrationApi) ListAvailableAWSNamespaces(ctx _context.Context) ([]
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAvailableAWSNamespacesExecute(req)
+	return a.listAvailableAWSNamespacesExecute(req)
 }
 
 // listAvailableAWSNamespacesExecute executes the request.
@@ -1218,7 +1202,6 @@ func (a *AWSIntegrationApi) listAvailableAWSNamespacesExecute(r apiListAvailable
 
 type apiUpdateAWSAccountRequest struct {
 	ctx         _context.Context
-	Api         *AWSIntegrationApi
 	body        *AWSAccount
 	accountId   *string
 	roleName    *string
@@ -1258,7 +1241,6 @@ func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string)
 
 func (a *AWSIntegrationApi) buildUpdateAWSAccountRequest(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (apiUpdateAWSAccountRequest, error) {
 	req := apiUpdateAWSAccountRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -1284,7 +1266,7 @@ func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, body AWSAccou
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAWSAccountExecute(req)
+	return a.updateAWSAccountExecute(req)
 }
 
 // updateAWSAccountExecute executes the request.

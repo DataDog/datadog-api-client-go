@@ -20,13 +20,11 @@ type AuthNMappingsApi common.Service
 
 type apiCreateAuthNMappingRequest struct {
 	ctx  _context.Context
-	Api  *AuthNMappingsApi
 	body *AuthNMappingCreateRequest
 }
 
 func (a *AuthNMappingsApi) buildCreateAuthNMappingRequest(ctx _context.Context, body AuthNMappingCreateRequest) (apiCreateAuthNMappingRequest, error) {
 	req := apiCreateAuthNMappingRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *AuthNMappingsApi) CreateAuthNMapping(ctx _context.Context, body AuthNMa
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAuthNMappingExecute(req)
+	return a.createAuthNMappingExecute(req)
 }
 
 // createAuthNMappingExecute executes the request.
@@ -173,13 +171,11 @@ func (a *AuthNMappingsApi) createAuthNMappingExecute(r apiCreateAuthNMappingRequ
 
 type apiDeleteAuthNMappingRequest struct {
 	ctx            _context.Context
-	Api            *AuthNMappingsApi
 	authnMappingId string
 }
 
 func (a *AuthNMappingsApi) buildDeleteAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiDeleteAuthNMappingRequest, error) {
 	req := apiDeleteAuthNMappingRequest{
-		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -194,7 +190,7 @@ func (a *AuthNMappingsApi) DeleteAuthNMapping(ctx _context.Context, authnMapping
 		return nil, err
 	}
 
-	return req.Api.deleteAuthNMappingExecute(req)
+	return a.deleteAuthNMappingExecute(req)
 }
 
 // deleteAuthNMappingExecute executes the request.
@@ -301,13 +297,11 @@ func (a *AuthNMappingsApi) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequ
 
 type apiGetAuthNMappingRequest struct {
 	ctx            _context.Context
-	Api            *AuthNMappingsApi
 	authnMappingId string
 }
 
 func (a *AuthNMappingsApi) buildGetAuthNMappingRequest(ctx _context.Context, authnMappingId string) (apiGetAuthNMappingRequest, error) {
 	req := apiGetAuthNMappingRequest{
-		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 	}
@@ -323,7 +317,7 @@ func (a *AuthNMappingsApi) GetAuthNMapping(ctx _context.Context, authnMappingId 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getAuthNMappingExecute(req)
+	return a.getAuthNMappingExecute(req)
 }
 
 // getAuthNMappingExecute executes the request.
@@ -440,7 +434,6 @@ func (a *AuthNMappingsApi) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (
 
 type apiListAuthNMappingsRequest struct {
 	ctx        _context.Context
-	Api        *AuthNMappingsApi
 	pageSize   *int64
 	pageNumber *int64
 	sort       *AuthNMappingsSort
@@ -487,7 +480,6 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 
 func (a *AuthNMappingsApi) buildListAuthNMappingsRequest(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (apiListAuthNMappingsRequest, error) {
 	req := apiListAuthNMappingsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -513,7 +505,7 @@ func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuth
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAuthNMappingsExecute(req)
+	return a.listAuthNMappingsExecute(req)
 }
 
 // listAuthNMappingsExecute executes the request.
@@ -632,14 +624,12 @@ func (a *AuthNMappingsApi) listAuthNMappingsExecute(r apiListAuthNMappingsReques
 
 type apiUpdateAuthNMappingRequest struct {
 	ctx            _context.Context
-	Api            *AuthNMappingsApi
 	authnMappingId string
 	body           *AuthNMappingUpdateRequest
 }
 
 func (a *AuthNMappingsApi) buildUpdateAuthNMappingRequest(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (apiUpdateAuthNMappingRequest, error) {
 	req := apiUpdateAuthNMappingRequest{
-		Api:            a,
 		ctx:            ctx,
 		authnMappingId: authnMappingId,
 		body:           &body,
@@ -656,7 +646,7 @@ func (a *AuthNMappingsApi) UpdateAuthNMapping(ctx _context.Context, authnMapping
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAuthNMappingExecute(req)
+	return a.updateAuthNMappingExecute(req)
 }
 
 // updateAuthNMappingExecute executes the request.

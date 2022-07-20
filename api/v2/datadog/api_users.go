@@ -20,13 +20,11 @@ type UsersApi common.Service
 
 type apiCreateServiceAccountRequest struct {
 	ctx  _context.Context
-	Api  *UsersApi
 	body *ServiceAccountCreateRequest
 }
 
 func (a *UsersApi) buildCreateServiceAccountRequest(ctx _context.Context, body ServiceAccountCreateRequest) (apiCreateServiceAccountRequest, error) {
 	req := apiCreateServiceAccountRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *UsersApi) CreateServiceAccount(ctx _context.Context, body ServiceAccoun
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createServiceAccountExecute(req)
+	return a.createServiceAccountExecute(req)
 }
 
 // createServiceAccountExecute executes the request.
@@ -164,13 +162,11 @@ func (a *UsersApi) createServiceAccountExecute(r apiCreateServiceAccountRequest)
 
 type apiCreateUserRequest struct {
 	ctx  _context.Context
-	Api  *UsersApi
 	body *UserCreateRequest
 }
 
 func (a *UsersApi) buildCreateUserRequest(ctx _context.Context, body UserCreateRequest) (apiCreateUserRequest, error) {
 	req := apiCreateUserRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -186,7 +182,7 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (Use
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createUserExecute(req)
+	return a.createUserExecute(req)
 }
 
 // createUserExecute executes the request.
@@ -308,13 +304,11 @@ func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_ne
 
 type apiDisableUserRequest struct {
 	ctx    _context.Context
-	Api    *UsersApi
 	userId string
 }
 
 func (a *UsersApi) buildDisableUserRequest(ctx _context.Context, userId string) (apiDisableUserRequest, error) {
 	req := apiDisableUserRequest{
-		Api:    a,
 		ctx:    ctx,
 		userId: userId,
 	}
@@ -330,7 +324,7 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.R
 		return nil, err
 	}
 
-	return req.Api.disableUserExecute(req)
+	return a.disableUserExecute(req)
 }
 
 // disableUserExecute executes the request.
@@ -437,13 +431,11 @@ func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (*_nethttp.Respon
 
 type apiGetInvitationRequest struct {
 	ctx                _context.Context
-	Api                *UsersApi
 	userInvitationUuid string
 }
 
 func (a *UsersApi) buildGetInvitationRequest(ctx _context.Context, userInvitationUuid string) (apiGetInvitationRequest, error) {
 	req := apiGetInvitationRequest{
-		Api:                a,
 		ctx:                ctx,
 		userInvitationUuid: userInvitationUuid,
 	}
@@ -459,7 +451,7 @@ func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getInvitationExecute(req)
+	return a.getInvitationExecute(req)
 }
 
 // getInvitationExecute executes the request.
@@ -576,13 +568,11 @@ func (a *UsersApi) getInvitationExecute(r apiGetInvitationRequest) (UserInvitati
 
 type apiGetUserRequest struct {
 	ctx    _context.Context
-	Api    *UsersApi
 	userId string
 }
 
 func (a *UsersApi) buildGetUserRequest(ctx _context.Context, userId string) (apiGetUserRequest, error) {
 	req := apiGetUserRequest{
-		Api:    a,
 		ctx:    ctx,
 		userId: userId,
 	}
@@ -598,7 +588,7 @@ func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUserExecute(req)
+	return a.getUserExecute(req)
 }
 
 // getUserExecute executes the request.
@@ -715,13 +705,11 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 
 type apiListUserOrganizationsRequest struct {
 	ctx    _context.Context
-	Api    *UsersApi
 	userId string
 }
 
 func (a *UsersApi) buildListUserOrganizationsRequest(ctx _context.Context, userId string) (apiListUserOrganizationsRequest, error) {
 	req := apiListUserOrganizationsRequest{
-		Api:    a,
 		ctx:    ctx,
 		userId: userId,
 	}
@@ -738,7 +726,7 @@ func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (U
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listUserOrganizationsExecute(req)
+	return a.listUserOrganizationsExecute(req)
 }
 
 // listUserOrganizationsExecute executes the request.
@@ -855,13 +843,11 @@ func (a *UsersApi) listUserOrganizationsExecute(r apiListUserOrganizationsReques
 
 type apiListUserPermissionsRequest struct {
 	ctx    _context.Context
-	Api    *UsersApi
 	userId string
 }
 
 func (a *UsersApi) buildListUserPermissionsRequest(ctx _context.Context, userId string) (apiListUserPermissionsRequest, error) {
 	req := apiListUserPermissionsRequest{
-		Api:    a,
 		ctx:    ctx,
 		userId: userId,
 	}
@@ -878,7 +864,7 @@ func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (Per
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listUserPermissionsExecute(req)
+	return a.listUserPermissionsExecute(req)
 }
 
 // listUserPermissionsExecute executes the request.
@@ -995,7 +981,6 @@ func (a *UsersApi) listUserPermissionsExecute(r apiListUserPermissionsRequest) (
 
 type apiListUsersRequest struct {
 	ctx          _context.Context
-	Api          *UsersApi
 	pageSize     *int64
 	pageNumber   *int64
 	sort         *string
@@ -1058,7 +1043,6 @@ func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *Lis
 
 func (a *UsersApi) buildListUsersRequest(ctx _context.Context, o ...ListUsersOptionalParameters) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1087,7 +1071,7 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listUsersExecute(req)
+	return a.listUsersExecute(req)
 }
 
 // listUsersExecute executes the request.
@@ -1221,13 +1205,11 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UsersResponse, *_net
 
 type apiSendInvitationsRequest struct {
 	ctx  _context.Context
-	Api  *UsersApi
 	body *UserInvitationsRequest
 }
 
 func (a *UsersApi) buildSendInvitationsRequest(ctx _context.Context, body UserInvitationsRequest) (apiSendInvitationsRequest, error) {
 	req := apiSendInvitationsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -1243,7 +1225,7 @@ func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsReq
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.sendInvitationsExecute(req)
+	return a.sendInvitationsExecute(req)
 }
 
 // sendInvitationsExecute executes the request.
@@ -1365,14 +1347,12 @@ func (a *UsersApi) sendInvitationsExecute(r apiSendInvitationsRequest) (UserInvi
 
 type apiUpdateUserRequest struct {
 	ctx    _context.Context
-	Api    *UsersApi
 	userId string
 	body   *UserUpdateRequest
 }
 
 func (a *UsersApi) buildUpdateUserRequest(ctx _context.Context, userId string, body UserUpdateRequest) (apiUpdateUserRequest, error) {
 	req := apiUpdateUserRequest{
-		Api:    a,
 		ctx:    ctx,
 		userId: userId,
 		body:   &body,
@@ -1390,7 +1370,7 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpda
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateUserExecute(req)
+	return a.updateUserExecute(req)
 }
 
 // updateUserExecute executes the request.

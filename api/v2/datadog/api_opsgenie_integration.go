@@ -20,13 +20,11 @@ type OpsgenieIntegrationApi common.Service
 
 type apiCreateOpsgenieServiceRequest struct {
 	ctx  _context.Context
-	Api  *OpsgenieIntegrationApi
 	body *OpsgenieServiceCreateRequest
 }
 
 func (a *OpsgenieIntegrationApi) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
 	req := apiCreateOpsgenieServiceRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *OpsgenieIntegrationApi) CreateOpsgenieService(ctx _context.Context, bod
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createOpsgenieServiceExecute(req)
+	return a.createOpsgenieServiceExecute(req)
 }
 
 // createOpsgenieServiceExecute executes the request.
@@ -173,13 +171,11 @@ func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgeni
 
 type apiDeleteOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 }
 
 func (a *OpsgenieIntegrationApi) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
 	req := apiDeleteOpsgenieServiceRequest{
-		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -194,7 +190,7 @@ func (a *OpsgenieIntegrationApi) DeleteOpsgenieService(ctx _context.Context, int
 		return nil, err
 	}
 
-	return req.Api.deleteOpsgenieServiceExecute(req)
+	return a.deleteOpsgenieServiceExecute(req)
 }
 
 // deleteOpsgenieServiceExecute executes the request.
@@ -310,13 +306,11 @@ func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgeni
 
 type apiGetOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 }
 
 func (a *OpsgenieIntegrationApi) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
 	req := apiGetOpsgenieServiceRequest{
-		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 	}
@@ -332,7 +326,7 @@ func (a *OpsgenieIntegrationApi) GetOpsgenieService(ctx _context.Context, integr
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getOpsgenieServiceExecute(req)
+	return a.getOpsgenieServiceExecute(req)
 }
 
 // getOpsgenieServiceExecute executes the request.
@@ -467,12 +461,10 @@ func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServi
 
 type apiListOpsgenieServicesRequest struct {
 	ctx _context.Context
-	Api *OpsgenieIntegrationApi
 }
 
 func (a *OpsgenieIntegrationApi) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
 	req := apiListOpsgenieServicesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -487,7 +479,7 @@ func (a *OpsgenieIntegrationApi) ListOpsgenieServices(ctx _context.Context) (Ops
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listOpsgenieServicesExecute(req)
+	return a.listOpsgenieServicesExecute(req)
 }
 
 // listOpsgenieServicesExecute executes the request.
@@ -594,14 +586,12 @@ func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieSe
 
 type apiUpdateOpsgenieServiceRequest struct {
 	ctx                  _context.Context
-	Api                  *OpsgenieIntegrationApi
 	integrationServiceId string
 	body                 *OpsgenieServiceUpdateRequest
 }
 
 func (a *OpsgenieIntegrationApi) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
 	req := apiUpdateOpsgenieServiceRequest{
-		Api:                  a,
 		ctx:                  ctx,
 		integrationServiceId: integrationServiceId,
 		body:                 &body,
@@ -618,7 +608,7 @@ func (a *OpsgenieIntegrationApi) UpdateOpsgenieService(ctx _context.Context, int
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateOpsgenieServiceExecute(req)
+	return a.updateOpsgenieServiceExecute(req)
 }
 
 // updateOpsgenieServiceExecute executes the request.

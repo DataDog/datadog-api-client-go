@@ -22,13 +22,11 @@ type IncidentServicesApi common.Service
 
 type apiCreateIncidentServiceRequest struct {
 	ctx  _context.Context
-	Api  *IncidentServicesApi
 	body *IncidentServiceCreateRequest
 }
 
 func (a *IncidentServicesApi) buildCreateIncidentServiceRequest(ctx _context.Context, body IncidentServiceCreateRequest) (apiCreateIncidentServiceRequest, error) {
 	req := apiCreateIncidentServiceRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -44,7 +42,7 @@ func (a *IncidentServicesApi) CreateIncidentService(ctx _context.Context, body I
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createIncidentServiceExecute(req)
+	return a.createIncidentServiceExecute(req)
 }
 
 // createIncidentServiceExecute executes the request.
@@ -56,7 +54,7 @@ func (a *IncidentServicesApi) createIncidentServiceExecute(r apiCreateIncidentSe
 	)
 
 	operationId := "v2.CreateIncidentService"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -191,13 +189,11 @@ func (a *IncidentServicesApi) createIncidentServiceExecute(r apiCreateIncidentSe
 
 type apiDeleteIncidentServiceRequest struct {
 	ctx       _context.Context
-	Api       *IncidentServicesApi
 	serviceId string
 }
 
 func (a *IncidentServicesApi) buildDeleteIncidentServiceRequest(ctx _context.Context, serviceId string) (apiDeleteIncidentServiceRequest, error) {
 	req := apiDeleteIncidentServiceRequest{
-		Api:       a,
 		ctx:       ctx,
 		serviceId: serviceId,
 	}
@@ -212,7 +208,7 @@ func (a *IncidentServicesApi) DeleteIncidentService(ctx _context.Context, servic
 		return nil, err
 	}
 
-	return req.Api.deleteIncidentServiceExecute(req)
+	return a.deleteIncidentServiceExecute(req)
 }
 
 // deleteIncidentServiceExecute executes the request.
@@ -223,7 +219,7 @@ func (a *IncidentServicesApi) deleteIncidentServiceExecute(r apiDeleteIncidentSe
 	)
 
 	operationId := "v2.DeleteIncidentService"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -344,7 +340,6 @@ func (a *IncidentServicesApi) deleteIncidentServiceExecute(r apiDeleteIncidentSe
 
 type apiGetIncidentServiceRequest struct {
 	ctx       _context.Context
-	Api       *IncidentServicesApi
 	serviceId string
 	include   *IncidentRelatedObject
 }
@@ -368,7 +363,6 @@ func (r *GetIncidentServiceOptionalParameters) WithInclude(include IncidentRelat
 
 func (a *IncidentServicesApi) buildGetIncidentServiceRequest(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (apiGetIncidentServiceRequest, error) {
 	req := apiGetIncidentServiceRequest{
-		Api:       a,
 		ctx:       ctx,
 		serviceId: serviceId,
 	}
@@ -393,7 +387,7 @@ func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getIncidentServiceExecute(req)
+	return a.getIncidentServiceExecute(req)
 }
 
 // getIncidentServiceExecute executes the request.
@@ -405,7 +399,7 @@ func (a *IncidentServicesApi) getIncidentServiceExecute(r apiGetIncidentServiceR
 	)
 
 	operationId := "v2.GetIncidentService"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -538,7 +532,6 @@ func (a *IncidentServicesApi) getIncidentServiceExecute(r apiGetIncidentServiceR
 
 type apiListIncidentServicesRequest struct {
 	ctx        _context.Context
-	Api        *IncidentServicesApi
 	include    *IncidentRelatedObject
 	pageSize   *int64
 	pageOffset *int64
@@ -585,7 +578,6 @@ func (r *ListIncidentServicesOptionalParameters) WithFilter(filter string) *List
 
 func (a *IncidentServicesApi) buildListIncidentServicesRequest(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (apiListIncidentServicesRequest, error) {
 	req := apiListIncidentServicesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -611,7 +603,7 @@ func (a *IncidentServicesApi) ListIncidentServices(ctx _context.Context, o ...Li
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listIncidentServicesExecute(req)
+	return a.listIncidentServicesExecute(req)
 }
 
 // listIncidentServicesExecute executes the request.
@@ -623,7 +615,7 @@ func (a *IncidentServicesApi) listIncidentServicesExecute(r apiListIncidentServi
 	)
 
 	operationId := "v2.ListIncidentServices"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -764,14 +756,12 @@ func (a *IncidentServicesApi) listIncidentServicesExecute(r apiListIncidentServi
 
 type apiUpdateIncidentServiceRequest struct {
 	ctx       _context.Context
-	Api       *IncidentServicesApi
 	serviceId string
 	body      *IncidentServiceUpdateRequest
 }
 
 func (a *IncidentServicesApi) buildUpdateIncidentServiceRequest(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (apiUpdateIncidentServiceRequest, error) {
 	req := apiUpdateIncidentServiceRequest{
-		Api:       a,
 		ctx:       ctx,
 		serviceId: serviceId,
 		body:      &body,
@@ -788,7 +778,7 @@ func (a *IncidentServicesApi) UpdateIncidentService(ctx _context.Context, servic
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateIncidentServiceExecute(req)
+	return a.updateIncidentServiceExecute(req)
 }
 
 // updateIncidentServiceExecute executes the request.
@@ -800,7 +790,7 @@ func (a *IncidentServicesApi) updateIncidentServiceExecute(r apiUpdateIncidentSe
 	)
 
 	operationId := "v2.UpdateIncidentService"
-	if r.Api.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}

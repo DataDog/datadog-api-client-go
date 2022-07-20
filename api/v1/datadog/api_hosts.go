@@ -20,7 +20,6 @@ type HostsApi common.Service
 
 type apiGetHostTotalsRequest struct {
 	ctx  _context.Context
-	Api  *HostsApi
 	from *int64
 }
 
@@ -43,7 +42,6 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 
 func (a *HostsApi) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
 	req := apiGetHostTotalsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -67,7 +65,7 @@ func (a *HostsApi) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptiona
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getHostTotalsExecute(req)
+	return a.getHostTotalsExecute(req)
 }
 
 // getHostTotalsExecute executes the request.
@@ -186,7 +184,6 @@ func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, 
 
 type apiListHostsRequest struct {
 	ctx                   _context.Context
-	Api                   *HostsApi
 	filter                *string
 	sortField             *string
 	sortDir               *string
@@ -265,7 +262,6 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 
 func (a *HostsApi) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
 	req := apiListHostsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -298,7 +294,7 @@ func (a *HostsApi) ListHosts(ctx _context.Context, o ...ListHostsOptionalParamet
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listHostsExecute(req)
+	return a.listHostsExecute(req)
 }
 
 // listHostsExecute executes the request.
@@ -438,14 +434,12 @@ func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_
 
 type apiMuteHostRequest struct {
 	ctx      _context.Context
-	Api      *HostsApi
 	hostName string
 	body     *HostMuteSettings
 }
 
 func (a *HostsApi) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
 	req := apiMuteHostRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 		body:     &body,
@@ -462,7 +456,7 @@ func (a *HostsApi) MuteHost(ctx _context.Context, hostName string, body HostMute
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.muteHostExecute(req)
+	return a.muteHostExecute(req)
 }
 
 // muteHostExecute executes the request.
@@ -585,13 +579,11 @@ func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_ne
 
 type apiUnmuteHostRequest struct {
 	ctx      _context.Context
-	Api      *HostsApi
 	hostName string
 }
 
 func (a *HostsApi) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
 	req := apiUnmuteHostRequest{
-		Api:      a,
 		ctx:      ctx,
 		hostName: hostName,
 	}
@@ -607,7 +599,7 @@ func (a *HostsApi) UnmuteHost(ctx _context.Context, hostName string) (HostMuteRe
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.unmuteHostExecute(req)
+	return a.unmuteHostExecute(req)
 }
 
 // unmuteHostExecute executes the request.

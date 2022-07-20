@@ -20,13 +20,11 @@ type PagerDutyIntegrationApi common.Service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {
 	ctx  _context.Context
-	Api  *PagerDutyIntegrationApi
 	body *PagerDutyService
 }
 
 func (a *PagerDutyIntegrationApi) buildCreatePagerDutyIntegrationServiceRequest(ctx _context.Context, body PagerDutyService) (apiCreatePagerDutyIntegrationServiceRequest, error) {
 	req := apiCreatePagerDutyIntegrationServiceRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *PagerDutyIntegrationApi) CreatePagerDutyIntegrationService(ctx _context
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createPagerDutyIntegrationServiceExecute(req)
+	return a.createPagerDutyIntegrationServiceExecute(req)
 }
 
 // createPagerDutyIntegrationServiceExecute executes the request.
@@ -164,13 +162,11 @@ func (a *PagerDutyIntegrationApi) createPagerDutyIntegrationServiceExecute(r api
 
 type apiDeletePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	Api         *PagerDutyIntegrationApi
 	serviceName string
 }
 
 func (a *PagerDutyIntegrationApi) buildDeletePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiDeletePagerDutyIntegrationServiceRequest, error) {
 	req := apiDeletePagerDutyIntegrationServiceRequest{
-		Api:         a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
@@ -185,7 +181,7 @@ func (a *PagerDutyIntegrationApi) DeletePagerDutyIntegrationService(ctx _context
 		return nil, err
 	}
 
-	return req.Api.deletePagerDutyIntegrationServiceExecute(req)
+	return a.deletePagerDutyIntegrationServiceExecute(req)
 }
 
 // deletePagerDutyIntegrationServiceExecute executes the request.
@@ -292,13 +288,11 @@ func (a *PagerDutyIntegrationApi) deletePagerDutyIntegrationServiceExecute(r api
 
 type apiGetPagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	Api         *PagerDutyIntegrationApi
 	serviceName string
 }
 
 func (a *PagerDutyIntegrationApi) buildGetPagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiGetPagerDutyIntegrationServiceRequest, error) {
 	req := apiGetPagerDutyIntegrationServiceRequest{
-		Api:         a,
 		ctx:         ctx,
 		serviceName: serviceName,
 	}
@@ -314,7 +308,7 @@ func (a *PagerDutyIntegrationApi) GetPagerDutyIntegrationService(ctx _context.Co
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getPagerDutyIntegrationServiceExecute(req)
+	return a.getPagerDutyIntegrationServiceExecute(req)
 }
 
 // getPagerDutyIntegrationServiceExecute executes the request.
@@ -431,14 +425,12 @@ func (a *PagerDutyIntegrationApi) getPagerDutyIntegrationServiceExecute(r apiGet
 
 type apiUpdatePagerDutyIntegrationServiceRequest struct {
 	ctx         _context.Context
-	Api         *PagerDutyIntegrationApi
 	serviceName string
 	body        *PagerDutyServiceKey
 }
 
 func (a *PagerDutyIntegrationApi) buildUpdatePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (apiUpdatePagerDutyIntegrationServiceRequest, error) {
 	req := apiUpdatePagerDutyIntegrationServiceRequest{
-		Api:         a,
 		ctx:         ctx,
 		serviceName: serviceName,
 		body:        &body,
@@ -454,7 +446,7 @@ func (a *PagerDutyIntegrationApi) UpdatePagerDutyIntegrationService(ctx _context
 		return nil, err
 	}
 
-	return req.Api.updatePagerDutyIntegrationServiceExecute(req)
+	return a.updatePagerDutyIntegrationServiceExecute(req)
 }
 
 // updatePagerDutyIntegrationServiceExecute executes the request.

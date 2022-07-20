@@ -21,13 +21,11 @@ type SecurityMonitoringApi common.Service
 
 type apiCreateSecurityFilterRequest struct {
 	ctx  _context.Context
-	Api  *SecurityMonitoringApi
 	body *SecurityFilterCreateRequest
 }
 
 func (a *SecurityMonitoringApi) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
 	req := apiCreateSecurityFilterRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -46,7 +44,7 @@ func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSecurityFilterExecute(req)
+	return a.createSecurityFilterExecute(req)
 }
 
 // createSecurityFilterExecute executes the request.
@@ -177,13 +175,11 @@ func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityF
 
 type apiCreateSecurityMonitoringRuleRequest struct {
 	ctx  _context.Context
-	Api  *SecurityMonitoringApi
 	body *SecurityMonitoringRuleCreatePayload
 }
 
 func (a *SecurityMonitoringApi) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
 	req := apiCreateSecurityMonitoringRuleRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -199,7 +195,7 @@ func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSecurityMonitoringRuleExecute(req)
+	return a.createSecurityMonitoringRuleExecute(req)
 }
 
 // createSecurityMonitoringRuleExecute executes the request.
@@ -321,13 +317,11 @@ func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateS
 
 type apiDeleteSecurityFilterRequest struct {
 	ctx              _context.Context
-	Api              *SecurityMonitoringApi
 	securityFilterId string
 }
 
 func (a *SecurityMonitoringApi) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
 	req := apiDeleteSecurityFilterRequest{
-		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -342,7 +336,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, secur
 		return nil, err
 	}
 
-	return req.Api.deleteSecurityFilterExecute(req)
+	return a.deleteSecurityFilterExecute(req)
 }
 
 // deleteSecurityFilterExecute executes the request.
@@ -449,13 +443,11 @@ func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityF
 
 type apiDeleteSecurityMonitoringRuleRequest struct {
 	ctx    _context.Context
-	Api    *SecurityMonitoringApi
 	ruleId string
 }
 
 func (a *SecurityMonitoringApi) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
 	req := apiDeleteSecurityMonitoringRuleRequest{
-		Api:    a,
 		ctx:    ctx,
 		ruleId: ruleId,
 	}
@@ -470,7 +462,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Contex
 		return nil, err
 	}
 
-	return req.Api.deleteSecurityMonitoringRuleExecute(req)
+	return a.deleteSecurityMonitoringRuleExecute(req)
 }
 
 // deleteSecurityMonitoringRuleExecute executes the request.
@@ -577,14 +569,12 @@ func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteS
 
 type apiEditSecurityMonitoringSignalAssigneeRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *SecurityMonitoringSignalAssigneeUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
 	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -601,7 +591,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editSecurityMonitoringSignalAssigneeExecute(req)
+	return a.editSecurityMonitoringSignalAssigneeExecute(req)
 }
 
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
@@ -733,14 +723,12 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 
 type apiEditSecurityMonitoringSignalIncidentsRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *SecurityMonitoringSignalIncidentsUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalIncidentsRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (apiEditSecurityMonitoringSignalIncidentsRequest, error) {
 	req := apiEditSecurityMonitoringSignalIncidentsRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -757,7 +745,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _conte
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editSecurityMonitoringSignalIncidentsExecute(req)
+	return a.editSecurityMonitoringSignalIncidentsExecute(req)
 }
 
 // editSecurityMonitoringSignalIncidentsExecute executes the request.
@@ -889,14 +877,12 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(r a
 
 type apiEditSecurityMonitoringSignalStateRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *SecurityMonitoringSignalStateUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
 	req := apiEditSecurityMonitoringSignalStateRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -913,7 +899,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editSecurityMonitoringSignalStateExecute(req)
+	return a.editSecurityMonitoringSignalStateExecute(req)
 }
 
 // editSecurityMonitoringSignalStateExecute executes the request.
@@ -1045,13 +1031,11 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEd
 
 type apiGetSecurityFilterRequest struct {
 	ctx              _context.Context
-	Api              *SecurityMonitoringApi
 	securityFilterId string
 }
 
 func (a *SecurityMonitoringApi) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
 	req := apiGetSecurityFilterRequest{
-		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 	}
@@ -1070,7 +1054,7 @@ func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, security
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSecurityFilterExecute(req)
+	return a.getSecurityFilterExecute(req)
 }
 
 // getSecurityFilterExecute executes the request.
@@ -1187,13 +1171,11 @@ func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterR
 
 type apiGetSecurityMonitoringRuleRequest struct {
 	ctx    _context.Context
-	Api    *SecurityMonitoringApi
 	ruleId string
 }
 
 func (a *SecurityMonitoringApi) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
 	req := apiGetSecurityMonitoringRuleRequest{
-		Api:    a,
 		ctx:    ctx,
 		ruleId: ruleId,
 	}
@@ -1209,7 +1191,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSecurityMonitoringRuleExecute(req)
+	return a.getSecurityMonitoringRuleExecute(req)
 }
 
 // getSecurityMonitoringRuleExecute executes the request.
@@ -1317,12 +1299,10 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurit
 
 type apiListSecurityFiltersRequest struct {
 	ctx _context.Context
-	Api *SecurityMonitoringApi
 }
 
 func (a *SecurityMonitoringApi) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
 	req := apiListSecurityFiltersRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -1337,7 +1317,7 @@ func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (Secur
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listSecurityFiltersExecute(req)
+	return a.listSecurityFiltersExecute(req)
 }
 
 // listSecurityFiltersExecute executes the request.
@@ -1444,7 +1424,6 @@ func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFilt
 
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
-	Api        *SecurityMonitoringApi
 	pageSize   *int64
 	pageNumber *int64
 }
@@ -1475,7 +1454,6 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 
 func (a *SecurityMonitoringApi) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
 	req := apiListSecurityMonitoringRulesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1499,7 +1477,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listSecurityMonitoringRulesExecute(req)
+	return a.listSecurityMonitoringRulesExecute(req)
 }
 
 // listSecurityMonitoringRulesExecute executes the request.
@@ -1612,7 +1590,6 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecu
 
 type apiListSecurityMonitoringSignalsRequest struct {
 	ctx         _context.Context
-	Api         *SecurityMonitoringApi
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -1675,7 +1652,6 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 
 func (a *SecurityMonitoringApi) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1705,7 +1681,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Conte
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listSecurityMonitoringSignalsExecute(req)
+	return a.listSecurityMonitoringSignalsExecute(req)
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
@@ -1728,7 +1704,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 				break
 			}
 
-			resp, _, err := req.Api.listSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.listSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -1900,7 +1876,6 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSe
 
 type apiSearchSecurityMonitoringSignalsRequest struct {
 	ctx  _context.Context
-	Api  *SecurityMonitoringApi
 	body *SecurityMonitoringSignalListRequest
 }
 
@@ -1923,7 +1898,6 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 
 func (a *SecurityMonitoringApi) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
 	req := apiSearchSecurityMonitoringSignalsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1948,7 +1922,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.searchSecurityMonitoringSignalsExecute(req)
+	return a.searchSecurityMonitoringSignalsExecute(req)
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
@@ -1977,7 +1951,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 				break
 			}
 
-			resp, _, err := req.Api.searchSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.searchSecurityMonitoringSignalsExecute(req)
 			if err != nil {
 				break
 			}
@@ -2134,14 +2108,12 @@ func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSear
 
 type apiUpdateSecurityFilterRequest struct {
 	ctx              _context.Context
-	Api              *SecurityMonitoringApi
 	securityFilterId string
 	body             *SecurityFilterUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
 	req := apiUpdateSecurityFilterRequest{
-		Api:              a,
 		ctx:              ctx,
 		securityFilterId: securityFilterId,
 		body:             &body,
@@ -2159,7 +2131,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, secur
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateSecurityFilterExecute(req)
+	return a.updateSecurityFilterExecute(req)
 }
 
 // updateSecurityFilterExecute executes the request.
@@ -2300,14 +2272,12 @@ func (a *SecurityMonitoringApi) updateSecurityFilterExecute(r apiUpdateSecurityF
 
 type apiUpdateSecurityMonitoringRuleRequest struct {
 	ctx    _context.Context
-	Api    *SecurityMonitoringApi
 	ruleId string
 	body   *SecurityMonitoringRuleUpdatePayload
 }
 
 func (a *SecurityMonitoringApi) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
 	req := apiUpdateSecurityMonitoringRuleRequest{
-		Api:    a,
 		ctx:    ctx,
 		ruleId: ruleId,
 		body:   &body,
@@ -2326,7 +2296,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateSecurityMonitoringRuleExecute(req)
+	return a.updateSecurityMonitoringRuleExecute(req)
 }
 
 // updateSecurityMonitoringRuleExecute executes the request.

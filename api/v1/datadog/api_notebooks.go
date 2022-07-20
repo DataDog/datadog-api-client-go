@@ -20,13 +20,11 @@ type NotebooksApi common.Service
 
 type apiCreateNotebookRequest struct {
 	ctx  _context.Context
-	Api  *NotebooksApi
 	body *NotebookCreateRequest
 }
 
 func (a *NotebooksApi) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
 	req := apiCreateNotebookRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateR
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createNotebookExecute(req)
+	return a.createNotebookExecute(req)
 }
 
 // createNotebookExecute executes the request.
@@ -164,13 +162,11 @@ func (a *NotebooksApi) createNotebookExecute(r apiCreateNotebookRequest) (Notebo
 
 type apiDeleteNotebookRequest struct {
 	ctx        _context.Context
-	Api        *NotebooksApi
 	notebookId int64
 }
 
 func (a *NotebooksApi) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
 	req := apiDeleteNotebookRequest{
-		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -185,7 +181,7 @@ func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*
 		return nil, err
 	}
 
-	return req.Api.deleteNotebookExecute(req)
+	return a.deleteNotebookExecute(req)
 }
 
 // deleteNotebookExecute executes the request.
@@ -301,13 +297,11 @@ func (a *NotebooksApi) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_neth
 
 type apiGetNotebookRequest struct {
 	ctx        _context.Context
-	Api        *NotebooksApi
 	notebookId int64
 }
 
 func (a *NotebooksApi) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
 	req := apiGetNotebookRequest{
-		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 	}
@@ -323,7 +317,7 @@ func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (Note
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getNotebookExecute(req)
+	return a.getNotebookExecute(req)
 }
 
 // getNotebookExecute executes the request.
@@ -449,7 +443,6 @@ func (a *NotebooksApi) getNotebookExecute(r apiGetNotebookRequest) (NotebookResp
 
 type apiListNotebooksRequest struct {
 	ctx                 _context.Context
-	Api                 *NotebooksApi
 	authorHandle        *string
 	excludeAuthorHandle *string
 	start               *int64
@@ -544,7 +537,6 @@ func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebook
 
 func (a *NotebooksApi) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
 	req := apiListNotebooksRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -577,7 +569,7 @@ func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOpt
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listNotebooksExecute(req)
+	return a.listNotebooksExecute(req)
 }
 
 // listNotebooksExecute executes the request.
@@ -723,14 +715,12 @@ func (a *NotebooksApi) listNotebooksExecute(r apiListNotebooksRequest) (Notebook
 
 type apiUpdateNotebookRequest struct {
 	ctx        _context.Context
-	Api        *NotebooksApi
 	notebookId int64
 	body       *NotebookUpdateRequest
 }
 
 func (a *NotebooksApi) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
 	req := apiUpdateNotebookRequest{
-		Api:        a,
 		ctx:        ctx,
 		notebookId: notebookId,
 		body:       &body,
@@ -747,7 +737,7 @@ func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, bo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateNotebookExecute(req)
+	return a.updateNotebookExecute(req)
 }
 
 // updateNotebookExecute executes the request.

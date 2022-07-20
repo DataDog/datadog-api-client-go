@@ -19,13 +19,11 @@ type AzureIntegrationApi common.Service
 
 type apiCreateAzureIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *AzureIntegrationApi
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildCreateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiCreateAzureIntegrationRequest, error) {
 	req := apiCreateAzureIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -47,7 +45,7 @@ func (a *AzureIntegrationApi) CreateAzureIntegration(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAzureIntegrationExecute(req)
+	return a.createAzureIntegrationExecute(req)
 }
 
 // createAzureIntegrationExecute executes the request.
@@ -169,13 +167,11 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureInte
 
 type apiDeleteAzureIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *AzureIntegrationApi
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildDeleteAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiDeleteAzureIntegrationRequest, error) {
 	req := apiDeleteAzureIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -191,7 +187,7 @@ func (a *AzureIntegrationApi) DeleteAzureIntegration(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteAzureIntegrationExecute(req)
+	return a.deleteAzureIntegrationExecute(req)
 }
 
 // deleteAzureIntegrationExecute executes the request.
@@ -313,12 +309,10 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureInte
 
 type apiListAzureIntegrationRequest struct {
 	ctx _context.Context
-	Api *AzureIntegrationApi
 }
 
 func (a *AzureIntegrationApi) buildListAzureIntegrationRequest(ctx _context.Context) (apiListAzureIntegrationRequest, error) {
 	req := apiListAzureIntegrationRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -333,7 +327,7 @@ func (a *AzureIntegrationApi) ListAzureIntegration(ctx _context.Context) ([]Azur
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAzureIntegrationExecute(req)
+	return a.listAzureIntegrationExecute(req)
 }
 
 // listAzureIntegrationExecute executes the request.
@@ -449,13 +443,11 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrat
 
 type apiUpdateAzureHostFiltersRequest struct {
 	ctx  _context.Context
-	Api  *AzureIntegrationApi
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildUpdateAzureHostFiltersRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureHostFiltersRequest, error) {
 	req := apiUpdateAzureHostFiltersRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -471,7 +463,7 @@ func (a *AzureIntegrationApi) UpdateAzureHostFilters(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAzureHostFiltersExecute(req)
+	return a.updateAzureHostFiltersExecute(req)
 }
 
 // updateAzureHostFiltersExecute executes the request.
@@ -593,13 +585,11 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHost
 
 type apiUpdateAzureIntegrationRequest struct {
 	ctx  _context.Context
-	Api  *AzureIntegrationApi
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildUpdateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureIntegrationRequest, error) {
 	req := apiUpdateAzureIntegrationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -617,7 +607,7 @@ func (a *AzureIntegrationApi) UpdateAzureIntegration(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateAzureIntegrationExecute(req)
+	return a.updateAzureIntegrationExecute(req)
 }
 
 // updateAzureIntegrationExecute executes the request.

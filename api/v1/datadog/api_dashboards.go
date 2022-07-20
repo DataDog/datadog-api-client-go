@@ -20,13 +20,11 @@ type DashboardsApi common.Service
 
 type apiCreateDashboardRequest struct {
 	ctx  _context.Context
-	Api  *DashboardsApi
 	body *Dashboard
 }
 
 func (a *DashboardsApi) buildCreateDashboardRequest(ctx _context.Context, body Dashboard) (apiCreateDashboardRequest, error) {
 	req := apiCreateDashboardRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -43,7 +41,7 @@ func (a *DashboardsApi) CreateDashboard(ctx _context.Context, body Dashboard) (D
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createDashboardExecute(req)
+	return a.createDashboardExecute(req)
 }
 
 // createDashboardExecute executes the request.
@@ -165,13 +163,11 @@ func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Das
 
 type apiDeleteDashboardRequest struct {
 	ctx         _context.Context
-	Api         *DashboardsApi
 	dashboardId string
 }
 
 func (a *DashboardsApi) buildDeleteDashboardRequest(ctx _context.Context, dashboardId string) (apiDeleteDashboardRequest, error) {
 	req := apiDeleteDashboardRequest{
-		Api:         a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
@@ -187,7 +183,7 @@ func (a *DashboardsApi) DeleteDashboard(ctx _context.Context, dashboardId string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteDashboardExecute(req)
+	return a.deleteDashboardExecute(req)
 }
 
 // deleteDashboardExecute executes the request.
@@ -304,13 +300,11 @@ func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (Das
 
 type apiDeleteDashboardsRequest struct {
 	ctx  _context.Context
-	Api  *DashboardsApi
 	body *DashboardBulkDeleteRequest
 }
 
 func (a *DashboardsApi) buildDeleteDashboardsRequest(ctx _context.Context, body DashboardBulkDeleteRequest) (apiDeleteDashboardsRequest, error) {
 	req := apiDeleteDashboardsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -325,7 +319,7 @@ func (a *DashboardsApi) DeleteDashboards(ctx _context.Context, body DashboardBul
 		return nil, err
 	}
 
-	return req.Api.deleteDashboardsExecute(req)
+	return a.deleteDashboardsExecute(req)
 }
 
 // deleteDashboardsExecute executes the request.
@@ -446,13 +440,11 @@ func (a *DashboardsApi) deleteDashboardsExecute(r apiDeleteDashboardsRequest) (*
 
 type apiGetDashboardRequest struct {
 	ctx         _context.Context
-	Api         *DashboardsApi
 	dashboardId string
 }
 
 func (a *DashboardsApi) buildGetDashboardRequest(ctx _context.Context, dashboardId string) (apiGetDashboardRequest, error) {
 	req := apiGetDashboardRequest{
-		Api:         a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 	}
@@ -468,7 +460,7 @@ func (a *DashboardsApi) GetDashboard(ctx _context.Context, dashboardId string) (
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getDashboardExecute(req)
+	return a.getDashboardExecute(req)
 }
 
 // getDashboardExecute executes the request.
@@ -585,7 +577,6 @@ func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard
 
 type apiListDashboardsRequest struct {
 	ctx           _context.Context
-	Api           *DashboardsApi
 	filterShared  *bool
 	filterDeleted *bool
 }
@@ -616,7 +607,6 @@ func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool)
 
 func (a *DashboardsApi) buildListDashboardsRequest(ctx _context.Context, o ...ListDashboardsOptionalParameters) (apiListDashboardsRequest, error) {
 	req := apiListDashboardsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -643,7 +633,7 @@ func (a *DashboardsApi) ListDashboards(ctx _context.Context, o ...ListDashboards
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listDashboardsExecute(req)
+	return a.listDashboardsExecute(req)
 }
 
 // listDashboardsExecute executes the request.
@@ -756,13 +746,11 @@ func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (Dashb
 
 type apiRestoreDashboardsRequest struct {
 	ctx  _context.Context
-	Api  *DashboardsApi
 	body *DashboardRestoreRequest
 }
 
 func (a *DashboardsApi) buildRestoreDashboardsRequest(ctx _context.Context, body DashboardRestoreRequest) (apiRestoreDashboardsRequest, error) {
 	req := apiRestoreDashboardsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -777,7 +765,7 @@ func (a *DashboardsApi) RestoreDashboards(ctx _context.Context, body DashboardRe
 		return nil, err
 	}
 
-	return req.Api.restoreDashboardsExecute(req)
+	return a.restoreDashboardsExecute(req)
 }
 
 // restoreDashboardsExecute executes the request.
@@ -898,14 +886,12 @@ func (a *DashboardsApi) restoreDashboardsExecute(r apiRestoreDashboardsRequest) 
 
 type apiUpdateDashboardRequest struct {
 	ctx         _context.Context
-	Api         *DashboardsApi
 	dashboardId string
 	body        *Dashboard
 }
 
 func (a *DashboardsApi) buildUpdateDashboardRequest(ctx _context.Context, dashboardId string, body Dashboard) (apiUpdateDashboardRequest, error) {
 	req := apiUpdateDashboardRequest{
-		Api:         a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 		body:        &body,
@@ -922,7 +908,7 @@ func (a *DashboardsApi) UpdateDashboard(ctx _context.Context, dashboardId string
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateDashboardExecute(req)
+	return a.updateDashboardExecute(req)
 }
 
 // updateDashboardExecute executes the request.

@@ -20,7 +20,6 @@ type OrganizationsApi common.Service
 
 type apiUploadIdPMetadataRequest struct {
 	ctx     _context.Context
-	Api     *OrganizationsApi
 	idpFile **os.File
 }
 
@@ -43,7 +42,6 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
 
 func (a *OrganizationsApi) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
 	req := apiUploadIdPMetadataRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -67,7 +65,7 @@ func (a *OrganizationsApi) UploadIdPMetadata(ctx _context.Context, o ...UploadId
 		return nil, err
 	}
 
-	return req.Api.uploadIdPMetadataExecute(req)
+	return a.uploadIdPMetadataExecute(req)
 }
 
 // uploadIdPMetadataExecute executes the request.

@@ -20,13 +20,11 @@ type LogsApi common.Service
 
 type apiAggregateLogsRequest struct {
 	ctx  _context.Context
-	Api  *LogsApi
 	body *LogsAggregateRequest
 }
 
 func (a *LogsApi) buildAggregateLogsRequest(ctx _context.Context, body LogsAggregateRequest) (apiAggregateLogsRequest, error) {
 	req := apiAggregateLogsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *LogsApi) AggregateLogs(ctx _context.Context, body LogsAggregateRequest)
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.aggregateLogsExecute(req)
+	return a.aggregateLogsExecute(req)
 }
 
 // aggregateLogsExecute executes the request.
@@ -164,7 +162,6 @@ func (a *LogsApi) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAggregate
 
 type apiListLogsRequest struct {
 	ctx  _context.Context
-	Api  *LogsApi
 	body *LogsListRequest
 }
 
@@ -187,7 +184,6 @@ func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOpt
 
 func (a *LogsApi) buildListLogsRequest(ctx _context.Context, o ...ListLogsOptionalParameters) (apiListLogsRequest, error) {
 	req := apiListLogsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -220,7 +216,7 @@ func (a *LogsApi) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsExecute(req)
+	return a.listLogsExecute(req)
 }
 
 // ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
@@ -249,7 +245,7 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 				break
 			}
 
-			resp, _, err := req.Api.listLogsExecute(req)
+			resp, _, err := a.listLogsExecute(req)
 			if err != nil {
 				break
 			}
@@ -406,7 +402,6 @@ func (a *LogsApi) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_net
 
 type apiListLogsGetRequest struct {
 	ctx         _context.Context
-	Api         *LogsApi
 	filterQuery *string
 	filterIndex *string
 	filterFrom  *time.Time
@@ -477,7 +472,6 @@ func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogs
 
 func (a *LogsApi) buildListLogsGetRequest(ctx _context.Context, o ...ListLogsGetOptionalParameters) (apiListLogsGetRequest, error) {
 	req := apiListLogsGetRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -516,7 +510,7 @@ func (a *LogsApi) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalPara
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listLogsGetExecute(req)
+	return a.listLogsGetExecute(req)
 }
 
 // ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
@@ -539,7 +533,7 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 				break
 			}
 
-			resp, _, err := req.Api.listLogsGetExecute(req)
+			resp, _, err := a.listLogsGetExecute(req)
 			if err != nil {
 				break
 			}
@@ -714,7 +708,6 @@ func (a *LogsApi) listLogsGetExecute(r apiListLogsGetRequest) (LogsListResponse,
 
 type apiSubmitLogRequest struct {
 	ctx             _context.Context
-	Api             *LogsApi
 	body            *[]HTTPLogItem
 	contentEncoding *ContentEncoding
 	ddtags          *string
@@ -746,7 +739,6 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 
 func (a *LogsApi) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
 	req := apiSubmitLogRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -793,7 +785,7 @@ func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...Submi
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitLogExecute(req)
+	return a.submitLogExecute(req)
 }
 
 // submitLogExecute executes the request.

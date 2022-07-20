@@ -20,14 +20,12 @@ type SecurityMonitoringApi common.Service
 
 type apiAddSecurityMonitoringSignalToIncidentRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *AddSignalToIncidentRequest
 }
 
 func (a *SecurityMonitoringApi) buildAddSecurityMonitoringSignalToIncidentRequest(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (apiAddSecurityMonitoringSignalToIncidentRequest, error) {
 	req := apiAddSecurityMonitoringSignalToIncidentRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -44,7 +42,7 @@ func (a *SecurityMonitoringApi) AddSecurityMonitoringSignalToIncident(ctx _conte
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.addSecurityMonitoringSignalToIncidentExecute(req)
+	return a.addSecurityMonitoringSignalToIncidentExecute(req)
 }
 
 // addSecurityMonitoringSignalToIncidentExecute executes the request.
@@ -176,14 +174,12 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r a
 
 type apiEditSecurityMonitoringSignalAssigneeRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *SignalAssigneeUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
 	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -200,7 +196,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editSecurityMonitoringSignalAssigneeExecute(req)
+	return a.editSecurityMonitoringSignalAssigneeExecute(req)
 }
 
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
@@ -332,14 +328,12 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 
 type apiEditSecurityMonitoringSignalStateRequest struct {
 	ctx      _context.Context
-	Api      *SecurityMonitoringApi
 	signalId string
 	body     *SignalStateUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
 	req := apiEditSecurityMonitoringSignalStateRequest{
-		Api:      a,
 		ctx:      ctx,
 		signalId: signalId,
 		body:     &body,
@@ -356,7 +350,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.editSecurityMonitoringSignalStateExecute(req)
+	return a.editSecurityMonitoringSignalStateExecute(req)
 }
 
 // editSecurityMonitoringSignalStateExecute executes the request.

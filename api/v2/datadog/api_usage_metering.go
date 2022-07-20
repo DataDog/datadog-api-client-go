@@ -20,7 +20,6 @@ type UsageMeteringApi common.Service
 
 type apiGetCostByOrgRequest struct {
 	ctx        _context.Context
-	Api        *UsageMeteringApi
 	startMonth *time.Time
 	endMonth   *time.Time
 }
@@ -44,7 +43,6 @@ func (r *GetCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetCo
 
 func (a *UsageMeteringApi) buildGetCostByOrgRequest(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (apiGetCostByOrgRequest, error) {
 	req := apiGetCostByOrgRequest{
-		Api:        a,
 		ctx:        ctx,
 		startMonth: &startMonth,
 	}
@@ -68,7 +66,7 @@ func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Ti
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getCostByOrgExecute(req)
+	return a.getCostByOrgExecute(req)
 }
 
 // getCostByOrgExecute executes the request.
@@ -191,7 +189,6 @@ func (a *UsageMeteringApi) getCostByOrgExecute(r apiGetCostByOrgRequest) (CostBy
 
 type apiGetEstimatedCostByOrgRequest struct {
 	ctx        _context.Context
-	Api        *UsageMeteringApi
 	startMonth *time.Time
 	endMonth   *time.Time
 	startDate  *time.Time
@@ -238,7 +235,6 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time)
 
 func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (apiGetEstimatedCostByOrgRequest, error) {
 	req := apiGetEstimatedCostByOrgRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -264,7 +260,7 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getEstimatedCostByOrgExecute(req)
+	return a.getEstimatedCostByOrgExecute(req)
 }
 
 // getEstimatedCostByOrgExecute executes the request.
@@ -392,7 +388,6 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 
 type apiGetHourlyUsageRequest struct {
 	ctx                      _context.Context
-	Api                      *UsageMeteringApi
 	filterTimestampStart     *time.Time
 	filterProductFamilies    *string
 	filterTimestampEnd       *time.Time
@@ -449,7 +444,6 @@ func (r *GetHourlyUsageOptionalParameters) WithPageNextRecordId(pageNextRecordId
 
 func (a *UsageMeteringApi) buildGetHourlyUsageRequest(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (apiGetHourlyUsageRequest, error) {
 	req := apiGetHourlyUsageRequest{
-		Api:                   a,
 		ctx:                   ctx,
 		filterTimestampStart:  &filterTimestampStart,
 		filterProductFamilies: &filterProductFamilies,
@@ -478,7 +472,7 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getHourlyUsageExecute(req)
+	return a.getHourlyUsageExecute(req)
 }
 
 // getHourlyUsageExecute executes the request.
@@ -617,7 +611,6 @@ func (a *UsageMeteringApi) getHourlyUsageExecute(r apiGetHourlyUsageRequest) (Ho
 
 type apiGetUsageApplicationSecurityMonitoringRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -641,7 +634,6 @@ func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endH
 
 func (a *UsageMeteringApi) buildGetUsageApplicationSecurityMonitoringRequest(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (apiGetUsageApplicationSecurityMonitoringRequest, error) {
 	req := apiGetUsageApplicationSecurityMonitoringRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -665,7 +657,7 @@ func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Co
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageApplicationSecurityMonitoringExecute(req)
+	return a.getUsageApplicationSecurityMonitoringExecute(req)
 }
 
 // getUsageApplicationSecurityMonitoringExecute executes the request.
@@ -788,7 +780,6 @@ func (a *UsageMeteringApi) getUsageApplicationSecurityMonitoringExecute(r apiGet
 
 type apiGetUsageLambdaTracedInvocationsRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -812,7 +803,6 @@ func (r *GetUsageLambdaTracedInvocationsOptionalParameters) WithEndHr(endHr time
 
 func (a *UsageMeteringApi) buildGetUsageLambdaTracedInvocationsRequest(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (apiGetUsageLambdaTracedInvocationsRequest, error) {
 	req := apiGetUsageLambdaTracedInvocationsRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -836,7 +826,7 @@ func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageLambdaTracedInvocationsExecute(req)
+	return a.getUsageLambdaTracedInvocationsExecute(req)
 }
 
 // getUsageLambdaTracedInvocationsExecute executes the request.
@@ -959,7 +949,6 @@ func (a *UsageMeteringApi) getUsageLambdaTracedInvocationsExecute(r apiGetUsageL
 
 type apiGetUsageObservabilityPipelinesRequest struct {
 	ctx     _context.Context
-	Api     *UsageMeteringApi
 	startHr *time.Time
 	endHr   *time.Time
 }
@@ -983,7 +972,6 @@ func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.
 
 func (a *UsageMeteringApi) buildGetUsageObservabilityPipelinesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (apiGetUsageObservabilityPipelinesRequest, error) {
 	req := apiGetUsageObservabilityPipelinesRequest{
-		Api:     a,
 		ctx:     ctx,
 		startHr: &startHr,
 	}
@@ -1007,7 +995,7 @@ func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUsageObservabilityPipelinesExecute(req)
+	return a.getUsageObservabilityPipelinesExecute(req)
 }
 
 // getUsageObservabilityPipelinesExecute executes the request.

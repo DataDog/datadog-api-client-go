@@ -20,13 +20,11 @@ type MonitorsApi common.Service
 
 type apiCheckCanDeleteMonitorRequest struct {
 	ctx        _context.Context
-	Api        *MonitorsApi
 	monitorIds *[]int64
 }
 
 func (a *MonitorsApi) buildCheckCanDeleteMonitorRequest(ctx _context.Context, monitorIds []int64) (apiCheckCanDeleteMonitorRequest, error) {
 	req := apiCheckCanDeleteMonitorRequest{
-		Api:        a,
 		ctx:        ctx,
 		monitorIds: &monitorIds,
 	}
@@ -42,7 +40,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.checkCanDeleteMonitorExecute(req)
+	return a.checkCanDeleteMonitorExecute(req)
 }
 
 // checkCanDeleteMonitorExecute executes the request.
@@ -171,13 +169,11 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 
 type apiCreateMonitorRequest struct {
 	ctx  _context.Context
-	Api  *MonitorsApi
 	body *Monitor
 }
 
 func (a *MonitorsApi) buildCreateMonitorRequest(ctx _context.Context, body Monitor) (apiCreateMonitorRequest, error) {
 	req := apiCreateMonitorRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -375,7 +371,7 @@ func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createMonitorExecute(req)
+	return a.createMonitorExecute(req)
 }
 
 // createMonitorExecute executes the request.
@@ -497,7 +493,6 @@ func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, 
 
 type apiDeleteMonitorRequest struct {
 	ctx       _context.Context
-	Api       *MonitorsApi
 	monitorId int64
 	force     *string
 }
@@ -521,7 +516,6 @@ func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitor
 
 func (a *MonitorsApi) buildDeleteMonitorRequest(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (apiDeleteMonitorRequest, error) {
 	req := apiDeleteMonitorRequest{
-		Api:       a,
 		ctx:       ctx,
 		monitorId: monitorId,
 	}
@@ -545,7 +539,7 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteMonitorExecute(req)
+	return a.deleteMonitorExecute(req)
 }
 
 // deleteMonitorExecute executes the request.
@@ -683,7 +677,6 @@ func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMo
 
 type apiGetMonitorRequest struct {
 	ctx         _context.Context
-	Api         *MonitorsApi
 	monitorId   int64
 	groupStates *string
 }
@@ -707,7 +700,6 @@ func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetM
 
 func (a *MonitorsApi) buildGetMonitorRequest(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (apiGetMonitorRequest, error) {
 	req := apiGetMonitorRequest{
-		Api:       a,
 		ctx:       ctx,
 		monitorId: monitorId,
 	}
@@ -731,7 +723,7 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getMonitorExecute(req)
+	return a.getMonitorExecute(req)
 }
 
 // getMonitorExecute executes the request.
@@ -860,7 +852,6 @@ func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_neth
 
 type apiListMonitorsRequest struct {
 	ctx           _context.Context
-	Api           *MonitorsApi
 	groupStates   *string
 	name          *string
 	tags          *string
@@ -939,7 +930,6 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 
 func (a *MonitorsApi) buildListMonitorsRequest(ctx _context.Context, o ...ListMonitorsOptionalParameters) (apiListMonitorsRequest, error) {
 	req := apiListMonitorsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -969,7 +959,7 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listMonitorsExecute(req)
+	return a.listMonitorsExecute(req)
 }
 
 // listMonitorsExecute executes the request.
@@ -1109,7 +1099,6 @@ func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, 
 
 type apiSearchMonitorGroupsRequest struct {
 	ctx     _context.Context
-	Api     *MonitorsApi
 	query   *string
 	page    *int64
 	perPage *int64
@@ -1156,7 +1145,6 @@ func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMon
 
 func (a *MonitorsApi) buildSearchMonitorGroupsRequest(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (apiSearchMonitorGroupsRequest, error) {
 	req := apiSearchMonitorGroupsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1182,7 +1170,7 @@ func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonit
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.searchMonitorGroupsExecute(req)
+	return a.searchMonitorGroupsExecute(req)
 }
 
 // searchMonitorGroupsExecute executes the request.
@@ -1310,7 +1298,6 @@ func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest
 
 type apiSearchMonitorsRequest struct {
 	ctx     _context.Context
-	Api     *MonitorsApi
 	query   *string
 	page    *int64
 	perPage *int64
@@ -1357,7 +1344,6 @@ func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitors
 
 func (a *MonitorsApi) buildSearchMonitorsRequest(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (apiSearchMonitorsRequest, error) {
 	req := apiSearchMonitorsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1383,7 +1369,7 @@ func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOp
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.searchMonitorsExecute(req)
+	return a.searchMonitorsExecute(req)
 }
 
 // searchMonitorsExecute executes the request.
@@ -1511,14 +1497,12 @@ func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (Monitor
 
 type apiUpdateMonitorRequest struct {
 	ctx       _context.Context
-	Api       *MonitorsApi
 	monitorId int64
 	body      *MonitorUpdateRequest
 }
 
 func (a *MonitorsApi) buildUpdateMonitorRequest(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (apiUpdateMonitorRequest, error) {
 	req := apiUpdateMonitorRequest{
-		Api:       a,
 		ctx:       ctx,
 		monitorId: monitorId,
 		body:      &body,
@@ -1535,7 +1519,7 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateMonitorExecute(req)
+	return a.updateMonitorExecute(req)
 }
 
 // updateMonitorExecute executes the request.
@@ -1676,14 +1660,12 @@ func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, 
 
 type apiValidateExistingMonitorRequest struct {
 	ctx       _context.Context
-	Api       *MonitorsApi
 	monitorId int64
 	body      *Monitor
 }
 
 func (a *MonitorsApi) buildValidateExistingMonitorRequest(ctx _context.Context, monitorId int64, body Monitor) (apiValidateExistingMonitorRequest, error) {
 	req := apiValidateExistingMonitorRequest{
-		Api:       a,
 		ctx:       ctx,
 		monitorId: monitorId,
 		body:      &body,
@@ -1700,7 +1682,7 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.validateExistingMonitorExecute(req)
+	return a.validateExistingMonitorExecute(req)
 }
 
 // validateExistingMonitorExecute executes the request.
@@ -1823,13 +1805,11 @@ func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonito
 
 type apiValidateMonitorRequest struct {
 	ctx  _context.Context
-	Api  *MonitorsApi
 	body *Monitor
 }
 
 func (a *MonitorsApi) buildValidateMonitorRequest(ctx _context.Context, body Monitor) (apiValidateMonitorRequest, error) {
 	req := apiValidateMonitorRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -1845,7 +1825,7 @@ func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (inter
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.validateMonitorExecute(req)
+	return a.validateMonitorExecute(req)
 }
 
 // validateMonitorExecute executes the request.

@@ -20,13 +20,11 @@ type EventsApi common.Service
 
 type apiCreateEventRequest struct {
 	ctx  _context.Context
-	Api  *EventsApi
 	body *EventCreateRequest
 }
 
 func (a *EventsApi) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
 	req := apiCreateEventRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -43,7 +41,7 @@ func (a *EventsApi) CreateEvent(ctx _context.Context, body EventCreateRequest) (
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createEventExecute(req)
+	return a.createEventExecute(req)
 }
 
 // createEventExecute executes the request.
@@ -142,13 +140,11 @@ func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResp
 
 type apiGetEventRequest struct {
 	ctx     _context.Context
-	Api     *EventsApi
 	eventId int64
 }
 
 func (a *EventsApi) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
 	req := apiGetEventRequest{
-		Api:     a,
 		ctx:     ctx,
 		eventId: eventId,
 	}
@@ -167,7 +163,7 @@ func (a *EventsApi) GetEvent(ctx _context.Context, eventId int64) (EventResponse
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getEventExecute(req)
+	return a.getEventExecute(req)
 }
 
 // getEventExecute executes the request.
@@ -284,7 +280,6 @@ func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_neth
 
 type apiListEventsRequest struct {
 	ctx              _context.Context
-	Api              *EventsApi
 	start            *int64
 	end              *int64
 	priority         *EventPriority
@@ -349,7 +344,6 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 
 func (a *EventsApi) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
 	req := apiListEventsRequest{
-		Api:   a,
 		ctx:   ctx,
 		start: &start,
 		end:   &end,
@@ -387,7 +381,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, start int64, end int64, o .
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listEventsExecute(req)
+	return a.listEventsExecute(req)
 }
 
 // listEventsExecute executes the request.

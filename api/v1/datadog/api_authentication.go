@@ -19,12 +19,10 @@ type AuthenticationApi common.Service
 
 type apiValidateRequest struct {
 	ctx _context.Context
-	Api *AuthenticationApi
 }
 
 func (a *AuthenticationApi) buildValidateRequest(ctx _context.Context) (apiValidateRequest, error) {
 	req := apiValidateRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -39,7 +37,7 @@ func (a *AuthenticationApi) Validate(ctx _context.Context) (AuthenticationValida
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.validateExecute(req)
+	return a.validateExecute(req)
 }
 
 // validateExecute executes the request.

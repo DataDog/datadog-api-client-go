@@ -20,14 +20,12 @@ type ServiceAccountsApi common.Service
 
 type apiCreateServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	Api              *ServiceAccountsApi
 	serviceAccountId string
 	body             *ApplicationKeyCreateRequest
 }
 
 func (a *ServiceAccountsApi) buildCreateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (apiCreateServiceAccountApplicationKeyRequest, error) {
 	req := apiCreateServiceAccountApplicationKeyRequest{
-		Api:              a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		body:             &body,
@@ -44,7 +42,7 @@ func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createServiceAccountApplicationKeyExecute(req)
+	return a.createServiceAccountApplicationKeyExecute(req)
 }
 
 // createServiceAccountApplicationKeyExecute executes the request.
@@ -167,14 +165,12 @@ func (a *ServiceAccountsApi) createServiceAccountApplicationKeyExecute(r apiCrea
 
 type apiDeleteServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	Api              *ServiceAccountsApi
 	serviceAccountId string
 	appKeyId         string
 }
 
 func (a *ServiceAccountsApi) buildDeleteServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiDeleteServiceAccountApplicationKeyRequest, error) {
 	req := apiDeleteServiceAccountApplicationKeyRequest{
-		Api:              a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -190,7 +186,7 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 		return nil, err
 	}
 
-	return req.Api.deleteServiceAccountApplicationKeyExecute(req)
+	return a.deleteServiceAccountApplicationKeyExecute(req)
 }
 
 // deleteServiceAccountApplicationKeyExecute executes the request.
@@ -298,14 +294,12 @@ func (a *ServiceAccountsApi) deleteServiceAccountApplicationKeyExecute(r apiDele
 
 type apiGetServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	Api              *ServiceAccountsApi
 	serviceAccountId string
 	appKeyId         string
 }
 
 func (a *ServiceAccountsApi) buildGetServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiGetServiceAccountApplicationKeyRequest, error) {
 	req := apiGetServiceAccountApplicationKeyRequest{
-		Api:              a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -322,7 +316,7 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getServiceAccountApplicationKeyExecute(req)
+	return a.getServiceAccountApplicationKeyExecute(req)
 }
 
 // getServiceAccountApplicationKeyExecute executes the request.
@@ -440,7 +434,6 @@ func (a *ServiceAccountsApi) getServiceAccountApplicationKeyExecute(r apiGetServ
 
 type apiListServiceAccountApplicationKeysRequest struct {
 	ctx                  _context.Context
-	Api                  *ServiceAccountsApi
 	serviceAccountId     string
 	pageSize             *int64
 	pageNumber           *int64
@@ -504,7 +497,6 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
 
 func (a *ServiceAccountsApi) buildListServiceAccountApplicationKeysRequest(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (apiListServiceAccountApplicationKeysRequest, error) {
 	req := apiListServiceAccountApplicationKeysRequest{
-		Api:              a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 	}
@@ -533,7 +525,7 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listServiceAccountApplicationKeysExecute(req)
+	return a.listServiceAccountApplicationKeysExecute(req)
 }
 
 // listServiceAccountApplicationKeysExecute executes the request.
@@ -677,7 +669,6 @@ func (a *ServiceAccountsApi) listServiceAccountApplicationKeysExecute(r apiListS
 
 type apiUpdateServiceAccountApplicationKeyRequest struct {
 	ctx              _context.Context
-	Api              *ServiceAccountsApi
 	serviceAccountId string
 	appKeyId         string
 	body             *ApplicationKeyUpdateRequest
@@ -685,7 +676,6 @@ type apiUpdateServiceAccountApplicationKeyRequest struct {
 
 func (a *ServiceAccountsApi) buildUpdateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateServiceAccountApplicationKeyRequest, error) {
 	req := apiUpdateServiceAccountApplicationKeyRequest{
-		Api:              a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
@@ -703,7 +693,7 @@ func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Con
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateServiceAccountApplicationKeyExecute(req)
+	return a.updateServiceAccountApplicationKeyExecute(req)
 }
 
 // updateServiceAccountApplicationKeyExecute executes the request.

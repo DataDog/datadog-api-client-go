@@ -19,13 +19,11 @@ type AWSLogsIntegrationApi common.Service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {
 	ctx  _context.Context
-	Api  *AWSLogsIntegrationApi
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCheckAWSLogsLambdaAsyncRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCheckAWSLogsLambdaAsyncRequest, error) {
 	req := apiCheckAWSLogsLambdaAsyncRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -48,7 +46,7 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, bo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.checkAWSLogsLambdaAsyncExecute(req)
+	return a.checkAWSLogsLambdaAsyncExecute(req)
 }
 
 // checkAWSLogsLambdaAsyncExecute executes the request.
@@ -170,13 +168,11 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogs
 
 type apiCheckAWSLogsServicesAsyncRequest struct {
 	ctx  _context.Context
-	Api  *AWSLogsIntegrationApi
 	body *AWSLogsServicesRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCheckAWSLogsServicesAsyncRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiCheckAWSLogsServicesAsyncRequest, error) {
 	req := apiCheckAWSLogsServicesAsyncRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -201,7 +197,7 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.checkAWSLogsServicesAsyncExecute(req)
+	return a.checkAWSLogsServicesAsyncExecute(req)
 }
 
 // checkAWSLogsServicesAsyncExecute executes the request.
@@ -323,13 +319,11 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLo
 
 type apiCreateAWSLambdaARNRequest struct {
 	ctx  _context.Context
-	Api  *AWSLogsIntegrationApi
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCreateAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCreateAWSLambdaARNRequest, error) {
 	req := apiCreateAWSLambdaARNRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -345,7 +339,7 @@ func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AW
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createAWSLambdaARNExecute(req)
+	return a.createAWSLambdaARNExecute(req)
 }
 
 // createAWSLambdaARNExecute executes the request.
@@ -467,13 +461,11 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaAR
 
 type apiDeleteAWSLambdaARNRequest struct {
 	ctx  _context.Context
-	Api  *AWSLogsIntegrationApi
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildDeleteAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiDeleteAWSLambdaARNRequest, error) {
 	req := apiDeleteAWSLambdaARNRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -489,7 +481,7 @@ func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AW
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteAWSLambdaARNExecute(req)
+	return a.deleteAWSLambdaARNExecute(req)
 }
 
 // deleteAWSLambdaARNExecute executes the request.
@@ -611,13 +603,11 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaAR
 
 type apiEnableAWSLogServicesRequest struct {
 	ctx  _context.Context
-	Api  *AWSLogsIntegrationApi
 	body *AWSLogsServicesRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildEnableAWSLogServicesRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiEnableAWSLogServicesRequest, error) {
 	req := apiEnableAWSLogServicesRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -633,7 +623,7 @@ func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.enableAWSLogServicesExecute(req)
+	return a.enableAWSLogServicesExecute(req)
 }
 
 // enableAWSLogServicesExecute executes the request.
@@ -755,12 +745,10 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogSer
 
 type apiListAWSLogsIntegrationsRequest struct {
 	ctx _context.Context
-	Api *AWSLogsIntegrationApi
 }
 
 func (a *AWSLogsIntegrationApi) buildListAWSLogsIntegrationsRequest(ctx _context.Context) (apiListAWSLogsIntegrationsRequest, error) {
 	req := apiListAWSLogsIntegrationsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -775,7 +763,7 @@ func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAWSLogsIntegrationsExecute(req)
+	return a.listAWSLogsIntegrationsExecute(req)
 }
 
 // listAWSLogsIntegrationsExecute executes the request.
@@ -891,12 +879,10 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsI
 
 type apiListAWSLogsServicesRequest struct {
 	ctx _context.Context
-	Api *AWSLogsIntegrationApi
 }
 
 func (a *AWSLogsIntegrationApi) buildListAWSLogsServicesRequest(ctx _context.Context) (apiListAWSLogsServicesRequest, error) {
 	req := apiListAWSLogsServicesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -911,7 +897,7 @@ func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWS
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listAWSLogsServicesExecute(req)
+	return a.listAWSLogsServicesExecute(req)
 }
 
 // listAWSLogsServicesExecute executes the request.

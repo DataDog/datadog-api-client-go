@@ -20,13 +20,11 @@ type DashboardListsApi common.Service
 
 type apiCreateDashboardListRequest struct {
 	ctx  _context.Context
-	Api  *DashboardListsApi
 	body *DashboardList
 }
 
 func (a *DashboardListsApi) buildCreateDashboardListRequest(ctx _context.Context, body DashboardList) (apiCreateDashboardListRequest, error) {
 	req := apiCreateDashboardListRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -42,7 +40,7 @@ func (a *DashboardListsApi) CreateDashboardList(ctx _context.Context, body Dashb
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createDashboardListExecute(req)
+	return a.createDashboardListExecute(req)
 }
 
 // createDashboardListExecute executes the request.
@@ -164,13 +162,11 @@ func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListR
 
 type apiDeleteDashboardListRequest struct {
 	ctx    _context.Context
-	Api    *DashboardListsApi
 	listId int64
 }
 
 func (a *DashboardListsApi) buildDeleteDashboardListRequest(ctx _context.Context, listId int64) (apiDeleteDashboardListRequest, error) {
 	req := apiDeleteDashboardListRequest{
-		Api:    a,
 		ctx:    ctx,
 		listId: listId,
 	}
@@ -186,7 +182,7 @@ func (a *DashboardListsApi) DeleteDashboardList(ctx _context.Context, listId int
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteDashboardListExecute(req)
+	return a.deleteDashboardListExecute(req)
 }
 
 // deleteDashboardListExecute executes the request.
@@ -303,13 +299,11 @@ func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListR
 
 type apiGetDashboardListRequest struct {
 	ctx    _context.Context
-	Api    *DashboardListsApi
 	listId int64
 }
 
 func (a *DashboardListsApi) buildGetDashboardListRequest(ctx _context.Context, listId int64) (apiGetDashboardListRequest, error) {
 	req := apiGetDashboardListRequest{
-		Api:    a,
 		ctx:    ctx,
 		listId: listId,
 	}
@@ -325,7 +319,7 @@ func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64)
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getDashboardListExecute(req)
+	return a.getDashboardListExecute(req)
 }
 
 // getDashboardListExecute executes the request.
@@ -442,12 +436,10 @@ func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest
 
 type apiListDashboardListsRequest struct {
 	ctx _context.Context
-	Api *DashboardListsApi
 }
 
 func (a *DashboardListsApi) buildListDashboardListsRequest(ctx _context.Context) (apiListDashboardListsRequest, error) {
 	req := apiListDashboardListsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -462,7 +454,7 @@ func (a *DashboardListsApi) ListDashboardLists(ctx _context.Context) (DashboardL
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listDashboardListsExecute(req)
+	return a.listDashboardListsExecute(req)
 }
 
 // listDashboardListsExecute executes the request.
@@ -569,14 +561,12 @@ func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsReq
 
 type apiUpdateDashboardListRequest struct {
 	ctx    _context.Context
-	Api    *DashboardListsApi
 	listId int64
 	body   *DashboardList
 }
 
 func (a *DashboardListsApi) buildUpdateDashboardListRequest(ctx _context.Context, listId int64, body DashboardList) (apiUpdateDashboardListRequest, error) {
 	req := apiUpdateDashboardListRequest{
-		Api:    a,
 		ctx:    ctx,
 		listId: listId,
 		body:   &body,
@@ -593,7 +583,7 @@ func (a *DashboardListsApi) UpdateDashboardList(ctx _context.Context, listId int
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateDashboardListExecute(req)
+	return a.updateDashboardListExecute(req)
 }
 
 // updateDashboardListExecute executes the request.

@@ -20,13 +20,11 @@ type MetricsApi common.Service
 
 type apiCreateBulkTagsMetricsConfigurationRequest struct {
 	ctx  _context.Context
-	Api  *MetricsApi
 	body *MetricBulkTagConfigCreateRequest
 }
 
 func (a *MetricsApi) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
 	req := apiCreateBulkTagsMetricsConfigurationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -47,7 +45,7 @@ func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, bo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createBulkTagsMetricsConfigurationExecute(req)
+	return a.createBulkTagsMetricsConfigurationExecute(req)
 }
 
 // createBulkTagsMetricsConfigurationExecute executes the request.
@@ -178,14 +176,12 @@ func (a *MetricsApi) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTa
 
 type apiCreateTagConfigurationRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 	body       *MetricTagConfigurationCreateRequest
 }
 
 func (a *MetricsApi) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
 	req := apiCreateTagConfigurationRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -205,7 +201,7 @@ func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName str
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createTagConfigurationExecute(req)
+	return a.createTagConfigurationExecute(req)
 }
 
 // createTagConfigurationExecute executes the request.
@@ -337,13 +333,11 @@ func (a *MetricsApi) createTagConfigurationExecute(r apiCreateTagConfigurationRe
 
 type apiDeleteBulkTagsMetricsConfigurationRequest struct {
 	ctx  _context.Context
-	Api  *MetricsApi
 	body *MetricBulkTagConfigDeleteRequest
 }
 
 func (a *MetricsApi) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
 	req := apiDeleteBulkTagsMetricsConfigurationRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -362,7 +356,7 @@ func (a *MetricsApi) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, bo
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.deleteBulkTagsMetricsConfigurationExecute(req)
+	return a.deleteBulkTagsMetricsConfigurationExecute(req)
 }
 
 // deleteBulkTagsMetricsConfigurationExecute executes the request.
@@ -493,13 +487,11 @@ func (a *MetricsApi) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTa
 
 type apiDeleteTagConfigurationRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 }
 
 func (a *MetricsApi) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
 	req := apiDeleteTagConfigurationRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -515,7 +507,7 @@ func (a *MetricsApi) DeleteTagConfiguration(ctx _context.Context, metricName str
 		return nil, err
 	}
 
-	return req.Api.deleteTagConfigurationExecute(req)
+	return a.deleteTagConfigurationExecute(req)
 }
 
 // deleteTagConfigurationExecute executes the request.
@@ -622,7 +614,6 @@ func (a *MetricsApi) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRe
 
 type apiEstimateMetricsOutputSeriesRequest struct {
 	ctx                   _context.Context
-	Api                   *MetricsApi
 	metricName            string
 	filterGroups          *string
 	filterHoursAgo        *int32
@@ -678,7 +669,6 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 
 func (a *MetricsApi) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
 	req := apiEstimateMetricsOutputSeriesRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -706,7 +696,7 @@ func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricNam
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.estimateMetricsOutputSeriesExecute(req)
+	return a.estimateMetricsOutputSeriesExecute(req)
 }
 
 // estimateMetricsOutputSeriesExecute executes the request.
@@ -847,13 +837,11 @@ func (a *MetricsApi) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutp
 
 type apiListTagConfigurationByNameRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 }
 
 func (a *MetricsApi) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
 	req := apiListTagConfigurationByNameRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -869,7 +857,7 @@ func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listTagConfigurationByNameExecute(req)
+	return a.listTagConfigurationByNameExecute(req)
 }
 
 // listTagConfigurationByNameExecute executes the request.
@@ -986,7 +974,6 @@ func (a *MetricsApi) listTagConfigurationByNameExecute(r apiListTagConfiguration
 
 type apiListTagConfigurationsRequest struct {
 	ctx                      _context.Context
-	Api                      *MetricsApi
 	filterConfigured         *bool
 	filterTagsConfigured     *string
 	filterMetricType         *MetricTagConfigurationMetricTypes
@@ -1049,7 +1036,6 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 
 func (a *MetricsApi) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
 	req := apiListTagConfigurationsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1078,7 +1064,7 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listTagConfigurationsExecute(req)
+	return a.listTagConfigurationsExecute(req)
 }
 
 // listTagConfigurationsExecute executes the request.
@@ -1212,13 +1198,11 @@ func (a *MetricsApi) listTagConfigurationsExecute(r apiListTagConfigurationsRequ
 
 type apiListTagsByMetricNameRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 }
 
 func (a *MetricsApi) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
 	req := apiListTagsByMetricNameRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1234,7 +1218,7 @@ func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName strin
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listTagsByMetricNameExecute(req)
+	return a.listTagsByMetricNameExecute(req)
 }
 
 // listTagsByMetricNameExecute executes the request.
@@ -1360,13 +1344,11 @@ func (a *MetricsApi) listTagsByMetricNameExecute(r apiListTagsByMetricNameReques
 
 type apiListVolumesByMetricNameRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 }
 
 func (a *MetricsApi) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
 	req := apiListVolumesByMetricNameRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 	}
@@ -1384,7 +1366,7 @@ func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName st
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listVolumesByMetricNameExecute(req)
+	return a.listVolumesByMetricNameExecute(req)
 }
 
 // listVolumesByMetricNameExecute executes the request.
@@ -1510,7 +1492,6 @@ func (a *MetricsApi) listVolumesByMetricNameExecute(r apiListVolumesByMetricName
 
 type apiSubmitMetricsRequest struct {
 	ctx             _context.Context
-	Api             *MetricsApi
 	body            *MetricPayload
 	contentEncoding *MetricContentEncoding
 }
@@ -1534,7 +1515,6 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 
 func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -1567,7 +1547,7 @@ func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o .
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.submitMetricsExecute(req)
+	return a.submitMetricsExecute(req)
 }
 
 // submitMetricsExecute executes the request.
@@ -1697,14 +1677,12 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 
 type apiUpdateTagConfigurationRequest struct {
 	ctx        _context.Context
-	Api        *MetricsApi
 	metricName string
 	body       *MetricTagConfigurationUpdateRequest
 }
 
 func (a *MetricsApi) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
 	req := apiUpdateTagConfigurationRequest{
-		Api:        a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
@@ -1723,7 +1701,7 @@ func (a *MetricsApi) UpdateTagConfiguration(ctx _context.Context, metricName str
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateTagConfigurationExecute(req)
+	return a.updateTagConfigurationExecute(req)
 }
 
 // updateTagConfigurationExecute executes the request.

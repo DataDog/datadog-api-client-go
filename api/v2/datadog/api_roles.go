@@ -20,14 +20,12 @@ type RolesApi common.Service
 
 type apiAddPermissionToRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RelationshipToPermission
 }
 
 func (a *RolesApi) buildAddPermissionToRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiAddPermissionToRoleRequest, error) {
 	req := apiAddPermissionToRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -44,7 +42,7 @@ func (a *RolesApi) AddPermissionToRole(ctx _context.Context, roleId string, body
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.addPermissionToRoleExecute(req)
+	return a.addPermissionToRoleExecute(req)
 }
 
 // addPermissionToRoleExecute executes the request.
@@ -176,14 +174,12 @@ func (a *RolesApi) addPermissionToRoleExecute(r apiAddPermissionToRoleRequest) (
 
 type apiAddUserToRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RelationshipToUser
 }
 
 func (a *RolesApi) buildAddUserToRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiAddUserToRoleRequest, error) {
 	req := apiAddUserToRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -200,7 +196,7 @@ func (a *RolesApi) AddUserToRole(ctx _context.Context, roleId string, body Relat
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.addUserToRoleExecute(req)
+	return a.addUserToRoleExecute(req)
 }
 
 // addUserToRoleExecute executes the request.
@@ -332,14 +328,12 @@ func (a *RolesApi) addUserToRoleExecute(r apiAddUserToRoleRequest) (UsersRespons
 
 type apiCloneRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RoleCloneRequest
 }
 
 func (a *RolesApi) buildCloneRoleRequest(ctx _context.Context, roleId string, body RoleCloneRequest) (apiCloneRoleRequest, error) {
 	req := apiCloneRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -356,7 +350,7 @@ func (a *RolesApi) CloneRole(ctx _context.Context, roleId string, body RoleClone
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.cloneRoleExecute(req)
+	return a.cloneRoleExecute(req)
 }
 
 // cloneRoleExecute executes the request.
@@ -497,13 +491,11 @@ func (a *RolesApi) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse, *_neth
 
 type apiCreateRoleRequest struct {
 	ctx  _context.Context
-	Api  *RolesApi
 	body *RoleCreateRequest
 }
 
 func (a *RolesApi) buildCreateRoleRequest(ctx _context.Context, body RoleCreateRequest) (apiCreateRoleRequest, error) {
 	req := apiCreateRoleRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -519,7 +511,7 @@ func (a *RolesApi) CreateRole(ctx _context.Context, body RoleCreateRequest) (Rol
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createRoleExecute(req)
+	return a.createRoleExecute(req)
 }
 
 // createRoleExecute executes the request.
@@ -641,13 +633,11 @@ func (a *RolesApi) createRoleExecute(r apiCreateRoleRequest) (RoleCreateResponse
 
 type apiDeleteRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 }
 
 func (a *RolesApi) buildDeleteRoleRequest(ctx _context.Context, roleId string) (apiDeleteRoleRequest, error) {
 	req := apiDeleteRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 	}
@@ -662,7 +652,7 @@ func (a *RolesApi) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Re
 		return nil, err
 	}
 
-	return req.Api.deleteRoleExecute(req)
+	return a.deleteRoleExecute(req)
 }
 
 // deleteRoleExecute executes the request.
@@ -769,13 +759,11 @@ func (a *RolesApi) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.Response
 
 type apiGetRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 }
 
 func (a *RolesApi) buildGetRoleRequest(ctx _context.Context, roleId string) (apiGetRoleRequest, error) {
 	req := apiGetRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 	}
@@ -791,7 +779,7 @@ func (a *RolesApi) GetRole(ctx _context.Context, roleId string) (RoleResponse, *
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getRoleExecute(req)
+	return a.getRoleExecute(req)
 }
 
 // getRoleExecute executes the request.
@@ -908,12 +896,10 @@ func (a *RolesApi) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_nethttp.
 
 type apiListPermissionsRequest struct {
 	ctx _context.Context
-	Api *RolesApi
 }
 
 func (a *RolesApi) buildListPermissionsRequest(ctx _context.Context) (apiListPermissionsRequest, error) {
 	req := apiListPermissionsRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -928,7 +914,7 @@ func (a *RolesApi) ListPermissions(ctx _context.Context) (PermissionsResponse, *
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listPermissionsExecute(req)
+	return a.listPermissionsExecute(req)
 }
 
 // listPermissionsExecute executes the request.
@@ -1044,13 +1030,11 @@ func (a *RolesApi) listPermissionsExecute(r apiListPermissionsRequest) (Permissi
 
 type apiListRolePermissionsRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 }
 
 func (a *RolesApi) buildListRolePermissionsRequest(ctx _context.Context, roleId string) (apiListRolePermissionsRequest, error) {
 	req := apiListRolePermissionsRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 	}
@@ -1066,7 +1050,7 @@ func (a *RolesApi) ListRolePermissions(ctx _context.Context, roleId string) (Per
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listRolePermissionsExecute(req)
+	return a.listRolePermissionsExecute(req)
 }
 
 // listRolePermissionsExecute executes the request.
@@ -1183,7 +1167,6 @@ func (a *RolesApi) listRolePermissionsExecute(r apiListRolePermissionsRequest) (
 
 type apiListRoleUsersRequest struct {
 	ctx        _context.Context
-	Api        *RolesApi
 	roleId     string
 	pageSize   *int64
 	pageNumber *int64
@@ -1231,7 +1214,6 @@ func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUse
 
 func (a *RolesApi) buildListRoleUsersRequest(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (apiListRoleUsersRequest, error) {
 	req := apiListRoleUsersRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 	}
@@ -1258,7 +1240,7 @@ func (a *RolesApi) ListRoleUsers(ctx _context.Context, roleId string, o ...ListR
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listRoleUsersExecute(req)
+	return a.listRoleUsersExecute(req)
 }
 
 // listRoleUsersExecute executes the request.
@@ -1387,7 +1369,6 @@ func (a *RolesApi) listRoleUsersExecute(r apiListRoleUsersRequest) (UsersRespons
 
 type apiListRolesRequest struct {
 	ctx        _context.Context
-	Api        *RolesApi
 	pageSize   *int64
 	pageNumber *int64
 	sort       *RolesSort
@@ -1434,7 +1415,6 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 
 func (a *RolesApi) buildListRolesRequest(ctx _context.Context, o ...ListRolesOptionalParameters) (apiListRolesRequest, error) {
 	req := apiListRolesRequest{
-		Api: a,
 		ctx: ctx,
 	}
 
@@ -1460,7 +1440,7 @@ func (a *RolesApi) ListRoles(ctx _context.Context, o ...ListRolesOptionalParamet
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listRolesExecute(req)
+	return a.listRolesExecute(req)
 }
 
 // listRolesExecute executes the request.
@@ -1579,14 +1559,12 @@ func (a *RolesApi) listRolesExecute(r apiListRolesRequest) (RolesResponse, *_net
 
 type apiRemovePermissionFromRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RelationshipToPermission
 }
 
 func (a *RolesApi) buildRemovePermissionFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiRemovePermissionFromRoleRequest, error) {
 	req := apiRemovePermissionFromRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -1603,7 +1581,7 @@ func (a *RolesApi) RemovePermissionFromRole(ctx _context.Context, roleId string,
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.removePermissionFromRoleExecute(req)
+	return a.removePermissionFromRoleExecute(req)
 }
 
 // removePermissionFromRoleExecute executes the request.
@@ -1735,14 +1713,12 @@ func (a *RolesApi) removePermissionFromRoleExecute(r apiRemovePermissionFromRole
 
 type apiRemoveUserFromRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RelationshipToUser
 }
 
 func (a *RolesApi) buildRemoveUserFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiRemoveUserFromRoleRequest, error) {
 	req := apiRemoveUserFromRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -1759,7 +1735,7 @@ func (a *RolesApi) RemoveUserFromRole(ctx _context.Context, roleId string, body 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.removeUserFromRoleExecute(req)
+	return a.removeUserFromRoleExecute(req)
 }
 
 // removeUserFromRoleExecute executes the request.
@@ -1891,14 +1867,12 @@ func (a *RolesApi) removeUserFromRoleExecute(r apiRemoveUserFromRoleRequest) (Us
 
 type apiUpdateRoleRequest struct {
 	ctx    _context.Context
-	Api    *RolesApi
 	roleId string
 	body   *RoleUpdateRequest
 }
 
 func (a *RolesApi) buildUpdateRoleRequest(ctx _context.Context, roleId string, body RoleUpdateRequest) (apiUpdateRoleRequest, error) {
 	req := apiUpdateRoleRequest{
-		Api:    a,
 		ctx:    ctx,
 		roleId: roleId,
 		body:   &body,
@@ -1915,7 +1889,7 @@ func (a *RolesApi) UpdateRole(ctx _context.Context, roleId string, body RoleUpda
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateRoleExecute(req)
+	return a.updateRoleExecute(req)
 }
 
 // updateRoleExecute executes the request.

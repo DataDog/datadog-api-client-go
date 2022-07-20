@@ -20,13 +20,11 @@ type UsersApi common.Service
 
 type apiCreateUserRequest struct {
 	ctx  _context.Context
-	Api  *UsersApi
 	body *User
 }
 
 func (a *UsersApi) buildCreateUserRequest(ctx _context.Context, body User) (apiCreateUserRequest, error) {
 	req := apiCreateUserRequest{
-		Api:  a,
 		ctx:  ctx,
 		body: &body,
 	}
@@ -45,7 +43,7 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body User) (UserResponse, *_
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createUserExecute(req)
+	return a.createUserExecute(req)
 }
 
 // createUserExecute executes the request.
@@ -176,13 +174,11 @@ func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_ne
 
 type apiDisableUserRequest struct {
 	ctx        _context.Context
-	Api        *UsersApi
 	userHandle string
 }
 
 func (a *UsersApi) buildDisableUserRequest(ctx _context.Context, userHandle string) (apiDisableUserRequest, error) {
 	req := apiDisableUserRequest{
-		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
@@ -201,7 +197,7 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userHandle string) (UserDis
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.disableUserExecute(req)
+	return a.disableUserExecute(req)
 }
 
 // disableUserExecute executes the request.
@@ -327,13 +323,11 @@ func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableRespo
 
 type apiGetUserRequest struct {
 	ctx        _context.Context
-	Api        *UsersApi
 	userHandle string
 }
 
 func (a *UsersApi) buildGetUserRequest(ctx _context.Context, userHandle string) (apiGetUserRequest, error) {
 	req := apiGetUserRequest{
-		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
@@ -349,7 +343,7 @@ func (a *UsersApi) GetUser(ctx _context.Context, userHandle string) (UserRespons
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getUserExecute(req)
+	return a.getUserExecute(req)
 }
 
 // getUserExecute executes the request.
@@ -466,12 +460,10 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 
 type apiListUsersRequest struct {
 	ctx _context.Context
-	Api *UsersApi
 }
 
 func (a *UsersApi) buildListUsersRequest(ctx _context.Context) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
-		Api: a,
 		ctx: ctx,
 	}
 	return req, nil
@@ -486,7 +478,7 @@ func (a *UsersApi) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.listUsersExecute(req)
+	return a.listUsersExecute(req)
 }
 
 // listUsersExecute executes the request.
@@ -593,14 +585,12 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_
 
 type apiUpdateUserRequest struct {
 	ctx        _context.Context
-	Api        *UsersApi
 	userHandle string
 	body       *User
 }
 
 func (a *UsersApi) buildUpdateUserRequest(ctx _context.Context, userHandle string, body User) (apiUpdateUserRequest, error) {
 	req := apiUpdateUserRequest{
-		Api:        a,
 		ctx:        ctx,
 		userHandle: userHandle,
 		body:       &body,
@@ -619,7 +609,7 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userHandle string, body User
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateUserExecute(req)
+	return a.updateUserExecute(req)
 }
 
 // updateUserExecute executes the request.

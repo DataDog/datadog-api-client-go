@@ -19,7 +19,6 @@ type SnapshotsApi common.Service
 
 type apiGetGraphSnapshotRequest struct {
 	ctx         _context.Context
-	Api         *SnapshotsApi
 	start       *int64
 	end         *int64
 	metricQuery *string
@@ -84,7 +83,6 @@ func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSna
 
 func (a *SnapshotsApi) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
 	req := apiGetGraphSnapshotRequest{
-		Api:   a,
 		ctx:   ctx,
 		start: &start,
 		end:   &end,
@@ -115,7 +113,7 @@ func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end i
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getGraphSnapshotExecute(req)
+	return a.getGraphSnapshotExecute(req)
 }
 
 // getGraphSnapshotExecute executes the request.

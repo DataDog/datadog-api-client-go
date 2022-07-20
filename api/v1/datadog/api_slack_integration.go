@@ -20,14 +20,12 @@ type SlackIntegrationApi common.Service
 
 type apiCreateSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
-	Api         *SlackIntegrationApi
 	accountName string
 	body        *SlackIntegrationChannel
 }
 
 func (a *SlackIntegrationApi) buildCreateSlackIntegrationChannelRequest(ctx _context.Context, accountName string, body SlackIntegrationChannel) (apiCreateSlackIntegrationChannelRequest, error) {
 	req := apiCreateSlackIntegrationChannelRequest{
-		Api:         a,
 		ctx:         ctx,
 		accountName: accountName,
 		body:        &body,
@@ -44,7 +42,7 @@ func (a *SlackIntegrationApi) CreateSlackIntegrationChannel(ctx _context.Context
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.createSlackIntegrationChannelExecute(req)
+	return a.createSlackIntegrationChannelExecute(req)
 }
 
 // createSlackIntegrationChannelExecute executes the request.
@@ -176,14 +174,12 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSl
 
 type apiGetSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
-	Api         *SlackIntegrationApi
 	accountName string
 	channelName string
 }
 
 func (a *SlackIntegrationApi) buildGetSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string) (apiGetSlackIntegrationChannelRequest, error) {
 	req := apiGetSlackIntegrationChannelRequest{
-		Api:         a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
@@ -200,7 +196,7 @@ func (a *SlackIntegrationApi) GetSlackIntegrationChannel(ctx _context.Context, a
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSlackIntegrationChannelExecute(req)
+	return a.getSlackIntegrationChannelExecute(req)
 }
 
 // getSlackIntegrationChannelExecute executes the request.
@@ -327,13 +323,11 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackInt
 
 type apiGetSlackIntegrationChannelsRequest struct {
 	ctx         _context.Context
-	Api         *SlackIntegrationApi
 	accountName string
 }
 
 func (a *SlackIntegrationApi) buildGetSlackIntegrationChannelsRequest(ctx _context.Context, accountName string) (apiGetSlackIntegrationChannelsRequest, error) {
 	req := apiGetSlackIntegrationChannelsRequest{
-		Api:         a,
 		ctx:         ctx,
 		accountName: accountName,
 	}
@@ -349,7 +343,7 @@ func (a *SlackIntegrationApi) GetSlackIntegrationChannels(ctx _context.Context, 
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.getSlackIntegrationChannelsExecute(req)
+	return a.getSlackIntegrationChannelsExecute(req)
 }
 
 // getSlackIntegrationChannelsExecute executes the request.
@@ -475,14 +469,12 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIn
 
 type apiRemoveSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
-	Api         *SlackIntegrationApi
 	accountName string
 	channelName string
 }
 
 func (a *SlackIntegrationApi) buildRemoveSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string) (apiRemoveSlackIntegrationChannelRequest, error) {
 	req := apiRemoveSlackIntegrationChannelRequest{
-		Api:         a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
@@ -498,7 +490,7 @@ func (a *SlackIntegrationApi) RemoveSlackIntegrationChannel(ctx _context.Context
 		return nil, err
 	}
 
-	return req.Api.removeSlackIntegrationChannelExecute(req)
+	return a.removeSlackIntegrationChannelExecute(req)
 }
 
 // removeSlackIntegrationChannelExecute executes the request.
@@ -615,7 +607,6 @@ func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(r apiRemoveSl
 
 type apiUpdateSlackIntegrationChannelRequest struct {
 	ctx         _context.Context
-	Api         *SlackIntegrationApi
 	accountName string
 	channelName string
 	body        *SlackIntegrationChannel
@@ -623,7 +614,6 @@ type apiUpdateSlackIntegrationChannelRequest struct {
 
 func (a *SlackIntegrationApi) buildUpdateSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (apiUpdateSlackIntegrationChannelRequest, error) {
 	req := apiUpdateSlackIntegrationChannelRequest{
-		Api:         a,
 		ctx:         ctx,
 		accountName: accountName,
 		channelName: channelName,
@@ -641,7 +631,7 @@ func (a *SlackIntegrationApi) UpdateSlackIntegrationChannel(ctx _context.Context
 		return localVarReturnValue, nil, err
 	}
 
-	return req.Api.updateSlackIntegrationChannelExecute(req)
+	return a.updateSlackIntegrationChannelExecute(req)
 }
 
 // updateSlackIntegrationChannelExecute executes the request.
