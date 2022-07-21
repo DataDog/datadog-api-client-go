@@ -41,11 +41,7 @@ jobs:
 
     - name: Build datadog-api-client-go
       run: |
-          go run .        
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+          sh check-examples.sh        
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
