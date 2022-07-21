@@ -41,7 +41,7 @@ jobs:
 
     - name: Build datadog-api-client-go
       run: |
-          sh run-tests.sh        
+          go run .        
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
