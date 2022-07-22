@@ -1,4 +1,4 @@
-// Get hourly usage for RUM units returns "OK" response
+// Get hourly usage for RUM Units returns "OK" response
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageRumUnits(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageRumUnitsOptionalParameters())
+	resp, r, err := api.GetUsageRumUnits(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageRumUnitsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumUnits`: %v\n", err)

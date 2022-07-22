@@ -1,4 +1,4 @@
-// Get hourly usage for Online Archive returns "OK" response
+// Get hourly usage for online archive returns "OK" response
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageOnlineArchive(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageOnlineArchiveOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	resp, r, err := api.GetUsageOnlineArchive(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageOnlineArchiveOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageOnlineArchive`: %v\n", err)

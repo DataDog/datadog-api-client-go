@@ -648,8 +648,9 @@ func (a *UsageMeteringApi) buildGetUsageApplicationSecurityMonitoringRequest(ctx
 	return req, nil
 }
 
-// GetUsageApplicationSecurityMonitoring Get hourly usage for Application Security.
-// Get hourly usage for Application Security .
+// GetUsageApplicationSecurityMonitoring Get hourly usage for application security.
+// Get hourly usage for application security .
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageApplicationSecurityMonitoringRequest(ctx, startHr, o...)
 	if err != nil {
@@ -817,8 +818,9 @@ func (a *UsageMeteringApi) buildGetUsageLambdaTracedInvocationsRequest(ctx _cont
 	return req, nil
 }
 
-// GetUsageLambdaTracedInvocations Get hourly usage for Lambda Traced Invocations.
-// Get hourly usage for Lambda Traced Invocations.
+// GetUsageLambdaTracedInvocations Get hourly usage for lambda traced invocations.
+// Get hourly usage for lambda traced invocations.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaTracedInvocationsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -986,8 +988,9 @@ func (a *UsageMeteringApi) buildGetUsageObservabilityPipelinesRequest(ctx _conte
 	return req, nil
 }
 
-// GetUsageObservabilityPipelines Get hourly usage for Observability Pipelines.
-// Get hourly usage for Observability Pipelines.
+// GetUsageObservabilityPipelines Get hourly usage for observability pipelines.
+// Get hourly usage for observability pipelines.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageObservabilityPipelinesRequest(ctx, startHr, o...)
 	if err != nil {

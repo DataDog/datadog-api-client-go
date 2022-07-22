@@ -1,4 +1,4 @@
-// Get hourly usage for Logs returns "OK" response
+// Get hourly usage for logs returns "OK" response
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageLogs(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageLogsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	resp, r, err := api.GetUsageLogs(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageLogsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageLogs`: %v\n", err)

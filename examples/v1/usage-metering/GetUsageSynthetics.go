@@ -1,4 +1,4 @@
-// Get hourly usage for Synthetics Checks returns "OK" response
+// Get hourly usage for synthetics checks returns "OK" response
 
 package main
 
