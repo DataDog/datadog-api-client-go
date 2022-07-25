@@ -17,12 +17,14 @@ const (
 	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT                       HourlyUsageType = "app_sec_host_count"
 	HOURLYUSAGETYPE_OBSERVABILITY_PIPELINES_BYTES_PROCESSSED HourlyUsageType = "observability_pipelines_bytes_processed"
 	HOURLYUSAGETYPE_LAMBDA_TRACED_INVOCATIONS_COUNT          HourlyUsageType = "lambda_traced_invocations_count"
+	HOURLYUSAGETYPE_CUSTOM_EVENT_COUNT                       HourlyUsageType = "custom_event_count"
 )
 
 var allowedHourlyUsageTypeEnumValues = []HourlyUsageType{
 	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT,
 	HOURLYUSAGETYPE_OBSERVABILITY_PIPELINES_BYTES_PROCESSSED,
 	HOURLYUSAGETYPE_LAMBDA_TRACED_INVOCATIONS_COUNT,
+	HOURLYUSAGETYPE_CUSTOM_EVENT_COUNT,
 }
 
 // GetAllowedValues reeturns the list of possible values.

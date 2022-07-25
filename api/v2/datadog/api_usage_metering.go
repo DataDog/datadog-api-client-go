@@ -187,6 +187,175 @@ func (a *UsageMeteringApi) getCostByOrgExecute(r apiGetCostByOrgRequest) (CostBy
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiGetCustomEventsCountRequest struct {
+	ctx     _context.Context
+	startHr *time.Time
+	endHr   *time.Time
+}
+
+// GetCustomEventsCountOptionalParameters holds optional parameters for GetCustomEventsCount.
+type GetCustomEventsCountOptionalParameters struct {
+	EndHr *time.Time
+}
+
+// NewGetCustomEventsCountOptionalParameters creates an empty struct for parameters.
+func NewGetCustomEventsCountOptionalParameters() *GetCustomEventsCountOptionalParameters {
+	this := GetCustomEventsCountOptionalParameters{}
+	return &this
+}
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
+func (r *GetCustomEventsCountOptionalParameters) WithEndHr(endHr time.Time) *GetCustomEventsCountOptionalParameters {
+	r.EndHr = &endHr
+	return r
+}
+
+func (a *UsageMeteringApi) buildGetCustomEventsCountRequest(ctx _context.Context, startHr time.Time, o ...GetCustomEventsCountOptionalParameters) (apiGetCustomEventsCountRequest, error) {
+	req := apiGetCustomEventsCountRequest{
+		ctx:     ctx,
+		startHr: &startHr,
+	}
+
+	if len(o) > 1 {
+		return req, common.ReportError("only one argument of type GetCustomEventsCountOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.endHr = o[0].EndHr
+	}
+	return req, nil
+}
+
+// GetCustomEventsCount Get hourly usage for Custom Events.
+// Get hourly usage for Custom Events.
+func (a *UsageMeteringApi) GetCustomEventsCount(ctx _context.Context, startHr time.Time, o ...GetCustomEventsCountOptionalParameters) (UsageCustomEventsResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetCustomEventsCountRequest(ctx, startHr, o...)
+	if err != nil {
+		var localVarReturnValue UsageCustomEventsResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return a.getCustomEventsCountExecute(req)
+}
+
+// getCustomEventsCountExecute executes the request.
+func (a *UsageMeteringApi) getCustomEventsCountExecute(r apiGetCustomEventsCountRequest) (UsageCustomEventsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue UsageCustomEventsResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApi.GetCustomEventsCount")
+	if err != nil {
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/custom_events"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.startHr == nil {
+		return localVarReturnValue, nil, common.ReportError("startHr is required and must be specified")
+	}
+	localVarQueryParams.Add("start_hr", common.ParameterToString(*r.startHr, ""))
+	if r.endHr != nil {
+		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiGetEstimatedCostByOrgRequest struct {
 	ctx        _context.Context
 	startMonth *time.Time
