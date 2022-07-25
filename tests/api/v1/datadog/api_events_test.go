@@ -24,7 +24,6 @@ var testEvent = datadog.Event{
 		"client:go",
 	},
 	Priority:       *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
-	SourceTypeName: common.PtrString("datadog-api-client-go"),
 }
 
 type createEventResponse struct {
@@ -85,7 +84,6 @@ func TestEventLifecycle(t *testing.T) {
 	tests.Retry(time.Duration(5*time.Second), 20, func() bool {
 		var matchedEvent = false
 		eventListResponse, httpresp, err = api.ListEvents(ctx, start, end, *datadog.NewListEventsOptionalParameters().WithPriority("normal").
-			WithSources("datadog-api-client-go").
 			WithTags("test,client:go").
 			WithUnaggregated(true))
 		if err != nil {
