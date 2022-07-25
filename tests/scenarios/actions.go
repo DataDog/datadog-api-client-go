@@ -18,11 +18,11 @@ import (
 	"strings"
 	"time"
 
-	testsV1 "github.com/DataDog/datadog-api-client-go/tests/api/v1/datadog"
-	testsV2 "github.com/DataDog/datadog-api-client-go/tests/api/v2/datadog"
+	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v1/datadog"
+	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v2/datadog"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 )
 

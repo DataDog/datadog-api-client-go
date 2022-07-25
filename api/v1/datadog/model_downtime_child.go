@@ -7,7 +7,7 @@ package datadog
 import (
 	"encoding/json"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // DowntimeChild The downtime object definition of the active child for the original parent recurring downtime. This

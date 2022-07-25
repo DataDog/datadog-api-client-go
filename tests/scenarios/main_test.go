@@ -9,7 +9,7 @@ package scenarios
 import (
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 )
 
 // TestMain starts the tracer.

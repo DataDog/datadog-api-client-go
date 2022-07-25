@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying

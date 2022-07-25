@@ -13,7 +13,7 @@ import (
 	"runtime"
 	"strings"
 
-	client "github.com/DataDog/datadog-api-client-go"
+	client "github.com/DataDog/datadog-api-client-go/v2"
 )
 
 // contextKeys are used to identify the type of value in the context.

@@ -1,9 +1,9 @@
-module github.com/DataDog/datadog-api-client-go/tests
+module github.com/DataDog/datadog-api-client-go/v2/tests
 
 go 1.14
 
 require (
-	github.com/DataDog/datadog-api-client-go v1.0.0-beta.22
+	github.com/DataDog/datadog-api-client-go/v2
 	github.com/DataDog/datadog-go v4.8.2+incompatible // indirect
 	github.com/DataDog/dd-sdk-go-testing v0.0.0-20210929140144-5d69f0a9bd49
 	github.com/Microsoft/go-winio v0.5.1 // indirect
@@ -25,4 +25,4 @@ require (
 	gotest.tools v2.2.0+incompatible
 )
 
-replace github.com/DataDog/datadog-api-client-go => ../
+replace github.com/DataDog/datadog-api-client-go/v2 => ../

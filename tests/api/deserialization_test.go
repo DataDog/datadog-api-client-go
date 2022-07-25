@@ -5,12 +5,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	datadogV2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
-	testV1 "github.com/DataDog/datadog-api-client-go/tests/api/v1/datadog"
-	testV2 "github.com/DataDog/datadog-api-client-go/tests/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	datadogV1 "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	datadogV2 "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	testV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v1/datadog"
+	testV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v2/datadog"
 	"gopkg.in/h2non/gock.v1"
 )
 

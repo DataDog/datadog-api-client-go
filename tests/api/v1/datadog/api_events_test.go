@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 )
 
 var testEvent = datadog.Event{
@@ -23,7 +23,7 @@ var testEvent = datadog.Event{
 		"test",
 		"client:go",
 	},
-	Priority:       *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
+	Priority: *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
 }
 
 type createEventResponse struct {
