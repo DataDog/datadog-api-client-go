@@ -1,4 +1,4 @@
-// Get hourly usage for application security returns "OK" response
+// Get hourly usage for Observability Pipelines returns "OK" response
 
 package main
 
@@ -18,13 +18,13 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageApplicationSecurityMonitoring(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageApplicationSecurityMonitoringOptionalParameters())
+	resp, r, err := api.GetUsageObservabilityPipelines(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageObservabilityPipelinesOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageApplicationSecurityMonitoring`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageObservabilityPipelines`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageApplicationSecurityMonitoring`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetUsageObservabilityPipelines`:\n%s\n", responseContent)
 }

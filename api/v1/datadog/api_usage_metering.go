@@ -476,6 +476,7 @@ func (a *UsageMeteringApi) buildGetIncidentManagementRequest(ctx _context.Contex
 
 // GetIncidentManagement Get hourly usage for incident management.
 // Get hourly usage for incident management.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentManagementRequest(ctx, startHr, o...)
 	if err != nil {
@@ -645,6 +646,7 @@ func (a *UsageMeteringApi) buildGetIngestedSpansRequest(ctx _context.Context, st
 
 // GetIngestedSpans Get hourly usage for ingested spans.
 // Get hourly usage for ingested spans.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIngestedSpansRequest(ctx, startHr, o...)
 	if err != nil {
@@ -1548,6 +1550,7 @@ func (a *UsageMeteringApi) buildGetUsageAnalyzedLogsRequest(ctx _context.Context
 
 // GetUsageAnalyzedLogs Get hourly usage for analyzed logs.
 // Get hourly usage for analyzed logs (Security Monitoring).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAnalyzedLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -1950,6 +1953,7 @@ func (a *UsageMeteringApi) buildGetUsageAuditLogsRequest(ctx _context.Context, s
 
 // GetUsageAuditLogs Get hourly usage for audit logs.
 // Get hourly usage for audit logs.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAuditLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2280,8 +2284,9 @@ func (a *UsageMeteringApi) buildGetUsageCIAppRequest(ctx _context.Context, start
 	return req, nil
 }
 
-// GetUsageCIApp Get hourly usage for CI Visibility.
-// Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
+// GetUsageCIApp Get hourly usage for CI visibility.
+// Get hourly usage for CI visibility (tests, pipeline, and spans).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCIAppRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2449,8 +2454,9 @@ func (a *UsageMeteringApi) buildGetUsageCWSRequest(ctx _context.Context, startHr
 	return req, nil
 }
 
-// GetUsageCWS Get hourly usage for Cloud Workload Security.
-// Get hourly usage for Cloud Workload Security.
+// GetUsageCWS Get hourly usage for cloud workload security.
+// Get hourly usage for cloud workload security.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCWSRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2619,7 +2625,8 @@ func (a *UsageMeteringApi) buildGetUsageCloudSecurityPostureManagementRequest(ct
 }
 
 // GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM.
-// Get hourly usage for Cloud Security Posture Management (CSPM).
+// Get hourly usage for cloud security posture management (CSPM).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCloudSecurityPostureManagementRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2787,8 +2794,9 @@ func (a *UsageMeteringApi) buildGetUsageDBMRequest(ctx _context.Context, startHr
 	return req, nil
 }
 
-// GetUsageDBM Get hourly usage for Database Monitoring.
-// Get hourly usage for Database Monitoring
+// GetUsageDBM Get hourly usage for database monitoring.
+// Get hourly usage for database monitoring
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageDBMRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2958,6 +2966,7 @@ func (a *UsageMeteringApi) buildGetUsageFargateRequest(ctx _context.Context, sta
 
 // GetUsageFargate Get hourly usage for Fargate.
 // Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageFargateRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3127,6 +3136,7 @@ func (a *UsageMeteringApi) buildGetUsageHostsRequest(ctx _context.Context, start
 
 // GetUsageHosts Get hourly usage for hosts and containers.
 // Get hourly usage for hosts and containers.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageHostsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3296,6 +3306,7 @@ func (a *UsageMeteringApi) buildGetUsageIndexedSpansRequest(ctx _context.Context
 
 // GetUsageIndexedSpans Get hourly usage for indexed spans.
 // Get hourly usage for indexed spans.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageIndexedSpansRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3465,6 +3476,7 @@ func (a *UsageMeteringApi) buildGetUsageInternetOfThingsRequest(ctx _context.Con
 
 // GetUsageInternetOfThings Get hourly usage for IoT.
 // Get hourly usage for IoT.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageInternetOfThingsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3632,8 +3644,9 @@ func (a *UsageMeteringApi) buildGetUsageLambdaRequest(ctx _context.Context, star
 	return req, nil
 }
 
-// GetUsageLambda Get hourly usage for Lambda.
+// GetUsageLambda Get hourly usage for lambda.
 // Get hourly usage for lambda.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3801,8 +3814,9 @@ func (a *UsageMeteringApi) buildGetUsageLogsRequest(ctx _context.Context, startH
 	return req, nil
 }
 
-// GetUsageLogs Get hourly usage for Logs.
+// GetUsageLogs Get hourly usage for logs.
 // Get hourly usage for logs.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3979,7 +3993,7 @@ func (a *UsageMeteringApi) buildGetUsageLogsByIndexRequest(ctx _context.Context,
 	return req, nil
 }
 
-// GetUsageLogsByIndex Get hourly usage for Logs by Index.
+// GetUsageLogsByIndex Get hourly usage for logs by index.
 // Get hourly usage for logs by index.
 func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByIndexRequest(ctx, startHr, o...)
@@ -4161,6 +4175,7 @@ func (a *UsageMeteringApi) buildGetUsageLogsByRetentionRequest(ctx _context.Cont
 
 // GetUsageLogsByRetention Get hourly logs usage by retention.
 // Get hourly usage for indexed logs by retention period.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByRetentionRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4328,8 +4343,9 @@ func (a *UsageMeteringApi) buildGetUsageNetworkFlowsRequest(ctx _context.Context
 	return req, nil
 }
 
-// GetUsageNetworkFlows Get hourly usage for Network Flows.
+// GetUsageNetworkFlows get hourly usage for network flows.
 // Get hourly usage for network flows.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkFlowsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4497,8 +4513,9 @@ func (a *UsageMeteringApi) buildGetUsageNetworkHostsRequest(ctx _context.Context
 	return req, nil
 }
 
-// GetUsageNetworkHosts Get hourly usage for Network Hosts.
+// GetUsageNetworkHosts Get hourly usage for network hosts.
 // Get hourly usage for network hosts.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkHostsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4666,8 +4683,9 @@ func (a *UsageMeteringApi) buildGetUsageOnlineArchiveRequest(ctx _context.Contex
 	return req, nil
 }
 
-// GetUsageOnlineArchive Get hourly usage for Online Archive.
-// Get hourly usage for Online Archive.
+// GetUsageOnlineArchive Get hourly usage for online archive.
+// Get hourly usage for online archive.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageOnlineArchiveRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4837,6 +4855,7 @@ func (a *UsageMeteringApi) buildGetUsageProfilingRequest(ctx _context.Context, s
 
 // GetUsageProfiling Get hourly usage for profiled hosts.
 // Get hourly usage for profiled hosts.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageProfilingRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5013,8 +5032,9 @@ func (a *UsageMeteringApi) buildGetUsageRumSessionsRequest(ctx _context.Context,
 	return req, nil
 }
 
-// GetUsageRumSessions Get hourly usage for RUM Sessions.
+// GetUsageRumSessions Get hourly usage for RUM sessions.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumSessionsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5185,8 +5205,9 @@ func (a *UsageMeteringApi) buildGetUsageRumUnitsRequest(ctx _context.Context, st
 	return req, nil
 }
 
-// GetUsageRumUnits Get hourly usage for RUM Units.
+// GetUsageRumUnits Get hourly usage for RUM units.
 // Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Units.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumUnitsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5354,8 +5375,9 @@ func (a *UsageMeteringApi) buildGetUsageSDSRequest(ctx _context.Context, startHr
 	return req, nil
 }
 
-// GetUsageSDS Get hourly usage for Sensitive Data Scanner.
-// Get hourly usage for Sensitive Data Scanner.
+// GetUsageSDS Get hourly usage for sensitive data scanner.
+// Get hourly usage for sensitive data scanner.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSDSRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5525,6 +5547,7 @@ func (a *UsageMeteringApi) buildGetUsageSNMPRequest(ctx _context.Context, startH
 
 // GetUsageSNMP Get hourly usage for SNMP devices.
 // Get hourly usage for SNMP devices.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSNMPRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5873,8 +5896,9 @@ func (a *UsageMeteringApi) buildGetUsageSyntheticsRequest(ctx _context.Context, 
 	return req, nil
 }
 
-// GetUsageSynthetics Get hourly usage for Synthetics Checks.
-// Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
+// GetUsageSynthetics Get hourly usage for synthetics checks.
+// Get hourly usage for [synthetics checks](https://docs.datadoghq.com/synthetics/).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6042,8 +6066,9 @@ func (a *UsageMeteringApi) buildGetUsageSyntheticsAPIRequest(ctx _context.Contex
 	return req, nil
 }
 
-// GetUsageSyntheticsAPI Get hourly usage for Synthetics API Checks.
+// GetUsageSyntheticsAPI Get hourly usage for synthetics API checks.
 // Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsAPIRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6211,8 +6236,9 @@ func (a *UsageMeteringApi) buildGetUsageSyntheticsBrowserRequest(ctx _context.Co
 	return req, nil
 }
 
-// GetUsageSyntheticsBrowser Get hourly usage for Synthetics Browser Checks.
+// GetUsageSyntheticsBrowser Get hourly usage for synthetics browser checks.
 // Get hourly usage for synthetics browser checks.
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsBrowserRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6382,6 +6408,7 @@ func (a *UsageMeteringApi) buildGetUsageTimeseriesRequest(ctx _context.Context, 
 
 // GetUsageTimeseries Get hourly usage for custom metrics.
 // Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
+// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTimeseriesRequest(ctx, startHr, o...)
 	if err != nil {

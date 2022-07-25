@@ -1,4 +1,4 @@
-// Get hourly usage for application security returns "OK" response
+// Get hourly usage for Application Security returns "OK" response
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageApplicationSecurityMonitoring(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageApplicationSecurityMonitoringOptionalParameters())
+	resp, r, err := api.GetUsageApplicationSecurityMonitoring(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageApplicationSecurityMonitoringOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageApplicationSecurityMonitoring`: %v\n", err)
