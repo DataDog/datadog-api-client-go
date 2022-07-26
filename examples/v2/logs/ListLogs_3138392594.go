@@ -33,11 +33,10 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewLogsApi(apiClient)
-	resp, r, err := api.ListLogsWithPagination(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
+	resp, _, err := api.ListLogsWithPagination(ctx, *datadog.NewListLogsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {

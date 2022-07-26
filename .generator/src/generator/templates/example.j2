@@ -57,11 +57,10 @@ func main() {
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.New{{ context.api_instance.name }}Api(apiClient)
 {%- if context.pagination %}
-	resp, r, err := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
+	resp, _, err := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
         for item := range resp {

@@ -30,11 +30,10 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewAuditApi(apiClient)
-	resp, r, err := api.SearchAuditLogsWithPagination(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
+	resp, _, err := api.SearchAuditLogsWithPagination(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.SearchAuditLogs`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {

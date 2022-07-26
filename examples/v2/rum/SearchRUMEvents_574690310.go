@@ -32,11 +32,10 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewRUMApi(apiClient)
-	resp, r, err := api.SearchRUMEventsWithPagination(ctx, body)
+	resp, _, err := api.SearchRUMEventsWithPagination(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMApi.SearchRUMEvents`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {

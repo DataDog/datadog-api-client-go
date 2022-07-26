@@ -18,11 +18,10 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListIncidents", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewIncidentsApi(apiClient)
-	resp, r, err := api.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters().WithPageSize(2))
+	resp, _, err := api.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters().WithPageSize(2))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {

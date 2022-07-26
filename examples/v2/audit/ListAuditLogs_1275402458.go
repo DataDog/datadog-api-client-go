@@ -17,11 +17,10 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewAuditApi(apiClient)
-	resp, r, err := api.ListAuditLogsWithPagination(ctx, *datadog.NewListAuditLogsOptionalParameters().WithPageLimit(2))
+	resp, _, err := api.ListAuditLogsWithPagination(ctx, *datadog.NewListAuditLogsOptionalParameters().WithPageLimit(2))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.ListAuditLogs`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {

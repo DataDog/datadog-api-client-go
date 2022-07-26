@@ -29,11 +29,10 @@ func main() {
 	configuration := common.NewConfiguration()
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.SearchSecurityMonitoringSignalsWithPagination(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
+	resp, _, err := api.SearchSecurityMonitoringSignalsWithPagination(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	for item := range resp {
