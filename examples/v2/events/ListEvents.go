@@ -9,15 +9,16 @@ import (
 	"os"
 
 	"github.com/DataDog/datadog-api-client-go/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.ListEvents", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewEventsApi(apiClient)
-	resp, r, err := api.ListEvents(ctx, 9223372036854775807, 9223372036854775807, *datadog.NewListEventsOptionalParameters())
+	resp, r, err := api.ListEvents(ctx, *datadog.NewListEventsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", err)

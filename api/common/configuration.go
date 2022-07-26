@@ -365,6 +365,8 @@ func NewConfiguration() *Configuration {
 			"v1.GetUsageAttribution":              false,
 			"v1.GetSLOHistory":                    false,
 			"v1.SearchSLO":                        false,
+			"v2.ListEvents":                       false,
+			"v2.SearchEvents":                     false,
 			"v2.CreateIncident":                   false,
 			"v2.DeleteIncident":                   false,
 			"v2.GetIncident":                      false,
