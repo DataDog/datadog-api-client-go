@@ -8,36 +8,72 @@ import (
 	"encoding/json"
 )
 
-// MetricResource Metric resource.
-type MetricResource struct {
-	// The name of the resource.
+// Event The metadata associated with a request.
+type Event struct {
+	// Event ID.
+	Id *string `json:"id,omitempty"`
+	// The event name.
 	Name *string `json:"name,omitempty"`
-	// The type of the resource.
+	// Event source ID.
+	SourceId *int32 `json:"source_id,omitempty"`
+	// Event type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMetricResource instantiates a new MetricResource object.
+// NewEvent instantiates a new Event object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMetricResource() *MetricResource {
-	this := MetricResource{}
+func NewEvent() *Event {
+	this := Event{}
 	return &this
 }
 
-// NewMetricResourceWithDefaults instantiates a new MetricResource object.
+// NewEventWithDefaults instantiates a new Event object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMetricResourceWithDefaults() *MetricResource {
-	this := MetricResource{}
+func NewEventWithDefaults() *Event {
+	this := Event{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Event) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Event) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Event) SetId(v string) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MetricResource) GetName() string {
+func (o *Event) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -47,7 +83,7 @@ func (o *MetricResource) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricResource) GetNameOk() (*string, bool) {
+func (o *Event) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -55,7 +91,7 @@ func (o *MetricResource) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *MetricResource) HasName() bool {
+func (o *Event) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -64,12 +100,44 @@ func (o *MetricResource) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MetricResource) SetName(v string) {
+func (o *Event) SetName(v string) {
 	o.Name = &v
 }
 
+// GetSourceId returns the SourceId field value if set, zero value otherwise.
+func (o *Event) GetSourceId() int32 {
+	if o == nil || o.SourceId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.SourceId
+}
+
+// GetSourceIdOk returns a tuple with the SourceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetSourceIdOk() (*int32, bool) {
+	if o == nil || o.SourceId == nil {
+		return nil, false
+	}
+	return o.SourceId, true
+}
+
+// HasSourceId returns a boolean if a field has been set.
+func (o *Event) HasSourceId() bool {
+	if o != nil && o.SourceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceId gets a reference to the given int32 and assigns it to the SourceId field.
+func (o *Event) SetSourceId(v int32) {
+	o.SourceId = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *MetricResource) GetType() string {
+func (o *Event) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -79,7 +147,7 @@ func (o *MetricResource) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricResource) GetTypeOk() (*string, bool) {
+func (o *Event) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -87,7 +155,7 @@ func (o *MetricResource) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *MetricResource) HasType() bool {
+func (o *Event) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -96,18 +164,24 @@ func (o *MetricResource) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *MetricResource) SetType(v string) {
+func (o *Event) SetType(v string) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MetricResource) MarshalJSON() ([]byte, error) {
+func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.SourceId != nil {
+		toSerialize["source_id"] = o.SourceId
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
@@ -120,11 +194,13 @@ func (o MetricResource) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MetricResource) UnmarshalJSON(bytes []byte) (err error) {
+func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name *string `json:"name,omitempty"`
-		Type *string `json:"type,omitempty"`
+		Id       *string `json:"id,omitempty"`
+		Name     *string `json:"name,omitempty"`
+		SourceId *int32  `json:"source_id,omitempty"`
+		Type     *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,7 +211,9 @@ func (o *MetricResource) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.Id = all.Id
 	o.Name = all.Name
+	o.SourceId = all.SourceId
 	o.Type = all.Type
 	return nil
 }
