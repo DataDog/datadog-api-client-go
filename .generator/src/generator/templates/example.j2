@@ -56,6 +56,19 @@ func main() {
 {%- endfor %}
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.New{{ context.api_instance.name }}Api(apiClient)
+{%- if context.pagination %}
+	resp, r, err := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+        for item := range resp {
+		responseContent, _ := json.MarshalIndent(item, "", "  ")
+		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
+	}
+{%- else %}
 {%- if response_has_three_values %}
 	resp, r, err := api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
 
@@ -73,8 +86,6 @@ func main() {
 
 	responseContent, _ := ioutil.ReadAll(resp)
 	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", responseContent)
-	{%- else %}
-	{{ 1/0 }}
 	{%- endif %}
 	{%- endfor %}
 {%- else %}
@@ -84,5 +95,6 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+{%- endif %}
 {%- endif %}
 }
