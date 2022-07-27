@@ -177,9 +177,9 @@ func (o *SecurityMonitoringRuleQueryCreate) SetMetric(v string) {
 	o.Metric = &v
 }
 
-// GetMetrics returns the Metrics field value if set, zero value otherwise.
+// GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringRuleQueryCreate) GetMetrics() []string {
-	if o == nil || o.Metrics == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -188,6 +188,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetMetrics() []string {
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringRuleQueryCreate) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
 		return nil, false
