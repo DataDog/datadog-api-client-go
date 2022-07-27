@@ -3,48 +3,51 @@ version: 1
 interactions:
 - request:
     body: |
-      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyLifecycle-1618221226"}
+      {"service_key":"deadbeef","service_name":"Test-TestPagerDutyLifecycle-1658936129"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "83"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4600220721281816498"
+      - "3171934069797573185"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
+      - "7061189630818952450"
     url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services
     method: POST
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
+    body: |
+      {"service_name":"Test-TestPagerDutyLifecycle-1658936129"}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "57"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:47 GMT
-      Pragma:
-      - no-cache
+      - Wed, 27 Jul 2022 15:35:29 GMT
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "31"
     status: 201 Created
     code: 201
     duration: ""
@@ -55,40 +58,41 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "8085006844624113941"
+      - "4326999913296749622"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
+      - "7061189630818952450"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1658936129
     method: GET
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
+    body: |
+      {"service_name":"Test-TestPagerDutyLifecycle-1658936129"}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:47 GMT
-      Pragma:
-      - no-cache
+      - Wed, 27 Jul 2022 15:35:29 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - 25u1gDlL724DHllbjFT4BhOLorBTilh+aah2uWAUEjFC/+rjczJdiyWrV/HwLwe/
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11998"
+      X-Ratelimit-Reset:
+      - "31"
     status: 200 OK
     code: 200
     duration: ""
@@ -98,44 +102,47 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
+      Content-Length:
+      - "25"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6689338101549404943"
+      - "7242565785668178972"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
+      - "7061189630818952450"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1658936129
     method: PUT
   response:
-    body: '{"service_name":"Test-TestPagerDutyLifecycle-1618221226"}'
+    body: |
+      {"service_name":"Test-TestPagerDutyLifecycle-1658936129"}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:48 GMT
-      Pragma:
-      - no-cache
+      - Wed, 27 Jul 2022 15:35:29 GMT
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11997"
+      X-Ratelimit-Reset:
+      - "31"
     status: 200 OK
     code: 200
     duration: ""
@@ -144,44 +151,42 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6943954393679429910"
+      - "5672836959543614775"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
+      - "7061189630818952450"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1658936129
     method: DELETE
   response:
-    body: "null"
+    body: ""
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "4"
-      Content-Type:
-      - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:48 GMT
-      Pragma:
-      - no-cache
+      - Wed, 27 Jul 2022 15:35:30 GMT
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
-    status: 200 OK
-    code: 200
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11996"
+      X-Ratelimit-Reset:
+      - "31"
+    status: 204 No Content
+    code: 204
     duration: ""
 - request:
     body: ""
@@ -190,17 +195,18 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6040976930195371931"
+      - "7687127190638659178"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
+      - "7061189630818952450"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1658936129
     method: GET
   response:
-    body: '{"errors": ["Service not found"]}'
+    body: |
+      {"errors":["Service not found"]}
     headers:
       Cache-Control:
       - no-cache
@@ -209,7 +215,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:49 GMT
+      - Wed, 27 Jul 2022 15:35:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -218,10 +224,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11995"
+      X-Ratelimit-Reset:
+      - "30"
     status: 404 Not Found
     code: 404
     duration: ""
@@ -230,19 +242,20 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.1; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7826933057593724582"
+      - "2698556464099492782"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8564778003158039413"
-    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1618221226
+      - "7061189630818952450"
+    url: https://api.datadoghq.com/api/v1/integration/pagerduty/configuration/services/Test-TestPagerDutyLifecycle-1658936129
     method: DELETE
   response:
-    body: '{"errors": ["Service not found"]}'
+    body: |
+      {"errors":["Service not found"]}
     headers:
       Cache-Control:
       - no-cache
@@ -251,7 +264,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:49 GMT
+      - Wed, 27 Jul 2022 15:35:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -260,10 +273,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11994"
+      X-Ratelimit-Reset:
+      - "30"
     status: 404 Not Found
     code: 404
     duration: ""

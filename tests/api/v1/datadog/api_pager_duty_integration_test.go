@@ -56,7 +56,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	// Delete service object
 	httpresp, err = api.DeletePagerDutyIntegrationService(ctx, serviceBody.GetServiceName())
 	assert.NoError(err)
-	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(204, httpresp.StatusCode)
 
 	// Check service object
 	_, httpresp, err = api.GetPagerDutyIntegrationService(ctx, serviceBody.GetServiceName())
