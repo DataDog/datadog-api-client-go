@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 
 	"gopkg.in/h2non/gock.v1"
 )

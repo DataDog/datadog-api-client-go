@@ -12,7 +12,7 @@ import (
 	_neturl "net/url"
 	"strings"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // TagsApi service type

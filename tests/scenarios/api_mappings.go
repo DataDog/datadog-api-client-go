@@ -5,11 +5,8 @@ package scenarios
 import (
     "reflect"
 
-
-    v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-
-    v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-
+    v1 "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+    v2 "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
 )
 
 var apiMappings = map[string]map[string]reflect.Value{
