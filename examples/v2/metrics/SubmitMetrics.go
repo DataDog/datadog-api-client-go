@@ -25,6 +25,12 @@ func main() {
 						Value:     common.PtrFloat64(0.7),
 					},
 				},
+				Resources: []datadog.MetricResource{
+					{
+						Name: common.PtrString("dummyhost"),
+						Type: common.PtrString("host"),
+					},
+				},
 			},
 		},
 	}

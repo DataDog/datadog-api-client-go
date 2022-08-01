@@ -17318,15 +17318,15 @@ components:
               downtimes.
             monitors_read: View monitors.
             monitors_write: Edit, mute, and delete individual monitors.
-            synthetics_global_variable_read: View, search, and use in tests the list
-              of global variables available for Synthetics.
+            synthetics_global_variable_read: View, search, and use Synthetics global
+              variables.
             synthetics_global_variable_write: Create, edit, and delete global variables
               for Synthetics.
-            synthetics_private_location_read: View, search, and use in tests the list
-              of available private locations.
+            synthetics_private_location_read: View, search, and use Synthetics private
+              locations.
             synthetics_private_location_write: Create and delete private locations
-              as well as seeing the associated installation guidelines.
-            synthetics_read: List and view configured Synthetic tests.
+              in addition to having access to the associated installation guidelines.
+            synthetics_read: List and view configured Synthetic tests and test results.
             synthetics_write: Create, edit, and delete Synthetic tests.
             timeseries_query: Query Timeseries data.
             usage_read: View your organization's usage and usage attribution.
@@ -19058,7 +19058,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - events_read
-      summary: Query the event stream
+      summary: Get a list of events
       tags:
       - Events
       x-menu-order: 1
@@ -29456,9 +29456,11 @@ tags:
     event stream
 
     and fetch events from the event stream. Events are limited to 4000 characters.
-    If an event is sent out with a message
 
-    containing more than 4000 characters only the 4000 first characters are displayed.'
+    If an event is sent out with a message containing more than 4000 characters, only
+    the
+
+    first 4000 characters are displayed.'
   name: Events
 - description: 'Configure your Datadog-Google Cloud Platform (GCP) integration directly
 

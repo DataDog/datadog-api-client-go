@@ -1,4 +1,4 @@
-// Get estimated cost across multi-org account with date returns "OK" response
+// GetEstimatedCostByOrg with start_date returns "OK" response
 
 package main
 
@@ -16,9 +16,10 @@ import (
 func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetEstimatedCostByOrg", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetEstimatedCostByOrg(ctx, *datadog.NewGetEstimatedCostByOrgOptionalParameters().WithStartDate(time.Now().AddDate(0, 0, -5)).WithEndDate(time.Now().AddDate(0, 0, -3)))
+	resp, r, err := api.GetEstimatedCostByOrg(ctx, "sub-org", *datadog.NewGetEstimatedCostByOrgOptionalParameters().WithStartDate(time.Now().AddDate(0, 0, -5)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetEstimatedCostByOrg`: %v\n", err)

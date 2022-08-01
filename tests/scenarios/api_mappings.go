@@ -48,6 +48,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "AuditApi": reflect.ValueOf(v2.NewAuditApi),
 	    "AuthNMappingsApi": reflect.ValueOf(v2.NewAuthNMappingsApi),
 	    "DashboardListsApi": reflect.ValueOf(v2.NewDashboardListsApi),
+	    "EventsApi": reflect.ValueOf(v2.NewEventsApi),
 	    "IncidentsApi": reflect.ValueOf(v2.NewIncidentsApi),
 	    "OpsgenieIntegrationApi": reflect.ValueOf(v2.NewOpsgenieIntegrationApi),
 	    "LogsApi": reflect.ValueOf(v2.NewLogsApi),

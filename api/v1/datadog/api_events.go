@@ -364,7 +364,7 @@ func (a *EventsApi) buildListEventsRequest(ctx _context.Context, start int64, en
 	return req, nil
 }
 
-// ListEvents Query the event stream.
+// ListEvents Get a list of events.
 // The event stream can be queried and filtered by time, priority, sources and tags.
 //
 // **Notes**:

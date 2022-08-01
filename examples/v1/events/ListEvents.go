@@ -1,4 +1,4 @@
-// Query the event stream returns "OK" response
+// Get a list of events returns "OK" response
 
 package main
 

@@ -10,9 +10,9 @@ import (
 
 // MetricResource Metric resource.
 type MetricResource struct {
-	// The name of the metric.
+	// The name of the resource.
 	Name *string `json:"name,omitempty"`
-	// The type of metric.
+	// The type of the resource.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`

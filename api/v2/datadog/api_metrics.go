@@ -1540,6 +1540,8 @@ func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body Metric
 // - 20 bytes for the metric names
 // - 50 bytes for the timeseries
 // - The full payload is approximately 100 bytes.
+//
+// Host name is one of the resources in the Resources field.
 func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
 	if err != nil {
