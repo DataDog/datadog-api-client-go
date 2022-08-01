@@ -7,7 +7,7 @@ package datadog
 import (
 	"encoding/json"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // MetricsQueryMetadata Object containing all metric names returned and their associated metadata.

@@ -13,7 +13,7 @@ import (
 	"runtime"
 	"strings"
 
-	client "github.com/DataDog/datadog-api-client-go"
+	client "github.com/DataDog/datadog-api-client-go/v2"
 )
 
 // contextKeys are used to identify the type of value in the context.
@@ -382,6 +382,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetIncidentTeam":                  false,
 			"v2.ListIncidentTeams":                false,
 			"v2.UpdateIncidentTeam":               false,
+			"v2.GetEstimatedCostByOrg":            false,
 		},
 	}
 	return cfg

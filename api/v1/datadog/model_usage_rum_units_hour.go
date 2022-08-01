@@ -7,7 +7,7 @@ package datadog
 import (
 	"encoding/json"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).

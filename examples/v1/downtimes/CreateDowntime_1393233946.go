@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
 )
 
 func main() {

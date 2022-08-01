@@ -7,12 +7,14 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // UsageMeteringApi service type
@@ -189,6 +191,7 @@ func (a *UsageMeteringApi) getCostByOrgExecute(r apiGetCostByOrgRequest) (CostBy
 
 type apiGetEstimatedCostByOrgRequest struct {
 	ctx        _context.Context
+	view       *string
 	startMonth *time.Time
 	endMonth   *time.Time
 	startDate  *time.Time
@@ -233,9 +236,10 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time)
 	return r
 }
 
-func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (apiGetEstimatedCostByOrgRequest, error) {
+func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Context, view string, o ...GetEstimatedCostByOrgOptionalParameters) (apiGetEstimatedCostByOrgRequest, error) {
 	req := apiGetEstimatedCostByOrgRequest{
-		ctx: ctx,
+		ctx:  ctx,
+		view: &view,
 	}
 
 	if len(o) > 1 {
@@ -251,10 +255,11 @@ func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Contex
 	return req, nil
 }
 
-// GetEstimatedCostByOrg Get estimated cost across multi-org account.
-// Get estimated cost across multi-org account.
-func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetEstimatedCostByOrgRequest(ctx, o...)
+// GetEstimatedCostByOrg Get estimated cost across your account.
+// Get estimated cost across multi-org and single root-org accounts.
+// Estimated cost data is only available for the current month and previous month. To access historical costs prior to this, use the /cost_by_org endpoint.
+func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, view string, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetEstimatedCostByOrgRequest(ctx, view, o...)
 	if err != nil {
 		var localVarReturnValue CostByOrgResponse
 		return localVarReturnValue, nil, err
@@ -271,16 +276,27 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 		localVarReturnValue CostByOrgResponse
 	)
 
+	operationId := "v2.GetEstimatedCostByOrg"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApi.GetEstimatedCostByOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/usage/estimated_cost_by_org"
+	localVarPath := localBasePath + "/api/v2/usage/estimated_cost"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.view == nil {
+		return localVarReturnValue, nil, common.ReportError("view is required and must be specified")
+	}
+	localVarQueryParams.Add("view", common.ParameterToString(*r.view, ""))
 	if r.startMonth != nil {
 		localVarQueryParams.Add("start_month", common.ParameterToString(*r.startMonth, ""))
 	}
