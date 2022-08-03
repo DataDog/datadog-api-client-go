@@ -16,7 +16,7 @@ now, Datadog has two API versions, `v1`, `v2` and the common package, `common`.
 The client library for Datadog API v1 is located in the `api/v1/datadog` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+import "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
 ```
 
 ### The API v2 Client
@@ -24,7 +24,7 @@ import "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 The client library for Datadog API v2 is located in the `api/v2/datadog` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+import "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
 ```
 
 ### The Common Package
@@ -32,7 +32,7 @@ import "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 The common package for Datadog API is located in the `api/common` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/api/common"
+import "github.com/DataDog/datadog-api-client-go/v2/api/common"
 ```
 
 ## Getting Started
@@ -47,8 +47,8 @@ import (
     "fmt"
     "os"
 
-    "github.com/DataDog/datadog-api-client-go/api/common"
-    datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/common"
+    datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
 )
 
 func main() {
@@ -81,7 +81,7 @@ func main() {
 }
 ```
 
-Save it to `example.go`, then run `go get github.com/DataDog/datadog-api-client-go/api/v2/datadog`.
+Save it to `example.go`, then run `go get github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog`.
 Set the `DD_CLIENT_API_KEY` and `DD_CLIENT_APP_KEY` to your Datadog
 credentials, and then run `go run example.go`.
 
@@ -137,8 +137,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
 )
 
 func main() {

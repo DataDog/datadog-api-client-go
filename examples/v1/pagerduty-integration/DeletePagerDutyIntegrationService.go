@@ -1,4 +1,4 @@
-// Delete a single service object returns "OK" response
+// Delete a single service object returns "No Content" response
 
 package main
 
@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
 )
 
 func main() {

@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds

@@ -4,10 +4,9 @@ package scenarios
 
 import (
     "reflect"
-
 {% for version, _ in apis.items() %}
-    {{ version }} "github.com/DataDog/datadog-api-client-go/api/{{ version }}/datadog"
-{% endfor %}
+    {{ version }} "{{ module }}/api/{{ version }}/datadog"
+{%- endfor %}
 )
 
 var apiMappings = map[string]map[string]reflect.Value{

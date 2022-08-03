@@ -7,7 +7,7 @@ package datadog
 import (
 	"encoding/json"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
 )
 
 // OpsgenieServiceUpdateAttributes The Opsgenie service attributes for an update request.

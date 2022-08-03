@@ -10,9 +10,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 )
 
 func generatePagerDutyService(ctx context.Context, t *testing.T) datadog.PagerDutyService {
@@ -56,7 +56,7 @@ func TestPagerDutyLifecycle(t *testing.T) {
 	// Delete service object
 	httpresp, err = api.DeletePagerDutyIntegrationService(ctx, serviceBody.GetServiceName())
 	assert.NoError(err)
-	assert.Equal(200, httpresp.StatusCode)
+	assert.Equal(204, httpresp.StatusCode)
 
 	// Check service object
 	_, httpresp, err = api.GetPagerDutyIntegrationService(ctx, serviceBody.GetServiceName())

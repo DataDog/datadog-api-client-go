@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.0.0 / 2022-08-01
+
+### Added
+* Add support for Events V2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1551
+* [RQ-2492]: Add custom_events to list of product families in hourly-usage api. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1608
+* Re-introduce Estimated Cost API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1614
+### Changed
+* Create a `common` shared package by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1588
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.16.0...v2.0.0
+
 ## 1.16.0 / 2022-07-20
 
 ### Fixed

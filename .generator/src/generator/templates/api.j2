@@ -10,7 +10,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 
-	"github.com/DataDog/datadog-api-client-go/api/{{ common_package_name }}"
+	"{{ module }}/api/{{ common_package_name }}"
 )
 
 {%- set classname = name.replace(" ", "") + "Api" %}

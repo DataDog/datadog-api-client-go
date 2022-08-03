@@ -7,6 +7,7 @@ from . import openapi
 from . import formatter
 from . import utils
 
+MODULE = "github.com/DataDog/datadog-api-client-go/v2"
 PACKAGE_NAME = "datadog"
 COMMON_PACKAGE_NAME = "common"
 
@@ -58,6 +59,7 @@ def cli(specs, output):
     env.globals["get_container_type"] = openapi.get_container_type
     env.globals["get_type_at_path"] = openapi.get_type_at_path
     env.globals["common_package_name"] = COMMON_PACKAGE_NAME
+    env.globals["module"] = MODULE
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")
