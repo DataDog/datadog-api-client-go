@@ -8,31 +8,31 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Monitor{
-		Name:    common.PtrString("Example-Create_a_ci_pipelines_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
+	body := datadogV1.Monitor{
+		Name:    datadog.PtrString("Example-Create_a_ci_pipelines_monitor_returns_OK_response"),
+		Type:    datadogV1.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `ci-pipelines("ci_level:pipeline @git.branch:staging* @ci.status:error").rollup("count").by("@git.branch,@ci.pipeline.name").last("5m") >= 1`,
-		Message: common.PtrString("some message Notify: @hipchat-channel"),
+		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreateacipipelinesmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
-		Options: &datadog.MonitorOptions{
-			Thresholds: &datadog.MonitorThresholds{
-				Critical: common.PtrFloat64(1),
+		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Options: &datadogV1.MonitorOptions{
+			Thresholds: &datadogV1.MonitorThresholds{
+				Critical: datadog.PtrFloat64(1),
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMonitorsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMonitorsApi(apiClient)
 	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {

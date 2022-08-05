@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSLogsServicesRequest{
+	body := datadogV1.AWSLogsServicesRequest{
 		AccountId: "1234567",
 		Services: []string{
 			"s3",
@@ -24,10 +24,10 @@ func main() {
 			"lambda",
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewAWSLogsIntegrationApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewAWSLogsIntegrationApi(apiClient)
 	resp, r, err := api.EnableAWSLogServices(ctx, body)
 
 	if err != nil {

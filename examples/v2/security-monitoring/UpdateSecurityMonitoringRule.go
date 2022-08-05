@@ -8,56 +8,56 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.SecurityMonitoringRuleUpdatePayload{
-		Cases: []datadog.SecurityMonitoringRuleCase{
+	body := datadogV2.SecurityMonitoringRuleUpdatePayload{
+		Cases: []datadogV2.SecurityMonitoringRuleCase{
 			{
 				Notifications: []string{},
-				Status:        datadog.SECURITYMONITORINGRULESEVERITY_CRITICAL.Ptr(),
+				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_CRITICAL.Ptr(),
 			},
 		},
-		Filters: []datadog.SecurityMonitoringFilter{
+		Filters: []datadogV2.SecurityMonitoringFilter{
 			{
-				Action: datadog.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
+				Action: datadogV2.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
 			},
 		},
-		HasExtendedTitle: common.PtrBool(true),
-		Options: &datadog.SecurityMonitoringRuleOptions{
-			DecreaseCriticalityBasedOnEnv: common.PtrBool(false),
-			DetectionMethod:               datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
-			EvaluationWindow:              datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
-			HardcodedEvaluatorType:        datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
-			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
-				BaselineUserLocations: common.PtrBool(true),
+		HasExtendedTitle: datadog.PtrBool(true),
+		Options: &datadogV2.SecurityMonitoringRuleOptions{
+			DecreaseCriticalityBasedOnEnv: datadog.PtrBool(false),
+			DetectionMethod:               datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
+			EvaluationWindow:              datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
+			HardcodedEvaluatorType:        datadogV2.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
+			ImpossibleTravelOptions: &datadogV2.SecurityMonitoringRuleImpossibleTravelOptions{
+				BaselineUserLocations: datadog.PtrBool(true),
 			},
-			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES.Ptr(),
-			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES.Ptr(),
-			NewValueOptions: &datadog.SecurityMonitoringRuleNewValueOptions{
-				ForgetAfter:       datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY.Ptr(),
-				LearningDuration:  datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS.Ptr(),
-				LearningMethod:    datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION.Ptr(),
-				LearningThreshold: datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES.Ptr(),
+			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES.Ptr(),
+			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES.Ptr(),
+			NewValueOptions: &datadogV2.SecurityMonitoringRuleNewValueOptions{
+				ForgetAfter:       datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY.Ptr(),
+				LearningDuration:  datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS.Ptr(),
+				LearningMethod:    datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION.Ptr(),
+				LearningThreshold: datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES.Ptr(),
 			},
 		},
-		Queries: []datadog.SecurityMonitoringRuleQuery{
+		Queries: []datadogV2.SecurityMonitoringRuleQuery{
 			{
-				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
+				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				DistinctFields: []string{},
 				GroupByFields:  []string{},
 				Metrics:        []string{},
 			},
 		},
 		Tags:    []string{},
-		Version: common.PtrInt32(1),
+		Version: datadog.PtrInt32(1),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSecurityMonitoringApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.UpdateSecurityMonitoringRule(ctx, "rule_id", body)
 
 	if err != nil {

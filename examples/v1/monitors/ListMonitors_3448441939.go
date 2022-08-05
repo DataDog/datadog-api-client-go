@@ -8,16 +8,16 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMonitorsApi(apiClient)
-	resp, r, err := api.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithTags("test:examplegetallmonitordetailswithtags").WithPageSize(1))
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.ListMonitors(ctx, *datadogV1.NewListMonitorsOptionalParameters().WithTags("test:examplegetallmonitordetailswithtags").WithPageSize(1))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors`: %v\n", err)

@@ -9,22 +9,22 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "downtime" in the system
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
-	body := datadog.Downtime{
-		Message:                       common.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
-		MuteFirstRecoveryNotification: common.PtrBool(true),
+	body := datadogV1.Downtime{
+		Message:                       datadog.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
+		MuteFirstRecoveryNotification: datadog.PtrBool(true),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDowntimesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDowntimesApi(apiClient)
 	resp, r, err := api.UpdateDowntime(ctx, DowntimeID, body)
 
 	if err != nil {

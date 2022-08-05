@@ -10,27 +10,27 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "monitor" in the system
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
-	body := datadog.Downtime{
-		Message:  common.PtrString("Example-Schedule_a_monitor_downtime_returns_OK_response"),
-		Start:    common.PtrInt64(time.Now().Unix()),
-		Timezone: common.PtrString("Etc/UTC"),
+	body := datadogV1.Downtime{
+		Message:  datadog.PtrString("Example-Schedule_a_monitor_downtime_returns_OK_response"),
+		Start:    datadog.PtrInt64(time.Now().Unix()),
+		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope: []string{
 			"test:examplescheduleamonitordowntimereturnsokresponse",
 		},
-		MonitorId: *common.NewNullableInt64(common.PtrInt64(MonitorID)),
+		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(MonitorID)),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDowntimesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDowntimesApi(apiClient)
 	resp, r, err := api.CreateDowntime(ctx, body)
 
 	if err != nil {

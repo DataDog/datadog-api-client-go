@@ -8,38 +8,38 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.ServiceAccountCreateRequest{
-		Data: datadog.ServiceAccountCreateData{
-			Type: datadog.USERSTYPE_USERS,
-			Attributes: datadog.ServiceAccountCreateAttributes{
-				Name:           common.PtrString("Test API Client"),
+	body := datadogV2.ServiceAccountCreateRequest{
+		Data: datadogV2.ServiceAccountCreateData{
+			Type: datadogV2.USERSTYPE_USERS,
+			Attributes: datadogV2.ServiceAccountCreateAttributes{
+				Name:           datadog.PtrString("Test API Client"),
 				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
 				ServiceAccount: true,
 			},
-			Relationships: &datadog.UserRelationships{
-				Roles: &datadog.RelationshipToRoles{
-					Data: []datadog.RelationshipToRoleData{
+			Relationships: &datadogV2.UserRelationships{
+				Roles: &datadogV2.RelationshipToRoles{
+					Data: []datadogV2.RelationshipToRoleData{
 						{
-							Id:   common.PtrString(RoleDataID),
-							Type: datadog.ROLESTYPE_ROLES.Ptr(),
+							Id:   datadog.PtrString(RoleDataID),
+							Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 						},
 					},
 				},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsersApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewUsersApi(apiClient)
 	resp, r, err := api.CreateServiceAccount(ctx, body)
 
 	if err != nil {

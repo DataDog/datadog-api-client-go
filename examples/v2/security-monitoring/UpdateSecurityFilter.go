@@ -8,31 +8,31 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "security_filter" in the system
 	SecurityFilterDataID := os.Getenv("SECURITY_FILTER_DATA_ID")
 
-	body := datadog.SecurityFilterUpdateRequest{
-		Data: datadog.SecurityFilterUpdateData{
-			Attributes: datadog.SecurityFilterUpdateAttributes{
-				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{},
-				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS.Ptr(),
-				IsEnabled:        common.PtrBool(true),
-				Name:             common.PtrString("Example-Update_a_security_filter_returns_OK_response"),
-				Query:            common.PtrString("service:ExampleUpdateasecurityfilterreturnsOKresponse"),
-				Version:          common.PtrInt32(1),
+	body := datadogV2.SecurityFilterUpdateRequest{
+		Data: datadogV2.SecurityFilterUpdateData{
+			Attributes: datadogV2.SecurityFilterUpdateAttributes{
+				ExclusionFilters: []datadogV2.SecurityFilterExclusionFilter{},
+				FilteredDataType: datadogV2.SECURITYFILTERFILTEREDDATATYPE_LOGS.Ptr(),
+				IsEnabled:        datadog.PtrBool(true),
+				Name:             datadog.PtrString("Example-Update_a_security_filter_returns_OK_response"),
+				Query:            datadog.PtrString("service:ExampleUpdateasecurityfilterreturnsOKresponse"),
+				Version:          datadog.PtrInt32(1),
 			},
-			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
+			Type: datadogV2.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSecurityMonitoringApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.UpdateSecurityFilter(ctx, SecurityFilterDataID, body)
 
 	if err != nil {

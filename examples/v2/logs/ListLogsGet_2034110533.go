@@ -9,16 +9,16 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
-	resp, r, err := api.ListLogsGet(ctx, *datadog.NewListLogsGetOptionalParameters().WithFilterQuery("datadog-agent").WithFilterIndex("main").WithFilterFrom(time.Date(2020, 9, 17, 11, 48, 36, 0, time.UTC)).WithFilterTo(time.Date(2020, 9, 17, 12, 48, 36, 0, time.UTC)).WithPageLimit(5))
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsApi(apiClient)
+	resp, r, err := api.ListLogsGet(ctx, *datadogV2.NewListLogsGetOptionalParameters().WithFilterQuery("datadog-agent").WithFilterIndex("main").WithFilterFrom(time.Date(2020, 9, 17, 11, 48, 36, 0, time.UTC)).WithFilterTo(time.Date(2020, 9, 17, 12, 48, 36, 0, time.UTC)).WithPageLimit(5))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogsGet`: %v\n", err)

@@ -8,23 +8,23 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.DashboardListAddItemsRequest{
-		Dashboards: []datadog.DashboardListItemRequest{
+	body := datadogV2.DashboardListAddItemsRequest{
+		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   "q5j-nti-fv6",
-				Type: datadog.DASHBOARDTYPE_HOST_TIMEBOARD,
+				Type: datadogV2.DASHBOARDTYPE_HOST_TIMEBOARD,
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardListsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewDashboardListsApi(apiClient)
 	resp, r, err := api.CreateDashboardListItems(ctx, 9223372036854775807, body)
 
 	if err != nil {

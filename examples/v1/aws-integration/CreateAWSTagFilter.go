@@ -8,20 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSTagFilterCreateRequest{
-		AccountId:    common.PtrString("1234567"),
-		Namespace:    datadog.AWSNAMESPACE_ELB.Ptr(),
-		TagFilterStr: common.PtrString("prod*"),
+	body := datadogV1.AWSTagFilterCreateRequest{
+		AccountId:    datadog.PtrString("1234567"),
+		Namespace:    datadogV1.AWSNAMESPACE_ELB.Ptr(),
+		TagFilterStr: datadog.PtrString("prod*"),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewAWSIntegrationApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.CreateAWSTagFilter(ctx, body)
 
 	if err != nil {

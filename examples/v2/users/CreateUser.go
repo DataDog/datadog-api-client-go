@@ -8,24 +8,24 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.UserCreateRequest{
-		Data: datadog.UserCreateData{
-			Type: datadog.USERSTYPE_USERS,
-			Attributes: datadog.UserCreateAttributes{
-				Name:  common.PtrString("Datadog API Client Python"),
+	body := datadogV2.UserCreateRequest{
+		Data: datadogV2.UserCreateData{
+			Type: datadogV2.USERSTYPE_USERS,
+			Attributes: datadogV2.UserCreateAttributes{
+				Name:  datadog.PtrString("Datadog API Client Python"),
 				Email: "Example-Create_a_user_returns_OK_response@datadoghq.com",
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsersApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewUsersApi(apiClient)
 	resp, r, err := api.CreateUser(ctx, body)
 
 	if err != nil {

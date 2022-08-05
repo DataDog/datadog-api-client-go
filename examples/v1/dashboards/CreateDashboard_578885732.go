@@ -8,25 +8,25 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					ChangeWidgetDefinition: &datadog.ChangeWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadog.WidgetTime{},
-						Type:       datadog.CHANGEWIDGETDEFINITIONTYPE_CHANGE,
-						Requests: []datadog.ChangeWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					ChangeWidgetDefinition: &datadogV1.ChangeWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Time:       &datadogV1.WidgetTime{},
+						Type:       datadogV1.CHANGEWIDGETDEFINITIONTYPE_CHANGE,
+						Requests: []datadogV1.ChangeWidgetRequest{
 							{
-								Formulas: []datadog.WidgetFormula{
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "hour_before(query1)",
 									},
@@ -34,33 +34,33 @@ func main() {
 										Formula: "query1",
 									},
 								},
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
-											DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
 											Name:       "query1",
-											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
 											Indexes: []string{
 												"*",
 											},
-											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
+												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
+											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								CompareTo:      datadog.WIDGETCOMPARETO_HOUR_BEFORE.Ptr(),
-								IncreaseGood:   common.PtrBool(true),
-								OrderBy:        datadog.WIDGETORDERBY_CHANGE.Ptr(),
-								ChangeType:     datadog.WIDGETCHANGETYPE_ABSOLUTE.Ptr(),
-								OrderDir:       datadog.WIDGETSORT_DESCENDING.Ptr(),
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								CompareTo:      datadogV1.WIDGETCOMPARETO_HOUR_BEFORE.Ptr(),
+								IncreaseGood:   datadog.PtrBool(true),
+								OrderBy:        datadogV1.WIDGETORDERBY_CHANGE.Ptr(),
+								ChangeType:     datadogV1.WIDGETCHANGETYPE_ABSOLUTE.Ptr(),
+								OrderDir:       datadogV1.WIDGETSORT_DESCENDING.Ptr(),
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -68,12 +68,12 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

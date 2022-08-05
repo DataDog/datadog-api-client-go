@@ -8,8 +8,7 @@ from . import formatter
 from . import utils
 
 MODULE = "github.com/DataDog/datadog-api-client-go/v2"
-PACKAGE_NAME = "datadog"
-COMMON_PACKAGE_NAME = "common"
+COMMON_PACKAGE_NAME = "datadog"
 
 
 @click.command()
@@ -53,7 +52,6 @@ def cli(specs, output):
     env.globals["get_type_for_attribute"] = openapi.get_type_for_attribute
     env.globals["get_type_for_parameter"] = openapi.get_type_for_parameter
     env.globals["get_type"] = openapi.type_to_go
-    env.globals["package_name"] = PACKAGE_NAME
     env.globals["get_default"] = openapi.get_default
     env.globals["get_container"] = openapi.get_container
     env.globals["get_container_type"] = openapi.get_container_type
@@ -91,8 +89,9 @@ def cli(specs, output):
 
         env.globals["openapi"] = spec
         env.globals["version"] = version
+        env.globals["package_name"] = f"datadog{version.upper()}"
 
-        resources_dir = output / version / "datadog"
+        resources_dir = output / env.globals["package_name"]
         resources_dir.mkdir(parents=True, exist_ok=True)
 
         for name, model in models.items():

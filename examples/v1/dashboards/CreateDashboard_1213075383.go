@@ -8,64 +8,64 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_toplist_widget",
-		Description: *common.NewNullableString(common.PtrString("")),
-		Widgets: []datadog.Widget{
+		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 15,
 				},
-				Definition: datadog.WidgetDefinition{
-					ToplistWidgetDefinition: &datadog.ToplistWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadog.WidgetTime{},
-						Type:       datadog.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
-						Requests: []datadog.ToplistWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					ToplistWidgetDefinition: &datadogV1.ToplistWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Time:       &datadogV1.WidgetTime{},
+						Type:       datadogV1.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
+						Requests: []datadogV1.ToplistWidgetRequest{
 							{
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Name:       "query1",
 											Query:      "avg:system.cpu.user{*} by {service}",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
 								},
-								Formulas: []datadog.WidgetFormula{
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "query1",
-										Limit: &datadog.WidgetFormulaLimit{
-											Count: common.PtrInt64(10),
-											Order: datadog.QUERYSORTORDER_DESC.Ptr(),
+										Limit: &datadogV1.WidgetFormulaLimit{
+											Count: datadog.PtrInt64(10),
+											Order: datadogV1.QUERYSORTORDER_DESC.Ptr(),
 										},
 									},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 							},
 						},
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        common.PtrBool(false),
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
+		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

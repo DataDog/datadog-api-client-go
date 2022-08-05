@@ -8,22 +8,22 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.User{
-		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-		Disabled:   common.PtrBool(false),
-		Email:      common.PtrString("test@datadoghq.com"),
-		Handle:     common.PtrString("test@datadoghq.com"),
-		Name:       common.PtrString("test user"),
+	body := datadogV1.User{
+		AccessRole: datadogV1.ACCESSROLE_STANDARD.Ptr(),
+		Disabled:   datadog.PtrBool(false),
+		Email:      datadog.PtrString("test@datadoghq.com"),
+		Handle:     datadog.PtrString("test@datadoghq.com"),
+		Name:       datadog.PtrString("test user"),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsersApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewUsersApi(apiClient)
 	resp, r, err := api.CreateUser(ctx, body)
 
 	if err != nil {

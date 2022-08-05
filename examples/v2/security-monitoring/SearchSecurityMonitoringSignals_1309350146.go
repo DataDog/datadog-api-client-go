@@ -9,27 +9,27 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.SecurityMonitoringSignalListRequest{
-		Filter: &datadog.SecurityMonitoringSignalListRequestFilter{
-			From:  common.PtrTime(time.Now().Add(time.Minute * -15)),
-			Query: common.PtrString("security:attack status:high"),
-			To:    common.PtrTime(time.Now()),
+	body := datadogV2.SecurityMonitoringSignalListRequest{
+		Filter: &datadogV2.SecurityMonitoringSignalListRequestFilter{
+			From:  datadog.PtrTime(time.Now().Add(time.Minute * -15)),
+			Query: datadog.PtrString("security:attack status:high"),
+			To:    datadog.PtrTime(time.Now()),
 		},
-		Page: &datadog.SecurityMonitoringSignalListRequestPage{
-			Limit: common.PtrInt32(2),
+		Page: &datadogV2.SecurityMonitoringSignalListRequestPage{
+			Limit: datadog.PtrInt32(2),
 		},
-		Sort: datadog.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING.Ptr(),
+		Sort: datadogV2.SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSecurityMonitoringApi(apiClient)
-	resp, _, err := api.SearchSecurityMonitoringSignalsWithPagination(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
+	resp, _, err := api.SearchSecurityMonitoringSignalsWithPagination(ctx, *datadogV2.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", err)

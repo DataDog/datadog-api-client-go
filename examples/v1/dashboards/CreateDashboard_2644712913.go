@@ -8,46 +8,46 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_a_query_value_widget_using_the_percentile_aggregator with QVW Percentile Aggregator",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
-						TitleSize:  common.PtrString("16"),
-						Title:      common.PtrString(""),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Precision:  common.PtrInt64(2),
-						Time:       &datadog.WidgetTime{},
-						Autoscale:  common.PtrBool(true),
-						Requests: []datadog.QueryValueWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					QueryValueWidgetDefinition: &datadogV1.QueryValueWidgetDefinition{
+						TitleSize:  datadog.PtrString("16"),
+						Title:      datadog.PtrString(""),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Precision:  datadog.PtrInt64(2),
+						Time:       &datadogV1.WidgetTime{},
+						Autoscale:  datadog.PtrBool(true),
+						Requests: []datadogV1.QueryValueWidgetRequest{
 							{
-								Formulas: []datadog.WidgetFormula{
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "query1",
 									},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
 											Query:      "p90:dist.dd.dogweb.latency{*}",
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Name:       "query1",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE.Ptr(),
 										}},
 								},
 							},
 						},
-						Type: datadog.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
+						Type: datadogV1.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					Y:      0,
 					X:      0,
 					Height: 2,
@@ -56,10 +56,10 @@ func main() {
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

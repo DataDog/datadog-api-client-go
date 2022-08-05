@@ -8,58 +8,58 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu",
-		Description: *common.NewNullableString(common.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
-		Widgets: []datadog.Widget{
+		Description: *datadog.NewNullableString(datadog.PtrString("Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_events_qu")),
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					DistributionWidgetDefinition: &datadog.DistributionWidgetDefinition{
-						Title:      common.PtrString("Events Platform - Request latency HOP"),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: common.PtrBool(false),
-						Type:       datadog.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
-						Xaxis: &datadog.DistributionWidgetXAxis{
-							Max:         common.PtrString("auto"),
-							IncludeZero: common.PtrBool(true),
-							Scale:       common.PtrString("linear"),
-							Min:         common.PtrString("auto"),
+				Definition: datadogV1.WidgetDefinition{
+					DistributionWidgetDefinition: &datadogV1.DistributionWidgetDefinition{
+						Title:      datadog.PtrString("Events Platform - Request latency HOP"),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						ShowLegend: datadog.PtrBool(false),
+						Type:       datadogV1.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
+						Xaxis: &datadogV1.DistributionWidgetXAxis{
+							Max:         datadog.PtrString("auto"),
+							IncludeZero: datadog.PtrBool(true),
+							Scale:       datadog.PtrString("linear"),
+							Min:         datadog.PtrString("auto"),
 						},
-						Yaxis: &datadog.DistributionWidgetYAxis{
-							Max:         common.PtrString("auto"),
-							IncludeZero: common.PtrBool(true),
-							Scale:       common.PtrString("linear"),
-							Min:         common.PtrString("auto"),
+						Yaxis: &datadogV1.DistributionWidgetYAxis{
+							Max:         datadog.PtrString("auto"),
+							IncludeZero: datadog.PtrBool(true),
+							Scale:       datadog.PtrString("linear"),
+							Min:         datadog.PtrString("auto"),
 						},
-						Requests: []datadog.DistributionWidgetRequest{
+						Requests: []datadogV1.DistributionWidgetRequest{
 							{
-								Query: &datadog.DistributionWidgetHistogramRequestQuery{
-									FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
-										Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+								Query: &datadogV1.DistributionWidgetHistogramRequestQuery{
+									FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
+										Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 											Query: "",
 										},
-										DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
-										Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-											Metric:      common.PtrString("@duration"),
-											Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_MIN,
+										DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
+										Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
+											Metric:      datadog.PtrString("@duration"),
+											Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_MIN,
 										},
 										Name: "query1",
 										Indexes: []string{
 											"*",
 										},
-										GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
+										GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 									}},
-								RequestType: datadog.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
+								RequestType: datadogV1.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -67,12 +67,12 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

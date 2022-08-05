@@ -8,20 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "incident" in the system
 	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
 
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetIncident", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewIncidentsApi(apiClient)
-	resp, r, err := api.GetIncident(ctx, IncidentDataID, *datadog.NewGetIncidentOptionalParameters())
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentsApi(apiClient)
+	resp, r, err := api.GetIncident(ctx, IncidentDataID, *datadogV2.NewGetIncidentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncident`: %v\n", err)

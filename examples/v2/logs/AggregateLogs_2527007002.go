@@ -8,32 +8,32 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsAggregateRequest{
-		Compute: []datadog.LogsCompute{
+	body := datadogV2.LogsAggregateRequest{
+		Compute: []datadogV2.LogsCompute{
 			{
-				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
-				Interval:    common.PtrString("5m"),
-				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
+				Aggregation: datadogV2.LOGSAGGREGATIONFUNCTION_COUNT,
+				Interval:    datadog.PtrString("5m"),
+				Type:        datadogV2.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
 			},
 		},
-		Filter: &datadog.LogsQueryFilter{
-			From: common.PtrString("now-15m"),
+		Filter: &datadogV2.LogsQueryFilter{
+			From: datadog.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
 			},
-			Query: common.PtrString("*"),
-			To:    common.PtrString("now"),
+			Query: datadog.PtrString("*"),
+			To:    datadog.PtrString("now"),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsApi(apiClient)
 	resp, r, err := api.AggregateLogs(ctx, body)
 
 	if err != nil {

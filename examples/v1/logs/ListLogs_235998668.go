@@ -9,25 +9,25 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsListRequest{
-		Index: common.PtrString("main"),
-		Query: common.PtrString("host:Test*"),
-		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
-		Time: datadog.LogsListRequestTime{
+	body := datadogV1.LogsListRequest{
+		Index: datadog.PtrString("main"),
+		Query: datadog.PtrString("host:Test*"),
+		Sort:  datadogV1.LOGSSORT_TIME_ASCENDING.Ptr(),
+		Time: datadogV1.LogsListRequestTime{
 			From:     time.Now().Add(time.Hour * -1),
-			Timezone: common.PtrString("Europe/Paris"),
+			Timezone: datadog.PtrString("Europe/Paris"),
 			To:       time.Now(),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogs(ctx, body)
 
 	if err != nil {

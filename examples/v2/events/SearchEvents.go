@@ -8,28 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.EventsListRequest{
-		Filter: &datadog.EventsQueryFilter{
-			Query: common.PtrString("datadog-agent"),
-			From:  common.PtrString("2020-09-17T11:48:36+01:00"),
-			To:    common.PtrString("2020-09-17T12:48:36+01:00"),
+	body := datadogV2.EventsListRequest{
+		Filter: &datadogV2.EventsQueryFilter{
+			Query: datadog.PtrString("datadog-agent"),
+			From:  datadog.PtrString("2020-09-17T11:48:36+01:00"),
+			To:    datadog.PtrString("2020-09-17T12:48:36+01:00"),
 		},
-		Sort: datadog.EVENTSSORT_TIMESTAMP_ASCENDING.Ptr(),
-		Page: &datadog.EventsRequestPage{
-			Limit: common.PtrInt32(5),
+		Sort: datadogV2.EVENTSSORT_TIMESTAMP_ASCENDING.Ptr(),
+		Page: &datadogV2.EventsRequestPage{
+			Limit: datadog.PtrInt32(5),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.SearchEvents", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewEventsApi(apiClient)
-	resp, r, err := api.SearchEvents(ctx, *datadog.NewSearchEventsOptionalParameters().WithBody(body))
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewEventsApi(apiClient)
+	resp, r, err := api.SearchEvents(ctx, *datadogV2.NewSearchEventsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.SearchEvents`: %v\n", err)
