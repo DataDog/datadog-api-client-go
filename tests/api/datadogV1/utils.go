@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"gopkg.in/h2non/gock.v1"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -21,6 +20,8 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
+
+	"gopkg.in/h2non/gock.v1"
 )
 
 // WithFakeAuth avoids issue of API returning `text/html` instead of `application/json`

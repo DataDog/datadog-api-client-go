@@ -9,11 +9,11 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 	"os"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 )
