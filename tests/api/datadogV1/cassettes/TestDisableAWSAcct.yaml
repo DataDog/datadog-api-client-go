@@ -1,0 +1,109 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"account_id":"AC1654245221","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "245"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - datadogV1-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "2327751497846317513"
+      X-Datadog-Sampling-Priority:
+      - "2"
+      X-Datadog-Trace-Id:
+      - "8723608702242824817"
+    url: https://api.datadoghq.com/api/v1/integration/aws
+    method: POST
+  response:
+    body: '{"external_id":"9cc2dc0d280e4a9db264e7c32356d7fb"}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Jun 2022 08:33:42 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11990"
+      X-Ratelimit-Reset:
+      - "18"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: |
+      {"account_id":"AC1654245221","role_name":"DatadogAWSIntegrationRole"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "70"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - datadogV1-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "3264720280096054898"
+      X-Datadog-Sampling-Priority:
+      - "2"
+      X-Datadog-Trace-Id:
+      - "8723608702242824817"
+    url: https://api.datadoghq.com/api/v1/integration/aws
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "2"
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 03 Jun 2022 08:33:43 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11989"
+      X-Ratelimit-Reset:
+      - "18"
+    status: 200 OK
+    code: 200
+    duration: ""

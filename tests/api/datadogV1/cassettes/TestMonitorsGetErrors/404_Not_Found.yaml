@@ -1,0 +1,53 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - datadogV1-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6209623401190233693"
+      X-Datadog-Sampling-Priority:
+      - "2"
+      X-Datadog-Trace-Id:
+      - "3638068972914300560"
+    url: https://api.datadoghq.com/api/v1/monitor/1234?group_states=notagroupstate
+    method: GET
+  response:
+    body: '{"errors": ["Monitor not found"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 21 Jun 2022 13:04:30 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "3000"
+      X-Ratelimit-Name:
+      - get_monitors
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "2998"
+      X-Ratelimit-Reset:
+      - "10"
+    status: 404 Not Found
+    code: 404
+    duration: ""

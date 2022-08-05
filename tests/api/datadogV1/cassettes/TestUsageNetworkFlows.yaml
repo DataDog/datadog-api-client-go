@@ -1,0 +1,55 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+      User-Agent:
+      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6002251534088554591"
+      X-Datadog-Sampling-Priority:
+      - "1"
+      X-Datadog-Trace-Id:
+      - "3954392411926288530"
+    url: https://api.datadoghq.com/api/v1/usage/network_flows?end_hr=2021-03-13T00%3A00%3A00Z&start_hr=2021-03-12T00%3A00%3A00Z
+    method: GET
+  response:
+    body: '{"usage":[{"indexed_events_count":162,"hour":"2021-03-12T00:00:00+00:00"},{"indexed_events_count":158,"hour":"2021-03-12T01:00:00+00:00"},{"indexed_events_count":163,"hour":"2021-03-12T02:00:00+00:00"},{"indexed_events_count":158,"hour":"2021-03-12T03:00:00+00:00"},{"indexed_events_count":162,"hour":"2021-03-12T04:00:00+00:00"},{"indexed_events_count":158,"hour":"2021-03-12T05:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T06:00:00+00:00"},{"indexed_events_count":158,"hour":"2021-03-12T07:00:00+00:00"},{"indexed_events_count":160,"hour":"2021-03-12T08:00:00+00:00"},{"indexed_events_count":160,"hour":"2021-03-12T09:00:00+00:00"},{"indexed_events_count":163,"hour":"2021-03-12T10:00:00+00:00"},{"indexed_events_count":159,"hour":"2021-03-12T11:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T12:00:00+00:00"},{"indexed_events_count":159,"hour":"2021-03-12T13:00:00+00:00"},{"indexed_events_count":160,"hour":"2021-03-12T14:00:00+00:00"},{"indexed_events_count":160,"hour":"2021-03-12T15:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T16:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T17:00:00+00:00"},{"indexed_events_count":159,"hour":"2021-03-12T18:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T19:00:00+00:00"},{"indexed_events_count":159,"hour":"2021-03-12T20:00:00+00:00"},{"indexed_events_count":161,"hour":"2021-03-12T21:00:00+00:00"},{"indexed_events_count":158,"hour":"2021-03-12T22:00:00+00:00"},{"indexed_events_count":162,"hour":"2021-03-12T23:00:00+00:00"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 12 Apr 2021 09:54:57 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Dd-Debug:
+      - F5gm0Rce1/Abr9/0Fw8HAqWfiz0FdiH8er/AXnN6lOn3L6KyGgbsLCwgPlob1No8
+      X-Dd-Version:
+      - "35.4287331"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "400"
+      X-Ratelimit-Period:
+      - "3600"
+      X-Ratelimit-Remaining:
+      - "223"
+      X-Ratelimit-Reset:
+      - "303"
+    status: 200 OK
+    code: 200
+    duration: ""

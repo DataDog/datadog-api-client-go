@@ -1,0 +1,58 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"type":"composite"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "21"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - datadogV1-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "6998537112007518295"
+      X-Datadog-Sampling-Priority:
+      - "2"
+      X-Datadog-Trace-Id:
+      - "6265965882102722744"
+    url: https://api.datadoghq.com/api/v1/monitor/74567339
+    method: PUT
+  response:
+    body: '{"errors": ["Monitor type change not allowed"]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 21 Jun 2022 13:07:26 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "500"
+      X-Ratelimit-Name:
+      - put_monitors
+      X-Ratelimit-Period:
+      - "10"
+      X-Ratelimit-Remaining:
+      - "499"
+      X-Ratelimit-Reset:
+      - "4"
+    status: 400 Bad Request
+    code: 400
+    duration: ""

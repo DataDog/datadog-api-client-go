@@ -17,15 +17,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 	is "gotest.tools/assert/cmp"
 )
 
 func setAPIKey(ctx gobdd.Context, name string, value string) {
-	if keys, ok := GetCtx(ctx).Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
-		keys[name] = common.APIKey{
+	if keys, ok := GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+		keys[name] = datadog.APIKey{
 			Key: value,
 		}
 	} else {
@@ -231,7 +231,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		}
 		var responseJSON interface{}
 		if err != nil {
-			err := err.(common.GenericOpenAPIError)
+			err := err.(datadog.GenericOpenAPIError)
 			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 				responseJSON = string(err.Body())
 			}
@@ -286,7 +286,7 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 	var responseJSON interface{}
 	if err != nil {
-		err := err.(common.GenericOpenAPIError)
+		err := err.(datadog.GenericOpenAPIError)
 		if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 			responseJSON = string(err.Body())
 		}

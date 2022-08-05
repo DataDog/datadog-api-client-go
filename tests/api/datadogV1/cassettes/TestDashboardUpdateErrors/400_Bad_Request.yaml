@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: |
+      {"layout_type":"","title":"","widgets":null}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Length:
+      - "45"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - datadogV1-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      X-Datadog-Parent-Id:
+      - "1614008910974154033"
+      X-Datadog-Sampling-Priority:
+      - "2"
+      X-Datadog-Trace-Id:
+      - "2587836233113552455"
+    url: https://api.datadoghq.com/api/v1/dashboard/123-abc-xyz
+    method: PUT
+  response:
+    body: |
+      {"errors":["Value of parameter 'layout_type' should be any of these ['ordered', 'free']"]}
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 13 Jun 2022 15:21:18 GMT
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15724800;
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11369"
+      X-Ratelimit-Reset:
+      - "42"
+    status: 400 Bad Request
+    code: 400
+    duration: ""
