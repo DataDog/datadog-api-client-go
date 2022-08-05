@@ -21,7 +21,7 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	Name string `json:"name"`
 	// Name of operation on service.
 	OperationName string `json:"operation_name"`
-	// The name of the second primary tag used within APM; required when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadogV1.
+	// The name of the second primary tag used within APM; required when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog.
 	PrimaryTagName *string `json:"primary_tag_name,omitempty"`
 	// Filter APM data by the second primary tag. `primary_tag_name` must also be specified.
 	PrimaryTagValue *string `json:"primary_tag_value,omitempty"`

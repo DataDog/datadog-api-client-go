@@ -1176,7 +1176,7 @@ components:
       properties:
         handle:
           description: The handle of the user.
-          example: datadogV1.user@example.com
+          example: datadog.user@example.com
           type: string
         name:
           description: The name of the user.
@@ -1251,7 +1251,7 @@ components:
       properties:
         handle:
           description: The handle of the user.
-          example: datadogV1.user@example.com
+          example: datadog.user@example.com
           type: string
         name:
           description: The name of the user.
@@ -1582,7 +1582,7 @@ components:
           type: integer
         service:
           description: Service that triggered the event.
-          example: datadogV1-api
+          example: datadog-api
           type: string
         source_type_name:
           description: 'The type of event being posted.
@@ -4658,7 +4658,7 @@ components:
           type: array
         source_type_name:
           description: The source type name.
-          example: datadogV1
+          example: datadog
           type: string
         tags:
           description: A list of tags associated with the metric.

@@ -237,7 +237,7 @@ func (a *MonitorsApi) buildCreateMonitorRequest(ctx _context.Context, body Monit
 //
 // Example: `"check".over(tags).last(count).by(group).count_by_status()`
 //
-// - `check` name of the check, for example `datadogV1.agent.up`
+// - `check` name of the check, for example `datadog.agent.up`
 // - `tags` one or more quoted tags (comma-separated), or "*". for example: `.over("env:prod", "role:db")`; `over` cannot be blank.
 // - `count` must be at greater than or equal to your max threshold (defined in the `options`). It is limited to 100.
 // For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be at least 3.

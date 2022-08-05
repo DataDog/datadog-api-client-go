@@ -2238,7 +2238,7 @@ components:
           type: string
         primary_tag_name:
           description: The name of the second primary tag used within APM; required
-            when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadogV1.
+            when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog.
           example: datacenter
           type: string
         primary_tag_value:
@@ -2327,7 +2327,7 @@ components:
           type: string
         primary_tag_name:
           description: Name of the second primary tag used within APM. Required when
-            `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadogV1
+            `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog
           example: datacenter
           type: string
         primary_tag_value:
@@ -2775,7 +2775,7 @@ components:
           type: boolean
         client_email:
           description: Your email found in your JSON service account key.
-          example: api-dev@datadogV1-sandbox.iam.gserviceaccount.com
+          example: api-dev@datadog-sandbox.iam.gserviceaccount.com
           type: string
         client_id:
           description: Your ID found in your JSON service account key.
@@ -2815,7 +2815,7 @@ components:
         project_id:
           description: Your Google Cloud project ID found in your JSON service account
             key.
-          example: datadogV1-apitest
+          example: datadog-apitest
           type: string
         token_uri:
           description: Should be `https://accounts.google.com/o/oauth2/token`.
@@ -13649,7 +13649,7 @@ components:
           but did not have a value.'
         items:
           description: A given tag in a list.
-          example: datadogV1-integrations-lab
+          example: datadog-integrations-lab
           type: string
         type: array
       description: 'Tag keys and values.
@@ -22243,7 +22243,7 @@ paths:
         Example: `"check".over(tags).last(count).by(group).count_by_status()`
 
 
-        - `check` name of the check, for example `datadogV1.agent.up`
+        - `check` name of the check, for example `datadog.agent.up`
 
         - `tags` one or more quoted tags (comma-separated), or "*". for example: `.over("env:prod",
         "role:db")`; `over` cannot be blank.
