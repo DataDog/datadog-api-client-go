@@ -34,7 +34,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 					Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
 						Destination: datadogV2.LogsArchiveCreateRequestDestination{
 							LogsArchiveDestinationS3: &datadogV2.LogsArchiveDestinationS3{
-								Bucket: "dd-logs-test-datadogV1-api-client-go",
+								Bucket: "dd-logs-test-datadog-api-client-go",
 								Integration: datadogV2.LogsArchiveIntegrationS3{
 									AccountId: "711111111111",
 									RoleName:  "DatadogGoClientTestIntegrationRole",
@@ -43,7 +43,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type: "s3",
 							},
 						},
-						Name:            "datadogV1-api-client-go Tests Archive",
+						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
@@ -70,7 +70,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type:           "azure",
 							},
 						},
-						Name:            "datadogV1-api-client-go Tests Archive",
+						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
@@ -86,7 +86,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 					Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
 						Destination: datadogV2.LogsArchiveCreateRequestDestination{
 							LogsArchiveDestinationGCS: &datadogV2.LogsArchiveDestinationGCS{
-								Bucket: "dd-logs-test-datadogV1-api-client-go",
+								Bucket: "dd-logs-test-datadog-api-client-go",
 								Integration: datadogV2.LogsArchiveIntegrationGCS{
 									ClientEmail: "email@email.com",
 									ProjectId:   "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
@@ -95,7 +95,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Type: "gcs",
 							},
 						},
-						Name:            "datadogV1-api-client-go Tests Archive",
+						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
 						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
@@ -145,7 +145,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 			Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
 				Destination: datadogV2.LogsArchiveCreateRequestDestination{
 					LogsArchiveDestinationS3: &datadogV2.LogsArchiveDestinationS3{
-						Bucket: "dd-logs-test-datadogV1-api-client-go",
+						Bucket: "dd-logs-test-datadog-api-client-go",
 						Integration: datadogV2.LogsArchiveIntegrationS3{
 							AccountId: "711111111111",
 							RoleName:  "DatadogGoClientTestIntegrationRole",
@@ -154,7 +154,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 						Type: "s3",
 					},
 				},
-				Name:            "datadogV1-api-client-go Tests Archive",
+				Name:            "datadog-api-client-go Tests Archive",
 				Query:           "service:toto",
 				RehydrationTags: []string{"team:intake", "team:app"},
 			},

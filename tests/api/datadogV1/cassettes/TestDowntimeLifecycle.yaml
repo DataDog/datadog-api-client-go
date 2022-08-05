@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "4313385370254734191"
       X-Datadog-Sampling-Priority:
@@ -58,7 +58,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "358658601298689281"
       X-Datadog-Sampling-Priority:
@@ -98,7 +98,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "6957907124166130642"
       X-Datadog-Sampling-Priority:
@@ -138,7 +138,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7784534734810024333"
       X-Datadog-Sampling-Priority:
@@ -235,7 +235,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "4215384797251223033"
       X-Datadog-Sampling-Priority:
@@ -273,7 +273,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "5548079313813153725"
       X-Datadog-Sampling-Priority:
@@ -313,7 +313,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "5847340659902164742"
       X-Datadog-Sampling-Priority:

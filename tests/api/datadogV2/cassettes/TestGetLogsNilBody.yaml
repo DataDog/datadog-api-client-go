@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.21+dev (go go1.15.11; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.21+dev (go go1.15.11; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "62003376666741878"
       X-Datadog-Sampling-Priority:

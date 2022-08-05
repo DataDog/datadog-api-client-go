@@ -8,7 +8,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "1036596477678488454"
       X-Datadog-Sampling-Priority:
@@ -276,7 +276,7 @@ interactions:
       5000, &#34;statuspageio_page_url&#34;: &#34;https://status.datadoghq.com&#34;,
       &#34;templeton.retain_deleted_groups_threshold&#34;: 86400, &#34;dash.hidden_update_factor&#34;:
       30.0, &#34;watchdog.default_feed.start&#34;: null, &#34;rum.rum_snippet_url&#34;:
-      &#34;https://www.datadoghq-browser-agent.com/datadogV1-rum-us.js&#34;, &#34;rum.recorder_poc_url&#34;:
+      &#34;https://www.datadoghq-browser-agent.com/datadog-rum-us.js&#34;, &#34;rum.recorder_poc_url&#34;:
       null, &#34;dash.backoff_fraction&#34;: 0.25, &#34;zendesk_app_key&#34;: &#34;a71b5eae-e154-460b-a2da-836e2ee271bb&#34;,
       &#34;statuspageio_pageid&#34;: &#34;1k6wzpspjf99&#34;, &#34;dash.overall_update_factor&#34;:
       1.0}\" /></div>\n<div style=\"display: none;\"><input id=\"public-path\" name=\"public-path\"

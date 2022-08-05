@@ -11,7 +11,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "3442652415992387437"
       X-Datadog-Sampling-Priority:
@@ -85,7 +85,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "2156573769225362401"
       X-Datadog-Sampling-Priority:
@@ -164,7 +164,7 @@ interactions:
       the datadogV1 version tag","is_enabled":true,"sources":["dd.version","contextMap.dd.version"],"source_type":"attribute","target":"version","target_type":"tag","preserve_source":false,"override_on_conflict":true,"type":"attribute-remapper"},{"name":"Define
       app as the official service of the log","is_enabled":true,"sources":["dd.service","contextMap.dd.service"],"type":"service-remapper"}]},{"id":"4I6FNy5GToqi2fKVAqNZJw","type":"pipeline","name":"Datadog
       Agent","is_enabled":true,"is_read_only":true,"filter":{"query":"source:(agent
-      OR datadogV1-agent OR datadogV1-agent-cluster-worker OR datadogV1-cluster-agent OR
+      OR datadog-agent OR datadog-agent-cluster-worker OR datadog-cluster-agent OR
       process-agent OR security-agent OR system-probe OR trace-agent)"},"processors":[{"name":"Parsing
       Datadog Agent logs","is_enabled":true,"source":"message","samples":["2020-07-01
       09:48:14 UTC | CORE | INFO | (pkg/collector/runner/runner.go:327 in work) |
@@ -330,7 +330,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "2532190477152660565"
       X-Datadog-Sampling-Priority:
@@ -407,7 +407,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7799295561298605293"
       X-Datadog-Sampling-Priority:
@@ -481,7 +481,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7865649789753188372"
       X-Datadog-Sampling-Priority:
@@ -535,7 +535,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "1410913922737852389"
       X-Datadog-Sampling-Priority:

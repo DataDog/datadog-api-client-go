@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "5225422685532890931"
       X-Datadog-Sampling-Priority:
@@ -66,7 +66,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "2007454335444907197"
       X-Datadog-Sampling-Priority:
@@ -119,7 +119,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "5577695701663410682"
       X-Datadog-Sampling-Priority:
@@ -172,7 +172,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7244340709097472675"
       X-Datadog-Sampling-Priority:
@@ -225,7 +225,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "5962725646906110011"
       X-Datadog-Sampling-Priority:
@@ -279,7 +279,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7176712023835693902"
       X-Datadog-Sampling-Priority:

@@ -43,7 +43,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "4365776703833534941"
       X-Datadog-Sampling-Priority:
@@ -94,7 +94,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7178697093959385367"
       X-Datadog-Sampling-Priority:
@@ -145,7 +145,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "861866509518868395"
       X-Datadog-Sampling-Priority:
@@ -196,7 +196,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "8954678268740037692"
       X-Datadog-Sampling-Priority:
@@ -247,7 +247,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "2676213025484161015"
       X-Datadog-Sampling-Priority:
@@ -294,7 +294,7 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadogV1-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.16.1+dev (go go1.18.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
       - "7969755127899399596"
       X-Datadog-Sampling-Priority:

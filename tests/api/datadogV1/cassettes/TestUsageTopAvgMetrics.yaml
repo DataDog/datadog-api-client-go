@@ -8,7 +8,7 @@ interactions:
       Accept:
       - application/json;datetime-format=rfc3339
       User-Agent:
-      - datadogV1-api-client-go/1.0.0-beta.23+dev (go go1.16.5; os linux; arch amd64)
+      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.5; os linux; arch amd64)
       X-Datadog-Parent-Id:
       - "6573261468105339237"
       X-Datadog-Sampling-Priority:
