@@ -13,7 +13,13 @@
 
 **Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.0.0...v2.1.0
 
+## 2.0.1 / 2022-08-10
+
+**_NOTE:_** Version used to retract v2.0.0 and v2.0.1. DO NOT USE
+
 ## 2.0.0 / 2022-08-01
+
+**_NOTE:_** Premature major version v2 release. DO NOT USE
 
 ### Added
 * Add support for Events V2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1551
