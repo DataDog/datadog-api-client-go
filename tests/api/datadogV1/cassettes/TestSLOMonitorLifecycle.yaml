@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"Test-TestSLOMonitorLifecycle-1654244295","query":"\"datadogV1.agent.check_status\".over(\"database\").by(\"*\").last(2).count_by_status()","tags":["test","client:go"],"type":"service check"}
+      {"message":"some message Notify: @hipchat-channel","name":"Test-TestSLOMonitorLifecycle-1654244295","query":"\"datadog.agent.check_status\".over(\"database\").by(\"*\").last(2).count_by_status()","tags":["test","client:go"],"type":"service check"}
     form: {}
     headers:
       Accept:
@@ -23,7 +23,7 @@ interactions:
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
-    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"\"datadogV1.agent.check_status\".over(\"database\").by(\"*\").last(2).count_by_status()","message":"some
+    body: '{"restricted_roles":null,"tags":["test","client:go"],"deleted":null,"query":"\"datadog.agent.check_status\".over(\"database\").by(\"*\").last(2).count_by_status()","message":"some
       message Notify: @hipchat-channel","id":73080690,"multi":true,"name":"Test-TestSLOMonitorLifecycle-1654244295","created":"2022-06-03T08:18:15.654115+00:00","created_at":1654244295000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2022-06-03T08:18:15.654115+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
       Data","type":"service check","options":{"notify_no_data":false,"include_tags":true,"notify_audit":false,"new_host_delay":300,"silenced":{}}}'
     headers:
