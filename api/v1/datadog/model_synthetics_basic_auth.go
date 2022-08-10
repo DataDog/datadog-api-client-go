@@ -10,10 +10,9 @@ import (
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb    *SyntheticsBasicAuthWeb
-	SyntheticsBasicAuthSigv4  *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM   *SyntheticsBasicAuthNTLM
-	SyntheticsBasicAuthDigest *SyntheticsBasicAuthDigest
+	SyntheticsBasicAuthWeb   *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
+	SyntheticsBasicAuthNTLM  *SyntheticsBasicAuthNTLM
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -32,11 +31,6 @@ func SyntheticsBasicAuthSigv4AsSyntheticsBasicAuth(v *SyntheticsBasicAuthSigv4) 
 // SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthNTLM wrapped in SyntheticsBasicAuth.
 func SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth(v *SyntheticsBasicAuthNTLM) SyntheticsBasicAuth {
 	return SyntheticsBasicAuth{SyntheticsBasicAuthNTLM: v}
-}
-
-// SyntheticsBasicAuthDigestAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthDigest wrapped in SyntheticsBasicAuth.
-func SyntheticsBasicAuthDigestAsSyntheticsBasicAuth(v *SyntheticsBasicAuthDigest) SyntheticsBasicAuth {
-	return SyntheticsBasicAuth{SyntheticsBasicAuthDigest: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -94,29 +88,11 @@ func (obj *SyntheticsBasicAuth) UnmarshalJSON(data []byte) error {
 		obj.SyntheticsBasicAuthNTLM = nil
 	}
 
-	// try to unmarshal data into SyntheticsBasicAuthDigest
-	err = json.Unmarshal(data, &obj.SyntheticsBasicAuthDigest)
-	if err == nil {
-		if obj.SyntheticsBasicAuthDigest != nil && obj.SyntheticsBasicAuthDigest.UnparsedObject == nil {
-			jsonSyntheticsBasicAuthDigest, _ := json.Marshal(obj.SyntheticsBasicAuthDigest)
-			if string(jsonSyntheticsBasicAuthDigest) == "{}" { // empty struct
-				obj.SyntheticsBasicAuthDigest = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.SyntheticsBasicAuthDigest = nil
-		}
-	} else {
-		obj.SyntheticsBasicAuthDigest = nil
-	}
-
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SyntheticsBasicAuthWeb = nil
 		obj.SyntheticsBasicAuthSigv4 = nil
 		obj.SyntheticsBasicAuthNTLM = nil
-		obj.SyntheticsBasicAuthDigest = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -134,10 +110,6 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthNTLM)
-	}
-
-	if obj.SyntheticsBasicAuthDigest != nil {
-		return json.Marshal(&obj.SyntheticsBasicAuthDigest)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -158,10 +130,6 @@ func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
 
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return obj.SyntheticsBasicAuthNTLM
-	}
-
-	if obj.SyntheticsBasicAuthDigest != nil {
-		return obj.SyntheticsBasicAuthDigest
 	}
 
 	// all schemas are nil

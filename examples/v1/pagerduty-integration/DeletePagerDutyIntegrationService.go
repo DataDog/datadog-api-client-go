@@ -1,4 +1,4 @@
-// Delete a single service object returns "No Content" response
+// Delete a single service object returns "OK" response
 
 package main
 
