@@ -2,6 +2,13 @@ module github.com/DataDog/datadog-api-client-go/v2
 
 go 1.17
 
+retract (
+	// Version used to retract v2.0.0 and v2.0.1. DO NOT USE.
+	v2.0.1
+	// Premature major version v2 release. DO NOT USE.
+	v2.0.0
+)
+
 require (
 	github.com/DataDog/zstd v1.5.0
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
