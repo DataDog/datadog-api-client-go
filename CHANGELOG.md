@@ -1,6 +1,25 @@
 # CHANGELOG
 
+## 2.1.0 / 2022-08-10
+
+### Fixed
+* Update Pagerduty operation `DeletePagerDutyIntegrationService` response status code by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1612
+### Added
+* Add support for digest auth in synthetics tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1622
+* Add support for RUM application endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1623
+### Changed
+* Refactor package names by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1624
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.0.0...v2.1.0
+
+## 2.0.1 / 2022-08-10
+
+**_NOTE:_** Version used to retract v2.0.0 and v2.0.1. DO NOT USE
+
 ## 2.0.0 / 2022-08-01
+
+**_NOTE:_** Premature major version v2 release. DO NOT USE
 
 ### Added
 * Add support for Events V2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1551
