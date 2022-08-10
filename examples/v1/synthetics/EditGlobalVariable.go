@@ -8,41 +8,41 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsGlobalVariable{
-		Attributes: &datadog.SyntheticsGlobalVariableAttributes{
+	body := datadogV1.SyntheticsGlobalVariable{
+		Attributes: &datadogV1.SyntheticsGlobalVariableAttributes{
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 		},
 		Description: "Example description",
 		Name:        "MY_VARIABLE",
-		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Field: common.PtrString("content-type"),
-			Parser: datadog.SyntheticsVariableParser{
-				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: common.PtrString(".*"),
+		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
+			Field: datadog.PtrString("content-type"),
+			Parser: datadogV1.SyntheticsVariableParser{
+				Type:  datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
+				Value: datadog.PtrString(".*"),
 			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
+			Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 		},
-		ParseTestPublicId: common.PtrString("abc-def-123"),
+		ParseTestPublicId: datadog.PtrString("abc-def-123"),
 		Tags: []string{
 			"team:front",
 			"test:workflow-1",
 		},
-		Value: datadog.SyntheticsGlobalVariableValue{
-			Secure: common.PtrBool(true),
-			Value:  common.PtrString("value"),
+		Value: datadogV1.SyntheticsGlobalVariableValue{
+			Secure: datadog.PtrBool(true),
+			Value:  datadog.PtrString("value"),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.EditGlobalVariable(ctx, "variable_id", body)
 
 	if err != nil {

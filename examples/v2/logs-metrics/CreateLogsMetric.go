@@ -8,26 +8,26 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsMetricCreateRequest{
-		Data: datadog.LogsMetricCreateData{
+	body := datadogV2.LogsMetricCreateRequest{
+		Data: datadogV2.LogsMetricCreateData{
 			Id:   "Example-Create_a_log_based_metric_returns_OK_response",
-			Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
-			Attributes: datadog.LogsMetricCreateAttributes{
-				Compute: datadog.LogsMetricCompute{
-					AggregationType: datadog.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
+			Type: datadogV2.LOGSMETRICTYPE_LOGS_METRICS,
+			Attributes: datadogV2.LogsMetricCreateAttributes{
+				Compute: datadogV2.LogsMetricCompute{
+					AggregationType: datadogV2.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
 				},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsMetricsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsMetricsApi(apiClient)
 	resp, r, err := api.CreateLogsMetric(ctx, body)
 
 	if err != nil {

@@ -7,19 +7,19 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "service" in the system
 	ServiceDataID := os.Getenv("SERVICE_DATA_ID")
 
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentService", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewIncidentServicesApi(apiClient)
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentServicesApi(apiClient)
 	r, err := api.DeleteIncidentService(ctx, ServiceDataID)
 
 	if err != nil {

@@ -8,52 +8,52 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_hostmap_widget",
-		Description: *common.NewNullableString(nil),
-		Widgets: []datadog.Widget{
+		Description: *datadog.NewNullableString(nil),
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 22,
 				},
-				Definition: datadog.WidgetDefinition{
-					HostMapWidgetDefinition: &datadog.HostMapWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
-						Requests: datadog.HostMapWidgetDefinitionRequests{
-							Fill: &datadog.HostMapRequest{
-								Q: common.PtrString("avg:system.cpu.user{*} by {host}"),
+				Definition: datadogV1.WidgetDefinition{
+					HostMapWidgetDefinition: &datadogV1.HostMapWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
+						Requests: datadogV1.HostMapWidgetDefinitionRequests{
+							Fill: &datadogV1.HostMapRequest{
+								Q: datadog.PtrString("avg:system.cpu.user{*} by {host}"),
 							},
 						},
-						NodeType:      datadog.WIDGETNODETYPE_HOST.Ptr(),
-						NoMetricHosts: common.PtrBool(true),
-						NoGroupHosts:  common.PtrBool(true),
-						Style: &datadog.HostMapWidgetDefinitionStyle{
-							Palette:     common.PtrString("green_to_orange"),
-							PaletteFlip: common.PtrBool(false),
+						NodeType:      datadogV1.WIDGETNODETYPE_HOST.Ptr(),
+						NoMetricHosts: datadog.PtrBool(true),
+						NoGroupHosts:  datadog.PtrBool(true),
+						Style: &datadogV1.HostMapWidgetDefinitionStyle{
+							Palette:     datadog.PtrString("green_to_orange"),
+							PaletteFlip: datadog.PtrBool(false),
 						},
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        common.PtrBool(false),
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
+		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

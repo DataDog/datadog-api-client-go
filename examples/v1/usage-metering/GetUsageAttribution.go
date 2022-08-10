@@ -9,17 +9,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL, *datadog.NewGetUsageAttributionOptionalParameters().WithOffset(0).WithLimit(1))
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadogV1.USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL, *datadogV1.NewGetUsageAttributionOptionalParameters().WithOffset(0).WithLimit(1))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAttribution`: %v\n", err)

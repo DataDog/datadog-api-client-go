@@ -8,42 +8,42 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_sunburst_widget_and_metrics_data",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					SunburstWidgetDefinition: &datadog.SunburstWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
-						Requests: []datadog.SunburstWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					SunburstWidgetDefinition: &datadogV1.SunburstWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
+						Requests: []datadogV1.SunburstWidgetRequest{
 							{
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Formulas: []datadog.WidgetFormula{
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "query1",
 									},
 								},
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
 											Query:      "sum:system.mem.used{*} by {service}",
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Name:       "query1",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_SUM.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_SUM.Ptr(),
 										}},
 								},
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -51,12 +51,12 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

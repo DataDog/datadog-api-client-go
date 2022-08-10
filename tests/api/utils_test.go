@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadogV1 "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
-	datadogV2 "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 )
 
@@ -80,7 +80,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"valid simple pointer",
-			common.PtrString("a simple pointer to string"),
+			datadog.PtrString("a simple pointer to string"),
 			false,
 			nil,
 		},
@@ -89,7 +89,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 	for _, tc := range testCases {
 		c := tc
 		t.Run(tc.name, func(t *testing.T) {
-			n, m := common.ContainsUnparsedObject(c.value)
+			n, m := datadog.ContainsUnparsedObject(c.value)
 			assert.Equal(c.expectedUnparsedObject, m)
 			assert.Equal(c.expectedBool, n)
 		})

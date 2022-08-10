@@ -9,32 +9,32 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "monitor" in the system
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
-	body := datadog.MonitorUpdateRequest{
-		Name: common.PtrString("My monitor-updated"),
-		Options: &datadog.MonitorOptions{
-			EvaluationDelay:  *common.NewNullableInt64(nil),
-			NewGroupDelay:    *common.NewNullableInt64(common.PtrInt64(600)),
-			NewHostDelay:     *common.NewNullableInt64(nil),
-			RenotifyInterval: *common.NewNullableInt64(nil),
-			Thresholds: &datadog.MonitorThresholds{
-				Critical: common.PtrFloat64(2),
-				Warning:  *common.NewNullableFloat64(nil),
+	body := datadogV1.MonitorUpdateRequest{
+		Name: datadog.PtrString("My monitor-updated"),
+		Options: &datadogV1.MonitorOptions{
+			EvaluationDelay:  *datadog.NewNullableInt64(nil),
+			NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
+			NewHostDelay:     *datadog.NewNullableInt64(nil),
+			RenotifyInterval: *datadog.NewNullableInt64(nil),
+			Thresholds: &datadogV1.MonitorThresholds{
+				Critical: datadog.PtrFloat64(2),
+				Warning:  *datadog.NewNullableFloat64(nil),
 			},
-			TimeoutH: *common.NewNullableInt64(nil),
+			TimeoutH: *datadog.NewNullableInt64(nil),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMonitorsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMonitorsApi(apiClient)
 	resp, r, err := api.UpdateMonitor(ctx, MonitorID, body)
 
 	if err != nil {

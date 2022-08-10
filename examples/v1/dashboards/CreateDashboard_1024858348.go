@@ -8,22 +8,22 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_a_formulas_and_functions_treemap_widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TreeMapWidgetDefinition: &datadog.TreeMapWidgetDefinition{
-						Title: common.PtrString(""),
-						Type:  datadog.TREEMAPWIDGETDEFINITIONTYPE_TREEMAP,
-						Requests: []datadog.TreeMapWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TreeMapWidgetDefinition: &datadogV1.TreeMapWidgetDefinition{
+						Title: datadog.PtrString(""),
+						Type:  datadogV1.TREEMAPWIDGETDEFINITIONTYPE_TREEMAP,
+						Requests: []datadogV1.TreeMapWidgetRequest{
 							{
-								Formulas: []datadog.WidgetFormula{
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "hour_before(query1)",
 									},
@@ -31,28 +31,28 @@ func main() {
 										Formula: "query1",
 									},
 								},
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
-											DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
 											Name:       "query1",
-											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
 											Indexes: []string{
 												"*",
 											},
-											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
+												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
+											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -60,12 +60,12 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

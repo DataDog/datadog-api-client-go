@@ -9,36 +9,36 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.MetricPayload{
-		Series: []datadog.MetricSeries{
+	body := datadogV2.MetricPayload{
+		Series: []datadogV2.MetricSeries{
 			{
 				Metric: "system.load.1",
-				Type:   datadog.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
-				Points: []datadog.MetricPoint{
+				Type:   datadogV2.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
+				Points: []datadogV2.MetricPoint{
 					{
-						Timestamp: common.PtrInt64(time.Now().Unix()),
-						Value:     common.PtrFloat64(0.7),
+						Timestamp: datadog.PtrInt64(time.Now().Unix()),
+						Value:     datadog.PtrFloat64(0.7),
 					},
 				},
-				Resources: []datadog.MetricResource{
+				Resources: []datadogV2.MetricResource{
 					{
-						Name: common.PtrString("dummyhost"),
-						Type: common.PtrString("host"),
+						Name: datadog.PtrString("dummyhost"),
+						Type: datadog.PtrString("host"),
 					},
 				},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMetricsApi(apiClient)
-	resp, r, err := api.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters())
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitMetrics(ctx, body, *datadogV2.NewSubmitMetricsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

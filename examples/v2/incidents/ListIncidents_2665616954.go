@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListIncidents", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewIncidentsApi(apiClient)
-	resp, _, err := api.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters().WithPageSize(2))
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentsApi(apiClient)
+	resp, _, err := api.ListIncidentsWithPagination(ctx, *datadogV2.NewListIncidentsOptionalParameters().WithPageSize(2))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)

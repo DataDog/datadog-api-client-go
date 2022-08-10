@@ -8,68 +8,68 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsBrowserTest{
-		Config: datadog.SyntheticsBrowserTestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
-			ConfigVariables: []datadog.SyntheticsConfigVariable{
+	body := datadogV1.SyntheticsBrowserTest{
+		Config: datadogV1.SyntheticsBrowserTestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{},
+			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
-					Example: common.PtrString("content-type"),
+					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
-					Pattern: common.PtrString("content-type"),
-					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Pattern: datadog.PtrString("content-type"),
+					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
-			Request: datadog.SyntheticsTestRequest{
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Url:    common.PtrString("https://datadoghq.com"),
+			Request: datadogV1.SyntheticsTestRequest{
+				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
+				Url:    datadog.PtrString("https://datadoghq.com"),
 			},
-			SetCookie: common.PtrString("name:test"),
+			SetCookie: datadog.PtrString("name:test"),
 		},
 		Locations: []string{
 			"aws:us-east-2",
 		},
 		Message: "Test message",
 		Name:    "Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response",
-		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned: common.PtrBool(false),
-			AllowInsecure:    common.PtrBool(true),
-			DeviceIds: []datadog.SyntheticsDeviceID{
-				datadog.SYNTHETICSDEVICEID_TABLET,
+		Options: datadogV1.SyntheticsTestOptions{
+			AcceptSelfSigned: datadog.PtrBool(false),
+			AllowInsecure:    datadog.PtrBool(true),
+			DeviceIds: []datadogV1.SyntheticsDeviceID{
+				datadogV1.SYNTHETICSDEVICEID_TABLET,
 			},
-			DisableCors:        common.PtrBool(true),
-			FollowRedirects:    common.PtrBool(true),
-			MinFailureDuration: common.PtrInt64(10),
-			MinLocationFailed:  common.PtrInt64(1),
-			NoScreenshot:       common.PtrBool(true),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    common.PtrInt64(3),
-				Interval: common.PtrFloat64(10),
+			DisableCors:        datadog.PtrBool(true),
+			FollowRedirects:    datadog.PtrBool(true),
+			MinFailureDuration: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
+			NoScreenshot:       datadog.PtrBool(true),
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{
+				Count:    datadog.PtrInt64(3),
+				Interval: datadog.PtrFloat64(10),
 			},
-			TickEvery: common.PtrInt64(300),
+			TickEvery: datadog.PtrInt64(300),
 		},
 		Tags: []string{
 			"testing:browser",
 		},
-		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
-		Steps: []datadog.SyntheticsStep{
+		Type: datadogV1.SYNTHETICSBROWSERTESTTYPE_BROWSER,
+		Steps: []datadogV1.SyntheticsStep{
 			{
-				AllowFailure: common.PtrBool(false),
-				IsCritical:   common.PtrBool(true),
-				Name:         common.PtrString("Refresh page"),
+				AllowFailure: datadog.PtrBool(false),
+				IsCritical:   datadog.PtrBool(true),
+				Name:         datadog.PtrString("Refresh page"),
 				Params:       new(interface{}),
-				Type:         datadog.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
+				Type:         datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.CreateSyntheticsBrowserTest(ctx, body)
 
 	if err != nil {

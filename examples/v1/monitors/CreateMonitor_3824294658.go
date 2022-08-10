@@ -8,63 +8,63 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Monitor{
-		Name:    common.PtrString("Example-Create_a_ci_pipelines_formula_and_functions_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
+	body := datadogV1.Monitor{
+		Name:    datadog.PtrString("Example-Create_a_ci_pipelines_formula_and_functions_monitor_returns_OK_response"),
+		Type:    datadogV1.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `formula("query1 / query2 * 100").last("15m") >= 0.8`,
-		Message: common.PtrString("some message Notify: @hipchat-channel"),
+		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplecreateacipipelinesformulaandfunctionsmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
-		Options: &datadog.MonitorOptions{
-			Thresholds: &datadog.MonitorThresholds{
-				Critical: common.PtrFloat64(0.8),
+		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Options: &datadogV1.MonitorOptions{
+			Thresholds: &datadogV1.MonitorThresholds{
+				Critical: datadog.PtrFloat64(0.8),
 			},
-			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
-				datadog.MonitorFormulaAndFunctionQueryDefinition{
-					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
-						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
+			Variables: []datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+				datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+					MonitorFormulaAndFunctionEventQueryDefinition: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinition{
+						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 						Name:       "query1",
-						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
+						Search: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "@ci.status:error",
 						},
 						Indexes: []string{
 							"*",
 						},
-						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
-							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+						Compute: datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
+							Aggregation: datadogV1.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadogV1.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
-				datadog.MonitorFormulaAndFunctionQueryDefinition{
-					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
-						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
+				datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+					MonitorFormulaAndFunctionEventQueryDefinition: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinition{
+						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 						Name:       "query2",
-						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
+						Search: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "",
 						},
 						Indexes: []string{
 							"*",
 						},
-						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
-							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+						Compute: datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
+							Aggregation: datadogV1.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadogV1.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMonitorsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMonitorsApi(apiClient)
 	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {

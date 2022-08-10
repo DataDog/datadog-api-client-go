@@ -8,37 +8,37 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_returns_OK_response with Profile Metrics Query",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
-						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
-						Requests: []datadog.TimeseriesWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TimeseriesWidgetDefinition: &datadogV1.TimeseriesWidgetDefinition{
+						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
+						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
-								ProfileMetricsQuery: &datadog.LogQueryDefinition{
-									Compute: &datadog.LogsQueryCompute{
+								ProfileMetricsQuery: &datadogV1.LogQueryDefinition{
+									Compute: &datadogV1.LogsQueryCompute{
 										Aggregation: "sum",
-										Facet:       common.PtrString("@prof_core_cpu_cores"),
+										Facet:       datadog.PtrString("@prof_core_cpu_cores"),
 									},
-									Search: &datadog.LogQueryDefinitionSearch{
+									Search: &datadogV1.LogQueryDefinitionSearch{
 										Query: "runtime:jvm",
 									},
-									GroupBy: []datadog.LogQueryDefinitionGroupBy{
+									GroupBy: []datadogV1.LogQueryDefinitionGroupBy{
 										{
 											Facet: "service",
-											Limit: common.PtrInt64(10),
-											Sort: &datadog.LogQueryDefinitionGroupBySort{
+											Limit: datadog.PtrInt64(10),
+											Sort: &datadogV1.LogQueryDefinitionGroupBySort{
 												Aggregation: "sum",
-												Order:       datadog.WIDGETSORT_DESCENDING,
-												Facet:       common.PtrString("@prof_core_cpu_cores"),
+												Order:       datadogV1.WIDGETSORT_DESCENDING,
+												Facet:       datadog.PtrString("@prof_core_cpu_cores"),
 											},
 										},
 									},
@@ -49,10 +49,10 @@ func main() {
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

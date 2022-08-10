@@ -8,66 +8,66 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
-						Property: common.PtrString("{{ PROPERTY }}"),
+	body := datadogV1.SyntheticsAPITest{
+		Config: datadogV1.SyntheticsAPITestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
+						Property: datadog.PtrString("{{ PROPERTY }}"),
 						Target:   "text/html",
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_HEADER,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_HEADER,
 					}},
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
 						Target:   2000,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionJSONPathTarget: &datadog.SyntheticsAssertionJSONPathTarget{
-						Operator: datadog.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
-						Target: &datadog.SyntheticsAssertionJSONPathTargetTarget{
-							JsonPath:    common.PtrString("topKey"),
-							Operator:    common.PtrString("isNot"),
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionJSONPathTarget: &datadogV1.SyntheticsAssertionJSONPathTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
+						Target: &datadogV1.SyntheticsAssertionJSONPathTargetTarget{
+							JsonPath:    datadog.PtrString("topKey"),
+							Operator:    datadog.PtrString("isNot"),
 							TargetValue: "0",
 						},
-						Type: datadog.SYNTHETICSASSERTIONTYPE_BODY,
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 			},
-			ConfigVariables: []datadog.SyntheticsConfigVariable{
+			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
-					Example: common.PtrString("content-type"),
+					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
-					Pattern: common.PtrString("content-type"),
-					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Pattern: datadog.PtrString("content-type"),
+					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
-			Request: &datadog.SyntheticsTestRequest{
-				Certificate: &datadog.SyntheticsTestRequestCertificate{
-					Cert: &datadog.SyntheticsTestRequestCertificateItem{
-						Content:   common.PtrString("cert-content"),
-						Filename:  common.PtrString("cert-filename"),
-						UpdatedAt: common.PtrString("2020-10-16T09:23:24.857Z"),
+			Request: &datadogV1.SyntheticsTestRequest{
+				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
+					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{
+						Content:   datadog.PtrString("cert-content"),
+						Filename:  datadog.PtrString("cert-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
-					Key: &datadog.SyntheticsTestRequestCertificateItem{
-						Content:   common.PtrString("key-content"),
-						Filename:  common.PtrString("key-filename"),
-						UpdatedAt: common.PtrString("2020-10-16T09:23:24.857Z"),
+					Key: &datadogV1.SyntheticsTestRequestCertificateItem{
+						Content:   datadog.PtrString("key-content"),
+						Filename:  datadog.PtrString("key-filename"),
+						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
 				Headers: map[string]string{
 					"unique": "examplecreateanapihttptestreturnsokreturnsthecreatedtestdetailsresponse",
 				},
-				Method:  datadog.HTTPMETHOD_GET.Ptr(),
-				Timeout: common.PtrFloat64(10),
-				Url:     common.PtrString("https://datadoghq.com"),
-				Proxy: &datadog.SyntheticsTestRequestProxy{
+				Method:  datadogV1.HTTPMETHOD_GET.Ptr(),
+				Timeout: datadog.PtrFloat64(10),
+				Url:     datadog.PtrString("https://datadoghq.com"),
+				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url:     "https://datadoghq.com",
 					Headers: map[string]string{},
 				},
@@ -78,30 +78,30 @@ func main() {
 		},
 		Message: "BDD test payload: synthetics_api_http_test_payload.json",
 		Name:    "Example-Create_an_API_HTTP_test_returns_OK_Returns_the_created_test_details_response",
-		Options: datadog.SyntheticsTestOptions{
-			AcceptSelfSigned:   common.PtrBool(false),
-			AllowInsecure:      common.PtrBool(true),
-			FollowRedirects:    common.PtrBool(true),
-			MinFailureDuration: common.PtrInt64(10),
-			MinLocationFailed:  common.PtrInt64(1),
-			MonitorName:        common.PtrString("Example-Create_an_API_HTTP_test_returns_OK_Returns_the_created_test_details_response"),
-			MonitorPriority:    common.PtrInt32(5),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
-				Count:    common.PtrInt64(3),
-				Interval: common.PtrFloat64(10),
+		Options: datadogV1.SyntheticsTestOptions{
+			AcceptSelfSigned:   datadog.PtrBool(false),
+			AllowInsecure:      datadog.PtrBool(true),
+			FollowRedirects:    datadog.PtrBool(true),
+			MinFailureDuration: datadog.PtrInt64(10),
+			MinLocationFailed:  datadog.PtrInt64(1),
+			MonitorName:        datadog.PtrString("Example-Create_an_API_HTTP_test_returns_OK_Returns_the_created_test_details_response"),
+			MonitorPriority:    datadog.PtrInt32(5),
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{
+				Count:    datadog.PtrInt64(3),
+				Interval: datadog.PtrFloat64(10),
 			},
-			TickEvery: common.PtrInt64(60),
+			TickEvery: datadog.PtrInt64(60),
 		},
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags: []string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
+		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {

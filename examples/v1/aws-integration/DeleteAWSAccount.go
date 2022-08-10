@@ -8,19 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSAccountDeleteRequest{
-		AccountId: common.PtrString("1234567"),
-		RoleName:  common.PtrString("DatadogAWSIntegrationRole"),
+	body := datadogV1.AWSAccountDeleteRequest{
+		AccountId: datadog.PtrString("1234567"),
+		RoleName:  datadog.PtrString("DatadogAWSIntegrationRole"),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewAWSIntegrationApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.DeleteAWSAccount(ctx, body)
 
 	if err != nil {

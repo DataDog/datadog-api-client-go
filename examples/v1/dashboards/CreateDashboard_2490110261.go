@@ -8,43 +8,43 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_an_audit_logs_query with Audit Logs Query",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
-						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
-						Requests: []datadog.TimeseriesWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TimeseriesWidgetDefinition: &datadogV1.TimeseriesWidgetDefinition{
+						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
+						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
-											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
+											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
-											DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT,
-											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT,
+											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
+												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
 											Name: "query1",
 											Indexes: []string{
 												"*",
 											},
-											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
+											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      2,
 					Y:      0,
 					Width:  4,
@@ -53,10 +53,10 @@ func main() {
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

@@ -9,17 +9,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Downtime{
-		Message: common.PtrString("Example-Schedule_a_downtime_with_until_occurrences"),
-		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
-			Period:           common.PtrInt32(1),
-			Type:             common.PtrString("weeks"),
-			UntilOccurrences: *common.NewNullableInt32(common.PtrInt32(3)),
+	body := datadogV1.Downtime{
+		Message: datadog.PtrString("Example-Schedule_a_downtime_with_until_occurrences"),
+		Recurrence: *datadogV1.NewNullableDowntimeRecurrence(&datadogV1.DowntimeRecurrence{
+			Period:           datadog.PtrInt32(1),
+			Type:             datadog.PtrString("weeks"),
+			UntilOccurrences: *datadog.NewNullableInt32(datadog.PtrInt32(3)),
 			WeekDays: []string{
 				"Mon",
 				"Tue",
@@ -31,17 +31,17 @@ func main() {
 		Scope: []string{
 			"*",
 		},
-		Start:    common.PtrInt64(time.Now().Unix()),
-		End:      *common.NewNullableInt64(common.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
-		Timezone: common.PtrString("Etc/UTC"),
+		Start:    datadog.PtrInt64(time.Now().Unix()),
+		End:      *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
+		Timezone: datadog.PtrString("Etc/UTC"),
 		MonitorTags: []string{
 			"tag0",
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDowntimesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDowntimesApi(apiClient)
 	resp, r, err := api.CreateDowntime(ctx, body)
 
 	if err != nil {

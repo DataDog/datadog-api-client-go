@@ -8,19 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.WebhooksIntegration{
+	body := datadogV1.WebhooksIntegration{
 		Name: "Example-Create_a_webhooks_integration_returns_OK_response",
 		Url:  "https://example.com/webhook",
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewWebhooksIntegrationApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewWebhooksIntegrationApi(apiClient)
 	resp, r, err := api.CreateWebhooksIntegration(ctx, body)
 
 	if err != nil {

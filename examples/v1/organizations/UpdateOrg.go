@@ -8,50 +8,50 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Organization{
-		Billing: &datadog.OrganizationBilling{
-			Type: common.PtrString("parent_billing"),
+	body := datadogV1.Organization{
+		Billing: &datadogV1.OrganizationBilling{
+			Type: datadog.PtrString("parent_billing"),
 		},
-		Description: common.PtrString("some description"),
-		Name:        common.PtrString("New child org"),
-		PublicId:    common.PtrString("abcdef12345"),
-		Settings: &datadog.OrganizationSettings{
-			PrivateWidgetShare: common.PtrBool(false),
-			Saml: &datadog.OrganizationSettingsSaml{
-				Enabled: common.PtrBool(false),
+		Description: datadog.PtrString("some description"),
+		Name:        datadog.PtrString("New child org"),
+		PublicId:    datadog.PtrString("abcdef12345"),
+		Settings: &datadogV1.OrganizationSettings{
+			PrivateWidgetShare: datadog.PtrBool(false),
+			Saml: &datadogV1.OrganizationSettingsSaml{
+				Enabled: datadog.PtrBool(false),
 			},
-			SamlAutocreateAccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-			SamlAutocreateUsersDomains: &datadog.OrganizationSettingsSamlAutocreateUsersDomains{
+			SamlAutocreateAccessRole: datadogV1.ACCESSROLE_STANDARD.Ptr(),
+			SamlAutocreateUsersDomains: &datadogV1.OrganizationSettingsSamlAutocreateUsersDomains{
 				Domains: []string{
 					"example.com",
 				},
-				Enabled: common.PtrBool(false),
+				Enabled: datadog.PtrBool(false),
 			},
-			SamlCanBeEnabled: common.PtrBool(false),
-			SamlIdpEndpoint:  common.PtrString("https://my.saml.endpoint"),
-			SamlIdpInitiatedLogin: &datadog.OrganizationSettingsSamlIdpInitiatedLogin{
-				Enabled: common.PtrBool(false),
+			SamlCanBeEnabled: datadog.PtrBool(false),
+			SamlIdpEndpoint:  datadog.PtrString("https://my.saml.endpoint"),
+			SamlIdpInitiatedLogin: &datadogV1.OrganizationSettingsSamlIdpInitiatedLogin{
+				Enabled: datadog.PtrBool(false),
 			},
-			SamlIdpMetadataUploaded: common.PtrBool(false),
-			SamlLoginUrl:            common.PtrString("https://my.saml.login.url"),
-			SamlStrictMode: &datadog.OrganizationSettingsSamlStrictMode{
-				Enabled: common.PtrBool(false),
+			SamlIdpMetadataUploaded: datadog.PtrBool(false),
+			SamlLoginUrl:            datadog.PtrString("https://my.saml.login.url"),
+			SamlStrictMode: &datadogV1.OrganizationSettingsSamlStrictMode{
+				Enabled: datadog.PtrBool(false),
 			},
 		},
-		Subscription: &datadog.OrganizationSubscription{
-			Type: common.PtrString("pro"),
+		Subscription: &datadogV1.OrganizationSubscription{
+			Type: datadog.PtrString("pro"),
 		},
-		Trial: common.PtrBool(false),
+		Trial: datadog.PtrBool(false),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewOrganizationsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewOrganizationsApi(apiClient)
 	resp, r, err := api.UpdateOrg(ctx, "abc123", body)
 
 	if err != nil {

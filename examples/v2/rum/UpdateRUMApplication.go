@@ -8,25 +8,25 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.RUMApplicationUpdateRequest{
-		Data: datadog.RUMApplicationUpdate{
-			Attributes: &datadog.RUMApplicationUpdateAttributes{
-				Name: common.PtrString("updated_name_for_my_existing_rum_application"),
-				Type: common.PtrString("browser|ios|android|react-native|flutter"),
+	body := datadogV2.RUMApplicationUpdateRequest{
+		Data: datadogV2.RUMApplicationUpdate{
+			Attributes: &datadogV2.RUMApplicationUpdateAttributes{
+				Name: datadog.PtrString("updated_name_for_my_existing_rum_application"),
+				Type: datadog.PtrString("browser|ios|android|react-native|flutter"),
 			},
 			Id:   "abcd1234-0000-0000-abcd-1234abcd5678",
-			Type: datadog.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,
+			Type: datadogV2.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewRUMApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewRUMApi(apiClient)
 	resp, r, err := api.UpdateRUMApplication(ctx, "id", body)
 
 	if err != nil {

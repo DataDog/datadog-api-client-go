@@ -8,45 +8,45 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "monitor" in the system
 
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_alert_graph_widget",
-		Description: *common.NewNullableString(common.PtrString("")),
-		Widgets: []datadog.Widget{
+		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 15,
 				},
-				Definition: datadog.WidgetDefinition{
-					AlertGraphWidgetDefinition: &datadog.AlertGraphWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadog.WidgetTime{},
-						Type:       datadog.ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH,
+				Definition: datadogV1.WidgetDefinition{
+					AlertGraphWidgetDefinition: &datadogV1.AlertGraphWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Time:       &datadogV1.WidgetTime{},
+						Type:       datadogV1.ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH,
 						AlertId:    "7",
-						VizType:    datadog.WIDGETVIZTYPE_TIMESERIES,
+						VizType:    datadogV1.WIDGETVIZTYPE_TIMESERIES,
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        common.PtrBool(false),
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
+		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

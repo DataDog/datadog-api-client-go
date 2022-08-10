@@ -9,16 +9,16 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageCloudSecurityPostureManagement(ctx, time.Now().AddDate(0, 0, -3), *datadog.NewGetUsageCloudSecurityPostureManagementOptionalParameters())
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageCloudSecurityPostureManagement(ctx, time.Now().AddDate(0, 0, -3), *datadogV1.NewGetUsageCloudSecurityPostureManagementOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageCloudSecurityPostureManagement`: %v\n", err)

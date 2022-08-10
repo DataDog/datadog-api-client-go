@@ -8,25 +8,25 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := []datadog.HTTPLogItem{
+	body := []datadogV2.HTTPLogItem{
 		{
-			Ddsource: common.PtrString("nginx"),
-			Ddtags:   common.PtrString("env:staging,version:5.1"),
-			Hostname: common.PtrString("i-012345678"),
+			Ddsource: datadog.PtrString("nginx"),
+			Ddtags:   datadog.PtrString("env:staging,version:5.1"),
+			Hostname: datadog.PtrString("i-012345678"),
 			Message:  "2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World",
-			Service:  common.PtrString("payment"),
+			Service:  datadog.PtrString("payment"),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
-	resp, r, err := api.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters().WithContentEncoding(datadog.CONTENTENCODING_GZIP))
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsApi(apiClient)
+	resp, r, err := api.SubmitLog(ctx, body, *datadogV2.NewSubmitLogOptionalParameters().WithContentEncoding(datadogV2.CONTENTENCODING_GZIP))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.SubmitLog`: %v\n", err)
