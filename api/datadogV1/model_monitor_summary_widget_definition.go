@@ -24,6 +24,8 @@ type MonitorSummaryWidgetDefinition struct {
 	Query string `json:"query"`
 	// Whether to show the time that has elapsed since the monitor/group triggered.
 	ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
+	// Whether to show the priorities column.
+	ShowPriority *bool `json:"show_priority,omitempty"`
 	// Widget sorting methods.
 	Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
@@ -51,6 +53,8 @@ type MonitorSummaryWidgetDefinition struct {
 func NewMonitorSummaryWidgetDefinition(query string, typeVar MonitorSummaryWidgetDefinitionType) *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
 	this.Query = query
+	var showPriority bool = false
+	this.ShowPriority = &showPriority
 	this.Type = typeVar
 	return &this
 }
@@ -60,6 +64,8 @@ func NewMonitorSummaryWidgetDefinition(query string, typeVar MonitorSummaryWidge
 // but it doesn't guarantee that properties required by API are set.
 func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
+	var showPriority bool = false
+	this.ShowPriority = &showPriority
 	var typeVar MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
 	this.Type = typeVar
 	return &this
@@ -249,6 +255,38 @@ func (o *MonitorSummaryWidgetDefinition) HasShowLastTriggered() bool {
 // SetShowLastTriggered gets a reference to the given bool and assigns it to the ShowLastTriggered field.
 func (o *MonitorSummaryWidgetDefinition) SetShowLastTriggered(v bool) {
 	o.ShowLastTriggered = &v
+}
+
+// GetShowPriority returns the ShowPriority field value if set, zero value otherwise.
+func (o *MonitorSummaryWidgetDefinition) GetShowPriority() bool {
+	if o == nil || o.ShowPriority == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowPriority
+}
+
+// GetShowPriorityOk returns a tuple with the ShowPriority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorSummaryWidgetDefinition) GetShowPriorityOk() (*bool, bool) {
+	if o == nil || o.ShowPriority == nil {
+		return nil, false
+	}
+	return o.ShowPriority, true
+}
+
+// HasShowPriority returns a boolean if a field has been set.
+func (o *MonitorSummaryWidgetDefinition) HasShowPriority() bool {
+	if o != nil && o.ShowPriority != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowPriority gets a reference to the given bool and assigns it to the ShowPriority field.
+func (o *MonitorSummaryWidgetDefinition) SetShowPriority(v bool) {
+	o.ShowPriority = &v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
@@ -491,6 +529,9 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.ShowLastTriggered != nil {
 		toSerialize["show_last_triggered"] = o.ShowLastTriggered
 	}
+	if o.ShowPriority != nil {
+		toSerialize["show_priority"] = o.ShowPriority
+	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
 	}
@@ -531,6 +572,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"`
 		Query             string                             `json:"query"`
 		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"`
+		ShowPriority      *bool                              `json:"show_priority,omitempty"`
 		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"`
 		Start             *int64                             `json:"start,omitempty"`
 		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"`
@@ -612,6 +654,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.HideZeroCounts = all.HideZeroCounts
 	o.Query = all.Query
 	o.ShowLastTriggered = all.ShowLastTriggered
+	o.ShowPriority = all.ShowPriority
 	o.Sort = all.Sort
 	o.Start = all.Start
 	o.SummaryType = all.SummaryType
