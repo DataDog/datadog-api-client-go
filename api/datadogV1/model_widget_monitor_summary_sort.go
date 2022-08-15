@@ -29,6 +29,8 @@ const (
 	WIDGETMONITORSUMMARYSORT_TAGS_DESCENDING      WidgetMonitorSummarySort = "tags,desc"
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_ASCENDING  WidgetMonitorSummarySort = "triggered,asc"
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_DESCENDING WidgetMonitorSummarySort = "triggered,desc"
+	WIDGETMONITORSUMMARYSORT_PRIORITY_ASCENDING   WidgetMonitorSummarySort = "priority,asc"
+	WIDGETMONITORSUMMARYSORT_PRIORITY_DESCENDING  WidgetMonitorSummarySort = "priority,desc"
 )
 
 var allowedWidgetMonitorSummarySortEnumValues = []WidgetMonitorSummarySort{
@@ -47,6 +49,8 @@ var allowedWidgetMonitorSummarySortEnumValues = []WidgetMonitorSummarySort{
 	WIDGETMONITORSUMMARYSORT_TAGS_DESCENDING,
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_ASCENDING,
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_DESCENDING,
+	WIDGETMONITORSUMMARYSORT_PRIORITY_ASCENDING,
+	WIDGETMONITORSUMMARYSORT_PRIORITY_DESCENDING,
 }
 
 // GetAllowedValues reeturns the list of possible values.
