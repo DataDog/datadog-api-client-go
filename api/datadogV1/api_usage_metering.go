@@ -7,9 +7,7 @@ package datadogV1
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -88,6 +86,8 @@ func (a *UsageMeteringApi) buildGetDailyCustomReportsRequest(ctx _context.Contex
 
 // GetDailyCustomReports Get the list of available daily custom reports.
 // Get daily custom reports.
+// **Note:** This endpoint will be fully deprecated on December 1, 2022.
+// Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetDailyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -105,13 +105,6 @@ func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomRepor
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCustomReportsResponse
 	)
-
-	operationId := "v1.GetDailyCustomReports"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetDailyCustomReports")
 	if err != nil {
@@ -841,6 +834,8 @@ func (a *UsageMeteringApi) buildGetMonthlyCustomReportsRequest(ctx _context.Cont
 
 // GetMonthlyCustomReports Get the list of available monthly custom reports.
 // Get monthly custom reports.
+// **Note:** This endpoint will be fully deprecated on December 1, 2022.
+// Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -858,13 +853,6 @@ func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomR
 		localVarPostBody    interface{}
 		localVarReturnValue UsageCustomReportsResponse
 	)
-
-	operationId := "v1.GetMonthlyCustomReports"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetMonthlyCustomReports")
 	if err != nil {
@@ -1227,6 +1215,8 @@ func (a *UsageMeteringApi) buildGetSpecifiedDailyCustomReportsRequest(ctx _conte
 
 // GetSpecifiedDailyCustomReports Get specified daily custom reports.
 // Get specified daily custom reports.
+// **Note:** This endpoint will be fully deprecated on December 1, 2022.
+// Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedDailyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1244,13 +1234,6 @@ func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifi
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
-
-	operationId := "v1.GetSpecifiedDailyCustomReports"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedDailyCustomReports")
 	if err != nil {
@@ -1371,6 +1354,8 @@ func (a *UsageMeteringApi) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _con
 
 // GetSpecifiedMonthlyCustomReports Get specified monthly custom reports.
 // Get specified monthly custom reports.
+// **Note:** This endpoint will be fully deprecated on December 1, 2022.
+// Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedMonthlyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1388,13 +1373,6 @@ func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpeci
 		localVarPostBody    interface{}
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
-
-	operationId := "v1.GetSpecifiedMonthlyCustomReports"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetSpecifiedMonthlyCustomReports")
 	if err != nil {
@@ -1767,6 +1745,8 @@ func (a *UsageMeteringApi) buildGetUsageAttributionRequest(ctx _context.Context,
 
 // GetUsageAttribution Get usage attribution.
 // Get usage attribution.
+// **Note:** This endpoint will be fully deprecated on December 1, 2022.
+// Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
@@ -1784,13 +1764,6 @@ func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRe
 		localVarPostBody    interface{}
 		localVarReturnValue UsageAttributionResponse
 	)
-
-	operationId := "v1.GetUsageAttribution"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApi.GetUsageAttribution")
 	if err != nil {
