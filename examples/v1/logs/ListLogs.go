@@ -9,24 +9,24 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsListRequest{
-		Index: common.PtrString("retention-3,retention-15"),
-		Query: common.PtrString("service:web* AND @http.status_code:[200 TO 299]"),
-		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
-		Time: datadog.LogsListRequestTime{
+	body := datadogV1.LogsListRequest{
+		Index: datadog.PtrString("retention-3,retention-15"),
+		Query: datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]"),
+		Sort:  datadogV1.LOGSSORT_TIME_ASCENDING.Ptr(),
+		Time: datadogV1.LogsListRequestTime{
 			From: time.Date(2020, 2, 2, 2, 2, 2, 202000, time.UTC),
 			To:   time.Date(2020, 2, 20, 2, 2, 2, 202000, time.UTC),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogs(ctx, body)
 
 	if err != nil {

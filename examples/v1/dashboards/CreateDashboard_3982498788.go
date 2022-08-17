@@ -8,39 +8,39 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes with timeseries widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
-						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
-						Requests: []datadog.TimeseriesWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TimeseriesWidgetDefinition: &datadogV1.TimeseriesWidgetDefinition{
+						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
+						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
-								Q:            common.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
-								OnRightYaxis: common.PtrBool(false),
-								Style: &datadog.WidgetRequestStyle{
-									Palette:   common.PtrString("warm"),
-									LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
-									LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
+								Q:            datadog.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
+								OnRightYaxis: datadog.PtrBool(false),
+								Style: &datadogV1.WidgetRequestStyle{
+									Palette:   datadog.PtrString("warm"),
+									LineType:  datadogV1.WIDGETLINETYPE_SOLID.Ptr(),
+									LineWidth: datadogV1.WIDGETLINEWIDTH_NORMAL.Ptr(),
 								},
-								DisplayType: datadog.WIDGETDISPLAYTYPE_BARS.Ptr(),
+								DisplayType: datadogV1.WIDGETDISPLAYTYPE_BARS.Ptr(),
 							},
 						},
 					}},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

@@ -8,28 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "logs_metric" in the system
 	LogsMetricDataID := os.Getenv("LOGS_METRIC_DATA_ID")
 
-	body := datadog.LogsMetricUpdateRequest{
-		Data: datadog.LogsMetricUpdateData{
-			Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
-			Attributes: datadog.LogsMetricUpdateAttributes{
-				Filter: &datadog.LogsMetricFilter{
-					Query: common.PtrString("service:web* AND @http.status_code:[200 TO 299]-updated"),
+	body := datadogV2.LogsMetricUpdateRequest{
+		Data: datadogV2.LogsMetricUpdateData{
+			Type: datadogV2.LOGSMETRICTYPE_LOGS_METRICS,
+			Attributes: datadogV2.LogsMetricUpdateAttributes{
+				Filter: &datadogV2.LogsMetricFilter{
+					Query: datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]-updated"),
 				},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsMetricsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsMetricsApi(apiClient)
 	resp, r, err := api.UpdateLogsMetric(ctx, LogsMetricDataID, body)
 
 	if err != nil {

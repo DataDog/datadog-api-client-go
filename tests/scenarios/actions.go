@@ -18,11 +18,11 @@ import (
 	"strings"
 	"time"
 
-	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v1/datadog"
-	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/v2/datadog"
-
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV1"
+	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV2"
+
 	"github.com/go-bdd/gobdd"
 )
 
@@ -111,14 +111,14 @@ type ctxRequestsUndoKey struct{}
 func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Context, func()) {
 	t := GetT(bddCTX)
 	debug := os.Getenv("DEBUG") == "true"
-	config := common.NewConfiguration()
+	config := datadog.NewConfiguration()
 	config.Debug = debug
-	c := common.NewAPIClient(config)
+	c := datadog.NewAPIClient(config)
 
 	ctx = context.WithValue(
 		ctx,
-		common.ContextAPIKeys,
-		map[string]common.APIKey{},
+		datadog.ContextAPIKeys,
+		map[string]datadog.APIKey{},
 	)
 
 	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))

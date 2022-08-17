@@ -8,28 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
-	body := datadog.UserUpdateRequest{
-		Data: datadog.UserUpdateData{
+	body := datadogV2.UserUpdateRequest{
+		Data: datadogV2.UserUpdateData{
 			Id:   UserDataID,
-			Type: datadog.USERSTYPE_USERS,
-			Attributes: datadog.UserUpdateAttributes{
-				Name:     common.PtrString("updated"),
-				Disabled: common.PtrBool(true),
+			Type: datadogV2.USERSTYPE_USERS,
+			Attributes: datadogV2.UserUpdateAttributes{
+				Name:     datadog.PtrString("updated"),
+				Disabled: datadog.PtrBool(true),
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsersApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewUsersApi(apiClient)
 	resp, r, err := api.UpdateUser(ctx, UserDataID, body)
 
 	if err != nil {

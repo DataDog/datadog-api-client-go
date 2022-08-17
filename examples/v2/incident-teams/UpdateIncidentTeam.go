@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "team" in the system
 	TeamDataID := os.Getenv("TEAM_DATA_ID")
 
-	body := datadog.IncidentTeamUpdateRequest{
-		Data: datadog.IncidentTeamUpdateData{
-			Type: datadog.INCIDENTTEAMTYPE_TEAMS,
-			Attributes: &datadog.IncidentTeamUpdateAttributes{
+	body := datadogV2.IncidentTeamUpdateRequest{
+		Data: datadogV2.IncidentTeamUpdateData{
+			Type: datadogV2.INCIDENTTEAMTYPE_TEAMS,
+			Attributes: &datadogV2.IncidentTeamUpdateAttributes{
 				Name: "team name-updated",
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateIncidentTeam", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewIncidentTeamsApi(apiClient)
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentTeamsApi(apiClient)
 	resp, r, err := api.UpdateIncidentTeam(ctx, TeamDataID, body)
 
 	if err != nil {

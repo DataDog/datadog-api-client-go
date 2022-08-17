@@ -9,32 +9,32 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "slo" in the system
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
-	body := datadog.SLOCorrectionCreateRequest{
-		Data: &datadog.SLOCorrectionCreateData{
-			Attributes: &datadog.SLOCorrectionCreateRequestAttributes{
-				Category:    datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
-				Description: common.PtrString("Example-Create_an_SLO_correction_with_rrule_returns_OK_response"),
+	body := datadogV1.SLOCorrectionCreateRequest{
+		Data: &datadogV1.SLOCorrectionCreateData{
+			Attributes: &datadogV1.SLOCorrectionCreateRequestAttributes{
+				Category:    datadogV1.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
+				Description: datadog.PtrString("Example-Create_an_SLO_correction_with_rrule_returns_OK_response"),
 				SloId:       SloData0ID,
 				Start:       time.Now().Unix(),
-				Duration:    common.PtrInt64(3600),
-				Rrule:       common.PtrString("FREQ=DAILY;INTERVAL=10;COUNT=5"),
-				Timezone:    common.PtrString("UTC"),
+				Duration:    datadog.PtrInt64(3600),
+				Rrule:       datadog.PtrString("FREQ=DAILY;INTERVAL=10;COUNT=5"),
+				Timezone:    datadog.PtrString("UTC"),
 			},
-			Type: datadog.SLOCORRECTIONTYPE_CORRECTION,
+			Type: datadogV1.SLOCORRECTIONTYPE_CORRECTION,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewServiceLevelObjectiveCorrectionsApi(apiClient)
 	resp, r, err := api.CreateSLOCorrection(ctx, body)
 
 	if err != nil {

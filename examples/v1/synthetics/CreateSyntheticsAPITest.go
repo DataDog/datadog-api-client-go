@@ -8,24 +8,24 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+	body := datadogV1.SyntheticsAPITest{
+		Config: datadogV1.SyntheticsAPITestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
 						Target:   1000,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 			},
-			Request: &datadog.SyntheticsTestRequest{
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Url:    common.PtrString("https://example.com"),
+			Request: &datadogV1.SyntheticsTestRequest{
+				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
+				Url:    datadog.PtrString("https://example.com"),
 			},
 		},
 		Locations: []string{
@@ -33,35 +33,35 @@ func main() {
 		},
 		Message: "Notification message",
 		Name:    "Example test name",
-		Options: datadog.SyntheticsTestOptions{
-			Ci: &datadog.SyntheticsTestCiOptions{
-				ExecutionRule: datadog.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
+		Options: datadogV1.SyntheticsTestOptions{
+			Ci: &datadogV1.SyntheticsTestCiOptions{
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
 			},
-			DeviceIds: []datadog.SyntheticsDeviceID{
-				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+			DeviceIds: []datadogV1.SyntheticsDeviceID{
+				datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
-			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
+			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
-			Retry: &datadog.SyntheticsTestOptionsRetry{},
-			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
-				ApplicationId: common.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-				ClientTokenId: common.PtrInt64(12345),
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{},
+			RumSettings: &datadogV1.SyntheticsBrowserTestRumSettings{
+				ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+				ClientTokenId: datadog.PtrInt64(12345),
 				IsEnabled:     true,
 			},
 		},
-		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+		Status:  datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags: []string{
 			"env:production",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
+		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {

@@ -9,8 +9,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -20,18 +20,18 @@ func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
-	body := datadog.DashboardListDeleteItemsRequest{
-		Dashboards: []datadog.DashboardListItemRequest{
+	body := datadogV2.DashboardListDeleteItemsRequest{
+		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   DashboardID,
-				Type: datadog.DASHBOARDTYPE_CUSTOM_TIMEBOARD,
+				Type: datadogV2.DASHBOARDTYPE_CUSTOM_TIMEBOARD,
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardListsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewDashboardListsApi(apiClient)
 	resp, r, err := api.DeleteDashboardListItems(ctx, DashboardListID, body)
 
 	if err != nil {

@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.SyntheticsPrivateLocation{
+	body := datadogV1.SyntheticsPrivateLocation{
 		Description: "Test Example-Create_a_private_location_returns_OK_response description",
-		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
+		Metadata: &datadogV1.SyntheticsPrivateLocationMetadata{
 			RestrictedRoles: []string{
 				RoleDataID,
 			},
@@ -28,10 +28,10 @@ func main() {
 			"test:examplecreateaprivatelocationreturnsokresponse",
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.CreatePrivateLocation(ctx, body)
 
 	if err != nil {

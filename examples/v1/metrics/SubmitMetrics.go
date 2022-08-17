@@ -9,20 +9,20 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.MetricsPayload{
-		Series: []datadog.Series{
+	body := datadogV1.MetricsPayload{
+		Series: []datadogV1.Series{
 			{
 				Metric: "system.load.1",
-				Type:   common.PtrString("gauge"),
+				Type:   datadog.PtrString("gauge"),
 				Points: [][]*float64{
 					{
-						common.PtrFloat64(float64(time.Now().Unix())),
-						common.PtrFloat64(1.1),
+						datadog.PtrFloat64(float64(time.Now().Unix())),
+						datadog.PtrFloat64(1.1),
 					},
 				},
 				Tags: []string{
@@ -31,11 +31,11 @@ func main() {
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMetricsApi(apiClient)
-	resp, r, err := api.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters())
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitMetrics(ctx, body, *datadogV1.NewSubmitMetricsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

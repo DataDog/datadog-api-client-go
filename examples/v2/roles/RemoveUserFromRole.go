@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -19,16 +19,16 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
-	body := datadog.RelationshipToUser{
-		Data: datadog.RelationshipToUserData{
+	body := datadogV2.RelationshipToUser{
+		Data: datadogV2.RelationshipToUserData{
 			Id:   UserDataID,
-			Type: datadog.USERSTYPE_USERS,
+			Type: datadogV2.USERSTYPE_USERS,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewRolesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewRolesApi(apiClient)
 	resp, r, err := api.RemoveUserFromRole(ctx, RoleDataID, body)
 
 	if err != nil {

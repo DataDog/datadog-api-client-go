@@ -8,28 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsArchiveCreateRequest{
-		Data: &datadog.LogsArchiveCreateRequestDefinition{
-			Attributes: &datadog.LogsArchiveCreateRequestAttributes{
-				Destination: datadog.LogsArchiveCreateRequestDestination{
-					LogsArchiveDestinationAzure: &datadog.LogsArchiveDestinationAzure{
+	body := datadogV2.LogsArchiveCreateRequest{
+		Data: &datadogV2.LogsArchiveCreateRequestDefinition{
+			Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
+				Destination: datadogV2.LogsArchiveCreateRequestDestination{
+					LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{
 						Container: "container-name",
-						Integration: datadog.LogsArchiveIntegrationAzure{
+						Integration: datadogV2.LogsArchiveIntegrationAzure{
 							ClientId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 							TenantId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 						},
 						StorageAccount: "account-name",
-						Type:           datadog.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
+						Type:           datadogV2.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 					}},
-				IncludeTags:                common.PtrBool(false),
+				IncludeTags:                datadog.PtrBool(false),
 				Name:                       "Nginx Archive",
 				Query:                      "source:nginx",
-				RehydrationMaxScanSizeInGb: *common.NewNullableInt64(common.PtrInt64(100)),
+				RehydrationMaxScanSizeInGb: *datadog.NewNullableInt64(datadog.PtrInt64(100)),
 				RehydrationTags: []string{
 					"team:intake",
 					"team:app",
@@ -38,10 +38,10 @@ func main() {
 			Type: "archives",
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsArchivesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsArchivesApi(apiClient)
 	resp, r, err := api.CreateLogsArchive(ctx, body)
 
 	if err != nil {

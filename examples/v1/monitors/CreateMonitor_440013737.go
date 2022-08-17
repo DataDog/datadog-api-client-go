@@ -8,31 +8,31 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Monitor{
-		Name:    common.PtrString("Example-Create_an_Error_Tracking_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_ERROR_TRACKING_ALERT,
+	body := datadogV1.Monitor{
+		Name:    datadog.PtrString("Example-Create_an_Error_Tracking_monitor_returns_OK_response"),
+		Type:    datadogV1.MONITORTYPE_ERROR_TRACKING_ALERT,
 		Query:   `error-tracking-rum("service:foo AND @error.source:source").rollup("count").by("@issue.id").last("1h") >= 1`,
-		Message: common.PtrString("some message"),
+		Message: datadog.PtrString("some message"),
 		Tags: []string{
 			"test:examplecreateanerrortrackingmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *common.NewNullableInt64(common.PtrInt64(3)),
-		Options: &datadog.MonitorOptions{
-			Thresholds: &datadog.MonitorThresholds{
-				Critical: common.PtrFloat64(1),
+		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Options: &datadogV1.MonitorOptions{
+			Thresholds: &datadogV1.MonitorThresholds{
+				Critical: datadog.PtrFloat64(1),
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewMonitorsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewMonitorsApi(apiClient)
 	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {

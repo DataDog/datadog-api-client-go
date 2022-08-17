@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
@@ -17,25 +17,25 @@ func main() {
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 	SloData0Name := os.Getenv("SLO_DATA_0_NAME")
 
-	body := datadog.ServiceLevelObjective{
-		Type: datadog.SLOTYPE_METRIC,
+	body := datadogV1.ServiceLevelObjective{
+		Type: datadogV1.SLOTYPE_METRIC,
 		Name: SloData0Name,
-		Thresholds: []datadog.SLOThreshold{
+		Thresholds: []datadogV1.SLOThreshold{
 			{
 				Target:    97.0,
-				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
-				Warning:   common.PtrFloat64(98.0),
+				Timeframe: datadogV1.SLOTIMEFRAME_SEVEN_DAYS,
+				Warning:   datadog.PtrFloat64(98.0),
 			},
 		},
-		Query: &datadog.ServiceLevelObjectiveQuery{
+		Query: &datadogV1.ServiceLevelObjectiveQuery{
 			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
 			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewServiceLevelObjectivesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.UpdateSLO(ctx, SloData0ID, body)
 
 	if err != nil {

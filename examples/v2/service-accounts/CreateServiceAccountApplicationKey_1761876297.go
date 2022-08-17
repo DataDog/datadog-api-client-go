@@ -8,26 +8,26 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "service_account_user" in the system
 	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
-	body := datadog.ApplicationKeyCreateRequest{
-		Data: datadog.ApplicationKeyCreateData{
-			Attributes: datadog.ApplicationKeyCreateAttributes{
+	body := datadogV2.ApplicationKeyCreateRequest{
+		Data: datadogV2.ApplicationKeyCreateData{
+			Attributes: datadogV2.ApplicationKeyCreateAttributes{
 				Name: "Example-Create_an_app_key_for_this_service_account_returns_Created_response",
 			},
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewServiceAccountsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewServiceAccountsApi(apiClient)
 	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
 
 	if err != nil {

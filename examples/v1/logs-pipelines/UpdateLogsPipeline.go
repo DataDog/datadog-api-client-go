@@ -8,38 +8,38 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsPipeline{
-		Filter: &datadog.LogsFilter{
-			Query: common.PtrString("source:python"),
+	body := datadogV1.LogsPipeline{
+		Filter: &datadogV1.LogsFilter{
+			Query: datadog.PtrString("source:python"),
 		},
 		Name: "",
-		Processors: []datadog.LogsProcessor{
-			datadog.LogsProcessor{
-				LogsGrokParser: &datadog.LogsGrokParser{
-					Grok: datadog.LogsGrokParserRules{
+		Processors: []datadogV1.LogsProcessor{
+			datadogV1.LogsProcessor{
+				LogsGrokParser: &datadogV1.LogsGrokParser{
+					Grok: datadogV1.LogsGrokParserRules{
 						MatchRules: `rule_name_1 foo
 rule_name_2 bar
 `,
-						SupportRules: common.PtrString(`rule_name_1 foo
+						SupportRules: datadog.PtrString(`rule_name_1 foo
 rule_name_2 bar
 `),
 					},
-					IsEnabled: common.PtrBool(false),
+					IsEnabled: datadog.PtrBool(false),
 					Samples:   []string{},
 					Source:    "message",
-					Type:      datadog.LOGSGROKPARSERTYPE_GROK_PARSER,
+					Type:      datadogV1.LOGSGROKPARSERTYPE_GROK_PARSER,
 				}},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsPipelinesApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewLogsPipelinesApi(apiClient)
 	resp, r, err := api.UpdateLogsPipeline(ctx, "pipeline_id", body)
 
 	if err != nil {

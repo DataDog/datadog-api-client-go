@@ -129,7 +129,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
     type_format = schema.get("format")
     nullable = render_nullable and schema.get("nullable", False)
 
-    nullable_prefix = "common.NewNullable" if render_new else "common.Nullable"
+    nullable_prefix = "datadog.NewNullable" if render_new else "datadog.Nullable"
 
     if type_name == "integer":
         return {
@@ -203,7 +203,7 @@ def go_name(name):
     )
 
 
-def reference_to_value(schema, value, print_nullable=True):
+def reference_to_value(schema, value, print_nullable=True, **kwargs):
     """Return a reference to a value.
 
     :param schema: The schema to extract the type from
@@ -216,9 +216,9 @@ def reference_to_value(schema, value, print_nullable=True):
 
     prefix = ""
     if type_name in PRIMITIVE_TYPES:
-        prefix = "common."
-    else:
         prefix = "datadog."
+    else:
+        prefix = f"datadog{kwargs.get('version', '')}."
 
     if nullable and print_nullable:
         if value == "nil":
@@ -226,7 +226,7 @@ def reference_to_value(schema, value, print_nullable=True):
         else:
             formatter = "*{prefix}NewNullable{function_name}({prefix}Ptr{function_name}({value}))"
     else:
-        formatter = "common.Ptr{function_name}({value})"
+        formatter = "datadog.Ptr{function_name}({value})"
 
     if type_name == "integer":
         function_name = {
@@ -288,7 +288,7 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
             value = format_data_with_schema(
                 v["value"],
                 p["schema"],
-                name_prefix="datadog.",
+                name_prefix=f"datadog{kwargs.get('version', '')}.",
                 replace_values=replace_values,
                 required=True,
                 **kwargs,
@@ -301,9 +301,8 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
 
     if has_body and body_is_required:
         parameters += "body, "
-
     if has_optional or body_is_required is False:
-        parameters += f"*datadog.New{spec['operationId'][0].upper()}{spec['operationId'][1:]}OptionalParameters()"
+        parameters += f"*datadog{kwargs.get('version', '')}.New{spec['operationId'][0].upper()}{spec['operationId'][1:]}OptionalParameters()"
         if has_body and not body_is_required:
             parameters += ".WithBody(body)"
 
@@ -311,7 +310,7 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
             value = format_data_with_schema(
                 v["value"],
                 parameters_spec[k]["schema"],
-                name_prefix="datadog.",
+                name_prefix=f"datadog{kwargs.get('version', '')}.",
                 replace_values=replace_values,
                 required=True,
                 **kwargs,
@@ -431,7 +430,7 @@ def format_data_with_schema(
         schema["nullable"] = False
 
     if (not required or schema.get("nullable")) and schema.get("type") is not None:
-        return reference_to_value(schema, parameters, print_nullable=not in_list)
+        return reference_to_value(schema, parameters, print_nullable=not in_list, **kwargs)
 
     if "oneOf" in schema:
         matched = 0

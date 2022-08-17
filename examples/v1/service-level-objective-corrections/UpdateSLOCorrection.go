@@ -9,30 +9,30 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "correction" for "slo"
 	CorrectionDataID := os.Getenv("CORRECTION_DATA_ID")
 
-	body := datadog.SLOCorrectionUpdateRequest{
-		Data: &datadog.SLOCorrectionUpdateData{
-			Attributes: &datadog.SLOCorrectionUpdateRequestAttributes{
-				Category:    datadog.SLOCORRECTIONCATEGORY_DEPLOYMENT.Ptr(),
-				Description: common.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
-				End:         common.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
-				Start:       common.PtrInt64(time.Now().Unix()),
-				Timezone:    common.PtrString("UTC"),
+	body := datadogV1.SLOCorrectionUpdateRequest{
+		Data: &datadogV1.SLOCorrectionUpdateData{
+			Attributes: &datadogV1.SLOCorrectionUpdateRequestAttributes{
+				Category:    datadogV1.SLOCORRECTIONCATEGORY_DEPLOYMENT.Ptr(),
+				Description: datadog.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
+				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
+				Start:       datadog.PtrInt64(time.Now().Unix()),
+				Timezone:    datadog.PtrString("UTC"),
 			},
-			Type: datadog.SLOCORRECTIONTYPE_CORRECTION.Ptr(),
+			Type: datadogV1.SLOCORRECTIONTYPE_CORRECTION.Ptr(),
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewServiceLevelObjectiveCorrectionsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewServiceLevelObjectiveCorrectionsApi(apiClient)
 	resp, r, err := api.UpdateSLOCorrection(ctx, CorrectionDataID, body)
 
 	if err != nil {

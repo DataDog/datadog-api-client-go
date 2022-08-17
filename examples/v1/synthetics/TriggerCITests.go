@@ -8,42 +8,42 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsCITestBody{
-		Tests: []datadog.SyntheticsCITest{
+	body := datadogV1.SyntheticsCITestBody{
+		Tests: []datadogV1.SyntheticsCITest{
 			{
-				BasicAuth: &datadog.SyntheticsBasicAuth{
-					SyntheticsBasicAuthWeb: &datadog.SyntheticsBasicAuthWeb{
+				BasicAuth: &datadogV1.SyntheticsBasicAuth{
+					SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
 						Password: "PaSSw0RD!",
-						Type:     datadog.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
+						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
-				DeviceIds: []datadog.SyntheticsDeviceID{
-					datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+				DeviceIds: []datadogV1.SyntheticsDeviceID{
+					datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 				},
 				Locations: []string{
 					"aws:eu-west-3",
 				},
-				Metadata: &datadog.SyntheticsCIBatchMetadata{
-					Ci: &datadog.SyntheticsCIBatchMetadataCI{
-						Pipeline: &datadog.SyntheticsCIBatchMetadataPipeline{},
-						Provider: &datadog.SyntheticsCIBatchMetadataProvider{},
+				Metadata: &datadogV1.SyntheticsCIBatchMetadata{
+					Ci: &datadogV1.SyntheticsCIBatchMetadataCI{
+						Pipeline: &datadogV1.SyntheticsCIBatchMetadataPipeline{},
+						Provider: &datadogV1.SyntheticsCIBatchMetadataProvider{},
 					},
-					Git: &datadog.SyntheticsCIBatchMetadataGit{},
+					Git: &datadogV1.SyntheticsCIBatchMetadataGit{},
 				},
 				PublicId: "aaa-aaa-aaa",
-				Retry:    &datadog.SyntheticsTestOptionsRetry{},
+				Retry:    &datadogV1.SyntheticsTestOptionsRetry{},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewSyntheticsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewSyntheticsApi(apiClient)
 	resp, r, err := api.TriggerCITests(ctx, body)
 
 	if err != nil {

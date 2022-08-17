@@ -8,47 +8,47 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsAggregateRequest{
-		Compute: []datadog.LogsCompute{
+	body := datadogV2.LogsAggregateRequest{
+		Compute: []datadogV2.LogsCompute{
 			{
-				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
-				Interval:    common.PtrString("5m"),
-				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
+				Aggregation: datadogV2.LOGSAGGREGATIONFUNCTION_COUNT,
+				Interval:    datadog.PtrString("5m"),
+				Type:        datadogV2.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
 			},
 		},
-		Filter: &datadog.LogsQueryFilter{
-			From: common.PtrString("now-15m"),
+		Filter: &datadogV2.LogsQueryFilter{
+			From: datadog.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
 			},
-			Query: common.PtrString("*"),
-			To:    common.PtrString("now"),
+			Query: datadog.PtrString("*"),
+			To:    datadog.PtrString("now"),
 		},
-		GroupBy: []datadog.LogsGroupBy{
+		GroupBy: []datadogV2.LogsGroupBy{
 			{
 				Facet: "host",
-				Missing: &datadog.LogsGroupByMissing{
-					LogsGroupByMissingString: common.PtrString("miss")},
-				Sort: &datadog.LogsAggregateSort{
-					Type:        datadog.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
-					Order:       datadog.LOGSSORTORDER_ASCENDING.Ptr(),
-					Aggregation: datadog.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
-					Metric:      common.PtrString("@duration"),
+				Missing: &datadogV2.LogsGroupByMissing{
+					LogsGroupByMissingString: datadog.PtrString("miss")},
+				Sort: &datadogV2.LogsAggregateSort{
+					Type:        datadogV2.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
+					Order:       datadogV2.LOGSSORTORDER_ASCENDING.Ptr(),
+					Aggregation: datadogV2.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
+					Metric:      datadog.PtrString("@duration"),
 				},
-				Total: &datadog.LogsGroupByTotal{
-					LogsGroupByTotalString: common.PtrString("recall")},
+				Total: &datadogV2.LogsGroupByTotal{
+					LogsGroupByTotalString: datadog.PtrString("recall")},
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewLogsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewLogsApi(apiClient)
 	resp, r, err := api.AggregateLogs(ctx, body)
 
 	if err != nil {

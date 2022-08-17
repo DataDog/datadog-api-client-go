@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AzureAccount{
-		Automute:     common.PtrBool(true),
-		ClientId:     common.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
-		ClientSecret: common.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+	body := datadogV1.AzureAccount{
+		Automute:     datadog.PtrBool(true),
+		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
 		Errors: []string{
 			"*",
 		},
-		HostFilters:   common.PtrString("key:value,filter:example"),
-		NewClientId:   common.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
-		NewTenantName: common.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
-		TenantName:    common.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		HostFilters:   datadog.PtrString("key:value,filter:example"),
+		NewClientId:   datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
+		NewTenantName: datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
+		TenantName:    datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewAzureIntegrationApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewAzureIntegrationApi(apiClient)
 	resp, r, err := api.UpdateAzureIntegration(ctx, body)
 
 	if err != nil {

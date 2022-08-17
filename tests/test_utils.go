@@ -47,7 +47,7 @@ const (
 )
 
 var testFiles2EndpointTags = map[string]map[string]string{
-	"tests/api/v1/datadog": {
+	"tests/api/datadogV1": {
 		"api_authentication_test":           "validation",
 		"api_aws_integration_test":          "integration-aws",
 		"api_aws_logs_integration_test":     "integration-aws",
@@ -76,7 +76,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_users_test":                    "users",
 		"telemetry_test":                    "telemetry",
 	},
-	"tests/api/v2/datadog": {
+	"tests/api/datadogV2": {
 		"api_dashboard_lists_test": "dashboard-lists",
 		"api_logs_archives_test":   "logs-archives",
 		"api_logs_test":            "logs",
@@ -174,7 +174,7 @@ func getEndpointTagValue(t *testing.T) (string, error) {
 	for more {
 		frame, more = frames.Next()
 		// nested test functions like `TestAuthenticationValidate/200_Valid` will have frame.Function ending with
-		// ".funcX", `e.g. datadog.TestAuthenticationValidate.func1`, so trim everything after last "/" in test name
+		// ".funcX", `e.g. datadogV1.TestAuthenticationValidate.func1`, so trim everything after last "/" in test name
 		// and everything after last "." in frame function name
 		frameFunction := frame.Function
 		testName := t.Name()

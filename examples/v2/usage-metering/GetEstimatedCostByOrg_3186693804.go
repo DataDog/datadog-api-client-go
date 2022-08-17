@@ -9,17 +9,17 @@ import (
 	"os"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetEstimatedCostByOrg", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetEstimatedCostByOrg(ctx, "sub-org", *datadog.NewGetEstimatedCostByOrgOptionalParameters().WithStartMonth(time.Now().AddDate(0, 0, -5)))
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetEstimatedCostByOrg(ctx, "sub-org", *datadogV2.NewGetEstimatedCostByOrgOptionalParameters().WithStartMonth(time.Now().AddDate(0, 0, -5)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetEstimatedCostByOrg`: %v\n", err)

@@ -8,42 +8,42 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_apm_dependency_stats_widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TableWidgetDefinition: &datadog.TableWidgetDefinition{
-						Title:      common.PtrString(""),
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
-						Requests: []datadog.TableWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TableWidgetDefinition: &datadogV1.TableWidgetDefinition{
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
+						Requests: []datadogV1.TableWidgetRequest{
 							{
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionApmDependencyStatsQueryDefinition: &datadog.FormulaAndFunctionApmDependencyStatsQueryDefinition{
-											PrimaryTagValue: common.PtrString("edge-eu1.prod.dog"),
-											Stat:            datadog.FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION,
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionApmDependencyStatsQueryDefinition: &datadogV1.FormulaAndFunctionApmDependencyStatsQueryDefinition{
+											PrimaryTagValue: datadog.PtrString("edge-eu1.prod.dog"),
+											Stat:            datadogV1.FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION,
 											ResourceName:    "DELETE FROM monitor_history.monitor_state_change_history WHERE org_id = ? AND monitor_id IN ? AND group = ?",
 											Name:            "query1",
 											Service:         "cassandra",
-											DataSource:      datadog.FORMULAANDFUNCTIONAPMDEPENDENCYSTATSDATASOURCE_APM_DEPENDENCY_STATS,
+											DataSource:      datadogV1.FORMULAANDFUNCTIONAPMDEPENDENCYSTATSDATASOURCE_APM_DEPENDENCY_STATS,
 											Env:             "ci",
-											PrimaryTagName:  common.PtrString("datacenter"),
+											PrimaryTagName:  datadog.PtrString("datacenter"),
 											OperationName:   "cassandra.query",
 										}},
 								},
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -51,12 +51,12 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

@@ -8,50 +8,50 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "slo" in the system
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_slo_widget",
-		Description: *common.NewNullableString(common.PtrString("")),
-		Widgets: []datadog.Widget{
+		Description: *datadog.NewNullableString(datadog.PtrString("")),
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  60,
 					Height: 21,
 				},
-				Definition: datadog.WidgetDefinition{
-					SLOWidgetDefinition: &datadog.SLOWidgetDefinition{
-						TitleSize:  common.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.SLOWIDGETDEFINITIONTYPE_SLO,
+				Definition: datadogV1.WidgetDefinition{
+					SLOWidgetDefinition: &datadogV1.SLOWidgetDefinition{
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.SLOWIDGETDEFINITIONTYPE_SLO,
 						ViewType:   "detail",
-						TimeWindows: []datadog.WidgetTimeWindows{
-							datadog.WIDGETTIMEWINDOWS_SEVEN_DAYS,
+						TimeWindows: []datadogV1.WidgetTimeWindows{
+							datadogV1.WIDGETTIMEWINDOWS_SEVEN_DAYS,
 						},
-						SloId:            common.PtrString(SloData0ID),
-						ShowErrorBudget:  common.PtrBool(true),
-						ViewMode:         datadog.WIDGETVIEWMODE_OVERALL.Ptr(),
-						GlobalTimeTarget: common.PtrString("0"),
+						SloId:            datadog.PtrString(SloData0ID),
+						ShowErrorBudget:  datadog.PtrBool(true),
+						ViewMode:         datadogV1.WIDGETVIEWMODE_OVERALL.Ptr(),
+						GlobalTimeTarget: datadog.PtrString("0"),
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        common.PtrBool(false),
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
+		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewDashboardsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV1.NewDashboardsApi(apiClient)
 	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {

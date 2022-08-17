@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.ApplicationKeyUpdateRequest{
-		Data: datadog.ApplicationKeyUpdateData{
-			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: common.PtrString("Application Key for managing dashboards"),
+	body := datadogV2.ApplicationKeyUpdateRequest{
+		Data: datadogV2.ApplicationKeyUpdateData{
+			Attributes: datadogV2.ApplicationKeyUpdateAttributes{
+				Name: datadog.PtrString("Application Key for managing dashboards"),
 				Scopes: []string{
 					"dashboards_read",
 					"dashboards_write",
@@ -24,13 +24,13 @@ func main() {
 				},
 			},
 			Id:   "00112233-4455-6677-8899-aabbccddeeff",
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewServiceAccountsApi(apiClient)
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewServiceAccountsApi(apiClient)
 	resp, r, err := api.UpdateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id", body)
 
 	if err != nil {

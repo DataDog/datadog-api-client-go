@@ -13,26 +13,26 @@ now, Datadog has two API versions, `v1`, `v2` and the common package, `common`.
 
 ### The API v1 Client
 
-The client library for Datadog API v1 is located in the `api/v1/datadog` directory. Import it with
+The client library for Datadog API v1 is located in the `api/datadogV1` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/v2/api/v1/datadog"
+import "github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 ```
 
 ### The API v2 Client
 
-The client library for Datadog API v2 is located in the `api/v2/datadog` directory. Import it with
+The client library for Datadog API v2 is located in the `api/datadogV2` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+import "github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 ```
 
-### The Common Package
+### The Datadog Package
 
-The common package for Datadog API is located in the `api/common` directory. Import it with
+The datadog package for Datadog API is located in the `api/datadog` directory. Import it with
 
 ```go
-import "github.com/DataDog/datadog-api-client-go/v2/api/common"
+import "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 ```
 
 ## Getting Started
@@ -47,15 +47,15 @@ import (
     "fmt"
     "os"
 
-    "github.com/DataDog/datadog-api-client-go/v2/api/common"
-    datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
     ctx := context.WithValue(
         context.Background(),
-        common.ContextAPIKeys,
-        map[string]common.APIKey{
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
             "apiKeyAuth": {
                 Key: os.Getenv("DD_CLIENT_API_KEY"),
             },
@@ -65,11 +65,11 @@ func main() {
         },
     )
 
-    body := *datadog.NewUserCreateRequest(*datadog.NewUserCreateData(*datadog.NewUserCreateAttributes("jane.doe@example.com"), datadog.UsersType("users")))
+    body := *datadogV2.NewUserCreateRequest(*datadogV2.NewUserCreateData(*datadogV2.NewUserCreateAttributes("jane.doe@example.com"), datadogV2.UsersType("users")))
 
-    configuration := common.NewConfiguration()
-    apiClient := common.NewAPIClient(configuration)
-    usersApi := datadog.NewUsersApi(apiClient)
+    configuration := datadog.NewConfiguration()
+    apiClient := datadog.NewAPIClient(configuration)
+    usersApi := datadogV2.NewUsersApi(apiClient)
 
     resp, r, err := usersApi.CreateUser(ctx, body)
     if err != nil {
@@ -137,16 +137,16 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListIncidents", true)
-	apiClient := common.NewAPIClient(configuration)
-	incidentsApi := datadog.NewIncidentsApi(apiClient)
+	apiClient := datadog.NewAPIClient(configuration)
+	incidentsApi := datadogV2.NewIncidentsApi(apiClient)
 
 	resp, _, err := incidentsApi.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters())
 	if err != nil {

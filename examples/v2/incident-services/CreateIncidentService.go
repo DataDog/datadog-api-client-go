@@ -8,24 +8,24 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/common"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.IncidentServiceCreateRequest{
-		Data: datadog.IncidentServiceCreateData{
-			Type: datadog.INCIDENTSERVICETYPE_SERVICES,
-			Attributes: &datadog.IncidentServiceCreateAttributes{
+	body := datadogV2.IncidentServiceCreateRequest{
+		Data: datadogV2.IncidentServiceCreateData{
+			Type: datadogV2.INCIDENTSERVICETYPE_SERVICES,
+			Attributes: &datadogV2.IncidentServiceCreateAttributes{
 				Name: "Example-Create_a_new_incident_service_returns_CREATED_response",
 			},
 		},
 	}
-	ctx := common.NewDefaultContext(context.Background())
-	configuration := common.NewConfiguration()
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateIncidentService", true)
-	apiClient := common.NewAPIClient(configuration)
-	api := datadog.NewIncidentServicesApi(apiClient)
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewIncidentServicesApi(apiClient)
 	resp, r, err := api.CreateIncidentService(ctx, body)
 
 	if err != nil {
