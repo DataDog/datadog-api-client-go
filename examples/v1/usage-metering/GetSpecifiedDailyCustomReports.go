@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewUsageMeteringApi(apiClient)
 	resp, r, err := api.GetSpecifiedDailyCustomReports(ctx, "2022-03-20")
