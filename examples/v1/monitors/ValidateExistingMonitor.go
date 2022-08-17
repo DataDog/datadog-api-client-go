@@ -38,6 +38,7 @@ func main() {
 			NoDataTimeframe:      *datadog.NewNullableInt64(nil),
 			NotifyAudit:          datadog.PtrBool(false),
 			NotifyNoData:         datadog.PtrBool(false),
+			OnMissingData:        datadogV1.ONMISSINGDATAOPTION_SHOW_AND_NOTIFY_NO_DATA.Ptr(),
 			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			RequireFullWindow:    datadog.PtrBool(true),
 			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(24)),

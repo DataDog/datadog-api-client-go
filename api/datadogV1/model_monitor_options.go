@@ -28,6 +28,11 @@ type MonitorOptions struct {
 	// the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55.
 	// This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
 	EvaluationDelay datadog.NullableInt64 `json:"evaluation_delay,omitempty"`
+	// The time span after which groups with missing data are dropped from the monitor state.
+	// The minimum value is one hour, and the maximum value is 72 hours.
+	// Example values are: "60m", "1h", and "2d".
+	// This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors.
+	GroupRetentionDuration *string `json:"group_retention_duration,omitempty"`
 	// Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.
 	GroupbySimpleMonitor *bool `json:"groupby_simple_monitor,omitempty"`
 	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.
@@ -66,6 +71,12 @@ type MonitorOptions struct {
 	NotifyAudit *bool `json:"notify_audit,omitempty"`
 	// A Boolean indicating whether this monitor notifies when data stops reporting.
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
+	// Controls how groups or monitors are treated if an evaluation does not return any data points.
+	// The default option results in different behavior depending on the monitor query type.
+	// For monitors using Count queries, an empty monitor evaluation is treated as 0 and is compared to the threshold conditions.
+	// For monitor using any query type other than Count, for example Gauge or Rate, the monitor shows the last known status.
+	// This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors.
+	OnMissingData *OnMissingDataOption `json:"on_missing_data,omitempty"`
 	// The number of minutes after the last notification before a monitor re-notifies on the current status.
 	// It only re-notifies if it’s not resolved.
 	RenotifyInterval datadog.NullableInt64 `json:"renotify_interval,omitempty"`
@@ -317,6 +328,38 @@ func (o *MonitorOptions) SetEvaluationDelayNil() {
 // UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil.
 func (o *MonitorOptions) UnsetEvaluationDelay() {
 	o.EvaluationDelay.Unset()
+}
+
+// GetGroupRetentionDuration returns the GroupRetentionDuration field value if set, zero value otherwise.
+func (o *MonitorOptions) GetGroupRetentionDuration() string {
+	if o == nil || o.GroupRetentionDuration == nil {
+		var ret string
+		return ret
+	}
+	return *o.GroupRetentionDuration
+}
+
+// GetGroupRetentionDurationOk returns a tuple with the GroupRetentionDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetGroupRetentionDurationOk() (*string, bool) {
+	if o == nil || o.GroupRetentionDuration == nil {
+		return nil, false
+	}
+	return o.GroupRetentionDuration, true
+}
+
+// HasGroupRetentionDuration returns a boolean if a field has been set.
+func (o *MonitorOptions) HasGroupRetentionDuration() bool {
+	if o != nil && o.GroupRetentionDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupRetentionDuration gets a reference to the given string and assigns it to the GroupRetentionDuration field.
+func (o *MonitorOptions) SetGroupRetentionDuration(v string) {
+	o.GroupRetentionDuration = &v
 }
 
 // GetGroupbySimpleMonitor returns the GroupbySimpleMonitor field value if set, zero value otherwise.
@@ -698,6 +741,38 @@ func (o *MonitorOptions) HasNotifyNoData() bool {
 // SetNotifyNoData gets a reference to the given bool and assigns it to the NotifyNoData field.
 func (o *MonitorOptions) SetNotifyNoData(v bool) {
 	o.NotifyNoData = &v
+}
+
+// GetOnMissingData returns the OnMissingData field value if set, zero value otherwise.
+func (o *MonitorOptions) GetOnMissingData() OnMissingDataOption {
+	if o == nil || o.OnMissingData == nil {
+		var ret OnMissingDataOption
+		return ret
+	}
+	return *o.OnMissingData
+}
+
+// GetOnMissingDataOk returns a tuple with the OnMissingData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetOnMissingDataOk() (*OnMissingDataOption, bool) {
+	if o == nil || o.OnMissingData == nil {
+		return nil, false
+	}
+	return o.OnMissingData, true
+}
+
+// HasOnMissingData returns a boolean if a field has been set.
+func (o *MonitorOptions) HasOnMissingData() bool {
+	if o != nil && o.OnMissingData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOnMissingData gets a reference to the given OnMissingDataOption and assigns it to the OnMissingData field.
+func (o *MonitorOptions) SetOnMissingData(v OnMissingDataOption) {
+	o.OnMissingData = &v
 }
 
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1092,6 +1167,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.EvaluationDelay.IsSet() {
 		toSerialize["evaluation_delay"] = o.EvaluationDelay.Get()
 	}
+	if o.GroupRetentionDuration != nil {
+		toSerialize["group_retention_duration"] = o.GroupRetentionDuration
+	}
 	if o.GroupbySimpleMonitor != nil {
 		toSerialize["groupby_simple_monitor"] = o.GroupbySimpleMonitor
 	}
@@ -1121,6 +1199,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.NotifyNoData != nil {
 		toSerialize["notify_no_data"] = o.NotifyNoData
+	}
+	if o.OnMissingData != nil {
+		toSerialize["on_missing_data"] = o.OnMissingData
 	}
 	if o.RenotifyInterval.IsSet() {
 		toSerialize["renotify_interval"] = o.RenotifyInterval.Get()
@@ -1163,34 +1244,44 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation          *MonitorOptionsAggregation                 `json:"aggregation,omitempty"`
-		DeviceIds            []MonitorDeviceID                          `json:"device_ids,omitempty"`
-		EnableLogsSample     *bool                                      `json:"enable_logs_sample,omitempty"`
-		EscalationMessage    *string                                    `json:"escalation_message,omitempty"`
-		EvaluationDelay      datadog.NullableInt64                      `json:"evaluation_delay,omitempty"`
-		GroupbySimpleMonitor *bool                                      `json:"groupby_simple_monitor,omitempty"`
-		IncludeTags          *bool                                      `json:"include_tags,omitempty"`
-		Locked               *bool                                      `json:"locked,omitempty"`
-		MinFailureDuration   datadog.NullableInt64                      `json:"min_failure_duration,omitempty"`
-		MinLocationFailed    datadog.NullableInt64                      `json:"min_location_failed,omitempty"`
-		NewGroupDelay        datadog.NullableInt64                      `json:"new_group_delay,omitempty"`
-		NewHostDelay         datadog.NullableInt64                      `json:"new_host_delay,omitempty"`
-		NoDataTimeframe      datadog.NullableInt64                      `json:"no_data_timeframe,omitempty"`
-		NotifyAudit          *bool                                      `json:"notify_audit,omitempty"`
-		NotifyNoData         *bool                                      `json:"notify_no_data,omitempty"`
-		RenotifyInterval     datadog.NullableInt64                      `json:"renotify_interval,omitempty"`
-		RenotifyOccurrences  datadog.NullableInt64                      `json:"renotify_occurrences,omitempty"`
-		RenotifyStatuses     []MonitorRenotifyStatusType                `json:"renotify_statuses,omitempty"`
-		RequireFullWindow    *bool                                      `json:"require_full_window,omitempty"`
-		Silenced             map[string]int64                           `json:"silenced,omitempty"`
-		SyntheticsCheckId    datadog.NullableString                     `json:"synthetics_check_id,omitempty"`
-		ThresholdWindows     *MonitorThresholdWindowOptions             `json:"threshold_windows,omitempty"`
-		Thresholds           *MonitorThresholds                         `json:"thresholds,omitempty"`
-		TimeoutH             datadog.NullableInt64                      `json:"timeout_h,omitempty"`
-		Variables            []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
+		Aggregation            *MonitorOptionsAggregation                 `json:"aggregation,omitempty"`
+		DeviceIds              []MonitorDeviceID                          `json:"device_ids,omitempty"`
+		EnableLogsSample       *bool                                      `json:"enable_logs_sample,omitempty"`
+		EscalationMessage      *string                                    `json:"escalation_message,omitempty"`
+		EvaluationDelay        datadog.NullableInt64                      `json:"evaluation_delay,omitempty"`
+		GroupRetentionDuration *string                                    `json:"group_retention_duration,omitempty"`
+		GroupbySimpleMonitor   *bool                                      `json:"groupby_simple_monitor,omitempty"`
+		IncludeTags            *bool                                      `json:"include_tags,omitempty"`
+		Locked                 *bool                                      `json:"locked,omitempty"`
+		MinFailureDuration     datadog.NullableInt64                      `json:"min_failure_duration,omitempty"`
+		MinLocationFailed      datadog.NullableInt64                      `json:"min_location_failed,omitempty"`
+		NewGroupDelay          datadog.NullableInt64                      `json:"new_group_delay,omitempty"`
+		NewHostDelay           datadog.NullableInt64                      `json:"new_host_delay,omitempty"`
+		NoDataTimeframe        datadog.NullableInt64                      `json:"no_data_timeframe,omitempty"`
+		NotifyAudit            *bool                                      `json:"notify_audit,omitempty"`
+		NotifyNoData           *bool                                      `json:"notify_no_data,omitempty"`
+		OnMissingData          *OnMissingDataOption                       `json:"on_missing_data,omitempty"`
+		RenotifyInterval       datadog.NullableInt64                      `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences    datadog.NullableInt64                      `json:"renotify_occurrences,omitempty"`
+		RenotifyStatuses       []MonitorRenotifyStatusType                `json:"renotify_statuses,omitempty"`
+		RequireFullWindow      *bool                                      `json:"require_full_window,omitempty"`
+		Silenced               map[string]int64                           `json:"silenced,omitempty"`
+		SyntheticsCheckId      datadog.NullableString                     `json:"synthetics_check_id,omitempty"`
+		ThresholdWindows       *MonitorThresholdWindowOptions             `json:"threshold_windows,omitempty"`
+		Thresholds             *MonitorThresholds                         `json:"thresholds,omitempty"`
+		TimeoutH               datadog.NullableInt64                      `json:"timeout_h,omitempty"`
+		Variables              []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.OnMissingData; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -1210,6 +1301,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.EnableLogsSample = all.EnableLogsSample
 	o.EscalationMessage = all.EscalationMessage
 	o.EvaluationDelay = all.EvaluationDelay
+	o.GroupRetentionDuration = all.GroupRetentionDuration
 	o.GroupbySimpleMonitor = all.GroupbySimpleMonitor
 	o.IncludeTags = all.IncludeTags
 	o.Locked = all.Locked
@@ -1220,6 +1312,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NoDataTimeframe = all.NoDataTimeframe
 	o.NotifyAudit = all.NotifyAudit
 	o.NotifyNoData = all.NotifyNoData
+	o.OnMissingData = all.OnMissingData
 	o.RenotifyInterval = all.RenotifyInterval
 	o.RenotifyOccurrences = all.RenotifyOccurrences
 	o.RenotifyStatuses = all.RenotifyStatuses
