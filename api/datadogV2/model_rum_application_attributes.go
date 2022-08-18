@@ -23,7 +23,7 @@ type RUMApplicationAttributes struct {
 	Name string `json:"name"`
 	// Org ID of the RUM application.
 	OrgId int32 `json:"org_id"`
-	// Type of the RUM application.
+	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`.
 	Type string `json:"type"`
 	// Timestamp in ms of the last update date.
 	UpdatedAt int64 `json:"updated_at"`
