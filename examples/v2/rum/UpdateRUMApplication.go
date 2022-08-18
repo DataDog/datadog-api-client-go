@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.RUMApplicationUpdate{
 			Attributes: &datadogV2.RUMApplicationUpdateAttributes{
 				Name: datadog.PtrString("updated_name_for_my_existing_rum_application"),
-				Type: datadog.PtrString("browser|ios|android|react-native|flutter"),
+				Type: datadog.PtrString("browser"),
 			},
 			Id:   "abcd1234-0000-0000-abcd-1234abcd5678",
 			Type: datadogV2.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,
