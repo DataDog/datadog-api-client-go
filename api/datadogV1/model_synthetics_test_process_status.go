@@ -16,7 +16,6 @@ type SyntheticsTestProcessStatus string
 const (
 	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED       SyntheticsTestProcessStatus = "not_scheduled"
 	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED           SyntheticsTestProcessStatus = "scheduled"
-	SYNTHETICSTESTPROCESSSTATUS_STARTED             SyntheticsTestProcessStatus = "started"
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED            SyntheticsTestProcessStatus = "finished"
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR SyntheticsTestProcessStatus = "finished_with_error"
 )
@@ -24,7 +23,6 @@ const (
 var allowedSyntheticsTestProcessStatusEnumValues = []SyntheticsTestProcessStatus{
 	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED,
 	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED,
-	SYNTHETICSTESTPROCESSSTATUS_STARTED,
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED,
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR,
 }

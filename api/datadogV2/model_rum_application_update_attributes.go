@@ -12,7 +12,7 @@ import (
 type RUMApplicationUpdateAttributes struct {
 	// Name of the RUM application.
 	Name *string `json:"name,omitempty"`
-	// Type of the RUM application.
+	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
