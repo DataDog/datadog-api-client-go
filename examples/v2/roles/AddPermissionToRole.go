@@ -8,7 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -18,16 +19,17 @@ func main() {
 	// there is a valid "permission" in the system
 	PermissionID := os.Getenv("PERMISSION_ID")
 
-	body := datadog.RelationshipToPermission{
-		Data: &datadog.RelationshipToPermissionData{
+	body := datadogV2.RelationshipToPermission{
+		Data: &datadogV2.RelationshipToPermissionData{
 			Id:   datadog.PtrString(PermissionID),
-			Type: datadog.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+			Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.AddPermissionToRole(ctx, RoleDataID, body)
+	api := datadogV2.NewRolesApi(apiClient)
+	resp, r, err := api.AddPermissionToRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.AddPermissionToRole`: %v\n", err)

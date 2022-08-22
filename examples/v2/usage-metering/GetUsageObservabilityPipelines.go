@@ -1,4 +1,4 @@
-// Get hourly usage for Observability Pipelines returns "OK" response
+// Get hourly usage for observability pipelines returns "OK" response
 
 package main
 
@@ -9,14 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageObservabilityPipelines(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageObservabilityPipelinesOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	api := datadogV2.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageObservabilityPipelines(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadogV2.NewGetUsageObservabilityPipelinesOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageObservabilityPipelines`: %v\n", err)

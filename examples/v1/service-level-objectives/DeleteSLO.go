@@ -8,7 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
@@ -18,7 +19,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.DeleteSLO(ctx, SloData0ID, *datadog.NewDeleteSLOOptionalParameters())
+	api := datadogV1.NewServiceLevelObjectivesApi(apiClient)
+	resp, r, err := api.DeleteSLO(ctx, SloData0ID, *datadogV1.NewDeleteSLOOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLO`: %v\n", err)

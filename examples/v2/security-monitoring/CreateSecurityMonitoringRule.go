@@ -8,34 +8,35 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.SecurityMonitoringRuleCreatePayload{
+	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		Name: "Example-Create_a_detection_rule_returns_OK_response",
-		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
+		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
 			{
 				Query:          "@test:true",
-				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
+				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  []string{},
 				DistinctFields: []string{},
 				Metric:         datadog.PtrString(""),
 			},
 		},
-		Filters: []datadog.SecurityMonitoringFilter{},
-		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
+		Filters: []datadogV2.SecurityMonitoringFilter{},
+		Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
 			{
 				Name:          datadog.PtrString(""),
-				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
+				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
 				Condition:     datadog.PtrString("a > 0"),
 				Notifications: []string{},
 			},
 		},
-		Options: datadog.SecurityMonitoringRuleOptions{
-			EvaluationWindow:  datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
-			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
-			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
+		Options: datadogV2.SecurityMonitoringRuleOptions{
+			EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
+			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
+			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 		},
 		Message:   "Test rule",
 		Tags:      []string{},
@@ -44,7 +45,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.CreateSecurityMonitoringRule(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)

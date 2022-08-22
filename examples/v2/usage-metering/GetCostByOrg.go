@@ -9,14 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetCostByOrg(ctx, time.Now().AddDate(0, 0, -3), *datadog.NewGetCostByOrgOptionalParameters())
+	api := datadogV2.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetCostByOrg(ctx, time.Now().AddDate(0, 0, -3), *datadogV2.NewGetCostByOrgOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetCostByOrg`: %v\n", err)

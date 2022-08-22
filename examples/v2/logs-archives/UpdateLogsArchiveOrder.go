@@ -8,26 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsArchiveOrder{
-		Data: &datadog.LogsArchiveOrderDefinition{
-			Attributes: datadog.LogsArchiveOrderAttributes{
+	body := datadogV2.LogsArchiveOrder{
+		Data: &datadogV2.LogsArchiveOrderDefinition{
+			Attributes: datadogV2.LogsArchiveOrderAttributes{
 				ArchiveIds: []string{
 					"a2zcMylnM4OCHpYusxIi1g",
 					"a2zcMylnM4OCHpYusxIi2g",
 					"a2zcMylnM4OCHpYusxIi3g",
 				},
 			},
-			Type: datadog.LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER,
+			Type: datadogV2.LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsArchivesApi.UpdateLogsArchiveOrder(ctx, body)
+	api := datadogV2.NewLogsArchivesApi(apiClient)
+	resp, r, err := api.UpdateLogsArchiveOrder(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.UpdateLogsArchiveOrder`: %v\n", err)

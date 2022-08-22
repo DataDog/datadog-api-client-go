@@ -8,14 +8,15 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.APIKeyCreateRequest{
-		Data: datadog.APIKeyCreateData{
-			Type: datadog.APIKEYSTYPE_API_KEYS,
-			Attributes: datadog.APIKeyCreateAttributes{
+	body := datadogV2.APIKeyCreateRequest{
+		Data: datadogV2.APIKeyCreateData{
+			Type: datadogV2.APIKEYSTYPE_API_KEYS,
+			Attributes: datadogV2.APIKeyCreateAttributes{
 				Name: "Example-Create_an_API_key_returns_Created_response",
 			},
 		},
@@ -23,7 +24,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.CreateAPIKey(ctx, body)
+	api := datadogV2.NewKeyManagementApi(apiClient)
+	resp, r, err := api.CreateAPIKey(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey`: %v\n", err)

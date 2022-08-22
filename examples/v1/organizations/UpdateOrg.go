@@ -8,24 +8,25 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Organization{
-		Billing: &datadog.OrganizationBilling{
+	body := datadogV1.Organization{
+		Billing: &datadogV1.OrganizationBilling{
 			Type: datadog.PtrString("parent_billing"),
 		},
 		Description: datadog.PtrString("some description"),
 		Name:        datadog.PtrString("New child org"),
 		PublicId:    datadog.PtrString("abcdef12345"),
-		Settings: &datadog.OrganizationSettings{
+		Settings: &datadogV1.OrganizationSettings{
 			PrivateWidgetShare: datadog.PtrBool(false),
-			Saml: &datadog.OrganizationSettingsSaml{
+			Saml: &datadogV1.OrganizationSettingsSaml{
 				Enabled: datadog.PtrBool(false),
 			},
-			SamlAutocreateAccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-			SamlAutocreateUsersDomains: &datadog.OrganizationSettingsSamlAutocreateUsersDomains{
+			SamlAutocreateAccessRole: datadogV1.ACCESSROLE_STANDARD.Ptr(),
+			SamlAutocreateUsersDomains: &datadogV1.OrganizationSettingsSamlAutocreateUsersDomains{
 				Domains: []string{
 					"example.com",
 				},
@@ -33,16 +34,16 @@ func main() {
 			},
 			SamlCanBeEnabled: datadog.PtrBool(false),
 			SamlIdpEndpoint:  datadog.PtrString("https://my.saml.endpoint"),
-			SamlIdpInitiatedLogin: &datadog.OrganizationSettingsSamlIdpInitiatedLogin{
+			SamlIdpInitiatedLogin: &datadogV1.OrganizationSettingsSamlIdpInitiatedLogin{
 				Enabled: datadog.PtrBool(false),
 			},
 			SamlIdpMetadataUploaded: datadog.PtrBool(false),
 			SamlLoginUrl:            datadog.PtrString("https://my.saml.login.url"),
-			SamlStrictMode: &datadog.OrganizationSettingsSamlStrictMode{
+			SamlStrictMode: &datadogV1.OrganizationSettingsSamlStrictMode{
 				Enabled: datadog.PtrBool(false),
 			},
 		},
-		Subscription: &datadog.OrganizationSubscription{
+		Subscription: &datadogV1.OrganizationSubscription{
 			Type: datadog.PtrString("pro"),
 		},
 		Trial: datadog.PtrBool(false),
@@ -50,7 +51,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationsApi.UpdateOrg(ctx, "abc123", body)
+	api := datadogV1.NewOrganizationsApi(apiClient)
+	resp, r, err := api.UpdateOrg(ctx, "abc123", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.UpdateOrg`: %v\n", err)

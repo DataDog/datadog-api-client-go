@@ -8,15 +8,16 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "synthetics_api_test" in the system
 	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
-	body := datadog.SyntheticsTriggerBody{
-		Tests: []datadog.SyntheticsTriggerTest{
+	body := datadogV1.SyntheticsTriggerBody{
+		Tests: []datadogV1.SyntheticsTriggerTest{
 			{
 				PublicId: SyntheticsAPITestPublicID,
 			},
@@ -25,7 +26,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.TriggerTests(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.TriggerTests(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.TriggerTests`: %v\n", err)

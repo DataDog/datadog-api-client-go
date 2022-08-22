@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 )
 
@@ -141,14 +141,14 @@ func ToVarName(param string) (varName string) {
 	isToUpper := true
 
 	for _, v := range param {
-		if isToUpper {
-			varName += strings.ToUpper(string(v))
-			isToUpper = false
+		if v == '_' {
+			isToUpper = true
+		} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+			isToUpper = true
 		} else {
-			if v == '_' {
-				isToUpper = true
-			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
-				isToUpper = true
+			if isToUpper {
+				varName += strings.ToUpper(string(v))
+				isToUpper = false
 			} else {
 				varName += string(v)
 			}
@@ -269,9 +269,19 @@ func SetClient(ctx gobdd.Context, value interface{}) {
 
 // GetClient get reflected value of client instance.
 func GetClient(ctx gobdd.Context) reflect.Value {
-	client, _ := GetClientVersion(ctx, GetVersion(ctx))
+	client, _ := ctx.Get(clientKeys{})
 
-	return client
+	return client.(reflect.Value)
+}
+
+// GetApiByVersionAndName get reflected value of api.
+func GetApiByVersionAndName(ctx gobdd.Context, version string, name string) reflect.Value {
+	api, ok := apiMappings[version][name]
+	if !ok {
+		GetT(ctx).Fatalf("invalid api: %s", name)
+	}
+
+	return api
 }
 
 // SetVersion sets package version.
@@ -454,7 +464,6 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return nil, fmt.Errorf("unknown type '%T' to convert", t)
 	}
 }
-
 
 func readChannel(ch interface{}) ([]interface{}, error) {
 	t := reflect.TypeOf(ch)

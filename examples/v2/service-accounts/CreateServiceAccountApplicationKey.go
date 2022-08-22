@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.ApplicationKeyCreateRequest{
-		Data: datadog.ApplicationKeyCreateData{
-			Attributes: datadog.ApplicationKeyCreateAttributes{
+	body := datadogV2.ApplicationKeyCreateRequest{
+		Data: datadogV2.ApplicationKeyCreateData{
+			Attributes: datadogV2.ApplicationKeyCreateAttributes{
 				Name: "Application Key for managing dashboards",
 				Scopes: []string{
 					"dashboards_read",
@@ -22,13 +23,14 @@ func main() {
 					"dashboards_public_share",
 				},
 			},
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.CreateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", body)
+	api := datadogV2.NewServiceAccountsApi(apiClient)
+	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountApplicationKey`: %v\n", err)

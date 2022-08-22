@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"system.load.1","points":[{"timestamp":1652898272,"value":0.7}],"type":0}]}
+      {"series":[{"metric":"system.load.1","points":[{"timestamp":1657662336,"value":0.7}],"resources":[{"name":"dummyhost","type":"host"}],"type":0}]}
     form: {}
     headers:
       Accept:

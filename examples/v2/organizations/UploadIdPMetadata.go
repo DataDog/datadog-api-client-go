@@ -7,14 +7,16 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.OrganizationsApi.UploadIdPMetadata(ctx, *datadog.NewUploadIdPMetadataOptionalParameters().WithIdpFile(func() *os.File {
+	api := datadogV2.NewOrganizationsApi(apiClient)
+	r, err := api.UploadIdPMetadata(ctx, *datadogV2.NewUploadIdPMetadataOptionalParameters().WithIdpFile(func() *os.File {
 		fp, _ := os.Open("fixtures/organizations/saml_configurations/valid_idp_metadata.xml")
 		return fp
 	}()))

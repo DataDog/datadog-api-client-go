@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
@@ -17,7 +18,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.WebhooksIntegrationApi.DeleteWebhooksIntegrationCustomVariable(ctx, WebhookCustomVariableName)
+	api := datadogV1.NewWebhooksIntegrationApi(apiClient)
+	r, err := api.DeleteWebhooksIntegrationCustomVariable(ctx, WebhookCustomVariableName)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.DeleteWebhooksIntegrationCustomVariable`: %v\n", err)

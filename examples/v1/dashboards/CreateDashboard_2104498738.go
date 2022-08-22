@@ -8,56 +8,57 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title: "Example-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
 				Id: datadog.PtrInt64(5346764334358972),
-				Definition: datadog.WidgetDefinition{
-					ScatterPlotWidgetDefinition: &datadog.ScatterPlotWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					ScatterPlotWidgetDefinition: &datadogV1.ScatterPlotWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
-						Requests: datadog.ScatterPlotWidgetDefinitionRequests{
-							Table: &datadog.ScatterplotTableRequest{
-								Formulas: []datadog.ScatterplotWidgetFormula{
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
+						Requests: datadogV1.ScatterPlotWidgetDefinitionRequests{
+							Table: &datadogV1.ScatterplotTableRequest{
+								Formulas: []datadogV1.ScatterplotWidgetFormula{
 									{
 										Formula:   "query1",
-										Dimension: datadog.SCATTERPLOTDIMENSION_X,
+										Dimension: datadogV1.SCATTERPLOTDIMENSION_X,
 										Alias:     datadog.PtrString("my-query1"),
 									},
 									{
 										Formula:   "query2",
-										Dimension: datadog.SCATTERPLOTDIMENSION_Y,
+										Dimension: datadogV1.SCATTERPLOTDIMENSION_Y,
 										Alias:     datadog.PtrString("my-query2"),
 									},
 								},
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Name:       "query1",
 											Query:      "avg:system.cpu.user{*} by {service}",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Name:       "query2",
 											Query:      "avg:system.mem.used{*} by {service}",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 							},
 						},
 					}},
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  4,
@@ -65,12 +66,13 @@ func main() {
 				},
 			},
 		},
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

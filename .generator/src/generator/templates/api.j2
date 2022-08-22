@@ -9,12 +9,14 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+
+	"{{ module }}/api/{{ common_package_name }}"
 )
 
 {%- set classname = name.replace(" ", "") + "Api" %}
 
-// {{ classname }}Service {{ classname }} service.
-type {{ classname }}Service service
+// {{ classname }} service type
+type {{ classname }} {{ common_package_name }}.Service
 {%- for path, method, operation in operations|sort(attribute="2.operationId", case_sensitive=True) %}
 {%- set httpMethod = method.upper() %}
 {%- set returnType = operation|return_type %}
@@ -22,12 +24,12 @@ type {{ classname }}Service service
 
 type api{{ operation.operationId }}Request struct {
 	ctx        _context.Context
-	ApiService *{{ classname }}Service
 
 	{%- for name, parameter in operation|parameters %}
 	{{ name|variable_name}} {% if parameter.in != "path" %}*{% endif %}{{ get_type_for_parameter(parameter) }}
 	{%- endfor %}
 }
+
 {%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
 {%- if loop.first %}
 
@@ -55,9 +57,8 @@ func (r *{{ operation.operationId }}OptionalParameters) With{{ name|camel_case }
 }
 {%- endfor %}
 
-func (a *{{ classname }}Service) build{{ operation.operationId }}Request(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (api{{ operation.operationId }}Request, error) {
+func (a *{{ classname }}) build{{ operation.operationId }}Request(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (api{{ operation.operationId }}Request, error) {
 	req := api{{ operation.operationId }}Request{
-		ApiService: a,
 		ctx:        ctx,
 		{%- for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}
 		{%- if loop.first %}
@@ -70,7 +71,7 @@ func (a *{{ classname }}Service) build{{ operation.operationId }}Request(ctx _co
 	{%- if loop.first %}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
+		return req, {{ common_package_name }}.ReportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -85,7 +86,7 @@ func (a *{{ classname }}Service) build{{ operation.operationId }}Request(ctx _co
 
 // {{ operation.operationId }} {{ operation.summary }}.
 {{ operation.description|block_comment(prefix="//") }}
-func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
 	req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 	if err != nil {
 		{%- if returnType %}
@@ -94,13 +95,13 @@ func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Contex
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
 	}
 
-	return req.ApiService.{{ operation.operationId|untitle_case }}Execute(req)
+	return a.{{ operation.operationId|untitle_case }}Execute(req)
 }
 {%- if operation["x-pagination"] %}
 {%- set pagination = operation["x-pagination"] %}
 // {{ operation.operationId }}WithPagination provides a paginated version of {{ operation.operationId }} returning a channel with all items.
 {%- set itemType = get_type_at_path(operation, pagination.resultsPath) %}
-func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan {{ itemType }}, func(), error) {
+func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan {{ itemType }}, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 
 	{%- set pageSizeType = get_container_type(operation, pagination.limitParam) %}
@@ -146,7 +147,7 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 				break
 			}
 
-			resp, _, err := req.ApiService.{{ operation.operationId|untitle_case }}Execute(req)
+			resp, _, err := a.{{ operation.operationId|untitle_case }}Execute(req)
 			if err != nil {
 				break
 			}
@@ -210,7 +211,7 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 {%- endif %}
 
 // {{ operation.operationId|untitle_case }}Execute executes the request.
-func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute(r api{{ operation.operationId }}Request) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{{ operation.operationId }}Request) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{ httpMethod.lower().title() }}
 		localVarPostBody     interface{}
@@ -220,22 +221,22 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	)
 	{%- if "x-unstable" in operation %}
 	
-	operationId := "{{ operation.operationId }}"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+	operationId := "{{ version }}.{{ operation.operationId }}"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return {% if returnType %} localVarReturnValue, {% endif %}nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return {% if returnType %} localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 	{%- endif %}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "{{ classname }}Service.{{ operation.operationId }}")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "{{ version }}.{{ classname }}.{{ operation.operationId }}")
 	if err != nil {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, GenericOpenAPIError{error: err.Error()}
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "{{ path }}"
 	{%- for name, parameter in operation|parameters if parameter.in == "path" %}
-	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape(parameterToString(r.{{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape({{ common_package_name }}.ParameterToString(r.{{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
 	{%- endfor %}
 
 	localVarHeaderParams := make(map[string]string)
@@ -247,27 +248,27 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	{%- set isPathParam = "*" if parameter.in == "path" else "" %}
 	{%- if parameter.in != "path" %}
 	if r.{{ name|variable_name}} == nil {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} is required and must be specified")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} is required and must be specified")
 	}
 	{%- endif %}
 	{%- if schema.minItems is defined %}
 	if len({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minItems }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxItems is defined %}
 	if len({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxItems }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minLength is defined %}
 	if strlen({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minLength }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxLength is defined %}
 	if strlen({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxLength }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minimum is defined %}
@@ -277,7 +278,7 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	{%- else %}
 	if {{ isPathParam }}r.{{ name|variable_name}} < {{ schema.minimum}} {
 	{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
 	}
 	{%- endif %}
 	{%- if schema.maximum is defined %}
@@ -287,7 +288,7 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	{%- else %}
 	if {{ isPathParam }}r.{{ name|variable_name}} > {{ schema.maximum }} {
 	{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
 	}
 	{%- endif %}
 	{%- endfor %}
@@ -298,13 +299,13 @@ t := *r.{{ name|variable_name}}
 if reflect.TypeOf(t).Kind() == reflect.Slice {
 	s := reflect.ValueOf(t)
 	for i := 0; i < s.Len(); i++ {
-		localVarQueryParams.Add("{{ parameter.name }}", parameterToString(s.Index(i), "{{ collectionFormat }}"))
+		localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(s.Index(i), "{{ collectionFormat }}"))
 	}
 } else {
-	localVarQueryParams.Add("{{ parameter.name }}", parameterToString(t, "{{ collectionFormat }}"))
+	localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(t, "{{ collectionFormat }}"))
 }
 {%- else -%}
-localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
+localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
 {%- endif %}
 {%- endmacro %}
 	{%- for name, parameter in operation|parameters if parameter.in == "query" %}
@@ -318,42 +319,44 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endfor %}
 	{%- if operation.requestBody %}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{ {%- for mediaType in operation.requestBody.content.keys() %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
+	{%- set contentTypeHeaders = operation.requestBody.content.keys()|list %}
+	{%- if contentTypeHeaders %}
+	{%- if "application/json" in contentTypeHeaders %}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	{%- else  %}
+	localVarHeaderParams["Content-Type"] =  "{{ contentTypeHeaders[0] }}"
+	{%- endif %}
+	{%- endif %}
 
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 	{%- endif %}
 	{%- if operation.responses %}
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{ {%- for mediaType in operation|accept_headers %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	{%- set acceptHeaders = operation|accept_headers %}
+	{%- if acceptHeaders %}
+	{%- if "application/json" in acceptHeaders %}
+	localVarHeaderParams["Accept"] = "application/json"
+	{%- else  %}
+	localVarHeaderParams["Accept"] =  "{{ acceptHeaders|join(",") }}"
 	{%- endif %}
+	{%- endif %}
+
+	{% endif %}
 
 	{%- for name, parameter in operation|parameters if parameter.in == "header" %}
 	{%- if parameter.required %}
 
-	localVarHeaderParams["{{ parameter.name }}"] = parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+	localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
 	{%- else %}
 
 	if r.{{ name|variable_name}} != nil {
-		localVarHeaderParams["{{ parameter.name }}"] = parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+		localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
 	}
 	{%- endif %}
 	{%- endfor %}
 	
 	{%- if formParameter %}
-        formFile := FormFile{}
-	formFile.formFileName = "{{ formParameter.name }}"
+        formFile := {{ common_package_name }}.FormFile{}
+	formFile.FormFileName = "{{ formParameter.name }}"
 	{%- if formParameter.required %}
 	localVarFile := *r.{{ formParameter.name|variable_name}}
 	{%- else %}
@@ -364,8 +367,8 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endif %}
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)
-		formFile.fileBytes = fbs
-		formFile.fileName = localVarFile.Name()
+		formFile.FileBytes = fbs
+		formFile.FileName = localVarFile.Name()
 		localVarFile.Close()
 	}
 	{%- endif %}
@@ -382,7 +385,7 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- if schema.type == "apiKey" and schema.in != "cookie" %}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value({{ common_package_name }}.ContextAPIKeys).(map[string]{{ common_package_name }}.APIKey); ok {
 			{%- if "x-auth-id-alias" in schema %}
 			if apiKey, ok := auth["{{ schema["x-auth-id-alias"] }}"]; ok {
 				var key string
@@ -411,12 +414,12 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endif %}
 	{%- endfor %}
 	{%- endfor %}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
@@ -431,9 +434,9 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- if loop.first %}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := {{ common_package_name }}.GenericOpenAPIError{
+			ErrorBody:  localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 	{%- endif %}
 		{%- set code = responseCode|int %}
@@ -448,11 +451,11 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 		if localVarHTTPResponse.StatusCode == {{ code }} {
 		{%- endif %}
 			var v {{ dataType }}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			{%- if not loop.last %}
 			return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
 			{%- endif %}
@@ -464,11 +467,11 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endfor %}
 	{%- if returnType %}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := {{ common_package_name }}.GenericOpenAPIError{
+			ErrorBody:  localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
 	}
@@ -477,4 +480,11 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, nil
 }
 {%- endfor %}
+
+// New{{ classname }} Returns New{{ classname }}.
+func New{{ classname }}(client *{{ common_package_name }}.APIClient) *{{ classname }} {
+	return &{{ classname }}{
+		Client: client,
+	}
+}
 {# keep new line at the end of file #}

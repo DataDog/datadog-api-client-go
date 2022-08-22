@@ -8,19 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsPipeline{
-		Filter: &datadog.LogsFilter{
+	body := datadogV1.LogsPipeline{
+		Filter: &datadogV1.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
 		Name: "",
-		Processors: []datadog.LogsProcessor{
-			datadog.LogsProcessor{
-				LogsGrokParser: &datadog.LogsGrokParser{
-					Grok: datadog.LogsGrokParserRules{
+		Processors: []datadogV1.LogsProcessor{
+			datadogV1.LogsProcessor{
+				LogsGrokParser: &datadogV1.LogsGrokParser{
+					Grok: datadogV1.LogsGrokParserRules{
 						MatchRules: `rule_name_1 foo
 rule_name_2 bar
 `,
@@ -31,14 +32,15 @@ rule_name_2 bar
 					IsEnabled: datadog.PtrBool(false),
 					Samples:   []string{},
 					Source:    "message",
-					Type:      datadog.LOGSGROKPARSERTYPE_GROK_PARSER,
+					Type:      datadogV1.LOGSGROKPARSERTYPE_GROK_PARSER,
 				}},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipeline(ctx, "pipeline_id", body)
+	api := datadogV1.NewLogsPipelinesApi(apiClient)
+	resp, r, err := api.UpdateLogsPipeline(ctx, "pipeline_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline`: %v\n", err)

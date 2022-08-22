@@ -7,6 +7,8 @@ import dateutil.parser
 
 from .utils import snake_case, camel_case, untitle_case, schema_name
 
+PRIMITIVE_TYPES = ["string", "number", "boolean", "integer"]
+
 KEYWORDS = {
     "break",
     "case",
@@ -117,7 +119,7 @@ def format_value(value, quotes='"', schema=None):
     return value
 
 
-def simple_type(schema, render_nullable=False):
+def simple_type(schema, render_nullable=False, render_new=False):
     """Return the simple type of a schema.
 
     :param schema: The schema to extract the type from
@@ -127,29 +129,31 @@ def simple_type(schema, render_nullable=False):
     type_format = schema.get("format")
     nullable = render_nullable and schema.get("nullable", False)
 
+    nullable_prefix = "datadog.NewNullable" if render_new else "datadog.Nullable"
+
     if type_name == "integer":
         return {
-            "int32": "int32" if not nullable else "NullableInt32",
-            "int64": "int64" if not nullable else "NullableInt64",
-            None: "int32" if not nullable else "NullableInt32",
+            "int32": "int32" if not nullable else f"{nullable_prefix}Int32",
+            "int64": "int64" if not nullable else f"{nullable_prefix}Int64",
+            None: "int32" if not nullable else f"{nullable_prefix}Int32",
         }[type_format]
 
     if type_name == "number":
         return {
-            "double": "float64" if not nullable else "NullableFloat64",
-            None: "float" if not nullable else "NullableFloat",
+            "double": "float64" if not nullable else f"{nullable_prefix}Float64",
+            None: "float" if not nullable else f"{nullable_prefix}Float",
         }[type_format]
 
     if type_name == "string":
         return {
-            "date": "time.Time" if not nullable else "NullableTime",
-            "date-time": "time.Time" if not nullable else "NullableTime",
-            "email": "string" if not nullable else "NullableString",
+            "date": "time.Time" if not nullable else f"{nullable_prefix}Time",
+            "date-time": "time.Time" if not nullable else f"{nullable_prefix}Time",
+            "email": "string" if not nullable else f"{nullable_prefix}String",
             "binary": "*os.File",
-            None: "string" if not nullable else "NullableString",
+            None: "string" if not nullable else f"{nullable_prefix}String",
         }[type_format]
     if type_name == "boolean":
-        return "bool" if not nullable else "NullableBool"
+        return "bool" if not nullable else f"{nullable_prefix}Bool"
 
     return None
 
@@ -199,7 +203,7 @@ def go_name(name):
     )
 
 
-def reference_to_value(schema, value, print_nullable=True):
+def reference_to_value(schema, value, print_nullable=True, **kwargs):
     """Return a reference to a value.
 
     :param schema: The schema to extract the type from
@@ -210,11 +214,17 @@ def reference_to_value(schema, value, print_nullable=True):
     type_format = schema.get("format")
     nullable = schema.get("nullable", False)
 
+    prefix = ""
+    if type_name in PRIMITIVE_TYPES:
+        prefix = "datadog."
+    else:
+        prefix = f"datadog{kwargs.get('version', '')}."
+
     if nullable and print_nullable:
         if value == "nil":
-            formatter = "*datadog.NewNullable{function_name}({value})"
+            formatter = "*{prefix}NewNullable{function_name}({value})"
         else:
-            formatter = "*datadog.NewNullable{function_name}(datadog.Ptr{function_name}({value}))"
+            formatter = "*{prefix}NewNullable{function_name}({prefix}Ptr{function_name}({value}))"
     else:
         formatter = "datadog.Ptr{function_name}({value})"
 
@@ -225,7 +235,7 @@ def reference_to_value(schema, value, print_nullable=True):
             "int64": "Int64",
             None: "Int",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "number":
         function_name = {
@@ -233,7 +243,7 @@ def reference_to_value(schema, value, print_nullable=True):
             "double": "Float64",
             None: "Float32",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "string":
         function_name = {
@@ -242,16 +252,16 @@ def reference_to_value(schema, value, print_nullable=True):
             "email": "String",
             None: "String",
         }[type_format]
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "boolean":
-        return formatter.format(function_name="Bool", value=value)
+        return formatter.format(prefix=prefix, function_name="Bool", value=value)
 
     if nullable:
         function_name = schema_name(schema)
         if function_name is None:
             raise NotImplementedError(f"nullable {schema} is not supported")
-        return formatter.format(function_name=function_name, value=value)
+        return formatter.format(prefix=prefix, function_name=function_name, value=value)
     return f"&{value}"
 
 
@@ -278,7 +288,7 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
             value = format_data_with_schema(
                 v["value"],
                 p["schema"],
-                name_prefix="datadog.",
+                name_prefix=f"datadog{kwargs.get('version', '')}.",
                 replace_values=replace_values,
                 required=True,
                 **kwargs,
@@ -291,9 +301,8 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
 
     if has_body and body_is_required:
         parameters += "body, "
-
     if has_optional or body_is_required is False:
-        parameters += f"*datadog.New{spec['operationId'][0].upper()}{spec['operationId'][1:]}OptionalParameters()"
+        parameters += f"*datadog{kwargs.get('version', '')}.New{spec['operationId'][0].upper()}{spec['operationId'][1:]}OptionalParameters()"
         if has_body and not body_is_required:
             parameters += ".WithBody(body)"
 
@@ -301,7 +310,7 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
             value = format_data_with_schema(
                 v["value"],
                 parameters_spec[k]["schema"],
-                name_prefix="datadog.",
+                name_prefix=f"datadog{kwargs.get('version', '')}.",
                 replace_values=replace_values,
                 required=True,
                 **kwargs,
@@ -419,7 +428,7 @@ def format_data_with_schema(
         schema["nullable"] = False
 
     if (not required or schema.get("nullable")) and schema.get("type") is not None:
-        return reference_to_value(schema, parameters, print_nullable=not in_list)
+        return reference_to_value(schema, parameters, print_nullable=not in_list, **kwargs)
 
     if "oneOf" in schema:
         matched = 0

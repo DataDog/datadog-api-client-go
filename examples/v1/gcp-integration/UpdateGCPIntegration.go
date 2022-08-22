@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.GCPAccount{
+	body := datadogV1.GCPAccount{
 		AuthProviderX509CertUrl: datadog.PtrString("https://www.googleapis.com/oauth2/v1/certs"),
 		AuthUri:                 datadog.PtrString("https://accounts.google.com/o/oauth2/auth"),
 		ClientEmail:             datadog.PtrString("api-dev@datadog-sandbox.iam.gserviceaccount.com"),
@@ -31,7 +32,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.GCPIntegrationApi.UpdateGCPIntegration(ctx, body)
+	api := datadogV1.NewGCPIntegrationApi(apiClient)
+	resp, r, err := api.UpdateGCPIntegration(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration`: %v\n", err)

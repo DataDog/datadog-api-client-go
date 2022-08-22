@@ -1,4 +1,4 @@
-// Get estimated cost across multi-org account returns "OK" response
+// Get estimated cost across your account returns "OK" response
 
 package main
 
@@ -8,14 +8,17 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetEstimatedCostByOrg", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetEstimatedCostByOrg(ctx, *datadog.NewGetEstimatedCostByOrgOptionalParameters())
+	api := datadogV2.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetEstimatedCostByOrg(ctx, "view", *datadogV2.NewGetEstimatedCostByOrgOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetEstimatedCostByOrg`: %v\n", err)

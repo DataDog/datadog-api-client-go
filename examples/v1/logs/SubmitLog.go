@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := []datadog.HTTPLogItem{
+	body := []datadogV1.HTTPLogItem{
 		{
 			Message: "Example-Send_logs_returns_Response_from_server_always_200_empty_JSON_response",
 			Ddtags:  datadog.PtrString("host:ExampleSendlogsreturnsResponsefromserveralways200emptyJSONresponse"),
@@ -21,7 +22,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters())
+	api := datadogV1.NewLogsApi(apiClient)
+	resp, r, err := api.SubmitLog(ctx, body, *datadogV1.NewSubmitLogOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.SubmitLog`: %v\n", err)

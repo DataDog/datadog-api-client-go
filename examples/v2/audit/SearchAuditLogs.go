@@ -8,29 +8,31 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.AuditLogsSearchEventsRequest{
-		Filter: &datadog.AuditLogsQueryFilter{
+	body := datadogV2.AuditLogsSearchEventsRequest{
+		Filter: &datadogV2.AuditLogsQueryFilter{
 			From:  datadog.PtrString("now-15m"),
 			Query: datadog.PtrString("@type:session AND @session.type:user"),
 			To:    datadog.PtrString("now"),
 		},
-		Options: &datadog.AuditLogsQueryOptions{
+		Options: &datadogV2.AuditLogsQueryOptions{
 			TimeOffset: datadog.PtrInt64(0),
 			Timezone:   datadog.PtrString("GMT"),
 		},
-		Page: &datadog.AuditLogsQueryPageOptions{
+		Page: &datadogV2.AuditLogsQueryPageOptions{
 			Limit: datadog.PtrInt32(25),
 		},
-		Sort: datadog.AUDITLOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
+		Sort: datadogV2.AUDITLOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuditApi.SearchAuditLogs(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
+	api := datadogV2.NewAuditApi(apiClient)
+	resp, r, err := api.SearchAuditLogs(ctx, *datadogV2.NewSearchAuditLogsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.SearchAuditLogs`: %v\n", err)

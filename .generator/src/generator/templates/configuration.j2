@@ -1,5 +1,5 @@
 {% include "partial_header.j2" %}
-package {{ package_name }}
+package {{ common_package_name }}
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"runtime"
 	"strings"
 
-	client "github.com/DataDog/datadog-api-client-go"
+	client "{{ module }}"
 )
 
 // contextKeys are used to identify the type of value in the context.
@@ -138,11 +138,12 @@ func NewConfiguration() *Configuration {
 		{%- endfor %}
 		},
 		OperationServers: map[string]ServerConfigurations{
-			{%- for path in openapi.paths.values() %}
+			{%- for version, spec in all_specs.items() %}
+			{%- for path in spec.paths.values() %}
 			{%- for operation in path.values() %}
 			{%- for server in operation.servers %}
 			{%- if loop.first %}
-			"{{ operation.tags[0].replace(" ", "") }}ApiService.{{ operation.operationId }}": {
+			"{{ version }}.{{ operation.tags[0].replace(" ", "") }}Api.{{ operation.operationId }}": {
 			{%- endif %}
 				{{ server_configuration(server)|indent("\t"*4) }},
 			{%- if loop.last %}
@@ -151,15 +152,18 @@ func NewConfiguration() *Configuration {
 			{%- endfor %}
 			{%- endfor %}
 			{%- endfor %}
+			{%- endfor %}
 		},
 		unstableOperations: map[string]bool{
-		{%- for path in openapi.paths.values() %}
-		{%- for operation in path.values() %}
+        {%- for version, api in apis.items() %}
+        {%- for operations in api.values() %}
+        {%- for _, _, operation in operations|sort(attribute="2.operationId") %}
 		{%- if "x-unstable" in operation %}
-			"{{ operation.operationId }}": false,
+			"{{ version }}.{{ operation.operationId }}": false,
 		{%- endif %}
 		{%- endfor %}
 		{%- endfor %}
+        {%- endfor %}
 		},
 	}
 	return cfg
@@ -209,7 +213,7 @@ func getServerIndex(ctx context.Context) (int, error) {
 		if index, ok := si.(int); ok {
 			return index, nil
 		}
-		return 0, reportError("invalid type %T should be int", si)
+		return 0, ReportError("invalid type %T should be int", si)
 	}
 	return 0, nil
 }
@@ -219,7 +223,7 @@ func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) 
 	if osi != nil {
 		operationIndices, ok := osi.(map[string]int)
 		if !ok {
-			return 0, reportError("invalid type %T should be map[string]int", osi)
+			return 0, ReportError("invalid type %T should be map[string]int", osi)
 		}
 		index, ok := operationIndices[endpoint]
 		if ok {
@@ -235,7 +239,7 @@ func getServerVariables(ctx context.Context) (map[string]string, error) {
 		if variables, ok := sv.(map[string]string); ok {
 			return variables, nil
 		}
-		return nil, reportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
+		return nil, ReportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
 	}
 	return nil, nil
 }
@@ -245,7 +249,7 @@ func getServerOperationVariables(ctx context.Context, endpoint string) (map[stri
 	if osv != nil {
 		operationVariables, ok := osv.(map[string]map[string]string)
 		if !ok {
-			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
+			return nil, ReportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
 		}
 		variables, ok := operationVariables[endpoint]
 		if ok {

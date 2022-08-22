@@ -8,7 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
@@ -18,7 +19,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.DowntimesApi.CancelDowntime(ctx, DowntimeID)
+	api := datadogV1.NewDowntimesApi(apiClient)
+	r, err := api.CancelDowntime(ctx, DowntimeID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntime`: %v\n", err)

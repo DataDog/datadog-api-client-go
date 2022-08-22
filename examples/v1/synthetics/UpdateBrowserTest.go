@@ -8,40 +8,41 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsBrowserTest{
-		Config: datadog.SyntheticsBrowserTestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
-			ConfigVariables: []datadog.SyntheticsConfigVariable{
+	body := datadogV1.SyntheticsBrowserTest{
+		Config: datadogV1.SyntheticsBrowserTestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{},
+			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
 					Name: "VARIABLE_NAME",
-					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Type: datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
-			Request: datadog.SyntheticsTestRequest{
-				BasicAuth: &datadog.SyntheticsBasicAuth{
-					SyntheticsBasicAuthWeb: &datadog.SyntheticsBasicAuthWeb{
+			Request: datadogV1.SyntheticsTestRequest{
+				BasicAuth: &datadogV1.SyntheticsBasicAuth{
+					SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
 						Password: "PaSSw0RD!",
-						Type:     datadog.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
+						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
-				Certificate: &datadog.SyntheticsTestRequestCertificate{
-					Cert: &datadog.SyntheticsTestRequestCertificateItem{},
-					Key:  &datadog.SyntheticsTestRequestCertificateItem{},
+				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
+					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{},
+					Key:  &datadogV1.SyntheticsTestRequestCertificateItem{},
 				},
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Proxy: &datadog.SyntheticsTestRequestProxy{
+				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
+				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},
 				Url: datadog.PtrString("https://example.com"),
 			},
-			Variables: []datadog.SyntheticsBrowserVariable{
+			Variables: []datadogV1.SyntheticsBrowserVariable{
 				{
 					Name: "VARIABLE_NAME",
-					Type: datadog.SYNTHETICSBROWSERVARIABLETYPE_TEXT,
+					Type: datadogV1.SYNTHETICSBROWSERVARIABLETYPE_TEXT,
 				},
 			},
 		},
@@ -50,39 +51,40 @@ func main() {
 		},
 		Message: "",
 		Name:    "Example test name",
-		Options: datadog.SyntheticsTestOptions{
-			Ci: &datadog.SyntheticsTestCiOptions{
-				ExecutionRule: datadog.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
+		Options: datadogV1.SyntheticsTestOptions{
+			Ci: &datadogV1.SyntheticsTestCiOptions{
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
 			},
-			DeviceIds: []datadog.SyntheticsDeviceID{
-				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+			DeviceIds: []datadogV1.SyntheticsDeviceID{
+				datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
-			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
+			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
-			Retry: &datadog.SyntheticsTestOptionsRetry{},
-			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{},
+			RumSettings: &datadogV1.SyntheticsBrowserTestRumSettings{
 				ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
 				ClientTokenId: datadog.PtrInt64(12345),
 				IsEnabled:     true,
 			},
 		},
-		Status: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Steps: []datadog.SyntheticsStep{
+		Status: datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+		Steps: []datadogV1.SyntheticsStep{
 			{
-				Type: datadog.SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_CONTENT.Ptr(),
+				Type: datadogV1.SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_CONTENT.Ptr(),
 			},
 		},
 		Tags: []string{
 			"env:prod",
 		},
-		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
+		Type: datadogV1.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdateBrowserTest(ctx, "public_id", body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.UpdateBrowserTest(ctx, "public_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateBrowserTest`: %v\n", err)

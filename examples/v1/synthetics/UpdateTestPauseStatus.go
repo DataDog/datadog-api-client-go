@@ -8,17 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsUpdateTestPauseStatusPayload{
-		NewStatus: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+	body := datadogV1.SyntheticsUpdateTestPauseStatusPayload{
+		NewStatus: datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, "public_id", body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.UpdateTestPauseStatus(ctx, "public_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus`: %v\n", err)

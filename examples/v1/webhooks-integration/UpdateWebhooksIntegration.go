@@ -8,20 +8,22 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "webhook" in the system
 	WebhookName := os.Getenv("WEBHOOK_NAME")
 
-	body := datadog.WebhooksIntegrationUpdateRequest{
+	body := datadogV1.WebhooksIntegrationUpdateRequest{
 		Url: datadog.PtrString("https://example.com/webhook-updated"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksIntegrationApi.UpdateWebhooksIntegration(ctx, WebhookName, body)
+	api := datadogV1.NewWebhooksIntegrationApi(apiClient)
+	resp, r, err := api.UpdateWebhooksIntegration(ctx, WebhookName, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.UpdateWebhooksIntegration`: %v\n", err)

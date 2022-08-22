@@ -8,22 +8,23 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsIndex{
+	body := datadogV1.LogsIndex{
 		DailyLimit: datadog.PtrInt64(300000000),
-		ExclusionFilters: []datadog.LogsExclusion{
+		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
-				Filter: &datadog.LogsExclusionFilter{
+				Filter: &datadogV1.LogsExclusionFilter{
 					Query:      datadog.PtrString("*"),
 					SampleRate: 1.0,
 				},
 				Name: "payment",
 			},
 		},
-		Filter: datadog.LogsFilter{
+		Filter: datadogV1.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
 		Name:             "main",
@@ -32,7 +33,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx, body)
+	api := datadogV1.NewLogsIndexesApi(apiClient)
+	resp, r, err := api.CreateLogsIndex(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.CreateLogsIndex`: %v\n", err)

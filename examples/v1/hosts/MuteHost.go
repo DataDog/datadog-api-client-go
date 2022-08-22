@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.HostMuteSettings{
+	body := datadogV1.HostMuteSettings{
 		End:      datadog.PtrInt64(1579098130),
 		Message:  datadog.PtrString("Muting this host for a test!"),
 		Override: datadog.PtrBool(false),
@@ -20,7 +21,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostsApi.MuteHost(ctx, "host_name", body)
+	api := datadogV1.NewHostsApi(apiClient)
+	resp, r, err := api.MuteHost(ctx, "host_name", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost`: %v\n", err)

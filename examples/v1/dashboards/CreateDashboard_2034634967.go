@@ -8,27 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_servicemap_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 15,
 				},
-				Definition: datadog.WidgetDefinition{
-					ServiceMapWidgetDefinition: &datadog.ServiceMapWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					ServiceMapWidgetDefinition: &datadogV1.ServiceMapWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
 						Service:    "",
 						Filters: []string{
 							"env:none",
@@ -37,15 +38,16 @@ func main() {
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
 		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

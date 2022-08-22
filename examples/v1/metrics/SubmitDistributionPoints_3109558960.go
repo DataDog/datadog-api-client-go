@@ -9,15 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.DistributionPointsPayload{
-		Series: []datadog.DistributionPointsSeries{
+	body := datadogV1.DistributionPointsPayload{
+		Series: []datadogV1.DistributionPointsSeries{
 			{
 				Metric: "system.load.1.dist",
-				Points: [][]datadog.DistributionPointItem{
+				Points: [][]datadogV1.DistributionPointItem{
 					{
 						{DistributionPointTimestamp: datadog.PtrFloat64(float64(time.Now().Unix()))},
 						{DistributionPointData: &[]float64{
@@ -32,7 +33,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitDistributionPoints(ctx, body, *datadog.NewSubmitDistributionPointsOptionalParameters().WithContentEncoding(datadog.DISTRIBUTIONPOINTSCONTENTENCODING_DEFLATE))
+	api := datadogV1.NewMetricsApi(apiClient)
+	resp, r, err := api.SubmitDistributionPoints(ctx, body, *datadogV1.NewSubmitDistributionPointsOptionalParameters().WithContentEncoding(datadogV1.DISTRIBUTIONPOINTSCONTENTENCODING_DEFLATE))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitDistributionPoints`: %v\n", err)

@@ -8,27 +8,28 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.ServiceAccountCreateRequest{
-		Data: datadog.ServiceAccountCreateData{
-			Type: datadog.USERSTYPE_USERS,
-			Attributes: datadog.ServiceAccountCreateAttributes{
+	body := datadogV2.ServiceAccountCreateRequest{
+		Data: datadogV2.ServiceAccountCreateData{
+			Type: datadogV2.USERSTYPE_USERS,
+			Attributes: datadogV2.ServiceAccountCreateAttributes{
 				Name:           datadog.PtrString("Test API Client"),
 				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
 				ServiceAccount: true,
 			},
-			Relationships: &datadog.UserRelationships{
-				Roles: &datadog.RelationshipToRoles{
-					Data: []datadog.RelationshipToRoleData{
+			Relationships: &datadogV2.UserRelationships{
+				Roles: &datadogV2.RelationshipToRoles{
+					Data: []datadogV2.RelationshipToRoleData{
 						{
 							Id:   datadog.PtrString(RoleDataID),
-							Type: datadog.ROLESTYPE_ROLES.Ptr(),
+							Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 						},
 					},
 				},
@@ -38,7 +39,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.CreateServiceAccount(ctx, body)
+	api := datadogV2.NewUsersApi(apiClient)
+	resp, r, err := api.CreateServiceAccount(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateServiceAccount`: %v\n", err)

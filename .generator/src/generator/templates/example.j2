@@ -8,9 +8,9 @@ package main
     {%- set given = context._imports["os"].add("environ") -%}
 {%- endif -%}
 {%- set variables = given_variables(context) %}
-{%- set parameters = format_parameters(context.api_request.kwargs, spec=operation_spec, replace_values=context._replace_values, has_body=context.body, variables=variables) %}
+{%- set parameters = format_parameters(context.api_request.kwargs, spec=operation_spec, replace_values=context._replace_values, has_body=context.body, variables=variables, version=version|upper) %}
 {%- if context.body %}
-{%- set body = format_data_with_schema(context.body.value, context.api_request.schema.spec, name_prefix="datadog.", replace_values=context._replace_values, required=True, variables=variables)%}
+{%- set body = format_data_with_schema(context.body.value, context.api_request.schema.spec, name_prefix="datadog" ~ version|upper ~ ".", replace_values=context._replace_values, required=True, variables=variables, version=version|upper)%}
 {%- endif %}
 
 {%- set response_has_three_values = context.status_code != 204 and context.api_response.content %}
@@ -23,7 +23,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/{{ version }}/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog{{ version|upper }}"
 )
 
 func main() {
@@ -51,11 +52,24 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 {%- for operation in context._enable_operations %}
-	configuration.SetUnstableOperationEnabled("{{ operation }}", true)
+	configuration.SetUnstableOperationEnabled("{{ version }}.{{ operation }}", true)
 {%- endfor %}
 	apiClient := datadog.NewAPIClient(configuration)
+	api := datadog{{ version|upper }}.New{{ context.api_instance.name }}Api(apiClient)
+{%- if context.pagination %}
+	resp, _, err := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
+	}
+
+        for item := range resp {
+		responseContent, _ := json.MarshalIndent(item, "", "  ")
+		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
+	}
+{%- else %}
 {%- if response_has_three_values %}
-	resp, r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
+	resp, r, err := api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
@@ -71,16 +85,15 @@ func main() {
 
 	responseContent, _ := ioutil.ReadAll(resp)
 	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", responseContent)
-	{%- else %}
-	{{ 1/0 }}
 	{%- endif %}
 	{%- endfor %}
 {%- else %}
-	r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx, {% if parameters %}{{ parameters }}{% endif %})
+	r, err := api.{{ context.api_request.operation_id }}(ctx, {% if parameters %}{{ parameters }}{% endif %})
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+{%- endif %}
 {%- endif %}
 }

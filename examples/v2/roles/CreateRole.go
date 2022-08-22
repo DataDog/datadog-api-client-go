@@ -8,14 +8,15 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.RoleCreateRequest{
-		Data: datadog.RoleCreateData{
-			Type: datadog.ROLESTYPE_ROLES.Ptr(),
-			Attributes: datadog.RoleCreateAttributes{
+	body := datadogV2.RoleCreateRequest{
+		Data: datadogV2.RoleCreateData{
+			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
+			Attributes: datadogV2.RoleCreateAttributes{
 				Name: "Example-Create_role_returns_OK_response",
 			},
 		},
@@ -23,7 +24,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.CreateRole(ctx, body)
+	api := datadogV2.NewRolesApi(apiClient)
+	resp, r, err := api.CreateRole(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CreateRole`: %v\n", err)

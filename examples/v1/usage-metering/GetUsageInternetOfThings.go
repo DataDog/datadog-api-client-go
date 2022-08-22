@@ -9,14 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageInternetOfThings(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageInternetOfThingsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	api := datadogV1.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageInternetOfThings(ctx, time.Now().AddDate(0, 0, -5), *datadogV1.NewGetUsageInternetOfThingsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageInternetOfThings`: %v\n", err)

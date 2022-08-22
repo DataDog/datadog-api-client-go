@@ -1,5 +1,53 @@
 # CHANGELOG
 
+## 2.1.0 / 2022-08-10
+
+### Fixed
+* Update Pagerduty operation `DeletePagerDutyIntegrationService` response status code by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1612
+### Added
+* Add support for digest auth in synthetics tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1622
+* Add support for RUM application endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1623
+### Changed
+* Refactor package names by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1624
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.0.0...v2.1.0
+
+## 2.0.1 / 2022-08-10
+
+**_NOTE:_** Version used to retract v2.0.0 and v2.0.1. DO NOT USE
+
+## 2.0.0 / 2022-08-01
+
+**_NOTE:_** Premature major version v2 release. DO NOT USE
+
+### Added
+* Add support for Events V2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1551
+* [RQ-2492]: Add custom_events to list of product families in hourly-usage api. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1608
+* Re-introduce Estimated Cost API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1614
+### Changed
+* Create a `common` shared package by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1588
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.16.0...v2.0.0
+
+## 1.16.0 / 2022-07-20
+
+### Fixed
+* Add synthetics results api replay only tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1595
+### Added
+* Add estimated ingested spans to usage attribution by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1581
+* Add v2 Security monitoring signals triage operations. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1571
+* docs(dataviz): update Treemap widget definition with deprecated properties + updated description [VIZZ-2305] by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1596
+* Add hourly usage v2 endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1577
+* Add metrics field in the RuleQuery by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1578
+### Changed
+* Add description of metric type enums by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1583
+* remove x-unstable property for usage attribution endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1594
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.15.1...v1.16.0
+
 ## 1.15.1 / 2022-07-11
 
 ### Fixed

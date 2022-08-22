@@ -8,25 +8,27 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.CloudWorkloadSecurityAgentRuleCreateRequest{
-		Data: datadog.CloudWorkloadSecurityAgentRuleCreateData{
-			Attributes: datadog.CloudWorkloadSecurityAgentRuleCreateAttributes{
+	body := datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{
+		Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
+			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
 				Description: datadog.PtrString("Test Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
 				Name:        "examplecreateacloudworkloadsecurityagentrulereturnsokresponse",
 			},
-			Type: datadog.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
+			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudWorkloadSecurityApi.CreateCloudWorkloadSecurityAgentRule(ctx, body)
+	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
+	resp, r, err := api.CreateCloudWorkloadSecurityAgentRule(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.CreateCloudWorkloadSecurityAgentRule`: %v\n", err)

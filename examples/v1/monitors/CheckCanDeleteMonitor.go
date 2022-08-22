@@ -9,7 +9,8 @@ import (
 	"os"
 	"strconv"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
@@ -19,7 +20,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.CheckCanDeleteMonitor(ctx, []int64{
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.CheckCanDeleteMonitor(ctx, []int64{
 		MonitorID,
 	})
 

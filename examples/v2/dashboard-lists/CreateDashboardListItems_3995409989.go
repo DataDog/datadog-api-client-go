@@ -9,7 +9,8 @@ import (
 	"os"
 	"strconv"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -19,18 +20,19 @@ func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
-	body := datadog.DashboardListAddItemsRequest{
-		Dashboards: []datadog.DashboardListItemRequest{
+	body := datadogV2.DashboardListAddItemsRequest{
+		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   DashboardID,
-				Type: datadog.DASHBOARDTYPE_CUSTOM_TIMEBOARD,
+				Type: datadogV2.DASHBOARDTYPE_CUSTOM_TIMEBOARD,
 			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.CreateDashboardListItems(ctx, DashboardListID, body)
+	api := datadogV2.NewDashboardListsApi(apiClient)
+	resp, r, err := api.CreateDashboardListItems(ctx, DashboardListID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardListItems`: %v\n", err)

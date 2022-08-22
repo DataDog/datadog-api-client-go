@@ -8,18 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.NotebookCreateRequest{
-		Data: datadog.NotebookCreateData{
-			Attributes: datadog.NotebookCreateDataAttributes{
-				Cells: []datadog.NotebookCellCreateRequest{
+	body := datadogV1.NotebookCreateRequest{
+		Data: datadogV1.NotebookCreateData{
+			Attributes: datadogV1.NotebookCreateDataAttributes{
+				Cells: []datadogV1.NotebookCellCreateRequest{
 					{
-						Attributes: datadog.NotebookCellCreateRequestAttributes{
-							NotebookMarkdownCellAttributes: &datadog.NotebookMarkdownCellAttributes{
-								Definition: datadog.NotebookMarkdownCellDefinition{
+						Attributes: datadogV1.NotebookCellCreateRequestAttributes{
+							NotebookMarkdownCellAttributes: &datadogV1.NotebookMarkdownCellAttributes{
+								Definition: datadogV1.NotebookMarkdownCellDefinition{
 									Text: `## Some test markdown
 
 ` + "```" + `js
@@ -27,56 +28,57 @@ var x, y;
 x = 5;
 y = 6;
 ` + "```",
-									Type: datadog.NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN,
+									Type: datadogV1.NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN,
 								},
 							}},
-						Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
+						Type: datadogV1.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 					},
 					{
-						Attributes: datadog.NotebookCellCreateRequestAttributes{
-							NotebookTimeseriesCellAttributes: &datadog.NotebookTimeseriesCellAttributes{
-								Definition: datadog.TimeseriesWidgetDefinition{
-									Requests: []datadog.TimeseriesWidgetRequest{
+						Attributes: datadogV1.NotebookCellCreateRequestAttributes{
+							NotebookTimeseriesCellAttributes: &datadogV1.NotebookTimeseriesCellAttributes{
+								Definition: datadogV1.TimeseriesWidgetDefinition{
+									Requests: []datadogV1.TimeseriesWidgetRequest{
 										{
-											DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
+											DisplayType: datadogV1.WIDGETDISPLAYTYPE_LINE.Ptr(),
 											Q:           datadog.PtrString("avg:system.load.1{*}"),
-											Style: &datadog.WidgetRequestStyle{
-												LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
-												LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
+											Style: &datadogV1.WidgetRequestStyle{
+												LineType:  datadogV1.WIDGETLINETYPE_SOLID.Ptr(),
+												LineWidth: datadogV1.WIDGETLINEWIDTH_NORMAL.Ptr(),
 												Palette:   datadog.PtrString("dog_classic"),
 											},
 										},
 									},
 									ShowLegend: datadog.PtrBool(true),
-									Type:       datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
-									Yaxis: &datadog.WidgetAxis{
+									Type:       datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
+									Yaxis: &datadogV1.WidgetAxis{
 										Scale: datadog.PtrString("linear"),
 									},
 								},
-								GraphSize: datadog.NOTEBOOKGRAPHSIZE_MEDIUM.Ptr(),
-								SplitBy: &datadog.NotebookSplitBy{
+								GraphSize: datadogV1.NOTEBOOKGRAPHSIZE_MEDIUM.Ptr(),
+								SplitBy: &datadogV1.NotebookSplitBy{
 									Keys: []string{},
 									Tags: []string{},
 								},
-								Time: *datadog.NewNullableNotebookCellTime(nil),
+								Time: *datadogV1.NewNullableNotebookCellTime(nil),
 							}},
-						Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
+						Type: datadogV1.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 					},
 				},
 				Name:   "Example-Create_a_notebook_returns_OK_response",
-				Status: datadog.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
-				Time: datadog.NotebookGlobalTime{
-					NotebookRelativeTime: &datadog.NotebookRelativeTime{
-						LiveSpan: datadog.WIDGETLIVESPAN_PAST_ONE_HOUR,
+				Status: datadogV1.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
+				Time: datadogV1.NotebookGlobalTime{
+					NotebookRelativeTime: &datadogV1.NotebookRelativeTime{
+						LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_ONE_HOUR,
 					}},
 			},
-			Type: datadog.NOTEBOOKRESOURCETYPE_NOTEBOOKS,
+			Type: datadogV1.NOTEBOOKRESOURCETYPE_NOTEBOOKS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.CreateNotebook(ctx, body)
+	api := datadogV1.NewNotebooksApi(apiClient)
+	resp, r, err := api.CreateNotebook(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.CreateNotebook`: %v\n", err)

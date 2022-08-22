@@ -8,31 +8,33 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.SecurityFilterCreateRequest{
-		Data: datadog.SecurityFilterCreateData{
-			Attributes: datadog.SecurityFilterCreateAttributes{
-				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{
+	body := datadogV2.SecurityFilterCreateRequest{
+		Data: datadogV2.SecurityFilterCreateData{
+			Attributes: datadogV2.SecurityFilterCreateAttributes{
+				ExclusionFilters: []datadogV2.SecurityFilterExclusionFilter{
 					{
 						Name:  "Exclude staging",
 						Query: "source:staging",
 					},
 				},
-				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS,
+				FilteredDataType: datadogV2.SECURITYFILTERFILTEREDDATATYPE_LOGS,
 				IsEnabled:        true,
 				Name:             "Example-Create_a_security_filter_returns_OK_response",
 				Query:            "service:ExampleCreateasecurityfilterreturnsOKresponse",
 			},
-			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
+			Type: datadogV2.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityFilter(ctx, body)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.CreateSecurityFilter(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityFilter`: %v\n", err)

@@ -8,12 +8,13 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SlackIntegrationChannel{
-		Display: &datadog.SlackIntegrationChannelDisplay{
+	body := datadogV1.SlackIntegrationChannel{
+		Display: &datadogV1.SlackIntegrationChannelDisplay{
 			Message:  datadog.PtrBool(true),
 			Notified: datadog.PtrBool(true),
 			Snapshot: datadog.PtrBool(true),
@@ -24,7 +25,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SlackIntegrationApi.UpdateSlackIntegrationChannel(ctx, "account_name", "channel_name", body)
+	api := datadogV1.NewSlackIntegrationApi(apiClient)
+	resp, r, err := api.UpdateSlackIntegrationChannel(ctx, "account_name", "channel_name", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.UpdateSlackIntegrationChannel`: %v\n", err)

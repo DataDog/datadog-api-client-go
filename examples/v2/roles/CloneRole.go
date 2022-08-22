@@ -8,25 +8,27 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.RoleCloneRequest{
-		Data: datadog.RoleClone{
-			Attributes: datadog.RoleCloneAttributes{
+	body := datadogV2.RoleCloneRequest{
+		Data: datadogV2.RoleClone{
+			Attributes: datadogV2.RoleCloneAttributes{
 				Name: "Example-Create_a_new_role_by_cloning_an_existing_role_returns_OK_response clone",
 			},
-			Type: datadog.ROLESTYPE_ROLES,
+			Type: datadogV2.ROLESTYPE_ROLES,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.CloneRole(ctx, RoleDataID, body)
+	api := datadogV2.NewRolesApi(apiClient)
+	resp, r, err := api.CloneRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.CloneRole`: %v\n", err)

@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsPrivateLocation{
+	body := datadogV1.SyntheticsPrivateLocation{
 		Description: "Description of private location",
-		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
+		Metadata: &datadogV1.SyntheticsPrivateLocationMetadata{
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
@@ -27,7 +28,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, "location_id", body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.UpdatePrivateLocation(ctx, "location_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdatePrivateLocation`: %v\n", err)

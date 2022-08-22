@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AzureAccount{
+	body := datadogV1.AzureAccount{
 		Automute:     datadog.PtrBool(true),
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
@@ -27,7 +28,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AzureIntegrationApi.UpdateAzureHostFilters(ctx, body)
+	api := datadogV1.NewAzureIntegrationApi(apiClient)
+	resp, r, err := api.UpdateAzureHostFilters(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.UpdateAzureHostFilters`: %v\n", err)

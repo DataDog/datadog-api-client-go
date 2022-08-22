@@ -8,14 +8,16 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostsApi.ListHosts(ctx, *datadog.NewListHostsOptionalParameters().WithFilter("env:ci"))
+	api := datadogV1.NewHostsApi(apiClient)
+	resp, r, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().WithFilter("env:ci"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.ListHosts`: %v\n", err)

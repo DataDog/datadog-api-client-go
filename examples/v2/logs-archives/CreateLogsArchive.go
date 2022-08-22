@@ -8,22 +8,23 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsArchiveCreateRequest{
-		Data: &datadog.LogsArchiveCreateRequestDefinition{
-			Attributes: &datadog.LogsArchiveCreateRequestAttributes{
-				Destination: datadog.LogsArchiveCreateRequestDestination{
-					LogsArchiveDestinationAzure: &datadog.LogsArchiveDestinationAzure{
+	body := datadogV2.LogsArchiveCreateRequest{
+		Data: &datadogV2.LogsArchiveCreateRequestDefinition{
+			Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
+				Destination: datadogV2.LogsArchiveCreateRequestDestination{
+					LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{
 						Container: "container-name",
-						Integration: datadog.LogsArchiveIntegrationAzure{
+						Integration: datadogV2.LogsArchiveIntegrationAzure{
 							ClientId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 							TenantId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 						},
 						StorageAccount: "account-name",
-						Type:           datadog.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
+						Type:           datadogV2.LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 					}},
 				IncludeTags:                datadog.PtrBool(false),
 				Name:                       "Nginx Archive",
@@ -40,7 +41,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsArchivesApi.CreateLogsArchive(ctx, body)
+	api := datadogV2.NewLogsArchivesApi(apiClient)
+	resp, r, err := api.CreateLogsArchive(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.CreateLogsArchive`: %v\n", err)

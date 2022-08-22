@@ -8,23 +8,24 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsBrowserTest{
-		Config: datadog.SyntheticsBrowserTestConfig{
-			Assertions: []datadog.SyntheticsAssertion{},
-			ConfigVariables: []datadog.SyntheticsConfigVariable{
+	body := datadogV1.SyntheticsBrowserTest{
+		Config: datadogV1.SyntheticsBrowserTestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{},
+			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
 					Pattern: datadog.PtrString("content-type"),
-					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
-			Request: datadog.SyntheticsTestRequest{
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
+			Request: datadogV1.SyntheticsTestRequest{
+				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
 				Url:    datadog.PtrString("https://datadoghq.com"),
 			},
 			SetCookie: datadog.PtrString("name:test"),
@@ -34,49 +35,50 @@ func main() {
 		},
 		Message: "Test message",
 		Name:    "Example-Create_a_browser_test_returns_OK_Returns_saved_rumSettings_response",
-		Options: datadog.SyntheticsTestOptions{
+		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
-			DeviceIds: []datadog.SyntheticsDeviceID{
-				datadog.SYNTHETICSDEVICEID_TABLET,
+			DeviceIds: []datadogV1.SyntheticsDeviceID{
+				datadogV1.SYNTHETICSDEVICEID_TABLET,
 			},
 			DisableCors:        datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
 			MinLocationFailed:  datadog.PtrInt64(1),
 			NoScreenshot:       datadog.PtrBool(true),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
 			},
-			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
+			RumSettings: &datadogV1.SyntheticsBrowserTestRumSettings{
 				IsEnabled:     true,
 				ApplicationId: datadog.PtrString("mockApplicationId"),
 				ClientTokenId: datadog.PtrInt64(12345),
 			},
 			TickEvery: datadog.PtrInt64(300),
-			Ci: &datadog.SyntheticsTestCiOptions{
-				ExecutionRule: datadog.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
+			Ci: &datadogV1.SyntheticsTestCiOptions{
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
 			},
 		},
 		Tags: []string{
 			"testing:browser",
 		},
-		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
-		Steps: []datadog.SyntheticsStep{
+		Type: datadogV1.SYNTHETICSBROWSERTESTTYPE_BROWSER,
+		Steps: []datadogV1.SyntheticsStep{
 			{
 				AllowFailure: datadog.PtrBool(false),
 				IsCritical:   datadog.PtrBool(true),
 				Name:         datadog.PtrString("Refresh page"),
 				Params:       new(interface{}),
-				Type:         datadog.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
+				Type:         datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
 			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsBrowserTest(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsBrowserTest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsBrowserTest`: %v\n", err)

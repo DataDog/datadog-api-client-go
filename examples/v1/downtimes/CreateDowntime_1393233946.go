@@ -9,13 +9,14 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Downtime{
+	body := datadogV1.Downtime{
 		Message: datadog.PtrString("Example-Schedule_a_downtime_with_until_occurrences"),
-		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
+		Recurrence: *datadogV1.NewNullableDowntimeRecurrence(&datadogV1.DowntimeRecurrence{
 			Period:           datadog.PtrInt32(1),
 			Type:             datadog.PtrString("weeks"),
 			UntilOccurrences: *datadog.NewNullableInt32(datadog.PtrInt32(3)),
@@ -33,11 +34,15 @@ func main() {
 		Start:    datadog.PtrInt64(time.Now().Unix()),
 		End:      *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
 		Timezone: datadog.PtrString("Etc/UTC"),
+		MonitorTags: []string{
+			"tag0",
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.CreateDowntime(ctx, body)
+	api := datadogV1.NewDowntimesApi(apiClient)
+	resp, r, err := api.CreateDowntime(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime`: %v\n", err)

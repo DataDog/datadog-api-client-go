@@ -8,45 +8,47 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "monitor" in the system
 
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_alert_value_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  15,
 					Height: 8,
 				},
-				Definition: datadog.WidgetDefinition{
-					AlertValueWidgetDefinition: &datadog.AlertValueWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					AlertValueWidgetDefinition: &datadogV1.AlertValueWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE,
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE,
 						AlertId:    "7",
 						Unit:       datadog.PtrString("auto"),
-						TextAlign:  datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
+						TextAlign:  datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Precision:  datadog.PtrInt64(2),
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
 		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

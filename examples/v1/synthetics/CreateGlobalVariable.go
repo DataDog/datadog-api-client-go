@@ -8,32 +8,33 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsGlobalVariable{
-		Attributes: &datadog.SyntheticsGlobalVariableAttributes{
+	body := datadogV1.SyntheticsGlobalVariable{
+		Attributes: &datadogV1.SyntheticsGlobalVariableAttributes{
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 		},
 		Description: "Example description",
 		Name:        "MY_VARIABLE",
-		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
+		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
 			Field: datadog.PtrString("content-type"),
-			Parser: datadog.SyntheticsVariableParser{
-				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
+			Parser: datadogV1.SyntheticsVariableParser{
+				Type:  datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
 				Value: datadog.PtrString(".*"),
 			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
+			Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 		},
 		ParseTestPublicId: datadog.PtrString("abc-def-123"),
 		Tags: []string{
 			"team:front",
 			"test:workflow-1",
 		},
-		Value: datadog.SyntheticsGlobalVariableValue{
+		Value: datadogV1.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(true),
 			Value:  datadog.PtrString("value"),
 		},
@@ -41,7 +42,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateGlobalVariable(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateGlobalVariable(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateGlobalVariable`: %v\n", err)

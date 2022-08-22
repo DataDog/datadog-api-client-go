@@ -8,18 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SignalStateUpdateRequest{
-		ArchiveReason: datadog.SIGNALARCHIVEREASON_NONE.Ptr(),
-		State:         datadog.SIGNALTRIAGESTATE_OPEN,
+	body := datadogV1.SignalStateUpdateRequest{
+		ArchiveReason: datadogV1.SIGNALARCHIVEREASON_NONE.Ptr(),
+		State:         datadogV1.SIGNALTRIAGESTATE_OPEN,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.EditSecurityMonitoringSignalState(ctx, "AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE", body)
+	api := datadogV1.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.EditSecurityMonitoringSignalState(ctx, "AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.EditSecurityMonitoringSignalState`: %v\n", err)

@@ -8,18 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.RoleUpdateRequest{
-		Data: datadog.RoleUpdateData{
+	body := datadogV2.RoleUpdateRequest{
+		Data: datadogV2.RoleUpdateData{
 			Id:   RoleDataID,
-			Type: datadog.ROLESTYPE_ROLES,
-			Attributes: datadog.RoleUpdateAttributes{
+			Type: datadogV2.ROLESTYPE_ROLES,
+			Attributes: datadogV2.RoleUpdateAttributes{
 				Name: datadog.PtrString("developers-updated"),
 			},
 		},
@@ -27,7 +28,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.UpdateRole(ctx, RoleDataID, body)
+	api := datadogV2.NewRolesApi(apiClient)
+	resp, r, err := api.UpdateRole(ctx, RoleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.UpdateRole`: %v\n", err)

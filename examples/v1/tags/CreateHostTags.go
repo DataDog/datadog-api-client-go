@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.HostTags{
+	body := datadogV1.HostTags{
 		Host: datadog.PtrString("test.host"),
 		Tags: []string{
 			"environment:production",
@@ -21,7 +22,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.TagsApi.CreateHostTags(ctx, "host_name", body, *datadog.NewCreateHostTagsOptionalParameters())
+	api := datadogV1.NewTagsApi(apiClient)
+	resp, r, err := api.CreateHostTags(ctx, "host_name", body, *datadogV1.NewCreateHostTagsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.CreateHostTags`: %v\n", err)

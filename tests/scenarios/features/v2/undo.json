@@ -170,6 +170,18 @@
       "type": "safe"
     }
   },
+  "ListEvents": {
+    "tag": "Events",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SearchEvents": {
+    "tag": "Events",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListIncidents": {
     "tag": "Incidents",
     "undo": {
@@ -550,6 +562,43 @@
       "type": "safe"
     }
   },
+  "GetRUMApplications": {
+    "tag": "RUM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateRUMApplication": {
+    "tag": "RUM",
+    "undo": {
+      "operationId": "DeleteRUMApplication",
+      "parameters": [
+        {
+          "name": "id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteRUMApplication": {
+    "tag": "RUM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetRUMApplication": {
+    "tag": "RUM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateRUMApplication": {
+    "tag": "RUM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListRUMEvents": {
     "tag": "RUM",
     "undo": {
@@ -695,6 +744,24 @@
     "tag": "Security Monitoring",
     "undo": {
       "type": "safe"
+    }
+  },
+  "EditSecurityMonitoringSignalAssignee": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "EditSecurityMonitoringSignalIncidents": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "EditSecurityMonitoringSignalState": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "SubmitMetrics": {
@@ -844,6 +911,12 @@
     }
   },
   "GetEstimatedCostByOrg": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetHourlyUsage": {
     "tag": "Usage Metering",
     "undo": {
       "type": "safe"

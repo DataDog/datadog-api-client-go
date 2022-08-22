@@ -8,14 +8,15 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.ApplicationKeyCreateRequest{
-		Data: datadog.ApplicationKeyCreateData{
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
-			Attributes: datadog.ApplicationKeyCreateAttributes{
+	body := datadogV2.ApplicationKeyCreateRequest{
+		Data: datadogV2.ApplicationKeyCreateData{
+			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+			Attributes: datadogV2.ApplicationKeyCreateAttributes{
 				Name: "Example-Create_an_Application_key_with_scopes_for_current_user_returns_Created_response",
 				Scopes: []string{
 					"dashboards_read",
@@ -28,7 +29,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.CreateCurrentUserApplicationKey(ctx, body)
+	api := datadogV2.NewKeyManagementApi(apiClient)
+	resp, r, err := api.CreateCurrentUserApplicationKey(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateCurrentUserApplicationKey`: %v\n", err)

@@ -8,38 +8,39 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_query_value_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 15,
 				},
-				Definition: datadog.WidgetDefinition{
-					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					QueryValueWidgetDefinition: &datadogV1.QueryValueWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadog.WidgetTime{},
-						Type:       datadog.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
-						Requests: []datadog.QueryValueWidgetRequest{
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Time:       &datadogV1.WidgetTime{},
+						Type:       datadogV1.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
+						Requests: []datadogV1.QueryValueWidgetRequest{
 							{
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
 											Name:       "query1",
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+											DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 											Query:      "avg:system.cpu.user{*}",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
+											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
 								},
 							},
@@ -49,15 +50,16 @@ func main() {
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
 		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

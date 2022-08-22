@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSAccount{
+	body := datadogV1.AWSAccount{
 		AccountId: datadog.PtrString("1234567"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
@@ -36,7 +37,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.CreateAWSAccount(ctx, body)
+	api := datadogV1.NewAWSIntegrationApi(apiClient)
+	resp, r, err := api.CreateAWSAccount(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount`: %v\n", err)

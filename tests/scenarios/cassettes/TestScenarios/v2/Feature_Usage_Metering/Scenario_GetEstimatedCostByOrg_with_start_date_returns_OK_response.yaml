@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+    method: GET
+    url: https://api.datadoghq.com/api/v2/usage/estimated_cost?start_date=2022-07-24T14%3A22%3A55.359Z&view=sub-org
+  response:
+    body: '{"data":[]}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

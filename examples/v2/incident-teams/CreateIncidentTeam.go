@@ -8,23 +8,25 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.IncidentTeamCreateRequest{
-		Data: datadog.IncidentTeamCreateData{
-			Type: datadog.INCIDENTTEAMTYPE_TEAMS,
-			Attributes: &datadog.IncidentTeamCreateAttributes{
+	body := datadogV2.IncidentTeamCreateRequest{
+		Data: datadogV2.IncidentTeamCreateData{
+			Type: datadogV2.INCIDENTTEAMTYPE_TEAMS,
+			Attributes: &datadogV2.IncidentTeamCreateAttributes{
 				Name: "Example-Create_a_new_incident_team_returns_CREATED_response",
 			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("CreateIncidentTeam", true)
+	configuration.SetUnstableOperationEnabled("v2.CreateIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.CreateIncidentTeam(ctx, body)
+	api := datadogV2.NewIncidentTeamsApi(apiClient)
+	resp, r, err := api.CreateIncidentTeam(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.CreateIncidentTeam`: %v\n", err)

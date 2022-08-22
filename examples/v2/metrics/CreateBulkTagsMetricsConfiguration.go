@@ -8,16 +8,17 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "user" in the system
 	UserDataAttributesEmail := os.Getenv("USER_DATA_ATTRIBUTES_EMAIL")
 
-	body := datadog.MetricBulkTagConfigCreateRequest{
-		Data: datadog.MetricBulkTagConfigCreate{
-			Attributes: &datadog.MetricBulkTagConfigCreateAttributes{
+	body := datadogV2.MetricBulkTagConfigCreateRequest{
+		Data: datadogV2.MetricBulkTagConfigCreate{
+			Attributes: &datadogV2.MetricBulkTagConfigCreateAttributes{
 				Emails: []string{
 					UserDataAttributesEmail,
 				},
@@ -27,13 +28,14 @@ func main() {
 				},
 			},
 			Id:   "system.load.1",
-			Type: datadog.METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS,
+			Type: datadogV2.METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.CreateBulkTagsMetricsConfiguration(ctx, body)
+	api := datadogV2.NewMetricsApi(apiClient)
+	resp, r, err := api.CreateBulkTagsMetricsConfiguration(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateBulkTagsMetricsConfiguration`: %v\n", err)

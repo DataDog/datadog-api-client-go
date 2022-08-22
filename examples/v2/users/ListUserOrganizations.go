@@ -8,14 +8,16 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.ListUserOrganizations(ctx, "00000000-0000-9999-0000-000000000000")
+	api := datadogV2.NewUsersApi(apiClient)
+	resp, r, err := api.ListUserOrganizations(ctx, "00000000-0000-9999-0000-000000000000")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.ListUserOrganizations`: %v\n", err)

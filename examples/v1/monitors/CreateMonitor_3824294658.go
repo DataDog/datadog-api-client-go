@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Monitor{
+	body := datadogV1.Monitor{
 		Name:    datadog.PtrString("Example-Create_a_ci_pipelines_formula_and_functions_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
+		Type:    datadogV1.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `formula("query1 / query2 * 100").last("15m") >= 0.8`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
@@ -22,40 +23,40 @@ func main() {
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
-		Options: &datadog.MonitorOptions{
-			Thresholds: &datadog.MonitorThresholds{
+		Options: &datadogV1.MonitorOptions{
+			Thresholds: &datadogV1.MonitorThresholds{
 				Critical: datadog.PtrFloat64(0.8),
 			},
-			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
-				datadog.MonitorFormulaAndFunctionQueryDefinition{
-					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
-						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
+			Variables: []datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+				datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+					MonitorFormulaAndFunctionEventQueryDefinition: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinition{
+						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 						Name:       "query1",
-						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
+						Search: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "@ci.status:error",
 						},
 						Indexes: []string{
 							"*",
 						},
-						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
-							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+						Compute: datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
+							Aggregation: datadogV1.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadogV1.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
-				datadog.MonitorFormulaAndFunctionQueryDefinition{
-					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
-						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
+				datadogV1.MonitorFormulaAndFunctionQueryDefinition{
+					MonitorFormulaAndFunctionEventQueryDefinition: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinition{
+						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 						Name:       "query2",
-						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
+						Search: &datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "",
 						},
 						Indexes: []string{
 							"*",
 						},
-						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
-							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+						Compute: datadogV1.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
+							Aggregation: datadogV1.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadogV1.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 			},
 		},
@@ -63,7 +64,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx, body)
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor`: %v\n", err)

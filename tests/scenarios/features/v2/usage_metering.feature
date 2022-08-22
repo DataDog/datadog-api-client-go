@@ -28,33 +28,36 @@ Feature: Usage Metering
     When the request is sent
     Then the response status is 200 OK
 
-  @skip @team:DataDog/red-zone-revenue-query
-  Scenario: Get estimated cost across multi-org account returns "Bad Request" response
-    Given new "GetEstimatedCostByOrg" request
-    And request contains "start_month" parameter with value "{{ timeISO('now - 3d') }}"
-    And request contains "start_date" parameter with value "{{ timeISO('now - 3d') }}"
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get estimated cost across your account returns "Bad Request" response
+    Given operation "GetEstimatedCostByOrg" enabled
+    And new "GetEstimatedCostByOrg" request
+    And request contains "view" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip @team:DataDog/red-zone-revenue-query
-  Scenario: Get estimated cost across multi-org account returns "OK" response
-    Given new "GetEstimatedCostByOrg" request
+  Scenario: Get estimated cost across your account returns "OK" response
+    Given operation "GetEstimatedCostByOrg" enabled
+    And new "GetEstimatedCostByOrg" request
+    And request contains "view" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
-  @replay-only @team:DataDog/red-zone-revenue-query
-  Scenario: Get estimated cost across multi-org account with date returns "OK" response
-    Given new "GetEstimatedCostByOrg" request
-    And request contains "start_date" parameter with value "{{ timeISO('now - 5d') }}"
-    And request contains "end_date" parameter with value "{{ timeISO('now - 3d') }}"
+  @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage by product family returns "Bad Request" response
+    Given new "GetHourlyUsage" request
+    And request contains "filter[timestamp][start]" parameter with value "{{ timeISO('now - 3d') }}"
+    And request contains "filter[product_families]" parameter with value "infra_hosts"
+    And request contains "filter[timestamp][end]" parameter with value "{{ timeISO('now - 5d') }}"
     When the request is sent
-    Then the response status is 200 OK
+    Then the response status is 400 Bad Request
 
-  @replay-only @team:DataDog/red-zone-revenue-query
-  Scenario: Get estimated cost across multi-org account with month returns "OK" response
-    Given new "GetEstimatedCostByOrg" request
-    And request contains "start_month" parameter with value "{{ timeISO('now - 5d') }}"
-    And request contains "end_month" parameter with value "{{ timeISO('now - 3d') }}"
+  @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage by product family returns "OK" response
+    Given new "GetHourlyUsage" request
+    And request contains "filter[timestamp][start]" parameter with value "{{ timeISO('now - 3d') }}"
+    And request contains "filter[product_families]" parameter with value "infra_hosts"
     When the request is sent
     Then the response status is 200 OK
 
@@ -103,5 +106,74 @@ Feature: Usage Metering
     Given new "GetUsageObservabilityPipelines" request
     And request contains "start_hr" parameter with value "{{ timeISO('now - 5d') }}"
     And request contains "end_hr" parameter with value "{{ timeISO('now - 3d') }}"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for application security returns "Bad Request" response
+    Given new "GetUsageApplicationSecurityMonitoring" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for application security returns "OK" response
+    Given new "GetUsageApplicationSecurityMonitoring" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for lambda traced invocations returns "Bad Request" response
+    Given new "GetUsageLambdaTracedInvocations" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for lambda traced invocations returns "OK" response
+    Given new "GetUsageLambdaTracedInvocations" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for observability pipelines returns "Bad Request" response
+    Given new "GetUsageObservabilityPipelines" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/red-zone-revenue-query
+  Scenario: Get hourly usage for observability pipelines returns "OK" response
+    Given new "GetUsageObservabilityPipelines" request
+    And request contains "start_hr" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @skip @team:DataDog/red-zone-revenue-query
+  Scenario: GetEstimatedCostByOrg with both start_month and start_date returns "Bad Request" response
+    Given new "GetEstimatedCostByOrg" request
+    And request contains "view" parameter with value "sub-org"
+    And request contains "start_month" parameter with value "{{ timeISO('now - 3d') }}"
+    And request contains "start_date" parameter with value "{{ timeISO('now - 3d') }}"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @replay-only @team:DataDog/red-zone-revenue-query
+  Scenario: GetEstimatedCostByOrg with start_date returns "OK" response
+    Given operation "GetEstimatedCostByOrg" enabled
+    And new "GetEstimatedCostByOrg" request
+    And request contains "view" parameter with value "sub-org"
+    And request contains "start_date" parameter with value "{{ timeISO('now - 5d') }}"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @skip @team:DataDog/red-zone-revenue-query
+  Scenario: GetEstimatedCostByOrg with start_month returns "OK" response
+    Given operation "GetEstimatedCostByOrg" enabled
+    And new "GetEstimatedCostByOrg" request
+    And request contains "view" parameter with value "sub-org"
+    And request contains "start_month" parameter with value "{{ timeISO('now - 5d') }}"
     When the request is sent
     Then the response status is 200 OK

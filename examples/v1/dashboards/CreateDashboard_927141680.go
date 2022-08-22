@@ -8,26 +8,27 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_with_funnel_widget with funnel widget",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					FunnelWidgetDefinition: &datadog.FunnelWidgetDefinition{
-						Type: datadog.FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
-						Requests: []datadog.FunnelWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					FunnelWidgetDefinition: &datadogV1.FunnelWidgetDefinition{
+						Type: datadogV1.FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
+						Requests: []datadogV1.FunnelWidgetRequest{
 							{
-								Query: datadog.FunnelQuery{
-									DataSource:  datadog.FUNNELSOURCE_RUM,
+								Query: datadogV1.FunnelQuery{
+									DataSource:  datadogV1.FUNNELSOURCE_RUM,
 									QueryString: "",
-									Steps:       []datadog.FunnelStep{},
+									Steps:       []datadogV1.FunnelStep{},
 								},
-								RequestType: datadog.FUNNELREQUESTTYPE_FUNNEL,
+								RequestType: datadogV1.FUNNELREQUESTTYPE_FUNNEL,
 							},
 						},
 					}},
@@ -37,7 +38,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

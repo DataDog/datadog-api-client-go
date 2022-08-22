@@ -8,34 +8,35 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_log_stream_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 36,
 				},
-				Definition: datadog.WidgetDefinition{
-					LogStreamWidgetDefinition: &datadog.LogStreamWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					LogStreamWidgetDefinition: &datadogV1.LogStreamWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM,
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadogV1.LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM,
 						Indexes: []string{
 							"main",
 						},
 						Query: datadog.PtrString(""),
-						Sort: &datadog.WidgetFieldSort{
+						Sort: &datadogV1.WidgetFieldSort{
 							Column: "time",
-							Order:  datadog.WIDGETSORT_DESCENDING,
+							Order:  datadogV1.WIDGETSORT_DESCENDING,
 						},
 						Columns: []string{
 							"host",
@@ -43,19 +44,20 @@ func main() {
 						},
 						ShowDateColumn:    datadog.PtrBool(true),
 						ShowMessageColumn: datadog.PtrBool(true),
-						MessageDisplay:    datadog.WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM.Ptr(),
+						MessageDisplay:    datadogV1.WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM.Ptr(),
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
 		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

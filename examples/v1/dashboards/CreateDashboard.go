@@ -8,35 +8,36 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:      "Example-Create_a_new_dashboard_returns_OK_response with Profile Metrics Query",
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					TimeseriesWidgetDefinition: &datadog.TimeseriesWidgetDefinition{
-						Type: datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
-						Requests: []datadog.TimeseriesWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					TimeseriesWidgetDefinition: &datadogV1.TimeseriesWidgetDefinition{
+						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
+						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
-								ProfileMetricsQuery: &datadog.LogQueryDefinition{
-									Compute: &datadog.LogsQueryCompute{
+								ProfileMetricsQuery: &datadogV1.LogQueryDefinition{
+									Compute: &datadogV1.LogsQueryCompute{
 										Aggregation: "sum",
 										Facet:       datadog.PtrString("@prof_core_cpu_cores"),
 									},
-									Search: &datadog.LogQueryDefinitionSearch{
+									Search: &datadogV1.LogQueryDefinitionSearch{
 										Query: "runtime:jvm",
 									},
-									GroupBy: []datadog.LogQueryDefinitionGroupBy{
+									GroupBy: []datadogV1.LogQueryDefinitionGroupBy{
 										{
 											Facet: "service",
 											Limit: datadog.PtrInt64(10),
-											Sort: &datadog.LogQueryDefinitionGroupBySort{
+											Sort: &datadogV1.LogQueryDefinitionGroupBySort{
 												Aggregation: "sum",
-												Order:       datadog.WIDGETSORT_DESCENDING,
+												Order:       datadogV1.WIDGETSORT_DESCENDING,
 												Facet:       datadog.PtrString("@prof_core_cpu_cores"),
 											},
 										},
@@ -51,7 +52,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

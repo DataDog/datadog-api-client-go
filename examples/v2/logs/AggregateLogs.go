@@ -8,12 +8,13 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsAggregateRequest{
-		Filter: &datadog.LogsQueryFilter{
+	body := datadogV2.LogsAggregateRequest{
+		Filter: &datadogV2.LogsQueryFilter{
 			From: datadog.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
@@ -25,7 +26,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body)
+	api := datadogV2.NewLogsApi(apiClient)
+	resp, r, err := api.AggregateLogs(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs`: %v\n", err)

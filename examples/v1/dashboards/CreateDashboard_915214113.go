@@ -8,87 +8,89 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Dashboard{
+	body := datadogV1.Dashboard{
 		Title:       "Example-Create_a_new_dashboard_with_geomap_widget",
 		Description: *datadog.NewNullableString(nil),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Layout: &datadog.WidgetLayout{
+				Layout: &datadogV1.WidgetLayout{
 					X:      0,
 					Y:      0,
 					Width:  47,
 					Height: 30,
 				},
-				Definition: datadog.WidgetDefinition{
-					GeomapWidgetDefinition: &datadog.GeomapWidgetDefinition{
+				Definition: datadogV1.WidgetDefinition{
+					GeomapWidgetDefinition: &datadogV1.GeomapWidgetDefinition{
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadog.WidgetTime{},
-						Type:       datadog.GEOMAPWIDGETDEFINITIONTYPE_GEOMAP,
-						Requests: []datadog.GeomapWidgetRequest{
+						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Time:       &datadogV1.WidgetTime{},
+						Type:       datadogV1.GEOMAPWIDGETDEFINITIONTYPE_GEOMAP,
+						Requests: []datadogV1.GeomapWidgetRequest{
 							{
-								Formulas: []datadog.WidgetFormula{
+								Formulas: []datadogV1.WidgetFormula{
 									{
 										Formula: "query1",
-										Limit: &datadog.WidgetFormulaLimit{
+										Limit: &datadogV1.WidgetFormulaLimit{
 											Count: datadog.PtrInt64(250),
-											Order: datadog.QUERYSORTORDER_DESC.Ptr(),
+											Order: datadogV1.QUERYSORTORDER_DESC.Ptr(),
 										},
 									},
 								},
-								Queries: []datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
+								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
+									datadogV1.FormulaAndFunctionQueryDefinition{
+										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
 											Name:       "query1",
-											DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
-											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
+											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
 											Indexes: []string{
 												"*",
 											},
-											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
-												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
+												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{
+											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{
 												{
 													Facet: "@geo.country_iso_code",
 													Limit: datadog.PtrInt64(250),
-													Sort: &datadog.FormulaAndFunctionEventQueryGroupBySort{
-														Order:       datadog.QUERYSORTORDER_DESC.Ptr(),
-														Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+													Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
+														Order:       datadogV1.QUERYSORTORDER_DESC.Ptr(),
+														Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 													},
 												},
 											},
 										}},
 								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 							},
 						},
-						Style: datadog.GeomapWidgetDefinitionStyle{
+						Style: datadogV1.GeomapWidgetDefinitionStyle{
 							Palette:     "hostmap_blues",
 							PaletteFlip: false,
 						},
-						View: datadog.GeomapWidgetDefinitionView{
+						View: datadogV1.GeomapWidgetDefinitionView{
 							Focus: "WORLD",
 						},
 					}},
 			},
 		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
+		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
+		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
 		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.CreateDashboard(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

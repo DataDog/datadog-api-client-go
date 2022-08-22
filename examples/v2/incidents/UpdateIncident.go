@@ -8,22 +8,23 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "incident" in the system
 	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
 
-	body := datadog.IncidentUpdateRequest{
-		Data: datadog.IncidentUpdateData{
+	body := datadogV2.IncidentUpdateRequest{
+		Data: datadogV2.IncidentUpdateData{
 			Id:   IncidentDataID,
-			Type: datadog.INCIDENTTYPE_INCIDENTS,
-			Attributes: &datadog.IncidentUpdateAttributes{
-				Fields: map[string]datadog.IncidentFieldAttributes{
-					"state": datadog.IncidentFieldAttributes{
-						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
-							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
+			Type: datadogV2.INCIDENTTYPE_INCIDENTS,
+			Attributes: &datadogV2.IncidentUpdateAttributes{
+				Fields: map[string]datadogV2.IncidentFieldAttributes{
+					"state": datadogV2.IncidentFieldAttributes{
+						IncidentFieldAttributesSingleValue: &datadogV2.IncidentFieldAttributesSingleValue{
+							Type:  datadogV2.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
 							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
 						}},
 				},
@@ -33,9 +34,10 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("UpdateIncident", true)
+	configuration.SetUnstableOperationEnabled("v2.UpdateIncident", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, IncidentDataID, body, *datadog.NewUpdateIncidentOptionalParameters())
+	api := datadogV2.NewIncidentsApi(apiClient)
+	resp, r, err := api.UpdateIncident(ctx, IncidentDataID, body, *datadogV2.NewUpdateIncidentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)

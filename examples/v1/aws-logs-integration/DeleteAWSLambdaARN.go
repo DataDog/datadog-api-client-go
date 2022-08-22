@@ -8,18 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSAccountAndLambdaRequest{
+	body := datadogV1.AWSAccountAndLambdaRequest{
 		AccountId: "1234567",
 		LambdaArn: "arn:aws:lambda:us-east-1:1234567:function:LogsCollectionAPITest",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSLogsIntegrationApi.DeleteAWSLambdaARN(ctx, body)
+	api := datadogV1.NewAWSLogsIntegrationApi(apiClient)
+	resp, r, err := api.DeleteAWSLambdaARN(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.DeleteAWSLambdaARN`: %v\n", err)

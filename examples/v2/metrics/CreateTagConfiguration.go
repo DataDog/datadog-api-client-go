@@ -8,27 +8,29 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.MetricTagConfigurationCreateRequest{
-		Data: datadog.MetricTagConfigurationCreateData{
-			Type: datadog.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
+	body := datadogV2.MetricTagConfigurationCreateRequest{
+		Data: datadogV2.MetricTagConfigurationCreateData{
+			Type: datadogV2.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
 			Id:   "ExampleCreateatagconfigurationreturnsCreatedresponse",
-			Attributes: &datadog.MetricTagConfigurationCreateAttributes{
+			Attributes: &datadogV2.MetricTagConfigurationCreateAttributes{
 				Tags: []string{
 					"app",
 					"datacenter",
 				},
-				MetricType: datadog.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
+				MetricType: datadogV2.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
 			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, "ExampleCreateatagconfigurationreturnsCreatedresponse", body)
+	api := datadogV2.NewMetricsApi(apiClient)
+	resp, r, err := api.CreateTagConfiguration(ctx, "ExampleCreateatagconfigurationreturnsCreatedresponse", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration`: %v\n", err)

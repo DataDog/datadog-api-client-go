@@ -8,18 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.AWSAccountDeleteRequest{
+	body := datadogV1.AWSAccountDeleteRequest{
 		AccountId: datadog.PtrString("1234567"),
 		RoleName:  datadog.PtrString("DatadogAWSIntegrationRole"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSAccount(ctx, body)
+	api := datadogV1.NewAWSIntegrationApi(apiClient)
+	resp, r, err := api.DeleteAWSAccount(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount`: %v\n", err)

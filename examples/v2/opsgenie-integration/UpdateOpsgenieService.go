@@ -8,28 +8,30 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "opsgenie_service" in the system
 	OpsgenieServiceDataID := os.Getenv("OPSGENIE_SERVICE_DATA_ID")
 
-	body := datadog.OpsgenieServiceUpdateRequest{
-		Data: datadog.OpsgenieServiceUpdateData{
-			Attributes: datadog.OpsgenieServiceUpdateAttributes{
+	body := datadogV2.OpsgenieServiceUpdateRequest{
+		Data: datadogV2.OpsgenieServiceUpdateData{
+			Attributes: datadogV2.OpsgenieServiceUpdateAttributes{
 				Name:           datadog.PtrString("fake-opsgenie-service-name--updated"),
 				OpsgenieApiKey: datadog.PtrString("00000000-0000-0000-0000-000000000000"),
-				Region:         datadog.OPSGENIESERVICEREGIONTYPE_EU.Ptr(),
+				Region:         datadogV2.OPSGENIESERVICEREGIONTYPE_EU.Ptr(),
 			},
 			Id:   OpsgenieServiceDataID,
-			Type: datadog.OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
+			Type: datadogV2.OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OpsgenieIntegrationApi.UpdateOpsgenieService(ctx, OpsgenieServiceDataID, body)
+	api := datadogV2.NewOpsgenieIntegrationApi(apiClient)
+	resp, r, err := api.UpdateOpsgenieService(ctx, OpsgenieServiceDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OpsgenieIntegrationApi.UpdateOpsgenieService`: %v\n", err)

@@ -8,35 +8,36 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
-	body := datadog.Dashboard{
-		LayoutType:  datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+	body := datadogV1.Dashboard{
+		LayoutType:  datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:       "Example-Update_a_dashboard_returns_OK_response with list_stream widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("Updated description")),
-		Widgets: []datadog.Widget{
+		Widgets: []datadogV1.Widget{
 			{
-				Definition: datadog.WidgetDefinition{
-					ListStreamWidgetDefinition: &datadog.ListStreamWidgetDefinition{
-						Type: datadog.LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM,
-						Requests: []datadog.ListStreamWidgetRequest{
+				Definition: datadogV1.WidgetDefinition{
+					ListStreamWidgetDefinition: &datadogV1.ListStreamWidgetDefinition{
+						Type: datadogV1.LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM,
+						Requests: []datadogV1.ListStreamWidgetRequest{
 							{
-								Columns: []datadog.ListStreamColumn{
+								Columns: []datadogV1.ListStreamColumn{
 									{
-										Width: datadog.LISTSTREAMCOLUMNWIDTH_AUTO,
+										Width: datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
 										Field: "timestamp",
 									},
 								},
-								Query: datadog.ListStreamQuery{
-									DataSource:  datadog.LISTSTREAMSOURCE_APM_ISSUE_STREAM,
+								Query: datadogV1.ListStreamQuery{
+									DataSource:  datadogV1.LISTSTREAMSOURCE_APM_ISSUE_STREAM,
 									QueryString: "",
 								},
-								ResponseFormat: datadog.LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
+								ResponseFormat: datadogV1.LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
 							},
 						},
 					}},
@@ -46,7 +47,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.UpdateDashboard(ctx, DashboardID, body)
+	api := datadogV1.NewDashboardsApi(apiClient)
+	resp, r, err := api.UpdateDashboard(ctx, DashboardID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.UpdateDashboard`: %v\n", err)

@@ -8,13 +8,14 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.Monitor{
+	body := datadogV1.Monitor{
 		Name:    datadog.PtrString("Example-Validate_a_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_LOG_ALERT,
+		Type:    datadogV1.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
@@ -22,7 +23,7 @@ func main() {
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
-		Options: &datadog.MonitorOptions{
+		Options: &datadogV1.MonitorOptions{
 			EnableLogsSample:     datadog.PtrBool(true),
 			EscalationMessage:    datadog.PtrString("the situation has escalated"),
 			EvaluationDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(700)),
@@ -33,10 +34,11 @@ func main() {
 			NoDataTimeframe:      *datadog.NewNullableInt64(nil),
 			NotifyAudit:          datadog.PtrBool(false),
 			NotifyNoData:         datadog.PtrBool(false),
+			OnMissingData:        datadogV1.ONMISSINGDATAOPTION_SHOW_AND_NOTIFY_NO_DATA.Ptr(),
 			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			RequireFullWindow:    datadog.PtrBool(true),
 			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(24)),
-			Thresholds: &datadog.MonitorThresholds{
+			Thresholds: &datadogV1.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
@@ -45,7 +47,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.ValidateMonitor(ctx, body)
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.ValidateMonitor(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateMonitor`: %v\n", err)

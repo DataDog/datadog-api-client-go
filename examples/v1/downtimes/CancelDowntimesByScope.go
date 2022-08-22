@@ -8,20 +8,22 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "downtime" in the system
 	DowntimeScope0 := os.Getenv("DOWNTIME_SCOPE_0")
 
-	body := datadog.CancelDowntimesByScopeRequest{
+	body := datadogV1.CancelDowntimesByScopeRequest{
 		Scope: DowntimeScope0,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx, body)
+	api := datadogV1.NewDowntimesApi(apiClient)
+	resp, r, err := api.CancelDowntimesByScope(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope`: %v\n", err)

@@ -8,14 +8,15 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.SecurityMonitoringRuleCreatePayload{
-		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
+	body := datadogV2.SecurityMonitoringRuleCreatePayload{
+		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
 			{
-				Aggregation: datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
+				Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
 				GroupByFields: []string{
 					"@usr.id",
 				},
@@ -24,34 +25,35 @@ func main() {
 				Query:          "*",
 			},
 		},
-		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
+		Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
 			{
 				Name:          datadog.PtrString(""),
-				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
+				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
 				Notifications: []string{},
 			},
 		},
 		HasExtendedTitle: datadog.PtrBool(true),
 		Message:          "test",
 		IsEnabled:        true,
-		Options: datadog.SecurityMonitoringRuleOptions{
-			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
-			EvaluationWindow:  datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
-			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
-			DetectionMethod:   datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
-			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
+		Options: datadogV2.SecurityMonitoringRuleOptions{
+			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
+			EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
+			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
+			DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
+			ImpossibleTravelOptions: &datadogV2.SecurityMonitoringRuleImpossibleTravelOptions{
 				BaselineUserLocations: datadog.PtrBool(false),
 			},
 		},
 		Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
-		Type:    datadog.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
+		Type:    datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
 		Tags:    []string{},
-		Filters: []datadog.SecurityMonitoringFilter{},
+		Filters: []datadogV2.SecurityMonitoringFilter{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
+	api := datadogV2.NewSecurityMonitoringApi(apiClient)
+	resp, r, err := api.CreateSecurityMonitoringRule(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)

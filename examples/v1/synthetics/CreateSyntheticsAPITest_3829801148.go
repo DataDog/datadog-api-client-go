@@ -8,28 +8,29 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
+	body := datadogV1.SyntheticsAPITest{
+		Config: datadogV1.SyntheticsAPITestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 						Target:   "message",
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE,
 					}},
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
 						Target:   2000,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 			},
-			ConfigVariables: []datadog.SyntheticsConfigVariable{},
-			Request: &datadog.SyntheticsTestRequest{
+			ConfigVariables: []datadogV1.SyntheticsConfigVariable{},
+			Request: &datadogV1.SyntheticsTestRequest{
 				Host:    datadog.PtrString("https://datadoghq.com"),
 				Message: datadog.PtrString("message"),
 				Port:    datadog.PtrInt64(443),
@@ -40,7 +41,7 @@ func main() {
 		},
 		Message: "BDD test payload: synthetics_api_test_udp_payload.json",
 		Name:    "Example-Create_an_API_test_with_UDP_subtype_returns_OK_Returns_the_created_test_details_response",
-		Options: datadog.SyntheticsTestOptions{
+		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -48,22 +49,23 @@ func main() {
 			MinLocationFailed:  datadog.PtrInt64(1),
 			MonitorName:        datadog.PtrString("Example-Create_an_API_test_with_UDP_subtype_returns_OK_Returns_the_created_test_details_response"),
 			MonitorPriority:    datadog.PtrInt32(5),
-			Retry: &datadog.SyntheticsTestOptionsRetry{
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
 			},
 			TickEvery: datadog.PtrInt64(60),
 		},
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_UDP.Ptr(),
+		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_UDP.Ptr(),
 		Tags: []string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
+		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

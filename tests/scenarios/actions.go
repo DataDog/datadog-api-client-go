@@ -18,12 +18,11 @@ import (
 	"strings"
 	"time"
 
-	v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	testsV1 "github.com/DataDog/datadog-api-client-go/tests/api/v1/datadog"
-	testsV2 "github.com/DataDog/datadog-api-client-go/tests/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV1"
+	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV2"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
 )
 
@@ -112,22 +111,14 @@ type ctxRequestsUndoKey struct{}
 func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Context, func()) {
 	t := GetT(bddCTX)
 	debug := os.Getenv("DEBUG") == "true"
-	config1 := v1.NewConfiguration()
-	config1.Debug = debug
-	c1 := v1.NewAPIClient(config1)
-	config2 := v2.NewConfiguration()
-	config2.Debug = debug
-	c2 := v2.NewAPIClient(config2)
+	config := datadog.NewConfiguration()
+	config.Debug = debug
+	c := datadog.NewAPIClient(config)
 
 	ctx = context.WithValue(
 		ctx,
-		v1.ContextAPIKeys,
-		map[string]v1.APIKey{},
-	)
-	ctx = context.WithValue(
-		ctx,
-		v2.ContextAPIKeys,
-		map[string]v2.APIKey{},
+		datadog.ContextAPIKeys,
+		map[string]datadog.APIKey{},
 	)
 
 	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
@@ -140,14 +131,10 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 		t.Fatalf("could not setup recorder: %v", err)
 	}
 	httpClient := http.Client{Transport: tests.WrapRoundTripper(r)}
-	c1.GetConfig().HTTPClient = &httpClient
-	c2.GetConfig().HTTPClient = &httpClient
+	c.GetConfig().HTTPClient = &httpClient
 
-	clients := map[string]reflect.Value{
-		"v1": reflect.ValueOf(c1),
-		"v2": reflect.ValueOf(c2),
-	}
-	bddCTX.Set(clientKeys{}, clients)
+	client := reflect.ValueOf(c)
+	bddCTX.Set(clientKeys{}, client)
 	return ctx, func() {
 		r.Stop()
 	}
@@ -163,40 +150,24 @@ func getAuthenticatedContext(ctx gobdd.Context) context.Context {
 	)
 }
 
-// GetClientVersion returns the client matching the given version
-func GetClientVersion(ctx gobdd.Context, version string) (reflect.Value, error) {
-	clientInterfaces, err := ctx.Get(clientKeys{})
-	if err != nil {
-		return reflect.Value{}, err
-	}
-	if clientInterface, ok := clientInterfaces.(map[string]reflect.Value); ok {
-		if client, ok := clientInterface[version]; ok {
-			return client, nil
-		}
-	}
-	return reflect.Value{}, fmt.Errorf("could not get client")
-}
-
 // RegisterSuite adds step implementation.
 func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 	given := func(t gobdd.StepTest, ctx gobdd.Context) {
 		// get an instance of Client
-		clientInterface, err := GetClientVersion(ctx, version)
-		if err != nil {
-			t.Fatalf("could not find client: %v", err)
-		}
+		clientInterface := GetClient(ctx)
 
 		// Enable unstable operation
 		configInterface := clientInterface.MethodByName("GetConfig").Call(nil)[0]
-		if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{reflect.ValueOf(s.OperationID)})[0].Bool() {
+		unstableOperationId := reflect.ValueOf(fmt.Sprintf("%s.%s", version, s.OperationID))
+		if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{unstableOperationId})[0].Bool() {
 			configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-				reflect.ValueOf(s.OperationID), reflect.ValueOf(true),
+				unstableOperationId, reflect.ValueOf(true),
 			})
 		}
 
 		// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 		tag := strings.Replace(s.Tag, " ", "", -1) + "Api"
-		api := reflect.Indirect(clientInterface).FieldByName(tag)
+		api := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{clientInterface})[0]
 		if !api.IsValid() {
 			t.Fatalf("invalid API name %s", tag)
 		}
@@ -278,14 +249,11 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 	}
 
 	// get an instance of Client
-	undoClientInterface, err := GetClientVersion(ctx, version)
-	if err != nil {
-		return nil, err
-	}
+	undoClientInterface := GetClient(ctx)
 
 	// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 	tag := strings.Replace(undo.Tag, " ", "", -1) + "Api"
-	undoAPI := reflect.Indirect(undoClientInterface).FieldByName(tag)
+	undoAPI := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{undoClientInterface})[0]
 	if !undoAPI.IsValid() {
 		return nil, fmt.Errorf("invalid API name %sApi", tag)
 	}

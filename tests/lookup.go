@@ -8,9 +8,9 @@ import (
 )
 
 // ErrNotFound is returned when the key didn't match
-var ErrNotFound = errors.New("Unable to find the key")
+var ErrNotFound = errors.New("unable to find the key")
 
-// LookupStringI returnes the value found at the given path
+// LookupStringI returns the value found at the given path
 func LookupStringI(i interface{}, path string) (reflect.Value, error) {
 	value := reflect.ValueOf(i)
 	var err error

@@ -1,4 +1,4 @@
-// Get hourly usage for Application Security returns "OK" response
+// Get hourly usage for application security returns "OK" response
 
 package main
 
@@ -9,14 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageApplicationSecurityMonitoring(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageApplicationSecurityMonitoringOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	api := datadogV2.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageApplicationSecurityMonitoring(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadogV2.NewGetUsageApplicationSecurityMonitoringOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageApplicationSecurityMonitoring`: %v\n", err)

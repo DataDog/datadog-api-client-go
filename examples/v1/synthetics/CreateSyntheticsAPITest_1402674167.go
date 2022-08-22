@@ -8,25 +8,26 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
+	body := datadogV1.SyntheticsAPITest{
+		Config: datadogV1.SyntheticsAPITestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 						Target:   1,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_GRPC_HEALTHCHECK_STATUS,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_GRPC_HEALTHCHECK_STATUS,
 					}},
 			},
-			Request: &datadog.SyntheticsTestRequest{
+			Request: &datadogV1.SyntheticsTestRequest{
 				Host:     datadog.PtrString("localhost"),
 				Port:     datadog.PtrInt64(50051),
 				Service:  datadog.PtrString("Hello"),
-				Method:   datadog.HTTPMETHOD_GET.Ptr(),
+				Method:   datadogV1.HTTPMETHOD_GET.Ptr(),
 				Message:  datadog.PtrString(""),
 				Metadata: map[string]string{},
 			},
@@ -36,25 +37,26 @@ func main() {
 		},
 		Message: "BDD test payload: synthetics_api_grpc_test_payload.json",
 		Name:    "Example-Create_an_API_GRPC_test_returns_OK_Returns_the_created_test_details_response",
-		Options: datadog.SyntheticsTestOptions{
+		Options: datadogV1.SyntheticsTestOptions{
 			MinFailureDuration: datadog.PtrInt64(0),
 			MinLocationFailed:  datadog.PtrInt64(1),
-			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{
+			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{
 				RenotifyInterval: datadog.PtrInt64(0),
 			},
 			MonitorName: datadog.PtrString("Example-Create_an_API_GRPC_test_returns_OK_Returns_the_created_test_details_response"),
 			TickEvery:   datadog.PtrInt64(60),
 		},
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_GRPC.Ptr(),
+		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_GRPC.Ptr(),
 		Tags: []string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
+		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

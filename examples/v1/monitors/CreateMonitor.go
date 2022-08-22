@@ -8,16 +8,17 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
-	body := datadog.Monitor{
+	body := datadogV1.Monitor{
 		Name:    datadog.PtrString("Example-Create_a_monitor_returns_OK_response"),
-		Type:    datadog.MONITORTYPE_LOG_ALERT,
+		Type:    datadogV1.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
@@ -32,7 +33,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx, body)
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor`: %v\n", err)

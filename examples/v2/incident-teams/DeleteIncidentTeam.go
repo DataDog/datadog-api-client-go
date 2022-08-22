@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -16,9 +17,10 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("DeleteIncidentTeam", true)
+	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentTeam", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.IncidentTeamsApi.DeleteIncidentTeam(ctx, TeamDataID)
+	api := datadogV2.NewIncidentTeamsApi(apiClient)
+	r, err := api.DeleteIncidentTeam(ctx, TeamDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.DeleteIncidentTeam`: %v\n", err)

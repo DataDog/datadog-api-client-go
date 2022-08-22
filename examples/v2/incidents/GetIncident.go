@@ -8,7 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -17,9 +18,10 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("GetIncident", true)
+	configuration.SetUnstableOperationEnabled("v2.GetIncident", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsApi.GetIncident(ctx, IncidentDataID, *datadog.NewGetIncidentOptionalParameters())
+	api := datadogV2.NewIncidentsApi(apiClient)
+	resp, r, err := api.GetIncident(ctx, IncidentDataID, *datadogV2.NewGetIncidentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncident`: %v\n", err)

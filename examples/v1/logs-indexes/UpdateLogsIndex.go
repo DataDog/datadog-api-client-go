@@ -8,28 +8,30 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.LogsIndexUpdateRequest{
-		ExclusionFilters: []datadog.LogsExclusion{
+	body := datadogV1.LogsIndexUpdateRequest{
+		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
-				Filter: &datadog.LogsExclusionFilter{
+				Filter: &datadogV1.LogsExclusionFilter{
 					Query:      datadog.PtrString("*"),
 					SampleRate: 1.0,
 				},
 				Name: "payment",
 			},
 		},
-		Filter: datadog.LogsFilter{
+		Filter: datadogV1.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndex(ctx, "name", body)
+	api := datadogV1.NewLogsIndexesApi(apiClient)
+	resp, r, err := api.UpdateLogsIndex(ctx, "name", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndex`: %v\n", err)

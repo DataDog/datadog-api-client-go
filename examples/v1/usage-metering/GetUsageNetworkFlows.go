@@ -1,4 +1,4 @@
-// Get hourly usage for Network Flows returns "OK" response
+// get hourly usage for network flows returns "OK" response
 
 package main
 
@@ -9,14 +9,16 @@ import (
 	"os"
 	"time"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageNetworkFlows(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageNetworkFlowsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	api := datadogV1.NewUsageMeteringApi(apiClient)
+	resp, r, err := api.GetUsageNetworkFlows(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadogV1.NewGetUsageNetworkFlowsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageNetworkFlows`: %v\n", err)

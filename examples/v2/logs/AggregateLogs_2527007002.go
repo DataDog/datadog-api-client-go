@@ -8,19 +8,20 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.LogsAggregateRequest{
-		Compute: []datadog.LogsCompute{
+	body := datadogV2.LogsAggregateRequest{
+		Compute: []datadogV2.LogsCompute{
 			{
-				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
+				Aggregation: datadogV2.LOGSAGGREGATIONFUNCTION_COUNT,
 				Interval:    datadog.PtrString("5m"),
-				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
+				Type:        datadogV2.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
 			},
 		},
-		Filter: &datadog.LogsQueryFilter{
+		Filter: &datadogV2.LogsQueryFilter{
 			From: datadog.PtrString("now-15m"),
 			Indexes: []string{
 				"main",
@@ -32,7 +33,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body)
+	api := datadogV2.NewLogsApi(apiClient)
+	resp, r, err := api.AggregateLogs(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs`: %v\n", err)

@@ -8,21 +8,22 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
-	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: []datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
+	body := datadogV1.SyntheticsAPITest{
+		Config: datadogV1.SyntheticsAPITestConfig{
+			Assertions: []datadogV1.SyntheticsAssertion{
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
 						Target:   10,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
 					}},
 			},
-			Request: &datadog.SyntheticsTestRequest{
+			Request: &datadogV1.SyntheticsTestRequest{
 				Host: datadog.PtrString("datadoghq.com"),
 				Port: datadog.PtrInt64(443),
 			},
@@ -32,21 +33,22 @@ func main() {
 		},
 		Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
 		Name:    "Example-Create_an_API_SSL_test_returns_OK_Returns_the_created_test_details_response",
-		Options: datadog.SyntheticsTestOptions{
+		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned:           datadog.PtrBool(true),
 			CheckCertificateRevocation: datadog.PtrBool(true),
 			TickEvery:                  datadog.PtrInt64(60),
 		},
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
+		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
 		Tags: []string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
+		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

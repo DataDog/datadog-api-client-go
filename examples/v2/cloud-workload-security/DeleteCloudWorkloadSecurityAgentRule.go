@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -17,7 +18,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.CloudWorkloadSecurityApi.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
+	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
+	r, err := api.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.DeleteCloudWorkloadSecurityAgentRule`: %v\n", err)

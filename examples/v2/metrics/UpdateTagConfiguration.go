@@ -8,18 +8,19 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
 	// there is a valid "metric_tag_configuration" in the system
 	MetricTagConfigurationDataID := os.Getenv("METRIC_TAG_CONFIGURATION_DATA_ID")
 
-	body := datadog.MetricTagConfigurationUpdateRequest{
-		Data: datadog.MetricTagConfigurationUpdateData{
-			Type: datadog.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
+	body := datadogV2.MetricTagConfigurationUpdateRequest{
+		Data: datadogV2.MetricTagConfigurationUpdateData{
+			Type: datadogV2.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
 			Id:   MetricTagConfigurationDataID,
-			Attributes: &datadog.MetricTagConfigurationUpdateAttributes{
+			Attributes: &datadogV2.MetricTagConfigurationUpdateAttributes{
 				Tags: []string{
 					"app",
 				},
@@ -29,7 +30,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.UpdateTagConfiguration(ctx, MetricTagConfigurationDataID, body)
+	api := datadogV2.NewMetricsApi(apiClient)
+	resp, r, err := api.UpdateTagConfiguration(ctx, MetricTagConfigurationDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateTagConfiguration`: %v\n", err)

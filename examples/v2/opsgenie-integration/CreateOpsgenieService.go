@@ -8,24 +8,26 @@ import (
 	"fmt"
 	"os"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
-	body := datadog.OpsgenieServiceCreateRequest{
-		Data: datadog.OpsgenieServiceCreateData{
-			Attributes: datadog.OpsgenieServiceCreateAttributes{
+	body := datadogV2.OpsgenieServiceCreateRequest{
+		Data: datadogV2.OpsgenieServiceCreateData{
+			Attributes: datadogV2.OpsgenieServiceCreateAttributes{
 				Name:           "Example-Create_a_new_service_object_returns_CREATED_response",
 				OpsgenieApiKey: "00000000-0000-0000-0000-000000000000",
-				Region:         datadog.OPSGENIESERVICEREGIONTYPE_US,
+				Region:         datadogV2.OPSGENIESERVICEREGIONTYPE_US,
 			},
-			Type: datadog.OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
+			Type: datadogV2.OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OpsgenieIntegrationApi.CreateOpsgenieService(ctx, body)
+	api := datadogV2.NewOpsgenieIntegrationApi(apiClient)
+	resp, r, err := api.CreateOpsgenieService(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OpsgenieIntegrationApi.CreateOpsgenieService`: %v\n", err)

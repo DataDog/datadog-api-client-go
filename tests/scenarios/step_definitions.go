@@ -17,33 +17,19 @@ import (
 	"strconv"
 	"strings"
 
-	v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
-	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
-	"github.com/DataDog/datadog-api-client-go/tests"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 	is "gotest.tools/assert/cmp"
 )
 
 func setAPIKey(ctx gobdd.Context, name string, value string) {
-	version := GetVersion(ctx)
-	if version == "v1" {
-		if keys, ok := GetCtx(ctx).Value(v1.ContextAPIKeys).(map[string]v1.APIKey); ok {
-			keys[name] = v1.APIKey{
-				Key: value,
-			}
-		} else {
-			GetT(ctx).Fatalf("could not set %s key", name)
-		}
-	} else if version == "v2" {
-		if keys, ok := GetCtx(ctx).Value(v2.ContextAPIKeys).(map[string]v2.APIKey); ok {
-			keys[name] = v2.APIKey{
-				Key: value,
-			}
-		} else {
-			GetT(ctx).Fatalf("could not set %s key", name)
+	if keys, ok := GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+		keys[name] = datadog.APIKey{
+			Key: value,
 		}
 	} else {
-		GetT(ctx).Fatalf("unknown version %s", version)
+		GetT(ctx).Fatalf("could not set %s key", name)
 	}
 }
 
@@ -66,20 +52,22 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
-	f := reflect.Indirect(ct).FieldByName(name + "Api")
-	if !f.IsValid() {
-		t.Fatalf("invalid API name %s", name)
-	}
+	version := GetVersion(ctx)
+
+	api := GetApiByVersionAndName(ctx, version, name+"Api")
+	f := api.Call([]reflect.Value{ct})[0]
+
 	SetAPI(ctx, f)
 }
 
 // enableOperations sets unstable operations specific in this clause to enabled
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
+	version := GetVersion(ctx)
 	// client.GetConfig().SetUnstableOperationEnabled(name, true)
 	config := ct.MethodByName("GetConfig").Call([]reflect.Value{})
 	enable := config[0].MethodByName("SetUnstableOperationEnabled")
-	enable.Call([]reflect.Value{reflect.ValueOf(name), reflect.ValueOf(true)})
+	enable.Call([]reflect.Value{reflect.ValueOf(fmt.Sprintf("%s.%s", version, name)), reflect.ValueOf(true)})
 }
 
 // newRequest sets callable operation to requestKey{}
@@ -218,6 +206,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	result := request.Call(in)
+
 	ctx.Set(responseKey{}, result)
 
 	// Report probable serialization errors
@@ -242,17 +231,9 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		}
 		var responseJSON interface{}
 		if err != nil {
-			version := GetVersion(ctx)
-			if version == "v1" {
-				err := err.(v1.GenericOpenAPIError)
-				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-					responseJSON = string(err.Body())
-				}
-			} else {
-				err := err.(v2.GenericOpenAPIError)
-				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-					responseJSON = string(err.Body())
-				}
+			err := err.(datadog.GenericOpenAPIError)
+			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+				responseJSON = string(err.Body())
 			}
 		} else {
 			// Store the unmarshalled JSON in context
@@ -273,7 +254,7 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	// use WithPagination method
 	newWithPagination, err := ctx.GetString(requestNameKey{})
 	newWithPagination = newWithPagination + "WithPagination"
-	
+
 	c, err := ctx.Get(apiKey{})
 	if err != nil {
 		t.Error(err)
@@ -286,7 +267,7 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 	ctx.Set(requestKey{}, f)
 	// call the WithPagination method
-	
+
 	request, in, err := getRequestBuilder(ctx)
 	if err != nil {
 		t.Error(err)
@@ -305,17 +286,9 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 	var responseJSON interface{}
 	if err != nil {
-		version := GetVersion(ctx)
-		if version == "v1" {
-			err := err.(v1.GenericOpenAPIError)
-			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-				responseJSON = string(err.Body())
-			}
-		} else {
-			err := err.(v2.GenericOpenAPIError)
-			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-				responseJSON = string(err.Body())
-			}
+		err := err.(datadog.GenericOpenAPIError)
+		if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+			responseJSON = string(err.Body())
 		}
 	} else {
 		// Store the unmarshalled JSON in context
@@ -330,7 +303,7 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		if err := json.Unmarshal(buf.Bytes(), &responseJSON); err != nil {
 			t.Errorf("Unable to decode response object to JSON: %v", err)
 		}
-		
+
 		if err != nil {
 			t.Errorf("Unable to decode response object to JSON: %v", err)
 		}

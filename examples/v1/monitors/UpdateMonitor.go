@@ -9,21 +9,22 @@ import (
 	"os"
 	"strconv"
 
-	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func main() {
 	// there is a valid "monitor" in the system
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
-	body := datadog.MonitorUpdateRequest{
+	body := datadogV1.MonitorUpdateRequest{
 		Name: datadog.PtrString("My monitor-updated"),
-		Options: &datadog.MonitorOptions{
+		Options: &datadogV1.MonitorOptions{
 			EvaluationDelay:  *datadog.NewNullableInt64(nil),
 			NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 			NewHostDelay:     *datadog.NewNullableInt64(nil),
 			RenotifyInterval: *datadog.NewNullableInt64(nil),
-			Thresholds: &datadog.MonitorThresholds{
+			Thresholds: &datadogV1.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(nil),
 			},
@@ -33,7 +34,8 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, MonitorID, body)
+	api := datadogV1.NewMonitorsApi(apiClient)
+	resp, r, err := api.UpdateMonitor(ctx, MonitorID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor`: %v\n", err)
