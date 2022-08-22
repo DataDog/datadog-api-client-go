@@ -48,7 +48,7 @@ import (
     "os"
 
     "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 )
 
 func main() {
@@ -81,7 +81,7 @@ func main() {
 }
 ```
 
-Save it to `example.go`, then run `go get github.com/DataDog/datadog-api-client-go/v2/api/v2/datadog`.
+Save it to `example.go`, then run `go get github.com/DataDog/datadog-api-client-go/v2`.
 Set the `DD_CLIENT_API_KEY` and `DD_CLIENT_APP_KEY` to your Datadog
 credentials, and then run `go run example.go`.
 
