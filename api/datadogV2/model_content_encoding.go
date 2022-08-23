@@ -14,13 +14,11 @@ type ContentEncoding string
 
 // List of ContentEncoding.
 const (
-	CONTENTENCODING_IDENTITY ContentEncoding = "identity"
-	CONTENTENCODING_GZIP     ContentEncoding = "gzip"
-	CONTENTENCODING_DEFLATE  ContentEncoding = "deflate"
+	CONTENTENCODING_GZIP    ContentEncoding = "gzip"
+	CONTENTENCODING_DEFLATE ContentEncoding = "deflate"
 )
 
 var allowedContentEncodingEnumValues = []ContentEncoding{
-	CONTENTENCODING_IDENTITY,
 	CONTENTENCODING_GZIP,
 	CONTENTENCODING_DEFLATE,
 }
