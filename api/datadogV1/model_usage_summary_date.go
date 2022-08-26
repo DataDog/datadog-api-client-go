@@ -51,6 +51,8 @@ type UsageSummaryDate struct {
 	ContainerHwm *int64 `json:"container_hwm,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current date for all organizations.
 	CspmAasHostTop99p *int64 `json:"cspm_aas_host_top99p,omitempty"`
+	// Shows the 99th percentile of all Cloud Security Posture Management AWS hosts over all hours in the current date for all organizations.
+	CspmAwsHostTop99p *int64 `json:"cspm_aws_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure hosts over all hours in the current date for all organizations.
 	CspmAzureHostTop99p *int64 `json:"cspm_azure_host_top99p,omitempty"`
 	// Shows the average number of Cloud Security Posture Management containers over all hours in the current date for all organizations.
@@ -799,6 +801,38 @@ func (o *UsageSummaryDate) HasCspmAasHostTop99p() bool {
 // SetCspmAasHostTop99p gets a reference to the given int64 and assigns it to the CspmAasHostTop99p field.
 func (o *UsageSummaryDate) SetCspmAasHostTop99p(v int64) {
 	o.CspmAasHostTop99p = &v
+}
+
+// GetCspmAwsHostTop99p returns the CspmAwsHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetCspmAwsHostTop99p() int64 {
+	if o == nil || o.CspmAwsHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CspmAwsHostTop99p
+}
+
+// GetCspmAwsHostTop99pOk returns a tuple with the CspmAwsHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetCspmAwsHostTop99pOk() (*int64, bool) {
+	if o == nil || o.CspmAwsHostTop99p == nil {
+		return nil, false
+	}
+	return o.CspmAwsHostTop99p, true
+}
+
+// HasCspmAwsHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasCspmAwsHostTop99p() bool {
+	if o != nil && o.CspmAwsHostTop99p != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmAwsHostTop99p gets a reference to the given int64 and assigns it to the CspmAwsHostTop99p field.
+func (o *UsageSummaryDate) SetCspmAwsHostTop99p(v int64) {
+	o.CspmAwsHostTop99p = &v
 }
 
 // GetCspmAzureHostTop99p returns the CspmAzureHostTop99p field value if set, zero value otherwise.
@@ -2275,6 +2309,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.CspmAasHostTop99p != nil {
 		toSerialize["cspm_aas_host_top99p"] = o.CspmAasHostTop99p
 	}
+	if o.CspmAwsHostTop99p != nil {
+		toSerialize["cspm_aws_host_top99p"] = o.CspmAwsHostTop99p
+	}
 	if o.CspmAzureHostTop99p != nil {
 		toSerialize["cspm_azure_host_top99p"] = o.CspmAzureHostTop99p
 	}
@@ -2442,6 +2479,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		ContainerAvg                            *int64                `json:"container_avg,omitempty"`
 		ContainerHwm                            *int64                `json:"container_hwm,omitempty"`
 		CspmAasHostTop99p                       *int64                `json:"cspm_aas_host_top99p,omitempty"`
+		CspmAwsHostTop99p                       *int64                `json:"cspm_aws_host_top99p,omitempty"`
 		CspmAzureHostTop99p                     *int64                `json:"cspm_azure_host_top99p,omitempty"`
 		CspmContainerAvg                        *int64                `json:"cspm_container_avg,omitempty"`
 		CspmContainerHwm                        *int64                `json:"cspm_container_hwm,omitempty"`
@@ -2516,6 +2554,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ContainerAvg = all.ContainerAvg
 	o.ContainerHwm = all.ContainerHwm
 	o.CspmAasHostTop99p = all.CspmAasHostTop99p
+	o.CspmAwsHostTop99p = all.CspmAwsHostTop99p
 	o.CspmAzureHostTop99p = all.CspmAzureHostTop99p
 	o.CspmContainerAvg = all.CspmContainerAvg
 	o.CspmContainerHwm = all.CspmContainerHwm
