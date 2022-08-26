@@ -15,6 +15,8 @@ import (
 type UsageCloudSecurityPostureManagementHour struct {
 	// The number of Cloud Security Posture Management Azure app services hosts during a given hour.
 	AasHostCount datadog.NullableFloat64 `json:"aas_host_count,omitempty"`
+	// The number of Cloud Security Posture Management AWS hosts during a given hour.
+	AwsHostCount datadog.NullableFloat64 `json:"aws_host_count,omitempty"`
 	// The number of Cloud Security Posture Management Azure hosts during a given hour.
 	AzureHostCount datadog.NullableFloat64 `json:"azure_host_count,omitempty"`
 	// The number of Cloud Security Posture Management hosts during a given hour.
@@ -92,6 +94,49 @@ func (o *UsageCloudSecurityPostureManagementHour) SetAasHostCountNil() {
 // UnsetAasHostCount ensures that no value is present for AasHostCount, not even an explicit nil.
 func (o *UsageCloudSecurityPostureManagementHour) UnsetAasHostCount() {
 	o.AasHostCount.Unset()
+}
+
+// GetAwsHostCount returns the AwsHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UsageCloudSecurityPostureManagementHour) GetAwsHostCount() float64 {
+	if o == nil || o.AwsHostCount.Get() == nil {
+		var ret float64
+		return ret
+	}
+	return *o.AwsHostCount.Get()
+}
+
+// GetAwsHostCountOk returns a tuple with the AwsHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *UsageCloudSecurityPostureManagementHour) GetAwsHostCountOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AwsHostCount.Get(), o.AwsHostCount.IsSet()
+}
+
+// HasAwsHostCount returns a boolean if a field has been set.
+func (o *UsageCloudSecurityPostureManagementHour) HasAwsHostCount() bool {
+	if o != nil && o.AwsHostCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAwsHostCount gets a reference to the given datadog.NullableFloat64 and assigns it to the AwsHostCount field.
+func (o *UsageCloudSecurityPostureManagementHour) SetAwsHostCount(v float64) {
+	o.AwsHostCount.Set(&v)
+}
+
+// SetAwsHostCountNil sets the value for AwsHostCount to be an explicit nil.
+func (o *UsageCloudSecurityPostureManagementHour) SetAwsHostCountNil() {
+	o.AwsHostCount.Set(nil)
+}
+
+// UnsetAwsHostCount ensures that no value is present for AwsHostCount, not even an explicit nil.
+func (o *UsageCloudSecurityPostureManagementHour) UnsetAwsHostCount() {
+	o.AwsHostCount.Unset()
 }
 
 // GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -371,6 +416,9 @@ func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 	if o.AasHostCount.IsSet() {
 		toSerialize["aas_host_count"] = o.AasHostCount.Get()
 	}
+	if o.AwsHostCount.IsSet() {
+		toSerialize["aws_host_count"] = o.AwsHostCount.Get()
+	}
 	if o.AzureHostCount.IsSet() {
 		toSerialize["azure_host_count"] = o.AzureHostCount.Get()
 	}
@@ -408,6 +456,7 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 	raw := map[string]interface{}{}
 	all := struct {
 		AasHostCount        datadog.NullableFloat64 `json:"aas_host_count,omitempty"`
+		AwsHostCount        datadog.NullableFloat64 `json:"aws_host_count,omitempty"`
 		AzureHostCount      datadog.NullableFloat64 `json:"azure_host_count,omitempty"`
 		ComplianceHostCount datadog.NullableFloat64 `json:"compliance_host_count,omitempty"`
 		ContainerCount      datadog.NullableFloat64 `json:"container_count,omitempty"`
@@ -426,6 +475,7 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 		return nil
 	}
 	o.AasHostCount = all.AasHostCount
+	o.AwsHostCount = all.AwsHostCount
 	o.AzureHostCount = all.AzureHostCount
 	o.ComplianceHostCount = all.ComplianceHostCount
 	o.ContainerCount = all.ContainerCount

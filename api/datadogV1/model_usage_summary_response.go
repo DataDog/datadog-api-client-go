@@ -53,6 +53,8 @@ type UsageSummaryResponse struct {
 	ContainerHwmSum *int64 `json:"container_hwm_sum,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current months for all organizations.
 	CspmAasHostTop99pSum *int64 `json:"cspm_aas_host_top99p_sum,omitempty"`
+	// Shows the 99th percentile of all Cloud Security Posture Management AWS hosts over all hours in the current months for all organizations.
+	CspmAwsHostTop99pSum *int64 `json:"cspm_aws_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure hosts over all hours in the current months for all organizations.
 	CspmAzureHostTop99pSum *int64 `json:"cspm_azure_host_top99p_sum,omitempty"`
 	// Shows the average number of Cloud Security Posture Management containers over all hours in the current months for all organizations.
@@ -849,6 +851,38 @@ func (o *UsageSummaryResponse) HasCspmAasHostTop99pSum() bool {
 // SetCspmAasHostTop99pSum gets a reference to the given int64 and assigns it to the CspmAasHostTop99pSum field.
 func (o *UsageSummaryResponse) SetCspmAasHostTop99pSum(v int64) {
 	o.CspmAasHostTop99pSum = &v
+}
+
+// GetCspmAwsHostTop99pSum returns the CspmAwsHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCspmAwsHostTop99pSum() int64 {
+	if o == nil || o.CspmAwsHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CspmAwsHostTop99pSum
+}
+
+// GetCspmAwsHostTop99pSumOk returns a tuple with the CspmAwsHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCspmAwsHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.CspmAwsHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.CspmAwsHostTop99pSum, true
+}
+
+// HasCspmAwsHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCspmAwsHostTop99pSum() bool {
+	if o != nil && o.CspmAwsHostTop99pSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCspmAwsHostTop99pSum gets a reference to the given int64 and assigns it to the CspmAwsHostTop99pSum field.
+func (o *UsageSummaryResponse) SetCspmAwsHostTop99pSum(v int64) {
+	o.CspmAwsHostTop99pSum = &v
 }
 
 // GetCspmAzureHostTop99pSum returns the CspmAzureHostTop99pSum field value if set, zero value otherwise.
@@ -2584,6 +2618,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.CspmAasHostTop99pSum != nil {
 		toSerialize["cspm_aas_host_top99p_sum"] = o.CspmAasHostTop99pSum
 	}
+	if o.CspmAwsHostTop99pSum != nil {
+		toSerialize["cspm_aws_host_top99p_sum"] = o.CspmAwsHostTop99pSum
+	}
 	if o.CspmAzureHostTop99pSum != nil {
 		toSerialize["cspm_azure_host_top99p_sum"] = o.CspmAzureHostTop99pSum
 	}
@@ -2784,6 +2821,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ContainerAvgSum                            *int64             `json:"container_avg_sum,omitempty"`
 		ContainerHwmSum                            *int64             `json:"container_hwm_sum,omitempty"`
 		CspmAasHostTop99pSum                       *int64             `json:"cspm_aas_host_top99p_sum,omitempty"`
+		CspmAwsHostTop99pSum                       *int64             `json:"cspm_aws_host_top99p_sum,omitempty"`
 		CspmAzureHostTop99pSum                     *int64             `json:"cspm_azure_host_top99p_sum,omitempty"`
 		CspmContainerAvgSum                        *int64             `json:"cspm_container_avg_sum,omitempty"`
 		CspmContainerHwmSum                        *int64             `json:"cspm_container_hwm_sum,omitempty"`
@@ -2867,6 +2905,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ContainerAvgSum = all.ContainerAvgSum
 	o.ContainerHwmSum = all.ContainerHwmSum
 	o.CspmAasHostTop99pSum = all.CspmAasHostTop99pSum
+	o.CspmAwsHostTop99pSum = all.CspmAwsHostTop99pSum
 	o.CspmAzureHostTop99pSum = all.CspmAzureHostTop99pSum
 	o.CspmContainerAvgSum = all.CspmContainerAvgSum
 	o.CspmContainerHwmSum = all.CspmContainerHwmSum
