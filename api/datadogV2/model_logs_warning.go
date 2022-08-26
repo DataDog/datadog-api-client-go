@@ -10,7 +10,7 @@ import (
 
 // LogsWarning A warning message indicating something that went wrong with the query
 type LogsWarning struct {
-	// A unique code for this type of warning
+	// A unique code for this type of warning updated
 	Code *string `json:"code,omitempty"`
 	// A detailed explanation of this specific warning
 	Detail *string `json:"detail,omitempty"`
