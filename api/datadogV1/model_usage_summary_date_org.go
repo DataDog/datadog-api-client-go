@@ -120,6 +120,8 @@ type UsageSummaryDateOrg struct {
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
 	// The organization public id.
 	PublicId *string `json:"public_id,omitempty"`
+	// The region of the organization.
+	Region *string `json:"region,omitempty"`
 	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current date for the given org.
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
 	// Shows the sum of all browser RUM Lite Sessions over all hours in the current date for the given org.
@@ -1924,6 +1926,38 @@ func (o *UsageSummaryDateOrg) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *UsageSummaryDateOrg) SetRegion(v string) {
+	o.Region = &v
+}
+
 // GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetRumBrowserAndMobileSessionCount() int64 {
 	if o == nil || o.RumBrowserAndMobileSessionCount == nil {
@@ -2447,6 +2481,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
 	if o.RumBrowserAndMobileSessionCount != nil {
 		toSerialize["rum_browser_and_mobile_session_count"] = o.RumBrowserAndMobileSessionCount
 	}
@@ -2546,6 +2583,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		OpentelemetryHostTop99p                 *int64  `json:"opentelemetry_host_top99p,omitempty"`
 		ProfilingHostTop99p                     *int64  `json:"profiling_host_top99p,omitempty"`
 		PublicId                                *string `json:"public_id,omitempty"`
+		Region                                  *string `json:"region,omitempty"`
 		RumBrowserAndMobileSessionCount         *int64  `json:"rum_browser_and_mobile_session_count,omitempty"`
 		RumSessionCountSum                      *int64  `json:"rum_session_count_sum,omitempty"`
 		RumTotalSessionCountSum                 *int64  `json:"rum_total_session_count_sum,omitempty"`
@@ -2622,6 +2660,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
 	o.PublicId = all.PublicId
+	o.Region = all.Region
 	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
 	o.RumSessionCountSum = all.RumSessionCountSum
 	o.RumTotalSessionCountSum = all.RumTotalSessionCountSum
