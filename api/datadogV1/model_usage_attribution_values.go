@@ -66,6 +66,10 @@ type UsageAttributionValues struct {
 	EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
 	// The estimated indexed spans usage by tag(s). Note this field is in private beta.
 	EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+	// The percentage of estimated live ingested logs usage by tag(s). Note this field is in private beta.
+	EstimatedIngestedLogsPercentage *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
+	// The estimated live ingested logs usage by tag(s). Note this field is in private beta.
+	EstimatedIngestedLogsUsage *float64 `json:"estimated_ingested_logs_usage,omitempty"`
 	// The percentage of estimated ingested spans usage by tag(s). Note this field is in private beta.
 	EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 	// The estimated ingested spans usage by tag(s). Note this field is in private beta.
@@ -1016,6 +1020,70 @@ func (o *UsageAttributionValues) SetEstimatedIndexedSpansUsage(v float64) {
 	o.EstimatedIndexedSpansUsage = &v
 }
 
+// GetEstimatedIngestedLogsPercentage returns the EstimatedIngestedLogsPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsPercentage() float64 {
+	if o == nil || o.EstimatedIngestedLogsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIngestedLogsPercentage
+}
+
+// GetEstimatedIngestedLogsPercentageOk returns a tuple with the EstimatedIngestedLogsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsPercentageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIngestedLogsPercentage == nil {
+		return nil, false
+	}
+	return o.EstimatedIngestedLogsPercentage, true
+}
+
+// HasEstimatedIngestedLogsPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasEstimatedIngestedLogsPercentage() bool {
+	if o != nil && o.EstimatedIngestedLogsPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedIngestedLogsPercentage gets a reference to the given float64 and assigns it to the EstimatedIngestedLogsPercentage field.
+func (o *UsageAttributionValues) SetEstimatedIngestedLogsPercentage(v float64) {
+	o.EstimatedIngestedLogsPercentage = &v
+}
+
+// GetEstimatedIngestedLogsUsage returns the EstimatedIngestedLogsUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsUsage() float64 {
+	if o == nil || o.EstimatedIngestedLogsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIngestedLogsUsage
+}
+
+// GetEstimatedIngestedLogsUsageOk returns a tuple with the EstimatedIngestedLogsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsUsageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIngestedLogsUsage == nil {
+		return nil, false
+	}
+	return o.EstimatedIngestedLogsUsage, true
+}
+
+// HasEstimatedIngestedLogsUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasEstimatedIngestedLogsUsage() bool {
+	if o != nil && o.EstimatedIngestedLogsUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedIngestedLogsUsage gets a reference to the given float64 and assigns it to the EstimatedIngestedLogsUsage field.
+func (o *UsageAttributionValues) SetEstimatedIngestedLogsUsage(v float64) {
+	o.EstimatedIngestedLogsUsage = &v
+}
+
 // GetEstimatedIngestedSpansPercentage returns the EstimatedIngestedSpansPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetEstimatedIngestedSpansPercentage() float64 {
 	if o == nil || o.EstimatedIngestedSpansPercentage == nil {
@@ -1618,6 +1686,12 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.EstimatedIndexedSpansUsage != nil {
 		toSerialize["estimated_indexed_spans_usage"] = o.EstimatedIndexedSpansUsage
 	}
+	if o.EstimatedIngestedLogsPercentage != nil {
+		toSerialize["estimated_ingested_logs_percentage"] = o.EstimatedIngestedLogsPercentage
+	}
+	if o.EstimatedIngestedLogsUsage != nil {
+		toSerialize["estimated_ingested_logs_usage"] = o.EstimatedIngestedLogsUsage
+	}
 	if o.EstimatedIngestedSpansPercentage != nil {
 		toSerialize["estimated_ingested_spans_percentage"] = o.EstimatedIngestedSpansPercentage
 	}
@@ -1705,6 +1779,8 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		EstimatedIndexedLogsUsage        *float64 `json:"estimated_indexed_logs_usage,omitempty"`
 		EstimatedIndexedSpansPercentage  *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
 		EstimatedIndexedSpansUsage       *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+		EstimatedIngestedLogsPercentage  *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
+		EstimatedIngestedLogsUsage       *float64 `json:"estimated_ingested_logs_usage,omitempty"`
 		EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 		EstimatedIngestedSpansUsage      *float64 `json:"estimated_ingested_spans_usage,omitempty"`
 		InfraHostPercentage              *float64 `json:"infra_host_percentage,omitempty"`
@@ -1759,6 +1835,8 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.EstimatedIndexedLogsUsage = all.EstimatedIndexedLogsUsage
 	o.EstimatedIndexedSpansPercentage = all.EstimatedIndexedSpansPercentage
 	o.EstimatedIndexedSpansUsage = all.EstimatedIndexedSpansUsage
+	o.EstimatedIngestedLogsPercentage = all.EstimatedIngestedLogsPercentage
+	o.EstimatedIngestedLogsUsage = all.EstimatedIngestedLogsUsage
 	o.EstimatedIngestedSpansPercentage = all.EstimatedIngestedSpansPercentage
 	o.EstimatedIngestedSpansUsage = all.EstimatedIngestedSpansUsage
 	o.InfraHostPercentage = all.InfraHostPercentage
