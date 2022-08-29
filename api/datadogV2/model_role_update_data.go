@@ -15,6 +15,8 @@ type RoleUpdateData struct {
 	Attributes RoleUpdateAttributes `json:"attributes"`
 	// The unique identifier of the role.
 	Id string `json:"id"`
+	// Relationships of the role object.
+	Relationships *RoleRelationships `json:"relationships,omitempty"`
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -90,6 +92,38 @@ func (o *RoleUpdateData) SetId(v string) {
 	o.Id = v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *RoleUpdateData) GetRelationships() RoleRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret RoleRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleUpdateData) GetRelationshipsOk() (*RoleRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *RoleUpdateData) HasRelationships() bool {
+	if o != nil && o.Relationships != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRelationships gets a reference to the given RoleRelationships and assigns it to the Relationships field.
+func (o *RoleUpdateData) SetRelationships(v RoleRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value.
 func (o *RoleUpdateData) GetType() RolesType {
 	if o == nil {
@@ -121,6 +155,9 @@ func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -138,9 +175,10 @@ func (o *RoleUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *RolesType            `json:"type"`
 	}{}
 	all := struct {
-		Attributes RoleUpdateAttributes `json:"attributes"`
-		Id         string               `json:"id"`
-		Type       RolesType            `json:"type"`
+		Attributes    RoleUpdateAttributes `json:"attributes"`
+		Id            string               `json:"id"`
+		Relationships *RoleRelationships   `json:"relationships,omitempty"`
+		Type          RolesType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -181,6 +219,14 @@ func (o *RoleUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil
 }
