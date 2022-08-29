@@ -23,6 +23,8 @@ type UsageBillableSummaryHour struct {
 	PublicId *string `json:"public_id,omitempty"`
 	// Shows usage aggregation for a billing period.
 	RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+	// The region of the organization.
+	Region *string `json:"region,omitempty"`
 	// Shows the first date of usage.
 	StartDate *time.Time `json:"start_date,omitempty"`
 	// Response with aggregated usage types.
@@ -241,6 +243,38 @@ func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
 	o.RatioInMonth = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *UsageBillableSummaryHour) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryHour) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *UsageBillableSummaryHour) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *UsageBillableSummaryHour) SetRegion(v string) {
+	o.Region = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -333,6 +367,9 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	if o.RatioInMonth != nil {
 		toSerialize["ratio_in_month"] = o.RatioInMonth
 	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
 	if o.StartDate != nil {
 		if o.StartDate.Nanosecond() == 0 {
 			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05Z07:00")
@@ -360,6 +397,7 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 		OrgName      *string                   `json:"org_name,omitempty"`
 		PublicId     *string                   `json:"public_id,omitempty"`
 		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
+		Region       *string                   `json:"region,omitempty"`
 		StartDate    *time.Time                `json:"start_date,omitempty"`
 		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
@@ -378,6 +416,7 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.RatioInMonth = all.RatioInMonth
+	o.Region = all.Region
 	o.StartDate = all.StartDate
 	if all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
