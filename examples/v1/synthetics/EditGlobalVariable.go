@@ -22,8 +22,9 @@ func main() {
 		Description: "Example description",
 		Name:        "MY_VARIABLE",
 		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
-			Field: datadog.PtrString("content-type"),
-			Parser: datadogV1.SyntheticsVariableParser{
+			Field:             datadog.PtrString("content-type"),
+			LocalVariableName: datadog.PtrString("LOCAL_VARIABLE"),
+			Parser: &datadogV1.SyntheticsVariableParser{
 				Type:  datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
 				Value: datadog.PtrString(".*"),
 			},

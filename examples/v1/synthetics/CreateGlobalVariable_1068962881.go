@@ -1,4 +1,4 @@
-// Create a global variable returns "OK" response
+// Create a global variable from test returns "OK" response
 
 package main
 
@@ -13,31 +13,21 @@ import (
 )
 
 func main() {
+	// there is a valid "synthetics_api_test_multi_step" in the system
+	SyntheticsAPITestMultiStepPublicID := os.Getenv("SYNTHETICS_API_TEST_MULTI_STEP_PUBLIC_ID")
+
 	body := datadogV1.SyntheticsGlobalVariable{
-		Attributes: &datadogV1.SyntheticsGlobalVariableAttributes{
-			RestrictedRoles: []string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-		},
-		Description: "Example description",
-		Name:        "MY_VARIABLE",
-		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
-			Field:             datadog.PtrString("content-type"),
-			LocalVariableName: datadog.PtrString("LOCAL_VARIABLE"),
-			Parser: &datadogV1.SyntheticsVariableParser{
-				Type:  datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: datadog.PtrString(".*"),
-			},
-			Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
-		},
-		ParseTestPublicId: datadog.PtrString("abc-def-123"),
-		Tags: []string{
-			"team:front",
-			"test:workflow-1",
-		},
+		Description: "",
+		Name:        "GLOBAL_VARIABLE_PAYLOAD",
+		Tags:        []string{},
 		Value: datadogV1.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(true),
-			Value:  datadog.PtrString("value"),
+			Secure: datadog.PtrBool(false),
+			Value:  datadog.PtrString(""),
+		},
+		ParseTestPublicId: datadog.PtrString(SyntheticsAPITestMultiStepPublicID),
+		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
+			Type:              datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE,
+			LocalVariableName: datadog.PtrString("EXTRACTED_VALUE"),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
