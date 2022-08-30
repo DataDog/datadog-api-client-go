@@ -27,6 +27,9 @@ func main() {
 			Request: datadogV1.SyntheticsTestRequest{
 				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
 				Url:    datadog.PtrString("https://datadoghq.com"),
+				CertificateDomains: []string{
+					"https://datadoghq.com",
+				},
 			},
 			SetCookie: datadog.PtrString("name:test"),
 		},
@@ -59,6 +62,9 @@ func main() {
 			Ci: &datadogV1.SyntheticsTestCiOptions{
 				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
 			},
+			IgnoreServerCertificateError: datadog.PtrBool(true),
+			DisableCsp:                   datadog.PtrBool(true),
+			InitialNavigationTimeout:     datadog.PtrInt64(200),
 		},
 		Tags: []string{
 			"testing:browser",

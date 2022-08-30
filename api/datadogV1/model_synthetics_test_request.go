@@ -18,6 +18,8 @@ type SyntheticsTestRequest struct {
 	Body *string `json:"body,omitempty"`
 	// Client certificate to use when performing the test request.
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+	// By default, the client certificate is applied on the domain of the starting URL for browser tests. If you want your client certificate to be applied on other domains instead, add them in `certificateDomains`.
+	CertificateDomains []string `json:"certificateDomains,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
@@ -204,6 +206,38 @@ func (o *SyntheticsTestRequest) HasCertificate() bool {
 // SetCertificate gets a reference to the given SyntheticsTestRequestCertificate and assigns it to the Certificate field.
 func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate) {
 	o.Certificate = &v
+}
+
+// GetCertificateDomains returns the CertificateDomains field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetCertificateDomains() []string {
+	if o == nil || o.CertificateDomains == nil {
+		var ret []string
+		return ret
+	}
+	return o.CertificateDomains
+}
+
+// GetCertificateDomainsOk returns a tuple with the CertificateDomains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetCertificateDomainsOk() (*[]string, bool) {
+	if o == nil || o.CertificateDomains == nil {
+		return nil, false
+	}
+	return &o.CertificateDomains, true
+}
+
+// HasCertificateDomains returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasCertificateDomains() bool {
+	if o != nil && o.CertificateDomains != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateDomains gets a reference to the given []string and assigns it to the CertificateDomains field.
+func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
+	o.CertificateDomains = v
 }
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
@@ -800,6 +834,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Certificate != nil {
 		toSerialize["certificate"] = o.Certificate
 	}
+	if o.CertificateDomains != nil {
+		toSerialize["certificateDomains"] = o.CertificateDomains
+	}
 	if o.DnsServer != nil {
 		toSerialize["dnsServer"] = o.DnsServer
 	}
@@ -869,6 +906,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
 		Body                 *string                           `json:"body,omitempty"`
 		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
 		DnsServer            *string                           `json:"dnsServer,omitempty"`
 		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
 		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
@@ -916,6 +954,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Certificate = all.Certificate
+	o.CertificateDomains = all.CertificateDomains
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
 	o.FollowRedirects = all.FollowRedirects
