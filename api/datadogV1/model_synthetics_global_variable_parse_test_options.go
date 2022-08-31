@@ -13,8 +13,10 @@ import (
 type SyntheticsGlobalVariableParseTestOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
 	Field *string `json:"field,omitempty"`
+	// When type is `local_variable`, name of the local variable to use to extract the value.
+	LocalVariableName *string `json:"localVariableName,omitempty"`
 	// Details of the parser to use for the global variable.
-	Parser SyntheticsVariableParser `json:"parser"`
+	Parser *SyntheticsVariableParser `json:"parser,omitempty"`
 	// Property of the Synthetics Test Response to use for a Synthetics global variable.
 	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -26,9 +28,8 @@ type SyntheticsGlobalVariableParseTestOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsGlobalVariableParseTestOptions(parser SyntheticsVariableParser, typeVar SyntheticsGlobalVariableParseTestOptionsType) *SyntheticsGlobalVariableParseTestOptions {
+func NewSyntheticsGlobalVariableParseTestOptions(typeVar SyntheticsGlobalVariableParseTestOptionsType) *SyntheticsGlobalVariableParseTestOptions {
 	this := SyntheticsGlobalVariableParseTestOptions{}
-	this.Parser = parser
 	this.Type = typeVar
 	return &this
 }
@@ -73,27 +74,68 @@ func (o *SyntheticsGlobalVariableParseTestOptions) SetField(v string) {
 	o.Field = &v
 }
 
-// GetParser returns the Parser field value.
+// GetLocalVariableName returns the LocalVariableName field value if set, zero value otherwise.
+func (o *SyntheticsGlobalVariableParseTestOptions) GetLocalVariableName() string {
+	if o == nil || o.LocalVariableName == nil {
+		var ret string
+		return ret
+	}
+	return *o.LocalVariableName
+}
+
+// GetLocalVariableNameOk returns a tuple with the LocalVariableName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGlobalVariableParseTestOptions) GetLocalVariableNameOk() (*string, bool) {
+	if o == nil || o.LocalVariableName == nil {
+		return nil, false
+	}
+	return o.LocalVariableName, true
+}
+
+// HasLocalVariableName returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableParseTestOptions) HasLocalVariableName() bool {
+	if o != nil && o.LocalVariableName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLocalVariableName gets a reference to the given string and assigns it to the LocalVariableName field.
+func (o *SyntheticsGlobalVariableParseTestOptions) SetLocalVariableName(v string) {
+	o.LocalVariableName = &v
+}
+
+// GetParser returns the Parser field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariableParser {
-	if o == nil {
+	if o == nil || o.Parser == nil {
 		var ret SyntheticsVariableParser
 		return ret
 	}
-	return o.Parser
+	return *o.Parser
 }
 
-// GetParserOk returns a tuple with the Parser field value
+// GetParserOk returns a tuple with the Parser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVariableParser, bool) {
-	if o == nil {
+	if o == nil || o.Parser == nil {
 		return nil, false
 	}
-	return &o.Parser, true
+	return o.Parser, true
 }
 
-// SetParser sets field value.
+// HasParser returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableParseTestOptions) HasParser() bool {
+	if o != nil && o.Parser != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParser gets a reference to the given SyntheticsVariableParser and assigns it to the Parser field.
 func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsVariableParser) {
-	o.Parser = v
+	o.Parser = &v
 }
 
 // GetType returns the Type field value.
@@ -128,7 +170,12 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 	if o.Field != nil {
 		toSerialize["field"] = o.Field
 	}
-	toSerialize["parser"] = o.Parser
+	if o.LocalVariableName != nil {
+		toSerialize["localVariableName"] = o.LocalVariableName
+	}
+	if o.Parser != nil {
+		toSerialize["parser"] = o.Parser
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -141,20 +188,17 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Parser *SyntheticsVariableParser                     `json:"parser"`
-		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	all := struct {
-		Field  *string                                      `json:"field,omitempty"`
-		Parser SyntheticsVariableParser                     `json:"parser"`
-		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		Field             *string                                      `json:"field,omitempty"`
+		LocalVariableName *string                                      `json:"localVariableName,omitempty"`
+		Parser            *SyntheticsVariableParser                    `json:"parser,omitempty"`
+		Type              SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
-	}
-	if required.Parser == nil {
-		return fmt.Errorf("Required field parser missing")
 	}
 	if required.Type == nil {
 		return fmt.Errorf("Required field type missing")
@@ -177,7 +221,8 @@ func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (
 		return nil
 	}
 	o.Field = all.Field
-	if all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.LocalVariableName = all.LocalVariableName
+	if all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

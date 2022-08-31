@@ -34,6 +34,16 @@ func main() {
 								Target:   200,
 							}},
 					},
+					ExtractedValues: []datadogV1.SyntheticsParsingOptions{
+						{
+							Field: datadog.PtrString("server"),
+							Name:  datadog.PtrString("EXTRACTED_VALUE"),
+							Parser: &datadogV1.SyntheticsVariableParser{
+								Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
+							},
+							Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER.Ptr(),
+						},
+					},
 					IsCritical: datadog.PtrBool(true),
 					Name:       "request is sent",
 					Request: datadogV1.SyntheticsTestRequest{
