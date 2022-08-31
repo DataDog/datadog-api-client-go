@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 2.2.0 / 2022-08-31
+
+### Added
+* add priority parameters for dashboard monitor summary widget by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1631
+* Add `logs_pattern_stream` to `list_stream` widget source by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1633
+* Add group_retention_duration and on_missing_data monitor options by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1626
+* Expose CSPM aws host count in Usage Metering API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1645
+* Add estimated ingested logs attribution by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1613
+* Add org region to usage summary and billable usage summary by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1639
+* add compression methods to metric payloads by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1610
+* Add role relationships to RoleUpdateData by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1642
+* Add `ci_tests` enum to FormulaAndFunctionEventsDataSource by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1641
+* Add missing options and request option to synthetics test by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1632
+* Add support for global variable from multistep synthetics tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1598
+### Changed
+* update deprecated usage attribution API docs to direct users to migra… by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1634
+* [Synthetics] remove started form eventType enum by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1636
+
+## New Contributors
+* @ganeshkumarsv made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1592
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.1.0...v2.2.0
+
 ## 2.1.0 / 2022-08-10
 
 ### Fixed
