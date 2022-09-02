@@ -1,4 +1,4 @@
-// Get a list of metrics returns "Success" response
+// Get a list of metrics with configured filter returns "Success" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.ListTagConfigurations(ctx, *datadogV2.NewListTagConfigurationsOptionalParameters())
+	resp, r, err := api.ListTagConfigurations(ctx, *datadogV2.NewListTagConfigurationsOptionalParameters().WithFilterConfigured(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations`: %v\n", err)

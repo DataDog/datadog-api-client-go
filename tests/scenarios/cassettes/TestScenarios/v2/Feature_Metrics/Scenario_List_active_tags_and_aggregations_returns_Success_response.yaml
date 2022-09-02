@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: |
+      {"series":[{"metric":"TestListactivetagsandaggregationsreturnsSuccessresponse1662033627","points":[[1662033627,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
+    form: {}
+    headers:
+      Accept:
+      - text/json, application/json
+      Content-Type:
+      - text/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/series
+  response:
+    body: '{"status": "ok"}'
+    code: 202
+    duration: ''
+    headers:
+      Content-Type:
+      - text/json
+    status: 202 Accepted
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/metrics/TestListactivetagsandaggregationsreturnsSuccessresponse1662033627/active-configurations
+  response:
+    body: '{"data":{"type":"actively_queried_configurations","id":"TestListactivetagsandaggregationsreturnsSuccessresponse1662033627","attributes":{"active_tags":[],"active_aggregations":[]}}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1
