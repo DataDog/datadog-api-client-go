@@ -1,4 +1,4 @@
-// List tag configurations with a tag filter returns "Success" response
+// List active tags and aggregations returns "Success" response
 
 package main
 
@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.ListTagConfigurations(ctx, *datadogV2.NewListTagConfigurationsOptionalParameters().WithFilterTags("ExampleListtagconfigurationswithatagfilterreturnsSuccessresponse"))
+	resp, r, err := api.ListActiveMetricConfigurations(ctx, "ExampleListactivetagsandaggregationsreturnsSuccessresponse", *datadogV2.NewListActiveMetricConfigurationsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetricConfigurations`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListTagConfigurations`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListActiveMetricConfigurations`:\n%s\n", responseContent)
 }
