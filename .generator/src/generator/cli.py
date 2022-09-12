@@ -40,6 +40,7 @@ def cli(specs, output):
     env.filters["parameters"] = openapi.parameters
     env.filters["form_parameter"] = openapi.form_parameter
     env.filters["response_type"] = openapi.get_type_for_response
+    env.filters["responses_by_types"] = openapi.responses_by_types
     env.filters["return_type"] = openapi.return_type
     env.filters["simple_type"] = formatter.simple_type
     env.filters["snake_case"] = formatter.snake_case
