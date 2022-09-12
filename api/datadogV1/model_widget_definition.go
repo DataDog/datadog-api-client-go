@@ -39,6 +39,7 @@ type WidgetDefinition struct {
 	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
 	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
 	FunnelWidgetDefinition         *FunnelWidgetDefinition
+	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -187,6 +188,11 @@ func ListStreamWidgetDefinitionAsWidgetDefinition(v *ListStreamWidgetDefinition)
 // FunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns FunnelWidgetDefinition wrapped in WidgetDefinition.
 func FunnelWidgetDefinitionAsWidgetDefinition(v *FunnelWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{FunnelWidgetDefinition: v}
+}
+
+// TopologyMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns TopologyMapWidgetDefinition wrapped in WidgetDefinition.
+func TopologyMapWidgetDefinitionAsWidgetDefinition(v *TopologyMapWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{TopologyMapWidgetDefinition: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -686,6 +692,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.FunnelWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into TopologyMapWidgetDefinition
+	err = json.Unmarshal(data, &obj.TopologyMapWidgetDefinition)
+	if err == nil {
+		if obj.TopologyMapWidgetDefinition != nil && obj.TopologyMapWidgetDefinition.UnparsedObject == nil {
+			jsonTopologyMapWidgetDefinition, _ := json.Marshal(obj.TopologyMapWidgetDefinition)
+			if string(jsonTopologyMapWidgetDefinition) == "{}" { // empty struct
+				obj.TopologyMapWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.TopologyMapWidgetDefinition = nil
+		}
+	} else {
+		obj.TopologyMapWidgetDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.AlertGraphWidgetDefinition = nil
@@ -717,6 +740,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.TreeMapWidgetDefinition = nil
 		obj.ListStreamWidgetDefinition = nil
 		obj.FunnelWidgetDefinition = nil
+		obj.TopologyMapWidgetDefinition = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -838,6 +862,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.FunnelWidgetDefinition != nil {
 		return json.Marshal(&obj.FunnelWidgetDefinition)
+	}
+
+	if obj.TopologyMapWidgetDefinition != nil {
+		return json.Marshal(&obj.TopologyMapWidgetDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -962,6 +990,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.FunnelWidgetDefinition != nil {
 		return obj.FunnelWidgetDefinition
+	}
+
+	if obj.TopologyMapWidgetDefinition != nil {
+		return obj.TopologyMapWidgetDefinition
 	}
 
 	// all schemas are nil
