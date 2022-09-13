@@ -13,7 +13,7 @@ type SearchSLOResponseDataAttributes struct {
 	// Facets
 	Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
 	// SLOs
-	Slo []ServiceLevelObjective `json:"slo,omitempty"`
+	Slo []SearchServiceLevelObjective `json:"slo,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -69,9 +69,9 @@ func (o *SearchSLOResponseDataAttributes) SetFacets(v SearchSLOResponseDataAttri
 }
 
 // GetSlo returns the Slo field value if set, zero value otherwise.
-func (o *SearchSLOResponseDataAttributes) GetSlo() []ServiceLevelObjective {
+func (o *SearchSLOResponseDataAttributes) GetSlo() []SearchServiceLevelObjective {
 	if o == nil || o.Slo == nil {
-		var ret []ServiceLevelObjective
+		var ret []SearchServiceLevelObjective
 		return ret
 	}
 	return o.Slo
@@ -79,7 +79,7 @@ func (o *SearchSLOResponseDataAttributes) GetSlo() []ServiceLevelObjective {
 
 // GetSloOk returns a tuple with the Slo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchSLOResponseDataAttributes) GetSloOk() (*[]ServiceLevelObjective, bool) {
+func (o *SearchSLOResponseDataAttributes) GetSloOk() (*[]SearchServiceLevelObjective, bool) {
 	if o == nil || o.Slo == nil {
 		return nil, false
 	}
@@ -95,8 +95,8 @@ func (o *SearchSLOResponseDataAttributes) HasSlo() bool {
 	return false
 }
 
-// SetSlo gets a reference to the given []ServiceLevelObjective and assigns it to the Slo field.
-func (o *SearchSLOResponseDataAttributes) SetSlo(v []ServiceLevelObjective) {
+// SetSlo gets a reference to the given []SearchServiceLevelObjective and assigns it to the Slo field.
+func (o *SearchSLOResponseDataAttributes) SetSlo(v []SearchServiceLevelObjective) {
 	o.Slo = v
 }
 
@@ -124,7 +124,7 @@ func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
-		Slo    []ServiceLevelObjective                `json:"slo,omitempty"`
+		Slo    []SearchServiceLevelObjective          `json:"slo,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

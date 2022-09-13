@@ -1223,17 +1223,19 @@ func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOLi
 }
 
 type apiSearchSLORequest struct {
-	ctx        _context.Context
-	query      *string
-	pageSize   *int64
-	pageNumber *int64
+	ctx           _context.Context
+	query         *string
+	pageSize      *int64
+	pageNumber    *int64
+	includeFacets *bool
 }
 
 // SearchSLOOptionalParameters holds optional parameters for SearchSLO.
 type SearchSLOOptionalParameters struct {
-	Query      *string
-	PageSize   *int64
-	PageNumber *int64
+	Query         *string
+	PageSize      *int64
+	PageNumber    *int64
+	IncludeFacets *bool
 }
 
 // NewSearchSLOOptionalParameters creates an empty struct for parameters.
@@ -1260,6 +1262,12 @@ func (r *SearchSLOOptionalParameters) WithPageNumber(pageNumber int64) *SearchSL
 	return r
 }
 
+// WithIncludeFacets sets the corresponding parameter name and returns the struct.
+func (r *SearchSLOOptionalParameters) WithIncludeFacets(includeFacets bool) *SearchSLOOptionalParameters {
+	r.IncludeFacets = &includeFacets
+	return r
+}
+
 func (a *ServiceLevelObjectivesApi) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
 	req := apiSearchSLORequest{
 		ctx: ctx,
@@ -1273,6 +1281,7 @@ func (a *ServiceLevelObjectivesApi) buildSearchSLORequest(ctx _context.Context, 
 		req.query = o[0].Query
 		req.pageSize = o[0].PageSize
 		req.pageNumber = o[0].PageNumber
+		req.includeFacets = o[0].IncludeFacets
 	}
 	return req, nil
 }
@@ -1322,6 +1331,9 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (Sea
 	}
 	if r.pageNumber != nil {
 		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*r.pageNumber, ""))
+	}
+	if r.includeFacets != nil {
+		localVarQueryParams.Add("include_facets", datadog.ParameterToString(*r.includeFacets, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
