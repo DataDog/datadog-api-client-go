@@ -124,6 +124,18 @@ If you want to enable requests logging, set the `debug` flag on your configurati
     configuration.Debug = true
 ```
 
+### Configure proxy
+
+If you want to configure proxy, set env var `HTTP_PROXY`, and `HTTPS_PROXY"` or set custom
+`HTTPClient` with proxy configured on configuration object:
+
+```go
+    proxyUrl, _ := url.Parse("http://127.0.0.1:80")
+    configuration.HTTPClient = &http.Client{
+        Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}
+    }
+```
+
 ### Pagination
 
 Several listing operations have a pagination method to help consume all the items available.
