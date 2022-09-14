@@ -14,6 +14,10 @@ type MonthlyUsageAttributionValues struct {
 	ApiPercentage *float64 `json:"api_percentage,omitempty"`
 	// The synthetic API test usage by tag(s).
 	ApiUsage *float64 `json:"api_usage,omitempty"`
+	// The percentage of APM ECS Fargate task usage by tag(s).
+	ApmFargatePercentage *float64 `json:"apm_fargate_percentage,omitempty"`
+	// The APM ECS Fargate task usage by tag(s).
+	ApmFargateUsage *float64 `json:"apm_fargate_usage,omitempty"`
 	// The percentage of APM host usage by tag(s).
 	ApmHostPercentage *float64 `json:"apm_host_percentage,omitempty"`
 	// The APM host usage by tag(s).
@@ -170,6 +174,70 @@ func (o *MonthlyUsageAttributionValues) HasApiUsage() bool {
 // SetApiUsage gets a reference to the given float64 and assigns it to the ApiUsage field.
 func (o *MonthlyUsageAttributionValues) SetApiUsage(v float64) {
 	o.ApiUsage = &v
+}
+
+// GetApmFargatePercentage returns the ApmFargatePercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetApmFargatePercentage() float64 {
+	if o == nil || o.ApmFargatePercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmFargatePercentage
+}
+
+// GetApmFargatePercentageOk returns a tuple with the ApmFargatePercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetApmFargatePercentageOk() (*float64, bool) {
+	if o == nil || o.ApmFargatePercentage == nil {
+		return nil, false
+	}
+	return o.ApmFargatePercentage, true
+}
+
+// HasApmFargatePercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasApmFargatePercentage() bool {
+	if o != nil && o.ApmFargatePercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmFargatePercentage gets a reference to the given float64 and assigns it to the ApmFargatePercentage field.
+func (o *MonthlyUsageAttributionValues) SetApmFargatePercentage(v float64) {
+	o.ApmFargatePercentage = &v
+}
+
+// GetApmFargateUsage returns the ApmFargateUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetApmFargateUsage() float64 {
+	if o == nil || o.ApmFargateUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmFargateUsage
+}
+
+// GetApmFargateUsageOk returns a tuple with the ApmFargateUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetApmFargateUsageOk() (*float64, bool) {
+	if o == nil || o.ApmFargateUsage == nil {
+		return nil, false
+	}
+	return o.ApmFargateUsage, true
+}
+
+// HasApmFargateUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasApmFargateUsage() bool {
+	if o != nil && o.ApmFargateUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmFargateUsage gets a reference to the given float64 and assigns it to the ApmFargateUsage field.
+func (o *MonthlyUsageAttributionValues) SetApmFargateUsage(v float64) {
+	o.ApmFargateUsage = &v
 }
 
 // GetApmHostPercentage returns the ApmHostPercentage field value if set, zero value otherwise.
@@ -1336,6 +1404,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.ApiUsage != nil {
 		toSerialize["api_usage"] = o.ApiUsage
 	}
+	if o.ApmFargatePercentage != nil {
+		toSerialize["apm_fargate_percentage"] = o.ApmFargatePercentage
+	}
+	if o.ApmFargateUsage != nil {
+		toSerialize["apm_fargate_usage"] = o.ApmFargateUsage
+	}
 	if o.ApmHostPercentage != nil {
 		toSerialize["apm_host_percentage"] = o.ApmHostPercentage
 	}
@@ -1457,6 +1531,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	all := struct {
 		ApiPercentage                    *float64 `json:"api_percentage,omitempty"`
 		ApiUsage                         *float64 `json:"api_usage,omitempty"`
+		ApmFargatePercentage             *float64 `json:"apm_fargate_percentage,omitempty"`
+		ApmFargateUsage                  *float64 `json:"apm_fargate_usage,omitempty"`
 		ApmHostPercentage                *float64 `json:"apm_host_percentage,omitempty"`
 		ApmHostUsage                     *float64 `json:"apm_host_usage,omitempty"`
 		AppsecPercentage                 *float64 `json:"appsec_percentage,omitempty"`
@@ -1505,6 +1581,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.ApiPercentage = all.ApiPercentage
 	o.ApiUsage = all.ApiUsage
+	o.ApmFargatePercentage = all.ApmFargatePercentage
+	o.ApmFargateUsage = all.ApmFargateUsage
 	o.ApmHostPercentage = all.ApmHostPercentage
 	o.ApmHostUsage = all.ApmHostUsage
 	o.AppsecPercentage = all.AppsecPercentage
