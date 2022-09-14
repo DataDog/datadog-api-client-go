@@ -162,7 +162,7 @@ func main() {
 
 ## Documentation
 
-Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go).
+Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2).
 
 ## Contributing
 
