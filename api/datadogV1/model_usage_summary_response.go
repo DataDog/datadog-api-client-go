@@ -15,6 +15,8 @@ type UsageSummaryResponse struct {
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations.
 	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
+	// Shows the average of all APM ECS Fargate tasks over all hours in the current months for all organizations.
+	ApmFargateCountAvgSum *int64 `json:"apm_fargate_count_avg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations.
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
@@ -243,6 +245,38 @@ func (o *UsageSummaryResponse) HasApmAzureAppServiceHostTop99pSum() bool {
 // SetApmAzureAppServiceHostTop99pSum gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99pSum field.
 func (o *UsageSummaryResponse) SetApmAzureAppServiceHostTop99pSum(v int64) {
 	o.ApmAzureAppServiceHostTop99pSum = &v
+}
+
+// GetApmFargateCountAvgSum returns the ApmFargateCountAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetApmFargateCountAvgSum() int64 {
+	if o == nil || o.ApmFargateCountAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmFargateCountAvgSum
+}
+
+// GetApmFargateCountAvgSumOk returns a tuple with the ApmFargateCountAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetApmFargateCountAvgSumOk() (*int64, bool) {
+	if o == nil || o.ApmFargateCountAvgSum == nil {
+		return nil, false
+	}
+	return o.ApmFargateCountAvgSum, true
+}
+
+// HasApmFargateCountAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasApmFargateCountAvgSum() bool {
+	if o != nil && o.ApmFargateCountAvgSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmFargateCountAvgSum gets a reference to the given int64 and assigns it to the ApmFargateCountAvgSum field.
+func (o *UsageSummaryResponse) SetApmFargateCountAvgSum(v int64) {
+	o.ApmFargateCountAvgSum = &v
 }
 
 // GetApmHostTop99pSum returns the ApmHostTop99pSum field value if set, zero value otherwise.
@@ -2561,6 +2595,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ApmAzureAppServiceHostTop99pSum != nil {
 		toSerialize["apm_azure_app_service_host_top99p_sum"] = o.ApmAzureAppServiceHostTop99pSum
 	}
+	if o.ApmFargateCountAvgSum != nil {
+		toSerialize["apm_fargate_count_avg_sum"] = o.ApmFargateCountAvgSum
+	}
 	if o.ApmHostTop99pSum != nil {
 		toSerialize["apm_host_top99p_sum"] = o.ApmHostTop99pSum
 	}
@@ -2802,6 +2839,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AgentHostTop99pSum                         *int64             `json:"agent_host_top99p_sum,omitempty"`
 		ApmAzureAppServiceHostTop99pSum            *int64             `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
+		ApmFargateCountAvgSum                      *int64             `json:"apm_fargate_count_avg_sum,omitempty"`
 		ApmHostTop99pSum                           *int64             `json:"apm_host_top99p_sum,omitempty"`
 		AuditLogsLinesIndexedAggSum                *int64             `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 		AvgProfiledFargateTasksSum                 *int64             `json:"avg_profiled_fargate_tasks_sum,omitempty"`
@@ -2886,6 +2924,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AgentHostTop99pSum = all.AgentHostTop99pSum
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
+	o.ApmFargateCountAvgSum = all.ApmFargateCountAvgSum
 	o.ApmHostTop99pSum = all.ApmHostTop99pSum
 	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
 	o.AvgProfiledFargateTasksSum = all.AvgProfiledFargateTasksSum
