@@ -15,6 +15,8 @@ type UsageSummaryDate struct {
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations.
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
+	// Shows the average of all APM ECS Fargate tasks over all hours in the current date for all organizations.
+	ApmFargateCountAvg *int64 `json:"apm_fargate_count_avg,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
 	// Shows the sum of audit logs lines indexed over all hours in the current date for all organizations.
@@ -225,6 +227,38 @@ func (o *UsageSummaryDate) HasApmAzureAppServiceHostTop99p() bool {
 // SetApmAzureAppServiceHostTop99p gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99p field.
 func (o *UsageSummaryDate) SetApmAzureAppServiceHostTop99p(v int64) {
 	o.ApmAzureAppServiceHostTop99p = &v
+}
+
+// GetApmFargateCountAvg returns the ApmFargateCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetApmFargateCountAvg() int64 {
+	if o == nil || o.ApmFargateCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmFargateCountAvg
+}
+
+// GetApmFargateCountAvgOk returns a tuple with the ApmFargateCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetApmFargateCountAvgOk() (*int64, bool) {
+	if o == nil || o.ApmFargateCountAvg == nil {
+		return nil, false
+	}
+	return o.ApmFargateCountAvg, true
+}
+
+// HasApmFargateCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasApmFargateCountAvg() bool {
+	if o != nil && o.ApmFargateCountAvg != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmFargateCountAvg gets a reference to the given int64 and assigns it to the ApmFargateCountAvg field.
+func (o *UsageSummaryDate) SetApmFargateCountAvg(v int64) {
+	o.ApmFargateCountAvg = &v
 }
 
 // GetApmHostTop99p returns the ApmHostTop99p field value if set, zero value otherwise.
@@ -2255,6 +2289,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.ApmAzureAppServiceHostTop99p != nil {
 		toSerialize["apm_azure_app_service_host_top99p"] = o.ApmAzureAppServiceHostTop99p
 	}
+	if o.ApmFargateCountAvg != nil {
+		toSerialize["apm_fargate_count_avg"] = o.ApmFargateCountAvg
+	}
 	if o.ApmHostTop99p != nil {
 		toSerialize["apm_host_top99p"] = o.ApmHostTop99p
 	}
@@ -2461,6 +2498,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AgentHostTop99p                         *int64                `json:"agent_host_top99p,omitempty"`
 		ApmAzureAppServiceHostTop99p            *int64                `json:"apm_azure_app_service_host_top99p,omitempty"`
+		ApmFargateCountAvg                      *int64                `json:"apm_fargate_count_avg,omitempty"`
 		ApmHostTop99p                           *int64                `json:"apm_host_top99p,omitempty"`
 		AuditLogsLinesIndexedSum                *int64                `json:"audit_logs_lines_indexed_sum,omitempty"`
 		AvgProfiledFargateTasks                 *int64                `json:"avg_profiled_fargate_tasks,omitempty"`
@@ -2536,6 +2574,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AgentHostTop99p = all.AgentHostTop99p
 	o.ApmAzureAppServiceHostTop99p = all.ApmAzureAppServiceHostTop99p
+	o.ApmFargateCountAvg = all.ApmFargateCountAvg
 	o.ApmHostTop99p = all.ApmHostTop99p
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
