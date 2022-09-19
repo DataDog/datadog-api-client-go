@@ -12,8 +12,11 @@ import (
 type DashboardTemplateVariablePresetValue struct {
 	// The name of the variable.
 	Name *string `json:"name,omitempty"`
-	// The value of the template variable within the saved view.
+	// (deprecated) The value of the template variable within the saved view. Cannot be used in conjunction with `values`.
+	// Deprecated
 	Value *string `json:"value,omitempty"`
+	// One or many template variable values within the saved view, which will be unioned together using `OR` if more than one is specified. Cannot be used in conjunction with `value`.
+	Values []string `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -69,6 +72,7 @@ func (o *DashboardTemplateVariablePresetValue) SetName(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
+// Deprecated
 func (o *DashboardTemplateVariablePresetValue) GetValue() string {
 	if o == nil || o.Value == nil {
 		var ret string
@@ -79,6 +83,7 @@ func (o *DashboardTemplateVariablePresetValue) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *DashboardTemplateVariablePresetValue) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
@@ -96,8 +101,41 @@ func (o *DashboardTemplateVariablePresetValue) HasValue() bool {
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
+// Deprecated
 func (o *DashboardTemplateVariablePresetValue) SetValue(v string) {
 	o.Value = &v
+}
+
+// GetValues returns the Values field value if set, zero value otherwise.
+func (o *DashboardTemplateVariablePresetValue) GetValues() []string {
+	if o == nil || o.Values == nil {
+		var ret []string
+		return ret
+	}
+	return o.Values
+}
+
+// GetValuesOk returns a tuple with the Values field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DashboardTemplateVariablePresetValue) GetValuesOk() (*[]string, bool) {
+	if o == nil || o.Values == nil {
+		return nil, false
+	}
+	return &o.Values, true
+}
+
+// HasValues returns a boolean if a field has been set.
+func (o *DashboardTemplateVariablePresetValue) HasValues() bool {
+	if o != nil && o.Values != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValues gets a reference to the given []string and assigns it to the Values field.
+func (o *DashboardTemplateVariablePresetValue) SetValues(v []string) {
+	o.Values = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -112,6 +150,9 @@ func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
+	if o.Values != nil {
+		toSerialize["values"] = o.Values
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +164,9 @@ func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name  *string `json:"name,omitempty"`
-		Value *string `json:"value,omitempty"`
+		Name   *string  `json:"name,omitempty"`
+		Value  *string  `json:"value,omitempty"`
+		Values []string `json:"values,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -137,5 +179,6 @@ func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err 
 	}
 	o.Name = all.Name
 	o.Value = all.Value
+	o.Values = all.Values
 	return nil
 }
