@@ -17,7 +17,7 @@ type AuditLogsQueryFilter struct {
 	// Maximum time for the requested events. Supports date, math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -15,7 +15,7 @@ type SearchSLOResponseDataAttributesFacetsObjectInt struct {
 	// Facet
 	Name *float64 `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

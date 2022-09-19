@@ -22,7 +22,7 @@ type SyntheticsBasicAuthNTLM struct {
 	// Workstation for the authentication to use when performing the test.
 	Workstation *string `json:"workstation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -16,7 +16,7 @@ type EventQueryDefinition struct {
 	// The execution method for multi-value filters. Can be either and or or.
 	TagsExecution string `json:"tags_execution"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

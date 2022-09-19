@@ -18,7 +18,7 @@ type ScatterplotWidgetFormula struct {
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

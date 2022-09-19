@@ -20,7 +20,7 @@ type LogsArchiveDestinationS3 struct {
 	// Type of the S3 archive destination.
 	Type LogsArchiveDestinationS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

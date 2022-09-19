@@ -13,7 +13,7 @@ type LogsAggregateRequestPage struct {
 	// The returned paging point to use to get the next results
 	Cursor *string `json:"cursor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

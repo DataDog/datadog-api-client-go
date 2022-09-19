@@ -15,7 +15,7 @@ type RUMBucketResponse struct {
 	// A map of the metric name to value for regular compute, or a list of values for a timeseries.
 	Computes map[string]RUMAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

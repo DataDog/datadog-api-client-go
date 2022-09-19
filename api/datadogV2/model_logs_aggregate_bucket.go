@@ -15,7 +15,7 @@ type LogsAggregateBucket struct {
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
 	Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

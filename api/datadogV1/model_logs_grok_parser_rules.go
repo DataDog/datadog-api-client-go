@@ -16,7 +16,7 @@ type LogsGrokParserRules struct {
 	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

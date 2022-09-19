@@ -16,7 +16,7 @@ type LogsMetricGroupBy struct {
 	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

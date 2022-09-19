@@ -18,7 +18,7 @@ type IncidentTimelineCellMarkdownCreateAttributes struct {
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -15,7 +15,7 @@ type CheckCanDeleteSLOResponse struct {
 	// A mapping of SLO id to it's current usages.
 	Errors map[string]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -12,9 +12,10 @@ import (
 // Widget Information about widget.
 //
 // **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.
-//       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
-//       - If `reflow_type` is `fixed`, `layout` is required.
-//       - If `reflow_type` is `auto`, `layout` should not be set.
+//
+//	For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
+//	- If `reflow_type` is `fixed`, `layout` is required.
+//	- If `reflow_type` is `auto`, `layout` should not be set.
 type Widget struct {
 	// [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 	Definition WidgetDefinition `json:"definition"`
@@ -23,7 +24,7 @@ type Widget struct {
 	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

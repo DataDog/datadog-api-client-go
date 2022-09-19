@@ -15,7 +15,7 @@ type HourlyUsageAttributionPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
 	NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

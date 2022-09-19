@@ -18,7 +18,7 @@ type MetricEstimateAttributes struct {
 	// Estimated cardinality of the metric based on the queried configuration.
 	EstimatedOutputSeries *int64 `json:"estimated_output_series,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

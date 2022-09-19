@@ -29,7 +29,7 @@ type SyntheticsAPIStep struct {
 	// The subtype of the Synthetic multistep API test step, currently only supporting `http`.
 	Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

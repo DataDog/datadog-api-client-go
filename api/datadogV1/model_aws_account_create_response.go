@@ -13,7 +13,7 @@ type AWSAccountCreateResponse struct {
 	// AWS external_id.
 	ExternalId *string `json:"external_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

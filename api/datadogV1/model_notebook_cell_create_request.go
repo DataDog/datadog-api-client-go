@@ -17,7 +17,7 @@ type NotebookCellCreateRequest struct {
 	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewNotebookCellCreateRequest instantiates a new NotebookCellCreateRequest object.

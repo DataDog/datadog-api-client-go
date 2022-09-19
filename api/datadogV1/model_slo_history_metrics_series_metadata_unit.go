@@ -25,7 +25,7 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	// A shorter and abbreviated version of the metric unit, for instance `B`.
 	ShortName datadog.NullableString `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

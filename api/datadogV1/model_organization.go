@@ -29,7 +29,7 @@ type Organization struct {
 	// Only available for MSP customers. Allows child organizations to be created on a trial plan.
 	Trial *bool `json:"trial,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

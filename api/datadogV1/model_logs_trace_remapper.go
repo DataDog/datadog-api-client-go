@@ -11,10 +11,10 @@ import (
 
 // LogsTraceRemapper There are two ways to improve correlation between application traces and logs.
 //
-//   1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)
-//   and by default log integrations take care of all the rest of the setup.
+//  1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)
+//     and by default log integrations take care of all the rest of the setup.
 //
-//   2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
+//  2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
 type LogsTraceRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -25,7 +25,7 @@ type LogsTraceRemapper struct {
 	// Type of logs trace remapper.
 	Type LogsTraceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

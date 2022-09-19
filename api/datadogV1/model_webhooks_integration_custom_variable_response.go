@@ -19,7 +19,7 @@ type WebhooksIntegrationCustomVariableResponse struct {
 	// Value of the custom variable. It won't be returned if the variable is secret.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

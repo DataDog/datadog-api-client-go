@@ -24,12 +24,12 @@ import (
 //
 // *Notes*:
 //
-// - The operator `-` needs to be space split in the formula as it can also be contained in attribute names.
-// - If the target attribute already exists, it is overwritten by the result of the formula.
-// - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,
-//   the actual value stored for the attribute is `0.123456789`.
-// - If you need to scale a unit of measure,
-//   see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
+//   - The operator `-` needs to be space split in the formula as it can also be contained in attribute names.
+//   - If the target attribute already exists, it is overwritten by the result of the formula.
+//   - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,
+//     the actual value stored for the attribute is `0.123456789`.
+//   - If you need to scale a unit of measure,
+//     see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
 type LogsArithmeticProcessor struct {
 	// Arithmetic operation between one or more log attributes.
 	Expression string `json:"expression"`
@@ -45,7 +45,7 @@ type LogsArithmeticProcessor struct {
 	// Type of logs arithmetic processor.
 	Type LogsArithmeticProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

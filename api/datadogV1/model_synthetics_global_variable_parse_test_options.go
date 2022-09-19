@@ -20,7 +20,7 @@ type SyntheticsGlobalVariableParseTestOptions struct {
 	// Property of the Synthetics Test Response to use for a Synthetics global variable.
 	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

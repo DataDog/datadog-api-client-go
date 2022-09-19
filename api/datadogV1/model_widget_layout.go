@@ -23,7 +23,7 @@ type WidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

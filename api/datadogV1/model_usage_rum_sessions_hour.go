@@ -30,7 +30,7 @@ type UsageRumSessionsHour struct {
 	// Contains the number of mobile RUM Sessions on React Native (data available beginning May 1, 2022).
 	SessionCountReactnative datadog.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

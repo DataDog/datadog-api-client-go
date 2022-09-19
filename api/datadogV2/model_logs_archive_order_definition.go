@@ -16,7 +16,7 @@ type LogsArchiveOrderDefinition struct {
 	// Type of the archive order definition.
 	Type LogsArchiveOrderDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

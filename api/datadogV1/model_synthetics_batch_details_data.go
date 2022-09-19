@@ -17,7 +17,7 @@ type SyntheticsBatchDetailsData struct {
 	// Determines whether or not the batch has passed, failed, or is in progress.
 	Status *SyntheticsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

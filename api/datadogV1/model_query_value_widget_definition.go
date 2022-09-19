@@ -36,7 +36,7 @@ type QueryValueWidgetDefinition struct {
 	// Type of the query value widget.
 	Type QueryValueWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

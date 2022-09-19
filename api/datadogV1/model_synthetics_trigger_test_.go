@@ -16,7 +16,7 @@ type SyntheticsTriggerTest struct {
 	// The public ID of the Synthetics test to trigger.
 	PublicId string `json:"public_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

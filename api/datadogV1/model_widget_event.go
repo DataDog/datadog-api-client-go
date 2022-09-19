@@ -19,7 +19,7 @@ type WidgetEvent struct {
 	// The execution method for multi-value filters.
 	TagsExecution *string `json:"tags_execution,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

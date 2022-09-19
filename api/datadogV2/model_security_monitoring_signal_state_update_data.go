@@ -14,7 +14,7 @@ type SecurityMonitoringSignalStateUpdateData struct {
 	// Attributes describing the change of state of a security signal.
 	Attributes SecurityMonitoringSignalStateUpdateAttributes `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

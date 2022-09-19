@@ -13,7 +13,7 @@ type DashboardListAddItemsResponse struct {
 	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList []DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

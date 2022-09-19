@@ -15,7 +15,7 @@ type SLOHistoryResponse struct {
 	// A list of errors while querying the history data for the service level objective.
 	Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
