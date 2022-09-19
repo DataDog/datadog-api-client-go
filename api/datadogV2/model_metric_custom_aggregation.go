@@ -116,10 +116,10 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Space == nil {
-		return fmt.Errorf("Required field space missing")
+		return fmt.Errorf("required field space missing")
 	}
 	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
+		return fmt.Errorf("required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

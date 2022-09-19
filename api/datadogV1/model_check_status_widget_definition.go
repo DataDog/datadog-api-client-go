@@ -413,13 +413,13 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Check == nil {
-		return fmt.Errorf("Required field check missing")
+		return fmt.Errorf("required field check missing")
 	}
 	if required.Grouping == nil {
-		return fmt.Errorf("Required field grouping missing")
+		return fmt.Errorf("required field grouping missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

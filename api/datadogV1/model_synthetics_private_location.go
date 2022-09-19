@@ -259,13 +259,13 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Description == nil {
-		return fmt.Errorf("Required field description missing")
+		return fmt.Errorf("required field description missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -128,7 +128,7 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Q == nil {
-		return fmt.Errorf("Required field q missing")
+		return fmt.Errorf("required field q missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

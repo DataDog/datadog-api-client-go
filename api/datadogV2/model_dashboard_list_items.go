@@ -125,7 +125,7 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Dashboards == nil {
-		return fmt.Errorf("Required field dashboards missing")
+		return fmt.Errorf("required field dashboards missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

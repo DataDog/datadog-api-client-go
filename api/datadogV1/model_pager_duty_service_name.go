@@ -87,7 +87,7 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ServiceName == nil {
-		return fmt.Errorf("Required field service_name missing")
+		return fmt.Errorf("required field service_name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -184,13 +184,13 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Count == nil {
-		return fmt.Errorf("Required field count missing")
+		return fmt.Errorf("required field count missing")
 	}
 	if required.Sum == nil {
-		return fmt.Errorf("Required field sum missing")
+		return fmt.Errorf("required field sum missing")
 	}
 	if required.Values == nil {
-		return fmt.Errorf("Required field values missing")
+		return fmt.Errorf("required field values missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

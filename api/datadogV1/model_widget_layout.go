@@ -213,16 +213,16 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Height == nil {
-		return fmt.Errorf("Required field height missing")
+		return fmt.Errorf("required field height missing")
 	}
 	if required.Width == nil {
-		return fmt.Errorf("Required field width missing")
+		return fmt.Errorf("required field width missing")
 	}
 	if required.X == nil {
-		return fmt.Errorf("Required field x missing")
+		return fmt.Errorf("required field x missing")
 	}
 	if required.Y == nil {
-		return fmt.Errorf("Required field y missing")
+		return fmt.Errorf("required field y missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

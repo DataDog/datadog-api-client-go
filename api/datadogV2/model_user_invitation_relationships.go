@@ -87,7 +87,7 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.User == nil {
-		return fmt.Errorf("Required field user missing")
+		return fmt.Errorf("required field user missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

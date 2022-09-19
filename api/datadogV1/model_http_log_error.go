@@ -116,10 +116,10 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Code == nil {
-		return fmt.Errorf("Required field code missing")
+		return fmt.Errorf("required field code missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -125,7 +125,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 		return err
 	}
 	if required.Assignee == nil {
-		return fmt.Errorf("Required field assignee missing")
+		return fmt.Errorf("required field assignee missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

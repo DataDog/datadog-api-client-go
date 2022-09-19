@@ -377,13 +377,13 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Metric == nil {
-		return fmt.Errorf("Required field metric missing")
+		return fmt.Errorf("required field metric missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

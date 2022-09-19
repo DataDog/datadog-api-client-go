@@ -203,19 +203,19 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	if required.ExclusionFilters == nil {
-		return fmt.Errorf("Required field exclusion_filters missing")
+		return fmt.Errorf("required field exclusion_filters missing")
 	}
 	if required.FilteredDataType == nil {
-		return fmt.Errorf("Required field filtered_data_type missing")
+		return fmt.Errorf("required field filtered_data_type missing")
 	}
 	if required.IsEnabled == nil {
-		return fmt.Errorf("Required field is_enabled missing")
+		return fmt.Errorf("required field is_enabled missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

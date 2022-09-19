@@ -470,7 +470,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- else %}
 	if !required.{{ propertyName }}.IsSet() {
 	{%- endif %}
-		return fmt.Errorf("Required field {{ attr }} missing")
+		return fmt.Errorf("required field {{ attr }} missing")
 	}
 	{%- endfor %}
 	err = json.Unmarshal(bytes, &all)

@@ -87,7 +87,7 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Config == nil {
-		return fmt.Errorf("Required field config missing")
+		return fmt.Errorf("required field config missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

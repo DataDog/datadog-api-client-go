@@ -89,7 +89,7 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if !required.Data.IsSet() {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -125,7 +125,7 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

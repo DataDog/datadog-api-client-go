@@ -239,10 +239,10 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Timeframe == nil {
-		return fmt.Errorf("Required field timeframe missing")
+		return fmt.Errorf("required field timeframe missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

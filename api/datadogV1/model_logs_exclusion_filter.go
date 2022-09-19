@@ -127,7 +127,7 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.SampleRate == nil {
-		return fmt.Errorf("Required field sample_rate missing")
+		return fmt.Errorf("required field sample_rate missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

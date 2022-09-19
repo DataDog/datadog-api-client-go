@@ -164,10 +164,10 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.From == nil {
-		return fmt.Errorf("Required field from missing")
+		return fmt.Errorf("required field from missing")
 	}
 	if required.To == nil {
-		return fmt.Errorf("Required field to missing")
+		return fmt.Errorf("required field to missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

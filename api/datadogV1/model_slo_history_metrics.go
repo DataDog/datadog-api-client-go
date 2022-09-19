@@ -303,25 +303,25 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Denominator == nil {
-		return fmt.Errorf("Required field denominator missing")
+		return fmt.Errorf("required field denominator missing")
 	}
 	if required.Interval == nil {
-		return fmt.Errorf("Required field interval missing")
+		return fmt.Errorf("required field interval missing")
 	}
 	if required.Numerator == nil {
-		return fmt.Errorf("Required field numerator missing")
+		return fmt.Errorf("required field numerator missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	if required.ResType == nil {
-		return fmt.Errorf("Required field res_type missing")
+		return fmt.Errorf("required field res_type missing")
 	}
 	if required.RespVersion == nil {
-		return fmt.Errorf("Required field resp_version missing")
+		return fmt.Errorf("required field resp_version missing")
 	}
 	if required.Times == nil {
-		return fmt.Errorf("Required field times missing")
+		return fmt.Errorf("required field times missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

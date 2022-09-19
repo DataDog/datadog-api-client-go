@@ -802,7 +802,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Title == nil {
-		return fmt.Errorf("Required field title missing")
+		return fmt.Errorf("required field title missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

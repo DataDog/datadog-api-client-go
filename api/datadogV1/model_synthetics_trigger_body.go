@@ -87,7 +87,7 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Tests == nil {
-		return fmt.Errorf("Required field tests missing")
+		return fmt.Errorf("required field tests missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

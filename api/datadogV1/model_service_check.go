@@ -250,16 +250,16 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Check == nil {
-		return fmt.Errorf("Required field check missing")
+		return fmt.Errorf("required field check missing")
 	}
 	if required.HostName == nil {
-		return fmt.Errorf("Required field host_name missing")
+		return fmt.Errorf("required field host_name missing")
 	}
 	if required.Status == nil {
-		return fmt.Errorf("Required field status missing")
+		return fmt.Errorf("required field status missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

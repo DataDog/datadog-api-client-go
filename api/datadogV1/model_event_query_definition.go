@@ -116,10 +116,10 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Search == nil {
-		return fmt.Errorf("Required field search missing")
+		return fmt.Errorf("required field search missing")
 	}
 	if required.TagsExecution == nil {
-		return fmt.Errorf("Required field tags_execution missing")
+		return fmt.Errorf("required field tags_execution missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

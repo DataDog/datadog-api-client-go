@@ -393,19 +393,19 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.Stat == nil {
-		return fmt.Errorf("Required field stat missing")
+		return fmt.Errorf("required field stat missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -201,7 +201,7 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Metric == nil {
-		return fmt.Errorf("Required field metric missing")
+		return fmt.Errorf("required field metric missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

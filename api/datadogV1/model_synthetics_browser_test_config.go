@@ -230,10 +230,10 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Assertions == nil {
-		return fmt.Errorf("Required field assertions missing")
+		return fmt.Errorf("required field assertions missing")
 	}
 	if required.Request == nil {
-		return fmt.Errorf("Required field request missing")
+		return fmt.Errorf("required field request missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -301,16 +301,16 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LookupTable == nil {
-		return fmt.Errorf("Required field lookup_table missing")
+		return fmt.Errorf("required field lookup_table missing")
 	}
 	if required.Source == nil {
-		return fmt.Errorf("Required field source missing")
+		return fmt.Errorf("required field source missing")
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

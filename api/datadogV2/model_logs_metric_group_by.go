@@ -125,7 +125,7 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Path == nil {
-		return fmt.Errorf("Required field path missing")
+		return fmt.Errorf("required field path missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

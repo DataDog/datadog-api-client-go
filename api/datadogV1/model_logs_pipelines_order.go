@@ -88,7 +88,7 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.PipelineIds == nil {
-		return fmt.Errorf("Required field pipeline_ids missing")
+		return fmt.Errorf("required field pipeline_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

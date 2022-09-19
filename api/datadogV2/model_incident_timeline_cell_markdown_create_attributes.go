@@ -160,10 +160,10 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		return err
 	}
 	if required.CellType == nil {
-		return fmt.Errorf("Required field cell_type missing")
+		return fmt.Errorf("required field cell_type missing")
 	}
 	if required.Content == nil {
-		return fmt.Errorf("Required field content missing")
+		return fmt.Errorf("required field content missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

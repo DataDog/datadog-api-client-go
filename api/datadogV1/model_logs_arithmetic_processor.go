@@ -290,13 +290,13 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

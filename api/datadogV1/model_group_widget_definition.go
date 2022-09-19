@@ -341,13 +341,13 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LayoutType == nil {
-		return fmt.Errorf("Required field layout_type missing")
+		return fmt.Errorf("required field layout_type missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.Widgets == nil {
-		return fmt.Errorf("Required field widgets missing")
+		return fmt.Errorf("required field widgets missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

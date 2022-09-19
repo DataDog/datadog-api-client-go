@@ -173,7 +173,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.IsEnabled == nil {
-		return fmt.Errorf("Required field isEnabled missing")
+		return fmt.Errorf("required field isEnabled missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

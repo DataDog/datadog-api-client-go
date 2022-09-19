@@ -116,10 +116,10 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AccountId == nil {
-		return fmt.Errorf("Required field account_id missing")
+		return fmt.Errorf("required field account_id missing")
 	}
 	if required.Services == nil {
-		return fmt.Errorf("Required field services missing")
+		return fmt.Errorf("required field services missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

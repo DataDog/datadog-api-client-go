@@ -373,13 +373,13 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Comparator == nil {
-		return fmt.Errorf("Required field comparator missing")
+		return fmt.Errorf("required field comparator missing")
 	}
 	if required.Palette == nil {
-		return fmt.Errorf("Required field palette missing")
+		return fmt.Errorf("required field palette missing")
 	}
 	if required.Value == nil {
-		return fmt.Errorf("Required field value missing")
+		return fmt.Errorf("required field value missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

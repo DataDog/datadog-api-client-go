@@ -116,10 +116,10 @@ func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

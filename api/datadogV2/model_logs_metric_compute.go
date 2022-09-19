@@ -125,7 +125,7 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AggregationType == nil {
-		return fmt.Errorf("Required field aggregation_type missing")
+		return fmt.Errorf("required field aggregation_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

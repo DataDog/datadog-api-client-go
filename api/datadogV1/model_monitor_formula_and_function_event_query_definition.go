@@ -259,13 +259,13 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []by
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

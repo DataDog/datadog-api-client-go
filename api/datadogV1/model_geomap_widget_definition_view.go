@@ -87,7 +87,7 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Focus == nil {
-		return fmt.Errorf("Required field focus missing")
+		return fmt.Errorf("required field focus missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

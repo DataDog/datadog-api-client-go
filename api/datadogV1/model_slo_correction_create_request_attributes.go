@@ -336,13 +336,13 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 	if required.Category == nil {
-		return fmt.Errorf("Required field category missing")
+		return fmt.Errorf("required field category missing")
 	}
 	if required.SloId == nil {
-		return fmt.Errorf("Required field slo_id missing")
+		return fmt.Errorf("required field slo_id missing")
 	}
 	if required.Start == nil {
-		return fmt.Errorf("Required field start missing")
+		return fmt.Errorf("required field start missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -88,7 +88,7 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.IdpFile == nil {
-		return fmt.Errorf("Required field idp_file missing")
+		return fmt.Errorf("required field idp_file missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

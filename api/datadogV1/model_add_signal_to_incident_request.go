@@ -163,7 +163,7 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.IncidentId == nil {
-		return fmt.Errorf("Required field incident_id missing")
+		return fmt.Errorf("required field incident_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

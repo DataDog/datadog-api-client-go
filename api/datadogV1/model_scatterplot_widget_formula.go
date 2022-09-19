@@ -154,10 +154,10 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Dimension == nil {
-		return fmt.Errorf("Required field dimension missing")
+		return fmt.Errorf("required field dimension missing")
 	}
 	if required.Formula == nil {
-		return fmt.Errorf("Required field formula missing")
+		return fmt.Errorf("required field formula missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

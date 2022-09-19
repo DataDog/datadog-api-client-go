@@ -203,7 +203,7 @@ func (o *RoleCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

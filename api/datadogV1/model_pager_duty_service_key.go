@@ -87,7 +87,7 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ServiceKey == nil {
-		return fmt.Errorf("Required field service_key missing")
+		return fmt.Errorf("required field service_key missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

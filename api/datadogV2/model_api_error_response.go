@@ -87,7 +87,7 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Errors == nil {
-		return fmt.Errorf("Required field errors missing")
+		return fmt.Errorf("required field errors missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

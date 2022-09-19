@@ -163,7 +163,7 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Facet == nil {
-		return fmt.Errorf("Required field facet missing")
+		return fmt.Errorf("required field facet missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

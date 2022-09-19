@@ -87,7 +87,7 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

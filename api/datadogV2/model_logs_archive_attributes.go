@@ -317,13 +317,13 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if !required.Destination.IsSet() {
-		return fmt.Errorf("Required field destination missing")
+		return fmt.Errorf("required field destination missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

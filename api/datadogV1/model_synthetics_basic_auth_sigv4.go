@@ -261,13 +261,13 @@ func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AccessKey == nil {
-		return fmt.Errorf("Required field accessKey missing")
+		return fmt.Errorf("required field accessKey missing")
 	}
 	if required.SecretKey == nil {
-		return fmt.Errorf("Required field secretKey missing")
+		return fmt.Errorf("required field secretKey missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

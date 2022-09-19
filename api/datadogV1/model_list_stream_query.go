@@ -156,10 +156,10 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.QueryString == nil {
-		return fmt.Errorf("Required field query_string missing")
+		return fmt.Errorf("required field query_string missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

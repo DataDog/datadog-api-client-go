@@ -174,7 +174,7 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.Definition == nil {
-		return fmt.Errorf("Required field definition missing")
+		return fmt.Errorf("required field definition missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

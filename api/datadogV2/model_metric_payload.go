@@ -87,7 +87,7 @@ func (o *MetricPayload) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Series == nil {
-		return fmt.Errorf("Required field series missing")
+		return fmt.Errorf("required field series missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

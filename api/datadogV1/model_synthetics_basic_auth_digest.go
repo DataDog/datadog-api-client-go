@@ -158,10 +158,10 @@ func (o *SyntheticsBasicAuthDigest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Password == nil {
-		return fmt.Errorf("Required field password missing")
+		return fmt.Errorf("required field password missing")
 	}
 	if required.Username == nil {
-		return fmt.Errorf("Required field username missing")
+		return fmt.Errorf("required field username missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

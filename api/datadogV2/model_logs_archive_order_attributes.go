@@ -88,7 +88,7 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ArchiveIds == nil {
-		return fmt.Errorf("Required field archive_ids missing")
+		return fmt.Errorf("required field archive_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

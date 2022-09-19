@@ -89,7 +89,7 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.IndexNames == nil {
-		return fmt.Errorf("Required field index_names missing")
+		return fmt.Errorf("required field index_names missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

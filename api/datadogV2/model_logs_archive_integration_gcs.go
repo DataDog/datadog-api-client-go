@@ -116,10 +116,10 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ClientEmail == nil {
-		return fmt.Errorf("Required field client_email missing")
+		return fmt.Errorf("required field client_email missing")
 	}
 	if required.ProjectId == nil {
-		return fmt.Errorf("Required field project_id missing")
+		return fmt.Errorf("required field project_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

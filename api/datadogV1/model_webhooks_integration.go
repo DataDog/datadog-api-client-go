@@ -264,10 +264,10 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

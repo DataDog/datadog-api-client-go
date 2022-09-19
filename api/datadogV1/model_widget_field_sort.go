@@ -116,10 +116,10 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Column == nil {
-		return fmt.Errorf("Required field column missing")
+		return fmt.Errorf("required field column missing")
 	}
 	if required.Order == nil {
-		return fmt.Errorf("Required field order missing")
+		return fmt.Errorf("required field order missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

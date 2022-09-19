@@ -205,7 +205,7 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Value == nil {
-		return fmt.Errorf("Required field value missing")
+		return fmt.Errorf("required field value missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

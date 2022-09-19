@@ -299,13 +299,13 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Filters == nil {
-		return fmt.Errorf("Required field filters missing")
+		return fmt.Errorf("required field filters missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

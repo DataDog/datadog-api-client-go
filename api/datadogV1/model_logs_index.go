@@ -272,10 +272,10 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Filter == nil {
-		return fmt.Errorf("Required field filter missing")
+		return fmt.Errorf("required field filter missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

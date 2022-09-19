@@ -116,10 +116,10 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ClientId == nil {
-		return fmt.Errorf("Required field client_id missing")
+		return fmt.Errorf("required field client_id missing")
 	}
 	if required.TenantId == nil {
-		return fmt.Errorf("Required field tenant_id missing")
+		return fmt.Errorf("required field tenant_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

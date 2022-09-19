@@ -89,7 +89,7 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	if required.Scope == nil {
-		return fmt.Errorf("Required field scope missing")
+		return fmt.Errorf("required field scope missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

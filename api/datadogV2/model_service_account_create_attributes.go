@@ -192,10 +192,10 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	if required.Email == nil {
-		return fmt.Errorf("Required field email missing")
+		return fmt.Errorf("required field email missing")
 	}
 	if required.ServiceAccount == nil {
-		return fmt.Errorf("Required field service_account missing")
+		return fmt.Errorf("required field service_account missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

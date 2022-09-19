@@ -239,7 +239,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Formula == nil {
-		return fmt.Errorf("Required field formula missing")
+		return fmt.Errorf("required field formula missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

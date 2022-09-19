@@ -206,7 +206,7 @@ func (o *RUMCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

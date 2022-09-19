@@ -212,16 +212,16 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Height == nil {
-		return fmt.Errorf("Required field height missing")
+		return fmt.Errorf("required field height missing")
 	}
 	if required.Id == nil {
-		return fmt.Errorf("Required field id missing")
+		return fmt.Errorf("required field id missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Width == nil {
-		return fmt.Errorf("Required field width missing")
+		return fmt.Errorf("required field width missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

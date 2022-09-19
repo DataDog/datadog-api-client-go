@@ -129,7 +129,7 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.MatchRules == nil {
-		return fmt.Errorf("Required field match_rules missing")
+		return fmt.Errorf("required field match_rules missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

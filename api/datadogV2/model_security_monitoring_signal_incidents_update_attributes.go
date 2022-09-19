@@ -125,7 +125,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes 
 		return err
 	}
 	if required.IncidentIds == nil {
-		return fmt.Errorf("Required field incident_ids missing")
+		return fmt.Errorf("required field incident_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

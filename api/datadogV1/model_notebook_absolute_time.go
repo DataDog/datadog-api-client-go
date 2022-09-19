@@ -163,10 +163,10 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.End == nil {
-		return fmt.Errorf("Required field end missing")
+		return fmt.Errorf("required field end missing")
 	}
 	if required.Start == nil {
-		return fmt.Errorf("Required field start missing")
+		return fmt.Errorf("required field start missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

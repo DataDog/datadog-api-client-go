@@ -116,10 +116,10 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Palette == nil {
-		return fmt.Errorf("Required field palette missing")
+		return fmt.Errorf("required field palette missing")
 	}
 	if required.PaletteFlip == nil {
-		return fmt.Errorf("Required field palette_flip missing")
+		return fmt.Errorf("required field palette_flip missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

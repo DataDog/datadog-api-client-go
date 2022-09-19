@@ -155,10 +155,10 @@ func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 	if required.IsSecret == nil {
-		return fmt.Errorf("Required field is_secret missing")
+		return fmt.Errorf("required field is_secret missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

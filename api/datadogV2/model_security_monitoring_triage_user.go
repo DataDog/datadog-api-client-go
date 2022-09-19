@@ -201,7 +201,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Uuid == nil {
-		return fmt.Errorf("Required field uuid missing")
+		return fmt.Errorf("required field uuid missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

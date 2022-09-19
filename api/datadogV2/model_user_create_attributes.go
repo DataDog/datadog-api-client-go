@@ -163,7 +163,7 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Email == nil {
-		return fmt.Errorf("Required field email missing")
+		return fmt.Errorf("required field email missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

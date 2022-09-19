@@ -145,13 +145,13 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Columns == nil {
-		return fmt.Errorf("Required field columns missing")
+		return fmt.Errorf("required field columns missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	if required.ResponseFormat == nil {
-		return fmt.Errorf("Required field response_format missing")
+		return fmt.Errorf("required field response_format missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

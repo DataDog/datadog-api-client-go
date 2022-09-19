@@ -118,10 +118,10 @@ func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Relationships == nil {
-		return fmt.Errorf("Required field relationships missing")
+		return fmt.Errorf("required field relationships missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

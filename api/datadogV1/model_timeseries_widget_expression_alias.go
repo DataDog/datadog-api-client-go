@@ -125,7 +125,7 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

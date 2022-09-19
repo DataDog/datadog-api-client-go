@@ -116,10 +116,10 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.ErrorMessage == nil {
-		return fmt.Errorf("Required field error_message missing")
+		return fmt.Errorf("required field error_message missing")
 	}
 	if required.ErrorType == nil {
-		return fmt.Errorf("Required field error_type missing")
+		return fmt.Errorf("required field error_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

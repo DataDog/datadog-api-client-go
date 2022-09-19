@@ -163,7 +163,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -201,7 +201,7 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 		return err
 	}
 	if required.State == nil {
-		return fmt.Errorf("Required field state missing")
+		return fmt.Errorf("required field state missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

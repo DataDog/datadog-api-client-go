@@ -118,10 +118,10 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

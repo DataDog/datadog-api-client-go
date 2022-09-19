@@ -252,16 +252,16 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Container == nil {
-		return fmt.Errorf("Required field container missing")
+		return fmt.Errorf("required field container missing")
 	}
 	if required.Integration == nil {
-		return fmt.Errorf("Required field integration missing")
+		return fmt.Errorf("required field integration missing")
 	}
 	if required.StorageAccount == nil {
-		return fmt.Errorf("Required field storage_account missing")
+		return fmt.Errorf("required field storage_account missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

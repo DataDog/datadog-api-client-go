@@ -234,10 +234,10 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Metric == nil {
-		return fmt.Errorf("Required field metric missing")
+		return fmt.Errorf("required field metric missing")
 	}
 	if required.Points == nil {
-		return fmt.Errorf("Required field points missing")
+		return fmt.Errorf("required field points missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

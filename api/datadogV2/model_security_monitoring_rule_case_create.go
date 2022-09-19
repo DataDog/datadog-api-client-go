@@ -202,7 +202,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Status == nil {
-		return fmt.Errorf("Required field status missing")
+		return fmt.Errorf("required field status missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

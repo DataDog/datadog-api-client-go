@@ -192,10 +192,10 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

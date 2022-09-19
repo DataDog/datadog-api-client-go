@@ -282,7 +282,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
+		return fmt.Errorf("required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

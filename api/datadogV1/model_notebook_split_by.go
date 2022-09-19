@@ -116,10 +116,10 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Keys == nil {
-		return fmt.Errorf("Required field keys missing")
+		return fmt.Errorf("required field keys missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
