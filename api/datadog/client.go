@@ -23,7 +23,6 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
-	"strconv"
 	"strings"
 	"time"
 
@@ -66,34 +65,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	return c
 }
 
-func atoi(in string) (int, error) {
-	return strconv.Atoi(in)
-}
-
-// contains is a case insensitive match, finding needle in a haystack.
-func contains(haystack []string, needle string) bool {
-	for _, a := range haystack {
-		if strings.ToLower(a) == strings.ToLower(needle) {
-			return true
-		}
-	}
-	return false
-}
-
-// Verify optional parameters are of the correct type.?
-func typeCheckParameter(obj interface{}, expected string, name string) error {
-	// Make sure there is an object.
-	if obj == nil {
-		return nil
-	}
-
-	// Check the type is as expected.
-	if reflect.TypeOf(obj).String() != expected {
-		return fmt.Errorf("expected %s to be of type %s but received %s", name, expected, reflect.TypeOf(obj).String())
-	}
-	return nil
-}
-
 // ParameterToString convert interface{} parameters to string, using a delimiter if format is provided.
 func ParameterToString(obj interface{}, collectionFormat string) string {
 	var delimiter string
@@ -119,15 +90,6 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 	}
 
 	return fmt.Sprintf("%v", obj)
-}
-
-// helper for converting interface{} parameters to json strings.
-func parameterToJson(obj interface{}) (string, error) {
-	jsonBuf, err := json.Marshal(obj)
-	if err != nil {
-		return "", err
-	}
-	return string(jsonBuf), err
 }
 
 // CallAPI do the request.
@@ -382,7 +344,7 @@ func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err err
 				return err
 			}
 		} else {
-			return errors.New("Unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
+			return errors.New("unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
 		}
 	} else if err = json.Unmarshal(b, v); err != nil { // simple model
 		return err
