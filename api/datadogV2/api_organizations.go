@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"bytes"
 	_context "context"
-	_ioutil "io/ioutil"
+	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"os"
@@ -95,7 +95,7 @@ func (a *OrganizationsApi) uploadIdPMetadataExecute(r apiUploadIdPMetadataReques
 		localVarFile = *r.idpFile
 	}
 	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
+		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
 		formFile.FileName = localVarFile.Name()
 		localVarFile.Close()
@@ -138,9 +138,9 @@ func (a *OrganizationsApi) uploadIdPMetadataExecute(r apiUploadIdPMetadataReques
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
