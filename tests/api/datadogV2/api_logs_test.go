@@ -42,7 +42,7 @@ func TestLogsList(t *testing.T) {
 	// Make sure both logs are indexed
 	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
 		response, httpResp, err = api.ListLogs(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(*request))
-		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return err == nil && httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 
 	if err != nil {
@@ -56,7 +56,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -76,7 +76,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -98,7 +98,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 1
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -117,7 +117,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 1
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -176,7 +176,7 @@ func TestLogsListGet(t *testing.T) {
 			WithFilterQuery(*suffix).
 			WithFilterFrom(from).
 			WithFilterTo(to))
-		return err == nil && 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return err == nil && httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 
 	if err != nil {
@@ -193,7 +193,7 @@ func TestLogsListGet(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -216,7 +216,7 @@ func TestLogsListGet(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 2 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 2
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -240,7 +240,7 @@ func TestLogsListGet(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 1
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -263,7 +263,7 @@ func TestLogsListGet(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Could not list logs: %v", err)
 		}
-		return 200 == httpResp.StatusCode && 1 == len(response.GetData())
+		return httpResp.StatusCode == 200 && len(response.GetData()) == 1
 	})
 	if err != nil {
 		t.Fatalf("%v", err)

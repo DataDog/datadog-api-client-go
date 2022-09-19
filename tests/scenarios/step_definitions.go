@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"reflect"
@@ -252,7 +251,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	// use WithPagination method
-	newWithPagination, err := ctx.GetString(requestNameKey{})
+	newWithPagination, _ := ctx.GetString(requestNameKey{})
 	newWithPagination = newWithPagination + "WithPagination"
 
 	c, err := ctx.Get(apiKey{})
@@ -319,7 +318,7 @@ func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 
 func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
 	version := GetVersion(ctx)
-	body, err := ioutil.ReadFile(fmt.Sprintf("./features/%s/%s", version, bodyFile))
+	body, err := os.ReadFile(fmt.Sprintf("./features/%s/%s", version, bodyFile))
 	if err != nil {
 		t.Fatalf("Error reading file ./features/%s: %v", bodyFile, err)
 	}

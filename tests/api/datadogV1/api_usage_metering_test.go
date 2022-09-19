@@ -9,7 +9,7 @@ package test
 import (
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strconv"
 	"testing"
@@ -26,13 +26,6 @@ func getStartEndHr(ctx context.Context) (time.Time, time.Time) {
 	year, month, _ := tests.ClockFromContext(ctx).Now().Date()
 	start := time.Date(year, month-1, 12, 0, 0, 0, 0, time.UTC)
 	end := time.Date(year, month-1, 13, 0, 0, 0, 0, time.UTC)
-	return start, end
-}
-
-func getStartEndMonth(ctx context.Context) (time.Time, time.Time) {
-	year, month, _ := tests.ClockFromContext(ctx).Now().Date()
-	start := time.Date(year, month-2, 1, 0, 0, 0, 0, time.UTC)
-	end := time.Date(year, month-1, 1, 0, 0, 0, 0, time.UTC)
 	return start, end
 }
 
@@ -409,7 +402,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to get fixture file path: %s", err)
 	}
-	data, err := ioutil.ReadFile(fixturePath)
+	data, err := os.ReadFile(fixturePath)
 	if err != nil {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}
@@ -561,7 +554,7 @@ func TestUsageSummary(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to get fixture file path: %s", err)
 	}
-	data, err := ioutil.ReadFile(fixturePath)
+	data, err := os.ReadFile(fixturePath)
 	if err != nil {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}

@@ -665,7 +665,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 
 	// Create SLO
 	testEventSLO := getTestEventSLO(ctx, t)
-	sloResp, httpresp, err := sloApi.CreateSLO(ctx, testEventSLO)
+	sloResp, _, err := sloApi.CreateSLO(ctx, testEventSLO)
 	if err != nil {
 		t.Fatalf("Error creating SLO %v: Response %s: %v", testEventSLO, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -751,8 +751,8 @@ func deleteSLOCorrectionIfExists(ctx context.Context, t *testing.T, sloCorrectio
 	sloCorrectionApi := datadogV1.NewServiceLevelObjectiveCorrectionsApi(Client(ctx))
 	httpresp, err := sloCorrectionApi.DeleteSLOCorrection(ctx, sloCorrectionID)
 	if err != nil && httpresp.StatusCode != 404 {
-		//t.Logf("Deleting SLO correction: %v failed with %v, Another test may have already deleted this SLO correction: %v",
-		//	sloCorrectionID, httpresp.StatusCode, err)
+		t.Logf("Deleting SLO correction: %v failed with %v, Another test may have already deleted this SLO correction: %v",
+			sloCorrectionID, httpresp.StatusCode, err)
 	}
 }
 

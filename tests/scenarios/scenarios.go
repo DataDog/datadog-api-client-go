@@ -75,7 +75,6 @@ type requestParamsKey struct{}
 type responseKey struct{}
 type jsonResponseKey struct{}
 type dataKey struct{}
-type bodyKey struct{}
 type cleanupKey struct{}
 type pathParamCountKey struct{}
 
@@ -99,9 +98,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 	replace := func(source string) string {
 		path := strings.Trim(source, "{ }")
 		if res := functionRE.FindSubmatch([]byte(path)); res != nil {
-			functionName := string(res[1])
-			arg := string(res[2])
-			res := templateFunctions[functionName](data, arg)
+			res := templateFunctions[string(res[1])](data, string(res[2]))
 			return res
 		}
 		if path[0] == '\'' || path[0] == '"' {
@@ -136,6 +133,8 @@ func CamelToSnakeCase(camel string) string {
 	return strings.ToLower(snake)
 }
 
+var toVarNameRe = regexp.MustCompile(`[()\[\].]`)
+
 // ToVarName converts a string to a valid Go variable name.
 func ToVarName(param string) (varName string) {
 	isToUpper := true
@@ -143,7 +142,7 @@ func ToVarName(param string) (varName string) {
 	for _, v := range param {
 		if v == '_' {
 			isToUpper = true
-		} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
+		} else if m := toVarNameRe.Match([]byte{byte(v)}); m {
 			isToUpper = true
 		} else {
 			if isToUpper {
@@ -369,7 +368,7 @@ func RunCleanup(ctx gobdd.Context) {
 func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error) {
 	c, err := ctx.Get(requestKey{})
 	if err != nil {
-		return reflect.Value{}, []reflect.Value{}, fmt.Errorf("Missing requestKey{}")
+		return reflect.Value{}, []reflect.Value{}, fmt.Errorf("missing requestKey{}")
 	}
 	f := c.(reflect.Value)
 
@@ -392,11 +391,11 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 			paramName := ToVarName(k)
 			if method := optionalParams.MethodByName("With" + paramName); method.IsValid() {
 				at := reflect.New(method.Type().In(0))
-				switch v.(type) {
+				switch t := v.(type) {
 				case reflect.Value:
-					at.Elem().Set(v.(reflect.Value))
+					at.Elem().Set(t)
 				case interface{}:
-					json.Unmarshal([]byte(v.(string)), at.Interface())
+					json.Unmarshal([]byte(t.(string)), at.Interface())
 				}
 				optionalParams = method.Call([]reflect.Value{at.Elem()})[0]
 			} else if k == "body" {

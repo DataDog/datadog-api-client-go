@@ -10,7 +10,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"reflect"
@@ -78,7 +78,7 @@ func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 	}
 	defer f.Close()
 
-	byteValue, _ := ioutil.ReadAll(f)
+	byteValue, _ := io.ReadAll(f)
 
 	var value map[string]UndoAction
 	json.Unmarshal(byteValue, &value)
@@ -94,7 +94,7 @@ func LoadGivenSteps(file string) ([]GivenStep, error) {
 	defer f.Close()
 
 	var value []GivenStep
-	byteValue, _ := ioutil.ReadAll(f)
+	byteValue, _ := io.ReadAll(f)
 	err = json.Unmarshal(byteValue, &value)
 	return value, err
 }
@@ -204,7 +204,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 			t.Fatal(result[len(result)-1])
 		}
 
-		responseJSON, err := toJSON(result[0])
+		responseJSON, _ := toJSON(result[0])
 
 		if undo != nil {
 			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result)
