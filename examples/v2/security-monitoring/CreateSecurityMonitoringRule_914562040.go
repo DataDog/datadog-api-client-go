@@ -1,4 +1,4 @@
-// Create a detection rule returns "OK" response
+// Create a detection rule with type 'signal_correlation' returns "OK" response
 
 package main
 
@@ -13,15 +13,29 @@ import (
 )
 
 func main() {
+	// there is a valid "security_rule" in the system
+	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
+
+	// there is a valid "security_rule_bis" in the system
+	SecurityRuleBisID := os.Getenv("SECURITY_RULE_BIS_ID")
+
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		Name: "Example-Create_a_detection_rule_returns_OK_response",
+		Name: "Example-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response_signal_rule",
 		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
 			{
-				Query:          datadog.PtrString("@test:true"),
-				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				GroupByFields:  []string{},
-				DistinctFields: []string{},
-				Metric:         datadog.PtrString(""),
+				RuleId:      datadog.PtrString(SecurityRuleID),
+				Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT.Ptr(),
+				CorrelatedByFields: []string{
+					"host",
+				},
+				CorrelatedQueryIndex: datadog.PtrInt32(1),
+			},
+			{
+				RuleId:      datadog.PtrString(SecurityRuleBisID),
+				Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT.Ptr(),
+				CorrelatedByFields: []string{
+					"host",
+				},
 			},
 		},
 		Filters: []datadogV2.SecurityMonitoringFilter{},
@@ -29,7 +43,7 @@ func main() {
 			{
 				Name:          datadog.PtrString(""),
 				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
-				Condition:     datadog.PtrString("a > 0"),
+				Condition:     datadog.PtrString("a > 0 && b > 0"),
 				Notifications: []string{},
 			},
 		},
@@ -38,9 +52,10 @@ func main() {
 			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
 			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 		},
-		Message:   "Test rule",
+		Message:   "Test signal correlation rule",
 		Tags:      []string{},
 		IsEnabled: true,
+		Type:      datadogV2.SECURITYMONITORINGRULETYPECREATE_SIGNAL_CORRELATION.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

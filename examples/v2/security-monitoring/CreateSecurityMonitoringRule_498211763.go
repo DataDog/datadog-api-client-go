@@ -17,7 +17,7 @@ func main() {
 		Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
 		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
 			{
-				Query:          "@test:true",
+				Query:          datadog.PtrString("@test:true"),
 				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  []string{},
 				DistinctFields: []string{},

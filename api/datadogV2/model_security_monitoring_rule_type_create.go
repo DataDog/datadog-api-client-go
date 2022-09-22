@@ -14,12 +14,14 @@ type SecurityMonitoringRuleTypeCreate string
 
 // List of SecurityMonitoringRuleTypeCreate.
 const (
-	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION     SecurityMonitoringRuleTypeCreate = "log_detection"
-	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY SecurityMonitoringRuleTypeCreate = "workload_security"
+	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION      SecurityMonitoringRuleTypeCreate = "log_detection"
+	SECURITYMONITORINGRULETYPECREATE_SIGNAL_CORRELATION SecurityMonitoringRuleTypeCreate = "signal_correlation"
+	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY  SecurityMonitoringRuleTypeCreate = "workload_security"
 )
 
 var allowedSecurityMonitoringRuleTypeCreateEnumValues = []SecurityMonitoringRuleTypeCreate{
 	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION,
+	SECURITYMONITORINGRULETYPECREATE_SIGNAL_CORRELATION,
 	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY,
 }
 

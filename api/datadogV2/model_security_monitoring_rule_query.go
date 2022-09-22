@@ -12,6 +12,10 @@ import (
 type SecurityMonitoringRuleQuery struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+	// Fields to group by for Signal Correlation rules.
+	CorrelatedByFields []string `json:"correlatedByFields,omitempty"`
+	// Index of the rule query used to retrieve the correlated field for Signal Correlation rules.
+	CorrelatedQueryIndex *int32 `json:"correlatedQueryIndex,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
@@ -25,6 +29,8 @@ type SecurityMonitoringRuleQuery struct {
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
 	Query *string `json:"query,omitempty"`
+	// Rule ID to match on signals for Signal Correlation rules.
+	RuleId *string `json:"ruleId,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -77,6 +83,70 @@ func (o *SecurityMonitoringRuleQuery) HasAggregation() bool {
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
 func (o *SecurityMonitoringRuleQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
+}
+
+// GetCorrelatedByFields returns the CorrelatedByFields field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleQuery) GetCorrelatedByFields() []string {
+	if o == nil || o.CorrelatedByFields == nil {
+		var ret []string
+		return ret
+	}
+	return o.CorrelatedByFields
+}
+
+// GetCorrelatedByFieldsOk returns a tuple with the CorrelatedByFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleQuery) GetCorrelatedByFieldsOk() (*[]string, bool) {
+	if o == nil || o.CorrelatedByFields == nil {
+		return nil, false
+	}
+	return &o.CorrelatedByFields, true
+}
+
+// HasCorrelatedByFields returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleQuery) HasCorrelatedByFields() bool {
+	if o != nil && o.CorrelatedByFields != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelatedByFields gets a reference to the given []string and assigns it to the CorrelatedByFields field.
+func (o *SecurityMonitoringRuleQuery) SetCorrelatedByFields(v []string) {
+	o.CorrelatedByFields = v
+}
+
+// GetCorrelatedQueryIndex returns the CorrelatedQueryIndex field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleQuery) GetCorrelatedQueryIndex() int32 {
+	if o == nil || o.CorrelatedQueryIndex == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CorrelatedQueryIndex
+}
+
+// GetCorrelatedQueryIndexOk returns a tuple with the CorrelatedQueryIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleQuery) GetCorrelatedQueryIndexOk() (*int32, bool) {
+	if o == nil || o.CorrelatedQueryIndex == nil {
+		return nil, false
+	}
+	return o.CorrelatedQueryIndex, true
+}
+
+// HasCorrelatedQueryIndex returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleQuery) HasCorrelatedQueryIndex() bool {
+	if o != nil && o.CorrelatedQueryIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelatedQueryIndex gets a reference to the given int32 and assigns it to the CorrelatedQueryIndex field.
+func (o *SecurityMonitoringRuleQuery) SetCorrelatedQueryIndex(v int32) {
+	o.CorrelatedQueryIndex = &v
 }
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
@@ -271,6 +341,38 @@ func (o *SecurityMonitoringRuleQuery) SetQuery(v string) {
 	o.Query = &v
 }
 
+// GetRuleId returns the RuleId field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleQuery) GetRuleId() string {
+	if o == nil || o.RuleId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RuleId
+}
+
+// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleQuery) GetRuleIdOk() (*string, bool) {
+	if o == nil || o.RuleId == nil {
+		return nil, false
+	}
+	return o.RuleId, true
+}
+
+// HasRuleId returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleQuery) HasRuleId() bool {
+	if o != nil && o.RuleId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleId gets a reference to the given string and assigns it to the RuleId field.
+func (o *SecurityMonitoringRuleQuery) SetRuleId(v string) {
+	o.RuleId = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -279,6 +381,12 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
+	}
+	if o.CorrelatedByFields != nil {
+		toSerialize["correlatedByFields"] = o.CorrelatedByFields
+	}
+	if o.CorrelatedQueryIndex != nil {
+		toSerialize["correlatedQueryIndex"] = o.CorrelatedQueryIndex
 	}
 	if o.DistinctFields != nil {
 		toSerialize["distinctFields"] = o.DistinctFields
@@ -298,6 +406,9 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
+	if o.RuleId != nil {
+		toSerialize["ruleId"] = o.RuleId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -309,13 +420,16 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DistinctFields []string                                `json:"distinctFields,omitempty"`
-		GroupByFields  []string                                `json:"groupByFields,omitempty"`
-		Metric         *string                                 `json:"metric,omitempty"`
-		Metrics        []string                                `json:"metrics,omitempty"`
-		Name           *string                                 `json:"name,omitempty"`
-		Query          *string                                 `json:"query,omitempty"`
+		Aggregation          *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		CorrelatedByFields   []string                                `json:"correlatedByFields,omitempty"`
+		CorrelatedQueryIndex *int32                                  `json:"correlatedQueryIndex,omitempty"`
+		DistinctFields       []string                                `json:"distinctFields,omitempty"`
+		GroupByFields        []string                                `json:"groupByFields,omitempty"`
+		Metric               *string                                 `json:"metric,omitempty"`
+		Metrics              []string                                `json:"metrics,omitempty"`
+		Name                 *string                                 `json:"name,omitempty"`
+		Query                *string                                 `json:"query,omitempty"`
+		RuleId               *string                                 `json:"ruleId,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -335,11 +449,14 @@ func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Aggregation = all.Aggregation
+	o.CorrelatedByFields = all.CorrelatedByFields
+	o.CorrelatedQueryIndex = all.CorrelatedQueryIndex
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields
 	o.Metric = all.Metric
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.Query = all.Query
+	o.RuleId = all.RuleId
 	return nil
 }
