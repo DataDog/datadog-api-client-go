@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1641430328","options":{},"queries":[{"query":""}],"tags":[]}
+      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1663594809","options":{},"queries":[{"query":""}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
-    body: '{"errors":["Internal error"]}'
+    body: '{"errors":["Internal error"]}
+
+      '
     code: 400
     duration: ''
     headers:

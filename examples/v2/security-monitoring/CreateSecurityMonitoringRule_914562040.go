@@ -1,4 +1,4 @@
-// Create a detection rule with type 'impossible_travel' returns "OK" response
+// Create a detection rule with type 'signal_correlation' returns "OK" response
 
 package main
 
@@ -13,42 +13,50 @@ import (
 )
 
 func main() {
+	// there is a valid "security_rule" in the system
+	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
+
+	// there is a valid "security_rule_bis" in the system
+	SecurityRuleBisID := os.Getenv("SECURITY_RULE_BIS_ID")
+
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
-			Queries: []datadogV2.SecurityMonitoringStandardRuleQueryCreate{
+		SecurityMonitoringSignalRuleCreatePayload: &datadogV2.SecurityMonitoringSignalRuleCreatePayload{
+			Name: "Example-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response_signal_rule",
+			Queries: []datadogV2.SecurityMonitoringSignalRuleQueryCreate{
 				{
-					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
-					GroupByFields: []string{
-						"@usr.id",
+					RuleId:      SecurityRuleID,
+					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT.Ptr(),
+					CorrelatedByFields: []string{
+						"host",
 					},
-					DistinctFields: []string{},
-					Metric:         datadog.PtrString("@network.client.geoip"),
-					Query:          "*",
+					CorrelatedQueryIndex: datadog.PtrInt32(1),
+				},
+				{
+					RuleId:      SecurityRuleBisID,
+					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT.Ptr(),
+					CorrelatedByFields: []string{
+						"host",
+					},
 				},
 			},
+			Filters: []datadogV2.SecurityMonitoringFilter{},
 			Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
 				{
 					Name:          datadog.PtrString(""),
 					Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
+					Condition:     datadog.PtrString("a > 0 && b > 0"),
 					Notifications: []string{},
 				},
 			},
-			HasExtendedTitle: datadog.PtrBool(true),
-			Message:          "test",
-			IsEnabled:        true,
 			Options: datadogV2.SecurityMonitoringRuleOptions{
-				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 				EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
 				KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
-				DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
-				ImpossibleTravelOptions: &datadogV2.SecurityMonitoringRuleImpossibleTravelOptions{
-					BaselineUserLocations: datadog.PtrBool(false),
-				},
+				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 			},
-			Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
-			Type:    datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
-			Tags:    []string{},
-			Filters: []datadogV2.SecurityMonitoringFilter{},
+			Message:   "Test signal correlation rule",
+			Tags:      []string{},
+			IsEnabled: true,
+			Type:      datadogV2.SECURITYMONITORINGSIGNALRULETYPECREATE_SIGNAL_CORRELATION.Ptr(),
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
