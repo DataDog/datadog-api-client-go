@@ -30,6 +30,7 @@ type WidgetDefinition struct {
 	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
 	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
 	SLOWidgetDefinition            *SLOWidgetDefinition
+	SLOListWidgetDefinition        *SLOListWidgetDefinition
 	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
 	SunburstWidgetDefinition       *SunburstWidgetDefinition
@@ -143,6 +144,11 @@ func ScatterPlotWidgetDefinitionAsWidgetDefinition(v *ScatterPlotWidgetDefinitio
 // SLOWidgetDefinitionAsWidgetDefinition is a convenience function that returns SLOWidgetDefinition wrapped in WidgetDefinition.
 func SLOWidgetDefinitionAsWidgetDefinition(v *SLOWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{SLOWidgetDefinition: v}
+}
+
+// SLOListWidgetDefinitionAsWidgetDefinition is a convenience function that returns SLOListWidgetDefinition wrapped in WidgetDefinition.
+func SLOListWidgetDefinitionAsWidgetDefinition(v *SLOListWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{SLOListWidgetDefinition: v}
 }
 
 // ServiceMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceMapWidgetDefinition wrapped in WidgetDefinition.
@@ -539,6 +545,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.SLOWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into SLOListWidgetDefinition
+	err = json.Unmarshal(data, &obj.SLOListWidgetDefinition)
+	if err == nil {
+		if obj.SLOListWidgetDefinition != nil && obj.SLOListWidgetDefinition.UnparsedObject == nil {
+			jsonSLOListWidgetDefinition, _ := json.Marshal(obj.SLOListWidgetDefinition)
+			if string(jsonSLOListWidgetDefinition) == "{}" { // empty struct
+				obj.SLOListWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SLOListWidgetDefinition = nil
+		}
+	} else {
+		obj.SLOListWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into ServiceMapWidgetDefinition
 	err = json.Unmarshal(data, &obj.ServiceMapWidgetDefinition)
 	if err == nil {
@@ -731,6 +754,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.QueryValueWidgetDefinition = nil
 		obj.ScatterPlotWidgetDefinition = nil
 		obj.SLOWidgetDefinition = nil
+		obj.SLOListWidgetDefinition = nil
 		obj.ServiceMapWidgetDefinition = nil
 		obj.ServiceSummaryWidgetDefinition = nil
 		obj.SunburstWidgetDefinition = nil
@@ -826,6 +850,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.SLOWidgetDefinition != nil {
 		return json.Marshal(&obj.SLOWidgetDefinition)
+	}
+
+	if obj.SLOListWidgetDefinition != nil {
+		return json.Marshal(&obj.SLOListWidgetDefinition)
 	}
 
 	if obj.ServiceMapWidgetDefinition != nil {
@@ -954,6 +982,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.SLOWidgetDefinition != nil {
 		return obj.SLOWidgetDefinition
+	}
+
+	if obj.SLOListWidgetDefinition != nil {
+		return obj.SLOListWidgetDefinition
 	}
 
 	if obj.ServiceMapWidgetDefinition != nil {
