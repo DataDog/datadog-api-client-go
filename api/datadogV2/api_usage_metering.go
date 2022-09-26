@@ -7,9 +7,7 @@ package datadogV2
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -60,7 +58,11 @@ func (a *UsageMeteringApi) buildGetCostByOrgRequest(ctx _context.Context, startM
 }
 
 // GetCostByOrg Get cost across multi-org account.
-// Get cost across multi-org account. Cost by org data for a given month becomes available no later than the 16th of the following month.
+// Get cost across multi-org account.
+// Cost by org data for a given month becomes available no later than the 16th of the following month.
+// **Note:** This endpoint has been deprecated. Please use the new endpoint
+// [`/historical_cost`](https://docs.datadoghq.com/api/latest/usage-metering/#get-historical-cost-across-your-account)
+// instead.
 func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetCostByOrgRequest(ctx, startMonth, o...)
 	if err != nil {
@@ -182,6 +184,7 @@ type apiGetEstimatedCostByOrgRequest struct {
 
 // GetEstimatedCostByOrgOptionalParameters holds optional parameters for GetEstimatedCostByOrg.
 type GetEstimatedCostByOrgOptionalParameters struct {
+	View       *string
 	StartMonth *time.Time
 	EndMonth   *time.Time
 	StartDate  *time.Time
@@ -192,6 +195,12 @@ type GetEstimatedCostByOrgOptionalParameters struct {
 func NewGetEstimatedCostByOrgOptionalParameters() *GetEstimatedCostByOrgOptionalParameters {
 	this := GetEstimatedCostByOrgOptionalParameters{}
 	return &this
+}
+
+// WithView sets the corresponding parameter name and returns the struct.
+func (r *GetEstimatedCostByOrgOptionalParameters) WithView(view string) *GetEstimatedCostByOrgOptionalParameters {
+	r.View = &view
+	return r
 }
 
 // WithStartMonth sets the corresponding parameter name and returns the struct.
@@ -218,10 +227,9 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time)
 	return r
 }
 
-func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Context, view string, o ...GetEstimatedCostByOrgOptionalParameters) (apiGetEstimatedCostByOrgRequest, error) {
+func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (apiGetEstimatedCostByOrgRequest, error) {
 	req := apiGetEstimatedCostByOrgRequest{
-		ctx:  ctx,
-		view: &view,
+		ctx: ctx,
 	}
 
 	if len(o) > 1 {
@@ -229,6 +237,7 @@ func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Contex
 	}
 
 	if o != nil {
+		req.view = o[0].View
 		req.startMonth = o[0].StartMonth
 		req.endMonth = o[0].EndMonth
 		req.startDate = o[0].StartDate
@@ -239,9 +248,10 @@ func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Contex
 
 // GetEstimatedCostByOrg Get estimated cost across your account.
 // Get estimated cost across multi-org and single root-org accounts.
-// Estimated cost data is only available for the current month and previous month. To access historical costs prior to this, use the /cost_by_org endpoint.
-func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, view string, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetEstimatedCostByOrgRequest(ctx, view, o...)
+// Estimated cost data is only available for the current month and previous month.
+// To access historical costs prior to this, use the `/historical_cost` endpoint.
+func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetEstimatedCostByOrgRequest(ctx, o...)
 	if err != nil {
 		var localVarReturnValue CostByOrgResponse
 		return localVarReturnValue, nil, err
@@ -258,13 +268,6 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 		localVarReturnValue CostByOrgResponse
 	)
 
-	operationId := "v2.GetEstimatedCostByOrg"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApi.GetEstimatedCostByOrg")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -275,10 +278,9 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.view == nil {
-		return localVarReturnValue, nil, datadog.ReportError("view is required and must be specified")
+	if r.view != nil {
+		localVarQueryParams.Add("view", datadog.ParameterToString(*r.view, ""))
 	}
-	localVarQueryParams.Add("view", datadog.ParameterToString(*r.view, ""))
 	if r.startMonth != nil {
 		localVarQueryParams.Add("start_month", datadog.ParameterToString(*r.startMonth, ""))
 	}
@@ -290,6 +292,170 @@ func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(r apiGetEstimatedCostByO
 	}
 	if r.endDate != nil {
 		localVarQueryParams.Add("end_date", datadog.ParameterToString(*r.endDate, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetHistoricalCostByOrgRequest struct {
+	ctx        _context.Context
+	startMonth *time.Time
+	view       *string
+	endMonth   *time.Time
+}
+
+// GetHistoricalCostByOrgOptionalParameters holds optional parameters for GetHistoricalCostByOrg.
+type GetHistoricalCostByOrgOptionalParameters struct {
+	View     *string
+	EndMonth *time.Time
+}
+
+// NewGetHistoricalCostByOrgOptionalParameters creates an empty struct for parameters.
+func NewGetHistoricalCostByOrgOptionalParameters() *GetHistoricalCostByOrgOptionalParameters {
+	this := GetHistoricalCostByOrgOptionalParameters{}
+	return &this
+}
+
+// WithView sets the corresponding parameter name and returns the struct.
+func (r *GetHistoricalCostByOrgOptionalParameters) WithView(view string) *GetHistoricalCostByOrgOptionalParameters {
+	r.View = &view
+	return r
+}
+
+// WithEndMonth sets the corresponding parameter name and returns the struct.
+func (r *GetHistoricalCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetHistoricalCostByOrgOptionalParameters {
+	r.EndMonth = &endMonth
+	return r
+}
+
+func (a *UsageMeteringApi) buildGetHistoricalCostByOrgRequest(ctx _context.Context, startMonth time.Time, o ...GetHistoricalCostByOrgOptionalParameters) (apiGetHistoricalCostByOrgRequest, error) {
+	req := apiGetHistoricalCostByOrgRequest{
+		ctx:        ctx,
+		startMonth: &startMonth,
+	}
+
+	if len(o) > 1 {
+		return req, datadog.ReportError("only one argument of type GetHistoricalCostByOrgOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.view = o[0].View
+		req.endMonth = o[0].EndMonth
+	}
+	return req, nil
+}
+
+// GetHistoricalCostByOrg Get historical cost across your account.
+// Get historical cost across multi-org and single root-org accounts.
+// Cost data for a given month becomes available no later than the 16th of the following month.
+func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetHistoricalCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetHistoricalCostByOrgRequest(ctx, startMonth, o...)
+	if err != nil {
+		var localVarReturnValue CostByOrgResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return a.getHistoricalCostByOrgExecute(req)
+}
+
+// getHistoricalCostByOrgExecute executes the request.
+func (a *UsageMeteringApi) getHistoricalCostByOrgExecute(r apiGetHistoricalCostByOrgRequest) (CostByOrgResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostByOrgResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApi.GetHistoricalCostByOrg")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/historical_cost"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.startMonth == nil {
+		return localVarReturnValue, nil, datadog.ReportError("startMonth is required and must be specified")
+	}
+	localVarQueryParams.Add("start_month", datadog.ParameterToString(*r.startMonth, ""))
+	if r.view != nil {
+		localVarQueryParams.Add("view", datadog.ParameterToString(*r.view, ""))
+	}
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", datadog.ParameterToString(*r.endMonth, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
