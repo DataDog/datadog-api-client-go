@@ -1,4 +1,4 @@
-// Get estimated cost across your account returns "OK" response
+// Get historical cost across your account returns "OK" response
 
 package main
 
@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
@@ -17,13 +18,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetEstimatedCostByOrg(ctx, *datadogV2.NewGetEstimatedCostByOrgOptionalParameters())
+	resp, r, err := api.GetHistoricalCostByOrg(ctx, time.Now().Add(time.Minute*-1), *datadogV2.NewGetHistoricalCostByOrgOptionalParameters().WithView("sub-org"))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetEstimatedCostByOrg`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetHistoricalCostByOrg`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetEstimatedCostByOrg`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `UsageMeteringApi.GetHistoricalCostByOrg`:\n%s\n", responseContent)
 }
