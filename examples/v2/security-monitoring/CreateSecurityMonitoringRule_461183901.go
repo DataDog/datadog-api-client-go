@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
-			Queries: []datadogV2.SecurityMonitoringStandardRuleQueryCreate{
+			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
 				{
 					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
 					GroupByFields: []string{

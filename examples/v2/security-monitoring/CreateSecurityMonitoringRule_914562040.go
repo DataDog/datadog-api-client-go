@@ -22,7 +22,7 @@ func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		SecurityMonitoringSignalRuleCreatePayload: &datadogV2.SecurityMonitoringSignalRuleCreatePayload{
 			Name: "Example-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response_signal_rule",
-			Queries: []datadogV2.SecurityMonitoringSignalRuleQueryCreate{
+			Queries: []datadogV2.SecurityMonitoringSignalRuleQuery{
 				{
 					RuleId:      SecurityRuleID,
 					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT.Ptr(),
