@@ -26,11 +26,11 @@ type SecurityMonitoringSignalRuleCreatePayload struct {
 	// Options on rules.
 	Options SecurityMonitoringRuleOptions `json:"options"`
 	// Queries for selecting signals which are part of the rule.
-	Queries []SecurityMonitoringSignalRuleQueryCreate `json:"queries"`
+	Queries []SecurityMonitoringSignalRuleQuery `json:"queries"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
 	// The rule type.
-	Type *SecurityMonitoringSignalRuleTypeCreate `json:"type,omitempty"`
+	Type *SecurityMonitoringSignalRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -40,7 +40,7 @@ type SecurityMonitoringSignalRuleCreatePayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityMonitoringSignalRuleCreatePayload(cases []SecurityMonitoringRuleCaseCreate, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringSignalRuleQueryCreate) *SecurityMonitoringSignalRuleCreatePayload {
+func NewSecurityMonitoringSignalRuleCreatePayload(cases []SecurityMonitoringRuleCaseCreate, isEnabled bool, message string, name string, options SecurityMonitoringRuleOptions, queries []SecurityMonitoringSignalRuleQuery) *SecurityMonitoringSignalRuleCreatePayload {
 	this := SecurityMonitoringSignalRuleCreatePayload{}
 	this.Cases = cases
 	this.IsEnabled = isEnabled
@@ -239,9 +239,9 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetOptions(v SecurityMonitor
 }
 
 // GetQueries returns the Queries field value.
-func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueries() []SecurityMonitoringSignalRuleQueryCreate {
+func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueries() []SecurityMonitoringSignalRuleQuery {
 	if o == nil {
-		var ret []SecurityMonitoringSignalRuleQueryCreate
+		var ret []SecurityMonitoringSignalRuleQuery
 		return ret
 	}
 	return o.Queries
@@ -249,7 +249,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueries() []SecurityMonit
 
 // GetQueriesOk returns a tuple with the Queries field value
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueriesOk() (*[]SecurityMonitoringSignalRuleQueryCreate, bool) {
+func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueriesOk() (*[]SecurityMonitoringSignalRuleQuery, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -257,7 +257,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueriesOk() (*[]SecurityM
 }
 
 // SetQueries sets field value.
-func (o *SecurityMonitoringSignalRuleCreatePayload) SetQueries(v []SecurityMonitoringSignalRuleQueryCreate) {
+func (o *SecurityMonitoringSignalRuleCreatePayload) SetQueries(v []SecurityMonitoringSignalRuleQuery) {
 	o.Queries = v
 }
 
@@ -294,9 +294,9 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetTags(v []string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *SecurityMonitoringSignalRuleCreatePayload) GetType() SecurityMonitoringSignalRuleTypeCreate {
+func (o *SecurityMonitoringSignalRuleCreatePayload) GetType() SecurityMonitoringSignalRuleType {
 	if o == nil || o.Type == nil {
-		var ret SecurityMonitoringSignalRuleTypeCreate
+		var ret SecurityMonitoringSignalRuleType
 		return ret
 	}
 	return *o.Type
@@ -304,7 +304,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetType() SecurityMonitoring
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringSignalRuleCreatePayload) GetTypeOk() (*SecurityMonitoringSignalRuleTypeCreate, bool) {
+func (o *SecurityMonitoringSignalRuleCreatePayload) GetTypeOk() (*SecurityMonitoringSignalRuleType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -320,8 +320,8 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given SecurityMonitoringSignalRuleTypeCreate and assigns it to the Type field.
-func (o *SecurityMonitoringSignalRuleCreatePayload) SetType(v SecurityMonitoringSignalRuleTypeCreate) {
+// SetType gets a reference to the given SecurityMonitoringSignalRuleType and assigns it to the Type field.
+func (o *SecurityMonitoringSignalRuleCreatePayload) SetType(v SecurityMonitoringSignalRuleType) {
 	o.Type = &v
 }
 
@@ -360,24 +360,24 @@ func (o SecurityMonitoringSignalRuleCreatePayload) MarshalJSON() ([]byte, error)
 func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Cases     *[]SecurityMonitoringRuleCaseCreate        `json:"cases"`
-		IsEnabled *bool                                      `json:"isEnabled"`
-		Message   *string                                    `json:"message"`
-		Name      *string                                    `json:"name"`
-		Options   *SecurityMonitoringRuleOptions             `json:"options"`
-		Queries   *[]SecurityMonitoringSignalRuleQueryCreate `json:"queries"`
+		Cases     *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		IsEnabled *bool                                `json:"isEnabled"`
+		Message   *string                              `json:"message"`
+		Name      *string                              `json:"name"`
+		Options   *SecurityMonitoringRuleOptions       `json:"options"`
+		Queries   *[]SecurityMonitoringSignalRuleQuery `json:"queries"`
 	}{}
 	all := struct {
-		Cases            []SecurityMonitoringRuleCaseCreate        `json:"cases"`
-		Filters          []SecurityMonitoringFilter                `json:"filters,omitempty"`
-		HasExtendedTitle *bool                                     `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        bool                                      `json:"isEnabled"`
-		Message          string                                    `json:"message"`
-		Name             string                                    `json:"name"`
-		Options          SecurityMonitoringRuleOptions             `json:"options"`
-		Queries          []SecurityMonitoringSignalRuleQueryCreate `json:"queries"`
-		Tags             []string                                  `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleTypeCreate   `json:"type,omitempty"`
+		Cases            []SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		Filters          []SecurityMonitoringFilter          `json:"filters,omitempty"`
+		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
+		IsEnabled        bool                                `json:"isEnabled"`
+		Message          string                              `json:"message"`
+		Name             string                              `json:"name"`
+		Options          SecurityMonitoringRuleOptions       `json:"options"`
+		Queries          []SecurityMonitoringSignalRuleQuery `json:"queries"`
+		Tags             []string                            `json:"tags,omitempty"`
+		Type             *SecurityMonitoringSignalRuleType   `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

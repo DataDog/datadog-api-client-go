@@ -15,7 +15,6 @@ type SecurityMonitoringRuleTypeRead string
 // List of SecurityMonitoringRuleTypeRead.
 const (
 	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION                SecurityMonitoringRuleTypeRead = "log_detection"
-	SECURITYMONITORINGRULETYPEREAD_SIGNAL_CORRELATION           SecurityMonitoringRuleTypeRead = "signal_correlation"
 	SECURITYMONITORINGRULETYPEREAD_INFRASTRUCTURE_CONFIGURATION SecurityMonitoringRuleTypeRead = "infrastructure_configuration"
 	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY            SecurityMonitoringRuleTypeRead = "workload_security"
 	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION          SecurityMonitoringRuleTypeRead = "cloud_configuration"
@@ -23,7 +22,6 @@ const (
 
 var allowedSecurityMonitoringRuleTypeReadEnumValues = []SecurityMonitoringRuleTypeRead{
 	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION,
-	SECURITYMONITORINGRULETYPEREAD_SIGNAL_CORRELATION,
 	SECURITYMONITORINGRULETYPEREAD_INFRASTRUCTURE_CONFIGURATION,
 	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY,
 	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION,
