@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2.3.1 / 2022-09-28
+
+### Fixed
+* Refactor RuleQuery models by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1689
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.3.0...v2.3.1
+
 ## 2.3.0 / 2022-09-27
 
 ### Added
