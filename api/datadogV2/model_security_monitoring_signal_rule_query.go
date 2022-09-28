@@ -6,6 +6,7 @@ package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalRuleQuery Query for matching rule on signals
@@ -21,7 +22,7 @@ type SecurityMonitoringSignalRuleQuery struct {
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
 	// Rule ID to match on signals.
-	RuleId *string `json:"ruleId,omitempty"`
+	RuleId string `json:"ruleId"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -31,8 +32,9 @@ type SecurityMonitoringSignalRuleQuery struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityMonitoringSignalRuleQuery() *SecurityMonitoringSignalRuleQuery {
+func NewSecurityMonitoringSignalRuleQuery(ruleId string) *SecurityMonitoringSignalRuleQuery {
 	this := SecurityMonitoringSignalRuleQuery{}
+	this.RuleId = ruleId
 	return &this
 }
 
@@ -204,36 +206,27 @@ func (o *SecurityMonitoringSignalRuleQuery) SetName(v string) {
 	o.Name = &v
 }
 
-// GetRuleId returns the RuleId field value if set, zero value otherwise.
+// GetRuleId returns the RuleId field value.
 func (o *SecurityMonitoringSignalRuleQuery) GetRuleId() string {
-	if o == nil || o.RuleId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.RuleId
+	return o.RuleId
 }
 
-// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// GetRuleIdOk returns a tuple with the RuleId field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringSignalRuleQuery) GetRuleIdOk() (*string, bool) {
-	if o == nil || o.RuleId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RuleId, true
+	return &o.RuleId, true
 }
 
-// HasRuleId returns a boolean if a field has been set.
-func (o *SecurityMonitoringSignalRuleQuery) HasRuleId() bool {
-	if o != nil && o.RuleId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRuleId gets a reference to the given string and assigns it to the RuleId field.
+// SetRuleId sets field value.
 func (o *SecurityMonitoringSignalRuleQuery) SetRuleId(v string) {
-	o.RuleId = &v
+	o.RuleId = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -257,9 +250,7 @@ func (o SecurityMonitoringSignalRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.RuleId != nil {
-		toSerialize["ruleId"] = o.RuleId
-	}
+	toSerialize["ruleId"] = o.RuleId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -270,14 +261,24 @@ func (o SecurityMonitoringSignalRuleQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+	required := struct {
+		RuleId *string `json:"ruleId"`
+	}{}
 	all := struct {
 		Aggregation          *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		CorrelatedByFields   []string                                `json:"correlatedByFields,omitempty"`
 		CorrelatedQueryIndex *int32                                  `json:"correlatedQueryIndex,omitempty"`
 		Metrics              []string                                `json:"metrics,omitempty"`
 		Name                 *string                                 `json:"name,omitempty"`
-		RuleId               *string                                 `json:"ruleId,omitempty"`
+		RuleId               string                                  `json:"ruleId"`
 	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.RuleId == nil {
+		return fmt.Errorf("Required field ruleId missing")
+	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)

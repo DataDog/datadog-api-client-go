@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
 			Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
-			Queries: []datadogV2.SecurityMonitoringStandardRuleQueryCreate{
+			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
 				{
 					Query:          "@test:true",
 					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),

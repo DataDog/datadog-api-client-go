@@ -50,6 +50,7 @@ func main() {
 					DistinctFields: []string{},
 					GroupByFields:  []string{},
 					Metrics:        []string{},
+					Query:          "a > 3",
 				}},
 		},
 		Tags:    []string{},
