@@ -10,6 +10,8 @@ import (
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
+	// A relationship reference for attachments.
+	Attachments *RelationshipToIncidentAttachment `json:"attachments,omitempty"`
 	// Relationship to user.
 	CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
 	// Relationship to user.
@@ -18,8 +20,6 @@ type IncidentResponseRelationships struct {
 	Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 	// Relationship to user.
 	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
-	// A relationship reference for postmortems.
-	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -40,6 +40,38 @@ func NewIncidentResponseRelationships() *IncidentResponseRelationships {
 func NewIncidentResponseRelationshipsWithDefaults() *IncidentResponseRelationships {
 	this := IncidentResponseRelationships{}
 	return &this
+}
+
+// GetAttachments returns the Attachments field value if set, zero value otherwise.
+func (o *IncidentResponseRelationships) GetAttachments() RelationshipToIncidentAttachment {
+	if o == nil || o.Attachments == nil {
+		var ret RelationshipToIncidentAttachment
+		return ret
+	}
+	return *o.Attachments
+}
+
+// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentResponseRelationships) GetAttachmentsOk() (*RelationshipToIncidentAttachment, bool) {
+	if o == nil || o.Attachments == nil {
+		return nil, false
+	}
+	return o.Attachments, true
+}
+
+// HasAttachments returns a boolean if a field has been set.
+func (o *IncidentResponseRelationships) HasAttachments() bool {
+	if o != nil && o.Attachments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttachments gets a reference to the given RelationshipToIncidentAttachment and assigns it to the Attachments field.
+func (o *IncidentResponseRelationships) SetAttachments(v RelationshipToIncidentAttachment) {
+	o.Attachments = &v
 }
 
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
@@ -170,43 +202,14 @@ func (o *IncidentResponseRelationships) SetLastModifiedByUser(v RelationshipToUs
 	o.LastModifiedByUser = &v
 }
 
-// GetPostmortem returns the Postmortem field value if set, zero value otherwise.
-func (o *IncidentResponseRelationships) GetPostmortem() RelationshipToIncidentPostmortem {
-	if o == nil || o.Postmortem == nil {
-		var ret RelationshipToIncidentPostmortem
-		return ret
-	}
-	return *o.Postmortem
-}
-
-// GetPostmortemOk returns a tuple with the Postmortem field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentResponseRelationships) GetPostmortemOk() (*RelationshipToIncidentPostmortem, bool) {
-	if o == nil || o.Postmortem == nil {
-		return nil, false
-	}
-	return o.Postmortem, true
-}
-
-// HasPostmortem returns a boolean if a field has been set.
-func (o *IncidentResponseRelationships) HasPostmortem() bool {
-	if o != nil && o.Postmortem != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPostmortem gets a reference to the given RelationshipToIncidentPostmortem and assigns it to the Postmortem field.
-func (o *IncidentResponseRelationships) SetPostmortem(v RelationshipToIncidentPostmortem) {
-	o.Postmortem = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
+	}
+	if o.Attachments != nil {
+		toSerialize["attachments"] = o.Attachments
 	}
 	if o.CommanderUser != nil {
 		toSerialize["commander_user"] = o.CommanderUser
@@ -220,9 +223,6 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	if o.LastModifiedByUser != nil {
 		toSerialize["last_modified_by_user"] = o.LastModifiedByUser
 	}
-	if o.Postmortem != nil {
-		toSerialize["postmortem"] = o.Postmortem
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -234,11 +234,11 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
+		Attachments        *RelationshipToIncidentAttachment           `json:"attachments,omitempty"`
 		CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
 		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
 		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
-		Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -249,6 +249,14 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Attachments = all.Attachments
 	if all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -281,13 +289,5 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 	}
 	o.LastModifiedByUser = all.LastModifiedByUser
-	if all.Postmortem != nil && all.Postmortem.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.Postmortem = all.Postmortem
 	return nil
 }
