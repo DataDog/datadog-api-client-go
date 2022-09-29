@@ -35,8 +35,6 @@ type IncidentResponseAttributes struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// Notification handles that will be notified of the incident during update.
 	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
-	// The UUID of the postmortem object attached to the incident.
-	PostmortemId *string `json:"postmortem_id,omitempty"`
 	// The monotonically increasing integer ID for the incident.
 	PublicId *int64 `json:"public_id,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
@@ -440,38 +438,6 @@ func (o *IncidentResponseAttributes) SetNotificationHandles(v []IncidentNotifica
 	o.NotificationHandles = v
 }
 
-// GetPostmortemId returns the PostmortemId field value if set, zero value otherwise.
-func (o *IncidentResponseAttributes) GetPostmortemId() string {
-	if o == nil || o.PostmortemId == nil {
-		var ret string
-		return ret
-	}
-	return *o.PostmortemId
-}
-
-// GetPostmortemIdOk returns a tuple with the PostmortemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentResponseAttributes) GetPostmortemIdOk() (*string, bool) {
-	if o == nil || o.PostmortemId == nil {
-		return nil, false
-	}
-	return o.PostmortemId, true
-}
-
-// HasPostmortemId returns a boolean if a field has been set.
-func (o *IncidentResponseAttributes) HasPostmortemId() bool {
-	if o != nil && o.PostmortemId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPostmortemId gets a reference to the given string and assigns it to the PostmortemId field.
-func (o *IncidentResponseAttributes) SetPostmortemId(v string) {
-	o.PostmortemId = &v
-}
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetPublicId() int64 {
 	if o == nil || o.PublicId == nil {
@@ -742,9 +708,6 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.NotificationHandles != nil {
 		toSerialize["notification_handles"] = o.NotificationHandles
 	}
-	if o.PostmortemId != nil {
-		toSerialize["postmortem_id"] = o.PostmortemId
-	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
@@ -788,7 +751,6 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		Modified               *time.Time                         `json:"modified,omitempty"`
 		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		PostmortemId           *string                            `json:"postmortem_id,omitempty"`
 		PublicId               *int64                             `json:"public_id,omitempty"`
 		Resolved               datadog.NullableTime               `json:"resolved,omitempty"`
 		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
@@ -823,7 +785,6 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Fields = all.Fields
 	o.Modified = all.Modified
 	o.NotificationHandles = all.NotificationHandles
-	o.PostmortemId = all.PostmortemId
 	o.PublicId = all.PublicId
 	o.Resolved = all.Resolved
 	o.TimeToDetect = all.TimeToDetect
