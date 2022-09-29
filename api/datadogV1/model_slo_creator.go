@@ -13,7 +13,7 @@ type SLOCreator struct {
 	// Email of the creator.
 	Email *string `json:"email,omitempty"`
 	// User ID of the creator.
-	Id *string `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// Name of the creator.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -71,9 +71,9 @@ func (o *SLOCreator) SetEmail(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SLOCreator) GetId() string {
+func (o *SLOCreator) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -81,7 +81,7 @@ func (o *SLOCreator) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOCreator) GetIdOk() (*string, bool) {
+func (o *SLOCreator) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *SLOCreator) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SLOCreator) SetId(v string) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *SLOCreator) SetId(v int64) {
 	o.Id = &v
 }
 
@@ -161,7 +161,7 @@ func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Email *string `json:"email,omitempty"`
-		Id    *string `json:"id,omitempty"`
+		Id    *int64  `json:"id,omitempty"`
 		Name  *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
