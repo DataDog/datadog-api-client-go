@@ -90,11 +90,7 @@ func (o *SLOListWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *SLOListWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -122,11 +118,7 @@ func (o *SLOListWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *SLOListWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -154,11 +146,7 @@ func (o *SLOListWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *SLOListWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

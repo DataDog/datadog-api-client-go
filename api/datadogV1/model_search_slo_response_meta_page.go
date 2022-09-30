@@ -68,11 +68,7 @@ func (o *SearchSLOResponseMetaPage) GetFirstNumberOk() (*int64, bool) {
 
 // HasFirstNumber returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasFirstNumber() bool {
-	if o != nil && o.FirstNumber != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FirstNumber != nil
 }
 
 // SetFirstNumber gets a reference to the given int64 and assigns it to the FirstNumber field.
@@ -100,11 +96,7 @@ func (o *SearchSLOResponseMetaPage) GetLastNumberOk() (*int64, bool) {
 
 // HasLastNumber returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasLastNumber() bool {
-	if o != nil && o.LastNumber != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastNumber != nil
 }
 
 // SetLastNumber gets a reference to the given int64 and assigns it to the LastNumber field.
@@ -132,11 +124,7 @@ func (o *SearchSLOResponseMetaPage) GetNextNumberOk() (*int64, bool) {
 
 // HasNextNumber returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasNextNumber() bool {
-	if o != nil && o.NextNumber != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextNumber != nil
 }
 
 // SetNextNumber gets a reference to the given int64 and assigns it to the NextNumber field.
@@ -164,11 +152,7 @@ func (o *SearchSLOResponseMetaPage) GetNumberOk() (*int64, bool) {
 
 // HasNumber returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasNumber() bool {
-	if o != nil && o.Number != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Number != nil
 }
 
 // SetNumber gets a reference to the given int64 and assigns it to the Number field.
@@ -196,11 +180,7 @@ func (o *SearchSLOResponseMetaPage) GetPrevNumberOk() (*int64, bool) {
 
 // HasPrevNumber returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasPrevNumber() bool {
-	if o != nil && o.PrevNumber != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrevNumber != nil
 }
 
 // SetPrevNumber gets a reference to the given int64 and assigns it to the PrevNumber field.
@@ -228,11 +208,7 @@ func (o *SearchSLOResponseMetaPage) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
@@ -260,11 +236,7 @@ func (o *SearchSLOResponseMetaPage) GetTotalOk() (*int64, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given int64 and assigns it to the Total field.
@@ -292,11 +264,7 @@ func (o *SearchSLOResponseMetaPage) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SearchSLOResponseMetaPage) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

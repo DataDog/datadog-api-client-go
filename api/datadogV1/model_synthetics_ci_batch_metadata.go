@@ -56,11 +56,7 @@ func (o *SyntheticsCIBatchMetadata) GetCiOk() (*SyntheticsCIBatchMetadataCI, boo
 
 // HasCi returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadata) HasCi() bool {
-	if o != nil && o.Ci != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ci != nil
 }
 
 // SetCi gets a reference to the given SyntheticsCIBatchMetadataCI and assigns it to the Ci field.
@@ -88,11 +84,7 @@ func (o *SyntheticsCIBatchMetadata) GetGitOk() (*SyntheticsCIBatchMetadataGit, b
 
 // HasGit returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadata) HasGit() bool {
-	if o != nil && o.Git != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Git != nil
 }
 
 // SetGit gets a reference to the given SyntheticsCIBatchMetadataGit and assigns it to the Git field.

@@ -54,11 +54,7 @@ func (o *WidgetStyle) GetPaletteOk() (*string, bool) {
 
 // HasPalette returns a boolean if a field has been set.
 func (o *WidgetStyle) HasPalette() bool {
-	if o != nil && o.Palette != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Palette != nil
 }
 
 // SetPalette gets a reference to the given string and assigns it to the Palette field.

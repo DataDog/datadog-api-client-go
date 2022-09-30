@@ -54,11 +54,7 @@ func (o *UserListResponse) GetUsersOk() (*[]User, bool) {
 
 // HasUsers returns a boolean if a field has been set.
 func (o *UserListResponse) HasUsers() bool {
-	if o != nil && o.Users != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Users != nil
 }
 
 // SetUsers gets a reference to the given []User and assigns it to the Users field.

@@ -58,11 +58,7 @@ func (o *RUMEventsResponse) GetDataOk() (*[]RUMEvent, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *RUMEventsResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []RUMEvent and assigns it to the Data field.
@@ -90,11 +86,7 @@ func (o *RUMEventsResponse) GetLinksOk() (*RUMResponseLinks, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *RUMEventsResponse) HasLinks() bool {
-	if o != nil && o.Links != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Links != nil
 }
 
 // SetLinks gets a reference to the given RUMResponseLinks and assigns it to the Links field.
@@ -122,11 +114,7 @@ func (o *RUMEventsResponse) GetMetaOk() (*RUMResponseMetadata, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *RUMEventsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given RUMResponseMetadata and assigns it to the Meta field.

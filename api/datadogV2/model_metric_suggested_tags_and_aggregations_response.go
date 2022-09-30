@@ -54,11 +54,7 @@ func (o *MetricSuggestedTagsAndAggregationsResponse) GetDataOk() (*MetricSuggest
 
 // HasData returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAndAggregationsResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given MetricSuggestedTagsAndAggregations and assigns it to the Data field.

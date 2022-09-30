@@ -81,11 +81,7 @@ func (o *QueryValueWidgetDefinition) GetAutoscaleOk() (*bool, bool) {
 
 // HasAutoscale returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasAutoscale() bool {
-	if o != nil && o.Autoscale != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Autoscale != nil
 }
 
 // SetAutoscale gets a reference to the given bool and assigns it to the Autoscale field.
@@ -113,11 +109,7 @@ func (o *QueryValueWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bo
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -145,11 +137,7 @@ func (o *QueryValueWidgetDefinition) GetCustomUnitOk() (*string, bool) {
 
 // HasCustomUnit returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasCustomUnit() bool {
-	if o != nil && o.CustomUnit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomUnit != nil
 }
 
 // SetCustomUnit gets a reference to the given string and assigns it to the CustomUnit field.
@@ -177,11 +165,7 @@ func (o *QueryValueWidgetDefinition) GetPrecisionOk() (*int64, bool) {
 
 // HasPrecision returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Precision != nil
 }
 
 // SetPrecision gets a reference to the given int64 and assigns it to the Precision field.
@@ -232,11 +216,7 @@ func (o *QueryValueWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTextAlign returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTextAlign() bool {
-	if o != nil && o.TextAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TextAlign != nil
 }
 
 // SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
@@ -264,11 +244,7 @@ func (o *QueryValueWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -296,11 +272,7 @@ func (o *QueryValueWidgetDefinition) GetTimeseriesBackgroundOk() (*TimeseriesBac
 
 // HasTimeseriesBackground returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTimeseriesBackground() bool {
-	if o != nil && o.TimeseriesBackground != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeseriesBackground != nil
 }
 
 // SetTimeseriesBackground gets a reference to the given TimeseriesBackground and assigns it to the TimeseriesBackground field.
@@ -328,11 +300,7 @@ func (o *QueryValueWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -360,11 +328,7 @@ func (o *QueryValueWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) 
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -392,11 +356,7 @@ func (o *QueryValueWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *QueryValueWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

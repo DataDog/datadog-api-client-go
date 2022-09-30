@@ -60,11 +60,7 @@ func (o *Metric) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Metric) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -92,11 +88,7 @@ func (o *Metric) GetTypeOk() (*MetricType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Metric) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MetricType and assigns it to the Type field.

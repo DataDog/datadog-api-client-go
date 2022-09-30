@@ -56,11 +56,7 @@ func (o *RUMBucketResponse) GetByOk() (*map[string]string, bool) {
 
 // HasBy returns a boolean if a field has been set.
 func (o *RUMBucketResponse) HasBy() bool {
-	if o != nil && o.By != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.By != nil
 }
 
 // SetBy gets a reference to the given map[string]string and assigns it to the By field.
@@ -88,11 +84,7 @@ func (o *RUMBucketResponse) GetComputesOk() (*map[string]RUMAggregateBucketValue
 
 // HasComputes returns a boolean if a field has been set.
 func (o *RUMBucketResponse) HasComputes() bool {
-	if o != nil && o.Computes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Computes != nil
 }
 
 // SetComputes gets a reference to the given map[string]RUMAggregateBucketValue and assigns it to the Computes field.

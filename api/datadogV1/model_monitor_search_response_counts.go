@@ -60,11 +60,7 @@ func (o *MonitorSearchResponseCounts) GetMutedOk() (*[]MonitorSearchCountItem, b
 
 // HasMuted returns a boolean if a field has been set.
 func (o *MonitorSearchResponseCounts) HasMuted() bool {
-	if o != nil && o.Muted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Muted != nil
 }
 
 // SetMuted gets a reference to the given []MonitorSearchCountItem and assigns it to the Muted field.
@@ -92,11 +88,7 @@ func (o *MonitorSearchResponseCounts) GetStatusOk() (*[]MonitorSearchCountItem, 
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MonitorSearchResponseCounts) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given []MonitorSearchCountItem and assigns it to the Status field.
@@ -124,11 +116,7 @@ func (o *MonitorSearchResponseCounts) GetTagOk() (*[]MonitorSearchCountItem, boo
 
 // HasTag returns a boolean if a field has been set.
 func (o *MonitorSearchResponseCounts) HasTag() bool {
-	if o != nil && o.Tag != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tag != nil
 }
 
 // SetTag gets a reference to the given []MonitorSearchCountItem and assigns it to the Tag field.
@@ -156,11 +144,7 @@ func (o *MonitorSearchResponseCounts) GetTypeOk() (*[]MonitorSearchCountItem, bo
 
 // HasType returns a boolean if a field has been set.
 func (o *MonitorSearchResponseCounts) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given []MonitorSearchCountItem and assigns it to the Type field.

@@ -56,11 +56,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyIntervalOk() (*int64, b
 
 // HasRenotifyInterval returns a boolean if a field has been set.
 func (o *SyntheticsTestOptionsMonitorOptions) HasRenotifyInterval() bool {
-	if o != nil && o.RenotifyInterval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RenotifyInterval != nil
 }
 
 // SetRenotifyInterval gets a reference to the given int64 and assigns it to the RenotifyInterval field.

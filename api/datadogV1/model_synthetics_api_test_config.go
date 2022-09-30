@@ -60,11 +60,7 @@ func (o *SyntheticsAPITestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, boo
 
 // HasAssertions returns a boolean if a field has been set.
 func (o *SyntheticsAPITestConfig) HasAssertions() bool {
-	if o != nil && o.Assertions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Assertions != nil
 }
 
 // SetAssertions gets a reference to the given []SyntheticsAssertion and assigns it to the Assertions field.
@@ -92,11 +88,7 @@ func (o *SyntheticsAPITestConfig) GetConfigVariablesOk() (*[]SyntheticsConfigVar
 
 // HasConfigVariables returns a boolean if a field has been set.
 func (o *SyntheticsAPITestConfig) HasConfigVariables() bool {
-	if o != nil && o.ConfigVariables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConfigVariables != nil
 }
 
 // SetConfigVariables gets a reference to the given []SyntheticsConfigVariable and assigns it to the ConfigVariables field.
@@ -124,11 +116,7 @@ func (o *SyntheticsAPITestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) 
 
 // HasRequest returns a boolean if a field has been set.
 func (o *SyntheticsAPITestConfig) HasRequest() bool {
-	if o != nil && o.Request != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Request != nil
 }
 
 // SetRequest gets a reference to the given SyntheticsTestRequest and assigns it to the Request field.
@@ -156,11 +144,7 @@ func (o *SyntheticsAPITestConfig) GetStepsOk() (*[]SyntheticsAPIStep, bool) {
 
 // HasSteps returns a boolean if a field has been set.
 func (o *SyntheticsAPITestConfig) HasSteps() bool {
-	if o != nil && o.Steps != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Steps != nil
 }
 
 // SetSteps gets a reference to the given []SyntheticsAPIStep and assigns it to the Steps field.

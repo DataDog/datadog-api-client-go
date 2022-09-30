@@ -54,11 +54,7 @@ func (o *CanceledDowntimesIds) GetCancelledIdsOk() (*[]int64, bool) {
 
 // HasCancelledIds returns a boolean if a field has been set.
 func (o *CanceledDowntimesIds) HasCancelledIds() bool {
-	if o != nil && o.CancelledIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CancelledIds != nil
 }
 
 // SetCancelledIds gets a reference to the given []int64 and assigns it to the CancelledIds field.

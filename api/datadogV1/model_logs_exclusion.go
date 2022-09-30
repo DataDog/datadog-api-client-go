@@ -60,11 +60,7 @@ func (o *LogsExclusion) GetFilterOk() (*LogsExclusionFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsExclusion) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsExclusionFilter and assigns it to the Filter field.
@@ -92,11 +88,7 @@ func (o *LogsExclusion) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsExclusion) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.

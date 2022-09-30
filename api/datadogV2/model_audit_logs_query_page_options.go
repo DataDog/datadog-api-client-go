@@ -60,11 +60,7 @@ func (o *AuditLogsQueryPageOptions) GetCursorOk() (*string, bool) {
 
 // HasCursor returns a boolean if a field has been set.
 func (o *AuditLogsQueryPageOptions) HasCursor() bool {
-	if o != nil && o.Cursor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cursor != nil
 }
 
 // SetCursor gets a reference to the given string and assigns it to the Cursor field.
@@ -92,11 +88,7 @@ func (o *AuditLogsQueryPageOptions) GetLimitOk() (*int32, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *AuditLogsQueryPageOptions) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int32 and assigns it to the Limit field.

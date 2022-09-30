@@ -54,11 +54,7 @@ func (o *RUMAggregationBucketsResponse) GetBucketsOk() (*[]RUMBucketResponse, bo
 
 // HasBuckets returns a boolean if a field has been set.
 func (o *RUMAggregationBucketsResponse) HasBuckets() bool {
-	if o != nil && o.Buckets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Buckets != nil
 }
 
 // SetBuckets gets a reference to the given []RUMBucketResponse and assigns it to the Buckets field.

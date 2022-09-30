@@ -86,11 +86,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetCasesOk() (*[]SecurityMonito
 
 // HasCases returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasCases() bool {
-	if o != nil && o.Cases != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cases != nil
 }
 
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
@@ -118,11 +114,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetCreatedAtOk() (*int64, bool)
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
@@ -150,11 +142,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetCreationAuthorIdOk() (*int64
 
 // HasCreationAuthorId returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasCreationAuthorId() bool {
-	if o != nil && o.CreationAuthorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreationAuthorId != nil
 }
 
 // SetCreationAuthorId gets a reference to the given int64 and assigns it to the CreationAuthorId field.
@@ -182,11 +170,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetFiltersOk() (*[]SecurityMoni
 
 // HasFilters returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasFilters() bool {
-	if o != nil && o.Filters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filters != nil
 }
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
@@ -214,11 +198,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetHasExtendedTitleOk() (*bool,
 
 // HasHasExtendedTitle returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasHasExtendedTitle() bool {
-	if o != nil && o.HasExtendedTitle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasExtendedTitle != nil
 }
 
 // SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.
@@ -246,11 +226,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -278,11 +254,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetIsDefaultOk() (*bool, bool) 
 
 // HasIsDefault returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasIsDefault() bool {
-	if o != nil && o.IsDefault != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsDefault != nil
 }
 
 // SetIsDefault gets a reference to the given bool and assigns it to the IsDefault field.
@@ -310,11 +282,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetIsDeletedOk() (*bool, bool) 
 
 // HasIsDeleted returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasIsDeleted() bool {
-	if o != nil && o.IsDeleted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsDeleted != nil
 }
 
 // SetIsDeleted gets a reference to the given bool and assigns it to the IsDeleted field.
@@ -342,11 +310,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetIsEnabledOk() (*bool, bool) 
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -374,11 +338,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetMessageOk() (*string, bool) 
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -406,11 +366,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -438,11 +394,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetOptionsOk() (*SecurityMonito
 
 // HasOptions returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given SecurityMonitoringRuleOptions and assigns it to the Options field.
@@ -470,11 +422,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetQueriesOk() (*[]SecurityMoni
 
 // HasQueries returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []SecurityMonitoringStandardRuleQuery and assigns it to the Queries field.
@@ -502,11 +450,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -534,11 +478,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetTypeOk() (*SecurityMonitorin
 
 // HasType returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SecurityMonitoringRuleTypeRead and assigns it to the Type field.
@@ -566,11 +506,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetUpdateAuthorIdOk() (*int64, 
 
 // HasUpdateAuthorId returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasUpdateAuthorId() bool {
-	if o != nil && o.UpdateAuthorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdateAuthorId != nil
 }
 
 // SetUpdateAuthorId gets a reference to the given int64 and assigns it to the UpdateAuthorId field.
@@ -598,11 +534,7 @@ func (o *SecurityMonitoringStandardRuleResponse) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleResponse) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.

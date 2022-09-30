@@ -56,11 +56,7 @@ func (o *SyntheticsBrowserTestResultFailure) GetCodeOk() (*SyntheticsBrowserTest
 
 // HasCode returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultFailure) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Code != nil
 }
 
 // SetCode gets a reference to the given SyntheticsBrowserTestFailureCode and assigns it to the Code field.
@@ -88,11 +84,7 @@ func (o *SyntheticsBrowserTestResultFailure) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultFailure) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.

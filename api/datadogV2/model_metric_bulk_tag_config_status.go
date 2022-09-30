@@ -64,11 +64,7 @@ func (o *MetricBulkTagConfigStatus) GetAttributesOk() (*MetricBulkTagConfigStatu
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigStatus) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given MetricBulkTagConfigStatusAttributes and assigns it to the Attributes field.

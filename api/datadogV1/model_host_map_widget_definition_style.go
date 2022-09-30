@@ -60,11 +60,7 @@ func (o *HostMapWidgetDefinitionStyle) GetFillMaxOk() (*string, bool) {
 
 // HasFillMax returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionStyle) HasFillMax() bool {
-	if o != nil && o.FillMax != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FillMax != nil
 }
 
 // SetFillMax gets a reference to the given string and assigns it to the FillMax field.
@@ -92,11 +88,7 @@ func (o *HostMapWidgetDefinitionStyle) GetFillMinOk() (*string, bool) {
 
 // HasFillMin returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionStyle) HasFillMin() bool {
-	if o != nil && o.FillMin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FillMin != nil
 }
 
 // SetFillMin gets a reference to the given string and assigns it to the FillMin field.
@@ -124,11 +116,7 @@ func (o *HostMapWidgetDefinitionStyle) GetPaletteOk() (*string, bool) {
 
 // HasPalette returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionStyle) HasPalette() bool {
-	if o != nil && o.Palette != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Palette != nil
 }
 
 // SetPalette gets a reference to the given string and assigns it to the Palette field.
@@ -156,11 +144,7 @@ func (o *HostMapWidgetDefinitionStyle) GetPaletteFlipOk() (*bool, bool) {
 
 // HasPaletteFlip returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionStyle) HasPaletteFlip() bool {
-	if o != nil && o.PaletteFlip != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PaletteFlip != nil
 }
 
 // SetPaletteFlip gets a reference to the given bool and assigns it to the PaletteFlip field.

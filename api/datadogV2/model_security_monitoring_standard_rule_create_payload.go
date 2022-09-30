@@ -102,11 +102,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetFiltersOk() (*[]Securit
 
 // HasFilters returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleCreatePayload) HasFilters() bool {
-	if o != nil && o.Filters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filters != nil
 }
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
@@ -134,11 +130,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetHasExtendedTitleOk() (*
 
 // HasHasExtendedTitle returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleCreatePayload) HasHasExtendedTitle() bool {
-	if o != nil && o.HasExtendedTitle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasExtendedTitle != nil
 }
 
 // SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.
@@ -281,11 +273,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetTagsOk() (*[]string, bo
 
 // HasTags returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleCreatePayload) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -313,11 +301,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetTypeOk() (*SecurityMoni
 
 // HasType returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleCreatePayload) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SecurityMonitoringRuleTypeCreate and assigns it to the Type field.

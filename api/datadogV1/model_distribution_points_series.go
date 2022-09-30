@@ -69,11 +69,7 @@ func (o *DistributionPointsSeries) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *DistributionPointsSeries) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -147,11 +143,7 @@ func (o *DistributionPointsSeries) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *DistributionPointsSeries) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -179,11 +171,7 @@ func (o *DistributionPointsSeries) GetTypeOk() (*DistributionPointsType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *DistributionPointsSeries) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given DistributionPointsType and assigns it to the Type field.

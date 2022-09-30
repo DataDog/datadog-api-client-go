@@ -57,11 +57,7 @@ func (o *SyntheticsLocation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsLocation) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -89,11 +85,7 @@ func (o *SyntheticsLocation) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SyntheticsLocation) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

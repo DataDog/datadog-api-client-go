@@ -72,11 +72,7 @@ func (o *ApmStatsQueryDefinition) GetColumnsOk() (*[]ApmStatsQueryColumnType, bo
 
 // HasColumns returns a boolean if a field has been set.
 func (o *ApmStatsQueryDefinition) HasColumns() bool {
-	if o != nil && o.Columns != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Columns != nil
 }
 
 // SetColumns gets a reference to the given []ApmStatsQueryColumnType and assigns it to the Columns field.
@@ -173,11 +169,7 @@ func (o *ApmStatsQueryDefinition) GetResourceOk() (*string, bool) {
 
 // HasResource returns a boolean if a field has been set.
 func (o *ApmStatsQueryDefinition) HasResource() bool {
-	if o != nil && o.Resource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Resource != nil
 }
 
 // SetResource gets a reference to the given string and assigns it to the Resource field.

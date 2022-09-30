@@ -70,11 +70,7 @@ func (o *SLOOverallStatuses) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasError() bool {
-	if o != nil && o.Error.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error.IsSet()
 }
 
 // SetError gets a reference to the given datadog.NullableString and assigns it to the Error field.
@@ -112,11 +108,7 @@ func (o *SLOOverallStatuses) GetIndexedAtOk() (*int64, bool) {
 
 // HasIndexedAt returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasIndexedAt() bool {
-	if o != nil && o.IndexedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexedAt != nil
 }
 
 // SetIndexedAt gets a reference to the given int64 and assigns it to the IndexedAt field.
@@ -144,11 +136,7 @@ func (o *SLOOverallStatuses) GetRawErrorBudgetRemainingOk() (*SLORawErrorBudgetR
 
 // HasRawErrorBudgetRemaining returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasRawErrorBudgetRemaining() bool {
-	if o != nil && o.RawErrorBudgetRemaining != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RawErrorBudgetRemaining != nil
 }
 
 // SetRawErrorBudgetRemaining gets a reference to the given SLORawErrorBudgetRemaining and assigns it to the RawErrorBudgetRemaining field.
@@ -176,11 +164,7 @@ func (o *SLOOverallStatuses) GetSpanPrecisionOk() (*int64, bool) {
 
 // HasSpanPrecision returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasSpanPrecision() bool {
-	if o != nil && o.SpanPrecision != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SpanPrecision != nil
 }
 
 // SetSpanPrecision gets a reference to the given int64 and assigns it to the SpanPrecision field.
@@ -209,11 +193,7 @@ func (o *SLOOverallStatuses) GetStatusOk() (*float64, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status.IsSet()
 }
 
 // SetStatus gets a reference to the given datadog.NullableFloat64 and assigns it to the Status field.
@@ -251,11 +231,7 @@ func (o *SLOOverallStatuses) GetTargetOk() (*float64, bool) {
 
 // HasTarget returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Target != nil
 }
 
 // SetTarget gets a reference to the given float64 and assigns it to the Target field.
@@ -283,11 +259,7 @@ func (o *SLOOverallStatuses) GetTimeframeOk() (*SLOTimeframe, bool) {
 
 // HasTimeframe returns a boolean if a field has been set.
 func (o *SLOOverallStatuses) HasTimeframe() bool {
-	if o != nil && o.Timeframe != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeframe != nil
 }
 
 // SetTimeframe gets a reference to the given SLOTimeframe and assigns it to the Timeframe field.

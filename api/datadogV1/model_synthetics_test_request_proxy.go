@@ -58,11 +58,7 @@ func (o *SyntheticsTestRequestProxy) GetHeadersOk() (*map[string]string, bool) {
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestProxy) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Headers != nil
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.

@@ -56,11 +56,7 @@ func (o *ListApplicationKeysResponse) GetDataOk() (*[]PartialApplicationKey, boo
 
 // HasData returns a boolean if a field has been set.
 func (o *ListApplicationKeysResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []PartialApplicationKey and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *ListApplicationKeysResponse) GetIncludedOk() (*[]ApplicationKeyResponse
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *ListApplicationKeysResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []ApplicationKeyResponseIncludedItem and assigns it to the Included field.

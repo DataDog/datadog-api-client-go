@@ -81,11 +81,7 @@ func (o *DashboardListItems) GetTotalOk() (*int64, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *DashboardListItems) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given int64 and assigns it to the Total field.

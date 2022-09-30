@@ -54,11 +54,7 @@ func (o *AWSAccountCreateResponse) GetExternalIdOk() (*string, bool) {
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *AWSAccountCreateResponse) HasExternalId() bool {
-	if o != nil && o.ExternalId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExternalId != nil
 }
 
 // SetExternalId gets a reference to the given string and assigns it to the ExternalId field.

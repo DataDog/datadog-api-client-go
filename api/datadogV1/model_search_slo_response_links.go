@@ -64,11 +64,7 @@ func (o *SearchSLOResponseLinks) GetFirstOk() (*string, bool) {
 
 // HasFirst returns a boolean if a field has been set.
 func (o *SearchSLOResponseLinks) HasFirst() bool {
-	if o != nil && o.First != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.First != nil
 }
 
 // SetFirst gets a reference to the given string and assigns it to the First field.
@@ -97,11 +93,7 @@ func (o *SearchSLOResponseLinks) GetLastOk() (*string, bool) {
 
 // HasLast returns a boolean if a field has been set.
 func (o *SearchSLOResponseLinks) HasLast() bool {
-	if o != nil && o.Last.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Last.IsSet()
 }
 
 // SetLast gets a reference to the given datadog.NullableString and assigns it to the Last field.
@@ -139,11 +131,7 @@ func (o *SearchSLOResponseLinks) GetNextOk() (*string, bool) {
 
 // HasNext returns a boolean if a field has been set.
 func (o *SearchSLOResponseLinks) HasNext() bool {
-	if o != nil && o.Next != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Next != nil
 }
 
 // SetNext gets a reference to the given string and assigns it to the Next field.
@@ -172,11 +160,7 @@ func (o *SearchSLOResponseLinks) GetPrevOk() (*string, bool) {
 
 // HasPrev returns a boolean if a field has been set.
 func (o *SearchSLOResponseLinks) HasPrev() bool {
-	if o != nil && o.Prev.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Prev.IsSet()
 }
 
 // SetPrev gets a reference to the given datadog.NullableString and assigns it to the Prev field.
@@ -214,11 +198,7 @@ func (o *SearchSLOResponseLinks) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *SearchSLOResponseLinks) HasSelf() bool {
-	if o != nil && o.Self != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Self != nil
 }
 
 // SetSelf gets a reference to the given string and assigns it to the Self field.

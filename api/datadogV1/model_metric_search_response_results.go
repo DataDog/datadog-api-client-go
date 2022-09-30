@@ -54,11 +54,7 @@ func (o *MetricSearchResponseResults) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *MetricSearchResponseResults) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.

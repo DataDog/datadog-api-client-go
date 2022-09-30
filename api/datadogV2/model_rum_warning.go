@@ -58,11 +58,7 @@ func (o *RUMWarning) GetCodeOk() (*string, bool) {
 
 // HasCode returns a boolean if a field has been set.
 func (o *RUMWarning) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Code != nil
 }
 
 // SetCode gets a reference to the given string and assigns it to the Code field.
@@ -90,11 +86,7 @@ func (o *RUMWarning) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *RUMWarning) HasDetail() bool {
-	if o != nil && o.Detail != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Detail != nil
 }
 
 // SetDetail gets a reference to the given string and assigns it to the Detail field.
@@ -122,11 +114,7 @@ func (o *RUMWarning) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *RUMWarning) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.

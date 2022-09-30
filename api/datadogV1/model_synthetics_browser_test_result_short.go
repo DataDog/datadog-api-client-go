@@ -65,11 +65,7 @@ func (o *SyntheticsBrowserTestResultShort) GetCheckTimeOk() (*float64, bool) {
 
 // HasCheckTime returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShort) HasCheckTime() bool {
-	if o != nil && o.CheckTime != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckTime != nil
 }
 
 // SetCheckTime gets a reference to the given float64 and assigns it to the CheckTime field.
@@ -97,11 +93,7 @@ func (o *SyntheticsBrowserTestResultShort) GetProbeDcOk() (*string, bool) {
 
 // HasProbeDc returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShort) HasProbeDc() bool {
-	if o != nil && o.ProbeDc != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProbeDc != nil
 }
 
 // SetProbeDc gets a reference to the given string and assigns it to the ProbeDc field.
@@ -129,11 +121,7 @@ func (o *SyntheticsBrowserTestResultShort) GetResultOk() (*SyntheticsBrowserTest
 
 // HasResult returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShort) HasResult() bool {
-	if o != nil && o.Result != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Result != nil
 }
 
 // SetResult gets a reference to the given SyntheticsBrowserTestResultShortResult and assigns it to the Result field.
@@ -161,11 +149,7 @@ func (o *SyntheticsBrowserTestResultShort) GetResultIdOk() (*string, bool) {
 
 // HasResultId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShort) HasResultId() bool {
-	if o != nil && o.ResultId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResultId != nil
 }
 
 // SetResultId gets a reference to the given string and assigns it to the ResultId field.
@@ -193,11 +177,7 @@ func (o *SyntheticsBrowserTestResultShort) GetStatusOk() (*SyntheticsTestMonitor
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShort) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestMonitorStatus and assigns it to the Status field.

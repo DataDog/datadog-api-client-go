@@ -57,11 +57,7 @@ func (o *MetricPoint) GetTimestampOk() (*int64, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *MetricPoint) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
@@ -89,11 +85,7 @@ func (o *MetricPoint) GetValueOk() (*float64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *MetricPoint) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.

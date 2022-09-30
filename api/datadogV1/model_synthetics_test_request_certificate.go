@@ -56,11 +56,7 @@ func (o *SyntheticsTestRequestCertificate) GetCertOk() (*SyntheticsTestRequestCe
 
 // HasCert returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificate) HasCert() bool {
-	if o != nil && o.Cert != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cert != nil
 }
 
 // SetCert gets a reference to the given SyntheticsTestRequestCertificateItem and assigns it to the Cert field.
@@ -88,11 +84,7 @@ func (o *SyntheticsTestRequestCertificate) GetKeyOk() (*SyntheticsTestRequestCer
 
 // HasKey returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificate) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given SyntheticsTestRequestCertificateItem and assigns it to the Key field.

@@ -77,11 +77,7 @@ func (o *SyntheticsSSLCertificate) GetCipherOk() (*string, bool) {
 
 // HasCipher returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasCipher() bool {
-	if o != nil && o.Cipher != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cipher != nil
 }
 
 // SetCipher gets a reference to the given string and assigns it to the Cipher field.
@@ -109,11 +105,7 @@ func (o *SyntheticsSSLCertificate) GetExponentOk() (*float64, bool) {
 
 // HasExponent returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasExponent() bool {
-	if o != nil && o.Exponent != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Exponent != nil
 }
 
 // SetExponent gets a reference to the given float64 and assigns it to the Exponent field.
@@ -141,11 +133,7 @@ func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() (*[]string, bool) {
 
 // HasExtKeyUsage returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasExtKeyUsage() bool {
-	if o != nil && o.ExtKeyUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExtKeyUsage != nil
 }
 
 // SetExtKeyUsage gets a reference to the given []string and assigns it to the ExtKeyUsage field.
@@ -173,11 +161,7 @@ func (o *SyntheticsSSLCertificate) GetFingerprintOk() (*string, bool) {
 
 // HasFingerprint returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasFingerprint() bool {
-	if o != nil && o.Fingerprint != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fingerprint != nil
 }
 
 // SetFingerprint gets a reference to the given string and assigns it to the Fingerprint field.
@@ -205,11 +189,7 @@ func (o *SyntheticsSSLCertificate) GetFingerprint256Ok() (*string, bool) {
 
 // HasFingerprint256 returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasFingerprint256() bool {
-	if o != nil && o.Fingerprint256 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fingerprint256 != nil
 }
 
 // SetFingerprint256 gets a reference to the given string and assigns it to the Fingerprint256 field.
@@ -237,11 +217,7 @@ func (o *SyntheticsSSLCertificate) GetIssuerOk() (*SyntheticsSSLCertificateIssue
 
 // HasIssuer returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasIssuer() bool {
-	if o != nil && o.Issuer != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Issuer != nil
 }
 
 // SetIssuer gets a reference to the given SyntheticsSSLCertificateIssuer and assigns it to the Issuer field.
@@ -269,11 +245,7 @@ func (o *SyntheticsSSLCertificate) GetModulusOk() (*string, bool) {
 
 // HasModulus returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasModulus() bool {
-	if o != nil && o.Modulus != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modulus != nil
 }
 
 // SetModulus gets a reference to the given string and assigns it to the Modulus field.
@@ -301,11 +273,7 @@ func (o *SyntheticsSSLCertificate) GetProtocolOk() (*string, bool) {
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasProtocol() bool {
-	if o != nil && o.Protocol != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Protocol != nil
 }
 
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
@@ -333,11 +301,7 @@ func (o *SyntheticsSSLCertificate) GetSerialNumberOk() (*string, bool) {
 
 // HasSerialNumber returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasSerialNumber() bool {
-	if o != nil && o.SerialNumber != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SerialNumber != nil
 }
 
 // SetSerialNumber gets a reference to the given string and assigns it to the SerialNumber field.
@@ -365,11 +329,7 @@ func (o *SyntheticsSSLCertificate) GetSubjectOk() (*SyntheticsSSLCertificateSubj
 
 // HasSubject returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasSubject() bool {
-	if o != nil && o.Subject != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subject != nil
 }
 
 // SetSubject gets a reference to the given SyntheticsSSLCertificateSubject and assigns it to the Subject field.
@@ -397,11 +357,7 @@ func (o *SyntheticsSSLCertificate) GetValidFromOk() (*time.Time, bool) {
 
 // HasValidFrom returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasValidFrom() bool {
-	if o != nil && o.ValidFrom != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ValidFrom != nil
 }
 
 // SetValidFrom gets a reference to the given time.Time and assigns it to the ValidFrom field.
@@ -429,11 +385,7 @@ func (o *SyntheticsSSLCertificate) GetValidToOk() (*time.Time, bool) {
 
 // HasValidTo returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificate) HasValidTo() bool {
-	if o != nil && o.ValidTo != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ValidTo != nil
 }
 
 // SetValidTo gets a reference to the given time.Time and assigns it to the ValidTo field.

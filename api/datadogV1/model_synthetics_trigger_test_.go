@@ -58,11 +58,7 @@ func (o *SyntheticsTriggerTest) GetMetadataOk() (*SyntheticsCIBatchMetadata, boo
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsTriggerTest) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SyntheticsCIBatchMetadata and assigns it to the Metadata field.

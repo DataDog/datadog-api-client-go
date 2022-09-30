@@ -82,11 +82,7 @@ func (o *IncidentAttachmentUpdateResponse) GetIncludedOk() (*[]IncidentAttachmen
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *IncidentAttachmentUpdateResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []IncidentAttachmentsResponseIncludedItem and assigns it to the Included field.

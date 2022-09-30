@@ -56,11 +56,7 @@ func (o *LogsCategoryProcessorCategory) GetFilterOk() (*LogsFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsCategoryProcessorCategory) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
@@ -88,11 +84,7 @@ func (o *LogsCategoryProcessorCategory) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsCategoryProcessorCategory) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

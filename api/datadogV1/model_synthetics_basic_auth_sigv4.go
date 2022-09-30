@@ -93,11 +93,7 @@ func (o *SyntheticsBasicAuthSigv4) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthSigv4) HasRegion() bool {
-	if o != nil && o.Region != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Region != nil
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
@@ -148,11 +144,7 @@ func (o *SyntheticsBasicAuthSigv4) GetServiceNameOk() (*string, bool) {
 
 // HasServiceName returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthSigv4) HasServiceName() bool {
-	if o != nil && o.ServiceName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ServiceName != nil
 }
 
 // SetServiceName gets a reference to the given string and assigns it to the ServiceName field.
@@ -180,11 +172,7 @@ func (o *SyntheticsBasicAuthSigv4) GetSessionTokenOk() (*string, bool) {
 
 // HasSessionToken returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthSigv4) HasSessionToken() bool {
-	if o != nil && o.SessionToken != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SessionToken != nil
 }
 
 // SetSessionToken gets a reference to the given string and assigns it to the SessionToken field.

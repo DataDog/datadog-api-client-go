@@ -72,11 +72,7 @@ func (o *ScatterPlotRequest) GetAggregatorOk() (*ScatterplotWidgetAggregator, bo
 
 // HasAggregator returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasAggregator() bool {
-	if o != nil && o.Aggregator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregator != nil
 }
 
 // SetAggregator gets a reference to the given ScatterplotWidgetAggregator and assigns it to the Aggregator field.
@@ -104,11 +100,7 @@ func (o *ScatterPlotRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -136,11 +128,7 @@ func (o *ScatterPlotRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -168,11 +156,7 @@ func (o *ScatterPlotRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -200,11 +184,7 @@ func (o *ScatterPlotRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -232,11 +212,7 @@ func (o *ScatterPlotRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool)
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -264,11 +240,7 @@ func (o *ScatterPlotRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bo
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -296,11 +268,7 @@ func (o *ScatterPlotRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -328,11 +296,7 @@ func (o *ScatterPlotRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -360,11 +324,7 @@ func (o *ScatterPlotRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) {
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *ScatterPlotRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.

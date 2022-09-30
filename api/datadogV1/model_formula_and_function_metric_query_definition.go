@@ -64,11 +64,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetAggregatorOk() (*FormulaAnd
 
 // HasAggregator returns a boolean if a field has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) HasAggregator() bool {
-	if o != nil && o.Aggregator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregator != nil
 }
 
 // SetAggregator gets a reference to the given FormulaAndFunctionMetricAggregation and assigns it to the Aggregator field.

@@ -74,11 +74,7 @@ func (o *DistributionWidgetYAxis) GetIncludeZeroOk() (*bool, bool) {
 
 // HasIncludeZero returns a boolean if a field has been set.
 func (o *DistributionWidgetYAxis) HasIncludeZero() bool {
-	if o != nil && o.IncludeZero != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeZero != nil
 }
 
 // SetIncludeZero gets a reference to the given bool and assigns it to the IncludeZero field.
@@ -106,11 +102,7 @@ func (o *DistributionWidgetYAxis) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *DistributionWidgetYAxis) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Label != nil
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
@@ -138,11 +130,7 @@ func (o *DistributionWidgetYAxis) GetMaxOk() (*string, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *DistributionWidgetYAxis) HasMax() bool {
-	if o != nil && o.Max != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Max != nil
 }
 
 // SetMax gets a reference to the given string and assigns it to the Max field.
@@ -170,11 +158,7 @@ func (o *DistributionWidgetYAxis) GetMinOk() (*string, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *DistributionWidgetYAxis) HasMin() bool {
-	if o != nil && o.Min != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Min != nil
 }
 
 // SetMin gets a reference to the given string and assigns it to the Min field.
@@ -202,11 +186,7 @@ func (o *DistributionWidgetYAxis) GetScaleOk() (*string, bool) {
 
 // HasScale returns a boolean if a field has been set.
 func (o *DistributionWidgetYAxis) HasScale() bool {
-	if o != nil && o.Scale != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scale != nil
 }
 
 // SetScale gets a reference to the given string and assigns it to the Scale field.

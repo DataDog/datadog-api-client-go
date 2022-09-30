@@ -62,11 +62,7 @@ func (o *SLOListWidgetQuery) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *SLOListWidgetQuery) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.

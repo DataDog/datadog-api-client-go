@@ -58,11 +58,7 @@ func (o *MonitorGroupSearchResponse) GetCountsOk() (*MonitorGroupSearchResponseC
 
 // HasCounts returns a boolean if a field has been set.
 func (o *MonitorGroupSearchResponse) HasCounts() bool {
-	if o != nil && o.Counts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Counts != nil
 }
 
 // SetCounts gets a reference to the given MonitorGroupSearchResponseCounts and assigns it to the Counts field.
@@ -90,11 +86,7 @@ func (o *MonitorGroupSearchResponse) GetGroupsOk() (*[]MonitorGroupSearchResult,
 
 // HasGroups returns a boolean if a field has been set.
 func (o *MonitorGroupSearchResponse) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []MonitorGroupSearchResult and assigns it to the Groups field.
@@ -122,11 +114,7 @@ func (o *MonitorGroupSearchResponse) GetMetadataOk() (*MonitorSearchResponseMeta
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *MonitorGroupSearchResponse) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given MonitorSearchResponseMetadata and assigns it to the Metadata field.

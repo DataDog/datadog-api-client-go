@@ -70,11 +70,7 @@ func (o *MetricOrigin) GetMetricTypeOk() (*int32, bool) {
 
 // HasMetricType returns a boolean if a field has been set.
 func (o *MetricOrigin) HasMetricType() bool {
-	if o != nil && o.MetricType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricType != nil
 }
 
 // SetMetricType gets a reference to the given int32 and assigns it to the MetricType field.
@@ -102,11 +98,7 @@ func (o *MetricOrigin) GetProductOk() (*int32, bool) {
 
 // HasProduct returns a boolean if a field has been set.
 func (o *MetricOrigin) HasProduct() bool {
-	if o != nil && o.Product != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Product != nil
 }
 
 // SetProduct gets a reference to the given int32 and assigns it to the Product field.
@@ -134,11 +126,7 @@ func (o *MetricOrigin) GetServiceOk() (*int32, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *MetricOrigin) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given int32 and assigns it to the Service field.

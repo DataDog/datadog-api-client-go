@@ -210,11 +210,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 
 // Has{{ propertyName }} returns a boolean if a field has been set.
 func (o *{{ name }}) Has{{ propertyName }}() bool {
-	if o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %} {
-		return true
-	}
-
-	return false
+	return o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %}
 }
 
 // Set{{ propertyName }} gets a reference to the given {{ dataType }} and assigns it to the {{ propertyName }} field.

@@ -81,11 +81,7 @@ func (o *SyntheticsVariableParser) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *SyntheticsVariableParser) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.

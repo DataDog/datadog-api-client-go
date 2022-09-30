@@ -56,11 +56,7 @@ func (o *IPPrefixesProcess) GetPrefixesIpv4Ok() (*[]string, bool) {
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
 func (o *IPPrefixesProcess) HasPrefixesIpv4() bool {
-	if o != nil && o.PrefixesIpv4 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv4 != nil
 }
 
 // SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
@@ -88,11 +84,7 @@ func (o *IPPrefixesProcess) GetPrefixesIpv6Ok() (*[]string, bool) {
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
 func (o *IPPrefixesProcess) HasPrefixesIpv6() bool {
-	if o != nil && o.PrefixesIpv6 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv6 != nil
 }
 
 // SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.
