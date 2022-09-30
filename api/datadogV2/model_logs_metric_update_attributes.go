@@ -56,11 +56,7 @@ func (o *LogsMetricUpdateAttributes) GetFilterOk() (*LogsMetricFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsMetricUpdateAttributes) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsMetricFilter and assigns it to the Filter field.
@@ -88,11 +84,7 @@ func (o *LogsMetricUpdateAttributes) GetGroupByOk() (*[]LogsMetricGroupBy, bool)
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *LogsMetricUpdateAttributes) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []LogsMetricGroupBy and assigns it to the GroupBy field.

@@ -56,11 +56,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) GetHandleOk() (*string
 
 // HasHandle returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) HasHandle() bool {
-	if o != nil && o.Handle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handle != nil
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.
@@ -88,11 +84,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) GetNameOk() (*string, 
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

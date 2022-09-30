@@ -54,11 +54,7 @@ func (o *DashboardListAddItemsResponse) GetAddedDashboardsToListOk() (*[]Dashboa
 
 // HasAddedDashboardsToList returns a boolean if a field has been set.
 func (o *DashboardListAddItemsResponse) HasAddedDashboardsToList() bool {
-	if o != nil && o.AddedDashboardsToList != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AddedDashboardsToList != nil
 }
 
 // SetAddedDashboardsToList gets a reference to the given []DashboardListItemResponse and assigns it to the AddedDashboardsToList field.

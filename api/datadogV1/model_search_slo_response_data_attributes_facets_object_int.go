@@ -56,11 +56,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectInt) GetCountOk() (*int64, b
 
 // HasCount returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -88,11 +84,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectInt) GetNameOk() (*float64, 
 
 // HasName returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given float64 and assigns it to the Name field.

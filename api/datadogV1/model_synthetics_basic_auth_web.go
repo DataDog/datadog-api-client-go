@@ -88,11 +88,7 @@ func (o *SyntheticsBasicAuthWeb) GetTypeOk() (*SyntheticsBasicAuthWebType, bool)
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthWeb) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsBasicAuthWebType and assigns it to the Type field.

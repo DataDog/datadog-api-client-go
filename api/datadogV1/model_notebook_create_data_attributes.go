@@ -93,11 +93,7 @@ func (o *NotebookCreateDataAttributes) GetMetadataOk() (*NotebookMetadata, bool)
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *NotebookCreateDataAttributes) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given NotebookMetadata and assigns it to the Metadata field.
@@ -148,11 +144,7 @@ func (o *NotebookCreateDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NotebookCreateDataAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given NotebookStatus and assigns it to the Status field.

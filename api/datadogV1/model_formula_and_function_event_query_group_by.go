@@ -83,11 +83,7 @@ func (o *FormulaAndFunctionEventQueryGroupBy) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryGroupBy) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -115,11 +111,7 @@ func (o *FormulaAndFunctionEventQueryGroupBy) GetSortOk() (*FormulaAndFunctionEv
 
 // HasSort returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryGroupBy) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given FormulaAndFunctionEventQueryGroupBySort and assigns it to the Sort field.

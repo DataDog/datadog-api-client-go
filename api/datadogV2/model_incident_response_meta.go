@@ -54,11 +54,7 @@ func (o *IncidentResponseMeta) GetPaginationOk() (*IncidentResponseMetaPaginatio
 
 // HasPagination returns a boolean if a field has been set.
 func (o *IncidentResponseMeta) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given IncidentResponseMetaPagination and assigns it to the Pagination field.

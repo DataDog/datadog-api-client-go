@@ -88,11 +88,7 @@ func (o *SyntheticsBrowserTestConfig) GetConfigVariablesOk() (*[]SyntheticsConfi
 
 // HasConfigVariables returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestConfig) HasConfigVariables() bool {
-	if o != nil && o.ConfigVariables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConfigVariables != nil
 }
 
 // SetConfigVariables gets a reference to the given []SyntheticsConfigVariable and assigns it to the ConfigVariables field.
@@ -143,11 +139,7 @@ func (o *SyntheticsBrowserTestConfig) GetSetCookieOk() (*string, bool) {
 
 // HasSetCookie returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestConfig) HasSetCookie() bool {
-	if o != nil && o.SetCookie != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SetCookie != nil
 }
 
 // SetSetCookie gets a reference to the given string and assigns it to the SetCookie field.
@@ -175,11 +167,7 @@ func (o *SyntheticsBrowserTestConfig) GetVariablesOk() (*[]SyntheticsBrowserVari
 
 // HasVariables returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestConfig) HasVariables() bool {
-	if o != nil && o.Variables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Variables != nil
 }
 
 // SetVariables gets a reference to the given []SyntheticsBrowserVariable and assigns it to the Variables field.

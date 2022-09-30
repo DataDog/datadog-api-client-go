@@ -115,11 +115,7 @@ func (o *ServiceCheck) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ServiceCheck) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -193,11 +189,7 @@ func (o *ServiceCheck) GetTimestampOk() (*int64, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ServiceCheck) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.

@@ -84,11 +84,7 @@ func (o *LogQueryDefinitionGroupBySort) GetFacetOk() (*string, bool) {
 
 // HasFacet returns a boolean if a field has been set.
 func (o *LogQueryDefinitionGroupBySort) HasFacet() bool {
-	if o != nil && o.Facet != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Facet != nil
 }
 
 // SetFacet gets a reference to the given string and assigns it to the Facet field.

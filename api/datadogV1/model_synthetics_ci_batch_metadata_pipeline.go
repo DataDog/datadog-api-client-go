@@ -54,11 +54,7 @@ func (o *SyntheticsCIBatchMetadataPipeline) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataPipeline) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

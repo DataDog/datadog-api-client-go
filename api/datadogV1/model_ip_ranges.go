@@ -72,11 +72,7 @@ func (o *IPRanges) GetAgentsOk() (*IPPrefixesAgents, bool) {
 
 // HasAgents returns a boolean if a field has been set.
 func (o *IPRanges) HasAgents() bool {
-	if o != nil && o.Agents != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Agents != nil
 }
 
 // SetAgents gets a reference to the given IPPrefixesAgents and assigns it to the Agents field.
@@ -104,11 +100,7 @@ func (o *IPRanges) GetApiOk() (*IPPrefixesAPI, bool) {
 
 // HasApi returns a boolean if a field has been set.
 func (o *IPRanges) HasApi() bool {
-	if o != nil && o.Api != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Api != nil
 }
 
 // SetApi gets a reference to the given IPPrefixesAPI and assigns it to the Api field.
@@ -136,11 +128,7 @@ func (o *IPRanges) GetApmOk() (*IPPrefixesAPM, bool) {
 
 // HasApm returns a boolean if a field has been set.
 func (o *IPRanges) HasApm() bool {
-	if o != nil && o.Apm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Apm != nil
 }
 
 // SetApm gets a reference to the given IPPrefixesAPM and assigns it to the Apm field.
@@ -168,11 +156,7 @@ func (o *IPRanges) GetLogsOk() (*IPPrefixesLogs, bool) {
 
 // HasLogs returns a boolean if a field has been set.
 func (o *IPRanges) HasLogs() bool {
-	if o != nil && o.Logs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Logs != nil
 }
 
 // SetLogs gets a reference to the given IPPrefixesLogs and assigns it to the Logs field.
@@ -200,11 +184,7 @@ func (o *IPRanges) GetModifiedOk() (*string, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *IPRanges) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given string and assigns it to the Modified field.
@@ -232,11 +212,7 @@ func (o *IPRanges) GetProcessOk() (*IPPrefixesProcess, bool) {
 
 // HasProcess returns a boolean if a field has been set.
 func (o *IPRanges) HasProcess() bool {
-	if o != nil && o.Process != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Process != nil
 }
 
 // SetProcess gets a reference to the given IPPrefixesProcess and assigns it to the Process field.
@@ -264,11 +240,7 @@ func (o *IPRanges) GetSyntheticsOk() (*IPPrefixesSynthetics, bool) {
 
 // HasSynthetics returns a boolean if a field has been set.
 func (o *IPRanges) HasSynthetics() bool {
-	if o != nil && o.Synthetics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Synthetics != nil
 }
 
 // SetSynthetics gets a reference to the given IPPrefixesSynthetics and assigns it to the Synthetics field.
@@ -296,11 +268,7 @@ func (o *IPRanges) GetSyntheticsPrivateLocationsOk() (*IPPrefixesSyntheticsPriva
 
 // HasSyntheticsPrivateLocations returns a boolean if a field has been set.
 func (o *IPRanges) HasSyntheticsPrivateLocations() bool {
-	if o != nil && o.SyntheticsPrivateLocations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsPrivateLocations != nil
 }
 
 // SetSyntheticsPrivateLocations gets a reference to the given IPPrefixesSyntheticsPrivateLocations and assigns it to the SyntheticsPrivateLocations field.
@@ -328,11 +296,7 @@ func (o *IPRanges) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *IPRanges) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.
@@ -360,11 +324,7 @@ func (o *IPRanges) GetWebhooksOk() (*IPPrefixesWebhooks, bool) {
 
 // HasWebhooks returns a boolean if a field has been set.
 func (o *IPRanges) HasWebhooks() bool {
-	if o != nil && o.Webhooks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Webhooks != nil
 }
 
 // SetWebhooks gets a reference to the given IPPrefixesWebhooks and assigns it to the Webhooks field.

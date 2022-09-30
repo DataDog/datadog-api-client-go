@@ -68,11 +68,7 @@ func (o *DashboardTemplateVariable) GetAvailableValuesOk() (*[]string, bool) {
 
 // HasAvailableValues returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasAvailableValues() bool {
-	if o != nil && o.AvailableValues != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AvailableValues != nil
 }
 
 // SetAvailableValues gets a reference to the given []string and assigns it to the AvailableValues field.
@@ -103,11 +99,7 @@ func (o *DashboardTemplateVariable) GetDefaultOk() (*string, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasDefault() bool {
-	if o != nil && o.Default.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Default.IsSet()
 }
 
 // SetDefault gets a reference to the given datadog.NullableString and assigns it to the Default field.
@@ -146,11 +138,7 @@ func (o *DashboardTemplateVariable) GetDefaultsOk() (*[]string, bool) {
 
 // HasDefaults returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasDefaults() bool {
-	if o != nil && o.Defaults != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Defaults != nil
 }
 
 // SetDefaults gets a reference to the given []string and assigns it to the Defaults field.
@@ -202,11 +190,7 @@ func (o *DashboardTemplateVariable) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasPrefix() bool {
-	if o != nil && o.Prefix.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Prefix.IsSet()
 }
 
 // SetPrefix gets a reference to the given datadog.NullableString and assigns it to the Prefix field.

@@ -56,11 +56,7 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) GetTimeOk() (*string, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *LogsAggregateBucketValueTimeseriesPoint) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given string and assigns it to the Time field.
@@ -88,11 +84,7 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) GetValueOk() (*float64, bool) 
 
 // HasValue returns a boolean if a field has been set.
 func (o *LogsAggregateBucketValueTimeseriesPoint) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.

@@ -176,11 +176,7 @@ func (o *MonitorOptions) GetAggregationOk() (*MonitorOptionsAggregation, bool) {
 
 // HasAggregation returns a boolean if a field has been set.
 func (o *MonitorOptions) HasAggregation() bool {
-	if o != nil && o.Aggregation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregation != nil
 }
 
 // SetAggregation gets a reference to the given MonitorOptionsAggregation and assigns it to the Aggregation field.
@@ -210,11 +206,7 @@ func (o *MonitorOptions) GetDeviceIdsOk() (*[]MonitorDeviceID, bool) {
 
 // HasDeviceIds returns a boolean if a field has been set.
 func (o *MonitorOptions) HasDeviceIds() bool {
-	if o != nil && o.DeviceIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceIds != nil
 }
 
 // SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.
@@ -243,11 +235,7 @@ func (o *MonitorOptions) GetEnableLogsSampleOk() (*bool, bool) {
 
 // HasEnableLogsSample returns a boolean if a field has been set.
 func (o *MonitorOptions) HasEnableLogsSample() bool {
-	if o != nil && o.EnableLogsSample != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EnableLogsSample != nil
 }
 
 // SetEnableLogsSample gets a reference to the given bool and assigns it to the EnableLogsSample field.
@@ -275,11 +263,7 @@ func (o *MonitorOptions) GetEscalationMessageOk() (*string, bool) {
 
 // HasEscalationMessage returns a boolean if a field has been set.
 func (o *MonitorOptions) HasEscalationMessage() bool {
-	if o != nil && o.EscalationMessage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EscalationMessage != nil
 }
 
 // SetEscalationMessage gets a reference to the given string and assigns it to the EscalationMessage field.
@@ -308,11 +292,7 @@ func (o *MonitorOptions) GetEvaluationDelayOk() (*int64, bool) {
 
 // HasEvaluationDelay returns a boolean if a field has been set.
 func (o *MonitorOptions) HasEvaluationDelay() bool {
-	if o != nil && o.EvaluationDelay.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.EvaluationDelay.IsSet()
 }
 
 // SetEvaluationDelay gets a reference to the given datadog.NullableInt64 and assigns it to the EvaluationDelay field.
@@ -350,11 +330,7 @@ func (o *MonitorOptions) GetGroupRetentionDurationOk() (*string, bool) {
 
 // HasGroupRetentionDuration returns a boolean if a field has been set.
 func (o *MonitorOptions) HasGroupRetentionDuration() bool {
-	if o != nil && o.GroupRetentionDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupRetentionDuration != nil
 }
 
 // SetGroupRetentionDuration gets a reference to the given string and assigns it to the GroupRetentionDuration field.
@@ -382,11 +358,7 @@ func (o *MonitorOptions) GetGroupbySimpleMonitorOk() (*bool, bool) {
 
 // HasGroupbySimpleMonitor returns a boolean if a field has been set.
 func (o *MonitorOptions) HasGroupbySimpleMonitor() bool {
-	if o != nil && o.GroupbySimpleMonitor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupbySimpleMonitor != nil
 }
 
 // SetGroupbySimpleMonitor gets a reference to the given bool and assigns it to the GroupbySimpleMonitor field.
@@ -414,11 +386,7 @@ func (o *MonitorOptions) GetIncludeTagsOk() (*bool, bool) {
 
 // HasIncludeTags returns a boolean if a field has been set.
 func (o *MonitorOptions) HasIncludeTags() bool {
-	if o != nil && o.IncludeTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeTags != nil
 }
 
 // SetIncludeTags gets a reference to the given bool and assigns it to the IncludeTags field.
@@ -448,11 +416,7 @@ func (o *MonitorOptions) GetLockedOk() (*bool, bool) {
 
 // HasLocked returns a boolean if a field has been set.
 func (o *MonitorOptions) HasLocked() bool {
-	if o != nil && o.Locked != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Locked != nil
 }
 
 // SetLocked gets a reference to the given bool and assigns it to the Locked field.
@@ -482,11 +446,7 @@ func (o *MonitorOptions) GetMinFailureDurationOk() (*int64, bool) {
 
 // HasMinFailureDuration returns a boolean if a field has been set.
 func (o *MonitorOptions) HasMinFailureDuration() bool {
-	if o != nil && o.MinFailureDuration.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinFailureDuration.IsSet()
 }
 
 // SetMinFailureDuration gets a reference to the given datadog.NullableInt64 and assigns it to the MinFailureDuration field.
@@ -525,11 +485,7 @@ func (o *MonitorOptions) GetMinLocationFailedOk() (*int64, bool) {
 
 // HasMinLocationFailed returns a boolean if a field has been set.
 func (o *MonitorOptions) HasMinLocationFailed() bool {
-	if o != nil && o.MinLocationFailed.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinLocationFailed.IsSet()
 }
 
 // SetMinLocationFailed gets a reference to the given datadog.NullableInt64 and assigns it to the MinLocationFailed field.
@@ -568,11 +524,7 @@ func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool) {
 
 // HasNewGroupDelay returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNewGroupDelay() bool {
-	if o != nil && o.NewGroupDelay.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewGroupDelay.IsSet()
 }
 
 // SetNewGroupDelay gets a reference to the given datadog.NullableInt64 and assigns it to the NewGroupDelay field.
@@ -613,11 +565,7 @@ func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
 
 // HasNewHostDelay returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNewHostDelay() bool {
-	if o != nil && o.NewHostDelay.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewHostDelay.IsSet()
 }
 
 // SetNewHostDelay gets a reference to the given datadog.NullableInt64 and assigns it to the NewHostDelay field.
@@ -657,11 +605,7 @@ func (o *MonitorOptions) GetNoDataTimeframeOk() (*int64, bool) {
 
 // HasNoDataTimeframe returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNoDataTimeframe() bool {
-	if o != nil && o.NoDataTimeframe.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoDataTimeframe.IsSet()
 }
 
 // SetNoDataTimeframe gets a reference to the given datadog.NullableInt64 and assigns it to the NoDataTimeframe field.
@@ -699,11 +643,7 @@ func (o *MonitorOptions) GetNotifyAuditOk() (*bool, bool) {
 
 // HasNotifyAudit returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNotifyAudit() bool {
-	if o != nil && o.NotifyAudit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotifyAudit != nil
 }
 
 // SetNotifyAudit gets a reference to the given bool and assigns it to the NotifyAudit field.
@@ -731,11 +671,7 @@ func (o *MonitorOptions) GetNotifyNoDataOk() (*bool, bool) {
 
 // HasNotifyNoData returns a boolean if a field has been set.
 func (o *MonitorOptions) HasNotifyNoData() bool {
-	if o != nil && o.NotifyNoData != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotifyNoData != nil
 }
 
 // SetNotifyNoData gets a reference to the given bool and assigns it to the NotifyNoData field.
@@ -763,11 +699,7 @@ func (o *MonitorOptions) GetOnMissingDataOk() (*OnMissingDataOption, bool) {
 
 // HasOnMissingData returns a boolean if a field has been set.
 func (o *MonitorOptions) HasOnMissingData() bool {
-	if o != nil && o.OnMissingData != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnMissingData != nil
 }
 
 // SetOnMissingData gets a reference to the given OnMissingDataOption and assigns it to the OnMissingData field.
@@ -796,11 +728,7 @@ func (o *MonitorOptions) GetRenotifyIntervalOk() (*int64, bool) {
 
 // HasRenotifyInterval returns a boolean if a field has been set.
 func (o *MonitorOptions) HasRenotifyInterval() bool {
-	if o != nil && o.RenotifyInterval.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RenotifyInterval.IsSet()
 }
 
 // SetRenotifyInterval gets a reference to the given datadog.NullableInt64 and assigns it to the RenotifyInterval field.
@@ -839,11 +767,7 @@ func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool) {
 
 // HasRenotifyOccurrences returns a boolean if a field has been set.
 func (o *MonitorOptions) HasRenotifyOccurrences() bool {
-	if o != nil && o.RenotifyOccurrences.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RenotifyOccurrences.IsSet()
 }
 
 // SetRenotifyOccurrences gets a reference to the given datadog.NullableInt64 and assigns it to the RenotifyOccurrences field.
@@ -882,11 +806,7 @@ func (o *MonitorOptions) GetRenotifyStatusesOk() (*[]MonitorRenotifyStatusType, 
 
 // HasRenotifyStatuses returns a boolean if a field has been set.
 func (o *MonitorOptions) HasRenotifyStatuses() bool {
-	if o != nil && o.RenotifyStatuses != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RenotifyStatuses != nil
 }
 
 // SetRenotifyStatuses gets a reference to the given []MonitorRenotifyStatusType and assigns it to the RenotifyStatuses field.
@@ -914,11 +834,7 @@ func (o *MonitorOptions) GetRequireFullWindowOk() (*bool, bool) {
 
 // HasRequireFullWindow returns a boolean if a field has been set.
 func (o *MonitorOptions) HasRequireFullWindow() bool {
-	if o != nil && o.RequireFullWindow != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequireFullWindow != nil
 }
 
 // SetRequireFullWindow gets a reference to the given bool and assigns it to the RequireFullWindow field.
@@ -948,11 +864,7 @@ func (o *MonitorOptions) GetSilencedOk() (*map[string]int64, bool) {
 
 // HasSilenced returns a boolean if a field has been set.
 func (o *MonitorOptions) HasSilenced() bool {
-	if o != nil && o.Silenced != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Silenced != nil
 }
 
 // SetSilenced gets a reference to the given map[string]int64 and assigns it to the Silenced field.
@@ -984,11 +896,7 @@ func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool) {
 
 // HasSyntheticsCheckId returns a boolean if a field has been set.
 func (o *MonitorOptions) HasSyntheticsCheckId() bool {
-	if o != nil && o.SyntheticsCheckId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsCheckId.IsSet()
 }
 
 // SetSyntheticsCheckId gets a reference to the given datadog.NullableString and assigns it to the SyntheticsCheckId field.
@@ -1027,11 +935,7 @@ func (o *MonitorOptions) GetThresholdWindowsOk() (*MonitorThresholdWindowOptions
 
 // HasThresholdWindows returns a boolean if a field has been set.
 func (o *MonitorOptions) HasThresholdWindows() bool {
-	if o != nil && o.ThresholdWindows != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ThresholdWindows != nil
 }
 
 // SetThresholdWindows gets a reference to the given MonitorThresholdWindowOptions and assigns it to the ThresholdWindows field.
@@ -1059,11 +963,7 @@ func (o *MonitorOptions) GetThresholdsOk() (*MonitorThresholds, bool) {
 
 // HasThresholds returns a boolean if a field has been set.
 func (o *MonitorOptions) HasThresholds() bool {
-	if o != nil && o.Thresholds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Thresholds != nil
 }
 
 // SetThresholds gets a reference to the given MonitorThresholds and assigns it to the Thresholds field.
@@ -1092,11 +992,7 @@ func (o *MonitorOptions) GetTimeoutHOk() (*int64, bool) {
 
 // HasTimeoutH returns a boolean if a field has been set.
 func (o *MonitorOptions) HasTimeoutH() bool {
-	if o != nil && o.TimeoutH.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeoutH.IsSet()
 }
 
 // SetTimeoutH gets a reference to the given datadog.NullableInt64 and assigns it to the TimeoutH field.
@@ -1134,11 +1030,7 @@ func (o *MonitorOptions) GetVariablesOk() (*[]MonitorFormulaAndFunctionQueryDefi
 
 // HasVariables returns a boolean if a field has been set.
 func (o *MonitorOptions) HasVariables() bool {
-	if o != nil && o.Variables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Variables != nil
 }
 
 // SetVariables gets a reference to the given []MonitorFormulaAndFunctionQueryDefinition and assigns it to the Variables field.

@@ -15,10 +15,9 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetEstimatedCostByOrg", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetEstimatedCostByOrg(ctx, "view", *datadogV2.NewGetEstimatedCostByOrgOptionalParameters())
+	resp, r, err := api.GetEstimatedCostByOrg(ctx, *datadogV2.NewGetEstimatedCostByOrgOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetEstimatedCostByOrg`: %v\n", err)

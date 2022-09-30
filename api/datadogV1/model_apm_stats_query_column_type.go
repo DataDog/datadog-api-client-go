@@ -62,11 +62,7 @@ func (o *ApmStatsQueryColumnType) GetAliasOk() (*string, bool) {
 
 // HasAlias returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasAlias() bool {
-	if o != nil && o.Alias != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Alias != nil
 }
 
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
@@ -94,11 +90,7 @@ func (o *ApmStatsQueryColumnType) GetCellDisplayModeOk() (*TableWidgetCellDispla
 
 // HasCellDisplayMode returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasCellDisplayMode() bool {
-	if o != nil && o.CellDisplayMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CellDisplayMode != nil
 }
 
 // SetCellDisplayMode gets a reference to the given TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
@@ -149,11 +141,7 @@ func (o *ApmStatsQueryColumnType) GetOrderOk() (*WidgetSort, bool) {
 
 // HasOrder returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given WidgetSort and assigns it to the Order field.

@@ -56,11 +56,7 @@ func (o *MetricIngestedIndexedVolumeAttributes) GetIndexedVolumeOk() (*int64, bo
 
 // HasIndexedVolume returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolumeAttributes) HasIndexedVolume() bool {
-	if o != nil && o.IndexedVolume != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexedVolume != nil
 }
 
 // SetIndexedVolume gets a reference to the given int64 and assigns it to the IndexedVolume field.
@@ -88,11 +84,7 @@ func (o *MetricIngestedIndexedVolumeAttributes) GetIngestedVolumeOk() (*int64, b
 
 // HasIngestedVolume returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolumeAttributes) HasIngestedVolume() bool {
-	if o != nil && o.IngestedVolume != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedVolume != nil
 }
 
 // SetIngestedVolume gets a reference to the given int64 and assigns it to the IngestedVolume field.

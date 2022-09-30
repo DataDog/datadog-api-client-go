@@ -66,11 +66,7 @@ func (o *MonitorThresholds) GetCriticalOk() (*float64, bool) {
 
 // HasCritical returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasCritical() bool {
-	if o != nil && o.Critical != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Critical != nil
 }
 
 // SetCritical gets a reference to the given float64 and assigns it to the Critical field.
@@ -99,11 +95,7 @@ func (o *MonitorThresholds) GetCriticalRecoveryOk() (*float64, bool) {
 
 // HasCriticalRecovery returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasCriticalRecovery() bool {
-	if o != nil && o.CriticalRecovery.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CriticalRecovery.IsSet()
 }
 
 // SetCriticalRecovery gets a reference to the given datadog.NullableFloat64 and assigns it to the CriticalRecovery field.
@@ -142,11 +134,7 @@ func (o *MonitorThresholds) GetOkOk() (*float64, bool) {
 
 // HasOk returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasOk() bool {
-	if o != nil && o.Ok.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ok.IsSet()
 }
 
 // SetOk gets a reference to the given datadog.NullableFloat64 and assigns it to the Ok field.
@@ -185,11 +173,7 @@ func (o *MonitorThresholds) GetUnknownOk() (*float64, bool) {
 
 // HasUnknown returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasUnknown() bool {
-	if o != nil && o.Unknown.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unknown.IsSet()
 }
 
 // SetUnknown gets a reference to the given datadog.NullableFloat64 and assigns it to the Unknown field.
@@ -228,11 +212,7 @@ func (o *MonitorThresholds) GetWarningOk() (*float64, bool) {
 
 // HasWarning returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasWarning() bool {
-	if o != nil && o.Warning.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warning.IsSet()
 }
 
 // SetWarning gets a reference to the given datadog.NullableFloat64 and assigns it to the Warning field.
@@ -271,11 +251,7 @@ func (o *MonitorThresholds) GetWarningRecoveryOk() (*float64, bool) {
 
 // HasWarningRecovery returns a boolean if a field has been set.
 func (o *MonitorThresholds) HasWarningRecovery() bool {
-	if o != nil && o.WarningRecovery.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.WarningRecovery.IsSet()
 }
 
 // SetWarningRecovery gets a reference to the given datadog.NullableFloat64 and assigns it to the WarningRecovery field.

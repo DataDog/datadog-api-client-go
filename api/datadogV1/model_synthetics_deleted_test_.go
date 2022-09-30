@@ -58,11 +58,7 @@ func (o *SyntheticsDeletedTest) GetDeletedAtOk() (*time.Time, bool) {
 
 // HasDeletedAt returns a boolean if a field has been set.
 func (o *SyntheticsDeletedTest) HasDeletedAt() bool {
-	if o != nil && o.DeletedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedAt != nil
 }
 
 // SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
@@ -90,11 +86,7 @@ func (o *SyntheticsDeletedTest) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsDeletedTest) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

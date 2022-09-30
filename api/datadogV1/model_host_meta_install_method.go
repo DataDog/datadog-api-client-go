@@ -58,11 +58,7 @@ func (o *HostMetaInstallMethod) GetInstallerVersionOk() (*string, bool) {
 
 // HasInstallerVersion returns a boolean if a field has been set.
 func (o *HostMetaInstallMethod) HasInstallerVersion() bool {
-	if o != nil && o.InstallerVersion != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InstallerVersion != nil
 }
 
 // SetInstallerVersion gets a reference to the given string and assigns it to the InstallerVersion field.
@@ -90,11 +86,7 @@ func (o *HostMetaInstallMethod) GetToolOk() (*string, bool) {
 
 // HasTool returns a boolean if a field has been set.
 func (o *HostMetaInstallMethod) HasTool() bool {
-	if o != nil && o.Tool != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tool != nil
 }
 
 // SetTool gets a reference to the given string and assigns it to the Tool field.
@@ -122,11 +114,7 @@ func (o *HostMetaInstallMethod) GetToolVersionOk() (*string, bool) {
 
 // HasToolVersion returns a boolean if a field has been set.
 func (o *HostMetaInstallMethod) HasToolVersion() bool {
-	if o != nil && o.ToolVersion != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ToolVersion != nil
 }
 
 // SetToolVersion gets a reference to the given string and assigns it to the ToolVersion field.

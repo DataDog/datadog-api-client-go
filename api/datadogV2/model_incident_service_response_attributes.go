@@ -59,11 +59,7 @@ func (o *IncidentServiceResponseAttributes) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *IncidentServiceResponseAttributes) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -91,11 +87,7 @@ func (o *IncidentServiceResponseAttributes) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *IncidentServiceResponseAttributes) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -123,11 +115,7 @@ func (o *IncidentServiceResponseAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *IncidentServiceResponseAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

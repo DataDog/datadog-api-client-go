@@ -81,11 +81,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetAggregationsOk() (*[]MetricC
 
 // HasAggregations returns a boolean if a field has been set.
 func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
-	if o != nil && o.Aggregations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregations != nil
 }
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
@@ -113,11 +109,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetIncludePercentilesOk() (*boo
 
 // HasIncludePercentiles returns a boolean if a field has been set.
 func (o *MetricTagConfigurationCreateAttributes) HasIncludePercentiles() bool {
-	if o != nil && o.IncludePercentiles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludePercentiles != nil
 }
 
 // SetIncludePercentiles gets a reference to the given bool and assigns it to the IncludePercentiles field.

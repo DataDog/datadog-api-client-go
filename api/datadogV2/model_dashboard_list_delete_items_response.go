@@ -54,11 +54,7 @@ func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromListOk() (*[]
 
 // HasDeletedDashboardsFromList returns a boolean if a field has been set.
 func (o *DashboardListDeleteItemsResponse) HasDeletedDashboardsFromList() bool {
-	if o != nil && o.DeletedDashboardsFromList != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedDashboardsFromList != nil
 }
 
 // SetDeletedDashboardsFromList gets a reference to the given []DashboardListItemResponse and assigns it to the DeletedDashboardsFromList field.

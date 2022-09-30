@@ -63,11 +63,7 @@ func (o *MetricBulkTagConfigDelete) GetAttributesOk() (*MetricBulkTagConfigDelet
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigDelete) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given MetricBulkTagConfigDeleteAttributes and assigns it to the Attributes field.

@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 2.3.1 / 2022-09-28
+
+### Fixed
+* Refactor RuleQuery models by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1689
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.3.0...v2.3.1
+
+## 2.3.0 / 2022-09-27
+
+### Added
+* Add ListActiveConfigurations endpoint and add new filter[queried] param to list tag configurations endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1619
+* Add doesNotExist to synthetics operator enum by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1659
+* Add TopologyMapWidget to dashboard schema by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1662
+* Add Overall Status support to SLO Search API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1664
+* Add APM Fargate to Usage Metering API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1658
+* [dashboards] Add support for template variable multiselect by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1668
+* Add storage option to widget query definitions by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1673
+* Add support for retrieving a security signal by ID by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1681
+* Add support for signal correlation API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1674
+* Add support for SLO List widget by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1680
+* Add new historical_cost endpoint, and update estimate_cost by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1672
+
+## New Contributors
+* @nkzou made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1657
+* @dependabot made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1676
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.2.0...v2.3.0
+
 ## 2.2.0 / 2022-08-31
 
 ### Added

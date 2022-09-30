@@ -65,11 +65,7 @@ func (o *SyntheticsConfigVariable) GetExampleOk() (*string, bool) {
 
 // HasExample returns a boolean if a field has been set.
 func (o *SyntheticsConfigVariable) HasExample() bool {
-	if o != nil && o.Example != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Example != nil
 }
 
 // SetExample gets a reference to the given string and assigns it to the Example field.
@@ -97,11 +93,7 @@ func (o *SyntheticsConfigVariable) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsConfigVariable) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -152,11 +144,7 @@ func (o *SyntheticsConfigVariable) GetPatternOk() (*string, bool) {
 
 // HasPattern returns a boolean if a field has been set.
 func (o *SyntheticsConfigVariable) HasPattern() bool {
-	if o != nil && o.Pattern != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pattern != nil
 }
 
 // SetPattern gets a reference to the given string and assigns it to the Pattern field.

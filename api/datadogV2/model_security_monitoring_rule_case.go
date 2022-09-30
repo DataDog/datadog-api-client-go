@@ -61,11 +61,7 @@ func (o *SecurityMonitoringRuleCase) GetConditionOk() (*string, bool) {
 
 // HasCondition returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleCase) HasCondition() bool {
-	if o != nil && o.Condition != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Condition != nil
 }
 
 // SetCondition gets a reference to the given string and assigns it to the Condition field.
@@ -93,11 +89,7 @@ func (o *SecurityMonitoringRuleCase) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleCase) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -125,11 +117,7 @@ func (o *SecurityMonitoringRuleCase) GetNotificationsOk() (*[]string, bool) {
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleCase) HasNotifications() bool {
-	if o != nil && o.Notifications != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Notifications != nil
 }
 
 // SetNotifications gets a reference to the given []string and assigns it to the Notifications field.
@@ -157,11 +145,7 @@ func (o *SecurityMonitoringRuleCase) GetStatusOk() (*SecurityMonitoringRuleSever
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleCase) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SecurityMonitoringRuleSeverity and assigns it to the Status field.

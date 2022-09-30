@@ -54,11 +54,7 @@ func (o *LogsFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *LogsFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.

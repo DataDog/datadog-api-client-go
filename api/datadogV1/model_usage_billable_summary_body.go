@@ -67,11 +67,7 @@ func (o *UsageBillableSummaryBody) GetAccountBillableUsageOk() (*int64, bool) {
 
 // HasAccountBillableUsage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasAccountBillableUsage() bool {
-	if o != nil && o.AccountBillableUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountBillableUsage != nil
 }
 
 // SetAccountBillableUsage gets a reference to the given int64 and assigns it to the AccountBillableUsage field.
@@ -99,11 +95,7 @@ func (o *UsageBillableSummaryBody) GetElapsedUsageHoursOk() (*int64, bool) {
 
 // HasElapsedUsageHours returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasElapsedUsageHours() bool {
-	if o != nil && o.ElapsedUsageHours != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ElapsedUsageHours != nil
 }
 
 // SetElapsedUsageHours gets a reference to the given int64 and assigns it to the ElapsedUsageHours field.
@@ -131,11 +123,7 @@ func (o *UsageBillableSummaryBody) GetFirstBillableUsageHourOk() (*time.Time, bo
 
 // HasFirstBillableUsageHour returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasFirstBillableUsageHour() bool {
-	if o != nil && o.FirstBillableUsageHour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FirstBillableUsageHour != nil
 }
 
 // SetFirstBillableUsageHour gets a reference to the given time.Time and assigns it to the FirstBillableUsageHour field.
@@ -163,11 +151,7 @@ func (o *UsageBillableSummaryBody) GetLastBillableUsageHourOk() (*time.Time, boo
 
 // HasLastBillableUsageHour returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasLastBillableUsageHour() bool {
-	if o != nil && o.LastBillableUsageHour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastBillableUsageHour != nil
 }
 
 // SetLastBillableUsageHour gets a reference to the given time.Time and assigns it to the LastBillableUsageHour field.
@@ -195,11 +179,7 @@ func (o *UsageBillableSummaryBody) GetOrgBillableUsageOk() (*int64, bool) {
 
 // HasOrgBillableUsage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasOrgBillableUsage() bool {
-	if o != nil && o.OrgBillableUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgBillableUsage != nil
 }
 
 // SetOrgBillableUsage gets a reference to the given int64 and assigns it to the OrgBillableUsage field.
@@ -227,11 +207,7 @@ func (o *UsageBillableSummaryBody) GetPercentageInAccountOk() (*float64, bool) {
 
 // HasPercentageInAccount returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasPercentageInAccount() bool {
-	if o != nil && o.PercentageInAccount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PercentageInAccount != nil
 }
 
 // SetPercentageInAccount gets a reference to the given float64 and assigns it to the PercentageInAccount field.
@@ -259,11 +235,7 @@ func (o *UsageBillableSummaryBody) GetUsageUnitOk() (*string, bool) {
 
 // HasUsageUnit returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasUsageUnit() bool {
-	if o != nil && o.UsageUnit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UsageUnit != nil
 }
 
 // SetUsageUnit gets a reference to the given string and assigns it to the UsageUnit field.

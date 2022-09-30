@@ -69,11 +69,7 @@ func (o *SyntheticsAPITestResultFull) GetCheckOk() (*SyntheticsAPITestResultFull
 
 // HasCheck returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasCheck() bool {
-	if o != nil && o.Check != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Check != nil
 }
 
 // SetCheck gets a reference to the given SyntheticsAPITestResultFullCheck and assigns it to the Check field.
@@ -101,11 +97,7 @@ func (o *SyntheticsAPITestResultFull) GetCheckTimeOk() (*float64, bool) {
 
 // HasCheckTime returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasCheckTime() bool {
-	if o != nil && o.CheckTime != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckTime != nil
 }
 
 // SetCheckTime gets a reference to the given float64 and assigns it to the CheckTime field.
@@ -133,11 +125,7 @@ func (o *SyntheticsAPITestResultFull) GetCheckVersionOk() (*int64, bool) {
 
 // HasCheckVersion returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasCheckVersion() bool {
-	if o != nil && o.CheckVersion != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckVersion != nil
 }
 
 // SetCheckVersion gets a reference to the given int64 and assigns it to the CheckVersion field.
@@ -165,11 +153,7 @@ func (o *SyntheticsAPITestResultFull) GetProbeDcOk() (*string, bool) {
 
 // HasProbeDc returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasProbeDc() bool {
-	if o != nil && o.ProbeDc != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProbeDc != nil
 }
 
 // SetProbeDc gets a reference to the given string and assigns it to the ProbeDc field.
@@ -197,11 +181,7 @@ func (o *SyntheticsAPITestResultFull) GetResultOk() (*SyntheticsAPITestResultDat
 
 // HasResult returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasResult() bool {
-	if o != nil && o.Result != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Result != nil
 }
 
 // SetResult gets a reference to the given SyntheticsAPITestResultData and assigns it to the Result field.
@@ -229,11 +209,7 @@ func (o *SyntheticsAPITestResultFull) GetResultIdOk() (*string, bool) {
 
 // HasResultId returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasResultId() bool {
-	if o != nil && o.ResultId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResultId != nil
 }
 
 // SetResultId gets a reference to the given string and assigns it to the ResultId field.
@@ -261,11 +237,7 @@ func (o *SyntheticsAPITestResultFull) GetStatusOk() (*SyntheticsTestMonitorStatu
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultFull) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestMonitorStatus and assigns it to the Status field.

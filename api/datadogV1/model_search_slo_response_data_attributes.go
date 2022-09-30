@@ -13,7 +13,7 @@ type SearchSLOResponseDataAttributes struct {
 	// Facets
 	Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
 	// SLOs
-	Slo []SearchServiceLevelObjective `json:"slo,omitempty"`
+	Slos []SearchServiceLevelObjective `json:"slos,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -56,11 +56,7 @@ func (o *SearchSLOResponseDataAttributes) GetFacetsOk() (*SearchSLOResponseDataA
 
 // HasFacets returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributes) HasFacets() bool {
-	if o != nil && o.Facets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Facets != nil
 }
 
 // SetFacets gets a reference to the given SearchSLOResponseDataAttributesFacets and assigns it to the Facets field.
@@ -68,36 +64,32 @@ func (o *SearchSLOResponseDataAttributes) SetFacets(v SearchSLOResponseDataAttri
 	o.Facets = &v
 }
 
-// GetSlo returns the Slo field value if set, zero value otherwise.
-func (o *SearchSLOResponseDataAttributes) GetSlo() []SearchServiceLevelObjective {
-	if o == nil || o.Slo == nil {
+// GetSlos returns the Slos field value if set, zero value otherwise.
+func (o *SearchSLOResponseDataAttributes) GetSlos() []SearchServiceLevelObjective {
+	if o == nil || o.Slos == nil {
 		var ret []SearchServiceLevelObjective
 		return ret
 	}
-	return o.Slo
+	return o.Slos
 }
 
-// GetSloOk returns a tuple with the Slo field value if set, nil otherwise
+// GetSlosOk returns a tuple with the Slos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SearchSLOResponseDataAttributes) GetSloOk() (*[]SearchServiceLevelObjective, bool) {
-	if o == nil || o.Slo == nil {
+func (o *SearchSLOResponseDataAttributes) GetSlosOk() (*[]SearchServiceLevelObjective, bool) {
+	if o == nil || o.Slos == nil {
 		return nil, false
 	}
-	return &o.Slo, true
+	return &o.Slos, true
 }
 
-// HasSlo returns a boolean if a field has been set.
-func (o *SearchSLOResponseDataAttributes) HasSlo() bool {
-	if o != nil && o.Slo != nil {
-		return true
-	}
-
-	return false
+// HasSlos returns a boolean if a field has been set.
+func (o *SearchSLOResponseDataAttributes) HasSlos() bool {
+	return o != nil && o.Slos != nil
 }
 
-// SetSlo gets a reference to the given []SearchServiceLevelObjective and assigns it to the Slo field.
-func (o *SearchSLOResponseDataAttributes) SetSlo(v []SearchServiceLevelObjective) {
-	o.Slo = v
+// SetSlos gets a reference to the given []SearchServiceLevelObjective and assigns it to the Slos field.
+func (o *SearchSLOResponseDataAttributes) SetSlos(v []SearchServiceLevelObjective) {
+	o.Slos = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -109,8 +101,8 @@ func (o SearchSLOResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Facets != nil {
 		toSerialize["facets"] = o.Facets
 	}
-	if o.Slo != nil {
-		toSerialize["slo"] = o.Slo
+	if o.Slos != nil {
+		toSerialize["slos"] = o.Slos
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -124,7 +116,7 @@ func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
-		Slo    []SearchServiceLevelObjective          `json:"slo,omitempty"`
+		Slos   []SearchServiceLevelObjective          `json:"slos,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -143,6 +135,6 @@ func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 	}
 	o.Facets = all.Facets
-	o.Slo = all.Slo
+	o.Slos = all.Slos
 	return nil
 }

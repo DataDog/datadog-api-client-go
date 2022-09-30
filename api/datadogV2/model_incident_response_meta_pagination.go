@@ -58,11 +58,7 @@ func (o *IncidentResponseMetaPagination) GetNextOffsetOk() (*int64, bool) {
 
 // HasNextOffset returns a boolean if a field has been set.
 func (o *IncidentResponseMetaPagination) HasNextOffset() bool {
-	if o != nil && o.NextOffset != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextOffset != nil
 }
 
 // SetNextOffset gets a reference to the given int64 and assigns it to the NextOffset field.
@@ -90,11 +86,7 @@ func (o *IncidentResponseMetaPagination) GetOffsetOk() (*int64, bool) {
 
 // HasOffset returns a boolean if a field has been set.
 func (o *IncidentResponseMetaPagination) HasOffset() bool {
-	if o != nil && o.Offset != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Offset != nil
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
@@ -122,11 +114,7 @@ func (o *IncidentResponseMetaPagination) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *IncidentResponseMetaPagination) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.

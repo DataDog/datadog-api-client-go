@@ -58,11 +58,7 @@ func (o *SyntheticsTestOptionsRetry) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *SyntheticsTestOptionsRetry) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -90,11 +86,7 @@ func (o *SyntheticsTestOptionsRetry) GetIntervalOk() (*float64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *SyntheticsTestOptionsRetry) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given float64 and assigns it to the Interval field.

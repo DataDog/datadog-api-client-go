@@ -76,11 +76,7 @@ func (o *Series) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *Series) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -109,11 +105,7 @@ func (o *Series) GetIntervalOk() (*int64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *Series) HasInterval() bool {
-	if o != nil && o.Interval.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval.IsSet()
 }
 
 // SetInterval gets a reference to the given datadog.NullableInt64 and assigns it to the Interval field.
@@ -197,11 +189,7 @@ func (o *Series) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Series) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -229,11 +217,7 @@ func (o *Series) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Series) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

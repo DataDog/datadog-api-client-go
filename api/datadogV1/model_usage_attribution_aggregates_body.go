@@ -58,11 +58,7 @@ func (o *UsageAttributionAggregatesBody) GetAggTypeOk() (*string, bool) {
 
 // HasAggType returns a boolean if a field has been set.
 func (o *UsageAttributionAggregatesBody) HasAggType() bool {
-	if o != nil && o.AggType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AggType != nil
 }
 
 // SetAggType gets a reference to the given string and assigns it to the AggType field.
@@ -90,11 +86,7 @@ func (o *UsageAttributionAggregatesBody) GetFieldOk() (*string, bool) {
 
 // HasField returns a boolean if a field has been set.
 func (o *UsageAttributionAggregatesBody) HasField() bool {
-	if o != nil && o.Field != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Field != nil
 }
 
 // SetField gets a reference to the given string and assigns it to the Field field.
@@ -122,11 +114,7 @@ func (o *UsageAttributionAggregatesBody) GetValueOk() (*float64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *UsageAttributionAggregatesBody) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.

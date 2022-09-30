@@ -70,11 +70,7 @@ func (o *RUMQueryFilter) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
@@ -102,11 +98,7 @@ func (o *RUMQueryFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -134,11 +126,7 @@ func (o *RUMQueryFilter) GetToOk() (*string, bool) {
 
 // HasTo returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given string and assigns it to the To field.

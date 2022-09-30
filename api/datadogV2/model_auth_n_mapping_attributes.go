@@ -63,11 +63,7 @@ func (o *AuthNMappingAttributes) GetAttributeKeyOk() (*string, bool) {
 
 // HasAttributeKey returns a boolean if a field has been set.
 func (o *AuthNMappingAttributes) HasAttributeKey() bool {
-	if o != nil && o.AttributeKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeKey != nil
 }
 
 // SetAttributeKey gets a reference to the given string and assigns it to the AttributeKey field.
@@ -95,11 +91,7 @@ func (o *AuthNMappingAttributes) GetAttributeValueOk() (*string, bool) {
 
 // HasAttributeValue returns a boolean if a field has been set.
 func (o *AuthNMappingAttributes) HasAttributeValue() bool {
-	if o != nil && o.AttributeValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeValue != nil
 }
 
 // SetAttributeValue gets a reference to the given string and assigns it to the AttributeValue field.
@@ -127,11 +119,7 @@ func (o *AuthNMappingAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *AuthNMappingAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -159,11 +147,7 @@ func (o *AuthNMappingAttributes) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *AuthNMappingAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -191,11 +175,7 @@ func (o *AuthNMappingAttributes) GetSamlAssertionAttributeIdOk() (*string, bool)
 
 // HasSamlAssertionAttributeId returns a boolean if a field has been set.
 func (o *AuthNMappingAttributes) HasSamlAssertionAttributeId() bool {
-	if o != nil && o.SamlAssertionAttributeId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlAssertionAttributeId != nil
 }
 
 // SetSamlAssertionAttributeId gets a reference to the given string and assigns it to the SamlAssertionAttributeId field.

@@ -58,11 +58,7 @@ func (o *WidgetRequestStyle) GetLineTypeOk() (*WidgetLineType, bool) {
 
 // HasLineType returns a boolean if a field has been set.
 func (o *WidgetRequestStyle) HasLineType() bool {
-	if o != nil && o.LineType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LineType != nil
 }
 
 // SetLineType gets a reference to the given WidgetLineType and assigns it to the LineType field.
@@ -90,11 +86,7 @@ func (o *WidgetRequestStyle) GetLineWidthOk() (*WidgetLineWidth, bool) {
 
 // HasLineWidth returns a boolean if a field has been set.
 func (o *WidgetRequestStyle) HasLineWidth() bool {
-	if o != nil && o.LineWidth != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LineWidth != nil
 }
 
 // SetLineWidth gets a reference to the given WidgetLineWidth and assigns it to the LineWidth field.
@@ -122,11 +114,7 @@ func (o *WidgetRequestStyle) GetPaletteOk() (*string, bool) {
 
 // HasPalette returns a boolean if a field has been set.
 func (o *WidgetRequestStyle) HasPalette() bool {
-	if o != nil && o.Palette != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Palette != nil
 }
 
 // SetPalette gets a reference to the given string and assigns it to the Palette field.

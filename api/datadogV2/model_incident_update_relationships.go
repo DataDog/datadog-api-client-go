@@ -58,11 +58,7 @@ func (o *IncidentUpdateRelationships) GetCommanderUserOk() (*NullableRelationshi
 
 // HasCommanderUser returns a boolean if a field has been set.
 func (o *IncidentUpdateRelationships) HasCommanderUser() bool {
-	if o != nil && o.CommanderUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CommanderUser != nil
 }
 
 // SetCommanderUser gets a reference to the given NullableRelationshipToUser and assigns it to the CommanderUser field.
@@ -90,11 +86,7 @@ func (o *IncidentUpdateRelationships) GetIntegrationsOk() (*RelationshipToIncide
 
 // HasIntegrations returns a boolean if a field has been set.
 func (o *IncidentUpdateRelationships) HasIntegrations() bool {
-	if o != nil && o.Integrations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Integrations != nil
 }
 
 // SetIntegrations gets a reference to the given RelationshipToIncidentIntegrationMetadatas and assigns it to the Integrations field.
@@ -122,11 +114,7 @@ func (o *IncidentUpdateRelationships) GetPostmortemOk() (*RelationshipToIncident
 
 // HasPostmortem returns a boolean if a field has been set.
 func (o *IncidentUpdateRelationships) HasPostmortem() bool {
-	if o != nil && o.Postmortem != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Postmortem != nil
 }
 
 // SetPostmortem gets a reference to the given RelationshipToIncidentPostmortem and assigns it to the Postmortem field.

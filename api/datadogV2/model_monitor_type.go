@@ -74,11 +74,7 @@ func (o *MonitorType) GetCreatedAtOk() (*int32, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *MonitorType) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int32 and assigns it to the CreatedAt field.
@@ -106,11 +102,7 @@ func (o *MonitorType) GetGroupStatusOk() (*int32, bool) {
 
 // HasGroupStatus returns a boolean if a field has been set.
 func (o *MonitorType) HasGroupStatus() bool {
-	if o != nil && o.GroupStatus != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupStatus != nil
 }
 
 // SetGroupStatus gets a reference to the given int32 and assigns it to the GroupStatus field.
@@ -138,11 +130,7 @@ func (o *MonitorType) GetGroupsOk() (*[]string, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *MonitorType) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
@@ -170,11 +158,7 @@ func (o *MonitorType) GetIdOk() (*int32, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MonitorType) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int32 and assigns it to the Id field.
@@ -202,11 +186,7 @@ func (o *MonitorType) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MonitorType) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -234,11 +214,7 @@ func (o *MonitorType) GetModifiedOk() (*int32, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *MonitorType) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given int32 and assigns it to the Modified field.
@@ -266,11 +242,7 @@ func (o *MonitorType) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MonitorType) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -298,11 +270,7 @@ func (o *MonitorType) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *MonitorType) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -330,11 +298,7 @@ func (o *MonitorType) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MonitorType) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -362,11 +326,7 @@ func (o *MonitorType) GetTemplatedNameOk() (*string, bool) {
 
 // HasTemplatedName returns a boolean if a field has been set.
 func (o *MonitorType) HasTemplatedName() bool {
-	if o != nil && o.TemplatedName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TemplatedName != nil
 }
 
 // SetTemplatedName gets a reference to the given string and assigns it to the TemplatedName field.
@@ -394,11 +354,7 @@ func (o *MonitorType) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MonitorType) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

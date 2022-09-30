@@ -54,11 +54,7 @@ func (o *RoleResponseRelationships) GetPermissionsOk() (*RelationshipToPermissio
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *RoleResponseRelationships) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Permissions != nil
 }
 
 // SetPermissions gets a reference to the given RelationshipToPermissions and assigns it to the Permissions field.

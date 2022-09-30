@@ -60,11 +60,7 @@ func (o *ApiKey) GetCreatedOk() (*string, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *ApiKey) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given string and assigns it to the Created field.
@@ -92,11 +88,7 @@ func (o *ApiKey) GetCreatedByOk() (*string, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *ApiKey) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedBy != nil
 }
 
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
@@ -124,11 +116,7 @@ func (o *ApiKey) GetKeyOk() (*string, bool) {
 
 // HasKey returns a boolean if a field has been set.
 func (o *ApiKey) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.
@@ -156,11 +144,7 @@ func (o *ApiKey) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApiKey) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

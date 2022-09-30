@@ -64,11 +64,7 @@ func (o *WidgetFormula) GetAliasOk() (*string, bool) {
 
 // HasAlias returns a boolean if a field has been set.
 func (o *WidgetFormula) HasAlias() bool {
-	if o != nil && o.Alias != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Alias != nil
 }
 
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
@@ -96,11 +92,7 @@ func (o *WidgetFormula) GetCellDisplayModeOk() (*TableWidgetCellDisplayMode, boo
 
 // HasCellDisplayMode returns a boolean if a field has been set.
 func (o *WidgetFormula) HasCellDisplayMode() bool {
-	if o != nil && o.CellDisplayMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CellDisplayMode != nil
 }
 
 // SetCellDisplayMode gets a reference to the given TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
@@ -128,11 +120,7 @@ func (o *WidgetFormula) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, b
 
 // HasConditionalFormats returns a boolean if a field has been set.
 func (o *WidgetFormula) HasConditionalFormats() bool {
-	if o != nil && o.ConditionalFormats != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConditionalFormats != nil
 }
 
 // SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
@@ -183,11 +171,7 @@ func (o *WidgetFormula) GetLimitOk() (*WidgetFormulaLimit, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *WidgetFormula) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given WidgetFormulaLimit and assigns it to the Limit field.

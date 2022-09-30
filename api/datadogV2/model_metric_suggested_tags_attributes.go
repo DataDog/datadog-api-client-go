@@ -56,11 +56,7 @@ func (o *MetricSuggestedTagsAttributes) GetActiveAggregationsOk() (*[]MetricCust
 
 // HasActiveAggregations returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAttributes) HasActiveAggregations() bool {
-	if o != nil && o.ActiveAggregations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ActiveAggregations != nil
 }
 
 // SetActiveAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the ActiveAggregations field.
@@ -88,11 +84,7 @@ func (o *MetricSuggestedTagsAttributes) GetActiveTagsOk() (*[]string, bool) {
 
 // HasActiveTags returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAttributes) HasActiveTags() bool {
-	if o != nil && o.ActiveTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ActiveTags != nil
 }
 
 // SetActiveTags gets a reference to the given []string and assigns it to the ActiveTags field.

@@ -114,11 +114,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]Monit
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []MonitorFormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
@@ -146,11 +142,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]strin
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -201,11 +193,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetSearchOk() (*MonitorF
 
 // HasSearch returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasSearch() bool {
-	if o != nil && o.Search != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Search != nil
 }
 
 // SetSearch gets a reference to the given MonitorFormulaAndFunctionEventQueryDefinitionSearch and assigns it to the Search field.

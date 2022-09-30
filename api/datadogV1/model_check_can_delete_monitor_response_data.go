@@ -54,11 +54,7 @@ func (o *CheckCanDeleteMonitorResponseData) GetOkOk() (*[]int64, bool) {
 
 // HasOk returns a boolean if a field has been set.
 func (o *CheckCanDeleteMonitorResponseData) HasOk() bool {
-	if o != nil && o.Ok != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ok != nil
 }
 
 // SetOk gets a reference to the given []int64 and assigns it to the Ok field.

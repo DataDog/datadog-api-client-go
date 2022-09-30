@@ -79,11 +79,7 @@ func (o *SLOWidgetDefinition) GetGlobalTimeTargetOk() (*string, bool) {
 
 // HasGlobalTimeTarget returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasGlobalTimeTarget() bool {
-	if o != nil && o.GlobalTimeTarget != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GlobalTimeTarget != nil
 }
 
 // SetGlobalTimeTarget gets a reference to the given string and assigns it to the GlobalTimeTarget field.
@@ -111,11 +107,7 @@ func (o *SLOWidgetDefinition) GetShowErrorBudgetOk() (*bool, bool) {
 
 // HasShowErrorBudget returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasShowErrorBudget() bool {
-	if o != nil && o.ShowErrorBudget != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowErrorBudget != nil
 }
 
 // SetShowErrorBudget gets a reference to the given bool and assigns it to the ShowErrorBudget field.
@@ -143,11 +135,7 @@ func (o *SLOWidgetDefinition) GetSloIdOk() (*string, bool) {
 
 // HasSloId returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasSloId() bool {
-	if o != nil && o.SloId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SloId != nil
 }
 
 // SetSloId gets a reference to the given string and assigns it to the SloId field.
@@ -175,11 +163,7 @@ func (o *SLOWidgetDefinition) GetTimeWindowsOk() (*[]WidgetTimeWindows, bool) {
 
 // HasTimeWindows returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasTimeWindows() bool {
-	if o != nil && o.TimeWindows != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeWindows != nil
 }
 
 // SetTimeWindows gets a reference to the given []WidgetTimeWindows and assigns it to the TimeWindows field.
@@ -207,11 +191,7 @@ func (o *SLOWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -239,11 +219,7 @@ func (o *SLOWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -271,11 +247,7 @@ func (o *SLOWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -326,11 +298,7 @@ func (o *SLOWidgetDefinition) GetViewModeOk() (*WidgetViewMode, bool) {
 
 // HasViewMode returns a boolean if a field has been set.
 func (o *SLOWidgetDefinition) HasViewMode() bool {
-	if o != nil && o.ViewMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ViewMode != nil
 }
 
 // SetViewMode gets a reference to the given WidgetViewMode and assigns it to the ViewMode field.

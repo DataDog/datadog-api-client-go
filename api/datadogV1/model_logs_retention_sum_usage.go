@@ -60,11 +60,7 @@ func (o *LogsRetentionSumUsage) GetLogsIndexedLogsUsageSumOk() (*int64, bool) {
 
 // HasLogsIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsIndexedLogsUsageSum() bool {
-	if o != nil && o.LogsIndexedLogsUsageSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexedLogsUsageSum != nil
 }
 
 // SetLogsIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsIndexedLogsUsageSum field.
@@ -92,11 +88,7 @@ func (o *LogsRetentionSumUsage) GetLogsLiveIndexedLogsUsageSumOk() (*int64, bool
 
 // HasLogsLiveIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsLiveIndexedLogsUsageSum() bool {
-	if o != nil && o.LogsLiveIndexedLogsUsageSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsLiveIndexedLogsUsageSum != nil
 }
 
 // SetLogsLiveIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsLiveIndexedLogsUsageSum field.
@@ -124,11 +116,7 @@ func (o *LogsRetentionSumUsage) GetLogsRehydratedIndexedLogsUsageSumOk() (*int64
 
 // HasLogsRehydratedIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsRehydratedIndexedLogsUsageSum() bool {
-	if o != nil && o.LogsRehydratedIndexedLogsUsageSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsRehydratedIndexedLogsUsageSum != nil
 }
 
 // SetLogsRehydratedIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsRehydratedIndexedLogsUsageSum field.
@@ -156,11 +144,7 @@ func (o *LogsRetentionSumUsage) GetRetentionOk() (*string, bool) {
 
 // HasRetention returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasRetention() bool {
-	if o != nil && o.Retention != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retention != nil
 }
 
 // SetRetention gets a reference to the given string and assigns it to the Retention field.

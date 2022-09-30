@@ -81,11 +81,7 @@ func (o *NoteWidgetDefinition) GetBackgroundColorOk() (*string, bool) {
 
 // HasBackgroundColor returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasBackgroundColor() bool {
-	if o != nil && o.BackgroundColor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BackgroundColor != nil
 }
 
 // SetBackgroundColor gets a reference to the given string and assigns it to the BackgroundColor field.
@@ -136,11 +132,7 @@ func (o *NoteWidgetDefinition) GetFontSizeOk() (*string, bool) {
 
 // HasFontSize returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasFontSize() bool {
-	if o != nil && o.FontSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FontSize != nil
 }
 
 // SetFontSize gets a reference to the given string and assigns it to the FontSize field.
@@ -168,11 +160,7 @@ func (o *NoteWidgetDefinition) GetHasPaddingOk() (*bool, bool) {
 
 // HasHasPadding returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasHasPadding() bool {
-	if o != nil && o.HasPadding != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasPadding != nil
 }
 
 // SetHasPadding gets a reference to the given bool and assigns it to the HasPadding field.
@@ -200,11 +188,7 @@ func (o *NoteWidgetDefinition) GetShowTickOk() (*bool, bool) {
 
 // HasShowTick returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasShowTick() bool {
-	if o != nil && o.ShowTick != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowTick != nil
 }
 
 // SetShowTick gets a reference to the given bool and assigns it to the ShowTick field.
@@ -232,11 +216,7 @@ func (o *NoteWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTextAlign returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasTextAlign() bool {
-	if o != nil && o.TextAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TextAlign != nil
 }
 
 // SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
@@ -264,11 +244,7 @@ func (o *NoteWidgetDefinition) GetTickEdgeOk() (*WidgetTickEdge, bool) {
 
 // HasTickEdge returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasTickEdge() bool {
-	if o != nil && o.TickEdge != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TickEdge != nil
 }
 
 // SetTickEdge gets a reference to the given WidgetTickEdge and assigns it to the TickEdge field.
@@ -296,11 +272,7 @@ func (o *NoteWidgetDefinition) GetTickPosOk() (*string, bool) {
 
 // HasTickPos returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasTickPos() bool {
-	if o != nil && o.TickPos != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TickPos != nil
 }
 
 // SetTickPos gets a reference to the given string and assigns it to the TickPos field.
@@ -351,11 +323,7 @@ func (o *NoteWidgetDefinition) GetVerticalAlignOk() (*WidgetVerticalAlign, bool)
 
 // HasVerticalAlign returns a boolean if a field has been set.
 func (o *NoteWidgetDefinition) HasVerticalAlign() bool {
-	if o != nil && o.VerticalAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.VerticalAlign != nil
 }
 
 // SetVerticalAlign gets a reference to the given WidgetVerticalAlign and assigns it to the VerticalAlign field.

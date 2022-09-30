@@ -81,11 +81,7 @@ func (o *LogsMetricGroupBy) GetTagNameOk() (*string, bool) {
 
 // HasTagName returns a boolean if a field has been set.
 func (o *LogsMetricGroupBy) HasTagName() bool {
-	if o != nil && o.TagName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagName != nil
 }
 
 // SetTagName gets a reference to the given string and assigns it to the TagName field.

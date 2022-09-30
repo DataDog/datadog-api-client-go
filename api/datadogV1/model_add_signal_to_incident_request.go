@@ -60,11 +60,7 @@ func (o *AddSignalToIncidentRequest) GetAddToSignalTimelineOk() (*bool, bool) {
 
 // HasAddToSignalTimeline returns a boolean if a field has been set.
 func (o *AddSignalToIncidentRequest) HasAddToSignalTimeline() bool {
-	if o != nil && o.AddToSignalTimeline != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AddToSignalTimeline != nil
 }
 
 // SetAddToSignalTimeline gets a reference to the given bool and assigns it to the AddToSignalTimeline field.
@@ -115,11 +111,7 @@ func (o *AddSignalToIncidentRequest) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *AddSignalToIncidentRequest) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.

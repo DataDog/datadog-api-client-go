@@ -54,11 +54,7 @@ func (o *OrganizationResponse) GetOrgOk() (*Organization, bool) {
 
 // HasOrg returns a boolean if a field has been set.
 func (o *OrganizationResponse) HasOrg() bool {
-	if o != nil && o.Org != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Org != nil
 }
 
 // SetOrg gets a reference to the given Organization and assigns it to the Org field.

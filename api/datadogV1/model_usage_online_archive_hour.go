@@ -61,11 +61,7 @@ func (o *UsageOnlineArchiveHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -93,11 +89,7 @@ func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int32, bool) 
 
 // HasOnlineArchiveEventsCount returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasOnlineArchiveEventsCount() bool {
-	if o != nil && o.OnlineArchiveEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnlineArchiveEventsCount != nil
 }
 
 // SetOnlineArchiveEventsCount gets a reference to the given int32 and assigns it to the OnlineArchiveEventsCount field.
@@ -125,11 +117,7 @@ func (o *UsageOnlineArchiveHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -157,11 +145,7 @@ func (o *UsageOnlineArchiveHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

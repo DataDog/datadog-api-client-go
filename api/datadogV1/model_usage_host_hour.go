@@ -94,11 +94,7 @@ func (o *UsageHostHour) GetAgentHostCountOk() (*int64, bool) {
 
 // HasAgentHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAgentHostCount() bool {
-	if o != nil && o.AgentHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AgentHostCount != nil
 }
 
 // SetAgentHostCount gets a reference to the given int64 and assigns it to the AgentHostCount field.
@@ -126,11 +122,7 @@ func (o *UsageHostHour) GetAlibabaHostCountOk() (*int64, bool) {
 
 // HasAlibabaHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAlibabaHostCount() bool {
-	if o != nil && o.AlibabaHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AlibabaHostCount != nil
 }
 
 // SetAlibabaHostCount gets a reference to the given int64 and assigns it to the AlibabaHostCount field.
@@ -158,11 +150,7 @@ func (o *UsageHostHour) GetApmAzureAppServiceHostCountOk() (*int64, bool) {
 
 // HasApmAzureAppServiceHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasApmAzureAppServiceHostCount() bool {
-	if o != nil && o.ApmAzureAppServiceHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmAzureAppServiceHostCount != nil
 }
 
 // SetApmAzureAppServiceHostCount gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostCount field.
@@ -190,11 +178,7 @@ func (o *UsageHostHour) GetApmHostCountOk() (*int64, bool) {
 
 // HasApmHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasApmHostCount() bool {
-	if o != nil && o.ApmHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostCount != nil
 }
 
 // SetApmHostCount gets a reference to the given int64 and assigns it to the ApmHostCount field.
@@ -222,11 +206,7 @@ func (o *UsageHostHour) GetAwsHostCountOk() (*int64, bool) {
 
 // HasAwsHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAwsHostCount() bool {
-	if o != nil && o.AwsHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AwsHostCount != nil
 }
 
 // SetAwsHostCount gets a reference to the given int64 and assigns it to the AwsHostCount field.
@@ -254,11 +234,7 @@ func (o *UsageHostHour) GetAzureHostCountOk() (*int64, bool) {
 
 // HasAzureHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAzureHostCount() bool {
-	if o != nil && o.AzureHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AzureHostCount != nil
 }
 
 // SetAzureHostCount gets a reference to the given int64 and assigns it to the AzureHostCount field.
@@ -286,11 +262,7 @@ func (o *UsageHostHour) GetContainerCountOk() (*int64, bool) {
 
 // HasContainerCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasContainerCount() bool {
-	if o != nil && o.ContainerCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ContainerCount != nil
 }
 
 // SetContainerCount gets a reference to the given int64 and assigns it to the ContainerCount field.
@@ -318,11 +290,7 @@ func (o *UsageHostHour) GetGcpHostCountOk() (*int64, bool) {
 
 // HasGcpHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasGcpHostCount() bool {
-	if o != nil && o.GcpHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GcpHostCount != nil
 }
 
 // SetGcpHostCount gets a reference to the given int64 and assigns it to the GcpHostCount field.
@@ -350,11 +318,7 @@ func (o *UsageHostHour) GetHerokuHostCountOk() (*int64, bool) {
 
 // HasHerokuHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHerokuHostCount() bool {
-	if o != nil && o.HerokuHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HerokuHostCount != nil
 }
 
 // SetHerokuHostCount gets a reference to the given int64 and assigns it to the HerokuHostCount field.
@@ -382,11 +346,7 @@ func (o *UsageHostHour) GetHostCountOk() (*int64, bool) {
 
 // HasHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHostCount() bool {
-	if o != nil && o.HostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostCount != nil
 }
 
 // SetHostCount gets a reference to the given int64 and assigns it to the HostCount field.
@@ -414,11 +374,7 @@ func (o *UsageHostHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -446,11 +402,7 @@ func (o *UsageHostHour) GetInfraAzureAppServiceOk() (*int64, bool) {
 
 // HasInfraAzureAppService returns a boolean if a field has been set.
 func (o *UsageHostHour) HasInfraAzureAppService() bool {
-	if o != nil && o.InfraAzureAppService != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraAzureAppService != nil
 }
 
 // SetInfraAzureAppService gets a reference to the given int64 and assigns it to the InfraAzureAppService field.
@@ -478,11 +430,7 @@ func (o *UsageHostHour) GetOpentelemetryHostCountOk() (*int64, bool) {
 
 // HasOpentelemetryHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasOpentelemetryHostCount() bool {
-	if o != nil && o.OpentelemetryHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OpentelemetryHostCount != nil
 }
 
 // SetOpentelemetryHostCount gets a reference to the given int64 and assigns it to the OpentelemetryHostCount field.
@@ -510,11 +458,7 @@ func (o *UsageHostHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageHostHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -542,11 +486,7 @@ func (o *UsageHostHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageHostHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -574,11 +514,7 @@ func (o *UsageHostHour) GetVsphereHostCountOk() (*int64, bool) {
 
 // HasVsphereHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasVsphereHostCount() bool {
-	if o != nil && o.VsphereHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.VsphereHostCount != nil
 }
 
 // SetVsphereHostCount gets a reference to the given int64 and assigns it to the VsphereHostCount field.

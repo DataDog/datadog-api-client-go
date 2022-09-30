@@ -63,11 +63,7 @@ func (o *RUMResponseMetadata) GetElapsedOk() (*int64, bool) {
 
 // HasElapsed returns a boolean if a field has been set.
 func (o *RUMResponseMetadata) HasElapsed() bool {
-	if o != nil && o.Elapsed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Elapsed != nil
 }
 
 // SetElapsed gets a reference to the given int64 and assigns it to the Elapsed field.
@@ -95,11 +91,7 @@ func (o *RUMResponseMetadata) GetPageOk() (*RUMResponsePage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *RUMResponseMetadata) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given RUMResponsePage and assigns it to the Page field.
@@ -127,11 +119,7 @@ func (o *RUMResponseMetadata) GetRequestIdOk() (*string, bool) {
 
 // HasRequestId returns a boolean if a field has been set.
 func (o *RUMResponseMetadata) HasRequestId() bool {
-	if o != nil && o.RequestId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestId != nil
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
@@ -159,11 +147,7 @@ func (o *RUMResponseMetadata) GetStatusOk() (*RUMResponseStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *RUMResponseMetadata) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given RUMResponseStatus and assigns it to the Status field.
@@ -191,11 +175,7 @@ func (o *RUMResponseMetadata) GetWarningsOk() (*[]RUMWarning, bool) {
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *RUMResponseMetadata) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warnings != nil
 }
 
 // SetWarnings gets a reference to the given []RUMWarning and assigns it to the Warnings field.

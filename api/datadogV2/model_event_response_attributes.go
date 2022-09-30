@@ -59,11 +59,7 @@ func (o *EventResponseAttributes) GetAttributesOk() (*EventAttributes, bool) {
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *EventResponseAttributes) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given EventAttributes and assigns it to the Attributes field.
@@ -91,11 +87,7 @@ func (o *EventResponseAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *EventResponseAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -123,11 +115,7 @@ func (o *EventResponseAttributes) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *EventResponseAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.

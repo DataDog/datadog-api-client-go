@@ -54,11 +54,7 @@ func (o *WidgetTime) GetLiveSpanOk() (*WidgetLiveSpan, bool) {
 
 // HasLiveSpan returns a boolean if a field has been set.
 func (o *WidgetTime) HasLiveSpan() bool {
-	if o != nil && o.LiveSpan != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LiveSpan != nil
 }
 
 // SetLiveSpan gets a reference to the given WidgetLiveSpan and assigns it to the LiveSpan field.

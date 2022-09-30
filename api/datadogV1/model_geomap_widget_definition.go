@@ -80,11 +80,7 @@ func (o *GeomapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) 
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *GeomapWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -158,11 +154,7 @@ func (o *GeomapWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *GeomapWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -190,11 +182,7 @@ func (o *GeomapWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *GeomapWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -222,11 +210,7 @@ func (o *GeomapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *GeomapWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -254,11 +238,7 @@ func (o *GeomapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *GeomapWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

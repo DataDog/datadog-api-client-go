@@ -62,11 +62,7 @@ func (o *MetricSuggestedTagsAndAggregations) GetAttributesOk() (*MetricSuggested
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAndAggregations) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given MetricSuggestedTagsAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *MetricSuggestedTagsAndAggregations) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAndAggregations) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -126,11 +118,7 @@ func (o *MetricSuggestedTagsAndAggregations) GetTypeOk() (*MetricActiveConfigura
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricSuggestedTagsAndAggregations) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MetricActiveConfigurationType and assigns it to the Type field.

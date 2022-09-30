@@ -91,11 +91,7 @@ func (o *MonitorSummaryWidgetDefinition) GetColorPreferenceOk() (*WidgetColorPre
 
 // HasColorPreference returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasColorPreference() bool {
-	if o != nil && o.ColorPreference != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ColorPreference != nil
 }
 
 // SetColorPreference gets a reference to the given WidgetColorPreference and assigns it to the ColorPreference field.
@@ -125,11 +121,7 @@ func (o *MonitorSummaryWidgetDefinition) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -158,11 +150,7 @@ func (o *MonitorSummaryWidgetDefinition) GetDisplayFormatOk() (*WidgetMonitorSum
 
 // HasDisplayFormat returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasDisplayFormat() bool {
-	if o != nil && o.DisplayFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayFormat != nil
 }
 
 // SetDisplayFormat gets a reference to the given WidgetMonitorSummaryDisplayFormat and assigns it to the DisplayFormat field.
@@ -190,11 +178,7 @@ func (o *MonitorSummaryWidgetDefinition) GetHideZeroCountsOk() (*bool, bool) {
 
 // HasHideZeroCounts returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasHideZeroCounts() bool {
-	if o != nil && o.HideZeroCounts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HideZeroCounts != nil
 }
 
 // SetHideZeroCounts gets a reference to the given bool and assigns it to the HideZeroCounts field.
@@ -245,11 +229,7 @@ func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggeredOk() (*bool, bool) 
 
 // HasShowLastTriggered returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasShowLastTriggered() bool {
-	if o != nil && o.ShowLastTriggered != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowLastTriggered != nil
 }
 
 // SetShowLastTriggered gets a reference to the given bool and assigns it to the ShowLastTriggered field.
@@ -277,11 +257,7 @@ func (o *MonitorSummaryWidgetDefinition) GetShowPriorityOk() (*bool, bool) {
 
 // HasShowPriority returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasShowPriority() bool {
-	if o != nil && o.ShowPriority != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowPriority != nil
 }
 
 // SetShowPriority gets a reference to the given bool and assigns it to the ShowPriority field.
@@ -309,11 +285,7 @@ func (o *MonitorSummaryWidgetDefinition) GetSortOk() (*WidgetMonitorSummarySort,
 
 // HasSort returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given WidgetMonitorSummarySort and assigns it to the Sort field.
@@ -343,11 +315,7 @@ func (o *MonitorSummaryWidgetDefinition) GetStartOk() (*int64, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasStart() bool {
-	if o != nil && o.Start != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Start != nil
 }
 
 // SetStart gets a reference to the given int64 and assigns it to the Start field.
@@ -376,11 +344,7 @@ func (o *MonitorSummaryWidgetDefinition) GetSummaryTypeOk() (*WidgetSummaryType,
 
 // HasSummaryType returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasSummaryType() bool {
-	if o != nil && o.SummaryType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SummaryType != nil
 }
 
 // SetSummaryType gets a reference to the given WidgetSummaryType and assigns it to the SummaryType field.
@@ -408,11 +372,7 @@ func (o *MonitorSummaryWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -440,11 +400,7 @@ func (o *MonitorSummaryWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bo
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -472,11 +428,7 @@ func (o *MonitorSummaryWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *MonitorSummaryWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

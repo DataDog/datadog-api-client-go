@@ -54,11 +54,7 @@ func (o *DeletedMonitor) GetDeletedMonitorIdOk() (*int64, bool) {
 
 // HasDeletedMonitorId returns a boolean if a field has been set.
 func (o *DeletedMonitor) HasDeletedMonitorId() bool {
-	if o != nil && o.DeletedMonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedMonitorId != nil
 }
 
 // SetDeletedMonitorId gets a reference to the given int64 and assigns it to the DeletedMonitorId field.

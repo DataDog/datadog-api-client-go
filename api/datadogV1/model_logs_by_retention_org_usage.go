@@ -54,11 +54,7 @@ func (o *LogsByRetentionOrgUsage) GetUsageOk() (*[]LogsRetentionSumUsage, bool) 
 
 // HasUsage returns a boolean if a field has been set.
 func (o *LogsByRetentionOrgUsage) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []LogsRetentionSumUsage and assigns it to the Usage field.

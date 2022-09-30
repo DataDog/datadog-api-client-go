@@ -62,11 +62,7 @@ func (o *SecurityMonitoringTriageUser) GetHandleOk() (*string, bool) {
 
 // HasHandle returns a boolean if a field has been set.
 func (o *SecurityMonitoringTriageUser) HasHandle() bool {
-	if o != nil && o.Handle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handle != nil
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.
@@ -94,11 +90,7 @@ func (o *SecurityMonitoringTriageUser) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SecurityMonitoringTriageUser) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -126,11 +118,7 @@ func (o *SecurityMonitoringTriageUser) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringTriageUser) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

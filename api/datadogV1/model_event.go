@@ -86,11 +86,7 @@ func (o *Event) GetAlertTypeOk() (*EventAlertType, bool) {
 
 // HasAlertType returns a boolean if a field has been set.
 func (o *Event) HasAlertType() bool {
-	if o != nil && o.AlertType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AlertType != nil
 }
 
 // SetAlertType gets a reference to the given EventAlertType and assigns it to the AlertType field.
@@ -118,11 +114,7 @@ func (o *Event) GetDateHappenedOk() (*int64, bool) {
 
 // HasDateHappened returns a boolean if a field has been set.
 func (o *Event) HasDateHappened() bool {
-	if o != nil && o.DateHappened != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DateHappened != nil
 }
 
 // SetDateHappened gets a reference to the given int64 and assigns it to the DateHappened field.
@@ -150,11 +142,7 @@ func (o *Event) GetDeviceNameOk() (*string, bool) {
 
 // HasDeviceName returns a boolean if a field has been set.
 func (o *Event) HasDeviceName() bool {
-	if o != nil && o.DeviceName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceName != nil
 }
 
 // SetDeviceName gets a reference to the given string and assigns it to the DeviceName field.
@@ -182,11 +170,7 @@ func (o *Event) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *Event) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -214,11 +198,7 @@ func (o *Event) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Event) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -246,11 +226,7 @@ func (o *Event) GetIdStrOk() (*string, bool) {
 
 // HasIdStr returns a boolean if a field has been set.
 func (o *Event) HasIdStr() bool {
-	if o != nil && o.IdStr != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IdStr != nil
 }
 
 // SetIdStr gets a reference to the given string and assigns it to the IdStr field.
@@ -278,11 +254,7 @@ func (o *Event) GetPayloadOk() (*string, bool) {
 
 // HasPayload returns a boolean if a field has been set.
 func (o *Event) HasPayload() bool {
-	if o != nil && o.Payload != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Payload != nil
 }
 
 // SetPayload gets a reference to the given string and assigns it to the Payload field.
@@ -311,11 +283,7 @@ func (o *Event) GetPriorityOk() (*EventPriority, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *Event) HasPriority() bool {
-	if o != nil && o.Priority.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Priority.IsSet()
 }
 
 // SetPriority gets a reference to the given NullableEventPriority and assigns it to the Priority field.
@@ -353,11 +321,7 @@ func (o *Event) GetSourceTypeNameOk() (*string, bool) {
 
 // HasSourceTypeName returns a boolean if a field has been set.
 func (o *Event) HasSourceTypeName() bool {
-	if o != nil && o.SourceTypeName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SourceTypeName != nil
 }
 
 // SetSourceTypeName gets a reference to the given string and assigns it to the SourceTypeName field.
@@ -385,11 +349,7 @@ func (o *Event) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Event) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -417,11 +377,7 @@ func (o *Event) GetTextOk() (*string, bool) {
 
 // HasText returns a boolean if a field has been set.
 func (o *Event) HasText() bool {
-	if o != nil && o.Text != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Text != nil
 }
 
 // SetText gets a reference to the given string and assigns it to the Text field.
@@ -449,11 +405,7 @@ func (o *Event) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *Event) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -481,11 +433,7 @@ func (o *Event) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *Event) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

@@ -67,11 +67,7 @@ func (o *FreeTextWidgetDefinition) GetColorOk() (*string, bool) {
 
 // HasColor returns a boolean if a field has been set.
 func (o *FreeTextWidgetDefinition) HasColor() bool {
-	if o != nil && o.Color != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Color != nil
 }
 
 // SetColor gets a reference to the given string and assigns it to the Color field.
@@ -99,11 +95,7 @@ func (o *FreeTextWidgetDefinition) GetFontSizeOk() (*string, bool) {
 
 // HasFontSize returns a boolean if a field has been set.
 func (o *FreeTextWidgetDefinition) HasFontSize() bool {
-	if o != nil && o.FontSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FontSize != nil
 }
 
 // SetFontSize gets a reference to the given string and assigns it to the FontSize field.
@@ -154,11 +146,7 @@ func (o *FreeTextWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTextAlign returns a boolean if a field has been set.
 func (o *FreeTextWidgetDefinition) HasTextAlign() bool {
-	if o != nil && o.TextAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TextAlign != nil
 }
 
 // SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.

@@ -56,11 +56,7 @@ func (o *IncidentNotificationHandle) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *IncidentNotificationHandle) HasDisplayName() bool {
-	if o != nil && o.DisplayName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayName != nil
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
@@ -88,11 +84,7 @@ func (o *IncidentNotificationHandle) GetHandleOk() (*string, bool) {
 
 // HasHandle returns a boolean if a field has been set.
 func (o *IncidentNotificationHandle) HasHandle() bool {
-	if o != nil && o.Handle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handle != nil
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.

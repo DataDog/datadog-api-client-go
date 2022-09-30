@@ -64,11 +64,7 @@ func (o *OpsgenieServiceCreateAttributes) GetCustomUrlOk() (*string, bool) {
 
 // HasCustomUrl returns a boolean if a field has been set.
 func (o *OpsgenieServiceCreateAttributes) HasCustomUrl() bool {
-	if o != nil && o.CustomUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomUrl != nil
 }
 
 // SetCustomUrl gets a reference to the given string and assigns it to the CustomUrl field.

@@ -63,11 +63,7 @@ func (o *UsageSDSHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -95,11 +91,7 @@ func (o *UsageSDSHour) GetLogsScannedBytesOk() (*int64, bool) {
 
 // HasLogsScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasLogsScannedBytes() bool {
-	if o != nil && o.LogsScannedBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsScannedBytes != nil
 }
 
 // SetLogsScannedBytes gets a reference to the given int64 and assigns it to the LogsScannedBytes field.
@@ -127,11 +119,7 @@ func (o *UsageSDSHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -159,11 +147,7 @@ func (o *UsageSDSHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -191,11 +175,7 @@ func (o *UsageSDSHour) GetTotalScannedBytesOk() (*int64, bool) {
 
 // HasTotalScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasTotalScannedBytes() bool {
-	if o != nil && o.TotalScannedBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalScannedBytes != nil
 }
 
 // SetTotalScannedBytes gets a reference to the given int64 and assigns it to the TotalScannedBytes field.

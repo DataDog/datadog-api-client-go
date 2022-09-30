@@ -73,11 +73,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) GetForgetAfterOk() (*SecurityMon
 
 // HasForgetAfter returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleNewValueOptions) HasForgetAfter() bool {
-	if o != nil && o.ForgetAfter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ForgetAfter != nil
 }
 
 // SetForgetAfter gets a reference to the given SecurityMonitoringRuleNewValueOptionsForgetAfter and assigns it to the ForgetAfter field.
@@ -105,11 +101,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) GetLearningDurationOk() (*Securi
 
 // HasLearningDuration returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleNewValueOptions) HasLearningDuration() bool {
-	if o != nil && o.LearningDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LearningDuration != nil
 }
 
 // SetLearningDuration gets a reference to the given SecurityMonitoringRuleNewValueOptionsLearningDuration and assigns it to the LearningDuration field.
@@ -137,11 +129,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) GetLearningMethodOk() (*Security
 
 // HasLearningMethod returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleNewValueOptions) HasLearningMethod() bool {
-	if o != nil && o.LearningMethod != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LearningMethod != nil
 }
 
 // SetLearningMethod gets a reference to the given SecurityMonitoringRuleNewValueOptionsLearningMethod and assigns it to the LearningMethod field.
@@ -169,11 +157,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) GetLearningThresholdOk() (*Secur
 
 // HasLearningThreshold returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleNewValueOptions) HasLearningThreshold() bool {
-	if o != nil && o.LearningThreshold != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LearningThreshold != nil
 }
 
 // SetLearningThreshold gets a reference to the given SecurityMonitoringRuleNewValueOptionsLearningThreshold and assigns it to the LearningThreshold field.

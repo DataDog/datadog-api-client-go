@@ -83,11 +83,7 @@ func (o *LogStreamWidgetDefinition) GetColumnsOk() (*[]string, bool) {
 
 // HasColumns returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasColumns() bool {
-	if o != nil && o.Columns != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Columns != nil
 }
 
 // SetColumns gets a reference to the given []string and assigns it to the Columns field.
@@ -115,11 +111,7 @@ func (o *LogStreamWidgetDefinition) GetIndexesOk() (*[]string, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -149,11 +141,7 @@ func (o *LogStreamWidgetDefinition) GetLogsetOk() (*string, bool) {
 
 // HasLogset returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasLogset() bool {
-	if o != nil && o.Logset != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Logset != nil
 }
 
 // SetLogset gets a reference to the given string and assigns it to the Logset field.
@@ -182,11 +170,7 @@ func (o *LogStreamWidgetDefinition) GetMessageDisplayOk() (*WidgetMessageDisplay
 
 // HasMessageDisplay returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasMessageDisplay() bool {
-	if o != nil && o.MessageDisplay != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MessageDisplay != nil
 }
 
 // SetMessageDisplay gets a reference to the given WidgetMessageDisplay and assigns it to the MessageDisplay field.
@@ -214,11 +198,7 @@ func (o *LogStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -246,11 +226,7 @@ func (o *LogStreamWidgetDefinition) GetShowDateColumnOk() (*bool, bool) {
 
 // HasShowDateColumn returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasShowDateColumn() bool {
-	if o != nil && o.ShowDateColumn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowDateColumn != nil
 }
 
 // SetShowDateColumn gets a reference to the given bool and assigns it to the ShowDateColumn field.
@@ -278,11 +254,7 @@ func (o *LogStreamWidgetDefinition) GetShowMessageColumnOk() (*bool, bool) {
 
 // HasShowMessageColumn returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasShowMessageColumn() bool {
-	if o != nil && o.ShowMessageColumn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowMessageColumn != nil
 }
 
 // SetShowMessageColumn gets a reference to the given bool and assigns it to the ShowMessageColumn field.
@@ -310,11 +282,7 @@ func (o *LogStreamWidgetDefinition) GetSortOk() (*WidgetFieldSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given WidgetFieldSort and assigns it to the Sort field.
@@ -342,11 +310,7 @@ func (o *LogStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -374,11 +338,7 @@ func (o *LogStreamWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -406,11 +366,7 @@ func (o *LogStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -438,11 +394,7 @@ func (o *LogStreamWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *LogStreamWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

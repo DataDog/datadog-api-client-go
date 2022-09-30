@@ -55,11 +55,7 @@ func (o *SecurityMonitoringSignalsListResponseLinks) GetNextOk() (*string, bool)
 
 // HasNext returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalsListResponseLinks) HasNext() bool {
-	if o != nil && o.Next != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Next != nil
 }
 
 // SetNext gets a reference to the given string and assigns it to the Next field.

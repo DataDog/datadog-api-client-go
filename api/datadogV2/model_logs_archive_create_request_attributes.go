@@ -98,11 +98,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetIncludeTagsOk() (*bool, bool) {
 
 // HasIncludeTags returns a boolean if a field has been set.
 func (o *LogsArchiveCreateRequestAttributes) HasIncludeTags() bool {
-	if o != nil && o.IncludeTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeTags != nil
 }
 
 // SetIncludeTags gets a reference to the given bool and assigns it to the IncludeTags field.
@@ -177,11 +173,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGbOk() (
 
 // HasRehydrationMaxScanSizeInGb returns a boolean if a field has been set.
 func (o *LogsArchiveCreateRequestAttributes) HasRehydrationMaxScanSizeInGb() bool {
-	if o != nil && o.RehydrationMaxScanSizeInGb.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RehydrationMaxScanSizeInGb.IsSet()
 }
 
 // SetRehydrationMaxScanSizeInGb gets a reference to the given datadog.NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
@@ -219,11 +211,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTagsOk() (*[]string, 
 
 // HasRehydrationTags returns a boolean if a field has been set.
 func (o *LogsArchiveCreateRequestAttributes) HasRehydrationTags() bool {
-	if o != nil && o.RehydrationTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RehydrationTags != nil
 }
 
 // SetRehydrationTags gets a reference to the given []string and assigns it to the RehydrationTags field.

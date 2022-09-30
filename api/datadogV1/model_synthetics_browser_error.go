@@ -110,11 +110,7 @@ func (o *SyntheticsBrowserError) GetStatusOk() (*int64, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBrowserError) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given int64 and assigns it to the Status field.

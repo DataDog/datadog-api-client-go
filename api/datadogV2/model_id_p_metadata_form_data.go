@@ -55,11 +55,7 @@ func (o *IdPMetadataFormData) GetIdpFileOk() (**os.File, bool) {
 
 // HasIdpFile returns a boolean if a field has been set.
 func (o *IdPMetadataFormData) HasIdpFile() bool {
-	if o != nil && o.IdpFile != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IdpFile != nil
 }
 
 // SetIdpFile gets a reference to the given *os.File and assigns it to the IdpFile field.

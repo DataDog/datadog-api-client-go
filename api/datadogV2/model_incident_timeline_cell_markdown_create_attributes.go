@@ -113,11 +113,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetImportantOk() (*bool, 
 
 // HasImportant returns a boolean if a field has been set.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) HasImportant() bool {
-	if o != nil && o.Important != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Important != nil
 }
 
 // SetImportant gets a reference to the given bool and assigns it to the Important field.

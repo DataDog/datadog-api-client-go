@@ -62,11 +62,7 @@ func (o *UsageCustomReportsData) GetAttributesOk() (*UsageCustomReportsAttribute
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *UsageCustomReportsData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given UsageCustomReportsAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *UsageCustomReportsData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UsageCustomReportsData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -126,11 +118,7 @@ func (o *UsageCustomReportsData) GetTypeOk() (*UsageReportsType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *UsageCustomReportsData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given UsageReportsType and assigns it to the Type field.

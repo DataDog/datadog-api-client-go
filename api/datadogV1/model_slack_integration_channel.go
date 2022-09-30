@@ -56,11 +56,7 @@ func (o *SlackIntegrationChannel) GetDisplayOk() (*SlackIntegrationChannelDispla
 
 // HasDisplay returns a boolean if a field has been set.
 func (o *SlackIntegrationChannel) HasDisplay() bool {
-	if o != nil && o.Display != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Display != nil
 }
 
 // SetDisplay gets a reference to the given SlackIntegrationChannelDisplay and assigns it to the Display field.
@@ -88,11 +84,7 @@ func (o *SlackIntegrationChannel) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SlackIntegrationChannel) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

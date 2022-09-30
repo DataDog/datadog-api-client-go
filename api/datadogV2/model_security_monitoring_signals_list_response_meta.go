@@ -54,11 +54,7 @@ func (o *SecurityMonitoringSignalsListResponseMeta) GetPageOk() (*SecurityMonito
 
 // HasPage returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalsListResponseMeta) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given SecurityMonitoringSignalsListResponseMetaPage and assigns it to the Page field.

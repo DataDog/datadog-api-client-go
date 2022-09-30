@@ -56,11 +56,7 @@ func (o *MetricResource) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MetricResource) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -88,11 +84,7 @@ func (o *MetricResource) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricResource) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

@@ -54,11 +54,7 @@ func (o *IntakePayloadAccepted) GetErrorsOk() (*[]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *IntakePayloadAccepted) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.

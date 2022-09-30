@@ -71,11 +71,7 @@ func (o *LogsIndex) GetDailyLimitOk() (*int64, bool) {
 
 // HasDailyLimit returns a boolean if a field has been set.
 func (o *LogsIndex) HasDailyLimit() bool {
-	if o != nil && o.DailyLimit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DailyLimit != nil
 }
 
 // SetDailyLimit gets a reference to the given int64 and assigns it to the DailyLimit field.
@@ -103,11 +99,7 @@ func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
 
 // HasExclusionFilters returns a boolean if a field has been set.
 func (o *LogsIndex) HasExclusionFilters() bool {
-	if o != nil && o.ExclusionFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExclusionFilters != nil
 }
 
 // SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it to the ExclusionFilters field.
@@ -158,11 +150,7 @@ func (o *LogsIndex) GetIsRateLimitedOk() (*bool, bool) {
 
 // HasIsRateLimited returns a boolean if a field has been set.
 func (o *LogsIndex) HasIsRateLimited() bool {
-	if o != nil && o.IsRateLimited != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsRateLimited != nil
 }
 
 // SetIsRateLimited gets a reference to the given bool and assigns it to the IsRateLimited field.
@@ -213,11 +201,7 @@ func (o *LogsIndex) GetNumRetentionDaysOk() (*int64, bool) {
 
 // HasNumRetentionDays returns a boolean if a field has been set.
 func (o *LogsIndex) HasNumRetentionDays() bool {
-	if o != nil && o.NumRetentionDays != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NumRetentionDays != nil
 }
 
 // SetNumRetentionDays gets a reference to the given int64 and assigns it to the NumRetentionDays field.

@@ -54,11 +54,7 @@ func (o *DashboardListListResponse) GetDashboardListsOk() (*[]DashboardList, boo
 
 // HasDashboardLists returns a boolean if a field has been set.
 func (o *DashboardListListResponse) HasDashboardLists() bool {
-	if o != nil && o.DashboardLists != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DashboardLists != nil
 }
 
 // SetDashboardLists gets a reference to the given []DashboardList and assigns it to the DashboardLists field.

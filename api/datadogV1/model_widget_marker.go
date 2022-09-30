@@ -66,11 +66,7 @@ func (o *WidgetMarker) GetDisplayTypeOk() (*string, bool) {
 
 // HasDisplayType returns a boolean if a field has been set.
 func (o *WidgetMarker) HasDisplayType() bool {
-	if o != nil && o.DisplayType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayType != nil
 }
 
 // SetDisplayType gets a reference to the given string and assigns it to the DisplayType field.
@@ -98,11 +94,7 @@ func (o *WidgetMarker) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *WidgetMarker) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Label != nil
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
@@ -130,11 +122,7 @@ func (o *WidgetMarker) GetTimeOk() (*string, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *WidgetMarker) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given string and assigns it to the Time field.

@@ -60,11 +60,7 @@ func (o *SLOCorrectionCreateData) GetAttributesOk() (*SLOCorrectionCreateRequest
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SLOCorrectionCreateRequestAttributes and assigns it to the Attributes field.

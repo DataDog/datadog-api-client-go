@@ -56,11 +56,7 @@ func (o *IncidentTeamRelationships) GetCreatedByOk() (*RelationshipToUser, bool)
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *IncidentTeamRelationships) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedBy != nil
 }
 
 // SetCreatedBy gets a reference to the given RelationshipToUser and assigns it to the CreatedBy field.
@@ -88,11 +84,7 @@ func (o *IncidentTeamRelationships) GetLastModifiedByOk() (*RelationshipToUser, 
 
 // HasLastModifiedBy returns a boolean if a field has been set.
 func (o *IncidentTeamRelationships) HasLastModifiedBy() bool {
-	if o != nil && o.LastModifiedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastModifiedBy != nil
 }
 
 // SetLastModifiedBy gets a reference to the given RelationshipToUser and assigns it to the LastModifiedBy field.

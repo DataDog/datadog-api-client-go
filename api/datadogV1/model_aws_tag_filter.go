@@ -56,11 +56,7 @@ func (o *AWSTagFilter) GetNamespaceOk() (*AWSNamespace, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *AWSTagFilter) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Namespace != nil
 }
 
 // SetNamespace gets a reference to the given AWSNamespace and assigns it to the Namespace field.
@@ -88,11 +84,7 @@ func (o *AWSTagFilter) GetTagFilterStrOk() (*string, bool) {
 
 // HasTagFilterStr returns a boolean if a field has been set.
 func (o *AWSTagFilter) HasTagFilterStr() bool {
-	if o != nil && o.TagFilterStr != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagFilterStr != nil
 }
 
 // SetTagFilterStr gets a reference to the given string and assigns it to the TagFilterStr field.

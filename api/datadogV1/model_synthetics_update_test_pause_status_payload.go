@@ -55,11 +55,7 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) GetNewStatusOk() (*SyntheticsTe
 
 // HasNewStatus returns a boolean if a field has been set.
 func (o *SyntheticsUpdateTestPauseStatusPayload) HasNewStatus() bool {
-	if o != nil && o.NewStatus != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewStatus != nil
 }
 
 // SetNewStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the NewStatus field.

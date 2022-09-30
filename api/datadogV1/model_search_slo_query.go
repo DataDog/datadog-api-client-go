@@ -61,11 +61,7 @@ func (o *SearchSLOQuery) GetDenominatorOk() (*string, bool) {
 
 // HasDenominator returns a boolean if a field has been set.
 func (o *SearchSLOQuery) HasDenominator() bool {
-	if o != nil && o.Denominator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Denominator != nil
 }
 
 // SetDenominator gets a reference to the given string and assigns it to the Denominator field.
@@ -94,11 +90,7 @@ func (o *SearchSLOQuery) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *SearchSLOQuery) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
@@ -126,11 +118,7 @@ func (o *SearchSLOQuery) GetNumeratorOk() (*string, bool) {
 
 // HasNumerator returns a boolean if a field has been set.
 func (o *SearchSLOQuery) HasNumerator() bool {
-	if o != nil && o.Numerator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Numerator != nil
 }
 
 // SetNumerator gets a reference to the given string and assigns it to the Numerator field.

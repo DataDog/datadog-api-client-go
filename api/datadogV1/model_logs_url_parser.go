@@ -82,11 +82,7 @@ func (o *LogsURLParser) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsURLParser) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -114,11 +110,7 @@ func (o *LogsURLParser) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsURLParser) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -147,11 +139,7 @@ func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool) {
 
 // HasNormalizeEndingSlashes returns a boolean if a field has been set.
 func (o *LogsURLParser) HasNormalizeEndingSlashes() bool {
-	if o != nil && o.NormalizeEndingSlashes.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NormalizeEndingSlashes.IsSet()
 }
 
 // SetNormalizeEndingSlashes gets a reference to the given datadog.NullableBool and assigns it to the NormalizeEndingSlashes field.

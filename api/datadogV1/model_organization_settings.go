@@ -77,11 +77,7 @@ func (o *OrganizationSettings) GetPrivateWidgetShareOk() (*bool, bool) {
 
 // HasPrivateWidgetShare returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasPrivateWidgetShare() bool {
-	if o != nil && o.PrivateWidgetShare != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrivateWidgetShare != nil
 }
 
 // SetPrivateWidgetShare gets a reference to the given bool and assigns it to the PrivateWidgetShare field.
@@ -109,11 +105,7 @@ func (o *OrganizationSettings) GetSamlOk() (*OrganizationSettingsSaml, bool) {
 
 // HasSaml returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSaml() bool {
-	if o != nil && o.Saml != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Saml != nil
 }
 
 // SetSaml gets a reference to the given OrganizationSettingsSaml and assigns it to the Saml field.
@@ -141,11 +133,7 @@ func (o *OrganizationSettings) GetSamlAutocreateAccessRoleOk() (*AccessRole, boo
 
 // HasSamlAutocreateAccessRole returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlAutocreateAccessRole() bool {
-	if o != nil && o.SamlAutocreateAccessRole != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlAutocreateAccessRole != nil
 }
 
 // SetSamlAutocreateAccessRole gets a reference to the given AccessRole and assigns it to the SamlAutocreateAccessRole field.
@@ -173,11 +161,7 @@ func (o *OrganizationSettings) GetSamlAutocreateUsersDomainsOk() (*OrganizationS
 
 // HasSamlAutocreateUsersDomains returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlAutocreateUsersDomains() bool {
-	if o != nil && o.SamlAutocreateUsersDomains != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlAutocreateUsersDomains != nil
 }
 
 // SetSamlAutocreateUsersDomains gets a reference to the given OrganizationSettingsSamlAutocreateUsersDomains and assigns it to the SamlAutocreateUsersDomains field.
@@ -205,11 +189,7 @@ func (o *OrganizationSettings) GetSamlCanBeEnabledOk() (*bool, bool) {
 
 // HasSamlCanBeEnabled returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlCanBeEnabled() bool {
-	if o != nil && o.SamlCanBeEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlCanBeEnabled != nil
 }
 
 // SetSamlCanBeEnabled gets a reference to the given bool and assigns it to the SamlCanBeEnabled field.
@@ -237,11 +217,7 @@ func (o *OrganizationSettings) GetSamlIdpEndpointOk() (*string, bool) {
 
 // HasSamlIdpEndpoint returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlIdpEndpoint() bool {
-	if o != nil && o.SamlIdpEndpoint != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlIdpEndpoint != nil
 }
 
 // SetSamlIdpEndpoint gets a reference to the given string and assigns it to the SamlIdpEndpoint field.
@@ -269,11 +245,7 @@ func (o *OrganizationSettings) GetSamlIdpInitiatedLoginOk() (*OrganizationSettin
 
 // HasSamlIdpInitiatedLogin returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlIdpInitiatedLogin() bool {
-	if o != nil && o.SamlIdpInitiatedLogin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlIdpInitiatedLogin != nil
 }
 
 // SetSamlIdpInitiatedLogin gets a reference to the given OrganizationSettingsSamlIdpInitiatedLogin and assigns it to the SamlIdpInitiatedLogin field.
@@ -301,11 +273,7 @@ func (o *OrganizationSettings) GetSamlIdpMetadataUploadedOk() (*bool, bool) {
 
 // HasSamlIdpMetadataUploaded returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlIdpMetadataUploaded() bool {
-	if o != nil && o.SamlIdpMetadataUploaded != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlIdpMetadataUploaded != nil
 }
 
 // SetSamlIdpMetadataUploaded gets a reference to the given bool and assigns it to the SamlIdpMetadataUploaded field.
@@ -333,11 +301,7 @@ func (o *OrganizationSettings) GetSamlLoginUrlOk() (*string, bool) {
 
 // HasSamlLoginUrl returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlLoginUrl() bool {
-	if o != nil && o.SamlLoginUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlLoginUrl != nil
 }
 
 // SetSamlLoginUrl gets a reference to the given string and assigns it to the SamlLoginUrl field.
@@ -365,11 +329,7 @@ func (o *OrganizationSettings) GetSamlStrictModeOk() (*OrganizationSettingsSamlS
 
 // HasSamlStrictMode returns a boolean if a field has been set.
 func (o *OrganizationSettings) HasSamlStrictMode() bool {
-	if o != nil && o.SamlStrictMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlStrictMode != nil
 }
 
 // SetSamlStrictMode gets a reference to the given OrganizationSettingsSamlStrictMode and assigns it to the SamlStrictMode field.

@@ -58,11 +58,7 @@ func (o *ScatterplotTableRequest) GetFormulasOk() (*[]ScatterplotWidgetFormula, 
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *ScatterplotTableRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []ScatterplotWidgetFormula and assigns it to the Formulas field.
@@ -90,11 +86,7 @@ func (o *ScatterplotTableRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefi
 
 // HasQueries returns a boolean if a field has been set.
 func (o *ScatterplotTableRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -122,11 +114,7 @@ func (o *ScatterplotTableRequest) GetResponseFormatOk() (*FormulaAndFunctionResp
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *ScatterplotTableRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.

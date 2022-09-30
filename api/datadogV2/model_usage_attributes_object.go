@@ -62,11 +62,7 @@ func (o *UsageAttributesObject) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageAttributesObject) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -94,11 +90,7 @@ func (o *UsageAttributesObject) GetProductFamilyOk() (*string, bool) {
 
 // HasProductFamily returns a boolean if a field has been set.
 func (o *UsageAttributesObject) HasProductFamily() bool {
-	if o != nil && o.ProductFamily != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProductFamily != nil
 }
 
 // SetProductFamily gets a reference to the given string and assigns it to the ProductFamily field.
@@ -126,11 +118,7 @@ func (o *UsageAttributesObject) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageAttributesObject) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -158,11 +146,7 @@ func (o *UsageAttributesObject) GetTimeseriesOk() (*[]UsageTimeSeriesObject, boo
 
 // HasTimeseries returns a boolean if a field has been set.
 func (o *UsageAttributesObject) HasTimeseries() bool {
-	if o != nil && o.Timeseries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeseries != nil
 }
 
 // SetTimeseries gets a reference to the given []UsageTimeSeriesObject and assigns it to the Timeseries field.
@@ -190,11 +174,7 @@ func (o *UsageAttributesObject) GetUsageTypeOk() (*HourlyUsageType, bool) {
 
 // HasUsageType returns a boolean if a field has been set.
 func (o *UsageAttributesObject) HasUsageType() bool {
-	if o != nil && o.UsageType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UsageType != nil
 }
 
 // SetUsageType gets a reference to the given HourlyUsageType and assigns it to the UsageType field.

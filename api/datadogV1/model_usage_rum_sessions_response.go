@@ -54,11 +54,7 @@ func (o *UsageRumSessionsResponse) GetUsageOk() (*[]UsageRumSessionsHour, bool) 
 
 // HasUsage returns a boolean if a field has been set.
 func (o *UsageRumSessionsResponse) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []UsageRumSessionsHour and assigns it to the Usage field.

@@ -56,11 +56,7 @@ func (o *TopologyRequest) GetQueryOk() (*TopologyQuery, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *TopologyRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given TopologyQuery and assigns it to the Query field.
@@ -88,11 +84,7 @@ func (o *TopologyRequest) GetRequestTypeOk() (*TopologyRequestType, bool) {
 
 // HasRequestType returns a boolean if a field has been set.
 func (o *TopologyRequest) HasRequestType() bool {
-	if o != nil && o.RequestType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestType != nil
 }
 
 // SetRequestType gets a reference to the given TopologyRequestType and assigns it to the RequestType field.

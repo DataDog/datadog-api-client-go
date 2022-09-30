@@ -58,11 +58,7 @@ func (o *SyntheticsBatchDetailsData) GetMetadataOk() (*SyntheticsCIBatchMetadata
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsBatchDetailsData) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SyntheticsCIBatchMetadata and assigns it to the Metadata field.
@@ -90,11 +86,7 @@ func (o *SyntheticsBatchDetailsData) GetResultsOk() (*[]SyntheticsBatchResult, b
 
 // HasResults returns a boolean if a field has been set.
 func (o *SyntheticsBatchDetailsData) HasResults() bool {
-	if o != nil && o.Results != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Results != nil
 }
 
 // SetResults gets a reference to the given []SyntheticsBatchResult and assigns it to the Results field.
@@ -122,11 +114,7 @@ func (o *SyntheticsBatchDetailsData) GetStatusOk() (*SyntheticsStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBatchDetailsData) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsStatus and assigns it to the Status field.

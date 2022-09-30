@@ -55,11 +55,7 @@ func (o *SyntheticsDeleteTestsPayload) GetPublicIdsOk() (*[]string, bool) {
 
 // HasPublicIds returns a boolean if a field has been set.
 func (o *SyntheticsDeleteTestsPayload) HasPublicIds() bool {
-	if o != nil && o.PublicIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicIds != nil
 }
 
 // SetPublicIds gets a reference to the given []string and assigns it to the PublicIds field.

@@ -56,11 +56,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetDomainsOk() (*[]stri
 
 // HasDomains returns a boolean if a field has been set.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) HasDomains() bool {
-	if o != nil && o.Domains != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Domains != nil
 }
 
 // SetDomains gets a reference to the given []string and assigns it to the Domains field.
@@ -88,11 +84,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetEnabledOk() (*bool, 
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.

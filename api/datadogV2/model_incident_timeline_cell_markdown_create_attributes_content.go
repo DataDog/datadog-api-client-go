@@ -54,11 +54,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributesContent) GetContentOk() (*s
 
 // HasContent returns a boolean if a field has been set.
 func (o *IncidentTimelineCellMarkdownCreateAttributesContent) HasContent() bool {
-	if o != nil && o.Content != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Content != nil
 }
 
 // SetContent gets a reference to the given string and assigns it to the Content field.

@@ -421,6 +421,173 @@ func (a *IncidentsApi) getIncidentExecute(r apiGetIncidentRequest) (IncidentResp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiListIncidentAttachmentsRequest struct {
+	ctx                  _context.Context
+	incidentId           string
+	include              *[]IncidentAttachmentRelatedObject
+	filterAttachmentType *[]IncidentAttachmentAttachmentType
+}
+
+// ListIncidentAttachmentsOptionalParameters holds optional parameters for ListIncidentAttachments.
+type ListIncidentAttachmentsOptionalParameters struct {
+	Include              *[]IncidentAttachmentRelatedObject
+	FilterAttachmentType *[]IncidentAttachmentAttachmentType
+}
+
+// NewListIncidentAttachmentsOptionalParameters creates an empty struct for parameters.
+func NewListIncidentAttachmentsOptionalParameters() *ListIncidentAttachmentsOptionalParameters {
+	this := ListIncidentAttachmentsOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentAttachmentsOptionalParameters) WithInclude(include []IncidentAttachmentRelatedObject) *ListIncidentAttachmentsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// WithFilterAttachmentType sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentAttachmentsOptionalParameters) WithFilterAttachmentType(filterAttachmentType []IncidentAttachmentAttachmentType) *ListIncidentAttachmentsOptionalParameters {
+	r.FilterAttachmentType = &filterAttachmentType
+	return r
+}
+
+func (a *IncidentsApi) buildListIncidentAttachmentsRequest(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (apiListIncidentAttachmentsRequest, error) {
+	req := apiListIncidentAttachmentsRequest{
+		ctx:        ctx,
+		incidentId: incidentId,
+	}
+
+	if len(o) > 1 {
+		return req, datadog.ReportError("only one argument of type ListIncidentAttachmentsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+		req.filterAttachmentType = o[0].FilterAttachmentType
+	}
+	return req, nil
+}
+
+// ListIncidentAttachments Get a list of attachments.
+// Get all attachments for a given incident.
+func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListIncidentAttachmentsRequest(ctx, incidentId, o...)
+	if err != nil {
+		var localVarReturnValue IncidentAttachmentsResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return a.listIncidentAttachmentsExecute(req)
+}
+
+// listIncidentAttachmentsExecute executes the request.
+func (a *IncidentsApi) listIncidentAttachmentsExecute(r apiListIncidentAttachmentsRequest) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentAttachmentsResponse
+	)
+
+	operationId := "v2.ListIncidentAttachments"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.ListIncidentAttachments")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/incidents/{incident_id}/attachments"
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.incidentId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*r.include, "csv"))
+	}
+	if r.filterAttachmentType != nil {
+		localVarQueryParams.Add("filter[attachment_type]", datadog.ParameterToString(*r.filterAttachmentType, "csv"))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiListIncidentsRequest struct {
 	ctx        _context.Context
 	include    *[]IncidentRelatedObject
@@ -781,6 +948,169 @@ func (a *IncidentsApi) updateIncidentExecute(r apiUpdateIncidentRequest) (Incide
 	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiUpdateIncidentAttachmentsRequest struct {
+	ctx        _context.Context
+	incidentId string
+	body       *IncidentAttachmentUpdateRequest
+	include    *[]IncidentAttachmentRelatedObject
+}
+
+// UpdateIncidentAttachmentsOptionalParameters holds optional parameters for UpdateIncidentAttachments.
+type UpdateIncidentAttachmentsOptionalParameters struct {
+	Include *[]IncidentAttachmentRelatedObject
+}
+
+// NewUpdateIncidentAttachmentsOptionalParameters creates an empty struct for parameters.
+func NewUpdateIncidentAttachmentsOptionalParameters() *UpdateIncidentAttachmentsOptionalParameters {
+	this := UpdateIncidentAttachmentsOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []IncidentAttachmentRelatedObject) *UpdateIncidentAttachmentsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+func (a *IncidentsApi) buildUpdateIncidentAttachmentsRequest(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (apiUpdateIncidentAttachmentsRequest, error) {
+	req := apiUpdateIncidentAttachmentsRequest{
+		ctx:        ctx,
+		incidentId: incidentId,
+		body:       &body,
+	}
+
+	if len(o) > 1 {
+		return req, datadog.ReportError("only one argument of type UpdateIncidentAttachmentsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+	}
+	return req, nil
+}
+
+// UpdateIncidentAttachments Create, update, and delete incident attachments.
+// The bulk update endpoint for creating, updating, and deleting attachments for a given incident.
+func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateIncidentAttachmentsRequest(ctx, incidentId, body, o...)
+	if err != nil {
+		var localVarReturnValue IncidentAttachmentUpdateResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return a.updateIncidentAttachmentsExecute(req)
+}
+
+// updateIncidentAttachmentsExecute executes the request.
+func (a *IncidentsApi) updateIncidentAttachmentsExecute(r apiUpdateIncidentAttachmentsRequest) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentAttachmentUpdateResponse
+	)
+
+	operationId := "v2.UpdateIncidentAttachments"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.UpdateIncidentAttachments")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/incidents/{incident_id}/attachments"
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.incidentId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
+	}
+	if r.include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*r.include, "csv"))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

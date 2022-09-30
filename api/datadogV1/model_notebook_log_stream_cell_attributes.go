@@ -83,11 +83,7 @@ func (o *NotebookLogStreamCellAttributes) GetGraphSizeOk() (*NotebookGraphSize, 
 
 // HasGraphSize returns a boolean if a field has been set.
 func (o *NotebookLogStreamCellAttributes) HasGraphSize() bool {
-	if o != nil && o.GraphSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GraphSize != nil
 }
 
 // SetGraphSize gets a reference to the given NotebookGraphSize and assigns it to the GraphSize field.
@@ -116,11 +112,7 @@ func (o *NotebookLogStreamCellAttributes) GetTimeOk() (*NotebookCellTime, bool) 
 
 // HasTime returns a boolean if a field has been set.
 func (o *NotebookLogStreamCellAttributes) HasTime() bool {
-	if o != nil && o.Time.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time.IsSet()
 }
 
 // SetTime gets a reference to the given NullableNotebookCellTime and assigns it to the Time field.

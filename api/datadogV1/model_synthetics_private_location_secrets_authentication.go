@@ -56,11 +56,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) GetIdOk() (*string, boo
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -88,11 +84,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) GetKeyOk() (*string, bo
 
 // HasKey returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.

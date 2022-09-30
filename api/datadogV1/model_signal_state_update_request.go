@@ -62,11 +62,7 @@ func (o *SignalStateUpdateRequest) GetArchiveCommentOk() (*string, bool) {
 
 // HasArchiveComment returns a boolean if a field has been set.
 func (o *SignalStateUpdateRequest) HasArchiveComment() bool {
-	if o != nil && o.ArchiveComment != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveComment != nil
 }
 
 // SetArchiveComment gets a reference to the given string and assigns it to the ArchiveComment field.
@@ -94,11 +90,7 @@ func (o *SignalStateUpdateRequest) GetArchiveReasonOk() (*SignalArchiveReason, b
 
 // HasArchiveReason returns a boolean if a field has been set.
 func (o *SignalStateUpdateRequest) HasArchiveReason() bool {
-	if o != nil && o.ArchiveReason != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveReason != nil
 }
 
 // SetArchiveReason gets a reference to the given SignalArchiveReason and assigns it to the ArchiveReason field.
@@ -149,11 +141,7 @@ func (o *SignalStateUpdateRequest) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SignalStateUpdateRequest) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.

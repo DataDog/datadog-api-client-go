@@ -154,11 +154,7 @@ func (o *SyntheticsAPITest) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
@@ -232,11 +228,7 @@ func (o *SyntheticsAPITest) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -264,11 +256,7 @@ func (o *SyntheticsAPITest) GetStatusOk() (*SyntheticsTestPauseStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
@@ -296,11 +284,7 @@ func (o *SyntheticsAPITest) GetSubtypeOk() (*SyntheticsTestDetailsSubType, bool)
 
 // HasSubtype returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasSubtype() bool {
-	if o != nil && o.Subtype != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subtype != nil
 }
 
 // SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
@@ -328,11 +312,7 @@ func (o *SyntheticsAPITest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

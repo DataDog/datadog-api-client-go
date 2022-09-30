@@ -58,11 +58,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetDescriptionOk() (*st
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -90,11 +86,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetEnabledOk() (*bool, 
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
@@ -122,11 +114,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetExpressionOk() (*str
 
 // HasExpression returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasExpression() bool {
-	if o != nil && o.Expression != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Expression != nil
 }
 
 // SetExpression gets a reference to the given string and assigns it to the Expression field.

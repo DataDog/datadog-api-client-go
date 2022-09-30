@@ -54,11 +54,7 @@ func (o *LogsAPIErrorResponse) GetErrorOk() (*LogsAPIError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *LogsAPIErrorResponse) HasError() bool {
-	if o != nil && o.Error != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error != nil
 }
 
 // SetError gets a reference to the given LogsAPIError and assigns it to the Error field.

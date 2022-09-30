@@ -58,11 +58,7 @@ func (o *HourlyUsageMeasurement) GetUsageTypeOk() (*string, bool) {
 
 // HasUsageType returns a boolean if a field has been set.
 func (o *HourlyUsageMeasurement) HasUsageType() bool {
-	if o != nil && o.UsageType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UsageType != nil
 }
 
 // SetUsageType gets a reference to the given string and assigns it to the UsageType field.
@@ -91,11 +87,7 @@ func (o *HourlyUsageMeasurement) GetValueOk() (*int64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *HourlyUsageMeasurement) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value.IsSet()
 }
 
 // SetValue gets a reference to the given datadog.NullableInt64 and assigns it to the Value field.

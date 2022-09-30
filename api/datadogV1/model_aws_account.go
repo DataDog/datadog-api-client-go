@@ -94,11 +94,7 @@ func (o *AWSAccount) GetAccessKeyIdOk() (*string, bool) {
 
 // HasAccessKeyId returns a boolean if a field has been set.
 func (o *AWSAccount) HasAccessKeyId() bool {
-	if o != nil && o.AccessKeyId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccessKeyId != nil
 }
 
 // SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
@@ -126,11 +122,7 @@ func (o *AWSAccount) GetAccountIdOk() (*string, bool) {
 
 // HasAccountId returns a boolean if a field has been set.
 func (o *AWSAccount) HasAccountId() bool {
-	if o != nil && o.AccountId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
@@ -158,11 +150,7 @@ func (o *AWSAccount) GetAccountSpecificNamespaceRulesOk() (*map[string]bool, boo
 
 // HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
 func (o *AWSAccount) HasAccountSpecificNamespaceRules() bool {
-	if o != nil && o.AccountSpecificNamespaceRules != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountSpecificNamespaceRules != nil
 }
 
 // SetAccountSpecificNamespaceRules gets a reference to the given map[string]bool and assigns it to the AccountSpecificNamespaceRules field.
@@ -190,11 +178,7 @@ func (o *AWSAccount) GetCspmResourceCollectionEnabledOk() (*bool, bool) {
 
 // HasCspmResourceCollectionEnabled returns a boolean if a field has been set.
 func (o *AWSAccount) HasCspmResourceCollectionEnabled() bool {
-	if o != nil && o.CspmResourceCollectionEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmResourceCollectionEnabled != nil
 }
 
 // SetCspmResourceCollectionEnabled gets a reference to the given bool and assigns it to the CspmResourceCollectionEnabled field.
@@ -222,11 +206,7 @@ func (o *AWSAccount) GetExcludedRegionsOk() (*[]string, bool) {
 
 // HasExcludedRegions returns a boolean if a field has been set.
 func (o *AWSAccount) HasExcludedRegions() bool {
-	if o != nil && o.ExcludedRegions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExcludedRegions != nil
 }
 
 // SetExcludedRegions gets a reference to the given []string and assigns it to the ExcludedRegions field.
@@ -254,11 +234,7 @@ func (o *AWSAccount) GetFilterTagsOk() (*[]string, bool) {
 
 // HasFilterTags returns a boolean if a field has been set.
 func (o *AWSAccount) HasFilterTags() bool {
-	if o != nil && o.FilterTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FilterTags != nil
 }
 
 // SetFilterTags gets a reference to the given []string and assigns it to the FilterTags field.
@@ -286,11 +262,7 @@ func (o *AWSAccount) GetHostTagsOk() (*[]string, bool) {
 
 // HasHostTags returns a boolean if a field has been set.
 func (o *AWSAccount) HasHostTags() bool {
-	if o != nil && o.HostTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostTags != nil
 }
 
 // SetHostTags gets a reference to the given []string and assigns it to the HostTags field.
@@ -318,11 +290,7 @@ func (o *AWSAccount) GetMetricsCollectionEnabledOk() (*bool, bool) {
 
 // HasMetricsCollectionEnabled returns a boolean if a field has been set.
 func (o *AWSAccount) HasMetricsCollectionEnabled() bool {
-	if o != nil && o.MetricsCollectionEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricsCollectionEnabled != nil
 }
 
 // SetMetricsCollectionEnabled gets a reference to the given bool and assigns it to the MetricsCollectionEnabled field.
@@ -350,11 +318,7 @@ func (o *AWSAccount) GetResourceCollectionEnabledOk() (*bool, bool) {
 
 // HasResourceCollectionEnabled returns a boolean if a field has been set.
 func (o *AWSAccount) HasResourceCollectionEnabled() bool {
-	if o != nil && o.ResourceCollectionEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResourceCollectionEnabled != nil
 }
 
 // SetResourceCollectionEnabled gets a reference to the given bool and assigns it to the ResourceCollectionEnabled field.
@@ -382,11 +346,7 @@ func (o *AWSAccount) GetRoleNameOk() (*string, bool) {
 
 // HasRoleName returns a boolean if a field has been set.
 func (o *AWSAccount) HasRoleName() bool {
-	if o != nil && o.RoleName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RoleName != nil
 }
 
 // SetRoleName gets a reference to the given string and assigns it to the RoleName field.
@@ -414,11 +374,7 @@ func (o *AWSAccount) GetSecretAccessKeyOk() (*string, bool) {
 
 // HasSecretAccessKey returns a boolean if a field has been set.
 func (o *AWSAccount) HasSecretAccessKey() bool {
-	if o != nil && o.SecretAccessKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecretAccessKey != nil
 }
 
 // SetSecretAccessKey gets a reference to the given string and assigns it to the SecretAccessKey field.

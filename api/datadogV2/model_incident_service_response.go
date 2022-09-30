@@ -81,11 +81,7 @@ func (o *IncidentServiceResponse) GetIncludedOk() (*[]IncidentServiceIncludedIte
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *IncidentServiceResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []IncidentServiceIncludedItems and assigns it to the Included field.

@@ -57,11 +57,7 @@ func (o *SyntheticsGlobalVariableValue) GetSecureOk() (*bool, bool) {
 
 // HasSecure returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableValue) HasSecure() bool {
-	if o != nil && o.Secure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Secure != nil
 }
 
 // SetSecure gets a reference to the given bool and assigns it to the Secure field.
@@ -89,11 +85,7 @@ func (o *SyntheticsGlobalVariableValue) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableValue) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.

@@ -56,11 +56,7 @@ func (o *EventListResponse) GetEventsOk() (*[]Event, bool) {
 
 // HasEvents returns a boolean if a field has been set.
 func (o *EventListResponse) HasEvents() bool {
-	if o != nil && o.Events != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Events != nil
 }
 
 // SetEvents gets a reference to the given []Event and assigns it to the Events field.
@@ -88,11 +84,7 @@ func (o *EventListResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EventListResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.

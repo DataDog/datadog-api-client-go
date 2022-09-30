@@ -83,11 +83,7 @@ func (o *MetricsQueryMetadata) GetAggrOk() (*string, bool) {
 
 // HasAggr returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasAggr() bool {
-	if o != nil && o.Aggr.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggr.IsSet()
 }
 
 // SetAggr gets a reference to the given datadog.NullableString and assigns it to the Aggr field.
@@ -125,11 +121,7 @@ func (o *MetricsQueryMetadata) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasDisplayName() bool {
-	if o != nil && o.DisplayName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayName != nil
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
@@ -157,11 +149,7 @@ func (o *MetricsQueryMetadata) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasEnd() bool {
-	if o != nil && o.End != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.End != nil
 }
 
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
@@ -189,11 +177,7 @@ func (o *MetricsQueryMetadata) GetExpressionOk() (*string, bool) {
 
 // HasExpression returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasExpression() bool {
-	if o != nil && o.Expression != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Expression != nil
 }
 
 // SetExpression gets a reference to the given string and assigns it to the Expression field.
@@ -221,11 +205,7 @@ func (o *MetricsQueryMetadata) GetIntervalOk() (*int64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given int64 and assigns it to the Interval field.
@@ -253,11 +233,7 @@ func (o *MetricsQueryMetadata) GetLengthOk() (*int64, bool) {
 
 // HasLength returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasLength() bool {
-	if o != nil && o.Length != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Length != nil
 }
 
 // SetLength gets a reference to the given int64 and assigns it to the Length field.
@@ -285,11 +261,7 @@ func (o *MetricsQueryMetadata) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -317,11 +289,7 @@ func (o *MetricsQueryMetadata) GetPointlistOk() (*[][]*float64, bool) {
 
 // HasPointlist returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasPointlist() bool {
-	if o != nil && o.Pointlist != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pointlist != nil
 }
 
 // SetPointlist gets a reference to the given [][]*float64 and assigns it to the Pointlist field.
@@ -349,11 +317,7 @@ func (o *MetricsQueryMetadata) GetQueryIndexOk() (*int64, bool) {
 
 // HasQueryIndex returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasQueryIndex() bool {
-	if o != nil && o.QueryIndex != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.QueryIndex != nil
 }
 
 // SetQueryIndex gets a reference to the given int64 and assigns it to the QueryIndex field.
@@ -381,11 +345,7 @@ func (o *MetricsQueryMetadata) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasScope() bool {
-	if o != nil && o.Scope != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scope != nil
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
@@ -413,11 +373,7 @@ func (o *MetricsQueryMetadata) GetStartOk() (*int64, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasStart() bool {
-	if o != nil && o.Start != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Start != nil
 }
 
 // SetStart gets a reference to the given int64 and assigns it to the Start field.
@@ -445,11 +401,7 @@ func (o *MetricsQueryMetadata) GetTagSetOk() (*[]string, bool) {
 
 // HasTagSet returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasTagSet() bool {
-	if o != nil && o.TagSet != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagSet != nil
 }
 
 // SetTagSet gets a reference to the given []string and assigns it to the TagSet field.
@@ -477,11 +429,7 @@ func (o *MetricsQueryMetadata) GetUnitOk() (*[]MetricsQueryUnit, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *MetricsQueryMetadata) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unit != nil
 }
 
 // SetUnit gets a reference to the given []MetricsQueryUnit and assigns it to the Unit field.

@@ -89,11 +89,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServiceLevelObjectiveRequest) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -131,11 +127,7 @@ func (o *ServiceLevelObjectiveRequest) GetGroupsOk() (*[]string, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *ServiceLevelObjectiveRequest) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
@@ -163,11 +155,7 @@ func (o *ServiceLevelObjectiveRequest) GetMonitorIdsOk() (*[]int64, bool) {
 
 // HasMonitorIds returns a boolean if a field has been set.
 func (o *ServiceLevelObjectiveRequest) HasMonitorIds() bool {
-	if o != nil && o.MonitorIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorIds != nil
 }
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
@@ -218,11 +206,7 @@ func (o *ServiceLevelObjectiveRequest) GetQueryOk() (*ServiceLevelObjectiveQuery
 
 // HasQuery returns a boolean if a field has been set.
 func (o *ServiceLevelObjectiveRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given ServiceLevelObjectiveQuery and assigns it to the Query field.
@@ -250,11 +234,7 @@ func (o *ServiceLevelObjectiveRequest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *ServiceLevelObjectiveRequest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

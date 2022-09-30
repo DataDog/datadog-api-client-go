@@ -63,11 +63,7 @@ func (o *RUMApplicationUpdate) GetAttributesOk() (*RUMApplicationUpdateAttribute
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *RUMApplicationUpdate) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given RUMApplicationUpdateAttributes and assigns it to the Attributes field.

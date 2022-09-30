@@ -58,11 +58,7 @@ func (o *HTTPLogError) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *HTTPLogError) HasDetail() bool {
-	if o != nil && o.Detail != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Detail != nil
 }
 
 // SetDetail gets a reference to the given string and assigns it to the Detail field.
@@ -90,11 +86,7 @@ func (o *HTTPLogError) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *HTTPLogError) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
@@ -122,11 +114,7 @@ func (o *HTTPLogError) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *HTTPLogError) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.

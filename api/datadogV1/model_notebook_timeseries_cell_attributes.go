@@ -85,11 +85,7 @@ func (o *NotebookTimeseriesCellAttributes) GetGraphSizeOk() (*NotebookGraphSize,
 
 // HasGraphSize returns a boolean if a field has been set.
 func (o *NotebookTimeseriesCellAttributes) HasGraphSize() bool {
-	if o != nil && o.GraphSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GraphSize != nil
 }
 
 // SetGraphSize gets a reference to the given NotebookGraphSize and assigns it to the GraphSize field.
@@ -117,11 +113,7 @@ func (o *NotebookTimeseriesCellAttributes) GetSplitByOk() (*NotebookSplitBy, boo
 
 // HasSplitBy returns a boolean if a field has been set.
 func (o *NotebookTimeseriesCellAttributes) HasSplitBy() bool {
-	if o != nil && o.SplitBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SplitBy != nil
 }
 
 // SetSplitBy gets a reference to the given NotebookSplitBy and assigns it to the SplitBy field.
@@ -150,11 +142,7 @@ func (o *NotebookTimeseriesCellAttributes) GetTimeOk() (*NotebookCellTime, bool)
 
 // HasTime returns a boolean if a field has been set.
 func (o *NotebookTimeseriesCellAttributes) HasTime() bool {
-	if o != nil && o.Time.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time.IsSet()
 }
 
 // SetTime gets a reference to the given NullableNotebookCellTime and assigns it to the Time field.

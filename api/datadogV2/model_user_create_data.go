@@ -86,11 +86,7 @@ func (o *UserCreateData) GetRelationshipsOk() (*UserRelationships, bool) {
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *UserCreateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given UserRelationships and assigns it to the Relationships field.

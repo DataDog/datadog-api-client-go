@@ -63,11 +63,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetDescriptionOk() (*st
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -95,11 +91,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetEnabledOk() (*bool, 
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.

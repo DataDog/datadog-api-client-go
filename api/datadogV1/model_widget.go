@@ -88,11 +88,7 @@ func (o *Widget) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Widget) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -120,11 +116,7 @@ func (o *Widget) GetLayoutOk() (*WidgetLayout, bool) {
 
 // HasLayout returns a boolean if a field has been set.
 func (o *Widget) HasLayout() bool {
-	if o != nil && o.Layout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Layout != nil
 }
 
 // SetLayout gets a reference to the given WidgetLayout and assigns it to the Layout field.

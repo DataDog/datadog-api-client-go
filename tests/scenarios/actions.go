@@ -270,14 +270,15 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 			if err != nil {
 				t.Fatalf("%v", err)
 			}
-			responseJSON, err := toJSON(response[0])
-			if err != nil {
-				t.Fatalf("%v", err)
-			}
 
 			// No object is created when it's a Bad Request
 			if responseStatusCode >= 400 {
 				return
+			}
+
+			responseJSON, err := toJSON(response[0])
+			if err != nil {
+				t.Fatalf("%v", err)
 			}
 
 			// enable unstable operation

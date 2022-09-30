@@ -3,46 +3,54 @@ version: 1
 interactions:
 - request:
     body: |
-      {"monitor_tags":["tag0","tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10","tag11","tag12","tag13","tag14","tag15","tag16","tag17","tag18","tag19","tag20","tag21","tag22","tag23","tag24","tag25","tag26","tag27","tag28","tag29","tag30","tag31","tag32","tag33","tag34","tag35","tag36","tag37","tag38","tag39","tag40","tag41","tag42","tag43","tag44","tag45","tag46","tag47","tag48","tag49"]}
+      {"monitor_tags":["tag0","tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10","tag11","tag12","tag13","tag14","tag15","tag16","tag17","tag18","tag19","tag20","tag21","tag22","tag23","tag24","tag25","tag26","tag27","tag28","tag29","tag30","tag31","tag32","tag33","tag34","tag35","tag36","tag37","tag38","tag39","tag40","tag41","tag42","tag43","tag44","tag45","tag46","tag47","tag48","tag49","tag50","tag51","tag52","tag53","tag54","tag55","tag56","tag57","tag58","tag59","tag60","tag61","tag62","tag63","tag64","tag65","tag66","tag67","tag68","tag69","tag70","tag71","tag72","tag73","tag74","tag75","tag76","tag77","tag78","tag79","tag80","tag81","tag82","tag83","tag84","tag85","tag86","tag87","tag88","tag89","tag90","tag91","tag92","tag93","tag94","tag95","tag96","tag97","tag98","tag99"]}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "809"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
       X-Datadog-Parent-Id:
-      - "2876522922519048232"
+      - "4017177174058964274"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "8212577428059951770"
+      - "8621029196901817525"
     url: https://api.datadoghq.com/api/v1/downtime/1234
     method: PUT
   response:
-    body: '{"errors": ["There can be at most 32 monitor tags."]}'
+    body: '{"errors":["There can be at most 80 monitor tags."]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "53"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:57 GMT
+      - Fri, 30 Sep 2022 07:47:08 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11999"
+      X-Ratelimit-Reset:
+      - "53"
     status: 400 Bad Request
     code: 400
     duration: ""

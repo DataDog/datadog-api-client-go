@@ -58,11 +58,7 @@ func (o *SyntheticsTestRequestCertificateItem) GetContentOk() (*string, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificateItem) HasContent() bool {
-	if o != nil && o.Content != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Content != nil
 }
 
 // SetContent gets a reference to the given string and assigns it to the Content field.
@@ -90,11 +86,7 @@ func (o *SyntheticsTestRequestCertificateItem) GetFilenameOk() (*string, bool) {
 
 // HasFilename returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificateItem) HasFilename() bool {
-	if o != nil && o.Filename != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filename != nil
 }
 
 // SetFilename gets a reference to the given string and assigns it to the Filename field.
@@ -122,11 +114,7 @@ func (o *SyntheticsTestRequestCertificateItem) GetUpdatedAtOk() (*string, bool) 
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificateItem) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.

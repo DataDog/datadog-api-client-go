@@ -54,11 +54,7 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) GetDataOk() (*[]CloudWorkl
 
 // HasData returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRulesListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []CloudWorkloadSecurityAgentRuleData and assigns it to the Data field.

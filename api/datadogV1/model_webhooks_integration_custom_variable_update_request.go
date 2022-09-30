@@ -61,11 +61,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetIsSecretOk() (*bool,
 
 // HasIsSecret returns a boolean if a field has been set.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) HasIsSecret() bool {
-	if o != nil && o.IsSecret != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsSecret != nil
 }
 
 // SetIsSecret gets a reference to the given bool and assigns it to the IsSecret field.
@@ -93,11 +89,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetNameOk() (*string, b
 
 // HasName returns a boolean if a field has been set.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -125,11 +117,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetValueOk() (*string, 
 
 // HasValue returns a boolean if a field has been set.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.

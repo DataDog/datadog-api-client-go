@@ -14,41 +14,42 @@ import (
 
 func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
-			{
-				Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
-				GroupByFields: []string{
-					"@usr.id",
+		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
+			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
+				{
+					Aggregation: datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
+					GroupByFields: []string{
+						"@usr.id",
+					},
+					DistinctFields: []string{},
+					Metric:         datadog.PtrString("@network.client.geoip"),
+					Query:          "*",
 				},
-				DistinctFields: []string{},
-				Metric:         datadog.PtrString("@network.client.geoip"),
-				Query:          "*",
 			},
-		},
-		Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
-			{
-				Name:          datadog.PtrString(""),
-				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
-				Notifications: []string{},
+			Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
+				{
+					Name:          datadog.PtrString(""),
+					Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
+					Notifications: []string{},
+				},
 			},
-		},
-		HasExtendedTitle: datadog.PtrBool(true),
-		Message:          "test",
-		IsEnabled:        true,
-		Options: datadogV2.SecurityMonitoringRuleOptions{
-			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
-			EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
-			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
-			DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
-			ImpossibleTravelOptions: &datadogV2.SecurityMonitoringRuleImpossibleTravelOptions{
-				BaselineUserLocations: datadog.PtrBool(false),
+			HasExtendedTitle: datadog.PtrBool(true),
+			Message:          "test",
+			IsEnabled:        true,
+			Options: datadogV2.SecurityMonitoringRuleOptions{
+				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
+				EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
+				KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
+				DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL.Ptr(),
+				ImpossibleTravelOptions: &datadogV2.SecurityMonitoringRuleImpossibleTravelOptions{
+					BaselineUserLocations: datadog.PtrBool(false),
+				},
 			},
-		},
-		Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
-		Type:    datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
-		Tags:    []string{},
-		Filters: []datadogV2.SecurityMonitoringFilter{},
-	}
+			Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
+			Type:    datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
+			Tags:    []string{},
+			Filters: []datadogV2.SecurityMonitoringFilter{},
+		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)

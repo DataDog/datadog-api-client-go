@@ -87,11 +87,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string,
 
 // HasMetric returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -119,11 +115,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySor
 
 // HasOrder returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given QuerySortOrder and assigns it to the Order field.

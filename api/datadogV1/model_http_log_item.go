@@ -70,11 +70,7 @@ func (o *HTTPLogItem) GetDdsourceOk() (*string, bool) {
 
 // HasDdsource returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasDdsource() bool {
-	if o != nil && o.Ddsource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ddsource != nil
 }
 
 // SetDdsource gets a reference to the given string and assigns it to the Ddsource field.
@@ -102,11 +98,7 @@ func (o *HTTPLogItem) GetDdtagsOk() (*string, bool) {
 
 // HasDdtags returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasDdtags() bool {
-	if o != nil && o.Ddtags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ddtags != nil
 }
 
 // SetDdtags gets a reference to the given string and assigns it to the Ddtags field.
@@ -134,11 +126,7 @@ func (o *HTTPLogItem) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hostname != nil
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
@@ -189,11 +177,7 @@ func (o *HTTPLogItem) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.

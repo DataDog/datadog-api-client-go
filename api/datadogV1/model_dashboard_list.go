@@ -71,11 +71,7 @@ func (o *DashboardList) GetAuthorOk() (*Creator, bool) {
 
 // HasAuthor returns a boolean if a field has been set.
 func (o *DashboardList) HasAuthor() bool {
-	if o != nil && o.Author != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Author != nil
 }
 
 // SetAuthor gets a reference to the given Creator and assigns it to the Author field.
@@ -103,11 +99,7 @@ func (o *DashboardList) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *DashboardList) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -135,11 +127,7 @@ func (o *DashboardList) GetDashboardCountOk() (*int64, bool) {
 
 // HasDashboardCount returns a boolean if a field has been set.
 func (o *DashboardList) HasDashboardCount() bool {
-	if o != nil && o.DashboardCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DashboardCount != nil
 }
 
 // SetDashboardCount gets a reference to the given int64 and assigns it to the DashboardCount field.
@@ -167,11 +155,7 @@ func (o *DashboardList) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DashboardList) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -199,11 +183,7 @@ func (o *DashboardList) GetIsFavoriteOk() (*bool, bool) {
 
 // HasIsFavorite returns a boolean if a field has been set.
 func (o *DashboardList) HasIsFavorite() bool {
-	if o != nil && o.IsFavorite != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsFavorite != nil
 }
 
 // SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
@@ -231,11 +211,7 @@ func (o *DashboardList) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *DashboardList) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -286,11 +262,7 @@ func (o *DashboardList) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *DashboardList) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

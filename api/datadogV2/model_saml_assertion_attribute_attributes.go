@@ -56,11 +56,7 @@ func (o *SAMLAssertionAttributeAttributes) GetAttributeKeyOk() (*string, bool) {
 
 // HasAttributeKey returns a boolean if a field has been set.
 func (o *SAMLAssertionAttributeAttributes) HasAttributeKey() bool {
-	if o != nil && o.AttributeKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeKey != nil
 }
 
 // SetAttributeKey gets a reference to the given string and assigns it to the AttributeKey field.
@@ -88,11 +84,7 @@ func (o *SAMLAssertionAttributeAttributes) GetAttributeValueOk() (*string, bool)
 
 // HasAttributeValue returns a boolean if a field has been set.
 func (o *SAMLAssertionAttributeAttributes) HasAttributeValue() bool {
-	if o != nil && o.AttributeValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeValue != nil
 }
 
 // SetAttributeValue gets a reference to the given string and assigns it to the AttributeValue field.

@@ -59,11 +59,7 @@ func (o *UsageTimeSeriesObject) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *UsageTimeSeriesObject) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
@@ -92,11 +88,7 @@ func (o *UsageTimeSeriesObject) GetValueOk() (*int64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *UsageTimeSeriesObject) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value.IsSet()
 }
 
 // SetValue gets a reference to the given datadog.NullableInt64 and assigns it to the Value field.

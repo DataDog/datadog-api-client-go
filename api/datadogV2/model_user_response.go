@@ -56,11 +56,7 @@ func (o *UserResponse) GetDataOk() (*User, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *UserResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given User and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *UserResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *UserResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.

@@ -70,11 +70,7 @@ func (o *HostMapRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -102,11 +98,7 @@ func (o *HostMapRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -134,11 +126,7 @@ func (o *HostMapRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -166,11 +154,7 @@ func (o *HostMapRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -198,11 +182,7 @@ func (o *HostMapRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool) {
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -230,11 +210,7 @@ func (o *HostMapRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bool) 
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -262,11 +238,7 @@ func (o *HostMapRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *HostMapRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -294,11 +266,7 @@ func (o *HostMapRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -326,11 +294,7 @@ func (o *HostMapRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) {
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *HostMapRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.

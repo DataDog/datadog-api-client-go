@@ -85,11 +85,7 @@ func (o *NotebookAbsoluteTime) GetLiveOk() (*bool, bool) {
 
 // HasLive returns a boolean if a field has been set.
 func (o *NotebookAbsoluteTime) HasLive() bool {
-	if o != nil && o.Live != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Live != nil
 }
 
 // SetLive gets a reference to the given bool and assigns it to the Live field.

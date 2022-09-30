@@ -54,11 +54,7 @@ func (o *SyntheticsLocations) GetLocationsOk() (*[]SyntheticsLocation, bool) {
 
 // HasLocations returns a boolean if a field has been set.
 func (o *SyntheticsLocations) HasLocations() bool {
-	if o != nil && o.Locations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Locations != nil
 }
 
 // SetLocations gets a reference to the given []SyntheticsLocation and assigns it to the Locations field.

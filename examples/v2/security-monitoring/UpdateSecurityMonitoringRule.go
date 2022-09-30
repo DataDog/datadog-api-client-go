@@ -44,12 +44,14 @@ func main() {
 			},
 		},
 		Queries: []datadogV2.SecurityMonitoringRuleQuery{
-			{
-				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				DistinctFields: []string{},
-				GroupByFields:  []string{},
-				Metrics:        []string{},
-			},
+			datadogV2.SecurityMonitoringRuleQuery{
+				SecurityMonitoringStandardRuleQuery: &datadogV2.SecurityMonitoringStandardRuleQuery{
+					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
+					DistinctFields: []string{},
+					GroupByFields:  []string{},
+					Metrics:        []string{},
+					Query:          "a > 3",
+				}},
 		},
 		Tags:    []string{},
 		Version: datadog.PtrInt32(1),

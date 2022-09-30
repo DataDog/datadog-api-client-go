@@ -60,11 +60,7 @@ func (o *SyntheticsTriggerCITestRunResult) GetDeviceOk() (*SyntheticsDeviceID, b
 
 // HasDevice returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestRunResult) HasDevice() bool {
-	if o != nil && o.Device != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Device != nil
 }
 
 // SetDevice gets a reference to the given SyntheticsDeviceID and assigns it to the Device field.
@@ -92,11 +88,7 @@ func (o *SyntheticsTriggerCITestRunResult) GetLocationOk() (*int64, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestRunResult) HasLocation() bool {
-	if o != nil && o.Location != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Location != nil
 }
 
 // SetLocation gets a reference to the given int64 and assigns it to the Location field.
@@ -124,11 +116,7 @@ func (o *SyntheticsTriggerCITestRunResult) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestRunResult) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -156,11 +144,7 @@ func (o *SyntheticsTriggerCITestRunResult) GetResultIdOk() (*string, bool) {
 
 // HasResultId returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestRunResult) HasResultId() bool {
-	if o != nil && o.ResultId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResultId != nil
 }
 
 // SetResultId gets a reference to the given string and assigns it to the ResultId field.

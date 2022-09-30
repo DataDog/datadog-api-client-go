@@ -66,11 +66,7 @@ func (o *NotebookMetadata) GetIsTemplateOk() (*bool, bool) {
 
 // HasIsTemplate returns a boolean if a field has been set.
 func (o *NotebookMetadata) HasIsTemplate() bool {
-	if o != nil && o.IsTemplate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsTemplate != nil
 }
 
 // SetIsTemplate gets a reference to the given bool and assigns it to the IsTemplate field.
@@ -98,11 +94,7 @@ func (o *NotebookMetadata) GetTakeSnapshotsOk() (*bool, bool) {
 
 // HasTakeSnapshots returns a boolean if a field has been set.
 func (o *NotebookMetadata) HasTakeSnapshots() bool {
-	if o != nil && o.TakeSnapshots != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TakeSnapshots != nil
 }
 
 // SetTakeSnapshots gets a reference to the given bool and assigns it to the TakeSnapshots field.
@@ -131,11 +123,7 @@ func (o *NotebookMetadata) GetTypeOk() (*NotebookMetadataType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *NotebookMetadata) HasType() bool {
-	if o != nil && o.Type.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type.IsSet()
 }
 
 // SetType gets a reference to the given NullableNotebookMetadataType and assigns it to the Type field.

@@ -63,11 +63,7 @@ func (o *UsageDBMHour) GetDbmHostCountOk() (*int64, bool) {
 
 // HasDbmHostCount returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasDbmHostCount() bool {
-	if o != nil && o.DbmHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostCount != nil
 }
 
 // SetDbmHostCount gets a reference to the given int64 and assigns it to the DbmHostCount field.
@@ -95,11 +91,7 @@ func (o *UsageDBMHour) GetDbmQueriesCountOk() (*int64, bool) {
 
 // HasDbmQueriesCount returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasDbmQueriesCount() bool {
-	if o != nil && o.DbmQueriesCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmQueriesCount != nil
 }
 
 // SetDbmQueriesCount gets a reference to the given int64 and assigns it to the DbmQueriesCount field.
@@ -127,11 +119,7 @@ func (o *UsageDBMHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -159,11 +147,7 @@ func (o *UsageDBMHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -191,11 +175,7 @@ func (o *UsageDBMHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

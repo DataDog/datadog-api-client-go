@@ -83,11 +83,7 @@ func (o *SLOHistoryResponseData) GetFromTsOk() (*int64, bool) {
 
 // HasFromTs returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasFromTs() bool {
-	if o != nil && o.FromTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FromTs != nil
 }
 
 // SetFromTs gets a reference to the given int64 and assigns it to the FromTs field.
@@ -115,11 +111,7 @@ func (o *SLOHistoryResponseData) GetGroupByOk() (*[]string, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
@@ -147,11 +139,7 @@ func (o *SLOHistoryResponseData) GetGroupsOk() (*[]SLOHistoryMonitor, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []SLOHistoryMonitor and assigns it to the Groups field.
@@ -179,11 +167,7 @@ func (o *SLOHistoryResponseData) GetMonitorsOk() (*[]SLOHistoryMonitor, bool) {
 
 // HasMonitors returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasMonitors() bool {
-	if o != nil && o.Monitors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Monitors != nil
 }
 
 // SetMonitors gets a reference to the given []SLOHistoryMonitor and assigns it to the Monitors field.
@@ -211,11 +195,7 @@ func (o *SLOHistoryResponseData) GetOverallOk() (*SLOHistorySLIData, bool) {
 
 // HasOverall returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasOverall() bool {
-	if o != nil && o.Overall != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Overall != nil
 }
 
 // SetOverall gets a reference to the given SLOHistorySLIData and assigns it to the Overall field.
@@ -243,11 +223,7 @@ func (o *SLOHistoryResponseData) GetSeriesOk() (*SLOHistoryMetrics, bool) {
 
 // HasSeries returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasSeries() bool {
-	if o != nil && o.Series != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Series != nil
 }
 
 // SetSeries gets a reference to the given SLOHistoryMetrics and assigns it to the Series field.
@@ -275,11 +251,7 @@ func (o *SLOHistoryResponseData) GetThresholdsOk() (*map[string]SLOThreshold, bo
 
 // HasThresholds returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasThresholds() bool {
-	if o != nil && o.Thresholds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Thresholds != nil
 }
 
 // SetThresholds gets a reference to the given map[string]SLOThreshold and assigns it to the Thresholds field.
@@ -307,11 +279,7 @@ func (o *SLOHistoryResponseData) GetToTsOk() (*int64, bool) {
 
 // HasToTs returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasToTs() bool {
-	if o != nil && o.ToTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ToTs != nil
 }
 
 // SetToTs gets a reference to the given int64 and assigns it to the ToTs field.
@@ -339,11 +307,7 @@ func (o *SLOHistoryResponseData) GetTypeOk() (*SLOType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SLOType and assigns it to the Type field.
@@ -371,11 +335,7 @@ func (o *SLOHistoryResponseData) GetTypeIdOk() (*SLOTypeNumeric, bool) {
 
 // HasTypeId returns a boolean if a field has been set.
 func (o *SLOHistoryResponseData) HasTypeId() bool {
-	if o != nil && o.TypeId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TypeId != nil
 }
 
 // SetTypeId gets a reference to the given SLOTypeNumeric and assigns it to the TypeId field.

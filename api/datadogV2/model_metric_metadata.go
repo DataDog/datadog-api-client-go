@@ -54,11 +54,7 @@ func (o *MetricMetadata) GetOriginOk() (*MetricOrigin, bool) {
 
 // HasOrigin returns a boolean if a field has been set.
 func (o *MetricMetadata) HasOrigin() bool {
-	if o != nil && o.Origin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Origin != nil
 }
 
 // SetOrigin gets a reference to the given MetricOrigin and assigns it to the Origin field.

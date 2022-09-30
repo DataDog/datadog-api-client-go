@@ -54,11 +54,7 @@ func (o *DashboardDeleteResponse) GetDeletedDashboardIdOk() (*string, bool) {
 
 // HasDeletedDashboardId returns a boolean if a field has been set.
 func (o *DashboardDeleteResponse) HasDeletedDashboardId() bool {
-	if o != nil && o.DeletedDashboardId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedDashboardId != nil
 }
 
 // SetDeletedDashboardId gets a reference to the given string and assigns it to the DeletedDashboardId field.

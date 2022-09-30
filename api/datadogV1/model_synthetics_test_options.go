@@ -105,11 +105,7 @@ func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (*bool, bool) {
 
 // HasAcceptSelfSigned returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool {
-	if o != nil && o.AcceptSelfSigned != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AcceptSelfSigned != nil
 }
 
 // SetAcceptSelfSigned gets a reference to the given bool and assigns it to the AcceptSelfSigned field.
@@ -137,11 +133,7 @@ func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool) {
 
 // HasAllowInsecure returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
-	if o != nil && o.AllowInsecure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowInsecure != nil
 }
 
 // SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
@@ -169,11 +161,7 @@ func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool) 
 
 // HasCheckCertificateRevocation returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
-	if o != nil && o.CheckCertificateRevocation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckCertificateRevocation != nil
 }
 
 // SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.
@@ -201,11 +189,7 @@ func (o *SyntheticsTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
 
 // HasCi returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasCi() bool {
-	if o != nil && o.Ci != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ci != nil
 }
 
 // SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.
@@ -233,11 +217,7 @@ func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 
 // HasDeviceIds returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasDeviceIds() bool {
-	if o != nil && o.DeviceIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceIds != nil
 }
 
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
@@ -265,11 +245,7 @@ func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool) {
 
 // HasDisableCors returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasDisableCors() bool {
-	if o != nil && o.DisableCors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisableCors != nil
 }
 
 // SetDisableCors gets a reference to the given bool and assigns it to the DisableCors field.
@@ -297,11 +273,7 @@ func (o *SyntheticsTestOptions) GetDisableCspOk() (*bool, bool) {
 
 // HasDisableCsp returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasDisableCsp() bool {
-	if o != nil && o.DisableCsp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisableCsp != nil
 }
 
 // SetDisableCsp gets a reference to the given bool and assigns it to the DisableCsp field.
@@ -329,11 +301,7 @@ func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (*bool, bool) {
 
 // HasFollowRedirects returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
-	if o != nil && o.FollowRedirects != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FollowRedirects != nil
 }
 
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
@@ -361,11 +329,7 @@ func (o *SyntheticsTestOptions) GetIgnoreServerCertificateErrorOk() (*bool, bool
 
 // HasIgnoreServerCertificateError returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasIgnoreServerCertificateError() bool {
-	if o != nil && o.IgnoreServerCertificateError != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IgnoreServerCertificateError != nil
 }
 
 // SetIgnoreServerCertificateError gets a reference to the given bool and assigns it to the IgnoreServerCertificateError field.
@@ -393,11 +357,7 @@ func (o *SyntheticsTestOptions) GetInitialNavigationTimeoutOk() (*int64, bool) {
 
 // HasInitialNavigationTimeout returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasInitialNavigationTimeout() bool {
-	if o != nil && o.InitialNavigationTimeout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InitialNavigationTimeout != nil
 }
 
 // SetInitialNavigationTimeout gets a reference to the given int64 and assigns it to the InitialNavigationTimeout field.
@@ -425,11 +385,7 @@ func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool) {
 
 // HasMinFailureDuration returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMinFailureDuration() bool {
-	if o != nil && o.MinFailureDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinFailureDuration != nil
 }
 
 // SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.
@@ -457,11 +413,7 @@ func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (*int64, bool) {
 
 // HasMinLocationFailed returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMinLocationFailed() bool {
-	if o != nil && o.MinLocationFailed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinLocationFailed != nil
 }
 
 // SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.
@@ -489,11 +441,7 @@ func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool) {
 
 // HasMonitorName returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorName() bool {
-	if o != nil && o.MonitorName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorName != nil
 }
 
 // SetMonitorName gets a reference to the given string and assigns it to the MonitorName field.
@@ -521,11 +469,7 @@ func (o *SyntheticsTestOptions) GetMonitorOptionsOk() (*SyntheticsTestOptionsMon
 
 // HasMonitorOptions returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorOptions() bool {
-	if o != nil && o.MonitorOptions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorOptions != nil
 }
 
 // SetMonitorOptions gets a reference to the given SyntheticsTestOptionsMonitorOptions and assigns it to the MonitorOptions field.
@@ -553,11 +497,7 @@ func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool) {
 
 // HasMonitorPriority returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorPriority() bool {
-	if o != nil && o.MonitorPriority != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorPriority != nil
 }
 
 // SetMonitorPriority gets a reference to the given int32 and assigns it to the MonitorPriority field.
@@ -585,11 +525,7 @@ func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool) {
 
 // HasNoScreenshot returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasNoScreenshot() bool {
-	if o != nil && o.NoScreenshot != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoScreenshot != nil
 }
 
 // SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.
@@ -617,11 +553,7 @@ func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
@@ -649,11 +581,7 @@ func (o *SyntheticsTestOptions) GetRetryOk() (*SyntheticsTestOptionsRetry, bool)
 
 // HasRetry returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRetry() bool {
-	if o != nil && o.Retry != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retry != nil
 }
 
 // SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.
@@ -681,11 +609,7 @@ func (o *SyntheticsTestOptions) GetRumSettingsOk() (*SyntheticsBrowserTestRumSet
 
 // HasRumSettings returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRumSettings() bool {
-	if o != nil && o.RumSettings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumSettings != nil
 }
 
 // SetRumSettings gets a reference to the given SyntheticsBrowserTestRumSettings and assigns it to the RumSettings field.
@@ -713,11 +637,7 @@ func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool) {
 
 // HasTickEvery returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasTickEvery() bool {
-	if o != nil && o.TickEvery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TickEvery != nil
 }
 
 // SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.

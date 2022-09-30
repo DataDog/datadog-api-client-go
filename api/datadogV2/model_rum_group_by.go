@@ -94,11 +94,7 @@ func (o *RUMGroupBy) GetHistogramOk() (*RUMGroupByHistogram, bool) {
 
 // HasHistogram returns a boolean if a field has been set.
 func (o *RUMGroupBy) HasHistogram() bool {
-	if o != nil && o.Histogram != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Histogram != nil
 }
 
 // SetHistogram gets a reference to the given RUMGroupByHistogram and assigns it to the Histogram field.
@@ -126,11 +122,7 @@ func (o *RUMGroupBy) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *RUMGroupBy) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -158,11 +150,7 @@ func (o *RUMGroupBy) GetMissingOk() (*RUMGroupByMissing, bool) {
 
 // HasMissing returns a boolean if a field has been set.
 func (o *RUMGroupBy) HasMissing() bool {
-	if o != nil && o.Missing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Missing != nil
 }
 
 // SetMissing gets a reference to the given RUMGroupByMissing and assigns it to the Missing field.
@@ -190,11 +178,7 @@ func (o *RUMGroupBy) GetSortOk() (*RUMAggregateSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *RUMGroupBy) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given RUMAggregateSort and assigns it to the Sort field.
@@ -222,11 +206,7 @@ func (o *RUMGroupBy) GetTotalOk() (*RUMGroupByTotal, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *RUMGroupBy) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given RUMGroupByTotal and assigns it to the Total field.

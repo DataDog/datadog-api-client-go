@@ -58,11 +58,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetTableOk() (*ScatterplotTableReq
 
 // HasTable returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) HasTable() bool {
-	if o != nil && o.Table != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Table != nil
 }
 
 // SetTable gets a reference to the given ScatterplotTableRequest and assigns it to the Table field.
@@ -90,11 +86,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetXOk() (*ScatterPlotRequest, boo
 
 // HasX returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) HasX() bool {
-	if o != nil && o.X != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.X != nil
 }
 
 // SetX gets a reference to the given ScatterPlotRequest and assigns it to the X field.
@@ -122,11 +114,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) GetYOk() (*ScatterPlotRequest, boo
 
 // HasY returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinitionRequests) HasY() bool {
-	if o != nil && o.Y != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Y != nil
 }
 
 // SetY gets a reference to the given ScatterPlotRequest and assigns it to the Y field.

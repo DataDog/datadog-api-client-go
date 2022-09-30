@@ -73,11 +73,7 @@ func (o *UsageLogsHour) GetBillableIngestedBytesOk() (*int64, bool) {
 
 // HasBillableIngestedBytes returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasBillableIngestedBytes() bool {
-	if o != nil && o.BillableIngestedBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BillableIngestedBytes != nil
 }
 
 // SetBillableIngestedBytes gets a reference to the given int64 and assigns it to the BillableIngestedBytes field.
@@ -105,11 +101,7 @@ func (o *UsageLogsHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -137,11 +129,7 @@ func (o *UsageLogsHour) GetIndexedEventsCountOk() (*int64, bool) {
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasIndexedEventsCount() bool {
-	if o != nil && o.IndexedEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexedEventsCount != nil
 }
 
 // SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
@@ -169,11 +157,7 @@ func (o *UsageLogsHour) GetIngestedEventsBytesOk() (*int64, bool) {
 
 // HasIngestedEventsBytes returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasIngestedEventsBytes() bool {
-	if o != nil && o.IngestedEventsBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedEventsBytes != nil
 }
 
 // SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
@@ -201,11 +185,7 @@ func (o *UsageLogsHour) GetLogsLiveIndexedCountOk() (*int64, bool) {
 
 // HasLogsLiveIndexedCount returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasLogsLiveIndexedCount() bool {
-	if o != nil && o.LogsLiveIndexedCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsLiveIndexedCount != nil
 }
 
 // SetLogsLiveIndexedCount gets a reference to the given int64 and assigns it to the LogsLiveIndexedCount field.
@@ -233,11 +213,7 @@ func (o *UsageLogsHour) GetLogsLiveIngestedBytesOk() (*int64, bool) {
 
 // HasLogsLiveIngestedBytes returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasLogsLiveIngestedBytes() bool {
-	if o != nil && o.LogsLiveIngestedBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsLiveIngestedBytes != nil
 }
 
 // SetLogsLiveIngestedBytes gets a reference to the given int64 and assigns it to the LogsLiveIngestedBytes field.
@@ -265,11 +241,7 @@ func (o *UsageLogsHour) GetLogsRehydratedIndexedCountOk() (*int64, bool) {
 
 // HasLogsRehydratedIndexedCount returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasLogsRehydratedIndexedCount() bool {
-	if o != nil && o.LogsRehydratedIndexedCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsRehydratedIndexedCount != nil
 }
 
 // SetLogsRehydratedIndexedCount gets a reference to the given int64 and assigns it to the LogsRehydratedIndexedCount field.
@@ -297,11 +269,7 @@ func (o *UsageLogsHour) GetLogsRehydratedIngestedBytesOk() (*int64, bool) {
 
 // HasLogsRehydratedIngestedBytes returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasLogsRehydratedIngestedBytes() bool {
-	if o != nil && o.LogsRehydratedIngestedBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsRehydratedIngestedBytes != nil
 }
 
 // SetLogsRehydratedIngestedBytes gets a reference to the given int64 and assigns it to the LogsRehydratedIngestedBytes field.
@@ -329,11 +297,7 @@ func (o *UsageLogsHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -361,11 +325,7 @@ func (o *UsageLogsHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageLogsHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

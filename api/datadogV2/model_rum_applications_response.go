@@ -54,11 +54,7 @@ func (o *RUMApplicationsResponse) GetDataOk() (*[]RUMApplication, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *RUMApplicationsResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []RUMApplication and assigns it to the Data field.

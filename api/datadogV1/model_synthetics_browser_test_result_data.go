@@ -77,11 +77,7 @@ func (o *SyntheticsBrowserTestResultData) GetBrowserTypeOk() (*string, bool) {
 
 // HasBrowserType returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasBrowserType() bool {
-	if o != nil && o.BrowserType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserType != nil
 }
 
 // SetBrowserType gets a reference to the given string and assigns it to the BrowserType field.
@@ -109,11 +105,7 @@ func (o *SyntheticsBrowserTestResultData) GetBrowserVersionOk() (*string, bool) 
 
 // HasBrowserVersion returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasBrowserVersion() bool {
-	if o != nil && o.BrowserVersion != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserVersion != nil
 }
 
 // SetBrowserVersion gets a reference to the given string and assigns it to the BrowserVersion field.
@@ -141,11 +133,7 @@ func (o *SyntheticsBrowserTestResultData) GetDeviceOk() (*SyntheticsDevice, bool
 
 // HasDevice returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasDevice() bool {
-	if o != nil && o.Device != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Device != nil
 }
 
 // SetDevice gets a reference to the given SyntheticsDevice and assigns it to the Device field.
@@ -173,11 +161,7 @@ func (o *SyntheticsBrowserTestResultData) GetDurationOk() (*float64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given float64 and assigns it to the Duration field.
@@ -205,11 +189,7 @@ func (o *SyntheticsBrowserTestResultData) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasError() bool {
-	if o != nil && o.Error != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error != nil
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
@@ -237,11 +217,7 @@ func (o *SyntheticsBrowserTestResultData) GetFailureOk() (*SyntheticsBrowserTest
 
 // HasFailure returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasFailure() bool {
-	if o != nil && o.Failure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Failure != nil
 }
 
 // SetFailure gets a reference to the given SyntheticsBrowserTestResultFailure and assigns it to the Failure field.
@@ -269,11 +245,7 @@ func (o *SyntheticsBrowserTestResultData) GetPassedOk() (*bool, bool) {
 
 // HasPassed returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasPassed() bool {
-	if o != nil && o.Passed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Passed != nil
 }
 
 // SetPassed gets a reference to the given bool and assigns it to the Passed field.
@@ -301,11 +273,7 @@ func (o *SyntheticsBrowserTestResultData) GetReceivedEmailCountOk() (*int64, boo
 
 // HasReceivedEmailCount returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasReceivedEmailCount() bool {
-	if o != nil && o.ReceivedEmailCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ReceivedEmailCount != nil
 }
 
 // SetReceivedEmailCount gets a reference to the given int64 and assigns it to the ReceivedEmailCount field.
@@ -333,11 +301,7 @@ func (o *SyntheticsBrowserTestResultData) GetStartUrlOk() (*string, bool) {
 
 // HasStartUrl returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasStartUrl() bool {
-	if o != nil && o.StartUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StartUrl != nil
 }
 
 // SetStartUrl gets a reference to the given string and assigns it to the StartUrl field.
@@ -365,11 +329,7 @@ func (o *SyntheticsBrowserTestResultData) GetStepDetailsOk() (*[]SyntheticsStepD
 
 // HasStepDetails returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasStepDetails() bool {
-	if o != nil && o.StepDetails != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StepDetails != nil
 }
 
 // SetStepDetails gets a reference to the given []SyntheticsStepDetail and assigns it to the StepDetails field.
@@ -397,11 +357,7 @@ func (o *SyntheticsBrowserTestResultData) GetThumbnailsBucketKeyOk() (*bool, boo
 
 // HasThumbnailsBucketKey returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasThumbnailsBucketKey() bool {
-	if o != nil && o.ThumbnailsBucketKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ThumbnailsBucketKey != nil
 }
 
 // SetThumbnailsBucketKey gets a reference to the given bool and assigns it to the ThumbnailsBucketKey field.
@@ -429,11 +385,7 @@ func (o *SyntheticsBrowserTestResultData) GetTimeToInteractiveOk() (*float64, bo
 
 // HasTimeToInteractive returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultData) HasTimeToInteractive() bool {
-	if o != nil && o.TimeToInteractive != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToInteractive != nil
 }
 
 // SetTimeToInteractive gets a reference to the given float64 and assigns it to the TimeToInteractive field.

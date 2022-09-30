@@ -61,11 +61,7 @@ func (o *SLOBulkDeleteResponse) GetDataOk() (*SLOBulkDeleteResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SLOBulkDeleteResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given SLOBulkDeleteResponseData and assigns it to the Data field.
@@ -93,11 +89,7 @@ func (o *SLOBulkDeleteResponse) GetErrorsOk() (*[]SLOBulkDeleteError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *SLOBulkDeleteResponse) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []SLOBulkDeleteError and assigns it to the Errors field.

@@ -83,11 +83,7 @@ func (o *HostMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -115,11 +111,7 @@ func (o *HostMapWidgetDefinition) GetGroupOk() (*[]string, bool) {
 
 // HasGroup returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasGroup() bool {
-	if o != nil && o.Group != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Group != nil
 }
 
 // SetGroup gets a reference to the given []string and assigns it to the Group field.
@@ -147,11 +139,7 @@ func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (*bool, bool) {
 
 // HasNoGroupHosts returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasNoGroupHosts() bool {
-	if o != nil && o.NoGroupHosts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoGroupHosts != nil
 }
 
 // SetNoGroupHosts gets a reference to the given bool and assigns it to the NoGroupHosts field.
@@ -179,11 +167,7 @@ func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (*bool, bool) {
 
 // HasNoMetricHosts returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasNoMetricHosts() bool {
-	if o != nil && o.NoMetricHosts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoMetricHosts != nil
 }
 
 // SetNoMetricHosts gets a reference to the given bool and assigns it to the NoMetricHosts field.
@@ -211,11 +195,7 @@ func (o *HostMapWidgetDefinition) GetNodeTypeOk() (*WidgetNodeType, bool) {
 
 // HasNodeType returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasNodeType() bool {
-	if o != nil && o.NodeType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NodeType != nil
 }
 
 // SetNodeType gets a reference to the given WidgetNodeType and assigns it to the NodeType field.
@@ -243,11 +223,7 @@ func (o *HostMapWidgetDefinition) GetNotesOk() (*string, bool) {
 
 // HasNotes returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasNotes() bool {
-	if o != nil && o.Notes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Notes != nil
 }
 
 // SetNotes gets a reference to the given string and assigns it to the Notes field.
@@ -298,11 +274,7 @@ func (o *HostMapWidgetDefinition) GetScopeOk() (*[]string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasScope() bool {
-	if o != nil && o.Scope != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scope != nil
 }
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
@@ -330,11 +302,7 @@ func (o *HostMapWidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, b
 
 // HasStyle returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasStyle() bool {
-	if o != nil && o.Style != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Style != nil
 }
 
 // SetStyle gets a reference to the given HostMapWidgetDefinitionStyle and assigns it to the Style field.
@@ -362,11 +330,7 @@ func (o *HostMapWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -394,11 +358,7 @@ func (o *HostMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -426,11 +386,7 @@ func (o *HostMapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

@@ -101,11 +101,7 @@ func (o *CheckStatusWidgetDefinition) GetGroupOk() (*string, bool) {
 
 // HasGroup returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasGroup() bool {
-	if o != nil && o.Group != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Group != nil
 }
 
 // SetGroup gets a reference to the given string and assigns it to the Group field.
@@ -133,11 +129,7 @@ func (o *CheckStatusWidgetDefinition) GetGroupByOk() (*[]string, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
@@ -188,11 +180,7 @@ func (o *CheckStatusWidgetDefinition) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -220,11 +208,7 @@ func (o *CheckStatusWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -252,11 +236,7 @@ func (o *CheckStatusWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -284,11 +264,7 @@ func (o *CheckStatusWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -316,11 +292,7 @@ func (o *CheckStatusWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *CheckStatusWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

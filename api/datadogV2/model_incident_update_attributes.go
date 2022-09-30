@@ -74,11 +74,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactEndOk() (*time.Time, bool) {
 
 // HasCustomerImpactEnd returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasCustomerImpactEnd() bool {
-	if o != nil && o.CustomerImpactEnd.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactEnd.IsSet()
 }
 
 // SetCustomerImpactEnd gets a reference to the given datadog.NullableTime and assigns it to the CustomerImpactEnd field.
@@ -116,11 +112,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactScopeOk() (*string, bool) {
 
 // HasCustomerImpactScope returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasCustomerImpactScope() bool {
-	if o != nil && o.CustomerImpactScope != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactScope != nil
 }
 
 // SetCustomerImpactScope gets a reference to the given string and assigns it to the CustomerImpactScope field.
@@ -149,11 +141,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactStartOk() (*time.Time, bool)
 
 // HasCustomerImpactStart returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasCustomerImpactStart() bool {
-	if o != nil && o.CustomerImpactStart.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactStart.IsSet()
 }
 
 // SetCustomerImpactStart gets a reference to the given datadog.NullableTime and assigns it to the CustomerImpactStart field.
@@ -191,11 +179,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactedOk() (*bool, bool) {
 
 // HasCustomerImpacted returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasCustomerImpacted() bool {
-	if o != nil && o.CustomerImpacted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpacted != nil
 }
 
 // SetCustomerImpacted gets a reference to the given bool and assigns it to the CustomerImpacted field.
@@ -224,11 +208,7 @@ func (o *IncidentUpdateAttributes) GetDetectedOk() (*time.Time, bool) {
 
 // HasDetected returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasDetected() bool {
-	if o != nil && o.Detected.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Detected.IsSet()
 }
 
 // SetDetected gets a reference to the given datadog.NullableTime and assigns it to the Detected field.
@@ -266,11 +246,7 @@ func (o *IncidentUpdateAttributes) GetFieldsOk() (*map[string]IncidentFieldAttri
 
 // HasFields returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasFields() bool {
-	if o != nil && o.Fields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fields != nil
 }
 
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
@@ -298,11 +274,7 @@ func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]IncidentNotifi
 
 // HasNotificationHandles returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasNotificationHandles() bool {
-	if o != nil && o.NotificationHandles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotificationHandles != nil
 }
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
@@ -331,11 +303,7 @@ func (o *IncidentUpdateAttributes) GetResolvedOk() (*time.Time, bool) {
 
 // HasResolved returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasResolved() bool {
-	if o != nil && o.Resolved.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Resolved.IsSet()
 }
 
 // SetResolved gets a reference to the given datadog.NullableTime and assigns it to the Resolved field.
@@ -373,11 +341,7 @@ func (o *IncidentUpdateAttributes) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *IncidentUpdateAttributes) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.

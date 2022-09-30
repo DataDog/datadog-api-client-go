@@ -60,11 +60,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetHidePercentOk() (*bool, bool) {
 
 // HasHidePercent returns a boolean if a field has been set.
 func (o *SunburstWidgetLegendInlineAutomatic) HasHidePercent() bool {
-	if o != nil && o.HidePercent != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HidePercent != nil
 }
 
 // SetHidePercent gets a reference to the given bool and assigns it to the HidePercent field.
@@ -92,11 +88,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetHideValueOk() (*bool, bool) {
 
 // HasHideValue returns a boolean if a field has been set.
 func (o *SunburstWidgetLegendInlineAutomatic) HasHideValue() bool {
-	if o != nil && o.HideValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HideValue != nil
 }
 
 // SetHideValue gets a reference to the given bool and assigns it to the HideValue field.

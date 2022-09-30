@@ -74,11 +74,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCategoryOk() (*string, boo
 
 // HasCategory returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasCategory() bool {
-	if o != nil && o.Category != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Category != nil
 }
 
 // SetCategory gets a reference to the given string and assigns it to the Category field.
@@ -106,11 +102,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCreationDateOk() (*int64, 
 
 // HasCreationDate returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasCreationDate() bool {
-	if o != nil && o.CreationDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreationDate != nil
 }
 
 // SetCreationDate gets a reference to the given int64 and assigns it to the CreationDate field.
@@ -138,11 +130,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCreatorOk() (*CloudWorkloa
 
 // HasCreator returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given CloudWorkloadSecurityAgentRuleCreatorAttributes and assigns it to the Creator field.
@@ -170,11 +158,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDefaultRuleOk() (*bool, bo
 
 // HasDefaultRule returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasDefaultRule() bool {
-	if o != nil && o.DefaultRule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DefaultRule != nil
 }
 
 // SetDefaultRule gets a reference to the given bool and assigns it to the DefaultRule field.
@@ -202,11 +186,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDescriptionOk() (*string, 
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -234,11 +214,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetEnabledOk() (*bool, bool) 
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
@@ -266,11 +242,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetExpressionOk() (*string, b
 
 // HasExpression returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasExpression() bool {
-	if o != nil && o.Expression != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Expression != nil
 }
 
 // SetExpression gets a reference to the given string and assigns it to the Expression field.
@@ -298,11 +270,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -330,11 +298,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetUpdatedAtOk() (*int64, boo
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
@@ -362,11 +326,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetUpdaterOk() (*CloudWorkloa
 
 // HasUpdater returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasUpdater() bool {
-	if o != nil && o.Updater != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Updater != nil
 }
 
 // SetUpdater gets a reference to the given CloudWorkloadSecurityAgentRuleUpdaterAttributes and assigns it to the Updater field.
@@ -394,11 +354,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) GetVersionOk() (*int64, bool)
 
 // HasVersion returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.

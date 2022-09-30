@@ -87,11 +87,7 @@ func (o *RoleCreateData) GetRelationshipsOk() (*RoleRelationships, bool) {
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *RoleCreateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given RoleRelationships and assigns it to the Relationships field.
@@ -119,11 +115,7 @@ func (o *RoleCreateData) GetTypeOk() (*RolesType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *RoleCreateData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given RolesType and assigns it to the Type field.

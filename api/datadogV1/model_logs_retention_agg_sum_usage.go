@@ -60,11 +60,7 @@ func (o *LogsRetentionAggSumUsage) GetLogsIndexedLogsUsageAggSumOk() (*int64, bo
 
 // HasLogsIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsIndexedLogsUsageAggSum() bool {
-	if o != nil && o.LogsIndexedLogsUsageAggSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexedLogsUsageAggSum != nil
 }
 
 // SetLogsIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsIndexedLogsUsageAggSum field.
@@ -92,11 +88,7 @@ func (o *LogsRetentionAggSumUsage) GetLogsLiveIndexedLogsUsageAggSumOk() (*int64
 
 // HasLogsLiveIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsLiveIndexedLogsUsageAggSum() bool {
-	if o != nil && o.LogsLiveIndexedLogsUsageAggSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsLiveIndexedLogsUsageAggSum != nil
 }
 
 // SetLogsLiveIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsLiveIndexedLogsUsageAggSum field.
@@ -124,11 +116,7 @@ func (o *LogsRetentionAggSumUsage) GetLogsRehydratedIndexedLogsUsageAggSumOk() (
 
 // HasLogsRehydratedIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsRehydratedIndexedLogsUsageAggSum() bool {
-	if o != nil && o.LogsRehydratedIndexedLogsUsageAggSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsRehydratedIndexedLogsUsageAggSum != nil
 }
 
 // SetLogsRehydratedIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsRehydratedIndexedLogsUsageAggSum field.
@@ -156,11 +144,7 @@ func (o *LogsRetentionAggSumUsage) GetRetentionOk() (*string, bool) {
 
 // HasRetention returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasRetention() bool {
-	if o != nil && o.Retention != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retention != nil
 }
 
 // SetRetention gets a reference to the given string and assigns it to the Retention field.

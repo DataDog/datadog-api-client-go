@@ -85,11 +85,7 @@ func (o *EventCreateRequest) GetAggregationKeyOk() (*string, bool) {
 
 // HasAggregationKey returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasAggregationKey() bool {
-	if o != nil && o.AggregationKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AggregationKey != nil
 }
 
 // SetAggregationKey gets a reference to the given string and assigns it to the AggregationKey field.
@@ -117,11 +113,7 @@ func (o *EventCreateRequest) GetAlertTypeOk() (*EventAlertType, bool) {
 
 // HasAlertType returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasAlertType() bool {
-	if o != nil && o.AlertType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AlertType != nil
 }
 
 // SetAlertType gets a reference to the given EventAlertType and assigns it to the AlertType field.
@@ -149,11 +141,7 @@ func (o *EventCreateRequest) GetDateHappenedOk() (*int64, bool) {
 
 // HasDateHappened returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasDateHappened() bool {
-	if o != nil && o.DateHappened != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DateHappened != nil
 }
 
 // SetDateHappened gets a reference to the given int64 and assigns it to the DateHappened field.
@@ -181,11 +169,7 @@ func (o *EventCreateRequest) GetDeviceNameOk() (*string, bool) {
 
 // HasDeviceName returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasDeviceName() bool {
-	if o != nil && o.DeviceName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceName != nil
 }
 
 // SetDeviceName gets a reference to the given string and assigns it to the DeviceName field.
@@ -213,11 +197,7 @@ func (o *EventCreateRequest) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -246,11 +226,7 @@ func (o *EventCreateRequest) GetPriorityOk() (*EventPriority, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasPriority() bool {
-	if o != nil && o.Priority.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Priority.IsSet()
 }
 
 // SetPriority gets a reference to the given NullableEventPriority and assigns it to the Priority field.
@@ -288,11 +264,7 @@ func (o *EventCreateRequest) GetRelatedEventIdOk() (*int64, bool) {
 
 // HasRelatedEventId returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasRelatedEventId() bool {
-	if o != nil && o.RelatedEventId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RelatedEventId != nil
 }
 
 // SetRelatedEventId gets a reference to the given int64 and assigns it to the RelatedEventId field.
@@ -320,11 +292,7 @@ func (o *EventCreateRequest) GetSourceTypeNameOk() (*string, bool) {
 
 // HasSourceTypeName returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasSourceTypeName() bool {
-	if o != nil && o.SourceTypeName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SourceTypeName != nil
 }
 
 // SetSourceTypeName gets a reference to the given string and assigns it to the SourceTypeName field.
@@ -352,11 +320,7 @@ func (o *EventCreateRequest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

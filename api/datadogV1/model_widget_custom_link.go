@@ -60,11 +60,7 @@ func (o *WidgetCustomLink) GetIsHiddenOk() (*bool, bool) {
 
 // HasIsHidden returns a boolean if a field has been set.
 func (o *WidgetCustomLink) HasIsHidden() bool {
-	if o != nil && o.IsHidden != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsHidden != nil
 }
 
 // SetIsHidden gets a reference to the given bool and assigns it to the IsHidden field.
@@ -92,11 +88,7 @@ func (o *WidgetCustomLink) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *WidgetCustomLink) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Label != nil
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
@@ -124,11 +116,7 @@ func (o *WidgetCustomLink) GetLinkOk() (*string, bool) {
 
 // HasLink returns a boolean if a field has been set.
 func (o *WidgetCustomLink) HasLink() bool {
-	if o != nil && o.Link != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Link != nil
 }
 
 // SetLink gets a reference to the given string and assigns it to the Link field.
@@ -156,11 +144,7 @@ func (o *WidgetCustomLink) GetOverrideLabelOk() (*string, bool) {
 
 // HasOverrideLabel returns a boolean if a field has been set.
 func (o *WidgetCustomLink) HasOverrideLabel() bool {
-	if o != nil && o.OverrideLabel != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OverrideLabel != nil
 }
 
 // SetOverrideLabel gets a reference to the given string and assigns it to the OverrideLabel field.

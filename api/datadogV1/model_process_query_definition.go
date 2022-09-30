@@ -62,11 +62,7 @@ func (o *ProcessQueryDefinition) GetFilterByOk() (*[]string, bool) {
 
 // HasFilterBy returns a boolean if a field has been set.
 func (o *ProcessQueryDefinition) HasFilterBy() bool {
-	if o != nil && o.FilterBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FilterBy != nil
 }
 
 // SetFilterBy gets a reference to the given []string and assigns it to the FilterBy field.
@@ -94,11 +90,7 @@ func (o *ProcessQueryDefinition) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ProcessQueryDefinition) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -149,11 +141,7 @@ func (o *ProcessQueryDefinition) GetSearchByOk() (*string, bool) {
 
 // HasSearchBy returns a boolean if a field has been set.
 func (o *ProcessQueryDefinition) HasSearchBy() bool {
-	if o != nil && o.SearchBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SearchBy != nil
 }
 
 // SetSearchBy gets a reference to the given string and assigns it to the SearchBy field.

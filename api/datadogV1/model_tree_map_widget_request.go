@@ -60,11 +60,7 @@ func (o *TreeMapWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *TreeMapWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -92,11 +88,7 @@ func (o *TreeMapWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *TreeMapWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -124,11 +116,7 @@ func (o *TreeMapWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinit
 
 // HasQueries returns a boolean if a field has been set.
 func (o *TreeMapWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -156,11 +144,7 @@ func (o *TreeMapWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionRespons
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *TreeMapWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.

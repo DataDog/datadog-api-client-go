@@ -81,11 +81,7 @@ func (o *RUMApplicationCreateAttributes) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *RUMApplicationCreateAttributes) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
