@@ -54,11 +54,7 @@ func (o *AWSLogsLambda) GetArnOk() (*string, bool) {
 
 // HasArn returns a boolean if a field has been set.
 func (o *AWSLogsLambda) HasArn() bool {
-	if o != nil && o.Arn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Arn != nil
 }
 
 // SetArn gets a reference to the given string and assigns it to the Arn field.

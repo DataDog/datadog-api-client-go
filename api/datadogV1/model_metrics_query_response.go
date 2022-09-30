@@ -70,11 +70,7 @@ func (o *MetricsQueryResponse) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasError() bool {
-	if o != nil && o.Error != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error != nil
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
@@ -102,11 +98,7 @@ func (o *MetricsQueryResponse) GetFromDateOk() (*int64, bool) {
 
 // HasFromDate returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasFromDate() bool {
-	if o != nil && o.FromDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FromDate != nil
 }
 
 // SetFromDate gets a reference to the given int64 and assigns it to the FromDate field.
@@ -134,11 +126,7 @@ func (o *MetricsQueryResponse) GetGroupByOk() (*[]string, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
@@ -166,11 +154,7 @@ func (o *MetricsQueryResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -198,11 +182,7 @@ func (o *MetricsQueryResponse) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -230,11 +210,7 @@ func (o *MetricsQueryResponse) GetResTypeOk() (*string, bool) {
 
 // HasResType returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasResType() bool {
-	if o != nil && o.ResType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResType != nil
 }
 
 // SetResType gets a reference to the given string and assigns it to the ResType field.
@@ -262,11 +238,7 @@ func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryMetadata, bool) {
 
 // HasSeries returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasSeries() bool {
-	if o != nil && o.Series != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Series != nil
 }
 
 // SetSeries gets a reference to the given []MetricsQueryMetadata and assigns it to the Series field.
@@ -294,11 +266,7 @@ func (o *MetricsQueryResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
@@ -326,11 +294,7 @@ func (o *MetricsQueryResponse) GetToDateOk() (*int64, bool) {
 
 // HasToDate returns a boolean if a field has been set.
 func (o *MetricsQueryResponse) HasToDate() bool {
-	if o != nil && o.ToDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ToDate != nil
 }
 
 // SetToDate gets a reference to the given int64 and assigns it to the ToDate field.

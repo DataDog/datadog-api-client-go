@@ -58,11 +58,7 @@ func (o *HostMuteSettings) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *HostMuteSettings) HasEnd() bool {
-	if o != nil && o.End != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.End != nil
 }
 
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
@@ -90,11 +86,7 @@ func (o *HostMuteSettings) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *HostMuteSettings) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -122,11 +114,7 @@ func (o *HostMuteSettings) GetOverrideOk() (*bool, bool) {
 
 // HasOverride returns a boolean if a field has been set.
 func (o *HostMuteSettings) HasOverride() bool {
-	if o != nil && o.Override != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Override != nil
 }
 
 // SetOverride gets a reference to the given bool and assigns it to the Override field.

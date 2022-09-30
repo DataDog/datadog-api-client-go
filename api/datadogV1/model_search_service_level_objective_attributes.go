@@ -98,11 +98,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetAllTagsOk() (*[]string, bool)
 
 // HasAllTags returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasAllTags() bool {
-	if o != nil && o.AllTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllTags != nil
 }
 
 // SetAllTags gets a reference to the given []string and assigns it to the AllTags field.
@@ -130,11 +126,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetCreatedAtOk() (*int64, bool) 
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
@@ -163,11 +155,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetCreatorOk() (*SLOCreator, boo
 
 // HasCreator returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasCreator() bool {
-	if o != nil && o.Creator.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator.IsSet()
 }
 
 // SetCreator gets a reference to the given NullableSLOCreator and assigns it to the Creator field.
@@ -206,11 +194,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetDescriptionOk() (*string, boo
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -248,11 +232,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetEnvTagsOk() (*[]string, bool)
 
 // HasEnvTags returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasEnvTags() bool {
-	if o != nil && o.EnvTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EnvTags != nil
 }
 
 // SetEnvTags gets a reference to the given []string and assigns it to the EnvTags field.
@@ -281,11 +261,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetGroupsOk() (*[]string, bool) 
 
 // HasGroups returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
@@ -313,11 +289,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetModifiedAtOk() (*int64, bool)
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
@@ -346,11 +318,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetMonitorIdsOk() (*[]int64, boo
 
 // HasMonitorIds returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasMonitorIds() bool {
-	if o != nil && o.MonitorIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorIds != nil
 }
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
@@ -378,11 +346,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -410,11 +374,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetOverallStatusOk() (*[]SLOOver
 
 // HasOverallStatus returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasOverallStatus() bool {
-	if o != nil && o.OverallStatus != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OverallStatus != nil
 }
 
 // SetOverallStatus gets a reference to the given []SLOOverallStatuses and assigns it to the OverallStatus field.
@@ -443,11 +403,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetQueryOk() (*SearchSLOQuery, b
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasQuery() bool {
-	if o != nil && o.Query.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query.IsSet()
 }
 
 // SetQuery gets a reference to the given NullableSearchSLOQuery and assigns it to the Query field.
@@ -485,11 +441,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetServiceTagsOk() (*[]string, b
 
 // HasServiceTags returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasServiceTags() bool {
-	if o != nil && o.ServiceTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ServiceTags != nil
 }
 
 // SetServiceTags gets a reference to the given []string and assigns it to the ServiceTags field.
@@ -517,11 +469,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetSloTypeOk() (*SLOType, bool) 
 
 // HasSloType returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasSloType() bool {
-	if o != nil && o.SloType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SloType != nil
 }
 
 // SetSloType gets a reference to the given SLOType and assigns it to the SloType field.
@@ -549,11 +497,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetTeamTagsOk() (*[]string, bool
 
 // HasTeamTags returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasTeamTags() bool {
-	if o != nil && o.TeamTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TeamTags != nil
 }
 
 // SetTeamTags gets a reference to the given []string and assigns it to the TeamTags field.
@@ -581,11 +525,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetThresholdsOk() (*[]SearchSLOT
 
 // HasThresholds returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasThresholds() bool {
-	if o != nil && o.Thresholds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Thresholds != nil
 }
 
 // SetThresholds gets a reference to the given []SearchSLOThreshold and assigns it to the Thresholds field.

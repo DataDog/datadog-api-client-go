@@ -72,11 +72,7 @@ func (o *Organization) GetBillingOk() (*OrganizationBilling, bool) {
 
 // HasBilling returns a boolean if a field has been set.
 func (o *Organization) HasBilling() bool {
-	if o != nil && o.Billing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Billing != nil
 }
 
 // SetBilling gets a reference to the given OrganizationBilling and assigns it to the Billing field.
@@ -105,11 +101,7 @@ func (o *Organization) GetCreatedOk() (*string, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *Organization) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given string and assigns it to the Created field.
@@ -137,11 +129,7 @@ func (o *Organization) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Organization) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -169,11 +157,7 @@ func (o *Organization) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Organization) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -201,11 +185,7 @@ func (o *Organization) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *Organization) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -233,11 +213,7 @@ func (o *Organization) GetSettingsOk() (*OrganizationSettings, bool) {
 
 // HasSettings returns a boolean if a field has been set.
 func (o *Organization) HasSettings() bool {
-	if o != nil && o.Settings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Settings != nil
 }
 
 // SetSettings gets a reference to the given OrganizationSettings and assigns it to the Settings field.
@@ -267,11 +243,7 @@ func (o *Organization) GetSubscriptionOk() (*OrganizationSubscription, bool) {
 
 // HasSubscription returns a boolean if a field has been set.
 func (o *Organization) HasSubscription() bool {
-	if o != nil && o.Subscription != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subscription != nil
 }
 
 // SetSubscription gets a reference to the given OrganizationSubscription and assigns it to the Subscription field.
@@ -300,11 +272,7 @@ func (o *Organization) GetTrialOk() (*bool, bool) {
 
 // HasTrial returns a boolean if a field has been set.
 func (o *Organization) HasTrial() bool {
-	if o != nil && o.Trial != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Trial != nil
 }
 
 // SetTrial gets a reference to the given bool and assigns it to the Trial field.

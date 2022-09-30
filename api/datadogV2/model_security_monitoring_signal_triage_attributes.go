@@ -74,11 +74,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveCommentOk() (*strin
 
 // HasArchiveComment returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveComment() bool {
-	if o != nil && o.ArchiveComment != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveComment != nil
 }
 
 // SetArchiveComment gets a reference to the given string and assigns it to the ArchiveComment field.
@@ -106,11 +102,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveCommentTimestampOk(
 
 // HasArchiveCommentTimestamp returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveCommentTimestamp() bool {
-	if o != nil && o.ArchiveCommentTimestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveCommentTimestamp != nil
 }
 
 // SetArchiveCommentTimestamp gets a reference to the given int64 and assigns it to the ArchiveCommentTimestamp field.
@@ -138,11 +130,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveCommentUserOk() (*S
 
 // HasArchiveCommentUser returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveCommentUser() bool {
-	if o != nil && o.ArchiveCommentUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveCommentUser != nil
 }
 
 // SetArchiveCommentUser gets a reference to the given SecurityMonitoringTriageUser and assigns it to the ArchiveCommentUser field.
@@ -170,11 +158,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveReasonOk() (*Securi
 
 // HasArchiveReason returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveReason() bool {
-	if o != nil && o.ArchiveReason != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ArchiveReason != nil
 }
 
 // SetArchiveReason gets a reference to the given SecurityMonitoringSignalArchiveReason and assigns it to the ArchiveReason field.
@@ -271,11 +255,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetStateUpdateTimestampOk() (
 
 // HasStateUpdateTimestamp returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasStateUpdateTimestamp() bool {
-	if o != nil && o.StateUpdateTimestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StateUpdateTimestamp != nil
 }
 
 // SetStateUpdateTimestamp gets a reference to the given int64 and assigns it to the StateUpdateTimestamp field.
@@ -303,11 +283,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetStateUpdateUserOk() (*Secu
 
 // HasStateUpdateUser returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageAttributes) HasStateUpdateUser() bool {
-	if o != nil && o.StateUpdateUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StateUpdateUser != nil
 }
 
 // SetStateUpdateUser gets a reference to the given SecurityMonitoringTriageUser and assigns it to the StateUpdateUser field.

@@ -112,11 +112,7 @@ func (o *RoleUpdateData) GetRelationshipsOk() (*RoleRelationships, bool) {
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *RoleUpdateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given RoleRelationships and assigns it to the Relationships field.

@@ -54,11 +54,7 @@ func (o *LogsIndexListResponse) GetIndexesOk() (*[]LogsIndex, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *LogsIndexListResponse) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []LogsIndex and assigns it to the Indexes field.

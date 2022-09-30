@@ -58,11 +58,7 @@ func (o *ChargebackBreakdown) GetChargeTypeOk() (*string, bool) {
 
 // HasChargeType returns a boolean if a field has been set.
 func (o *ChargebackBreakdown) HasChargeType() bool {
-	if o != nil && o.ChargeType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ChargeType != nil
 }
 
 // SetChargeType gets a reference to the given string and assigns it to the ChargeType field.
@@ -90,11 +86,7 @@ func (o *ChargebackBreakdown) GetCostOk() (*float64, bool) {
 
 // HasCost returns a boolean if a field has been set.
 func (o *ChargebackBreakdown) HasCost() bool {
-	if o != nil && o.Cost != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cost != nil
 }
 
 // SetCost gets a reference to the given float64 and assigns it to the Cost field.
@@ -122,11 +114,7 @@ func (o *ChargebackBreakdown) GetProductNameOk() (*string, bool) {
 
 // HasProductName returns a boolean if a field has been set.
 func (o *ChargebackBreakdown) HasProductName() bool {
-	if o != nil && o.ProductName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProductName != nil
 }
 
 // SetProductName gets a reference to the given string and assigns it to the ProductName field.

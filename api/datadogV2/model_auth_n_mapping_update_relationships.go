@@ -54,11 +54,7 @@ func (o *AuthNMappingUpdateRelationships) GetRoleOk() (*RelationshipToRole, bool
 
 // HasRole returns a boolean if a field has been set.
 func (o *AuthNMappingUpdateRelationships) HasRole() bool {
-	if o != nil && o.Role != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Role != nil
 }
 
 // SetRole gets a reference to the given RelationshipToRole and assigns it to the Role field.

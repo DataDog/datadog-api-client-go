@@ -56,11 +56,7 @@ func (o *DashboardTemplateVariablePreset) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *DashboardTemplateVariablePreset) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -88,11 +84,7 @@ func (o *DashboardTemplateVariablePreset) GetTemplateVariablesOk() (*[]Dashboard
 
 // HasTemplateVariables returns a boolean if a field has been set.
 func (o *DashboardTemplateVariablePreset) HasTemplateVariables() bool {
-	if o != nil && o.TemplateVariables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TemplateVariables != nil
 }
 
 // SetTemplateVariables gets a reference to the given []DashboardTemplateVariablePresetValue and assigns it to the TemplateVariables field.

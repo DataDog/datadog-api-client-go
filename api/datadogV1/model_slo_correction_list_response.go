@@ -56,11 +56,7 @@ func (o *SLOCorrectionListResponse) GetDataOk() (*[]SLOCorrection, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SLOCorrectionListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []SLOCorrection and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *SLOCorrectionListResponse) GetMetaOk() (*ResponseMetaAttributes, bool) 
 
 // HasMeta returns a boolean if a field has been set.
 func (o *SLOCorrectionListResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given ResponseMetaAttributes and assigns it to the Meta field.

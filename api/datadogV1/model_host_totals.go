@@ -56,11 +56,7 @@ func (o *HostTotals) GetTotalActiveOk() (*int64, bool) {
 
 // HasTotalActive returns a boolean if a field has been set.
 func (o *HostTotals) HasTotalActive() bool {
-	if o != nil && o.TotalActive != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalActive != nil
 }
 
 // SetTotalActive gets a reference to the given int64 and assigns it to the TotalActive field.
@@ -88,11 +84,7 @@ func (o *HostTotals) GetTotalUpOk() (*int64, bool) {
 
 // HasTotalUp returns a boolean if a field has been set.
 func (o *HostTotals) HasTotalUp() bool {
-	if o != nil && o.TotalUp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalUp != nil
 }
 
 // SetTotalUp gets a reference to the given int64 and assigns it to the TotalUp field.

@@ -57,11 +57,7 @@ func (o *ProcessSummariesMetaPage) GetAfterOk() (*string, bool) {
 
 // HasAfter returns a boolean if a field has been set.
 func (o *ProcessSummariesMetaPage) HasAfter() bool {
-	if o != nil && o.After != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.After != nil
 }
 
 // SetAfter gets a reference to the given string and assigns it to the After field.
@@ -89,11 +85,7 @@ func (o *ProcessSummariesMetaPage) GetSizeOk() (*int32, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *ProcessSummariesMetaPage) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given int32 and assigns it to the Size field.

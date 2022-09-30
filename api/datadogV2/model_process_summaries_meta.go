@@ -54,11 +54,7 @@ func (o *ProcessSummariesMeta) GetPageOk() (*ProcessSummariesMetaPage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *ProcessSummariesMeta) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given ProcessSummariesMetaPage and assigns it to the Page field.

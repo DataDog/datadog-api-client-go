@@ -71,11 +71,7 @@ func (o *SyntheticsTiming) GetDnsOk() (*float64, bool) {
 
 // HasDns returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasDns() bool {
-	if o != nil && o.Dns != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Dns != nil
 }
 
 // SetDns gets a reference to the given float64 and assigns it to the Dns field.
@@ -103,11 +99,7 @@ func (o *SyntheticsTiming) GetDownloadOk() (*float64, bool) {
 
 // HasDownload returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasDownload() bool {
-	if o != nil && o.Download != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Download != nil
 }
 
 // SetDownload gets a reference to the given float64 and assigns it to the Download field.
@@ -135,11 +127,7 @@ func (o *SyntheticsTiming) GetFirstByteOk() (*float64, bool) {
 
 // HasFirstByte returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasFirstByte() bool {
-	if o != nil && o.FirstByte != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FirstByte != nil
 }
 
 // SetFirstByte gets a reference to the given float64 and assigns it to the FirstByte field.
@@ -167,11 +155,7 @@ func (o *SyntheticsTiming) GetHandshakeOk() (*float64, bool) {
 
 // HasHandshake returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasHandshake() bool {
-	if o != nil && o.Handshake != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handshake != nil
 }
 
 // SetHandshake gets a reference to the given float64 and assigns it to the Handshake field.
@@ -199,11 +183,7 @@ func (o *SyntheticsTiming) GetRedirectOk() (*float64, bool) {
 
 // HasRedirect returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasRedirect() bool {
-	if o != nil && o.Redirect != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Redirect != nil
 }
 
 // SetRedirect gets a reference to the given float64 and assigns it to the Redirect field.
@@ -231,11 +211,7 @@ func (o *SyntheticsTiming) GetSslOk() (*float64, bool) {
 
 // HasSsl returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasSsl() bool {
-	if o != nil && o.Ssl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ssl != nil
 }
 
 // SetSsl gets a reference to the given float64 and assigns it to the Ssl field.
@@ -263,11 +239,7 @@ func (o *SyntheticsTiming) GetTcpOk() (*float64, bool) {
 
 // HasTcp returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasTcp() bool {
-	if o != nil && o.Tcp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tcp != nil
 }
 
 // SetTcp gets a reference to the given float64 and assigns it to the Tcp field.
@@ -295,11 +267,7 @@ func (o *SyntheticsTiming) GetTotalOk() (*float64, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given float64 and assigns it to the Total field.
@@ -327,11 +295,7 @@ func (o *SyntheticsTiming) GetWaitOk() (*float64, bool) {
 
 // HasWait returns a boolean if a field has been set.
 func (o *SyntheticsTiming) HasWait() bool {
-	if o != nil && o.Wait != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Wait != nil
 }
 
 // SetWait gets a reference to the given float64 and assigns it to the Wait field.

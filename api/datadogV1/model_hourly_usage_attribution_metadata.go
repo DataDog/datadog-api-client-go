@@ -54,11 +54,7 @@ func (o *HourlyUsageAttributionMetadata) GetPaginationOk() (*HourlyUsageAttribut
 
 // HasPagination returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionMetadata) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given HourlyUsageAttributionPagination and assigns it to the Pagination field.

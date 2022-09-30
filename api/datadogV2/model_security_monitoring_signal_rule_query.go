@@ -66,11 +66,7 @@ func (o *SecurityMonitoringSignalRuleQuery) GetAggregationOk() (*SecurityMonitor
 
 // HasAggregation returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalRuleQuery) HasAggregation() bool {
-	if o != nil && o.Aggregation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregation != nil
 }
 
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
@@ -98,11 +94,7 @@ func (o *SecurityMonitoringSignalRuleQuery) GetCorrelatedByFieldsOk() (*[]string
 
 // HasCorrelatedByFields returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalRuleQuery) HasCorrelatedByFields() bool {
-	if o != nil && o.CorrelatedByFields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CorrelatedByFields != nil
 }
 
 // SetCorrelatedByFields gets a reference to the given []string and assigns it to the CorrelatedByFields field.
@@ -130,11 +122,7 @@ func (o *SecurityMonitoringSignalRuleQuery) GetCorrelatedQueryIndexOk() (*int32,
 
 // HasCorrelatedQueryIndex returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalRuleQuery) HasCorrelatedQueryIndex() bool {
-	if o != nil && o.CorrelatedQueryIndex != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CorrelatedQueryIndex != nil
 }
 
 // SetCorrelatedQueryIndex gets a reference to the given int32 and assigns it to the CorrelatedQueryIndex field.
@@ -162,11 +150,7 @@ func (o *SecurityMonitoringSignalRuleQuery) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalRuleQuery) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
@@ -194,11 +178,7 @@ func (o *SecurityMonitoringSignalRuleQuery) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalRuleQuery) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

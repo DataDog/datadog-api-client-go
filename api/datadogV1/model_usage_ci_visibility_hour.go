@@ -64,11 +64,7 @@ func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpansOk() (*int32, bool) {
 
 // HasCiPipelineIndexedSpans returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiPipelineIndexedSpans() bool {
-	if o != nil && o.CiPipelineIndexedSpans != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiPipelineIndexedSpans != nil
 }
 
 // SetCiPipelineIndexedSpans gets a reference to the given int32 and assigns it to the CiPipelineIndexedSpans field.
@@ -96,11 +92,7 @@ func (o *UsageCIVisibilityHour) GetCiTestIndexedSpansOk() (*int32, bool) {
 
 // HasCiTestIndexedSpans returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiTestIndexedSpans() bool {
-	if o != nil && o.CiTestIndexedSpans != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiTestIndexedSpans != nil
 }
 
 // SetCiTestIndexedSpans gets a reference to the given int32 and assigns it to the CiTestIndexedSpans field.
@@ -128,11 +120,7 @@ func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommittersOk() (*int32, b
 
 // HasCiVisibilityPipelineCommitters returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiVisibilityPipelineCommitters() bool {
-	if o != nil && o.CiVisibilityPipelineCommitters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiVisibilityPipelineCommitters != nil
 }
 
 // SetCiVisibilityPipelineCommitters gets a reference to the given int32 and assigns it to the CiVisibilityPipelineCommitters field.
@@ -160,11 +148,7 @@ func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommittersOk() (*int32, bool)
 
 // HasCiVisibilityTestCommitters returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiVisibilityTestCommitters() bool {
-	if o != nil && o.CiVisibilityTestCommitters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiVisibilityTestCommitters != nil
 }
 
 // SetCiVisibilityTestCommitters gets a reference to the given int32 and assigns it to the CiVisibilityTestCommitters field.
@@ -192,11 +176,7 @@ func (o *UsageCIVisibilityHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -224,11 +204,7 @@ func (o *UsageCIVisibilityHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

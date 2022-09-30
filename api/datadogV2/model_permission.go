@@ -62,11 +62,7 @@ func (o *Permission) GetAttributesOk() (*PermissionAttributes, bool) {
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *Permission) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given PermissionAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *Permission) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Permission) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.

@@ -79,11 +79,7 @@ func (o *SLOCorrectionResponseAttributes) GetCategoryOk() (*SLOCorrectionCategor
 
 // HasCategory returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasCategory() bool {
-	if o != nil && o.Category != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Category != nil
 }
 
 // SetCategory gets a reference to the given SLOCorrectionCategory and assigns it to the Category field.
@@ -111,11 +107,7 @@ func (o *SLOCorrectionResponseAttributes) GetCreatedAtOk() (*int64, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
@@ -143,11 +135,7 @@ func (o *SLOCorrectionResponseAttributes) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -175,11 +163,7 @@ func (o *SLOCorrectionResponseAttributes) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -208,11 +192,7 @@ func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
-	if o != nil && o.Duration.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration.IsSet()
 }
 
 // SetDuration gets a reference to the given datadog.NullableInt64 and assigns it to the Duration field.
@@ -250,11 +230,7 @@ func (o *SLOCorrectionResponseAttributes) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasEnd() bool {
-	if o != nil && o.End != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.End != nil
 }
 
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
@@ -282,11 +258,7 @@ func (o *SLOCorrectionResponseAttributes) GetModifiedAtOk() (*int64, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
@@ -315,11 +287,7 @@ func (o *SLOCorrectionResponseAttributes) GetModifierOk() (*SLOCorrectionRespons
 
 // HasModifier returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasModifier() bool {
-	if o != nil && o.Modifier.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modifier.IsSet()
 }
 
 // SetModifier gets a reference to the given NullableSLOCorrectionResponseAttributesModifier and assigns it to the Modifier field.
@@ -358,11 +326,7 @@ func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool) {
 
 // HasRrule returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
-	if o != nil && o.Rrule.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Rrule.IsSet()
 }
 
 // SetRrule gets a reference to the given datadog.NullableString and assigns it to the Rrule field.
@@ -400,11 +364,7 @@ func (o *SLOCorrectionResponseAttributes) GetSloIdOk() (*string, bool) {
 
 // HasSloId returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasSloId() bool {
-	if o != nil && o.SloId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SloId != nil
 }
 
 // SetSloId gets a reference to the given string and assigns it to the SloId field.
@@ -432,11 +392,7 @@ func (o *SLOCorrectionResponseAttributes) GetStartOk() (*int64, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasStart() bool {
-	if o != nil && o.Start != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Start != nil
 }
 
 // SetStart gets a reference to the given int64 and assigns it to the Start field.
@@ -464,11 +420,7 @@ func (o *SLOCorrectionResponseAttributes) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timezone != nil
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.

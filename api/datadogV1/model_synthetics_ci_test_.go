@@ -82,11 +82,7 @@ func (o *SyntheticsCITest) GetAllowInsecureCertificatesOk() (*bool, bool) {
 
 // HasAllowInsecureCertificates returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasAllowInsecureCertificates() bool {
-	if o != nil && o.AllowInsecureCertificates != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowInsecureCertificates != nil
 }
 
 // SetAllowInsecureCertificates gets a reference to the given bool and assigns it to the AllowInsecureCertificates field.
@@ -114,11 +110,7 @@ func (o *SyntheticsCITest) GetBasicAuthOk() (*SyntheticsBasicAuth, bool) {
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasBasicAuth() bool {
-	if o != nil && o.BasicAuth != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BasicAuth != nil
 }
 
 // SetBasicAuth gets a reference to the given SyntheticsBasicAuth and assigns it to the BasicAuth field.
@@ -146,11 +138,7 @@ func (o *SyntheticsCITest) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasBody() bool {
-	if o != nil && o.Body != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Body != nil
 }
 
 // SetBody gets a reference to the given string and assigns it to the Body field.
@@ -178,11 +166,7 @@ func (o *SyntheticsCITest) GetBodyTypeOk() (*string, bool) {
 
 // HasBodyType returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasBodyType() bool {
-	if o != nil && o.BodyType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BodyType != nil
 }
 
 // SetBodyType gets a reference to the given string and assigns it to the BodyType field.
@@ -210,11 +194,7 @@ func (o *SyntheticsCITest) GetCookiesOk() (*string, bool) {
 
 // HasCookies returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasCookies() bool {
-	if o != nil && o.Cookies != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cookies != nil
 }
 
 // SetCookies gets a reference to the given string and assigns it to the Cookies field.
@@ -242,11 +222,7 @@ func (o *SyntheticsCITest) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 
 // HasDeviceIds returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasDeviceIds() bool {
-	if o != nil && o.DeviceIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceIds != nil
 }
 
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
@@ -274,11 +250,7 @@ func (o *SyntheticsCITest) GetFollowRedirectsOk() (*bool, bool) {
 
 // HasFollowRedirects returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasFollowRedirects() bool {
-	if o != nil && o.FollowRedirects != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FollowRedirects != nil
 }
 
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
@@ -306,11 +278,7 @@ func (o *SyntheticsCITest) GetHeadersOk() (*map[string]string, bool) {
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Headers != nil
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
@@ -338,11 +306,7 @@ func (o *SyntheticsCITest) GetLocationsOk() (*[]string, bool) {
 
 // HasLocations returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasLocations() bool {
-	if o != nil && o.Locations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Locations != nil
 }
 
 // SetLocations gets a reference to the given []string and assigns it to the Locations field.
@@ -370,11 +334,7 @@ func (o *SyntheticsCITest) GetMetadataOk() (*SyntheticsCIBatchMetadata, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SyntheticsCIBatchMetadata and assigns it to the Metadata field.
@@ -425,11 +385,7 @@ func (o *SyntheticsCITest) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
 
 // HasRetry returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasRetry() bool {
-	if o != nil && o.Retry != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retry != nil
 }
 
 // SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.
@@ -457,11 +413,7 @@ func (o *SyntheticsCITest) GetStartUrlOk() (*string, bool) {
 
 // HasStartUrl returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasStartUrl() bool {
-	if o != nil && o.StartUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StartUrl != nil
 }
 
 // SetStartUrl gets a reference to the given string and assigns it to the StartUrl field.
@@ -489,11 +441,7 @@ func (o *SyntheticsCITest) GetVariablesOk() (*map[string]string, bool) {
 
 // HasVariables returns a boolean if a field has been set.
 func (o *SyntheticsCITest) HasVariables() bool {
-	if o != nil && o.Variables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Variables != nil
 }
 
 // SetVariables gets a reference to the given map[string]string and assigns it to the Variables field.

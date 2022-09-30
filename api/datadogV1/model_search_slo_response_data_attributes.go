@@ -56,11 +56,7 @@ func (o *SearchSLOResponseDataAttributes) GetFacetsOk() (*SearchSLOResponseDataA
 
 // HasFacets returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributes) HasFacets() bool {
-	if o != nil && o.Facets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Facets != nil
 }
 
 // SetFacets gets a reference to the given SearchSLOResponseDataAttributesFacets and assigns it to the Facets field.
@@ -88,11 +84,7 @@ func (o *SearchSLOResponseDataAttributes) GetSlosOk() (*[]SearchServiceLevelObje
 
 // HasSlos returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributes) HasSlos() bool {
-	if o != nil && o.Slos != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Slos != nil
 }
 
 // SetSlos gets a reference to the given []SearchServiceLevelObjective and assigns it to the Slos field.

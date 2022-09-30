@@ -54,11 +54,7 @@ func (o *UserRelationships) GetRolesOk() (*RelationshipToRoles, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *UserRelationships) HasRoles() bool {
-	if o != nil && o.Roles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Roles != nil
 }
 
 // SetRoles gets a reference to the given RelationshipToRoles and assigns it to the Roles field.

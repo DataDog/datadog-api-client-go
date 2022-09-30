@@ -54,11 +54,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) GetEmailsOk() (*[]string, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigDeleteAttributes) HasEmails() bool {
-	if o != nil && o.Emails != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Emails != nil
 }
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.

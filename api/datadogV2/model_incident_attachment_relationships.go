@@ -54,11 +54,7 @@ func (o *IncidentAttachmentRelationships) GetLastModifiedByUserOk() (*Relationsh
 
 // HasLastModifiedByUser returns a boolean if a field has been set.
 func (o *IncidentAttachmentRelationships) HasLastModifiedByUser() bool {
-	if o != nil && o.LastModifiedByUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastModifiedByUser != nil
 }
 
 // SetLastModifiedByUser gets a reference to the given RelationshipToUser and assigns it to the LastModifiedByUser field.

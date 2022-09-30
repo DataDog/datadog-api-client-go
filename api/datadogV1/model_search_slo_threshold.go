@@ -99,11 +99,7 @@ func (o *SearchSLOThreshold) GetTargetDisplayOk() (*string, bool) {
 
 // HasTargetDisplay returns a boolean if a field has been set.
 func (o *SearchSLOThreshold) HasTargetDisplay() bool {
-	if o != nil && o.TargetDisplay != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TargetDisplay != nil
 }
 
 // SetTargetDisplay gets a reference to the given string and assigns it to the TargetDisplay field.
@@ -155,11 +151,7 @@ func (o *SearchSLOThreshold) GetWarningOk() (*float64, bool) {
 
 // HasWarning returns a boolean if a field has been set.
 func (o *SearchSLOThreshold) HasWarning() bool {
-	if o != nil && o.Warning.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warning.IsSet()
 }
 
 // SetWarning gets a reference to the given datadog.NullableFloat64 and assigns it to the Warning field.
@@ -198,11 +190,7 @@ func (o *SearchSLOThreshold) GetWarningDisplayOk() (*string, bool) {
 
 // HasWarningDisplay returns a boolean if a field has been set.
 func (o *SearchSLOThreshold) HasWarningDisplay() bool {
-	if o != nil && o.WarningDisplay.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.WarningDisplay.IsSet()
 }
 
 // SetWarningDisplay gets a reference to the given datadog.NullableString and assigns it to the WarningDisplay field.

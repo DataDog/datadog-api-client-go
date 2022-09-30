@@ -54,11 +54,7 @@ func (o *UsageAuditLogsResponse) GetUsageOk() (*[]UsageAuditLogsHour, bool) {
 
 // HasUsage returns a boolean if a field has been set.
 func (o *UsageAuditLogsResponse) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []UsageAuditLogsHour and assigns it to the Usage field.

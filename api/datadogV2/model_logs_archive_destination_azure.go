@@ -117,11 +117,7 @@ func (o *LogsArchiveDestinationAzure) GetPathOk() (*string, bool) {
 
 // HasPath returns a boolean if a field has been set.
 func (o *LogsArchiveDestinationAzure) HasPath() bool {
-	if o != nil && o.Path != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
@@ -149,11 +145,7 @@ func (o *LogsArchiveDestinationAzure) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *LogsArchiveDestinationAzure) HasRegion() bool {
-	if o != nil && o.Region != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Region != nil
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.

@@ -86,11 +86,7 @@ func (o *LogsListRequestTime) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *LogsListRequestTime) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timezone != nil
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.

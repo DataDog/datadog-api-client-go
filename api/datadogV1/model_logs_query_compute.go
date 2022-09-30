@@ -83,11 +83,7 @@ func (o *LogsQueryCompute) GetFacetOk() (*string, bool) {
 
 // HasFacet returns a boolean if a field has been set.
 func (o *LogsQueryCompute) HasFacet() bool {
-	if o != nil && o.Facet != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Facet != nil
 }
 
 // SetFacet gets a reference to the given string and assigns it to the Facet field.
@@ -115,11 +111,7 @@ func (o *LogsQueryCompute) GetIntervalOk() (*int64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *LogsQueryCompute) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given int64 and assigns it to the Interval field.

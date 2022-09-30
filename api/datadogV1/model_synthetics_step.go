@@ -64,11 +64,7 @@ func (o *SyntheticsStep) GetAllowFailureOk() (*bool, bool) {
 
 // HasAllowFailure returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasAllowFailure() bool {
-	if o != nil && o.AllowFailure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowFailure != nil
 }
 
 // SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
@@ -96,11 +92,7 @@ func (o *SyntheticsStep) GetIsCriticalOk() (*bool, bool) {
 
 // HasIsCritical returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasIsCritical() bool {
-	if o != nil && o.IsCritical != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsCritical != nil
 }
 
 // SetIsCritical gets a reference to the given bool and assigns it to the IsCritical field.
@@ -128,11 +120,7 @@ func (o *SyntheticsStep) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -160,11 +148,7 @@ func (o *SyntheticsStep) GetParamsOk() (*interface{}, bool) {
 
 // HasParams returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasParams() bool {
-	if o != nil && o.Params != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Params != nil
 }
 
 // SetParams gets a reference to the given interface{} and assigns it to the Params field.
@@ -192,11 +176,7 @@ func (o *SyntheticsStep) GetTimeoutOk() (*int64, bool) {
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasTimeout() bool {
-	if o != nil && o.Timeout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeout != nil
 }
 
 // SetTimeout gets a reference to the given int64 and assigns it to the Timeout field.
@@ -224,11 +204,7 @@ func (o *SyntheticsStep) GetTypeOk() (*SyntheticsStepType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsStep) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsStepType and assigns it to the Type field.

@@ -54,11 +54,7 @@ func (o *RUMResponsePage) GetAfterOk() (*string, bool) {
 
 // HasAfter returns a boolean if a field has been set.
 func (o *RUMResponsePage) HasAfter() bool {
-	if o != nil && o.After != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.After != nil
 }
 
 // SetAfter gets a reference to the given string and assigns it to the After field.

@@ -69,11 +69,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetAggregationOk() (*SecurityMonit
 
 // HasAggregation returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasAggregation() bool {
-	if o != nil && o.Aggregation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregation != nil
 }
 
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
@@ -101,11 +97,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetDistinctFieldsOk() (*[]string, 
 
 // HasDistinctFields returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasDistinctFields() bool {
-	if o != nil && o.DistinctFields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DistinctFields != nil
 }
 
 // SetDistinctFields gets a reference to the given []string and assigns it to the DistinctFields field.
@@ -133,11 +125,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetGroupByFieldsOk() (*[]string, b
 
 // HasGroupByFields returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasGroupByFields() bool {
-	if o != nil && o.GroupByFields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupByFields != nil
 }
 
 // SetGroupByFields gets a reference to the given []string and assigns it to the GroupByFields field.
@@ -165,11 +153,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -197,11 +181,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
@@ -229,11 +209,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringStandardRuleQuery) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

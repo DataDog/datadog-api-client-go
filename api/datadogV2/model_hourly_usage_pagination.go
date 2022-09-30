@@ -57,11 +57,7 @@ func (o *HourlyUsagePagination) GetNextRecordIdOk() (*string, bool) {
 
 // HasNextRecordId returns a boolean if a field has been set.
 func (o *HourlyUsagePagination) HasNextRecordId() bool {
-	if o != nil && o.NextRecordId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextRecordId.IsSet()
 }
 
 // SetNextRecordId gets a reference to the given datadog.NullableString and assigns it to the NextRecordId field.

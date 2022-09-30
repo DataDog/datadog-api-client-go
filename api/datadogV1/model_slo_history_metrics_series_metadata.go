@@ -66,11 +66,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetAggrOk() (*string, bool) {
 
 // HasAggr returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasAggr() bool {
-	if o != nil && o.Aggr != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggr != nil
 }
 
 // SetAggr gets a reference to the given string and assigns it to the Aggr field.
@@ -98,11 +94,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetExpressionOk() (*string, bool) {
 
 // HasExpression returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasExpression() bool {
-	if o != nil && o.Expression != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Expression != nil
 }
 
 // SetExpression gets a reference to the given string and assigns it to the Expression field.
@@ -130,11 +122,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -162,11 +150,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetQueryIndexOk() (*int64, bool) {
 
 // HasQueryIndex returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasQueryIndex() bool {
-	if o != nil && o.QueryIndex != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.QueryIndex != nil
 }
 
 // SetQueryIndex gets a reference to the given int64 and assigns it to the QueryIndex field.
@@ -194,11 +178,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetScopeOk() (*string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasScope() bool {
-	if o != nil && o.Scope != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scope != nil
 }
 
 // SetScope gets a reference to the given string and assigns it to the Scope field.
@@ -227,11 +207,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) GetUnitOk() (*[]SLOHistoryMetricsSerie
 
 // HasUnit returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unit != nil
 }
 
 // SetUnit gets a reference to the given []SLOHistoryMetricsSeriesMetadataUnit and assigns it to the Unit field.

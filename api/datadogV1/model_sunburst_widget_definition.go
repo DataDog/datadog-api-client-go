@@ -75,11 +75,7 @@ func (o *SunburstWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -107,11 +103,7 @@ func (o *SunburstWidgetDefinition) GetHideTotalOk() (*bool, bool) {
 
 // HasHideTotal returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasHideTotal() bool {
-	if o != nil && o.HideTotal != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HideTotal != nil
 }
 
 // SetHideTotal gets a reference to the given bool and assigns it to the HideTotal field.
@@ -139,11 +131,7 @@ func (o *SunburstWidgetDefinition) GetLegendOk() (*SunburstWidgetLegend, bool) {
 
 // HasLegend returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasLegend() bool {
-	if o != nil && o.Legend != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Legend != nil
 }
 
 // SetLegend gets a reference to the given SunburstWidgetLegend and assigns it to the Legend field.
@@ -194,11 +182,7 @@ func (o *SunburstWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -226,11 +210,7 @@ func (o *SunburstWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -258,11 +238,7 @@ func (o *SunburstWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -290,11 +266,7 @@ func (o *SunburstWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *SunburstWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

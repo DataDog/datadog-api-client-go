@@ -56,11 +56,7 @@ func (o *EventResponse) GetEventOk() (*Event, bool) {
 
 // HasEvent returns a boolean if a field has been set.
 func (o *EventResponse) HasEvent() bool {
-	if o != nil && o.Event != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Event != nil
 }
 
 // SetEvent gets a reference to the given Event and assigns it to the Event field.
@@ -88,11 +84,7 @@ func (o *EventResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EventResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.

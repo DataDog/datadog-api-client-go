@@ -76,11 +76,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetCustomHeadersOk() (*string, bool) 
 
 // HasCustomHeaders returns a boolean if a field has been set.
 func (o *WebhooksIntegrationUpdateRequest) HasCustomHeaders() bool {
-	if o != nil && o.CustomHeaders != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomHeaders != nil
 }
 
 // SetCustomHeaders gets a reference to the given string and assigns it to the CustomHeaders field.
@@ -108,11 +104,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetEncodeAsOk() (*WebhooksIntegration
 
 // HasEncodeAs returns a boolean if a field has been set.
 func (o *WebhooksIntegrationUpdateRequest) HasEncodeAs() bool {
-	if o != nil && o.EncodeAs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EncodeAs != nil
 }
 
 // SetEncodeAs gets a reference to the given WebhooksIntegrationEncoding and assigns it to the EncodeAs field.
@@ -140,11 +132,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *WebhooksIntegrationUpdateRequest) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -173,11 +161,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetPayloadOk() (*string, bool) {
 
 // HasPayload returns a boolean if a field has been set.
 func (o *WebhooksIntegrationUpdateRequest) HasPayload() bool {
-	if o != nil && o.Payload.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Payload.IsSet()
 }
 
 // SetPayload gets a reference to the given datadog.NullableString and assigns it to the Payload field.
@@ -215,11 +199,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *WebhooksIntegrationUpdateRequest) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

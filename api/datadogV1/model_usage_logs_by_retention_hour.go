@@ -64,11 +64,7 @@ func (o *UsageLogsByRetentionHour) GetIndexedEventsCountOk() (*int64, bool) {
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasIndexedEventsCount() bool {
-	if o != nil && o.IndexedEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexedEventsCount != nil
 }
 
 // SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
@@ -96,11 +92,7 @@ func (o *UsageLogsByRetentionHour) GetLiveIndexedEventsCountOk() (*int64, bool) 
 
 // HasLiveIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasLiveIndexedEventsCount() bool {
-	if o != nil && o.LiveIndexedEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LiveIndexedEventsCount != nil
 }
 
 // SetLiveIndexedEventsCount gets a reference to the given int64 and assigns it to the LiveIndexedEventsCount field.
@@ -128,11 +120,7 @@ func (o *UsageLogsByRetentionHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -160,11 +148,7 @@ func (o *UsageLogsByRetentionHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -192,11 +176,7 @@ func (o *UsageLogsByRetentionHour) GetRehydratedIndexedEventsCountOk() (*int64, 
 
 // HasRehydratedIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasRehydratedIndexedEventsCount() bool {
-	if o != nil && o.RehydratedIndexedEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RehydratedIndexedEventsCount != nil
 }
 
 // SetRehydratedIndexedEventsCount gets a reference to the given int64 and assigns it to the RehydratedIndexedEventsCount field.
@@ -224,11 +204,7 @@ func (o *UsageLogsByRetentionHour) GetRetentionOk() (*string, bool) {
 
 // HasRetention returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasRetention() bool {
-	if o != nil && o.Retention != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retention != nil
 }
 
 // SetRetention gets a reference to the given string and assigns it to the Retention field.

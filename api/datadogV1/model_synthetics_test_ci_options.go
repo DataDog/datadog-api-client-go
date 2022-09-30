@@ -54,11 +54,7 @@ func (o *SyntheticsTestCiOptions) GetExecutionRuleOk() (*SyntheticsTestExecution
 
 // HasExecutionRule returns a boolean if a field has been set.
 func (o *SyntheticsTestCiOptions) HasExecutionRule() bool {
-	if o != nil && o.ExecutionRule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExecutionRule != nil
 }
 
 // SetExecutionRule gets a reference to the given SyntheticsTestExecutionRule and assigns it to the ExecutionRule field.

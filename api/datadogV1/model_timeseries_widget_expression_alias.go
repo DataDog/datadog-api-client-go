@@ -58,11 +58,7 @@ func (o *TimeseriesWidgetExpressionAlias) GetAliasNameOk() (*string, bool) {
 
 // HasAliasName returns a boolean if a field has been set.
 func (o *TimeseriesWidgetExpressionAlias) HasAliasName() bool {
-	if o != nil && o.AliasName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AliasName != nil
 }
 
 // SetAliasName gets a reference to the given string and assigns it to the AliasName field.

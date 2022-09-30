@@ -54,11 +54,7 @@ func (o *ApiKeyResponse) GetApiKeyOk() (*ApiKey, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *ApiKeyResponse) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiKey != nil
 }
 
 // SetApiKey gets a reference to the given ApiKey and assigns it to the ApiKey field.

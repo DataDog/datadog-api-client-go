@@ -88,11 +88,7 @@ func (o *IncidentCreateAttributes) GetFieldsOk() (*map[string]IncidentFieldAttri
 
 // HasFields returns a boolean if a field has been set.
 func (o *IncidentCreateAttributes) HasFields() bool {
-	if o != nil && o.Fields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fields != nil
 }
 
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
@@ -120,11 +116,7 @@ func (o *IncidentCreateAttributes) GetInitialCellsOk() (*[]IncidentTimelineCellC
 
 // HasInitialCells returns a boolean if a field has been set.
 func (o *IncidentCreateAttributes) HasInitialCells() bool {
-	if o != nil && o.InitialCells != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InitialCells != nil
 }
 
 // SetInitialCells gets a reference to the given []IncidentTimelineCellCreateAttributes and assigns it to the InitialCells field.
@@ -152,11 +144,7 @@ func (o *IncidentCreateAttributes) GetNotificationHandlesOk() (*[]IncidentNotifi
 
 // HasNotificationHandles returns a boolean if a field has been set.
 func (o *IncidentCreateAttributes) HasNotificationHandles() bool {
-	if o != nil && o.NotificationHandles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotificationHandles != nil
 }
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.

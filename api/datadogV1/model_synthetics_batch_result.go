@@ -72,11 +72,7 @@ func (o *SyntheticsBatchResult) GetDeviceOk() (*SyntheticsDeviceID, bool) {
 
 // HasDevice returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasDevice() bool {
-	if o != nil && o.Device != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Device != nil
 }
 
 // SetDevice gets a reference to the given SyntheticsDeviceID and assigns it to the Device field.
@@ -104,11 +100,7 @@ func (o *SyntheticsBatchResult) GetDurationOk() (*float64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given float64 and assigns it to the Duration field.
@@ -136,11 +128,7 @@ func (o *SyntheticsBatchResult) GetExecutionRuleOk() (*SyntheticsTestExecutionRu
 
 // HasExecutionRule returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasExecutionRule() bool {
-	if o != nil && o.ExecutionRule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExecutionRule != nil
 }
 
 // SetExecutionRule gets a reference to the given SyntheticsTestExecutionRule and assigns it to the ExecutionRule field.
@@ -168,11 +156,7 @@ func (o *SyntheticsBatchResult) GetLocationOk() (*string, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasLocation() bool {
-	if o != nil && o.Location != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Location != nil
 }
 
 // SetLocation gets a reference to the given string and assigns it to the Location field.
@@ -200,11 +184,7 @@ func (o *SyntheticsBatchResult) GetResultIdOk() (*string, bool) {
 
 // HasResultId returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasResultId() bool {
-	if o != nil && o.ResultId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResultId != nil
 }
 
 // SetResultId gets a reference to the given string and assigns it to the ResultId field.
@@ -232,11 +212,7 @@ func (o *SyntheticsBatchResult) GetRetriesOk() (*float64, bool) {
 
 // HasRetries returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasRetries() bool {
-	if o != nil && o.Retries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retries != nil
 }
 
 // SetRetries gets a reference to the given float64 and assigns it to the Retries field.
@@ -264,11 +240,7 @@ func (o *SyntheticsBatchResult) GetStatusOk() (*SyntheticsStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsStatus and assigns it to the Status field.
@@ -296,11 +268,7 @@ func (o *SyntheticsBatchResult) GetTestNameOk() (*string, bool) {
 
 // HasTestName returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasTestName() bool {
-	if o != nil && o.TestName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TestName != nil
 }
 
 // SetTestName gets a reference to the given string and assigns it to the TestName field.
@@ -328,11 +296,7 @@ func (o *SyntheticsBatchResult) GetTestPublicIdOk() (*string, bool) {
 
 // HasTestPublicId returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasTestPublicId() bool {
-	if o != nil && o.TestPublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TestPublicId != nil
 }
 
 // SetTestPublicId gets a reference to the given string and assigns it to the TestPublicId field.
@@ -360,11 +324,7 @@ func (o *SyntheticsBatchResult) GetTestTypeOk() (*SyntheticsTestDetailsType, boo
 
 // HasTestType returns a boolean if a field has been set.
 func (o *SyntheticsBatchResult) HasTestType() bool {
-	if o != nil && o.TestType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TestType != nil
 }
 
 // SetTestType gets a reference to the given SyntheticsTestDetailsType and assigns it to the TestType field.

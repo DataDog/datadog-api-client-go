@@ -54,11 +54,7 @@ func (o *ApplicationKeyListResponse) GetApplicationKeysOk() (*[]ApplicationKey, 
 
 // HasApplicationKeys returns a boolean if a field has been set.
 func (o *ApplicationKeyListResponse) HasApplicationKeys() bool {
-	if o != nil && o.ApplicationKeys != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApplicationKeys != nil
 }
 
 // SetApplicationKeys gets a reference to the given []ApplicationKey and assigns it to the ApplicationKeys field.

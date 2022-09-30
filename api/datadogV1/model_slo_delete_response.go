@@ -56,11 +56,7 @@ func (o *SLODeleteResponse) GetDataOk() (*[]string, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SLODeleteResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []string and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *SLODeleteResponse) GetErrorsOk() (*map[string]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *SLODeleteResponse) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given map[string]string and assigns it to the Errors field.

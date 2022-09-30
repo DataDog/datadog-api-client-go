@@ -62,11 +62,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetFieldOk() (*string, bool) 
 
 // HasField returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) HasField() bool {
-	if o != nil && o.Field != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Field != nil
 }
 
 // SetField gets a reference to the given string and assigns it to the Field field.
@@ -94,11 +90,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetLocalVariableNameOk() (*st
 
 // HasLocalVariableName returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) HasLocalVariableName() bool {
-	if o != nil && o.LocalVariableName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LocalVariableName != nil
 }
 
 // SetLocalVariableName gets a reference to the given string and assigns it to the LocalVariableName field.
@@ -126,11 +118,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVar
 
 // HasParser returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) HasParser() bool {
-	if o != nil && o.Parser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Parser != nil
 }
 
 // SetParser gets a reference to the given SyntheticsVariableParser and assigns it to the Parser field.

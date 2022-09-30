@@ -77,11 +77,7 @@ func (o *NotebookResponseDataAttributes) GetAuthorOk() (*NotebookAuthor, bool) {
 
 // HasAuthor returns a boolean if a field has been set.
 func (o *NotebookResponseDataAttributes) HasAuthor() bool {
-	if o != nil && o.Author != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Author != nil
 }
 
 // SetAuthor gets a reference to the given NotebookAuthor and assigns it to the Author field.
@@ -132,11 +128,7 @@ func (o *NotebookResponseDataAttributes) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *NotebookResponseDataAttributes) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -164,11 +156,7 @@ func (o *NotebookResponseDataAttributes) GetMetadataOk() (*NotebookMetadata, boo
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *NotebookResponseDataAttributes) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given NotebookMetadata and assigns it to the Metadata field.
@@ -196,11 +184,7 @@ func (o *NotebookResponseDataAttributes) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *NotebookResponseDataAttributes) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -251,11 +235,7 @@ func (o *NotebookResponseDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NotebookResponseDataAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given NotebookStatus and assigns it to the Status field.
