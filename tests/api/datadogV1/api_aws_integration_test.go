@@ -20,7 +20,7 @@ import (
 )
 
 func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadogV1.AWSAccount {
-	accountID := fmt.Sprintf("AC%d", tests.ClockFromContext(ctx).Now().Unix())
+	accountID := fmt.Sprintf("00%d", tests.ClockFromContext(ctx).Now().Unix())
 	return datadogV1.AWSAccount{
 		AccountId:                     datadog.PtrString(accountID[:12]),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),

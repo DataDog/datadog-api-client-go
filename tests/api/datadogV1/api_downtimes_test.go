@@ -436,8 +436,8 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 
 	// Endpoint will 400 if there are too many tags
 	badDowntime := *datadogV1.NewDowntimeWithDefaults()
-	tags := make([]string, 50)
-	for i := 0; i < 50; i++ {
+	tags := make([]string, 100)
+	for i := 0; i < 100; i++ {
 		tags[i] = fmt.Sprintf("tag%d", i)
 	}
 	badDowntime.MonitorTags = tags
