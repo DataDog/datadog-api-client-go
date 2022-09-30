@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"AC1654245264","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"001664524053","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
@@ -13,13 +13,13 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
       X-Datadog-Parent-Id:
-      - "4851928201328866770"
+      - "4603773220550552921"
       X-Datadog-Sampling-Priority:
       - "2"
       X-Datadog-Trace-Id:
-      - "8782287781421081521"
+      - "8950770792045257138"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 03 Jun 2022 08:34:25 GMT
+      - Fri, 30 Sep 2022 07:47:34 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -48,9 +48,9 @@ interactions:
       X-Ratelimit-Period:
       - "60"
       X-Ratelimit-Remaining:
-      - "11994"
+      - "11996"
       X-Ratelimit-Reset:
-      - "35"
+      - "26"
     status: 409 Conflict
     code: 409
     duration: ""
