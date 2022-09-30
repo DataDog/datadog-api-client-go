@@ -91,11 +91,7 @@ func (o *SyntheticsPrivateLocation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -123,11 +119,7 @@ func (o *SyntheticsPrivateLocation) GetMetadataOk() (*SyntheticsPrivateLocationM
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SyntheticsPrivateLocationMetadata and assigns it to the Metadata field.
@@ -178,11 +170,7 @@ func (o *SyntheticsPrivateLocation) GetSecretsOk() (*SyntheticsPrivateLocationSe
 
 // HasSecrets returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasSecrets() bool {
-	if o != nil && o.Secrets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Secrets != nil
 }
 
 // SetSecrets gets a reference to the given SyntheticsPrivateLocationSecrets and assigns it to the Secrets field.

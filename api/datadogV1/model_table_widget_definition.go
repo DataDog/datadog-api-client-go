@@ -73,11 +73,7 @@ func (o *TableWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) {
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -105,11 +101,7 @@ func (o *TableWidgetDefinition) GetHasSearchBarOk() (*TableWidgetHasSearchBar, b
 
 // HasHasSearchBar returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasHasSearchBar() bool {
-	if o != nil && o.HasSearchBar != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasSearchBar != nil
 }
 
 // SetHasSearchBar gets a reference to the given TableWidgetHasSearchBar and assigns it to the HasSearchBar field.
@@ -160,11 +152,7 @@ func (o *TableWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -192,11 +180,7 @@ func (o *TableWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -224,11 +208,7 @@ func (o *TableWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -256,11 +236,7 @@ func (o *TableWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *TableWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

@@ -58,11 +58,7 @@ func (o *SLOCreator) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *SLOCreator) HasEmail() bool {
-	if o != nil && o.Email != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Email != nil
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
@@ -90,11 +86,7 @@ func (o *SLOCreator) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SLOCreator) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -122,11 +114,7 @@ func (o *SLOCreator) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SLOCreator) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

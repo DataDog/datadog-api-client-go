@@ -62,11 +62,7 @@ func (o *IncidentAttachmentUpdateData) GetAttributesOk() (*IncidentAttachmentUpd
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *IncidentAttachmentUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given IncidentAttachmentUpdateAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *IncidentAttachmentUpdateData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IncidentAttachmentUpdateData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.

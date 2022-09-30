@@ -62,11 +62,7 @@ func (o *MetricIngestedIndexedVolume) GetAttributesOk() (*MetricIngestedIndexedV
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolume) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given MetricIngestedIndexedVolumeAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *MetricIngestedIndexedVolume) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolume) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -126,11 +118,7 @@ func (o *MetricIngestedIndexedVolume) GetTypeOk() (*MetricIngestedIndexedVolumeT
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricIngestedIndexedVolume) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MetricIngestedIndexedVolumeType and assigns it to the Type field.

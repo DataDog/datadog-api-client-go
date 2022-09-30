@@ -94,11 +94,7 @@ func (o *EventTimelineWidgetDefinition) GetTagsExecutionOk() (*string, bool) {
 
 // HasTagsExecution returns a boolean if a field has been set.
 func (o *EventTimelineWidgetDefinition) HasTagsExecution() bool {
-	if o != nil && o.TagsExecution != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagsExecution != nil
 }
 
 // SetTagsExecution gets a reference to the given string and assigns it to the TagsExecution field.
@@ -126,11 +122,7 @@ func (o *EventTimelineWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *EventTimelineWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -158,11 +150,7 @@ func (o *EventTimelineWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *EventTimelineWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -190,11 +178,7 @@ func (o *EventTimelineWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, boo
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *EventTimelineWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -222,11 +206,7 @@ func (o *EventTimelineWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *EventTimelineWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.

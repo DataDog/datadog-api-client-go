@@ -66,11 +66,7 @@ func (o *SyntheticsSSLCertificateSubject) GetCOk() (*string, bool) {
 
 // HasC returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasC() bool {
-	if o != nil && o.C != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.C != nil
 }
 
 // SetC gets a reference to the given string and assigns it to the C field.
@@ -98,11 +94,7 @@ func (o *SyntheticsSSLCertificateSubject) GetCnOk() (*string, bool) {
 
 // HasCn returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasCn() bool {
-	if o != nil && o.Cn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cn != nil
 }
 
 // SetCn gets a reference to the given string and assigns it to the Cn field.
@@ -130,11 +122,7 @@ func (o *SyntheticsSSLCertificateSubject) GetLOk() (*string, bool) {
 
 // HasL returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasL() bool {
-	if o != nil && o.L != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.L != nil
 }
 
 // SetL gets a reference to the given string and assigns it to the L field.
@@ -162,11 +150,7 @@ func (o *SyntheticsSSLCertificateSubject) GetOOk() (*string, bool) {
 
 // HasO returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasO() bool {
-	if o != nil && o.O != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.O != nil
 }
 
 // SetO gets a reference to the given string and assigns it to the O field.
@@ -194,11 +178,7 @@ func (o *SyntheticsSSLCertificateSubject) GetOuOk() (*string, bool) {
 
 // HasOu returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasOu() bool {
-	if o != nil && o.Ou != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ou != nil
 }
 
 // SetOu gets a reference to the given string and assigns it to the Ou field.
@@ -226,11 +206,7 @@ func (o *SyntheticsSSLCertificateSubject) GetStOk() (*string, bool) {
 
 // HasSt returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasSt() bool {
-	if o != nil && o.St != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.St != nil
 }
 
 // SetSt gets a reference to the given string and assigns it to the St field.
@@ -258,11 +234,7 @@ func (o *SyntheticsSSLCertificateSubject) GetAltNameOk() (*string, bool) {
 
 // HasAltName returns a boolean if a field has been set.
 func (o *SyntheticsSSLCertificateSubject) HasAltName() bool {
-	if o != nil && o.AltName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AltName != nil
 }
 
 // SetAltName gets a reference to the given string and assigns it to the AltName field.

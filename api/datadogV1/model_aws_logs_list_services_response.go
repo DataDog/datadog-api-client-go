@@ -56,11 +56,7 @@ func (o *AWSLogsListServicesResponse) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *AWSLogsListServicesResponse) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -88,11 +84,7 @@ func (o *AWSLogsListServicesResponse) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *AWSLogsListServicesResponse) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Label != nil
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.

@@ -116,11 +116,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]FormulaAndFu
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []FormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
@@ -148,11 +144,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]string, bool
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -203,11 +195,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetSearchOk() (*FormulaAndFunct
 
 // HasSearch returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasSearch() bool {
-	if o != nil && o.Search != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Search != nil
 }
 
 // SetSearch gets a reference to the given FormulaAndFunctionEventQueryDefinitionSearch and assigns it to the Search field.
@@ -235,11 +223,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetStorageOk() (*string, bool) 
 
 // HasStorage returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasStorage() bool {
-	if o != nil && o.Storage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Storage != nil
 }
 
 // SetStorage gets a reference to the given string and assigns it to the Storage field.

@@ -58,11 +58,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetEmailsOk() (*[]string, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigStatusAttributes) HasEmails() bool {
-	if o != nil && o.Emails != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Emails != nil
 }
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
@@ -90,11 +86,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigStatusAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
@@ -122,11 +114,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigStatusAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

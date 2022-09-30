@@ -126,11 +126,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetIsUpstreamOk() 
 
 // HasIsUpstream returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasIsUpstream() bool {
-	if o != nil && o.IsUpstream != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsUpstream != nil
 }
 
 // SetIsUpstream gets a reference to the given bool and assigns it to the IsUpstream field.
@@ -204,11 +200,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetPrimaryTagNameO
 
 // HasPrimaryTagName returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasPrimaryTagName() bool {
-	if o != nil && o.PrimaryTagName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagName != nil
 }
 
 // SetPrimaryTagName gets a reference to the given string and assigns it to the PrimaryTagName field.
@@ -236,11 +228,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetPrimaryTagValue
 
 // HasPrimaryTagValue returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasPrimaryTagValue() bool {
-	if o != nil && o.PrimaryTagValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagValue != nil
 }
 
 // SetPrimaryTagValue gets a reference to the given string and assigns it to the PrimaryTagValue field.

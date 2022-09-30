@@ -66,11 +66,7 @@ func (o *SecurityFilterAttributes) GetExclusionFiltersOk() (*[]SecurityFilterExc
 
 // HasExclusionFilters returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasExclusionFilters() bool {
-	if o != nil && o.ExclusionFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExclusionFilters != nil
 }
 
 // SetExclusionFilters gets a reference to the given []SecurityFilterExclusionFilterResponse and assigns it to the ExclusionFilters field.
@@ -98,11 +94,7 @@ func (o *SecurityFilterAttributes) GetFilteredDataTypeOk() (*SecurityFilterFilte
 
 // HasFilteredDataType returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasFilteredDataType() bool {
-	if o != nil && o.FilteredDataType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FilteredDataType != nil
 }
 
 // SetFilteredDataType gets a reference to the given SecurityFilterFilteredDataType and assigns it to the FilteredDataType field.
@@ -130,11 +122,7 @@ func (o *SecurityFilterAttributes) GetIsBuiltinOk() (*bool, bool) {
 
 // HasIsBuiltin returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasIsBuiltin() bool {
-	if o != nil && o.IsBuiltin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsBuiltin != nil
 }
 
 // SetIsBuiltin gets a reference to the given bool and assigns it to the IsBuiltin field.
@@ -162,11 +150,7 @@ func (o *SecurityFilterAttributes) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -194,11 +178,7 @@ func (o *SecurityFilterAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -226,11 +206,7 @@ func (o *SecurityFilterAttributes) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -258,11 +234,7 @@ func (o *SecurityFilterAttributes) GetVersionOk() (*int32, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SecurityFilterAttributes) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int32 and assigns it to the Version field.

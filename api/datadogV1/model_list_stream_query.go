@@ -88,11 +88,7 @@ func (o *ListStreamQuery) GetIndexesOk() (*[]string, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *ListStreamQuery) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -143,11 +139,7 @@ func (o *ListStreamQuery) GetStorageOk() (*string, bool) {
 
 // HasStorage returns a boolean if a field has been set.
 func (o *ListStreamQuery) HasStorage() bool {
-	if o != nil && o.Storage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Storage != nil
 }
 
 // SetStorage gets a reference to the given string and assigns it to the Storage field.

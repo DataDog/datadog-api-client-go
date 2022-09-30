@@ -96,11 +96,7 @@ func (o *AlertValueWidgetDefinition) GetPrecisionOk() (*int64, bool) {
 
 // HasPrecision returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Precision != nil
 }
 
 // SetPrecision gets a reference to the given int64 and assigns it to the Precision field.
@@ -128,11 +124,7 @@ func (o *AlertValueWidgetDefinition) GetTextAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTextAlign returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasTextAlign() bool {
-	if o != nil && o.TextAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TextAlign != nil
 }
 
 // SetTextAlign gets a reference to the given WidgetTextAlign and assigns it to the TextAlign field.
@@ -160,11 +152,7 @@ func (o *AlertValueWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -192,11 +180,7 @@ func (o *AlertValueWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) 
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -224,11 +208,7 @@ func (o *AlertValueWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -279,11 +259,7 @@ func (o *AlertValueWidgetDefinition) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *AlertValueWidgetDefinition) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unit != nil
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.

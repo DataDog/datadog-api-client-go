@@ -62,11 +62,7 @@ func (o *SyntheticsBrowserTestResultShortResult) GetDeviceOk() (*SyntheticsDevic
 
 // HasDevice returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShortResult) HasDevice() bool {
-	if o != nil && o.Device != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Device != nil
 }
 
 // SetDevice gets a reference to the given SyntheticsDevice and assigns it to the Device field.
@@ -94,11 +90,7 @@ func (o *SyntheticsBrowserTestResultShortResult) GetDurationOk() (*float64, bool
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShortResult) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given float64 and assigns it to the Duration field.
@@ -126,11 +118,7 @@ func (o *SyntheticsBrowserTestResultShortResult) GetErrorCountOk() (*int64, bool
 
 // HasErrorCount returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShortResult) HasErrorCount() bool {
-	if o != nil && o.ErrorCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ErrorCount != nil
 }
 
 // SetErrorCount gets a reference to the given int64 and assigns it to the ErrorCount field.
@@ -158,11 +146,7 @@ func (o *SyntheticsBrowserTestResultShortResult) GetStepCountCompletedOk() (*int
 
 // HasStepCountCompleted returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShortResult) HasStepCountCompleted() bool {
-	if o != nil && o.StepCountCompleted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StepCountCompleted != nil
 }
 
 // SetStepCountCompleted gets a reference to the given int64 and assigns it to the StepCountCompleted field.
@@ -190,11 +174,7 @@ func (o *SyntheticsBrowserTestResultShortResult) GetStepCountTotalOk() (*int64, 
 
 // HasStepCountTotal returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestResultShortResult) HasStepCountTotal() bool {
-	if o != nil && o.StepCountTotal != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StepCountTotal != nil
 }
 
 // SetStepCountTotal gets a reference to the given int64 and assigns it to the StepCountTotal field.

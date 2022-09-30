@@ -67,11 +67,7 @@ func (o *PermissionAttributes) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -99,11 +95,7 @@ func (o *PermissionAttributes) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -131,11 +123,7 @@ func (o *PermissionAttributes) GetDisplayNameOk() (*string, bool) {
 
 // HasDisplayName returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasDisplayName() bool {
-	if o != nil && o.DisplayName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayName != nil
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
@@ -163,11 +151,7 @@ func (o *PermissionAttributes) GetDisplayTypeOk() (*string, bool) {
 
 // HasDisplayType returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasDisplayType() bool {
-	if o != nil && o.DisplayType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayType != nil
 }
 
 // SetDisplayType gets a reference to the given string and assigns it to the DisplayType field.
@@ -195,11 +179,7 @@ func (o *PermissionAttributes) GetGroupNameOk() (*string, bool) {
 
 // HasGroupName returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasGroupName() bool {
-	if o != nil && o.GroupName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupName != nil
 }
 
 // SetGroupName gets a reference to the given string and assigns it to the GroupName field.
@@ -227,11 +207,7 @@ func (o *PermissionAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -259,11 +235,7 @@ func (o *PermissionAttributes) GetRestrictedOk() (*bool, bool) {
 
 // HasRestricted returns a boolean if a field has been set.
 func (o *PermissionAttributes) HasRestricted() bool {
-	if o != nil && o.Restricted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Restricted != nil
 }
 
 // SetRestricted gets a reference to the given bool and assigns it to the Restricted field.

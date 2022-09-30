@@ -58,11 +58,7 @@ func (o *TopologyQuery) GetDataSourceOk() (*TopologyQueryDataSource, bool) {
 
 // HasDataSource returns a boolean if a field has been set.
 func (o *TopologyQuery) HasDataSource() bool {
-	if o != nil && o.DataSource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DataSource != nil
 }
 
 // SetDataSource gets a reference to the given TopologyQueryDataSource and assigns it to the DataSource field.
@@ -90,11 +86,7 @@ func (o *TopologyQuery) GetFiltersOk() (*[]string, bool) {
 
 // HasFilters returns a boolean if a field has been set.
 func (o *TopologyQuery) HasFilters() bool {
-	if o != nil && o.Filters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filters != nil
 }
 
 // SetFilters gets a reference to the given []string and assigns it to the Filters field.
@@ -122,11 +114,7 @@ func (o *TopologyQuery) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *TopologyQuery) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.

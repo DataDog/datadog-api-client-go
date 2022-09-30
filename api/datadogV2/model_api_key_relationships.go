@@ -56,11 +56,7 @@ func (o *APIKeyRelationships) GetCreatedByOk() (*RelationshipToUser, bool) {
 
 // HasCreatedBy returns a boolean if a field has been set.
 func (o *APIKeyRelationships) HasCreatedBy() bool {
-	if o != nil && o.CreatedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedBy != nil
 }
 
 // SetCreatedBy gets a reference to the given RelationshipToUser and assigns it to the CreatedBy field.
@@ -88,11 +84,7 @@ func (o *APIKeyRelationships) GetModifiedByOk() (*RelationshipToUser, bool) {
 
 // HasModifiedBy returns a boolean if a field has been set.
 func (o *APIKeyRelationships) HasModifiedBy() bool {
-	if o != nil && o.ModifiedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedBy != nil
 }
 
 // SetModifiedBy gets a reference to the given RelationshipToUser and assigns it to the ModifiedBy field.

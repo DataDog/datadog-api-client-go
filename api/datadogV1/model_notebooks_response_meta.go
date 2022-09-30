@@ -54,11 +54,7 @@ func (o *NotebooksResponseMeta) GetPageOk() (*NotebooksResponsePage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *NotebooksResponseMeta) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given NotebooksResponsePage and assigns it to the Page field.

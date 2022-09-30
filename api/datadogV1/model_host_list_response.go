@@ -58,11 +58,7 @@ func (o *HostListResponse) GetHostListOk() (*[]Host, bool) {
 
 // HasHostList returns a boolean if a field has been set.
 func (o *HostListResponse) HasHostList() bool {
-	if o != nil && o.HostList != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostList != nil
 }
 
 // SetHostList gets a reference to the given []Host and assigns it to the HostList field.
@@ -90,11 +86,7 @@ func (o *HostListResponse) GetTotalMatchingOk() (*int64, bool) {
 
 // HasTotalMatching returns a boolean if a field has been set.
 func (o *HostListResponse) HasTotalMatching() bool {
-	if o != nil && o.TotalMatching != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalMatching != nil
 }
 
 // SetTotalMatching gets a reference to the given int64 and assigns it to the TotalMatching field.
@@ -122,11 +114,7 @@ func (o *HostListResponse) GetTotalReturnedOk() (*int64, bool) {
 
 // HasTotalReturned returns a boolean if a field has been set.
 func (o *HostListResponse) HasTotalReturned() bool {
-	if o != nil && o.TotalReturned != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalReturned != nil
 }
 
 // SetTotalReturned gets a reference to the given int64 and assigns it to the TotalReturned field.

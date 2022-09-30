@@ -64,11 +64,7 @@ func (o *OrganizationCreateBody) GetBillingOk() (*OrganizationBilling, bool) {
 
 // HasBilling returns a boolean if a field has been set.
 func (o *OrganizationCreateBody) HasBilling() bool {
-	if o != nil && o.Billing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Billing != nil
 }
 
 // SetBilling gets a reference to the given OrganizationBilling and assigns it to the Billing field.
@@ -122,11 +118,7 @@ func (o *OrganizationCreateBody) GetSubscriptionOk() (*OrganizationSubscription,
 
 // HasSubscription returns a boolean if a field has been set.
 func (o *OrganizationCreateBody) HasSubscription() bool {
-	if o != nil && o.Subscription != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subscription != nil
 }
 
 // SetSubscription gets a reference to the given OrganizationSubscription and assigns it to the Subscription field.

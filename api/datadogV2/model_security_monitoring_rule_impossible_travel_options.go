@@ -55,11 +55,7 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) GetBaselineUserLocations
 
 // HasBaselineUserLocations returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleImpossibleTravelOptions) HasBaselineUserLocations() bool {
-	if o != nil && o.BaselineUserLocations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BaselineUserLocations != nil
 }
 
 // SetBaselineUserLocations gets a reference to the given bool and assigns it to the BaselineUserLocations field.

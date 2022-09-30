@@ -153,11 +153,7 @@ func (o *SyntheticsBrowserTest) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
@@ -231,11 +227,7 @@ func (o *SyntheticsBrowserTest) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -263,11 +255,7 @@ func (o *SyntheticsBrowserTest) GetStatusOk() (*SyntheticsTestPauseStatus, bool)
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
@@ -295,11 +283,7 @@ func (o *SyntheticsBrowserTest) GetStepsOk() (*[]SyntheticsStep, bool) {
 
 // HasSteps returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasSteps() bool {
-	if o != nil && o.Steps != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Steps != nil
 }
 
 // SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
@@ -327,11 +311,7 @@ func (o *SyntheticsBrowserTest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

@@ -73,11 +73,7 @@ func (o *HourlyUsageAttributionBody) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -105,11 +101,7 @@ func (o *HourlyUsageAttributionBody) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -137,11 +129,7 @@ func (o *HourlyUsageAttributionBody) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -169,11 +157,7 @@ func (o *HourlyUsageAttributionBody) GetTagConfigSourceOk() (*string, bool) {
 
 // HasTagConfigSource returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasTagConfigSource() bool {
-	if o != nil && o.TagConfigSource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagConfigSource != nil
 }
 
 // SetTagConfigSource gets a reference to the given string and assigns it to the TagConfigSource field.
@@ -201,11 +185,7 @@ func (o *HourlyUsageAttributionBody) GetTagsOk() (*map[string][]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given map[string][]string and assigns it to the Tags field.
@@ -233,11 +213,7 @@ func (o *HourlyUsageAttributionBody) GetTotalUsageSumOk() (*float64, bool) {
 
 // HasTotalUsageSum returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasTotalUsageSum() bool {
-	if o != nil && o.TotalUsageSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalUsageSum != nil
 }
 
 // SetTotalUsageSum gets a reference to the given float64 and assigns it to the TotalUsageSum field.
@@ -265,11 +241,7 @@ func (o *HourlyUsageAttributionBody) GetUpdatedAtOk() (*string, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
@@ -297,11 +269,7 @@ func (o *HourlyUsageAttributionBody) GetUsageTypeOk() (*HourlyUsageAttributionUs
 
 // HasUsageType returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasUsageType() bool {
-	if o != nil && o.UsageType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UsageType != nil
 }
 
 // SetUsageType gets a reference to the given HourlyUsageAttributionUsageType and assigns it to the UsageType field.

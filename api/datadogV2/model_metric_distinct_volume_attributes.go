@@ -54,11 +54,7 @@ func (o *MetricDistinctVolumeAttributes) GetDistinctVolumeOk() (*int64, bool) {
 
 // HasDistinctVolume returns a boolean if a field has been set.
 func (o *MetricDistinctVolumeAttributes) HasDistinctVolume() bool {
-	if o != nil && o.DistinctVolume != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DistinctVolume != nil
 }
 
 // SetDistinctVolume gets a reference to the given int64 and assigns it to the DistinctVolume field.

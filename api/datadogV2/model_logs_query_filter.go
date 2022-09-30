@@ -72,11 +72,7 @@ func (o *LogsQueryFilter) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *LogsQueryFilter) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
@@ -104,11 +100,7 @@ func (o *LogsQueryFilter) GetIndexesOk() (*[]string, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *LogsQueryFilter) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -136,11 +128,7 @@ func (o *LogsQueryFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *LogsQueryFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -168,11 +156,7 @@ func (o *LogsQueryFilter) GetToOk() (*string, bool) {
 
 // HasTo returns a boolean if a field has been set.
 func (o *LogsQueryFilter) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given string and assigns it to the To field.

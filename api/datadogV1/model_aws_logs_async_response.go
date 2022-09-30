@@ -56,11 +56,7 @@ func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *AWSLogsAsyncResponse) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []AWSLogsAsyncError and assigns it to the Errors field.
@@ -88,11 +84,7 @@ func (o *AWSLogsAsyncResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AWSLogsAsyncResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.

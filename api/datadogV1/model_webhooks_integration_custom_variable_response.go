@@ -108,11 +108,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetValueOk() (*string, bool)
 
 // HasValue returns a boolean if a field has been set.
 func (o *WebhooksIntegrationCustomVariableResponse) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.

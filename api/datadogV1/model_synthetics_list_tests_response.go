@@ -54,11 +54,7 @@ func (o *SyntheticsListTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bo
 
 // HasTests returns a boolean if a field has been set.
 func (o *SyntheticsListTestsResponse) HasTests() bool {
-	if o != nil && o.Tests != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tests != nil
 }
 
 // SetTests gets a reference to the given []SyntheticsTestDetails and assigns it to the Tests field.

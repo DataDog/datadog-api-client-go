@@ -86,11 +86,7 @@ func (o *IncidentCreateData) GetRelationshipsOk() (*IncidentCreateRelationships,
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *IncidentCreateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given IncidentCreateRelationships and assigns it to the Relationships field.

@@ -78,11 +78,7 @@ func (o *GroupWidgetDefinition) GetBackgroundColorOk() (*string, bool) {
 
 // HasBackgroundColor returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasBackgroundColor() bool {
-	if o != nil && o.BackgroundColor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BackgroundColor != nil
 }
 
 // SetBackgroundColor gets a reference to the given string and assigns it to the BackgroundColor field.
@@ -110,11 +106,7 @@ func (o *GroupWidgetDefinition) GetBannerImgOk() (*string, bool) {
 
 // HasBannerImg returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasBannerImg() bool {
-	if o != nil && o.BannerImg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BannerImg != nil
 }
 
 // SetBannerImg gets a reference to the given string and assigns it to the BannerImg field.
@@ -165,11 +157,7 @@ func (o *GroupWidgetDefinition) GetShowTitleOk() (*bool, bool) {
 
 // HasShowTitle returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasShowTitle() bool {
-	if o != nil && o.ShowTitle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowTitle != nil
 }
 
 // SetShowTitle gets a reference to the given bool and assigns it to the ShowTitle field.
@@ -197,11 +185,7 @@ func (o *GroupWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -229,11 +213,7 @@ func (o *GroupWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.

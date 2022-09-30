@@ -54,11 +54,7 @@ func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRolesOk() (*[]string, 
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariableAttributes) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.

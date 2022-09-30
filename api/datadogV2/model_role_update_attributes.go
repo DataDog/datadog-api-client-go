@@ -59,11 +59,7 @@ func (o *RoleUpdateAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *RoleUpdateAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -91,11 +87,7 @@ func (o *RoleUpdateAttributes) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *RoleUpdateAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -123,11 +115,7 @@ func (o *RoleUpdateAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *RoleUpdateAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

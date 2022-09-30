@@ -83,11 +83,7 @@ func (o *IncidentTeamsResponse) GetIncludedOk() (*[]IncidentTeamIncludedItems, b
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *IncidentTeamsResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []IncidentTeamIncludedItems and assigns it to the Included field.
@@ -115,11 +111,7 @@ func (o *IncidentTeamsResponse) GetMetaOk() (*IncidentResponseMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *IncidentTeamsResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given IncidentResponseMeta and assigns it to the Meta field.

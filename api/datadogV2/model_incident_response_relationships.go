@@ -62,11 +62,7 @@ func (o *IncidentResponseRelationships) GetAttachmentsOk() (*RelationshipToIncid
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *IncidentResponseRelationships) HasAttachments() bool {
-	if o != nil && o.Attachments != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attachments != nil
 }
 
 // SetAttachments gets a reference to the given RelationshipToIncidentAttachment and assigns it to the Attachments field.
@@ -94,11 +90,7 @@ func (o *IncidentResponseRelationships) GetCommanderUserOk() (*NullableRelations
 
 // HasCommanderUser returns a boolean if a field has been set.
 func (o *IncidentResponseRelationships) HasCommanderUser() bool {
-	if o != nil && o.CommanderUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CommanderUser != nil
 }
 
 // SetCommanderUser gets a reference to the given NullableRelationshipToUser and assigns it to the CommanderUser field.
@@ -126,11 +118,7 @@ func (o *IncidentResponseRelationships) GetCreatedByUserOk() (*RelationshipToUse
 
 // HasCreatedByUser returns a boolean if a field has been set.
 func (o *IncidentResponseRelationships) HasCreatedByUser() bool {
-	if o != nil && o.CreatedByUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedByUser != nil
 }
 
 // SetCreatedByUser gets a reference to the given RelationshipToUser and assigns it to the CreatedByUser field.
@@ -158,11 +146,7 @@ func (o *IncidentResponseRelationships) GetIntegrationsOk() (*RelationshipToInci
 
 // HasIntegrations returns a boolean if a field has been set.
 func (o *IncidentResponseRelationships) HasIntegrations() bool {
-	if o != nil && o.Integrations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Integrations != nil
 }
 
 // SetIntegrations gets a reference to the given RelationshipToIncidentIntegrationMetadatas and assigns it to the Integrations field.
@@ -190,11 +174,7 @@ func (o *IncidentResponseRelationships) GetLastModifiedByUserOk() (*Relationship
 
 // HasLastModifiedByUser returns a boolean if a field has been set.
 func (o *IncidentResponseRelationships) HasLastModifiedByUser() bool {
-	if o != nil && o.LastModifiedByUser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastModifiedByUser != nil
 }
 
 // SetLastModifiedByUser gets a reference to the given RelationshipToUser and assigns it to the LastModifiedByUser field.

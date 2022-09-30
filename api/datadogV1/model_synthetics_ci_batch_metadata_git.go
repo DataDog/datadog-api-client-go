@@ -56,11 +56,7 @@ func (o *SyntheticsCIBatchMetadataGit) GetBranchOk() (*string, bool) {
 
 // HasBranch returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataGit) HasBranch() bool {
-	if o != nil && o.Branch != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Branch != nil
 }
 
 // SetBranch gets a reference to the given string and assigns it to the Branch field.
@@ -88,11 +84,7 @@ func (o *SyntheticsCIBatchMetadataGit) GetCommitShaOk() (*string, bool) {
 
 // HasCommitSha returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataGit) HasCommitSha() bool {
-	if o != nil && o.CommitSha != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CommitSha != nil
 }
 
 // SetCommitSha gets a reference to the given string and assigns it to the CommitSha field.

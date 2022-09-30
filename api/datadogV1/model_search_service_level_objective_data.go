@@ -61,11 +61,7 @@ func (o *SearchServiceLevelObjectiveData) GetAttributesOk() (*SearchServiceLevel
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SearchServiceLevelObjectiveAttributes and assigns it to the Attributes field.
@@ -93,11 +89,7 @@ func (o *SearchServiceLevelObjectiveData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -125,11 +117,7 @@ func (o *SearchServiceLevelObjectiveData) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

@@ -58,11 +58,7 @@ func (o *SecurityMonitoringSignalListRequest) GetFilterOk() (*SecurityMonitoring
 
 // HasFilter returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given SecurityMonitoringSignalListRequestFilter and assigns it to the Filter field.
@@ -90,11 +86,7 @@ func (o *SecurityMonitoringSignalListRequest) GetPageOk() (*SecurityMonitoringSi
 
 // HasPage returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given SecurityMonitoringSignalListRequestPage and assigns it to the Page field.
@@ -122,11 +114,7 @@ func (o *SecurityMonitoringSignalListRequest) GetSortOk() (*SecurityMonitoringSi
 
 // HasSort returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequest) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given SecurityMonitoringSignalsSort and assigns it to the Sort field.

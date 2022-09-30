@@ -54,11 +54,7 @@ func (o *ResponseMetaAttributes) GetPageOk() (*Pagination, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *ResponseMetaAttributes) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given Pagination and assigns it to the Page field.

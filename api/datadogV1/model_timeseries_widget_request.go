@@ -86,11 +86,7 @@ func (o *TimeseriesWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -118,11 +114,7 @@ func (o *TimeseriesWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool) 
 
 // HasAuditQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasAuditQuery() bool {
-	if o != nil && o.AuditQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuditQuery != nil
 }
 
 // SetAuditQuery gets a reference to the given LogQueryDefinition and assigns it to the AuditQuery field.
@@ -150,11 +142,7 @@ func (o *TimeseriesWidgetRequest) GetDisplayTypeOk() (*WidgetDisplayType, bool) 
 
 // HasDisplayType returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasDisplayType() bool {
-	if o != nil && o.DisplayType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayType != nil
 }
 
 // SetDisplayType gets a reference to the given WidgetDisplayType and assigns it to the DisplayType field.
@@ -182,11 +170,7 @@ func (o *TimeseriesWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) 
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -214,11 +198,7 @@ func (o *TimeseriesWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -246,11 +226,7 @@ func (o *TimeseriesWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -278,11 +254,7 @@ func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetExpression
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given []TimeseriesWidgetExpressionAlias and assigns it to the Metadata field.
@@ -310,11 +282,7 @@ func (o *TimeseriesWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -342,11 +310,7 @@ func (o *TimeseriesWidgetRequest) GetOnRightYaxisOk() (*bool, bool) {
 
 // HasOnRightYaxis returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasOnRightYaxis() bool {
-	if o != nil && o.OnRightYaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnRightYaxis != nil
 }
 
 // SetOnRightYaxis gets a reference to the given bool and assigns it to the OnRightYaxis field.
@@ -374,11 +338,7 @@ func (o *TimeseriesWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, 
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -406,11 +366,7 @@ func (o *TimeseriesWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinitio
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -438,11 +394,7 @@ func (o *TimeseriesWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -470,11 +422,7 @@ func (o *TimeseriesWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefi
 
 // HasQueries returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -502,11 +450,7 @@ func (o *TimeseriesWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResp
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
@@ -534,11 +478,7 @@ func (o *TimeseriesWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -566,11 +506,7 @@ func (o *TimeseriesWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, boo
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
@@ -598,11 +534,7 @@ func (o *TimeseriesWidgetRequest) GetStyleOk() (*WidgetRequestStyle, bool) {
 
 // HasStyle returns a boolean if a field has been set.
 func (o *TimeseriesWidgetRequest) HasStyle() bool {
-	if o != nil && o.Style != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Style != nil
 }
 
 // SetStyle gets a reference to the given WidgetRequestStyle and assigns it to the Style field.

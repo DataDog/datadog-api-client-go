@@ -63,11 +63,7 @@ func (o *OpsgenieServiceUpdateAttributes) GetCustomUrlOk() (*string, bool) {
 
 // HasCustomUrl returns a boolean if a field has been set.
 func (o *OpsgenieServiceUpdateAttributes) HasCustomUrl() bool {
-	if o != nil && o.CustomUrl.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomUrl.IsSet()
 }
 
 // SetCustomUrl gets a reference to the given datadog.NullableString and assigns it to the CustomUrl field.
@@ -105,11 +101,7 @@ func (o *OpsgenieServiceUpdateAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *OpsgenieServiceUpdateAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -137,11 +129,7 @@ func (o *OpsgenieServiceUpdateAttributes) GetOpsgenieApiKeyOk() (*string, bool) 
 
 // HasOpsgenieApiKey returns a boolean if a field has been set.
 func (o *OpsgenieServiceUpdateAttributes) HasOpsgenieApiKey() bool {
-	if o != nil && o.OpsgenieApiKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OpsgenieApiKey != nil
 }
 
 // SetOpsgenieApiKey gets a reference to the given string and assigns it to the OpsgenieApiKey field.
@@ -169,11 +157,7 @@ func (o *OpsgenieServiceUpdateAttributes) GetRegionOk() (*OpsgenieServiceRegionT
 
 // HasRegion returns a boolean if a field has been set.
 func (o *OpsgenieServiceUpdateAttributes) HasRegion() bool {
-	if o != nil && o.Region != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Region != nil
 }
 
 // SetRegion gets a reference to the given OpsgenieServiceRegionType and assigns it to the Region field.

@@ -87,11 +87,7 @@ func (o *MonitorUpdateRequest) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -119,11 +115,7 @@ func (o *MonitorUpdateRequest) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -152,11 +144,7 @@ func (o *MonitorUpdateRequest) GetDeletedOk() (*time.Time, bool) {
 
 // HasDeleted returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasDeleted() bool {
-	if o != nil && o.Deleted.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Deleted.IsSet()
 }
 
 // SetDeleted gets a reference to the given datadog.NullableTime and assigns it to the Deleted field.
@@ -194,11 +182,7 @@ func (o *MonitorUpdateRequest) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -226,11 +210,7 @@ func (o *MonitorUpdateRequest) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -258,11 +238,7 @@ func (o *MonitorUpdateRequest) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -290,11 +266,7 @@ func (o *MonitorUpdateRequest) GetMultiOk() (*bool, bool) {
 
 // HasMulti returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasMulti() bool {
-	if o != nil && o.Multi != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Multi != nil
 }
 
 // SetMulti gets a reference to the given bool and assigns it to the Multi field.
@@ -322,11 +294,7 @@ func (o *MonitorUpdateRequest) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -354,11 +322,7 @@ func (o *MonitorUpdateRequest) GetOptionsOk() (*MonitorOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given MonitorOptions and assigns it to the Options field.
@@ -386,11 +350,7 @@ func (o *MonitorUpdateRequest) GetOverallStateOk() (*MonitorOverallStates, bool)
 
 // HasOverallState returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasOverallState() bool {
-	if o != nil && o.OverallState != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OverallState != nil
 }
 
 // SetOverallState gets a reference to the given MonitorOverallStates and assigns it to the OverallState field.
@@ -418,11 +378,7 @@ func (o *MonitorUpdateRequest) GetPriorityOk() (*int64, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasPriority() bool {
-	if o != nil && o.Priority != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Priority != nil
 }
 
 // SetPriority gets a reference to the given int64 and assigns it to the Priority field.
@@ -450,11 +406,7 @@ func (o *MonitorUpdateRequest) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -482,11 +434,7 @@ func (o *MonitorUpdateRequest) GetRestrictedRolesOk() (*[]string, bool) {
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
@@ -514,11 +462,7 @@ func (o *MonitorUpdateRequest) GetStateOk() (*MonitorState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.State != nil
 }
 
 // SetState gets a reference to the given MonitorState and assigns it to the State field.
@@ -546,11 +490,7 @@ func (o *MonitorUpdateRequest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -578,11 +518,7 @@ func (o *MonitorUpdateRequest) GetTypeOk() (*MonitorType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MonitorUpdateRequest) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MonitorType and assigns it to the Type field.

@@ -96,11 +96,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetDescriptionOk() (*string, bool
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateRequestAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -128,11 +124,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetDurationOk() (*int64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateRequestAttributes) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given int64 and assigns it to the Duration field.
@@ -160,11 +152,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateRequestAttributes) HasEnd() bool {
-	if o != nil && o.End != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.End != nil
 }
 
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
@@ -192,11 +180,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetRruleOk() (*string, bool) {
 
 // HasRrule returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateRequestAttributes) HasRrule() bool {
-	if o != nil && o.Rrule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Rrule != nil
 }
 
 // SetRrule gets a reference to the given string and assigns it to the Rrule field.
@@ -270,11 +254,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *SLOCorrectionCreateRequestAttributes) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timezone != nil
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.

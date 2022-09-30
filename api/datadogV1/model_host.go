@@ -80,11 +80,7 @@ func (o *Host) GetAliasesOk() (*[]string, bool) {
 
 // HasAliases returns a boolean if a field has been set.
 func (o *Host) HasAliases() bool {
-	if o != nil && o.Aliases != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aliases != nil
 }
 
 // SetAliases gets a reference to the given []string and assigns it to the Aliases field.
@@ -112,11 +108,7 @@ func (o *Host) GetAppsOk() (*[]string, bool) {
 
 // HasApps returns a boolean if a field has been set.
 func (o *Host) HasApps() bool {
-	if o != nil && o.Apps != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Apps != nil
 }
 
 // SetApps gets a reference to the given []string and assigns it to the Apps field.
@@ -144,11 +136,7 @@ func (o *Host) GetAwsNameOk() (*string, bool) {
 
 // HasAwsName returns a boolean if a field has been set.
 func (o *Host) HasAwsName() bool {
-	if o != nil && o.AwsName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AwsName != nil
 }
 
 // SetAwsName gets a reference to the given string and assigns it to the AwsName field.
@@ -176,11 +164,7 @@ func (o *Host) GetHostNameOk() (*string, bool) {
 
 // HasHostName returns a boolean if a field has been set.
 func (o *Host) HasHostName() bool {
-	if o != nil && o.HostName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostName != nil
 }
 
 // SetHostName gets a reference to the given string and assigns it to the HostName field.
@@ -208,11 +192,7 @@ func (o *Host) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Host) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -240,11 +220,7 @@ func (o *Host) GetIsMutedOk() (*bool, bool) {
 
 // HasIsMuted returns a boolean if a field has been set.
 func (o *Host) HasIsMuted() bool {
-	if o != nil && o.IsMuted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsMuted != nil
 }
 
 // SetIsMuted gets a reference to the given bool and assigns it to the IsMuted field.
@@ -272,11 +248,7 @@ func (o *Host) GetLastReportedTimeOk() (*int64, bool) {
 
 // HasLastReportedTime returns a boolean if a field has been set.
 func (o *Host) HasLastReportedTime() bool {
-	if o != nil && o.LastReportedTime != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastReportedTime != nil
 }
 
 // SetLastReportedTime gets a reference to the given int64 and assigns it to the LastReportedTime field.
@@ -304,11 +276,7 @@ func (o *Host) GetMetaOk() (*HostMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *Host) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given HostMeta and assigns it to the Meta field.
@@ -336,11 +304,7 @@ func (o *Host) GetMetricsOk() (*HostMetrics, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *Host) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given HostMetrics and assigns it to the Metrics field.
@@ -368,11 +332,7 @@ func (o *Host) GetMuteTimeoutOk() (*int64, bool) {
 
 // HasMuteTimeout returns a boolean if a field has been set.
 func (o *Host) HasMuteTimeout() bool {
-	if o != nil && o.MuteTimeout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MuteTimeout != nil
 }
 
 // SetMuteTimeout gets a reference to the given int64 and assigns it to the MuteTimeout field.
@@ -400,11 +360,7 @@ func (o *Host) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Host) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -432,11 +388,7 @@ func (o *Host) GetSourcesOk() (*[]string, bool) {
 
 // HasSources returns a boolean if a field has been set.
 func (o *Host) HasSources() bool {
-	if o != nil && o.Sources != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sources != nil
 }
 
 // SetSources gets a reference to the given []string and assigns it to the Sources field.
@@ -464,11 +416,7 @@ func (o *Host) GetTagsBySourceOk() (*map[string][]string, bool) {
 
 // HasTagsBySource returns a boolean if a field has been set.
 func (o *Host) HasTagsBySource() bool {
-	if o != nil && o.TagsBySource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagsBySource != nil
 }
 
 // SetTagsBySource gets a reference to the given map[string][]string and assigns it to the TagsBySource field.
@@ -496,11 +444,7 @@ func (o *Host) GetUpOk() (*bool, bool) {
 
 // HasUp returns a boolean if a field has been set.
 func (o *Host) HasUp() bool {
-	if o != nil && o.Up != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Up != nil
 }
 
 // SetUp gets a reference to the given bool and assigns it to the Up field.

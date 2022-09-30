@@ -81,11 +81,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) GetVersionOk() (*int6
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.

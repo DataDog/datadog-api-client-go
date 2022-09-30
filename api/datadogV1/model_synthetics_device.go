@@ -113,11 +113,7 @@ func (o *SyntheticsDevice) GetIsMobileOk() (*bool, bool) {
 
 // HasIsMobile returns a boolean if a field has been set.
 func (o *SyntheticsDevice) HasIsMobile() bool {
-	if o != nil && o.IsMobile != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsMobile != nil
 }
 
 // SetIsMobile gets a reference to the given bool and assigns it to the IsMobile field.

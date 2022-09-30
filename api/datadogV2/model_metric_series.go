@@ -74,11 +74,7 @@ func (o *MetricSeries) GetIntervalOk() (*int64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *MetricSeries) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given int64 and assigns it to the Interval field.
@@ -106,11 +102,7 @@ func (o *MetricSeries) GetMetadataOk() (*MetricMetadata, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *MetricSeries) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given MetricMetadata and assigns it to the Metadata field.
@@ -184,11 +176,7 @@ func (o *MetricSeries) GetResourcesOk() (*[]MetricResource, bool) {
 
 // HasResources returns a boolean if a field has been set.
 func (o *MetricSeries) HasResources() bool {
-	if o != nil && o.Resources != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Resources != nil
 }
 
 // SetResources gets a reference to the given []MetricResource and assigns it to the Resources field.
@@ -216,11 +204,7 @@ func (o *MetricSeries) GetSourceTypeNameOk() (*string, bool) {
 
 // HasSourceTypeName returns a boolean if a field has been set.
 func (o *MetricSeries) HasSourceTypeName() bool {
-	if o != nil && o.SourceTypeName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SourceTypeName != nil
 }
 
 // SetSourceTypeName gets a reference to the given string and assigns it to the SourceTypeName field.
@@ -248,11 +232,7 @@ func (o *MetricSeries) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MetricSeries) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -280,11 +260,7 @@ func (o *MetricSeries) GetTypeOk() (*MetricIntakeType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricSeries) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MetricIntakeType and assigns it to the Type field.
@@ -312,11 +288,7 @@ func (o *MetricSeries) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *MetricSeries) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unit != nil
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.

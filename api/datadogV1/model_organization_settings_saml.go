@@ -55,11 +55,7 @@ func (o *OrganizationSettingsSaml) GetEnabledOk() (*bool, bool) {
 
 // HasEnabled returns a boolean if a field has been set.
 func (o *OrganizationSettingsSaml) HasEnabled() bool {
-	if o != nil && o.Enabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Enabled != nil
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.

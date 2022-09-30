@@ -91,11 +91,7 @@ func (o *WidgetLayout) GetIsColumnBreakOk() (*bool, bool) {
 
 // HasIsColumnBreak returns a boolean if a field has been set.
 func (o *WidgetLayout) HasIsColumnBreak() bool {
-	if o != nil && o.IsColumnBreak != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsColumnBreak != nil
 }
 
 // SetIsColumnBreak gets a reference to the given bool and assigns it to the IsColumnBreak field.

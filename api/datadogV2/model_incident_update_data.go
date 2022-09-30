@@ -65,11 +65,7 @@ func (o *IncidentUpdateData) GetAttributesOk() (*IncidentUpdateAttributes, bool)
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *IncidentUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given IncidentUpdateAttributes and assigns it to the Attributes field.
@@ -120,11 +116,7 @@ func (o *IncidentUpdateData) GetRelationshipsOk() (*IncidentUpdateRelationships,
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *IncidentUpdateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given IncidentUpdateRelationships and assigns it to the Relationships field.

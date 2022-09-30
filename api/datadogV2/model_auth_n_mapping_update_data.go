@@ -65,11 +65,7 @@ func (o *AuthNMappingUpdateData) GetAttributesOk() (*AuthNMappingUpdateAttribute
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AuthNMappingUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given AuthNMappingUpdateAttributes and assigns it to the Attributes field.
@@ -120,11 +116,7 @@ func (o *AuthNMappingUpdateData) GetRelationshipsOk() (*AuthNMappingUpdateRelati
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *AuthNMappingUpdateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given AuthNMappingUpdateRelationships and assigns it to the Relationships field.

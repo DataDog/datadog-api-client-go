@@ -72,11 +72,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetCasesOk() (*[]SecurityMonitorin
 
 // HasCases returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasCases() bool {
-	if o != nil && o.Cases != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cases != nil
 }
 
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
@@ -104,11 +100,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetFiltersOk() (*[]SecurityMonitor
 
 // HasFilters returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
-	if o != nil && o.Filters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filters != nil
 }
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
@@ -136,11 +128,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitleOk() (*bool, bo
 
 // HasHasExtendedTitle returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool {
-	if o != nil && o.HasExtendedTitle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasExtendedTitle != nil
 }
 
 // SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.
@@ -168,11 +156,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -200,11 +184,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -232,11 +212,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -264,11 +240,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetOptionsOk() (*SecurityMonitorin
 
 // HasOptions returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given SecurityMonitoringRuleOptions and assigns it to the Options field.
@@ -296,11 +268,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetQueriesOk() (*[]SecurityMonitor
 
 // HasQueries returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []SecurityMonitoringRuleQuery and assigns it to the Queries field.
@@ -328,11 +296,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -360,11 +324,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetVersionOk() (*int32, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int32 and assigns it to the Version field.

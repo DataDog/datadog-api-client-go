@@ -66,11 +66,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetFamilyOk() (*string, bool) {
 
 // HasFamily returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasFamily() bool {
-	if o != nil && o.Family != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Family != nil
 }
 
 // SetFamily gets a reference to the given string and assigns it to the Family field.
@@ -98,11 +94,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -130,11 +122,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -163,11 +151,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPluralOk() (*string, bool) {
 
 // HasPlural returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasPlural() bool {
-	if o != nil && o.Plural.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Plural.IsSet()
 }
 
 // SetPlural gets a reference to the given datadog.NullableString and assigns it to the Plural field.
@@ -205,11 +189,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetScaleFactorOk() (*float64, bool
 
 // HasScaleFactor returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasScaleFactor() bool {
-	if o != nil && o.ScaleFactor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ScaleFactor != nil
 }
 
 // SetScaleFactor gets a reference to the given float64 and assigns it to the ScaleFactor field.
@@ -238,11 +218,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortNameOk() (*string, bool) {
 
 // HasShortName returns a boolean if a field has been set.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) HasShortName() bool {
-	if o != nil && o.ShortName.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShortName.IsSet()
 }
 
 // SetShortName gets a reference to the given datadog.NullableString and assigns it to the ShortName field.

@@ -56,11 +56,7 @@ func (o *APIKeyResponse) GetDataOk() (*FullAPIKey, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *APIKeyResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given FullAPIKey and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *APIKeyResponse) GetIncludedOk() (*[]APIKeyResponseIncludedItem, bool) {
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *APIKeyResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []APIKeyResponseIncludedItem and assigns it to the Included field.

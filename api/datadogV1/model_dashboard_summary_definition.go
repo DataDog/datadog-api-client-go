@@ -73,11 +73,7 @@ func (o *DashboardSummaryDefinition) GetAuthorHandleOk() (*string, bool) {
 
 // HasAuthorHandle returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasAuthorHandle() bool {
-	if o != nil && o.AuthorHandle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuthorHandle != nil
 }
 
 // SetAuthorHandle gets a reference to the given string and assigns it to the AuthorHandle field.
@@ -105,11 +101,7 @@ func (o *DashboardSummaryDefinition) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -138,11 +130,7 @@ func (o *DashboardSummaryDefinition) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -180,11 +168,7 @@ func (o *DashboardSummaryDefinition) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -212,11 +196,7 @@ func (o *DashboardSummaryDefinition) GetIsReadOnlyOk() (*bool, bool) {
 
 // HasIsReadOnly returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasIsReadOnly() bool {
-	if o != nil && o.IsReadOnly != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReadOnly != nil
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
@@ -244,11 +224,7 @@ func (o *DashboardSummaryDefinition) GetLayoutTypeOk() (*DashboardLayoutType, bo
 
 // HasLayoutType returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasLayoutType() bool {
-	if o != nil && o.LayoutType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LayoutType != nil
 }
 
 // SetLayoutType gets a reference to the given DashboardLayoutType and assigns it to the LayoutType field.
@@ -276,11 +252,7 @@ func (o *DashboardSummaryDefinition) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -308,11 +280,7 @@ func (o *DashboardSummaryDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -340,11 +308,7 @@ func (o *DashboardSummaryDefinition) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *DashboardSummaryDefinition) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

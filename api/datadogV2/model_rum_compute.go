@@ -90,11 +90,7 @@ func (o *RUMCompute) GetIntervalOk() (*string, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *RUMCompute) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given string and assigns it to the Interval field.
@@ -122,11 +118,7 @@ func (o *RUMCompute) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *RUMCompute) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -154,11 +146,7 @@ func (o *RUMCompute) GetTypeOk() (*RUMComputeType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *RUMCompute) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given RUMComputeType and assigns it to the Type field.

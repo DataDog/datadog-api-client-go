@@ -54,11 +54,7 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) GetKeyOk() (*string, 
 
 // HasKey returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.

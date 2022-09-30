@@ -56,11 +56,7 @@ func (o *SecurityMonitoringListRulesResponse) GetDataOk() (*[]SecurityMonitoring
 
 // HasData returns a boolean if a field has been set.
 func (o *SecurityMonitoringListRulesResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []SecurityMonitoringRuleResponse and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *SecurityMonitoringListRulesResponse) GetMetaOk() (*ResponseMetaAttribut
 
 // HasMeta returns a boolean if a field has been set.
 func (o *SecurityMonitoringListRulesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given ResponseMetaAttributes and assigns it to the Meta field.

@@ -54,11 +54,7 @@ func (o *SyntheticsListGlobalVariablesResponse) GetVariablesOk() (*[]SyntheticsG
 
 // HasVariables returns a boolean if a field has been set.
 func (o *SyntheticsListGlobalVariablesResponse) HasVariables() bool {
-	if o != nil && o.Variables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Variables != nil
 }
 
 // SetVariables gets a reference to the given []SyntheticsGlobalVariable and assigns it to the Variables field.

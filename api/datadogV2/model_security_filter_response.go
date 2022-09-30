@@ -56,11 +56,7 @@ func (o *SecurityFilterResponse) GetDataOk() (*SecurityFilter, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SecurityFilterResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given SecurityFilter and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *SecurityFilterResponse) GetMetaOk() (*SecurityFilterMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *SecurityFilterResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given SecurityFilterMeta and assigns it to the Meta field.

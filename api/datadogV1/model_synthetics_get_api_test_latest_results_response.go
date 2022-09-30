@@ -56,11 +56,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetchedOk() 
 
 // HasLastTimestampFetched returns a boolean if a field has been set.
 func (o *SyntheticsGetAPITestLatestResultsResponse) HasLastTimestampFetched() bool {
-	if o != nil && o.LastTimestampFetched != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastTimestampFetched != nil
 }
 
 // SetLastTimestampFetched gets a reference to the given int64 and assigns it to the LastTimestampFetched field.
@@ -88,11 +84,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() (*[]Synthetic
 
 // HasResults returns a boolean if a field has been set.
 func (o *SyntheticsGetAPITestLatestResultsResponse) HasResults() bool {
-	if o != nil && o.Results != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Results != nil
 }
 
 // SetResults gets a reference to the given []SyntheticsAPITestResultShort and assigns it to the Results field.

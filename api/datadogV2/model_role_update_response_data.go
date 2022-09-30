@@ -64,11 +64,7 @@ func (o *RoleUpdateResponseData) GetAttributesOk() (*RoleUpdateAttributes, bool)
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *RoleUpdateResponseData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given RoleUpdateAttributes and assigns it to the Attributes field.
@@ -96,11 +92,7 @@ func (o *RoleUpdateResponseData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *RoleUpdateResponseData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -128,11 +120,7 @@ func (o *RoleUpdateResponseData) GetRelationshipsOk() (*RoleResponseRelationship
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *RoleUpdateResponseData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given RoleResponseRelationships and assigns it to the Relationships field.

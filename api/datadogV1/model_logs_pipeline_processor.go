@@ -74,11 +74,7 @@ func (o *LogsPipelineProcessor) GetFilterOk() (*LogsFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsPipelineProcessor) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
@@ -106,11 +102,7 @@ func (o *LogsPipelineProcessor) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsPipelineProcessor) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -138,11 +130,7 @@ func (o *LogsPipelineProcessor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsPipelineProcessor) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -170,11 +158,7 @@ func (o *LogsPipelineProcessor) GetProcessorsOk() (*[]LogsProcessor, bool) {
 
 // HasProcessors returns a boolean if a field has been set.
 func (o *LogsPipelineProcessor) HasProcessors() bool {
-	if o != nil && o.Processors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Processors != nil
 }
 
 // SetProcessors gets a reference to the given []LogsProcessor and assigns it to the Processors field.

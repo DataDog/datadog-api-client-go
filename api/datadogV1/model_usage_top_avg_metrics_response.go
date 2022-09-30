@@ -56,11 +56,7 @@ func (o *UsageTopAvgMetricsResponse) GetMetadataOk() (*UsageTopAvgMetricsMetadat
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsResponse) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given UsageTopAvgMetricsMetadata and assigns it to the Metadata field.
@@ -88,11 +84,7 @@ func (o *UsageTopAvgMetricsResponse) GetUsageOk() (*[]UsageTopAvgMetricsHour, bo
 
 // HasUsage returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsResponse) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []UsageTopAvgMetricsHour and assigns it to the Usage field.

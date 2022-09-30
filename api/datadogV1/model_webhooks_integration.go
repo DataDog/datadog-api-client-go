@@ -78,11 +78,7 @@ func (o *WebhooksIntegration) GetCustomHeadersOk() (*string, bool) {
 
 // HasCustomHeaders returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasCustomHeaders() bool {
-	if o != nil && o.CustomHeaders.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomHeaders.IsSet()
 }
 
 // SetCustomHeaders gets a reference to the given datadog.NullableString and assigns it to the CustomHeaders field.
@@ -120,11 +116,7 @@ func (o *WebhooksIntegration) GetEncodeAsOk() (*WebhooksIntegrationEncoding, boo
 
 // HasEncodeAs returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasEncodeAs() bool {
-	if o != nil && o.EncodeAs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EncodeAs != nil
 }
 
 // SetEncodeAs gets a reference to the given WebhooksIntegrationEncoding and assigns it to the EncodeAs field.
@@ -176,11 +168,7 @@ func (o *WebhooksIntegration) GetPayloadOk() (*string, bool) {
 
 // HasPayload returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasPayload() bool {
-	if o != nil && o.Payload.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Payload.IsSet()
 }
 
 // SetPayload gets a reference to the given datadog.NullableString and assigns it to the Payload field.
