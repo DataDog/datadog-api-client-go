@@ -16,7 +16,7 @@ type ListStreamColumn struct {
 	// Widget column width.
 	Width ListStreamColumnWidth `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Field == nil {
-		return fmt.Errorf("Required field field missing")
+		return fmt.Errorf("required field field missing")
 	}
 	if required.Width == nil {
-		return fmt.Errorf("Required field width missing")
+		return fmt.Errorf("required field width missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

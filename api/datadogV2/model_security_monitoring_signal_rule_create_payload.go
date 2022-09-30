@@ -32,7 +32,7 @@ type SecurityMonitoringSignalRuleCreatePayload struct {
 	// The rule type.
 	Type *SecurityMonitoringSignalRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -368,22 +368,22 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 	if required.Cases == nil {
-		return fmt.Errorf("Required field cases missing")
+		return fmt.Errorf("required field cases missing")
 	}
 	if required.IsEnabled == nil {
-		return fmt.Errorf("Required field isEnabled missing")
+		return fmt.Errorf("required field isEnabled missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Options == nil {
-		return fmt.Errorf("Required field options missing")
+		return fmt.Errorf("required field options missing")
 	}
 	if required.Queries == nil {
-		return fmt.Errorf("Required field queries missing")
+		return fmt.Errorf("required field queries missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

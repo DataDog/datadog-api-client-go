@@ -28,7 +28,7 @@ type LogsIndex struct {
 	// retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -256,10 +256,10 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Filter == nil {
-		return fmt.Errorf("Required field filter missing")
+		return fmt.Errorf("required field filter missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

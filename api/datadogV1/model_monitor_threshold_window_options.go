@@ -17,7 +17,7 @@ type MonitorThresholdWindowOptions struct {
 	// Describes how long a metric must be anomalous before an alert triggers.
 	TriggerWindow datadog.NullableString `json:"trigger_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

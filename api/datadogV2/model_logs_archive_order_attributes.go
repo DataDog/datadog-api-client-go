@@ -15,7 +15,7 @@ type LogsArchiveOrderAttributes struct {
 	// define the overall archives order for Datadog.
 	ArchiveIds []string `json:"archive_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,7 +88,7 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ArchiveIds == nil {
-		return fmt.Errorf("Required field archive_ids missing")
+		return fmt.Errorf("required field archive_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

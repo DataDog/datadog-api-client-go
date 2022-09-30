@@ -16,7 +16,7 @@ type MetricCustomAggregation struct {
 	// A time aggregation for use in query.
 	Time MetricCustomTimeAggregation `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Space == nil {
-		return fmt.Errorf("Required field space missing")
+		return fmt.Errorf("required field space missing")
 	}
 	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
+		return fmt.Errorf("required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

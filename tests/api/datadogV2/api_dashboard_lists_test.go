@@ -151,7 +151,7 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(2, len(deleteResponse.GetDeletedDashboardsFromList()))
 	assert.Equal(200, httpresp.StatusCode)
-	getResponse, httpresp, err = api.GetDashboardListItems(ctx, dashboardListID)
+	getResponse, _, err = api.GetDashboardListItems(ctx, dashboardListID)
 	if err != nil {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}

@@ -20,7 +20,7 @@ type SecurityMonitoringTriageUser struct {
 	// UUID assigned by Datadog to this user account.
 	Uuid string `json:"uuid"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -189,7 +189,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Uuid == nil {
-		return fmt.Errorf("Required field uuid missing")
+		return fmt.Errorf("required field uuid missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

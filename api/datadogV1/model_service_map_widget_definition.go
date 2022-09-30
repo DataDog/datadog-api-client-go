@@ -26,7 +26,7 @@ type ServiceMapWidgetDefinition struct {
 	// Type of the service map widget.
 	Type ServiceMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -283,13 +283,13 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Filters == nil {
-		return fmt.Errorf("Required field filters missing")
+		return fmt.Errorf("required field filters missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

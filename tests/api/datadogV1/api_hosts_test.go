@@ -10,7 +10,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"testing"
 	"time"
@@ -113,7 +113,7 @@ func TestHostTotalsMocked(t *testing.T) {
 	if err != nil {
 		t.Errorf("Failed to get fixture file path: %s", err)
 	}
-	data, err := ioutil.ReadFile(fixturePath)
+	data, err := os.ReadFile(fixturePath)
 	if err != nil {
 		t.Errorf("Failed to open fixture file: %s", err)
 	}

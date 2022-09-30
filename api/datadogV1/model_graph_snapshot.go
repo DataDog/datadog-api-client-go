@@ -19,7 +19,7 @@ type GraphSnapshot struct {
 	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

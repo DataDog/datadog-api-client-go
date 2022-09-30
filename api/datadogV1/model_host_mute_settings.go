@@ -17,7 +17,7 @@ type HostMuteSettings struct {
 	// If true and the host is already muted, replaces existing host mute settings.
 	Override *bool `json:"override,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -14,7 +14,7 @@ type SecurityMonitoringSignalAssigneeUpdateData struct {
 	// Attributes describing the new assignee of a security signal.
 	Attributes SecurityMonitoringSignalAssigneeUpdateAttributes `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateData) UnmarshalJSON(bytes []byte)
 		return err
 	}
 	if required.Attributes == nil {
-		return fmt.Errorf("Required field attributes missing")
+		return fmt.Errorf("required field attributes missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

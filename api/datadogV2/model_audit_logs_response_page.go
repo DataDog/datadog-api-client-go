@@ -13,7 +13,7 @@ type AuditLogsResponsePage struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -18,7 +18,7 @@ type MonitorFormulaAndFunctionEventQueryDefinitionCompute struct {
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -155,7 +155,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

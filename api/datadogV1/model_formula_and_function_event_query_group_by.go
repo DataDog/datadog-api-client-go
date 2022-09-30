@@ -18,7 +18,7 @@ type FormulaAndFunctionEventQueryGroupBy struct {
 	// Options for sorting group by results.
 	Sort *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -155,7 +155,7 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	if required.Facet == nil {
-		return fmt.Errorf("Required field facet missing")
+		return fmt.Errorf("required field facet missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

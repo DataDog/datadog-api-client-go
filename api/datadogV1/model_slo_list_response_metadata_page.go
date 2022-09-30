@@ -15,7 +15,7 @@ type SLOListResponseMetadataPage struct {
 	// The total number of resources that match the parameters and filters in the request. This attribute can be used by a client to determine the total number of pages.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

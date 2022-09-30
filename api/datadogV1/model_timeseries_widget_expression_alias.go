@@ -16,7 +16,7 @@ type TimeseriesWidgetExpressionAlias struct {
 	// Expression name.
 	Expression string `json:"expression"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -121,7 +121,7 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

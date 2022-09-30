@@ -14,7 +14,7 @@ type RelationshipToIncidentAttachment struct {
 	// An array of incident attachments.
 	Data []RelationshipToIncidentAttachmentData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *RelationshipToIncidentAttachment) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

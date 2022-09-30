@@ -31,7 +31,7 @@ type SyntheticsBatchResult struct {
 	// Type of the Synthetic test, either `api` or `browser`.
 	TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

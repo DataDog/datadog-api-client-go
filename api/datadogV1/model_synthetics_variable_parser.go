@@ -16,7 +16,7 @@ type SyntheticsVariableParser struct {
 	// Regex or JSON path used for the parser. Not used with type `raw`.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -121,7 +121,7 @@ func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

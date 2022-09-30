@@ -14,7 +14,7 @@ type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

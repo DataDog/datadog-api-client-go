@@ -23,7 +23,7 @@ type Widget struct {
 	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -160,7 +160,7 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Definition == nil {
-		return fmt.Errorf("Required field definition missing")
+		return fmt.Errorf("required field definition missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -20,7 +20,7 @@ type ApmStatsQueryColumnType struct {
 	// Widget sorting methods.
 	Order *WidgetSort `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -189,7 +189,7 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

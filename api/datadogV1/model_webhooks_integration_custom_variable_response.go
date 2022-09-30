@@ -19,7 +19,7 @@ type WebhooksIntegrationCustomVariableResponse struct {
 	// Value of the custom variable. It won't be returned if the variable is secret.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -151,10 +151,10 @@ func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 	if required.IsSecret == nil {
-		return fmt.Errorf("Required field is_secret missing")
+		return fmt.Errorf("required field is_secret missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

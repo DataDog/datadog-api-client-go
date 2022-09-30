@@ -22,7 +22,7 @@ type FreeTextWidgetDefinition struct {
 	// Type of the free text widget.
 	Type FreeTextWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -220,10 +220,10 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Text == nil {
-		return fmt.Errorf("Required field text missing")
+		return fmt.Errorf("required field text missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

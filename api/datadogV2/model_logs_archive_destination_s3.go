@@ -20,7 +20,7 @@ type LogsArchiveDestinationS3 struct {
 	// Type of the S3 archive destination.
 	Type LogsArchiveDestinationS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -181,13 +181,13 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Bucket == nil {
-		return fmt.Errorf("Required field bucket missing")
+		return fmt.Errorf("required field bucket missing")
 	}
 	if required.Integration == nil {
-		return fmt.Errorf("Required field integration missing")
+		return fmt.Errorf("required field integration missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

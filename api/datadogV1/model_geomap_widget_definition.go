@@ -33,7 +33,7 @@ type GeomapWidgetDefinition struct {
 	// The view of the world that the map should render.
 	View GeomapWidgetDefinitionView `json:"view"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -349,16 +349,16 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Style == nil {
-		return fmt.Errorf("Required field style missing")
+		return fmt.Errorf("required field style missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.View == nil {
-		return fmt.Errorf("Required field view missing")
+		return fmt.Errorf("required field view missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

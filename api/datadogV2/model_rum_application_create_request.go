@@ -14,7 +14,7 @@ type RUMApplicationCreateRequest struct {
 	// RUM application creation.
 	Data RUMApplicationCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *RUMApplicationCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

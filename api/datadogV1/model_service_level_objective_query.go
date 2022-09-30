@@ -18,7 +18,7 @@ type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -118,10 +118,10 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Denominator == nil {
-		return fmt.Errorf("Required field denominator missing")
+		return fmt.Errorf("required field denominator missing")
 	}
 	if required.Numerator == nil {
-		return fmt.Errorf("Required field numerator missing")
+		return fmt.Errorf("required field numerator missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

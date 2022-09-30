@@ -15,7 +15,7 @@ type SecurityMonitoringSignalListRequestPage struct {
 	// The maximum number of security signals in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

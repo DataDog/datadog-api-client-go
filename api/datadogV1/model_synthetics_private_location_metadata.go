@@ -13,7 +13,7 @@ type SyntheticsPrivateLocationMetadata struct {
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

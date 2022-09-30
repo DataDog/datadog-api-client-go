@@ -39,7 +39,7 @@ type Host struct {
 	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
 	Up *bool `json:"up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

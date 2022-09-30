@@ -22,7 +22,7 @@ type IncidentCreateAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -218,10 +218,10 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.CustomerImpacted == nil {
-		return fmt.Errorf("Required field customer_impacted missing")
+		return fmt.Errorf("required field customer_impacted missing")
 	}
 	if required.Title == nil {
-		return fmt.Errorf("Required field title missing")
+		return fmt.Errorf("required field title missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

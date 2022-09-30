@@ -32,7 +32,7 @@ type ImageWidgetDefinition struct {
 	// Vertical alignment.
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -366,10 +366,10 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

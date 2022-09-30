@@ -40,7 +40,7 @@ type SyntheticsCITest struct {
 	// Variables to replace in the test.
 	Variables map[string]string `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -529,7 +529,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.PublicId == nil {
-		return fmt.Errorf("Required field public_id missing")
+		return fmt.Errorf("required field public_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

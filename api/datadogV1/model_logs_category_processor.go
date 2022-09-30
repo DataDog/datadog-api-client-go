@@ -35,7 +35,7 @@ type LogsCategoryProcessor struct {
 	// Type of logs category processor.
 	Type LogsCategoryProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -232,13 +232,13 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Categories == nil {
-		return fmt.Errorf("Required field categories missing")
+		return fmt.Errorf("required field categories missing")
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

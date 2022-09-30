@@ -41,7 +41,7 @@ type AWSAccount struct {
 	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

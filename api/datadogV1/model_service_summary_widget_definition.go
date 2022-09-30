@@ -44,7 +44,7 @@ type ServiceSummaryWidgetDefinition struct {
 	// Type of the service summary widget.
 	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -584,16 +584,16 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.SpanName == nil {
-		return fmt.Errorf("Required field span_name missing")
+		return fmt.Errorf("required field span_name missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -36,7 +36,7 @@ type SyntheticsAPITest struct {
 	// Type of the Synthetic test, `api`.
 	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -406,22 +406,22 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Config == nil {
-		return fmt.Errorf("Required field config missing")
+		return fmt.Errorf("required field config missing")
 	}
 	if required.Locations == nil {
-		return fmt.Errorf("Required field locations missing")
+		return fmt.Errorf("required field locations missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Options == nil {
-		return fmt.Errorf("Required field options missing")
+		return fmt.Errorf("required field options missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

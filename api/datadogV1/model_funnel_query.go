@@ -18,7 +18,7 @@ type FunnelQuery struct {
 	// List of funnel steps.
 	Steps []FunnelStep `json:"steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -147,13 +147,13 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.QueryString == nil {
-		return fmt.Errorf("Required field query_string missing")
+		return fmt.Errorf("required field query_string missing")
 	}
 	if required.Steps == nil {
-		return fmt.Errorf("Required field steps missing")
+		return fmt.Errorf("required field steps missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

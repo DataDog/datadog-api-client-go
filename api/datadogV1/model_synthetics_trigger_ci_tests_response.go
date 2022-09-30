@@ -21,7 +21,7 @@ type SyntheticsTriggerCITestsResponse struct {
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds []string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -15,7 +15,7 @@ type AuthNMappingCreateAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

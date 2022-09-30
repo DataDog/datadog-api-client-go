@@ -18,7 +18,7 @@ type LogQueryDefinitionGroupBySort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -150,10 +150,10 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	if required.Order == nil {
-		return fmt.Errorf("Required field order missing")
+		return fmt.Errorf("required field order missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

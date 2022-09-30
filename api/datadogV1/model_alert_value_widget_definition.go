@@ -28,7 +28,7 @@ type AlertValueWidgetDefinition struct {
 	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -322,10 +322,10 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AlertId == nil {
-		return fmt.Errorf("Required field alert_id missing")
+		return fmt.Errorf("required field alert_id missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

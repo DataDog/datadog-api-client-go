@@ -22,7 +22,7 @@ type SyntheticsBrowserTestConfig struct {
 	// Array of variables used for the test steps.
 	Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -218,10 +218,10 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Assertions == nil {
-		return fmt.Errorf("Required field assertions missing")
+		return fmt.Errorf("required field assertions missing")
 	}
 	if required.Request == nil {
-		return fmt.Errorf("Required field request missing")
+		return fmt.Errorf("required field request missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

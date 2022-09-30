@@ -28,7 +28,7 @@ type SyntheticsBrowserTestRumSettings struct {
 	// Determines whether RUM data is collected during test runs.
 	IsEnabled bool `json:"isEnabled"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -165,7 +165,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.IsEnabled == nil {
-		return fmt.Errorf("Required field isEnabled missing")
+		return fmt.Errorf("required field isEnabled missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -16,7 +16,7 @@ type WidgetFieldSort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Column == nil {
-		return fmt.Errorf("Required field column missing")
+		return fmt.Errorf("required field column missing")
 	}
 	if required.Order == nil {
-		return fmt.Errorf("Required field order missing")
+		return fmt.Errorf("required field order missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -36,7 +36,7 @@ type MetricTagConfigurationCreateAttributes struct {
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -202,10 +202,10 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 	if required.MetricType == nil {
-		return fmt.Errorf("Required field metric_type missing")
+		return fmt.Errorf("required field metric_type missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,7 +13,7 @@ type MetricBulkTagConfigDeleteAttributes struct {
 	// A list of account emails to notify when the configuration is applied.
 	Emails []string `json:"emails,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

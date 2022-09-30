@@ -14,7 +14,7 @@ type SyntheticsDeleteTestsPayload struct {
 	// An array of Synthetic test IDs you want to delete.
 	PublicIds []string `json:"public_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

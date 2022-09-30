@@ -18,7 +18,7 @@ type UserCreateAttributes struct {
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -155,7 +155,7 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Email == nil {
-		return fmt.Errorf("Required field email missing")
+		return fmt.Errorf("required field email missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

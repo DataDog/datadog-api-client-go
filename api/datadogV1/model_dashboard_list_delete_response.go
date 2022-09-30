@@ -13,7 +13,7 @@ type DashboardListDeleteResponse struct {
 	// ID of the deleted dashboard list.
 	DeletedDashboardListId *int64 `json:"deleted_dashboard_list_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

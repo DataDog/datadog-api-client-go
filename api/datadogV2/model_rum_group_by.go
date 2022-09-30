@@ -25,7 +25,7 @@ type RUMGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *RUMGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -262,7 +262,7 @@ func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Facet == nil {
-		return fmt.Errorf("Required field facet missing")
+		return fmt.Errorf("required field facet missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -31,7 +31,7 @@ type SLOThreshold struct {
 	// Ignored in create/update requests.
 	WarningDisplay *string `json:"warning_display,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -227,10 +227,10 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Timeframe == nil {
-		return fmt.Errorf("Required field timeframe missing")
+		return fmt.Errorf("required field timeframe missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

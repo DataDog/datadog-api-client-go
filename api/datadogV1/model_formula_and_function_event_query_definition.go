@@ -26,7 +26,7 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// Option for storage location. Feature in Private Beta.
 	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -281,13 +281,13 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

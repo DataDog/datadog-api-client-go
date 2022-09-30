@@ -64,7 +64,7 @@ type SyntheticsTestOptions struct {
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

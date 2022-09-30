@@ -16,7 +16,7 @@ type CheckCanDeleteMonitorResponse struct {
 	// A mapping of Monitor ID to strings denoting where it's used.
 	Errors map[string][]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -121,7 +121,7 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

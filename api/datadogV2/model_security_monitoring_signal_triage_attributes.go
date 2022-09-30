@@ -30,7 +30,7 @@ type SecurityMonitoringSignalTriageAttributes struct {
 	// Object representing a given user entity.
 	StateUpdateUser *SecurityMonitoringTriageUser `json:"state_update_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -349,13 +349,13 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 	if required.Assignee == nil {
-		return fmt.Errorf("Required field assignee missing")
+		return fmt.Errorf("required field assignee missing")
 	}
 	if required.IncidentIds == nil {
-		return fmt.Errorf("Required field incident_ids missing")
+		return fmt.Errorf("required field incident_ids missing")
 	}
 	if required.State == nil {
-		return fmt.Errorf("Required field state missing")
+		return fmt.Errorf("required field state missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

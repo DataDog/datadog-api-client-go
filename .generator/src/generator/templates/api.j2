@@ -5,7 +5,7 @@ import (
 	"bytes"
 	_context "context"
 	_fmt "fmt"
-	_ioutil "io/ioutil"
+	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -366,7 +366,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	}
 	{%- endif %}
 	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
+		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
 		formFile.FileName = localVarFile.Name()
 		localVarFile.Close()
@@ -424,9 +424,9 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}

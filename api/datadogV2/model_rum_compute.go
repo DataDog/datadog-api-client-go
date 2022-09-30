@@ -21,7 +21,7 @@ type RUMCompute struct {
 	// The type of compute.
 	Type *RUMComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -194,7 +194,7 @@ func (o *RUMCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

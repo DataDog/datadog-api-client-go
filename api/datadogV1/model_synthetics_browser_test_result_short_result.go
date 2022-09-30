@@ -21,7 +21,7 @@ type SyntheticsBrowserTestResultShortResult struct {
 	// Total amount of browser test steps.
 	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

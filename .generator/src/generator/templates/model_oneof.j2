@@ -32,7 +32,7 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 	var jsonDict map[string]interface{}
 	err = json.Unmarshal(data, &jsonDict)
 	if err != nil {
-		return fmt.Errorf("Failed to unmarshal JSON into map for the discriminator lookup.")
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup.")
 	}
 
 	{{/-first}}
@@ -44,7 +44,7 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 			return nil // data stored in obj.{{{modelName}}}, return on the first match
 		} else {
 			obj.{{{modelName}}} = nil
-			return fmt.Errorf("Failed to unmarshal {{ name }} as {{{modelName}}}: %s", err.Error())
+			return fmt.Errorf("failed to unmarshal {{ name }} as {{{modelName}}}: %s", err.Error())
 		}
 	}
 

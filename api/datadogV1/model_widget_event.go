@@ -19,7 +19,7 @@ type WidgetEvent struct {
 	// The execution method for multi-value filters.
 	TagsExecution *string `json:"tags_execution,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -124,7 +124,7 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Q == nil {
-		return fmt.Errorf("Required field q missing")
+		return fmt.Errorf("required field q missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -27,7 +27,7 @@ type SecurityMonitoringStandardRuleQuery struct {
 	// Query to run on logs.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -292,7 +292,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

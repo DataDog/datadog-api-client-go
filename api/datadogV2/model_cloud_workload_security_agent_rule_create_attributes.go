@@ -20,7 +20,7 @@ type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
 	// The name of the Agent rule.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -184,10 +184,10 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

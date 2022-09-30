@@ -15,7 +15,7 @@ type LogsPipelinesOrder struct {
 	// define the overall Pipelines order for Datadog.
 	PipelineIds []string `json:"pipeline_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,7 +88,7 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.PipelineIds == nil {
-		return fmt.Errorf("Required field pipeline_ids missing")
+		return fmt.Errorf("required field pipeline_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -29,7 +29,7 @@ type SyntheticsAPIStep struct {
 	// The subtype of the Synthetic multistep API test step, currently only supporting `http`.
 	Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -311,16 +311,16 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Assertions == nil {
-		return fmt.Errorf("Required field assertions missing")
+		return fmt.Errorf("required field assertions missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Request == nil {
-		return fmt.Errorf("Required field request missing")
+		return fmt.Errorf("required field request missing")
 	}
 	if required.Subtype == nil {
-		return fmt.Errorf("Required field subtype missing")
+		return fmt.Errorf("required field subtype missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

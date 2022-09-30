@@ -14,7 +14,7 @@ type SecurityMonitoringRuleImpossibleTravelOptions struct {
 	// access locations. This can be helpful to reduce noise and infer VPN usage or credentialed API access.
 	BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

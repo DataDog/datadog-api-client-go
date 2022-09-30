@@ -29,7 +29,7 @@ type SLOCorrectionCreateRequestAttributes struct {
 	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -316,13 +316,13 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 	if required.Category == nil {
-		return fmt.Errorf("Required field category missing")
+		return fmt.Errorf("required field category missing")
 	}
 	if required.SloId == nil {
-		return fmt.Errorf("Required field slo_id missing")
+		return fmt.Errorf("required field slo_id missing")
 	}
 	if required.Start == nil {
-		return fmt.Errorf("Required field start missing")
+		return fmt.Errorf("required field start missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

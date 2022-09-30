@@ -20,7 +20,7 @@ type SignalStateUpdateRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -189,7 +189,7 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.State == nil {
-		return fmt.Errorf("Required field state missing")
+		return fmt.Errorf("required field state missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

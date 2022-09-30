@@ -22,7 +22,7 @@ type WidgetFormula struct {
 	// Options for limiting results returned.
 	Limit *WidgetFormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -223,7 +223,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Formula == nil {
-		return fmt.Errorf("Required field formula missing")
+		return fmt.Errorf("required field formula missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

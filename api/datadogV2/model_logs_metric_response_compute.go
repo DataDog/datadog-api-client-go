@@ -15,7 +15,7 @@ type LogsMetricResponseCompute struct {
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

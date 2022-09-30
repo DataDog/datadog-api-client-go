@@ -17,7 +17,7 @@ type ChargebackBreakdown struct {
 	// The product for which cost is being reported.
 	ProductName *string `json:"product_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

@@ -30,7 +30,7 @@ type RUMApplicationAttributes struct {
 	// Handle of the updater user.
 	UpdatedByHandle string `json:"updated_by_handle"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -324,28 +324,28 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.ApplicationId == nil {
-		return fmt.Errorf("Required field application_id missing")
+		return fmt.Errorf("required field application_id missing")
 	}
 	if required.CreatedAt == nil {
-		return fmt.Errorf("Required field created_at missing")
+		return fmt.Errorf("required field created_at missing")
 	}
 	if required.CreatedByHandle == nil {
-		return fmt.Errorf("Required field created_by_handle missing")
+		return fmt.Errorf("required field created_by_handle missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.OrgId == nil {
-		return fmt.Errorf("Required field org_id missing")
+		return fmt.Errorf("required field org_id missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.UpdatedAt == nil {
-		return fmt.Errorf("Required field updated_at missing")
+		return fmt.Errorf("required field updated_at missing")
 	}
 	if required.UpdatedByHandle == nil {
-		return fmt.Errorf("Required field updated_by_handle missing")
+		return fmt.Errorf("required field updated_by_handle missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

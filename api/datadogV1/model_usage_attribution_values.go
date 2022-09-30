@@ -107,7 +107,7 @@ type UsageAttributionValues struct {
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

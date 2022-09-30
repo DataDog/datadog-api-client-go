@@ -22,7 +22,7 @@ type CostByOrgAttributes struct {
 	// The total cost of products for the month.
 	TotalCost *float64 `json:"total_cost,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

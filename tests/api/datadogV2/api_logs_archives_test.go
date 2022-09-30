@@ -169,7 +169,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 	id := "FOObartotO"
 	gock.New(URL).Put(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).MatchType("json").JSON(inputArchive).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := api.UpdateLogsArchive(ctx, id, inputArchive)
+	result, httpresp, _ := api.UpdateLogsArchive(ctx, id, inputArchive)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, outputArchive)
 }
@@ -191,7 +191,7 @@ func TestLogsArchivesGetByID(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).Get(fmt.Sprintf("/api/v2/logs/config/archives/%s", id)).Reply(200).Type("json").BodyString(outputArchiveStr)
 	defer gock.Off()
-	result, httpresp, err := api.GetLogsArchive(ctx, id)
+	result, httpresp, _ := api.GetLogsArchive(ctx, id)
 	assert.Equal(httpresp.StatusCode, 200)
 	assert.Equal(result, outputArchive)
 }

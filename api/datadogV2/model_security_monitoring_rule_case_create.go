@@ -21,7 +21,7 @@ type SecurityMonitoringRuleCaseCreate struct {
 	// Severity of the Security Signal.
 	Status SecurityMonitoringRuleSeverity `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -190,7 +190,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Status == nil {
-		return fmt.Errorf("Required field status missing")
+		return fmt.Errorf("required field status missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

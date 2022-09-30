@@ -21,7 +21,7 @@ type LogsGroupByHistogram struct {
 	// (values smaller than this one are filtered out)
 	Min float64 `json:"min"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -148,13 +148,13 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Interval == nil {
-		return fmt.Errorf("Required field interval missing")
+		return fmt.Errorf("required field interval missing")
 	}
 	if required.Max == nil {
-		return fmt.Errorf("Required field max missing")
+		return fmt.Errorf("required field max missing")
 	}
 	if required.Min == nil {
-		return fmt.Errorf("Required field min missing")
+		return fmt.Errorf("required field min missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

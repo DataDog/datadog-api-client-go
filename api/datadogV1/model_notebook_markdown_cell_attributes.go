@@ -14,7 +14,7 @@ type NotebookMarkdownCellAttributes struct {
 	// Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 	Definition NotebookMarkdownCellDefinition `json:"definition"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	if required.Definition == nil {
-		return fmt.Errorf("Required field definition missing")
+		return fmt.Errorf("required field definition missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

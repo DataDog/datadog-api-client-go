@@ -24,7 +24,7 @@ type LogsArchiveDestinationAzure struct {
 	// Type of the Azure archive destination.
 	Type LogsArchiveDestinationAzureType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -244,16 +244,16 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Container == nil {
-		return fmt.Errorf("Required field container missing")
+		return fmt.Errorf("required field container missing")
 	}
 	if required.Integration == nil {
-		return fmt.Errorf("Required field integration missing")
+		return fmt.Errorf("required field integration missing")
 	}
 	if required.StorageAccount == nil {
-		return fmt.Errorf("Required field storage_account missing")
+		return fmt.Errorf("required field storage_account missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -17,7 +17,7 @@ type IncidentAttachmentUpdateResponse struct {
 	// Included related resources that the user requested.
 	Included []IncidentAttachmentsResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -122,7 +122,7 @@ func (o *IncidentAttachmentUpdateResponse) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

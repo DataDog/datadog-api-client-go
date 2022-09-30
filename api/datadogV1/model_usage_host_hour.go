@@ -53,7 +53,7 @@ type UsageHostHour struct {
 	// (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

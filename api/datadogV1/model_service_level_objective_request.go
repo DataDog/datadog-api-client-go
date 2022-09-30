@@ -44,7 +44,7 @@ type ServiceLevelObjectiveRequest struct {
 	// The type of the service level objective.
 	Type SLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -342,13 +342,13 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Thresholds == nil {
-		return fmt.Errorf("Required field thresholds missing")
+		return fmt.Errorf("required field thresholds missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

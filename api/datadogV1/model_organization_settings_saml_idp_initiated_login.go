@@ -14,7 +14,7 @@ type OrganizationSettingsSamlIdpInitiatedLogin struct {
 	// in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 

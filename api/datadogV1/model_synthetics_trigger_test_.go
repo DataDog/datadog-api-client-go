@@ -16,7 +16,7 @@ type SyntheticsTriggerTest struct {
 	// The public ID of the Synthetics test to trigger.
 	PublicId string `json:"public_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -121,7 +121,7 @@ func (o *SyntheticsTriggerTest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.PublicId == nil {
-		return fmt.Errorf("Required field public_id missing")
+		return fmt.Errorf("required field public_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

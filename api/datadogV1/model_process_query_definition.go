@@ -20,7 +20,7 @@ type ProcessQueryDefinition struct {
 	// Your chosen search term.
 	SearchBy *string `json:"search_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -189,7 +189,7 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Metric == nil {
-		return fmt.Errorf("Required field metric missing")
+		return fmt.Errorf("required field metric missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
