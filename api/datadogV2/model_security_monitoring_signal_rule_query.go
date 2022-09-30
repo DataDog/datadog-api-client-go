@@ -24,7 +24,7 @@ type SecurityMonitoringSignalRuleQuery struct {
 	// Rule ID to match on signals.
 	RuleId string `json:"ruleId"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -257,7 +257,7 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	if required.RuleId == nil {
-		return fmt.Errorf("Required field ruleId missing")
+		return fmt.Errorf("required field ruleId missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

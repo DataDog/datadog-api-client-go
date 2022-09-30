@@ -16,7 +16,7 @@ type IncidentAttachmentLinkAttributes struct {
 	// The type of link attachment attributes.
 	AttachmentType IncidentAttachmentLinkAttachmentType `json:"attachment_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -118,10 +118,10 @@ func (o *IncidentAttachmentLinkAttributes) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.Attachment == nil {
-		return fmt.Errorf("Required field attachment missing")
+		return fmt.Errorf("required field attachment missing")
 	}
 	if required.AttachmentType == nil {
-		return fmt.Errorf("Required field attachment_type missing")
+		return fmt.Errorf("required field attachment_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

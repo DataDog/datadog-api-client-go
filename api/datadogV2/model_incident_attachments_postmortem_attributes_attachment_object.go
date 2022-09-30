@@ -16,7 +16,7 @@ type IncidentAttachmentsPostmortemAttributesAttachmentObject struct {
 	// The title of this postmortem attachment.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) UnmarshalJSON(
 		return err
 	}
 	if required.DocumentUrl == nil {
-		return fmt.Errorf("Required field documentUrl missing")
+		return fmt.Errorf("required field documentUrl missing")
 	}
 	if required.Title == nil {
-		return fmt.Errorf("Required field title missing")
+		return fmt.Errorf("required field title missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

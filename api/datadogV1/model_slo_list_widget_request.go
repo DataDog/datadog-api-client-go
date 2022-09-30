@@ -16,7 +16,7 @@ type SLOListWidgetRequest struct {
 	// Widget request type.
 	RequestType SLOListWidgetRequestType `json:"request_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *SLOListWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	if required.RequestType == nil {
-		return fmt.Errorf("Required field request_type missing")
+		return fmt.Errorf("required field request_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

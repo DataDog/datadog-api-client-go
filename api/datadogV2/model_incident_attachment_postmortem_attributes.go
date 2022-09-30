@@ -16,7 +16,7 @@ type IncidentAttachmentPostmortemAttributes struct {
 	// The type of postmortem attachment attributes.
 	AttachmentType IncidentAttachmentPostmortemAttachmentType `json:"attachment_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -118,10 +118,10 @@ func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 	if required.Attachment == nil {
-		return fmt.Errorf("Required field attachment missing")
+		return fmt.Errorf("required field attachment missing")
 	}
 	if required.AttachmentType == nil {
-		return fmt.Errorf("Required field attachment_type missing")
+		return fmt.Errorf("required field attachment_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
