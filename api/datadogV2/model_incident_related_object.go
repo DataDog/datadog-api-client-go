@@ -14,11 +14,13 @@ type IncidentRelatedObject string
 
 // List of IncidentRelatedObject.
 const (
-	INCIDENTRELATEDOBJECT_USERS IncidentRelatedObject = "users"
+	INCIDENTRELATEDOBJECT_USERS       IncidentRelatedObject = "users"
+	INCIDENTRELATEDOBJECT_ATTACHMENTS IncidentRelatedObject = "attachments"
 )
 
 var allowedIncidentRelatedObjectEnumValues = []IncidentRelatedObject{
 	INCIDENTRELATEDOBJECT_USERS,
+	INCIDENTRELATEDOBJECT_ATTACHMENTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
