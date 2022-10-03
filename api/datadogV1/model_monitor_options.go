@@ -69,6 +69,12 @@ type MonitorOptions struct {
 	NoDataTimeframe datadog.NullableInt64 `json:"no_data_timeframe,omitempty"`
 	// A Boolean indicating whether tagged users is notified on changes to this monitor.
 	NotifyAudit *bool `json:"notify_audit,omitempty"`
+	// Controls what granularity a monitor alerts on. Only available for multi-alerts.
+	// For instance, a monitor grouped by `cluster`, `namespace`, `pod` can be configured to only notify on each
+	// new `cluster` violating the alert conditions by setting `notify_by` to `["cluster"]`. Tags mentioned
+	// in `notify_by` have to be a subset of the grouping tags in the query.
+	// For example, a query grouped by `cluster`, `namespace` cannot notify on `region`.
+	NotifyBy []string `json:"notify_by,omitempty"`
 	// A Boolean indicating whether this monitor notifies when data stops reporting.
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
 	// Controls how groups or monitors are treated if an evaluation does not return any data points.
@@ -651,6 +657,34 @@ func (o *MonitorOptions) SetNotifyAudit(v bool) {
 	o.NotifyAudit = &v
 }
 
+// GetNotifyBy returns the NotifyBy field value if set, zero value otherwise.
+func (o *MonitorOptions) GetNotifyBy() []string {
+	if o == nil || o.NotifyBy == nil {
+		var ret []string
+		return ret
+	}
+	return o.NotifyBy
+}
+
+// GetNotifyByOk returns a tuple with the NotifyBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetNotifyByOk() (*[]string, bool) {
+	if o == nil || o.NotifyBy == nil {
+		return nil, false
+	}
+	return &o.NotifyBy, true
+}
+
+// HasNotifyBy returns a boolean if a field has been set.
+func (o *MonitorOptions) HasNotifyBy() bool {
+	return o != nil && o.NotifyBy != nil
+}
+
+// SetNotifyBy gets a reference to the given []string and assigns it to the NotifyBy field.
+func (o *MonitorOptions) SetNotifyBy(v []string) {
+	o.NotifyBy = v
+}
+
 // GetNotifyNoData returns the NotifyNoData field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyNoData() bool {
 	if o == nil || o.NotifyNoData == nil {
@@ -1089,6 +1123,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.NotifyAudit != nil {
 		toSerialize["notify_audit"] = o.NotifyAudit
 	}
+	if o.NotifyBy != nil {
+		toSerialize["notify_by"] = o.NotifyBy
+	}
 	if o.NotifyNoData != nil {
 		toSerialize["notify_no_data"] = o.NotifyNoData
 	}
@@ -1151,6 +1188,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		NewHostDelay           datadog.NullableInt64                      `json:"new_host_delay,omitempty"`
 		NoDataTimeframe        datadog.NullableInt64                      `json:"no_data_timeframe,omitempty"`
 		NotifyAudit            *bool                                      `json:"notify_audit,omitempty"`
+		NotifyBy               []string                                   `json:"notify_by,omitempty"`
 		NotifyNoData           *bool                                      `json:"notify_no_data,omitempty"`
 		OnMissingData          *OnMissingDataOption                       `json:"on_missing_data,omitempty"`
 		RenotifyInterval       datadog.NullableInt64                      `json:"renotify_interval,omitempty"`
@@ -1203,6 +1241,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewHostDelay = all.NewHostDelay
 	o.NoDataTimeframe = all.NoDataTimeframe
 	o.NotifyAudit = all.NotifyAudit
+	o.NotifyBy = all.NotifyBy
 	o.NotifyNoData = all.NotifyNoData
 	o.OnMissingData = all.OnMissingData
 	o.RenotifyInterval = all.RenotifyInterval
