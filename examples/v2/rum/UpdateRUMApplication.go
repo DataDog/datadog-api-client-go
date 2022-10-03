@@ -13,13 +13,16 @@ import (
 )
 
 func main() {
+	// there is a valid "rum_application" in the system
+	RumApplicationDataID := os.Getenv("RUM_APPLICATION_DATA_ID")
+
 	body := datadogV2.RUMApplicationUpdateRequest{
 		Data: datadogV2.RUMApplicationUpdate{
 			Attributes: &datadogV2.RUMApplicationUpdateAttributes{
 				Name: datadog.PtrString("updated_name_for_my_existing_rum_application"),
 				Type: datadog.PtrString("browser"),
 			},
-			Id:   "abcd1234-0000-0000-abcd-1234abcd5678",
+			Id:   RumApplicationDataID,
 			Type: datadogV2.RUMAPPLICATIONUPDATETYPE_RUM_APPLICATION_UPDATE,
 		},
 	}
@@ -27,7 +30,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRUMApi(apiClient)
-	resp, r, err := api.UpdateRUMApplication(ctx, "id", body)
+	resp, r, err := api.UpdateRUMApplication(ctx, RumApplicationDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMApi.UpdateRUMApplication`: %v\n", err)
