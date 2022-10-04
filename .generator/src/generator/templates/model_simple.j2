@@ -1,4 +1,6 @@
-// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}
+// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}{% if model.deprecated %}
+//
+// Deprecated: This model is deprecated.{% endif %}
 type {{ name }} struct {
 {#-
 {{^isMap}}
