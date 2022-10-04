@@ -1068,7 +1068,7 @@ func (a *MetricsApi) buildListTagConfigurationsRequest(ctx _context.Context, o .
 }
 
 // ListTagConfigurations Get a list of metrics.
-// Returns all metrics (matching additional filters if specified).
+// Returns all metrics that can be configured in the Metrics Summary page or with Metrics without Limits™ (matching additional filters if specified).
 func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationsRequest(ctx, o...)
 	if err != nil {
