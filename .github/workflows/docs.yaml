@@ -1,0 +1,27 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18.x
+
+      - name: Build documentation
+        run: |
+          rm -rf examples
+          rm -rf tests
+          go install github.com/johnstarich/go/gopages@latest
+          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -gh-pages -gh-pages-token $TOKEN
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
