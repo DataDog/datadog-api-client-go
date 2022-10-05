@@ -9,6 +9,8 @@ import (
 )
 
 // OrganizationSubscription Subscription definition.
+//
+// Deprecated: This model is deprecated.
 type OrganizationSubscription struct {
 	// The subscription type. Types available are `trial`, `free`, and `pro`.
 	Type *string `json:"type,omitempty"`

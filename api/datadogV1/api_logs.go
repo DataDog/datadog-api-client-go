@@ -226,6 +226,8 @@ func (a *LogsApi) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem
 // - 403: Permission issue (likely using an invalid API Key)
 // - 413: Payload too large (batch is above 5MB uncompressed)
 // - 5xx: Internal error, request should be retried after some time
+//
+// Deprecated: This API is deprecated.
 func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildSubmitLogRequest(ctx, body, o...)
 	if err != nil {

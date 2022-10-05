@@ -9,6 +9,8 @@ import (
 )
 
 // OrganizationBilling A JSON array of billing type.
+//
+// Deprecated: This model is deprecated.
 type OrganizationBilling struct {
 	// The type of billing. Only `parent_billing` is supported.
 	Type *string `json:"type,omitempty"`

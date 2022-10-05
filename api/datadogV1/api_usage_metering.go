@@ -88,6 +88,8 @@ func (a *UsageMeteringApi) buildGetDailyCustomReportsRequest(ctx _context.Contex
 // Get daily custom reports.
 // **Note:** This endpoint will be fully deprecated on December 1, 2022.
 // Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetDailyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -782,6 +784,8 @@ func (a *UsageMeteringApi) buildGetMonthlyCustomReportsRequest(ctx _context.Cont
 // Get monthly custom reports.
 // **Note:** This endpoint will be fully deprecated on December 1, 2022.
 // Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -1145,6 +1149,8 @@ func (a *UsageMeteringApi) buildGetSpecifiedDailyCustomReportsRequest(ctx _conte
 // Get specified daily custom reports.
 // **Note:** This endpoint will be fully deprecated on December 1, 2022.
 // Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedDailyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1266,6 +1272,8 @@ func (a *UsageMeteringApi) buildGetSpecifiedMonthlyCustomReportsRequest(ctx _con
 // Get specified monthly custom reports.
 // **Note:** This endpoint will be fully deprecated on December 1, 2022.
 // Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedMonthlyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1612,6 +1620,8 @@ func (a *UsageMeteringApi) buildGetUsageAttributionRequest(ctx _context.Context,
 // Get usage attribution.
 // **Note:** This endpoint will be fully deprecated on December 1, 2022.
 // Refer to [Migrating from v1 to v2 of the Usage Attribution API](https://docs.datadoghq.com/account_management/guide/usage-attribution-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
@@ -5314,6 +5324,8 @@ func (a *UsageMeteringApi) buildGetUsageSyntheticsRequest(ctx _context.Context, 
 // GetUsageSynthetics Get hourly usage for synthetics checks.
 // Get hourly usage for [synthetics checks](https://docs.datadoghq.com/synthetics/).
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsRequest(ctx, startHr, o...)
 	if err != nil {

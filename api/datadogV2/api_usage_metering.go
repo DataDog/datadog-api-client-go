@@ -63,6 +63,8 @@ func (a *UsageMeteringApi) buildGetCostByOrgRequest(ctx _context.Context, startM
 // **Note:** This endpoint has been deprecated. Please use the new endpoint
 // [`/historical_cost`](https://docs.datadoghq.com/api/latest/usage-metering/#get-historical-cost-across-your-account)
 // instead.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetCostByOrgRequest(ctx, startMonth, o...)
 	if err != nil {
