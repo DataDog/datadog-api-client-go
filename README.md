@@ -9,7 +9,7 @@ This repository contains a Go API client for the [Datadog API](https://docs.data
 ## Layout
 
 This repository contains per-major-version API client packages. Right
-now, Datadog has two API versions, `v1`, `v2` and the common package, `common`.
+now, Datadog has two API versions, `v1`, `v2` and the common package.
 
 ### The API v1 Client
 
@@ -174,7 +174,8 @@ func main() {
 
 ## Documentation
 
-Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2).
+Developer documentation for API endpoints and models is available on [Github pages](https://datadoghq.dev/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/).
+Released versions are available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2).
 
 ## Contributing
 
