@@ -22,7 +22,7 @@ jobs:
           rm -rf examples
           rm -rf tests
           go install github.com/johnstarich/go/gopages@latest
-          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog"
+          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base https://datadoghq.dev/datadog-api-client-go/
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
