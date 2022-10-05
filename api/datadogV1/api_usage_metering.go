@@ -5167,8 +5167,8 @@ func (a *UsageMeteringApi) buildGetUsageSummaryRequest(ctx _context.Context, sta
 	return req, nil
 }
 
-// GetUsageSummary Get usage across your multi-org account.
-// Get usage across your multi-org account. You must have the multi-org feature enabled.
+// GetUsageSummary Get usage across your account.
+// Get all usage across your account.
 func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSummaryRequest(ctx, startMonth, o...)
 	if err != nil {
