@@ -22,4 +22,15 @@ jobs:
           rm -rf examples
           rm -rf tests
           go install github.com/johnstarich/go/gopages@latest
-          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -gh-pages -gh-pages-token ${{ secrets.GITHUB_TOKEN }}
+          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog"
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: ${{ github.event.head_commit.message }}
+          # Write .nojekyll at the root, see:
+          # https://help.github.com/en/github/working-with-github-pages/about-github-pages#static-site-generators
+          enable_jekyll: false
+          # Only deploy if there were changes
+          allow_empty_commit: false
