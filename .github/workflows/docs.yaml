@@ -22,6 +22,4 @@ jobs:
           rm -rf examples
           rm -rf tests
           go install github.com/johnstarich/go/gopages@latest
-          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -gh-pages -gh-pages-token $TOKEN
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -gh-pages -gh-pages-token ${{ secrets.GITHUB_TOKEN }}
