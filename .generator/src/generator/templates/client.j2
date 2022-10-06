@@ -187,7 +187,7 @@ func (c *APIClient) PrepareRequest(
 				{%- if schema.in == "header"%}
 				headerParams["{{ schema.name }}"] = key
 				{%- elif schema.in == "query"%}
-				localVarQueryParams.Add("{{ schema.name }}", key)
+				queryParams.Add("{{ schema.name }}", key)
 				{%- endif %}
 			}
 		}
