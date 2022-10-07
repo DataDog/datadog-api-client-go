@@ -11,7 +11,7 @@ import (
 // MonitorType Attributes from the monitor that triggered the event.
 type MonitorType struct {
 	// The POSIX timestamp of the monitor's creation in nanoseconds.
-	CreatedAt *int32 `json:"created_at,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Monitor group status used when there is no `result_groups`.
 	GroupStatus *int32 `json:"group_status,omitempty"`
 	// Groups to which the monitor belongs.
@@ -55,9 +55,9 @@ func NewMonitorTypeWithDefaults() *MonitorType {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *MonitorType) GetCreatedAt() int32 {
+func (o *MonitorType) GetCreatedAt() int64 {
 	if o == nil || o.CreatedAt == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedAt
@@ -65,7 +65,7 @@ func (o *MonitorType) GetCreatedAt() int32 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorType) GetCreatedAtOk() (*int32, bool) {
+func (o *MonitorType) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -77,8 +77,8 @@ func (o *MonitorType) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
-// SetCreatedAt gets a reference to the given int32 and assigns it to the CreatedAt field.
-func (o *MonitorType) SetCreatedAt(v int32) {
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *MonitorType) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
@@ -412,7 +412,7 @@ func (o MonitorType) MarshalJSON() ([]byte, error) {
 func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt     *int32   `json:"created_at,omitempty"`
+		CreatedAt     *int64   `json:"created_at,omitempty"`
 		GroupStatus   *int32   `json:"group_status,omitempty"`
 		Groups        []string `json:"groups,omitempty"`
 		Id            *int32   `json:"id,omitempty"`
