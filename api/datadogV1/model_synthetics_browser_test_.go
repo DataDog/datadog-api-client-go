@@ -28,7 +28,7 @@ type SyntheticsBrowserTest struct {
 	// Define whether you want to start (`live`) or pause (`paused`) a
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
-	// The steps of the test.
+	// Array of steps for the test.
 	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
 	Tags []string `json:"tags,omitempty"`
