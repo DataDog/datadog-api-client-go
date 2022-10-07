@@ -35,7 +35,7 @@ type SecurityMonitoringSignalRuleResponse struct {
 	// Options on rules.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
-	Queries []SecurityMonitoringSignalRuleQuery `json:"queries,omitempty"`
+	Queries []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
 	// The rule type.
@@ -403,9 +403,9 @@ func (o *SecurityMonitoringSignalRuleResponse) SetOptions(v SecurityMonitoringRu
 }
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
-func (o *SecurityMonitoringSignalRuleResponse) GetQueries() []SecurityMonitoringSignalRuleQuery {
+func (o *SecurityMonitoringSignalRuleResponse) GetQueries() []SecurityMonitoringSignalRuleResponseQuery {
 	if o == nil || o.Queries == nil {
-		var ret []SecurityMonitoringSignalRuleQuery
+		var ret []SecurityMonitoringSignalRuleResponseQuery
 		return ret
 	}
 	return o.Queries
@@ -413,7 +413,7 @@ func (o *SecurityMonitoringSignalRuleResponse) GetQueries() []SecurityMonitoring
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringSignalRuleResponse) GetQueriesOk() (*[]SecurityMonitoringSignalRuleQuery, bool) {
+func (o *SecurityMonitoringSignalRuleResponse) GetQueriesOk() (*[]SecurityMonitoringSignalRuleResponseQuery, bool) {
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
@@ -425,8 +425,8 @@ func (o *SecurityMonitoringSignalRuleResponse) HasQueries() bool {
 	return o != nil && o.Queries != nil
 }
 
-// SetQueries gets a reference to the given []SecurityMonitoringSignalRuleQuery and assigns it to the Queries field.
-func (o *SecurityMonitoringSignalRuleResponse) SetQueries(v []SecurityMonitoringSignalRuleQuery) {
+// SetQueries gets a reference to the given []SecurityMonitoringSignalRuleResponseQuery and assigns it to the Queries field.
+func (o *SecurityMonitoringSignalRuleResponse) SetQueries(v []SecurityMonitoringSignalRuleResponseQuery) {
 	o.Queries = v
 }
 
@@ -610,23 +610,23 @@ func (o SecurityMonitoringSignalRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            []SecurityMonitoringRuleCase        `json:"cases,omitempty"`
-		CreatedAt        *int64                              `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                              `json:"creationAuthorId,omitempty"`
-		Filters          []SecurityMonitoringFilter          `json:"filters,omitempty"`
-		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
-		Id               *string                             `json:"id,omitempty"`
-		IsDefault        *bool                               `json:"isDefault,omitempty"`
-		IsDeleted        *bool                               `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                               `json:"isEnabled,omitempty"`
-		Message          *string                             `json:"message,omitempty"`
-		Name             *string                             `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions      `json:"options,omitempty"`
-		Queries          []SecurityMonitoringSignalRuleQuery `json:"queries,omitempty"`
-		Tags             []string                            `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleType   `json:"type,omitempty"`
-		UpdateAuthorId   *int64                              `json:"updateAuthorId,omitempty"`
-		Version          *int64                              `json:"version,omitempty"`
+		Cases            []SecurityMonitoringRuleCase                `json:"cases,omitempty"`
+		CreatedAt        *int64                                      `json:"createdAt,omitempty"`
+		CreationAuthorId *int64                                      `json:"creationAuthorId,omitempty"`
+		Filters          []SecurityMonitoringFilter                  `json:"filters,omitempty"`
+		HasExtendedTitle *bool                                       `json:"hasExtendedTitle,omitempty"`
+		Id               *string                                     `json:"id,omitempty"`
+		IsDefault        *bool                                       `json:"isDefault,omitempty"`
+		IsDeleted        *bool                                       `json:"isDeleted,omitempty"`
+		IsEnabled        *bool                                       `json:"isEnabled,omitempty"`
+		Message          *string                                     `json:"message,omitempty"`
+		Name             *string                                     `json:"name,omitempty"`
+		Options          *SecurityMonitoringRuleOptions              `json:"options,omitempty"`
+		Queries          []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
+		Tags             []string                                    `json:"tags,omitempty"`
+		Type             *SecurityMonitoringSignalRuleType           `json:"type,omitempty"`
+		UpdateAuthorId   *int64                                      `json:"updateAuthorId,omitempty"`
+		Version          *int64                                      `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
