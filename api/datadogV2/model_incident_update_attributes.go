@@ -27,8 +27,6 @@ type IncidentUpdateAttributes struct {
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Notification handles that will be notified of the incident during update.
 	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
-	// Timestamp when the incident's state was set to resolved.
-	Resolved datadog.NullableTime `json:"resolved,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -282,45 +280,6 @@ func (o *IncidentUpdateAttributes) SetNotificationHandles(v []IncidentNotificati
 	o.NotificationHandles = v
 }
 
-// GetResolved returns the Resolved field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IncidentUpdateAttributes) GetResolved() time.Time {
-	if o == nil || o.Resolved.Get() == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.Resolved.Get()
-}
-
-// GetResolvedOk returns a tuple with the Resolved field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *IncidentUpdateAttributes) GetResolvedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Resolved.Get(), o.Resolved.IsSet()
-}
-
-// HasResolved returns a boolean if a field has been set.
-func (o *IncidentUpdateAttributes) HasResolved() bool {
-	return o != nil && o.Resolved.IsSet()
-}
-
-// SetResolved gets a reference to the given datadog.NullableTime and assigns it to the Resolved field.
-func (o *IncidentUpdateAttributes) SetResolved(v time.Time) {
-	o.Resolved.Set(&v)
-}
-
-// SetResolvedNil sets the value for Resolved to be an explicit nil.
-func (o *IncidentUpdateAttributes) SetResolvedNil() {
-	o.Resolved.Set(nil)
-}
-
-// UnsetResolved ensures that no value is present for Resolved, not even an explicit nil.
-func (o *IncidentUpdateAttributes) UnsetResolved() {
-	o.Resolved.Unset()
-}
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -376,9 +335,6 @@ func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.NotificationHandles != nil {
 		toSerialize["notification_handles"] = o.NotificationHandles
 	}
-	if o.Resolved.IsSet() {
-		toSerialize["resolved"] = o.Resolved.Get()
-	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
@@ -400,7 +356,6 @@ func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Detected            datadog.NullableTime               `json:"detected,omitempty"`
 		Fields              map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		NotificationHandles []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		Resolved            datadog.NullableTime               `json:"resolved,omitempty"`
 		Title               *string                            `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -419,7 +374,6 @@ func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Detected = all.Detected
 	o.Fields = all.Fields
 	o.NotificationHandles = all.NotificationHandles
-	o.Resolved = all.Resolved
 	o.Title = all.Title
 	return nil
 }

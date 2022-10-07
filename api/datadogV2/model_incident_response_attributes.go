@@ -37,7 +37,7 @@ type IncidentResponseAttributes struct {
 	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// The monotonically increasing integer ID for the incident.
 	PublicId *int64 `json:"public_id,omitempty"`
-	// Timestamp when the incident's state was set to resolved.
+	// Timestamp when the incident's state was last changed from active or stable to resolved or completed.
 	Resolved datadog.NullableTime `json:"resolved,omitempty"`
 	// The amount of time in seconds to detect the incident.
 	// Equals the difference between `customer_impact_start` and `detected`.
