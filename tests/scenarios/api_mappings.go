@@ -64,6 +64,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "UsersApi": reflect.ValueOf(datadogV2.NewUsersApi),
 	    "ServiceAccountsApi": reflect.ValueOf(datadogV2.NewServiceAccountsApi),
 	    "IncidentServicesApi": reflect.ValueOf(datadogV2.NewIncidentServicesApi),
+	    "ServiceDefinitionApi": reflect.ValueOf(datadogV2.NewServiceDefinitionApi),
 	    "IncidentTeamsApi": reflect.ValueOf(datadogV2.NewIncidentTeamsApi),
 	    "UsageMeteringApi": reflect.ValueOf(datadogV2.NewUsageMeteringApi),
 	},
