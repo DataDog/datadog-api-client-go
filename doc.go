@@ -114,7 +114,7 @@
 //
 // Configure proxy
 //
-// If you want to configure proxy, set env var HTTP_PROXY, and HTTPS_PROXY" or set custom
+// If you want to configure proxy, set env var HTTP_PROXY, and HTTPS_PROXY or set custom
 // HTTPClient with proxy configured on configuration object:
 //
 //       proxyUrl, _ := url.Parse("http://127.0.0.1:80")
