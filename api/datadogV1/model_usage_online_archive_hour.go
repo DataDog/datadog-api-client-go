@@ -14,7 +14,7 @@ type UsageOnlineArchiveHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Total count of online archived events within the hour.
-	OnlineArchiveEventsCount *int32 `json:"online_archive_events_count,omitempty"`
+	OnlineArchiveEventsCount *int64 `json:"online_archive_events_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -70,9 +70,9 @@ func (o *UsageOnlineArchiveHour) SetHour(v time.Time) {
 }
 
 // GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise.
-func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int32 {
+func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
 	if o == nil || o.OnlineArchiveEventsCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OnlineArchiveEventsCount
@@ -80,7 +80,7 @@ func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int32 {
 
 // GetOnlineArchiveEventsCountOk returns a tuple with the OnlineArchiveEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int32, bool) {
+func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int64, bool) {
 	if o == nil || o.OnlineArchiveEventsCount == nil {
 		return nil, false
 	}
@@ -92,8 +92,8 @@ func (o *UsageOnlineArchiveHour) HasOnlineArchiveEventsCount() bool {
 	return o != nil && o.OnlineArchiveEventsCount != nil
 }
 
-// SetOnlineArchiveEventsCount gets a reference to the given int32 and assigns it to the OnlineArchiveEventsCount field.
-func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int32) {
+// SetOnlineArchiveEventsCount gets a reference to the given int64 and assigns it to the OnlineArchiveEventsCount field.
+func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int64) {
 	o.OnlineArchiveEventsCount = &v
 }
 
@@ -187,7 +187,7 @@ func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Hour                     *time.Time `json:"hour,omitempty"`
-		OnlineArchiveEventsCount *int32     `json:"online_archive_events_count,omitempty"`
+		OnlineArchiveEventsCount *int64     `json:"online_archive_events_count,omitempty"`
 		OrgName                  *string    `json:"org_name,omitempty"`
 		PublicId                 *string    `json:"public_id,omitempty"`
 	}{}

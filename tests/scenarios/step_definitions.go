@@ -209,7 +209,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	ctx.Set(responseKey{}, result)
 
 	// Report probable serialization errors
-	if len(result) > 2 {
+	if len(result) > 1 {
 		resp := result[len(result)-2].Interface().(*http.Response)
 		if resp == nil {
 			return
@@ -234,7 +234,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 				responseJSON = string(err.Body())
 			}
-		} else {
+		} else if len(result) == 3 {
 			// Store the unmarshalled JSON in context
 			responseJSON, err = toJSON(result[0])
 			if err != nil {

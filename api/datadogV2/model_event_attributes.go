@@ -33,11 +33,11 @@ type EventAttributes struct {
 	// List of groups referred to in the event.
 	MonitorGroups []string `json:"monitor_groups,omitempty"`
 	// ID of the monitor that triggered the event. When an event isn't related to a monitor, this field is empty.
-	MonitorId datadog.NullableInt32 `json:"monitor_id,omitempty"`
+	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
 	// The priority of the event's monitor. For example, `normal` or `low`.
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// Related event ID.
-	RelatedEventId *int32 `json:"related_event_id,omitempty"`
+	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// Service that triggered the event.
 	Service *string `json:"service,omitempty"`
 	// The type of event being posted.
@@ -343,9 +343,9 @@ func (o *EventAttributes) SetMonitorGroups(v []string) {
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EventAttributes) GetMonitorId() int32 {
+func (o *EventAttributes) GetMonitorId() int64 {
 	if o == nil || o.MonitorId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MonitorId.Get()
@@ -354,7 +354,7 @@ func (o *EventAttributes) GetMonitorId() int32 {
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *EventAttributes) GetMonitorIdOk() (*int32, bool) {
+func (o *EventAttributes) GetMonitorIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -366,8 +366,8 @@ func (o *EventAttributes) HasMonitorId() bool {
 	return o != nil && o.MonitorId.IsSet()
 }
 
-// SetMonitorId gets a reference to the given datadog.NullableInt32 and assigns it to the MonitorId field.
-func (o *EventAttributes) SetMonitorId(v int32) {
+// SetMonitorId gets a reference to the given datadog.NullableInt64 and assigns it to the MonitorId field.
+func (o *EventAttributes) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
 
@@ -421,9 +421,9 @@ func (o *EventAttributes) UnsetPriority() {
 }
 
 // GetRelatedEventId returns the RelatedEventId field value if set, zero value otherwise.
-func (o *EventAttributes) GetRelatedEventId() int32 {
+func (o *EventAttributes) GetRelatedEventId() int64 {
 	if o == nil || o.RelatedEventId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RelatedEventId
@@ -431,7 +431,7 @@ func (o *EventAttributes) GetRelatedEventId() int32 {
 
 // GetRelatedEventIdOk returns a tuple with the RelatedEventId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventAttributes) GetRelatedEventIdOk() (*int32, bool) {
+func (o *EventAttributes) GetRelatedEventIdOk() (*int64, bool) {
 	if o == nil || o.RelatedEventId == nil {
 		return nil, false
 	}
@@ -443,8 +443,8 @@ func (o *EventAttributes) HasRelatedEventId() bool {
 	return o != nil && o.RelatedEventId != nil
 }
 
-// SetRelatedEventId gets a reference to the given int32 and assigns it to the RelatedEventId field.
-func (o *EventAttributes) SetRelatedEventId(v int32) {
+// SetRelatedEventId gets a reference to the given int64 and assigns it to the RelatedEventId field.
+func (o *EventAttributes) SetRelatedEventId(v int64) {
 	o.RelatedEventId = &v
 }
 
@@ -727,9 +727,9 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Hostname       *string               `json:"hostname,omitempty"`
 		Monitor        NullableMonitorType   `json:"monitor,omitempty"`
 		MonitorGroups  []string              `json:"monitor_groups,omitempty"`
-		MonitorId      datadog.NullableInt32 `json:"monitor_id,omitempty"`
+		MonitorId      datadog.NullableInt64 `json:"monitor_id,omitempty"`
 		Priority       NullableEventPriority `json:"priority,omitempty"`
-		RelatedEventId *int32                `json:"related_event_id,omitempty"`
+		RelatedEventId *int64                `json:"related_event_id,omitempty"`
 		Service        *string               `json:"service,omitempty"`
 		SourceTypeName *string               `json:"source_type_name,omitempty"`
 		Sourcecategory *string               `json:"sourcecategory,omitempty"`
