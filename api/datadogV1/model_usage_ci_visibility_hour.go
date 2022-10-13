@@ -11,13 +11,13 @@ import (
 // UsageCIVisibilityHour CI visibility usage in a given hour.
 type UsageCIVisibilityHour struct {
 	// The number of spans for pipelines in the queried hour.
-	CiPipelineIndexedSpans *int32 `json:"ci_pipeline_indexed_spans,omitempty"`
+	CiPipelineIndexedSpans *int64 `json:"ci_pipeline_indexed_spans,omitempty"`
 	// The number of spans for tests in the queried hour.
-	CiTestIndexedSpans *int32 `json:"ci_test_indexed_spans,omitempty"`
+	CiTestIndexedSpans *int64 `json:"ci_test_indexed_spans,omitempty"`
 	// Shows the total count of all active Git committers for Pipelines in the current month. A committer is active if they commit at least 3 times in a given month.
-	CiVisibilityPipelineCommitters *int32 `json:"ci_visibility_pipeline_committers,omitempty"`
+	CiVisibilityPipelineCommitters *int64 `json:"ci_visibility_pipeline_committers,omitempty"`
 	// The total count of all active Git committers for tests in the current month. A committer is active if they commit at least 3 times in a given month.
-	CiVisibilityTestCommitters *int32 `json:"ci_visibility_test_committers,omitempty"`
+	CiVisibilityTestCommitters *int64 `json:"ci_visibility_test_committers,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -45,9 +45,9 @@ func NewUsageCIVisibilityHourWithDefaults() *UsageCIVisibilityHour {
 }
 
 // GetCiPipelineIndexedSpans returns the CiPipelineIndexedSpans field value if set, zero value otherwise.
-func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpans() int32 {
+func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpans() int64 {
 	if o == nil || o.CiPipelineIndexedSpans == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CiPipelineIndexedSpans
@@ -55,7 +55,7 @@ func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpans() int32 {
 
 // GetCiPipelineIndexedSpansOk returns a tuple with the CiPipelineIndexedSpans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpansOk() (*int32, bool) {
+func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpansOk() (*int64, bool) {
 	if o == nil || o.CiPipelineIndexedSpans == nil {
 		return nil, false
 	}
@@ -67,15 +67,15 @@ func (o *UsageCIVisibilityHour) HasCiPipelineIndexedSpans() bool {
 	return o != nil && o.CiPipelineIndexedSpans != nil
 }
 
-// SetCiPipelineIndexedSpans gets a reference to the given int32 and assigns it to the CiPipelineIndexedSpans field.
-func (o *UsageCIVisibilityHour) SetCiPipelineIndexedSpans(v int32) {
+// SetCiPipelineIndexedSpans gets a reference to the given int64 and assigns it to the CiPipelineIndexedSpans field.
+func (o *UsageCIVisibilityHour) SetCiPipelineIndexedSpans(v int64) {
 	o.CiPipelineIndexedSpans = &v
 }
 
 // GetCiTestIndexedSpans returns the CiTestIndexedSpans field value if set, zero value otherwise.
-func (o *UsageCIVisibilityHour) GetCiTestIndexedSpans() int32 {
+func (o *UsageCIVisibilityHour) GetCiTestIndexedSpans() int64 {
 	if o == nil || o.CiTestIndexedSpans == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CiTestIndexedSpans
@@ -83,7 +83,7 @@ func (o *UsageCIVisibilityHour) GetCiTestIndexedSpans() int32 {
 
 // GetCiTestIndexedSpansOk returns a tuple with the CiTestIndexedSpans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageCIVisibilityHour) GetCiTestIndexedSpansOk() (*int32, bool) {
+func (o *UsageCIVisibilityHour) GetCiTestIndexedSpansOk() (*int64, bool) {
 	if o == nil || o.CiTestIndexedSpans == nil {
 		return nil, false
 	}
@@ -95,15 +95,15 @@ func (o *UsageCIVisibilityHour) HasCiTestIndexedSpans() bool {
 	return o != nil && o.CiTestIndexedSpans != nil
 }
 
-// SetCiTestIndexedSpans gets a reference to the given int32 and assigns it to the CiTestIndexedSpans field.
-func (o *UsageCIVisibilityHour) SetCiTestIndexedSpans(v int32) {
+// SetCiTestIndexedSpans gets a reference to the given int64 and assigns it to the CiTestIndexedSpans field.
+func (o *UsageCIVisibilityHour) SetCiTestIndexedSpans(v int64) {
 	o.CiTestIndexedSpans = &v
 }
 
 // GetCiVisibilityPipelineCommitters returns the CiVisibilityPipelineCommitters field value if set, zero value otherwise.
-func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommitters() int32 {
+func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommitters() int64 {
 	if o == nil || o.CiVisibilityPipelineCommitters == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CiVisibilityPipelineCommitters
@@ -111,7 +111,7 @@ func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommitters() int32 {
 
 // GetCiVisibilityPipelineCommittersOk returns a tuple with the CiVisibilityPipelineCommitters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommittersOk() (*int32, bool) {
+func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommittersOk() (*int64, bool) {
 	if o == nil || o.CiVisibilityPipelineCommitters == nil {
 		return nil, false
 	}
@@ -123,15 +123,15 @@ func (o *UsageCIVisibilityHour) HasCiVisibilityPipelineCommitters() bool {
 	return o != nil && o.CiVisibilityPipelineCommitters != nil
 }
 
-// SetCiVisibilityPipelineCommitters gets a reference to the given int32 and assigns it to the CiVisibilityPipelineCommitters field.
-func (o *UsageCIVisibilityHour) SetCiVisibilityPipelineCommitters(v int32) {
+// SetCiVisibilityPipelineCommitters gets a reference to the given int64 and assigns it to the CiVisibilityPipelineCommitters field.
+func (o *UsageCIVisibilityHour) SetCiVisibilityPipelineCommitters(v int64) {
 	o.CiVisibilityPipelineCommitters = &v
 }
 
 // GetCiVisibilityTestCommitters returns the CiVisibilityTestCommitters field value if set, zero value otherwise.
-func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommitters() int32 {
+func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommitters() int64 {
 	if o == nil || o.CiVisibilityTestCommitters == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CiVisibilityTestCommitters
@@ -139,7 +139,7 @@ func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommitters() int32 {
 
 // GetCiVisibilityTestCommittersOk returns a tuple with the CiVisibilityTestCommitters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommittersOk() (*int32, bool) {
+func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommittersOk() (*int64, bool) {
 	if o == nil || o.CiVisibilityTestCommitters == nil {
 		return nil, false
 	}
@@ -151,8 +151,8 @@ func (o *UsageCIVisibilityHour) HasCiVisibilityTestCommitters() bool {
 	return o != nil && o.CiVisibilityTestCommitters != nil
 }
 
-// SetCiVisibilityTestCommitters gets a reference to the given int32 and assigns it to the CiVisibilityTestCommitters field.
-func (o *UsageCIVisibilityHour) SetCiVisibilityTestCommitters(v int32) {
+// SetCiVisibilityTestCommitters gets a reference to the given int64 and assigns it to the CiVisibilityTestCommitters field.
+func (o *UsageCIVisibilityHour) SetCiVisibilityTestCommitters(v int64) {
 	o.CiVisibilityTestCommitters = &v
 }
 
@@ -247,10 +247,10 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CiPipelineIndexedSpans         *int32  `json:"ci_pipeline_indexed_spans,omitempty"`
-		CiTestIndexedSpans             *int32  `json:"ci_test_indexed_spans,omitempty"`
-		CiVisibilityPipelineCommitters *int32  `json:"ci_visibility_pipeline_committers,omitempty"`
-		CiVisibilityTestCommitters     *int32  `json:"ci_visibility_test_committers,omitempty"`
+		CiPipelineIndexedSpans         *int64  `json:"ci_pipeline_indexed_spans,omitempty"`
+		CiTestIndexedSpans             *int64  `json:"ci_test_indexed_spans,omitempty"`
+		CiVisibilityPipelineCommitters *int64  `json:"ci_visibility_pipeline_committers,omitempty"`
+		CiVisibilityTestCommitters     *int64  `json:"ci_visibility_test_committers,omitempty"`
 		OrgName                        *string `json:"org_name,omitempty"`
 		PublicId                       *string `json:"public_id,omitempty"`
 	}{}
