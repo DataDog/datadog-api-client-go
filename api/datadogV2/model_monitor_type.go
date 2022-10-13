@@ -17,11 +17,11 @@ type MonitorType struct {
 	// Groups to which the monitor belongs.
 	Groups []string `json:"groups,omitempty"`
 	// The monitor ID.
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	// The monitor message.
 	Message *string `json:"message,omitempty"`
 	// The monitor's last-modified timestamp.
-	Modified *int32 `json:"modified,omitempty"`
+	Modified *int64 `json:"modified,omitempty"`
 	// The monitor name.
 	Name *string `json:"name,omitempty"`
 	// The query that triggers the alert.
@@ -139,9 +139,9 @@ func (o *MonitorType) SetGroups(v []string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *MonitorType) GetId() int32 {
+func (o *MonitorType) GetId() int64 {
 	if o == nil || o.Id == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -149,7 +149,7 @@ func (o *MonitorType) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorType) GetIdOk() (*int32, bool) {
+func (o *MonitorType) GetIdOk() (*int64, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -161,8 +161,8 @@ func (o *MonitorType) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *MonitorType) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *MonitorType) SetId(v int64) {
 	o.Id = &v
 }
 
@@ -195,9 +195,9 @@ func (o *MonitorType) SetMessage(v string) {
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *MonitorType) GetModified() int32 {
+func (o *MonitorType) GetModified() int64 {
 	if o == nil || o.Modified == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Modified
@@ -205,7 +205,7 @@ func (o *MonitorType) GetModified() int32 {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorType) GetModifiedOk() (*int32, bool) {
+func (o *MonitorType) GetModifiedOk() (*int64, bool) {
 	if o == nil || o.Modified == nil {
 		return nil, false
 	}
@@ -217,8 +217,8 @@ func (o *MonitorType) HasModified() bool {
 	return o != nil && o.Modified != nil
 }
 
-// SetModified gets a reference to the given int32 and assigns it to the Modified field.
-func (o *MonitorType) SetModified(v int32) {
+// SetModified gets a reference to the given int64 and assigns it to the Modified field.
+func (o *MonitorType) SetModified(v int64) {
 	o.Modified = &v
 }
 
@@ -415,9 +415,9 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt     *int64   `json:"created_at,omitempty"`
 		GroupStatus   *int32   `json:"group_status,omitempty"`
 		Groups        []string `json:"groups,omitempty"`
-		Id            *int32   `json:"id,omitempty"`
+		Id            *int64   `json:"id,omitempty"`
 		Message       *string  `json:"message,omitempty"`
-		Modified      *int32   `json:"modified,omitempty"`
+		Modified      *int64   `json:"modified,omitempty"`
 		Name          *string  `json:"name,omitempty"`
 		Query         *string  `json:"query,omitempty"`
 		Tags          []string `json:"tags,omitempty"`
