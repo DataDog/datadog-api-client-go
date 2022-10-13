@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"api_key":"TestUpdateConfluentaccountreturnsOKresponse1665090166","api_secret":"test-api-secret","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts
+  response:
+    body: '{"data":{"attributes":{"api_key":"TestUpdateConfluentaccountreturnsOKresponse1665090166","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts","id":"ytthkwvtde"}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"api_key":"TestUpdateConfluentaccountreturnsOKresponse1665090166","api_secret":"update-secret","tags":["updated_tag:val"]},"type":"confluent-cloud-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/ytthkwvtde
+  response:
+    body: '{"data":{"attributes":{"api_key":"TestUpdateConfluentaccountreturnsOKresponse1665090166","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["updated_tag:val"]},"type":"confluent-cloud-accounts","id":"ytthkwvtde"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/ytthkwvtde
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 1
