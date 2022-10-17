@@ -62,6 +62,7 @@ def cli(specs, output):
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")
+    doc_j2 = env.get_template("doc.j2")
 
     extra_files = {
         "client.go": env.get_template("client.j2"),
@@ -102,12 +103,19 @@ def cli(specs, output):
             with model_path.open("w") as fp:
                 fp.write(model_j2.render(name=name, model=model, models=models))
 
+        all_operations = []
+
         for name, operations in apis.items():
             filename = "api_" + formatter.snake_case(name) + ".go"
             api_path = resources_dir / filename
             api_path.parent.mkdir(parents=True, exist_ok=True)
             with api_path.open("w") as fp:
                 fp.write(api_j2.render(name=name, operations=operations))
+            all_operations.append((name, operations))
+
+        doc_path = resources_dir / "doc.go"
+        with doc_path.open("w") as fp:
+            fp.write(doc_j2.render(all_operations=all_operations))
 
     common_package_output = pathlib.Path(f"../api/{COMMON_PACKAGE_NAME}")
     common_package_output.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,10 @@
+{% include "partial_header.j2" %}
+
+// List of APIs:
+{%- for name, operations in all_operations|sort %}
+{%- set classname = name.replace(" ", "") + "Api" %}
+{%- for path, method, operation in operations|sort(attribute="2.operationId", case_sensitive=True) %}
+//  - [{{ classname }}.{{ operation.operationId }}]
+{%- endfor %}
+{%- endfor %}
+package {{ package_name }}
