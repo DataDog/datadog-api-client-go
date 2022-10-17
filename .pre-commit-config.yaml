@@ -17,6 +17,15 @@ repos:
     pass_filenames: false
     additional_dependencies:
       - golang.org/x/tools/cmd/goimports@latest
+  - id: generate-doc
+    name: Doc generation
+    stages: [manual]
+    language: golang
+    entry: md-to-godoc
+    files: 'README.md'
+    pass_filenames: false
+    additional_dependencies:
+      - github.com/therve/md-to-godoc@452c0541b9500da3750489330b5a8f7a820a590c
   - id: docs
     name: Format documentation
     stages: [manual]

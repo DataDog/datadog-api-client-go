@@ -26,5 +26,6 @@ pre_commit_wrapper () {
 rm -rf api/* examples/*
 pre_commit_wrapper generator
 pre_commit_wrapper examples
-pre_commit_wrapper lint
 pre_commit_wrapper docs
+pre_commit_wrapper generate-doc
+pre_commit_wrapper lint
