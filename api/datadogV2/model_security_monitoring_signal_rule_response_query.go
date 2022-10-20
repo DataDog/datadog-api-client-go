@@ -18,7 +18,7 @@ type SecurityMonitoringSignalRuleResponseQuery struct {
 	CorrelatedQueryIndex *int32 `json:"correlatedQueryIndex,omitempty"`
 	// Default Rule ID to match on signals.
 	DefaultRuleId *string `json:"defaultRuleId,omitempty"`
-	// Group of target fields to aggregate over when using the new value aggregations.
+	// Group of target fields to aggregate over.
 	Metrics []string `json:"metrics,omitempty"`
 	// Name of the query.
 	Name *string `json:"name,omitempty"`

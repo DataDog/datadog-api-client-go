@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1664284019","query":"service:TestGetasecurityfilterreturnsOKresponse1664284019"},"type":"security_filters"}}
+      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","query":"service:TestGetasecurityfilterreturnsOKresponse1666186604"},"type":"security_filters"}}
     form: {}
     headers:
       Accept:
@@ -11,8 +11,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1664284019","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1664284019","is_builtin":false},"type":"security_filters","id":"iy5-coy-b9b"}}
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1666186604","is_builtin":false},"type":"security_filters","id":"z3t-ier-scu"}}
 
       '
     code: 200
@@ -28,10 +28,10 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/iy5-coy-b9b
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/z3t-ier-scu
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1664284019","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1664284019","is_builtin":false},"type":"security_filters","id":"iy5-coy-b9b"}}
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1666186604","is_builtin":false},"type":"security_filters","id":"z3t-ier-scu"}}
 
       '
     code: 200
@@ -47,7 +47,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/iy5-coy-b9b
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/z3t-ier-scu
   response:
     body: ''
     code: 204
