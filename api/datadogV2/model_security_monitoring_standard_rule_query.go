@@ -17,10 +17,11 @@ type SecurityMonitoringStandardRuleQuery struct {
 	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
 	GroupByFields []string `json:"groupByFields,omitempty"`
-	// The target field to aggregate over when using the sum or max
-	// aggregations.
+	// (Deprecated) The target field to aggregate over when using the sum or max
+	// aggregations. `metrics` field should be used instead.
+	// Deprecated
 	Metric *string `json:"metric,omitempty"`
-	// Group of target fields to aggregate over when using the new value aggregations.
+	// Group of target fields to aggregate over when using the sum, max, geo data, or new value aggregations. The sum, max, and geo data aggregations only accept one value in this list, whereas the new value aggregation accepts up to five values.
 	Metrics []string `json:"metrics,omitempty"`
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
@@ -134,6 +135,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetGroupByFields(v []string) {
 }
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
+// Deprecated
 func (o *SecurityMonitoringStandardRuleQuery) GetMetric() string {
 	if o == nil || o.Metric == nil {
 		var ret string
@@ -144,6 +146,7 @@ func (o *SecurityMonitoringStandardRuleQuery) GetMetric() string {
 
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SecurityMonitoringStandardRuleQuery) GetMetricOk() (*string, bool) {
 	if o == nil || o.Metric == nil {
 		return nil, false
@@ -157,6 +160,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasMetric() bool {
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
+// Deprecated
 func (o *SecurityMonitoringStandardRuleQuery) SetMetric(v string) {
 	o.Metric = &v
 }

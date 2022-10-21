@@ -17,7 +17,7 @@ type SecurityMonitoringSignalRuleQuery struct {
 	CorrelatedByFields []string `json:"correlatedByFields,omitempty"`
 	// Index of the rule query used to retrieve the correlated field.
 	CorrelatedQueryIndex *int32 `json:"correlatedQueryIndex,omitempty"`
-	// Group of target fields to aggregate over when using the new value aggregations.
+	// Group of target fields to aggregate over.
 	Metrics []string `json:"metrics,omitempty"`
 	// Name of the query.
 	Name *string `json:"name,omitempty"`

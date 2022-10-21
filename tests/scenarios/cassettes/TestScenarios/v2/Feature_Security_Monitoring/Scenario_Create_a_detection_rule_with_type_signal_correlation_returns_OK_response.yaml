@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[],"type":"log_detection"}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1664284011737,"filters":[],"queries":[{"query":"@test:true","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"bvi-e5q-fw2","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011"}
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1666186595990,"filters":[],"queries":[{"query":"@test:true","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"jkf-59u-hro","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595"}
 
       '
     code: 200
@@ -24,7 +24,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule Bis","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011_bis","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:false"}],"tags":[],"type":"log_detection"}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule Bis","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_bis","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:false"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
@@ -35,8 +35,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule Bis","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1664284012131,"filters":[],"queries":[{"query":"@test:false","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"iik-vtr-194","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011_bis"}
+      rule Bis","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1666186596355,"filters":[],"queries":[{"query":"@test:false","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"kmj-xjs-f9o","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_bis"}
 
       '
     code: 200
@@ -47,7 +47,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0 \u0026\u0026 b \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test signal correlation rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011_signal_rule","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"event_count","correlatedByFields":["host"],"correlatedQueryIndex":1,"ruleId":"bvi-e5q-fw2"},{"aggregation":"event_count","correlatedByFields":["host"],"ruleId":"iik-vtr-194"}],"tags":[],"type":"signal_correlation"}
+      {"cases":[{"condition":"a \u003e 0 \u0026\u0026 b \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test signal correlation rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_signal_rule","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"event_count","correlatedByFields":["host"],"correlatedQueryIndex":1,"ruleId":"jkf-59u-hro"},{"aggregation":"event_count","correlatedByFields":["host"],"ruleId":"kmj-xjs-f9o"}],"tags":[],"type":"signal_correlation"}
     form: {}
     headers:
       Accept:
@@ -58,8 +58,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      signal correlation rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1664284012602,"filters":[],"queries":[{"distinctFields":[],"correlatedByFields":["host"],"name":"","ruleId":"bvi-e5q-fw2","aggregation":"event_count","groupByFields":[],"correlatedQueryIndex":1},{"distinctFields":[],"correlatedByFields":["host"],"name":"","ruleId":"iik-vtr-194","aggregation":"event_count","groupByFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0 && b > 0"}],"type":"signal_correlation","id":"l1e-bel-iqm","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1664284011_signal_rule"}
+      signal correlation rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1666186596743,"filters":[],"queries":[{"distinctFields":[],"correlatedByFields":["host"],"name":"","ruleId":"jkf-59u-hro","aggregation":"event_count","groupByFields":[],"correlatedQueryIndex":1},{"distinctFields":[],"correlatedByFields":["host"],"name":"","ruleId":"kmj-xjs-f9o","aggregation":"event_count","groupByFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0 && b > 0"}],"type":"signal_correlation","id":"gk5-nwf-mfq","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_signal_rule"}
 
       '
     code: 200
@@ -75,7 +75,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/l1e-bel-iqm
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/gk5-nwf-mfq
   response:
     body: ''
     code: 204
@@ -89,7 +89,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/iik-vtr-194
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/kmj-xjs-f9o
   response:
     body: ''
     code: 204
@@ -103,7 +103,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/bvi-e5q-fw2
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/jkf-59u-hro
   response:
     body: ''
     code: 204
