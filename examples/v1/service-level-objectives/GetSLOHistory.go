@@ -19,7 +19,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v1.GetSLOHistory", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.GetSLOHistory(ctx, SloData0ID, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), *datadogV1.NewGetSLOHistoryOptionalParameters())
