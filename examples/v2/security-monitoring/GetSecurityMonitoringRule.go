@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "security_rule" in the system
+	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.GetSecurityMonitoringRule(ctx, "rule_id")
+	resp, r, err := api.GetSecurityMonitoringRule(ctx, SecurityRuleID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule`: %v\n", err)
