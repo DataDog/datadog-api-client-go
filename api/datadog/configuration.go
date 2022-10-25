@@ -359,7 +359,6 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"v1.GetSLOHistory":             false,
 			"v1.SearchSLO":                 false,
 			"v2.ListEvents":                false,
 			"v2.SearchEvents":              false,

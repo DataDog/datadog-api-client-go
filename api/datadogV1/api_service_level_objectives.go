@@ -910,13 +910,6 @@ func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryReque
 		localVarReturnValue SLOHistoryResponse
 	)
 
-	operationId := "v1.GetSLOHistory"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOHistory")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
