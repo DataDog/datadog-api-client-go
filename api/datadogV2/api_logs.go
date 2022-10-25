@@ -365,25 +365,27 @@ func (a *LogsApi) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_net
 }
 
 type apiListLogsGetRequest struct {
-	ctx         _context.Context
-	filterQuery *string
-	filterIndex *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *LogsSort
-	pageCursor  *string
-	pageLimit   *int32
+	ctx               _context.Context
+	filterQuery       *string
+	filterIndex       *string
+	filterFrom        *time.Time
+	filterTo          *time.Time
+	filterStorageTier *LogsStorageTier
+	sort              *LogsSort
+	pageCursor        *string
+	pageLimit         *int32
 }
 
 // ListLogsGetOptionalParameters holds optional parameters for ListLogsGet.
 type ListLogsGetOptionalParameters struct {
-	FilterQuery *string
-	FilterIndex *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *LogsSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterQuery       *string
+	FilterIndex       *string
+	FilterFrom        *time.Time
+	FilterTo          *time.Time
+	FilterStorageTier *LogsStorageTier
+	Sort              *LogsSort
+	PageCursor        *string
+	PageLimit         *int32
 }
 
 // NewListLogsGetOptionalParameters creates an empty struct for parameters.
@@ -413,6 +415,12 @@ func (r *ListLogsGetOptionalParameters) WithFilterFrom(filterFrom time.Time) *Li
 // WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithFilterTo(filterTo time.Time) *ListLogsGetOptionalParameters {
 	r.FilterTo = &filterTo
+	return r
+}
+
+// WithFilterStorageTier sets the corresponding parameter name and returns the struct.
+func (r *ListLogsGetOptionalParameters) WithFilterStorageTier(filterStorageTier LogsStorageTier) *ListLogsGetOptionalParameters {
+	r.FilterStorageTier = &filterStorageTier
 	return r
 }
 
@@ -448,6 +456,7 @@ func (a *LogsApi) buildListLogsGetRequest(ctx _context.Context, o ...ListLogsGet
 		req.filterIndex = o[0].FilterIndex
 		req.filterFrom = o[0].FilterFrom
 		req.filterTo = o[0].FilterTo
+		req.filterStorageTier = o[0].FilterStorageTier
 		req.sort = o[0].Sort
 		req.pageCursor = o[0].PageCursor
 		req.pageLimit = o[0].PageLimit
@@ -567,6 +576,9 @@ func (a *LogsApi) listLogsGetExecute(r apiListLogsGetRequest) (LogsListResponse,
 	}
 	if r.filterTo != nil {
 		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*r.filterTo, ""))
+	}
+	if r.filterStorageTier != nil {
+		localVarQueryParams.Add("filter[storage_tier]", datadog.ParameterToString(*r.filterStorageTier, ""))
 	}
 	if r.sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*r.sort, ""))
