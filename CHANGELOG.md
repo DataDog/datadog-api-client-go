@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.4.0 / 2022-10-24
+
+### Fixed
+* Fix SearchSLO response structure by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1691
+* Add Default Rule ID in SignalRuleResponseQuery by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1705
+* Remove incident's resolved attribute from update requests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1707
+* Fix event monitor created_at by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1710
+* Fix spectral rules by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1713
+### Added
+* Add support for incident attachment APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1685
+* Add notify_by monitor option by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1699
+* Add support for service definitions APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1714
+* Add support for confluent cloud integration by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1720
+### Deprecated
+* Add a note for deprecated APIs and models by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1704
+* Deprecate metric field of Security Monitoring Rules by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1723
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.3.1...v2.4.0
+
 ## 2.3.1 / 2022-09-28
 
 ### Fixed

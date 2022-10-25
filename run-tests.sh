@@ -37,5 +37,5 @@ cd tests
 staticcheck -checks inherit,-SA1019 ./...
 go mod tidy
 go clean -testcache
-gotestsum --format short-verbose ./...
+gotestsum --format short-verbose --packages ./... -- -timeout=20m
 cd ..
