@@ -129,8 +129,14 @@ type UsageSummaryDate struct {
 	RumTotalSessionCountSum *int64 `json:"rum_total_session_count_sum,omitempty"`
 	// Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations.
 	RumUnitsSum *int64 `json:"rum_units_sum,omitempty"`
+	// Sum of all APM bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
+	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
+	// Sum of all event stream events bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
+	SdsEventsScannedBytesSum *int64 `json:"sds_events_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations.
 	SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
+	// Sum of all RUM bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
+	SdsRumScannedBytesSum *int64 `json:"sds_rum_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations.
 	SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations.
@@ -1817,6 +1823,62 @@ func (o *UsageSummaryDate) SetRumUnitsSum(v int64) {
 	o.RumUnitsSum = &v
 }
 
+// GetSdsApmScannedBytesSum returns the SdsApmScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetSdsApmScannedBytesSum() int64 {
+	if o == nil || o.SdsApmScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsApmScannedBytesSum
+}
+
+// GetSdsApmScannedBytesSumOk returns a tuple with the SdsApmScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetSdsApmScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsApmScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsApmScannedBytesSum, true
+}
+
+// HasSdsApmScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasSdsApmScannedBytesSum() bool {
+	return o != nil && o.SdsApmScannedBytesSum != nil
+}
+
+// SetSdsApmScannedBytesSum gets a reference to the given int64 and assigns it to the SdsApmScannedBytesSum field.
+func (o *UsageSummaryDate) SetSdsApmScannedBytesSum(v int64) {
+	o.SdsApmScannedBytesSum = &v
+}
+
+// GetSdsEventsScannedBytesSum returns the SdsEventsScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetSdsEventsScannedBytesSum() int64 {
+	if o == nil || o.SdsEventsScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsEventsScannedBytesSum
+}
+
+// GetSdsEventsScannedBytesSumOk returns a tuple with the SdsEventsScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetSdsEventsScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsEventsScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsEventsScannedBytesSum, true
+}
+
+// HasSdsEventsScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasSdsEventsScannedBytesSum() bool {
+	return o != nil && o.SdsEventsScannedBytesSum != nil
+}
+
+// SetSdsEventsScannedBytesSum gets a reference to the given int64 and assigns it to the SdsEventsScannedBytesSum field.
+func (o *UsageSummaryDate) SetSdsEventsScannedBytesSum(v int64) {
+	o.SdsEventsScannedBytesSum = &v
+}
+
 // GetSdsLogsScannedBytesSum returns the SdsLogsScannedBytesSum field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetSdsLogsScannedBytesSum() int64 {
 	if o == nil || o.SdsLogsScannedBytesSum == nil {
@@ -1843,6 +1905,34 @@ func (o *UsageSummaryDate) HasSdsLogsScannedBytesSum() bool {
 // SetSdsLogsScannedBytesSum gets a reference to the given int64 and assigns it to the SdsLogsScannedBytesSum field.
 func (o *UsageSummaryDate) SetSdsLogsScannedBytesSum(v int64) {
 	o.SdsLogsScannedBytesSum = &v
+}
+
+// GetSdsRumScannedBytesSum returns the SdsRumScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetSdsRumScannedBytesSum() int64 {
+	if o == nil || o.SdsRumScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsRumScannedBytesSum
+}
+
+// GetSdsRumScannedBytesSumOk returns a tuple with the SdsRumScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetSdsRumScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsRumScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsRumScannedBytesSum, true
+}
+
+// HasSdsRumScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasSdsRumScannedBytesSum() bool {
+	return o != nil && o.SdsRumScannedBytesSum != nil
+}
+
+// SetSdsRumScannedBytesSum gets a reference to the given int64 and assigns it to the SdsRumScannedBytesSum field.
+func (o *UsageSummaryDate) SetSdsRumScannedBytesSum(v int64) {
+	o.SdsRumScannedBytesSum = &v
 }
 
 // GetSdsTotalScannedBytesSum returns the SdsTotalScannedBytesSum field value if set, zero value otherwise.
@@ -2200,8 +2290,17 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.RumUnitsSum != nil {
 		toSerialize["rum_units_sum"] = o.RumUnitsSum
 	}
+	if o.SdsApmScannedBytesSum != nil {
+		toSerialize["sds_apm_scanned_bytes_sum"] = o.SdsApmScannedBytesSum
+	}
+	if o.SdsEventsScannedBytesSum != nil {
+		toSerialize["sds_events_scanned_bytes_sum"] = o.SdsEventsScannedBytesSum
+	}
 	if o.SdsLogsScannedBytesSum != nil {
 		toSerialize["sds_logs_scanned_bytes_sum"] = o.SdsLogsScannedBytesSum
+	}
+	if o.SdsRumScannedBytesSum != nil {
+		toSerialize["sds_rum_scanned_bytes_sum"] = o.SdsRumScannedBytesSum
 	}
 	if o.SdsTotalScannedBytesSum != nil {
 		toSerialize["sds_total_scanned_bytes_sum"] = o.SdsTotalScannedBytesSum
@@ -2291,7 +2390,10 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		RumSessionCountSum                      *int64                `json:"rum_session_count_sum,omitempty"`
 		RumTotalSessionCountSum                 *int64                `json:"rum_total_session_count_sum,omitempty"`
 		RumUnitsSum                             *int64                `json:"rum_units_sum,omitempty"`
+		SdsApmScannedBytesSum                   *int64                `json:"sds_apm_scanned_bytes_sum,omitempty"`
+		SdsEventsScannedBytesSum                *int64                `json:"sds_events_scanned_bytes_sum,omitempty"`
 		SdsLogsScannedBytesSum                  *int64                `json:"sds_logs_scanned_bytes_sum,omitempty"`
+		SdsRumScannedBytesSum                   *int64                `json:"sds_rum_scanned_bytes_sum,omitempty"`
 		SdsTotalScannedBytesSum                 *int64                `json:"sds_total_scanned_bytes_sum,omitempty"`
 		SyntheticsBrowserCheckCallsCountSum     *int64                `json:"synthetics_browser_check_calls_count_sum,omitempty"`
 		SyntheticsCheckCallsCountSum            *int64                `json:"synthetics_check_calls_count_sum,omitempty"`
@@ -2367,7 +2469,10 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.RumSessionCountSum = all.RumSessionCountSum
 	o.RumTotalSessionCountSum = all.RumTotalSessionCountSum
 	o.RumUnitsSum = all.RumUnitsSum
+	o.SdsApmScannedBytesSum = all.SdsApmScannedBytesSum
+	o.SdsEventsScannedBytesSum = all.SdsEventsScannedBytesSum
 	o.SdsLogsScannedBytesSum = all.SdsLogsScannedBytesSum
+	o.SdsRumScannedBytesSum = all.SdsRumScannedBytesSum
 	o.SdsTotalScannedBytesSum = all.SdsTotalScannedBytesSum
 	o.SyntheticsBrowserCheckCallsCountSum = all.SyntheticsBrowserCheckCallsCountSum
 	o.SyntheticsCheckCallsCountSum = all.SyntheticsCheckCallsCountSum
