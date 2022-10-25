@@ -16,6 +16,8 @@ type LogsQueryFilter struct {
 	Indexes []string `json:"indexes,omitempty"`
 	// The search query - following the log search syntax.
 	Query *string `json:"query,omitempty"`
+	// Specifies storage type as indexes or online-archives
+	StorageTier *LogsStorageTier `json:"storage_tier,omitempty"`
 	// The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -33,6 +35,8 @@ func NewLogsQueryFilter() *LogsQueryFilter {
 	this.From = &from
 	var query string = "*"
 	this.Query = &query
+	var storageTier LogsStorageTier = LOGSSTORAGETIER_INDEXES
+	this.StorageTier = &storageTier
 	var to string = "now"
 	this.To = &to
 	return &this
@@ -47,6 +51,8 @@ func NewLogsQueryFilterWithDefaults() *LogsQueryFilter {
 	this.From = &from
 	var query string = "*"
 	this.Query = &query
+	var storageTier LogsStorageTier = LOGSSTORAGETIER_INDEXES
+	this.StorageTier = &storageTier
 	var to string = "now"
 	this.To = &to
 	return &this
@@ -136,6 +142,34 @@ func (o *LogsQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+// GetStorageTier returns the StorageTier field value if set, zero value otherwise.
+func (o *LogsQueryFilter) GetStorageTier() LogsStorageTier {
+	if o == nil || o.StorageTier == nil {
+		var ret LogsStorageTier
+		return ret
+	}
+	return *o.StorageTier
+}
+
+// GetStorageTierOk returns a tuple with the StorageTier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsQueryFilter) GetStorageTierOk() (*LogsStorageTier, bool) {
+	if o == nil || o.StorageTier == nil {
+		return nil, false
+	}
+	return o.StorageTier, true
+}
+
+// HasStorageTier returns a boolean if a field has been set.
+func (o *LogsQueryFilter) HasStorageTier() bool {
+	return o != nil && o.StorageTier != nil
+}
+
+// SetStorageTier gets a reference to the given LogsStorageTier and assigns it to the StorageTier field.
+func (o *LogsQueryFilter) SetStorageTier(v LogsStorageTier) {
+	o.StorageTier = &v
+}
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetTo() string {
 	if o == nil || o.To == nil {
@@ -179,6 +213,9 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
+	if o.StorageTier != nil {
+		toSerialize["storage_tier"] = o.StorageTier
+	}
 	if o.To != nil {
 		toSerialize["to"] = o.To
 	}
@@ -193,10 +230,11 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From    *string  `json:"from,omitempty"`
-		Indexes []string `json:"indexes,omitempty"`
-		Query   *string  `json:"query,omitempty"`
-		To      *string  `json:"to,omitempty"`
+		From        *string          `json:"from,omitempty"`
+		Indexes     []string         `json:"indexes,omitempty"`
+		Query       *string          `json:"query,omitempty"`
+		StorageTier *LogsStorageTier `json:"storage_tier,omitempty"`
+		To          *string          `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -207,9 +245,18 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if v := all.StorageTier; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
 	o.From = all.From
 	o.Indexes = all.Indexes
 	o.Query = all.Query
+	o.StorageTier = all.StorageTier
 	o.To = all.To
 	return nil
 }
