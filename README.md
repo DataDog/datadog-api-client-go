@@ -101,7 +101,7 @@ When talking to a different server, like the `eu` instance, change the `ContextS
 
 ```go
     ctx = context.WithValue(ctx,
-        common.ContextServerVariables,
+        datadog.ContextServerVariables,
         map[string]string{
             "site": "datadoghq.eu",
     })
