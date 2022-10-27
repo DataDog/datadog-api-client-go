@@ -265,7 +265,7 @@ func (a *CloudWorkloadSecurityApi) buildDownloadCloudWorkloadPolicyFileRequest(c
 // DownloadCloudWorkloadPolicyFile Get the latest Cloud Workload Security policy.
 // The download endpoint generates a Cloud Workload Security policy file from your currently active
 // Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
-// your agents to update the policy running in your environment.
+// your Agents to update the policy running in your environment.
 func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (*os.File, *_nethttp.Response, error) {
 	req, err := a.buildDownloadCloudWorkloadPolicyFileRequest(ctx)
 	if err != nil {
