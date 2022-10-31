@@ -612,7 +612,7 @@ func (a *UsageMeteringApi) buildGetHourlyUsageRequest(ctx _context.Context, filt
 }
 
 // GetHourlyUsage Get hourly usage by product family.
-// Get hourly usage by product family
+// Get hourly usage by product family.
 func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (HourlyUsageResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetHourlyUsageRequest(ctx, filterTimestampStart, filterProductFamilies, o...)
 	if err != nil {
