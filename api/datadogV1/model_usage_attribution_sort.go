@@ -46,6 +46,8 @@ const (
 	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_SPANS_PERCENTAGE UsageAttributionSort = "estimated_ingested_spans_percentage"
 	USAGEATTRIBUTIONSORT_APM_FARGATE_USAGE                   UsageAttributionSort = "apm_fargate_usage"
 	USAGEATTRIBUTIONSORT_APM_FARGATE_PERCENTAGE              UsageAttributionSort = "apm_fargate_percentage"
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_USAGE                UsageAttributionSort = "appsec_fargate_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_PERCENTAGE           UsageAttributionSort = "appsec_fargate_percentage"
 )
 
 var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
@@ -81,6 +83,8 @@ var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
 	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_SPANS_PERCENTAGE,
 	USAGEATTRIBUTIONSORT_APM_FARGATE_USAGE,
 	USAGEATTRIBUTIONSORT_APM_FARGATE_PERCENTAGE,
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_USAGE,
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_PERCENTAGE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
