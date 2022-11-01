@@ -95,6 +95,8 @@ type MonitorOptions struct {
 	// We highly recommend you set this to `false` for sparse metrics,
 	// otherwise some evaluations are skipped. Default is false.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
+	// Configuration options for scheduling.
+	SchedulingOptions *MonitorOptionsSchedulingOptions `json:"scheduling_options,omitempty"`
 	// Information about the downtime applied to the monitor.
 	// Deprecated
 	Silenced map[string]int64 `json:"silenced,omitempty"`
@@ -877,6 +879,34 @@ func (o *MonitorOptions) SetRequireFullWindow(v bool) {
 	o.RequireFullWindow = &v
 }
 
+// GetSchedulingOptions returns the SchedulingOptions field value if set, zero value otherwise.
+func (o *MonitorOptions) GetSchedulingOptions() MonitorOptionsSchedulingOptions {
+	if o == nil || o.SchedulingOptions == nil {
+		var ret MonitorOptionsSchedulingOptions
+		return ret
+	}
+	return *o.SchedulingOptions
+}
+
+// GetSchedulingOptionsOk returns a tuple with the SchedulingOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetSchedulingOptionsOk() (*MonitorOptionsSchedulingOptions, bool) {
+	if o == nil || o.SchedulingOptions == nil {
+		return nil, false
+	}
+	return o.SchedulingOptions, true
+}
+
+// HasSchedulingOptions returns a boolean if a field has been set.
+func (o *MonitorOptions) HasSchedulingOptions() bool {
+	return o != nil && o.SchedulingOptions != nil
+}
+
+// SetSchedulingOptions gets a reference to the given MonitorOptionsSchedulingOptions and assigns it to the SchedulingOptions field.
+func (o *MonitorOptions) SetSchedulingOptions(v MonitorOptionsSchedulingOptions) {
+	o.SchedulingOptions = &v
+}
+
 // GetSilenced returns the Silenced field value if set, zero value otherwise.
 // Deprecated
 func (o *MonitorOptions) GetSilenced() map[string]int64 {
@@ -1145,6 +1175,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.RequireFullWindow != nil {
 		toSerialize["require_full_window"] = o.RequireFullWindow
 	}
+	if o.SchedulingOptions != nil {
+		toSerialize["scheduling_options"] = o.SchedulingOptions
+	}
 	if o.Silenced != nil {
 		toSerialize["silenced"] = o.Silenced
 	}
@@ -1196,6 +1229,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		RenotifyOccurrences    datadog.NullableInt64                      `json:"renotify_occurrences,omitempty"`
 		RenotifyStatuses       []MonitorRenotifyStatusType                `json:"renotify_statuses,omitempty"`
 		RequireFullWindow      *bool                                      `json:"require_full_window,omitempty"`
+		SchedulingOptions      *MonitorOptionsSchedulingOptions           `json:"scheduling_options,omitempty"`
 		Silenced               map[string]int64                           `json:"silenced,omitempty"`
 		SyntheticsCheckId      datadog.NullableString                     `json:"synthetics_check_id,omitempty"`
 		ThresholdWindows       *MonitorThresholdWindowOptions             `json:"threshold_windows,omitempty"`
@@ -1249,6 +1283,14 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.RenotifyOccurrences = all.RenotifyOccurrences
 	o.RenotifyStatuses = all.RenotifyStatuses
 	o.RequireFullWindow = all.RequireFullWindow
+	if all.SchedulingOptions != nil && all.SchedulingOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.SchedulingOptions = all.SchedulingOptions
 	o.Silenced = all.Silenced
 	o.SyntheticsCheckId = all.SyntheticsCheckId
 	if all.ThresholdWindows != nil && all.ThresholdWindows.UnparsedObject != nil && o.UnparsedObject == nil {
