@@ -16,6 +16,8 @@ type SyntheticsTestRequest struct {
 	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
+	// Request body type. Supported values are `text/plain`, `application/json`, `text/xml`, `text/html`, `application/x-www-form-urlencoded`, `GraphQL`, or `None`.
+	BodyType *string `json:"bodyType,omitempty"`
 	// Client certificate to use when performing the test request.
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 	// By default, the client certificate is applied on the domain of the starting URL for browser tests. If you want your client certificate to be applied on other domains instead, add them in `certificateDomains`.
@@ -162,6 +164,34 @@ func (o *SyntheticsTestRequest) HasBody() bool {
 // SetBody gets a reference to the given string and assigns it to the Body field.
 func (o *SyntheticsTestRequest) SetBody(v string) {
 	o.Body = &v
+}
+
+// GetBodyType returns the BodyType field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetBodyType() string {
+	if o == nil || o.BodyType == nil {
+		var ret string
+		return ret
+	}
+	return *o.BodyType
+}
+
+// GetBodyTypeOk returns a tuple with the BodyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetBodyTypeOk() (*string, bool) {
+	if o == nil || o.BodyType == nil {
+		return nil, false
+	}
+	return o.BodyType, true
+}
+
+// HasBodyType returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasBodyType() bool {
+	return o != nil && o.BodyType != nil
+}
+
+// SetBodyType gets a reference to the given string and assigns it to the BodyType field.
+func (o *SyntheticsTestRequest) SetBodyType(v string) {
+	o.BodyType = &v
 }
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise.
@@ -739,6 +769,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Body != nil {
 		toSerialize["body"] = o.Body
 	}
+	if o.BodyType != nil {
+		toSerialize["bodyType"] = o.BodyType
+	}
 	if o.Certificate != nil {
 		toSerialize["certificate"] = o.Certificate
 	}
@@ -813,6 +846,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
 		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
 		Body                 *string                           `json:"body,omitempty"`
+		BodyType             *string                           `json:"bodyType,omitempty"`
 		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
 		DnsServer            *string                           `json:"dnsServer,omitempty"`
@@ -854,6 +888,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
+	o.BodyType = all.BodyType
 	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

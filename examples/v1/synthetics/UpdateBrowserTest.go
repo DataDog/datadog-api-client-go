@@ -29,6 +29,7 @@ func main() {
 						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
+				BodyType: datadog.PtrString("text/plain"),
 				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
 					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{},
 					Key:  &datadogV1.SyntheticsTestRequestCertificateItem{},
