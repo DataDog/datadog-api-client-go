@@ -16,6 +16,8 @@ type SyntheticsStep struct {
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
 	Name *string `json:"name,omitempty"`
+	// A boolean set to not take a screenshot for the step.
+	NoScreenshot *bool `json:"noScreenshot,omitempty"`
 	// The parameters of the step.
 	Params interface{} `json:"params,omitempty"`
 	// The time before declaring a step failed.
@@ -128,6 +130,34 @@ func (o *SyntheticsStep) SetName(v string) {
 	o.Name = &v
 }
 
+// GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
+func (o *SyntheticsStep) GetNoScreenshot() bool {
+	if o == nil || o.NoScreenshot == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoScreenshot
+}
+
+// GetNoScreenshotOk returns a tuple with the NoScreenshot field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStep) GetNoScreenshotOk() (*bool, bool) {
+	if o == nil || o.NoScreenshot == nil {
+		return nil, false
+	}
+	return o.NoScreenshot, true
+}
+
+// HasNoScreenshot returns a boolean if a field has been set.
+func (o *SyntheticsStep) HasNoScreenshot() bool {
+	return o != nil && o.NoScreenshot != nil
+}
+
+// SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.
+func (o *SyntheticsStep) SetNoScreenshot(v bool) {
+	o.NoScreenshot = &v
+}
+
 // GetParams returns the Params field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetParams() interface{} {
 	if o == nil || o.Params == nil {
@@ -227,6 +257,9 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.NoScreenshot != nil {
+		toSerialize["noScreenshot"] = o.NoScreenshot
+	}
 	if o.Params != nil {
 		toSerialize["params"] = o.Params
 	}
@@ -250,6 +283,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		AllowFailure *bool               `json:"allowFailure,omitempty"`
 		IsCritical   *bool               `json:"isCritical,omitempty"`
 		Name         *string             `json:"name,omitempty"`
+		NoScreenshot *bool               `json:"noScreenshot,omitempty"`
 		Params       interface{}         `json:"params,omitempty"`
 		Timeout      *int64              `json:"timeout,omitempty"`
 		Type         *SyntheticsStepType `json:"type,omitempty"`
@@ -274,6 +308,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowFailure = all.AllowFailure
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
+	o.NoScreenshot = all.NoScreenshot
 	o.Params = all.Params
 	o.Timeout = all.Timeout
 	o.Type = all.Type
