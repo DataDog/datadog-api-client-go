@@ -250,7 +250,8 @@ func (a *UsageMeteringApi) buildGetEstimatedCostByOrgRequest(ctx _context.Contex
 
 // GetEstimatedCostByOrg Get estimated cost across your account.
 // Get estimated cost across multi-org and single root-org accounts.
-// Estimated cost data is only available for the current month and previous month.
+// Estimated cost data is only available for the current month and previous month
+// and is delayed by up to 72 hours from when it was incurred.
 // To access historical costs prior to this, use the `/historical_cost` endpoint.
 func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetEstimatedCostByOrgRequest(ctx, o...)
