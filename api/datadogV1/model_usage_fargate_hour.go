@@ -13,8 +13,6 @@ import (
 type UsageFargateHour struct {
 	// The high-water mark of APM ECS Fargate tasks during the given hour.
 	ApmFargateCount *int64 `json:"apm_fargate_count,omitempty"`
-	// The Application Security Monitoring ECS Fargate tasks during the given hour.
-	AppsecFargateCount *int64 `json:"appsec_fargate_count,omitempty"`
 	// The average profiled task count for Fargate Profiling.
 	AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
 	// The hour for the usage.
@@ -73,34 +71,6 @@ func (o *UsageFargateHour) HasApmFargateCount() bool {
 // SetApmFargateCount gets a reference to the given int64 and assigns it to the ApmFargateCount field.
 func (o *UsageFargateHour) SetApmFargateCount(v int64) {
 	o.ApmFargateCount = &v
-}
-
-// GetAppsecFargateCount returns the AppsecFargateCount field value if set, zero value otherwise.
-func (o *UsageFargateHour) GetAppsecFargateCount() int64 {
-	if o == nil || o.AppsecFargateCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.AppsecFargateCount
-}
-
-// GetAppsecFargateCountOk returns a tuple with the AppsecFargateCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageFargateHour) GetAppsecFargateCountOk() (*int64, bool) {
-	if o == nil || o.AppsecFargateCount == nil {
-		return nil, false
-	}
-	return o.AppsecFargateCount, true
-}
-
-// HasAppsecFargateCount returns a boolean if a field has been set.
-func (o *UsageFargateHour) HasAppsecFargateCount() bool {
-	return o != nil && o.AppsecFargateCount != nil
-}
-
-// SetAppsecFargateCount gets a reference to the given int64 and assigns it to the AppsecFargateCount field.
-func (o *UsageFargateHour) SetAppsecFargateCount(v int64) {
-	o.AppsecFargateCount = &v
 }
 
 // GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
@@ -252,9 +222,6 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	if o.ApmFargateCount != nil {
 		toSerialize["apm_fargate_count"] = o.ApmFargateCount
 	}
-	if o.AppsecFargateCount != nil {
-		toSerialize["appsec_fargate_count"] = o.AppsecFargateCount
-	}
 	if o.AvgProfiledFargateTasks != nil {
 		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks
 	}
@@ -286,7 +253,6 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		ApmFargateCount         *int64     `json:"apm_fargate_count,omitempty"`
-		AppsecFargateCount      *int64     `json:"appsec_fargate_count,omitempty"`
 		AvgProfiledFargateTasks *int64     `json:"avg_profiled_fargate_tasks,omitempty"`
 		Hour                    *time.Time `json:"hour,omitempty"`
 		OrgName                 *string    `json:"org_name,omitempty"`
@@ -303,7 +269,6 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.ApmFargateCount = all.ApmFargateCount
-	o.AppsecFargateCount = all.AppsecFargateCount
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
