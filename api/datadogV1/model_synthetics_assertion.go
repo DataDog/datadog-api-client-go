@@ -13,6 +13,7 @@ import (
 type SyntheticsAssertion struct {
 	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
+	SyntheticsAssertionXPathTarget    *SyntheticsAssertionXPathTarget
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -26,6 +27,11 @@ func SyntheticsAssertionTargetAsSyntheticsAssertion(v *SyntheticsAssertionTarget
 // SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion is a convenience function that returns SyntheticsAssertionJSONPathTarget wrapped in SyntheticsAssertion.
 func SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(v *SyntheticsAssertionJSONPathTarget) SyntheticsAssertion {
 	return SyntheticsAssertion{SyntheticsAssertionJSONPathTarget: v}
+}
+
+// SyntheticsAssertionXPathTargetAsSyntheticsAssertion is a convenience function that returns SyntheticsAssertionXPathTarget wrapped in SyntheticsAssertion.
+func SyntheticsAssertionXPathTargetAsSyntheticsAssertion(v *SyntheticsAssertionXPathTarget) SyntheticsAssertion {
+	return SyntheticsAssertion{SyntheticsAssertionXPathTarget: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -66,10 +72,28 @@ func (obj *SyntheticsAssertion) UnmarshalJSON(data []byte) error {
 		obj.SyntheticsAssertionJSONPathTarget = nil
 	}
 
+	// try to unmarshal data into SyntheticsAssertionXPathTarget
+	err = json.Unmarshal(data, &obj.SyntheticsAssertionXPathTarget)
+	if err == nil {
+		if obj.SyntheticsAssertionXPathTarget != nil && obj.SyntheticsAssertionXPathTarget.UnparsedObject == nil {
+			jsonSyntheticsAssertionXPathTarget, _ := json.Marshal(obj.SyntheticsAssertionXPathTarget)
+			if string(jsonSyntheticsAssertionXPathTarget) == "{}" { // empty struct
+				obj.SyntheticsAssertionXPathTarget = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SyntheticsAssertionXPathTarget = nil
+		}
+	} else {
+		obj.SyntheticsAssertionXPathTarget = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SyntheticsAssertionTarget = nil
 		obj.SyntheticsAssertionJSONPathTarget = nil
+		obj.SyntheticsAssertionXPathTarget = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -83,6 +107,10 @@ func (obj SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return json.Marshal(&obj.SyntheticsAssertionJSONPathTarget)
+	}
+
+	if obj.SyntheticsAssertionXPathTarget != nil {
+		return json.Marshal(&obj.SyntheticsAssertionXPathTarget)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -99,6 +127,10 @@ func (obj *SyntheticsAssertion) GetActualInstance() interface{} {
 
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return obj.SyntheticsAssertionJSONPathTarget
+	}
+
+	if obj.SyntheticsAssertionXPathTarget != nil {
+		return obj.SyntheticsAssertionXPathTarget
 	}
 
 	// all schemas are nil
