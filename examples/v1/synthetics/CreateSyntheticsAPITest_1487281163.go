@@ -39,6 +39,16 @@ func main() {
 						},
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionXPathTarget: &datadogV1.SyntheticsAssertionXPathTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONXPATHOPERATOR_VALIDATES_X_PATH,
+						Target: &datadogV1.SyntheticsAssertionXPathTargetTarget{
+							XPath:       datadog.PtrString("target-xpath"),
+							TargetValue: "0",
+							Operator:    datadog.PtrString("contains"),
+						},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
+					}},
 			},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
