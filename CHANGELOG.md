@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.5.0 / 2022-11-09
+
+### Added
+* Add support for CI Visibility API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1725
+* Add support for querying logs in Online Archives by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1711
+* Add new SDS fields to usage API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1726
+* Remove Beta status for SLO history endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1728
+* Update formula and function monitor enum datasource by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1731
+* Update formula and function monitor enum datasource by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1733
+* Add scheduling_options to monitor definition by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1735
+* Appsec Fargate Public Documentation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1737
+* Adds noScreenshot to SyntheticsStep by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1739
+* Add support for xpath assertions in synthetics tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1715
+* Add bodyType to Synthetics request by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1743
+
+## New Contributors
+* @bripkens made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1734
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.4.0...v2.5.0
+
 ## 2.4.0 / 2022-10-24
 
 ### Fixed
