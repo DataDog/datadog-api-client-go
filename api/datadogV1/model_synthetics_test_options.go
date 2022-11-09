@@ -13,7 +13,7 @@ type SyntheticsTestOptions struct {
 	// For SSL test, whether or not the test should allow self signed
 	// certificates.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
-	// Allows loading insecure content for an HTTP request in an API test.
+	// Allows loading insecure content for an HTTP request.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
 	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
@@ -27,7 +27,7 @@ type SyntheticsTestOptions struct {
 	DisableCsp *bool `json:"disableCsp,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
-	// Ignore server certificate error for browser tests.
+	// Ignore server certificate error.
 	IgnoreServerCertificateError *bool `json:"ignoreServerCertificateError,omitempty"`
 	// Timeout before declaring the initial step as failed (in seconds) for browser tests.
 	InitialNavigationTimeout *int64 `json:"initialNavigationTimeout,omitempty"`
