@@ -14,6 +14,8 @@ import (
 
 func main() {
 	body := datadogV1.LogsIndexUpdateRequest{
+		DailyLimit:        datadog.PtrInt64(300000000),
+		DisableDailyLimit: datadog.PtrBool(false),
 		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
 				Filter: &datadogV1.LogsExclusionFilter{
@@ -26,6 +28,7 @@ func main() {
 		Filter: datadogV1.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
+		NumRetentionDays: datadog.PtrInt64(15),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
