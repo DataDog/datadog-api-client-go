@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceDefinitionApi(apiClient)
-	resp, r, err := api.GetServiceDefinition(ctx, "service-Example-Get_a_single_service_definition_returns_OK_response")
+	resp, r, err := api.GetServiceDefinition(ctx, "service-definition-test")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceDefinitionApi.GetServiceDefinition`: %v\n", err)
