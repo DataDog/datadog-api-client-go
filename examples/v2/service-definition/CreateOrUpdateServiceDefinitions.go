@@ -37,8 +37,8 @@ func main() {
 			},
 			Integrations: &datadogV2.ServiceDefinitionV2Integrations{
 				Opsgenie: &datadogV2.ServiceDefinitionV2Opsgenie{
-					Region:    datadogV2.SERVICEDEFINITIONV2OPSGENIEREGION_US.Ptr(),
-					ServiceId: "123e4567-e89b-12d3-a456-426614174000",
+					Region:     datadogV2.SERVICEDEFINITIONV2OPSGENIEREGION_US.Ptr(),
+					ServiceUrl: "https://my-org.opsgenie.com/service/123e4567-e89b-12d3-a456-426614174000",
 				},
 				Pagerduty: datadog.PtrString("https://my-org.pagerduty.com/service-directory/PMyService"),
 			},
