@@ -710,7 +710,7 @@ func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalP
 }
 
 // ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
-func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan RUMEvent, func(), error) {
+func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan datadog.PaginationResult[RUMEvent], func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -721,16 +721,20 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 	}
 	o[0].PageLimit = &pageSize_
 
-	items := make(chan RUMEvent, pageSize_)
+	items := make(chan datadog.PaginationResult[RUMEvent], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListRUMEventsRequest(ctx, o...)
 			if err != nil {
+				var returnItem RUMEvent
+				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listRUMEventsExecute(req)
 			if err != nil {
+				var returnItem RUMEvent
+				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -741,7 +745,7 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[RUMEvent]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -912,7 +916,7 @@ func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsReque
 }
 
 // SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
-func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan RUMEvent, func(), error) {
+func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan datadog.PaginationResult[RUMEvent], func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if body.Page == nil {
@@ -925,16 +929,20 @@ func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSea
 		pageSize_ = *body.Page.Limit
 	}
 
-	items := make(chan RUMEvent, pageSize_)
+	items := make(chan datadog.PaginationResult[RUMEvent], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchRUMEventsRequest(ctx, body)
 			if err != nil {
+				var returnItem RUMEvent
+				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.searchRUMEventsExecute(req)
 			if err != nil {
+				var returnItem RUMEvent
+				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -945,7 +953,7 @@ func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSea
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[RUMEvent]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return

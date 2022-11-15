@@ -1597,7 +1597,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Conte
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1608,16 +1608,20 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 	}
 	o[0].PageLimit = &pageSize_
 
-	items := make(chan SecurityMonitoringSignal, pageSize_)
+	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
 			if err != nil {
+				var returnItem SecurityMonitoringSignal
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listSecurityMonitoringSignalsExecute(req)
 			if err != nil {
+				var returnItem SecurityMonitoringSignal
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1628,7 +1632,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -1820,7 +1824,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Con
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1837,16 +1841,20 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
-	items := make(chan SecurityMonitoringSignal, pageSize_)
+	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
 			if err != nil {
+				var returnItem SecurityMonitoringSignal
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.searchSecurityMonitoringSignalsExecute(req)
 			if err != nil {
+				var returnItem SecurityMonitoringSignal
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1857,7 +1865,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return

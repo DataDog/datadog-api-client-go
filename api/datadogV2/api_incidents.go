@@ -656,7 +656,7 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 }
 
 // ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
-func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
+func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int64(10)
 	if len(o) == 0 {
@@ -667,16 +667,20 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 	}
 	o[0].PageSize = &pageSize_
 
-	items := make(chan IncidentResponseData, pageSize_)
+	items := make(chan datadog.PaginationResult[IncidentResponseData], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListIncidentsRequest(ctx, o...)
 			if err != nil {
+				var returnItem IncidentResponseData
+				items <- datadog.PaginationResult[IncidentResponseData]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listIncidentsExecute(req)
 			if err != nil {
+				var returnItem IncidentResponseData
+				items <- datadog.PaginationResult[IncidentResponseData]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -687,7 +691,7 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[IncidentResponseData]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
