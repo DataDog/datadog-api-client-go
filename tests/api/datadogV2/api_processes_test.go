@@ -23,7 +23,7 @@ func TestGetProcessesWithPaginationReturnsError(t *testing.T) {
 		From: datadog.PtrInt64(1000),
 		To:   datadog.PtrInt64(1000),
 	})
-
 	item := <-resp
-	assert.Equal(item.Error(), "400 Bad Request")
+	assert.Error(item.Error)
+	assert.Equal(item.Error.Error(), "400 Bad Request")
 }
