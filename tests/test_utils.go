@@ -81,6 +81,7 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"api_logs_test":            "logs",
 		"api_metrics_test":         "metrics",
 		"api_permissions_test":     "permissions",
+		"api_processes_test":       "processes",
 		"api_roles_test":           "roles",
 		"api_users_test":           "users",
 		"security_monitoring_test": "security-monitoring",

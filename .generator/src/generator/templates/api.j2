@@ -103,7 +103,7 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 {%- set pagination = operation["x-pagination"] %}
 // {{ operation.operationId }}WithPagination provides a paginated version of {{ operation.operationId }} returning a channel with all items.
 {%- set itemType = get_type_at_path(operation, pagination.resultsPath) %}
-func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan {{ itemType }}, func(), error) {
+func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan struct { {{ itemType }}; error }, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 
 	{%- set pageSizeType = get_container_type(operation, pagination.limitParam) %}
@@ -141,16 +141,26 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 	}
 	{%- endfor %}
 
-	items := make(chan {{ itemType }}, pageSize_)
+	items := make(chan struct { {{ itemType }}; error }, pageSize_)
 	go func() {
 		for {
 			req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 			if err != nil {
+				var returnItem {{ itemType }}
+				items <- struct {
+					{{ itemType }}
+					error
+				}{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.{{ operation.operationId|untitle_case }}Execute(req)
 			if err != nil {
+				var returnItem {{ itemType }}
+				items <- struct {
+					{{ itemType }}
+					error
+				}{returnItem, err}
 				break
 			}
 			{%- set previous = {"part": ""} %}
@@ -167,7 +177,10 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- struct {
+					{{ itemType }}
+					error
+				}{item, nil}:
 				case <-ctx.Done():
 				close(items)
 				return
