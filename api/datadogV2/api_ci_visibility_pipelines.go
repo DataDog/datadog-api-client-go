@@ -240,7 +240,7 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context,
 }
 
 // ListCIAppPipelineEventsWithPagination provides a paginated version of ListCIAppPipelineEvents returning a channel with all items.
-func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func(), error) {
+func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -301,7 +301,7 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _co
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listCIAppPipelineEventsExecute executes the request.
@@ -468,7 +468,7 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 }
 
 // SearchCIAppPipelineEventsWithPagination provides a paginated version of SearchCIAppPipelineEvents returning a channel with all items.
-func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func(), error) {
+func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -535,7 +535,7 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchCIAppPipelineEventsExecute executes the request.

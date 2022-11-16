@@ -656,7 +656,7 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 }
 
 // ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
-func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func(), error) {
+func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int64(10)
 	if len(o) == 0 {
@@ -709,7 +709,7 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listIncidentsExecute executes the request.

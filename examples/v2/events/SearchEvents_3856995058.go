@@ -31,14 +31,13 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.SearchEvents", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewEventsApi(apiClient)
-	resp, _, err := api.SearchEventsWithPagination(ctx, *datadogV2.NewSearchEventsOptionalParameters().WithBody(body))
+	resp, _ := api.SearchEventsWithPagination(ctx, *datadogV2.NewSearchEventsOptionalParameters().WithBody(body))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.SearchEvents`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.SearchEvents`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

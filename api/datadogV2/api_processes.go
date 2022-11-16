@@ -112,7 +112,7 @@ func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOpt
 }
 
 // ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
-func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan datadog.PaginationResult[ProcessSummary], func(), error) {
+func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan datadog.PaginationResult[ProcessSummary], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(1000)
 	if len(o) == 0 {
@@ -173,7 +173,7 @@ func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...Li
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listProcessesExecute executes the request.

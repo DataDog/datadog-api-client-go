@@ -240,7 +240,7 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...Li
 }
 
 // ListCIAppTestEventsWithPagination provides a paginated version of ListCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func(), error) {
+func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -301,7 +301,7 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Co
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listCIAppTestEventsExecute executes the request.
@@ -468,7 +468,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...
 }
 
 // SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func(), error) {
+func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -535,7 +535,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchCIAppTestEventsExecute executes the request.

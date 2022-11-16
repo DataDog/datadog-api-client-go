@@ -117,7 +117,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 }
 
 // ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
-func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func(), error) {
+func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -178,7 +178,7 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listEventsExecute executes the request.
@@ -352,7 +352,7 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 }
 
 // SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
-func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func(), error) {
+func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -419,7 +419,7 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchEventsExecute executes the request.

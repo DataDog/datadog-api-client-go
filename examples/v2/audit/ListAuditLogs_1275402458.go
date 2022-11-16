@@ -17,14 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAuditApi(apiClient)
-	resp, _, err := api.ListAuditLogsWithPagination(ctx, *datadogV2.NewListAuditLogsOptionalParameters().WithPageLimit(2))
+	resp, _ := api.ListAuditLogsWithPagination(ctx, *datadogV2.NewListAuditLogsOptionalParameters().WithPageLimit(2))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.ListAuditLogs`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.ListAuditLogs`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

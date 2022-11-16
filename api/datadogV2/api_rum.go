@@ -710,7 +710,7 @@ func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalP
 }
 
 // ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
-func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan datadog.PaginationResult[RUMEvent], func(), error) {
+func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan datadog.PaginationResult[RUMEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -771,7 +771,7 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listRUMEventsExecute executes the request.
@@ -916,7 +916,7 @@ func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsReque
 }
 
 // SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
-func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan datadog.PaginationResult[RUMEvent], func(), error) {
+func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan datadog.PaginationResult[RUMEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if body.Page == nil {
@@ -979,7 +979,7 @@ func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSea
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchRUMEventsExecute executes the request.

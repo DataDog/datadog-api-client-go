@@ -1597,7 +1597,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Conte
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func(), error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1658,7 +1658,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listSecurityMonitoringSignalsExecute executes the request.
@@ -1824,7 +1824,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Con
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func(), error) {
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1891,7 +1891,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchSecurityMonitoringSignalsExecute executes the request.

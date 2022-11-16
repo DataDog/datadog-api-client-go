@@ -17,14 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewProcessesApi(apiClient)
-	resp, _, err := api.ListProcessesWithPagination(ctx, *datadogV2.NewListProcessesOptionalParameters().WithPageLimit(2))
+	resp, _ := api.ListProcessesWithPagination(ctx, *datadogV2.NewListProcessesOptionalParameters().WithPageLimit(2))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

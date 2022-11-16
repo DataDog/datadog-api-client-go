@@ -118,7 +118,7 @@ func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptiona
 }
 
 // ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
-func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func(), error) {
+func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -179,7 +179,7 @@ func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAu
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listAuditLogsExecute executes the request.
@@ -348,7 +348,7 @@ func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOpt
 }
 
 // SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
-func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func(), error) {
+func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -415,7 +415,7 @@ func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...Sear
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchAuditLogsExecute executes the request.
