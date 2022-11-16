@@ -65,6 +65,8 @@ type UsageSummaryResponse struct {
 	CspmContainerAvgSum *int64 `json:"cspm_container_avg_sum,omitempty"`
 	// Shows the sum of the the high-water marks of Cloud Security Posture Management containers over all hours in the current months for all organizations.
 	CspmContainerHwmSum *int64 `json:"cspm_container_hwm_sum,omitempty"`
+	// Shows the 99th percentile of all Cloud Security Posture Management GCP hosts over all hours in the current months for all organizations.
+	CspmGcpHostTop99pSum *int64 `json:"cspm_gcp_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current months for all organizations.
 	CspmHostTop99pSum *int64 `json:"cspm_host_top99p_sum,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current months for all organizations.
@@ -945,6 +947,34 @@ func (o *UsageSummaryResponse) HasCspmContainerHwmSum() bool {
 // SetCspmContainerHwmSum gets a reference to the given int64 and assigns it to the CspmContainerHwmSum field.
 func (o *UsageSummaryResponse) SetCspmContainerHwmSum(v int64) {
 	o.CspmContainerHwmSum = &v
+}
+
+// GetCspmGcpHostTop99pSum returns the CspmGcpHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCspmGcpHostTop99pSum() int64 {
+	if o == nil || o.CspmGcpHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CspmGcpHostTop99pSum
+}
+
+// GetCspmGcpHostTop99pSumOk returns a tuple with the CspmGcpHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCspmGcpHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.CspmGcpHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.CspmGcpHostTop99pSum, true
+}
+
+// HasCspmGcpHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCspmGcpHostTop99pSum() bool {
+	return o != nil && o.CspmGcpHostTop99pSum != nil
+}
+
+// SetCspmGcpHostTop99pSum gets a reference to the given int64 and assigns it to the CspmGcpHostTop99pSum field.
+func (o *UsageSummaryResponse) SetCspmGcpHostTop99pSum(v int64) {
+	o.CspmGcpHostTop99pSum = &v
 }
 
 // GetCspmHostTop99pSum returns the CspmHostTop99pSum field value if set, zero value otherwise.
@@ -2490,6 +2520,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.CspmContainerHwmSum != nil {
 		toSerialize["cspm_container_hwm_sum"] = o.CspmContainerHwmSum
 	}
+	if o.CspmGcpHostTop99pSum != nil {
+		toSerialize["cspm_gcp_host_top99p_sum"] = o.CspmGcpHostTop99pSum
+	}
 	if o.CspmHostTop99pSum != nil {
 		toSerialize["cspm_host_top99p_sum"] = o.CspmHostTop99pSum
 	}
@@ -2696,6 +2729,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		CspmAzureHostTop99pSum                     *int64             `json:"cspm_azure_host_top99p_sum,omitempty"`
 		CspmContainerAvgSum                        *int64             `json:"cspm_container_avg_sum,omitempty"`
 		CspmContainerHwmSum                        *int64             `json:"cspm_container_hwm_sum,omitempty"`
+		CspmGcpHostTop99pSum                       *int64             `json:"cspm_gcp_host_top99p_sum,omitempty"`
 		CspmHostTop99pSum                          *int64             `json:"cspm_host_top99p_sum,omitempty"`
 		CustomTsSum                                *int64             `json:"custom_ts_sum,omitempty"`
 		CwsContainersAvgSum                        *int64             `json:"cws_containers_avg_sum,omitempty"`
@@ -2785,6 +2819,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.CspmAzureHostTop99pSum = all.CspmAzureHostTop99pSum
 	o.CspmContainerAvgSum = all.CspmContainerAvgSum
 	o.CspmContainerHwmSum = all.CspmContainerHwmSum
+	o.CspmGcpHostTop99pSum = all.CspmGcpHostTop99pSum
 	o.CspmHostTop99pSum = all.CspmHostTop99pSum
 	o.CustomTsSum = all.CustomTsSum
 	o.CwsContainersAvgSum = all.CwsContainersAvgSum
