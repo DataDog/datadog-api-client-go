@@ -27,7 +27,7 @@ type SearchSLOResponseDataAttributesFacets struct {
 	// Timeframes of SLOs.
 	Timeframe []SearchSLOResponseDataAttributesFacetsObjectString `json:"timeframe,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -68,11 +68,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetAllTagsOk() (*[]SearchSLOResp
 
 // HasAllTags returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasAllTags() bool {
-	if o != nil && o.AllTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllTags != nil
 }
 
 // SetAllTags gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the AllTags field.
@@ -100,11 +96,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetCreatorNameOk() (*[]SearchSLO
 
 // HasCreatorName returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasCreatorName() bool {
-	if o != nil && o.CreatorName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatorName != nil
 }
 
 // SetCreatorName gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the CreatorName field.
@@ -132,11 +124,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetEnvTagsOk() (*[]SearchSLOResp
 
 // HasEnvTags returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasEnvTags() bool {
-	if o != nil && o.EnvTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EnvTags != nil
 }
 
 // SetEnvTags gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the EnvTags field.
@@ -164,11 +152,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetServiceTagsOk() (*[]SearchSLO
 
 // HasServiceTags returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasServiceTags() bool {
-	if o != nil && o.ServiceTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ServiceTags != nil
 }
 
 // SetServiceTags gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the ServiceTags field.
@@ -196,11 +180,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetSloTypeOk() (*[]SearchSLOResp
 
 // HasSloType returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasSloType() bool {
-	if o != nil && o.SloType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SloType != nil
 }
 
 // SetSloType gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectInt and assigns it to the SloType field.
@@ -228,11 +208,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetTargetOk() (*[]SearchSLORespo
 
 // HasTarget returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Target != nil
 }
 
 // SetTarget gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectInt and assigns it to the Target field.
@@ -260,11 +236,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetTeamTagsOk() (*[]SearchSLORes
 
 // HasTeamTags returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasTeamTags() bool {
-	if o != nil && o.TeamTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TeamTags != nil
 }
 
 // SetTeamTags gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the TeamTags field.
@@ -292,11 +264,7 @@ func (o *SearchSLOResponseDataAttributesFacets) GetTimeframeOk() (*[]SearchSLORe
 
 // HasTimeframe returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacets) HasTimeframe() bool {
-	if o != nil && o.Timeframe != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeframe != nil
 }
 
 // SetTimeframe gets a reference to the given []SearchSLOResponseDataAttributesFacetsObjectString and assigns it to the Timeframe field.

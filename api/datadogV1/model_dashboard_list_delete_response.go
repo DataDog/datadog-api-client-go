@@ -13,7 +13,7 @@ type DashboardListDeleteResponse struct {
 	// ID of the deleted dashboard list.
 	DeletedDashboardListId *int64 `json:"deleted_dashboard_list_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *DashboardListDeleteResponse) GetDeletedDashboardListIdOk() (*int64, boo
 
 // HasDeletedDashboardListId returns a boolean if a field has been set.
 func (o *DashboardListDeleteResponse) HasDeletedDashboardListId() bool {
-	if o != nil && o.DeletedDashboardListId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedDashboardListId != nil
 }
 
 // SetDeletedDashboardListId gets a reference to the given int64 and assigns it to the DeletedDashboardListId field.

@@ -30,7 +30,7 @@ type SyntheticsAPITestResultData struct {
 	// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,11 +71,7 @@ func (o *SyntheticsAPITestResultData) GetCertOk() (*SyntheticsSSLCertificate, bo
 
 // HasCert returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasCert() bool {
-	if o != nil && o.Cert != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cert != nil
 }
 
 // SetCert gets a reference to the given SyntheticsSSLCertificate and assigns it to the Cert field.
@@ -103,11 +99,7 @@ func (o *SyntheticsAPITestResultData) GetEventTypeOk() (*SyntheticsTestProcessSt
 
 // HasEventType returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasEventType() bool {
-	if o != nil && o.EventType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventType != nil
 }
 
 // SetEventType gets a reference to the given SyntheticsTestProcessStatus and assigns it to the EventType field.
@@ -135,11 +127,7 @@ func (o *SyntheticsAPITestResultData) GetFailureOk() (*SyntheticsApiTestResultFa
 
 // HasFailure returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasFailure() bool {
-	if o != nil && o.Failure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Failure != nil
 }
 
 // SetFailure gets a reference to the given SyntheticsApiTestResultFailure and assigns it to the Failure field.
@@ -167,11 +155,7 @@ func (o *SyntheticsAPITestResultData) GetHttpStatusCodeOk() (*int64, bool) {
 
 // HasHttpStatusCode returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasHttpStatusCode() bool {
-	if o != nil && o.HttpStatusCode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HttpStatusCode != nil
 }
 
 // SetHttpStatusCode gets a reference to the given int64 and assigns it to the HttpStatusCode field.
@@ -199,11 +183,7 @@ func (o *SyntheticsAPITestResultData) GetRequestHeadersOk() (*map[string]interfa
 
 // HasRequestHeaders returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasRequestHeaders() bool {
-	if o != nil && o.RequestHeaders != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestHeaders != nil
 }
 
 // SetRequestHeaders gets a reference to the given map[string]interface{} and assigns it to the RequestHeaders field.
@@ -231,11 +211,7 @@ func (o *SyntheticsAPITestResultData) GetResponseBodyOk() (*string, bool) {
 
 // HasResponseBody returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasResponseBody() bool {
-	if o != nil && o.ResponseBody != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseBody != nil
 }
 
 // SetResponseBody gets a reference to the given string and assigns it to the ResponseBody field.
@@ -263,11 +239,7 @@ func (o *SyntheticsAPITestResultData) GetResponseHeadersOk() (*map[string]interf
 
 // HasResponseHeaders returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasResponseHeaders() bool {
-	if o != nil && o.ResponseHeaders != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseHeaders != nil
 }
 
 // SetResponseHeaders gets a reference to the given map[string]interface{} and assigns it to the ResponseHeaders field.
@@ -295,11 +267,7 @@ func (o *SyntheticsAPITestResultData) GetResponseSizeOk() (*int64, bool) {
 
 // HasResponseSize returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasResponseSize() bool {
-	if o != nil && o.ResponseSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseSize != nil
 }
 
 // SetResponseSize gets a reference to the given int64 and assigns it to the ResponseSize field.
@@ -327,11 +295,7 @@ func (o *SyntheticsAPITestResultData) GetTimingsOk() (*SyntheticsTiming, bool) {
 
 // HasTimings returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultData) HasTimings() bool {
-	if o != nil && o.Timings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timings != nil
 }
 
 // SetTimings gets a reference to the given SyntheticsTiming and assigns it to the Timings field.

@@ -16,7 +16,7 @@ type AWSLogsServicesRequest struct {
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint.
 	Services []string `json:"services"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AccountId == nil {
-		return fmt.Errorf("Required field account_id missing")
+		return fmt.Errorf("required field account_id missing")
 	}
 	if required.Services == nil {
-		return fmt.Errorf("Required field services missing")
+		return fmt.Errorf("required field services missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

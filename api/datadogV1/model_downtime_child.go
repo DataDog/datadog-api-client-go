@@ -59,7 +59,7 @@ type DowntimeChild struct {
 	// ID of the last user that updated the downtime.
 	UpdaterId datadog.NullableInt32 `json:"updater_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -100,11 +100,7 @@ func (o *DowntimeChild) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *DowntimeChild) HasActive() bool {
-	if o != nil && o.Active != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Active != nil
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
@@ -133,11 +129,7 @@ func (o *DowntimeChild) GetCanceledOk() (*int64, bool) {
 
 // HasCanceled returns a boolean if a field has been set.
 func (o *DowntimeChild) HasCanceled() bool {
-	if o != nil && o.Canceled.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Canceled.IsSet()
 }
 
 // SetCanceled gets a reference to the given datadog.NullableInt64 and assigns it to the Canceled field.
@@ -175,11 +167,7 @@ func (o *DowntimeChild) GetCreatorIdOk() (*int32, bool) {
 
 // HasCreatorId returns a boolean if a field has been set.
 func (o *DowntimeChild) HasCreatorId() bool {
-	if o != nil && o.CreatorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatorId != nil
 }
 
 // SetCreatorId gets a reference to the given int32 and assigns it to the CreatorId field.
@@ -207,11 +195,7 @@ func (o *DowntimeChild) GetDisabledOk() (*bool, bool) {
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *DowntimeChild) HasDisabled() bool {
-	if o != nil && o.Disabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Disabled != nil
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
@@ -239,11 +223,7 @@ func (o *DowntimeChild) GetDowntimeTypeOk() (*int32, bool) {
 
 // HasDowntimeType returns a boolean if a field has been set.
 func (o *DowntimeChild) HasDowntimeType() bool {
-	if o != nil && o.DowntimeType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DowntimeType != nil
 }
 
 // SetDowntimeType gets a reference to the given int32 and assigns it to the DowntimeType field.
@@ -272,11 +252,7 @@ func (o *DowntimeChild) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *DowntimeChild) HasEnd() bool {
-	if o != nil && o.End.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.End.IsSet()
 }
 
 // SetEnd gets a reference to the given datadog.NullableInt64 and assigns it to the End field.
@@ -314,11 +290,7 @@ func (o *DowntimeChild) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *DowntimeChild) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -346,11 +318,7 @@ func (o *DowntimeChild) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *DowntimeChild) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -379,11 +347,7 @@ func (o *DowntimeChild) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *DowntimeChild) HasMonitorId() bool {
-	if o != nil && o.MonitorId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId.IsSet()
 }
 
 // SetMonitorId gets a reference to the given datadog.NullableInt64 and assigns it to the MonitorId field.
@@ -421,11 +385,7 @@ func (o *DowntimeChild) GetMonitorTagsOk() (*[]string, bool) {
 
 // HasMonitorTags returns a boolean if a field has been set.
 func (o *DowntimeChild) HasMonitorTags() bool {
-	if o != nil && o.MonitorTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorTags != nil
 }
 
 // SetMonitorTags gets a reference to the given []string and assigns it to the MonitorTags field.
@@ -453,11 +413,7 @@ func (o *DowntimeChild) GetMuteFirstRecoveryNotificationOk() (*bool, bool) {
 
 // HasMuteFirstRecoveryNotification returns a boolean if a field has been set.
 func (o *DowntimeChild) HasMuteFirstRecoveryNotification() bool {
-	if o != nil && o.MuteFirstRecoveryNotification != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MuteFirstRecoveryNotification != nil
 }
 
 // SetMuteFirstRecoveryNotification gets a reference to the given bool and assigns it to the MuteFirstRecoveryNotification field.
@@ -486,11 +442,7 @@ func (o *DowntimeChild) GetParentIdOk() (*int64, bool) {
 
 // HasParentId returns a boolean if a field has been set.
 func (o *DowntimeChild) HasParentId() bool {
-	if o != nil && o.ParentId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.ParentId.IsSet()
 }
 
 // SetParentId gets a reference to the given datadog.NullableInt64 and assigns it to the ParentId field.
@@ -529,11 +481,7 @@ func (o *DowntimeChild) GetRecurrenceOk() (*DowntimeRecurrence, bool) {
 
 // HasRecurrence returns a boolean if a field has been set.
 func (o *DowntimeChild) HasRecurrence() bool {
-	if o != nil && o.Recurrence.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Recurrence.IsSet()
 }
 
 // SetRecurrence gets a reference to the given NullableDowntimeRecurrence and assigns it to the Recurrence field.
@@ -571,11 +519,7 @@ func (o *DowntimeChild) GetScopeOk() (*[]string, bool) {
 
 // HasScope returns a boolean if a field has been set.
 func (o *DowntimeChild) HasScope() bool {
-	if o != nil && o.Scope != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scope != nil
 }
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
@@ -603,11 +547,7 @@ func (o *DowntimeChild) GetStartOk() (*int64, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *DowntimeChild) HasStart() bool {
-	if o != nil && o.Start != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Start != nil
 }
 
 // SetStart gets a reference to the given int64 and assigns it to the Start field.
@@ -635,11 +575,7 @@ func (o *DowntimeChild) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *DowntimeChild) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timezone != nil
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.
@@ -668,11 +604,7 @@ func (o *DowntimeChild) GetUpdaterIdOk() (*int32, bool) {
 
 // HasUpdaterId returns a boolean if a field has been set.
 func (o *DowntimeChild) HasUpdaterId() bool {
-	if o != nil && o.UpdaterId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdaterId.IsSet()
 }
 
 // SetUpdaterId gets a reference to the given datadog.NullableInt32 and assigns it to the UpdaterId field.

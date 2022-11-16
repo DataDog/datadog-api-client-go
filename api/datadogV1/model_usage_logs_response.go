@@ -13,7 +13,7 @@ type UsageLogsResponse struct {
 	// An array of objects regarding hourly usage of logs.
 	Usage []UsageLogsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UsageLogsResponse) GetUsageOk() (*[]UsageLogsHour, bool) {
 
 // HasUsage returns a boolean if a field has been set.
 func (o *UsageLogsResponse) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []UsageLogsHour and assigns it to the Usage field.

@@ -20,7 +20,7 @@ type RoleAttributes struct {
 	// Number of users with that role.
 	UserCount *int64 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *RoleAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *RoleAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -93,11 +89,7 @@ func (o *RoleAttributes) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *RoleAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -125,11 +117,7 @@ func (o *RoleAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *RoleAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -157,11 +145,7 @@ func (o *RoleAttributes) GetUserCountOk() (*int64, bool) {
 
 // HasUserCount returns a boolean if a field has been set.
 func (o *RoleAttributes) HasUserCount() bool {
-	if o != nil && o.UserCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UserCount != nil
 }
 
 // SetUserCount gets a reference to the given int64 and assigns it to the UserCount field.

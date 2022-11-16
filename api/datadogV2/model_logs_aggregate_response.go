@@ -15,7 +15,7 @@ type LogsAggregateResponse struct {
 	// The metadata associated with a request
 	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *LogsAggregateResponse) GetDataOk() (*LogsAggregateResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *LogsAggregateResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given LogsAggregateResponseData and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *LogsAggregateResponse) GetMetaOk() (*LogsResponseMetadata, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *LogsAggregateResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given LogsResponseMetadata and assigns it to the Meta field.

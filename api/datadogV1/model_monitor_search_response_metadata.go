@@ -19,7 +19,7 @@ type MonitorSearchResponseMetadata struct {
 	// The total number of monitors.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *MonitorSearchResponseMetadata) GetPageOk() (*int64, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *MonitorSearchResponseMetadata) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given int64 and assigns it to the Page field.
@@ -92,11 +88,7 @@ func (o *MonitorSearchResponseMetadata) GetPageCountOk() (*int64, bool) {
 
 // HasPageCount returns a boolean if a field has been set.
 func (o *MonitorSearchResponseMetadata) HasPageCount() bool {
-	if o != nil && o.PageCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PageCount != nil
 }
 
 // SetPageCount gets a reference to the given int64 and assigns it to the PageCount field.
@@ -124,11 +116,7 @@ func (o *MonitorSearchResponseMetadata) GetPerPageOk() (*int64, bool) {
 
 // HasPerPage returns a boolean if a field has been set.
 func (o *MonitorSearchResponseMetadata) HasPerPage() bool {
-	if o != nil && o.PerPage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PerPage != nil
 }
 
 // SetPerPage gets a reference to the given int64 and assigns it to the PerPage field.
@@ -156,11 +144,7 @@ func (o *MonitorSearchResponseMetadata) GetTotalCountOk() (*int64, bool) {
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *MonitorSearchResponseMetadata) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalCount != nil
 }
 
 // SetTotalCount gets a reference to the given int64 and assigns it to the TotalCount field.

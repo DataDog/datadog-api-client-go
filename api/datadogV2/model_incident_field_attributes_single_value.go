@@ -17,7 +17,7 @@ type IncidentFieldAttributesSingleValue struct {
 	// The single value selected for this field.
 	Value datadog.NullableString `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *IncidentFieldAttributesSingleValue) GetTypeOk() (*IncidentFieldAttribut
 
 // HasType returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesSingleValue) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given IncidentFieldAttributesSingleValueType and assigns it to the Type field.
@@ -95,11 +91,7 @@ func (o *IncidentFieldAttributesSingleValue) GetValueOk() (*string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesSingleValue) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value.IsSet()
 }
 
 // SetValue gets a reference to the given datadog.NullableString and assigns it to the Value field.

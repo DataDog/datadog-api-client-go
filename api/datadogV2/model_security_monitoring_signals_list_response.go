@@ -18,7 +18,7 @@ type SecurityMonitoringSignalsListResponse struct {
 	// Meta attributes.
 	Meta *SecurityMonitoringSignalsListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *SecurityMonitoringSignalsListResponse) GetDataOk() (*[]SecurityMonitori
 
 // HasData returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalsListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []SecurityMonitoringSignal and assigns it to the Data field.
@@ -91,11 +87,7 @@ func (o *SecurityMonitoringSignalsListResponse) GetLinksOk() (*SecurityMonitorin
 
 // HasLinks returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalsListResponse) HasLinks() bool {
-	if o != nil && o.Links != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Links != nil
 }
 
 // SetLinks gets a reference to the given SecurityMonitoringSignalsListResponseLinks and assigns it to the Links field.
@@ -123,11 +115,7 @@ func (o *SecurityMonitoringSignalsListResponse) GetMetaOk() (*SecurityMonitoring
 
 // HasMeta returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalsListResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given SecurityMonitoringSignalsListResponseMeta and assigns it to the Meta field.

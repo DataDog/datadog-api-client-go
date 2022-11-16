@@ -13,7 +13,7 @@ type RelationshipToRole struct {
 	// Relationship to role object.
 	Data *RelationshipToRoleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *RelationshipToRole) GetDataOk() (*RelationshipToRoleData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *RelationshipToRole) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given RelationshipToRoleData and assigns it to the Data field.

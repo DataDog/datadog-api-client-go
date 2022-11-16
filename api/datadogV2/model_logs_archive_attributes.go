@@ -29,7 +29,7 @@ type LogsArchiveAttributes struct {
 	// The state of the archive.
 	State *LogsArchiveState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -102,11 +102,7 @@ func (o *LogsArchiveAttributes) GetIncludeTagsOk() (*bool, bool) {
 
 // HasIncludeTags returns a boolean if a field has been set.
 func (o *LogsArchiveAttributes) HasIncludeTags() bool {
-	if o != nil && o.IncludeTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeTags != nil
 }
 
 // SetIncludeTags gets a reference to the given bool and assigns it to the IncludeTags field.
@@ -181,11 +177,7 @@ func (o *LogsArchiveAttributes) GetRehydrationMaxScanSizeInGbOk() (*int64, bool)
 
 // HasRehydrationMaxScanSizeInGb returns a boolean if a field has been set.
 func (o *LogsArchiveAttributes) HasRehydrationMaxScanSizeInGb() bool {
-	if o != nil && o.RehydrationMaxScanSizeInGb.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RehydrationMaxScanSizeInGb.IsSet()
 }
 
 // SetRehydrationMaxScanSizeInGb gets a reference to the given datadog.NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
@@ -223,11 +215,7 @@ func (o *LogsArchiveAttributes) GetRehydrationTagsOk() (*[]string, bool) {
 
 // HasRehydrationTags returns a boolean if a field has been set.
 func (o *LogsArchiveAttributes) HasRehydrationTags() bool {
-	if o != nil && o.RehydrationTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RehydrationTags != nil
 }
 
 // SetRehydrationTags gets a reference to the given []string and assigns it to the RehydrationTags field.
@@ -255,11 +243,7 @@ func (o *LogsArchiveAttributes) GetStateOk() (*LogsArchiveState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *LogsArchiveAttributes) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.State != nil
 }
 
 // SetState gets a reference to the given LogsArchiveState and assigns it to the State field.
@@ -317,13 +301,13 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if !required.Destination.IsSet() {
-		return fmt.Errorf("Required field destination missing")
+		return fmt.Errorf("required field destination missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

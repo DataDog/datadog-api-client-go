@@ -17,7 +17,7 @@ type SearchSLOResponse struct {
 	// Searches metadata returned by the API.
 	Meta *SearchSLOResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *SearchSLOResponse) GetDataOk() (*SearchSLOResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SearchSLOResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given SearchSLOResponseData and assigns it to the Data field.
@@ -90,11 +86,7 @@ func (o *SearchSLOResponse) GetLinksOk() (*SearchSLOResponseLinks, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *SearchSLOResponse) HasLinks() bool {
-	if o != nil && o.Links != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Links != nil
 }
 
 // SetLinks gets a reference to the given SearchSLOResponseLinks and assigns it to the Links field.
@@ -122,11 +114,7 @@ func (o *SearchSLOResponse) GetMetaOk() (*SearchSLOResponseMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *SearchSLOResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given SearchSLOResponseMeta and assigns it to the Meta field.

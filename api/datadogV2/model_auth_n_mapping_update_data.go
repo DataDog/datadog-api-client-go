@@ -20,7 +20,7 @@ type AuthNMappingUpdateData struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,11 +65,7 @@ func (o *AuthNMappingUpdateData) GetAttributesOk() (*AuthNMappingUpdateAttribute
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AuthNMappingUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given AuthNMappingUpdateAttributes and assigns it to the Attributes field.
@@ -120,11 +116,7 @@ func (o *AuthNMappingUpdateData) GetRelationshipsOk() (*AuthNMappingUpdateRelati
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *AuthNMappingUpdateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given AuthNMappingUpdateRelationships and assigns it to the Relationships field.
@@ -194,10 +186,10 @@ func (o *AuthNMappingUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Id == nil {
-		return fmt.Errorf("Required field id missing")
+		return fmt.Errorf("required field id missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

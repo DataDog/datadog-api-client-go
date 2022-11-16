@@ -32,7 +32,7 @@ type ScatterPlotWidgetDefinition struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,11 +77,7 @@ func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() (*[]string, bool) {
 
 // HasColorByGroups returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasColorByGroups() bool {
-	if o != nil && o.ColorByGroups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ColorByGroups != nil
 }
 
 // SetColorByGroups gets a reference to the given []string and assigns it to the ColorByGroups field.
@@ -109,11 +105,7 @@ func (o *ScatterPlotWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, b
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -164,11 +156,7 @@ func (o *ScatterPlotWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -196,11 +184,7 @@ func (o *ScatterPlotWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -228,11 +212,7 @@ func (o *ScatterPlotWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -260,11 +240,7 @@ func (o *ScatterPlotWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -315,11 +291,7 @@ func (o *ScatterPlotWidgetDefinition) GetXaxisOk() (*WidgetAxis, bool) {
 
 // HasXaxis returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasXaxis() bool {
-	if o != nil && o.Xaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Xaxis != nil
 }
 
 // SetXaxis gets a reference to the given WidgetAxis and assigns it to the Xaxis field.
@@ -347,11 +319,7 @@ func (o *ScatterPlotWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 
 // HasYaxis returns a boolean if a field has been set.
 func (o *ScatterPlotWidgetDefinition) HasYaxis() bool {
-	if o != nil && o.Yaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Yaxis != nil
 }
 
 // SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
@@ -422,10 +390,10 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

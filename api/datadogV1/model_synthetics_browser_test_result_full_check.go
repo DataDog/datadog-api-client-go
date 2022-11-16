@@ -14,7 +14,7 @@ type SyntheticsBrowserTestResultFullCheck struct {
 	// Configuration object for a Synthetic test.
 	Config SyntheticsTestConfig `json:"config"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *SyntheticsBrowserTestResultFullCheck) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 	if required.Config == nil {
-		return fmt.Errorf("Required field config missing")
+		return fmt.Errorf("required field config missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

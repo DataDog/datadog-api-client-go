@@ -28,7 +28,7 @@ type OrganizationAttributes struct {
 	// URL of the site that this organization exists at.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,11 +69,7 @@ func (o *OrganizationAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -101,11 +97,7 @@ func (o *OrganizationAttributes) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -133,11 +125,7 @@ func (o *OrganizationAttributes) GetDisabledOk() (*bool, bool) {
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasDisabled() bool {
-	if o != nil && o.Disabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Disabled != nil
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
@@ -165,11 +153,7 @@ func (o *OrganizationAttributes) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -197,11 +181,7 @@ func (o *OrganizationAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -229,11 +209,7 @@ func (o *OrganizationAttributes) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -261,11 +237,7 @@ func (o *OrganizationAttributes) GetSharingOk() (*string, bool) {
 
 // HasSharing returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasSharing() bool {
-	if o != nil && o.Sharing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sharing != nil
 }
 
 // SetSharing gets a reference to the given string and assigns it to the Sharing field.
@@ -293,11 +265,7 @@ func (o *OrganizationAttributes) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *OrganizationAttributes) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

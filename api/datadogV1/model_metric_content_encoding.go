@@ -15,10 +15,12 @@ type MetricContentEncoding string
 // List of MetricContentEncoding.
 const (
 	METRICCONTENTENCODING_DEFLATE MetricContentEncoding = "deflate"
+	METRICCONTENTENCODING_GZIP    MetricContentEncoding = "gzip"
 )
 
 var allowedMetricContentEncodingEnumValues = []MetricContentEncoding{
 	METRICCONTENTENCODING_DEFLATE,
+	METRICCONTENTENCODING_GZIP,
 }
 
 // GetAllowedValues reeturns the list of possible values.

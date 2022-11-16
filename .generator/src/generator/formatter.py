@@ -514,9 +514,9 @@ def format_data_with_schema_list(
                 print(f"{e}")
 
         if matched == 0:
-            raise ValueError(f"[{matched}] {data} is not valid for schema {name}")
+            raise ValueError(f"[{matched}] {data} is not valid for schema {schema}")
         elif matched > 1:
-            warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
+            warnings.warn(f"[{matched}] {data} is not valid for schema {schema}")
 
         one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
         reference = "" if one_of_schema.get("required", False) else "&"
@@ -686,7 +686,14 @@ def format_data_with_schema_dict(
         return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
 
     if schema.get("type") == "object" and "properties" not in schema:
-        return "new(interface{})"
+        if schema.get("additionalProperties") == {}:
+            name_prefix = ""
+            name = "map[string]interface{}"
+            reference = ""
+            for k, v in data.items():
+                parameters += f'"{k}": "{v}",\n'
+        else:
+            return "new(interface{})"
 
     if not name:
         warnings.warn(f"Unnamed schema {schema} for {data}")

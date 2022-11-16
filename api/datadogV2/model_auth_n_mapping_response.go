@@ -15,7 +15,7 @@ type AuthNMappingResponse struct {
 	// Included data in the AuthN Mapping response.
 	Included []AuthNMappingIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *AuthNMappingResponse) GetDataOk() (*AuthNMapping, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *AuthNMappingResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given AuthNMapping and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *AuthNMappingResponse) GetIncludedOk() (*[]AuthNMappingIncluded, bool) {
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *AuthNMappingResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []AuthNMappingIncluded and assigns it to the Included field.

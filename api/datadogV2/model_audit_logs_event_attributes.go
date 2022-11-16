@@ -22,7 +22,7 @@ type AuditLogsEventAttributes struct {
 	// Timestamp of your event.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *AuditLogsEventAttributes) GetAttributesOk() (*map[string]interface{}, b
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AuditLogsEventAttributes) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
@@ -95,11 +91,7 @@ func (o *AuditLogsEventAttributes) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *AuditLogsEventAttributes) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.
@@ -127,11 +119,7 @@ func (o *AuditLogsEventAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *AuditLogsEventAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -159,11 +147,7 @@ func (o *AuditLogsEventAttributes) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *AuditLogsEventAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.

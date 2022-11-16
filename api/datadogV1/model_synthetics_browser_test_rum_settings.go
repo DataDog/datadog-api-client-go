@@ -28,7 +28,7 @@ type SyntheticsBrowserTestRumSettings struct {
 	// Determines whether RUM data is collected during test runs.
 	IsEnabled bool `json:"isEnabled"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,11 +70,7 @@ func (o *SyntheticsBrowserTestRumSettings) GetApplicationIdOk() (*string, bool) 
 
 // HasApplicationId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestRumSettings) HasApplicationId() bool {
-	if o != nil && o.ApplicationId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApplicationId != nil
 }
 
 // SetApplicationId gets a reference to the given string and assigns it to the ApplicationId field.
@@ -102,11 +98,7 @@ func (o *SyntheticsBrowserTestRumSettings) GetClientTokenIdOk() (*int64, bool) {
 
 // HasClientTokenId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTestRumSettings) HasClientTokenId() bool {
-	if o != nil && o.ClientTokenId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientTokenId != nil
 }
 
 // SetClientTokenId gets a reference to the given int64 and assigns it to the ClientTokenId field.
@@ -173,7 +165,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	if required.IsEnabled == nil {
-		return fmt.Errorf("Required field isEnabled missing")
+		return fmt.Errorf("required field isEnabled missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

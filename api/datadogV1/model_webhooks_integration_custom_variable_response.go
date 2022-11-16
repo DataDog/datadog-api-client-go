@@ -19,7 +19,7 @@ type WebhooksIntegrationCustomVariableResponse struct {
 	// Value of the custom variable. It won't be returned if the variable is secret.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -108,11 +108,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetValueOk() (*string, bool)
 
 // HasValue returns a boolean if a field has been set.
 func (o *WebhooksIntegrationCustomVariableResponse) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
@@ -155,10 +151,10 @@ func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 	if required.IsSecret == nil {
-		return fmt.Errorf("Required field is_secret missing")
+		return fmt.Errorf("required field is_secret missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

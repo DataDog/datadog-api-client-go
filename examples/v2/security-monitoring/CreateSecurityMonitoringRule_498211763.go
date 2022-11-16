@@ -14,35 +14,36 @@ import (
 
 func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
-		Queries: []datadogV2.SecurityMonitoringRuleQueryCreate{
-			{
-				Query:          "@test:true",
-				Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				GroupByFields:  []string{},
-				DistinctFields: []string{},
-				Metric:         datadog.PtrString(""),
+		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
+			Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
+			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
+				{
+					Query:          "@test:true",
+					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
+					GroupByFields:  []string{},
+					DistinctFields: []string{},
+					Metric:         datadog.PtrString(""),
+				},
 			},
-		},
-		Filters: []datadogV2.SecurityMonitoringFilter{},
-		Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
-			{
-				Name:          datadog.PtrString(""),
-				Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
-				Condition:     datadog.PtrString("a > 0"),
-				Notifications: []string{},
+			Filters: []datadogV2.SecurityMonitoringFilter{},
+			Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
+				{
+					Name:          datadog.PtrString(""),
+					Status:        datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
+					Condition:     datadog.PtrString("a > 0"),
+					Notifications: []string{},
+				},
 			},
-		},
-		Options: datadogV2.SecurityMonitoringRuleOptions{
-			EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
-			KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
-			MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
-		},
-		Message:   "Test rule",
-		Tags:      []string{},
-		IsEnabled: true,
-		Type:      datadogV2.SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY.Ptr(),
-	}
+			Options: datadogV2.SecurityMonitoringRuleOptions{
+				EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
+				KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
+				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
+			},
+			Message:   "Test rule",
+			Tags:      []string{},
+			IsEnabled: true,
+			Type:      datadogV2.SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY.Ptr(),
+		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)

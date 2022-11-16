@@ -31,7 +31,7 @@ type TreeMapWidgetDefinition struct {
 	// Type of the treemap widget.
 	Type TreeMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,11 +82,7 @@ func (o *TreeMapWidgetDefinition) GetColorByOk() (*TreeMapColorBy, bool) {
 
 // HasColorBy returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasColorBy() bool {
-	if o != nil && o.ColorBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ColorBy != nil
 }
 
 // SetColorBy gets a reference to the given TreeMapColorBy and assigns it to the ColorBy field.
@@ -115,11 +111,7 @@ func (o *TreeMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -149,11 +141,7 @@ func (o *TreeMapWidgetDefinition) GetGroupByOk() (*TreeMapGroupBy, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given TreeMapGroupBy and assigns it to the GroupBy field.
@@ -207,11 +195,7 @@ func (o *TreeMapWidgetDefinition) GetSizeByOk() (*TreeMapSizeBy, bool) {
 
 // HasSizeBy returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasSizeBy() bool {
-	if o != nil && o.SizeBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SizeBy != nil
 }
 
 // SetSizeBy gets a reference to the given TreeMapSizeBy and assigns it to the SizeBy field.
@@ -240,11 +224,7 @@ func (o *TreeMapWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -272,11 +252,7 @@ func (o *TreeMapWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *TreeMapWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -362,10 +338,10 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

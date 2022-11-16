@@ -15,7 +15,7 @@ type HostTotals struct {
 	// Number of host that are UP and reporting to Datadog.
 	TotalUp *int64 `json:"total_up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *HostTotals) GetTotalActiveOk() (*int64, bool) {
 
 // HasTotalActive returns a boolean if a field has been set.
 func (o *HostTotals) HasTotalActive() bool {
-	if o != nil && o.TotalActive != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalActive != nil
 }
 
 // SetTotalActive gets a reference to the given int64 and assigns it to the TotalActive field.
@@ -88,11 +84,7 @@ func (o *HostTotals) GetTotalUpOk() (*int64, bool) {
 
 // HasTotalUp returns a boolean if a field has been set.
 func (o *HostTotals) HasTotalUp() bool {
-	if o != nil && o.TotalUp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalUp != nil
 }
 
 // SetTotalUp gets a reference to the given int64 and assigns it to the TotalUp field.

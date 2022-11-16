@@ -18,7 +18,7 @@ type IncidentServicesResponse struct {
 	// The metadata object containing pagination metadata.
 	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *IncidentServicesResponse) GetIncludedOk() (*[]IncidentServiceIncludedIt
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *IncidentServicesResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []IncidentServiceIncludedItems and assigns it to the Included field.
@@ -115,11 +111,7 @@ func (o *IncidentServicesResponse) GetMetaOk() (*IncidentResponseMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *IncidentServicesResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given IncidentResponseMeta and assigns it to the Meta field.
@@ -163,7 +155,7 @@ func (o *IncidentServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Data == nil {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

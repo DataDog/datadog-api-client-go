@@ -18,7 +18,7 @@ type AuthNMappingCreateData struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *AuthNMappingCreateData) GetAttributesOk() (*AuthNMappingCreateAttribute
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AuthNMappingCreateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given AuthNMappingCreateAttributes and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *AuthNMappingCreateData) GetRelationshipsOk() (*AuthNMappingCreateRelati
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *AuthNMappingCreateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given AuthNMappingCreateRelationships and assigns it to the Relationships field.
@@ -165,7 +157,7 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

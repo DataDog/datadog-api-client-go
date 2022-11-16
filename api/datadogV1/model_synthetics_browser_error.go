@@ -20,7 +20,7 @@ type SyntheticsBrowserError struct {
 	// Error type returned by a browser test.
 	Type SyntheticsBrowserErrorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -110,11 +110,7 @@ func (o *SyntheticsBrowserError) GetStatusOk() (*int64, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBrowserError) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given int64 and assigns it to the Status field.
@@ -183,13 +179,13 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Description == nil {
-		return fmt.Errorf("Required field description missing")
+		return fmt.Errorf("required field description missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

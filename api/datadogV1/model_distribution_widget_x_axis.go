@@ -19,7 +19,7 @@ type DistributionWidgetXAxis struct {
 	// Specifies the scale type. Possible values are `linear`.
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,11 +72,7 @@ func (o *DistributionWidgetXAxis) GetIncludeZeroOk() (*bool, bool) {
 
 // HasIncludeZero returns a boolean if a field has been set.
 func (o *DistributionWidgetXAxis) HasIncludeZero() bool {
-	if o != nil && o.IncludeZero != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeZero != nil
 }
 
 // SetIncludeZero gets a reference to the given bool and assigns it to the IncludeZero field.
@@ -104,11 +100,7 @@ func (o *DistributionWidgetXAxis) GetMaxOk() (*string, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *DistributionWidgetXAxis) HasMax() bool {
-	if o != nil && o.Max != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Max != nil
 }
 
 // SetMax gets a reference to the given string and assigns it to the Max field.
@@ -136,11 +128,7 @@ func (o *DistributionWidgetXAxis) GetMinOk() (*string, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *DistributionWidgetXAxis) HasMin() bool {
-	if o != nil && o.Min != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Min != nil
 }
 
 // SetMin gets a reference to the given string and assigns it to the Min field.
@@ -168,11 +156,7 @@ func (o *DistributionWidgetXAxis) GetScaleOk() (*string, bool) {
 
 // HasScale returns a boolean if a field has been set.
 func (o *DistributionWidgetXAxis) HasScale() bool {
-	if o != nil && o.Scale != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scale != nil
 }
 
 // SetScale gets a reference to the given string and assigns it to the Scale field.

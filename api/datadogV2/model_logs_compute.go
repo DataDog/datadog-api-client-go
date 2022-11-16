@@ -21,7 +21,7 @@ type LogsCompute struct {
 	// The type of compute
 	Type *LogsComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -90,11 +90,7 @@ func (o *LogsCompute) GetIntervalOk() (*string, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *LogsCompute) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given string and assigns it to the Interval field.
@@ -122,11 +118,7 @@ func (o *LogsCompute) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *LogsCompute) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -154,11 +146,7 @@ func (o *LogsCompute) GetTypeOk() (*LogsComputeType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *LogsCompute) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given LogsComputeType and assigns it to the Type field.
@@ -206,7 +194,7 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

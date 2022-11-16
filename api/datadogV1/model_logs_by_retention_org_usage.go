@@ -13,7 +13,7 @@ type LogsByRetentionOrgUsage struct {
 	// Indexed logs usage for each active retention for the organization.
 	Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *LogsByRetentionOrgUsage) GetUsageOk() (*[]LogsRetentionSumUsage, bool) 
 
 // HasUsage returns a boolean if a field has been set.
 func (o *LogsByRetentionOrgUsage) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []LogsRetentionSumUsage and assigns it to the Usage field.

@@ -15,7 +15,7 @@ type AuthNMappingRelationships struct {
 	// AuthN Mapping relationship to SAML Assertion Attribute.
 	SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *AuthNMappingRelationships) GetRoleOk() (*RelationshipToRole, bool) {
 
 // HasRole returns a boolean if a field has been set.
 func (o *AuthNMappingRelationships) HasRole() bool {
-	if o != nil && o.Role != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Role != nil
 }
 
 // SetRole gets a reference to the given RelationshipToRole and assigns it to the Role field.
@@ -88,11 +84,7 @@ func (o *AuthNMappingRelationships) GetSamlAssertionAttributeOk() (*Relationship
 
 // HasSamlAssertionAttribute returns a boolean if a field has been set.
 func (o *AuthNMappingRelationships) HasSamlAssertionAttribute() bool {
-	if o != nil && o.SamlAssertionAttribute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SamlAssertionAttribute != nil
 }
 
 // SetSamlAssertionAttribute gets a reference to the given RelationshipToSAMLAssertionAttribute and assigns it to the SamlAssertionAttribute field.

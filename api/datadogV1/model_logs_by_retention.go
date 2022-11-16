@@ -17,7 +17,7 @@ type LogsByRetention struct {
 	// Object containing a summary of indexed logs usage by retention period for a single month.
 	UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *LogsByRetention) GetOrgsOk() (*LogsByRetentionOrgs, bool) {
 
 // HasOrgs returns a boolean if a field has been set.
 func (o *LogsByRetention) HasOrgs() bool {
-	if o != nil && o.Orgs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Orgs != nil
 }
 
 // SetOrgs gets a reference to the given LogsByRetentionOrgs and assigns it to the Orgs field.
@@ -90,11 +86,7 @@ func (o *LogsByRetention) GetUsageOk() (*[]LogsRetentionAggSumUsage, bool) {
 
 // HasUsage returns a boolean if a field has been set.
 func (o *LogsByRetention) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []LogsRetentionAggSumUsage and assigns it to the Usage field.
@@ -122,11 +114,7 @@ func (o *LogsByRetention) GetUsageByMonthOk() (*LogsByRetentionMonthlyUsage, boo
 
 // HasUsageByMonth returns a boolean if a field has been set.
 func (o *LogsByRetention) HasUsageByMonth() bool {
-	if o != nil && o.UsageByMonth != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UsageByMonth != nil
 }
 
 // SetUsageByMonth gets a reference to the given LogsByRetentionMonthlyUsage and assigns it to the UsageByMonth field.

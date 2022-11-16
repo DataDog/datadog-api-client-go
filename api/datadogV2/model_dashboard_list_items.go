@@ -16,7 +16,7 @@ type DashboardListItems struct {
 	// Number of dashboards in the dashboard list.
 	Total *int64 `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,11 +81,7 @@ func (o *DashboardListItems) GetTotalOk() (*int64, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *DashboardListItems) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given int64 and assigns it to the Total field.
@@ -125,7 +121,7 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Dashboards == nil {
-		return fmt.Errorf("Required field dashboards missing")
+		return fmt.Errorf("required field dashboards missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

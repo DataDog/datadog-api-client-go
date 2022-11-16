@@ -17,7 +17,7 @@ type AuditLogsQueryFilter struct {
 	// Maximum time for the requested events. Supports date, math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,11 +70,7 @@ func (o *AuditLogsQueryFilter) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *AuditLogsQueryFilter) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
@@ -102,11 +98,7 @@ func (o *AuditLogsQueryFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *AuditLogsQueryFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -134,11 +126,7 @@ func (o *AuditLogsQueryFilter) GetToOk() (*string, bool) {
 
 // HasTo returns a boolean if a field has been set.
 func (o *AuditLogsQueryFilter) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given string and assigns it to the To field.

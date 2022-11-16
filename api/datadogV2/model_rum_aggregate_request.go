@@ -22,7 +22,7 @@ type RUMAggregateRequest struct {
 	// Paging attributes for listing events.
 	Page *RUMQueryPageOptions `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *RUMAggregateRequest) GetComputeOk() (*[]RUMCompute, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *RUMAggregateRequest) HasCompute() bool {
-	if o != nil && o.Compute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Compute != nil
 }
 
 // SetCompute gets a reference to the given []RUMCompute and assigns it to the Compute field.
@@ -95,11 +91,7 @@ func (o *RUMAggregateRequest) GetFilterOk() (*RUMQueryFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *RUMAggregateRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given RUMQueryFilter and assigns it to the Filter field.
@@ -127,11 +119,7 @@ func (o *RUMAggregateRequest) GetGroupByOk() (*[]RUMGroupBy, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *RUMAggregateRequest) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []RUMGroupBy and assigns it to the GroupBy field.
@@ -159,11 +147,7 @@ func (o *RUMAggregateRequest) GetOptionsOk() (*RUMQueryOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *RUMAggregateRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given RUMQueryOptions and assigns it to the Options field.
@@ -191,11 +175,7 @@ func (o *RUMAggregateRequest) GetPageOk() (*RUMQueryPageOptions, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *RUMAggregateRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given RUMQueryPageOptions and assigns it to the Page field.

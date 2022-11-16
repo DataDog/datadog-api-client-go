@@ -29,7 +29,7 @@ type SyntheticsAPIStep struct {
 	// The subtype of the Synthetic multistep API test step, currently only supporting `http`.
 	Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,11 +74,7 @@ func (o *SyntheticsAPIStep) GetAllowFailureOk() (*bool, bool) {
 
 // HasAllowFailure returns a boolean if a field has been set.
 func (o *SyntheticsAPIStep) HasAllowFailure() bool {
-	if o != nil && o.AllowFailure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowFailure != nil
 }
 
 // SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
@@ -129,11 +125,7 @@ func (o *SyntheticsAPIStep) GetExtractedValuesOk() (*[]SyntheticsParsingOptions,
 
 // HasExtractedValues returns a boolean if a field has been set.
 func (o *SyntheticsAPIStep) HasExtractedValues() bool {
-	if o != nil && o.ExtractedValues != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExtractedValues != nil
 }
 
 // SetExtractedValues gets a reference to the given []SyntheticsParsingOptions and assigns it to the ExtractedValues field.
@@ -161,11 +153,7 @@ func (o *SyntheticsAPIStep) GetIsCriticalOk() (*bool, bool) {
 
 // HasIsCritical returns a boolean if a field has been set.
 func (o *SyntheticsAPIStep) HasIsCritical() bool {
-	if o != nil && o.IsCritical != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsCritical != nil
 }
 
 // SetIsCritical gets a reference to the given bool and assigns it to the IsCritical field.
@@ -239,11 +227,7 @@ func (o *SyntheticsAPIStep) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
 
 // HasRetry returns a boolean if a field has been set.
 func (o *SyntheticsAPIStep) HasRetry() bool {
-	if o != nil && o.Retry != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retry != nil
 }
 
 // SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.
@@ -327,16 +311,16 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Assertions == nil {
-		return fmt.Errorf("Required field assertions missing")
+		return fmt.Errorf("required field assertions missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Request == nil {
-		return fmt.Errorf("Required field request missing")
+		return fmt.Errorf("required field request missing")
 	}
 	if required.Subtype == nil {
-		return fmt.Errorf("Required field subtype missing")
+		return fmt.Errorf("required field subtype missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

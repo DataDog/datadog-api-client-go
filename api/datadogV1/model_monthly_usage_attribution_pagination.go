@@ -15,7 +15,7 @@ type MonthlyUsageAttributionPagination struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of the `next_record_id`.
 	NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,11 +57,7 @@ func (o *MonthlyUsageAttributionPagination) GetNextRecordIdOk() (*string, bool) 
 
 // HasNextRecordId returns a boolean if a field has been set.
 func (o *MonthlyUsageAttributionPagination) HasNextRecordId() bool {
-	if o != nil && o.NextRecordId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextRecordId.IsSet()
 }
 
 // SetNextRecordId gets a reference to the given datadog.NullableString and assigns it to the NextRecordId field.

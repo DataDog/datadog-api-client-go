@@ -47,7 +47,7 @@ type ChangeWidgetRequest struct {
 	// Whether to show the present value.
 	ShowPresent *bool `json:"show_present,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,11 +88,7 @@ func (o *ChangeWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -120,11 +116,7 @@ func (o *ChangeWidgetRequest) GetChangeTypeOk() (*WidgetChangeType, bool) {
 
 // HasChangeType returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasChangeType() bool {
-	if o != nil && o.ChangeType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ChangeType != nil
 }
 
 // SetChangeType gets a reference to the given WidgetChangeType and assigns it to the ChangeType field.
@@ -152,11 +144,7 @@ func (o *ChangeWidgetRequest) GetCompareToOk() (*WidgetCompareTo, bool) {
 
 // HasCompareTo returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasCompareTo() bool {
-	if o != nil && o.CompareTo != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CompareTo != nil
 }
 
 // SetCompareTo gets a reference to the given WidgetCompareTo and assigns it to the CompareTo field.
@@ -184,11 +172,7 @@ func (o *ChangeWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -216,11 +200,7 @@ func (o *ChangeWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -248,11 +228,7 @@ func (o *ChangeWidgetRequest) GetIncreaseGoodOk() (*bool, bool) {
 
 // HasIncreaseGood returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasIncreaseGood() bool {
-	if o != nil && o.IncreaseGood != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncreaseGood != nil
 }
 
 // SetIncreaseGood gets a reference to the given bool and assigns it to the IncreaseGood field.
@@ -280,11 +256,7 @@ func (o *ChangeWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -312,11 +284,7 @@ func (o *ChangeWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -344,11 +312,7 @@ func (o *ChangeWidgetRequest) GetOrderByOk() (*WidgetOrderBy, bool) {
 
 // HasOrderBy returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasOrderBy() bool {
-	if o != nil && o.OrderBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrderBy != nil
 }
 
 // SetOrderBy gets a reference to the given WidgetOrderBy and assigns it to the OrderBy field.
@@ -376,11 +340,7 @@ func (o *ChangeWidgetRequest) GetOrderDirOk() (*WidgetSort, bool) {
 
 // HasOrderDir returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasOrderDir() bool {
-	if o != nil && o.OrderDir != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrderDir != nil
 }
 
 // SetOrderDir gets a reference to the given WidgetSort and assigns it to the OrderDir field.
@@ -408,11 +368,7 @@ func (o *ChangeWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -440,11 +396,7 @@ func (o *ChangeWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, b
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -472,11 +424,7 @@ func (o *ChangeWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -504,11 +452,7 @@ func (o *ChangeWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefiniti
 
 // HasQueries returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -536,11 +480,7 @@ func (o *ChangeWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponse
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
@@ -568,11 +508,7 @@ func (o *ChangeWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -600,11 +536,7 @@ func (o *ChangeWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) {
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
@@ -632,11 +564,7 @@ func (o *ChangeWidgetRequest) GetShowPresentOk() (*bool, bool) {
 
 // HasShowPresent returns a boolean if a field has been set.
 func (o *ChangeWidgetRequest) HasShowPresent() bool {
-	if o != nil && o.ShowPresent != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowPresent != nil
 }
 
 // SetShowPresent gets a reference to the given bool and assigns it to the ShowPresent field.

@@ -17,7 +17,7 @@ type LogsMetricResponseAttributes struct {
 	// The rules for the group by.
 	GroupBy []LogsMetricResponseGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *LogsMetricResponseAttributes) GetComputeOk() (*LogsMetricResponseComput
 
 // HasCompute returns a boolean if a field has been set.
 func (o *LogsMetricResponseAttributes) HasCompute() bool {
-	if o != nil && o.Compute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Compute != nil
 }
 
 // SetCompute gets a reference to the given LogsMetricResponseCompute and assigns it to the Compute field.
@@ -90,11 +86,7 @@ func (o *LogsMetricResponseAttributes) GetFilterOk() (*LogsMetricResponseFilter,
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsMetricResponseAttributes) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsMetricResponseFilter and assigns it to the Filter field.
@@ -122,11 +114,7 @@ func (o *LogsMetricResponseAttributes) GetGroupByOk() (*[]LogsMetricResponseGrou
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *LogsMetricResponseAttributes) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []LogsMetricResponseGroupBy and assigns it to the GroupBy field.

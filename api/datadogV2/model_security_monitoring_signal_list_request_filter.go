@@ -18,7 +18,7 @@ type SecurityMonitoringSignalListRequestFilter struct {
 	// The maximum timestamp for requested security signals.
 	To *time.Time `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) GetFromOk() (*time.Time, boo
 
 // HasFrom returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequestFilter) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given time.Time and assigns it to the From field.
@@ -91,11 +87,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) GetQueryOk() (*string, bool)
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequestFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -123,11 +115,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) GetToOk() (*time.Time, bool)
 
 // HasTo returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalListRequestFilter) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given time.Time and assigns it to the To field.

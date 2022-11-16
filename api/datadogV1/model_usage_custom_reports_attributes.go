@@ -21,7 +21,7 @@ type UsageCustomReportsAttributes struct {
 	// A list of tags to apply to custom reports.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *UsageCustomReportsAttributes) GetComputedOnOk() (*string, bool) {
 
 // HasComputedOn returns a boolean if a field has been set.
 func (o *UsageCustomReportsAttributes) HasComputedOn() bool {
-	if o != nil && o.ComputedOn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ComputedOn != nil
 }
 
 // SetComputedOn gets a reference to the given string and assigns it to the ComputedOn field.
@@ -94,11 +90,7 @@ func (o *UsageCustomReportsAttributes) GetEndDateOk() (*string, bool) {
 
 // HasEndDate returns a boolean if a field has been set.
 func (o *UsageCustomReportsAttributes) HasEndDate() bool {
-	if o != nil && o.EndDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EndDate != nil
 }
 
 // SetEndDate gets a reference to the given string and assigns it to the EndDate field.
@@ -126,11 +118,7 @@ func (o *UsageCustomReportsAttributes) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *UsageCustomReportsAttributes) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
@@ -158,11 +146,7 @@ func (o *UsageCustomReportsAttributes) GetStartDateOk() (*string, bool) {
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *UsageCustomReportsAttributes) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StartDate != nil
 }
 
 // SetStartDate gets a reference to the given string and assigns it to the StartDate field.
@@ -190,11 +174,7 @@ func (o *UsageCustomReportsAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *UsageCustomReportsAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

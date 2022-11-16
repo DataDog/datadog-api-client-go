@@ -15,7 +15,7 @@ type IncidentFieldAttributesMultipleValue struct {
 	// The multiple values selected for this field.
 	Value []string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *IncidentFieldAttributesMultipleValue) GetTypeOk() (*IncidentFieldAttrib
 
 // HasType returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesMultipleValue) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given IncidentFieldAttributesValueType and assigns it to the Type field.
@@ -93,11 +89,7 @@ func (o *IncidentFieldAttributesMultipleValue) GetValueOk() (*[]string, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesMultipleValue) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given []string and assigns it to the Value field.

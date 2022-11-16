@@ -65,7 +65,7 @@ type ServiceLevelObjective struct {
 	// The type of the service level objective.
 	Type SLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -109,11 +109,7 @@ func (o *ServiceLevelObjective) GetCreatedAtOk() (*int64, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
@@ -141,11 +137,7 @@ func (o *ServiceLevelObjective) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -174,11 +166,7 @@ func (o *ServiceLevelObjective) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -216,11 +204,7 @@ func (o *ServiceLevelObjective) GetGroupsOk() (*[]string, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
@@ -248,11 +232,7 @@ func (o *ServiceLevelObjective) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -280,11 +260,7 @@ func (o *ServiceLevelObjective) GetModifiedAtOk() (*int64, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
@@ -312,11 +288,7 @@ func (o *ServiceLevelObjective) GetMonitorIdsOk() (*[]int64, bool) {
 
 // HasMonitorIds returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasMonitorIds() bool {
-	if o != nil && o.MonitorIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorIds != nil
 }
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
@@ -344,11 +316,7 @@ func (o *ServiceLevelObjective) GetMonitorTagsOk() (*[]string, bool) {
 
 // HasMonitorTags returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasMonitorTags() bool {
-	if o != nil && o.MonitorTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorTags != nil
 }
 
 // SetMonitorTags gets a reference to the given []string and assigns it to the MonitorTags field.
@@ -399,11 +367,7 @@ func (o *ServiceLevelObjective) GetQueryOk() (*ServiceLevelObjectiveQuery, bool)
 
 // HasQuery returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given ServiceLevelObjectiveQuery and assigns it to the Query field.
@@ -431,11 +395,7 @@ func (o *ServiceLevelObjective) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *ServiceLevelObjective) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -563,13 +523,13 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Thresholds == nil {
-		return fmt.Errorf("Required field thresholds missing")
+		return fmt.Errorf("required field thresholds missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

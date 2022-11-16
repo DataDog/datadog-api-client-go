@@ -16,7 +16,7 @@ type SyntheticsTestRequestProxy struct {
 	// URL of the proxy to perform the test.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *SyntheticsTestRequestProxy) GetHeadersOk() (*map[string]string, bool) {
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestProxy) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Headers != nil
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
@@ -125,7 +121,7 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

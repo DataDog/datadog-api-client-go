@@ -18,7 +18,7 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	// Whether to show the legend inline or let it be automatically generated.
 	Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetHidePercentOk() (*bool, bool) {
 
 // HasHidePercent returns a boolean if a field has been set.
 func (o *SunburstWidgetLegendInlineAutomatic) HasHidePercent() bool {
-	if o != nil && o.HidePercent != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HidePercent != nil
 }
 
 // SetHidePercent gets a reference to the given bool and assigns it to the HidePercent field.
@@ -92,11 +88,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetHideValueOk() (*bool, bool) {
 
 // HasHideValue returns a boolean if a field has been set.
 func (o *SunburstWidgetLegendInlineAutomatic) HasHideValue() bool {
-	if o != nil && o.HideValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HideValue != nil
 }
 
 // SetHideValue gets a reference to the given bool and assigns it to the HideValue field.
@@ -163,7 +155,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

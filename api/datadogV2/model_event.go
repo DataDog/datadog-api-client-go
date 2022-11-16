@@ -15,11 +15,11 @@ type Event struct {
 	// The event name.
 	Name *string `json:"name,omitempty"`
 	// Event source ID.
-	SourceId *int32 `json:"source_id,omitempty"`
+	SourceId *int64 `json:"source_id,omitempty"`
 	// Event type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *Event) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Event) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -92,11 +88,7 @@ func (o *Event) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Event) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -105,9 +97,9 @@ func (o *Event) SetName(v string) {
 }
 
 // GetSourceId returns the SourceId field value if set, zero value otherwise.
-func (o *Event) GetSourceId() int32 {
+func (o *Event) GetSourceId() int64 {
 	if o == nil || o.SourceId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SourceId
@@ -115,7 +107,7 @@ func (o *Event) GetSourceId() int32 {
 
 // GetSourceIdOk returns a tuple with the SourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSourceIdOk() (*int32, bool) {
+func (o *Event) GetSourceIdOk() (*int64, bool) {
 	if o == nil || o.SourceId == nil {
 		return nil, false
 	}
@@ -124,15 +116,11 @@ func (o *Event) GetSourceIdOk() (*int32, bool) {
 
 // HasSourceId returns a boolean if a field has been set.
 func (o *Event) HasSourceId() bool {
-	if o != nil && o.SourceId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SourceId != nil
 }
 
-// SetSourceId gets a reference to the given int32 and assigns it to the SourceId field.
-func (o *Event) SetSourceId(v int32) {
+// SetSourceId gets a reference to the given int64 and assigns it to the SourceId field.
+func (o *Event) SetSourceId(v int64) {
 	o.SourceId = &v
 }
 
@@ -156,11 +144,7 @@ func (o *Event) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Event) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
@@ -199,7 +183,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Id       *string `json:"id,omitempty"`
 		Name     *string `json:"name,omitempty"`
-		SourceId *int32  `json:"source_id,omitempty"`
+		SourceId *int64  `json:"source_id,omitempty"`
 		Type     *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

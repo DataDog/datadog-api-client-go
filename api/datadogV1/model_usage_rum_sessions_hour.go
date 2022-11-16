@@ -30,7 +30,7 @@ type UsageRumSessionsHour struct {
 	// Contains the number of mobile RUM Sessions on React Native (data available beginning May 1, 2022).
 	SessionCountReactnative datadog.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,11 +71,7 @@ func (o *UsageRumSessionsHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -103,11 +99,7 @@ func (o *UsageRumSessionsHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -135,11 +127,7 @@ func (o *UsageRumSessionsHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -167,11 +155,7 @@ func (o *UsageRumSessionsHour) GetReplaySessionCountOk() (*int64, bool) {
 
 // HasReplaySessionCount returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasReplaySessionCount() bool {
-	if o != nil && o.ReplaySessionCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ReplaySessionCount != nil
 }
 
 // SetReplaySessionCount gets a reference to the given int64 and assigns it to the ReplaySessionCount field.
@@ -200,11 +184,7 @@ func (o *UsageRumSessionsHour) GetSessionCountOk() (*int64, bool) {
 
 // HasSessionCount returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasSessionCount() bool {
-	if o != nil && o.SessionCount.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.SessionCount.IsSet()
 }
 
 // SetSessionCount gets a reference to the given datadog.NullableInt64 and assigns it to the SessionCount field.
@@ -243,11 +223,7 @@ func (o *UsageRumSessionsHour) GetSessionCountAndroidOk() (*int64, bool) {
 
 // HasSessionCountAndroid returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasSessionCountAndroid() bool {
-	if o != nil && o.SessionCountAndroid.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.SessionCountAndroid.IsSet()
 }
 
 // SetSessionCountAndroid gets a reference to the given datadog.NullableInt64 and assigns it to the SessionCountAndroid field.
@@ -286,11 +262,7 @@ func (o *UsageRumSessionsHour) GetSessionCountIosOk() (*int64, bool) {
 
 // HasSessionCountIos returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasSessionCountIos() bool {
-	if o != nil && o.SessionCountIos.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.SessionCountIos.IsSet()
 }
 
 // SetSessionCountIos gets a reference to the given datadog.NullableInt64 and assigns it to the SessionCountIos field.
@@ -329,11 +301,7 @@ func (o *UsageRumSessionsHour) GetSessionCountReactnativeOk() (*int64, bool) {
 
 // HasSessionCountReactnative returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasSessionCountReactnative() bool {
-	if o != nil && o.SessionCountReactnative.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.SessionCountReactnative.IsSet()
 }
 
 // SetSessionCountReactnative gets a reference to the given datadog.NullableInt64 and assigns it to the SessionCountReactnative field.

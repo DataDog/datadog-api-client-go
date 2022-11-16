@@ -18,7 +18,7 @@ type SyntheticsBasicAuthDigest struct {
 	// Username to use for the digest authentication.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,11 +88,7 @@ func (o *SyntheticsBasicAuthDigest) GetTypeOk() (*SyntheticsBasicAuthDigestType,
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthDigest) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsBasicAuthDigestType and assigns it to the Type field.
@@ -158,10 +154,10 @@ func (o *SyntheticsBasicAuthDigest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Password == nil {
-		return fmt.Errorf("Required field password missing")
+		return fmt.Errorf("required field password missing")
 	}
 	if required.Username == nil {
-		return fmt.Errorf("Required field username missing")
+		return fmt.Errorf("required field username missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

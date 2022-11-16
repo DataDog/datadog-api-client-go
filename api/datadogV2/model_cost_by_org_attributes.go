@@ -22,7 +22,7 @@ type CostByOrgAttributes struct {
 	// The total cost of products for the month.
 	TotalCost *float64 `json:"total_cost,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *CostByOrgAttributes) GetChargesOk() (*[]ChargebackBreakdown, bool) {
 
 // HasCharges returns a boolean if a field has been set.
 func (o *CostByOrgAttributes) HasCharges() bool {
-	if o != nil && o.Charges != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Charges != nil
 }
 
 // SetCharges gets a reference to the given []ChargebackBreakdown and assigns it to the Charges field.
@@ -95,11 +91,7 @@ func (o *CostByOrgAttributes) GetDateOk() (*time.Time, bool) {
 
 // HasDate returns a boolean if a field has been set.
 func (o *CostByOrgAttributes) HasDate() bool {
-	if o != nil && o.Date != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Date != nil
 }
 
 // SetDate gets a reference to the given time.Time and assigns it to the Date field.
@@ -127,11 +119,7 @@ func (o *CostByOrgAttributes) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *CostByOrgAttributes) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -159,11 +147,7 @@ func (o *CostByOrgAttributes) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *CostByOrgAttributes) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -191,11 +175,7 @@ func (o *CostByOrgAttributes) GetTotalCostOk() (*float64, bool) {
 
 // HasTotalCost returns a boolean if a field has been set.
 func (o *CostByOrgAttributes) HasTotalCost() bool {
-	if o != nil && o.TotalCost != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalCost != nil
 }
 
 // SetTotalCost gets a reference to the given float64 and assigns it to the TotalCost field.

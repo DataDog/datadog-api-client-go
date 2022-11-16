@@ -66,7 +66,7 @@ type SLOResponseData struct {
 	// The type of the service level objective.
 	Type *SLOType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -107,11 +107,7 @@ func (o *SLOResponseData) GetConfiguredAlertIdsOk() (*[]int64, bool) {
 
 // HasConfiguredAlertIds returns a boolean if a field has been set.
 func (o *SLOResponseData) HasConfiguredAlertIds() bool {
-	if o != nil && o.ConfiguredAlertIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConfiguredAlertIds != nil
 }
 
 // SetConfiguredAlertIds gets a reference to the given []int64 and assigns it to the ConfiguredAlertIds field.
@@ -139,11 +135,7 @@ func (o *SLOResponseData) GetCreatedAtOk() (*int64, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SLOResponseData) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
@@ -171,11 +163,7 @@ func (o *SLOResponseData) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *SLOResponseData) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -204,11 +192,7 @@ func (o *SLOResponseData) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SLOResponseData) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -246,11 +230,7 @@ func (o *SLOResponseData) GetGroupsOk() (*[]string, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *SLOResponseData) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
@@ -278,11 +258,7 @@ func (o *SLOResponseData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SLOResponseData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -310,11 +286,7 @@ func (o *SLOResponseData) GetModifiedAtOk() (*int64, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *SLOResponseData) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
@@ -342,11 +314,7 @@ func (o *SLOResponseData) GetMonitorIdsOk() (*[]int64, bool) {
 
 // HasMonitorIds returns a boolean if a field has been set.
 func (o *SLOResponseData) HasMonitorIds() bool {
-	if o != nil && o.MonitorIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorIds != nil
 }
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
@@ -374,11 +342,7 @@ func (o *SLOResponseData) GetMonitorTagsOk() (*[]string, bool) {
 
 // HasMonitorTags returns a boolean if a field has been set.
 func (o *SLOResponseData) HasMonitorTags() bool {
-	if o != nil && o.MonitorTags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorTags != nil
 }
 
 // SetMonitorTags gets a reference to the given []string and assigns it to the MonitorTags field.
@@ -406,11 +370,7 @@ func (o *SLOResponseData) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SLOResponseData) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -438,11 +398,7 @@ func (o *SLOResponseData) GetQueryOk() (*ServiceLevelObjectiveQuery, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SLOResponseData) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given ServiceLevelObjectiveQuery and assigns it to the Query field.
@@ -470,11 +426,7 @@ func (o *SLOResponseData) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SLOResponseData) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -502,11 +454,7 @@ func (o *SLOResponseData) GetThresholdsOk() (*[]SLOThreshold, bool) {
 
 // HasThresholds returns a boolean if a field has been set.
 func (o *SLOResponseData) HasThresholds() bool {
-	if o != nil && o.Thresholds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Thresholds != nil
 }
 
 // SetThresholds gets a reference to the given []SLOThreshold and assigns it to the Thresholds field.
@@ -534,11 +482,7 @@ func (o *SLOResponseData) GetTypeOk() (*SLOType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SLOResponseData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SLOType and assigns it to the Type field.

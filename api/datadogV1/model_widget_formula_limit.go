@@ -15,7 +15,7 @@ type WidgetFormulaLimit struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *WidgetFormulaLimit) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *WidgetFormulaLimit) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -92,11 +88,7 @@ func (o *WidgetFormulaLimit) GetOrderOk() (*QuerySortOrder, bool) {
 
 // HasOrder returns a boolean if a field has been set.
 func (o *WidgetFormulaLimit) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given QuerySortOrder and assigns it to the Order field.

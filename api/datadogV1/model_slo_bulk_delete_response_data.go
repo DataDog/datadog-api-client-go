@@ -18,7 +18,7 @@ type SLOBulkDeleteResponseData struct {
 	// threshold was deleted, but that were not completely deleted).
 	Updated []string `json:"updated,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *SLOBulkDeleteResponseData) GetDeletedOk() (*[]string, bool) {
 
 // HasDeleted returns a boolean if a field has been set.
 func (o *SLOBulkDeleteResponseData) HasDeleted() bool {
-	if o != nil && o.Deleted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Deleted != nil
 }
 
 // SetDeleted gets a reference to the given []string and assigns it to the Deleted field.
@@ -91,11 +87,7 @@ func (o *SLOBulkDeleteResponseData) GetUpdatedOk() (*[]string, bool) {
 
 // HasUpdated returns a boolean if a field has been set.
 func (o *SLOBulkDeleteResponseData) HasUpdated() bool {
-	if o != nil && o.Updated != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Updated != nil
 }
 
 // SetUpdated gets a reference to the given []string and assigns it to the Updated field.

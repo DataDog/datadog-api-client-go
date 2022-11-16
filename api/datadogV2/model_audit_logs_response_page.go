@@ -13,7 +13,7 @@ type AuditLogsResponsePage struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *AuditLogsResponsePage) GetAfterOk() (*string, bool) {
 
 // HasAfter returns a boolean if a field has been set.
 func (o *AuditLogsResponsePage) HasAfter() bool {
-	if o != nil && o.After != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.After != nil
 }
 
 // SetAfter gets a reference to the given string and assigns it to the After field.

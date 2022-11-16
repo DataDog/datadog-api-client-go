@@ -22,7 +22,7 @@ type NotebookUpdateDataAttributes struct {
 	// Notebook global timeframe.
 	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -93,11 +93,7 @@ func (o *NotebookUpdateDataAttributes) GetMetadataOk() (*NotebookMetadata, bool)
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *NotebookUpdateDataAttributes) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given NotebookMetadata and assigns it to the Metadata field.
@@ -148,11 +144,7 @@ func (o *NotebookUpdateDataAttributes) GetStatusOk() (*NotebookStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NotebookUpdateDataAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given NotebookStatus and assigns it to the Status field.
@@ -225,13 +217,13 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Cells == nil {
-		return fmt.Errorf("Required field cells missing")
+		return fmt.Errorf("required field cells missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
+		return fmt.Errorf("required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

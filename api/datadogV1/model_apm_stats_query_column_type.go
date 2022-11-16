@@ -20,7 +20,7 @@ type ApmStatsQueryColumnType struct {
 	// Widget sorting methods.
 	Order *WidgetSort `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *ApmStatsQueryColumnType) GetAliasOk() (*string, bool) {
 
 // HasAlias returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasAlias() bool {
-	if o != nil && o.Alias != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Alias != nil
 }
 
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
@@ -94,11 +90,7 @@ func (o *ApmStatsQueryColumnType) GetCellDisplayModeOk() (*TableWidgetCellDispla
 
 // HasCellDisplayMode returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasCellDisplayMode() bool {
-	if o != nil && o.CellDisplayMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CellDisplayMode != nil
 }
 
 // SetCellDisplayMode gets a reference to the given TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
@@ -149,11 +141,7 @@ func (o *ApmStatsQueryColumnType) GetOrderOk() (*WidgetSort, bool) {
 
 // HasOrder returns a boolean if a field has been set.
 func (o *ApmStatsQueryColumnType) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given WidgetSort and assigns it to the Order field.
@@ -201,7 +189,7 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

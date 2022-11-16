@@ -30,7 +30,7 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Text to use as filter.
 	TextFilter *string `json:"text_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,11 +78,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregatorOk() (*FormulaAn
 
 // HasAggregator returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasAggregator() bool {
-	if o != nil && o.Aggregator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregator != nil
 }
 
 // SetAggregator gets a reference to the given FormulaAndFunctionMetricAggregation and assigns it to the Aggregator field.
@@ -133,11 +129,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpuOk() (*bool
 
 // HasIsNormalizedCpu returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasIsNormalizedCpu() bool {
-	if o != nil && o.IsNormalizedCpu != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsNormalizedCpu != nil
 }
 
 // SetIsNormalizedCpu gets a reference to the given bool and assigns it to the IsNormalizedCpu field.
@@ -165,11 +157,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -243,11 +231,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetSortOk() (*QuerySortOrder,
 
 // HasSort returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given QuerySortOrder and assigns it to the Sort field.
@@ -275,11 +259,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string,
 
 // HasTagFilters returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool {
-	if o != nil && o.TagFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagFilters != nil
 }
 
 // SetTagFilters gets a reference to the given []string and assigns it to the TagFilters field.
@@ -307,11 +287,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilterOk() (*string, b
 
 // HasTextFilter returns a boolean if a field has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool {
-	if o != nil && o.TextFilter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TextFilter != nil
 }
 
 // SetTextFilter gets a reference to the given string and assigns it to the TextFilter field.
@@ -377,13 +353,13 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Metric == nil {
-		return fmt.Errorf("Required field metric missing")
+		return fmt.Errorf("required field metric missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

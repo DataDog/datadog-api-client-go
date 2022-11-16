@@ -22,7 +22,7 @@ type SyntheticsDevice struct {
 	// Screen width of the device.
 	Width int64 `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,11 +113,7 @@ func (o *SyntheticsDevice) GetIsMobileOk() (*bool, bool) {
 
 // HasIsMobile returns a boolean if a field has been set.
 func (o *SyntheticsDevice) HasIsMobile() bool {
-	if o != nil && o.IsMobile != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsMobile != nil
 }
 
 // SetIsMobile gets a reference to the given bool and assigns it to the IsMobile field.
@@ -212,16 +208,16 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Height == nil {
-		return fmt.Errorf("Required field height missing")
+		return fmt.Errorf("required field height missing")
 	}
 	if required.Id == nil {
-		return fmt.Errorf("Required field id missing")
+		return fmt.Errorf("required field id missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Width == nil {
-		return fmt.Errorf("Required field width missing")
+		return fmt.Errorf("required field width missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -18,7 +18,7 @@ type IncidentCreateData struct {
 	// Incident resource type.
 	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,11 +86,7 @@ func (o *IncidentCreateData) GetRelationshipsOk() (*IncidentCreateRelationships,
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *IncidentCreateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given IncidentCreateRelationships and assigns it to the Relationships field.
@@ -156,10 +152,10 @@ func (o *IncidentCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Attributes == nil {
-		return fmt.Errorf("Required field attributes missing")
+		return fmt.Errorf("required field attributes missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

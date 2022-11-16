@@ -34,7 +34,7 @@ type HeatMapWidgetDefinition struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,11 +79,7 @@ func (o *HeatMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -111,11 +107,7 @@ func (o *HeatMapWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 
 // HasEvents returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasEvents() bool {
-	if o != nil && o.Events != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Events != nil
 }
 
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
@@ -143,11 +135,7 @@ func (o *HeatMapWidgetDefinition) GetLegendSizeOk() (*string, bool) {
 
 // HasLegendSize returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasLegendSize() bool {
-	if o != nil && o.LegendSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LegendSize != nil
 }
 
 // SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
@@ -198,11 +186,7 @@ func (o *HeatMapWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 
 // HasShowLegend returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasShowLegend() bool {
-	if o != nil && o.ShowLegend != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowLegend != nil
 }
 
 // SetShowLegend gets a reference to the given bool and assigns it to the ShowLegend field.
@@ -230,11 +214,7 @@ func (o *HeatMapWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -262,11 +242,7 @@ func (o *HeatMapWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -294,11 +270,7 @@ func (o *HeatMapWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -326,11 +298,7 @@ func (o *HeatMapWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -381,11 +349,7 @@ func (o *HeatMapWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 
 // HasYaxis returns a boolean if a field has been set.
 func (o *HeatMapWidgetDefinition) HasYaxis() bool {
-	if o != nil && o.Yaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Yaxis != nil
 }
 
 // SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
@@ -460,10 +424,10 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

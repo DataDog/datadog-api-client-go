@@ -13,7 +13,7 @@ type ApiKeyListResponse struct {
 	// Array of API keys.
 	ApiKeys []ApiKey `json:"api_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *ApiKeyListResponse) GetApiKeysOk() (*[]ApiKey, bool) {
 
 // HasApiKeys returns a boolean if a field has been set.
 func (o *ApiKeyListResponse) HasApiKeys() bool {
-	if o != nil && o.ApiKeys != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiKeys != nil
 }
 
 // SetApiKeys gets a reference to the given []ApiKey and assigns it to the ApiKeys field.

@@ -16,7 +16,7 @@ type AWSAccountAndLambdaRequest struct {
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AccountId == nil {
-		return fmt.Errorf("Required field account_id missing")
+		return fmt.Errorf("required field account_id missing")
 	}
 	if required.LambdaArn == nil {
-		return fmt.Errorf("Required field lambda_arn missing")
+		return fmt.Errorf("required field lambda_arn missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -18,7 +18,7 @@ type AddSignalToIncidentRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *AddSignalToIncidentRequest) GetAddToSignalTimelineOk() (*bool, bool) {
 
 // HasAddToSignalTimeline returns a boolean if a field has been set.
 func (o *AddSignalToIncidentRequest) HasAddToSignalTimeline() bool {
-	if o != nil && o.AddToSignalTimeline != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AddToSignalTimeline != nil
 }
 
 // SetAddToSignalTimeline gets a reference to the given bool and assigns it to the AddToSignalTimeline field.
@@ -115,11 +111,7 @@ func (o *AddSignalToIncidentRequest) GetVersionOk() (*int64, bool) {
 
 // HasVersion returns a boolean if a field has been set.
 func (o *AddSignalToIncidentRequest) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.
@@ -163,7 +155,7 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.IncidentId == nil {
-		return fmt.Errorf("Required field incident_id missing")
+		return fmt.Errorf("required field incident_id missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

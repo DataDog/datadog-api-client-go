@@ -19,7 +19,7 @@ type UserResponseRelationships struct {
 	// Relationship to roles.
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *UserResponseRelationships) GetOrgOk() (*RelationshipToOrganization, boo
 
 // HasOrg returns a boolean if a field has been set.
 func (o *UserResponseRelationships) HasOrg() bool {
-	if o != nil && o.Org != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Org != nil
 }
 
 // SetOrg gets a reference to the given RelationshipToOrganization and assigns it to the Org field.
@@ -92,11 +88,7 @@ func (o *UserResponseRelationships) GetOtherOrgsOk() (*RelationshipToOrganizatio
 
 // HasOtherOrgs returns a boolean if a field has been set.
 func (o *UserResponseRelationships) HasOtherOrgs() bool {
-	if o != nil && o.OtherOrgs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OtherOrgs != nil
 }
 
 // SetOtherOrgs gets a reference to the given RelationshipToOrganizations and assigns it to the OtherOrgs field.
@@ -124,11 +116,7 @@ func (o *UserResponseRelationships) GetOtherUsersOk() (*RelationshipToUsers, boo
 
 // HasOtherUsers returns a boolean if a field has been set.
 func (o *UserResponseRelationships) HasOtherUsers() bool {
-	if o != nil && o.OtherUsers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OtherUsers != nil
 }
 
 // SetOtherUsers gets a reference to the given RelationshipToUsers and assigns it to the OtherUsers field.
@@ -156,11 +144,7 @@ func (o *UserResponseRelationships) GetRolesOk() (*RelationshipToRoles, bool) {
 
 // HasRoles returns a boolean if a field has been set.
 func (o *UserResponseRelationships) HasRoles() bool {
-	if o != nil && o.Roles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Roles != nil
 }
 
 // SetRoles gets a reference to the given RelationshipToRoles and assigns it to the Roles field.

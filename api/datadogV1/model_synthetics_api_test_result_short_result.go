@@ -16,7 +16,7 @@ type SyntheticsAPITestResultShortResult struct {
 	// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,11 +57,7 @@ func (o *SyntheticsAPITestResultShortResult) GetPassedOk() (*bool, bool) {
 
 // HasPassed returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultShortResult) HasPassed() bool {
-	if o != nil && o.Passed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Passed != nil
 }
 
 // SetPassed gets a reference to the given bool and assigns it to the Passed field.
@@ -89,11 +85,7 @@ func (o *SyntheticsAPITestResultShortResult) GetTimingsOk() (*SyntheticsTiming, 
 
 // HasTimings returns a boolean if a field has been set.
 func (o *SyntheticsAPITestResultShortResult) HasTimings() bool {
-	if o != nil && o.Timings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timings != nil
 }
 
 // SetTimings gets a reference to the given SyntheticsTiming and assigns it to the Timings field.

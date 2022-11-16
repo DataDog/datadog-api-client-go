@@ -16,8 +16,12 @@ type SyntheticsTestRequest struct {
 	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
+	// Type of the request body.
+	BodyType *SyntheticsTestRequestBodyType `json:"bodyType,omitempty"`
 	// Client certificate to use when performing the test request.
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+	// By default, the client certificate is applied on the domain of the starting URL for browser tests. If you want your client certificate to be applied on other domains instead, add them in `certificateDomains`.
+	CertificateDomains []string `json:"certificateDomains,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
@@ -57,7 +61,7 @@ type SyntheticsTestRequest struct {
 	// URL to perform the test with.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,11 +102,7 @@ func (o *SyntheticsTestRequest) GetAllowInsecureOk() (*bool, bool) {
 
 // HasAllowInsecure returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasAllowInsecure() bool {
-	if o != nil && o.AllowInsecure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowInsecure != nil
 }
 
 // SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
@@ -130,11 +130,7 @@ func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsBasicAuth, bool) {
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasBasicAuth() bool {
-	if o != nil && o.BasicAuth != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BasicAuth != nil
 }
 
 // SetBasicAuth gets a reference to the given SyntheticsBasicAuth and assigns it to the BasicAuth field.
@@ -162,16 +158,40 @@ func (o *SyntheticsTestRequest) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasBody() bool {
-	if o != nil && o.Body != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Body != nil
 }
 
 // SetBody gets a reference to the given string and assigns it to the Body field.
 func (o *SyntheticsTestRequest) SetBody(v string) {
 	o.Body = &v
+}
+
+// GetBodyType returns the BodyType field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetBodyType() SyntheticsTestRequestBodyType {
+	if o == nil || o.BodyType == nil {
+		var ret SyntheticsTestRequestBodyType
+		return ret
+	}
+	return *o.BodyType
+}
+
+// GetBodyTypeOk returns a tuple with the BodyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetBodyTypeOk() (*SyntheticsTestRequestBodyType, bool) {
+	if o == nil || o.BodyType == nil {
+		return nil, false
+	}
+	return o.BodyType, true
+}
+
+// HasBodyType returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasBodyType() bool {
+	return o != nil && o.BodyType != nil
+}
+
+// SetBodyType gets a reference to the given SyntheticsTestRequestBodyType and assigns it to the BodyType field.
+func (o *SyntheticsTestRequest) SetBodyType(v SyntheticsTestRequestBodyType) {
+	o.BodyType = &v
 }
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise.
@@ -194,16 +214,40 @@ func (o *SyntheticsTestRequest) GetCertificateOk() (*SyntheticsTestRequestCertif
 
 // HasCertificate returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasCertificate() bool {
-	if o != nil && o.Certificate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Certificate != nil
 }
 
 // SetCertificate gets a reference to the given SyntheticsTestRequestCertificate and assigns it to the Certificate field.
 func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate) {
 	o.Certificate = &v
+}
+
+// GetCertificateDomains returns the CertificateDomains field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetCertificateDomains() []string {
+	if o == nil || o.CertificateDomains == nil {
+		var ret []string
+		return ret
+	}
+	return o.CertificateDomains
+}
+
+// GetCertificateDomainsOk returns a tuple with the CertificateDomains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetCertificateDomainsOk() (*[]string, bool) {
+	if o == nil || o.CertificateDomains == nil {
+		return nil, false
+	}
+	return &o.CertificateDomains, true
+}
+
+// HasCertificateDomains returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasCertificateDomains() bool {
+	return o != nil && o.CertificateDomains != nil
+}
+
+// SetCertificateDomains gets a reference to the given []string and assigns it to the CertificateDomains field.
+func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
+	o.CertificateDomains = v
 }
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
@@ -226,11 +270,7 @@ func (o *SyntheticsTestRequest) GetDnsServerOk() (*string, bool) {
 
 // HasDnsServer returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasDnsServer() bool {
-	if o != nil && o.DnsServer != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DnsServer != nil
 }
 
 // SetDnsServer gets a reference to the given string and assigns it to the DnsServer field.
@@ -258,11 +298,7 @@ func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*int32, bool) {
 
 // HasDnsServerPort returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasDnsServerPort() bool {
-	if o != nil && o.DnsServerPort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DnsServerPort != nil
 }
 
 // SetDnsServerPort gets a reference to the given int32 and assigns it to the DnsServerPort field.
@@ -290,11 +326,7 @@ func (o *SyntheticsTestRequest) GetFollowRedirectsOk() (*bool, bool) {
 
 // HasFollowRedirects returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasFollowRedirects() bool {
-	if o != nil && o.FollowRedirects != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FollowRedirects != nil
 }
 
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
@@ -322,11 +354,7 @@ func (o *SyntheticsTestRequest) GetHeadersOk() (*map[string]string, bool) {
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Headers != nil
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
@@ -354,11 +382,7 @@ func (o *SyntheticsTestRequest) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -386,11 +410,7 @@ func (o *SyntheticsTestRequest) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -418,11 +438,7 @@ func (o *SyntheticsTestRequest) GetMetadataOk() (*map[string]string, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
@@ -450,11 +466,7 @@ func (o *SyntheticsTestRequest) GetMethodOk() (*HTTPMethod, bool) {
 
 // HasMethod returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasMethod() bool {
-	if o != nil && o.Method != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Method != nil
 }
 
 // SetMethod gets a reference to the given HTTPMethod and assigns it to the Method field.
@@ -482,11 +494,7 @@ func (o *SyntheticsTestRequest) GetNoSavingResponseBodyOk() (*bool, bool) {
 
 // HasNoSavingResponseBody returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool {
-	if o != nil && o.NoSavingResponseBody != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoSavingResponseBody != nil
 }
 
 // SetNoSavingResponseBody gets a reference to the given bool and assigns it to the NoSavingResponseBody field.
@@ -514,11 +522,7 @@ func (o *SyntheticsTestRequest) GetNumberOfPacketsOk() (*int32, bool) {
 
 // HasNumberOfPackets returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasNumberOfPackets() bool {
-	if o != nil && o.NumberOfPackets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NumberOfPackets != nil
 }
 
 // SetNumberOfPackets gets a reference to the given int32 and assigns it to the NumberOfPackets field.
@@ -546,11 +550,7 @@ func (o *SyntheticsTestRequest) GetPortOk() (*int64, bool) {
 
 // HasPort returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasPort() bool {
-	if o != nil && o.Port != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Port != nil
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
@@ -578,11 +578,7 @@ func (o *SyntheticsTestRequest) GetProxyOk() (*SyntheticsTestRequestProxy, bool)
 
 // HasProxy returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasProxy() bool {
-	if o != nil && o.Proxy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Proxy != nil
 }
 
 // SetProxy gets a reference to the given SyntheticsTestRequestProxy and assigns it to the Proxy field.
@@ -610,11 +606,7 @@ func (o *SyntheticsTestRequest) GetQueryOk() (*interface{}, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given interface{} and assigns it to the Query field.
@@ -642,11 +634,7 @@ func (o *SyntheticsTestRequest) GetServernameOk() (*string, bool) {
 
 // HasServername returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasServername() bool {
-	if o != nil && o.Servername != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Servername != nil
 }
 
 // SetServername gets a reference to the given string and assigns it to the Servername field.
@@ -674,11 +662,7 @@ func (o *SyntheticsTestRequest) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.
@@ -706,11 +690,7 @@ func (o *SyntheticsTestRequest) GetShouldTrackHopsOk() (*bool, bool) {
 
 // HasShouldTrackHops returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasShouldTrackHops() bool {
-	if o != nil && o.ShouldTrackHops != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShouldTrackHops != nil
 }
 
 // SetShouldTrackHops gets a reference to the given bool and assigns it to the ShouldTrackHops field.
@@ -738,11 +718,7 @@ func (o *SyntheticsTestRequest) GetTimeoutOk() (*float64, bool) {
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasTimeout() bool {
-	if o != nil && o.Timeout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeout != nil
 }
 
 // SetTimeout gets a reference to the given float64 and assigns it to the Timeout field.
@@ -770,11 +746,7 @@ func (o *SyntheticsTestRequest) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *SyntheticsTestRequest) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
@@ -797,8 +769,14 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Body != nil {
 		toSerialize["body"] = o.Body
 	}
+	if o.BodyType != nil {
+		toSerialize["bodyType"] = o.BodyType
+	}
 	if o.Certificate != nil {
 		toSerialize["certificate"] = o.Certificate
+	}
+	if o.CertificateDomains != nil {
+		toSerialize["certificateDomains"] = o.CertificateDomains
 	}
 	if o.DnsServer != nil {
 		toSerialize["dnsServer"] = o.DnsServer
@@ -868,7 +846,9 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
 		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
 		Body                 *string                           `json:"body,omitempty"`
+		BodyType             *SyntheticsTestRequestBodyType    `json:"bodyType,omitempty"`
 		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
 		DnsServer            *string                           `json:"dnsServer,omitempty"`
 		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
 		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
@@ -897,6 +877,14 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if v := all.BodyType; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
 	if v := all.Method; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -908,6 +896,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
+	o.BodyType = all.BodyType
 	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -916,6 +905,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Certificate = all.Certificate
+	o.CertificateDomains = all.CertificateDomains
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
 	o.FollowRedirects = all.FollowRedirects

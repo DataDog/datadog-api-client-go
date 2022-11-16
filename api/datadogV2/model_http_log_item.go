@@ -13,22 +13,22 @@ import (
 type HTTPLogItem struct {
 	// The integration name associated with your log: the technology from which the log originated.
 	// When it matches an integration name, Datadog automatically installs the corresponding parsers and facets.
-	// See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
+	// See [reserved attributes](https://docs.datadoghq.com/logs/log_configuration/attributes_naming_convention/#reserved-attributes).
 	Ddsource *string `json:"ddsource,omitempty"`
 	// Tags associated with your logs.
 	Ddtags *string `json:"ddtags,omitempty"`
 	// The name of the originating host of the log.
 	Hostname *string `json:"hostname,omitempty"`
-	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes)
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_configuration/attributes_naming_convention/#reserved-attributes)
 	// of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry.
 	// That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
 	Message string `json:"message"`
 	// The name of the application or service generating the log events.
 	// It is used to switch from Logs to APM, so make sure you define the same value when you use both products.
-	// See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
+	// See [reserved attributes](https://docs.datadoghq.com/logs/log_configuration/attributes_naming_convention/#reserved-attributes).
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]string
 }
 
@@ -70,11 +70,7 @@ func (o *HTTPLogItem) GetDdsourceOk() (*string, bool) {
 
 // HasDdsource returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasDdsource() bool {
-	if o != nil && o.Ddsource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ddsource != nil
 }
 
 // SetDdsource gets a reference to the given string and assigns it to the Ddsource field.
@@ -102,11 +98,7 @@ func (o *HTTPLogItem) GetDdtagsOk() (*string, bool) {
 
 // HasDdtags returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasDdtags() bool {
-	if o != nil && o.Ddtags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ddtags != nil
 }
 
 // SetDdtags gets a reference to the given string and assigns it to the Ddtags field.
@@ -134,11 +126,7 @@ func (o *HTTPLogItem) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hostname != nil
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
@@ -189,11 +177,7 @@ func (o *HTTPLogItem) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *HTTPLogItem) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.
@@ -245,7 +229,7 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -31,7 +31,7 @@ type SLOThreshold struct {
 	// Ignored in create/update requests.
 	WarningDisplay *string `json:"warning_display,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,11 +97,7 @@ func (o *SLOThreshold) GetTargetDisplayOk() (*string, bool) {
 
 // HasTargetDisplay returns a boolean if a field has been set.
 func (o *SLOThreshold) HasTargetDisplay() bool {
-	if o != nil && o.TargetDisplay != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TargetDisplay != nil
 }
 
 // SetTargetDisplay gets a reference to the given string and assigns it to the TargetDisplay field.
@@ -152,11 +148,7 @@ func (o *SLOThreshold) GetWarningOk() (*float64, bool) {
 
 // HasWarning returns a boolean if a field has been set.
 func (o *SLOThreshold) HasWarning() bool {
-	if o != nil && o.Warning != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warning != nil
 }
 
 // SetWarning gets a reference to the given float64 and assigns it to the Warning field.
@@ -184,11 +176,7 @@ func (o *SLOThreshold) GetWarningDisplayOk() (*string, bool) {
 
 // HasWarningDisplay returns a boolean if a field has been set.
 func (o *SLOThreshold) HasWarningDisplay() bool {
-	if o != nil && o.WarningDisplay != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.WarningDisplay != nil
 }
 
 // SetWarningDisplay gets a reference to the given string and assigns it to the WarningDisplay field.
@@ -239,10 +227,10 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Timeframe == nil {
-		return fmt.Errorf("Required field timeframe missing")
+		return fmt.Errorf("required field timeframe missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

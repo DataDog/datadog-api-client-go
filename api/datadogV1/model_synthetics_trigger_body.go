@@ -14,7 +14,7 @@ type SyntheticsTriggerBody struct {
 	// Individual synthetics test.
 	Tests []SyntheticsTriggerTest `json:"tests"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Tests == nil {
-		return fmt.Errorf("Required field tests missing")
+		return fmt.Errorf("required field tests missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

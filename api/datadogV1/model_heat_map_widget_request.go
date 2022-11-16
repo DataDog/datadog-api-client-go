@@ -31,7 +31,7 @@ type HeatMapWidgetRequest struct {
 	// Widget style definition.
 	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,11 +72,7 @@ func (o *HeatMapWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -104,11 +100,7 @@ func (o *HeatMapWidgetRequest) GetEventQueryOk() (*EventQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given EventQueryDefinition and assigns it to the EventQuery field.
@@ -136,11 +128,7 @@ func (o *HeatMapWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -168,11 +156,7 @@ func (o *HeatMapWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -200,11 +184,7 @@ func (o *HeatMapWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, boo
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -232,11 +212,7 @@ func (o *HeatMapWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, 
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -264,11 +240,7 @@ func (o *HeatMapWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -296,11 +268,7 @@ func (o *HeatMapWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -328,11 +296,7 @@ func (o *HeatMapWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) 
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
@@ -360,11 +324,7 @@ func (o *HeatMapWidgetRequest) GetStyleOk() (*WidgetStyle, bool) {
 
 // HasStyle returns a boolean if a field has been set.
 func (o *HeatMapWidgetRequest) HasStyle() bool {
-	if o != nil && o.Style != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Style != nil
 }
 
 // SetStyle gets a reference to the given WidgetStyle and assigns it to the Style field.

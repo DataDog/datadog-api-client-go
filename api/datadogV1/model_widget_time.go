@@ -13,7 +13,7 @@ type WidgetTime struct {
 	// The available timeframes depend on the widget you are using.
 	LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *WidgetTime) GetLiveSpanOk() (*WidgetLiveSpan, bool) {
 
 // HasLiveSpan returns a boolean if a field has been set.
 func (o *WidgetTime) HasLiveSpan() bool {
-	if o != nil && o.LiveSpan != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LiveSpan != nil
 }
 
 // SetLiveSpan gets a reference to the given WidgetLiveSpan and assigns it to the LiveSpan field.

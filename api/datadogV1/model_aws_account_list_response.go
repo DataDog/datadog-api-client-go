@@ -13,7 +13,7 @@ type AWSAccountListResponse struct {
 	// List of enabled AWS accounts.
 	Accounts []AWSAccount `json:"accounts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *AWSAccountListResponse) GetAccountsOk() (*[]AWSAccount, bool) {
 
 // HasAccounts returns a boolean if a field has been set.
 func (o *AWSAccountListResponse) HasAccounts() bool {
-	if o != nil && o.Accounts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Accounts != nil
 }
 
 // SetAccounts gets a reference to the given []AWSAccount and assigns it to the Accounts field.

@@ -14,7 +14,7 @@ type IdPMetadataFormData struct {
 	// The IdP metadata XML file
 	IdpFile **os.File `json:"idp_file,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,11 +55,7 @@ func (o *IdPMetadataFormData) GetIdpFileOk() (**os.File, bool) {
 
 // HasIdpFile returns a boolean if a field has been set.
 func (o *IdPMetadataFormData) HasIdpFile() bool {
-	if o != nil && o.IdpFile != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IdpFile != nil
 }
 
 // SetIdpFile gets a reference to the given *os.File and assigns it to the IdpFile field.

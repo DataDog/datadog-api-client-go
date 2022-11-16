@@ -16,12 +16,25 @@ func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
+	// there is a valid "permission" in the system
+	PermissionID := os.Getenv("PERMISSION_ID")
+
 	body := datadogV2.RoleUpdateRequest{
 		Data: datadogV2.RoleUpdateData{
 			Id:   RoleDataID,
 			Type: datadogV2.ROLESTYPE_ROLES,
 			Attributes: datadogV2.RoleUpdateAttributes{
 				Name: datadog.PtrString("developers-updated"),
+			},
+			Relationships: &datadogV2.RoleRelationships{
+				Permissions: &datadogV2.RelationshipToPermissions{
+					Data: []datadogV2.RelationshipToPermissionData{
+						{
+							Id:   datadog.PtrString(PermissionID),
+							Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+						},
+					},
+				},
 			},
 		},
 	}

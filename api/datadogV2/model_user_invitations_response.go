@@ -13,7 +13,7 @@ type UserInvitationsResponse struct {
 	// Array of user invitations.
 	Data []UserInvitationResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UserInvitationsResponse) GetDataOk() (*[]UserInvitationResponseData, bo
 
 // HasData returns a boolean if a field has been set.
 func (o *UserInvitationsResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []UserInvitationResponseData and assigns it to the Data field.

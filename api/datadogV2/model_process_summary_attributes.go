@@ -27,7 +27,7 @@ type ProcessSummaryAttributes struct {
 	// Process owner.
 	User *string `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -68,11 +68,7 @@ func (o *ProcessSummaryAttributes) GetCmdlineOk() (*string, bool) {
 
 // HasCmdline returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasCmdline() bool {
-	if o != nil && o.Cmdline != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cmdline != nil
 }
 
 // SetCmdline gets a reference to the given string and assigns it to the Cmdline field.
@@ -100,11 +96,7 @@ func (o *ProcessSummaryAttributes) GetHostOk() (*string, bool) {
 
 // HasHost returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasHost() bool {
-	if o != nil && o.Host != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
@@ -132,11 +124,7 @@ func (o *ProcessSummaryAttributes) GetPidOk() (*int64, bool) {
 
 // HasPid returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasPid() bool {
-	if o != nil && o.Pid != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pid != nil
 }
 
 // SetPid gets a reference to the given int64 and assigns it to the Pid field.
@@ -164,11 +152,7 @@ func (o *ProcessSummaryAttributes) GetPpidOk() (*int64, bool) {
 
 // HasPpid returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasPpid() bool {
-	if o != nil && o.Ppid != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ppid != nil
 }
 
 // SetPpid gets a reference to the given int64 and assigns it to the Ppid field.
@@ -196,11 +180,7 @@ func (o *ProcessSummaryAttributes) GetStartOk() (*string, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasStart() bool {
-	if o != nil && o.Start != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Start != nil
 }
 
 // SetStart gets a reference to the given string and assigns it to the Start field.
@@ -228,11 +208,7 @@ func (o *ProcessSummaryAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -260,11 +236,7 @@ func (o *ProcessSummaryAttributes) GetTimestampOk() (*string, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
@@ -292,11 +264,7 @@ func (o *ProcessSummaryAttributes) GetUserOk() (*string, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *ProcessSummaryAttributes) HasUser() bool {
-	if o != nil && o.User != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.User != nil
 }
 
 // SetUser gets a reference to the given string and assigns it to the User field.

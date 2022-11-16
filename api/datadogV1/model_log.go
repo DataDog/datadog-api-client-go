@@ -15,7 +15,7 @@ type Log struct {
 	// Unique ID of the Log.
 	Id *string `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *Log) GetContentOk() (*LogContent, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *Log) HasContent() bool {
-	if o != nil && o.Content != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Content != nil
 }
 
 // SetContent gets a reference to the given LogContent and assigns it to the Content field.
@@ -88,11 +84,7 @@ func (o *Log) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Log) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.

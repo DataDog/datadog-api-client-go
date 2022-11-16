@@ -13,7 +13,7 @@ type ApiKeyResponse struct {
 	// Datadog API key.
 	ApiKey *ApiKey `json:"api_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *ApiKeyResponse) GetApiKeyOk() (*ApiKey, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *ApiKeyResponse) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiKey != nil
 }
 
 // SetApiKey gets a reference to the given ApiKey and assigns it to the ApiKey field.

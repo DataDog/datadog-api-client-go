@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"reflect"
@@ -210,7 +209,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	ctx.Set(responseKey{}, result)
 
 	// Report probable serialization errors
-	if len(result) > 2 {
+	if len(result) > 1 {
 		resp := result[len(result)-2].Interface().(*http.Response)
 		if resp == nil {
 			return
@@ -235,7 +234,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 				responseJSON = string(err.Body())
 			}
-		} else {
+		} else if len(result) == 3 {
 			// Store the unmarshalled JSON in context
 			responseJSON, err = toJSON(result[0])
 			if err != nil {
@@ -252,7 +251,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 
 func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	// use WithPagination method
-	newWithPagination, err := ctx.GetString(requestNameKey{})
+	newWithPagination, _ := ctx.GetString(requestNameKey{})
 	newWithPagination = newWithPagination + "WithPagination"
 
 	c, err := ctx.Get(apiKey{})
@@ -319,7 +318,7 @@ func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 
 func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
 	version := GetVersion(ctx)
-	body, err := ioutil.ReadFile(fmt.Sprintf("./features/%s/%s", version, bodyFile))
+	body, err := os.ReadFile(fmt.Sprintf("./features/%s/%s", version, bodyFile))
 	if err != nil {
 		t.Fatalf("Error reading file ./features/%s: %v", bodyFile, err)
 	}

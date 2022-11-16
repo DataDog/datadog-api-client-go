@@ -17,7 +17,7 @@ type SyntheticsCoreWebVitals struct {
 	// URL attached to the metrics.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *SyntheticsCoreWebVitals) GetClsOk() (*float64, bool) {
 
 // HasCls returns a boolean if a field has been set.
 func (o *SyntheticsCoreWebVitals) HasCls() bool {
-	if o != nil && o.Cls != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cls != nil
 }
 
 // SetCls gets a reference to the given float64 and assigns it to the Cls field.
@@ -90,11 +86,7 @@ func (o *SyntheticsCoreWebVitals) GetLcpOk() (*float64, bool) {
 
 // HasLcp returns a boolean if a field has been set.
 func (o *SyntheticsCoreWebVitals) HasLcp() bool {
-	if o != nil && o.Lcp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Lcp != nil
 }
 
 // SetLcp gets a reference to the given float64 and assigns it to the Lcp field.
@@ -122,11 +114,7 @@ func (o *SyntheticsCoreWebVitals) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *SyntheticsCoreWebVitals) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.

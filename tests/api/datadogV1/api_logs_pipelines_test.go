@@ -277,7 +277,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	assert.True(ok)
 
 	// Delete the pipeline
-	httpresp, err = api.DeleteLogsPipeline(ctx, createdPipeline.GetId())
+	_, err = api.DeleteLogsPipeline(ctx, createdPipeline.GetId())
 	assert.Nil(err)
 }
 

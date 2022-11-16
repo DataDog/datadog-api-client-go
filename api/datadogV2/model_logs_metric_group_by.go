@@ -16,7 +16,7 @@ type LogsMetricGroupBy struct {
 	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,11 +81,7 @@ func (o *LogsMetricGroupBy) GetTagNameOk() (*string, bool) {
 
 // HasTagName returns a boolean if a field has been set.
 func (o *LogsMetricGroupBy) HasTagName() bool {
-	if o != nil && o.TagName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagName != nil
 }
 
 // SetTagName gets a reference to the given string and assigns it to the TagName field.
@@ -125,7 +121,7 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Path == nil {
-		return fmt.Errorf("Required field path missing")
+		return fmt.Errorf("required field path missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

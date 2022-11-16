@@ -15,7 +15,7 @@ type RoleRelationships struct {
 	// Relationship to users.
 	Users *RelationshipToUsers `json:"users,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *RoleRelationships) GetPermissionsOk() (*RelationshipToPermissions, bool
 
 // HasPermissions returns a boolean if a field has been set.
 func (o *RoleRelationships) HasPermissions() bool {
-	if o != nil && o.Permissions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Permissions != nil
 }
 
 // SetPermissions gets a reference to the given RelationshipToPermissions and assigns it to the Permissions field.
@@ -88,11 +84,7 @@ func (o *RoleRelationships) GetUsersOk() (*RelationshipToUsers, bool) {
 
 // HasUsers returns a boolean if a field has been set.
 func (o *RoleRelationships) HasUsers() bool {
-	if o != nil && o.Users != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Users != nil
 }
 
 // SetUsers gets a reference to the given RelationshipToUsers and assigns it to the Users field.

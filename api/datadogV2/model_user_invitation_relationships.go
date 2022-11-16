@@ -14,7 +14,7 @@ type UserInvitationRelationships struct {
 	// Relationship to user.
 	User RelationshipToUser `json:"user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.User == nil {
-		return fmt.Errorf("Required field user missing")
+		return fmt.Errorf("required field user missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

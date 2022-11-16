@@ -20,7 +20,7 @@ type FormulaAndFunctionMetricQueryDefinition struct {
 	// Metrics query definition.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetAggregatorOk() (*FormulaAnd
 
 // HasAggregator returns a boolean if a field has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) HasAggregator() bool {
-	if o != nil && o.Aggregator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregator != nil
 }
 
 // SetAggregator gets a reference to the given FormulaAndFunctionMetricAggregation and assigns it to the Aggregator field.
@@ -183,13 +179,13 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -23,7 +23,7 @@ type Widget struct {
 	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,11 +88,7 @@ func (o *Widget) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Widget) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -120,11 +116,7 @@ func (o *Widget) GetLayoutOk() (*WidgetLayout, bool) {
 
 // HasLayout returns a boolean if a field has been set.
 func (o *Widget) HasLayout() bool {
-	if o != nil && o.Layout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Layout != nil
 }
 
 // SetLayout gets a reference to the given WidgetLayout and assigns it to the Layout field.
@@ -168,7 +160,7 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Definition == nil {
-		return fmt.Errorf("Required field definition missing")
+		return fmt.Errorf("required field definition missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

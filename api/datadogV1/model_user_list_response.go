@@ -13,7 +13,7 @@ type UserListResponse struct {
 	// Array of users.
 	Users []User `json:"users,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UserListResponse) GetUsersOk() (*[]User, bool) {
 
 // HasUsers returns a boolean if a field has been set.
 func (o *UserListResponse) HasUsers() bool {
-	if o != nil && o.Users != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Users != nil
 }
 
 // SetUsers gets a reference to the given []User and assigns it to the Users field.

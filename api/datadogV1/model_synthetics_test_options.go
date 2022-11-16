@@ -13,7 +13,7 @@ type SyntheticsTestOptions struct {
 	// For SSL test, whether or not the test should allow self signed
 	// certificates.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
-	// Allows loading insecure content for an HTTP request.
+	// Allows loading insecure content for an HTTP request in an API test.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
 	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
@@ -23,8 +23,14 @@ type SyntheticsTestOptions struct {
 	DeviceIds []SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to disable CORS mechanism.
 	DisableCors *bool `json:"disableCors,omitempty"`
+	// Disable Content Security Policy for browser tests.
+	DisableCsp *bool `json:"disableCsp,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
+	// Ignore server certificate error for browser tests.
+	IgnoreServerCertificateError *bool `json:"ignoreServerCertificateError,omitempty"`
+	// Timeout before declaring the initial step as failed (in seconds) for browser tests.
+	InitialNavigationTimeout *int64 `json:"initialNavigationTimeout,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// Minimum number of locations in failure required to trigger
@@ -58,7 +64,7 @@ type SyntheticsTestOptions struct {
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -99,11 +105,7 @@ func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (*bool, bool) {
 
 // HasAcceptSelfSigned returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool {
-	if o != nil && o.AcceptSelfSigned != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AcceptSelfSigned != nil
 }
 
 // SetAcceptSelfSigned gets a reference to the given bool and assigns it to the AcceptSelfSigned field.
@@ -131,11 +133,7 @@ func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool) {
 
 // HasAllowInsecure returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
-	if o != nil && o.AllowInsecure != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AllowInsecure != nil
 }
 
 // SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
@@ -163,11 +161,7 @@ func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool) 
 
 // HasCheckCertificateRevocation returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
-	if o != nil && o.CheckCertificateRevocation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckCertificateRevocation != nil
 }
 
 // SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.
@@ -195,11 +189,7 @@ func (o *SyntheticsTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
 
 // HasCi returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasCi() bool {
-	if o != nil && o.Ci != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ci != nil
 }
 
 // SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.
@@ -227,11 +217,7 @@ func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 
 // HasDeviceIds returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasDeviceIds() bool {
-	if o != nil && o.DeviceIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceIds != nil
 }
 
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
@@ -259,16 +245,40 @@ func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool) {
 
 // HasDisableCors returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasDisableCors() bool {
-	if o != nil && o.DisableCors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisableCors != nil
 }
 
 // SetDisableCors gets a reference to the given bool and assigns it to the DisableCors field.
 func (o *SyntheticsTestOptions) SetDisableCors(v bool) {
 	o.DisableCors = &v
+}
+
+// GetDisableCsp returns the DisableCsp field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetDisableCsp() bool {
+	if o == nil || o.DisableCsp == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DisableCsp
+}
+
+// GetDisableCspOk returns a tuple with the DisableCsp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetDisableCspOk() (*bool, bool) {
+	if o == nil || o.DisableCsp == nil {
+		return nil, false
+	}
+	return o.DisableCsp, true
+}
+
+// HasDisableCsp returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasDisableCsp() bool {
+	return o != nil && o.DisableCsp != nil
+}
+
+// SetDisableCsp gets a reference to the given bool and assigns it to the DisableCsp field.
+func (o *SyntheticsTestOptions) SetDisableCsp(v bool) {
+	o.DisableCsp = &v
 }
 
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
@@ -291,16 +301,68 @@ func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (*bool, bool) {
 
 // HasFollowRedirects returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
-	if o != nil && o.FollowRedirects != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FollowRedirects != nil
 }
 
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
 func (o *SyntheticsTestOptions) SetFollowRedirects(v bool) {
 	o.FollowRedirects = &v
+}
+
+// GetIgnoreServerCertificateError returns the IgnoreServerCertificateError field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetIgnoreServerCertificateError() bool {
+	if o == nil || o.IgnoreServerCertificateError == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IgnoreServerCertificateError
+}
+
+// GetIgnoreServerCertificateErrorOk returns a tuple with the IgnoreServerCertificateError field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetIgnoreServerCertificateErrorOk() (*bool, bool) {
+	if o == nil || o.IgnoreServerCertificateError == nil {
+		return nil, false
+	}
+	return o.IgnoreServerCertificateError, true
+}
+
+// HasIgnoreServerCertificateError returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasIgnoreServerCertificateError() bool {
+	return o != nil && o.IgnoreServerCertificateError != nil
+}
+
+// SetIgnoreServerCertificateError gets a reference to the given bool and assigns it to the IgnoreServerCertificateError field.
+func (o *SyntheticsTestOptions) SetIgnoreServerCertificateError(v bool) {
+	o.IgnoreServerCertificateError = &v
+}
+
+// GetInitialNavigationTimeout returns the InitialNavigationTimeout field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetInitialNavigationTimeout() int64 {
+	if o == nil || o.InitialNavigationTimeout == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InitialNavigationTimeout
+}
+
+// GetInitialNavigationTimeoutOk returns a tuple with the InitialNavigationTimeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetInitialNavigationTimeoutOk() (*int64, bool) {
+	if o == nil || o.InitialNavigationTimeout == nil {
+		return nil, false
+	}
+	return o.InitialNavigationTimeout, true
+}
+
+// HasInitialNavigationTimeout returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasInitialNavigationTimeout() bool {
+	return o != nil && o.InitialNavigationTimeout != nil
+}
+
+// SetInitialNavigationTimeout gets a reference to the given int64 and assigns it to the InitialNavigationTimeout field.
+func (o *SyntheticsTestOptions) SetInitialNavigationTimeout(v int64) {
+	o.InitialNavigationTimeout = &v
 }
 
 // GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
@@ -323,11 +385,7 @@ func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool) {
 
 // HasMinFailureDuration returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMinFailureDuration() bool {
-	if o != nil && o.MinFailureDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinFailureDuration != nil
 }
 
 // SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.
@@ -355,11 +413,7 @@ func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (*int64, bool) {
 
 // HasMinLocationFailed returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMinLocationFailed() bool {
-	if o != nil && o.MinLocationFailed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MinLocationFailed != nil
 }
 
 // SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.
@@ -387,11 +441,7 @@ func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool) {
 
 // HasMonitorName returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorName() bool {
-	if o != nil && o.MonitorName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorName != nil
 }
 
 // SetMonitorName gets a reference to the given string and assigns it to the MonitorName field.
@@ -419,11 +469,7 @@ func (o *SyntheticsTestOptions) GetMonitorOptionsOk() (*SyntheticsTestOptionsMon
 
 // HasMonitorOptions returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorOptions() bool {
-	if o != nil && o.MonitorOptions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorOptions != nil
 }
 
 // SetMonitorOptions gets a reference to the given SyntheticsTestOptionsMonitorOptions and assigns it to the MonitorOptions field.
@@ -451,11 +497,7 @@ func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool) {
 
 // HasMonitorPriority returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasMonitorPriority() bool {
-	if o != nil && o.MonitorPriority != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorPriority != nil
 }
 
 // SetMonitorPriority gets a reference to the given int32 and assigns it to the MonitorPriority field.
@@ -483,11 +525,7 @@ func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool) {
 
 // HasNoScreenshot returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasNoScreenshot() bool {
-	if o != nil && o.NoScreenshot != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NoScreenshot != nil
 }
 
 // SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.
@@ -515,11 +553,7 @@ func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
@@ -547,11 +581,7 @@ func (o *SyntheticsTestOptions) GetRetryOk() (*SyntheticsTestOptionsRetry, bool)
 
 // HasRetry returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRetry() bool {
-	if o != nil && o.Retry != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retry != nil
 }
 
 // SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.
@@ -579,11 +609,7 @@ func (o *SyntheticsTestOptions) GetRumSettingsOk() (*SyntheticsBrowserTestRumSet
 
 // HasRumSettings returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasRumSettings() bool {
-	if o != nil && o.RumSettings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumSettings != nil
 }
 
 // SetRumSettings gets a reference to the given SyntheticsBrowserTestRumSettings and assigns it to the RumSettings field.
@@ -611,11 +637,7 @@ func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool) {
 
 // HasTickEvery returns a boolean if a field has been set.
 func (o *SyntheticsTestOptions) HasTickEvery() bool {
-	if o != nil && o.TickEvery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TickEvery != nil
 }
 
 // SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.
@@ -647,8 +669,17 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.DisableCors != nil {
 		toSerialize["disableCors"] = o.DisableCors
 	}
+	if o.DisableCsp != nil {
+		toSerialize["disableCsp"] = o.DisableCsp
+	}
 	if o.FollowRedirects != nil {
 		toSerialize["follow_redirects"] = o.FollowRedirects
+	}
+	if o.IgnoreServerCertificateError != nil {
+		toSerialize["ignoreServerCertificateError"] = o.IgnoreServerCertificateError
+	}
+	if o.InitialNavigationTimeout != nil {
+		toSerialize["initialNavigationTimeout"] = o.InitialNavigationTimeout
 	}
 	if o.MinFailureDuration != nil {
 		toSerialize["min_failure_duration"] = o.MinFailureDuration
@@ -691,23 +722,26 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AcceptSelfSigned           *bool                                `json:"accept_self_signed,omitempty"`
-		AllowInsecure              *bool                                `json:"allow_insecure,omitempty"`
-		CheckCertificateRevocation *bool                                `json:"checkCertificateRevocation,omitempty"`
-		Ci                         *SyntheticsTestCiOptions             `json:"ci,omitempty"`
-		DeviceIds                  []SyntheticsDeviceID                 `json:"device_ids,omitempty"`
-		DisableCors                *bool                                `json:"disableCors,omitempty"`
-		FollowRedirects            *bool                                `json:"follow_redirects,omitempty"`
-		MinFailureDuration         *int64                               `json:"min_failure_duration,omitempty"`
-		MinLocationFailed          *int64                               `json:"min_location_failed,omitempty"`
-		MonitorName                *string                              `json:"monitor_name,omitempty"`
-		MonitorOptions             *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
-		MonitorPriority            *int32                               `json:"monitor_priority,omitempty"`
-		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
-		RestrictedRoles            []string                             `json:"restricted_roles,omitempty"`
-		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
-		RumSettings                *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
-		TickEvery                  *int64                               `json:"tick_every,omitempty"`
+		AcceptSelfSigned             *bool                                `json:"accept_self_signed,omitempty"`
+		AllowInsecure                *bool                                `json:"allow_insecure,omitempty"`
+		CheckCertificateRevocation   *bool                                `json:"checkCertificateRevocation,omitempty"`
+		Ci                           *SyntheticsTestCiOptions             `json:"ci,omitempty"`
+		DeviceIds                    []SyntheticsDeviceID                 `json:"device_ids,omitempty"`
+		DisableCors                  *bool                                `json:"disableCors,omitempty"`
+		DisableCsp                   *bool                                `json:"disableCsp,omitempty"`
+		FollowRedirects              *bool                                `json:"follow_redirects,omitempty"`
+		IgnoreServerCertificateError *bool                                `json:"ignoreServerCertificateError,omitempty"`
+		InitialNavigationTimeout     *int64                               `json:"initialNavigationTimeout,omitempty"`
+		MinFailureDuration           *int64                               `json:"min_failure_duration,omitempty"`
+		MinLocationFailed            *int64                               `json:"min_location_failed,omitempty"`
+		MonitorName                  *string                              `json:"monitor_name,omitempty"`
+		MonitorOptions               *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+		MonitorPriority              *int32                               `json:"monitor_priority,omitempty"`
+		NoScreenshot                 *bool                                `json:"noScreenshot,omitempty"`
+		RestrictedRoles              []string                             `json:"restricted_roles,omitempty"`
+		Retry                        *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
+		RumSettings                  *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
+		TickEvery                    *int64                               `json:"tick_every,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -731,7 +765,10 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Ci = all.Ci
 	o.DeviceIds = all.DeviceIds
 	o.DisableCors = all.DisableCors
+	o.DisableCsp = all.DisableCsp
 	o.FollowRedirects = all.FollowRedirects
+	o.IgnoreServerCertificateError = all.IgnoreServerCertificateError
+	o.InitialNavigationTimeout = all.InitialNavigationTimeout
 	o.MinFailureDuration = all.MinFailureDuration
 	o.MinLocationFailed = all.MinLocationFailed
 	o.MonitorName = all.MonitorName

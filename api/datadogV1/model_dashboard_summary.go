@@ -13,7 +13,7 @@ type DashboardSummary struct {
 	// List of dashboard definitions.
 	Dashboards []DashboardSummaryDefinition `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDefinition, boo
 
 // HasDashboards returns a boolean if a field has been set.
 func (o *DashboardSummary) HasDashboards() bool {
-	if o != nil && o.Dashboards != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Dashboards != nil
 }
 
 // SetDashboards gets a reference to the given []DashboardSummaryDefinition and assigns it to the Dashboards field.

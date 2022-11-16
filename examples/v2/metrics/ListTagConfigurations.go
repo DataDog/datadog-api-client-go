@@ -1,4 +1,4 @@
-// List tag configurations returns "Success" response
+// Get a list of metrics returns "Success" response
 
 package main
 

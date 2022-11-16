@@ -15,7 +15,7 @@ type SearchSLOResponseDataAttributesFacetsObjectString struct {
 	// Facet
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectString) GetCountOk() (*int64
 
 // HasCount returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacetsObjectString) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -88,11 +84,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectString) GetNameOk() (*string
 
 // HasName returns a boolean if a field has been set.
 func (o *SearchSLOResponseDataAttributesFacetsObjectString) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

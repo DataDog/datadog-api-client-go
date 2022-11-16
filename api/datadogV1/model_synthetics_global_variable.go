@@ -28,7 +28,7 @@ type SyntheticsGlobalVariable struct {
 	// Value of the global variable.
 	Value SyntheticsGlobalVariableValue `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,11 +73,7 @@ func (o *SyntheticsGlobalVariable) GetAttributesOk() (*SyntheticsGlobalVariableA
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariable) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SyntheticsGlobalVariableAttributes and assigns it to the Attributes field.
@@ -128,11 +124,7 @@ func (o *SyntheticsGlobalVariable) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariable) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -183,11 +175,7 @@ func (o *SyntheticsGlobalVariable) GetParseTestOptionsOk() (*SyntheticsGlobalVar
 
 // HasParseTestOptions returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariable) HasParseTestOptions() bool {
-	if o != nil && o.ParseTestOptions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ParseTestOptions != nil
 }
 
 // SetParseTestOptions gets a reference to the given SyntheticsGlobalVariableParseTestOptions and assigns it to the ParseTestOptions field.
@@ -215,11 +203,7 @@ func (o *SyntheticsGlobalVariable) GetParseTestPublicIdOk() (*string, bool) {
 
 // HasParseTestPublicId returns a boolean if a field has been set.
 func (o *SyntheticsGlobalVariable) HasParseTestPublicId() bool {
-	if o != nil && o.ParseTestPublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ParseTestPublicId != nil
 }
 
 // SetParseTestPublicId gets a reference to the given string and assigns it to the ParseTestPublicId field.
@@ -326,16 +310,16 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Description == nil {
-		return fmt.Errorf("Required field description missing")
+		return fmt.Errorf("required field description missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	if required.Value == nil {
-		return fmt.Errorf("Required field value missing")
+		return fmt.Errorf("required field value missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

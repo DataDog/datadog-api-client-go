@@ -1,4 +1,6 @@
-// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}
+// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}{% if model.deprecated %}
+//
+// Deprecated: This model is deprecated.{% endif %}
 type {{ name }} struct {
 {#-
 {{^isMap}}
@@ -11,7 +13,7 @@ type {{ name }} struct {
 	Items []{{ get_type(model.get("items", {}), alternative_name=name + "Item") }}
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
-	UnparsedObject []interface{} `json:-`
+	UnparsedObject []interface{} `json:"-"`
 {%- else %}
 {%- for attr, schema in model.get("properties", {}).items() %}
 {%- set propertyName = attr|attribute_name %}
@@ -23,7 +25,7 @@ type {{ name }} struct {
 	{{ propertyName }} {% if model|is_reference(attr) %}*{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"`
 {%- endfor %}
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:"-"`
 {%- if model.get("additionalProperties", True) %}
 	AdditionalProperties map[string]{{ get_type(model.get("additionalProperties", True)) }}
 {%- endif %}
@@ -210,11 +212,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 
 // Has{{ propertyName }} returns a boolean if a field has been set.
 func (o *{{ name }}) Has{{ propertyName }}() bool {
-	if o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %} {
-		return true
-	}
-
-	return false
+	return o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %}
 }
 
 // Set{{ propertyName }} gets a reference to the given {{ dataType }} and assigns it to the {{ propertyName }} field.
@@ -470,7 +468,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- else %}
 	if !required.{{ propertyName }}.IsSet() {
 	{%- endif %}
-		return fmt.Errorf("Required field {{ attr }} missing")
+		return fmt.Errorf("required field {{ attr }} missing")
 	}
 	{%- endfor %}
 	err = json.Unmarshal(bytes, &all)

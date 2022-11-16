@@ -20,7 +20,7 @@ type OpsgenieServiceCreateAttributes struct {
 	// The region for the Opsgenie service.
 	Region OpsgenieServiceRegionType `json:"region"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *OpsgenieServiceCreateAttributes) GetCustomUrlOk() (*string, bool) {
 
 // HasCustomUrl returns a boolean if a field has been set.
 func (o *OpsgenieServiceCreateAttributes) HasCustomUrl() bool {
-	if o != nil && o.CustomUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomUrl != nil
 }
 
 // SetCustomUrl gets a reference to the given string and assigns it to the CustomUrl field.
@@ -183,13 +179,13 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.OpsgenieApiKey == nil {
-		return fmt.Errorf("Required field opsgenie_api_key missing")
+		return fmt.Errorf("required field opsgenie_api_key missing")
 	}
 	if required.Region == nil {
-		return fmt.Errorf("Required field region missing")
+		return fmt.Errorf("required field region missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

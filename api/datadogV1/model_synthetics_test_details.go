@@ -39,7 +39,7 @@ type SyntheticsTestDetails struct {
 	// Type of the Synthetic test, either `api` or `browser`.
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,11 +80,7 @@ func (o *SyntheticsTestDetails) GetConfigOk() (*SyntheticsTestConfig, bool) {
 
 // HasConfig returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasConfig() bool {
-	if o != nil && o.Config != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Config != nil
 }
 
 // SetConfig gets a reference to the given SyntheticsTestConfig and assigns it to the Config field.
@@ -112,11 +108,7 @@ func (o *SyntheticsTestDetails) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -144,11 +136,7 @@ func (o *SyntheticsTestDetails) GetLocationsOk() (*[]string, bool) {
 
 // HasLocations returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasLocations() bool {
-	if o != nil && o.Locations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Locations != nil
 }
 
 // SetLocations gets a reference to the given []string and assigns it to the Locations field.
@@ -176,11 +164,7 @@ func (o *SyntheticsTestDetails) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -208,11 +192,7 @@ func (o *SyntheticsTestDetails) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
@@ -240,11 +220,7 @@ func (o *SyntheticsTestDetails) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -272,11 +248,7 @@ func (o *SyntheticsTestDetails) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given SyntheticsTestOptions and assigns it to the Options field.
@@ -304,11 +276,7 @@ func (o *SyntheticsTestDetails) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -336,11 +304,7 @@ func (o *SyntheticsTestDetails) GetStatusOk() (*SyntheticsTestPauseStatus, bool)
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
@@ -368,11 +332,7 @@ func (o *SyntheticsTestDetails) GetStepsOk() (*[]SyntheticsStep, bool) {
 
 // HasSteps returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasSteps() bool {
-	if o != nil && o.Steps != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Steps != nil
 }
 
 // SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
@@ -400,11 +360,7 @@ func (o *SyntheticsTestDetails) GetSubtypeOk() (*SyntheticsTestDetailsSubType, b
 
 // HasSubtype returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasSubtype() bool {
-	if o != nil && o.Subtype != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subtype != nil
 }
 
 // SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
@@ -432,11 +388,7 @@ func (o *SyntheticsTestDetails) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -464,11 +416,7 @@ func (o *SyntheticsTestDetails) GetTypeOk() (*SyntheticsTestDetailsType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsTestDetails) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsTestDetailsType and assigns it to the Type field.

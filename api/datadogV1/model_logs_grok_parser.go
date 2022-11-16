@@ -25,7 +25,7 @@ type LogsGrokParser struct {
 	// Type of logs grok parser.
 	Type LogsGrokParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -100,11 +100,7 @@ func (o *LogsGrokParser) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsGrokParser) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -132,11 +128,7 @@ func (o *LogsGrokParser) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsGrokParser) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -164,11 +156,7 @@ func (o *LogsGrokParser) GetSamplesOk() (*[]string, bool) {
 
 // HasSamples returns a boolean if a field has been set.
 func (o *LogsGrokParser) HasSamples() bool {
-	if o != nil && o.Samples != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Samples != nil
 }
 
 // SetSamples gets a reference to the given []string and assigns it to the Samples field.
@@ -268,13 +256,13 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Grok == nil {
-		return fmt.Errorf("Required field grok missing")
+		return fmt.Errorf("required field grok missing")
 	}
 	if required.Source == nil {
-		return fmt.Errorf("Required field source missing")
+		return fmt.Errorf("required field source missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

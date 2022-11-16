@@ -17,7 +17,7 @@ type ApplicationKey struct {
 	// Owner of an application key.
 	Owner *string `json:"owner,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *ApplicationKey) GetHashOk() (*string, bool) {
 
 // HasHash returns a boolean if a field has been set.
 func (o *ApplicationKey) HasHash() bool {
-	if o != nil && o.Hash != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hash != nil
 }
 
 // SetHash gets a reference to the given string and assigns it to the Hash field.
@@ -90,11 +86,7 @@ func (o *ApplicationKey) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApplicationKey) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -122,11 +114,7 @@ func (o *ApplicationKey) GetOwnerOk() (*string, bool) {
 
 // HasOwner returns a boolean if a field has been set.
 func (o *ApplicationKey) HasOwner() bool {
-	if o != nil && o.Owner != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Owner != nil
 }
 
 // SetOwner gets a reference to the given string and assigns it to the Owner field.

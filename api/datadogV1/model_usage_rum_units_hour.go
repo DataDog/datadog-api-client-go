@@ -23,7 +23,7 @@ type UsageRumUnitsHour struct {
 	// Total RUM units across mobile and browser RUM.
 	RumUnits datadog.NullableInt64 `json:"rum_units,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *UsageRumUnitsHour) GetBrowserRumUnitsOk() (*int64, bool) {
 
 // HasBrowserRumUnits returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool {
-	if o != nil && o.BrowserRumUnits != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserRumUnits != nil
 }
 
 // SetBrowserRumUnits gets a reference to the given int64 and assigns it to the BrowserRumUnits field.
@@ -96,11 +92,7 @@ func (o *UsageRumUnitsHour) GetMobileRumUnitsOk() (*int64, bool) {
 
 // HasMobileRumUnits returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasMobileRumUnits() bool {
-	if o != nil && o.MobileRumUnits != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumUnits != nil
 }
 
 // SetMobileRumUnits gets a reference to the given int64 and assigns it to the MobileRumUnits field.
@@ -128,11 +120,7 @@ func (o *UsageRumUnitsHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -160,11 +148,7 @@ func (o *UsageRumUnitsHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -193,11 +177,7 @@ func (o *UsageRumUnitsHour) GetRumUnitsOk() (*int64, bool) {
 
 // HasRumUnits returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasRumUnits() bool {
-	if o != nil && o.RumUnits.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumUnits.IsSet()
 }
 
 // SetRumUnits gets a reference to the given datadog.NullableInt64 and assigns it to the RumUnits field.

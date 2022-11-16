@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1652349195","query":"service:TestGetasecurityfilterreturnsOKresponse1652349195"},"type":"security_filters"}}
+      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude logs from staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","query":"service:TestGetasecurityfilterreturnsOKresponse1666186604"},"type":"security_filters"}}
     form: {}
     headers:
       Accept:
@@ -11,13 +11,15 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1652349195","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1652349195","is_builtin":false},"type":"security_filters","id":"lgh-q3c-xlh"}}'
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1666186604","is_builtin":false},"type":"security_filters","id":"z3t-ier-scu"}}
+
+      '
     code: 200
     duration: ''
     headers:
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
     status: 200 OK
 - request:
     body: ''
@@ -26,15 +28,17 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/lgh-q3c-xlh
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/z3t-ier-scu
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1652349195","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1652349195","is_builtin":false},"type":"security_filters","id":"lgh-q3c-xlh"}}'
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Get_a_security_filter_returns_OK_response-1666186604","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      logs from staging"}],"version":1,"query":"service:TestGetasecurityfilterreturnsOKresponse1666186604","is_builtin":false},"type":"security_filters","id":"z3t-ier-scu"}}
+
+      '
     code: 200
     duration: ''
     headers:
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
     status: 200 OK
 - request:
     body: ''
@@ -43,13 +47,13 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/lgh-q3c-xlh
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/z3t-ier-scu
   response:
     body: ''
     code: 204
     duration: ''
     headers:
       Content-Type:
-      - application/json;charset=utf-8
+      - text/html; charset=utf-8
     status: 204 No Content
 version: 1

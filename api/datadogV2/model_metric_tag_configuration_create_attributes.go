@@ -36,7 +36,7 @@ type MetricTagConfigurationCreateAttributes struct {
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,11 +81,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetAggregationsOk() (*[]MetricC
 
 // HasAggregations returns a boolean if a field has been set.
 func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
-	if o != nil && o.Aggregations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregations != nil
 }
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
@@ -113,11 +109,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetIncludePercentilesOk() (*boo
 
 // HasIncludePercentiles returns a boolean if a field has been set.
 func (o *MetricTagConfigurationCreateAttributes) HasIncludePercentiles() bool {
-	if o != nil && o.IncludePercentiles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludePercentiles != nil
 }
 
 // SetIncludePercentiles gets a reference to the given bool and assigns it to the IncludePercentiles field.
@@ -210,10 +202,10 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 	if required.MetricType == nil {
-		return fmt.Errorf("Required field metric_type missing")
+		return fmt.Errorf("required field metric_type missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

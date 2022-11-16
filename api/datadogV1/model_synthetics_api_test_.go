@@ -36,7 +36,7 @@ type SyntheticsAPITest struct {
 	// Type of the Synthetic test, `api`.
 	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -154,11 +154,7 @@ func (o *SyntheticsAPITest) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
@@ -232,11 +228,7 @@ func (o *SyntheticsAPITest) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -264,11 +256,7 @@ func (o *SyntheticsAPITest) GetStatusOk() (*SyntheticsTestPauseStatus, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
@@ -296,11 +284,7 @@ func (o *SyntheticsAPITest) GetSubtypeOk() (*SyntheticsTestDetailsSubType, bool)
 
 // HasSubtype returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasSubtype() bool {
-	if o != nil && o.Subtype != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subtype != nil
 }
 
 // SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
@@ -328,11 +312,7 @@ func (o *SyntheticsAPITest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SyntheticsAPITest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -426,22 +406,22 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Config == nil {
-		return fmt.Errorf("Required field config missing")
+		return fmt.Errorf("required field config missing")
 	}
 	if required.Locations == nil {
-		return fmt.Errorf("Required field locations missing")
+		return fmt.Errorf("required field locations missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Options == nil {
-		return fmt.Errorf("Required field options missing")
+		return fmt.Errorf("required field options missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

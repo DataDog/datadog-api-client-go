@@ -15,7 +15,7 @@ type SyntheticsTestRequestCertificate struct {
 	// Define a request certificate.
 	Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SyntheticsTestRequestCertificate) GetCertOk() (*SyntheticsTestRequestCe
 
 // HasCert returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificate) HasCert() bool {
-	if o != nil && o.Cert != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cert != nil
 }
 
 // SetCert gets a reference to the given SyntheticsTestRequestCertificateItem and assigns it to the Cert field.
@@ -88,11 +84,7 @@ func (o *SyntheticsTestRequestCertificate) GetKeyOk() (*SyntheticsTestRequestCer
 
 // HasKey returns a boolean if a field has been set.
 func (o *SyntheticsTestRequestCertificate) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given SyntheticsTestRequestCertificateItem and assigns it to the Key field.

@@ -12,7 +12,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -141,7 +140,7 @@ func ReadFixture(path string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to get fixture file path: %v", err)
 	}
-	data, err := ioutil.ReadFile(fixturePath)
+	data, err := os.ReadFile(fixturePath)
 	if err != nil {
 		return "", fmt.Errorf("failed to open fixture file: %v", err)
 	}
@@ -195,7 +194,7 @@ func getEndpointTagValue(t *testing.T) (string, error) {
 		}
 	}
 	return "", fmt.Errorf(
-		"Endpoint tag for test file %s not found in tests/test_utils.go, please add it to `testFiles2EndpointTags`",
+		"endpoint tag for test file %s not found in tests/test_utils.go, please add it to `testFiles2EndpointTags`",
 		functionFile)
 }
 
@@ -255,7 +254,7 @@ func SetClock(path string) (clockwork.FakeClock, error) {
 // RestoreClock restore current time from .freeze file.
 func RestoreClock(path string) (clockwork.FakeClock, error) {
 	freezePath := fmt.Sprintf("cassettes/%s.freeze", path)
-	data, err := ioutil.ReadFile(freezePath)
+	data, err := os.ReadFile(freezePath)
 	if err != nil {
 		return nil, fmt.Errorf("time file '%s' not found: create one setting `RECORD=true` or ignore it using `RECORD=none`", freezePath)
 	}
@@ -427,7 +426,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	if _, err := b.ReadFrom(r.Body); err != nil {
 		return false
 	}
-	r.Body = ioutil.NopCloser(&b)
+	r.Body = io.NopCloser(&b)
 
 	matched := (b.String() == "" || b.String() == i.Body)
 
@@ -505,13 +504,13 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 			if 500 <= r.StatusCode && r.StatusCode < 600 {
 				var b bytes.Buffer
 				tee := io.TeeReader(r.Body, &b)
-				msg, _ := ioutil.ReadAll(tee)
+				msg, _ := io.ReadAll(tee)
 
 				span.SetTag(ext.Error, true)
 				span.SetTag(ext.ErrorMsg, msg)
 				span.SetTag(ext.ErrorDetails, r.Status)
 
-				r.Body = ioutil.NopCloser(&b)
+				r.Body = io.NopCloser(&b)
 			}
 		}),
 	)

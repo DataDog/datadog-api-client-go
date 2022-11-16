@@ -44,7 +44,7 @@ type ServiceSummaryWidgetDefinition struct {
 	// Type of the service summary widget.
 	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,11 +91,7 @@ func (o *ServiceSummaryWidgetDefinition) GetDisplayFormatOk() (*WidgetServiceSum
 
 // HasDisplayFormat returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasDisplayFormat() bool {
-	if o != nil && o.DisplayFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisplayFormat != nil
 }
 
 // SetDisplayFormat gets a reference to the given WidgetServiceSummaryDisplayFormat and assigns it to the DisplayFormat field.
@@ -169,11 +165,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowBreakdownOk() (*bool, bool) {
 
 // HasShowBreakdown returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowBreakdown() bool {
-	if o != nil && o.ShowBreakdown != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowBreakdown != nil
 }
 
 // SetShowBreakdown gets a reference to the given bool and assigns it to the ShowBreakdown field.
@@ -201,11 +193,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowDistributionOk() (*bool, bool) {
 
 // HasShowDistribution returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowDistribution() bool {
-	if o != nil && o.ShowDistribution != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowDistribution != nil
 }
 
 // SetShowDistribution gets a reference to the given bool and assigns it to the ShowDistribution field.
@@ -233,11 +221,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowErrorsOk() (*bool, bool) {
 
 // HasShowErrors returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowErrors() bool {
-	if o != nil && o.ShowErrors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowErrors != nil
 }
 
 // SetShowErrors gets a reference to the given bool and assigns it to the ShowErrors field.
@@ -265,11 +249,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowHitsOk() (*bool, bool) {
 
 // HasShowHits returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowHits() bool {
-	if o != nil && o.ShowHits != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowHits != nil
 }
 
 // SetShowHits gets a reference to the given bool and assigns it to the ShowHits field.
@@ -297,11 +277,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowLatencyOk() (*bool, bool) {
 
 // HasShowLatency returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowLatency() bool {
-	if o != nil && o.ShowLatency != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowLatency != nil
 }
 
 // SetShowLatency gets a reference to the given bool and assigns it to the ShowLatency field.
@@ -329,11 +305,7 @@ func (o *ServiceSummaryWidgetDefinition) GetShowResourceListOk() (*bool, bool) {
 
 // HasShowResourceList returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasShowResourceList() bool {
-	if o != nil && o.ShowResourceList != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowResourceList != nil
 }
 
 // SetShowResourceList gets a reference to the given bool and assigns it to the ShowResourceList field.
@@ -361,11 +333,7 @@ func (o *ServiceSummaryWidgetDefinition) GetSizeFormatOk() (*WidgetSizeFormat, b
 
 // HasSizeFormat returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasSizeFormat() bool {
-	if o != nil && o.SizeFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SizeFormat != nil
 }
 
 // SetSizeFormat gets a reference to the given WidgetSizeFormat and assigns it to the SizeFormat field.
@@ -416,11 +384,7 @@ func (o *ServiceSummaryWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -448,11 +412,7 @@ func (o *ServiceSummaryWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -480,11 +440,7 @@ func (o *ServiceSummaryWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bo
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -512,11 +468,7 @@ func (o *ServiceSummaryWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *ServiceSummaryWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -632,16 +584,16 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.SpanName == nil {
-		return fmt.Errorf("Required field span_name missing")
+		return fmt.Errorf("required field span_name missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

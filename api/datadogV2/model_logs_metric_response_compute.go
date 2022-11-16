@@ -15,7 +15,7 @@ type LogsMetricResponseCompute struct {
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *LogsMetricResponseCompute) GetAggregationTypeOk() (*LogsMetricResponseC
 
 // HasAggregationType returns a boolean if a field has been set.
 func (o *LogsMetricResponseCompute) HasAggregationType() bool {
-	if o != nil && o.AggregationType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AggregationType != nil
 }
 
 // SetAggregationType gets a reference to the given LogsMetricResponseComputeAggregationType and assigns it to the AggregationType field.
@@ -88,11 +84,7 @@ func (o *LogsMetricResponseCompute) GetPathOk() (*string, bool) {
 
 // HasPath returns a boolean if a field has been set.
 func (o *LogsMetricResponseCompute) HasPath() bool {
-	if o != nil && o.Path != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.

@@ -13,7 +13,7 @@ type LogsIndexListResponse struct {
 	// Array of Log index configurations.
 	Indexes []LogsIndex `json:"indexes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *LogsIndexListResponse) GetIndexesOk() (*[]LogsIndex, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *LogsIndexListResponse) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []LogsIndex and assigns it to the Indexes field.

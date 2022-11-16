@@ -17,7 +17,7 @@ type UsersResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *UsersResponse) GetDataOk() (*[]User, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *UsersResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []User and assigns it to the Data field.
@@ -90,11 +86,7 @@ func (o *UsersResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
 
 // HasIncluded returns a boolean if a field has been set.
 func (o *UsersResponse) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.
@@ -122,11 +114,7 @@ func (o *UsersResponse) GetMetaOk() (*ResponseMetaAttributes, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *UsersResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given ResponseMetaAttributes and assigns it to the Meta field.

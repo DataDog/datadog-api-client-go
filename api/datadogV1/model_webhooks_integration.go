@@ -30,7 +30,7 @@ type WebhooksIntegration struct {
 	// URL of the webhook.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,11 +78,7 @@ func (o *WebhooksIntegration) GetCustomHeadersOk() (*string, bool) {
 
 // HasCustomHeaders returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasCustomHeaders() bool {
-	if o != nil && o.CustomHeaders.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomHeaders.IsSet()
 }
 
 // SetCustomHeaders gets a reference to the given datadog.NullableString and assigns it to the CustomHeaders field.
@@ -120,11 +116,7 @@ func (o *WebhooksIntegration) GetEncodeAsOk() (*WebhooksIntegrationEncoding, boo
 
 // HasEncodeAs returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasEncodeAs() bool {
-	if o != nil && o.EncodeAs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EncodeAs != nil
 }
 
 // SetEncodeAs gets a reference to the given WebhooksIntegrationEncoding and assigns it to the EncodeAs field.
@@ -176,11 +168,7 @@ func (o *WebhooksIntegration) GetPayloadOk() (*string, bool) {
 
 // HasPayload returns a boolean if a field has been set.
 func (o *WebhooksIntegration) HasPayload() bool {
-	if o != nil && o.Payload.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Payload.IsSet()
 }
 
 // SetPayload gets a reference to the given datadog.NullableString and assigns it to the Payload field.
@@ -264,10 +252,10 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

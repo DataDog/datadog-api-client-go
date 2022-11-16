@@ -21,7 +21,7 @@ type SecurityMonitoringSignalAttributes struct {
 	// The timestamp of the security signal.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *SecurityMonitoringSignalAttributes) GetAttributesOk() (*map[string]inte
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalAttributes) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
@@ -94,11 +90,7 @@ func (o *SecurityMonitoringSignalAttributes) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalAttributes) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -126,11 +118,7 @@ func (o *SecurityMonitoringSignalAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -158,11 +146,7 @@ func (o *SecurityMonitoringSignalAttributes) GetTimestampOk() (*time.Time, bool)
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.

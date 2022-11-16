@@ -20,7 +20,7 @@ type RUMSearchEventsRequest struct {
 	// Sort parameters when querying events.
 	Sort *RUMSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *RUMSearchEventsRequest) GetFilterOk() (*RUMQueryFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *RUMSearchEventsRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given RUMQueryFilter and assigns it to the Filter field.
@@ -93,11 +89,7 @@ func (o *RUMSearchEventsRequest) GetOptionsOk() (*RUMQueryOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *RUMSearchEventsRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given RUMQueryOptions and assigns it to the Options field.
@@ -125,11 +117,7 @@ func (o *RUMSearchEventsRequest) GetPageOk() (*RUMQueryPageOptions, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *RUMSearchEventsRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given RUMQueryPageOptions and assigns it to the Page field.
@@ -157,11 +145,7 @@ func (o *RUMSearchEventsRequest) GetSortOk() (*RUMSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *RUMSearchEventsRequest) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given RUMSort and assigns it to the Sort field.

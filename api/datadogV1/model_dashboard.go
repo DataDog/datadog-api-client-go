@@ -51,7 +51,7 @@ type Dashboard struct {
 	// List of widgets to display on the dashboard.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -99,11 +99,7 @@ func (o *Dashboard) GetAuthorHandleOk() (*string, bool) {
 
 // HasAuthorHandle returns a boolean if a field has been set.
 func (o *Dashboard) HasAuthorHandle() bool {
-	if o != nil && o.AuthorHandle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuthorHandle != nil
 }
 
 // SetAuthorHandle gets a reference to the given string and assigns it to the AuthorHandle field.
@@ -132,11 +128,7 @@ func (o *Dashboard) GetAuthorNameOk() (*string, bool) {
 
 // HasAuthorName returns a boolean if a field has been set.
 func (o *Dashboard) HasAuthorName() bool {
-	if o != nil && o.AuthorName.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuthorName.IsSet()
 }
 
 // SetAuthorName gets a reference to the given datadog.NullableString and assigns it to the AuthorName field.
@@ -174,11 +166,7 @@ func (o *Dashboard) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Dashboard) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -207,11 +195,7 @@ func (o *Dashboard) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Dashboard) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description.IsSet()
 }
 
 // SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
@@ -249,11 +233,7 @@ func (o *Dashboard) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Dashboard) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -283,11 +263,7 @@ func (o *Dashboard) GetIsReadOnlyOk() (*bool, bool) {
 
 // HasIsReadOnly returns a boolean if a field has been set.
 func (o *Dashboard) HasIsReadOnly() bool {
-	if o != nil && o.IsReadOnly != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReadOnly != nil
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
@@ -339,11 +315,7 @@ func (o *Dashboard) GetModifiedAtOk() (*time.Time, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *Dashboard) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -372,11 +344,7 @@ func (o *Dashboard) GetNotifyListOk() (*[]string, bool) {
 
 // HasNotifyList returns a boolean if a field has been set.
 func (o *Dashboard) HasNotifyList() bool {
-	if o != nil && o.NotifyList != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotifyList != nil
 }
 
 // SetNotifyList gets a reference to the given []string and assigns it to the NotifyList field.
@@ -404,11 +372,7 @@ func (o *Dashboard) GetReflowTypeOk() (*DashboardReflowType, bool) {
 
 // HasReflowType returns a boolean if a field has been set.
 func (o *Dashboard) HasReflowType() bool {
-	if o != nil && o.ReflowType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ReflowType != nil
 }
 
 // SetReflowType gets a reference to the given DashboardReflowType and assigns it to the ReflowType field.
@@ -436,11 +400,7 @@ func (o *Dashboard) GetRestrictedRolesOk() (*[]string, bool) {
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *Dashboard) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
@@ -469,11 +429,7 @@ func (o *Dashboard) GetTemplateVariablePresetsOk() (*[]DashboardTemplateVariable
 
 // HasTemplateVariablePresets returns a boolean if a field has been set.
 func (o *Dashboard) HasTemplateVariablePresets() bool {
-	if o != nil && o.TemplateVariablePresets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TemplateVariablePresets != nil
 }
 
 // SetTemplateVariablePresets gets a reference to the given []DashboardTemplateVariablePreset and assigns it to the TemplateVariablePresets field.
@@ -502,11 +458,7 @@ func (o *Dashboard) GetTemplateVariablesOk() (*[]DashboardTemplateVariable, bool
 
 // HasTemplateVariables returns a boolean if a field has been set.
 func (o *Dashboard) HasTemplateVariables() bool {
-	if o != nil && o.TemplateVariables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TemplateVariables != nil
 }
 
 // SetTemplateVariables gets a reference to the given []DashboardTemplateVariable and assigns it to the TemplateVariables field.
@@ -557,11 +509,7 @@ func (o *Dashboard) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *Dashboard) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
@@ -686,13 +634,13 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LayoutType == nil {
-		return fmt.Errorf("Required field layout_type missing")
+		return fmt.Errorf("required field layout_type missing")
 	}
 	if required.Title == nil {
-		return fmt.Errorf("Required field title missing")
+		return fmt.Errorf("required field title missing")
 	}
 	if required.Widgets == nil {
-		return fmt.Errorf("Required field widgets missing")
+		return fmt.Errorf("required field widgets missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -16,7 +16,7 @@ type EventsQueryOptions struct {
 	// The timezone can be specified as an offset, for example: `UTC+03:00`.
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *EventsQueryOptions) GetTimeOffsetOk() (*int64, bool) {
 
 // HasTimeOffset returns a boolean if a field has been set.
 func (o *EventsQueryOptions) HasTimeOffset() bool {
-	if o != nil && o.TimeOffset != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeOffset != nil
 }
 
 // SetTimeOffset gets a reference to the given int64 and assigns it to the TimeOffset field.
@@ -93,11 +89,7 @@ func (o *EventsQueryOptions) GetTimezoneOk() (*string, bool) {
 
 // HasTimezone returns a boolean if a field has been set.
 func (o *EventsQueryOptions) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timezone != nil
 }
 
 // SetTimezone gets a reference to the given string and assigns it to the Timezone field.

@@ -10,7 +10,8 @@ import (
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
 type IncidentResponseIncludedItem struct {
-	User *User
+	User                   *User
+	IncidentAttachmentData *IncidentAttachmentData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -19,6 +20,11 @@ type IncidentResponseIncludedItem struct {
 // UserAsIncidentResponseIncludedItem is a convenience function that returns User wrapped in IncidentResponseIncludedItem.
 func UserAsIncidentResponseIncludedItem(v *User) IncidentResponseIncludedItem {
 	return IncidentResponseIncludedItem{User: v}
+}
+
+// IncidentAttachmentDataAsIncidentResponseIncludedItem is a convenience function that returns IncidentAttachmentData wrapped in IncidentResponseIncludedItem.
+func IncidentAttachmentDataAsIncidentResponseIncludedItem(v *IncidentAttachmentData) IncidentResponseIncludedItem {
+	return IncidentResponseIncludedItem{IncidentAttachmentData: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -42,9 +48,27 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 		obj.User = nil
 	}
 
+	// try to unmarshal data into IncidentAttachmentData
+	err = json.Unmarshal(data, &obj.IncidentAttachmentData)
+	if err == nil {
+		if obj.IncidentAttachmentData != nil && obj.IncidentAttachmentData.UnparsedObject == nil {
+			jsonIncidentAttachmentData, _ := json.Marshal(obj.IncidentAttachmentData)
+			if string(jsonIncidentAttachmentData) == "{}" { // empty struct
+				obj.IncidentAttachmentData = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.IncidentAttachmentData = nil
+		}
+	} else {
+		obj.IncidentAttachmentData = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.User = nil
+		obj.IncidentAttachmentData = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -54,6 +78,10 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 	if obj.User != nil {
 		return json.Marshal(&obj.User)
+	}
+
+	if obj.IncidentAttachmentData != nil {
+		return json.Marshal(&obj.IncidentAttachmentData)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -66,6 +94,10 @@ func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 func (obj *IncidentResponseIncludedItem) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
+	}
+
+	if obj.IncidentAttachmentData != nil {
+		return obj.IncidentAttachmentData
 	}
 
 	// all schemas are nil

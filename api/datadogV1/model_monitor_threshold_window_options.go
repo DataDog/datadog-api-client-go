@@ -17,7 +17,7 @@ type MonitorThresholdWindowOptions struct {
 	// Describes how long a metric must be anomalous before an alert triggers.
 	TriggerWindow datadog.NullableString `json:"trigger_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool) {
 
 // HasRecoveryWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
-	if o != nil && o.RecoveryWindow.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.RecoveryWindow.IsSet()
 }
 
 // SetRecoveryWindow gets a reference to the given datadog.NullableString and assigns it to the RecoveryWindow field.
@@ -102,11 +98,7 @@ func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool) {
 
 // HasTriggerWindow returns a boolean if a field has been set.
 func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
-	if o != nil && o.TriggerWindow.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.TriggerWindow.IsSet()
 }
 
 // SetTriggerWindow gets a reference to the given datadog.NullableString and assigns it to the TriggerWindow field.

@@ -13,7 +13,7 @@ type AWSTagFilterListResponse struct {
 	// An array of tag filters.
 	Filters []AWSTagFilter `json:"filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilter, bool) {
 
 // HasFilters returns a boolean if a field has been set.
 func (o *AWSTagFilterListResponse) HasFilters() bool {
-	if o != nil && o.Filters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filters != nil
 }
 
 // SetFilters gets a reference to the given []AWSTagFilter and assigns it to the Filters field.

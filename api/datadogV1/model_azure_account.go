@@ -28,7 +28,7 @@ type AzureAccount struct {
 	// Your Azure Active Directory ID.
 	TenantName *string `json:"tenant_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,11 +69,7 @@ func (o *AzureAccount) GetAutomuteOk() (*bool, bool) {
 
 // HasAutomute returns a boolean if a field has been set.
 func (o *AzureAccount) HasAutomute() bool {
-	if o != nil && o.Automute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Automute != nil
 }
 
 // SetAutomute gets a reference to the given bool and assigns it to the Automute field.
@@ -101,11 +97,7 @@ func (o *AzureAccount) GetClientIdOk() (*string, bool) {
 
 // HasClientId returns a boolean if a field has been set.
 func (o *AzureAccount) HasClientId() bool {
-	if o != nil && o.ClientId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientId != nil
 }
 
 // SetClientId gets a reference to the given string and assigns it to the ClientId field.
@@ -133,11 +125,7 @@ func (o *AzureAccount) GetClientSecretOk() (*string, bool) {
 
 // HasClientSecret returns a boolean if a field has been set.
 func (o *AzureAccount) HasClientSecret() bool {
-	if o != nil && o.ClientSecret != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientSecret != nil
 }
 
 // SetClientSecret gets a reference to the given string and assigns it to the ClientSecret field.
@@ -165,11 +153,7 @@ func (o *AzureAccount) GetErrorsOk() (*[]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *AzureAccount) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
@@ -197,11 +181,7 @@ func (o *AzureAccount) GetHostFiltersOk() (*string, bool) {
 
 // HasHostFilters returns a boolean if a field has been set.
 func (o *AzureAccount) HasHostFilters() bool {
-	if o != nil && o.HostFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostFilters != nil
 }
 
 // SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.
@@ -229,11 +209,7 @@ func (o *AzureAccount) GetNewClientIdOk() (*string, bool) {
 
 // HasNewClientId returns a boolean if a field has been set.
 func (o *AzureAccount) HasNewClientId() bool {
-	if o != nil && o.NewClientId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewClientId != nil
 }
 
 // SetNewClientId gets a reference to the given string and assigns it to the NewClientId field.
@@ -261,11 +237,7 @@ func (o *AzureAccount) GetNewTenantNameOk() (*string, bool) {
 
 // HasNewTenantName returns a boolean if a field has been set.
 func (o *AzureAccount) HasNewTenantName() bool {
-	if o != nil && o.NewTenantName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewTenantName != nil
 }
 
 // SetNewTenantName gets a reference to the given string and assigns it to the NewTenantName field.
@@ -293,11 +265,7 @@ func (o *AzureAccount) GetTenantNameOk() (*string, bool) {
 
 // HasTenantName returns a boolean if a field has been set.
 func (o *AzureAccount) HasTenantName() bool {
-	if o != nil && o.TenantName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TenantName != nil
 }
 
 // SetTenantName gets a reference to the given string and assigns it to the TenantName field.

@@ -14,7 +14,7 @@ type SyntheticsDeleteTestsResponse struct {
 	// the associated deletion timestamp.
 	DeletedTests []SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,11 +55,7 @@ func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() (*[]SyntheticsDelete
 
 // HasDeletedTests returns a boolean if a field has been set.
 func (o *SyntheticsDeleteTestsResponse) HasDeletedTests() bool {
-	if o != nil && o.DeletedTests != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedTests != nil
 }
 
 // SetDeletedTests gets a reference to the given []SyntheticsDeletedTest and assigns it to the DeletedTests field.

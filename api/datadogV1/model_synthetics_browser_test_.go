@@ -28,14 +28,14 @@ type SyntheticsBrowserTest struct {
 	// Define whether you want to start (`live`) or pause (`paused`) a
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
-	// The steps of the test.
+	// Array of steps for the test.
 	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
 	Tags []string `json:"tags,omitempty"`
 	// Type of the Synthetic test, `browser`.
 	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -153,11 +153,7 @@ func (o *SyntheticsBrowserTest) GetMonitorIdOk() (*int64, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasMonitorId() bool {
-	if o != nil && o.MonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
@@ -231,11 +227,7 @@ func (o *SyntheticsBrowserTest) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -263,11 +255,7 @@ func (o *SyntheticsBrowserTest) GetStatusOk() (*SyntheticsTestPauseStatus, bool)
 
 // HasStatus returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
@@ -295,11 +283,7 @@ func (o *SyntheticsBrowserTest) GetStepsOk() (*[]SyntheticsStep, bool) {
 
 // HasSteps returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasSteps() bool {
-	if o != nil && o.Steps != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Steps != nil
 }
 
 // SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
@@ -327,11 +311,7 @@ func (o *SyntheticsBrowserTest) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SyntheticsBrowserTest) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -425,22 +405,22 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Config == nil {
-		return fmt.Errorf("Required field config missing")
+		return fmt.Errorf("required field config missing")
 	}
 	if required.Locations == nil {
-		return fmt.Errorf("Required field locations missing")
+		return fmt.Errorf("required field locations missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Options == nil {
-		return fmt.Errorf("Required field options missing")
+		return fmt.Errorf("required field options missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

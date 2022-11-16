@@ -13,7 +13,7 @@ type NotebooksResponseMeta struct {
 	// Pagination metadata returned by the API.
 	Page *NotebooksResponsePage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *NotebooksResponseMeta) GetPageOk() (*NotebooksResponsePage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *NotebooksResponseMeta) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given NotebooksResponsePage and assigns it to the Page field.

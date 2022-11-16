@@ -14,7 +14,7 @@ type EventsResponseMetadataPage struct {
 	// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,11 +55,7 @@ func (o *EventsResponseMetadataPage) GetAfterOk() (*string, bool) {
 
 // HasAfter returns a boolean if a field has been set.
 func (o *EventsResponseMetadataPage) HasAfter() bool {
-	if o != nil && o.After != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.After != nil
 }
 
 // SetAfter gets a reference to the given string and assigns it to the After field.

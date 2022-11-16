@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1652349190","query":"service:TestCreateasecurityfilterreturnsOKresponse1652349190"},"type":"security_filters"}}
+      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1666186599","query":"service:TestCreateasecurityfilterreturnsOKresponse1666186599"},"type":"security_filters"}}
     form: {}
     headers:
       Accept:
@@ -11,13 +11,15 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
   response:
-    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1652349190","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
-      staging"}],"version":1,"query":"service:TestCreateasecurityfilterreturnsOKresponse1652349190","is_builtin":false},"type":"security_filters","id":"2co-379-ngs"}}'
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1666186599","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      staging"}],"version":1,"query":"service:TestCreateasecurityfilterreturnsOKresponse1666186599","is_builtin":false},"type":"security_filters","id":"n8l-koa-vuo"}}
+
+      '
     code: 200
     duration: ''
     headers:
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
     status: 200 OK
 - request:
     body: ''
@@ -26,13 +28,13 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/2co-379-ngs
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/n8l-koa-vuo
   response:
     body: ''
     code: 204
     duration: ''
     headers:
       Content-Type:
-      - application/json;charset=utf-8
+      - text/html; charset=utf-8
     status: 204 No Content
 version: 1

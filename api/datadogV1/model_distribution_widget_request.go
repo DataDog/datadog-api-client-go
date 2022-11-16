@@ -37,7 +37,7 @@ type DistributionWidgetRequest struct {
 	// Widget style definition.
 	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,11 +78,7 @@ func (o *DistributionWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) 
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -110,11 +106,7 @@ func (o *DistributionWidgetRequest) GetApmStatsQueryOk() (*ApmStatsQueryDefiniti
 
 // HasApmStatsQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasApmStatsQuery() bool {
-	if o != nil && o.ApmStatsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmStatsQuery != nil
 }
 
 // SetApmStatsQuery gets a reference to the given ApmStatsQueryDefinition and assigns it to the ApmStatsQuery field.
@@ -142,11 +134,7 @@ func (o *DistributionWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -174,11 +162,7 @@ func (o *DistributionWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) 
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -206,11 +190,7 @@ func (o *DistributionWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bo
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -238,11 +218,7 @@ func (o *DistributionWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -270,11 +246,7 @@ func (o *DistributionWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinit
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -302,11 +274,7 @@ func (o *DistributionWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -334,11 +302,7 @@ func (o *DistributionWidgetRequest) GetQueryOk() (*DistributionWidgetHistogramRe
 
 // HasQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given DistributionWidgetHistogramRequestQuery and assigns it to the Query field.
@@ -366,11 +330,7 @@ func (o *DistributionWidgetRequest) GetRequestTypeOk() (*DistributionWidgetHisto
 
 // HasRequestType returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasRequestType() bool {
-	if o != nil && o.RequestType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestType != nil
 }
 
 // SetRequestType gets a reference to the given DistributionWidgetHistogramRequestType and assigns it to the RequestType field.
@@ -398,11 +358,7 @@ func (o *DistributionWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) 
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -430,11 +386,7 @@ func (o *DistributionWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, b
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
@@ -462,11 +414,7 @@ func (o *DistributionWidgetRequest) GetStyleOk() (*WidgetStyle, bool) {
 
 // HasStyle returns a boolean if a field has been set.
 func (o *DistributionWidgetRequest) HasStyle() bool {
-	if o != nil && o.Style != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Style != nil
 }
 
 // SetStyle gets a reference to the given WidgetStyle and assigns it to the Style field.

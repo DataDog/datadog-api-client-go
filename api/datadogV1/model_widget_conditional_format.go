@@ -30,7 +30,7 @@ type WidgetConditionalFormat struct {
 	// Value for the comparator.
 	Value float64 `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,11 +97,7 @@ func (o *WidgetConditionalFormat) GetCustomBgColorOk() (*string, bool) {
 
 // HasCustomBgColor returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasCustomBgColor() bool {
-	if o != nil && o.CustomBgColor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomBgColor != nil
 }
 
 // SetCustomBgColor gets a reference to the given string and assigns it to the CustomBgColor field.
@@ -129,11 +125,7 @@ func (o *WidgetConditionalFormat) GetCustomFgColorOk() (*string, bool) {
 
 // HasCustomFgColor returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasCustomFgColor() bool {
-	if o != nil && o.CustomFgColor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomFgColor != nil
 }
 
 // SetCustomFgColor gets a reference to the given string and assigns it to the CustomFgColor field.
@@ -161,11 +153,7 @@ func (o *WidgetConditionalFormat) GetHideValueOk() (*bool, bool) {
 
 // HasHideValue returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasHideValue() bool {
-	if o != nil && o.HideValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HideValue != nil
 }
 
 // SetHideValue gets a reference to the given bool and assigns it to the HideValue field.
@@ -193,11 +181,7 @@ func (o *WidgetConditionalFormat) GetImageUrlOk() (*string, bool) {
 
 // HasImageUrl returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasImageUrl() bool {
-	if o != nil && o.ImageUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ImageUrl != nil
 }
 
 // SetImageUrl gets a reference to the given string and assigns it to the ImageUrl field.
@@ -225,11 +209,7 @@ func (o *WidgetConditionalFormat) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -280,11 +260,7 @@ func (o *WidgetConditionalFormat) GetTimeframeOk() (*string, bool) {
 
 // HasTimeframe returns a boolean if a field has been set.
 func (o *WidgetConditionalFormat) HasTimeframe() bool {
-	if o != nil && o.Timeframe != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timeframe != nil
 }
 
 // SetTimeframe gets a reference to the given string and assigns it to the Timeframe field.
@@ -373,13 +349,13 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Comparator == nil {
-		return fmt.Errorf("Required field comparator missing")
+		return fmt.Errorf("required field comparator missing")
 	}
 	if required.Palette == nil {
-		return fmt.Errorf("Required field palette missing")
+		return fmt.Errorf("required field palette missing")
 	}
 	if required.Value == nil {
-		return fmt.Errorf("Required field value missing")
+		return fmt.Errorf("required field value missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -10,14 +10,14 @@ import (
 
 // RUMQueryFilter The search and filter query settings.
 type RUMQueryFilter struct {
-	// The minimum time for the requested events; supports date, math, and regular timestamps (in milliseconds).
+	// The minimum time for the requested events; supports date (in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with full date, hours, minutes, and the `Z` UTC indicator - seconds and fractional seconds are optional), math, and regular timestamps (in milliseconds).
 	From *string `json:"from,omitempty"`
 	// The search query following the RUM search syntax.
 	Query *string `json:"query,omitempty"`
-	// The maximum time for the requested events; supports date, math, and regular timestamps (in milliseconds).
+	// The maximum time for the requested events; supports date (in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with full date, hours, minutes, and the `Z` UTC indicator - seconds and fractional seconds are optional), math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -70,11 +70,7 @@ func (o *RUMQueryFilter) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
@@ -102,11 +98,7 @@ func (o *RUMQueryFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -134,11 +126,7 @@ func (o *RUMQueryFilter) GetToOk() (*string, bool) {
 
 // HasTo returns a boolean if a field has been set.
 func (o *RUMQueryFilter) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.To != nil
 }
 
 // SetTo gets a reference to the given string and assigns it to the To field.

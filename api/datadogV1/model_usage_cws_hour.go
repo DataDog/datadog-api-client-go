@@ -22,7 +22,7 @@ type UsageCWSHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *UsageCWSHour) GetCwsContainerCountOk() (*int64, bool) {
 
 // HasCwsContainerCount returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasCwsContainerCount() bool {
-	if o != nil && o.CwsContainerCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsContainerCount != nil
 }
 
 // SetCwsContainerCount gets a reference to the given int64 and assigns it to the CwsContainerCount field.
@@ -95,11 +91,7 @@ func (o *UsageCWSHour) GetCwsHostCountOk() (*int64, bool) {
 
 // HasCwsHostCount returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasCwsHostCount() bool {
-	if o != nil && o.CwsHostCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostCount != nil
 }
 
 // SetCwsHostCount gets a reference to the given int64 and assigns it to the CwsHostCount field.
@@ -127,11 +119,7 @@ func (o *UsageCWSHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -159,11 +147,7 @@ func (o *UsageCWSHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -191,11 +175,7 @@ func (o *UsageCWSHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

@@ -15,7 +15,7 @@ type NotebooksResponse struct {
 	// Searches metadata returned by the API.
 	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *NotebooksResponse) GetDataOk() (*[]NotebooksResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *NotebooksResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []NotebooksResponseData and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *NotebooksResponse) GetMetaOk() (*NotebooksResponseMeta, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *NotebooksResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given NotebooksResponseMeta and assigns it to the Meta field.

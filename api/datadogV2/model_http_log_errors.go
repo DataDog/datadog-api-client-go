@@ -13,7 +13,7 @@ type HTTPLogErrors struct {
 	// Structured errors.
 	Errors []HTTPLogError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *HTTPLogErrors) GetErrorsOk() (*[]HTTPLogError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *HTTPLogErrors) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []HTTPLogError and assigns it to the Errors field.

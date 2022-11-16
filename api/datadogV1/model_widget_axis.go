@@ -21,7 +21,7 @@ type WidgetAxis struct {
 	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, `pow##` (for example `pow2`, `pow0.5` etc.).
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,11 +74,7 @@ func (o *WidgetAxis) GetIncludeZeroOk() (*bool, bool) {
 
 // HasIncludeZero returns a boolean if a field has been set.
 func (o *WidgetAxis) HasIncludeZero() bool {
-	if o != nil && o.IncludeZero != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludeZero != nil
 }
 
 // SetIncludeZero gets a reference to the given bool and assigns it to the IncludeZero field.
@@ -106,11 +102,7 @@ func (o *WidgetAxis) GetLabelOk() (*string, bool) {
 
 // HasLabel returns a boolean if a field has been set.
 func (o *WidgetAxis) HasLabel() bool {
-	if o != nil && o.Label != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Label != nil
 }
 
 // SetLabel gets a reference to the given string and assigns it to the Label field.
@@ -138,11 +130,7 @@ func (o *WidgetAxis) GetMaxOk() (*string, bool) {
 
 // HasMax returns a boolean if a field has been set.
 func (o *WidgetAxis) HasMax() bool {
-	if o != nil && o.Max != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Max != nil
 }
 
 // SetMax gets a reference to the given string and assigns it to the Max field.
@@ -170,11 +158,7 @@ func (o *WidgetAxis) GetMinOk() (*string, bool) {
 
 // HasMin returns a boolean if a field has been set.
 func (o *WidgetAxis) HasMin() bool {
-	if o != nil && o.Min != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Min != nil
 }
 
 // SetMin gets a reference to the given string and assigns it to the Min field.
@@ -202,11 +186,7 @@ func (o *WidgetAxis) GetScaleOk() (*string, bool) {
 
 // HasScale returns a boolean if a field has been set.
 func (o *WidgetAxis) HasScale() bool {
-	if o != nil && o.Scale != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scale != nil
 }
 
 // SetScale gets a reference to the given string and assigns it to the Scale field.

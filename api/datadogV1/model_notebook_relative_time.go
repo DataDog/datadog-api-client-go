@@ -14,7 +14,7 @@ type NotebookRelativeTime struct {
 	// The available timeframes depend on the widget you are using.
 	LiveSpan WidgetLiveSpan `json:"live_span"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,7 +87,7 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LiveSpan == nil {
-		return fmt.Errorf("Required field live_span missing")
+		return fmt.Errorf("required field live_span missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

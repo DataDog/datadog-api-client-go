@@ -19,7 +19,7 @@ type NotebookAbsoluteTime struct {
 	// The start time.
 	Start time.Time `json:"start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,11 +85,7 @@ func (o *NotebookAbsoluteTime) GetLiveOk() (*bool, bool) {
 
 // HasLive returns a boolean if a field has been set.
 func (o *NotebookAbsoluteTime) HasLive() bool {
-	if o != nil && o.Live != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Live != nil
 }
 
 // SetLive gets a reference to the given bool and assigns it to the Live field.
@@ -163,10 +159,10 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.End == nil {
-		return fmt.Errorf("Required field end missing")
+		return fmt.Errorf("required field end missing")
 	}
 	if required.Start == nil {
-		return fmt.Errorf("Required field start missing")
+		return fmt.Errorf("required field start missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

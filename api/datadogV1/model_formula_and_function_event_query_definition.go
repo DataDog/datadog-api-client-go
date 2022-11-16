@@ -23,8 +23,10 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	Name string `json:"name"`
 	// Search options.
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+	// Option for storage location. Feature in Private Beta.
+	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -114,11 +116,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]FormulaAndFu
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []FormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
@@ -146,11 +144,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]string, bool
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -201,16 +195,40 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetSearchOk() (*FormulaAndFunct
 
 // HasSearch returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) HasSearch() bool {
-	if o != nil && o.Search != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Search != nil
 }
 
 // SetSearch gets a reference to the given FormulaAndFunctionEventQueryDefinitionSearch and assigns it to the Search field.
 func (o *FormulaAndFunctionEventQueryDefinition) SetSearch(v FormulaAndFunctionEventQueryDefinitionSearch) {
 	o.Search = &v
+}
+
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *FormulaAndFunctionEventQueryDefinition) GetStorage() string {
+	if o == nil || o.Storage == nil {
+		var ret string
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FormulaAndFunctionEventQueryDefinition) GetStorageOk() (*string, bool) {
+	if o == nil || o.Storage == nil {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *FormulaAndFunctionEventQueryDefinition) HasStorage() bool {
+	return o != nil && o.Storage != nil
+}
+
+// SetStorage gets a reference to the given string and assigns it to the Storage field.
+func (o *FormulaAndFunctionEventQueryDefinition) SetStorage(v string) {
+	o.Storage = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -230,6 +248,9 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize["name"] = o.Name
 	if o.Search != nil {
 		toSerialize["search"] = o.Search
+	}
+	if o.Storage != nil {
+		toSerialize["storage"] = o.Storage
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -253,19 +274,20 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 		Indexes    []string                                      `json:"indexes,omitempty"`
 		Name       string                                        `json:"name"`
 		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+		Storage    *string                                       `json:"storage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -304,5 +326,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 	}
 	o.Search = all.Search
+	o.Storage = all.Storage
 	return nil
 }

@@ -41,7 +41,7 @@ type ToplistWidgetRequest struct {
 	// Define request widget style.
 	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,11 +82,7 @@ func (o *ToplistWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -114,11 +110,7 @@ func (o *ToplistWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool) {
 
 // HasAuditQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasAuditQuery() bool {
-	if o != nil && o.AuditQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuditQuery != nil
 }
 
 // SetAuditQuery gets a reference to the given LogQueryDefinition and assigns it to the AuditQuery field.
@@ -146,11 +138,7 @@ func (o *ToplistWidgetRequest) GetConditionalFormatsOk() (*[]WidgetConditionalFo
 
 // HasConditionalFormats returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasConditionalFormats() bool {
-	if o != nil && o.ConditionalFormats != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConditionalFormats != nil
 }
 
 // SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
@@ -178,11 +166,7 @@ func (o *ToplistWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -210,11 +194,7 @@ func (o *ToplistWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -242,11 +222,7 @@ func (o *ToplistWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -274,11 +250,7 @@ func (o *ToplistWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -306,11 +278,7 @@ func (o *ToplistWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, boo
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -338,11 +306,7 @@ func (o *ToplistWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, 
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -370,11 +334,7 @@ func (o *ToplistWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -402,11 +362,7 @@ func (o *ToplistWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinit
 
 // HasQueries returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -434,11 +390,7 @@ func (o *ToplistWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionRespons
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
@@ -466,11 +418,7 @@ func (o *ToplistWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -498,11 +446,7 @@ func (o *ToplistWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) 
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.
@@ -530,11 +474,7 @@ func (o *ToplistWidgetRequest) GetStyleOk() (*WidgetRequestStyle, bool) {
 
 // HasStyle returns a boolean if a field has been set.
 func (o *ToplistWidgetRequest) HasStyle() bool {
-	if o != nil && o.Style != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Style != nil
 }
 
 // SetStyle gets a reference to the given WidgetRequestStyle and assigns it to the Style field.

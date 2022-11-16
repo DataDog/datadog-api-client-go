@@ -24,7 +24,7 @@ type MonitorFormulaAndFunctionEventQueryDefinition struct {
 	// Search options.
 	Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -114,11 +114,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]Monit
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []MonitorFormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
@@ -146,11 +142,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]strin
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -201,11 +193,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetSearchOk() (*MonitorF
 
 // HasSearch returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasSearch() bool {
-	if o != nil && o.Search != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Search != nil
 }
 
 // SetSearch gets a reference to the given MonitorFormulaAndFunctionEventQueryDefinitionSearch and assigns it to the Search field.
@@ -259,13 +247,13 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []by
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

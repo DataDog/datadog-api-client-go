@@ -13,7 +13,7 @@ type IncidentResponseMeta struct {
 	// Pagination properties.
 	Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *IncidentResponseMeta) GetPaginationOk() (*IncidentResponseMetaPaginatio
 
 // HasPagination returns a boolean if a field has been set.
 func (o *IncidentResponseMeta) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given IncidentResponseMetaPagination and assigns it to the Pagination field.

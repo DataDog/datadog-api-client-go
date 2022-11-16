@@ -33,11 +33,11 @@ type EventAttributes struct {
 	// List of groups referred to in the event.
 	MonitorGroups []string `json:"monitor_groups,omitempty"`
 	// ID of the monitor that triggered the event. When an event isn't related to a monitor, this field is empty.
-	MonitorId datadog.NullableInt32 `json:"monitor_id,omitempty"`
+	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
 	// The priority of the event's monitor. For example, `normal` or `low`.
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// Related event ID.
-	RelatedEventId *int32 `json:"related_event_id,omitempty"`
+	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// Service that triggered the event.
 	Service *string `json:"service,omitempty"`
 	// The type of event being posted.
@@ -57,7 +57,7 @@ type EventAttributes struct {
 	// The event title.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -98,11 +98,7 @@ func (o *EventAttributes) GetAggregationKeyOk() (*string, bool) {
 
 // HasAggregationKey returns a boolean if a field has been set.
 func (o *EventAttributes) HasAggregationKey() bool {
-	if o != nil && o.AggregationKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AggregationKey != nil
 }
 
 // SetAggregationKey gets a reference to the given string and assigns it to the AggregationKey field.
@@ -130,11 +126,7 @@ func (o *EventAttributes) GetDateHappenedOk() (*int64, bool) {
 
 // HasDateHappened returns a boolean if a field has been set.
 func (o *EventAttributes) HasDateHappened() bool {
-	if o != nil && o.DateHappened != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DateHappened != nil
 }
 
 // SetDateHappened gets a reference to the given int64 and assigns it to the DateHappened field.
@@ -162,11 +154,7 @@ func (o *EventAttributes) GetDeviceNameOk() (*string, bool) {
 
 // HasDeviceName returns a boolean if a field has been set.
 func (o *EventAttributes) HasDeviceName() bool {
-	if o != nil && o.DeviceName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeviceName != nil
 }
 
 // SetDeviceName gets a reference to the given string and assigns it to the DeviceName field.
@@ -194,11 +182,7 @@ func (o *EventAttributes) GetDurationOk() (*int64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *EventAttributes) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given int64 and assigns it to the Duration field.
@@ -226,11 +210,7 @@ func (o *EventAttributes) GetEventObjectOk() (*string, bool) {
 
 // HasEventObject returns a boolean if a field has been set.
 func (o *EventAttributes) HasEventObject() bool {
-	if o != nil && o.EventObject != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventObject != nil
 }
 
 // SetEventObject gets a reference to the given string and assigns it to the EventObject field.
@@ -258,11 +238,7 @@ func (o *EventAttributes) GetEvtOk() (*Event, bool) {
 
 // HasEvt returns a boolean if a field has been set.
 func (o *EventAttributes) HasEvt() bool {
-	if o != nil && o.Evt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Evt != nil
 }
 
 // SetEvt gets a reference to the given Event and assigns it to the Evt field.
@@ -290,11 +266,7 @@ func (o *EventAttributes) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *EventAttributes) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hostname != nil
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
@@ -323,11 +295,7 @@ func (o *EventAttributes) GetMonitorOk() (*MonitorType, bool) {
 
 // HasMonitor returns a boolean if a field has been set.
 func (o *EventAttributes) HasMonitor() bool {
-	if o != nil && o.Monitor.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Monitor.IsSet()
 }
 
 // SetMonitor gets a reference to the given NullableMonitorType and assigns it to the Monitor field.
@@ -366,11 +334,7 @@ func (o *EventAttributes) GetMonitorGroupsOk() (*[]string, bool) {
 
 // HasMonitorGroups returns a boolean if a field has been set.
 func (o *EventAttributes) HasMonitorGroups() bool {
-	if o != nil && o.MonitorGroups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorGroups != nil
 }
 
 // SetMonitorGroups gets a reference to the given []string and assigns it to the MonitorGroups field.
@@ -379,9 +343,9 @@ func (o *EventAttributes) SetMonitorGroups(v []string) {
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EventAttributes) GetMonitorId() int32 {
+func (o *EventAttributes) GetMonitorId() int64 {
 	if o == nil || o.MonitorId.Get() == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MonitorId.Get()
@@ -390,7 +354,7 @@ func (o *EventAttributes) GetMonitorId() int32 {
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *EventAttributes) GetMonitorIdOk() (*int32, bool) {
+func (o *EventAttributes) GetMonitorIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -399,15 +363,11 @@ func (o *EventAttributes) GetMonitorIdOk() (*int32, bool) {
 
 // HasMonitorId returns a boolean if a field has been set.
 func (o *EventAttributes) HasMonitorId() bool {
-	if o != nil && o.MonitorId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorId.IsSet()
 }
 
-// SetMonitorId gets a reference to the given datadog.NullableInt32 and assigns it to the MonitorId field.
-func (o *EventAttributes) SetMonitorId(v int32) {
+// SetMonitorId gets a reference to the given datadog.NullableInt64 and assigns it to the MonitorId field.
+func (o *EventAttributes) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
 
@@ -442,11 +402,7 @@ func (o *EventAttributes) GetPriorityOk() (*EventPriority, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *EventAttributes) HasPriority() bool {
-	if o != nil && o.Priority.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Priority.IsSet()
 }
 
 // SetPriority gets a reference to the given NullableEventPriority and assigns it to the Priority field.
@@ -465,9 +421,9 @@ func (o *EventAttributes) UnsetPriority() {
 }
 
 // GetRelatedEventId returns the RelatedEventId field value if set, zero value otherwise.
-func (o *EventAttributes) GetRelatedEventId() int32 {
+func (o *EventAttributes) GetRelatedEventId() int64 {
 	if o == nil || o.RelatedEventId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RelatedEventId
@@ -475,7 +431,7 @@ func (o *EventAttributes) GetRelatedEventId() int32 {
 
 // GetRelatedEventIdOk returns a tuple with the RelatedEventId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventAttributes) GetRelatedEventIdOk() (*int32, bool) {
+func (o *EventAttributes) GetRelatedEventIdOk() (*int64, bool) {
 	if o == nil || o.RelatedEventId == nil {
 		return nil, false
 	}
@@ -484,15 +440,11 @@ func (o *EventAttributes) GetRelatedEventIdOk() (*int32, bool) {
 
 // HasRelatedEventId returns a boolean if a field has been set.
 func (o *EventAttributes) HasRelatedEventId() bool {
-	if o != nil && o.RelatedEventId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RelatedEventId != nil
 }
 
-// SetRelatedEventId gets a reference to the given int32 and assigns it to the RelatedEventId field.
-func (o *EventAttributes) SetRelatedEventId(v int32) {
+// SetRelatedEventId gets a reference to the given int64 and assigns it to the RelatedEventId field.
+func (o *EventAttributes) SetRelatedEventId(v int64) {
 	o.RelatedEventId = &v
 }
 
@@ -516,11 +468,7 @@ func (o *EventAttributes) GetServiceOk() (*string, bool) {
 
 // HasService returns a boolean if a field has been set.
 func (o *EventAttributes) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Service != nil
 }
 
 // SetService gets a reference to the given string and assigns it to the Service field.
@@ -548,11 +496,7 @@ func (o *EventAttributes) GetSourceTypeNameOk() (*string, bool) {
 
 // HasSourceTypeName returns a boolean if a field has been set.
 func (o *EventAttributes) HasSourceTypeName() bool {
-	if o != nil && o.SourceTypeName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SourceTypeName != nil
 }
 
 // SetSourceTypeName gets a reference to the given string and assigns it to the SourceTypeName field.
@@ -580,11 +524,7 @@ func (o *EventAttributes) GetSourcecategoryOk() (*string, bool) {
 
 // HasSourcecategory returns a boolean if a field has been set.
 func (o *EventAttributes) HasSourcecategory() bool {
-	if o != nil && o.Sourcecategory != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sourcecategory != nil
 }
 
 // SetSourcecategory gets a reference to the given string and assigns it to the Sourcecategory field.
@@ -612,11 +552,7 @@ func (o *EventAttributes) GetStatusOk() (*EventStatusType, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *EventAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given EventStatusType and assigns it to the Status field.
@@ -644,11 +580,7 @@ func (o *EventAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *EventAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -676,11 +608,7 @@ func (o *EventAttributes) GetTimestampOk() (*int64, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *EventAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
@@ -708,11 +636,7 @@ func (o *EventAttributes) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *EventAttributes) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -803,9 +727,9 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Hostname       *string               `json:"hostname,omitempty"`
 		Monitor        NullableMonitorType   `json:"monitor,omitempty"`
 		MonitorGroups  []string              `json:"monitor_groups,omitempty"`
-		MonitorId      datadog.NullableInt32 `json:"monitor_id,omitempty"`
+		MonitorId      datadog.NullableInt64 `json:"monitor_id,omitempty"`
 		Priority       NullableEventPriority `json:"priority,omitempty"`
-		RelatedEventId *int32                `json:"related_event_id,omitempty"`
+		RelatedEventId *int64                `json:"related_event_id,omitempty"`
 		Service        *string               `json:"service,omitempty"`
 		SourceTypeName *string               `json:"source_type_name,omitempty"`
 		Sourcecategory *string               `json:"sourcecategory,omitempty"`

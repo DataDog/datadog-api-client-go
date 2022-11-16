@@ -13,7 +13,7 @@ type SyntheticsCITestBody struct {
 	// Individual synthetics test.
 	Tests []SyntheticsCITest `json:"tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *SyntheticsCITestBody) GetTestsOk() (*[]SyntheticsCITest, bool) {
 
 // HasTests returns a boolean if a field has been set.
 func (o *SyntheticsCITestBody) HasTests() bool {
-	if o != nil && o.Tests != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tests != nil
 }
 
 // SetTests gets a reference to the given []SyntheticsCITest and assigns it to the Tests field.

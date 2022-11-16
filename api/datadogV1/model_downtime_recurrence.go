@@ -34,7 +34,7 @@ type DowntimeRecurrence struct {
 	// Only applicable when type is weeks. First letter must be capitalized.
 	WeekDays []string `json:"week_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,11 +75,7 @@ func (o *DowntimeRecurrence) GetPeriodOk() (*int32, bool) {
 
 // HasPeriod returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasPeriod() bool {
-	if o != nil && o.Period != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Period != nil
 }
 
 // SetPeriod gets a reference to the given int32 and assigns it to the Period field.
@@ -107,11 +103,7 @@ func (o *DowntimeRecurrence) GetRruleOk() (*string, bool) {
 
 // HasRrule returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasRrule() bool {
-	if o != nil && o.Rrule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Rrule != nil
 }
 
 // SetRrule gets a reference to the given string and assigns it to the Rrule field.
@@ -139,11 +131,7 @@ func (o *DowntimeRecurrence) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
@@ -172,11 +160,7 @@ func (o *DowntimeRecurrence) GetUntilDateOk() (*int64, bool) {
 
 // HasUntilDate returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasUntilDate() bool {
-	if o != nil && o.UntilDate.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.UntilDate.IsSet()
 }
 
 // SetUntilDate gets a reference to the given datadog.NullableInt64 and assigns it to the UntilDate field.
@@ -215,11 +199,7 @@ func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (*int32, bool) {
 
 // HasUntilOccurrences returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasUntilOccurrences() bool {
-	if o != nil && o.UntilOccurrences.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.UntilOccurrences.IsSet()
 }
 
 // SetUntilOccurrences gets a reference to the given datadog.NullableInt32 and assigns it to the UntilOccurrences field.
@@ -258,11 +238,7 @@ func (o *DowntimeRecurrence) GetWeekDaysOk() (*[]string, bool) {
 
 // HasWeekDays returns a boolean if a field has been set.
 func (o *DowntimeRecurrence) HasWeekDays() bool {
-	if o != nil && o.WeekDays != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.WeekDays != nil
 }
 
 // SetWeekDays gets a reference to the given []string and assigns it to the WeekDays field.

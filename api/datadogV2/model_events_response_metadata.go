@@ -20,7 +20,7 @@ type EventsResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []EventsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *EventsResponseMetadata) GetElapsedOk() (*int64, bool) {
 
 // HasElapsed returns a boolean if a field has been set.
 func (o *EventsResponseMetadata) HasElapsed() bool {
-	if o != nil && o.Elapsed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Elapsed != nil
 }
 
 // SetElapsed gets a reference to the given int64 and assigns it to the Elapsed field.
@@ -93,11 +89,7 @@ func (o *EventsResponseMetadata) GetPageOk() (*EventsResponseMetadataPage, bool)
 
 // HasPage returns a boolean if a field has been set.
 func (o *EventsResponseMetadata) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given EventsResponseMetadataPage and assigns it to the Page field.
@@ -125,11 +117,7 @@ func (o *EventsResponseMetadata) GetRequestIdOk() (*string, bool) {
 
 // HasRequestId returns a boolean if a field has been set.
 func (o *EventsResponseMetadata) HasRequestId() bool {
-	if o != nil && o.RequestId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestId != nil
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
@@ -157,11 +145,7 @@ func (o *EventsResponseMetadata) GetWarningsOk() (*[]EventsWarning, bool) {
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *EventsResponseMetadata) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warnings != nil
 }
 
 // SetWarnings gets a reference to the given []EventsWarning and assigns it to the Warnings field.

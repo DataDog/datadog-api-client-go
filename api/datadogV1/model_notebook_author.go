@@ -32,7 +32,7 @@ type NotebookAuthor struct {
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,11 +73,7 @@ func (o *NotebookAuthor) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -105,11 +101,7 @@ func (o *NotebookAuthor) GetDisabledOk() (*bool, bool) {
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasDisabled() bool {
-	if o != nil && o.Disabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Disabled != nil
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
@@ -137,11 +129,7 @@ func (o *NotebookAuthor) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasEmail() bool {
-	if o != nil && o.Email != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Email != nil
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
@@ -169,11 +157,7 @@ func (o *NotebookAuthor) GetHandleOk() (*string, bool) {
 
 // HasHandle returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasHandle() bool {
-	if o != nil && o.Handle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handle != nil
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.
@@ -201,11 +185,7 @@ func (o *NotebookAuthor) GetIconOk() (*string, bool) {
 
 // HasIcon returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasIcon() bool {
-	if o != nil && o.Icon != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Icon != nil
 }
 
 // SetIcon gets a reference to the given string and assigns it to the Icon field.
@@ -234,11 +214,7 @@ func (o *NotebookAuthor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name.IsSet()
 }
 
 // SetName gets a reference to the given datadog.NullableString and assigns it to the Name field.
@@ -276,11 +252,7 @@ func (o *NotebookAuthor) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
@@ -309,11 +281,7 @@ func (o *NotebookAuthor) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasTitle() bool {
-	if o != nil && o.Title.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title.IsSet()
 }
 
 // SetTitle gets a reference to the given datadog.NullableString and assigns it to the Title field.
@@ -351,11 +319,7 @@ func (o *NotebookAuthor) GetVerifiedOk() (*bool, bool) {
 
 // HasVerified returns a boolean if a field has been set.
 func (o *NotebookAuthor) HasVerified() bool {
-	if o != nil && o.Verified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Verified != nil
 }
 
 // SetVerified gets a reference to the given bool and assigns it to the Verified field.

@@ -15,14 +15,17 @@ import (
 type DashboardTemplateVariable struct {
 	// The list of values that the template variable drop-down is limited to.
 	AvailableValues []string `json:"available_values,omitempty"`
-	// The default value for the template variable on dashboard load.
+	// (deprecated) The default value for the template variable on dashboard load. Cannot be used in conjunction with `defaults`.
+	// Deprecated
 	Default datadog.NullableString `json:"default,omitempty"`
+	// One or many default values for template variables on load. If more than one default is specified, they will be unioned together with `OR`. Cannot be used in conjunction with `default`.
+	Defaults []string `json:"defaults,omitempty"`
 	// The name of the variable.
 	Name string `json:"name"`
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix datadog.NullableString `json:"prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,11 +68,7 @@ func (o *DashboardTemplateVariable) GetAvailableValuesOk() (*[]string, bool) {
 
 // HasAvailableValues returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasAvailableValues() bool {
-	if o != nil && o.AvailableValues != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AvailableValues != nil
 }
 
 // SetAvailableValues gets a reference to the given []string and assigns it to the AvailableValues field.
@@ -78,6 +77,7 @@ func (o *DashboardTemplateVariable) SetAvailableValues(v []string) {
 }
 
 // GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *DashboardTemplateVariable) GetDefault() string {
 	if o == nil || o.Default.Get() == nil {
 		var ret string
@@ -89,6 +89,7 @@ func (o *DashboardTemplateVariable) GetDefault() string {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
+// Deprecated
 func (o *DashboardTemplateVariable) GetDefaultOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -98,14 +99,11 @@ func (o *DashboardTemplateVariable) GetDefaultOk() (*string, bool) {
 
 // HasDefault returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasDefault() bool {
-	if o != nil && o.Default.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Default.IsSet()
 }
 
 // SetDefault gets a reference to the given datadog.NullableString and assigns it to the Default field.
+// Deprecated
 func (o *DashboardTemplateVariable) SetDefault(v string) {
 	o.Default.Set(&v)
 }
@@ -118,6 +116,34 @@ func (o *DashboardTemplateVariable) SetDefaultNil() {
 // UnsetDefault ensures that no value is present for Default, not even an explicit nil.
 func (o *DashboardTemplateVariable) UnsetDefault() {
 	o.Default.Unset()
+}
+
+// GetDefaults returns the Defaults field value if set, zero value otherwise.
+func (o *DashboardTemplateVariable) GetDefaults() []string {
+	if o == nil || o.Defaults == nil {
+		var ret []string
+		return ret
+	}
+	return o.Defaults
+}
+
+// GetDefaultsOk returns a tuple with the Defaults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DashboardTemplateVariable) GetDefaultsOk() (*[]string, bool) {
+	if o == nil || o.Defaults == nil {
+		return nil, false
+	}
+	return &o.Defaults, true
+}
+
+// HasDefaults returns a boolean if a field has been set.
+func (o *DashboardTemplateVariable) HasDefaults() bool {
+	return o != nil && o.Defaults != nil
+}
+
+// SetDefaults gets a reference to the given []string and assigns it to the Defaults field.
+func (o *DashboardTemplateVariable) SetDefaults(v []string) {
+	o.Defaults = v
 }
 
 // GetName returns the Name field value.
@@ -164,11 +190,7 @@ func (o *DashboardTemplateVariable) GetPrefixOk() (*string, bool) {
 
 // HasPrefix returns a boolean if a field has been set.
 func (o *DashboardTemplateVariable) HasPrefix() bool {
-	if o != nil && o.Prefix.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Prefix.IsSet()
 }
 
 // SetPrefix gets a reference to the given datadog.NullableString and assigns it to the Prefix field.
@@ -198,6 +220,9 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	if o.Default.IsSet() {
 		toSerialize["default"] = o.Default.Get()
 	}
+	if o.Defaults != nil {
+		toSerialize["defaults"] = o.Defaults
+	}
 	toSerialize["name"] = o.Name
 	if o.Prefix.IsSet() {
 		toSerialize["prefix"] = o.Prefix.Get()
@@ -218,6 +243,7 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AvailableValues []string               `json:"available_values,omitempty"`
 		Default         datadog.NullableString `json:"default,omitempty"`
+		Defaults        []string               `json:"defaults,omitempty"`
 		Name            string                 `json:"name"`
 		Prefix          datadog.NullableString `json:"prefix,omitempty"`
 	}{}
@@ -226,7 +252,7 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -239,6 +265,7 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AvailableValues = all.AvailableValues
 	o.Default = all.Default
+	o.Defaults = all.Defaults
 	o.Name = all.Name
 	o.Prefix = all.Prefix
 	return nil

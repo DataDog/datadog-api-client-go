@@ -30,7 +30,7 @@ type LogsIndexUpdateRequest struct {
 	// already in this index. It may also affect billing.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,11 +72,7 @@ func (o *LogsIndexUpdateRequest) GetDailyLimitOk() (*int64, bool) {
 
 // HasDailyLimit returns a boolean if a field has been set.
 func (o *LogsIndexUpdateRequest) HasDailyLimit() bool {
-	if o != nil && o.DailyLimit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DailyLimit != nil
 }
 
 // SetDailyLimit gets a reference to the given int64 and assigns it to the DailyLimit field.
@@ -104,11 +100,7 @@ func (o *LogsIndexUpdateRequest) GetDisableDailyLimitOk() (*bool, bool) {
 
 // HasDisableDailyLimit returns a boolean if a field has been set.
 func (o *LogsIndexUpdateRequest) HasDisableDailyLimit() bool {
-	if o != nil && o.DisableDailyLimit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DisableDailyLimit != nil
 }
 
 // SetDisableDailyLimit gets a reference to the given bool and assigns it to the DisableDailyLimit field.
@@ -136,11 +128,7 @@ func (o *LogsIndexUpdateRequest) GetExclusionFiltersOk() (*[]LogsExclusion, bool
 
 // HasExclusionFilters returns a boolean if a field has been set.
 func (o *LogsIndexUpdateRequest) HasExclusionFilters() bool {
-	if o != nil && o.ExclusionFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExclusionFilters != nil
 }
 
 // SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it to the ExclusionFilters field.
@@ -191,11 +179,7 @@ func (o *LogsIndexUpdateRequest) GetNumRetentionDaysOk() (*int64, bool) {
 
 // HasNumRetentionDays returns a boolean if a field has been set.
 func (o *LogsIndexUpdateRequest) HasNumRetentionDays() bool {
-	if o != nil && o.NumRetentionDays != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NumRetentionDays != nil
 }
 
 // SetNumRetentionDays gets a reference to the given int64 and assigns it to the NumRetentionDays field.
@@ -247,7 +231,7 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Filter == nil {
-		return fmt.Errorf("Required field filter missing")
+		return fmt.Errorf("required field filter missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

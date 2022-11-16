@@ -13,7 +13,7 @@ type LogsAggregateResponseData struct {
 	// The list of matching buckets, one item per bucket
 	Buckets []LogsAggregateBucket `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *LogsAggregateResponseData) GetBucketsOk() (*[]LogsAggregateBucket, bool
 
 // HasBuckets returns a boolean if a field has been set.
 func (o *LogsAggregateResponseData) HasBuckets() bool {
-	if o != nil && o.Buckets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Buckets != nil
 }
 
 // SetBuckets gets a reference to the given []LogsAggregateBucket and assigns it to the Buckets field.

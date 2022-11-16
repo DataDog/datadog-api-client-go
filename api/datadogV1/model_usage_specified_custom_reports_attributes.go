@@ -23,7 +23,7 @@ type UsageSpecifiedCustomReportsAttributes struct {
 	// A list of tags to apply to specified custom reports.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetComputedOnOk() (*string, bool
 
 // HasComputedOn returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasComputedOn() bool {
-	if o != nil && o.ComputedOn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ComputedOn != nil
 }
 
 // SetComputedOn gets a reference to the given string and assigns it to the ComputedOn field.
@@ -96,11 +92,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetEndDateOk() (*string, bool) {
 
 // HasEndDate returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasEndDate() bool {
-	if o != nil && o.EndDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EndDate != nil
 }
 
 // SetEndDate gets a reference to the given string and assigns it to the EndDate field.
@@ -128,11 +120,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetLocationOk() (*string, bool) 
 
 // HasLocation returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasLocation() bool {
-	if o != nil && o.Location != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Location != nil
 }
 
 // SetLocation gets a reference to the given string and assigns it to the Location field.
@@ -160,11 +148,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetSizeOk() (*int64, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
@@ -192,11 +176,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetStartDateOk() (*string, bool)
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StartDate != nil
 }
 
 // SetStartDate gets a reference to the given string and assigns it to the StartDate field.
@@ -224,11 +204,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

@@ -20,7 +20,7 @@ import (
 )
 
 func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadogV1.AWSAccount {
-	accountID := fmt.Sprintf("AC%d", tests.ClockFromContext(ctx).Now().Unix())
+	accountID := fmt.Sprintf("00%d", tests.ClockFromContext(ctx).Now().Unix())
 	return datadogV1.AWSAccount{
 		AccountId:                     datadog.PtrString(accountID[:12]),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
@@ -405,10 +405,7 @@ func retryDeleteAccount(ctx context.Context, t *testing.T, awsAccount datadogV1.
 	api := datadogV1.NewAWSIntegrationApi(Client(ctx))
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := api.DeleteAWSAccount(ctx, *body)
-		if httpresp.StatusCode == 502 {
-			return false
-		}
-		return true
+		return httpresp.StatusCode != 502
 	})
 	if err != nil {
 		t.Fatalf("Error deleting AWS Account: Response %s", err)
@@ -419,10 +416,7 @@ func retryCreateAccount(ctx context.Context, t *testing.T, awsAccount datadogV1.
 	api := datadogV1.NewAWSIntegrationApi(Client(ctx))
 	err := tests.Retry(time.Duration(rand.Intn(10))*time.Second, 10, func() bool {
 		_, httpresp, _ := api.CreateAWSAccount(ctx, awsAccount)
-		if httpresp.StatusCode == 502 {
-			return false
-		}
-		return true
+		return httpresp.StatusCode != 502
 	})
 	if err != nil {
 		t.Fatalf("Error creating AWS Account: Response %s", err)
@@ -435,10 +429,8 @@ func retryUpdateAccount(ctx context.Context, t *testing.T, body datadogV1.AWSAcc
 		_, httpresp, _ := api.UpdateAWSAccount(ctx, body, *datadogV1.NewUpdateAWSAccountOptionalParameters().
 			WithAccountId(accountID).
 			WithRoleName(roleName))
-		if httpresp.StatusCode == 502 {
-			return false
-		}
-		return true
+
+		return httpresp.StatusCode != 502
 	})
 	if err != nil {
 		t.Fatalf("Error updating AWS Account: Response %s", err)

@@ -19,7 +19,7 @@ type FullApplicationKey struct {
 	// Application Keys resource type.
 	Type *ApplicationKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *FullApplicationKey) GetAttributesOk() (*FullApplicationKeyAttributes, b
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *FullApplicationKey) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given FullApplicationKeyAttributes and assigns it to the Attributes field.
@@ -96,11 +92,7 @@ func (o *FullApplicationKey) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *FullApplicationKey) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -128,11 +120,7 @@ func (o *FullApplicationKey) GetRelationshipsOk() (*ApplicationKeyRelationships,
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *FullApplicationKey) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given ApplicationKeyRelationships and assigns it to the Relationships field.
@@ -160,11 +148,7 @@ func (o *FullApplicationKey) GetTypeOk() (*ApplicationKeysType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *FullApplicationKey) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given ApplicationKeysType and assigns it to the Type field.

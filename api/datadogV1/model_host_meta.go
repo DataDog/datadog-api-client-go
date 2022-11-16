@@ -41,7 +41,7 @@ type HostMeta struct {
 	// An array of Windows versions.
 	WinV []string `json:"winV,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -82,11 +82,7 @@ func (o *HostMeta) GetAgentChecksOk() (*[][]interface{}, bool) {
 
 // HasAgentChecks returns a boolean if a field has been set.
 func (o *HostMeta) HasAgentChecks() bool {
-	if o != nil && o.AgentChecks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AgentChecks != nil
 }
 
 // SetAgentChecks gets a reference to the given [][]interface{} and assigns it to the AgentChecks field.
@@ -114,11 +110,7 @@ func (o *HostMeta) GetAgentVersionOk() (*string, bool) {
 
 // HasAgentVersion returns a boolean if a field has been set.
 func (o *HostMeta) HasAgentVersion() bool {
-	if o != nil && o.AgentVersion != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AgentVersion != nil
 }
 
 // SetAgentVersion gets a reference to the given string and assigns it to the AgentVersion field.
@@ -146,11 +138,7 @@ func (o *HostMeta) GetCpuCoresOk() (*int64, bool) {
 
 // HasCpuCores returns a boolean if a field has been set.
 func (o *HostMeta) HasCpuCores() bool {
-	if o != nil && o.CpuCores != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CpuCores != nil
 }
 
 // SetCpuCores gets a reference to the given int64 and assigns it to the CpuCores field.
@@ -178,11 +166,7 @@ func (o *HostMeta) GetFbsdVOk() (*[]string, bool) {
 
 // HasFbsdV returns a boolean if a field has been set.
 func (o *HostMeta) HasFbsdV() bool {
-	if o != nil && o.FbsdV != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FbsdV != nil
 }
 
 // SetFbsdV gets a reference to the given []string and assigns it to the FbsdV field.
@@ -210,11 +194,7 @@ func (o *HostMeta) GetGohaiOk() (*string, bool) {
 
 // HasGohai returns a boolean if a field has been set.
 func (o *HostMeta) HasGohai() bool {
-	if o != nil && o.Gohai != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Gohai != nil
 }
 
 // SetGohai gets a reference to the given string and assigns it to the Gohai field.
@@ -242,11 +222,7 @@ func (o *HostMeta) GetInstallMethodOk() (*HostMetaInstallMethod, bool) {
 
 // HasInstallMethod returns a boolean if a field has been set.
 func (o *HostMeta) HasInstallMethod() bool {
-	if o != nil && o.InstallMethod != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InstallMethod != nil
 }
 
 // SetInstallMethod gets a reference to the given HostMetaInstallMethod and assigns it to the InstallMethod field.
@@ -274,11 +250,7 @@ func (o *HostMeta) GetMacVOk() (*[]string, bool) {
 
 // HasMacV returns a boolean if a field has been set.
 func (o *HostMeta) HasMacV() bool {
-	if o != nil && o.MacV != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MacV != nil
 }
 
 // SetMacV gets a reference to the given []string and assigns it to the MacV field.
@@ -306,11 +278,7 @@ func (o *HostMeta) GetMachineOk() (*string, bool) {
 
 // HasMachine returns a boolean if a field has been set.
 func (o *HostMeta) HasMachine() bool {
-	if o != nil && o.Machine != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Machine != nil
 }
 
 // SetMachine gets a reference to the given string and assigns it to the Machine field.
@@ -338,11 +306,7 @@ func (o *HostMeta) GetNixVOk() (*[]string, bool) {
 
 // HasNixV returns a boolean if a field has been set.
 func (o *HostMeta) HasNixV() bool {
-	if o != nil && o.NixV != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NixV != nil
 }
 
 // SetNixV gets a reference to the given []string and assigns it to the NixV field.
@@ -370,11 +334,7 @@ func (o *HostMeta) GetPlatformOk() (*string, bool) {
 
 // HasPlatform returns a boolean if a field has been set.
 func (o *HostMeta) HasPlatform() bool {
-	if o != nil && o.Platform != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Platform != nil
 }
 
 // SetPlatform gets a reference to the given string and assigns it to the Platform field.
@@ -402,11 +362,7 @@ func (o *HostMeta) GetProcessorOk() (*string, bool) {
 
 // HasProcessor returns a boolean if a field has been set.
 func (o *HostMeta) HasProcessor() bool {
-	if o != nil && o.Processor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Processor != nil
 }
 
 // SetProcessor gets a reference to the given string and assigns it to the Processor field.
@@ -434,11 +390,7 @@ func (o *HostMeta) GetPythonVOk() (*string, bool) {
 
 // HasPythonV returns a boolean if a field has been set.
 func (o *HostMeta) HasPythonV() bool {
-	if o != nil && o.PythonV != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PythonV != nil
 }
 
 // SetPythonV gets a reference to the given string and assigns it to the PythonV field.
@@ -466,11 +418,7 @@ func (o *HostMeta) GetSocketFqdnOk() (*string, bool) {
 
 // HasSocketFqdn returns a boolean if a field has been set.
 func (o *HostMeta) HasSocketFqdn() bool {
-	if o != nil && o.SocketFqdn != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SocketFqdn != nil
 }
 
 // SetSocketFqdn gets a reference to the given string and assigns it to the SocketFqdn field.
@@ -498,11 +446,7 @@ func (o *HostMeta) GetSocketHostnameOk() (*string, bool) {
 
 // HasSocketHostname returns a boolean if a field has been set.
 func (o *HostMeta) HasSocketHostname() bool {
-	if o != nil && o.SocketHostname != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SocketHostname != nil
 }
 
 // SetSocketHostname gets a reference to the given string and assigns it to the SocketHostname field.
@@ -530,11 +474,7 @@ func (o *HostMeta) GetWinVOk() (*[]string, bool) {
 
 // HasWinV returns a boolean if a field has been set.
 func (o *HostMeta) HasWinV() bool {
-	if o != nil && o.WinV != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.WinV != nil
 }
 
 // SetWinV gets a reference to the given []string and assigns it to the WinV field.

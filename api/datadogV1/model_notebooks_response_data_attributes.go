@@ -29,7 +29,7 @@ type NotebooksResponseDataAttributes struct {
 	// Notebook global timeframe.
 	Time *NotebookGlobalTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,11 +75,7 @@ func (o *NotebooksResponseDataAttributes) GetAuthorOk() (*NotebookAuthor, bool) 
 
 // HasAuthor returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasAuthor() bool {
-	if o != nil && o.Author != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Author != nil
 }
 
 // SetAuthor gets a reference to the given NotebookAuthor and assigns it to the Author field.
@@ -107,11 +103,7 @@ func (o *NotebooksResponseDataAttributes) GetCellsOk() (*[]NotebookCellResponse,
 
 // HasCells returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasCells() bool {
-	if o != nil && o.Cells != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cells != nil
 }
 
 // SetCells gets a reference to the given []NotebookCellResponse and assigns it to the Cells field.
@@ -139,11 +131,7 @@ func (o *NotebooksResponseDataAttributes) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -171,11 +159,7 @@ func (o *NotebooksResponseDataAttributes) GetMetadataOk() (*NotebookMetadata, bo
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given NotebookMetadata and assigns it to the Metadata field.
@@ -203,11 +187,7 @@ func (o *NotebooksResponseDataAttributes) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -258,11 +238,7 @@ func (o *NotebooksResponseDataAttributes) GetStatusOk() (*NotebookStatus, bool) 
 
 // HasStatus returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given NotebookStatus and assigns it to the Status field.
@@ -290,11 +266,7 @@ func (o *NotebooksResponseDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool
 
 // HasTime returns a boolean if a field has been set.
 func (o *NotebooksResponseDataAttributes) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given NotebookGlobalTime and assigns it to the Time field.
@@ -366,7 +338,7 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

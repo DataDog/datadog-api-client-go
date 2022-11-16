@@ -21,7 +21,7 @@ type SyntheticsTriggerCITestsResponse struct {
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds []string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool) {
 
 // HasBatchId returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
-	if o != nil && o.BatchId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.BatchId.IsSet()
 }
 
 // SetBatchId gets a reference to the given datadog.NullableString and assigns it to the BatchId field.
@@ -105,11 +101,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetLocationsOk() (*[]SyntheticsTrigge
 
 // HasLocations returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestsResponse) HasLocations() bool {
-	if o != nil && o.Locations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Locations != nil
 }
 
 // SetLocations gets a reference to the given []SyntheticsTriggerCITestLocation and assigns it to the Locations field.
@@ -137,11 +129,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetResultsOk() (*[]SyntheticsTriggerC
 
 // HasResults returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestsResponse) HasResults() bool {
-	if o != nil && o.Results != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Results != nil
 }
 
 // SetResults gets a reference to the given []SyntheticsTriggerCITestRunResult and assigns it to the Results field.
@@ -169,11 +157,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetTriggeredCheckIdsOk() (*[]string, 
 
 // HasTriggeredCheckIds returns a boolean if a field has been set.
 func (o *SyntheticsTriggerCITestsResponse) HasTriggeredCheckIds() bool {
-	if o != nil && o.TriggeredCheckIds != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TriggeredCheckIds != nil
 }
 
 // SetTriggeredCheckIds gets a reference to the given []string and assigns it to the TriggeredCheckIds field.

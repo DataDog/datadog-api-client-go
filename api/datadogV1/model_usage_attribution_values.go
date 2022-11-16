@@ -14,10 +14,18 @@ type UsageAttributionValues struct {
 	ApiPercentage *float64 `json:"api_percentage,omitempty"`
 	// The synthetic API test usage by tag(s).
 	ApiUsage *float64 `json:"api_usage,omitempty"`
+	// The percentage of APM ECS Fargate task usage by tag(s).
+	ApmFargatePercentage *float64 `json:"apm_fargate_percentage,omitempty"`
+	// The APM ECS Fargate task usage by tag(s).
+	ApmFargateUsage *float64 `json:"apm_fargate_usage,omitempty"`
 	// The percentage of APM host usage by tag(s).
 	ApmHostPercentage *float64 `json:"apm_host_percentage,omitempty"`
 	// The APM host usage by tag(s).
 	ApmHostUsage *float64 `json:"apm_host_usage,omitempty"`
+	// The percentage of Application Security Monitoring ECS Fargate task usage by tag(s).
+	AppsecFargatePercentage *float64 `json:"appsec_fargate_percentage,omitempty"`
+	// The Application Security Monitoring ECS Fargate task usage by tag(s).
+	AppsecFargateUsage *float64 `json:"appsec_fargate_usage,omitempty"`
 	// The percentage of Application Security Monitoring host usage by tag(s).
 	AppsecPercentage *float64 `json:"appsec_percentage,omitempty"`
 	// The Application Security Monitoring host usage by tag(s).
@@ -66,6 +74,10 @@ type UsageAttributionValues struct {
 	EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
 	// The estimated indexed spans usage by tag(s). Note this field is in private beta.
 	EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+	// The percentage of estimated live ingested logs usage by tag(s). Note this field is in private beta.
+	EstimatedIngestedLogsPercentage *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
+	// The estimated live ingested logs usage by tag(s). Note this field is in private beta.
+	EstimatedIngestedLogsUsage *float64 `json:"estimated_ingested_logs_usage,omitempty"`
 	// The percentage of estimated ingested spans usage by tag(s). Note this field is in private beta.
 	EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 	// The estimated ingested spans usage by tag(s). Note this field is in private beta.
@@ -99,7 +111,7 @@ type UsageAttributionValues struct {
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -140,11 +152,7 @@ func (o *UsageAttributionValues) GetApiPercentageOk() (*float64, bool) {
 
 // HasApiPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasApiPercentage() bool {
-	if o != nil && o.ApiPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiPercentage != nil
 }
 
 // SetApiPercentage gets a reference to the given float64 and assigns it to the ApiPercentage field.
@@ -172,16 +180,68 @@ func (o *UsageAttributionValues) GetApiUsageOk() (*float64, bool) {
 
 // HasApiUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasApiUsage() bool {
-	if o != nil && o.ApiUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiUsage != nil
 }
 
 // SetApiUsage gets a reference to the given float64 and assigns it to the ApiUsage field.
 func (o *UsageAttributionValues) SetApiUsage(v float64) {
 	o.ApiUsage = &v
+}
+
+// GetApmFargatePercentage returns the ApmFargatePercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetApmFargatePercentage() float64 {
+	if o == nil || o.ApmFargatePercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmFargatePercentage
+}
+
+// GetApmFargatePercentageOk returns a tuple with the ApmFargatePercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetApmFargatePercentageOk() (*float64, bool) {
+	if o == nil || o.ApmFargatePercentage == nil {
+		return nil, false
+	}
+	return o.ApmFargatePercentage, true
+}
+
+// HasApmFargatePercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasApmFargatePercentage() bool {
+	return o != nil && o.ApmFargatePercentage != nil
+}
+
+// SetApmFargatePercentage gets a reference to the given float64 and assigns it to the ApmFargatePercentage field.
+func (o *UsageAttributionValues) SetApmFargatePercentage(v float64) {
+	o.ApmFargatePercentage = &v
+}
+
+// GetApmFargateUsage returns the ApmFargateUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetApmFargateUsage() float64 {
+	if o == nil || o.ApmFargateUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmFargateUsage
+}
+
+// GetApmFargateUsageOk returns a tuple with the ApmFargateUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetApmFargateUsageOk() (*float64, bool) {
+	if o == nil || o.ApmFargateUsage == nil {
+		return nil, false
+	}
+	return o.ApmFargateUsage, true
+}
+
+// HasApmFargateUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasApmFargateUsage() bool {
+	return o != nil && o.ApmFargateUsage != nil
+}
+
+// SetApmFargateUsage gets a reference to the given float64 and assigns it to the ApmFargateUsage field.
+func (o *UsageAttributionValues) SetApmFargateUsage(v float64) {
+	o.ApmFargateUsage = &v
 }
 
 // GetApmHostPercentage returns the ApmHostPercentage field value if set, zero value otherwise.
@@ -204,11 +264,7 @@ func (o *UsageAttributionValues) GetApmHostPercentageOk() (*float64, bool) {
 
 // HasApmHostPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasApmHostPercentage() bool {
-	if o != nil && o.ApmHostPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostPercentage != nil
 }
 
 // SetApmHostPercentage gets a reference to the given float64 and assigns it to the ApmHostPercentage field.
@@ -236,16 +292,68 @@ func (o *UsageAttributionValues) GetApmHostUsageOk() (*float64, bool) {
 
 // HasApmHostUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasApmHostUsage() bool {
-	if o != nil && o.ApmHostUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostUsage != nil
 }
 
 // SetApmHostUsage gets a reference to the given float64 and assigns it to the ApmHostUsage field.
 func (o *UsageAttributionValues) SetApmHostUsage(v float64) {
 	o.ApmHostUsage = &v
+}
+
+// GetAppsecFargatePercentage returns the AppsecFargatePercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetAppsecFargatePercentage() float64 {
+	if o == nil || o.AppsecFargatePercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.AppsecFargatePercentage
+}
+
+// GetAppsecFargatePercentageOk returns a tuple with the AppsecFargatePercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetAppsecFargatePercentageOk() (*float64, bool) {
+	if o == nil || o.AppsecFargatePercentage == nil {
+		return nil, false
+	}
+	return o.AppsecFargatePercentage, true
+}
+
+// HasAppsecFargatePercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasAppsecFargatePercentage() bool {
+	return o != nil && o.AppsecFargatePercentage != nil
+}
+
+// SetAppsecFargatePercentage gets a reference to the given float64 and assigns it to the AppsecFargatePercentage field.
+func (o *UsageAttributionValues) SetAppsecFargatePercentage(v float64) {
+	o.AppsecFargatePercentage = &v
+}
+
+// GetAppsecFargateUsage returns the AppsecFargateUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetAppsecFargateUsage() float64 {
+	if o == nil || o.AppsecFargateUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.AppsecFargateUsage
+}
+
+// GetAppsecFargateUsageOk returns a tuple with the AppsecFargateUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetAppsecFargateUsageOk() (*float64, bool) {
+	if o == nil || o.AppsecFargateUsage == nil {
+		return nil, false
+	}
+	return o.AppsecFargateUsage, true
+}
+
+// HasAppsecFargateUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasAppsecFargateUsage() bool {
+	return o != nil && o.AppsecFargateUsage != nil
+}
+
+// SetAppsecFargateUsage gets a reference to the given float64 and assigns it to the AppsecFargateUsage field.
+func (o *UsageAttributionValues) SetAppsecFargateUsage(v float64) {
+	o.AppsecFargateUsage = &v
 }
 
 // GetAppsecPercentage returns the AppsecPercentage field value if set, zero value otherwise.
@@ -268,11 +376,7 @@ func (o *UsageAttributionValues) GetAppsecPercentageOk() (*float64, bool) {
 
 // HasAppsecPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasAppsecPercentage() bool {
-	if o != nil && o.AppsecPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AppsecPercentage != nil
 }
 
 // SetAppsecPercentage gets a reference to the given float64 and assigns it to the AppsecPercentage field.
@@ -300,11 +404,7 @@ func (o *UsageAttributionValues) GetAppsecUsageOk() (*float64, bool) {
 
 // HasAppsecUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasAppsecUsage() bool {
-	if o != nil && o.AppsecUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AppsecUsage != nil
 }
 
 // SetAppsecUsage gets a reference to the given float64 and assigns it to the AppsecUsage field.
@@ -332,11 +432,7 @@ func (o *UsageAttributionValues) GetBrowserPercentageOk() (*float64, bool) {
 
 // HasBrowserPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasBrowserPercentage() bool {
-	if o != nil && o.BrowserPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserPercentage != nil
 }
 
 // SetBrowserPercentage gets a reference to the given float64 and assigns it to the BrowserPercentage field.
@@ -364,11 +460,7 @@ func (o *UsageAttributionValues) GetBrowserUsageOk() (*float64, bool) {
 
 // HasBrowserUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasBrowserUsage() bool {
-	if o != nil && o.BrowserUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserUsage != nil
 }
 
 // SetBrowserUsage gets a reference to the given float64 and assigns it to the BrowserUsage field.
@@ -396,11 +488,7 @@ func (o *UsageAttributionValues) GetContainerPercentageOk() (*float64, bool) {
 
 // HasContainerPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasContainerPercentage() bool {
-	if o != nil && o.ContainerPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ContainerPercentage != nil
 }
 
 // SetContainerPercentage gets a reference to the given float64 and assigns it to the ContainerPercentage field.
@@ -428,11 +516,7 @@ func (o *UsageAttributionValues) GetContainerUsageOk() (*float64, bool) {
 
 // HasContainerUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasContainerUsage() bool {
-	if o != nil && o.ContainerUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ContainerUsage != nil
 }
 
 // SetContainerUsage gets a reference to the given float64 and assigns it to the ContainerUsage field.
@@ -460,11 +544,7 @@ func (o *UsageAttributionValues) GetCspmContainerPercentageOk() (*float64, bool)
 
 // HasCspmContainerPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCspmContainerPercentage() bool {
-	if o != nil && o.CspmContainerPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmContainerPercentage != nil
 }
 
 // SetCspmContainerPercentage gets a reference to the given float64 and assigns it to the CspmContainerPercentage field.
@@ -492,11 +572,7 @@ func (o *UsageAttributionValues) GetCspmContainerUsageOk() (*float64, bool) {
 
 // HasCspmContainerUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCspmContainerUsage() bool {
-	if o != nil && o.CspmContainerUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmContainerUsage != nil
 }
 
 // SetCspmContainerUsage gets a reference to the given float64 and assigns it to the CspmContainerUsage field.
@@ -524,11 +600,7 @@ func (o *UsageAttributionValues) GetCspmHostPercentageOk() (*float64, bool) {
 
 // HasCspmHostPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCspmHostPercentage() bool {
-	if o != nil && o.CspmHostPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmHostPercentage != nil
 }
 
 // SetCspmHostPercentage gets a reference to the given float64 and assigns it to the CspmHostPercentage field.
@@ -556,11 +628,7 @@ func (o *UsageAttributionValues) GetCspmHostUsageOk() (*float64, bool) {
 
 // HasCspmHostUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCspmHostUsage() bool {
-	if o != nil && o.CspmHostUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmHostUsage != nil
 }
 
 // SetCspmHostUsage gets a reference to the given float64 and assigns it to the CspmHostUsage field.
@@ -588,11 +656,7 @@ func (o *UsageAttributionValues) GetCustomTimeseriesPercentageOk() (*float64, bo
 
 // HasCustomTimeseriesPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCustomTimeseriesPercentage() bool {
-	if o != nil && o.CustomTimeseriesPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomTimeseriesPercentage != nil
 }
 
 // SetCustomTimeseriesPercentage gets a reference to the given float64 and assigns it to the CustomTimeseriesPercentage field.
@@ -620,11 +684,7 @@ func (o *UsageAttributionValues) GetCustomTimeseriesUsageOk() (*float64, bool) {
 
 // HasCustomTimeseriesUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCustomTimeseriesUsage() bool {
-	if o != nil && o.CustomTimeseriesUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomTimeseriesUsage != nil
 }
 
 // SetCustomTimeseriesUsage gets a reference to the given float64 and assigns it to the CustomTimeseriesUsage field.
@@ -652,11 +712,7 @@ func (o *UsageAttributionValues) GetCwsContainerPercentageOk() (*float64, bool) 
 
 // HasCwsContainerPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCwsContainerPercentage() bool {
-	if o != nil && o.CwsContainerPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsContainerPercentage != nil
 }
 
 // SetCwsContainerPercentage gets a reference to the given float64 and assigns it to the CwsContainerPercentage field.
@@ -684,11 +740,7 @@ func (o *UsageAttributionValues) GetCwsContainerUsageOk() (*float64, bool) {
 
 // HasCwsContainerUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCwsContainerUsage() bool {
-	if o != nil && o.CwsContainerUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsContainerUsage != nil
 }
 
 // SetCwsContainerUsage gets a reference to the given float64 and assigns it to the CwsContainerUsage field.
@@ -716,11 +768,7 @@ func (o *UsageAttributionValues) GetCwsHostPercentageOk() (*float64, bool) {
 
 // HasCwsHostPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCwsHostPercentage() bool {
-	if o != nil && o.CwsHostPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostPercentage != nil
 }
 
 // SetCwsHostPercentage gets a reference to the given float64 and assigns it to the CwsHostPercentage field.
@@ -748,11 +796,7 @@ func (o *UsageAttributionValues) GetCwsHostUsageOk() (*float64, bool) {
 
 // HasCwsHostUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasCwsHostUsage() bool {
-	if o != nil && o.CwsHostUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostUsage != nil
 }
 
 // SetCwsHostUsage gets a reference to the given float64 and assigns it to the CwsHostUsage field.
@@ -780,11 +824,7 @@ func (o *UsageAttributionValues) GetDbmHostsPercentageOk() (*float64, bool) {
 
 // HasDbmHostsPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasDbmHostsPercentage() bool {
-	if o != nil && o.DbmHostsPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostsPercentage != nil
 }
 
 // SetDbmHostsPercentage gets a reference to the given float64 and assigns it to the DbmHostsPercentage field.
@@ -812,11 +852,7 @@ func (o *UsageAttributionValues) GetDbmHostsUsageOk() (*float64, bool) {
 
 // HasDbmHostsUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasDbmHostsUsage() bool {
-	if o != nil && o.DbmHostsUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostsUsage != nil
 }
 
 // SetDbmHostsUsage gets a reference to the given float64 and assigns it to the DbmHostsUsage field.
@@ -844,11 +880,7 @@ func (o *UsageAttributionValues) GetDbmQueriesPercentageOk() (*float64, bool) {
 
 // HasDbmQueriesPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasDbmQueriesPercentage() bool {
-	if o != nil && o.DbmQueriesPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmQueriesPercentage != nil
 }
 
 // SetDbmQueriesPercentage gets a reference to the given float64 and assigns it to the DbmQueriesPercentage field.
@@ -876,11 +908,7 @@ func (o *UsageAttributionValues) GetDbmQueriesUsageOk() (*float64, bool) {
 
 // HasDbmQueriesUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasDbmQueriesUsage() bool {
-	if o != nil && o.DbmQueriesUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmQueriesUsage != nil
 }
 
 // SetDbmQueriesUsage gets a reference to the given float64 and assigns it to the DbmQueriesUsage field.
@@ -908,11 +936,7 @@ func (o *UsageAttributionValues) GetEstimatedIndexedLogsPercentageOk() (*float64
 
 // HasEstimatedIndexedLogsPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIndexedLogsPercentage() bool {
-	if o != nil && o.EstimatedIndexedLogsPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIndexedLogsPercentage != nil
 }
 
 // SetEstimatedIndexedLogsPercentage gets a reference to the given float64 and assigns it to the EstimatedIndexedLogsPercentage field.
@@ -940,11 +964,7 @@ func (o *UsageAttributionValues) GetEstimatedIndexedLogsUsageOk() (*float64, boo
 
 // HasEstimatedIndexedLogsUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIndexedLogsUsage() bool {
-	if o != nil && o.EstimatedIndexedLogsUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIndexedLogsUsage != nil
 }
 
 // SetEstimatedIndexedLogsUsage gets a reference to the given float64 and assigns it to the EstimatedIndexedLogsUsage field.
@@ -972,11 +992,7 @@ func (o *UsageAttributionValues) GetEstimatedIndexedSpansPercentageOk() (*float6
 
 // HasEstimatedIndexedSpansPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIndexedSpansPercentage() bool {
-	if o != nil && o.EstimatedIndexedSpansPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIndexedSpansPercentage != nil
 }
 
 // SetEstimatedIndexedSpansPercentage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansPercentage field.
@@ -1004,16 +1020,68 @@ func (o *UsageAttributionValues) GetEstimatedIndexedSpansUsageOk() (*float64, bo
 
 // HasEstimatedIndexedSpansUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIndexedSpansUsage() bool {
-	if o != nil && o.EstimatedIndexedSpansUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIndexedSpansUsage != nil
 }
 
 // SetEstimatedIndexedSpansUsage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansUsage field.
 func (o *UsageAttributionValues) SetEstimatedIndexedSpansUsage(v float64) {
 	o.EstimatedIndexedSpansUsage = &v
+}
+
+// GetEstimatedIngestedLogsPercentage returns the EstimatedIngestedLogsPercentage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsPercentage() float64 {
+	if o == nil || o.EstimatedIngestedLogsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIngestedLogsPercentage
+}
+
+// GetEstimatedIngestedLogsPercentageOk returns a tuple with the EstimatedIngestedLogsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsPercentageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIngestedLogsPercentage == nil {
+		return nil, false
+	}
+	return o.EstimatedIngestedLogsPercentage, true
+}
+
+// HasEstimatedIngestedLogsPercentage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasEstimatedIngestedLogsPercentage() bool {
+	return o != nil && o.EstimatedIngestedLogsPercentage != nil
+}
+
+// SetEstimatedIngestedLogsPercentage gets a reference to the given float64 and assigns it to the EstimatedIngestedLogsPercentage field.
+func (o *UsageAttributionValues) SetEstimatedIngestedLogsPercentage(v float64) {
+	o.EstimatedIngestedLogsPercentage = &v
+}
+
+// GetEstimatedIngestedLogsUsage returns the EstimatedIngestedLogsUsage field value if set, zero value otherwise.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsUsage() float64 {
+	if o == nil || o.EstimatedIngestedLogsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIngestedLogsUsage
+}
+
+// GetEstimatedIngestedLogsUsageOk returns a tuple with the EstimatedIngestedLogsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributionValues) GetEstimatedIngestedLogsUsageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIngestedLogsUsage == nil {
+		return nil, false
+	}
+	return o.EstimatedIngestedLogsUsage, true
+}
+
+// HasEstimatedIngestedLogsUsage returns a boolean if a field has been set.
+func (o *UsageAttributionValues) HasEstimatedIngestedLogsUsage() bool {
+	return o != nil && o.EstimatedIngestedLogsUsage != nil
+}
+
+// SetEstimatedIngestedLogsUsage gets a reference to the given float64 and assigns it to the EstimatedIngestedLogsUsage field.
+func (o *UsageAttributionValues) SetEstimatedIngestedLogsUsage(v float64) {
+	o.EstimatedIngestedLogsUsage = &v
 }
 
 // GetEstimatedIngestedSpansPercentage returns the EstimatedIngestedSpansPercentage field value if set, zero value otherwise.
@@ -1036,11 +1104,7 @@ func (o *UsageAttributionValues) GetEstimatedIngestedSpansPercentageOk() (*float
 
 // HasEstimatedIngestedSpansPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIngestedSpansPercentage() bool {
-	if o != nil && o.EstimatedIngestedSpansPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIngestedSpansPercentage != nil
 }
 
 // SetEstimatedIngestedSpansPercentage gets a reference to the given float64 and assigns it to the EstimatedIngestedSpansPercentage field.
@@ -1068,11 +1132,7 @@ func (o *UsageAttributionValues) GetEstimatedIngestedSpansUsageOk() (*float64, b
 
 // HasEstimatedIngestedSpansUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasEstimatedIngestedSpansUsage() bool {
-	if o != nil && o.EstimatedIngestedSpansUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedIngestedSpansUsage != nil
 }
 
 // SetEstimatedIngestedSpansUsage gets a reference to the given float64 and assigns it to the EstimatedIngestedSpansUsage field.
@@ -1100,11 +1160,7 @@ func (o *UsageAttributionValues) GetInfraHostPercentageOk() (*float64, bool) {
 
 // HasInfraHostPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasInfraHostPercentage() bool {
-	if o != nil && o.InfraHostPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraHostPercentage != nil
 }
 
 // SetInfraHostPercentage gets a reference to the given float64 and assigns it to the InfraHostPercentage field.
@@ -1132,11 +1188,7 @@ func (o *UsageAttributionValues) GetInfraHostUsageOk() (*float64, bool) {
 
 // HasInfraHostUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasInfraHostUsage() bool {
-	if o != nil && o.InfraHostUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraHostUsage != nil
 }
 
 // SetInfraHostUsage gets a reference to the given float64 and assigns it to the InfraHostUsage field.
@@ -1164,11 +1216,7 @@ func (o *UsageAttributionValues) GetLambdaFunctionsPercentageOk() (*float64, boo
 
 // HasLambdaFunctionsPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasLambdaFunctionsPercentage() bool {
-	if o != nil && o.LambdaFunctionsPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaFunctionsPercentage != nil
 }
 
 // SetLambdaFunctionsPercentage gets a reference to the given float64 and assigns it to the LambdaFunctionsPercentage field.
@@ -1196,11 +1244,7 @@ func (o *UsageAttributionValues) GetLambdaFunctionsUsageOk() (*float64, bool) {
 
 // HasLambdaFunctionsUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasLambdaFunctionsUsage() bool {
-	if o != nil && o.LambdaFunctionsUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaFunctionsUsage != nil
 }
 
 // SetLambdaFunctionsUsage gets a reference to the given float64 and assigns it to the LambdaFunctionsUsage field.
@@ -1228,11 +1272,7 @@ func (o *UsageAttributionValues) GetLambdaInvocationsPercentageOk() (*float64, b
 
 // HasLambdaInvocationsPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasLambdaInvocationsPercentage() bool {
-	if o != nil && o.LambdaInvocationsPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaInvocationsPercentage != nil
 }
 
 // SetLambdaInvocationsPercentage gets a reference to the given float64 and assigns it to the LambdaInvocationsPercentage field.
@@ -1260,11 +1300,7 @@ func (o *UsageAttributionValues) GetLambdaInvocationsUsageOk() (*float64, bool) 
 
 // HasLambdaInvocationsUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasLambdaInvocationsUsage() bool {
-	if o != nil && o.LambdaInvocationsUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaInvocationsUsage != nil
 }
 
 // SetLambdaInvocationsUsage gets a reference to the given float64 and assigns it to the LambdaInvocationsUsage field.
@@ -1292,11 +1328,7 @@ func (o *UsageAttributionValues) GetNpmHostPercentageOk() (*float64, bool) {
 
 // HasNpmHostPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasNpmHostPercentage() bool {
-	if o != nil && o.NpmHostPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmHostPercentage != nil
 }
 
 // SetNpmHostPercentage gets a reference to the given float64 and assigns it to the NpmHostPercentage field.
@@ -1324,11 +1356,7 @@ func (o *UsageAttributionValues) GetNpmHostUsageOk() (*float64, bool) {
 
 // HasNpmHostUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasNpmHostUsage() bool {
-	if o != nil && o.NpmHostUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmHostUsage != nil
 }
 
 // SetNpmHostUsage gets a reference to the given float64 and assigns it to the NpmHostUsage field.
@@ -1356,11 +1384,7 @@ func (o *UsageAttributionValues) GetProfiledContainerPercentageOk() (*float64, b
 
 // HasProfiledContainerPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasProfiledContainerPercentage() bool {
-	if o != nil && o.ProfiledContainerPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfiledContainerPercentage != nil
 }
 
 // SetProfiledContainerPercentage gets a reference to the given float64 and assigns it to the ProfiledContainerPercentage field.
@@ -1388,11 +1412,7 @@ func (o *UsageAttributionValues) GetProfiledContainerUsageOk() (*float64, bool) 
 
 // HasProfiledContainerUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasProfiledContainerUsage() bool {
-	if o != nil && o.ProfiledContainerUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfiledContainerUsage != nil
 }
 
 // SetProfiledContainerUsage gets a reference to the given float64 and assigns it to the ProfiledContainerUsage field.
@@ -1420,11 +1440,7 @@ func (o *UsageAttributionValues) GetProfiledHostsPercentageOk() (*float64, bool)
 
 // HasProfiledHostsPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasProfiledHostsPercentage() bool {
-	if o != nil && o.ProfiledHostsPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfiledHostsPercentage != nil
 }
 
 // SetProfiledHostsPercentage gets a reference to the given float64 and assigns it to the ProfiledHostsPercentage field.
@@ -1452,11 +1468,7 @@ func (o *UsageAttributionValues) GetProfiledHostsUsageOk() (*float64, bool) {
 
 // HasProfiledHostsUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasProfiledHostsUsage() bool {
-	if o != nil && o.ProfiledHostsUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfiledHostsUsage != nil
 }
 
 // SetProfiledHostsUsage gets a reference to the given float64 and assigns it to the ProfiledHostsUsage field.
@@ -1484,11 +1496,7 @@ func (o *UsageAttributionValues) GetSnmpPercentageOk() (*float64, bool) {
 
 // HasSnmpPercentage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasSnmpPercentage() bool {
-	if o != nil && o.SnmpPercentage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SnmpPercentage != nil
 }
 
 // SetSnmpPercentage gets a reference to the given float64 and assigns it to the SnmpPercentage field.
@@ -1516,11 +1524,7 @@ func (o *UsageAttributionValues) GetSnmpUsageOk() (*float64, bool) {
 
 // HasSnmpUsage returns a boolean if a field has been set.
 func (o *UsageAttributionValues) HasSnmpUsage() bool {
-	if o != nil && o.SnmpUsage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SnmpUsage != nil
 }
 
 // SetSnmpUsage gets a reference to the given float64 and assigns it to the SnmpUsage field.
@@ -1540,11 +1544,23 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.ApiUsage != nil {
 		toSerialize["api_usage"] = o.ApiUsage
 	}
+	if o.ApmFargatePercentage != nil {
+		toSerialize["apm_fargate_percentage"] = o.ApmFargatePercentage
+	}
+	if o.ApmFargateUsage != nil {
+		toSerialize["apm_fargate_usage"] = o.ApmFargateUsage
+	}
 	if o.ApmHostPercentage != nil {
 		toSerialize["apm_host_percentage"] = o.ApmHostPercentage
 	}
 	if o.ApmHostUsage != nil {
 		toSerialize["apm_host_usage"] = o.ApmHostUsage
+	}
+	if o.AppsecFargatePercentage != nil {
+		toSerialize["appsec_fargate_percentage"] = o.AppsecFargatePercentage
+	}
+	if o.AppsecFargateUsage != nil {
+		toSerialize["appsec_fargate_usage"] = o.AppsecFargateUsage
 	}
 	if o.AppsecPercentage != nil {
 		toSerialize["appsec_percentage"] = o.AppsecPercentage
@@ -1618,6 +1634,12 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.EstimatedIndexedSpansUsage != nil {
 		toSerialize["estimated_indexed_spans_usage"] = o.EstimatedIndexedSpansUsage
 	}
+	if o.EstimatedIngestedLogsPercentage != nil {
+		toSerialize["estimated_ingested_logs_percentage"] = o.EstimatedIngestedLogsPercentage
+	}
+	if o.EstimatedIngestedLogsUsage != nil {
+		toSerialize["estimated_ingested_logs_usage"] = o.EstimatedIngestedLogsUsage
+	}
 	if o.EstimatedIngestedSpansPercentage != nil {
 		toSerialize["estimated_ingested_spans_percentage"] = o.EstimatedIngestedSpansPercentage
 	}
@@ -1679,8 +1701,12 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApiPercentage                    *float64 `json:"api_percentage,omitempty"`
 		ApiUsage                         *float64 `json:"api_usage,omitempty"`
+		ApmFargatePercentage             *float64 `json:"apm_fargate_percentage,omitempty"`
+		ApmFargateUsage                  *float64 `json:"apm_fargate_usage,omitempty"`
 		ApmHostPercentage                *float64 `json:"apm_host_percentage,omitempty"`
 		ApmHostUsage                     *float64 `json:"apm_host_usage,omitempty"`
+		AppsecFargatePercentage          *float64 `json:"appsec_fargate_percentage,omitempty"`
+		AppsecFargateUsage               *float64 `json:"appsec_fargate_usage,omitempty"`
 		AppsecPercentage                 *float64 `json:"appsec_percentage,omitempty"`
 		AppsecUsage                      *float64 `json:"appsec_usage,omitempty"`
 		BrowserPercentage                *float64 `json:"browser_percentage,omitempty"`
@@ -1705,6 +1731,8 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		EstimatedIndexedLogsUsage        *float64 `json:"estimated_indexed_logs_usage,omitempty"`
 		EstimatedIndexedSpansPercentage  *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
 		EstimatedIndexedSpansUsage       *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+		EstimatedIngestedLogsPercentage  *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
+		EstimatedIngestedLogsUsage       *float64 `json:"estimated_ingested_logs_usage,omitempty"`
 		EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 		EstimatedIngestedSpansUsage      *float64 `json:"estimated_ingested_spans_usage,omitempty"`
 		InfraHostPercentage              *float64 `json:"infra_host_percentage,omitempty"`
@@ -1733,8 +1761,12 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ApiPercentage = all.ApiPercentage
 	o.ApiUsage = all.ApiUsage
+	o.ApmFargatePercentage = all.ApmFargatePercentage
+	o.ApmFargateUsage = all.ApmFargateUsage
 	o.ApmHostPercentage = all.ApmHostPercentage
 	o.ApmHostUsage = all.ApmHostUsage
+	o.AppsecFargatePercentage = all.AppsecFargatePercentage
+	o.AppsecFargateUsage = all.AppsecFargateUsage
 	o.AppsecPercentage = all.AppsecPercentage
 	o.AppsecUsage = all.AppsecUsage
 	o.BrowserPercentage = all.BrowserPercentage
@@ -1759,6 +1791,8 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.EstimatedIndexedLogsUsage = all.EstimatedIndexedLogsUsage
 	o.EstimatedIndexedSpansPercentage = all.EstimatedIndexedSpansPercentage
 	o.EstimatedIndexedSpansUsage = all.EstimatedIndexedSpansUsage
+	o.EstimatedIngestedLogsPercentage = all.EstimatedIngestedLogsPercentage
+	o.EstimatedIngestedLogsUsage = all.EstimatedIngestedLogsUsage
 	o.EstimatedIngestedSpansPercentage = all.EstimatedIngestedSpansPercentage
 	o.EstimatedIngestedSpansUsage = all.EstimatedIngestedSpansUsage
 	o.InfraHostPercentage = all.InfraHostPercentage

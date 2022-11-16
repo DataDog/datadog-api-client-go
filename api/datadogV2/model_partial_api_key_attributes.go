@@ -19,7 +19,7 @@ type PartialAPIKeyAttributes struct {
 	// Name of the API key.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *PartialAPIKeyAttributes) GetCreatedAtOk() (*string, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *PartialAPIKeyAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
@@ -92,11 +88,7 @@ func (o *PartialAPIKeyAttributes) GetLast4Ok() (*string, bool) {
 
 // HasLast4 returns a boolean if a field has been set.
 func (o *PartialAPIKeyAttributes) HasLast4() bool {
-	if o != nil && o.Last4 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Last4 != nil
 }
 
 // SetLast4 gets a reference to the given string and assigns it to the Last4 field.
@@ -124,11 +116,7 @@ func (o *PartialAPIKeyAttributes) GetModifiedAtOk() (*string, bool) {
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *PartialAPIKeyAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given string and assigns it to the ModifiedAt field.
@@ -156,11 +144,7 @@ func (o *PartialAPIKeyAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialAPIKeyAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

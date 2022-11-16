@@ -169,7 +169,7 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	TimeseriesSum *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -210,11 +210,7 @@ func (o *UsageBillableSummaryKeys) GetApmFargateAverageOk() (*UsageBillableSumma
 
 // HasApmFargateAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmFargateAverage() bool {
-	if o != nil && o.ApmFargateAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmFargateAverage != nil
 }
 
 // SetApmFargateAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmFargateAverage field.
@@ -242,11 +238,7 @@ func (o *UsageBillableSummaryKeys) GetApmFargateSumOk() (*UsageBillableSummaryBo
 
 // HasApmFargateSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmFargateSum() bool {
-	if o != nil && o.ApmFargateSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmFargateSum != nil
 }
 
 // SetApmFargateSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmFargateSum field.
@@ -274,11 +266,7 @@ func (o *UsageBillableSummaryKeys) GetApmHostSumOk() (*UsageBillableSummaryBody,
 
 // HasApmHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmHostSum() bool {
-	if o != nil && o.ApmHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostSum != nil
 }
 
 // SetApmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmHostSum field.
@@ -306,11 +294,7 @@ func (o *UsageBillableSummaryKeys) GetApmHostTop99pOk() (*UsageBillableSummaryBo
 
 // HasApmHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmHostTop99p() bool {
-	if o != nil && o.ApmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostTop99p != nil
 }
 
 // SetApmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmHostTop99p field.
@@ -338,11 +322,7 @@ func (o *UsageBillableSummaryKeys) GetApmProfilerHostSumOk() (*UsageBillableSumm
 
 // HasApmProfilerHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmProfilerHostSum() bool {
-	if o != nil && o.ApmProfilerHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmProfilerHostSum != nil
 }
 
 // SetApmProfilerHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmProfilerHostSum field.
@@ -370,11 +350,7 @@ func (o *UsageBillableSummaryKeys) GetApmProfilerHostTop99pOk() (*UsageBillableS
 
 // HasApmProfilerHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmProfilerHostTop99p() bool {
-	if o != nil && o.ApmProfilerHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmProfilerHostTop99p != nil
 }
 
 // SetApmProfilerHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmProfilerHostTop99p field.
@@ -402,11 +378,7 @@ func (o *UsageBillableSummaryKeys) GetApmTraceSearchSumOk() (*UsageBillableSumma
 
 // HasApmTraceSearchSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApmTraceSearchSum() bool {
-	if o != nil && o.ApmTraceSearchSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmTraceSearchSum != nil
 }
 
 // SetApmTraceSearchSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApmTraceSearchSum field.
@@ -434,11 +406,7 @@ func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostSumOk() (*UsageBill
 
 // HasApplicationSecurityHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostSum() bool {
-	if o != nil && o.ApplicationSecurityHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApplicationSecurityHostSum != nil
 }
 
 // SetApplicationSecurityHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityHostSum field.
@@ -466,11 +434,7 @@ func (o *UsageBillableSummaryKeys) GetCiPipelineIndexedSpansSumOk() (*UsageBilla
 
 // HasCiPipelineIndexedSpansSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiPipelineIndexedSpansSum() bool {
-	if o != nil && o.CiPipelineIndexedSpansSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiPipelineIndexedSpansSum != nil
 }
 
 // SetCiPipelineIndexedSpansSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiPipelineIndexedSpansSum field.
@@ -498,11 +462,7 @@ func (o *UsageBillableSummaryKeys) GetCiPipelineMaximumOk() (*UsageBillableSumma
 
 // HasCiPipelineMaximum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiPipelineMaximum() bool {
-	if o != nil && o.CiPipelineMaximum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiPipelineMaximum != nil
 }
 
 // SetCiPipelineMaximum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiPipelineMaximum field.
@@ -530,11 +490,7 @@ func (o *UsageBillableSummaryKeys) GetCiPipelineSumOk() (*UsageBillableSummaryBo
 
 // HasCiPipelineSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiPipelineSum() bool {
-	if o != nil && o.CiPipelineSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiPipelineSum != nil
 }
 
 // SetCiPipelineSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiPipelineSum field.
@@ -562,11 +518,7 @@ func (o *UsageBillableSummaryKeys) GetCiTestIndexedSpansSumOk() (*UsageBillableS
 
 // HasCiTestIndexedSpansSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiTestIndexedSpansSum() bool {
-	if o != nil && o.CiTestIndexedSpansSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiTestIndexedSpansSum != nil
 }
 
 // SetCiTestIndexedSpansSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiTestIndexedSpansSum field.
@@ -594,11 +546,7 @@ func (o *UsageBillableSummaryKeys) GetCiTestingMaximumOk() (*UsageBillableSummar
 
 // HasCiTestingMaximum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiTestingMaximum() bool {
-	if o != nil && o.CiTestingMaximum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiTestingMaximum != nil
 }
 
 // SetCiTestingMaximum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiTestingMaximum field.
@@ -626,11 +574,7 @@ func (o *UsageBillableSummaryKeys) GetCiTestingSumOk() (*UsageBillableSummaryBod
 
 // HasCiTestingSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCiTestingSum() bool {
-	if o != nil && o.CiTestingSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiTestingSum != nil
 }
 
 // SetCiTestingSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiTestingSum field.
@@ -658,11 +602,7 @@ func (o *UsageBillableSummaryKeys) GetCspmContainerSumOk() (*UsageBillableSummar
 
 // HasCspmContainerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCspmContainerSum() bool {
-	if o != nil && o.CspmContainerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmContainerSum != nil
 }
 
 // SetCspmContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CspmContainerSum field.
@@ -690,11 +630,7 @@ func (o *UsageBillableSummaryKeys) GetCspmHostSumOk() (*UsageBillableSummaryBody
 
 // HasCspmHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCspmHostSum() bool {
-	if o != nil && o.CspmHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmHostSum != nil
 }
 
 // SetCspmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CspmHostSum field.
@@ -722,11 +658,7 @@ func (o *UsageBillableSummaryKeys) GetCspmHostTop99pOk() (*UsageBillableSummaryB
 
 // HasCspmHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCspmHostTop99p() bool {
-	if o != nil && o.CspmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmHostTop99p != nil
 }
 
 // SetCspmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the CspmHostTop99p field.
@@ -754,11 +686,7 @@ func (o *UsageBillableSummaryKeys) GetCustomEventSumOk() (*UsageBillableSummaryB
 
 // HasCustomEventSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCustomEventSum() bool {
-	if o != nil && o.CustomEventSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomEventSum != nil
 }
 
 // SetCustomEventSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CustomEventSum field.
@@ -786,11 +714,7 @@ func (o *UsageBillableSummaryKeys) GetCwsContainerSumOk() (*UsageBillableSummary
 
 // HasCwsContainerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCwsContainerSum() bool {
-	if o != nil && o.CwsContainerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsContainerSum != nil
 }
 
 // SetCwsContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CwsContainerSum field.
@@ -818,11 +742,7 @@ func (o *UsageBillableSummaryKeys) GetCwsHostSumOk() (*UsageBillableSummaryBody,
 
 // HasCwsHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCwsHostSum() bool {
-	if o != nil && o.CwsHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostSum != nil
 }
 
 // SetCwsHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CwsHostSum field.
@@ -850,11 +770,7 @@ func (o *UsageBillableSummaryKeys) GetCwsHostTop99pOk() (*UsageBillableSummaryBo
 
 // HasCwsHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasCwsHostTop99p() bool {
-	if o != nil && o.CwsHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostTop99p != nil
 }
 
 // SetCwsHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the CwsHostTop99p field.
@@ -882,11 +798,7 @@ func (o *UsageBillableSummaryKeys) GetDbmHostSumOk() (*UsageBillableSummaryBody,
 
 // HasDbmHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasDbmHostSum() bool {
-	if o != nil && o.DbmHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostSum != nil
 }
 
 // SetDbmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the DbmHostSum field.
@@ -914,11 +826,7 @@ func (o *UsageBillableSummaryKeys) GetDbmHostTop99pOk() (*UsageBillableSummaryBo
 
 // HasDbmHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasDbmHostTop99p() bool {
-	if o != nil && o.DbmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostTop99p != nil
 }
 
 // SetDbmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the DbmHostTop99p field.
@@ -946,11 +854,7 @@ func (o *UsageBillableSummaryKeys) GetDbmNormalizedQueriesAverageOk() (*UsageBil
 
 // HasDbmNormalizedQueriesAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasDbmNormalizedQueriesAverage() bool {
-	if o != nil && o.DbmNormalizedQueriesAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmNormalizedQueriesAverage != nil
 }
 
 // SetDbmNormalizedQueriesAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the DbmNormalizedQueriesAverage field.
@@ -978,11 +882,7 @@ func (o *UsageBillableSummaryKeys) GetDbmNormalizedQueriesSumOk() (*UsageBillabl
 
 // HasDbmNormalizedQueriesSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasDbmNormalizedQueriesSum() bool {
-	if o != nil && o.DbmNormalizedQueriesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmNormalizedQueriesSum != nil
 }
 
 // SetDbmNormalizedQueriesSum gets a reference to the given UsageBillableSummaryBody and assigns it to the DbmNormalizedQueriesSum field.
@@ -1010,11 +910,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerApmAndProfilerAverageOk() 
 
 // HasFargateContainerApmAndProfilerAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerApmAndProfilerAverage() bool {
-	if o != nil && o.FargateContainerApmAndProfilerAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerApmAndProfilerAverage != nil
 }
 
 // SetFargateContainerApmAndProfilerAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerApmAndProfilerAverage field.
@@ -1042,11 +938,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerApmAndProfilerSumOk() (*Us
 
 // HasFargateContainerApmAndProfilerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerApmAndProfilerSum() bool {
-	if o != nil && o.FargateContainerApmAndProfilerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerApmAndProfilerSum != nil
 }
 
 // SetFargateContainerApmAndProfilerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerApmAndProfilerSum field.
@@ -1074,11 +966,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerAverageOk() (*UsageBillabl
 
 // HasFargateContainerAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerAverage() bool {
-	if o != nil && o.FargateContainerAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerAverage != nil
 }
 
 // SetFargateContainerAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerAverage field.
@@ -1106,11 +994,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerProfilerAverageOk() (*Usag
 
 // HasFargateContainerProfilerAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerProfilerAverage() bool {
-	if o != nil && o.FargateContainerProfilerAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerProfilerAverage != nil
 }
 
 // SetFargateContainerProfilerAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerProfilerAverage field.
@@ -1138,11 +1022,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerProfilerSumOk() (*UsageBil
 
 // HasFargateContainerProfilerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerProfilerSum() bool {
-	if o != nil && o.FargateContainerProfilerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerProfilerSum != nil
 }
 
 // SetFargateContainerProfilerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerProfilerSum field.
@@ -1170,11 +1050,7 @@ func (o *UsageBillableSummaryKeys) GetFargateContainerSumOk() (*UsageBillableSum
 
 // HasFargateContainerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasFargateContainerSum() bool {
-	if o != nil && o.FargateContainerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateContainerSum != nil
 }
 
 // SetFargateContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the FargateContainerSum field.
@@ -1202,11 +1078,7 @@ func (o *UsageBillableSummaryKeys) GetIncidentManagementMaximumOk() (*UsageBilla
 
 // HasIncidentManagementMaximum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIncidentManagementMaximum() bool {
-	if o != nil && o.IncidentManagementMaximum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncidentManagementMaximum != nil
 }
 
 // SetIncidentManagementMaximum gets a reference to the given UsageBillableSummaryBody and assigns it to the IncidentManagementMaximum field.
@@ -1234,11 +1106,7 @@ func (o *UsageBillableSummaryKeys) GetIncidentManagementSumOk() (*UsageBillableS
 
 // HasIncidentManagementSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIncidentManagementSum() bool {
-	if o != nil && o.IncidentManagementSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncidentManagementSum != nil
 }
 
 // SetIncidentManagementSum gets a reference to the given UsageBillableSummaryBody and assigns it to the IncidentManagementSum field.
@@ -1266,11 +1134,7 @@ func (o *UsageBillableSummaryKeys) GetInfraAndApmHostSumOk() (*UsageBillableSumm
 
 // HasInfraAndApmHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasInfraAndApmHostSum() bool {
-	if o != nil && o.InfraAndApmHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraAndApmHostSum != nil
 }
 
 // SetInfraAndApmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the InfraAndApmHostSum field.
@@ -1298,11 +1162,7 @@ func (o *UsageBillableSummaryKeys) GetInfraAndApmHostTop99pOk() (*UsageBillableS
 
 // HasInfraAndApmHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasInfraAndApmHostTop99p() bool {
-	if o != nil && o.InfraAndApmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraAndApmHostTop99p != nil
 }
 
 // SetInfraAndApmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the InfraAndApmHostTop99p field.
@@ -1330,11 +1190,7 @@ func (o *UsageBillableSummaryKeys) GetInfraContainerSumOk() (*UsageBillableSumma
 
 // HasInfraContainerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasInfraContainerSum() bool {
-	if o != nil && o.InfraContainerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraContainerSum != nil
 }
 
 // SetInfraContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the InfraContainerSum field.
@@ -1362,11 +1218,7 @@ func (o *UsageBillableSummaryKeys) GetInfraHostSumOk() (*UsageBillableSummaryBod
 
 // HasInfraHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasInfraHostSum() bool {
-	if o != nil && o.InfraHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraHostSum != nil
 }
 
 // SetInfraHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the InfraHostSum field.
@@ -1394,11 +1246,7 @@ func (o *UsageBillableSummaryKeys) GetInfraHostTop99pOk() (*UsageBillableSummary
 
 // HasInfraHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasInfraHostTop99p() bool {
-	if o != nil && o.InfraHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraHostTop99p != nil
 }
 
 // SetInfraHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the InfraHostTop99p field.
@@ -1426,11 +1274,7 @@ func (o *UsageBillableSummaryKeys) GetIngestedSpansSumOk() (*UsageBillableSummar
 
 // HasIngestedSpansSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIngestedSpansSum() bool {
-	if o != nil && o.IngestedSpansSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedSpansSum != nil
 }
 
 // SetIngestedSpansSum gets a reference to the given UsageBillableSummaryBody and assigns it to the IngestedSpansSum field.
@@ -1458,11 +1302,7 @@ func (o *UsageBillableSummaryKeys) GetIngestedTimeseriesAverageOk() (*UsageBilla
 
 // HasIngestedTimeseriesAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIngestedTimeseriesAverage() bool {
-	if o != nil && o.IngestedTimeseriesAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedTimeseriesAverage != nil
 }
 
 // SetIngestedTimeseriesAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the IngestedTimeseriesAverage field.
@@ -1490,11 +1330,7 @@ func (o *UsageBillableSummaryKeys) GetIngestedTimeseriesSumOk() (*UsageBillableS
 
 // HasIngestedTimeseriesSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIngestedTimeseriesSum() bool {
-	if o != nil && o.IngestedTimeseriesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedTimeseriesSum != nil
 }
 
 // SetIngestedTimeseriesSum gets a reference to the given UsageBillableSummaryBody and assigns it to the IngestedTimeseriesSum field.
@@ -1522,11 +1358,7 @@ func (o *UsageBillableSummaryKeys) GetIotSumOk() (*UsageBillableSummaryBody, boo
 
 // HasIotSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIotSum() bool {
-	if o != nil && o.IotSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IotSum != nil
 }
 
 // SetIotSum gets a reference to the given UsageBillableSummaryBody and assigns it to the IotSum field.
@@ -1554,11 +1386,7 @@ func (o *UsageBillableSummaryKeys) GetIotTop99pOk() (*UsageBillableSummaryBody, 
 
 // HasIotTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasIotTop99p() bool {
-	if o != nil && o.IotTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IotTop99p != nil
 }
 
 // SetIotTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the IotTop99p field.
@@ -1586,11 +1414,7 @@ func (o *UsageBillableSummaryKeys) GetLambdaFunctionAverageOk() (*UsageBillableS
 
 // HasLambdaFunctionAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLambdaFunctionAverage() bool {
-	if o != nil && o.LambdaFunctionAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaFunctionAverage != nil
 }
 
 // SetLambdaFunctionAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the LambdaFunctionAverage field.
@@ -1618,11 +1442,7 @@ func (o *UsageBillableSummaryKeys) GetLambdaFunctionSumOk() (*UsageBillableSumma
 
 // HasLambdaFunctionSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLambdaFunctionSum() bool {
-	if o != nil && o.LambdaFunctionSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LambdaFunctionSum != nil
 }
 
 // SetLambdaFunctionSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LambdaFunctionSum field.
@@ -1650,11 +1470,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed15daySumOk() (*UsageBillableSum
 
 // HasLogsIndexed15daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed15daySum() bool {
-	if o != nil && o.LogsIndexed15daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed15daySum != nil
 }
 
 // SetLogsIndexed15daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed15daySum field.
@@ -1682,11 +1498,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed180daySumOk() (*UsageBillableSu
 
 // HasLogsIndexed180daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed180daySum() bool {
-	if o != nil && o.LogsIndexed180daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed180daySum != nil
 }
 
 // SetLogsIndexed180daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed180daySum field.
@@ -1714,11 +1526,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed30daySumOk() (*UsageBillableSum
 
 // HasLogsIndexed30daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed30daySum() bool {
-	if o != nil && o.LogsIndexed30daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed30daySum != nil
 }
 
 // SetLogsIndexed30daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed30daySum field.
@@ -1746,11 +1554,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed360daySumOk() (*UsageBillableSu
 
 // HasLogsIndexed360daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed360daySum() bool {
-	if o != nil && o.LogsIndexed360daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed360daySum != nil
 }
 
 // SetLogsIndexed360daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed360daySum field.
@@ -1778,11 +1582,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed3daySumOk() (*UsageBillableSumm
 
 // HasLogsIndexed3daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed3daySum() bool {
-	if o != nil && o.LogsIndexed3daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed3daySum != nil
 }
 
 // SetLogsIndexed3daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed3daySum field.
@@ -1810,11 +1610,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed45daySumOk() (*UsageBillableSum
 
 // HasLogsIndexed45daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed45daySum() bool {
-	if o != nil && o.LogsIndexed45daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed45daySum != nil
 }
 
 // SetLogsIndexed45daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed45daySum field.
@@ -1842,11 +1638,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed60daySumOk() (*UsageBillableSum
 
 // HasLogsIndexed60daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed60daySum() bool {
-	if o != nil && o.LogsIndexed60daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed60daySum != nil
 }
 
 // SetLogsIndexed60daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed60daySum field.
@@ -1874,11 +1666,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed7daySumOk() (*UsageBillableSumm
 
 // HasLogsIndexed7daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed7daySum() bool {
-	if o != nil && o.LogsIndexed7daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed7daySum != nil
 }
 
 // SetLogsIndexed7daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed7daySum field.
@@ -1906,11 +1694,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexed90daySumOk() (*UsageBillableSum
 
 // HasLogsIndexed90daySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexed90daySum() bool {
-	if o != nil && o.LogsIndexed90daySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexed90daySum != nil
 }
 
 // SetLogsIndexed90daySum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexed90daySum field.
@@ -1938,11 +1722,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexedCustomRetentionSumOk() (*UsageB
 
 // HasLogsIndexedCustomRetentionSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexedCustomRetentionSum() bool {
-	if o != nil && o.LogsIndexedCustomRetentionSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexedCustomRetentionSum != nil
 }
 
 // SetLogsIndexedCustomRetentionSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexedCustomRetentionSum field.
@@ -1970,11 +1750,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIndexedSumOk() (*UsageBillableSummaryB
 
 // HasLogsIndexedSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIndexedSum() bool {
-	if o != nil && o.LogsIndexedSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIndexedSum != nil
 }
 
 // SetLogsIndexedSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIndexedSum field.
@@ -2002,11 +1778,7 @@ func (o *UsageBillableSummaryKeys) GetLogsIngestedSumOk() (*UsageBillableSummary
 
 // HasLogsIngestedSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasLogsIngestedSum() bool {
-	if o != nil && o.LogsIngestedSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogsIngestedSum != nil
 }
 
 // SetLogsIngestedSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsIngestedSum field.
@@ -2034,11 +1806,7 @@ func (o *UsageBillableSummaryKeys) GetNetworkDeviceSumOk() (*UsageBillableSummar
 
 // HasNetworkDeviceSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasNetworkDeviceSum() bool {
-	if o != nil && o.NetworkDeviceSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkDeviceSum != nil
 }
 
 // SetNetworkDeviceSum gets a reference to the given UsageBillableSummaryBody and assigns it to the NetworkDeviceSum field.
@@ -2066,11 +1834,7 @@ func (o *UsageBillableSummaryKeys) GetNetworkDeviceTop99pOk() (*UsageBillableSum
 
 // HasNetworkDeviceTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasNetworkDeviceTop99p() bool {
-	if o != nil && o.NetworkDeviceTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkDeviceTop99p != nil
 }
 
 // SetNetworkDeviceTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the NetworkDeviceTop99p field.
@@ -2098,11 +1862,7 @@ func (o *UsageBillableSummaryKeys) GetNpmFlowSumOk() (*UsageBillableSummaryBody,
 
 // HasNpmFlowSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasNpmFlowSum() bool {
-	if o != nil && o.NpmFlowSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmFlowSum != nil
 }
 
 // SetNpmFlowSum gets a reference to the given UsageBillableSummaryBody and assigns it to the NpmFlowSum field.
@@ -2130,11 +1890,7 @@ func (o *UsageBillableSummaryKeys) GetNpmHostSumOk() (*UsageBillableSummaryBody,
 
 // HasNpmHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasNpmHostSum() bool {
-	if o != nil && o.NpmHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmHostSum != nil
 }
 
 // SetNpmHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the NpmHostSum field.
@@ -2162,11 +1918,7 @@ func (o *UsageBillableSummaryKeys) GetNpmHostTop99pOk() (*UsageBillableSummaryBo
 
 // HasNpmHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasNpmHostTop99p() bool {
-	if o != nil && o.NpmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmHostTop99p != nil
 }
 
 // SetNpmHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the NpmHostTop99p field.
@@ -2194,11 +1946,7 @@ func (o *UsageBillableSummaryKeys) GetObservabilityPipelineSumOk() (*UsageBillab
 
 // HasObservabilityPipelineSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasObservabilityPipelineSum() bool {
-	if o != nil && o.ObservabilityPipelineSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ObservabilityPipelineSum != nil
 }
 
 // SetObservabilityPipelineSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ObservabilityPipelineSum field.
@@ -2226,11 +1974,7 @@ func (o *UsageBillableSummaryKeys) GetOnlineArchiveSumOk() (*UsageBillableSummar
 
 // HasOnlineArchiveSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasOnlineArchiveSum() bool {
-	if o != nil && o.OnlineArchiveSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnlineArchiveSum != nil
 }
 
 // SetOnlineArchiveSum gets a reference to the given UsageBillableSummaryBody and assigns it to the OnlineArchiveSum field.
@@ -2258,11 +2002,7 @@ func (o *UsageBillableSummaryKeys) GetProfContainerSumOk() (*UsageBillableSummar
 
 // HasProfContainerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasProfContainerSum() bool {
-	if o != nil && o.ProfContainerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfContainerSum != nil
 }
 
 // SetProfContainerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ProfContainerSum field.
@@ -2290,11 +2030,7 @@ func (o *UsageBillableSummaryKeys) GetProfHostSumOk() (*UsageBillableSummaryBody
 
 // HasProfHostSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasProfHostSum() bool {
-	if o != nil && o.ProfHostSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfHostSum != nil
 }
 
 // SetProfHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ProfHostSum field.
@@ -2322,11 +2058,7 @@ func (o *UsageBillableSummaryKeys) GetProfHostTop99pOk() (*UsageBillableSummaryB
 
 // HasProfHostTop99p returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasProfHostTop99p() bool {
-	if o != nil && o.ProfHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfHostTop99p != nil
 }
 
 // SetProfHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the ProfHostTop99p field.
@@ -2354,11 +2086,7 @@ func (o *UsageBillableSummaryKeys) GetRumLiteSumOk() (*UsageBillableSummaryBody,
 
 // HasRumLiteSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasRumLiteSum() bool {
-	if o != nil && o.RumLiteSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumLiteSum != nil
 }
 
 // SetRumLiteSum gets a reference to the given UsageBillableSummaryBody and assigns it to the RumLiteSum field.
@@ -2386,11 +2114,7 @@ func (o *UsageBillableSummaryKeys) GetRumReplaySumOk() (*UsageBillableSummaryBod
 
 // HasRumReplaySum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasRumReplaySum() bool {
-	if o != nil && o.RumReplaySum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumReplaySum != nil
 }
 
 // SetRumReplaySum gets a reference to the given UsageBillableSummaryBody and assigns it to the RumReplaySum field.
@@ -2418,11 +2142,7 @@ func (o *UsageBillableSummaryKeys) GetRumSumOk() (*UsageBillableSummaryBody, boo
 
 // HasRumSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasRumSum() bool {
-	if o != nil && o.RumSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumSum != nil
 }
 
 // SetRumSum gets a reference to the given UsageBillableSummaryBody and assigns it to the RumSum field.
@@ -2450,11 +2170,7 @@ func (o *UsageBillableSummaryKeys) GetRumUnitsSumOk() (*UsageBillableSummaryBody
 
 // HasRumUnitsSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasRumUnitsSum() bool {
-	if o != nil && o.RumUnitsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumUnitsSum != nil
 }
 
 // SetRumUnitsSum gets a reference to the given UsageBillableSummaryBody and assigns it to the RumUnitsSum field.
@@ -2482,11 +2198,7 @@ func (o *UsageBillableSummaryKeys) GetSensitiveDataScannerSumOk() (*UsageBillabl
 
 // HasSensitiveDataScannerSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasSensitiveDataScannerSum() bool {
-	if o != nil && o.SensitiveDataScannerSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SensitiveDataScannerSum != nil
 }
 
 // SetSensitiveDataScannerSum gets a reference to the given UsageBillableSummaryBody and assigns it to the SensitiveDataScannerSum field.
@@ -2514,11 +2226,7 @@ func (o *UsageBillableSummaryKeys) GetServerlessInvocationSumOk() (*UsageBillabl
 
 // HasServerlessInvocationSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasServerlessInvocationSum() bool {
-	if o != nil && o.ServerlessInvocationSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ServerlessInvocationSum != nil
 }
 
 // SetServerlessInvocationSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ServerlessInvocationSum field.
@@ -2546,11 +2254,7 @@ func (o *UsageBillableSummaryKeys) GetSiemSumOk() (*UsageBillableSummaryBody, bo
 
 // HasSiemSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasSiemSum() bool {
-	if o != nil && o.SiemSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SiemSum != nil
 }
 
 // SetSiemSum gets a reference to the given UsageBillableSummaryBody and assigns it to the SiemSum field.
@@ -2578,11 +2282,7 @@ func (o *UsageBillableSummaryKeys) GetStandardTimeseriesAverageOk() (*UsageBilla
 
 // HasStandardTimeseriesAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasStandardTimeseriesAverage() bool {
-	if o != nil && o.StandardTimeseriesAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StandardTimeseriesAverage != nil
 }
 
 // SetStandardTimeseriesAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the StandardTimeseriesAverage field.
@@ -2610,11 +2310,7 @@ func (o *UsageBillableSummaryKeys) GetSyntheticsApiTestsSumOk() (*UsageBillableS
 
 // HasSyntheticsApiTestsSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasSyntheticsApiTestsSum() bool {
-	if o != nil && o.SyntheticsApiTestsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsApiTestsSum != nil
 }
 
 // SetSyntheticsApiTestsSum gets a reference to the given UsageBillableSummaryBody and assigns it to the SyntheticsApiTestsSum field.
@@ -2642,11 +2338,7 @@ func (o *UsageBillableSummaryKeys) GetSyntheticsBrowserChecksSumOk() (*UsageBill
 
 // HasSyntheticsBrowserChecksSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasSyntheticsBrowserChecksSum() bool {
-	if o != nil && o.SyntheticsBrowserChecksSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsBrowserChecksSum != nil
 }
 
 // SetSyntheticsBrowserChecksSum gets a reference to the given UsageBillableSummaryBody and assigns it to the SyntheticsBrowserChecksSum field.
@@ -2674,11 +2366,7 @@ func (o *UsageBillableSummaryKeys) GetTimeseriesAverageOk() (*UsageBillableSumma
 
 // HasTimeseriesAverage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasTimeseriesAverage() bool {
-	if o != nil && o.TimeseriesAverage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeseriesAverage != nil
 }
 
 // SetTimeseriesAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the TimeseriesAverage field.
@@ -2706,11 +2394,7 @@ func (o *UsageBillableSummaryKeys) GetTimeseriesSumOk() (*UsageBillableSummaryBo
 
 // HasTimeseriesSum returns a boolean if a field has been set.
 func (o *UsageBillableSummaryKeys) HasTimeseriesSum() bool {
-	if o != nil && o.TimeseriesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeseriesSum != nil
 }
 
 // SetTimeseriesSum gets a reference to the given UsageBillableSummaryBody and assigns it to the TimeseriesSum field.

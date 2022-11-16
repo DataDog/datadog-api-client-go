@@ -13,7 +13,7 @@ type MetricAllTagsResponse struct {
 	// Object for a single metric's indexed tags.
 	Data *MetricAllTags `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *MetricAllTagsResponse) GetDataOk() (*MetricAllTags, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *MetricAllTagsResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given MetricAllTags and assigns it to the Data field.

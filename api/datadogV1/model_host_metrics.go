@@ -17,7 +17,7 @@ type HostMetrics struct {
 	// The system load over the last 15 minutes.
 	Load *float64 `json:"load,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *HostMetrics) GetCpuOk() (*float64, bool) {
 
 // HasCpu returns a boolean if a field has been set.
 func (o *HostMetrics) HasCpu() bool {
-	if o != nil && o.Cpu != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cpu != nil
 }
 
 // SetCpu gets a reference to the given float64 and assigns it to the Cpu field.
@@ -90,11 +86,7 @@ func (o *HostMetrics) GetIowaitOk() (*float64, bool) {
 
 // HasIowait returns a boolean if a field has been set.
 func (o *HostMetrics) HasIowait() bool {
-	if o != nil && o.Iowait != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Iowait != nil
 }
 
 // SetIowait gets a reference to the given float64 and assigns it to the Iowait field.
@@ -122,11 +114,7 @@ func (o *HostMetrics) GetLoadOk() (*float64, bool) {
 
 // HasLoad returns a boolean if a field has been set.
 func (o *HostMetrics) HasLoad() bool {
-	if o != nil && o.Load != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Load != nil
 }
 
 // SetLoad gets a reference to the given float64 and assigns it to the Load field.

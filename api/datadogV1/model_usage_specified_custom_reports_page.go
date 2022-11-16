@@ -13,7 +13,7 @@ type UsageSpecifiedCustomReportsPage struct {
 	// Total page count.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UsageSpecifiedCustomReportsPage) GetTotalCountOk() (*int64, bool) {
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsPage) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalCount != nil
 }
 
 // SetTotalCount gets a reference to the given int64 and assigns it to the TotalCount field.

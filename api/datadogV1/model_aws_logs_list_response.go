@@ -17,7 +17,7 @@ type AWSLogsListResponse struct {
 	// Array of services IDs.
 	Services []string `json:"services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *AWSLogsListResponse) GetAccountIdOk() (*string, bool) {
 
 // HasAccountId returns a boolean if a field has been set.
 func (o *AWSLogsListResponse) HasAccountId() bool {
-	if o != nil && o.AccountId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
@@ -90,11 +86,7 @@ func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsLambda, bool) {
 
 // HasLambdas returns a boolean if a field has been set.
 func (o *AWSLogsListResponse) HasLambdas() bool {
-	if o != nil && o.Lambdas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Lambdas != nil
 }
 
 // SetLambdas gets a reference to the given []AWSLogsLambda and assigns it to the Lambdas field.
@@ -122,11 +114,7 @@ func (o *AWSLogsListResponse) GetServicesOk() (*[]string, bool) {
 
 // HasServices returns a boolean if a field has been set.
 func (o *AWSLogsListResponse) HasServices() bool {
-	if o != nil && o.Services != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Services != nil
 }
 
 // SetServices gets a reference to the given []string and assigns it to the Services field.

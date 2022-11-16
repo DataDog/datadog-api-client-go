@@ -22,7 +22,7 @@ type SyntheticsBasicAuthNTLM struct {
 	// Workstation for the authentication to use when performing the test.
 	Workstation *string `json:"workstation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -66,11 +66,7 @@ func (o *SyntheticsBasicAuthNTLM) GetDomainOk() (*string, bool) {
 
 // HasDomain returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthNTLM) HasDomain() bool {
-	if o != nil && o.Domain != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Domain != nil
 }
 
 // SetDomain gets a reference to the given string and assigns it to the Domain field.
@@ -98,11 +94,7 @@ func (o *SyntheticsBasicAuthNTLM) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthNTLM) HasPassword() bool {
-	if o != nil && o.Password != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Password != nil
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
@@ -153,11 +145,7 @@ func (o *SyntheticsBasicAuthNTLM) GetUsernameOk() (*string, bool) {
 
 // HasUsername returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthNTLM) HasUsername() bool {
-	if o != nil && o.Username != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Username != nil
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
@@ -185,11 +173,7 @@ func (o *SyntheticsBasicAuthNTLM) GetWorkstationOk() (*string, bool) {
 
 // HasWorkstation returns a boolean if a field has been set.
 func (o *SyntheticsBasicAuthNTLM) HasWorkstation() bool {
-	if o != nil && o.Workstation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Workstation != nil
 }
 
 // SetWorkstation gets a reference to the given string and assigns it to the Workstation field.
@@ -241,7 +225,7 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

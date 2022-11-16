@@ -15,7 +15,7 @@ type MetricsListResponse struct {
 	// List of metric names.
 	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *MetricsListResponse) GetFromOk() (*string, bool) {
 
 // HasFrom returns a boolean if a field has been set.
 func (o *MetricsListResponse) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.From != nil
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
@@ -88,11 +84,7 @@ func (o *MetricsListResponse) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *MetricsListResponse) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.

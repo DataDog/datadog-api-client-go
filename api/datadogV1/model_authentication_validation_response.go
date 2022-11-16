@@ -13,7 +13,7 @@ type AuthenticationValidationResponse struct {
 	// Return `true` if the authentication response is valid.
 	Valid *bool `json:"valid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *AuthenticationValidationResponse) GetValidOk() (*bool, bool) {
 
 // HasValid returns a boolean if a field has been set.
 func (o *AuthenticationValidationResponse) HasValid() bool {
-	if o != nil && o.Valid != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Valid != nil
 }
 
 // SetValid gets a reference to the given bool and assigns it to the Valid field.

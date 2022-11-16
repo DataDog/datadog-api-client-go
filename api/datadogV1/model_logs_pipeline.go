@@ -30,7 +30,7 @@ type LogsPipeline struct {
 	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,11 +72,7 @@ func (o *LogsPipeline) GetFilterOk() (*LogsFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsPipeline) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsFilter and assigns it to the Filter field.
@@ -104,11 +100,7 @@ func (o *LogsPipeline) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *LogsPipeline) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -136,11 +128,7 @@ func (o *LogsPipeline) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsPipeline) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -168,11 +156,7 @@ func (o *LogsPipeline) GetIsReadOnlyOk() (*bool, bool) {
 
 // HasIsReadOnly returns a boolean if a field has been set.
 func (o *LogsPipeline) HasIsReadOnly() bool {
-	if o != nil && o.IsReadOnly != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReadOnly != nil
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
@@ -223,11 +207,7 @@ func (o *LogsPipeline) GetProcessorsOk() (*[]LogsProcessor, bool) {
 
 // HasProcessors returns a boolean if a field has been set.
 func (o *LogsPipeline) HasProcessors() bool {
-	if o != nil && o.Processors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Processors != nil
 }
 
 // SetProcessors gets a reference to the given []LogsProcessor and assigns it to the Processors field.
@@ -255,11 +235,7 @@ func (o *LogsPipeline) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *LogsPipeline) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
@@ -319,7 +295,7 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

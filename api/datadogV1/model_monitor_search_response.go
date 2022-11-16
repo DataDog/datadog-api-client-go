@@ -17,7 +17,7 @@ type MonitorSearchResponse struct {
 	// The list of found monitors.
 	Monitors []MonitorSearchResult `json:"monitors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *MonitorSearchResponse) GetCountsOk() (*MonitorSearchResponseCounts, boo
 
 // HasCounts returns a boolean if a field has been set.
 func (o *MonitorSearchResponse) HasCounts() bool {
-	if o != nil && o.Counts != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Counts != nil
 }
 
 // SetCounts gets a reference to the given MonitorSearchResponseCounts and assigns it to the Counts field.
@@ -90,11 +86,7 @@ func (o *MonitorSearchResponse) GetMetadataOk() (*MonitorSearchResponseMetadata,
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *MonitorSearchResponse) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given MonitorSearchResponseMetadata and assigns it to the Metadata field.
@@ -122,11 +114,7 @@ func (o *MonitorSearchResponse) GetMonitorsOk() (*[]MonitorSearchResult, bool) {
 
 // HasMonitors returns a boolean if a field has been set.
 func (o *MonitorSearchResponse) HasMonitors() bool {
-	if o != nil && o.Monitors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Monitors != nil
 }
 
 // SetMonitors gets a reference to the given []MonitorSearchResult and assigns it to the Monitors field.

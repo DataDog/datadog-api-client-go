@@ -14,7 +14,7 @@ type MonitorState struct {
 	// the list of groups your monitor is broken down on.
 	Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,11 +55,7 @@ func (o *MonitorState) GetGroupsOk() (*map[string]MonitorStateGroup, bool) {
 
 // HasGroups returns a boolean if a field has been set.
 func (o *MonitorState) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Groups != nil
 }
 
 // SetGroups gets a reference to the given map[string]MonitorStateGroup and assigns it to the Groups field.

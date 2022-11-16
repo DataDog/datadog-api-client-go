@@ -23,7 +23,7 @@ type MonitorStateGroup struct {
 	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *MonitorStateGroup) GetLastNodataTsOk() (*int64, bool) {
 
 // HasLastNodataTs returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasLastNodataTs() bool {
-	if o != nil && o.LastNodataTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastNodataTs != nil
 }
 
 // SetLastNodataTs gets a reference to the given int64 and assigns it to the LastNodataTs field.
@@ -96,11 +92,7 @@ func (o *MonitorStateGroup) GetLastNotifiedTsOk() (*int64, bool) {
 
 // HasLastNotifiedTs returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasLastNotifiedTs() bool {
-	if o != nil && o.LastNotifiedTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastNotifiedTs != nil
 }
 
 // SetLastNotifiedTs gets a reference to the given int64 and assigns it to the LastNotifiedTs field.
@@ -128,11 +120,7 @@ func (o *MonitorStateGroup) GetLastResolvedTsOk() (*int64, bool) {
 
 // HasLastResolvedTs returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasLastResolvedTs() bool {
-	if o != nil && o.LastResolvedTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastResolvedTs != nil
 }
 
 // SetLastResolvedTs gets a reference to the given int64 and assigns it to the LastResolvedTs field.
@@ -160,11 +148,7 @@ func (o *MonitorStateGroup) GetLastTriggeredTsOk() (*int64, bool) {
 
 // HasLastTriggeredTs returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasLastTriggeredTs() bool {
-	if o != nil && o.LastTriggeredTs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastTriggeredTs != nil
 }
 
 // SetLastTriggeredTs gets a reference to the given int64 and assigns it to the LastTriggeredTs field.
@@ -192,11 +176,7 @@ func (o *MonitorStateGroup) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -224,11 +204,7 @@ func (o *MonitorStateGroup) GetStatusOk() (*MonitorOverallStates, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MonitorStateGroup) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given MonitorOverallStates and assigns it to the Status field.

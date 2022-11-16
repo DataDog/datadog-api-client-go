@@ -9,7 +9,7 @@ This repository contains a Go API client for the [Datadog API](https://docs.data
 ## Layout
 
 This repository contains per-major-version API client packages. Right
-now, Datadog has two API versions, `v1`, `v2` and the common package, `common`.
+now, Datadog has two API versions, `v1`, `v2` and the common package.
 
 ### The API v1 Client
 
@@ -101,7 +101,7 @@ When talking to a different server, like the `eu` instance, change the `ContextS
 
 ```go
     ctx = context.WithValue(ctx,
-        common.ContextServerVariables,
+        datadog.ContextServerVariables,
         map[string]string{
             "site": "datadoghq.eu",
     })
@@ -122,6 +122,18 @@ If you want to enable requests logging, set the `debug` flag on your configurati
 
 ```go
     configuration.Debug = true
+```
+
+### Configure proxy
+
+If you want to configure proxy, set env var `HTTP_PROXY`, and `HTTPS_PROXY` or set custom
+`HTTPClient` with proxy configured on configuration object:
+
+```go
+    proxyUrl, _ := url.Parse("http://127.0.0.1:80")
+    configuration.HTTPClient = &http.Client{
+        Transport: &http.Transport{Proxy: http.ProxyURL(proxyUrl)}
+    }
 ```
 
 ### Pagination
@@ -162,7 +174,8 @@ func main() {
 
 ## Documentation
 
-Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go).
+Developer documentation for API endpoints and models is available on [Github pages](https://datadoghq.dev/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/).
+Released versions are available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2).
 
 ## Contributing
 

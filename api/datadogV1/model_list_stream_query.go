@@ -17,8 +17,10 @@ type ListStreamQuery struct {
 	Indexes []string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
+	// Option for storage location. Feature in Private Beta.
+	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,11 +88,7 @@ func (o *ListStreamQuery) GetIndexesOk() (*[]string, bool) {
 
 // HasIndexes returns a boolean if a field has been set.
 func (o *ListStreamQuery) HasIndexes() bool {
-	if o != nil && o.Indexes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Indexes != nil
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
@@ -121,6 +119,34 @@ func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+// GetStorage returns the Storage field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetStorage() string {
+	if o == nil || o.Storage == nil {
+		var ret string
+		return ret
+	}
+	return *o.Storage
+}
+
+// GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetStorageOk() (*string, bool) {
+	if o == nil || o.Storage == nil {
+		return nil, false
+	}
+	return o.Storage, true
+}
+
+// HasStorage returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasStorage() bool {
+	return o != nil && o.Storage != nil
+}
+
+// SetStorage gets a reference to the given string and assigns it to the Storage field.
+func (o *ListStreamQuery) SetStorage(v string) {
+	o.Storage = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,6 +158,9 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["indexes"] = o.Indexes
 	}
 	toSerialize["query_string"] = o.QueryString
+	if o.Storage != nil {
+		toSerialize["storage"] = o.Storage
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -150,16 +179,17 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		DataSource  ListStreamSource `json:"data_source"`
 		Indexes     []string         `json:"indexes,omitempty"`
 		QueryString string           `json:"query_string"`
+		Storage     *string          `json:"storage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.QueryString == nil {
-		return fmt.Errorf("Required field query_string missing")
+		return fmt.Errorf("required field query_string missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -181,5 +211,6 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.DataSource = all.DataSource
 	o.Indexes = all.Indexes
 	o.QueryString = all.QueryString
+	o.Storage = all.Storage
 	return nil
 }

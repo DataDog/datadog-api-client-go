@@ -13,7 +13,7 @@ type MetricSearchResponse struct {
 	// Search result.
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *MetricSearchResponse) GetResultsOk() (*MetricSearchResponseResults, boo
 
 // HasResults returns a boolean if a field has been set.
 func (o *MetricSearchResponse) HasResults() bool {
-	if o != nil && o.Results != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Results != nil
 }
 
 // SetResults gets a reference to the given MetricSearchResponseResults and assigns it to the Results field.

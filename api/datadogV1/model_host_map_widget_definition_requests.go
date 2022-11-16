@@ -15,7 +15,7 @@ type HostMapWidgetDefinitionRequests struct {
 	// Updated host map.
 	Size *HostMapRequest `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *HostMapWidgetDefinitionRequests) GetFillOk() (*HostMapRequest, bool) {
 
 // HasFill returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionRequests) HasFill() bool {
-	if o != nil && o.Fill != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fill != nil
 }
 
 // SetFill gets a reference to the given HostMapRequest and assigns it to the Fill field.
@@ -88,11 +84,7 @@ func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (*HostMapRequest, bool) {
 
 // HasSize returns a boolean if a field has been set.
 func (o *HostMapWidgetDefinitionRequests) HasSize() bool {
-	if o != nil && o.Size != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Size != nil
 }
 
 // SetSize gets a reference to the given HostMapRequest and assigns it to the Size field.

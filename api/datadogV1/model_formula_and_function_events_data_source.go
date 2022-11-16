@@ -22,6 +22,7 @@ const (
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES         FormulaAndFunctionEventsDataSource = "profiles"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT            FormulaAndFunctionEventsDataSource = "audit"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS           FormulaAndFunctionEventsDataSource = "events"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS         FormulaAndFunctionEventsDataSource = "ci_tests"
 )
 
 var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEventsDataSource{
@@ -33,6 +34,7 @@ var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEv
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.

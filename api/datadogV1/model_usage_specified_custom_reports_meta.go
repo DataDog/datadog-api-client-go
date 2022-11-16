@@ -13,7 +13,7 @@ type UsageSpecifiedCustomReportsMeta struct {
 	// The object containing page total count for specified ID.
 	Page *UsageSpecifiedCustomReportsPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UsageSpecifiedCustomReportsMeta) GetPageOk() (*UsageSpecifiedCustomRepo
 
 // HasPage returns a boolean if a field has been set.
 func (o *UsageSpecifiedCustomReportsMeta) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given UsageSpecifiedCustomReportsPage and assigns it to the Page field.

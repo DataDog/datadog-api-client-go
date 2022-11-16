@@ -42,7 +42,7 @@ type TimeseriesWidgetDefinition struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,11 +87,7 @@ func (o *TimeseriesWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bo
 
 // HasCustomLinks returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasCustomLinks() bool {
-	if o != nil && o.CustomLinks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomLinks != nil
 }
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
@@ -119,11 +115,7 @@ func (o *TimeseriesWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 
 // HasEvents returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasEvents() bool {
-	if o != nil && o.Events != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Events != nil
 }
 
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
@@ -151,11 +143,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]TimeseriesWidgetLe
 
 // HasLegendColumns returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool {
-	if o != nil && o.LegendColumns != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LegendColumns != nil
 }
 
 // SetLegendColumns gets a reference to the given []TimeseriesWidgetLegendColumn and assigns it to the LegendColumns field.
@@ -183,11 +171,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendLayoutOk() (*TimeseriesWidgetLegen
 
 // HasLegendLayout returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasLegendLayout() bool {
-	if o != nil && o.LegendLayout != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LegendLayout != nil
 }
 
 // SetLegendLayout gets a reference to the given TimeseriesWidgetLegendLayout and assigns it to the LegendLayout field.
@@ -215,11 +199,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendSizeOk() (*string, bool) {
 
 // HasLegendSize returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasLegendSize() bool {
-	if o != nil && o.LegendSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LegendSize != nil
 }
 
 // SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
@@ -247,11 +227,7 @@ func (o *TimeseriesWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
 
 // HasMarkers returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasMarkers() bool {
-	if o != nil && o.Markers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Markers != nil
 }
 
 // SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
@@ -302,11 +278,7 @@ func (o *TimeseriesWidgetDefinition) GetRightYaxisOk() (*WidgetAxis, bool) {
 
 // HasRightYaxis returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasRightYaxis() bool {
-	if o != nil && o.RightYaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RightYaxis != nil
 }
 
 // SetRightYaxis gets a reference to the given WidgetAxis and assigns it to the RightYaxis field.
@@ -334,11 +306,7 @@ func (o *TimeseriesWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 
 // HasShowLegend returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasShowLegend() bool {
-	if o != nil && o.ShowLegend != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowLegend != nil
 }
 
 // SetShowLegend gets a reference to the given bool and assigns it to the ShowLegend field.
@@ -366,11 +334,7 @@ func (o *TimeseriesWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -398,11 +362,7 @@ func (o *TimeseriesWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -430,11 +390,7 @@ func (o *TimeseriesWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) 
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -462,11 +418,7 @@ func (o *TimeseriesWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -517,11 +469,7 @@ func (o *TimeseriesWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
 
 // HasYaxis returns a boolean if a field has been set.
 func (o *TimeseriesWidgetDefinition) HasYaxis() bool {
-	if o != nil && o.Yaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Yaxis != nil
 }
 
 // SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
@@ -612,10 +560,10 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

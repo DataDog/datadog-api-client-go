@@ -33,7 +33,7 @@ type LogsLookupProcessor struct {
 	// Type of logs lookup processor.
 	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -84,11 +84,7 @@ func (o *LogsLookupProcessor) GetDefaultLookupOk() (*string, bool) {
 
 // HasDefaultLookup returns a boolean if a field has been set.
 func (o *LogsLookupProcessor) HasDefaultLookup() bool {
-	if o != nil && o.DefaultLookup != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DefaultLookup != nil
 }
 
 // SetDefaultLookup gets a reference to the given string and assigns it to the DefaultLookup field.
@@ -116,11 +112,7 @@ func (o *LogsLookupProcessor) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsLookupProcessor) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -171,11 +163,7 @@ func (o *LogsLookupProcessor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsLookupProcessor) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -301,16 +289,16 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LookupTable == nil {
-		return fmt.Errorf("Required field lookup_table missing")
+		return fmt.Errorf("required field lookup_table missing")
 	}
 	if required.Source == nil {
-		return fmt.Errorf("Required field source missing")
+		return fmt.Errorf("required field source missing")
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -15,7 +15,7 @@ type MonitorSearchCountItem struct {
 	// The facet value.
 	Name interface{} `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *MonitorSearchCountItem) GetCountOk() (*int64, bool) {
 
 // HasCount returns a boolean if a field has been set.
 func (o *MonitorSearchCountItem) HasCount() bool {
-	if o != nil && o.Count != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Count != nil
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
@@ -88,11 +84,7 @@ func (o *MonitorSearchCountItem) GetNameOk() (*interface{}, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MonitorSearchCountItem) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given interface{} and assigns it to the Name field.

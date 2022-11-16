@@ -17,7 +17,7 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	// The path target value to compare to.
 	TargetValue interface{} `json:"targetValue,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) GetJsonPathOk() (*string, bool
 
 // HasJsonPath returns a boolean if a field has been set.
 func (o *SyntheticsAssertionJSONPathTargetTarget) HasJsonPath() bool {
-	if o != nil && o.JsonPath != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.JsonPath != nil
 }
 
 // SetJsonPath gets a reference to the given string and assigns it to the JsonPath field.
@@ -90,11 +86,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) GetOperatorOk() (*string, bool
 
 // HasOperator returns a boolean if a field has been set.
 func (o *SyntheticsAssertionJSONPathTargetTarget) HasOperator() bool {
-	if o != nil && o.Operator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Operator != nil
 }
 
 // SetOperator gets a reference to the given string and assigns it to the Operator field.
@@ -122,11 +114,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (*interface
 
 // HasTargetValue returns a boolean if a field has been set.
 func (o *SyntheticsAssertionJSONPathTargetTarget) HasTargetValue() bool {
-	if o != nil && o.TargetValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TargetValue != nil
 }
 
 // SetTargetValue gets a reference to the given interface{} and assigns it to the TargetValue field.

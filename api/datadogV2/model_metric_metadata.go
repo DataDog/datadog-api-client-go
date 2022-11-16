@@ -13,7 +13,7 @@ type MetricMetadata struct {
 	// Metric origin information.
 	Origin *MetricOrigin `json:"origin,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *MetricMetadata) GetOriginOk() (*MetricOrigin, bool) {
 
 // HasOrigin returns a boolean if a field has been set.
 func (o *MetricMetadata) HasOrigin() bool {
-	if o != nil && o.Origin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Origin != nil
 }
 
 // SetOrigin gets a reference to the given MetricOrigin and assigns it to the Origin field.

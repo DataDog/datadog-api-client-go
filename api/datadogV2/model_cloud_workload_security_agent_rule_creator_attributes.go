@@ -15,7 +15,7 @@ type CloudWorkloadSecurityAgentRuleCreatorAttributes struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetHandleOk() (*string
 
 // HasHandle returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) HasHandle() bool {
-	if o != nil && o.Handle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Handle != nil
 }
 
 // SetHandle gets a reference to the given string and assigns it to the Handle field.
@@ -88,11 +84,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetNameOk() (*string, 
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

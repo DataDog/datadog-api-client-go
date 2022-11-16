@@ -17,7 +17,7 @@ type UserUpdateAttributes struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *UserUpdateAttributes) GetDisabledOk() (*bool, bool) {
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *UserUpdateAttributes) HasDisabled() bool {
-	if o != nil && o.Disabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Disabled != nil
 }
 
 // SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
@@ -90,11 +86,7 @@ func (o *UserUpdateAttributes) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UserUpdateAttributes) HasEmail() bool {
-	if o != nil && o.Email != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Email != nil
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
@@ -122,11 +114,7 @@ func (o *UserUpdateAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UserUpdateAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

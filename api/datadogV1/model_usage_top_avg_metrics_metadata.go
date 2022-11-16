@@ -18,7 +18,7 @@ type UsageTopAvgMetricsMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *UsageTopAvgMetricsPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *UsageTopAvgMetricsMetadata) GetDayOk() (*time.Time, bool) {
 
 // HasDay returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsMetadata) HasDay() bool {
-	if o != nil && o.Day != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Day != nil
 }
 
 // SetDay gets a reference to the given time.Time and assigns it to the Day field.
@@ -91,11 +87,7 @@ func (o *UsageTopAvgMetricsMetadata) GetMonthOk() (*time.Time, bool) {
 
 // HasMonth returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsMetadata) HasMonth() bool {
-	if o != nil && o.Month != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Month != nil
 }
 
 // SetMonth gets a reference to the given time.Time and assigns it to the Month field.
@@ -123,11 +115,7 @@ func (o *UsageTopAvgMetricsMetadata) GetPaginationOk() (*UsageTopAvgMetricsPagin
 
 // HasPagination returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsMetadata) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given UsageTopAvgMetricsPagination and assigns it to the Pagination field.

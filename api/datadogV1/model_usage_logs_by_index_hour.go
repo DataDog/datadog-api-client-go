@@ -26,7 +26,7 @@ type UsageLogsByIndexHour struct {
 	// The retention period (in days) for this index ID.
 	Retention *int64 `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -67,11 +67,7 @@ func (o *UsageLogsByIndexHour) GetEventCountOk() (*int64, bool) {
 
 // HasEventCount returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasEventCount() bool {
-	if o != nil && o.EventCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventCount != nil
 }
 
 // SetEventCount gets a reference to the given int64 and assigns it to the EventCount field.
@@ -99,11 +95,7 @@ func (o *UsageLogsByIndexHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -131,11 +123,7 @@ func (o *UsageLogsByIndexHour) GetIndexIdOk() (*string, bool) {
 
 // HasIndexId returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasIndexId() bool {
-	if o != nil && o.IndexId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexId != nil
 }
 
 // SetIndexId gets a reference to the given string and assigns it to the IndexId field.
@@ -163,11 +151,7 @@ func (o *UsageLogsByIndexHour) GetIndexNameOk() (*string, bool) {
 
 // HasIndexName returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasIndexName() bool {
-	if o != nil && o.IndexName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexName != nil
 }
 
 // SetIndexName gets a reference to the given string and assigns it to the IndexName field.
@@ -195,11 +179,7 @@ func (o *UsageLogsByIndexHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -227,11 +207,7 @@ func (o *UsageLogsByIndexHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -259,11 +235,7 @@ func (o *UsageLogsByIndexHour) GetRetentionOk() (*int64, bool) {
 
 // HasRetention returns a boolean if a field has been set.
 func (o *UsageLogsByIndexHour) HasRetention() bool {
-	if o != nil && o.Retention != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Retention != nil
 }
 
 // SetRetention gets a reference to the given int64 and assigns it to the Retention field.

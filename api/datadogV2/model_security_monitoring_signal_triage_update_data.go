@@ -13,7 +13,7 @@ type SecurityMonitoringSignalTriageUpdateData struct {
 	// Attributes describing a triage state update operation over a security signal.
 	Attributes *SecurityMonitoringSignalTriageAttributes `json:"attributes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *SecurityMonitoringSignalTriageUpdateData) GetAttributesOk() (*SecurityM
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalTriageUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SecurityMonitoringSignalTriageAttributes and assigns it to the Attributes field.

@@ -24,7 +24,7 @@ type ServiceCheck struct {
 	// Time of check.
 	Timestamp *int64 `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -115,11 +115,7 @@ func (o *ServiceCheck) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ServiceCheck) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -193,11 +189,7 @@ func (o *ServiceCheck) GetTimestampOk() (*int64, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *ServiceCheck) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
@@ -250,16 +242,16 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Check == nil {
-		return fmt.Errorf("Required field check missing")
+		return fmt.Errorf("required field check missing")
 	}
 	if required.HostName == nil {
-		return fmt.Errorf("Required field host_name missing")
+		return fmt.Errorf("required field host_name missing")
 	}
 	if required.Status == nil {
-		return fmt.Errorf("Required field status missing")
+		return fmt.Errorf("required field status missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

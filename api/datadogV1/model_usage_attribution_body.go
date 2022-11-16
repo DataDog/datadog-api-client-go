@@ -30,7 +30,7 @@ type UsageAttributionBody struct {
 	// Fields in Usage Summary by tag(s).
 	Values *UsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,11 +71,7 @@ func (o *UsageAttributionBody) GetMonthOk() (*time.Time, bool) {
 
 // HasMonth returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasMonth() bool {
-	if o != nil && o.Month != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Month != nil
 }
 
 // SetMonth gets a reference to the given time.Time and assigns it to the Month field.
@@ -103,11 +99,7 @@ func (o *UsageAttributionBody) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -135,11 +127,7 @@ func (o *UsageAttributionBody) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -167,11 +155,7 @@ func (o *UsageAttributionBody) GetTagConfigSourceOk() (*string, bool) {
 
 // HasTagConfigSource returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasTagConfigSource() bool {
-	if o != nil && o.TagConfigSource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagConfigSource != nil
 }
 
 // SetTagConfigSource gets a reference to the given string and assigns it to the TagConfigSource field.
@@ -199,11 +183,7 @@ func (o *UsageAttributionBody) GetTagsOk() (*map[string][]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given map[string][]string and assigns it to the Tags field.
@@ -231,11 +211,7 @@ func (o *UsageAttributionBody) GetUpdatedAtOk() (*string, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
@@ -263,11 +239,7 @@ func (o *UsageAttributionBody) GetValuesOk() (*UsageAttributionValues, bool) {
 
 // HasValues returns a boolean if a field has been set.
 func (o *UsageAttributionBody) HasValues() bool {
-	if o != nil && o.Values != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Values != nil
 }
 
 // SetValues gets a reference to the given UsageAttributionValues and assigns it to the Values field.

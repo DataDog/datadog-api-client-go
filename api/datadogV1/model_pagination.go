@@ -15,7 +15,7 @@ type Pagination struct {
 	// Total count of elements matched by the filter.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *Pagination) GetTotalCountOk() (*int64, bool) {
 
 // HasTotalCount returns a boolean if a field has been set.
 func (o *Pagination) HasTotalCount() bool {
-	if o != nil && o.TotalCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalCount != nil
 }
 
 // SetTotalCount gets a reference to the given int64 and assigns it to the TotalCount field.
@@ -88,11 +84,7 @@ func (o *Pagination) GetTotalFilteredCountOk() (*int64, bool) {
 
 // HasTotalFilteredCount returns a boolean if a field has been set.
 func (o *Pagination) HasTotalFilteredCount() bool {
-	if o != nil && o.TotalFilteredCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalFilteredCount != nil
 }
 
 // SetTotalFilteredCount gets a reference to the given int64 and assigns it to the TotalFilteredCount field.

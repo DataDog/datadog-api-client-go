@@ -426,12 +426,3 @@ func deleteAPIKey(ctx context.Context, t *testing.T, apiKeyValue string) {
 		t.Logf("Deleting api key: %v failed with %v, Another test may have already deleted this api key.", apiKeyValue[len(apiKeyValue)-4:], httpresp.StatusCode)
 	}
 }
-
-func deleteAppKey(ctx context.Context, t *testing.T, appKeyHash string) {
-	api := datadogV1.NewKeyManagementApi(Client(ctx))
-
-	_, httpresp, err := api.DeleteApplicationKey(ctx, appKeyHash)
-	if httpresp.StatusCode != 200 || err != nil {
-		t.Logf("Deleting app key: %v failed with %v, Another test may have already deleted this app key.", appKeyHash[len(appKeyHash)-4:], httpresp.StatusCode)
-	}
-}

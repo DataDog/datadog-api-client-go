@@ -16,7 +16,7 @@ type LogsIndexesOrder struct {
 	// Logs are eventually stored in the first matching index.
 	IndexNames []string `json:"index_names"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -89,7 +89,7 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.IndexNames == nil {
-		return fmt.Errorf("Required field index_names missing")
+		return fmt.Errorf("required field index_names missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -15,7 +15,7 @@ type MonitorGroupSearchResponseCounts struct {
 	// Search facets.
 	Type []MonitorSearchCountItem `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *MonitorGroupSearchResponseCounts) GetStatusOk() (*[]MonitorSearchCountI
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MonitorGroupSearchResponseCounts) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given []MonitorSearchCountItem and assigns it to the Status field.
@@ -88,11 +84,7 @@ func (o *MonitorGroupSearchResponseCounts) GetTypeOk() (*[]MonitorSearchCountIte
 
 // HasType returns a boolean if a field has been set.
 func (o *MonitorGroupSearchResponseCounts) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given []MonitorSearchCountItem and assigns it to the Type field.

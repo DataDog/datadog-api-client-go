@@ -13,7 +13,7 @@ type CloudWorkloadSecurityAgentRulesListResponse struct {
 	// A list of Agent rules objects.
 	Data []CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) GetDataOk() (*[]CloudWorkl
 
 // HasData returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRulesListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []CloudWorkloadSecurityAgentRuleData and assigns it to the Data field.

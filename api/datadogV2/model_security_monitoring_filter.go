@@ -15,7 +15,7 @@ type SecurityMonitoringFilter struct {
 	// Query for selecting logs to apply the filtering action.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SecurityMonitoringFilter) GetActionOk() (*SecurityMonitoringFilterActio
 
 // HasAction returns a boolean if a field has been set.
 func (o *SecurityMonitoringFilter) HasAction() bool {
-	if o != nil && o.Action != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Action != nil
 }
 
 // SetAction gets a reference to the given SecurityMonitoringFilterAction and assigns it to the Action field.
@@ -88,11 +84,7 @@ func (o *SecurityMonitoringFilter) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *SecurityMonitoringFilter) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.

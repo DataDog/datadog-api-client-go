@@ -19,7 +19,7 @@ type UsageTopAvgMetricsPagination struct {
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *UsageTopAvgMetricsPagination) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsPagination) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -93,11 +89,7 @@ func (o *UsageTopAvgMetricsPagination) GetNextRecordIdOk() (*string, bool) {
 
 // HasNextRecordId returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsPagination) HasNextRecordId() bool {
-	if o != nil && o.NextRecordId.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextRecordId.IsSet()
 }
 
 // SetNextRecordId gets a reference to the given datadog.NullableString and assigns it to the NextRecordId field.
@@ -135,11 +127,7 @@ func (o *UsageTopAvgMetricsPagination) GetTotalNumberOfRecordsOk() (*int64, bool
 
 // HasTotalNumberOfRecords returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsPagination) HasTotalNumberOfRecords() bool {
-	if o != nil && o.TotalNumberOfRecords != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalNumberOfRecords != nil
 }
 
 // SetTotalNumberOfRecords gets a reference to the given int64 and assigns it to the TotalNumberOfRecords field.

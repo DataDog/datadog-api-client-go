@@ -19,7 +19,7 @@ type UsageTopAvgMetricsHour struct {
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *UsageTopAvgMetricsHour) GetAvgMetricHourOk() (*int64, bool) {
 
 // HasAvgMetricHour returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsHour) HasAvgMetricHour() bool {
-	if o != nil && o.AvgMetricHour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AvgMetricHour != nil
 }
 
 // SetAvgMetricHour gets a reference to the given int64 and assigns it to the AvgMetricHour field.
@@ -92,11 +88,7 @@ func (o *UsageTopAvgMetricsHour) GetMaxMetricHourOk() (*int64, bool) {
 
 // HasMaxMetricHour returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsHour) HasMaxMetricHour() bool {
-	if o != nil && o.MaxMetricHour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MaxMetricHour != nil
 }
 
 // SetMaxMetricHour gets a reference to the given int64 and assigns it to the MaxMetricHour field.
@@ -124,11 +116,7 @@ func (o *UsageTopAvgMetricsHour) GetMetricCategoryOk() (*UsageMetricCategory, bo
 
 // HasMetricCategory returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsHour) HasMetricCategory() bool {
-	if o != nil && o.MetricCategory != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricCategory != nil
 }
 
 // SetMetricCategory gets a reference to the given UsageMetricCategory and assigns it to the MetricCategory field.
@@ -156,11 +144,7 @@ func (o *UsageTopAvgMetricsHour) GetMetricNameOk() (*string, bool) {
 
 // HasMetricName returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsHour) HasMetricName() bool {
-	if o != nil && o.MetricName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricName != nil
 }
 
 // SetMetricName gets a reference to the given string and assigns it to the MetricName field.

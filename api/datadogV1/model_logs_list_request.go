@@ -29,7 +29,7 @@ type LogsListRequest struct {
 	// Timeframe to retrieve the log from.
 	Time LogsListRequestTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,11 +71,7 @@ func (o *LogsListRequest) GetIndexOk() (*string, bool) {
 
 // HasIndex returns a boolean if a field has been set.
 func (o *LogsListRequest) HasIndex() bool {
-	if o != nil && o.Index != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Index != nil
 }
 
 // SetIndex gets a reference to the given string and assigns it to the Index field.
@@ -103,11 +99,7 @@ func (o *LogsListRequest) GetLimitOk() (*int32, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *LogsListRequest) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int32 and assigns it to the Limit field.
@@ -135,11 +127,7 @@ func (o *LogsListRequest) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *LogsListRequest) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -167,11 +155,7 @@ func (o *LogsListRequest) GetSortOk() (*LogsSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *LogsListRequest) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given LogsSort and assigns it to the Sort field.
@@ -199,11 +183,7 @@ func (o *LogsListRequest) GetStartAtOk() (*string, bool) {
 
 // HasStartAt returns a boolean if a field has been set.
 func (o *LogsListRequest) HasStartAt() bool {
-	if o != nil && o.StartAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StartAt != nil
 }
 
 // SetStartAt gets a reference to the given string and assigns it to the StartAt field.
@@ -282,7 +262,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Time == nil {
-		return fmt.Errorf("Required field time missing")
+		return fmt.Errorf("required field time missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -25,7 +25,7 @@ type MetricMetadata struct {
 	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -66,11 +66,7 @@ func (o *MetricMetadata) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MetricMetadata) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -98,11 +94,7 @@ func (o *MetricMetadata) GetIntegrationOk() (*string, bool) {
 
 // HasIntegration returns a boolean if a field has been set.
 func (o *MetricMetadata) HasIntegration() bool {
-	if o != nil && o.Integration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Integration != nil
 }
 
 // SetIntegration gets a reference to the given string and assigns it to the Integration field.
@@ -130,11 +122,7 @@ func (o *MetricMetadata) GetPerUnitOk() (*string, bool) {
 
 // HasPerUnit returns a boolean if a field has been set.
 func (o *MetricMetadata) HasPerUnit() bool {
-	if o != nil && o.PerUnit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PerUnit != nil
 }
 
 // SetPerUnit gets a reference to the given string and assigns it to the PerUnit field.
@@ -162,11 +150,7 @@ func (o *MetricMetadata) GetShortNameOk() (*string, bool) {
 
 // HasShortName returns a boolean if a field has been set.
 func (o *MetricMetadata) HasShortName() bool {
-	if o != nil && o.ShortName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShortName != nil
 }
 
 // SetShortName gets a reference to the given string and assigns it to the ShortName field.
@@ -194,11 +178,7 @@ func (o *MetricMetadata) GetStatsdIntervalOk() (*int64, bool) {
 
 // HasStatsdInterval returns a boolean if a field has been set.
 func (o *MetricMetadata) HasStatsdInterval() bool {
-	if o != nil && o.StatsdInterval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StatsdInterval != nil
 }
 
 // SetStatsdInterval gets a reference to the given int64 and assigns it to the StatsdInterval field.
@@ -226,11 +206,7 @@ func (o *MetricMetadata) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricMetadata) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
@@ -258,11 +234,7 @@ func (o *MetricMetadata) GetUnitOk() (*string, bool) {
 
 // HasUnit returns a boolean if a field has been set.
 func (o *MetricMetadata) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Unit != nil
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.

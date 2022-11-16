@@ -13,7 +13,7 @@ type SyntheticsCIBatchMetadataProvider struct {
 	// Name of the CI provider.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *SyntheticsCIBatchMetadataProvider) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataProvider) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.

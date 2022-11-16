@@ -15,7 +15,7 @@ type ApplicationKeyUpdateAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *ApplicationKeyUpdateAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ApplicationKeyUpdateAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -89,11 +85,7 @@ func (o *ApplicationKeyUpdateAttributes) GetScopesOk() (*[]string, bool) {
 
 // HasScopes returns a boolean if a field has been set.
 func (o *ApplicationKeyUpdateAttributes) HasScopes() bool {
-	if o != nil && o.Scopes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scopes != nil
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.

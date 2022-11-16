@@ -13,7 +13,7 @@ type OrganizationListResponse struct {
 	// Array of organization objects.
 	Orgs []Organization `json:"orgs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *OrganizationListResponse) GetOrgsOk() (*[]Organization, bool) {
 
 // HasOrgs returns a boolean if a field has been set.
 func (o *OrganizationListResponse) HasOrgs() bool {
-	if o != nil && o.Orgs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Orgs != nil
 }
 
 // SetOrgs gets a reference to the given []Organization and assigns it to the Orgs field.

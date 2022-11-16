@@ -15,7 +15,7 @@ type RUMQueryPageOptions struct {
 	// Maximum number of events in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *RUMQueryPageOptions) GetCursorOk() (*string, bool) {
 
 // HasCursor returns a boolean if a field has been set.
 func (o *RUMQueryPageOptions) HasCursor() bool {
-	if o != nil && o.Cursor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Cursor != nil
 }
 
 // SetCursor gets a reference to the given string and assigns it to the Cursor field.
@@ -92,11 +88,7 @@ func (o *RUMQueryPageOptions) GetLimitOk() (*int32, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *RUMQueryPageOptions) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int32 and assigns it to the Limit field.

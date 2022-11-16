@@ -10,7 +10,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -163,13 +163,13 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 		var err error
 		baseURL, err = Client(ctx).GetConfig().ServerURLWithContext(ctx, "")
 		if err != nil {
-			return nil, []byte{}, fmt.Errorf("Failed to get base URL for Datadog API: %s", err.Error())
+			return nil, []byte{}, fmt.Errorf("failed to get base URL for Datadog API: %s", err.Error())
 		}
 	}
 
 	request, err := http.NewRequest(method, baseURL+url, bytes.NewBuffer(payload))
 	if err != nil {
-		return nil, []byte{}, fmt.Errorf("Failed to create request for Datadog API: %s", err.Error())
+		return nil, []byte{}, fmt.Errorf("failed to create request for Datadog API: %s", err.Error())
 	}
 	keys := ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey)
 	request.Header.Add("DD-API-KEY", keys["apiKeyAuth"].Key)
@@ -177,9 +177,9 @@ func SendRequest(ctx context.Context, method, url string, payload []byte) (*http
 	request.Header.Set("Content-Type", "application/json")
 
 	resp, respErr := Client(ctx).GetConfig().HTTPClient.Do(request)
-	body, rerr := ioutil.ReadAll(resp.Body)
+	body, rerr := io.ReadAll(resp.Body)
 	if rerr != nil {
-		respErr = fmt.Errorf("Failed reading response body: %s", rerr.Error())
+		respErr = fmt.Errorf("failed reading response body: %s", rerr.Error())
 	}
 	return resp, body, respErr
 }

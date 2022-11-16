@@ -16,7 +16,7 @@ type SecurityMonitoringSignalIncidentsUpdateAttributes struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,11 +81,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) GetVersionOk() (*int
 
 // HasVersion returns a boolean if a field has been set.
 func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) HasVersion() bool {
-	if o != nil && o.Version != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given int64 and assigns it to the Version field.
@@ -125,7 +121,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes 
 		return err
 	}
 	if required.IncidentIds == nil {
-		return fmt.Errorf("Required field incident_ids missing")
+		return fmt.Errorf("required field incident_ids missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -18,7 +18,7 @@ type LogsQueryCompute struct {
 	// Define a time interval in seconds.
 	Interval *int64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *LogsQueryCompute) GetFacetOk() (*string, bool) {
 
 // HasFacet returns a boolean if a field has been set.
 func (o *LogsQueryCompute) HasFacet() bool {
-	if o != nil && o.Facet != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Facet != nil
 }
 
 // SetFacet gets a reference to the given string and assigns it to the Facet field.
@@ -115,11 +111,7 @@ func (o *LogsQueryCompute) GetIntervalOk() (*int64, bool) {
 
 // HasInterval returns a boolean if a field has been set.
 func (o *LogsQueryCompute) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given int64 and assigns it to the Interval field.
@@ -163,7 +155,7 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

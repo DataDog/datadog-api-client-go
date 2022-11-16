@@ -29,7 +29,7 @@ type EventStreamWidgetDefinition struct {
 	// Type of the event stream widget.
 	Type EventStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -74,11 +74,7 @@ func (o *EventStreamWidgetDefinition) GetEventSizeOk() (*WidgetEventSize, bool) 
 
 // HasEventSize returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasEventSize() bool {
-	if o != nil && o.EventSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventSize != nil
 }
 
 // SetEventSize gets a reference to the given WidgetEventSize and assigns it to the EventSize field.
@@ -129,11 +125,7 @@ func (o *EventStreamWidgetDefinition) GetTagsExecutionOk() (*string, bool) {
 
 // HasTagsExecution returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasTagsExecution() bool {
-	if o != nil && o.TagsExecution != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagsExecution != nil
 }
 
 // SetTagsExecution gets a reference to the given string and assigns it to the TagsExecution field.
@@ -161,11 +153,7 @@ func (o *EventStreamWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -193,11 +181,7 @@ func (o *EventStreamWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -225,11 +209,7 @@ func (o *EventStreamWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool)
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -257,11 +237,7 @@ func (o *EventStreamWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *EventStreamWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -347,10 +323,10 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

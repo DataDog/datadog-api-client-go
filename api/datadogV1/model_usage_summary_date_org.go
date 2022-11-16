@@ -14,8 +14,12 @@ type UsageSummaryDateOrg struct {
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current date for the given org.
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
+	// Shows the average of all APM ECS Fargate tasks over all hours in the current months for the given org.
+	ApmFargateCountAvg *int64 `json:"apm_fargate_count_avg,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
+	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current months for the given org.
+	AppsecFargateCountAvg *int64 `json:"appsec_fargate_count_avg,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current date for the given org.
 	AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
 	// The average profiled task count for Fargate Profiling.
@@ -50,6 +54,8 @@ type UsageSummaryDateOrg struct {
 	ContainerHwm *int64 `json:"container_hwm,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current date for the given org.
 	CspmAasHostTop99p *int64 `json:"cspm_aas_host_top99p,omitempty"`
+	// Shows the 99th percentile of all Cloud Security Posture Management AWS hosts over all hours in the current date for the given org.
+	CspmAwsHostTop99p *int64 `json:"cspm_aws_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure hosts over all hours in the current date for the given org.
 	CspmAzureHostTop99p *int64 `json:"cspm_azure_host_top99p,omitempty"`
 	// Shows the average number of Cloud Security Posture Management containers over all hours in the current date for the given org.
@@ -118,6 +124,8 @@ type UsageSummaryDateOrg struct {
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
 	// The organization public id.
 	PublicId *string `json:"public_id,omitempty"`
+	// The region of the organization.
+	Region *string `json:"region,omitempty"`
 	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current date for the given org.
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
 	// Shows the sum of all browser RUM Lite Sessions over all hours in the current date for the given org.
@@ -126,8 +134,14 @@ type UsageSummaryDateOrg struct {
 	RumTotalSessionCountSum *int64 `json:"rum_total_session_count_sum,omitempty"`
 	// Shows the sum of all browser and mobile RUM units over all hours in the current date for the given org.
 	RumUnitsSum *int64 `json:"rum_units_sum,omitempty"`
+	// Sum of all APM bytes scanned with sensitive data scanner over all hours in the current date for the given org.
+	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
+	// Sum of all event stream events bytes scanned with sensitive data scanner over all hours in the current date for the given org.
+	SdsEventsScannedBytesSum *int64 `json:"sds_events_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for the given org.
 	SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
+	// Sum of all RUM bytes scanned with sensitive data scanner over all hours in the current date for the given org.
+	SdsRumScannedBytesSum *int64 `json:"sds_rum_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for the given org.
 	SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for the given org.
@@ -141,7 +155,7 @@ type UsageSummaryDateOrg struct {
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for the given org.
 	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -182,11 +196,7 @@ func (o *UsageSummaryDateOrg) GetAgentHostTop99pOk() (*int64, bool) {
 
 // HasAgentHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAgentHostTop99p() bool {
-	if o != nil && o.AgentHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AgentHostTop99p != nil
 }
 
 // SetAgentHostTop99p gets a reference to the given int64 and assigns it to the AgentHostTop99p field.
@@ -214,16 +224,40 @@ func (o *UsageSummaryDateOrg) GetApmAzureAppServiceHostTop99pOk() (*int64, bool)
 
 // HasApmAzureAppServiceHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasApmAzureAppServiceHostTop99p() bool {
-	if o != nil && o.ApmAzureAppServiceHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmAzureAppServiceHostTop99p != nil
 }
 
 // SetApmAzureAppServiceHostTop99p gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostTop99p field.
 func (o *UsageSummaryDateOrg) SetApmAzureAppServiceHostTop99p(v int64) {
 	o.ApmAzureAppServiceHostTop99p = &v
+}
+
+// GetApmFargateCountAvg returns the ApmFargateCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetApmFargateCountAvg() int64 {
+	if o == nil || o.ApmFargateCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmFargateCountAvg
+}
+
+// GetApmFargateCountAvgOk returns a tuple with the ApmFargateCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetApmFargateCountAvgOk() (*int64, bool) {
+	if o == nil || o.ApmFargateCountAvg == nil {
+		return nil, false
+	}
+	return o.ApmFargateCountAvg, true
+}
+
+// HasApmFargateCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasApmFargateCountAvg() bool {
+	return o != nil && o.ApmFargateCountAvg != nil
+}
+
+// SetApmFargateCountAvg gets a reference to the given int64 and assigns it to the ApmFargateCountAvg field.
+func (o *UsageSummaryDateOrg) SetApmFargateCountAvg(v int64) {
+	o.ApmFargateCountAvg = &v
 }
 
 // GetApmHostTop99p returns the ApmHostTop99p field value if set, zero value otherwise.
@@ -246,16 +280,40 @@ func (o *UsageSummaryDateOrg) GetApmHostTop99pOk() (*int64, bool) {
 
 // HasApmHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasApmHostTop99p() bool {
-	if o != nil && o.ApmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmHostTop99p != nil
 }
 
 // SetApmHostTop99p gets a reference to the given int64 and assigns it to the ApmHostTop99p field.
 func (o *UsageSummaryDateOrg) SetApmHostTop99p(v int64) {
 	o.ApmHostTop99p = &v
+}
+
+// GetAppsecFargateCountAvg returns the AppsecFargateCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetAppsecFargateCountAvg() int64 {
+	if o == nil || o.AppsecFargateCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AppsecFargateCountAvg
+}
+
+// GetAppsecFargateCountAvgOk returns a tuple with the AppsecFargateCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetAppsecFargateCountAvgOk() (*int64, bool) {
+	if o == nil || o.AppsecFargateCountAvg == nil {
+		return nil, false
+	}
+	return o.AppsecFargateCountAvg, true
+}
+
+// HasAppsecFargateCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasAppsecFargateCountAvg() bool {
+	return o != nil && o.AppsecFargateCountAvg != nil
+}
+
+// SetAppsecFargateCountAvg gets a reference to the given int64 and assigns it to the AppsecFargateCountAvg field.
+func (o *UsageSummaryDateOrg) SetAppsecFargateCountAvg(v int64) {
+	o.AppsecFargateCountAvg = &v
 }
 
 // GetAuditLogsLinesIndexedSum returns the AuditLogsLinesIndexedSum field value if set, zero value otherwise.
@@ -278,11 +336,7 @@ func (o *UsageSummaryDateOrg) GetAuditLogsLinesIndexedSumOk() (*int64, bool) {
 
 // HasAuditLogsLinesIndexedSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAuditLogsLinesIndexedSum() bool {
-	if o != nil && o.AuditLogsLinesIndexedSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuditLogsLinesIndexedSum != nil
 }
 
 // SetAuditLogsLinesIndexedSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedSum field.
@@ -310,11 +364,7 @@ func (o *UsageSummaryDateOrg) GetAvgProfiledFargateTasksOk() (*int64, bool) {
 
 // HasAvgProfiledFargateTasks returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAvgProfiledFargateTasks() bool {
-	if o != nil && o.AvgProfiledFargateTasks != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AvgProfiledFargateTasks != nil
 }
 
 // SetAvgProfiledFargateTasks gets a reference to the given int64 and assigns it to the AvgProfiledFargateTasks field.
@@ -342,11 +392,7 @@ func (o *UsageSummaryDateOrg) GetAwsHostTop99pOk() (*int64, bool) {
 
 // HasAwsHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAwsHostTop99p() bool {
-	if o != nil && o.AwsHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AwsHostTop99p != nil
 }
 
 // SetAwsHostTop99p gets a reference to the given int64 and assigns it to the AwsHostTop99p field.
@@ -374,11 +420,7 @@ func (o *UsageSummaryDateOrg) GetAwsLambdaFuncCountOk() (*int64, bool) {
 
 // HasAwsLambdaFuncCount returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAwsLambdaFuncCount() bool {
-	if o != nil && o.AwsLambdaFuncCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AwsLambdaFuncCount != nil
 }
 
 // SetAwsLambdaFuncCount gets a reference to the given int64 and assigns it to the AwsLambdaFuncCount field.
@@ -406,11 +448,7 @@ func (o *UsageSummaryDateOrg) GetAwsLambdaInvocationsSumOk() (*int64, bool) {
 
 // HasAwsLambdaInvocationsSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAwsLambdaInvocationsSum() bool {
-	if o != nil && o.AwsLambdaInvocationsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AwsLambdaInvocationsSum != nil
 }
 
 // SetAwsLambdaInvocationsSum gets a reference to the given int64 and assigns it to the AwsLambdaInvocationsSum field.
@@ -438,11 +476,7 @@ func (o *UsageSummaryDateOrg) GetAzureAppServiceTop99pOk() (*int64, bool) {
 
 // HasAzureAppServiceTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasAzureAppServiceTop99p() bool {
-	if o != nil && o.AzureAppServiceTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AzureAppServiceTop99p != nil
 }
 
 // SetAzureAppServiceTop99p gets a reference to the given int64 and assigns it to the AzureAppServiceTop99p field.
@@ -470,11 +504,7 @@ func (o *UsageSummaryDateOrg) GetBillableIngestedBytesSumOk() (*int64, bool) {
 
 // HasBillableIngestedBytesSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasBillableIngestedBytesSum() bool {
-	if o != nil && o.BillableIngestedBytesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BillableIngestedBytesSum != nil
 }
 
 // SetBillableIngestedBytesSum gets a reference to the given int64 and assigns it to the BillableIngestedBytesSum field.
@@ -502,11 +532,7 @@ func (o *UsageSummaryDateOrg) GetBrowserRumLiteSessionCountSumOk() (*int64, bool
 
 // HasBrowserRumLiteSessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasBrowserRumLiteSessionCountSum() bool {
-	if o != nil && o.BrowserRumLiteSessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserRumLiteSessionCountSum != nil
 }
 
 // SetBrowserRumLiteSessionCountSum gets a reference to the given int64 and assigns it to the BrowserRumLiteSessionCountSum field.
@@ -534,11 +560,7 @@ func (o *UsageSummaryDateOrg) GetBrowserRumReplaySessionCountSumOk() (*int64, bo
 
 // HasBrowserRumReplaySessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasBrowserRumReplaySessionCountSum() bool {
-	if o != nil && o.BrowserRumReplaySessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserRumReplaySessionCountSum != nil
 }
 
 // SetBrowserRumReplaySessionCountSum gets a reference to the given int64 and assigns it to the BrowserRumReplaySessionCountSum field.
@@ -566,11 +588,7 @@ func (o *UsageSummaryDateOrg) GetBrowserRumUnitsSumOk() (*int64, bool) {
 
 // HasBrowserRumUnitsSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasBrowserRumUnitsSum() bool {
-	if o != nil && o.BrowserRumUnitsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserRumUnitsSum != nil
 }
 
 // SetBrowserRumUnitsSum gets a reference to the given int64 and assigns it to the BrowserRumUnitsSum field.
@@ -598,11 +616,7 @@ func (o *UsageSummaryDateOrg) GetCiPipelineIndexedSpansSumOk() (*int64, bool) {
 
 // HasCiPipelineIndexedSpansSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCiPipelineIndexedSpansSum() bool {
-	if o != nil && o.CiPipelineIndexedSpansSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiPipelineIndexedSpansSum != nil
 }
 
 // SetCiPipelineIndexedSpansSum gets a reference to the given int64 and assigns it to the CiPipelineIndexedSpansSum field.
@@ -630,11 +644,7 @@ func (o *UsageSummaryDateOrg) GetCiTestIndexedSpansSumOk() (*int64, bool) {
 
 // HasCiTestIndexedSpansSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCiTestIndexedSpansSum() bool {
-	if o != nil && o.CiTestIndexedSpansSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiTestIndexedSpansSum != nil
 }
 
 // SetCiTestIndexedSpansSum gets a reference to the given int64 and assigns it to the CiTestIndexedSpansSum field.
@@ -662,11 +672,7 @@ func (o *UsageSummaryDateOrg) GetCiVisibilityPipelineCommittersHwmOk() (*int64, 
 
 // HasCiVisibilityPipelineCommittersHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCiVisibilityPipelineCommittersHwm() bool {
-	if o != nil && o.CiVisibilityPipelineCommittersHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiVisibilityPipelineCommittersHwm != nil
 }
 
 // SetCiVisibilityPipelineCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityPipelineCommittersHwm field.
@@ -694,11 +700,7 @@ func (o *UsageSummaryDateOrg) GetCiVisibilityTestCommittersHwmOk() (*int64, bool
 
 // HasCiVisibilityTestCommittersHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCiVisibilityTestCommittersHwm() bool {
-	if o != nil && o.CiVisibilityTestCommittersHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CiVisibilityTestCommittersHwm != nil
 }
 
 // SetCiVisibilityTestCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwm field.
@@ -726,11 +728,7 @@ func (o *UsageSummaryDateOrg) GetContainerAvgOk() (*int64, bool) {
 
 // HasContainerAvg returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasContainerAvg() bool {
-	if o != nil && o.ContainerAvg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ContainerAvg != nil
 }
 
 // SetContainerAvg gets a reference to the given int64 and assigns it to the ContainerAvg field.
@@ -758,11 +756,7 @@ func (o *UsageSummaryDateOrg) GetContainerHwmOk() (*int64, bool) {
 
 // HasContainerHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasContainerHwm() bool {
-	if o != nil && o.ContainerHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ContainerHwm != nil
 }
 
 // SetContainerHwm gets a reference to the given int64 and assigns it to the ContainerHwm field.
@@ -790,16 +784,40 @@ func (o *UsageSummaryDateOrg) GetCspmAasHostTop99pOk() (*int64, bool) {
 
 // HasCspmAasHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCspmAasHostTop99p() bool {
-	if o != nil && o.CspmAasHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmAasHostTop99p != nil
 }
 
 // SetCspmAasHostTop99p gets a reference to the given int64 and assigns it to the CspmAasHostTop99p field.
 func (o *UsageSummaryDateOrg) SetCspmAasHostTop99p(v int64) {
 	o.CspmAasHostTop99p = &v
+}
+
+// GetCspmAwsHostTop99p returns the CspmAwsHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCspmAwsHostTop99p() int64 {
+	if o == nil || o.CspmAwsHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CspmAwsHostTop99p
+}
+
+// GetCspmAwsHostTop99pOk returns a tuple with the CspmAwsHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCspmAwsHostTop99pOk() (*int64, bool) {
+	if o == nil || o.CspmAwsHostTop99p == nil {
+		return nil, false
+	}
+	return o.CspmAwsHostTop99p, true
+}
+
+// HasCspmAwsHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCspmAwsHostTop99p() bool {
+	return o != nil && o.CspmAwsHostTop99p != nil
+}
+
+// SetCspmAwsHostTop99p gets a reference to the given int64 and assigns it to the CspmAwsHostTop99p field.
+func (o *UsageSummaryDateOrg) SetCspmAwsHostTop99p(v int64) {
+	o.CspmAwsHostTop99p = &v
 }
 
 // GetCspmAzureHostTop99p returns the CspmAzureHostTop99p field value if set, zero value otherwise.
@@ -822,11 +840,7 @@ func (o *UsageSummaryDateOrg) GetCspmAzureHostTop99pOk() (*int64, bool) {
 
 // HasCspmAzureHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCspmAzureHostTop99p() bool {
-	if o != nil && o.CspmAzureHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmAzureHostTop99p != nil
 }
 
 // SetCspmAzureHostTop99p gets a reference to the given int64 and assigns it to the CspmAzureHostTop99p field.
@@ -854,11 +868,7 @@ func (o *UsageSummaryDateOrg) GetCspmContainerAvgOk() (*int64, bool) {
 
 // HasCspmContainerAvg returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCspmContainerAvg() bool {
-	if o != nil && o.CspmContainerAvg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmContainerAvg != nil
 }
 
 // SetCspmContainerAvg gets a reference to the given int64 and assigns it to the CspmContainerAvg field.
@@ -886,11 +896,7 @@ func (o *UsageSummaryDateOrg) GetCspmContainerHwmOk() (*int64, bool) {
 
 // HasCspmContainerHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCspmContainerHwm() bool {
-	if o != nil && o.CspmContainerHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmContainerHwm != nil
 }
 
 // SetCspmContainerHwm gets a reference to the given int64 and assigns it to the CspmContainerHwm field.
@@ -918,11 +924,7 @@ func (o *UsageSummaryDateOrg) GetCspmHostTop99pOk() (*int64, bool) {
 
 // HasCspmHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCspmHostTop99p() bool {
-	if o != nil && o.CspmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CspmHostTop99p != nil
 }
 
 // SetCspmHostTop99p gets a reference to the given int64 and assigns it to the CspmHostTop99p field.
@@ -950,11 +952,7 @@ func (o *UsageSummaryDateOrg) GetCustomTsAvgOk() (*int64, bool) {
 
 // HasCustomTsAvg returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCustomTsAvg() bool {
-	if o != nil && o.CustomTsAvg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomTsAvg != nil
 }
 
 // SetCustomTsAvg gets a reference to the given int64 and assigns it to the CustomTsAvg field.
@@ -982,11 +980,7 @@ func (o *UsageSummaryDateOrg) GetCwsContainerCountAvgOk() (*int64, bool) {
 
 // HasCwsContainerCountAvg returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCwsContainerCountAvg() bool {
-	if o != nil && o.CwsContainerCountAvg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsContainerCountAvg != nil
 }
 
 // SetCwsContainerCountAvg gets a reference to the given int64 and assigns it to the CwsContainerCountAvg field.
@@ -1014,11 +1008,7 @@ func (o *UsageSummaryDateOrg) GetCwsHostTop99pOk() (*int64, bool) {
 
 // HasCwsHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasCwsHostTop99p() bool {
-	if o != nil && o.CwsHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CwsHostTop99p != nil
 }
 
 // SetCwsHostTop99p gets a reference to the given int64 and assigns it to the CwsHostTop99p field.
@@ -1046,11 +1036,7 @@ func (o *UsageSummaryDateOrg) GetDbmHostTop99pSumOk() (*int64, bool) {
 
 // HasDbmHostTop99pSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasDbmHostTop99pSum() bool {
-	if o != nil && o.DbmHostTop99pSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmHostTop99pSum != nil
 }
 
 // SetDbmHostTop99pSum gets a reference to the given int64 and assigns it to the DbmHostTop99pSum field.
@@ -1078,11 +1064,7 @@ func (o *UsageSummaryDateOrg) GetDbmQueriesAvgSumOk() (*int64, bool) {
 
 // HasDbmQueriesAvgSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasDbmQueriesAvgSum() bool {
-	if o != nil && o.DbmQueriesAvgSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DbmQueriesAvgSum != nil
 }
 
 // SetDbmQueriesAvgSum gets a reference to the given int64 and assigns it to the DbmQueriesAvgSum field.
@@ -1110,11 +1092,7 @@ func (o *UsageSummaryDateOrg) GetFargateTasksCountAvgOk() (*int64, bool) {
 
 // HasFargateTasksCountAvg returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasFargateTasksCountAvg() bool {
-	if o != nil && o.FargateTasksCountAvg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateTasksCountAvg != nil
 }
 
 // SetFargateTasksCountAvg gets a reference to the given int64 and assigns it to the FargateTasksCountAvg field.
@@ -1142,11 +1120,7 @@ func (o *UsageSummaryDateOrg) GetFargateTasksCountHwmOk() (*int64, bool) {
 
 // HasFargateTasksCountHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasFargateTasksCountHwm() bool {
-	if o != nil && o.FargateTasksCountHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FargateTasksCountHwm != nil
 }
 
 // SetFargateTasksCountHwm gets a reference to the given int64 and assigns it to the FargateTasksCountHwm field.
@@ -1174,11 +1148,7 @@ func (o *UsageSummaryDateOrg) GetGcpHostTop99pOk() (*int64, bool) {
 
 // HasGcpHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasGcpHostTop99p() bool {
-	if o != nil && o.GcpHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GcpHostTop99p != nil
 }
 
 // SetGcpHostTop99p gets a reference to the given int64 and assigns it to the GcpHostTop99p field.
@@ -1206,11 +1176,7 @@ func (o *UsageSummaryDateOrg) GetHerokuHostTop99pOk() (*int64, bool) {
 
 // HasHerokuHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasHerokuHostTop99p() bool {
-	if o != nil && o.HerokuHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HerokuHostTop99p != nil
 }
 
 // SetHerokuHostTop99p gets a reference to the given int64 and assigns it to the HerokuHostTop99p field.
@@ -1238,11 +1204,7 @@ func (o *UsageSummaryDateOrg) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -1270,11 +1232,7 @@ func (o *UsageSummaryDateOrg) GetIncidentManagementMonthlyActiveUsersHwmOk() (*i
 
 // HasIncidentManagementMonthlyActiveUsersHwm returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasIncidentManagementMonthlyActiveUsersHwm() bool {
-	if o != nil && o.IncidentManagementMonthlyActiveUsersHwm != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncidentManagementMonthlyActiveUsersHwm != nil
 }
 
 // SetIncidentManagementMonthlyActiveUsersHwm gets a reference to the given int64 and assigns it to the IncidentManagementMonthlyActiveUsersHwm field.
@@ -1302,11 +1260,7 @@ func (o *UsageSummaryDateOrg) GetIndexedEventsCountSumOk() (*int64, bool) {
 
 // HasIndexedEventsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasIndexedEventsCountSum() bool {
-	if o != nil && o.IndexedEventsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IndexedEventsCountSum != nil
 }
 
 // SetIndexedEventsCountSum gets a reference to the given int64 and assigns it to the IndexedEventsCountSum field.
@@ -1334,11 +1288,7 @@ func (o *UsageSummaryDateOrg) GetInfraHostTop99pOk() (*int64, bool) {
 
 // HasInfraHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasInfraHostTop99p() bool {
-	if o != nil && o.InfraHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InfraHostTop99p != nil
 }
 
 // SetInfraHostTop99p gets a reference to the given int64 and assigns it to the InfraHostTop99p field.
@@ -1366,11 +1316,7 @@ func (o *UsageSummaryDateOrg) GetIngestedEventsBytesSumOk() (*int64, bool) {
 
 // HasIngestedEventsBytesSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasIngestedEventsBytesSum() bool {
-	if o != nil && o.IngestedEventsBytesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedEventsBytesSum != nil
 }
 
 // SetIngestedEventsBytesSum gets a reference to the given int64 and assigns it to the IngestedEventsBytesSum field.
@@ -1398,11 +1344,7 @@ func (o *UsageSummaryDateOrg) GetIotDeviceAggSumOk() (*int64, bool) {
 
 // HasIotDeviceAggSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasIotDeviceAggSum() bool {
-	if o != nil && o.IotDeviceAggSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IotDeviceAggSum != nil
 }
 
 // SetIotDeviceAggSum gets a reference to the given int64 and assigns it to the IotDeviceAggSum field.
@@ -1430,11 +1372,7 @@ func (o *UsageSummaryDateOrg) GetIotDeviceTop99pSumOk() (*int64, bool) {
 
 // HasIotDeviceTop99pSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasIotDeviceTop99pSum() bool {
-	if o != nil && o.IotDeviceTop99pSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IotDeviceTop99pSum != nil
 }
 
 // SetIotDeviceTop99pSum gets a reference to the given int64 and assigns it to the IotDeviceTop99pSum field.
@@ -1462,11 +1400,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumLiteSessionCountSumOk() (*int64, bool)
 
 // HasMobileRumLiteSessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumLiteSessionCountSum() bool {
-	if o != nil && o.MobileRumLiteSessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumLiteSessionCountSum != nil
 }
 
 // SetMobileRumLiteSessionCountSum gets a reference to the given int64 and assigns it to the MobileRumLiteSessionCountSum field.
@@ -1494,11 +1428,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumSessionCountAndroidSumOk() (*int64, bo
 
 // HasMobileRumSessionCountAndroidSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumSessionCountAndroidSum() bool {
-	if o != nil && o.MobileRumSessionCountAndroidSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumSessionCountAndroidSum != nil
 }
 
 // SetMobileRumSessionCountAndroidSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountAndroidSum field.
@@ -1526,11 +1456,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumSessionCountIosSumOk() (*int64, bool) 
 
 // HasMobileRumSessionCountIosSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumSessionCountIosSum() bool {
-	if o != nil && o.MobileRumSessionCountIosSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumSessionCountIosSum != nil
 }
 
 // SetMobileRumSessionCountIosSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountIosSum field.
@@ -1558,11 +1484,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumSessionCountReactnativeSumOk() (*int64
 
 // HasMobileRumSessionCountReactnativeSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumSessionCountReactnativeSum() bool {
-	if o != nil && o.MobileRumSessionCountReactnativeSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumSessionCountReactnativeSum != nil
 }
 
 // SetMobileRumSessionCountReactnativeSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountReactnativeSum field.
@@ -1590,11 +1512,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumSessionCountSumOk() (*int64, bool) {
 
 // HasMobileRumSessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumSessionCountSum() bool {
-	if o != nil && o.MobileRumSessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumSessionCountSum != nil
 }
 
 // SetMobileRumSessionCountSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountSum field.
@@ -1622,11 +1540,7 @@ func (o *UsageSummaryDateOrg) GetMobileRumUnitsSumOk() (*int64, bool) {
 
 // HasMobileRumUnitsSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasMobileRumUnitsSum() bool {
-	if o != nil && o.MobileRumUnitsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MobileRumUnitsSum != nil
 }
 
 // SetMobileRumUnitsSum gets a reference to the given int64 and assigns it to the MobileRumUnitsSum field.
@@ -1654,11 +1568,7 @@ func (o *UsageSummaryDateOrg) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -1686,11 +1596,7 @@ func (o *UsageSummaryDateOrg) GetNetflowIndexedEventsCountSumOk() (*int64, bool)
 
 // HasNetflowIndexedEventsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasNetflowIndexedEventsCountSum() bool {
-	if o != nil && o.NetflowIndexedEventsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetflowIndexedEventsCountSum != nil
 }
 
 // SetNetflowIndexedEventsCountSum gets a reference to the given int64 and assigns it to the NetflowIndexedEventsCountSum field.
@@ -1718,11 +1624,7 @@ func (o *UsageSummaryDateOrg) GetNpmHostTop99pOk() (*int64, bool) {
 
 // HasNpmHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasNpmHostTop99p() bool {
-	if o != nil && o.NpmHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NpmHostTop99p != nil
 }
 
 // SetNpmHostTop99p gets a reference to the given int64 and assigns it to the NpmHostTop99p field.
@@ -1750,11 +1652,7 @@ func (o *UsageSummaryDateOrg) GetObservabilityPipelinesBytesProcessedSumOk() (*i
 
 // HasObservabilityPipelinesBytesProcessedSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasObservabilityPipelinesBytesProcessedSum() bool {
-	if o != nil && o.ObservabilityPipelinesBytesProcessedSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ObservabilityPipelinesBytesProcessedSum != nil
 }
 
 // SetObservabilityPipelinesBytesProcessedSum gets a reference to the given int64 and assigns it to the ObservabilityPipelinesBytesProcessedSum field.
@@ -1782,11 +1680,7 @@ func (o *UsageSummaryDateOrg) GetOnlineArchiveEventsCountSumOk() (*int64, bool) 
 
 // HasOnlineArchiveEventsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasOnlineArchiveEventsCountSum() bool {
-	if o != nil && o.OnlineArchiveEventsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnlineArchiveEventsCountSum != nil
 }
 
 // SetOnlineArchiveEventsCountSum gets a reference to the given int64 and assigns it to the OnlineArchiveEventsCountSum field.
@@ -1814,11 +1708,7 @@ func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99pOk() (*int64, bool) {
 
 // HasOpentelemetryHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasOpentelemetryHostTop99p() bool {
-	if o != nil && o.OpentelemetryHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OpentelemetryHostTop99p != nil
 }
 
 // SetOpentelemetryHostTop99p gets a reference to the given int64 and assigns it to the OpentelemetryHostTop99p field.
@@ -1846,11 +1736,7 @@ func (o *UsageSummaryDateOrg) GetProfilingHostTop99pOk() (*int64, bool) {
 
 // HasProfilingHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasProfilingHostTop99p() bool {
-	if o != nil && o.ProfilingHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfilingHostTop99p != nil
 }
 
 // SetProfilingHostTop99p gets a reference to the given int64 and assigns it to the ProfilingHostTop99p field.
@@ -1878,16 +1764,40 @@ func (o *UsageSummaryDateOrg) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
 func (o *UsageSummaryDateOrg) SetPublicId(v string) {
 	o.PublicId = &v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasRegion() bool {
+	return o != nil && o.Region != nil
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *UsageSummaryDateOrg) SetRegion(v string) {
+	o.Region = &v
 }
 
 // GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field value if set, zero value otherwise.
@@ -1910,11 +1820,7 @@ func (o *UsageSummaryDateOrg) GetRumBrowserAndMobileSessionCountOk() (*int64, bo
 
 // HasRumBrowserAndMobileSessionCount returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasRumBrowserAndMobileSessionCount() bool {
-	if o != nil && o.RumBrowserAndMobileSessionCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumBrowserAndMobileSessionCount != nil
 }
 
 // SetRumBrowserAndMobileSessionCount gets a reference to the given int64 and assigns it to the RumBrowserAndMobileSessionCount field.
@@ -1942,11 +1848,7 @@ func (o *UsageSummaryDateOrg) GetRumSessionCountSumOk() (*int64, bool) {
 
 // HasRumSessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasRumSessionCountSum() bool {
-	if o != nil && o.RumSessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumSessionCountSum != nil
 }
 
 // SetRumSessionCountSum gets a reference to the given int64 and assigns it to the RumSessionCountSum field.
@@ -1974,11 +1876,7 @@ func (o *UsageSummaryDateOrg) GetRumTotalSessionCountSumOk() (*int64, bool) {
 
 // HasRumTotalSessionCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasRumTotalSessionCountSum() bool {
-	if o != nil && o.RumTotalSessionCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumTotalSessionCountSum != nil
 }
 
 // SetRumTotalSessionCountSum gets a reference to the given int64 and assigns it to the RumTotalSessionCountSum field.
@@ -2006,16 +1904,68 @@ func (o *UsageSummaryDateOrg) GetRumUnitsSumOk() (*int64, bool) {
 
 // HasRumUnitsSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasRumUnitsSum() bool {
-	if o != nil && o.RumUnitsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumUnitsSum != nil
 }
 
 // SetRumUnitsSum gets a reference to the given int64 and assigns it to the RumUnitsSum field.
 func (o *UsageSummaryDateOrg) SetRumUnitsSum(v int64) {
 	o.RumUnitsSum = &v
+}
+
+// GetSdsApmScannedBytesSum returns the SdsApmScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetSdsApmScannedBytesSum() int64 {
+	if o == nil || o.SdsApmScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsApmScannedBytesSum
+}
+
+// GetSdsApmScannedBytesSumOk returns a tuple with the SdsApmScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetSdsApmScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsApmScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsApmScannedBytesSum, true
+}
+
+// HasSdsApmScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasSdsApmScannedBytesSum() bool {
+	return o != nil && o.SdsApmScannedBytesSum != nil
+}
+
+// SetSdsApmScannedBytesSum gets a reference to the given int64 and assigns it to the SdsApmScannedBytesSum field.
+func (o *UsageSummaryDateOrg) SetSdsApmScannedBytesSum(v int64) {
+	o.SdsApmScannedBytesSum = &v
+}
+
+// GetSdsEventsScannedBytesSum returns the SdsEventsScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetSdsEventsScannedBytesSum() int64 {
+	if o == nil || o.SdsEventsScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsEventsScannedBytesSum
+}
+
+// GetSdsEventsScannedBytesSumOk returns a tuple with the SdsEventsScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetSdsEventsScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsEventsScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsEventsScannedBytesSum, true
+}
+
+// HasSdsEventsScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasSdsEventsScannedBytesSum() bool {
+	return o != nil && o.SdsEventsScannedBytesSum != nil
+}
+
+// SetSdsEventsScannedBytesSum gets a reference to the given int64 and assigns it to the SdsEventsScannedBytesSum field.
+func (o *UsageSummaryDateOrg) SetSdsEventsScannedBytesSum(v int64) {
+	o.SdsEventsScannedBytesSum = &v
 }
 
 // GetSdsLogsScannedBytesSum returns the SdsLogsScannedBytesSum field value if set, zero value otherwise.
@@ -2038,16 +1988,40 @@ func (o *UsageSummaryDateOrg) GetSdsLogsScannedBytesSumOk() (*int64, bool) {
 
 // HasSdsLogsScannedBytesSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasSdsLogsScannedBytesSum() bool {
-	if o != nil && o.SdsLogsScannedBytesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SdsLogsScannedBytesSum != nil
 }
 
 // SetSdsLogsScannedBytesSum gets a reference to the given int64 and assigns it to the SdsLogsScannedBytesSum field.
 func (o *UsageSummaryDateOrg) SetSdsLogsScannedBytesSum(v int64) {
 	o.SdsLogsScannedBytesSum = &v
+}
+
+// GetSdsRumScannedBytesSum returns the SdsRumScannedBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetSdsRumScannedBytesSum() int64 {
+	if o == nil || o.SdsRumScannedBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SdsRumScannedBytesSum
+}
+
+// GetSdsRumScannedBytesSumOk returns a tuple with the SdsRumScannedBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetSdsRumScannedBytesSumOk() (*int64, bool) {
+	if o == nil || o.SdsRumScannedBytesSum == nil {
+		return nil, false
+	}
+	return o.SdsRumScannedBytesSum, true
+}
+
+// HasSdsRumScannedBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasSdsRumScannedBytesSum() bool {
+	return o != nil && o.SdsRumScannedBytesSum != nil
+}
+
+// SetSdsRumScannedBytesSum gets a reference to the given int64 and assigns it to the SdsRumScannedBytesSum field.
+func (o *UsageSummaryDateOrg) SetSdsRumScannedBytesSum(v int64) {
+	o.SdsRumScannedBytesSum = &v
 }
 
 // GetSdsTotalScannedBytesSum returns the SdsTotalScannedBytesSum field value if set, zero value otherwise.
@@ -2070,11 +2044,7 @@ func (o *UsageSummaryDateOrg) GetSdsTotalScannedBytesSumOk() (*int64, bool) {
 
 // HasSdsTotalScannedBytesSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasSdsTotalScannedBytesSum() bool {
-	if o != nil && o.SdsTotalScannedBytesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SdsTotalScannedBytesSum != nil
 }
 
 // SetSdsTotalScannedBytesSum gets a reference to the given int64 and assigns it to the SdsTotalScannedBytesSum field.
@@ -2102,11 +2072,7 @@ func (o *UsageSummaryDateOrg) GetSyntheticsBrowserCheckCallsCountSumOk() (*int64
 
 // HasSyntheticsBrowserCheckCallsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasSyntheticsBrowserCheckCallsCountSum() bool {
-	if o != nil && o.SyntheticsBrowserCheckCallsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsBrowserCheckCallsCountSum != nil
 }
 
 // SetSyntheticsBrowserCheckCallsCountSum gets a reference to the given int64 and assigns it to the SyntheticsBrowserCheckCallsCountSum field.
@@ -2134,11 +2100,7 @@ func (o *UsageSummaryDateOrg) GetSyntheticsCheckCallsCountSumOk() (*int64, bool)
 
 // HasSyntheticsCheckCallsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasSyntheticsCheckCallsCountSum() bool {
-	if o != nil && o.SyntheticsCheckCallsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SyntheticsCheckCallsCountSum != nil
 }
 
 // SetSyntheticsCheckCallsCountSum gets a reference to the given int64 and assigns it to the SyntheticsCheckCallsCountSum field.
@@ -2166,11 +2128,7 @@ func (o *UsageSummaryDateOrg) GetTraceSearchIndexedEventsCountSumOk() (*int64, b
 
 // HasTraceSearchIndexedEventsCountSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasTraceSearchIndexedEventsCountSum() bool {
-	if o != nil && o.TraceSearchIndexedEventsCountSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TraceSearchIndexedEventsCountSum != nil
 }
 
 // SetTraceSearchIndexedEventsCountSum gets a reference to the given int64 and assigns it to the TraceSearchIndexedEventsCountSum field.
@@ -2198,11 +2156,7 @@ func (o *UsageSummaryDateOrg) GetTwolIngestedEventsBytesSumOk() (*int64, bool) {
 
 // HasTwolIngestedEventsBytesSum returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasTwolIngestedEventsBytesSum() bool {
-	if o != nil && o.TwolIngestedEventsBytesSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TwolIngestedEventsBytesSum != nil
 }
 
 // SetTwolIngestedEventsBytesSum gets a reference to the given int64 and assigns it to the TwolIngestedEventsBytesSum field.
@@ -2230,11 +2184,7 @@ func (o *UsageSummaryDateOrg) GetVsphereHostTop99pOk() (*int64, bool) {
 
 // HasVsphereHostTop99p returns a boolean if a field has been set.
 func (o *UsageSummaryDateOrg) HasVsphereHostTop99p() bool {
-	if o != nil && o.VsphereHostTop99p != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.VsphereHostTop99p != nil
 }
 
 // SetVsphereHostTop99p gets a reference to the given int64 and assigns it to the VsphereHostTop99p field.
@@ -2254,8 +2204,14 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.ApmAzureAppServiceHostTop99p != nil {
 		toSerialize["apm_azure_app_service_host_top99p"] = o.ApmAzureAppServiceHostTop99p
 	}
+	if o.ApmFargateCountAvg != nil {
+		toSerialize["apm_fargate_count_avg"] = o.ApmFargateCountAvg
+	}
 	if o.ApmHostTop99p != nil {
 		toSerialize["apm_host_top99p"] = o.ApmHostTop99p
+	}
+	if o.AppsecFargateCountAvg != nil {
+		toSerialize["appsec_fargate_count_avg"] = o.AppsecFargateCountAvg
 	}
 	if o.AuditLogsLinesIndexedSum != nil {
 		toSerialize["audit_logs_lines_indexed_sum"] = o.AuditLogsLinesIndexedSum
@@ -2307,6 +2263,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	}
 	if o.CspmAasHostTop99p != nil {
 		toSerialize["cspm_aas_host_top99p"] = o.CspmAasHostTop99p
+	}
+	if o.CspmAwsHostTop99p != nil {
+		toSerialize["cspm_aws_host_top99p"] = o.CspmAwsHostTop99p
 	}
 	if o.CspmAzureHostTop99p != nil {
 		toSerialize["cspm_azure_host_top99p"] = o.CspmAzureHostTop99p
@@ -2410,6 +2369,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
 	if o.RumBrowserAndMobileSessionCount != nil {
 		toSerialize["rum_browser_and_mobile_session_count"] = o.RumBrowserAndMobileSessionCount
 	}
@@ -2422,8 +2384,17 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.RumUnitsSum != nil {
 		toSerialize["rum_units_sum"] = o.RumUnitsSum
 	}
+	if o.SdsApmScannedBytesSum != nil {
+		toSerialize["sds_apm_scanned_bytes_sum"] = o.SdsApmScannedBytesSum
+	}
+	if o.SdsEventsScannedBytesSum != nil {
+		toSerialize["sds_events_scanned_bytes_sum"] = o.SdsEventsScannedBytesSum
+	}
 	if o.SdsLogsScannedBytesSum != nil {
 		toSerialize["sds_logs_scanned_bytes_sum"] = o.SdsLogsScannedBytesSum
+	}
+	if o.SdsRumScannedBytesSum != nil {
+		toSerialize["sds_rum_scanned_bytes_sum"] = o.SdsRumScannedBytesSum
 	}
 	if o.SdsTotalScannedBytesSum != nil {
 		toSerialize["sds_total_scanned_bytes_sum"] = o.SdsTotalScannedBytesSum
@@ -2456,7 +2427,9 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AgentHostTop99p                         *int64  `json:"agent_host_top99p,omitempty"`
 		ApmAzureAppServiceHostTop99p            *int64  `json:"apm_azure_app_service_host_top99p,omitempty"`
+		ApmFargateCountAvg                      *int64  `json:"apm_fargate_count_avg,omitempty"`
 		ApmHostTop99p                           *int64  `json:"apm_host_top99p,omitempty"`
+		AppsecFargateCountAvg                   *int64  `json:"appsec_fargate_count_avg,omitempty"`
 		AuditLogsLinesIndexedSum                *int64  `json:"audit_logs_lines_indexed_sum,omitempty"`
 		AvgProfiledFargateTasks                 *int64  `json:"avg_profiled_fargate_tasks,omitempty"`
 		AwsHostTop99p                           *int64  `json:"aws_host_top99p,omitempty"`
@@ -2474,6 +2447,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		ContainerAvg                            *int64  `json:"container_avg,omitempty"`
 		ContainerHwm                            *int64  `json:"container_hwm,omitempty"`
 		CspmAasHostTop99p                       *int64  `json:"cspm_aas_host_top99p,omitempty"`
+		CspmAwsHostTop99p                       *int64  `json:"cspm_aws_host_top99p,omitempty"`
 		CspmAzureHostTop99p                     *int64  `json:"cspm_azure_host_top99p,omitempty"`
 		CspmContainerAvg                        *int64  `json:"cspm_container_avg,omitempty"`
 		CspmContainerHwm                        *int64  `json:"cspm_container_hwm,omitempty"`
@@ -2508,11 +2482,15 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		OpentelemetryHostTop99p                 *int64  `json:"opentelemetry_host_top99p,omitempty"`
 		ProfilingHostTop99p                     *int64  `json:"profiling_host_top99p,omitempty"`
 		PublicId                                *string `json:"public_id,omitempty"`
+		Region                                  *string `json:"region,omitempty"`
 		RumBrowserAndMobileSessionCount         *int64  `json:"rum_browser_and_mobile_session_count,omitempty"`
 		RumSessionCountSum                      *int64  `json:"rum_session_count_sum,omitempty"`
 		RumTotalSessionCountSum                 *int64  `json:"rum_total_session_count_sum,omitempty"`
 		RumUnitsSum                             *int64  `json:"rum_units_sum,omitempty"`
+		SdsApmScannedBytesSum                   *int64  `json:"sds_apm_scanned_bytes_sum,omitempty"`
+		SdsEventsScannedBytesSum                *int64  `json:"sds_events_scanned_bytes_sum,omitempty"`
 		SdsLogsScannedBytesSum                  *int64  `json:"sds_logs_scanned_bytes_sum,omitempty"`
+		SdsRumScannedBytesSum                   *int64  `json:"sds_rum_scanned_bytes_sum,omitempty"`
 		SdsTotalScannedBytesSum                 *int64  `json:"sds_total_scanned_bytes_sum,omitempty"`
 		SyntheticsBrowserCheckCallsCountSum     *int64  `json:"synthetics_browser_check_calls_count_sum,omitempty"`
 		SyntheticsCheckCallsCountSum            *int64  `json:"synthetics_check_calls_count_sum,omitempty"`
@@ -2531,7 +2509,9 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AgentHostTop99p = all.AgentHostTop99p
 	o.ApmAzureAppServiceHostTop99p = all.ApmAzureAppServiceHostTop99p
+	o.ApmFargateCountAvg = all.ApmFargateCountAvg
 	o.ApmHostTop99p = all.ApmHostTop99p
+	o.AppsecFargateCountAvg = all.AppsecFargateCountAvg
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.AwsHostTop99p = all.AwsHostTop99p
@@ -2549,6 +2529,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.ContainerAvg = all.ContainerAvg
 	o.ContainerHwm = all.ContainerHwm
 	o.CspmAasHostTop99p = all.CspmAasHostTop99p
+	o.CspmAwsHostTop99p = all.CspmAwsHostTop99p
 	o.CspmAzureHostTop99p = all.CspmAzureHostTop99p
 	o.CspmContainerAvg = all.CspmContainerAvg
 	o.CspmContainerHwm = all.CspmContainerHwm
@@ -2583,11 +2564,15 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
 	o.PublicId = all.PublicId
+	o.Region = all.Region
 	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
 	o.RumSessionCountSum = all.RumSessionCountSum
 	o.RumTotalSessionCountSum = all.RumTotalSessionCountSum
 	o.RumUnitsSum = all.RumUnitsSum
+	o.SdsApmScannedBytesSum = all.SdsApmScannedBytesSum
+	o.SdsEventsScannedBytesSum = all.SdsEventsScannedBytesSum
 	o.SdsLogsScannedBytesSum = all.SdsLogsScannedBytesSum
+	o.SdsRumScannedBytesSum = all.SdsRumScannedBytesSum
 	o.SdsTotalScannedBytesSum = all.SdsTotalScannedBytesSum
 	o.SyntheticsBrowserCheckCallsCountSum = all.SyntheticsBrowserCheckCallsCountSum
 	o.SyntheticsCheckCallsCountSum = all.SyntheticsCheckCallsCountSum

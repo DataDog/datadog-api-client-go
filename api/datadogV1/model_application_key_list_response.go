@@ -13,7 +13,7 @@ type ApplicationKeyListResponse struct {
 	// Array of application keys.
 	ApplicationKeys []ApplicationKey `json:"application_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *ApplicationKeyListResponse) GetApplicationKeysOk() (*[]ApplicationKey, 
 
 // HasApplicationKeys returns a boolean if a field has been set.
 func (o *ApplicationKeyListResponse) HasApplicationKeys() bool {
-	if o != nil && o.ApplicationKeys != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApplicationKeys != nil
 }
 
 // SetApplicationKeys gets a reference to the given []ApplicationKey and assigns it to the ApplicationKeys field.

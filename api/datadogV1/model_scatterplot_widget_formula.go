@@ -18,7 +18,7 @@ type ScatterplotWidgetFormula struct {
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *ScatterplotWidgetFormula) GetAliasOk() (*string, bool) {
 
 // HasAlias returns a boolean if a field has been set.
 func (o *ScatterplotWidgetFormula) HasAlias() bool {
-	if o != nil && o.Alias != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Alias != nil
 }
 
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
@@ -154,10 +150,10 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Dimension == nil {
-		return fmt.Errorf("Required field dimension missing")
+		return fmt.Errorf("required field dimension missing")
 	}
 	if required.Formula == nil {
-		return fmt.Errorf("Required field formula missing")
+		return fmt.Errorf("required field formula missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

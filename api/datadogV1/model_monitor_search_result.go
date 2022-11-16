@@ -42,7 +42,7 @@ type MonitorSearchResult struct {
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *MonitorSearchResult) GetClassificationOk() (*string, bool) {
 
 // HasClassification returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasClassification() bool {
-	if o != nil && o.Classification != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Classification != nil
 }
 
 // SetClassification gets a reference to the given string and assigns it to the Classification field.
@@ -115,11 +111,7 @@ func (o *MonitorSearchResult) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -147,11 +139,7 @@ func (o *MonitorSearchResult) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -180,11 +168,7 @@ func (o *MonitorSearchResult) GetLastTriggeredTsOk() (*int64, bool) {
 
 // HasLastTriggeredTs returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasLastTriggeredTs() bool {
-	if o != nil && o.LastTriggeredTs.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.LastTriggeredTs.IsSet()
 }
 
 // SetLastTriggeredTs gets a reference to the given datadog.NullableInt64 and assigns it to the LastTriggeredTs field.
@@ -222,11 +206,7 @@ func (o *MonitorSearchResult) GetMetricsOk() (*[]string, bool) {
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasMetrics() bool {
-	if o != nil && o.Metrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
@@ -254,11 +234,7 @@ func (o *MonitorSearchResult) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -286,11 +262,7 @@ func (o *MonitorSearchResult) GetNotificationsOk() (*[]MonitorSearchResultNotifi
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasNotifications() bool {
-	if o != nil && o.Notifications != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Notifications != nil
 }
 
 // SetNotifications gets a reference to the given []MonitorSearchResultNotification and assigns it to the Notifications field.
@@ -318,11 +290,7 @@ func (o *MonitorSearchResult) GetOrgIdOk() (*int64, bool) {
 
 // HasOrgId returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasOrgId() bool {
-	if o != nil && o.OrgId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgId != nil
 }
 
 // SetOrgId gets a reference to the given int64 and assigns it to the OrgId field.
@@ -350,11 +318,7 @@ func (o *MonitorSearchResult) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasQuery() bool {
-	if o != nil && o.Query != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
@@ -382,11 +346,7 @@ func (o *MonitorSearchResult) GetScopesOk() (*[]string, bool) {
 
 // HasScopes returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasScopes() bool {
-	if o != nil && o.Scopes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scopes != nil
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
@@ -414,11 +374,7 @@ func (o *MonitorSearchResult) GetStatusOk() (*MonitorOverallStates, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given MonitorOverallStates and assigns it to the Status field.
@@ -446,11 +402,7 @@ func (o *MonitorSearchResult) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -478,11 +430,7 @@ func (o *MonitorSearchResult) GetTypeOk() (*MonitorType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MonitorSearchResult) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given MonitorType and assigns it to the Type field.

@@ -26,7 +26,7 @@ type ApmStatsQueryDefinition struct {
 	// Service name.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -72,11 +72,7 @@ func (o *ApmStatsQueryDefinition) GetColumnsOk() (*[]ApmStatsQueryColumnType, bo
 
 // HasColumns returns a boolean if a field has been set.
 func (o *ApmStatsQueryDefinition) HasColumns() bool {
-	if o != nil && o.Columns != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Columns != nil
 }
 
 // SetColumns gets a reference to the given []ApmStatsQueryColumnType and assigns it to the Columns field.
@@ -173,11 +169,7 @@ func (o *ApmStatsQueryDefinition) GetResourceOk() (*string, bool) {
 
 // HasResource returns a boolean if a field has been set.
 func (o *ApmStatsQueryDefinition) HasResource() bool {
-	if o != nil && o.Resource != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Resource != nil
 }
 
 // SetResource gets a reference to the given string and assigns it to the Resource field.
@@ -279,19 +271,19 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.PrimaryTag == nil {
-		return fmt.Errorf("Required field primary_tag missing")
+		return fmt.Errorf("required field primary_tag missing")
 	}
 	if required.RowType == nil {
-		return fmt.Errorf("Required field row_type missing")
+		return fmt.Errorf("required field row_type missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

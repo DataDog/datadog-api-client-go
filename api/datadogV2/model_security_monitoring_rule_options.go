@@ -32,7 +32,7 @@ type SecurityMonitoringRuleOptions struct {
 	// Options on new value rules.
 	NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -73,11 +73,7 @@ func (o *SecurityMonitoringRuleOptions) GetDecreaseCriticalityBasedOnEnvOk() (*b
 
 // HasDecreaseCriticalityBasedOnEnv returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasDecreaseCriticalityBasedOnEnv() bool {
-	if o != nil && o.DecreaseCriticalityBasedOnEnv != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DecreaseCriticalityBasedOnEnv != nil
 }
 
 // SetDecreaseCriticalityBasedOnEnv gets a reference to the given bool and assigns it to the DecreaseCriticalityBasedOnEnv field.
@@ -105,11 +101,7 @@ func (o *SecurityMonitoringRuleOptions) GetDetectionMethodOk() (*SecurityMonitor
 
 // HasDetectionMethod returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasDetectionMethod() bool {
-	if o != nil && o.DetectionMethod != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DetectionMethod != nil
 }
 
 // SetDetectionMethod gets a reference to the given SecurityMonitoringRuleDetectionMethod and assigns it to the DetectionMethod field.
@@ -137,11 +129,7 @@ func (o *SecurityMonitoringRuleOptions) GetEvaluationWindowOk() (*SecurityMonito
 
 // HasEvaluationWindow returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasEvaluationWindow() bool {
-	if o != nil && o.EvaluationWindow != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EvaluationWindow != nil
 }
 
 // SetEvaluationWindow gets a reference to the given SecurityMonitoringRuleEvaluationWindow and assigns it to the EvaluationWindow field.
@@ -169,11 +157,7 @@ func (o *SecurityMonitoringRuleOptions) GetHardcodedEvaluatorTypeOk() (*Security
 
 // HasHardcodedEvaluatorType returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasHardcodedEvaluatorType() bool {
-	if o != nil && o.HardcodedEvaluatorType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HardcodedEvaluatorType != nil
 }
 
 // SetHardcodedEvaluatorType gets a reference to the given SecurityMonitoringRuleHardcodedEvaluatorType and assigns it to the HardcodedEvaluatorType field.
@@ -201,11 +185,7 @@ func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptionsOk() (*Securit
 
 // HasImpossibleTravelOptions returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasImpossibleTravelOptions() bool {
-	if o != nil && o.ImpossibleTravelOptions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ImpossibleTravelOptions != nil
 }
 
 // SetImpossibleTravelOptions gets a reference to the given SecurityMonitoringRuleImpossibleTravelOptions and assigns it to the ImpossibleTravelOptions field.
@@ -233,11 +213,7 @@ func (o *SecurityMonitoringRuleOptions) GetKeepAliveOk() (*SecurityMonitoringRul
 
 // HasKeepAlive returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasKeepAlive() bool {
-	if o != nil && o.KeepAlive != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.KeepAlive != nil
 }
 
 // SetKeepAlive gets a reference to the given SecurityMonitoringRuleKeepAlive and assigns it to the KeepAlive field.
@@ -265,11 +241,7 @@ func (o *SecurityMonitoringRuleOptions) GetMaxSignalDurationOk() (*SecurityMonit
 
 // HasMaxSignalDuration returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasMaxSignalDuration() bool {
-	if o != nil && o.MaxSignalDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MaxSignalDuration != nil
 }
 
 // SetMaxSignalDuration gets a reference to the given SecurityMonitoringRuleMaxSignalDuration and assigns it to the MaxSignalDuration field.
@@ -297,11 +269,7 @@ func (o *SecurityMonitoringRuleOptions) GetNewValueOptionsOk() (*SecurityMonitor
 
 // HasNewValueOptions returns a boolean if a field has been set.
 func (o *SecurityMonitoringRuleOptions) HasNewValueOptions() bool {
-	if o != nil && o.NewValueOptions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NewValueOptions != nil
 }
 
 // SetNewValueOptions gets a reference to the given SecurityMonitoringRuleNewValueOptions and assigns it to the NewValueOptions field.

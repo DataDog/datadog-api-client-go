@@ -15,7 +15,7 @@ type IPPrefixesAPI struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *IPPrefixesAPI) GetPrefixesIpv4Ok() (*[]string, bool) {
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
 func (o *IPPrefixesAPI) HasPrefixesIpv4() bool {
-	if o != nil && o.PrefixesIpv4 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv4 != nil
 }
 
 // SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
@@ -88,11 +84,7 @@ func (o *IPPrefixesAPI) GetPrefixesIpv6Ok() (*[]string, bool) {
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
 func (o *IPPrefixesAPI) HasPrefixesIpv6() bool {
-	if o != nil && o.PrefixesIpv6 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv6 != nil
 }
 
 // SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.

@@ -24,7 +24,7 @@ type HourlyUsageAttributes struct {
 	// Datetime in ISO-8601 format, UTC. The hour for the usage.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,11 +65,7 @@ func (o *HourlyUsageAttributes) GetMeasurementsOk() (*[]HourlyUsageMeasurement, 
 
 // HasMeasurements returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasMeasurements() bool {
-	if o != nil && o.Measurements != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Measurements != nil
 }
 
 // SetMeasurements gets a reference to the given []HourlyUsageMeasurement and assigns it to the Measurements field.
@@ -97,11 +93,7 @@ func (o *HourlyUsageAttributes) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -129,11 +121,7 @@ func (o *HourlyUsageAttributes) GetProductFamilyOk() (*string, bool) {
 
 // HasProductFamily returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasProductFamily() bool {
-	if o != nil && o.ProductFamily != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProductFamily != nil
 }
 
 // SetProductFamily gets a reference to the given string and assigns it to the ProductFamily field.
@@ -161,11 +149,7 @@ func (o *HourlyUsageAttributes) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -193,11 +177,7 @@ func (o *HourlyUsageAttributes) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasRegion() bool {
-	if o != nil && o.Region != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Region != nil
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
@@ -225,11 +205,7 @@ func (o *HourlyUsageAttributes) GetTimestampOk() (*time.Time, bool) {
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *HourlyUsageAttributes) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Timestamp != nil
 }
 
 // SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.

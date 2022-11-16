@@ -15,7 +15,7 @@ type SLOHistoryResponse struct {
 	// A list of errors while querying the history data for the service level objective.
 	Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SLOHistoryResponse) GetDataOk() (*SLOHistoryResponseData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SLOHistoryResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given SLOHistoryResponseData and assigns it to the Data field.
@@ -88,11 +84,7 @@ func (o *SLOHistoryResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *SLOHistoryResponse) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []SLOHistoryResponseError and assigns it to the Errors field.

@@ -16,7 +16,7 @@ type CloudWorkloadSecurityAgentRuleCreateData struct {
 	// The type of the resource. The value should always be `agent_rule`.
 	Type CloudWorkloadSecurityAgentRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -118,10 +118,10 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 	if required.Attributes == nil {
-		return fmt.Errorf("Required field attributes missing")
+		return fmt.Errorf("required field attributes missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

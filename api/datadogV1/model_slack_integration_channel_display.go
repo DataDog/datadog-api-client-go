@@ -19,7 +19,7 @@ type SlackIntegrationChannelDisplay struct {
 	// Show the scopes on which the monitor alerted.
 	Tags *bool `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,11 +76,7 @@ func (o *SlackIntegrationChannelDisplay) GetMessageOk() (*bool, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *SlackIntegrationChannelDisplay) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given bool and assigns it to the Message field.
@@ -108,11 +104,7 @@ func (o *SlackIntegrationChannelDisplay) GetNotifiedOk() (*bool, bool) {
 
 // HasNotified returns a boolean if a field has been set.
 func (o *SlackIntegrationChannelDisplay) HasNotified() bool {
-	if o != nil && o.Notified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Notified != nil
 }
 
 // SetNotified gets a reference to the given bool and assigns it to the Notified field.
@@ -140,11 +132,7 @@ func (o *SlackIntegrationChannelDisplay) GetSnapshotOk() (*bool, bool) {
 
 // HasSnapshot returns a boolean if a field has been set.
 func (o *SlackIntegrationChannelDisplay) HasSnapshot() bool {
-	if o != nil && o.Snapshot != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Snapshot != nil
 }
 
 // SetSnapshot gets a reference to the given bool and assigns it to the Snapshot field.
@@ -172,11 +160,7 @@ func (o *SlackIntegrationChannelDisplay) GetTagsOk() (*bool, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *SlackIntegrationChannelDisplay) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given bool and assigns it to the Tags field.

@@ -17,7 +17,7 @@ type SyntheticsPrivateLocationCreationResponse struct {
 	// Public key for the result encryption.
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) GetConfigOk() (*interface{},
 
 // HasConfig returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationCreationResponse) HasConfig() bool {
-	if o != nil && o.Config != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Config != nil
 }
 
 // SetConfig gets a reference to the given interface{} and assigns it to the Config field.
@@ -90,11 +86,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) GetPrivateLocationOk() (*Syn
 
 // HasPrivateLocation returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationCreationResponse) HasPrivateLocation() bool {
-	if o != nil && o.PrivateLocation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrivateLocation != nil
 }
 
 // SetPrivateLocation gets a reference to the given SyntheticsPrivateLocation and assigns it to the PrivateLocation field.
@@ -122,11 +114,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) GetResultEncryptionOk() (*Sy
 
 // HasResultEncryption returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationCreationResponse) HasResultEncryption() bool {
-	if o != nil && o.ResultEncryption != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResultEncryption != nil
 }
 
 // SetResultEncryption gets a reference to the given SyntheticsPrivateLocationCreationResponseResultEncryption and assigns it to the ResultEncryption field.

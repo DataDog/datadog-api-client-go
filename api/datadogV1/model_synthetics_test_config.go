@@ -19,7 +19,7 @@ type SyntheticsTestConfig struct {
 	// Browser tests only - array of variables used for the test steps.
 	Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *SyntheticsTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, bool) 
 
 // HasAssertions returns a boolean if a field has been set.
 func (o *SyntheticsTestConfig) HasAssertions() bool {
-	if o != nil && o.Assertions != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Assertions != nil
 }
 
 // SetAssertions gets a reference to the given []SyntheticsAssertion and assigns it to the Assertions field.
@@ -92,11 +88,7 @@ func (o *SyntheticsTestConfig) GetConfigVariablesOk() (*[]SyntheticsConfigVariab
 
 // HasConfigVariables returns a boolean if a field has been set.
 func (o *SyntheticsTestConfig) HasConfigVariables() bool {
-	if o != nil && o.ConfigVariables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConfigVariables != nil
 }
 
 // SetConfigVariables gets a reference to the given []SyntheticsConfigVariable and assigns it to the ConfigVariables field.
@@ -124,11 +116,7 @@ func (o *SyntheticsTestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
 
 // HasRequest returns a boolean if a field has been set.
 func (o *SyntheticsTestConfig) HasRequest() bool {
-	if o != nil && o.Request != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Request != nil
 }
 
 // SetRequest gets a reference to the given SyntheticsTestRequest and assigns it to the Request field.
@@ -156,11 +144,7 @@ func (o *SyntheticsTestConfig) GetVariablesOk() (*[]SyntheticsBrowserVariable, b
 
 // HasVariables returns a boolean if a field has been set.
 func (o *SyntheticsTestConfig) HasVariables() bool {
-	if o != nil && o.Variables != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Variables != nil
 }
 
 // SetVariables gets a reference to the given []SyntheticsBrowserVariable and assigns it to the Variables field.

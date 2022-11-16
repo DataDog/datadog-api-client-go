@@ -13,7 +13,7 @@ type CheckCanDeleteMonitorResponseData struct {
 	// An array of of Monitor IDs that can be safely deleted.
 	Ok []int64 `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *CheckCanDeleteMonitorResponseData) GetOkOk() (*[]int64, bool) {
 
 // HasOk returns a boolean if a field has been set.
 func (o *CheckCanDeleteMonitorResponseData) HasOk() bool {
-	if o != nil && o.Ok != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Ok != nil
 }
 
 // SetOk gets a reference to the given []int64 and assigns it to the Ok field.

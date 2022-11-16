@@ -14,7 +14,7 @@ type NullableRelationshipToUser struct {
 	// Relationship to user object.
 	Data NullableNullableRelationshipToUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -89,7 +89,7 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if !required.Data.IsSet() {
-		return fmt.Errorf("Required field data missing")
+		return fmt.Errorf("required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

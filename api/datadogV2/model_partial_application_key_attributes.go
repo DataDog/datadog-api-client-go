@@ -19,7 +19,7 @@ type PartialApplicationKeyAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *PartialApplicationKeyAttributes) GetCreatedAtOk() (*string, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *PartialApplicationKeyAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
@@ -92,11 +88,7 @@ func (o *PartialApplicationKeyAttributes) GetLast4Ok() (*string, bool) {
 
 // HasLast4 returns a boolean if a field has been set.
 func (o *PartialApplicationKeyAttributes) HasLast4() bool {
-	if o != nil && o.Last4 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Last4 != nil
 }
 
 // SetLast4 gets a reference to the given string and assigns it to the Last4 field.
@@ -124,11 +116,7 @@ func (o *PartialApplicationKeyAttributes) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PartialApplicationKeyAttributes) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -157,11 +145,7 @@ func (o *PartialApplicationKeyAttributes) GetScopesOk() (*[]string, bool) {
 
 // HasScopes returns a boolean if a field has been set.
 func (o *PartialApplicationKeyAttributes) HasScopes() bool {
-	if o != nil && o.Scopes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Scopes != nil
 }
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.

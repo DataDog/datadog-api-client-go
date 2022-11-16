@@ -54,7 +54,7 @@ func createDashboardList(ctx context.Context, t *testing.T) error {
 	api := datadogV1.NewDashboardListsApi(testAPIClientV1)
 	res, httpresp, err := api.CreateDashboardList(testAuthV1, datadogV1.DashboardList{Name: *tests.UniqueEntityName(ctx, t)})
 	if err != nil || httpresp.StatusCode != 200 {
-		return fmt.Errorf("error creating dashboard list: %v", err.(datadog.GenericOpenAPIError).Body())
+		return fmt.Errorf("error creating dashboard list: %s", err.(datadog.GenericOpenAPIError).Body())
 	}
 	dashboardListID = res.GetId()
 	return nil
@@ -151,13 +151,12 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(2, len(deleteResponse.GetDeletedDashboardsFromList()))
 	assert.Equal(200, httpresp.StatusCode)
-	getResponse, httpresp, err = api.GetDashboardListItems(ctx, dashboardListID)
+	getResponse, _, err = api.GetDashboardListItems(ctx, dashboardListID)
 	if err != nil {
 		t.Fatalf("error getting items from dashboard list %d: Response %s: %v", dashboardListID, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(1, len(getResponse.GetDashboards()))
 	assert.Equal(int64(1), getResponse.GetTotal())
-	assert.True(getResponse.GetDashboards()[0].GetIsReadOnly())
 	assert.True(getResponse.GetDashboards()[0].GetIsShared())
 	assert.Equal(customScreenboardID, getResponse.GetDashboards()[0].GetId())
 	assert.Equal(datadogV2.DASHBOARDTYPE_CUSTOM_SCREENBOARD, getResponse.GetDashboards()[0].GetType())

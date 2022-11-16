@@ -22,7 +22,7 @@ type LogsAggregateRequest struct {
 	// Paging settings
 	Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *LogsAggregateRequest) GetComputeOk() (*[]LogsCompute, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *LogsAggregateRequest) HasCompute() bool {
-	if o != nil && o.Compute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Compute != nil
 }
 
 // SetCompute gets a reference to the given []LogsCompute and assigns it to the Compute field.
@@ -95,11 +91,7 @@ func (o *LogsAggregateRequest) GetFilterOk() (*LogsQueryFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsAggregateRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsQueryFilter and assigns it to the Filter field.
@@ -127,11 +119,7 @@ func (o *LogsAggregateRequest) GetGroupByOk() (*[]LogsGroupBy, bool) {
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *LogsAggregateRequest) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []LogsGroupBy and assigns it to the GroupBy field.
@@ -159,11 +147,7 @@ func (o *LogsAggregateRequest) GetOptionsOk() (*LogsQueryOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *LogsAggregateRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given LogsQueryOptions and assigns it to the Options field.
@@ -191,11 +175,7 @@ func (o *LogsAggregateRequest) GetPageOk() (*LogsAggregateRequestPage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *LogsAggregateRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given LogsAggregateRequestPage and assigns it to the Page field.

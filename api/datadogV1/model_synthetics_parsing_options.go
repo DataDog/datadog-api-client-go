@@ -19,7 +19,7 @@ type SyntheticsParsingOptions struct {
 	// Property of the Synthetics Test Response to use for a Synthetics global variable.
 	Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *SyntheticsParsingOptions) GetFieldOk() (*string, bool) {
 
 // HasField returns a boolean if a field has been set.
 func (o *SyntheticsParsingOptions) HasField() bool {
-	if o != nil && o.Field != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Field != nil
 }
 
 // SetField gets a reference to the given string and assigns it to the Field field.
@@ -92,11 +88,7 @@ func (o *SyntheticsParsingOptions) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SyntheticsParsingOptions) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -124,11 +116,7 @@ func (o *SyntheticsParsingOptions) GetParserOk() (*SyntheticsVariableParser, boo
 
 // HasParser returns a boolean if a field has been set.
 func (o *SyntheticsParsingOptions) HasParser() bool {
-	if o != nil && o.Parser != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Parser != nil
 }
 
 // SetParser gets a reference to the given SyntheticsVariableParser and assigns it to the Parser field.
@@ -156,11 +144,7 @@ func (o *SyntheticsParsingOptions) GetTypeOk() (*SyntheticsGlobalVariableParseTe
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsParsingOptions) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsGlobalVariableParseTestOptionsType and assigns it to the Type field.

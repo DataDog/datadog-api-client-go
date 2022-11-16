@@ -47,7 +47,7 @@ type Monitor struct {
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type MonitorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -90,11 +90,7 @@ func (o *Monitor) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *Monitor) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -122,11 +118,7 @@ func (o *Monitor) GetCreatorOk() (*Creator, bool) {
 
 // HasCreator returns a boolean if a field has been set.
 func (o *Monitor) HasCreator() bool {
-	if o != nil && o.Creator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
@@ -155,11 +147,7 @@ func (o *Monitor) GetDeletedOk() (*time.Time, bool) {
 
 // HasDeleted returns a boolean if a field has been set.
 func (o *Monitor) HasDeleted() bool {
-	if o != nil && o.Deleted.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Deleted.IsSet()
 }
 
 // SetDeleted gets a reference to the given datadog.NullableTime and assigns it to the Deleted field.
@@ -197,11 +185,7 @@ func (o *Monitor) GetIdOk() (*int64, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Monitor) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given int64 and assigns it to the Id field.
@@ -229,11 +213,7 @@ func (o *Monitor) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Monitor) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
@@ -261,11 +241,7 @@ func (o *Monitor) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *Monitor) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -293,11 +269,7 @@ func (o *Monitor) GetMultiOk() (*bool, bool) {
 
 // HasMulti returns a boolean if a field has been set.
 func (o *Monitor) HasMulti() bool {
-	if o != nil && o.Multi != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Multi != nil
 }
 
 // SetMulti gets a reference to the given bool and assigns it to the Multi field.
@@ -325,11 +297,7 @@ func (o *Monitor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Monitor) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -357,11 +325,7 @@ func (o *Monitor) GetOptionsOk() (*MonitorOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *Monitor) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given MonitorOptions and assigns it to the Options field.
@@ -389,11 +353,7 @@ func (o *Monitor) GetOverallStateOk() (*MonitorOverallStates, bool) {
 
 // HasOverallState returns a boolean if a field has been set.
 func (o *Monitor) HasOverallState() bool {
-	if o != nil && o.OverallState != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OverallState != nil
 }
 
 // SetOverallState gets a reference to the given MonitorOverallStates and assigns it to the OverallState field.
@@ -422,11 +382,7 @@ func (o *Monitor) GetPriorityOk() (*int64, bool) {
 
 // HasPriority returns a boolean if a field has been set.
 func (o *Monitor) HasPriority() bool {
-	if o != nil && o.Priority.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Priority.IsSet()
 }
 
 // SetPriority gets a reference to the given datadog.NullableInt64 and assigns it to the Priority field.
@@ -488,11 +444,7 @@ func (o *Monitor) GetRestrictedRolesOk() (*[]string, bool) {
 
 // HasRestrictedRoles returns a boolean if a field has been set.
 func (o *Monitor) HasRestrictedRoles() bool {
-	if o != nil && o.RestrictedRoles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RestrictedRoles != nil
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
@@ -520,11 +472,7 @@ func (o *Monitor) GetStateOk() (*MonitorState, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Monitor) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.State != nil
 }
 
 // SetState gets a reference to the given MonitorState and assigns it to the State field.
@@ -552,11 +500,7 @@ func (o *Monitor) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Monitor) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
@@ -682,10 +626,10 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Query == nil {
-		return fmt.Errorf("Required field query missing")
+		return fmt.Errorf("required field query missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

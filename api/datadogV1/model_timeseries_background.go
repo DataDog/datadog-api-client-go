@@ -16,7 +16,7 @@ type TimeseriesBackground struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *TimeseriesBackground) GetYaxisOk() (*WidgetAxis, bool) {
 
 // HasYaxis returns a boolean if a field has been set.
 func (o *TimeseriesBackground) HasYaxis() bool {
-	if o != nil && o.Yaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Yaxis != nil
 }
 
 // SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
@@ -127,7 +123,7 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

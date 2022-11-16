@@ -19,7 +19,7 @@ type IPPrefixesSynthetics struct {
 	// List of IPv6 prefixes by location.
 	PrefixesIpv6ByLocation map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv4Ok() (*[]string, bool) {
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
 func (o *IPPrefixesSynthetics) HasPrefixesIpv4() bool {
-	if o != nil && o.PrefixesIpv4 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv4 != nil
 }
 
 // SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
@@ -92,11 +88,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv4ByLocationOk() (*map[string][]stri
 
 // HasPrefixesIpv4ByLocation returns a boolean if a field has been set.
 func (o *IPPrefixesSynthetics) HasPrefixesIpv4ByLocation() bool {
-	if o != nil && o.PrefixesIpv4ByLocation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv4ByLocation != nil
 }
 
 // SetPrefixesIpv4ByLocation gets a reference to the given map[string][]string and assigns it to the PrefixesIpv4ByLocation field.
@@ -124,11 +116,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv6Ok() (*[]string, bool) {
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
 func (o *IPPrefixesSynthetics) HasPrefixesIpv6() bool {
-	if o != nil && o.PrefixesIpv6 != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv6 != nil
 }
 
 // SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.
@@ -156,11 +144,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv6ByLocationOk() (*map[string][]stri
 
 // HasPrefixesIpv6ByLocation returns a boolean if a field has been set.
 func (o *IPPrefixesSynthetics) HasPrefixesIpv6ByLocation() bool {
-	if o != nil && o.PrefixesIpv6ByLocation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrefixesIpv6ByLocation != nil
 }
 
 // SetPrefixesIpv6ByLocation gets a reference to the given map[string][]string and assigns it to the PrefixesIpv6ByLocation field.

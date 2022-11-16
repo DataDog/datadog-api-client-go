@@ -19,7 +19,7 @@ type OrganizationCreateResponse struct {
 	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *OrganizationCreateResponse) GetApiKeyOk() (*ApiKey, bool) {
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *OrganizationCreateResponse) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApiKey != nil
 }
 
 // SetApiKey gets a reference to the given ApiKey and assigns it to the ApiKey field.
@@ -92,11 +88,7 @@ func (o *OrganizationCreateResponse) GetApplicationKeyOk() (*ApplicationKey, boo
 
 // HasApplicationKey returns a boolean if a field has been set.
 func (o *OrganizationCreateResponse) HasApplicationKey() bool {
-	if o != nil && o.ApplicationKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApplicationKey != nil
 }
 
 // SetApplicationKey gets a reference to the given ApplicationKey and assigns it to the ApplicationKey field.
@@ -124,11 +116,7 @@ func (o *OrganizationCreateResponse) GetOrgOk() (*Organization, bool) {
 
 // HasOrg returns a boolean if a field has been set.
 func (o *OrganizationCreateResponse) HasOrg() bool {
-	if o != nil && o.Org != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Org != nil
 }
 
 // SetOrg gets a reference to the given Organization and assigns it to the Org field.
@@ -156,11 +144,7 @@ func (o *OrganizationCreateResponse) GetUserOk() (*User, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *OrganizationCreateResponse) HasUser() bool {
-	if o != nil && o.User != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.User != nil
 }
 
 // SetUser gets a reference to the given User and assigns it to the User field.

@@ -20,7 +20,7 @@ type UsageIngestedSpansHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *UsageIngestedSpansHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageIngestedSpansHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -93,11 +89,7 @@ func (o *UsageIngestedSpansHour) GetIngestedEventsBytesOk() (*int64, bool) {
 
 // HasIngestedEventsBytes returns a boolean if a field has been set.
 func (o *UsageIngestedSpansHour) HasIngestedEventsBytes() bool {
-	if o != nil && o.IngestedEventsBytes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IngestedEventsBytes != nil
 }
 
 // SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
@@ -125,11 +117,7 @@ func (o *UsageIngestedSpansHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageIngestedSpansHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -157,11 +145,7 @@ func (o *UsageIngestedSpansHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageIngestedSpansHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

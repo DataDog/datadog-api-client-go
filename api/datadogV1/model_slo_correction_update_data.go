@@ -15,7 +15,7 @@ type SLOCorrectionUpdateData struct {
 	// SLO correction resource type.
 	Type *SLOCorrectionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *SLOCorrectionUpdateData) GetAttributesOk() (*SLOCorrectionUpdateRequest
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *SLOCorrectionUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SLOCorrectionUpdateRequestAttributes and assigns it to the Attributes field.
@@ -92,11 +88,7 @@ func (o *SLOCorrectionUpdateData) GetTypeOk() (*SLOCorrectionType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SLOCorrectionUpdateData) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SLOCorrectionType and assigns it to the Type field.

@@ -18,7 +18,7 @@ type LogsMetricCreateAttributes struct {
 	// The rules for the group by.
 	GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *LogsMetricCreateAttributes) GetFilterOk() (*LogsMetricFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsMetricCreateAttributes) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsMetricFilter and assigns it to the Filter field.
@@ -115,11 +111,7 @@ func (o *LogsMetricCreateAttributes) GetGroupByOk() (*[]LogsMetricGroupBy, bool)
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *LogsMetricCreateAttributes) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []LogsMetricGroupBy and assigns it to the GroupBy field.
@@ -163,7 +155,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Compute == nil {
-		return fmt.Errorf("Required field compute missing")
+		return fmt.Errorf("required field compute missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

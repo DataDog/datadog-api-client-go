@@ -15,7 +15,7 @@ type SyntheticsPrivateLocationCreationResponseResultEncryption struct {
 	// Public key for result encryption.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) GetIdOk() (*
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -88,11 +84,7 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) GetKeyOk() (
 
 // HasKey returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) HasKey() bool {
-	if o != nil && o.Key != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.

@@ -19,7 +19,7 @@ type LogsAggregateSort struct {
 	// The type of sorting algorithm
 	Type *LogsAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *LogsAggregateSort) GetAggregationOk() (*LogsAggregationFunction, bool) 
 
 // HasAggregation returns a boolean if a field has been set.
 func (o *LogsAggregateSort) HasAggregation() bool {
-	if o != nil && o.Aggregation != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregation != nil
 }
 
 // SetAggregation gets a reference to the given LogsAggregationFunction and assigns it to the Aggregation field.
@@ -96,11 +92,7 @@ func (o *LogsAggregateSort) GetMetricOk() (*string, bool) {
 
 // HasMetric returns a boolean if a field has been set.
 func (o *LogsAggregateSort) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -128,11 +120,7 @@ func (o *LogsAggregateSort) GetOrderOk() (*LogsSortOrder, bool) {
 
 // HasOrder returns a boolean if a field has been set.
 func (o *LogsAggregateSort) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given LogsSortOrder and assigns it to the Order field.
@@ -160,11 +148,7 @@ func (o *LogsAggregateSort) GetTypeOk() (*LogsAggregateSortType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *LogsAggregateSort) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given LogsAggregateSortType and assigns it to the Type field.

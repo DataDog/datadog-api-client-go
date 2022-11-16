@@ -15,7 +15,7 @@ type AWSTagFilterDeleteRequest struct {
 	// The namespace associated with the tag filter entry.
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *AWSTagFilterDeleteRequest) GetAccountIdOk() (*string, bool) {
 
 // HasAccountId returns a boolean if a field has been set.
 func (o *AWSTagFilterDeleteRequest) HasAccountId() bool {
-	if o != nil && o.AccountId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
@@ -88,11 +84,7 @@ func (o *AWSTagFilterDeleteRequest) GetNamespaceOk() (*AWSNamespace, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *AWSTagFilterDeleteRequest) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Namespace != nil
 }
 
 // SetNamespace gets a reference to the given AWSNamespace and assigns it to the Namespace field.

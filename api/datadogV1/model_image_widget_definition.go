@@ -32,7 +32,7 @@ type ImageWidgetDefinition struct {
 	// Vertical alignment.
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,11 +85,7 @@ func (o *ImageWidgetDefinition) GetHasBackgroundOk() (*bool, bool) {
 
 // HasHasBackground returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasHasBackground() bool {
-	if o != nil && o.HasBackground != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasBackground != nil
 }
 
 // SetHasBackground gets a reference to the given bool and assigns it to the HasBackground field.
@@ -117,11 +113,7 @@ func (o *ImageWidgetDefinition) GetHasBorderOk() (*bool, bool) {
 
 // HasHasBorder returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasHasBorder() bool {
-	if o != nil && o.HasBorder != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HasBorder != nil
 }
 
 // SetHasBorder gets a reference to the given bool and assigns it to the HasBorder field.
@@ -149,11 +141,7 @@ func (o *ImageWidgetDefinition) GetHorizontalAlignOk() (*WidgetHorizontalAlign, 
 
 // HasHorizontalAlign returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasHorizontalAlign() bool {
-	if o != nil && o.HorizontalAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HorizontalAlign != nil
 }
 
 // SetHorizontalAlign gets a reference to the given WidgetHorizontalAlign and assigns it to the HorizontalAlign field.
@@ -181,11 +169,7 @@ func (o *ImageWidgetDefinition) GetMarginOk() (*WidgetMargin, bool) {
 
 // HasMargin returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasMargin() bool {
-	if o != nil && o.Margin != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Margin != nil
 }
 
 // SetMargin gets a reference to the given WidgetMargin and assigns it to the Margin field.
@@ -213,11 +197,7 @@ func (o *ImageWidgetDefinition) GetSizingOk() (*WidgetImageSizing, bool) {
 
 // HasSizing returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasSizing() bool {
-	if o != nil && o.Sizing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sizing != nil
 }
 
 // SetSizing gets a reference to the given WidgetImageSizing and assigns it to the Sizing field.
@@ -291,11 +271,7 @@ func (o *ImageWidgetDefinition) GetUrlDarkThemeOk() (*string, bool) {
 
 // HasUrlDarkTheme returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasUrlDarkTheme() bool {
-	if o != nil && o.UrlDarkTheme != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.UrlDarkTheme != nil
 }
 
 // SetUrlDarkTheme gets a reference to the given string and assigns it to the UrlDarkTheme field.
@@ -323,11 +299,7 @@ func (o *ImageWidgetDefinition) GetVerticalAlignOk() (*WidgetVerticalAlign, bool
 
 // HasVerticalAlign returns a boolean if a field has been set.
 func (o *ImageWidgetDefinition) HasVerticalAlign() bool {
-	if o != nil && o.VerticalAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.VerticalAlign != nil
 }
 
 // SetVerticalAlign gets a reference to the given WidgetVerticalAlign and assigns it to the VerticalAlign field.
@@ -394,10 +366,10 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.Url == nil {
-		return fmt.Errorf("Required field url missing")
+		return fmt.Errorf("required field url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

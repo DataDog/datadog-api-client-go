@@ -16,7 +16,7 @@ type RUMAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,11 +57,7 @@ func (o *RUMAggregateBucketValueTimeseriesPoint) GetTimeOk() (*time.Time, bool) 
 
 // HasTime returns a boolean if a field has been set.
 func (o *RUMAggregateBucketValueTimeseriesPoint) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given time.Time and assigns it to the Time field.
@@ -89,11 +85,7 @@ func (o *RUMAggregateBucketValueTimeseriesPoint) GetValueOk() (*float64, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *RUMAggregateBucketValueTimeseriesPoint) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.

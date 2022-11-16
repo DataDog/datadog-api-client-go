@@ -16,7 +16,7 @@ type LogsMetricCompute struct {
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,11 +81,7 @@ func (o *LogsMetricCompute) GetPathOk() (*string, bool) {
 
 // HasPath returns a boolean if a field has been set.
 func (o *LogsMetricCompute) HasPath() bool {
-	if o != nil && o.Path != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Path != nil
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
@@ -125,7 +121,7 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.AggregationType == nil {
-		return fmt.Errorf("Required field aggregation_type missing")
+		return fmt.Errorf("required field aggregation_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

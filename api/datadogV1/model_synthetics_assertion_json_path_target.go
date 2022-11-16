@@ -20,7 +20,7 @@ type SyntheticsAssertionJSONPathTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,11 +86,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetPropertyOk() (*string, bool) {
 
 // HasProperty returns a boolean if a field has been set.
 func (o *SyntheticsAssertionJSONPathTarget) HasProperty() bool {
-	if o != nil && o.Property != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Property != nil
 }
 
 // SetProperty gets a reference to the given string and assigns it to the Property field.
@@ -118,11 +114,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetTargetOk() (*SyntheticsAssertionJ
 
 // HasTarget returns a boolean if a field has been set.
 func (o *SyntheticsAssertionJSONPathTarget) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Target != nil
 }
 
 // SetTarget gets a reference to the given SyntheticsAssertionJSONPathTargetTarget and assigns it to the Target field.
@@ -192,10 +184,10 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	if required.Operator == nil {
-		return fmt.Errorf("Required field operator missing")
+		return fmt.Errorf("required field operator missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -41,7 +41,7 @@ type DistributionWidgetDefinition struct {
 	// Y Axis controls for the distribution widget.
 	Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -88,11 +88,7 @@ func (o *DistributionWidgetDefinition) GetLegendSizeOk() (*string, bool) {
 
 // HasLegendSize returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasLegendSize() bool {
-	if o != nil && o.LegendSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LegendSize != nil
 }
 
 // SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
@@ -121,11 +117,7 @@ func (o *DistributionWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
 
 // HasMarkers returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasMarkers() bool {
-	if o != nil && o.Markers != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Markers != nil
 }
 
 // SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
@@ -178,11 +170,7 @@ func (o *DistributionWidgetDefinition) GetShowLegendOk() (*bool, bool) {
 
 // HasShowLegend returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasShowLegend() bool {
-	if o != nil && o.ShowLegend != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowLegend != nil
 }
 
 // SetShowLegend gets a reference to the given bool and assigns it to the ShowLegend field.
@@ -211,11 +199,7 @@ func (o *DistributionWidgetDefinition) GetTimeOk() (*WidgetTime, bool) {
 
 // HasTime returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasTime() bool {
-	if o != nil && o.Time != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Time != nil
 }
 
 // SetTime gets a reference to the given WidgetTime and assigns it to the Time field.
@@ -243,11 +227,7 @@ func (o *DistributionWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -275,11 +255,7 @@ func (o *DistributionWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -307,11 +283,7 @@ func (o *DistributionWidgetDefinition) GetTitleSizeOk() (*string, bool) {
 
 // HasTitleSize returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasTitleSize() bool {
-	if o != nil && o.TitleSize != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleSize != nil
 }
 
 // SetTitleSize gets a reference to the given string and assigns it to the TitleSize field.
@@ -362,11 +334,7 @@ func (o *DistributionWidgetDefinition) GetXaxisOk() (*DistributionWidgetXAxis, b
 
 // HasXaxis returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasXaxis() bool {
-	if o != nil && o.Xaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Xaxis != nil
 }
 
 // SetXaxis gets a reference to the given DistributionWidgetXAxis and assigns it to the Xaxis field.
@@ -394,11 +362,7 @@ func (o *DistributionWidgetDefinition) GetYaxisOk() (*DistributionWidgetYAxis, b
 
 // HasYaxis returns a boolean if a field has been set.
 func (o *DistributionWidgetDefinition) HasYaxis() bool {
-	if o != nil && o.Yaxis != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Yaxis != nil
 }
 
 // SetYaxis gets a reference to the given DistributionWidgetYAxis and assigns it to the Yaxis field.
@@ -473,10 +437,10 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Requests == nil {
-		return fmt.Errorf("Required field requests missing")
+		return fmt.Errorf("required field requests missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

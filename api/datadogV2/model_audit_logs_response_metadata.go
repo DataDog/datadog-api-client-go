@@ -22,7 +22,7 @@ type AuditLogsResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []AuditLogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *AuditLogsResponseMetadata) GetElapsedOk() (*int64, bool) {
 
 // HasElapsed returns a boolean if a field has been set.
 func (o *AuditLogsResponseMetadata) HasElapsed() bool {
-	if o != nil && o.Elapsed != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Elapsed != nil
 }
 
 // SetElapsed gets a reference to the given int64 and assigns it to the Elapsed field.
@@ -95,11 +91,7 @@ func (o *AuditLogsResponseMetadata) GetPageOk() (*AuditLogsResponsePage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *AuditLogsResponseMetadata) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given AuditLogsResponsePage and assigns it to the Page field.
@@ -127,11 +119,7 @@ func (o *AuditLogsResponseMetadata) GetRequestIdOk() (*string, bool) {
 
 // HasRequestId returns a boolean if a field has been set.
 func (o *AuditLogsResponseMetadata) HasRequestId() bool {
-	if o != nil && o.RequestId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RequestId != nil
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
@@ -159,11 +147,7 @@ func (o *AuditLogsResponseMetadata) GetStatusOk() (*AuditLogsResponseStatus, boo
 
 // HasStatus returns a boolean if a field has been set.
 func (o *AuditLogsResponseMetadata) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given AuditLogsResponseStatus and assigns it to the Status field.
@@ -191,11 +175,7 @@ func (o *AuditLogsResponseMetadata) GetWarningsOk() (*[]AuditLogsWarning, bool) 
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *AuditLogsResponseMetadata) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warnings != nil
 }
 
 // SetWarnings gets a reference to the given []AuditLogsWarning and assigns it to the Warnings field.

@@ -45,7 +45,7 @@ type LogsArithmeticProcessor struct {
 	// Type of logs arithmetic processor.
 	Type LogsArithmeticProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -122,11 +122,7 @@ func (o *LogsArithmeticProcessor) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsArithmeticProcessor) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -154,11 +150,7 @@ func (o *LogsArithmeticProcessor) GetIsReplaceMissingOk() (*bool, bool) {
 
 // HasIsReplaceMissing returns a boolean if a field has been set.
 func (o *LogsArithmeticProcessor) HasIsReplaceMissing() bool {
-	if o != nil && o.IsReplaceMissing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReplaceMissing != nil
 }
 
 // SetIsReplaceMissing gets a reference to the given bool and assigns it to the IsReplaceMissing field.
@@ -186,11 +178,7 @@ func (o *LogsArithmeticProcessor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsArithmeticProcessor) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -290,13 +278,13 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Expression == nil {
-		return fmt.Errorf("Required field expression missing")
+		return fmt.Errorf("required field expression missing")
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -15,7 +15,7 @@ type SyntheticsCIBatchMetadataCI struct {
 	// Description of the CI provider.
 	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SyntheticsCIBatchMetadataCI) GetPipelineOk() (*SyntheticsCIBatchMetadat
 
 // HasPipeline returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataCI) HasPipeline() bool {
-	if o != nil && o.Pipeline != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pipeline != nil
 }
 
 // SetPipeline gets a reference to the given SyntheticsCIBatchMetadataPipeline and assigns it to the Pipeline field.
@@ -88,11 +84,7 @@ func (o *SyntheticsCIBatchMetadataCI) GetProviderOk() (*SyntheticsCIBatchMetadat
 
 // HasProvider returns a boolean if a field has been set.
 func (o *SyntheticsCIBatchMetadataCI) HasProvider() bool {
-	if o != nil && o.Provider != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Provider != nil
 }
 
 // SetProvider gets a reference to the given SyntheticsCIBatchMetadataProvider and assigns it to the Provider field.

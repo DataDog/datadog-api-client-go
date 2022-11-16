@@ -32,7 +32,7 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	// APM statistic.
 	Stat FormulaAndFunctionApmDependencyStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -126,11 +126,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetIsUpstreamOk() 
 
 // HasIsUpstream returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasIsUpstream() bool {
-	if o != nil && o.IsUpstream != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsUpstream != nil
 }
 
 // SetIsUpstream gets a reference to the given bool and assigns it to the IsUpstream field.
@@ -204,11 +200,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetPrimaryTagNameO
 
 // HasPrimaryTagName returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasPrimaryTagName() bool {
-	if o != nil && o.PrimaryTagName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagName != nil
 }
 
 // SetPrimaryTagName gets a reference to the given string and assigns it to the PrimaryTagName field.
@@ -236,11 +228,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetPrimaryTagValue
 
 // HasPrimaryTagValue returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) HasPrimaryTagValue() bool {
-	if o != nil && o.PrimaryTagValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagValue != nil
 }
 
 // SetPrimaryTagValue gets a reference to the given string and assigns it to the PrimaryTagValue field.
@@ -375,25 +363,25 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.OperationName == nil {
-		return fmt.Errorf("Required field operation_name missing")
+		return fmt.Errorf("required field operation_name missing")
 	}
 	if required.ResourceName == nil {
-		return fmt.Errorf("Required field resource_name missing")
+		return fmt.Errorf("required field resource_name missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.Stat == nil {
-		return fmt.Errorf("Required field stat missing")
+		return fmt.Errorf("required field stat missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

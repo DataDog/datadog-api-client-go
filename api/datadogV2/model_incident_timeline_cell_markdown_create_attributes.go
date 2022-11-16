@@ -18,7 +18,7 @@ type IncidentTimelineCellMarkdownCreateAttributes struct {
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -113,11 +113,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetImportantOk() (*bool, 
 
 // HasImportant returns a boolean if a field has been set.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) HasImportant() bool {
-	if o != nil && o.Important != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Important != nil
 }
 
 // SetImportant gets a reference to the given bool and assigns it to the Important field.
@@ -160,10 +156,10 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		return err
 	}
 	if required.CellType == nil {
-		return fmt.Errorf("Required field cell_type missing")
+		return fmt.Errorf("required field cell_type missing")
 	}
 	if required.Content == nil {
-		return fmt.Errorf("Required field content missing")
+		return fmt.Errorf("required field content missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

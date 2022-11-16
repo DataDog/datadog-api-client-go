@@ -32,7 +32,7 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM resource stat name.
 	Stat FormulaAndFunctionApmResourceStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -124,11 +124,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupByOk() (*[]s
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
@@ -179,11 +175,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetOperationNameOk()
 
 // HasOperationName returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasOperationName() bool {
-	if o != nil && o.OperationName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OperationName != nil
 }
 
 // SetOperationName gets a reference to the given string and assigns it to the OperationName field.
@@ -211,11 +203,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetPrimaryTagNameOk(
 
 // HasPrimaryTagName returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasPrimaryTagName() bool {
-	if o != nil && o.PrimaryTagName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagName != nil
 }
 
 // SetPrimaryTagName gets a reference to the given string and assigns it to the PrimaryTagName field.
@@ -243,11 +231,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetPrimaryTagValueOk
 
 // HasPrimaryTagValue returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasPrimaryTagValue() bool {
-	if o != nil && o.PrimaryTagValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrimaryTagValue != nil
 }
 
 // SetPrimaryTagValue gets a reference to the given string and assigns it to the PrimaryTagValue field.
@@ -275,11 +259,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetResourceNameOk() 
 
 // HasResourceName returns a boolean if a field has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasResourceName() bool {
-	if o != nil && o.ResourceName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResourceName != nil
 }
 
 // SetResourceName gets a reference to the given string and assigns it to the ResourceName field.
@@ -393,19 +373,19 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		return err
 	}
 	if required.DataSource == nil {
-		return fmt.Errorf("Required field data_source missing")
+		return fmt.Errorf("required field data_source missing")
 	}
 	if required.Env == nil {
-		return fmt.Errorf("Required field env missing")
+		return fmt.Errorf("required field env missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Service == nil {
-		return fmt.Errorf("Required field service missing")
+		return fmt.Errorf("required field service missing")
 	}
 	if required.Stat == nil {
-		return fmt.Errorf("Required field stat missing")
+		return fmt.Errorf("required field stat missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

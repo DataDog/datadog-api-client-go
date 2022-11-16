@@ -18,7 +18,7 @@ type MetricEstimateAttributes struct {
 	// Estimated cardinality of the metric based on the queried configuration.
 	EstimatedOutputSeries *int64 `json:"estimated_output_series,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,11 +63,7 @@ func (o *MetricEstimateAttributes) GetEstimateTypeOk() (*MetricEstimateType, boo
 
 // HasEstimateType returns a boolean if a field has been set.
 func (o *MetricEstimateAttributes) HasEstimateType() bool {
-	if o != nil && o.EstimateType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimateType != nil
 }
 
 // SetEstimateType gets a reference to the given MetricEstimateType and assigns it to the EstimateType field.
@@ -95,11 +91,7 @@ func (o *MetricEstimateAttributes) GetEstimatedAtOk() (*time.Time, bool) {
 
 // HasEstimatedAt returns a boolean if a field has been set.
 func (o *MetricEstimateAttributes) HasEstimatedAt() bool {
-	if o != nil && o.EstimatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedAt != nil
 }
 
 // SetEstimatedAt gets a reference to the given time.Time and assigns it to the EstimatedAt field.
@@ -127,11 +119,7 @@ func (o *MetricEstimateAttributes) GetEstimatedOutputSeriesOk() (*int64, bool) {
 
 // HasEstimatedOutputSeries returns a boolean if a field has been set.
 func (o *MetricEstimateAttributes) HasEstimatedOutputSeries() bool {
-	if o != nil && o.EstimatedOutputSeries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EstimatedOutputSeries != nil
 }
 
 // SetEstimatedOutputSeries gets a reference to the given int64 and assigns it to the EstimatedOutputSeries field.

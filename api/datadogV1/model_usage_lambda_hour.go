@@ -23,7 +23,7 @@ type UsageLambdaHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *UsageLambdaHour) GetFuncCountOk() (*int64, bool) {
 
 // HasFuncCount returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasFuncCount() bool {
-	if o != nil && o.FuncCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.FuncCount != nil
 }
 
 // SetFuncCount gets a reference to the given int64 and assigns it to the FuncCount field.
@@ -96,11 +92,7 @@ func (o *UsageLambdaHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -128,11 +120,7 @@ func (o *UsageLambdaHour) GetInvocationsSumOk() (*int64, bool) {
 
 // HasInvocationsSum returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasInvocationsSum() bool {
-	if o != nil && o.InvocationsSum != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InvocationsSum != nil
 }
 
 // SetInvocationsSum gets a reference to the given int64 and assigns it to the InvocationsSum field.
@@ -160,11 +148,7 @@ func (o *UsageLambdaHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -192,11 +176,7 @@ func (o *UsageLambdaHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.

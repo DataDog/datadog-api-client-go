@@ -29,11 +29,13 @@ func main() {
 						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
+				BodyType: datadogV1.SYNTHETICSTESTREQUESTBODYTYPE_TEXT_PLAIN.Ptr(),
 				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
 					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{},
 					Key:  &datadogV1.SyntheticsTestRequestCertificateItem{},
 				},
-				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
+				CertificateDomains: []string{},
+				Method:             datadogV1.HTTPMETHOD_GET.Ptr(),
 				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},

@@ -25,7 +25,7 @@ type LogsGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *LogsGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -94,11 +94,7 @@ func (o *LogsGroupBy) GetHistogramOk() (*LogsGroupByHistogram, bool) {
 
 // HasHistogram returns a boolean if a field has been set.
 func (o *LogsGroupBy) HasHistogram() bool {
-	if o != nil && o.Histogram != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Histogram != nil
 }
 
 // SetHistogram gets a reference to the given LogsGroupByHistogram and assigns it to the Histogram field.
@@ -126,11 +122,7 @@ func (o *LogsGroupBy) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *LogsGroupBy) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -158,11 +150,7 @@ func (o *LogsGroupBy) GetMissingOk() (*LogsGroupByMissing, bool) {
 
 // HasMissing returns a boolean if a field has been set.
 func (o *LogsGroupBy) HasMissing() bool {
-	if o != nil && o.Missing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Missing != nil
 }
 
 // SetMissing gets a reference to the given LogsGroupByMissing and assigns it to the Missing field.
@@ -190,11 +178,7 @@ func (o *LogsGroupBy) GetSortOk() (*LogsAggregateSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *LogsGroupBy) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given LogsAggregateSort and assigns it to the Sort field.
@@ -222,11 +206,7 @@ func (o *LogsGroupBy) GetTotalOk() (*LogsGroupByTotal, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *LogsGroupBy) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Total != nil
 }
 
 // SetTotal gets a reference to the given LogsGroupByTotal and assigns it to the Total field.
@@ -282,7 +262,7 @@ func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Facet == nil {
-		return fmt.Errorf("Required field facet missing")
+		return fmt.Errorf("required field facet missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

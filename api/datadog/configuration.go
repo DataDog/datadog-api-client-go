@@ -214,6 +214,7 @@ func NewConfiguration() *Configuration {
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
+								"datadoghq.eu",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
 								"ddog-gov.com",
@@ -358,26 +359,26 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"v1.GetSLOHistory":         false,
-			"v1.SearchSLO":             false,
-			"v2.ListEvents":            false,
-			"v2.SearchEvents":          false,
-			"v2.CreateIncident":        false,
-			"v2.DeleteIncident":        false,
-			"v2.GetIncident":           false,
-			"v2.ListIncidents":         false,
-			"v2.UpdateIncident":        false,
-			"v2.CreateIncidentService": false,
-			"v2.DeleteIncidentService": false,
-			"v2.GetIncidentService":    false,
-			"v2.ListIncidentServices":  false,
-			"v2.UpdateIncidentService": false,
-			"v2.CreateIncidentTeam":    false,
-			"v2.DeleteIncidentTeam":    false,
-			"v2.GetIncidentTeam":       false,
-			"v2.ListIncidentTeams":     false,
-			"v2.UpdateIncidentTeam":    false,
-			"v2.GetEstimatedCostByOrg": false,
+			"v1.SearchSLO":                 false,
+			"v2.ListEvents":                false,
+			"v2.SearchEvents":              false,
+			"v2.CreateIncident":            false,
+			"v2.DeleteIncident":            false,
+			"v2.GetIncident":               false,
+			"v2.ListIncidentAttachments":   false,
+			"v2.ListIncidents":             false,
+			"v2.UpdateIncident":            false,
+			"v2.UpdateIncidentAttachments": false,
+			"v2.CreateIncidentService":     false,
+			"v2.DeleteIncidentService":     false,
+			"v2.GetIncidentService":        false,
+			"v2.ListIncidentServices":      false,
+			"v2.UpdateIncidentService":     false,
+			"v2.CreateIncidentTeam":        false,
+			"v2.DeleteIncidentTeam":        false,
+			"v2.GetIncidentTeam":           false,
+			"v2.ListIncidentTeams":         false,
+			"v2.UpdateIncidentTeam":        false,
 		},
 	}
 	return cfg
@@ -391,7 +392,7 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 // URL formats template on a index using given variables.
 func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
 	if index < 0 || len(sc) <= index {
-		return "", fmt.Errorf("Index %v out of range %v", index, len(sc)-1)
+		return "", fmt.Errorf("index %v out of range %v", index, len(sc)-1)
 	}
 	server := sc[index]
 	url := server.URL
@@ -406,7 +407,7 @@ func (sc ServerConfigurations) URL(index int, variables map[string]string) (stri
 				}
 			}
 			if !found {
-				return "", fmt.Errorf("The variable %s in the server URL has invalid value %v. Must be %v", name, value, variable.EnumValues)
+				return "", fmt.Errorf("the variable %s in the server URL has invalid value %v. Must be %v", name, value, variable.EnumValues)
 			}
 			url = strings.Replace(url, "{"+name+"}", value, -1)
 		} else {

@@ -17,7 +17,7 @@ type EventsListResponse struct {
 	// The metadata associated with a request.
 	Meta *EventsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *EventsListResponse) GetDataOk() (*[]EventResponse, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *EventsListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []EventResponse and assigns it to the Data field.
@@ -90,11 +86,7 @@ func (o *EventsListResponse) GetLinksOk() (*EventsListResponseLinks, bool) {
 
 // HasLinks returns a boolean if a field has been set.
 func (o *EventsListResponse) HasLinks() bool {
-	if o != nil && o.Links != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Links != nil
 }
 
 // SetLinks gets a reference to the given EventsListResponseLinks and assigns it to the Links field.
@@ -122,11 +114,7 @@ func (o *EventsListResponse) GetMetaOk() (*EventsResponseMetadata, bool) {
 
 // HasMeta returns a boolean if a field has been set.
 func (o *EventsListResponse) HasMeta() bool {
-	if o != nil && o.Meta != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given EventsResponseMetadata and assigns it to the Meta field.

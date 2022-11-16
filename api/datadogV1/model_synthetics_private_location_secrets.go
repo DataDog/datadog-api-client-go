@@ -15,7 +15,7 @@ type SyntheticsPrivateLocationSecrets struct {
 	// Private key for the private location.
 	ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SyntheticsPrivateLocationSecrets) GetAuthenticationOk() (*SyntheticsPri
 
 // HasAuthentication returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationSecrets) HasAuthentication() bool {
-	if o != nil && o.Authentication != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Authentication != nil
 }
 
 // SetAuthentication gets a reference to the given SyntheticsPrivateLocationSecretsAuthentication and assigns it to the Authentication field.
@@ -88,11 +84,7 @@ func (o *SyntheticsPrivateLocationSecrets) GetConfigDecryptionOk() (*SyntheticsP
 
 // HasConfigDecryption returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocationSecrets) HasConfigDecryption() bool {
-	if o != nil && o.ConfigDecryption != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConfigDecryption != nil
 }
 
 // SetConfigDecryption gets a reference to the given SyntheticsPrivateLocationSecretsConfigDecryption and assigns it to the ConfigDecryption field.

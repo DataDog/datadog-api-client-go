@@ -13,7 +13,7 @@ type DeletedMonitor struct {
 	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *DeletedMonitor) GetDeletedMonitorIdOk() (*int64, bool) {
 
 // HasDeletedMonitorId returns a boolean if a field has been set.
 func (o *DeletedMonitor) HasDeletedMonitorId() bool {
-	if o != nil && o.DeletedMonitorId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DeletedMonitorId != nil
 }
 
 // SetDeletedMonitorId gets a reference to the given int64 and assigns it to the DeletedMonitorId field.

@@ -16,7 +16,7 @@ type LogsGrokParserRules struct {
 	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,11 +85,7 @@ func (o *LogsGrokParserRules) GetSupportRulesOk() (*string, bool) {
 
 // HasSupportRules returns a boolean if a field has been set.
 func (o *LogsGrokParserRules) HasSupportRules() bool {
-	if o != nil && o.SupportRules != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SupportRules != nil
 }
 
 // SetSupportRules gets a reference to the given string and assigns it to the SupportRules field.
@@ -129,7 +125,7 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.MatchRules == nil {
-		return fmt.Errorf("Required field match_rules missing")
+		return fmt.Errorf("required field match_rules missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

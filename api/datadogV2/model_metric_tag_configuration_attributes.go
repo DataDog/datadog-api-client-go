@@ -40,7 +40,7 @@ type MetricTagConfigurationAttributes struct {
 	// List of tag keys on which to group.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,11 +85,7 @@ func (o *MetricTagConfigurationAttributes) GetAggregationsOk() (*[]MetricCustomA
 
 // HasAggregations returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasAggregations() bool {
-	if o != nil && o.Aggregations != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregations != nil
 }
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
@@ -117,11 +113,7 @@ func (o *MetricTagConfigurationAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -149,11 +141,7 @@ func (o *MetricTagConfigurationAttributes) GetIncludePercentilesOk() (*bool, boo
 
 // HasIncludePercentiles returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasIncludePercentiles() bool {
-	if o != nil && o.IncludePercentiles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IncludePercentiles != nil
 }
 
 // SetIncludePercentiles gets a reference to the given bool and assigns it to the IncludePercentiles field.
@@ -181,11 +169,7 @@ func (o *MetricTagConfigurationAttributes) GetMetricTypeOk() (*MetricTagConfigur
 
 // HasMetricType returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasMetricType() bool {
-	if o != nil && o.MetricType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricType != nil
 }
 
 // SetMetricType gets a reference to the given MetricTagConfigurationMetricTypes and assigns it to the MetricType field.
@@ -213,11 +197,7 @@ func (o *MetricTagConfigurationAttributes) GetModifiedAtOk() (*time.Time, bool) 
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasModifiedAt() bool {
-	if o != nil && o.ModifiedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
@@ -245,11 +225,7 @@ func (o *MetricTagConfigurationAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MetricTagConfigurationAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

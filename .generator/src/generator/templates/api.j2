@@ -5,7 +5,7 @@ import (
 	"bytes"
 	_context "context"
 	_fmt "fmt"
-	_ioutil "io/ioutil"
+	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -85,7 +85,9 @@ func (a *{{ classname }}) build{{ operation.operationId }}Request(ctx _context.C
 }
 
 // {{ operation.operationId }} {{ operation.summary }}.
-{{ operation.description|block_comment(prefix="//") }}
+{{ operation.description|block_comment(prefix="//") }}{% if operation.deprecated %}
+//
+// Deprecated: This API is deprecated.{% endif %}
 func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
 	req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 	if err != nil {
@@ -366,7 +368,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	}
 	{%- endif %}
 	if localVarFile != nil {
-		fbs, _ := _ioutil.ReadAll(localVarFile)
+		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
 		formFile.FileName = localVarFile.Name()
 		localVarFile.Close()
@@ -424,13 +426,13 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
-	{%- for responseCode, response in operation.responses.items() if responseCode == "default" or not responseCode.startswith("2") %}
+	{%- for responseType, (response, responseCodes) in operation|responses_by_types %}
 	{%- if loop.first %}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -439,18 +441,12 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 	{%- endif %}
-		{%- set code = responseCode|int %}
-		{%- set dataType = response|response_type %}
-		{%- if responseCode == "3xx" %}
-		if localVarHTTPResponse.StatusCode >= 300 && localVarHTTPResponse.StatusCode < 400 {
-		{%- elif responseCode == "4xx" %}
-		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
-		{%- elif responseCode == "5xx" %}
-		if localVarHTTPResponse.StatusCode >= 500 {
-		{%- elif code >= 300 %}
-		if localVarHTTPResponse.StatusCode == {{ code }} {
-		{%- endif %}
-			var v {{ dataType }}
+		if
+		{% for responseCode in responseCodes -%}
+                {%- set code = responseCode|int %}
+		{%- if not loop.first -%} || {%- endif -%} localVarHTTPResponse.StatusCode == {{ code }}
+		{%- endfor -%} {
+			var v {{ responseType }}
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr

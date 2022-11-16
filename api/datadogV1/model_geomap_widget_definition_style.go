@@ -16,7 +16,7 @@ type GeomapWidgetDefinitionStyle struct {
 	// Whether to flip the palette tones.
 	PaletteFlip bool `json:"palette_flip"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Palette == nil {
-		return fmt.Errorf("Required field palette missing")
+		return fmt.Errorf("required field palette missing")
 	}
 	if required.PaletteFlip == nil {
-		return fmt.Errorf("Required field palette_flip missing")
+		return fmt.Errorf("required field palette_flip missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

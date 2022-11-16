@@ -15,7 +15,7 @@ type MonthlyUsageAttributionMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *MonthlyUsageAttributionMetadata) GetAggregatesOk() (*[]UsageAttribution
 
 // HasAggregates returns a boolean if a field has been set.
 func (o *MonthlyUsageAttributionMetadata) HasAggregates() bool {
-	if o != nil && o.Aggregates != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregates != nil
 }
 
 // SetAggregates gets a reference to the given []UsageAttributionAggregatesBody and assigns it to the Aggregates field.
@@ -88,11 +84,7 @@ func (o *MonthlyUsageAttributionMetadata) GetPaginationOk() (*MonthlyUsageAttrib
 
 // HasPagination returns a boolean if a field has been set.
 func (o *MonthlyUsageAttributionMetadata) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given MonthlyUsageAttributionPagination and assigns it to the Pagination field.

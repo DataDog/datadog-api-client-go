@@ -13,7 +13,7 @@ type UserResponse struct {
 	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *UserResponse) GetUserOk() (*User, bool) {
 
 // HasUser returns a boolean if a field has been set.
 func (o *UserResponse) HasUser() bool {
-	if o != nil && o.User != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.User != nil
 }
 
 // SetUser gets a reference to the given User and assigns it to the User field.

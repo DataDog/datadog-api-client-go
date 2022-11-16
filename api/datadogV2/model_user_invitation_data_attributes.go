@@ -20,7 +20,7 @@ type UserInvitationDataAttributes struct {
 	// UUID of the user invitation.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *UserInvitationDataAttributes) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *UserInvitationDataAttributes) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
@@ -93,11 +89,7 @@ func (o *UserInvitationDataAttributes) GetExpiresAtOk() (*time.Time, bool) {
 
 // HasExpiresAt returns a boolean if a field has been set.
 func (o *UserInvitationDataAttributes) HasExpiresAt() bool {
-	if o != nil && o.ExpiresAt != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExpiresAt != nil
 }
 
 // SetExpiresAt gets a reference to the given time.Time and assigns it to the ExpiresAt field.
@@ -125,11 +117,7 @@ func (o *UserInvitationDataAttributes) GetInviteTypeOk() (*string, bool) {
 
 // HasInviteType returns a boolean if a field has been set.
 func (o *UserInvitationDataAttributes) HasInviteType() bool {
-	if o != nil && o.InviteType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.InviteType != nil
 }
 
 // SetInviteType gets a reference to the given string and assigns it to the InviteType field.
@@ -157,11 +145,7 @@ func (o *UserInvitationDataAttributes) GetUuidOk() (*string, bool) {
 
 // HasUuid returns a boolean if a field has been set.
 func (o *UserInvitationDataAttributes) HasUuid() bool {
-	if o != nil && o.Uuid != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Uuid != nil
 }
 
 // SetUuid gets a reference to the given string and assigns it to the Uuid field.

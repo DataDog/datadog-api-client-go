@@ -39,7 +39,7 @@ type GCPAccount struct {
 	// The value for service_account found in your JSON service account key.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,11 +80,7 @@ func (o *GCPAccount) GetAuthProviderX509CertUrlOk() (*string, bool) {
 
 // HasAuthProviderX509CertUrl returns a boolean if a field has been set.
 func (o *GCPAccount) HasAuthProviderX509CertUrl() bool {
-	if o != nil && o.AuthProviderX509CertUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuthProviderX509CertUrl != nil
 }
 
 // SetAuthProviderX509CertUrl gets a reference to the given string and assigns it to the AuthProviderX509CertUrl field.
@@ -112,11 +108,7 @@ func (o *GCPAccount) GetAuthUriOk() (*string, bool) {
 
 // HasAuthUri returns a boolean if a field has been set.
 func (o *GCPAccount) HasAuthUri() bool {
-	if o != nil && o.AuthUri != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuthUri != nil
 }
 
 // SetAuthUri gets a reference to the given string and assigns it to the AuthUri field.
@@ -144,11 +136,7 @@ func (o *GCPAccount) GetAutomuteOk() (*bool, bool) {
 
 // HasAutomute returns a boolean if a field has been set.
 func (o *GCPAccount) HasAutomute() bool {
-	if o != nil && o.Automute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Automute != nil
 }
 
 // SetAutomute gets a reference to the given bool and assigns it to the Automute field.
@@ -176,11 +164,7 @@ func (o *GCPAccount) GetClientEmailOk() (*string, bool) {
 
 // HasClientEmail returns a boolean if a field has been set.
 func (o *GCPAccount) HasClientEmail() bool {
-	if o != nil && o.ClientEmail != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientEmail != nil
 }
 
 // SetClientEmail gets a reference to the given string and assigns it to the ClientEmail field.
@@ -208,11 +192,7 @@ func (o *GCPAccount) GetClientIdOk() (*string, bool) {
 
 // HasClientId returns a boolean if a field has been set.
 func (o *GCPAccount) HasClientId() bool {
-	if o != nil && o.ClientId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientId != nil
 }
 
 // SetClientId gets a reference to the given string and assigns it to the ClientId field.
@@ -240,11 +220,7 @@ func (o *GCPAccount) GetClientX509CertUrlOk() (*string, bool) {
 
 // HasClientX509CertUrl returns a boolean if a field has been set.
 func (o *GCPAccount) HasClientX509CertUrl() bool {
-	if o != nil && o.ClientX509CertUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ClientX509CertUrl != nil
 }
 
 // SetClientX509CertUrl gets a reference to the given string and assigns it to the ClientX509CertUrl field.
@@ -272,11 +248,7 @@ func (o *GCPAccount) GetErrorsOk() (*[]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *GCPAccount) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
@@ -304,11 +276,7 @@ func (o *GCPAccount) GetHostFiltersOk() (*string, bool) {
 
 // HasHostFilters returns a boolean if a field has been set.
 func (o *GCPAccount) HasHostFilters() bool {
-	if o != nil && o.HostFilters != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.HostFilters != nil
 }
 
 // SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.
@@ -336,11 +304,7 @@ func (o *GCPAccount) GetPrivateKeyOk() (*string, bool) {
 
 // HasPrivateKey returns a boolean if a field has been set.
 func (o *GCPAccount) HasPrivateKey() bool {
-	if o != nil && o.PrivateKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrivateKey != nil
 }
 
 // SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.
@@ -368,11 +332,7 @@ func (o *GCPAccount) GetPrivateKeyIdOk() (*string, bool) {
 
 // HasPrivateKeyId returns a boolean if a field has been set.
 func (o *GCPAccount) HasPrivateKeyId() bool {
-	if o != nil && o.PrivateKeyId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PrivateKeyId != nil
 }
 
 // SetPrivateKeyId gets a reference to the given string and assigns it to the PrivateKeyId field.
@@ -400,11 +360,7 @@ func (o *GCPAccount) GetProjectIdOk() (*string, bool) {
 
 // HasProjectId returns a boolean if a field has been set.
 func (o *GCPAccount) HasProjectId() bool {
-	if o != nil && o.ProjectId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProjectId != nil
 }
 
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
@@ -432,11 +388,7 @@ func (o *GCPAccount) GetTokenUriOk() (*string, bool) {
 
 // HasTokenUri returns a boolean if a field has been set.
 func (o *GCPAccount) HasTokenUri() bool {
-	if o != nil && o.TokenUri != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TokenUri != nil
 }
 
 // SetTokenUri gets a reference to the given string and assigns it to the TokenUri field.
@@ -464,11 +416,7 @@ func (o *GCPAccount) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *GCPAccount) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.

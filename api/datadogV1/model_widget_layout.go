@@ -23,7 +23,7 @@ type WidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,11 +91,7 @@ func (o *WidgetLayout) GetIsColumnBreakOk() (*bool, bool) {
 
 // HasIsColumnBreak returns a boolean if a field has been set.
 func (o *WidgetLayout) HasIsColumnBreak() bool {
-	if o != nil && o.IsColumnBreak != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsColumnBreak != nil
 }
 
 // SetIsColumnBreak gets a reference to the given bool and assigns it to the IsColumnBreak field.
@@ -213,16 +209,16 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Height == nil {
-		return fmt.Errorf("Required field height missing")
+		return fmt.Errorf("required field height missing")
 	}
 	if required.Width == nil {
-		return fmt.Errorf("Required field width missing")
+		return fmt.Errorf("required field width missing")
 	}
 	if required.X == nil {
-		return fmt.Errorf("Required field x missing")
+		return fmt.Errorf("required field x missing")
 	}
 	if required.Y == nil {
-		return fmt.Errorf("Required field y missing")
+		return fmt.Errorf("required field y missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

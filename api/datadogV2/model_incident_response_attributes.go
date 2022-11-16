@@ -35,11 +35,9 @@ type IncidentResponseAttributes struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// Notification handles that will be notified of the incident during update.
 	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
-	// The UUID of the postmortem object attached to the incident.
-	PostmortemId *string `json:"postmortem_id,omitempty"`
 	// The monotonically increasing integer ID for the incident.
 	PublicId *int64 `json:"public_id,omitempty"`
-	// Timestamp when the incident's state was set to resolved.
+	// Timestamp when the incident's state was last changed from active or stable to resolved or completed.
 	Resolved datadog.NullableTime `json:"resolved,omitempty"`
 	// The amount of time in seconds to detect the incident.
 	// Equals the difference between `customer_impact_start` and `detected`.
@@ -53,7 +51,7 @@ type IncidentResponseAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -95,11 +93,7 @@ func (o *IncidentResponseAttributes) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -127,11 +121,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactDurationOk() (*int64, bool
 
 // HasCustomerImpactDuration returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCustomerImpactDuration() bool {
-	if o != nil && o.CustomerImpactDuration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactDuration != nil
 }
 
 // SetCustomerImpactDuration gets a reference to the given int64 and assigns it to the CustomerImpactDuration field.
@@ -160,11 +150,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactEndOk() (*time.Time, bool)
 
 // HasCustomerImpactEnd returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCustomerImpactEnd() bool {
-	if o != nil && o.CustomerImpactEnd.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactEnd.IsSet()
 }
 
 // SetCustomerImpactEnd gets a reference to the given datadog.NullableTime and assigns it to the CustomerImpactEnd field.
@@ -203,11 +189,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactScopeOk() (*string, bool) 
 
 // HasCustomerImpactScope returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCustomerImpactScope() bool {
-	if o != nil && o.CustomerImpactScope.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactScope.IsSet()
 }
 
 // SetCustomerImpactScope gets a reference to the given datadog.NullableString and assigns it to the CustomerImpactScope field.
@@ -246,11 +228,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactStartOk() (*time.Time, boo
 
 // HasCustomerImpactStart returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCustomerImpactStart() bool {
-	if o != nil && o.CustomerImpactStart.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpactStart.IsSet()
 }
 
 // SetCustomerImpactStart gets a reference to the given datadog.NullableTime and assigns it to the CustomerImpactStart field.
@@ -288,11 +266,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactedOk() (*bool, bool) {
 
 // HasCustomerImpacted returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasCustomerImpacted() bool {
-	if o != nil && o.CustomerImpacted != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CustomerImpacted != nil
 }
 
 // SetCustomerImpacted gets a reference to the given bool and assigns it to the CustomerImpacted field.
@@ -321,11 +295,7 @@ func (o *IncidentResponseAttributes) GetDetectedOk() (*time.Time, bool) {
 
 // HasDetected returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasDetected() bool {
-	if o != nil && o.Detected.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Detected.IsSet()
 }
 
 // SetDetected gets a reference to the given datadog.NullableTime and assigns it to the Detected field.
@@ -363,11 +333,7 @@ func (o *IncidentResponseAttributes) GetFieldsOk() (*map[string]IncidentFieldAtt
 
 // HasFields returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasFields() bool {
-	if o != nil && o.Fields != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Fields != nil
 }
 
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
@@ -395,11 +361,7 @@ func (o *IncidentResponseAttributes) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -428,48 +390,12 @@ func (o *IncidentResponseAttributes) GetNotificationHandlesOk() (*[]IncidentNoti
 
 // HasNotificationHandles returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasNotificationHandles() bool {
-	if o != nil && o.NotificationHandles != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NotificationHandles != nil
 }
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
 func (o *IncidentResponseAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
 	o.NotificationHandles = v
-}
-
-// GetPostmortemId returns the PostmortemId field value if set, zero value otherwise.
-func (o *IncidentResponseAttributes) GetPostmortemId() string {
-	if o == nil || o.PostmortemId == nil {
-		var ret string
-		return ret
-	}
-	return *o.PostmortemId
-}
-
-// GetPostmortemIdOk returns a tuple with the PostmortemId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentResponseAttributes) GetPostmortemIdOk() (*string, bool) {
-	if o == nil || o.PostmortemId == nil {
-		return nil, false
-	}
-	return o.PostmortemId, true
-}
-
-// HasPostmortemId returns a boolean if a field has been set.
-func (o *IncidentResponseAttributes) HasPostmortemId() bool {
-	if o != nil && o.PostmortemId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPostmortemId gets a reference to the given string and assigns it to the PostmortemId field.
-func (o *IncidentResponseAttributes) SetPostmortemId(v string) {
-	o.PostmortemId = &v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
@@ -492,11 +418,7 @@ func (o *IncidentResponseAttributes) GetPublicIdOk() (*int64, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given int64 and assigns it to the PublicId field.
@@ -525,11 +447,7 @@ func (o *IncidentResponseAttributes) GetResolvedOk() (*time.Time, bool) {
 
 // HasResolved returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasResolved() bool {
-	if o != nil && o.Resolved.IsSet() {
-		return true
-	}
-
-	return false
+	return o != nil && o.Resolved.IsSet()
 }
 
 // SetResolved gets a reference to the given datadog.NullableTime and assigns it to the Resolved field.
@@ -567,11 +485,7 @@ func (o *IncidentResponseAttributes) GetTimeToDetectOk() (*int64, bool) {
 
 // HasTimeToDetect returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasTimeToDetect() bool {
-	if o != nil && o.TimeToDetect != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToDetect != nil
 }
 
 // SetTimeToDetect gets a reference to the given int64 and assigns it to the TimeToDetect field.
@@ -599,11 +513,7 @@ func (o *IncidentResponseAttributes) GetTimeToInternalResponseOk() (*int64, bool
 
 // HasTimeToInternalResponse returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasTimeToInternalResponse() bool {
-	if o != nil && o.TimeToInternalResponse != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToInternalResponse != nil
 }
 
 // SetTimeToInternalResponse gets a reference to the given int64 and assigns it to the TimeToInternalResponse field.
@@ -631,11 +541,7 @@ func (o *IncidentResponseAttributes) GetTimeToRepairOk() (*int64, bool) {
 
 // HasTimeToRepair returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasTimeToRepair() bool {
-	if o != nil && o.TimeToRepair != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToRepair != nil
 }
 
 // SetTimeToRepair gets a reference to the given int64 and assigns it to the TimeToRepair field.
@@ -663,11 +569,7 @@ func (o *IncidentResponseAttributes) GetTimeToResolveOk() (*int64, bool) {
 
 // HasTimeToResolve returns a boolean if a field has been set.
 func (o *IncidentResponseAttributes) HasTimeToResolve() bool {
-	if o != nil && o.TimeToResolve != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToResolve != nil
 }
 
 // SetTimeToResolve gets a reference to the given int64 and assigns it to the TimeToResolve field.
@@ -742,9 +644,6 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.NotificationHandles != nil {
 		toSerialize["notification_handles"] = o.NotificationHandles
 	}
-	if o.PostmortemId != nil {
-		toSerialize["postmortem_id"] = o.PostmortemId
-	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
@@ -788,7 +687,6 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		Modified               *time.Time                         `json:"modified,omitempty"`
 		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		PostmortemId           *string                            `json:"postmortem_id,omitempty"`
 		PublicId               *int64                             `json:"public_id,omitempty"`
 		Resolved               datadog.NullableTime               `json:"resolved,omitempty"`
 		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
@@ -802,7 +700,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Title == nil {
-		return fmt.Errorf("Required field title missing")
+		return fmt.Errorf("required field title missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -823,7 +721,6 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Fields = all.Fields
 	o.Modified = all.Modified
 	o.NotificationHandles = all.NotificationHandles
-	o.PostmortemId = all.PostmortemId
 	o.PublicId = all.PublicId
 	o.Resolved = all.Resolved
 	o.TimeToDetect = all.TimeToDetect

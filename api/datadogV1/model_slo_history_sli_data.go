@@ -38,7 +38,7 @@ type SLOHistorySLIData struct {
 	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,11 +79,7 @@ func (o *SLOHistorySLIData) GetErrorBudgetRemainingOk() (*map[string]float64, bo
 
 // HasErrorBudgetRemaining returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
-	if o != nil && o.ErrorBudgetRemaining != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ErrorBudgetRemaining != nil
 }
 
 // SetErrorBudgetRemaining gets a reference to the given map[string]float64 and assigns it to the ErrorBudgetRemaining field.
@@ -111,11 +107,7 @@ func (o *SLOHistorySLIData) GetErrorsOk() (*[]SLOHistoryResponseErrorWithType, b
 
 // HasErrors returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []SLOHistoryResponseErrorWithType and assigns it to the Errors field.
@@ -143,11 +135,7 @@ func (o *SLOHistorySLIData) GetGroupOk() (*string, bool) {
 
 // HasGroup returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasGroup() bool {
-	if o != nil && o.Group != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Group != nil
 }
 
 // SetGroup gets a reference to the given string and assigns it to the Group field.
@@ -175,11 +163,7 @@ func (o *SLOHistorySLIData) GetHistoryOk() (*[][]float64, bool) {
 
 // HasHistory returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasHistory() bool {
-	if o != nil && o.History != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.History != nil
 }
 
 // SetHistory gets a reference to the given [][]float64 and assigns it to the History field.
@@ -207,11 +191,7 @@ func (o *SLOHistorySLIData) GetMonitorModifiedOk() (*int64, bool) {
 
 // HasMonitorModified returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasMonitorModified() bool {
-	if o != nil && o.MonitorModified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorModified != nil
 }
 
 // SetMonitorModified gets a reference to the given int64 and assigns it to the MonitorModified field.
@@ -239,11 +219,7 @@ func (o *SLOHistorySLIData) GetMonitorTypeOk() (*string, bool) {
 
 // HasMonitorType returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasMonitorType() bool {
-	if o != nil && o.MonitorType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MonitorType != nil
 }
 
 // SetMonitorType gets a reference to the given string and assigns it to the MonitorType field.
@@ -271,11 +247,7 @@ func (o *SLOHistorySLIData) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -303,11 +275,7 @@ func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool) {
 
 // HasPrecision returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Precision != nil
 }
 
 // SetPrecision gets a reference to the given map[string]float64 and assigns it to the Precision field.
@@ -335,11 +303,7 @@ func (o *SLOHistorySLIData) GetPreviewOk() (*bool, bool) {
 
 // HasPreview returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasPreview() bool {
-	if o != nil && o.Preview != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Preview != nil
 }
 
 // SetPreview gets a reference to the given bool and assigns it to the Preview field.
@@ -367,11 +331,7 @@ func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
 
 // HasSliValue returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasSliValue() bool {
-	if o != nil && o.SliValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SliValue != nil
 }
 
 // SetSliValue gets a reference to the given float64 and assigns it to the SliValue field.
@@ -399,11 +359,7 @@ func (o *SLOHistorySLIData) GetSpanPrecisionOk() (*float64, bool) {
 
 // HasSpanPrecision returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasSpanPrecision() bool {
-	if o != nil && o.SpanPrecision != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SpanPrecision != nil
 }
 
 // SetSpanPrecision gets a reference to the given float64 and assigns it to the SpanPrecision field.
@@ -433,11 +389,7 @@ func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
 
 // HasUptime returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasUptime() bool {
-	if o != nil && o.Uptime != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Uptime != nil
 }
 
 // SetUptime gets a reference to the given float64 and assigns it to the Uptime field.

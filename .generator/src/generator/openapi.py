@@ -107,6 +107,19 @@ def get_type_for_response(response):
                 return type_to_go(content["schema"])
 
 
+def responses_by_types(operation):
+    result = {}
+    for response_code, response in operation["responses"].items():
+        if int(response_code) < 300:
+            continue
+        response_type = get_type_for_response(response)
+        if response_type in result:
+            result[response_type][1].append(response_code)
+        else:
+            result[response_type] = [response, [response_code]]
+    return result.items()
+
+
 def child_models(schema, alternative_name=None, seen=None, parent=None):
     seen = seen or set()
     current_name = get_name(schema)

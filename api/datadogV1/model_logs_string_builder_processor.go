@@ -37,7 +37,7 @@ type LogsStringBuilderProcessor struct {
 	// Type of logs string builder processor.
 	Type LogsStringBuilderProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,11 +91,7 @@ func (o *LogsStringBuilderProcessor) GetIsEnabledOk() (*bool, bool) {
 
 // HasIsEnabled returns a boolean if a field has been set.
 func (o *LogsStringBuilderProcessor) HasIsEnabled() bool {
-	if o != nil && o.IsEnabled != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsEnabled != nil
 }
 
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
@@ -123,11 +119,7 @@ func (o *LogsStringBuilderProcessor) GetIsReplaceMissingOk() (*bool, bool) {
 
 // HasIsReplaceMissing returns a boolean if a field has been set.
 func (o *LogsStringBuilderProcessor) HasIsReplaceMissing() bool {
-	if o != nil && o.IsReplaceMissing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReplaceMissing != nil
 }
 
 // SetIsReplaceMissing gets a reference to the given bool and assigns it to the IsReplaceMissing field.
@@ -155,11 +147,7 @@ func (o *LogsStringBuilderProcessor) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *LogsStringBuilderProcessor) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -282,13 +270,13 @@ func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Target == nil {
-		return fmt.Errorf("Required field target missing")
+		return fmt.Errorf("required field target missing")
 	}
 	if required.Template == nil {
-		return fmt.Errorf("Required field template missing")
+		return fmt.Errorf("required field template missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

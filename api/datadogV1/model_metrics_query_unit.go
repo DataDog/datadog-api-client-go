@@ -21,7 +21,7 @@ type MetricsQueryUnit struct {
 	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *MetricsQueryUnit) GetFamilyOk() (*string, bool) {
 
 // HasFamily returns a boolean if a field has been set.
 func (o *MetricsQueryUnit) HasFamily() bool {
-	if o != nil && o.Family != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Family != nil
 }
 
 // SetFamily gets a reference to the given string and assigns it to the Family field.
@@ -94,11 +90,7 @@ func (o *MetricsQueryUnit) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MetricsQueryUnit) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
@@ -126,11 +118,7 @@ func (o *MetricsQueryUnit) GetPluralOk() (*string, bool) {
 
 // HasPlural returns a boolean if a field has been set.
 func (o *MetricsQueryUnit) HasPlural() bool {
-	if o != nil && o.Plural != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Plural != nil
 }
 
 // SetPlural gets a reference to the given string and assigns it to the Plural field.
@@ -158,11 +146,7 @@ func (o *MetricsQueryUnit) GetScaleFactorOk() (*float64, bool) {
 
 // HasScaleFactor returns a boolean if a field has been set.
 func (o *MetricsQueryUnit) HasScaleFactor() bool {
-	if o != nil && o.ScaleFactor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ScaleFactor != nil
 }
 
 // SetScaleFactor gets a reference to the given float64 and assigns it to the ScaleFactor field.
@@ -190,11 +174,7 @@ func (o *MetricsQueryUnit) GetShortNameOk() (*string, bool) {
 
 // HasShortName returns a boolean if a field has been set.
 func (o *MetricsQueryUnit) HasShortName() bool {
-	if o != nil && o.ShortName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShortName != nil
 }
 
 // SetShortName gets a reference to the given string and assigns it to the ShortName field.

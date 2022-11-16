@@ -14,13 +14,15 @@ type SyntheticsGlobalVariableParseTestOptionsType string
 
 // List of SyntheticsGlobalVariableParseTestOptionsType.
 const (
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY   SyntheticsGlobalVariableParseTestOptionsType = "http_body"
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER SyntheticsGlobalVariableParseTestOptionsType = "http_header"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY      SyntheticsGlobalVariableParseTestOptionsType = "http_body"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER    SyntheticsGlobalVariableParseTestOptionsType = "http_header"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE SyntheticsGlobalVariableParseTestOptionsType = "local_variable"
 )
 
 var allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues = []SyntheticsGlobalVariableParseTestOptionsType{
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER,
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

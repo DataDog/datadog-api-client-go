@@ -16,7 +16,7 @@ type SLOHistoryResponseErrorWithType struct {
 	// Type of the error.
 	ErrorType string `json:"error_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -116,10 +116,10 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	if required.ErrorMessage == nil {
-		return fmt.Errorf("Required field error_message missing")
+		return fmt.Errorf("required field error_message missing")
 	}
 	if required.ErrorType == nil {
-		return fmt.Errorf("Required field error_type missing")
+		return fmt.Errorf("required field error_type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

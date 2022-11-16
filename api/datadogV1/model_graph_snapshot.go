@@ -19,7 +19,7 @@ type GraphSnapshot struct {
 	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *GraphSnapshot) GetGraphDefOk() (*string, bool) {
 
 // HasGraphDef returns a boolean if a field has been set.
 func (o *GraphSnapshot) HasGraphDef() bool {
-	if o != nil && o.GraphDef != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GraphDef != nil
 }
 
 // SetGraphDef gets a reference to the given string and assigns it to the GraphDef field.
@@ -92,11 +88,7 @@ func (o *GraphSnapshot) GetMetricQueryOk() (*string, bool) {
 
 // HasMetricQuery returns a boolean if a field has been set.
 func (o *GraphSnapshot) HasMetricQuery() bool {
-	if o != nil && o.MetricQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MetricQuery != nil
 }
 
 // SetMetricQuery gets a reference to the given string and assigns it to the MetricQuery field.
@@ -124,11 +116,7 @@ func (o *GraphSnapshot) GetSnapshotUrlOk() (*string, bool) {
 
 // HasSnapshotUrl returns a boolean if a field has been set.
 func (o *GraphSnapshot) HasSnapshotUrl() bool {
-	if o != nil && o.SnapshotUrl != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SnapshotUrl != nil
 }
 
 // SetSnapshotUrl gets a reference to the given string and assigns it to the SnapshotUrl field.

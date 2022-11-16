@@ -20,7 +20,7 @@ type LogsListRequest struct {
 	// Sort parameters when querying logs.
 	Sort *LogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *LogsListRequest) GetFilterOk() (*LogsQueryFilter, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *LogsListRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given LogsQueryFilter and assigns it to the Filter field.
@@ -93,11 +89,7 @@ func (o *LogsListRequest) GetOptionsOk() (*LogsQueryOptions, bool) {
 
 // HasOptions returns a boolean if a field has been set.
 func (o *LogsListRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given LogsQueryOptions and assigns it to the Options field.
@@ -125,11 +117,7 @@ func (o *LogsListRequest) GetPageOk() (*LogsListRequestPage, bool) {
 
 // HasPage returns a boolean if a field has been set.
 func (o *LogsListRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given LogsListRequestPage and assigns it to the Page field.
@@ -157,11 +145,7 @@ func (o *LogsListRequest) GetSortOk() (*LogsSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *LogsListRequest) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given LogsSort and assigns it to the Sort field.

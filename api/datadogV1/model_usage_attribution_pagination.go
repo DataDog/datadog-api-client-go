@@ -21,7 +21,7 @@ type UsageAttributionPagination struct {
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *UsageAttributionPagination) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *UsageAttributionPagination) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -94,11 +90,7 @@ func (o *UsageAttributionPagination) GetOffsetOk() (*int64, bool) {
 
 // HasOffset returns a boolean if a field has been set.
 func (o *UsageAttributionPagination) HasOffset() bool {
-	if o != nil && o.Offset != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Offset != nil
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
@@ -126,11 +118,7 @@ func (o *UsageAttributionPagination) GetSortDirectionOk() (*string, bool) {
 
 // HasSortDirection returns a boolean if a field has been set.
 func (o *UsageAttributionPagination) HasSortDirection() bool {
-	if o != nil && o.SortDirection != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SortDirection != nil
 }
 
 // SetSortDirection gets a reference to the given string and assigns it to the SortDirection field.
@@ -158,11 +146,7 @@ func (o *UsageAttributionPagination) GetSortNameOk() (*string, bool) {
 
 // HasSortName returns a boolean if a field has been set.
 func (o *UsageAttributionPagination) HasSortName() bool {
-	if o != nil && o.SortName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SortName != nil
 }
 
 // SetSortName gets a reference to the given string and assigns it to the SortName field.
@@ -190,11 +174,7 @@ func (o *UsageAttributionPagination) GetTotalNumberOfRecordsOk() (*int64, bool) 
 
 // HasTotalNumberOfRecords returns a boolean if a field has been set.
 func (o *UsageAttributionPagination) HasTotalNumberOfRecords() bool {
-	if o != nil && o.TotalNumberOfRecords != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TotalNumberOfRecords != nil
 }
 
 // SetTotalNumberOfRecords gets a reference to the given int64 and assigns it to the TotalNumberOfRecords field.

@@ -21,7 +21,7 @@ type LogQueryDefinition struct {
 	// The query being made on the logs.
 	Search *LogQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,11 +62,7 @@ func (o *LogQueryDefinition) GetComputeOk() (*LogsQueryCompute, bool) {
 
 // HasCompute returns a boolean if a field has been set.
 func (o *LogQueryDefinition) HasCompute() bool {
-	if o != nil && o.Compute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Compute != nil
 }
 
 // SetCompute gets a reference to the given LogsQueryCompute and assigns it to the Compute field.
@@ -94,11 +90,7 @@ func (o *LogQueryDefinition) GetGroupByOk() (*[]LogQueryDefinitionGroupBy, bool)
 
 // HasGroupBy returns a boolean if a field has been set.
 func (o *LogQueryDefinition) HasGroupBy() bool {
-	if o != nil && o.GroupBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.GroupBy != nil
 }
 
 // SetGroupBy gets a reference to the given []LogQueryDefinitionGroupBy and assigns it to the GroupBy field.
@@ -126,11 +118,7 @@ func (o *LogQueryDefinition) GetIndexOk() (*string, bool) {
 
 // HasIndex returns a boolean if a field has been set.
 func (o *LogQueryDefinition) HasIndex() bool {
-	if o != nil && o.Index != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Index != nil
 }
 
 // SetIndex gets a reference to the given string and assigns it to the Index field.
@@ -158,11 +146,7 @@ func (o *LogQueryDefinition) GetMultiComputeOk() (*[]LogsQueryCompute, bool) {
 
 // HasMultiCompute returns a boolean if a field has been set.
 func (o *LogQueryDefinition) HasMultiCompute() bool {
-	if o != nil && o.MultiCompute != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.MultiCompute != nil
 }
 
 // SetMultiCompute gets a reference to the given []LogsQueryCompute and assigns it to the MultiCompute field.
@@ -190,11 +174,7 @@ func (o *LogQueryDefinition) GetSearchOk() (*LogQueryDefinitionSearch, bool) {
 
 // HasSearch returns a boolean if a field has been set.
 func (o *LogQueryDefinition) HasSearch() bool {
-	if o != nil && o.Search != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Search != nil
 }
 
 // SetSearch gets a reference to the given LogQueryDefinitionSearch and assigns it to the Search field.

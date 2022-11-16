@@ -46,7 +46,7 @@ type SyntheticsStepDetail struct {
 	// Warning collected that didn't failed the step.
 	Warnings []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,11 +87,7 @@ func (o *SyntheticsStepDetail) GetBrowserErrorsOk() (*[]SyntheticsBrowserError, 
 
 // HasBrowserErrors returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasBrowserErrors() bool {
-	if o != nil && o.BrowserErrors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BrowserErrors != nil
 }
 
 // SetBrowserErrors gets a reference to the given []SyntheticsBrowserError and assigns it to the BrowserErrors field.
@@ -119,11 +115,7 @@ func (o *SyntheticsStepDetail) GetCheckTypeOk() (*SyntheticsCheckType, bool) {
 
 // HasCheckType returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasCheckType() bool {
-	if o != nil && o.CheckType != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CheckType != nil
 }
 
 // SetCheckType gets a reference to the given SyntheticsCheckType and assigns it to the CheckType field.
@@ -151,11 +143,7 @@ func (o *SyntheticsStepDetail) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
@@ -183,11 +171,7 @@ func (o *SyntheticsStepDetail) GetDurationOk() (*float64, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasDuration() bool {
-	if o != nil && o.Duration != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given float64 and assigns it to the Duration field.
@@ -215,11 +199,7 @@ func (o *SyntheticsStepDetail) GetErrorOk() (*string, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasError() bool {
-	if o != nil && o.Error != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error != nil
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
@@ -247,11 +227,7 @@ func (o *SyntheticsStepDetail) GetPlayingTabOk() (*SyntheticsPlayingTab, bool) {
 
 // HasPlayingTab returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasPlayingTab() bool {
-	if o != nil && o.PlayingTab != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PlayingTab != nil
 }
 
 // SetPlayingTab gets a reference to the given SyntheticsPlayingTab and assigns it to the PlayingTab field.
@@ -279,11 +255,7 @@ func (o *SyntheticsStepDetail) GetScreenshotBucketKeyOk() (*bool, bool) {
 
 // HasScreenshotBucketKey returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasScreenshotBucketKey() bool {
-	if o != nil && o.ScreenshotBucketKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ScreenshotBucketKey != nil
 }
 
 // SetScreenshotBucketKey gets a reference to the given bool and assigns it to the ScreenshotBucketKey field.
@@ -311,11 +283,7 @@ func (o *SyntheticsStepDetail) GetSkippedOk() (*bool, bool) {
 
 // HasSkipped returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasSkipped() bool {
-	if o != nil && o.Skipped != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Skipped != nil
 }
 
 // SetSkipped gets a reference to the given bool and assigns it to the Skipped field.
@@ -343,11 +311,7 @@ func (o *SyntheticsStepDetail) GetSnapshotBucketKeyOk() (*bool, bool) {
 
 // HasSnapshotBucketKey returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasSnapshotBucketKey() bool {
-	if o != nil && o.SnapshotBucketKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SnapshotBucketKey != nil
 }
 
 // SetSnapshotBucketKey gets a reference to the given bool and assigns it to the SnapshotBucketKey field.
@@ -375,11 +339,7 @@ func (o *SyntheticsStepDetail) GetStepIdOk() (*int64, bool) {
 
 // HasStepId returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasStepId() bool {
-	if o != nil && o.StepId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.StepId != nil
 }
 
 // SetStepId gets a reference to the given int64 and assigns it to the StepId field.
@@ -407,11 +367,7 @@ func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() (*[]SyntheticsStepDetai
 
 // HasSubTestStepDetails returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasSubTestStepDetails() bool {
-	if o != nil && o.SubTestStepDetails != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SubTestStepDetails != nil
 }
 
 // SetSubTestStepDetails gets a reference to the given []SyntheticsStepDetail and assigns it to the SubTestStepDetails field.
@@ -439,11 +395,7 @@ func (o *SyntheticsStepDetail) GetTimeToInteractiveOk() (*float64, bool) {
 
 // HasTimeToInteractive returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasTimeToInteractive() bool {
-	if o != nil && o.TimeToInteractive != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TimeToInteractive != nil
 }
 
 // SetTimeToInteractive gets a reference to the given float64 and assigns it to the TimeToInteractive field.
@@ -471,11 +423,7 @@ func (o *SyntheticsStepDetail) GetTypeOk() (*SyntheticsStepType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsStepType and assigns it to the Type field.
@@ -503,11 +451,7 @@ func (o *SyntheticsStepDetail) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
@@ -535,11 +479,7 @@ func (o *SyntheticsStepDetail) GetValueOk() (*interface{}, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Value != nil
 }
 
 // SetValue gets a reference to the given interface{} and assigns it to the Value field.
@@ -567,11 +507,7 @@ func (o *SyntheticsStepDetail) GetVitalsMetricsOk() (*[]SyntheticsCoreWebVitals,
 
 // HasVitalsMetrics returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasVitalsMetrics() bool {
-	if o != nil && o.VitalsMetrics != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.VitalsMetrics != nil
 }
 
 // SetVitalsMetrics gets a reference to the given []SyntheticsCoreWebVitals and assigns it to the VitalsMetrics field.
@@ -599,11 +535,7 @@ func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarning, 
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *SyntheticsStepDetail) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Warnings != nil
 }
 
 // SetWarnings gets a reference to the given []SyntheticsStepDetailWarning and assigns it to the Warnings field.

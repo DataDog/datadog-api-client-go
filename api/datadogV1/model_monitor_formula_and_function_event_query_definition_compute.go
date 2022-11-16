@@ -18,7 +18,7 @@ type MonitorFormulaAndFunctionEventQueryDefinitionCompute struct {
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -83,11 +83,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetIntervalOk() (
 
 // HasInterval returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) HasInterval() bool {
-	if o != nil && o.Interval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Interval != nil
 }
 
 // SetInterval gets a reference to the given int64 and assigns it to the Interval field.
@@ -115,11 +111,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetMetricOk() (*s
 
 // HasMetric returns a boolean if a field has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -163,7 +155,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

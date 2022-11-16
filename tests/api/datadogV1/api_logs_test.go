@@ -68,7 +68,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
-		return 200 == httpresp.StatusCode && 2 == len(logsResponse.GetLogs())
+		return httpresp.StatusCode == 200 && len(logsResponse.GetLogs()) == 2
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -82,7 +82,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
-		return 200 == httpresp.StatusCode && len(logsResponse.GetNextLogId()) > 0
+		return httpresp.StatusCode == 200 && len(logsResponse.GetNextLogId()) > 0
 	})
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -106,7 +106,7 @@ func TestLogsList(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
-		return 200 == httpresp.StatusCode && len(logsResponse.GetLogs()) > 0
+		return httpresp.StatusCode == 200 && len(logsResponse.GetLogs()) > 0
 	})
 	if err != nil {
 		t.Fatalf("%v", err)

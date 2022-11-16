@@ -13,7 +13,7 @@ type ApplicationKeyRelationships struct {
 	// Relationship to user.
 	OwnedBy *RelationshipToUser `json:"owned_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *ApplicationKeyRelationships) GetOwnedByOk() (*RelationshipToUser, bool)
 
 // HasOwnedBy returns a boolean if a field has been set.
 func (o *ApplicationKeyRelationships) HasOwnedBy() bool {
-	if o != nil && o.OwnedBy != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OwnedBy != nil
 }
 
 // SetOwnedBy gets a reference to the given RelationshipToUser and assigns it to the OwnedBy field.

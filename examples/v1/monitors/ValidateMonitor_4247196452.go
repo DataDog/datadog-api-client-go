@@ -16,7 +16,7 @@ func main() {
 	body := datadogV1.Monitor{
 		Name:    datadog.PtrString("Example-Validate_a_multi_alert_monitor_returns_OK_response"),
 		Type:    datadogV1.MONITORTYPE_LOG_ALERT,
-		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
+		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source,status").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test:examplevalidateamultialertmonitorreturnsokresponse",
@@ -34,11 +34,14 @@ func main() {
 			NewHostDelay:           *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 			NoDataTimeframe:        *datadog.NewNullableInt64(nil),
 			NotifyAudit:            datadog.PtrBool(false),
-			NotifyNoData:           datadog.PtrBool(false),
-			OnMissingData:          datadogV1.ONMISSINGDATAOPTION_SHOW_AND_NOTIFY_NO_DATA.Ptr(),
-			RenotifyInterval:       *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-			RequireFullWindow:      datadog.PtrBool(true),
-			TimeoutH:               *datadog.NewNullableInt64(datadog.PtrInt64(24)),
+			NotifyBy: []string{
+				"status",
+			},
+			NotifyNoData:      datadog.PtrBool(false),
+			OnMissingData:     datadogV1.ONMISSINGDATAOPTION_SHOW_AND_NOTIFY_NO_DATA.Ptr(),
+			RenotifyInterval:  *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			RequireFullWindow: datadog.PtrBool(true),
+			TimeoutH:          *datadog.NewNullableInt64(datadog.PtrInt64(24)),
 			Thresholds: &datadogV1.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),

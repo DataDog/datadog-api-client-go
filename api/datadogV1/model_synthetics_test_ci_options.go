@@ -13,7 +13,7 @@ type SyntheticsTestCiOptions struct {
 	// Execution rule for a Synthetics test.
 	ExecutionRule *SyntheticsTestExecutionRule `json:"executionRule,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *SyntheticsTestCiOptions) GetExecutionRuleOk() (*SyntheticsTestExecution
 
 // HasExecutionRule returns a boolean if a field has been set.
 func (o *SyntheticsTestCiOptions) HasExecutionRule() bool {
-	if o != nil && o.ExecutionRule != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ExecutionRule != nil
 }
 
 // SetExecutionRule gets a reference to the given SyntheticsTestExecutionRule and assigns it to the ExecutionRule field.

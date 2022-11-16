@@ -28,7 +28,7 @@ type GroupWidgetDefinition struct {
 	// List of widget groups.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,11 +78,7 @@ func (o *GroupWidgetDefinition) GetBackgroundColorOk() (*string, bool) {
 
 // HasBackgroundColor returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasBackgroundColor() bool {
-	if o != nil && o.BackgroundColor != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BackgroundColor != nil
 }
 
 // SetBackgroundColor gets a reference to the given string and assigns it to the BackgroundColor field.
@@ -110,11 +106,7 @@ func (o *GroupWidgetDefinition) GetBannerImgOk() (*string, bool) {
 
 // HasBannerImg returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasBannerImg() bool {
-	if o != nil && o.BannerImg != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.BannerImg != nil
 }
 
 // SetBannerImg gets a reference to the given string and assigns it to the BannerImg field.
@@ -165,11 +157,7 @@ func (o *GroupWidgetDefinition) GetShowTitleOk() (*bool, bool) {
 
 // HasShowTitle returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasShowTitle() bool {
-	if o != nil && o.ShowTitle != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ShowTitle != nil
 }
 
 // SetShowTitle gets a reference to the given bool and assigns it to the ShowTitle field.
@@ -197,11 +185,7 @@ func (o *GroupWidgetDefinition) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -229,11 +213,7 @@ func (o *GroupWidgetDefinition) GetTitleAlignOk() (*WidgetTextAlign, bool) {
 
 // HasTitleAlign returns a boolean if a field has been set.
 func (o *GroupWidgetDefinition) HasTitleAlign() bool {
-	if o != nil && o.TitleAlign != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TitleAlign != nil
 }
 
 // SetTitleAlign gets a reference to the given WidgetTextAlign and assigns it to the TitleAlign field.
@@ -341,13 +321,13 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.LayoutType == nil {
-		return fmt.Errorf("Required field layout_type missing")
+		return fmt.Errorf("required field layout_type missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	if required.Widgets == nil {
-		return fmt.Errorf("Required field widgets missing")
+		return fmt.Errorf("required field widgets missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

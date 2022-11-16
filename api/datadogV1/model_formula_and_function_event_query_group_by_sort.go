@@ -18,7 +18,7 @@ type FormulaAndFunctionEventQueryGroupBySort struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -87,11 +87,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetricOk() (*string, bool) 
 
 // HasMetric returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryGroupBySort) HasMetric() bool {
-	if o != nil && o.Metric != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metric != nil
 }
 
 // SetMetric gets a reference to the given string and assigns it to the Metric field.
@@ -119,11 +115,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrderOk() (*QuerySortOrder,
 
 // HasOrder returns a boolean if a field has been set.
 func (o *FormulaAndFunctionEventQueryGroupBySort) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given QuerySortOrder and assigns it to the Order field.
@@ -167,7 +159,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 		return err
 	}
 	if required.Aggregation == nil {
-		return fmt.Errorf("Required field aggregation missing")
+		return fmt.Errorf("required field aggregation missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

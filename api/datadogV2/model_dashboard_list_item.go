@@ -37,7 +37,7 @@ type DashboardListItem struct {
 	// URL path to the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,11 +80,7 @@ func (o *DashboardListItem) GetAuthorOk() (*Creator, bool) {
 
 // HasAuthor returns a boolean if a field has been set.
 func (o *DashboardListItem) HasAuthor() bool {
-	if o != nil && o.Author != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Author != nil
 }
 
 // SetAuthor gets a reference to the given Creator and assigns it to the Author field.
@@ -112,11 +108,7 @@ func (o *DashboardListItem) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *DashboardListItem) HasCreated() bool {
-	if o != nil && o.Created != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Created != nil
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
@@ -144,11 +136,7 @@ func (o *DashboardListItem) GetIconOk() (*string, bool) {
 
 // HasIcon returns a boolean if a field has been set.
 func (o *DashboardListItem) HasIcon() bool {
-	if o != nil && o.Icon != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Icon != nil
 }
 
 // SetIcon gets a reference to the given string and assigns it to the Icon field.
@@ -199,11 +187,7 @@ func (o *DashboardListItem) GetIsFavoriteOk() (*bool, bool) {
 
 // HasIsFavorite returns a boolean if a field has been set.
 func (o *DashboardListItem) HasIsFavorite() bool {
-	if o != nil && o.IsFavorite != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsFavorite != nil
 }
 
 // SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
@@ -231,11 +215,7 @@ func (o *DashboardListItem) GetIsReadOnlyOk() (*bool, bool) {
 
 // HasIsReadOnly returns a boolean if a field has been set.
 func (o *DashboardListItem) HasIsReadOnly() bool {
-	if o != nil && o.IsReadOnly != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsReadOnly != nil
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
@@ -263,11 +243,7 @@ func (o *DashboardListItem) GetIsSharedOk() (*bool, bool) {
 
 // HasIsShared returns a boolean if a field has been set.
 func (o *DashboardListItem) HasIsShared() bool {
-	if o != nil && o.IsShared != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.IsShared != nil
 }
 
 // SetIsShared gets a reference to the given bool and assigns it to the IsShared field.
@@ -295,11 +271,7 @@ func (o *DashboardListItem) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *DashboardListItem) HasModified() bool {
-	if o != nil && o.Modified != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Modified != nil
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
@@ -327,11 +299,7 @@ func (o *DashboardListItem) GetPopularityOk() (*int32, bool) {
 
 // HasPopularity returns a boolean if a field has been set.
 func (o *DashboardListItem) HasPopularity() bool {
-	if o != nil && o.Popularity != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Popularity != nil
 }
 
 // SetPopularity gets a reference to the given int32 and assigns it to the Popularity field.
@@ -359,11 +327,7 @@ func (o *DashboardListItem) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *DashboardListItem) HasTitle() bool {
-	if o != nil && o.Title != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
@@ -414,11 +378,7 @@ func (o *DashboardListItem) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *DashboardListItem) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Url != nil
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
@@ -505,10 +465,10 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Id == nil {
-		return fmt.Errorf("Required field id missing")
+		return fmt.Errorf("required field id missing")
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

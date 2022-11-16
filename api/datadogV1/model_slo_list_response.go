@@ -18,7 +18,7 @@ type SLOListResponse struct {
 	// The metadata object containing additional information about the list of SLOs.
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *SLOListResponse) GetDataOk() (*[]ServiceLevelObjective, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *SLOListResponse) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []ServiceLevelObjective and assigns it to the Data field.
@@ -91,11 +87,7 @@ func (o *SLOListResponse) GetErrorsOk() (*[]string, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *SLOListResponse) HasErrors() bool {
-	if o != nil && o.Errors != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Errors != nil
 }
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
@@ -123,11 +115,7 @@ func (o *SLOListResponse) GetMetadataOk() (*SLOListResponseMetadata, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SLOListResponse) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SLOListResponseMetadata and assigns it to the Metadata field.

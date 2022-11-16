@@ -20,7 +20,7 @@ type IncidentServiceUpdateData struct {
 	// Incident service resource type.
 	Type IncidentServiceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *IncidentServiceUpdateData) GetAttributesOk() (*IncidentServiceUpdateAtt
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *IncidentServiceUpdateData) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given IncidentServiceUpdateAttributes and assigns it to the Attributes field.
@@ -96,11 +92,7 @@ func (o *IncidentServiceUpdateData) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IncidentServiceUpdateData) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -128,11 +120,7 @@ func (o *IncidentServiceUpdateData) GetRelationshipsOk() (*IncidentServiceRelati
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *IncidentServiceUpdateData) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given IncidentServiceRelationships and assigns it to the Relationships field.
@@ -203,7 +191,7 @@ func (o *IncidentServiceUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
+		return fmt.Errorf("required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -15,7 +15,7 @@ type HourlyUsageAttributionResponse struct {
 	// Get the hourly usage attribution by tag(s).
 	Usage []HourlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *HourlyUsageAttributionResponse) GetMetadataOk() (*HourlyUsageAttributio
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionResponse) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given HourlyUsageAttributionMetadata and assigns it to the Metadata field.
@@ -88,11 +84,7 @@ func (o *HourlyUsageAttributionResponse) GetUsageOk() (*[]HourlyUsageAttribution
 
 // HasUsage returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionResponse) HasUsage() bool {
-	if o != nil && o.Usage != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Usage != nil
 }
 
 // SetUsage gets a reference to the given []HourlyUsageAttributionBody and assigns it to the Usage field.

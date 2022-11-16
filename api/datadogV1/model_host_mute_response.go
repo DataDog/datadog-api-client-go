@@ -19,7 +19,7 @@ type HostMuteResponse struct {
 	// Message associated with the mute.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,11 +60,7 @@ func (o *HostMuteResponse) GetActionOk() (*string, bool) {
 
 // HasAction returns a boolean if a field has been set.
 func (o *HostMuteResponse) HasAction() bool {
-	if o != nil && o.Action != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Action != nil
 }
 
 // SetAction gets a reference to the given string and assigns it to the Action field.
@@ -92,11 +88,7 @@ func (o *HostMuteResponse) GetEndOk() (*int64, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *HostMuteResponse) HasEnd() bool {
-	if o != nil && o.End != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.End != nil
 }
 
 // SetEnd gets a reference to the given int64 and assigns it to the End field.
@@ -124,11 +116,7 @@ func (o *HostMuteResponse) GetHostnameOk() (*string, bool) {
 
 // HasHostname returns a boolean if a field has been set.
 func (o *HostMuteResponse) HasHostname() bool {
-	if o != nil && o.Hostname != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hostname != nil
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
@@ -156,11 +144,7 @@ func (o *HostMuteResponse) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *HostMuteResponse) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.

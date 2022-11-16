@@ -19,7 +19,7 @@ type PartialAPIKey struct {
 	// API Keys resource type.
 	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *PartialAPIKey) GetAttributesOk() (*PartialAPIKeyAttributes, bool) {
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *PartialAPIKey) HasAttributes() bool {
-	if o != nil && o.Attributes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given PartialAPIKeyAttributes and assigns it to the Attributes field.
@@ -96,11 +92,7 @@ func (o *PartialAPIKey) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *PartialAPIKey) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -128,11 +120,7 @@ func (o *PartialAPIKey) GetRelationshipsOk() (*APIKeyRelationships, bool) {
 
 // HasRelationships returns a boolean if a field has been set.
 func (o *PartialAPIKey) HasRelationships() bool {
-	if o != nil && o.Relationships != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Relationships != nil
 }
 
 // SetRelationships gets a reference to the given APIKeyRelationships and assigns it to the Relationships field.
@@ -160,11 +148,7 @@ func (o *PartialAPIKey) GetTypeOk() (*APIKeysType, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PartialAPIKey) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given APIKeysType and assigns it to the Type field.

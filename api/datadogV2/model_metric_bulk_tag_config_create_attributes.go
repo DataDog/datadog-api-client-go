@@ -15,7 +15,7 @@ type MetricBulkTagConfigCreateAttributes struct {
 	// A list of tag names to apply to the configuration.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *MetricBulkTagConfigCreateAttributes) GetEmailsOk() (*[]string, bool) {
 
 // HasEmails returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigCreateAttributes) HasEmails() bool {
-	if o != nil && o.Emails != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Emails != nil
 }
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
@@ -88,11 +84,7 @@ func (o *MetricBulkTagConfigCreateAttributes) GetTagsOk() (*[]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *MetricBulkTagConfigCreateAttributes) HasTags() bool {
-	if o != nil && o.Tags != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.

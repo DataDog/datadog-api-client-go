@@ -15,7 +15,7 @@ type LogsAggregateBucket struct {
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
 	Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *LogsAggregateBucket) GetByOk() (*map[string]string, bool) {
 
 // HasBy returns a boolean if a field has been set.
 func (o *LogsAggregateBucket) HasBy() bool {
-	if o != nil && o.By != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.By != nil
 }
 
 // SetBy gets a reference to the given map[string]string and assigns it to the By field.
@@ -88,11 +84,7 @@ func (o *LogsAggregateBucket) GetComputesOk() (*map[string]LogsAggregateBucketVa
 
 // HasComputes returns a boolean if a field has been set.
 func (o *LogsAggregateBucket) HasComputes() bool {
-	if o != nil && o.Computes != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Computes != nil
 }
 
 // SetComputes gets a reference to the given map[string]LogsAggregateBucketValue and assigns it to the Computes field.

@@ -13,7 +13,7 @@ type LogsAPIErrorResponse struct {
 	// Error returned by the Logs API
 	Error *LogsAPIError `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *LogsAPIErrorResponse) GetErrorOk() (*LogsAPIError, bool) {
 
 // HasError returns a boolean if a field has been set.
 func (o *LogsAPIErrorResponse) HasError() bool {
-	if o != nil && o.Error != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Error != nil
 }
 
 // SetError gets a reference to the given LogsAPIError and assigns it to the Error field.

@@ -17,7 +17,7 @@ type AWSAccountDeleteRequest struct {
 	// Your Datadog role delegation name.
 	RoleName *string `json:"role_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *AWSAccountDeleteRequest) GetAccessKeyIdOk() (*string, bool) {
 
 // HasAccessKeyId returns a boolean if a field has been set.
 func (o *AWSAccountDeleteRequest) HasAccessKeyId() bool {
-	if o != nil && o.AccessKeyId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccessKeyId != nil
 }
 
 // SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
@@ -90,11 +86,7 @@ func (o *AWSAccountDeleteRequest) GetAccountIdOk() (*string, bool) {
 
 // HasAccountId returns a boolean if a field has been set.
 func (o *AWSAccountDeleteRequest) HasAccountId() bool {
-	if o != nil && o.AccountId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
@@ -122,11 +114,7 @@ func (o *AWSAccountDeleteRequest) GetRoleNameOk() (*string, bool) {
 
 // HasRoleName returns a boolean if a field has been set.
 func (o *AWSAccountDeleteRequest) HasRoleName() bool {
-	if o != nil && o.RoleName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RoleName != nil
 }
 
 // SetRoleName gets a reference to the given string and assigns it to the RoleName field.

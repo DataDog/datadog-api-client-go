@@ -37,7 +37,7 @@ type SunburstWidgetRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,11 +78,7 @@ func (o *SunburstWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -110,11 +106,7 @@ func (o *SunburstWidgetRequest) GetAuditQueryOk() (*LogQueryDefinition, bool) {
 
 // HasAuditQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasAuditQuery() bool {
-	if o != nil && o.AuditQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AuditQuery != nil
 }
 
 // SetAuditQuery gets a reference to the given LogQueryDefinition and assigns it to the AuditQuery field.
@@ -142,11 +134,7 @@ func (o *SunburstWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -174,11 +162,7 @@ func (o *SunburstWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -206,11 +190,7 @@ func (o *SunburstWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -238,11 +218,7 @@ func (o *SunburstWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) 
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -270,11 +246,7 @@ func (o *SunburstWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bo
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -302,11 +274,7 @@ func (o *SunburstWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition,
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -334,11 +302,7 @@ func (o *SunburstWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -366,11 +330,7 @@ func (o *SunburstWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefini
 
 // HasQueries returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -398,11 +358,7 @@ func (o *SunburstWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionRespon
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
@@ -430,11 +386,7 @@ func (o *SunburstWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -462,11 +414,7 @@ func (o *SunburstWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool)
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *SunburstWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.

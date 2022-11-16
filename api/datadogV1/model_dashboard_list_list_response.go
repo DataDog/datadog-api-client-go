@@ -13,7 +13,7 @@ type DashboardListListResponse struct {
 	// List of all your dashboard lists.
 	DashboardLists []DashboardList `json:"dashboard_lists,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *DashboardListListResponse) GetDashboardListsOk() (*[]DashboardList, boo
 
 // HasDashboardLists returns a boolean if a field has been set.
 func (o *DashboardListListResponse) HasDashboardLists() bool {
-	if o != nil && o.DashboardLists != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.DashboardLists != nil
 }
 
 // SetDashboardLists gets a reference to the given []DashboardList and assigns it to the DashboardLists field.

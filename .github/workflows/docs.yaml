@@ -1,0 +1,36 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19.x
+
+      - name: Build documentation
+        run: |
+          rm -rf examples
+          rm -rf tests
+          go install github.com/therve/go/gopages@060598357941bb49ed5a4bb2c3963a56648ddc0d
+          gopages -source-link "https://github.com/DataDog/datadog-api-client-go/blob/master/{{.Path}}{{if .Line}}#L{{.Line}}{{end}}" -brand-description "Datadog API client for GO" -brand-title "Datadog" -base https://datadoghq.dev/datadog-api-client-go
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: ${{ github.event.head_commit.message }}
+          # Write .nojekyll at the root, see:
+          # https://help.github.com/en/github/working-with-github-pages/about-github-pages#static-site-generators
+          enable_jekyll: false
+          # Only deploy if there were changes
+          allow_empty_commit: false

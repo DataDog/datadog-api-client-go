@@ -20,7 +20,7 @@ type OrganizationCreateBody struct {
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -64,11 +64,7 @@ func (o *OrganizationCreateBody) GetBillingOk() (*OrganizationBilling, bool) {
 
 // HasBilling returns a boolean if a field has been set.
 func (o *OrganizationCreateBody) HasBilling() bool {
-	if o != nil && o.Billing != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Billing != nil
 }
 
 // SetBilling gets a reference to the given OrganizationBilling and assigns it to the Billing field.
@@ -122,11 +118,7 @@ func (o *OrganizationCreateBody) GetSubscriptionOk() (*OrganizationSubscription,
 
 // HasSubscription returns a boolean if a field has been set.
 func (o *OrganizationCreateBody) HasSubscription() bool {
-	if o != nil && o.Subscription != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Subscription != nil
 }
 
 // SetSubscription gets a reference to the given OrganizationSubscription and assigns it to the Subscription field.
@@ -171,7 +163,7 @@ func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

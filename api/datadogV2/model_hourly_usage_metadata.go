@@ -13,7 +13,7 @@ type HourlyUsageMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *HourlyUsagePagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,11 +54,7 @@ func (o *HourlyUsageMetadata) GetPaginationOk() (*HourlyUsagePagination, bool) {
 
 // HasPagination returns a boolean if a field has been set.
 func (o *HourlyUsageMetadata) HasPagination() bool {
-	if o != nil && o.Pagination != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Pagination != nil
 }
 
 // SetPagination gets a reference to the given HourlyUsagePagination and assigns it to the Pagination field.

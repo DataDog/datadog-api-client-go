@@ -49,7 +49,7 @@ type TableWidgetRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -90,11 +90,7 @@ func (o *TableWidgetRequest) GetAggregatorOk() (*WidgetAggregator, bool) {
 
 // HasAggregator returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasAggregator() bool {
-	if o != nil && o.Aggregator != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Aggregator != nil
 }
 
 // SetAggregator gets a reference to the given WidgetAggregator and assigns it to the Aggregator field.
@@ -122,11 +118,7 @@ func (o *TableWidgetRequest) GetAliasOk() (*string, bool) {
 
 // HasAlias returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasAlias() bool {
-	if o != nil && o.Alias != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Alias != nil
 }
 
 // SetAlias gets a reference to the given string and assigns it to the Alias field.
@@ -154,11 +146,7 @@ func (o *TableWidgetRequest) GetApmQueryOk() (*LogQueryDefinition, bool) {
 
 // HasApmQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasApmQuery() bool {
-	if o != nil && o.ApmQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmQuery != nil
 }
 
 // SetApmQuery gets a reference to the given LogQueryDefinition and assigns it to the ApmQuery field.
@@ -186,11 +174,7 @@ func (o *TableWidgetRequest) GetApmStatsQueryOk() (*ApmStatsQueryDefinition, boo
 
 // HasApmStatsQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasApmStatsQuery() bool {
-	if o != nil && o.ApmStatsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ApmStatsQuery != nil
 }
 
 // SetApmStatsQuery gets a reference to the given ApmStatsQueryDefinition and assigns it to the ApmStatsQuery field.
@@ -218,11 +202,7 @@ func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]TableWidgetCellDisplayMo
 
 // HasCellDisplayMode returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasCellDisplayMode() bool {
-	if o != nil && o.CellDisplayMode != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.CellDisplayMode != nil
 }
 
 // SetCellDisplayMode gets a reference to the given []TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
@@ -250,11 +230,7 @@ func (o *TableWidgetRequest) GetConditionalFormatsOk() (*[]WidgetConditionalForm
 
 // HasConditionalFormats returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasConditionalFormats() bool {
-	if o != nil && o.ConditionalFormats != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ConditionalFormats != nil
 }
 
 // SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
@@ -282,11 +258,7 @@ func (o *TableWidgetRequest) GetEventQueryOk() (*LogQueryDefinition, bool) {
 
 // HasEventQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasEventQuery() bool {
-	if o != nil && o.EventQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.EventQuery != nil
 }
 
 // SetEventQuery gets a reference to the given LogQueryDefinition and assigns it to the EventQuery field.
@@ -314,11 +286,7 @@ func (o *TableWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 
 // HasFormulas returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasFormulas() bool {
-	if o != nil && o.Formulas != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Formulas != nil
 }
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
@@ -346,11 +314,7 @@ func (o *TableWidgetRequest) GetLimitOk() (*int64, bool) {
 
 // HasLimit returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasLimit() bool {
-	if o != nil && o.Limit != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
@@ -378,11 +342,7 @@ func (o *TableWidgetRequest) GetLogQueryOk() (*LogQueryDefinition, bool) {
 
 // HasLogQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasLogQuery() bool {
-	if o != nil && o.LogQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.LogQuery != nil
 }
 
 // SetLogQuery gets a reference to the given LogQueryDefinition and assigns it to the LogQuery field.
@@ -410,11 +370,7 @@ func (o *TableWidgetRequest) GetNetworkQueryOk() (*LogQueryDefinition, bool) {
 
 // HasNetworkQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasNetworkQuery() bool {
-	if o != nil && o.NetworkQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NetworkQuery != nil
 }
 
 // SetNetworkQuery gets a reference to the given LogQueryDefinition and assigns it to the NetworkQuery field.
@@ -442,11 +398,7 @@ func (o *TableWidgetRequest) GetOrderOk() (*WidgetSort, bool) {
 
 // HasOrder returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasOrder() bool {
-	if o != nil && o.Order != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Order != nil
 }
 
 // SetOrder gets a reference to the given WidgetSort and assigns it to the Order field.
@@ -474,11 +426,7 @@ func (o *TableWidgetRequest) GetProcessQueryOk() (*ProcessQueryDefinition, bool)
 
 // HasProcessQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasProcessQuery() bool {
-	if o != nil && o.ProcessQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProcessQuery != nil
 }
 
 // SetProcessQuery gets a reference to the given ProcessQueryDefinition and assigns it to the ProcessQuery field.
@@ -506,11 +454,7 @@ func (o *TableWidgetRequest) GetProfileMetricsQueryOk() (*LogQueryDefinition, bo
 
 // HasProfileMetricsQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasProfileMetricsQuery() bool {
-	if o != nil && o.ProfileMetricsQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ProfileMetricsQuery != nil
 }
 
 // SetProfileMetricsQuery gets a reference to the given LogQueryDefinition and assigns it to the ProfileMetricsQuery field.
@@ -538,11 +482,7 @@ func (o *TableWidgetRequest) GetQOk() (*string, bool) {
 
 // HasQ returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasQ() bool {
-	if o != nil && o.Q != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Q != nil
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
@@ -570,11 +510,7 @@ func (o *TableWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinitio
 
 // HasQueries returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasQueries() bool {
-	if o != nil && o.Queries != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Queries != nil
 }
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
@@ -602,11 +538,7 @@ func (o *TableWidgetRequest) GetResponseFormatOk() (*FormulaAndFunctionResponseF
 
 // HasResponseFormat returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasResponseFormat() bool {
-	if o != nil && o.ResponseFormat != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.ResponseFormat != nil
 }
 
 // SetResponseFormat gets a reference to the given FormulaAndFunctionResponseFormat and assigns it to the ResponseFormat field.
@@ -634,11 +566,7 @@ func (o *TableWidgetRequest) GetRumQueryOk() (*LogQueryDefinition, bool) {
 
 // HasRumQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasRumQuery() bool {
-	if o != nil && o.RumQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RumQuery != nil
 }
 
 // SetRumQuery gets a reference to the given LogQueryDefinition and assigns it to the RumQuery field.
@@ -666,11 +594,7 @@ func (o *TableWidgetRequest) GetSecurityQueryOk() (*LogQueryDefinition, bool) {
 
 // HasSecurityQuery returns a boolean if a field has been set.
 func (o *TableWidgetRequest) HasSecurityQuery() bool {
-	if o != nil && o.SecurityQuery != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.SecurityQuery != nil
 }
 
 // SetSecurityQuery gets a reference to the given LogQueryDefinition and assigns it to the SecurityQuery field.

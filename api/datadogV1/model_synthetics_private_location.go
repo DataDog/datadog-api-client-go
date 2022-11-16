@@ -24,7 +24,7 @@ type SyntheticsPrivateLocation struct {
 	// Array of tags attached to the private location.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,11 +91,7 @@ func (o *SyntheticsPrivateLocation) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
@@ -123,11 +119,7 @@ func (o *SyntheticsPrivateLocation) GetMetadataOk() (*SyntheticsPrivateLocationM
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Metadata != nil
 }
 
 // SetMetadata gets a reference to the given SyntheticsPrivateLocationMetadata and assigns it to the Metadata field.
@@ -178,11 +170,7 @@ func (o *SyntheticsPrivateLocation) GetSecretsOk() (*SyntheticsPrivateLocationSe
 
 // HasSecrets returns a boolean if a field has been set.
 func (o *SyntheticsPrivateLocation) HasSecrets() bool {
-	if o != nil && o.Secrets != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Secrets != nil
 }
 
 // SetSecrets gets a reference to the given SyntheticsPrivateLocationSecrets and assigns it to the Secrets field.
@@ -259,13 +247,13 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Description == nil {
-		return fmt.Errorf("Required field description missing")
+		return fmt.Errorf("required field description missing")
 	}
 	if required.Name == nil {
-		return fmt.Errorf("Required field name missing")
+		return fmt.Errorf("required field name missing")
 	}
 	if required.Tags == nil {
-		return fmt.Errorf("Required field tags missing")
+		return fmt.Errorf("required field tags missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

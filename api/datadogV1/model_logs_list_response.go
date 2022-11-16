@@ -18,7 +18,7 @@ type LogsListResponse struct {
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -59,11 +59,7 @@ func (o *LogsListResponse) GetLogsOk() (*[]Log, bool) {
 
 // HasLogs returns a boolean if a field has been set.
 func (o *LogsListResponse) HasLogs() bool {
-	if o != nil && o.Logs != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Logs != nil
 }
 
 // SetLogs gets a reference to the given []Log and assigns it to the Logs field.
@@ -91,11 +87,7 @@ func (o *LogsListResponse) GetNextLogIdOk() (*string, bool) {
 
 // HasNextLogId returns a boolean if a field has been set.
 func (o *LogsListResponse) HasNextLogId() bool {
-	if o != nil && o.NextLogId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.NextLogId != nil
 }
 
 // SetNextLogId gets a reference to the given string and assigns it to the NextLogId field.
@@ -123,11 +115,7 @@ func (o *LogsListResponse) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *LogsListResponse) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.

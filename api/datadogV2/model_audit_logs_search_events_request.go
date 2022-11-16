@@ -20,7 +20,7 @@ type AuditLogsSearchEventsRequest struct {
 	// Sort parameters when querying events.
 	Sort *AuditLogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *AuditLogsSearchEventsRequest) GetFilterOk() (*AuditLogsQueryFilter, boo
 
 // HasFilter returns a boolean if a field has been set.
 func (o *AuditLogsSearchEventsRequest) HasFilter() bool {
-	if o != nil && o.Filter != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Filter != nil
 }
 
 // SetFilter gets a reference to the given AuditLogsQueryFilter and assigns it to the Filter field.
@@ -93,11 +89,7 @@ func (o *AuditLogsSearchEventsRequest) GetOptionsOk() (*AuditLogsQueryOptions, b
 
 // HasOptions returns a boolean if a field has been set.
 func (o *AuditLogsSearchEventsRequest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given AuditLogsQueryOptions and assigns it to the Options field.
@@ -125,11 +117,7 @@ func (o *AuditLogsSearchEventsRequest) GetPageOk() (*AuditLogsQueryPageOptions, 
 
 // HasPage returns a boolean if a field has been set.
 func (o *AuditLogsSearchEventsRequest) HasPage() bool {
-	if o != nil && o.Page != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Page != nil
 }
 
 // SetPage gets a reference to the given AuditLogsQueryPageOptions and assigns it to the Page field.
@@ -157,11 +145,7 @@ func (o *AuditLogsSearchEventsRequest) GetSortOk() (*AuditLogsSort, bool) {
 
 // HasSort returns a boolean if a field has been set.
 func (o *AuditLogsSearchEventsRequest) HasSort() bool {
-	if o != nil && o.Sort != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Sort != nil
 }
 
 // SetSort gets a reference to the given AuditLogsSort and assigns it to the Sort field.

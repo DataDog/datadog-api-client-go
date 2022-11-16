@@ -17,7 +17,7 @@ type AWSTagFilterCreateRequest struct {
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,11 +58,7 @@ func (o *AWSTagFilterCreateRequest) GetAccountIdOk() (*string, bool) {
 
 // HasAccountId returns a boolean if a field has been set.
 func (o *AWSTagFilterCreateRequest) HasAccountId() bool {
-	if o != nil && o.AccountId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
@@ -90,11 +86,7 @@ func (o *AWSTagFilterCreateRequest) GetNamespaceOk() (*AWSNamespace, bool) {
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *AWSTagFilterCreateRequest) HasNamespace() bool {
-	if o != nil && o.Namespace != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Namespace != nil
 }
 
 // SetNamespace gets a reference to the given AWSNamespace and assigns it to the Namespace field.
@@ -122,11 +114,7 @@ func (o *AWSTagFilterCreateRequest) GetTagFilterStrOk() (*string, bool) {
 
 // HasTagFilterStr returns a boolean if a field has been set.
 func (o *AWSTagFilterCreateRequest) HasTagFilterStr() bool {
-	if o != nil && o.TagFilterStr != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.TagFilterStr != nil
 }
 
 // SetTagFilterStr gets a reference to the given string and assigns it to the TagFilterStr field.

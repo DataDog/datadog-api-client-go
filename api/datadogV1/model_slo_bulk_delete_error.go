@@ -20,7 +20,7 @@ type SLOBulkDeleteError struct {
 	// or "all" if all thresholds are affected.
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -147,13 +147,13 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	if required.Id == nil {
-		return fmt.Errorf("Required field id missing")
+		return fmt.Errorf("required field id missing")
 	}
 	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+		return fmt.Errorf("required field message missing")
 	}
 	if required.Timeframe == nil {
-		return fmt.Errorf("Required field timeframe missing")
+		return fmt.Errorf("required field timeframe missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

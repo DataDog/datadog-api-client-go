@@ -15,7 +15,7 @@ type AuthNMappingCreateAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *AuthNMappingCreateAttributes) GetAttributeKeyOk() (*string, bool) {
 
 // HasAttributeKey returns a boolean if a field has been set.
 func (o *AuthNMappingCreateAttributes) HasAttributeKey() bool {
-	if o != nil && o.AttributeKey != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeKey != nil
 }
 
 // SetAttributeKey gets a reference to the given string and assigns it to the AttributeKey field.
@@ -88,11 +84,7 @@ func (o *AuthNMappingCreateAttributes) GetAttributeValueOk() (*string, bool) {
 
 // HasAttributeValue returns a boolean if a field has been set.
 func (o *AuthNMappingCreateAttributes) HasAttributeValue() bool {
-	if o != nil && o.AttributeValue != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.AttributeValue != nil
 }
 
 // SetAttributeValue gets a reference to the given string and assigns it to the AttributeValue field.

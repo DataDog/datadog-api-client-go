@@ -15,7 +15,7 @@ type SyntheticsTestOptionsMonitorOptions struct {
 	// (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,11 +56,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyIntervalOk() (*int64, b
 
 // HasRenotifyInterval returns a boolean if a field has been set.
 func (o *SyntheticsTestOptionsMonitorOptions) HasRenotifyInterval() bool {
-	if o != nil && o.RenotifyInterval != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.RenotifyInterval != nil
 }
 
 // SetRenotifyInterval gets a reference to the given int64 and assigns it to the RenotifyInterval field.

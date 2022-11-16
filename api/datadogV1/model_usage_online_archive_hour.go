@@ -14,13 +14,13 @@ type UsageOnlineArchiveHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Total count of online archived events within the hour.
-	OnlineArchiveEventsCount *int32 `json:"online_archive_events_count,omitempty"`
+	OnlineArchiveEventsCount *int64 `json:"online_archive_events_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,7 @@ func (o *UsageOnlineArchiveHour) GetHourOk() (*time.Time, bool) {
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasHour() bool {
-	if o != nil && o.Hour != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.Hour != nil
 }
 
 // SetHour gets a reference to the given time.Time and assigns it to the Hour field.
@@ -74,9 +70,9 @@ func (o *UsageOnlineArchiveHour) SetHour(v time.Time) {
 }
 
 // GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise.
-func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int32 {
+func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
 	if o == nil || o.OnlineArchiveEventsCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OnlineArchiveEventsCount
@@ -84,7 +80,7 @@ func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int32 {
 
 // GetOnlineArchiveEventsCountOk returns a tuple with the OnlineArchiveEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int32, bool) {
+func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int64, bool) {
 	if o == nil || o.OnlineArchiveEventsCount == nil {
 		return nil, false
 	}
@@ -93,15 +89,11 @@ func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int32, bool) 
 
 // HasOnlineArchiveEventsCount returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasOnlineArchiveEventsCount() bool {
-	if o != nil && o.OnlineArchiveEventsCount != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OnlineArchiveEventsCount != nil
 }
 
-// SetOnlineArchiveEventsCount gets a reference to the given int32 and assigns it to the OnlineArchiveEventsCount field.
-func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int32) {
+// SetOnlineArchiveEventsCount gets a reference to the given int64 and assigns it to the OnlineArchiveEventsCount field.
+func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int64) {
 	o.OnlineArchiveEventsCount = &v
 }
 
@@ -125,11 +117,7 @@ func (o *UsageOnlineArchiveHour) GetOrgNameOk() (*string, bool) {
 
 // HasOrgName returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasOrgName() bool {
-	if o != nil && o.OrgName != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.OrgName != nil
 }
 
 // SetOrgName gets a reference to the given string and assigns it to the OrgName field.
@@ -157,11 +145,7 @@ func (o *UsageOnlineArchiveHour) GetPublicIdOk() (*string, bool) {
 
 // HasPublicId returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasPublicId() bool {
-	if o != nil && o.PublicId != nil {
-		return true
-	}
-
-	return false
+	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
@@ -203,7 +187,7 @@ func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Hour                     *time.Time `json:"hour,omitempty"`
-		OnlineArchiveEventsCount *int32     `json:"online_archive_events_count,omitempty"`
+		OnlineArchiveEventsCount *int64     `json:"online_archive_events_count,omitempty"`
 		OrgName                  *string    `json:"org_name,omitempty"`
 		PublicId                 *string    `json:"public_id,omitempty"`
 	}{}
