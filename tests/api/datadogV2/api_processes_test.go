@@ -19,7 +19,7 @@ func TestGetProcessesWithPaginationReturnsError(t *testing.T) {
 	client := Client(ctx)
 	api := datadogV2.NewProcessesApi(client)
 
-	resp, _, _ := api.ListProcessesWithPagination(ctx, datadogV2.ListProcessesOptionalParameters{
+	resp, _ := api.ListProcessesWithPagination(ctx, datadogV2.ListProcessesOptionalParameters{
 		From: datadog.PtrInt64(1000),
 		To:   datadog.PtrInt64(1000),
 	})
