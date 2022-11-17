@@ -13,7 +13,7 @@ import (
 type AuditLogsQueryOptions struct {
 	// Time offset (in seconds) to apply to the query.
 	TimeOffset *int64 `json:"time_offset,omitempty"`
-	// Timezone code. Can be specified as an offset, for example: "UTC+03:00".
+	// The timezone can be specified as GMT, UTC, an offset from UTC (like UTC+1), or as a Timezone Database identifier (like America/New_York).
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
