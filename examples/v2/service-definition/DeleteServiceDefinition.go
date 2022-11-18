@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceDefinitionApi(apiClient)
-	r, err := api.DeleteServiceDefinition(ctx, "service-Example-Delete_a_single_service_definition_returns_OK_response")
+	r, err := api.DeleteServiceDefinition(ctx, "service-definition-test")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceDefinitionApi.DeleteServiceDefinition`: %v\n", err)

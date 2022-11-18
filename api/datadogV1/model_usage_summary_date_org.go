@@ -62,6 +62,8 @@ type UsageSummaryDateOrg struct {
 	CspmContainerAvg *int64 `json:"cspm_container_avg,omitempty"`
 	// Shows the high-water mark of Cloud Security Posture Management containers over all hours in the current date for the given org.
 	CspmContainerHwm *int64 `json:"cspm_container_hwm,omitempty"`
+	// Shows the 99th percentile of all Cloud Security Posture Management GCP hosts over all hours in the current date for the given org.
+	CspmGcpHostTop99p *int64 `json:"cspm_gcp_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current date for the given org.
 	CspmHostTop99p *int64 `json:"cspm_host_top99p,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current date for the given org.
@@ -902,6 +904,34 @@ func (o *UsageSummaryDateOrg) HasCspmContainerHwm() bool {
 // SetCspmContainerHwm gets a reference to the given int64 and assigns it to the CspmContainerHwm field.
 func (o *UsageSummaryDateOrg) SetCspmContainerHwm(v int64) {
 	o.CspmContainerHwm = &v
+}
+
+// GetCspmGcpHostTop99p returns the CspmGcpHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCspmGcpHostTop99p() int64 {
+	if o == nil || o.CspmGcpHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CspmGcpHostTop99p
+}
+
+// GetCspmGcpHostTop99pOk returns a tuple with the CspmGcpHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCspmGcpHostTop99pOk() (*int64, bool) {
+	if o == nil || o.CspmGcpHostTop99p == nil {
+		return nil, false
+	}
+	return o.CspmGcpHostTop99p, true
+}
+
+// HasCspmGcpHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCspmGcpHostTop99p() bool {
+	return o != nil && o.CspmGcpHostTop99p != nil
+}
+
+// SetCspmGcpHostTop99p gets a reference to the given int64 and assigns it to the CspmGcpHostTop99p field.
+func (o *UsageSummaryDateOrg) SetCspmGcpHostTop99p(v int64) {
+	o.CspmGcpHostTop99p = &v
 }
 
 // GetCspmHostTop99p returns the CspmHostTop99p field value if set, zero value otherwise.
@@ -2276,6 +2306,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.CspmContainerHwm != nil {
 		toSerialize["cspm_container_hwm"] = o.CspmContainerHwm
 	}
+	if o.CspmGcpHostTop99p != nil {
+		toSerialize["cspm_gcp_host_top99p"] = o.CspmGcpHostTop99p
+	}
 	if o.CspmHostTop99p != nil {
 		toSerialize["cspm_host_top99p"] = o.CspmHostTop99p
 	}
@@ -2451,6 +2484,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CspmAzureHostTop99p                     *int64  `json:"cspm_azure_host_top99p,omitempty"`
 		CspmContainerAvg                        *int64  `json:"cspm_container_avg,omitempty"`
 		CspmContainerHwm                        *int64  `json:"cspm_container_hwm,omitempty"`
+		CspmGcpHostTop99p                       *int64  `json:"cspm_gcp_host_top99p,omitempty"`
 		CspmHostTop99p                          *int64  `json:"cspm_host_top99p,omitempty"`
 		CustomTsAvg                             *int64  `json:"custom_ts_avg,omitempty"`
 		CwsContainerCountAvg                    *int64  `json:"cws_container_count_avg,omitempty"`
@@ -2533,6 +2567,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CspmAzureHostTop99p = all.CspmAzureHostTop99p
 	o.CspmContainerAvg = all.CspmContainerAvg
 	o.CspmContainerHwm = all.CspmContainerHwm
+	o.CspmGcpHostTop99p = all.CspmGcpHostTop99p
 	o.CspmHostTop99p = all.CspmHostTop99p
 	o.CustomTsAvg = all.CustomTsAvg
 	o.CwsContainerCountAvg = all.CwsContainerCountAvg

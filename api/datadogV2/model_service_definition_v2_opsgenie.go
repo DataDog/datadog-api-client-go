@@ -13,8 +13,8 @@ import (
 type ServiceDefinitionV2Opsgenie struct {
 	// Opsgenie instance region.
 	Region *ServiceDefinitionV2OpsgenieRegion `json:"region,omitempty"`
-	// Opsgenie service id.
-	ServiceId string `json:"service-id"`
+	// Opsgenie service url.
+	ServiceUrl string `json:"service-url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -24,9 +24,9 @@ type ServiceDefinitionV2Opsgenie struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewServiceDefinitionV2Opsgenie(serviceId string) *ServiceDefinitionV2Opsgenie {
+func NewServiceDefinitionV2Opsgenie(serviceUrl string) *ServiceDefinitionV2Opsgenie {
 	this := ServiceDefinitionV2Opsgenie{}
-	this.ServiceId = serviceId
+	this.ServiceUrl = serviceUrl
 	return &this
 }
 
@@ -66,27 +66,27 @@ func (o *ServiceDefinitionV2Opsgenie) SetRegion(v ServiceDefinitionV2OpsgenieReg
 	o.Region = &v
 }
 
-// GetServiceId returns the ServiceId field value.
-func (o *ServiceDefinitionV2Opsgenie) GetServiceId() string {
+// GetServiceUrl returns the ServiceUrl field value.
+func (o *ServiceDefinitionV2Opsgenie) GetServiceUrl() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
-	return o.ServiceId
+	return o.ServiceUrl
 }
 
-// GetServiceIdOk returns a tuple with the ServiceId field value
+// GetServiceUrlOk returns a tuple with the ServiceUrl field value
 // and a boolean to check if the value has been set.
-func (o *ServiceDefinitionV2Opsgenie) GetServiceIdOk() (*string, bool) {
+func (o *ServiceDefinitionV2Opsgenie) GetServiceUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ServiceId, true
+	return &o.ServiceUrl, true
 }
 
-// SetServiceId sets field value.
-func (o *ServiceDefinitionV2Opsgenie) SetServiceId(v string) {
-	o.ServiceId = v
+// SetServiceUrl sets field value.
+func (o *ServiceDefinitionV2Opsgenie) SetServiceUrl(v string) {
+	o.ServiceUrl = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -98,7 +98,7 @@ func (o ServiceDefinitionV2Opsgenie) MarshalJSON() ([]byte, error) {
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
-	toSerialize["service-id"] = o.ServiceId
+	toSerialize["service-url"] = o.ServiceUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -110,18 +110,18 @@ func (o ServiceDefinitionV2Opsgenie) MarshalJSON() ([]byte, error) {
 func (o *ServiceDefinitionV2Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		ServiceId *string `json:"service-id"`
+		ServiceUrl *string `json:"service-url"`
 	}{}
 	all := struct {
-		Region    *ServiceDefinitionV2OpsgenieRegion `json:"region,omitempty"`
-		ServiceId string                             `json:"service-id"`
+		Region     *ServiceDefinitionV2OpsgenieRegion `json:"region,omitempty"`
+		ServiceUrl string                             `json:"service-url"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
-	if required.ServiceId == nil {
-		return fmt.Errorf("required field service-id missing")
+	if required.ServiceUrl == nil {
+		return fmt.Errorf("required field service-url missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -141,6 +141,6 @@ func (o *ServiceDefinitionV2Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Region = all.Region
-	o.ServiceId = all.ServiceId
+	o.ServiceUrl = all.ServiceUrl
 	return nil
 }
