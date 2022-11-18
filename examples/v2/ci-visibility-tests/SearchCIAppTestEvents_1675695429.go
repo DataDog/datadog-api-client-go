@@ -28,14 +28,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCIVisibilityTestsApi(apiClient)
-	resp, _, err := api.SearchCIAppTestEventsWithPagination(ctx, *datadogV2.NewSearchCIAppTestEventsOptionalParameters().WithBody(body))
+	resp, _ := api.SearchCIAppTestEventsWithPagination(ctx, *datadogV2.NewSearchCIAppTestEventsOptionalParameters().WithBody(body))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityTestsApi.SearchCIAppTestEvents`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityTestsApi.SearchCIAppTestEvents`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

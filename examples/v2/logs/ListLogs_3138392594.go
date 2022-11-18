@@ -33,14 +33,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewLogsApi(apiClient)
-	resp, _, err := api.ListLogsWithPagination(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(body))
+	resp, _ := api.ListLogsWithPagination(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(body))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.ListLogs`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

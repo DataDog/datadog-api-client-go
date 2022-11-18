@@ -18,14 +18,13 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListEvents", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewEventsApi(apiClient)
-	resp, _, err := api.ListEventsWithPagination(ctx, *datadogV2.NewListEventsOptionalParameters().WithFilterFrom("now-15m").WithFilterTo("now").WithPageLimit(2))
+	resp, _ := api.ListEventsWithPagination(ctx, *datadogV2.NewListEventsOptionalParameters().WithFilterFrom("now-15m").WithFilterTo("now").WithPageLimit(2))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

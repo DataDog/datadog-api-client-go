@@ -118,7 +118,7 @@ func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptiona
 }
 
 // ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
-func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -129,16 +129,20 @@ func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAu
 	}
 	o[0].PageLimit = &pageSize_
 
-	items := make(chan AuditLogsEvent, pageSize_)
+	items := make(chan datadog.PaginationResult[AuditLogsEvent], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListAuditLogsRequest(ctx, o...)
 			if err != nil {
+				var returnItem AuditLogsEvent
+				items <- datadog.PaginationResult[AuditLogsEvent]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listAuditLogsExecute(req)
 			if err != nil {
+				var returnItem AuditLogsEvent
+				items <- datadog.PaginationResult[AuditLogsEvent]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -149,7 +153,7 @@ func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAu
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[AuditLogsEvent]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -175,7 +179,7 @@ func (a *AuditApi) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAu
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listAuditLogsExecute executes the request.
@@ -344,7 +348,7 @@ func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOpt
 }
 
 // SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
-func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan datadog.PaginationResult[AuditLogsEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -361,16 +365,20 @@ func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...Sear
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
-	items := make(chan AuditLogsEvent, pageSize_)
+	items := make(chan datadog.PaginationResult[AuditLogsEvent], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchAuditLogsRequest(ctx, o...)
 			if err != nil {
+				var returnItem AuditLogsEvent
+				items <- datadog.PaginationResult[AuditLogsEvent]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.searchAuditLogsExecute(req)
 			if err != nil {
+				var returnItem AuditLogsEvent
+				items <- datadog.PaginationResult[AuditLogsEvent]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -381,7 +389,7 @@ func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...Sear
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[AuditLogsEvent]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -407,7 +415,7 @@ func (a *AuditApi) SearchAuditLogsWithPagination(ctx _context.Context, o ...Sear
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchAuditLogsExecute executes the request.

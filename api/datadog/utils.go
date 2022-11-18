@@ -35,6 +35,12 @@ func PtrString(v string) *string { return &v }
 // PtrTime is helper routine that returns a pointer to given Time value.
 func PtrTime(v time.Time) *time.Time { return &v }
 
+// PaginationResult pagination item helper struct
+type PaginationResult[T any] struct {
+	Item  T
+	Error error
+}
+
 // NullableBool is a struct to hold a nullable boolean value.
 type NullableBool struct {
 	value *bool

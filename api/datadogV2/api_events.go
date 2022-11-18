@@ -117,7 +117,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 }
 
 // ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
-func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan EventResponse, func(), error) {
+func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -128,16 +128,20 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 	}
 	o[0].PageLimit = &pageSize_
 
-	items := make(chan EventResponse, pageSize_)
+	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListEventsRequest(ctx, o...)
 			if err != nil {
+				var returnItem EventResponse
+				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listEventsExecute(req)
 			if err != nil {
+				var returnItem EventResponse
+				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -148,7 +152,7 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[EventResponse]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -174,7 +178,7 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listEventsExecute executes the request.
@@ -348,7 +352,7 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 }
 
 // SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
-func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan EventResponse, func(), error) {
+func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -365,16 +369,20 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
-	items := make(chan EventResponse, pageSize_)
+	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchEventsRequest(ctx, o...)
 			if err != nil {
+				var returnItem EventResponse
+				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.searchEventsExecute(req)
 			if err != nil {
+				var returnItem EventResponse
+				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -385,7 +393,7 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[EventResponse]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -411,7 +419,7 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // searchEventsExecute executes the request.

@@ -18,14 +18,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCIVisibilityPipelinesApi(apiClient)
-	resp, _, err := api.ListCIAppPipelineEventsWithPagination(ctx, *datadogV2.NewListCIAppPipelineEventsOptionalParameters().WithFilterFrom(time.Now().Add(time.Second * -30)).WithFilterTo(time.Now()).WithPageLimit(2))
+	resp, _ := api.ListCIAppPipelineEventsWithPagination(ctx, *datadogV2.NewListCIAppPipelineEventsOptionalParameters().WithFilterFrom(time.Now().Add(time.Second * -30)).WithFilterTo(time.Now()).WithPageLimit(2))
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityPipelinesApi.ListCIAppPipelineEvents`: %v\n", err)
-	}
-
-	for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityPipelinesApi.ListCIAppPipelineEvents`: %v\n", paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }
