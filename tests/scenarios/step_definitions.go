@@ -280,9 +280,6 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		return
 	}
 
-	if result[2].Interface() != nil {
-		t.Errorf("unexpected error: %v", result[2].Interface())
-	}
 	var responseJSON interface{}
 	if err != nil {
 		err := err.(datadog.GenericOpenAPIError)

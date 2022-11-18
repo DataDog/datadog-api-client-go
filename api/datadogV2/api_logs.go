@@ -202,7 +202,7 @@ func (a *LogsApi) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters
 }
 
 // ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
-func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan Log, func(), error) {
+func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -219,16 +219,20 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
-	items := make(chan Log, pageSize_)
+	items := make(chan datadog.PaginationResult[Log], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListLogsRequest(ctx, o...)
 			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listLogsExecute(req)
 			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -239,7 +243,7 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[Log]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -265,7 +269,7 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listLogsExecute executes the request.
@@ -487,7 +491,7 @@ func (a *LogsApi) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalPara
 }
 
 // ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
-func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan Log, func(), error) {
+func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -498,16 +502,20 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 	}
 	o[0].PageLimit = &pageSize_
 
-	items := make(chan Log, pageSize_)
+	items := make(chan datadog.PaginationResult[Log], pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListLogsGetRequest(ctx, o...)
 			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
 				break
 			}
 
 			resp, _, err := a.listLogsGetExecute(req)
 			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -518,7 +526,7 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 
 			for _, item := range results {
 				select {
-				case items <- item:
+				case items <- datadog.PaginationResult[Log]{item, nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -544,7 +552,7 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 		}
 		close(items)
 	}()
-	return items, cancel, nil
+	return items, cancel
 }
 
 // listLogsGetExecute executes the request.

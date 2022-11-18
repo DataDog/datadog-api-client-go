@@ -57,15 +57,14 @@ func main() {
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadog{{ version|upper }}.New{{ context.api_instance.name }}Api(apiClient)
 {%- if context.pagination %}
-	resp, _, err := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
+	resp, _ := api.{{ context.api_request.operation_id }}WithPagination(ctx{% if parameters %}, {{ parameters }}{% endif %})
 
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
-	}
-
-        for item := range resp {
-		responseContent, _ := json.MarshalIndent(item, "", "  ")
-		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
+        for paginationResult := range resp {
+            if paginationResult.Error != nil {
+                fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", paginationResult.Error)
+            }
+            responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
+            fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 {%- else %}
 {%- if response_has_three_values %}
