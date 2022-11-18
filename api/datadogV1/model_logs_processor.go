@@ -10,21 +10,22 @@ import (
 
 // LogsProcessor - Definition of a logs processor.
 type LogsProcessor struct {
-	LogsGrokParser             *LogsGrokParser
-	LogsDateRemapper           *LogsDateRemapper
-	LogsStatusRemapper         *LogsStatusRemapper
-	LogsServiceRemapper        *LogsServiceRemapper
-	LogsMessageRemapper        *LogsMessageRemapper
-	LogsAttributeRemapper      *LogsAttributeRemapper
-	LogsURLParser              *LogsURLParser
-	LogsUserAgentParser        *LogsUserAgentParser
-	LogsCategoryProcessor      *LogsCategoryProcessor
-	LogsArithmeticProcessor    *LogsArithmeticProcessor
-	LogsStringBuilderProcessor *LogsStringBuilderProcessor
-	LogsPipelineProcessor      *LogsPipelineProcessor
-	LogsGeoIPParser            *LogsGeoIPParser
-	LogsLookupProcessor        *LogsLookupProcessor
-	LogsTraceRemapper          *LogsTraceRemapper
+	LogsGrokParser                    *LogsGrokParser
+	LogsDateRemapper                  *LogsDateRemapper
+	LogsStatusRemapper                *LogsStatusRemapper
+	LogsServiceRemapper               *LogsServiceRemapper
+	LogsMessageRemapper               *LogsMessageRemapper
+	LogsAttributeRemapper             *LogsAttributeRemapper
+	LogsURLParser                     *LogsURLParser
+	LogsUserAgentParser               *LogsUserAgentParser
+	LogsCategoryProcessor             *LogsCategoryProcessor
+	LogsArithmeticProcessor           *LogsArithmeticProcessor
+	LogsStringBuilderProcessor        *LogsStringBuilderProcessor
+	LogsPipelineProcessor             *LogsPipelineProcessor
+	LogsGeoIPParser                   *LogsGeoIPParser
+	LogsLookupProcessor               *LogsLookupProcessor
+	ReferenceTableLogsLookupProcessor *ReferenceTableLogsLookupProcessor
+	LogsTraceRemapper                 *LogsTraceRemapper
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -98,6 +99,11 @@ func LogsGeoIPParserAsLogsProcessor(v *LogsGeoIPParser) LogsProcessor {
 // LogsLookupProcessorAsLogsProcessor is a convenience function that returns LogsLookupProcessor wrapped in LogsProcessor.
 func LogsLookupProcessorAsLogsProcessor(v *LogsLookupProcessor) LogsProcessor {
 	return LogsProcessor{LogsLookupProcessor: v}
+}
+
+// ReferenceTableLogsLookupProcessorAsLogsProcessor is a convenience function that returns ReferenceTableLogsLookupProcessor wrapped in LogsProcessor.
+func ReferenceTableLogsLookupProcessorAsLogsProcessor(v *ReferenceTableLogsLookupProcessor) LogsProcessor {
+	return LogsProcessor{ReferenceTableLogsLookupProcessor: v}
 }
 
 // LogsTraceRemapperAsLogsProcessor is a convenience function that returns LogsTraceRemapper wrapped in LogsProcessor.
@@ -347,6 +353,23 @@ func (obj *LogsProcessor) UnmarshalJSON(data []byte) error {
 		obj.LogsLookupProcessor = nil
 	}
 
+	// try to unmarshal data into ReferenceTableLogsLookupProcessor
+	err = json.Unmarshal(data, &obj.ReferenceTableLogsLookupProcessor)
+	if err == nil {
+		if obj.ReferenceTableLogsLookupProcessor != nil && obj.ReferenceTableLogsLookupProcessor.UnparsedObject == nil {
+			jsonReferenceTableLogsLookupProcessor, _ := json.Marshal(obj.ReferenceTableLogsLookupProcessor)
+			if string(jsonReferenceTableLogsLookupProcessor) == "{}" { // empty struct
+				obj.ReferenceTableLogsLookupProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ReferenceTableLogsLookupProcessor = nil
+		}
+	} else {
+		obj.ReferenceTableLogsLookupProcessor = nil
+	}
+
 	// try to unmarshal data into LogsTraceRemapper
 	err = json.Unmarshal(data, &obj.LogsTraceRemapper)
 	if err == nil {
@@ -380,6 +403,7 @@ func (obj *LogsProcessor) UnmarshalJSON(data []byte) error {
 		obj.LogsPipelineProcessor = nil
 		obj.LogsGeoIPParser = nil
 		obj.LogsLookupProcessor = nil
+		obj.ReferenceTableLogsLookupProcessor = nil
 		obj.LogsTraceRemapper = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -442,6 +466,10 @@ func (obj LogsProcessor) MarshalJSON() ([]byte, error) {
 
 	if obj.LogsLookupProcessor != nil {
 		return json.Marshal(&obj.LogsLookupProcessor)
+	}
+
+	if obj.ReferenceTableLogsLookupProcessor != nil {
+		return json.Marshal(&obj.ReferenceTableLogsLookupProcessor)
 	}
 
 	if obj.LogsTraceRemapper != nil {
@@ -510,6 +538,10 @@ func (obj *LogsProcessor) GetActualInstance() interface{} {
 
 	if obj.LogsLookupProcessor != nil {
 		return obj.LogsLookupProcessor
+	}
+
+	if obj.ReferenceTableLogsLookupProcessor != nil {
+		return obj.ReferenceTableLogsLookupProcessor
 	}
 
 	if obj.LogsTraceRemapper != nil {
