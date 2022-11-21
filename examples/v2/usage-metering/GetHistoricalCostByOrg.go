@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetHistoricalCostByOrg(ctx, time.Now().Add(time.Minute*-1), *datadogV2.NewGetHistoricalCostByOrgOptionalParameters().WithView("sub-org"))
+	resp, r, err := api.GetHistoricalCostByOrg(ctx, time.Now().AddDate(0, -2, 0), *datadogV2.NewGetHistoricalCostByOrgOptionalParameters().WithView("sub-org"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetHistoricalCostByOrg`: %v\n", err)
