@@ -129,6 +129,8 @@ type UsageSummaryResponse struct {
 	ObservabilityPipelinesBytesProcessedAggSum *int64 `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 	// Sum of all online archived events over all hours in the current months for all organizations.
 	OnlineArchiveEventsCountAggSum *int64 `json:"online_archive_events_count_agg_sum,omitempty"`
+	// Shows the 99th percentile of APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
+	OpentelemetryApmHostTop99pSum *int64 `json:"opentelemetry_apm_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
 	OpentelemetryHostTop99pSum *int64 `json:"opentelemetry_host_top99p_sum,omitempty"`
 	// Shows the average number of profiled containers over all hours in the current months for all organizations.
@@ -1845,6 +1847,34 @@ func (o *UsageSummaryResponse) SetOnlineArchiveEventsCountAggSum(v int64) {
 	o.OnlineArchiveEventsCountAggSum = &v
 }
 
+// GetOpentelemetryApmHostTop99pSum returns the OpentelemetryApmHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetOpentelemetryApmHostTop99pSum() int64 {
+	if o == nil || o.OpentelemetryApmHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryApmHostTop99pSum
+}
+
+// GetOpentelemetryApmHostTop99pSumOk returns a tuple with the OpentelemetryApmHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetOpentelemetryApmHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryApmHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.OpentelemetryApmHostTop99pSum, true
+}
+
+// HasOpentelemetryApmHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasOpentelemetryApmHostTop99pSum() bool {
+	return o != nil && o.OpentelemetryApmHostTop99pSum != nil
+}
+
+// SetOpentelemetryApmHostTop99pSum gets a reference to the given int64 and assigns it to the OpentelemetryApmHostTop99pSum field.
+func (o *UsageSummaryResponse) SetOpentelemetryApmHostTop99pSum(v int64) {
+	o.OpentelemetryApmHostTop99pSum = &v
+}
+
 // GetOpentelemetryHostTop99pSum returns the OpentelemetryHostTop99pSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetOpentelemetryHostTop99pSum() int64 {
 	if o == nil || o.OpentelemetryHostTop99pSum == nil {
@@ -2624,6 +2654,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.OnlineArchiveEventsCountAggSum != nil {
 		toSerialize["online_archive_events_count_agg_sum"] = o.OnlineArchiveEventsCountAggSum
 	}
+	if o.OpentelemetryApmHostTop99pSum != nil {
+		toSerialize["opentelemetry_apm_host_top99p_sum"] = o.OpentelemetryApmHostTop99pSum
+	}
 	if o.OpentelemetryHostTop99pSum != nil {
 		toSerialize["opentelemetry_host_top99p_sum"] = o.OpentelemetryHostTop99pSum
 	}
@@ -2761,6 +2794,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		NpmHostTop99pSum                           *int64             `json:"npm_host_top99p_sum,omitempty"`
 		ObservabilityPipelinesBytesProcessedAggSum *int64             `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 		OnlineArchiveEventsCountAggSum             *int64             `json:"online_archive_events_count_agg_sum,omitempty"`
+		OpentelemetryApmHostTop99pSum              *int64             `json:"opentelemetry_apm_host_top99p_sum,omitempty"`
 		OpentelemetryHostTop99pSum                 *int64             `json:"opentelemetry_host_top99p_sum,omitempty"`
 		ProfilingContainerAgentCountAvg            *int64             `json:"profiling_container_agent_count_avg,omitempty"`
 		ProfilingHostCountTop99pSum                *int64             `json:"profiling_host_count_top99p_sum,omitempty"`
@@ -2858,6 +2892,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.NpmHostTop99pSum = all.NpmHostTop99pSum
 	o.ObservabilityPipelinesBytesProcessedAggSum = all.ObservabilityPipelinesBytesProcessedAggSum
 	o.OnlineArchiveEventsCountAggSum = all.OnlineArchiveEventsCountAggSum
+	o.OpentelemetryApmHostTop99pSum = all.OpentelemetryApmHostTop99pSum
 	o.OpentelemetryHostTop99pSum = all.OpentelemetryHostTop99pSum
 	o.ProfilingContainerAgentCountAvg = all.ProfilingContainerAgentCountAvg
 	o.ProfilingHostCountTop99pSum = all.ProfilingHostCountTop99pSum
