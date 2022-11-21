@@ -43,6 +43,8 @@ type UsageHostHour struct {
 	// Contains the total number of hosts that reported through the Azure App Services integration
 	// (and were NOT running the Datadog Agent).
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
+	// Contains the total number of hosts using APM reported by Datadog exporter for the OpenTelemetry Collector.
+	OpentelemetryApmHostCount *int64 `json:"opentelemetry_apm_host_count,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
 	// The organization name.
@@ -410,6 +412,34 @@ func (o *UsageHostHour) SetInfraAzureAppService(v int64) {
 	o.InfraAzureAppService = &v
 }
 
+// GetOpentelemetryApmHostCount returns the OpentelemetryApmHostCount field value if set, zero value otherwise.
+func (o *UsageHostHour) GetOpentelemetryApmHostCount() int64 {
+	if o == nil || o.OpentelemetryApmHostCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryApmHostCount
+}
+
+// GetOpentelemetryApmHostCountOk returns a tuple with the OpentelemetryApmHostCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetOpentelemetryApmHostCountOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryApmHostCount == nil {
+		return nil, false
+	}
+	return o.OpentelemetryApmHostCount, true
+}
+
+// HasOpentelemetryApmHostCount returns a boolean if a field has been set.
+func (o *UsageHostHour) HasOpentelemetryApmHostCount() bool {
+	return o != nil && o.OpentelemetryApmHostCount != nil
+}
+
+// SetOpentelemetryApmHostCount gets a reference to the given int64 and assigns it to the OpentelemetryApmHostCount field.
+func (o *UsageHostHour) SetOpentelemetryApmHostCount(v int64) {
+	o.OpentelemetryApmHostCount = &v
+}
+
 // GetOpentelemetryHostCount returns the OpentelemetryHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetOpentelemetryHostCount() int64 {
 	if o == nil || o.OpentelemetryHostCount == nil {
@@ -568,6 +598,9 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.InfraAzureAppService != nil {
 		toSerialize["infra_azure_app_service"] = o.InfraAzureAppService
 	}
+	if o.OpentelemetryApmHostCount != nil {
+		toSerialize["opentelemetry_apm_host_count"] = o.OpentelemetryApmHostCount
+	}
 	if o.OpentelemetryHostCount != nil {
 		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount
 	}
@@ -603,6 +636,7 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 		HostCount                   *int64     `json:"host_count,omitempty"`
 		Hour                        *time.Time `json:"hour,omitempty"`
 		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
+		OpentelemetryApmHostCount   *int64     `json:"opentelemetry_apm_host_count,omitempty"`
 		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
 		OrgName                     *string    `json:"org_name,omitempty"`
 		PublicId                    *string    `json:"public_id,omitempty"`
@@ -629,6 +663,7 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.HostCount = all.HostCount
 	o.Hour = all.Hour
 	o.InfraAzureAppService = all.InfraAzureAppService
+	o.OpentelemetryApmHostCount = all.OpentelemetryApmHostCount
 	o.OpentelemetryHostCount = all.OpentelemetryHostCount
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId

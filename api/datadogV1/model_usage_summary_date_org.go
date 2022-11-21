@@ -120,6 +120,8 @@ type UsageSummaryDateOrg struct {
 	ObservabilityPipelinesBytesProcessedSum *int64 `json:"observability_pipelines_bytes_processed_sum,omitempty"`
 	// Sum of all online archived events over all hours in the current date for the given org.
 	OnlineArchiveEventsCountSum *int64 `json:"online_archive_events_count_sum,omitempty"`
+	// Shows the 99th percentile of APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org.
+	OpentelemetryApmHostTop99p *int64 `json:"opentelemetry_apm_host_top99p,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org.
 	OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current date for the given org.
@@ -1718,6 +1720,34 @@ func (o *UsageSummaryDateOrg) SetOnlineArchiveEventsCountSum(v int64) {
 	o.OnlineArchiveEventsCountSum = &v
 }
 
+// GetOpentelemetryApmHostTop99p returns the OpentelemetryApmHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetOpentelemetryApmHostTop99p() int64 {
+	if o == nil || o.OpentelemetryApmHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OpentelemetryApmHostTop99p
+}
+
+// GetOpentelemetryApmHostTop99pOk returns a tuple with the OpentelemetryApmHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetOpentelemetryApmHostTop99pOk() (*int64, bool) {
+	if o == nil || o.OpentelemetryApmHostTop99p == nil {
+		return nil, false
+	}
+	return o.OpentelemetryApmHostTop99p, true
+}
+
+// HasOpentelemetryApmHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasOpentelemetryApmHostTop99p() bool {
+	return o != nil && o.OpentelemetryApmHostTop99p != nil
+}
+
+// SetOpentelemetryApmHostTop99p gets a reference to the given int64 and assigns it to the OpentelemetryApmHostTop99p field.
+func (o *UsageSummaryDateOrg) SetOpentelemetryApmHostTop99p(v int64) {
+	o.OpentelemetryApmHostTop99p = &v
+}
+
 // GetOpentelemetryHostTop99p returns the OpentelemetryHostTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetOpentelemetryHostTop99p() int64 {
 	if o == nil || o.OpentelemetryHostTop99p == nil {
@@ -2393,6 +2423,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.OnlineArchiveEventsCountSum != nil {
 		toSerialize["online_archive_events_count_sum"] = o.OnlineArchiveEventsCountSum
 	}
+	if o.OpentelemetryApmHostTop99p != nil {
+		toSerialize["opentelemetry_apm_host_top99p"] = o.OpentelemetryApmHostTop99p
+	}
 	if o.OpentelemetryHostTop99p != nil {
 		toSerialize["opentelemetry_host_top99p"] = o.OpentelemetryHostTop99p
 	}
@@ -2513,6 +2546,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		NpmHostTop99p                           *int64  `json:"npm_host_top99p,omitempty"`
 		ObservabilityPipelinesBytesProcessedSum *int64  `json:"observability_pipelines_bytes_processed_sum,omitempty"`
 		OnlineArchiveEventsCountSum             *int64  `json:"online_archive_events_count_sum,omitempty"`
+		OpentelemetryApmHostTop99p              *int64  `json:"opentelemetry_apm_host_top99p,omitempty"`
 		OpentelemetryHostTop99p                 *int64  `json:"opentelemetry_host_top99p,omitempty"`
 		ProfilingHostTop99p                     *int64  `json:"profiling_host_top99p,omitempty"`
 		PublicId                                *string `json:"public_id,omitempty"`
@@ -2596,6 +2630,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.NpmHostTop99p = all.NpmHostTop99p
 	o.ObservabilityPipelinesBytesProcessedSum = all.ObservabilityPipelinesBytesProcessedSum
 	o.OnlineArchiveEventsCountSum = all.OnlineArchiveEventsCountSum
+	o.OpentelemetryApmHostTop99p = all.OpentelemetryApmHostTop99p
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
 	o.PublicId = all.PublicId
