@@ -81,6 +81,17 @@ func main() {
 					Url:     "https://datadoghq.com",
 					Headers: map[string]string{},
 				},
+				BasicAuth: &datadogV1.SyntheticsBasicAuth{
+					SyntheticsBasicAuthOauthClient: &datadogV1.SyntheticsBasicAuthOauthClient{
+						AccessTokenUrl:         "https://datadog-token.com",
+						Audience:               datadog.PtrString("audience"),
+						ClientId:               "client-id",
+						ClientSecret:           "client-secret",
+						Resource:               datadog.PtrString("resource"),
+						Scope:                  datadog.PtrString("yoyo"),
+						TokenApiAuthentication: datadogV1.SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_HEADER,
+						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHCLIENTTYPE_OAUTH_CLIENT.Ptr(),
+					}},
 			},
 		},
 		Locations: []string{

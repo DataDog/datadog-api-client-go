@@ -10,10 +10,12 @@ import (
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb    *SyntheticsBasicAuthWeb
-	SyntheticsBasicAuthSigv4  *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM   *SyntheticsBasicAuthNTLM
-	SyntheticsBasicAuthDigest *SyntheticsBasicAuthDigest
+	SyntheticsBasicAuthWeb         *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthSigv4       *SyntheticsBasicAuthSigv4
+	SyntheticsBasicAuthNTLM        *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthDigest      *SyntheticsBasicAuthDigest
+	SyntheticsBasicAuthOauthClient *SyntheticsBasicAuthOauthClient
+	SyntheticsBasicAuthOauthROP    *SyntheticsBasicAuthOauthROP
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -37,6 +39,16 @@ func SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth(v *SyntheticsBasicAuthNTLM) Sy
 // SyntheticsBasicAuthDigestAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthDigest wrapped in SyntheticsBasicAuth.
 func SyntheticsBasicAuthDigestAsSyntheticsBasicAuth(v *SyntheticsBasicAuthDigest) SyntheticsBasicAuth {
 	return SyntheticsBasicAuth{SyntheticsBasicAuthDigest: v}
+}
+
+// SyntheticsBasicAuthOauthClientAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthOauthClient wrapped in SyntheticsBasicAuth.
+func SyntheticsBasicAuthOauthClientAsSyntheticsBasicAuth(v *SyntheticsBasicAuthOauthClient) SyntheticsBasicAuth {
+	return SyntheticsBasicAuth{SyntheticsBasicAuthOauthClient: v}
+}
+
+// SyntheticsBasicAuthOauthROPAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthOauthROP wrapped in SyntheticsBasicAuth.
+func SyntheticsBasicAuthOauthROPAsSyntheticsBasicAuth(v *SyntheticsBasicAuthOauthROP) SyntheticsBasicAuth {
+	return SyntheticsBasicAuth{SyntheticsBasicAuthOauthROP: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -111,12 +123,48 @@ func (obj *SyntheticsBasicAuth) UnmarshalJSON(data []byte) error {
 		obj.SyntheticsBasicAuthDigest = nil
 	}
 
+	// try to unmarshal data into SyntheticsBasicAuthOauthClient
+	err = json.Unmarshal(data, &obj.SyntheticsBasicAuthOauthClient)
+	if err == nil {
+		if obj.SyntheticsBasicAuthOauthClient != nil && obj.SyntheticsBasicAuthOauthClient.UnparsedObject == nil {
+			jsonSyntheticsBasicAuthOauthClient, _ := json.Marshal(obj.SyntheticsBasicAuthOauthClient)
+			if string(jsonSyntheticsBasicAuthOauthClient) == "{}" { // empty struct
+				obj.SyntheticsBasicAuthOauthClient = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SyntheticsBasicAuthOauthClient = nil
+		}
+	} else {
+		obj.SyntheticsBasicAuthOauthClient = nil
+	}
+
+	// try to unmarshal data into SyntheticsBasicAuthOauthROP
+	err = json.Unmarshal(data, &obj.SyntheticsBasicAuthOauthROP)
+	if err == nil {
+		if obj.SyntheticsBasicAuthOauthROP != nil && obj.SyntheticsBasicAuthOauthROP.UnparsedObject == nil {
+			jsonSyntheticsBasicAuthOauthROP, _ := json.Marshal(obj.SyntheticsBasicAuthOauthROP)
+			if string(jsonSyntheticsBasicAuthOauthROP) == "{}" { // empty struct
+				obj.SyntheticsBasicAuthOauthROP = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SyntheticsBasicAuthOauthROP = nil
+		}
+	} else {
+		obj.SyntheticsBasicAuthOauthROP = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SyntheticsBasicAuthWeb = nil
 		obj.SyntheticsBasicAuthSigv4 = nil
 		obj.SyntheticsBasicAuthNTLM = nil
 		obj.SyntheticsBasicAuthDigest = nil
+		obj.SyntheticsBasicAuthOauthClient = nil
+		obj.SyntheticsBasicAuthOauthROP = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -138,6 +186,14 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthDigest)
+	}
+
+	if obj.SyntheticsBasicAuthOauthClient != nil {
+		return json.Marshal(&obj.SyntheticsBasicAuthOauthClient)
+	}
+
+	if obj.SyntheticsBasicAuthOauthROP != nil {
+		return json.Marshal(&obj.SyntheticsBasicAuthOauthROP)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -162,6 +218,14 @@ func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
 
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return obj.SyntheticsBasicAuthDigest
+	}
+
+	if obj.SyntheticsBasicAuthOauthClient != nil {
+		return obj.SyntheticsBasicAuthOauthClient
+	}
+
+	if obj.SyntheticsBasicAuthOauthROP != nil {
+		return obj.SyntheticsBasicAuthOauthROP
 	}
 
 	// all schemas are nil
