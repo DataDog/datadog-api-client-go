@@ -2,17 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type CIAppGroupByTotal struct {
 	CIAppGroupByTotalBoolean *bool
-	CIAppGroupByTotalString  *string
-	CIAppGroupByTotalNumber  *float64
+	CIAppGroupByTotalString *string
+	CIAppGroupByTotalNumber *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +108,16 @@ func (obj CIAppGroupByTotal) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.CIAppGroupByTotalBoolean)
 	}
 
+
 	if obj.CIAppGroupByTotalString != nil {
 		return json.Marshal(&obj.CIAppGroupByTotalString)
 	}
 
+
 	if obj.CIAppGroupByTotalNumber != nil {
 		return json.Marshal(&obj.CIAppGroupByTotalNumber)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -119,18 +126,21 @@ func (obj CIAppGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppGroupByTotal) GetActualInstance() interface{} {
+func (obj *CIAppGroupByTotal) GetActualInstance() (interface{}) {
 	if obj.CIAppGroupByTotalBoolean != nil {
 		return obj.CIAppGroupByTotalBoolean
 	}
+
 
 	if obj.CIAppGroupByTotalString != nil {
 		return obj.CIAppGroupByTotalString
 	}
 
+
 	if obj.CIAppGroupByTotalNumber != nil {
 		return obj.CIAppGroupByTotalNumber
 	}
+
 
 	// all schemas are nil
 	return nil

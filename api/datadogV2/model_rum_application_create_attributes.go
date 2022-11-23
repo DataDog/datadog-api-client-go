@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMApplicationCreateAttributes RUM application creation attributes.
 type RUMApplicationCreateAttributes struct {
@@ -16,9 +19,11 @@ type RUMApplicationCreateAttributes struct {
 	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMApplicationCreateAttributes instantiates a new RUMApplicationCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewRUMApplicationCreateAttributesWithDefaults() *RUMApplicationCreateAttrib
 	this := RUMApplicationCreateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *RUMApplicationCreateAttributes) GetName() string {
 	if o == nil {
@@ -60,6 +64,7 @@ func (o *RUMApplicationCreateAttributes) GetNameOk() (*string, bool) {
 func (o *RUMApplicationCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMApplicationCreateAttributes) GetType() string {
@@ -89,6 +94,8 @@ func (o *RUMApplicationCreateAttributes) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,6 +113,7 @@ func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -113,7 +121,7 @@ func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Name string  `json:"name"`
+		Name string `json:"name"`
 		Type *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

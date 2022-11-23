@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // MonitorOptions List of options associated with your monitor.
 type MonitorOptions struct {
@@ -112,9 +114,11 @@ type MonitorOptions struct {
 	// List of requests that can be used in the monitor query. **This feature is currently in beta.**
 	Variables []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorOptions instantiates a new MonitorOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -164,7 +168,6 @@ func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this.TimeoutH = *datadog.NewNullableInt64(nil)
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation {
 	if o == nil || o.Aggregation == nil {
@@ -192,6 +195,7 @@ func (o *MonitorOptions) HasAggregation() bool {
 func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
 	o.Aggregation = &v
 }
+
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
 // Deprecated
@@ -224,6 +228,7 @@ func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID) {
 	o.DeviceIds = v
 }
 
+
 // GetEnableLogsSample returns the EnableLogsSample field value if set, zero value otherwise.
 func (o *MonitorOptions) GetEnableLogsSample() bool {
 	if o == nil || o.EnableLogsSample == nil {
@@ -251,6 +256,7 @@ func (o *MonitorOptions) HasEnableLogsSample() bool {
 func (o *MonitorOptions) SetEnableLogsSample(v bool) {
 	o.EnableLogsSample = &v
 }
+
 
 // GetEscalationMessage returns the EscalationMessage field value if set, zero value otherwise.
 func (o *MonitorOptions) GetEscalationMessage() string {
@@ -280,6 +286,7 @@ func (o *MonitorOptions) SetEscalationMessage(v string) {
 	o.EscalationMessage = &v
 }
 
+
 // GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetEvaluationDelay() int64 {
 	if o == nil || o.EvaluationDelay.Get() == nil {
@@ -293,7 +300,7 @@ func (o *MonitorOptions) GetEvaluationDelay() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetEvaluationDelayOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.EvaluationDelay.Get(), o.EvaluationDelay.IsSet()
@@ -308,7 +315,6 @@ func (o *MonitorOptions) HasEvaluationDelay() bool {
 func (o *MonitorOptions) SetEvaluationDelay(v int64) {
 	o.EvaluationDelay.Set(&v)
 }
-
 // SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil.
 func (o *MonitorOptions) SetEvaluationDelayNil() {
 	o.EvaluationDelay.Set(nil)
@@ -318,6 +324,7 @@ func (o *MonitorOptions) SetEvaluationDelayNil() {
 func (o *MonitorOptions) UnsetEvaluationDelay() {
 	o.EvaluationDelay.Unset()
 }
+
 
 // GetGroupRetentionDuration returns the GroupRetentionDuration field value if set, zero value otherwise.
 func (o *MonitorOptions) GetGroupRetentionDuration() string {
@@ -347,6 +354,7 @@ func (o *MonitorOptions) SetGroupRetentionDuration(v string) {
 	o.GroupRetentionDuration = &v
 }
 
+
 // GetGroupbySimpleMonitor returns the GroupbySimpleMonitor field value if set, zero value otherwise.
 func (o *MonitorOptions) GetGroupbySimpleMonitor() bool {
 	if o == nil || o.GroupbySimpleMonitor == nil {
@@ -375,6 +383,7 @@ func (o *MonitorOptions) SetGroupbySimpleMonitor(v bool) {
 	o.GroupbySimpleMonitor = &v
 }
 
+
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *MonitorOptions) GetIncludeTags() bool {
 	if o == nil || o.IncludeTags == nil {
@@ -402,6 +411,7 @@ func (o *MonitorOptions) HasIncludeTags() bool {
 func (o *MonitorOptions) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
+
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
 // Deprecated
@@ -434,6 +444,7 @@ func (o *MonitorOptions) SetLocked(v bool) {
 	o.Locked = &v
 }
 
+
 // GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetMinFailureDuration() int64 {
 	if o == nil || o.MinFailureDuration.Get() == nil {
@@ -447,7 +458,7 @@ func (o *MonitorOptions) GetMinFailureDuration() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetMinFailureDurationOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MinFailureDuration.Get(), o.MinFailureDuration.IsSet()
@@ -462,7 +473,6 @@ func (o *MonitorOptions) HasMinFailureDuration() bool {
 func (o *MonitorOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration.Set(&v)
 }
-
 // SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil.
 func (o *MonitorOptions) SetMinFailureDurationNil() {
 	o.MinFailureDuration.Set(nil)
@@ -472,6 +482,7 @@ func (o *MonitorOptions) SetMinFailureDurationNil() {
 func (o *MonitorOptions) UnsetMinFailureDuration() {
 	o.MinFailureDuration.Unset()
 }
+
 
 // GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetMinLocationFailed() int64 {
@@ -486,7 +497,7 @@ func (o *MonitorOptions) GetMinLocationFailed() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetMinLocationFailedOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MinLocationFailed.Get(), o.MinLocationFailed.IsSet()
@@ -501,7 +512,6 @@ func (o *MonitorOptions) HasMinLocationFailed() bool {
 func (o *MonitorOptions) SetMinLocationFailed(v int64) {
 	o.MinLocationFailed.Set(&v)
 }
-
 // SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil.
 func (o *MonitorOptions) SetMinLocationFailedNil() {
 	o.MinLocationFailed.Set(nil)
@@ -511,6 +521,7 @@ func (o *MonitorOptions) SetMinLocationFailedNil() {
 func (o *MonitorOptions) UnsetMinLocationFailed() {
 	o.MinLocationFailed.Unset()
 }
+
 
 // GetNewGroupDelay returns the NewGroupDelay field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetNewGroupDelay() int64 {
@@ -525,7 +536,7 @@ func (o *MonitorOptions) GetNewGroupDelay() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NewGroupDelay.Get(), o.NewGroupDelay.IsSet()
@@ -540,7 +551,6 @@ func (o *MonitorOptions) HasNewGroupDelay() bool {
 func (o *MonitorOptions) SetNewGroupDelay(v int64) {
 	o.NewGroupDelay.Set(&v)
 }
-
 // SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil.
 func (o *MonitorOptions) SetNewGroupDelayNil() {
 	o.NewGroupDelay.Set(nil)
@@ -550,6 +560,7 @@ func (o *MonitorOptions) SetNewGroupDelayNil() {
 func (o *MonitorOptions) UnsetNewGroupDelay() {
 	o.NewGroupDelay.Unset()
 }
+
 
 // GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
@@ -566,7 +577,7 @@ func (o *MonitorOptions) GetNewHostDelay() int64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NewHostDelay.Get(), o.NewHostDelay.IsSet()
@@ -582,7 +593,6 @@ func (o *MonitorOptions) HasNewHostDelay() bool {
 func (o *MonitorOptions) SetNewHostDelay(v int64) {
 	o.NewHostDelay.Set(&v)
 }
-
 // SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil.
 func (o *MonitorOptions) SetNewHostDelayNil() {
 	o.NewHostDelay.Set(nil)
@@ -592,6 +602,7 @@ func (o *MonitorOptions) SetNewHostDelayNil() {
 func (o *MonitorOptions) UnsetNewHostDelay() {
 	o.NewHostDelay.Unset()
 }
+
 
 // GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetNoDataTimeframe() int64 {
@@ -606,7 +617,7 @@ func (o *MonitorOptions) GetNoDataTimeframe() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetNoDataTimeframeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NoDataTimeframe.Get(), o.NoDataTimeframe.IsSet()
@@ -621,7 +632,6 @@ func (o *MonitorOptions) HasNoDataTimeframe() bool {
 func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
 	o.NoDataTimeframe.Set(&v)
 }
-
 // SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil.
 func (o *MonitorOptions) SetNoDataTimeframeNil() {
 	o.NoDataTimeframe.Set(nil)
@@ -631,6 +641,7 @@ func (o *MonitorOptions) SetNoDataTimeframeNil() {
 func (o *MonitorOptions) UnsetNoDataTimeframe() {
 	o.NoDataTimeframe.Unset()
 }
+
 
 // GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyAudit() bool {
@@ -660,6 +671,7 @@ func (o *MonitorOptions) SetNotifyAudit(v bool) {
 	o.NotifyAudit = &v
 }
 
+
 // GetNotifyBy returns the NotifyBy field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyBy() []string {
 	if o == nil || o.NotifyBy == nil {
@@ -687,6 +699,7 @@ func (o *MonitorOptions) HasNotifyBy() bool {
 func (o *MonitorOptions) SetNotifyBy(v []string) {
 	o.NotifyBy = v
 }
+
 
 // GetNotifyNoData returns the NotifyNoData field value if set, zero value otherwise.
 func (o *MonitorOptions) GetNotifyNoData() bool {
@@ -716,6 +729,7 @@ func (o *MonitorOptions) SetNotifyNoData(v bool) {
 	o.NotifyNoData = &v
 }
 
+
 // GetOnMissingData returns the OnMissingData field value if set, zero value otherwise.
 func (o *MonitorOptions) GetOnMissingData() OnMissingDataOption {
 	if o == nil || o.OnMissingData == nil {
@@ -744,6 +758,7 @@ func (o *MonitorOptions) SetOnMissingData(v OnMissingDataOption) {
 	o.OnMissingData = &v
 }
 
+
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetRenotifyInterval() int64 {
 	if o == nil || o.RenotifyInterval.Get() == nil {
@@ -757,7 +772,7 @@ func (o *MonitorOptions) GetRenotifyInterval() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetRenotifyIntervalOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RenotifyInterval.Get(), o.RenotifyInterval.IsSet()
@@ -772,7 +787,6 @@ func (o *MonitorOptions) HasRenotifyInterval() bool {
 func (o *MonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval.Set(&v)
 }
-
 // SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil.
 func (o *MonitorOptions) SetRenotifyIntervalNil() {
 	o.RenotifyInterval.Set(nil)
@@ -782,6 +796,7 @@ func (o *MonitorOptions) SetRenotifyIntervalNil() {
 func (o *MonitorOptions) UnsetRenotifyInterval() {
 	o.RenotifyInterval.Unset()
 }
+
 
 // GetRenotifyOccurrences returns the RenotifyOccurrences field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetRenotifyOccurrences() int64 {
@@ -796,7 +811,7 @@ func (o *MonitorOptions) GetRenotifyOccurrences() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RenotifyOccurrences.Get(), o.RenotifyOccurrences.IsSet()
@@ -811,7 +826,6 @@ func (o *MonitorOptions) HasRenotifyOccurrences() bool {
 func (o *MonitorOptions) SetRenotifyOccurrences(v int64) {
 	o.RenotifyOccurrences.Set(&v)
 }
-
 // SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil.
 func (o *MonitorOptions) SetRenotifyOccurrencesNil() {
 	o.RenotifyOccurrences.Set(nil)
@@ -822,9 +836,10 @@ func (o *MonitorOptions) UnsetRenotifyOccurrences() {
 	o.RenotifyOccurrences.Unset()
 }
 
+
 // GetRenotifyStatuses returns the RenotifyStatuses field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType {
-	if o == nil {
+	if o == nil  {
 		var ret []MonitorRenotifyStatusType
 		return ret
 	}
@@ -850,6 +865,7 @@ func (o *MonitorOptions) HasRenotifyStatuses() bool {
 func (o *MonitorOptions) SetRenotifyStatuses(v []MonitorRenotifyStatusType) {
 	o.RenotifyStatuses = v
 }
+
 
 // GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.
 func (o *MonitorOptions) GetRequireFullWindow() bool {
@@ -879,6 +895,7 @@ func (o *MonitorOptions) SetRequireFullWindow(v bool) {
 	o.RequireFullWindow = &v
 }
 
+
 // GetSchedulingOptions returns the SchedulingOptions field value if set, zero value otherwise.
 func (o *MonitorOptions) GetSchedulingOptions() MonitorOptionsSchedulingOptions {
 	if o == nil || o.SchedulingOptions == nil {
@@ -906,6 +923,7 @@ func (o *MonitorOptions) HasSchedulingOptions() bool {
 func (o *MonitorOptions) SetSchedulingOptions(v MonitorOptionsSchedulingOptions) {
 	o.SchedulingOptions = &v
 }
+
 
 // GetSilenced returns the Silenced field value if set, zero value otherwise.
 // Deprecated
@@ -938,6 +956,7 @@ func (o *MonitorOptions) SetSilenced(v map[string]int64) {
 	o.Silenced = v
 }
 
+
 // GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *MonitorOptions) GetSyntheticsCheckId() string {
@@ -953,7 +972,7 @@ func (o *MonitorOptions) GetSyntheticsCheckId() string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SyntheticsCheckId.Get(), o.SyntheticsCheckId.IsSet()
@@ -969,7 +988,6 @@ func (o *MonitorOptions) HasSyntheticsCheckId() bool {
 func (o *MonitorOptions) SetSyntheticsCheckId(v string) {
 	o.SyntheticsCheckId.Set(&v)
 }
-
 // SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil.
 func (o *MonitorOptions) SetSyntheticsCheckIdNil() {
 	o.SyntheticsCheckId.Set(nil)
@@ -979,6 +997,7 @@ func (o *MonitorOptions) SetSyntheticsCheckIdNil() {
 func (o *MonitorOptions) UnsetSyntheticsCheckId() {
 	o.SyntheticsCheckId.Unset()
 }
+
 
 // GetThresholdWindows returns the ThresholdWindows field value if set, zero value otherwise.
 func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
@@ -1008,6 +1027,7 @@ func (o *MonitorOptions) SetThresholdWindows(v MonitorThresholdWindowOptions) {
 	o.ThresholdWindows = &v
 }
 
+
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *MonitorOptions) GetThresholds() MonitorThresholds {
 	if o == nil || o.Thresholds == nil {
@@ -1036,6 +1056,7 @@ func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
 	o.Thresholds = &v
 }
 
+
 // GetTimeoutH returns the TimeoutH field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorOptions) GetTimeoutH() int64 {
 	if o == nil || o.TimeoutH.Get() == nil {
@@ -1049,7 +1070,7 @@ func (o *MonitorOptions) GetTimeoutH() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetTimeoutHOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.TimeoutH.Get(), o.TimeoutH.IsSet()
@@ -1064,7 +1085,6 @@ func (o *MonitorOptions) HasTimeoutH() bool {
 func (o *MonitorOptions) SetTimeoutH(v int64) {
 	o.TimeoutH.Set(&v)
 }
-
 // SetTimeoutHNil sets the value for TimeoutH to be an explicit nil.
 func (o *MonitorOptions) SetTimeoutHNil() {
 	o.TimeoutH.Set(nil)
@@ -1074,6 +1094,7 @@ func (o *MonitorOptions) SetTimeoutHNil() {
 func (o *MonitorOptions) UnsetTimeoutH() {
 	o.TimeoutH.Unset()
 }
+
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *MonitorOptions) GetVariables() []MonitorFormulaAndFunctionQueryDefinition {
@@ -1102,6 +1123,8 @@ func (o *MonitorOptions) HasVariables() bool {
 func (o *MonitorOptions) SetVariables(v []MonitorFormulaAndFunctionQueryDefinition) {
 	o.Variables = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
@@ -1203,39 +1226,40 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation            *MonitorOptionsAggregation                 `json:"aggregation,omitempty"`
-		DeviceIds              []MonitorDeviceID                          `json:"device_ids,omitempty"`
-		EnableLogsSample       *bool                                      `json:"enable_logs_sample,omitempty"`
-		EscalationMessage      *string                                    `json:"escalation_message,omitempty"`
-		EvaluationDelay        datadog.NullableInt64                      `json:"evaluation_delay,omitempty"`
-		GroupRetentionDuration *string                                    `json:"group_retention_duration,omitempty"`
-		GroupbySimpleMonitor   *bool                                      `json:"groupby_simple_monitor,omitempty"`
-		IncludeTags            *bool                                      `json:"include_tags,omitempty"`
-		Locked                 *bool                                      `json:"locked,omitempty"`
-		MinFailureDuration     datadog.NullableInt64                      `json:"min_failure_duration,omitempty"`
-		MinLocationFailed      datadog.NullableInt64                      `json:"min_location_failed,omitempty"`
-		NewGroupDelay          datadog.NullableInt64                      `json:"new_group_delay,omitempty"`
-		NewHostDelay           datadog.NullableInt64                      `json:"new_host_delay,omitempty"`
-		NoDataTimeframe        datadog.NullableInt64                      `json:"no_data_timeframe,omitempty"`
-		NotifyAudit            *bool                                      `json:"notify_audit,omitempty"`
-		NotifyBy               []string                                   `json:"notify_by,omitempty"`
-		NotifyNoData           *bool                                      `json:"notify_no_data,omitempty"`
-		OnMissingData          *OnMissingDataOption                       `json:"on_missing_data,omitempty"`
-		RenotifyInterval       datadog.NullableInt64                      `json:"renotify_interval,omitempty"`
-		RenotifyOccurrences    datadog.NullableInt64                      `json:"renotify_occurrences,omitempty"`
-		RenotifyStatuses       []MonitorRenotifyStatusType                `json:"renotify_statuses,omitempty"`
-		RequireFullWindow      *bool                                      `json:"require_full_window,omitempty"`
-		SchedulingOptions      *MonitorOptionsSchedulingOptions           `json:"scheduling_options,omitempty"`
-		Silenced               map[string]int64                           `json:"silenced,omitempty"`
-		SyntheticsCheckId      datadog.NullableString                     `json:"synthetics_check_id,omitempty"`
-		ThresholdWindows       *MonitorThresholdWindowOptions             `json:"threshold_windows,omitempty"`
-		Thresholds             *MonitorThresholds                         `json:"thresholds,omitempty"`
-		TimeoutH               datadog.NullableInt64                      `json:"timeout_h,omitempty"`
-		Variables              []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
+		Aggregation *MonitorOptionsAggregation `json:"aggregation,omitempty"`
+		DeviceIds []MonitorDeviceID `json:"device_ids,omitempty"`
+		EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
+		EscalationMessage *string `json:"escalation_message,omitempty"`
+		EvaluationDelay datadog.NullableInt64 `json:"evaluation_delay,omitempty"`
+		GroupRetentionDuration *string `json:"group_retention_duration,omitempty"`
+		GroupbySimpleMonitor *bool `json:"groupby_simple_monitor,omitempty"`
+		IncludeTags *bool `json:"include_tags,omitempty"`
+		Locked *bool `json:"locked,omitempty"`
+		MinFailureDuration datadog.NullableInt64 `json:"min_failure_duration,omitempty"`
+		MinLocationFailed datadog.NullableInt64 `json:"min_location_failed,omitempty"`
+		NewGroupDelay datadog.NullableInt64 `json:"new_group_delay,omitempty"`
+		NewHostDelay datadog.NullableInt64 `json:"new_host_delay,omitempty"`
+		NoDataTimeframe datadog.NullableInt64 `json:"no_data_timeframe,omitempty"`
+		NotifyAudit *bool `json:"notify_audit,omitempty"`
+		NotifyBy []string `json:"notify_by,omitempty"`
+		NotifyNoData *bool `json:"notify_no_data,omitempty"`
+		OnMissingData *OnMissingDataOption `json:"on_missing_data,omitempty"`
+		RenotifyInterval datadog.NullableInt64 `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences datadog.NullableInt64 `json:"renotify_occurrences,omitempty"`
+		RenotifyStatuses []MonitorRenotifyStatusType `json:"renotify_statuses,omitempty"`
+		RequireFullWindow *bool `json:"require_full_window,omitempty"`
+		SchedulingOptions *MonitorOptionsSchedulingOptions `json:"scheduling_options,omitempty"`
+		Silenced map[string]int64 `json:"silenced,omitempty"`
+		SyntheticsCheckId datadog.NullableString `json:"synthetics_check_id,omitempty"`
+		ThresholdWindows *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
+		Thresholds *MonitorThresholds `json:"thresholds,omitempty"`
+		TimeoutH datadog.NullableInt64 `json:"timeout_h,omitempty"`
+		Variables []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -1246,7 +1270,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.OnMissingData; v != nil && !v.IsValid() {
+	if v := all.OnMissingData; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -1254,13 +1278,13 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Aggregation != nil && all.Aggregation.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Aggregation != nil && all.Aggregation.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Aggregation = all.Aggregation
 	o.DeviceIds = all.DeviceIds
 	o.EnableLogsSample = all.EnableLogsSample
@@ -1283,31 +1307,31 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.RenotifyOccurrences = all.RenotifyOccurrences
 	o.RenotifyStatuses = all.RenotifyStatuses
 	o.RequireFullWindow = all.RequireFullWindow
-	if all.SchedulingOptions != nil && all.SchedulingOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.SchedulingOptions != nil && all.SchedulingOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.SchedulingOptions = all.SchedulingOptions
 	o.Silenced = all.Silenced
 	o.SyntheticsCheckId = all.SyntheticsCheckId
-	if all.ThresholdWindows != nil && all.ThresholdWindows.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.ThresholdWindows != nil && all.ThresholdWindows.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.ThresholdWindows = all.ThresholdWindows
-	if all.Thresholds != nil && all.Thresholds.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Thresholds != nil && all.Thresholds.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Thresholds = all.Thresholds
 	o.TimeoutH = all.TimeoutH
 	o.Variables = all.Variables

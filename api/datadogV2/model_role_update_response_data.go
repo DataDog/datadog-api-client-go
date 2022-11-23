@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RoleUpdateResponseData Role object returned by the API.
 type RoleUpdateResponseData struct {
@@ -20,9 +23,11 @@ type RoleUpdateResponseData struct {
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleUpdateResponseData instantiates a new RoleUpdateResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewRoleUpdateResponseDataWithDefaults() *RoleUpdateResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetAttributes() RoleUpdateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +75,7 @@ func (o *RoleUpdateResponseData) HasAttributes() bool {
 func (o *RoleUpdateResponseData) SetAttributes(v RoleUpdateAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetId() string {
@@ -100,6 +105,7 @@ func (o *RoleUpdateResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetRelationships() RoleResponseRelationships {
 	if o == nil || o.Relationships == nil {
@@ -128,6 +134,7 @@ func (o *RoleUpdateResponseData) SetRelationships(v RoleResponseRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *RoleUpdateResponseData) GetType() RolesType {
 	if o == nil {
@@ -150,6 +157,8 @@ func (o *RoleUpdateResponseData) GetTypeOk() (*RolesType, bool) {
 func (o *RoleUpdateResponseData) SetType(v RolesType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
@@ -174,6 +183,7 @@ func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -181,10 +191,10 @@ func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Type *RolesType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *RoleUpdateAttributes      `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
+		Attributes *RoleUpdateAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-		Type          RolesType                  `json:"type"`
+		Type RolesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -210,22 +220,22 @@ func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil

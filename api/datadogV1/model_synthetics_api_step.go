@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsAPIStep The steps used in a Synthetics multistep API test.
 type SyntheticsAPIStep struct {
@@ -29,9 +32,11 @@ type SyntheticsAPIStep struct {
 	// The subtype of the Synthetic multistep API test step, currently only supporting `http`.
 	Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAPIStep instantiates a new SyntheticsAPIStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewSyntheticsAPIStepWithDefaults() *SyntheticsAPIStep {
 	this := SyntheticsAPIStep{}
 	return &this
 }
-
 // GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
 func (o *SyntheticsAPIStep) GetAllowFailure() bool {
 	if o == nil || o.AllowFailure == nil {
@@ -82,6 +86,7 @@ func (o *SyntheticsAPIStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
 }
 
+
 // GetAssertions returns the Assertions field value.
 func (o *SyntheticsAPIStep) GetAssertions() []SyntheticsAssertion {
 	if o == nil {
@@ -104,6 +109,7 @@ func (o *SyntheticsAPIStep) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
 func (o *SyntheticsAPIStep) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = v
 }
+
 
 // GetExtractedValues returns the ExtractedValues field value if set, zero value otherwise.
 func (o *SyntheticsAPIStep) GetExtractedValues() []SyntheticsParsingOptions {
@@ -133,6 +139,7 @@ func (o *SyntheticsAPIStep) SetExtractedValues(v []SyntheticsParsingOptions) {
 	o.ExtractedValues = v
 }
 
+
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
 func (o *SyntheticsAPIStep) GetIsCritical() bool {
 	if o == nil || o.IsCritical == nil {
@@ -161,6 +168,7 @@ func (o *SyntheticsAPIStep) SetIsCritical(v bool) {
 	o.IsCritical = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsAPIStep) GetName() string {
 	if o == nil {
@@ -184,6 +192,7 @@ func (o *SyntheticsAPIStep) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetRequest returns the Request field value.
 func (o *SyntheticsAPIStep) GetRequest() SyntheticsTestRequest {
 	if o == nil {
@@ -206,6 +215,7 @@ func (o *SyntheticsAPIStep) GetRequestOk() (*SyntheticsTestRequest, bool) {
 func (o *SyntheticsAPIStep) SetRequest(v SyntheticsTestRequest) {
 	o.Request = v
 }
+
 
 // GetRetry returns the Retry field value if set, zero value otherwise.
 func (o *SyntheticsAPIStep) GetRetry() SyntheticsTestOptionsRetry {
@@ -235,6 +245,7 @@ func (o *SyntheticsAPIStep) SetRetry(v SyntheticsTestOptionsRetry) {
 	o.Retry = &v
 }
 
+
 // GetSubtype returns the Subtype field value.
 func (o *SyntheticsAPIStep) GetSubtype() SyntheticsAPIStepSubtype {
 	if o == nil {
@@ -257,6 +268,8 @@ func (o *SyntheticsAPIStep) GetSubtypeOk() (*SyntheticsAPIStepSubtype, bool) {
 func (o *SyntheticsAPIStep) SetSubtype(v SyntheticsAPIStepSubtype) {
 	o.Subtype = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
@@ -287,24 +300,25 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Assertions *[]SyntheticsAssertion    `json:"assertions"`
-		Name       *string                   `json:"name"`
-		Request    *SyntheticsTestRequest    `json:"request"`
-		Subtype    *SyntheticsAPIStepSubtype `json:"subtype"`
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+		Name *string `json:"name"`
+		Request *SyntheticsTestRequest `json:"request"`
+		Subtype *SyntheticsAPIStepSubtype `json:"subtype"`
 	}{}
 	all := struct {
-		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
-		Assertions      []SyntheticsAssertion       `json:"assertions"`
-		ExtractedValues []SyntheticsParsingOptions  `json:"extractedValues,omitempty"`
-		IsCritical      *bool                       `json:"isCritical,omitempty"`
-		Name            string                      `json:"name"`
-		Request         SyntheticsTestRequest       `json:"request"`
-		Retry           *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		Subtype         SyntheticsAPIStepSubtype    `json:"subtype"`
+		AllowFailure *bool `json:"allowFailure,omitempty"`
+		Assertions []SyntheticsAssertion `json:"assertions"`
+		ExtractedValues []SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+		IsCritical *bool `json:"isCritical,omitempty"`
+		Name string `json:"name"`
+		Request SyntheticsTestRequest `json:"request"`
+		Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+		Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -344,21 +358,21 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExtractedValues = all.ExtractedValues
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
-	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Request = all.Request
-	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Retry = all.Retry
 	o.Subtype = all.Subtype
 	return nil

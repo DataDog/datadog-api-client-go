@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricsListResponse Object listing all metric names stored by Datadog since a given time.
 type MetricsListResponse struct {
@@ -15,9 +19,11 @@ type MetricsListResponse struct {
 	// List of metric names.
 	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricsListResponse instantiates a new MetricsListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMetricsListResponseWithDefaults() *MetricsListResponse {
 	this := MetricsListResponse{}
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *MetricsListResponse) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -63,6 +68,7 @@ func (o *MetricsListResponse) HasFrom() bool {
 func (o *MetricsListResponse) SetFrom(v string) {
 	o.From = &v
 }
+
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *MetricsListResponse) GetMetrics() []string {
@@ -92,6 +98,8 @@ func (o *MetricsListResponse) SetMetrics(v []string) {
 	o.Metrics = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From    *string  `json:"from,omitempty"`
+		From *string `json:"from,omitempty"`
 		Metrics []string `json:"metrics,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

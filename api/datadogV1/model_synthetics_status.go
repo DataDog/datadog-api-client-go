@@ -2,21 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsStatus Determines whether or not the batch has passed, failed, or is in progress.
 type SyntheticsStatus string
 
 // List of SyntheticsStatus.
 const (
-	SYNTHETICSSTATUS_PASSED  SyntheticsStatus = "passed"
+	SYNTHETICSSTATUS_PASSED SyntheticsStatus = "passed"
 	SYNTHETICSSTATUS_skipped SyntheticsStatus = "skipped"
-	SYNTHETICSSTATUS_failed  SyntheticsStatus = "failed"
+	SYNTHETICSSTATUS_failed SyntheticsStatus = "failed"
 )
 
 var allowedSyntheticsStatusEnumValues = []SyntheticsStatus{

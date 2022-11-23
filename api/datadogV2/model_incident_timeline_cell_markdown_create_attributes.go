@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentTimelineCellMarkdownCreateAttributes Timeline cell data for Markdown timeline cells for a create request.
 type IncidentTimelineCellMarkdownCreateAttributes struct {
@@ -18,9 +21,11 @@ type IncidentTimelineCellMarkdownCreateAttributes struct {
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentTimelineCellMarkdownCreateAttributes instantiates a new IncidentTimelineCellMarkdownCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults() *IncidentTime
 	this.Important = &important
 	return &this
 }
-
 // GetCellType returns the CellType field value.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) GetCellType() IncidentTimelineCellMarkdownContentType {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) SetCellType(v IncidentTim
 	o.CellType = v
 }
 
+
 // GetContent returns the Content field value.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContent() IncidentTimelineCellMarkdownCreateAttributesContent {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContentOk() (*Incident
 func (o *IncidentTimelineCellMarkdownCreateAttributes) SetContent(v IncidentTimelineCellMarkdownCreateAttributesContent) {
 	o.Content = v
 }
+
 
 // GetImportant returns the Important field value if set, zero value otherwise.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) GetImportant() bool {
@@ -121,6 +127,8 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) SetImportant(v bool) {
 	o.Important = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,17 +147,18 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		CellType *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+		CellType *IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+		Content *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 	}{}
 	all := struct {
-		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
-		Important *bool                                               `json:"important,omitempty"`
+		CellType IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+		Content IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+		Important *bool `json:"important,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -179,13 +188,13 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		return nil
 	}
 	o.CellType = all.CellType
-	if all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Content = all.Content
 	o.Important = all.Important
 	return nil

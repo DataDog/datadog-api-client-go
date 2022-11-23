@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IntakePayloadAccepted The payload accepted for intake.
 type IntakePayloadAccepted struct {
 	// The status of the intake payload.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIntakePayloadAccepted instantiates a new IntakePayloadAccepted object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewIntakePayloadAcceptedWithDefaults() *IntakePayloadAccepted {
 	this := IntakePayloadAccepted{}
 	return &this
 }
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IntakePayloadAccepted) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -62,6 +67,8 @@ func (o *IntakePayloadAccepted) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {

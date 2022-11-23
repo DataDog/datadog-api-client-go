@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
@@ -45,9 +49,11 @@ type TimeseriesWidgetRequest struct {
 	// Define request widget style.
 	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTimeseriesWidgetRequest instantiates a new TimeseriesWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +71,6 @@ func NewTimeseriesWidgetRequestWithDefaults() *TimeseriesWidgetRequest {
 	this := TimeseriesWidgetRequest{}
 	return &this
 }
-
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -93,6 +98,7 @@ func (o *TimeseriesWidgetRequest) HasApmQuery() bool {
 func (o *TimeseriesWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetAuditQuery() LogQueryDefinition {
@@ -122,6 +128,7 @@ func (o *TimeseriesWidgetRequest) SetAuditQuery(v LogQueryDefinition) {
 	o.AuditQuery = &v
 }
 
+
 // GetDisplayType returns the DisplayType field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetDisplayType() WidgetDisplayType {
 	if o == nil || o.DisplayType == nil {
@@ -149,6 +156,7 @@ func (o *TimeseriesWidgetRequest) HasDisplayType() bool {
 func (o *TimeseriesWidgetRequest) SetDisplayType(v WidgetDisplayType) {
 	o.DisplayType = &v
 }
+
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetEventQuery() LogQueryDefinition {
@@ -178,6 +186,7 @@ func (o *TimeseriesWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
 
+
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -205,6 +214,7 @@ func (o *TimeseriesWidgetRequest) HasFormulas() bool {
 func (o *TimeseriesWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = v
 }
+
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetLogQuery() LogQueryDefinition {
@@ -234,6 +244,7 @@ func (o *TimeseriesWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetExpressionAlias {
 	if o == nil || o.Metadata == nil {
@@ -261,6 +272,7 @@ func (o *TimeseriesWidgetRequest) HasMetadata() bool {
 func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetExpressionAlias) {
 	o.Metadata = v
 }
+
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetNetworkQuery() LogQueryDefinition {
@@ -290,6 +302,7 @@ func (o *TimeseriesWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
+
 // GetOnRightYaxis returns the OnRightYaxis field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetOnRightYaxis() bool {
 	if o == nil || o.OnRightYaxis == nil {
@@ -317,6 +330,7 @@ func (o *TimeseriesWidgetRequest) HasOnRightYaxis() bool {
 func (o *TimeseriesWidgetRequest) SetOnRightYaxis(v bool) {
 	o.OnRightYaxis = &v
 }
+
 
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
@@ -346,6 +360,7 @@ func (o *TimeseriesWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
 	if o == nil || o.ProfileMetricsQuery == nil {
@@ -373,6 +388,7 @@ func (o *TimeseriesWidgetRequest) HasProfileMetricsQuery() bool {
 func (o *TimeseriesWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetQ() string {
@@ -402,6 +418,7 @@ func (o *TimeseriesWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 	if o == nil || o.Queries == nil {
@@ -429,6 +446,7 @@ func (o *TimeseriesWidgetRequest) HasQueries() bool {
 func (o *TimeseriesWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = v
 }
+
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
@@ -458,6 +476,7 @@ func (o *TimeseriesWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponse
 	o.ResponseFormat = &v
 }
 
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -485,6 +504,7 @@ func (o *TimeseriesWidgetRequest) HasRumQuery() bool {
 func (o *TimeseriesWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
+
 
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetSecurityQuery() LogQueryDefinition {
@@ -514,6 +534,7 @@ func (o *TimeseriesWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *TimeseriesWidgetRequest) GetStyle() WidgetRequestStyle {
 	if o == nil || o.Style == nil {
@@ -541,6 +562,8 @@ func (o *TimeseriesWidgetRequest) HasStyle() bool {
 func (o *TimeseriesWidgetRequest) SetStyle(v WidgetRequestStyle) {
 	o.Style = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
@@ -606,27 +629,28 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
-		AuditQuery          *LogQueryDefinition                 `json:"audit_query,omitempty"`
-		DisplayType         *WidgetDisplayType                  `json:"display_type,omitempty"`
-		EventQuery          *LogQueryDefinition                 `json:"event_query,omitempty"`
-		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
-		Metadata            []TimeseriesWidgetExpressionAlias   `json:"metadata,omitempty"`
-		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
-		OnRightYaxis        *bool                               `json:"on_right_yaxis,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
-		Q                   *string                             `json:"q,omitempty"`
-		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Style               *WidgetRequestStyle                 `json:"style,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+		DisplayType *WidgetDisplayType `json:"display_type,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		Formulas []WidgetFormula `json:"formulas,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		Metadata []TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		OnRightYaxis *bool `json:"on_right_yaxis,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		Style *WidgetRequestStyle `json:"style,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -637,7 +661,7 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.DisplayType; v != nil && !v.IsValid() {
+	if v := all.DisplayType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -645,7 +669,7 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -653,92 +677,92 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.ApmQuery = all.ApmQuery
-	if all.AuditQuery != nil && all.AuditQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.AuditQuery != nil && all.AuditQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.AuditQuery = all.AuditQuery
 	o.DisplayType = all.DisplayType
-	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.LogQuery = all.LogQuery
 	o.Metadata = all.Metadata
-	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.NetworkQuery = all.NetworkQuery
 	o.OnRightYaxis = all.OnRightYaxis
-	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.ProcessQuery = all.ProcessQuery
-	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	o.ResponseFormat = all.ResponseFormat
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.SecurityQuery = all.SecurityQuery
-	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Style = all.Style
 	return nil
 }

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SignalStateUpdateRequest Attributes describing the change of state for a given state.
 type SignalStateUpdateRequest struct {
@@ -20,9 +23,11 @@ type SignalStateUpdateRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSignalStateUpdateRequest instantiates a new SignalStateUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSignalStateUpdateRequestWithDefaults() *SignalStateUpdateRequest {
 	this := SignalStateUpdateRequest{}
 	return &this
 }
-
 // GetArchiveComment returns the ArchiveComment field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetArchiveComment() string {
 	if o == nil || o.ArchiveComment == nil {
@@ -69,6 +73,7 @@ func (o *SignalStateUpdateRequest) HasArchiveComment() bool {
 func (o *SignalStateUpdateRequest) SetArchiveComment(v string) {
 	o.ArchiveComment = &v
 }
+
 
 // GetArchiveReason returns the ArchiveReason field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetArchiveReason() SignalArchiveReason {
@@ -98,6 +103,7 @@ func (o *SignalStateUpdateRequest) SetArchiveReason(v SignalArchiveReason) {
 	o.ArchiveReason = &v
 }
 
+
 // GetState returns the State field value.
 func (o *SignalStateUpdateRequest) GetState() SignalTriageState {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *SignalStateUpdateRequest) GetStateOk() (*SignalTriageState, bool) {
 func (o *SignalStateUpdateRequest) SetState(v SignalTriageState) {
 	o.State = v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetVersion() int64 {
@@ -149,6 +156,8 @@ func (o *SignalStateUpdateRequest) SetVersion(v int64) {
 	o.Version = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SignalStateUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -172,6 +181,7 @@ func (o SignalStateUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -179,10 +189,10 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		State *SignalTriageState `json:"state"`
 	}{}
 	all := struct {
-		ArchiveComment *string              `json:"archiveComment,omitempty"`
-		ArchiveReason  *SignalArchiveReason `json:"archiveReason,omitempty"`
-		State          SignalTriageState    `json:"state"`
-		Version        *int64               `json:"version,omitempty"`
+		ArchiveComment *string `json:"archiveComment,omitempty"`
+		ArchiveReason *SignalArchiveReason `json:"archiveReason,omitempty"`
+		State SignalTriageState `json:"state"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -200,7 +210,7 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ArchiveReason; v != nil && !v.IsValid() {
+	if v := all.ArchiveReason; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

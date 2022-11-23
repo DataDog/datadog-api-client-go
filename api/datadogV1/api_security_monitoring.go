@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,16 +21,16 @@ import (
 type SecurityMonitoringApi datadog.Service
 
 type apiAddSecurityMonitoringSignalToIncidentRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	signalId string
-	body     *AddSignalToIncidentRequest
+	body *AddSignalToIncidentRequest
 }
 
 func (a *SecurityMonitoringApi) buildAddSecurityMonitoringSignalToIncidentRequest(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (apiAddSecurityMonitoringSignalToIncidentRequest, error) {
 	req := apiAddSecurityMonitoringSignalToIncidentRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		signalId: signalId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -48,9 +50,9 @@ func (a *SecurityMonitoringApi) AddSecurityMonitoringSignalToIncident(ctx _conte
 // addSecurityMonitoringSignalToIncidentExecute executes the request.
 func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r apiAddSecurityMonitoringSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue SuccessfulSignalUpdateResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  SuccessfulSignalUpdateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.AddSecurityMonitoringSignalToIncident")
@@ -70,6 +72,8 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r a
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -119,10 +123,11 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r a
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -136,7 +141,7 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r a
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -146,16 +151,16 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(r a
 }
 
 type apiEditSecurityMonitoringSignalAssigneeRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	signalId string
-	body     *SignalAssigneeUpdateRequest
+	body *SignalAssigneeUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
 	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		signalId: signalId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -175,9 +180,9 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _contex
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
 func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue SuccessfulSignalUpdateResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  SuccessfulSignalUpdateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee")
@@ -197,6 +202,8 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -246,10 +253,11 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -263,7 +271,7 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -273,16 +281,16 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 }
 
 type apiEditSecurityMonitoringSignalStateRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	signalId string
-	body     *SignalStateUpdateRequest
+	body *SignalStateUpdateRequest
 }
 
 func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
 	req := apiEditSecurityMonitoringSignalStateRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		signalId: signalId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -302,9 +310,9 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 // editSecurityMonitoringSignalStateExecute executes the request.
 func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue SuccessfulSignalUpdateResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  SuccessfulSignalUpdateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApi.EditSecurityMonitoringSignalState")
@@ -323,6 +331,8 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEd
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -373,10 +383,11 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEd
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -390,7 +401,7 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEd
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

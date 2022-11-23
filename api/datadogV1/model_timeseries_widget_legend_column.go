@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TimeseriesWidgetLegendColumn Legend column.
 type TimeseriesWidgetLegendColumn string
@@ -15,10 +18,10 @@ type TimeseriesWidgetLegendColumn string
 // List of TimeseriesWidgetLegendColumn.
 const (
 	TIMESERIESWIDGETLEGENDCOLUMN_VALUE TimeseriesWidgetLegendColumn = "value"
-	TIMESERIESWIDGETLEGENDCOLUMN_AVG   TimeseriesWidgetLegendColumn = "avg"
-	TIMESERIESWIDGETLEGENDCOLUMN_SUM   TimeseriesWidgetLegendColumn = "sum"
-	TIMESERIESWIDGETLEGENDCOLUMN_MIN   TimeseriesWidgetLegendColumn = "min"
-	TIMESERIESWIDGETLEGENDCOLUMN_MAX   TimeseriesWidgetLegendColumn = "max"
+	TIMESERIESWIDGETLEGENDCOLUMN_AVG TimeseriesWidgetLegendColumn = "avg"
+	TIMESERIESWIDGETLEGENDCOLUMN_SUM TimeseriesWidgetLegendColumn = "sum"
+	TIMESERIESWIDGETLEGENDCOLUMN_MIN TimeseriesWidgetLegendColumn = "min"
+	TIMESERIESWIDGETLEGENDCOLUMN_MAX TimeseriesWidgetLegendColumn = "max"
 )
 
 var allowedTimeseriesWidgetLegendColumnEnumValues = []TimeseriesWidgetLegendColumn{

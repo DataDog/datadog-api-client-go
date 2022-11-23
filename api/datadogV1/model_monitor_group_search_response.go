@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorGroupSearchResponse The response of a monitor group search.
 type MonitorGroupSearchResponse struct {
@@ -17,9 +21,11 @@ type MonitorGroupSearchResponse struct {
 	// Metadata about the response.
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorGroupSearchResponse instantiates a new MonitorGroupSearchResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewMonitorGroupSearchResponseWithDefaults() *MonitorGroupSearchResponse {
 	this := MonitorGroupSearchResponse{}
 	return &this
 }
-
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponse) GetCounts() MonitorGroupSearchResponseCounts {
 	if o == nil || o.Counts == nil {
@@ -65,6 +70,7 @@ func (o *MonitorGroupSearchResponse) HasCounts() bool {
 func (o *MonitorGroupSearchResponse) SetCounts(v MonitorGroupSearchResponseCounts) {
 	o.Counts = &v
 }
+
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponse) GetGroups() []MonitorGroupSearchResult {
@@ -94,6 +100,7 @@ func (o *MonitorGroupSearchResponse) SetGroups(v []MonitorGroupSearchResult) {
 	o.Groups = v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponse) GetMetadata() MonitorSearchResponseMetadata {
 	if o == nil || o.Metadata == nil {
@@ -122,6 +129,8 @@ func (o *MonitorGroupSearchResponse) SetMetadata(v MonitorSearchResponseMetadata
 	o.Metadata = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Counts   *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
-		Groups   []MonitorGroupSearchResult        `json:"groups,omitempty"`
-		Metadata *MonitorSearchResponseMetadata    `json:"metadata,omitempty"`
+		Counts *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
+		Groups []MonitorGroupSearchResult `json:"groups,omitempty"`
+		Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,22 +171,22 @@ func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Counts != nil && all.Counts.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Counts != nil && all.Counts.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Counts = all.Counts
 	o.Groups = all.Groups
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Metadata = all.Metadata
 	return nil
 }

@@ -2,20 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsGlobalVariableParseTestOptionsType Property of the Synthetics Test Response to use for a Synthetics global variable.
 type SyntheticsGlobalVariableParseTestOptionsType string
 
 // List of SyntheticsGlobalVariableParseTestOptionsType.
 const (
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY      SyntheticsGlobalVariableParseTestOptionsType = "http_body"
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER    SyntheticsGlobalVariableParseTestOptionsType = "http_header"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY SyntheticsGlobalVariableParseTestOptionsType = "http_body"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER SyntheticsGlobalVariableParseTestOptionsType = "http_header"
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE SyntheticsGlobalVariableParseTestOptionsType = "local_variable"
 )
 

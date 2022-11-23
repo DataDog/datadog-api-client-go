@@ -2,21 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetCompareTo Timeframe used for the change comparison.
 type WidgetCompareTo string
 
 // List of WidgetCompareTo.
 const (
-	WIDGETCOMPARETO_HOUR_BEFORE  WidgetCompareTo = "hour_before"
-	WIDGETCOMPARETO_DAY_BEFORE   WidgetCompareTo = "day_before"
-	WIDGETCOMPARETO_WEEK_BEFORE  WidgetCompareTo = "week_before"
+	WIDGETCOMPARETO_HOUR_BEFORE WidgetCompareTo = "hour_before"
+	WIDGETCOMPARETO_DAY_BEFORE WidgetCompareTo = "day_before"
+	WIDGETCOMPARETO_WEEK_BEFORE WidgetCompareTo = "week_before"
 	WIDGETCOMPARETO_MONTH_BEFORE WidgetCompareTo = "month_before"
 )
 

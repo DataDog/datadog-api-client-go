@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricTagConfigurationCreateRequest Request object that includes the metric that you would like to configure tags for.
 type MetricTagConfigurationCreateRequest struct {
 	// Object for a single metric to be configure tags on.
 	Data MetricTagConfigurationCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricTagConfigurationCreateRequest instantiates a new MetricTagConfigurationCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewMetricTagConfigurationCreateRequestWithDefaults() *MetricTagConfiguratio
 	this := MetricTagConfigurationCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *MetricTagConfigurationCreateRequest) GetData() MetricTagConfigurationCreateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *MetricTagConfigurationCreateRequest) SetData(v MetricTagConfigurationCr
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagConfigurationCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o MetricTagConfigurationCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
@@ -98,13 +105,13 @@ func (o *MetricTagConfigurationCreateRequest) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

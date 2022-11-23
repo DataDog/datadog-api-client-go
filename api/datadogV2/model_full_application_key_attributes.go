@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // FullApplicationKeyAttributes Attributes of a full application key.
 type FullApplicationKeyAttributes struct {
@@ -21,9 +25,11 @@ type FullApplicationKeyAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFullApplicationKeyAttributes instantiates a new FullApplicationKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewFullApplicationKeyAttributesWithDefaults() *FullApplicationKeyAttributes
 	this := FullApplicationKeyAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FullApplicationKeyAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -69,6 +74,7 @@ func (o *FullApplicationKeyAttributes) HasCreatedAt() bool {
 func (o *FullApplicationKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *FullApplicationKeyAttributes) GetKey() string {
@@ -98,6 +104,7 @@ func (o *FullApplicationKeyAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
+
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *FullApplicationKeyAttributes) GetLast4() string {
 	if o == nil || o.Last4 == nil {
@@ -125,6 +132,7 @@ func (o *FullApplicationKeyAttributes) HasLast4() bool {
 func (o *FullApplicationKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FullApplicationKeyAttributes) GetName() string {
@@ -154,9 +162,10 @@ func (o *FullApplicationKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FullApplicationKeyAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -182,6 +191,8 @@ func (o *FullApplicationKeyAttributes) HasScopes() bool {
 func (o *FullApplicationKeyAttributes) SetScopes(v []string) {
 	o.Scopes = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
@@ -211,15 +222,16 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *string  `json:"created_at,omitempty"`
-		Key       *string  `json:"key,omitempty"`
-		Last4     *string  `json:"last4,omitempty"`
-		Name      *string  `json:"name,omitempty"`
-		Scopes    []string `json:"scopes,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Key *string `json:"key,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Scopes []string `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

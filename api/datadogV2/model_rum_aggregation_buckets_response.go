@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMAggregationBucketsResponse The query results.
 type RUMAggregationBucketsResponse struct {
 	// The list of matching buckets, one item per bucket.
 	Buckets []RUMBucketResponse `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMAggregationBucketsResponse instantiates a new RUMAggregationBucketsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewRUMAggregationBucketsResponseWithDefaults() *RUMAggregationBucketsRespon
 	this := RUMAggregationBucketsResponse{}
 	return &this
 }
-
 // GetBuckets returns the Buckets field value if set, zero value otherwise.
 func (o *RUMAggregationBucketsResponse) GetBuckets() []RUMBucketResponse {
 	if o == nil || o.Buckets == nil {
@@ -62,6 +67,8 @@ func (o *RUMAggregationBucketsResponse) SetBuckets(v []RUMBucketResponse) {
 	o.Buckets = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o RUMAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (err error) {

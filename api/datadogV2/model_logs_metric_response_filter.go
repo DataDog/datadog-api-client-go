@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsMetricResponseFilter The log-based metric filter. Logs matching this filter will be aggregated in this metric.
 type LogsMetricResponseFilter struct {
 	// The search query - following the log search syntax.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricResponseFilter instantiates a new LogsMetricResponseFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewLogsMetricResponseFilterWithDefaults() *LogsMetricResponseFilter {
 	this := LogsMetricResponseFilter{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsMetricResponseFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -62,6 +67,8 @@ func (o *LogsMetricResponseFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricResponseFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o LogsMetricResponseFilter) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricResponseFilter) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateResponse The response object for the logs aggregate API endpoint
 type LogsAggregateResponse struct {
@@ -15,9 +19,11 @@ type LogsAggregateResponse struct {
 	// The metadata associated with a request
 	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAggregateResponse instantiates a new LogsAggregateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewLogsAggregateResponseWithDefaults() *LogsAggregateResponse {
 	this := LogsAggregateResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsAggregateResponse) GetData() LogsAggregateResponseData {
 	if o == nil || o.Data == nil {
@@ -63,6 +68,7 @@ func (o *LogsAggregateResponse) HasData() bool {
 func (o *LogsAggregateResponse) SetData(v LogsAggregateResponseData) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *LogsAggregateResponse) GetMeta() LogsResponseMetadata {
@@ -92,6 +98,8 @@ func (o *LogsAggregateResponse) SetMeta(v LogsResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data *LogsAggregateResponseData `json:"data,omitempty"`
-		Meta *LogsResponseMetadata      `json:"meta,omitempty"`
+		Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -127,21 +136,21 @@ func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

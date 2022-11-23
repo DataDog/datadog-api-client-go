@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,12 +21,12 @@ import (
 type IPRangesApi datadog.Service
 
 type apiGetIPRangesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *IPRangesApi) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
 	req := apiGetIPRangesRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -43,9 +46,9 @@ func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Res
 // getIPRangesExecute executes the request.
 func (a *IPRangesApi) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue IPRanges
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  IPRanges
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.IPRangesApi.GetIPRanges")
@@ -60,6 +63,7 @@ func (a *IPRangesApi) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_n
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -79,10 +83,11 @@ func (a *IPRangesApi) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_n
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -96,7 +101,7 @@ func (a *IPRangesApi) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_n
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

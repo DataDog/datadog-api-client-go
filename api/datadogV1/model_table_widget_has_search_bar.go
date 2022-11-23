@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TableWidgetHasSearchBar Controls the display of the search bar.
 type TableWidgetHasSearchBar string
@@ -15,8 +18,8 @@ type TableWidgetHasSearchBar string
 // List of TableWidgetHasSearchBar.
 const (
 	TABLEWIDGETHASSEARCHBAR_ALWAYS TableWidgetHasSearchBar = "always"
-	TABLEWIDGETHASSEARCHBAR_NEVER  TableWidgetHasSearchBar = "never"
-	TABLEWIDGETHASSEARCHBAR_AUTO   TableWidgetHasSearchBar = "auto"
+	TABLEWIDGETHASSEARCHBAR_NEVER TableWidgetHasSearchBar = "never"
+	TABLEWIDGETHASSEARCHBAR_AUTO TableWidgetHasSearchBar = "auto"
 )
 
 var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{

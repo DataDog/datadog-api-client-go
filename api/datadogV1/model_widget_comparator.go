@@ -2,22 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetComparator Comparator to apply.
 type WidgetComparator string
 
 // List of WidgetComparator.
 const (
-	WIDGETCOMPARATOR_GREATER_THAN             WidgetComparator = ">"
+	WIDGETCOMPARATOR_GREATER_THAN WidgetComparator = ">"
 	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO WidgetComparator = ">="
-	WIDGETCOMPARATOR_LESS_THAN                WidgetComparator = "<"
-	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO    WidgetComparator = "<="
+	WIDGETCOMPARATOR_LESS_THAN WidgetComparator = "<"
+	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO WidgetComparator = "<="
 )
 
 var allowedWidgetComparatorEnumValues = []WidgetComparator{

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppTestsBucketResponse Bucket values.
 type CIAppTestsBucketResponse struct {
@@ -15,9 +19,11 @@ type CIAppTestsBucketResponse struct {
 	// A map of the metric name to value for regular compute, or a list of values for a timeseries.
 	Computes map[string]CIAppAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestsBucketResponse instantiates a new CIAppTestsBucketResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewCIAppTestsBucketResponseWithDefaults() *CIAppTestsBucketResponse {
 	this := CIAppTestsBucketResponse{}
 	return &this
 }
-
 // GetBy returns the By field value if set, zero value otherwise.
 func (o *CIAppTestsBucketResponse) GetBy() map[string]string {
 	if o == nil || o.By == nil {
@@ -63,6 +68,7 @@ func (o *CIAppTestsBucketResponse) HasBy() bool {
 func (o *CIAppTestsBucketResponse) SetBy(v map[string]string) {
 	o.By = v
 }
+
 
 // GetComputes returns the Computes field value if set, zero value otherwise.
 func (o *CIAppTestsBucketResponse) GetComputes() map[string]CIAppAggregateBucketValue {
@@ -92,6 +98,8 @@ func (o *CIAppTestsBucketResponse) SetComputes(v map[string]CIAppAggregateBucket
 	o.Computes = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsBucketResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o CIAppTestsBucketResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestsBucketResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		By       map[string]string                    `json:"by,omitempty"`
+		By map[string]string `json:"by,omitempty"`
 		Computes map[string]CIAppAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

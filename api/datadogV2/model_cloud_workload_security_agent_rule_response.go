@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleResponse Response object that includes an Agent rule.
 type CloudWorkloadSecurityAgentRuleResponse struct {
 	// Object for a single Agent rule.
 	Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleResponse instantiates a new CloudWorkloadSecurityAgentRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewCloudWorkloadSecurityAgentRuleResponseWithDefaults() *CloudWorkloadSecur
 	this := CloudWorkloadSecurityAgentRuleResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleResponse) GetData() CloudWorkloadSecurityAgentRuleData {
 	if o == nil || o.Data == nil {
@@ -62,6 +67,8 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) SetData(v CloudWorkloadSecurity
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

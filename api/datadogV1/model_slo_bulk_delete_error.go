@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOBulkDeleteError Object describing the error.
 type SLOBulkDeleteError struct {
@@ -20,9 +23,11 @@ type SLOBulkDeleteError struct {
 	// or "all" if all thresholds are affected.
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSLOBulkDeleteErrorWithDefaults() *SLOBulkDeleteError {
 	this := SLOBulkDeleteError{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *SLOBulkDeleteError) GetId() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *SLOBulkDeleteError) GetIdOk() (*string, bool) {
 func (o *SLOBulkDeleteError) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetMessage returns the Message field value.
 func (o *SLOBulkDeleteError) GetMessage() string {
@@ -90,6 +95,7 @@ func (o *SLOBulkDeleteError) SetMessage(v string) {
 	o.Message = v
 }
 
+
 // GetTimeframe returns the Timeframe field value.
 func (o *SLOBulkDeleteError) GetTimeframe() SLOErrorTimeframe {
 	if o == nil {
@@ -113,6 +119,8 @@ func (o *SLOBulkDeleteError) SetTimeframe(v SLOErrorTimeframe) {
 	o.Timeframe = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -129,17 +137,18 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id        *string            `json:"id"`
-		Message   *string            `json:"message"`
+		Id *string `json:"id"`
+		Message *string `json:"message"`
 		Timeframe *SLOErrorTimeframe `json:"timeframe"`
 	}{}
 	all := struct {
-		Id        string            `json:"id"`
-		Message   string            `json:"message"`
+		Id string `json:"id"`
+		Message string `json:"message"`
 		Timeframe SLOErrorTimeframe `json:"timeframe"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

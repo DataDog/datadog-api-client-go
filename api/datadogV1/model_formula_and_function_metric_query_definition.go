@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionMetricQueryDefinition A formula and functions metrics query.
 type FormulaAndFunctionMetricQueryDefinition struct {
@@ -20,9 +23,11 @@ type FormulaAndFunctionMetricQueryDefinition struct {
 	// Metrics query definition.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFormulaAndFunctionMetricQueryDefinition instantiates a new FormulaAndFunctionMetricQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewFormulaAndFunctionMetricQueryDefinitionWithDefaults() *FormulaAndFunctio
 	this := FormulaAndFunctionMetricQueryDefinition{}
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
 	if o == nil || o.Aggregator == nil {
@@ -72,6 +76,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) SetAggregator(v FormulaAndFunc
 	o.Aggregator = &v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSource() FormulaAndFunctionMetricDataSource {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSourceOk() (*FormulaAnd
 func (o *FormulaAndFunctionMetricQueryDefinition) SetDataSource(v FormulaAndFunctionMetricDataSource) {
 	o.DataSource = v
 }
+
 
 // GetName returns the Name field value.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string {
@@ -118,6 +124,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetQuery() string {
 	if o == nil {
@@ -141,6 +148,8 @@ func (o *FormulaAndFunctionMetricQueryDefinition) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,19 +169,20 @@ func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		DataSource *FormulaAndFunctionMetricDataSource `json:"data_source"`
-		Name       *string                             `json:"name"`
-		Query      *string                             `json:"query"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
 	}{}
 	all := struct {
 		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-		DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
-		Name       string                               `json:"name"`
-		Query      string                               `json:"query"`
+		DataSource FormulaAndFunctionMetricDataSource `json:"data_source"`
+		Name string `json:"name"`
+		Query string `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -196,7 +206,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregator; v != nil && !v.IsValid() {
+	if v := all.Aggregator; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuthNMappingCreateData Data for creating an AuthN Mapping.
 type AuthNMappingCreateData struct {
@@ -18,9 +21,11 @@ type AuthNMappingCreateData struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingCreateData instantiates a new AuthNMappingCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewAuthNMappingCreateDataWithDefaults() *AuthNMappingCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuthNMappingCreateData) GetAttributes() AuthNMappingCreateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +73,7 @@ func (o *AuthNMappingCreateData) HasAttributes() bool {
 func (o *AuthNMappingCreateData) SetAttributes(v AuthNMappingCreateAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *AuthNMappingCreateData) GetRelationships() AuthNMappingCreateRelationships {
@@ -98,6 +103,7 @@ func (o *AuthNMappingCreateData) SetRelationships(v AuthNMappingCreateRelationsh
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AuthNMappingCreateData) GetType() AuthNMappingsType {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *AuthNMappingCreateData) SetType(v AuthNMappingsType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -141,6 +149,7 @@ func (o AuthNMappingCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -148,9 +157,9 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		Type *AuthNMappingsType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *AuthNMappingCreateAttributes    `json:"attributes,omitempty"`
+		Attributes *AuthNMappingCreateAttributes `json:"attributes,omitempty"`
 		Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType                `json:"type"`
+		Type AuthNMappingsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -176,21 +185,21 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil

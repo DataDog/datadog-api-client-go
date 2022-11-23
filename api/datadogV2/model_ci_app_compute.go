@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CIAppCompute A compute rule to compute metrics or timeseries.
 type CIAppCompute struct {
@@ -21,9 +24,11 @@ type CIAppCompute struct {
 	// The type of compute.
 	Type *CIAppComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppCompute instantiates a new CIAppCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewCIAppComputeWithDefaults() *CIAppCompute {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *CIAppCompute) GetAggregation() CIAppAggregationFunction {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *CIAppCompute) GetAggregationOk() (*CIAppAggregationFunction, bool) {
 func (o *CIAppCompute) SetAggregation(v CIAppAggregationFunction) {
 	o.Aggregation = v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *CIAppCompute) GetInterval() string {
@@ -98,6 +103,7 @@ func (o *CIAppCompute) SetInterval(v string) {
 	o.Interval = &v
 }
 
+
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *CIAppCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -125,6 +131,7 @@ func (o *CIAppCompute) HasMetric() bool {
 func (o *CIAppCompute) SetMetric(v string) {
 	o.Metric = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CIAppCompute) GetType() CIAppComputeType {
@@ -154,6 +161,8 @@ func (o *CIAppCompute) SetType(v CIAppComputeType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -177,6 +186,7 @@ func (o CIAppCompute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -185,9 +195,9 @@ func (o *CIAppCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Aggregation CIAppAggregationFunction `json:"aggregation"`
-		Interval    *string                  `json:"interval,omitempty"`
-		Metric      *string                  `json:"metric,omitempty"`
-		Type        *CIAppComputeType        `json:"type,omitempty"`
+		Interval *string `json:"interval,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Type *CIAppComputeType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -213,7 +223,7 @@ func (o *CIAppCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

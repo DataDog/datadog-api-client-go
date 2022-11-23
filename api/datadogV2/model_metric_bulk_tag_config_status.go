@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricBulkTagConfigStatus The status of a request to bulk configure metric tags.
 // It contains the fields from the original request for reference.
@@ -19,9 +22,11 @@ type MetricBulkTagConfigStatus struct {
 	// The metric bulk configure tags resource.
 	Type MetricBulkConfigureTagsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricBulkTagConfigStatus instantiates a new MetricBulkTagConfigStatus object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewMetricBulkTagConfigStatusWithDefaults() *MetricBulkTagConfigStatus {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigStatus) GetAttributes() MetricBulkTagConfigStatusAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +76,7 @@ func (o *MetricBulkTagConfigStatus) SetAttributes(v MetricBulkTagConfigStatusAtt
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *MetricBulkTagConfigStatus) GetId() string {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *MetricBulkTagConfigStatus) GetIdOk() (*string, bool) {
 func (o *MetricBulkTagConfigStatus) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *MetricBulkTagConfigStatus) GetType() MetricBulkConfigureTagsType {
@@ -118,6 +124,8 @@ func (o *MetricBulkTagConfigStatus) SetType(v MetricBulkConfigureTagsType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricBulkTagConfigStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -136,17 +144,18 @@ func (o MetricBulkTagConfigStatus) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricBulkTagConfigStatus) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                      `json:"id"`
+		Id *string `json:"id"`
 		Type *MetricBulkConfigureTagsType `json:"type"`
 	}{}
 	all := struct {
 		Attributes *MetricBulkTagConfigStatusAttributes `json:"attributes,omitempty"`
-		Id         string                               `json:"id"`
-		Type       MetricBulkConfigureTagsType          `json:"type"`
+		Id string `json:"id"`
+		Type MetricBulkConfigureTagsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -175,13 +184,13 @@ func (o *MetricBulkTagConfigStatus) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleCreatorAttributes The attributes of the user who created the Agent rule.
 type CloudWorkloadSecurityAgentRuleCreatorAttributes struct {
@@ -15,9 +19,11 @@ type CloudWorkloadSecurityAgentRuleCreatorAttributes struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleCreatorAttributes instantiates a new CloudWorkloadSecurityAgentRuleCreatorAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewCloudWorkloadSecurityAgentRuleCreatorAttributesWithDefaults() *CloudWork
 	this := CloudWorkloadSecurityAgentRuleCreatorAttributes{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -63,6 +68,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) HasHandle() bool {
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetName() string {
@@ -92,6 +98,8 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleCreatorAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o CloudWorkloadSecurityAgentRuleCreatorAttributes) MarshalJSON() ([]byte, 
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

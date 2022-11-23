@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionEventQueryDefinitionSearch Search options.
 type FormulaAndFunctionEventQueryDefinitionSearch struct {
 	// Events search string.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFormulaAndFunctionEventQueryDefinitionSearch instantiates a new FormulaAndFunctionEventQueryDefinitionSearch object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewFormulaAndFunctionEventQueryDefinitionSearchWithDefaults() *FormulaAndFu
 	this := FormulaAndFunctionEventQueryDefinitionSearch{}
 	return &this
 }
-
 // GetQuery returns the Query field value.
 func (o *FormulaAndFunctionEventQueryDefinitionSearch) GetQuery() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *FormulaAndFunctionEventQueryDefinitionSearch) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionEventQueryDefinitionSearch) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o FormulaAndFunctionEventQueryDefinitionSearch) MarshalJSON() ([]byte, err
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(bytes []byte) (err error) {

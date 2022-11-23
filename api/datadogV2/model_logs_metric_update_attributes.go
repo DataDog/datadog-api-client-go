@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsMetricUpdateAttributes The log-based metric properties that will be updated.
 type LogsMetricUpdateAttributes struct {
@@ -17,9 +21,11 @@ type LogsMetricUpdateAttributes struct {
 	// The rules for the group by.
 	GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricUpdateAttributes instantiates a new LogsMetricUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewLogsMetricUpdateAttributesWithDefaults() *LogsMetricUpdateAttributes {
 	this := LogsMetricUpdateAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *LogsMetricUpdateAttributes) GetCompute() LogsMetricUpdateCompute {
 	if o == nil || o.Compute == nil {
@@ -65,6 +70,7 @@ func (o *LogsMetricUpdateAttributes) HasCompute() bool {
 func (o *LogsMetricUpdateAttributes) SetCompute(v LogsMetricUpdateCompute) {
 	o.Compute = &v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsMetricUpdateAttributes) GetFilter() LogsMetricFilter {
@@ -94,6 +100,7 @@ func (o *LogsMetricUpdateAttributes) SetFilter(v LogsMetricFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogsMetricUpdateAttributes) GetGroupBy() []LogsMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -122,6 +129,8 @@ func (o *LogsMetricUpdateAttributes) SetGroupBy(v []LogsMetricGroupBy) {
 	o.GroupBy = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Compute *LogsMetricUpdateCompute `json:"compute,omitempty"`
-		Filter  *LogsMetricFilter        `json:"filter,omitempty"`
-		GroupBy []LogsMetricGroupBy      `json:"group_by,omitempty"`
+		Filter *LogsMetricFilter `json:"filter,omitempty"`
+		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,21 +171,21 @@ func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
 	return nil

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricDistinctVolume Object for a single metric's distinct volume.
 type MetricDistinctVolume struct {
@@ -17,9 +21,11 @@ type MetricDistinctVolume struct {
 	// The metric distinct volume type.
 	Type *MetricDistinctVolumeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricDistinctVolume instantiates a new MetricDistinctVolume object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewMetricDistinctVolumeWithDefaults() *MetricDistinctVolume {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricDistinctVolume) GetAttributes() MetricDistinctVolumeAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +74,7 @@ func (o *MetricDistinctVolume) HasAttributes() bool {
 func (o *MetricDistinctVolume) SetAttributes(v MetricDistinctVolumeAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricDistinctVolume) GetId() string {
@@ -98,6 +104,7 @@ func (o *MetricDistinctVolume) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricDistinctVolume) GetType() MetricDistinctVolumeType {
 	if o == nil || o.Type == nil {
@@ -126,6 +133,8 @@ func (o *MetricDistinctVolume) SetType(v MetricDistinctVolumeType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricDistinctVolume) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,13 +157,14 @@ func (o MetricDistinctVolume) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricDistinctVolume) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *MetricDistinctVolumeAttributes `json:"attributes,omitempty"`
-		Id         *string                         `json:"id,omitempty"`
-		Type       *MetricDistinctVolumeType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *MetricDistinctVolumeType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -165,7 +175,7 @@ func (o *MetricDistinctVolume) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -173,13 +183,13 @@ func (o *MetricDistinctVolume) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

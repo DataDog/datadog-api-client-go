@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ProcessSummariesMetaPage Paging attributes.
 type ProcessSummariesMetaPage struct {
@@ -16,9 +20,11 @@ type ProcessSummariesMetaPage struct {
 	// Number of results returned.
 	Size *int32 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewProcessSummariesMetaPage instantiates a new ProcessSummariesMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +42,6 @@ func NewProcessSummariesMetaPageWithDefaults() *ProcessSummariesMetaPage {
 	this := ProcessSummariesMetaPage{}
 	return &this
 }
-
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *ProcessSummariesMetaPage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -64,6 +69,7 @@ func (o *ProcessSummariesMetaPage) HasAfter() bool {
 func (o *ProcessSummariesMetaPage) SetAfter(v string) {
 	o.After = &v
 }
+
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *ProcessSummariesMetaPage) GetSize() int32 {
@@ -93,6 +99,8 @@ func (o *ProcessSummariesMetaPage) SetSize(v int32) {
 	o.Size = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ProcessSummariesMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,12 +120,13 @@ func (o ProcessSummariesMetaPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ProcessSummariesMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		After *string `json:"after,omitempty"`
-		Size  *int32  `json:"size,omitempty"`
+		Size *int32 `json:"size,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

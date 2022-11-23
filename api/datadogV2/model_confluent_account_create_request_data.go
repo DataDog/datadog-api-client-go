@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ConfluentAccountCreateRequestData The data body for adding a Confluent account.
 type ConfluentAccountCreateRequestData struct {
@@ -16,9 +19,11 @@ type ConfluentAccountCreateRequestData struct {
 	// The JSON:API type for this API. Should always be `confluent-cloud-accounts`.
 	Type ConfluentAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewConfluentAccountCreateRequestData instantiates a new ConfluentAccountCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewConfluentAccountCreateRequestDataWithDefaults() *ConfluentAccountCreateR
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ConfluentAccountCreateRequestData) GetAttributes() ConfluentAccountCreateRequestAttributes {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *ConfluentAccountCreateRequestData) GetAttributesOk() (*ConfluentAccount
 func (o *ConfluentAccountCreateRequestData) SetAttributes(v ConfluentAccountCreateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ConfluentAccountCreateRequestData) GetType() ConfluentAccountType {
@@ -87,6 +92,8 @@ func (o *ConfluentAccountCreateRequestData) SetType(v ConfluentAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o ConfluentAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *ConfluentAccountCreateRequestAttributes `json:"attributes"`
-		Type       *ConfluentAccountType                    `json:"type"`
+		Type *ConfluentAccountType `json:"type"`
 	}{}
 	all := struct {
 		Attributes ConfluentAccountCreateRequestAttributes `json:"attributes"`
-		Type       ConfluentAccountType                    `json:"type"`
+		Type ConfluentAccountType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *ConfluentAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

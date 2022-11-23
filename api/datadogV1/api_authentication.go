@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,12 +21,12 @@ import (
 type AuthenticationApi datadog.Service
 
 type apiValidateRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *AuthenticationApi) buildValidateRequest(ctx _context.Context) (apiValidateRequest, error) {
 	req := apiValidateRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -43,9 +46,9 @@ func (a *AuthenticationApi) Validate(ctx _context.Context) (AuthenticationValida
 // validateExecute executes the request.
 func (a *AuthenticationApi) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue AuthenticationValidationResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  AuthenticationValidationResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AuthenticationApi.Validate")
@@ -60,6 +63,7 @@ func (a *AuthenticationApi) validateExecute(r apiValidateRequest) (Authenticatio
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -93,10 +97,11 @@ func (a *AuthenticationApi) validateExecute(r apiValidateRequest) (Authenticatio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -110,7 +115,7 @@ func (a *AuthenticationApi) validateExecute(r apiValidateRequest) (Authenticatio
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

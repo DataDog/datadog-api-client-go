@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // Organization Create, edit, and manage organizations.
 type Organization struct {
@@ -29,9 +33,11 @@ type Organization struct {
 	// Only available for MSP customers. Allows child organizations to be created on a trial plan.
 	Trial *bool `json:"trial,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganization instantiates a new Organization object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +55,6 @@ func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
 	return &this
 }
-
 // GetBilling returns the Billing field value if set, zero value otherwise.
 // Deprecated
 func (o *Organization) GetBilling() OrganizationBilling {
@@ -81,6 +86,7 @@ func (o *Organization) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
 
+
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *Organization) GetCreated() string {
 	if o == nil || o.Created == nil {
@@ -108,6 +114,7 @@ func (o *Organization) HasCreated() bool {
 func (o *Organization) SetCreated(v string) {
 	o.Created = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *Organization) GetDescription() string {
@@ -137,6 +144,7 @@ func (o *Organization) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Organization) GetName() string {
 	if o == nil || o.Name == nil {
@@ -164,6 +172,7 @@ func (o *Organization) HasName() bool {
 func (o *Organization) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *Organization) GetPublicId() string {
@@ -193,6 +202,7 @@ func (o *Organization) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetSettings returns the Settings field value if set, zero value otherwise.
 func (o *Organization) GetSettings() OrganizationSettings {
 	if o == nil || o.Settings == nil {
@@ -220,6 +230,7 @@ func (o *Organization) HasSettings() bool {
 func (o *Organization) SetSettings(v OrganizationSettings) {
 	o.Settings = &v
 }
+
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 // Deprecated
@@ -252,6 +263,7 @@ func (o *Organization) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
+
 // GetTrial returns the Trial field value if set, zero value otherwise.
 func (o *Organization) GetTrial() bool {
 	if o == nil || o.Trial == nil {
@@ -279,6 +291,8 @@ func (o *Organization) HasTrial() bool {
 func (o *Organization) SetTrial(v bool) {
 	o.Trial = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Organization) MarshalJSON() ([]byte, error) {
@@ -317,18 +331,19 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Billing      *OrganizationBilling      `json:"billing,omitempty"`
-		Created      *string                   `json:"created,omitempty"`
-		Description  *string                   `json:"description,omitempty"`
-		Name         *string                   `json:"name,omitempty"`
-		PublicId     *string                   `json:"public_id,omitempty"`
-		Settings     *OrganizationSettings     `json:"settings,omitempty"`
+		Billing *OrganizationBilling `json:"billing,omitempty"`
+		Created *string `json:"created,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Name *string `json:"name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		Settings *OrganizationSettings `json:"settings,omitempty"`
 		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
-		Trial        *bool                     `json:"trial,omitempty"`
+		Trial *bool `json:"trial,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -339,33 +354,33 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Billing = all.Billing
 	o.Created = all.Created
 	o.Description = all.Description
 	o.Name = all.Name
 	o.PublicId = all.PublicId
-	if all.Settings != nil && all.Settings.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Settings != nil && all.Settings.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Settings = all.Settings
-	if all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Subscription = all.Subscription
 	o.Trial = all.Trial
 	return nil

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // APIKeyResponseIncludedItem - An object related to an API key.
 type APIKeyResponseIncludedItem struct {
@@ -56,6 +60,7 @@ func (obj APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.User)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +68,11 @@ func (obj APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *APIKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *APIKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	// all schemas are nil
 	return nil

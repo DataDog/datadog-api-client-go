@@ -2,52 +2,55 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UsageAttributionSort The field to sort by.
 type UsageAttributionSort string
 
 // List of UsageAttributionSort.
 const (
-	USAGEATTRIBUTIONSORT_API_PERCENTAGE                      UsageAttributionSort = "api_percentage"
-	USAGEATTRIBUTIONSORT_SNMP_USAGE                          UsageAttributionSort = "snmp_usage"
-	USAGEATTRIBUTIONSORT_APM_HOST_USAGE                      UsageAttributionSort = "apm_host_usage"
-	USAGEATTRIBUTIONSORT_API_USAGE                           UsageAttributionSort = "api_usage"
-	USAGEATTRIBUTIONSORT_APPSEC_USAGE                        UsageAttributionSort = "appsec_usage"
-	USAGEATTRIBUTIONSORT_APPSEC_PERCENTAGE                   UsageAttributionSort = "appsec_percentage"
-	USAGEATTRIBUTIONSORT_CONTAINER_USAGE                     UsageAttributionSort = "container_usage"
-	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE        UsageAttributionSort = "custom_timeseries_percentage"
-	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE                UsageAttributionSort = "container_percentage"
-	USAGEATTRIBUTIONSORT_APM_HOST_PERCENTAGE                 UsageAttributionSort = "apm_host_percentage"
-	USAGEATTRIBUTIONSORT_NPM_HOST_PERCENTAGE                 UsageAttributionSort = "npm_host_percentage"
-	USAGEATTRIBUTIONSORT_BROWSER_PERCENTAGE                  UsageAttributionSort = "browser_percentage"
-	USAGEATTRIBUTIONSORT_BROWSER_USAGE                       UsageAttributionSort = "browser_usage"
-	USAGEATTRIBUTIONSORT_INFRA_HOST_PERCENTAGE               UsageAttributionSort = "infra_host_percentage"
-	USAGEATTRIBUTIONSORT_SNMP_PERCENTAGE                     UsageAttributionSort = "snmp_percentage"
-	USAGEATTRIBUTIONSORT_NPM_HOST_USAGE                      UsageAttributionSort = "npm_host_usage"
-	USAGEATTRIBUTIONSORT_INFRA_HOST_USAGE                    UsageAttributionSort = "infra_host_usage"
-	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_USAGE             UsageAttributionSort = "custom_timeseries_usage"
-	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_USAGE              UsageAttributionSort = "lambda_functions_usage"
-	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_PERCENTAGE         UsageAttributionSort = "lambda_functions_percentage"
-	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_USAGE            UsageAttributionSort = "lambda_invocations_usage"
-	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_PERCENTAGE       UsageAttributionSort = "lambda_invocations_percentage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_LOGS_USAGE        UsageAttributionSort = "estimated_indexed_logs_usage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_LOGS_PERCENTAGE   UsageAttributionSort = "estimated_indexed_logs_percentage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_LOGS_USAGE       UsageAttributionSort = "estimated_ingested_logs_usage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_LOGS_PERCENTAGE  UsageAttributionSort = "estimated_ingested_logs_percentage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_SPANS_USAGE       UsageAttributionSort = "estimated_indexed_spans_usage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_SPANS_PERCENTAGE  UsageAttributionSort = "estimated_indexed_spans_percentage"
-	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_SPANS_USAGE      UsageAttributionSort = "estimated_ingested_spans_usage"
+	USAGEATTRIBUTIONSORT_API_PERCENTAGE UsageAttributionSort = "api_percentage"
+	USAGEATTRIBUTIONSORT_SNMP_USAGE UsageAttributionSort = "snmp_usage"
+	USAGEATTRIBUTIONSORT_APM_HOST_USAGE UsageAttributionSort = "apm_host_usage"
+	USAGEATTRIBUTIONSORT_API_USAGE UsageAttributionSort = "api_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_USAGE UsageAttributionSort = "appsec_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_PERCENTAGE UsageAttributionSort = "appsec_percentage"
+	USAGEATTRIBUTIONSORT_CONTAINER_USAGE UsageAttributionSort = "container_usage"
+	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE UsageAttributionSort = "custom_timeseries_percentage"
+	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE UsageAttributionSort = "container_percentage"
+	USAGEATTRIBUTIONSORT_APM_HOST_PERCENTAGE UsageAttributionSort = "apm_host_percentage"
+	USAGEATTRIBUTIONSORT_NPM_HOST_PERCENTAGE UsageAttributionSort = "npm_host_percentage"
+	USAGEATTRIBUTIONSORT_BROWSER_PERCENTAGE UsageAttributionSort = "browser_percentage"
+	USAGEATTRIBUTIONSORT_BROWSER_USAGE UsageAttributionSort = "browser_usage"
+	USAGEATTRIBUTIONSORT_INFRA_HOST_PERCENTAGE UsageAttributionSort = "infra_host_percentage"
+	USAGEATTRIBUTIONSORT_SNMP_PERCENTAGE UsageAttributionSort = "snmp_percentage"
+	USAGEATTRIBUTIONSORT_NPM_HOST_USAGE UsageAttributionSort = "npm_host_usage"
+	USAGEATTRIBUTIONSORT_INFRA_HOST_USAGE UsageAttributionSort = "infra_host_usage"
+	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_USAGE UsageAttributionSort = "custom_timeseries_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_USAGE UsageAttributionSort = "lambda_functions_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_FUNCTIONS_PERCENTAGE UsageAttributionSort = "lambda_functions_percentage"
+	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_USAGE UsageAttributionSort = "lambda_invocations_usage"
+	USAGEATTRIBUTIONSORT_LAMBDA_INVOCATIONS_PERCENTAGE UsageAttributionSort = "lambda_invocations_percentage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_LOGS_USAGE UsageAttributionSort = "estimated_indexed_logs_usage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_LOGS_PERCENTAGE UsageAttributionSort = "estimated_indexed_logs_percentage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_LOGS_USAGE UsageAttributionSort = "estimated_ingested_logs_usage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_LOGS_PERCENTAGE UsageAttributionSort = "estimated_ingested_logs_percentage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_SPANS_USAGE UsageAttributionSort = "estimated_indexed_spans_usage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INDEXED_SPANS_PERCENTAGE UsageAttributionSort = "estimated_indexed_spans_percentage"
+	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_SPANS_USAGE UsageAttributionSort = "estimated_ingested_spans_usage"
 	USAGEATTRIBUTIONSORT_ESTIMATED_INGESTED_SPANS_PERCENTAGE UsageAttributionSort = "estimated_ingested_spans_percentage"
-	USAGEATTRIBUTIONSORT_APM_FARGATE_USAGE                   UsageAttributionSort = "apm_fargate_usage"
-	USAGEATTRIBUTIONSORT_APM_FARGATE_PERCENTAGE              UsageAttributionSort = "apm_fargate_percentage"
-	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_USAGE                UsageAttributionSort = "appsec_fargate_usage"
-	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_PERCENTAGE           UsageAttributionSort = "appsec_fargate_percentage"
+	USAGEATTRIBUTIONSORT_APM_FARGATE_USAGE UsageAttributionSort = "apm_fargate_usage"
+	USAGEATTRIBUTIONSORT_APM_FARGATE_PERCENTAGE UsageAttributionSort = "apm_fargate_percentage"
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_USAGE UsageAttributionSort = "appsec_fargate_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_FARGATE_PERCENTAGE UsageAttributionSort = "appsec_fargate_percentage"
 )
 
 var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{

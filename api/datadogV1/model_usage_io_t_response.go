@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageIoTResponse Response containing the IoT usage for each hour for a given organization.
 type UsageIoTResponse struct {
 	// Get hourly usage for IoT.
 	Usage []UsageIoTHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageIoTResponse instantiates a new UsageIoTResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewUsageIoTResponseWithDefaults() *UsageIoTResponse {
 	this := UsageIoTResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageIoTResponse) GetUsage() []UsageIoTHour {
 	if o == nil || o.Usage == nil {
@@ -62,6 +67,8 @@ func (o *UsageIoTResponse) SetUsage(v []UsageIoTHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageIoTResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o UsageIoTResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageIoTResponse) UnmarshalJSON(bytes []byte) (err error) {

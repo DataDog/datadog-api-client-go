@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // NotebooksResponseDataAttributes The attributes of a notebook in get all response.
 type NotebooksResponseDataAttributes struct {
@@ -29,9 +31,11 @@ type NotebooksResponseDataAttributes struct {
 	// Notebook global timeframe.
 	Time *NotebookGlobalTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponseDataAttributes instantiates a new NotebooksResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +58,6 @@ func NewNotebooksResponseDataAttributesWithDefaults() *NotebooksResponseDataAttr
 	this.Status = &status
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetAuthor() NotebookAuthor {
 	if o == nil || o.Author == nil {
@@ -82,6 +85,7 @@ func (o *NotebooksResponseDataAttributes) HasAuthor() bool {
 func (o *NotebooksResponseDataAttributes) SetAuthor(v NotebookAuthor) {
 	o.Author = &v
 }
+
 
 // GetCells returns the Cells field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetCells() []NotebookCellResponse {
@@ -111,6 +115,7 @@ func (o *NotebooksResponseDataAttributes) SetCells(v []NotebookCellResponse) {
 	o.Cells = v
 }
 
+
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -138,6 +143,7 @@ func (o *NotebooksResponseDataAttributes) HasCreated() bool {
 func (o *NotebooksResponseDataAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetMetadata() NotebookMetadata {
@@ -167,6 +173,7 @@ func (o *NotebooksResponseDataAttributes) SetMetadata(v NotebookMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -195,6 +202,7 @@ func (o *NotebooksResponseDataAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *NotebooksResponseDataAttributes) GetName() string {
 	if o == nil {
@@ -217,6 +225,7 @@ func (o *NotebooksResponseDataAttributes) GetNameOk() (*string, bool) {
 func (o *NotebooksResponseDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetStatus() NotebookStatus {
@@ -246,6 +255,7 @@ func (o *NotebooksResponseDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *NotebooksResponseDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil || o.Time == nil {
@@ -273,6 +283,8 @@ func (o *NotebooksResponseDataAttributes) HasTime() bool {
 func (o *NotebooksResponseDataAttributes) SetTime(v NotebookGlobalTime) {
 	o.Time = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
@@ -317,6 +329,7 @@ func (o NotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -324,14 +337,14 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Author   *NotebookAuthor        `json:"author,omitempty"`
-		Cells    []NotebookCellResponse `json:"cells,omitempty"`
-		Created  *time.Time             `json:"created,omitempty"`
-		Metadata *NotebookMetadata      `json:"metadata,omitempty"`
-		Modified *time.Time             `json:"modified,omitempty"`
-		Name     string                 `json:"name"`
-		Status   *NotebookStatus        `json:"status,omitempty"`
-		Time     *NotebookGlobalTime    `json:"time,omitempty"`
+		Author *NotebookAuthor `json:"author,omitempty"`
+		Cells []NotebookCellResponse `json:"cells,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Metadata *NotebookMetadata `json:"metadata,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Name string `json:"name"`
+		Status *NotebookStatus `json:"status,omitempty"`
+		Time *NotebookGlobalTime `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -349,7 +362,7 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -357,23 +370,23 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Author = all.Author
 	o.Cells = all.Cells
 	o.Created = all.Created
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Metadata = all.Metadata
 	o.Modified = all.Modified
 	o.Name = all.Name

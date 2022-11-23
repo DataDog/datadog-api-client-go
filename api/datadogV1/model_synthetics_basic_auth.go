@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb         *SyntheticsBasicAuthWeb
-	SyntheticsBasicAuthSigv4       *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM        *SyntheticsBasicAuthNTLM
-	SyntheticsBasicAuthDigest      *SyntheticsBasicAuthDigest
+	SyntheticsBasicAuthWeb *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
+	SyntheticsBasicAuthNTLM *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthDigest *SyntheticsBasicAuthDigest
 	SyntheticsBasicAuthOauthClient *SyntheticsBasicAuthOauthClient
-	SyntheticsBasicAuthOauthROP    *SyntheticsBasicAuthOauthROP
+	SyntheticsBasicAuthOauthROP *SyntheticsBasicAuthOauthROP
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -176,25 +180,31 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.SyntheticsBasicAuthWeb)
 	}
 
+
 	if obj.SyntheticsBasicAuthSigv4 != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthSigv4)
 	}
+
 
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthNTLM)
 	}
 
+
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthDigest)
 	}
+
 
 	if obj.SyntheticsBasicAuthOauthClient != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthOauthClient)
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthROP != nil {
 		return json.Marshal(&obj.SyntheticsBasicAuthOauthROP)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -203,30 +213,36 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
+func (obj *SyntheticsBasicAuth) GetActualInstance() (interface{}) {
 	if obj.SyntheticsBasicAuthWeb != nil {
 		return obj.SyntheticsBasicAuthWeb
 	}
+
 
 	if obj.SyntheticsBasicAuthSigv4 != nil {
 		return obj.SyntheticsBasicAuthSigv4
 	}
 
+
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return obj.SyntheticsBasicAuthNTLM
 	}
+
 
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return obj.SyntheticsBasicAuthDigest
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthClient != nil {
 		return obj.SyntheticsBasicAuthOauthClient
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthROP != nil {
 		return obj.SyntheticsBasicAuthOauthROP
 	}
+
 
 	// all schemas are nil
 	return nil

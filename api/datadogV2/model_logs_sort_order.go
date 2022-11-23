@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsSortOrder The order to use, ascending or descending
 type LogsSortOrder string
 
 // List of LogsSortOrder.
 const (
-	LOGSSORTORDER_ASCENDING  LogsSortOrder = "asc"
+	LOGSSORTORDER_ASCENDING LogsSortOrder = "asc"
 	LOGSSORTORDER_DESCENDING LogsSortOrder = "desc"
 )
 

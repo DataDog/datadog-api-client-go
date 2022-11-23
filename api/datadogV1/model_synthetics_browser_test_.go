@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserTest Object containing details about a Synthetic browser test.
 type SyntheticsBrowserTest struct {
@@ -35,9 +38,11 @@ type SyntheticsBrowserTest struct {
 	// Type of the Synthetic test, `browser`.
 	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,7 +68,6 @@ func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this.Type = typeVar
 	return &this
 }
-
 // GetConfig returns the Config field value.
 func (o *SyntheticsBrowserTest) GetConfig() SyntheticsBrowserTestConfig {
 	if o == nil {
@@ -86,6 +90,7 @@ func (o *SyntheticsBrowserTest) GetConfigOk() (*SyntheticsBrowserTestConfig, boo
 func (o *SyntheticsBrowserTest) SetConfig(v SyntheticsBrowserTestConfig) {
 	o.Config = v
 }
+
 
 // GetLocations returns the Locations field value.
 func (o *SyntheticsBrowserTest) GetLocations() []string {
@@ -110,6 +115,7 @@ func (o *SyntheticsBrowserTest) SetLocations(v []string) {
 	o.Locations = v
 }
 
+
 // GetMessage returns the Message field value.
 func (o *SyntheticsBrowserTest) GetMessage() string {
 	if o == nil {
@@ -132,6 +138,7 @@ func (o *SyntheticsBrowserTest) GetMessageOk() (*string, bool) {
 func (o *SyntheticsBrowserTest) SetMessage(v string) {
 	o.Message = v
 }
+
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTest) GetMonitorId() int64 {
@@ -161,6 +168,7 @@ func (o *SyntheticsBrowserTest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsBrowserTest) GetName() string {
 	if o == nil {
@@ -184,6 +192,7 @@ func (o *SyntheticsBrowserTest) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetOptions returns the Options field value.
 func (o *SyntheticsBrowserTest) GetOptions() SyntheticsTestOptions {
 	if o == nil {
@@ -206,6 +215,7 @@ func (o *SyntheticsBrowserTest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 func (o *SyntheticsBrowserTest) SetOptions(v SyntheticsTestOptions) {
 	o.Options = v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTest) GetPublicId() string {
@@ -235,6 +245,7 @@ func (o *SyntheticsBrowserTest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTest) GetStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.Status == nil {
@@ -262,6 +273,7 @@ func (o *SyntheticsBrowserTest) HasStatus() bool {
 func (o *SyntheticsBrowserTest) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTest) GetSteps() []SyntheticsStep {
@@ -291,6 +303,7 @@ func (o *SyntheticsBrowserTest) SetSteps(v []SyntheticsStep) {
 	o.Steps = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -319,6 +332,7 @@ func (o *SyntheticsBrowserTest) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsBrowserTest) GetType() SyntheticsBrowserTestType {
 	if o == nil {
@@ -341,6 +355,8 @@ func (o *SyntheticsBrowserTest) GetTypeOk() (*SyntheticsBrowserTestType, bool) {
 func (o *SyntheticsBrowserTest) SetType(v SyntheticsBrowserTestType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
@@ -376,29 +392,30 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Config    *SyntheticsBrowserTestConfig `json:"config"`
-		Locations *[]string                    `json:"locations"`
-		Message   *string                      `json:"message"`
-		Name      *string                      `json:"name"`
-		Options   *SyntheticsTestOptions       `json:"options"`
-		Type      *SyntheticsBrowserTestType   `json:"type"`
+		Config *SyntheticsBrowserTestConfig `json:"config"`
+		Locations *[]string `json:"locations"`
+		Message *string `json:"message"`
+		Name *string `json:"name"`
+		Options *SyntheticsTestOptions `json:"options"`
+		Type *SyntheticsBrowserTestType `json:"type"`
 	}{}
 	all := struct {
-		Config    SyntheticsBrowserTestConfig `json:"config"`
-		Locations []string                    `json:"locations"`
-		Message   string                      `json:"message"`
-		MonitorId *int64                      `json:"monitor_id,omitempty"`
-		Name      string                      `json:"name"`
-		Options   SyntheticsTestOptions       `json:"options"`
-		PublicId  *string                     `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus  `json:"status,omitempty"`
-		Steps     []SyntheticsStep            `json:"steps,omitempty"`
-		Tags      []string                    `json:"tags,omitempty"`
-		Type      SyntheticsBrowserTestType   `json:"type"`
+		Config SyntheticsBrowserTestConfig `json:"config"`
+		Locations []string `json:"locations"`
+		Message string `json:"message"`
+		MonitorId *int64 `json:"monitor_id,omitempty"`
+		Name string `json:"name"`
+		Options SyntheticsTestOptions `json:"options"`
+		PublicId *string `json:"public_id,omitempty"`
+		Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+		Steps []SyntheticsStep `json:"steps,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type SyntheticsBrowserTestType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -431,7 +448,7 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -447,25 +464,25 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Config = all.Config
 	o.Locations = all.Locations
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId
 	o.Name = all.Name
-	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Options = all.Options
 	o.PublicId = all.PublicId
 	o.Status = all.Status

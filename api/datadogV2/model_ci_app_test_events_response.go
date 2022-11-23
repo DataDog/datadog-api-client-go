@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppTestEventsResponse Response object with all test events matching the request and pagination information.
 type CIAppTestEventsResponse struct {
@@ -17,9 +21,11 @@ type CIAppTestEventsResponse struct {
 	// The metadata associated with a request.
 	Meta *CIAppResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestEventsResponse instantiates a new CIAppTestEventsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewCIAppTestEventsResponseWithDefaults() *CIAppTestEventsResponse {
 	this := CIAppTestEventsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CIAppTestEventsResponse) GetData() []CIAppTestEvent {
 	if o == nil || o.Data == nil {
@@ -65,6 +70,7 @@ func (o *CIAppTestEventsResponse) HasData() bool {
 func (o *CIAppTestEventsResponse) SetData(v []CIAppTestEvent) {
 	o.Data = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *CIAppTestEventsResponse) GetLinks() CIAppResponseLinks {
@@ -94,6 +100,7 @@ func (o *CIAppTestEventsResponse) SetLinks(v CIAppResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *CIAppTestEventsResponse) GetMeta() CIAppResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -122,6 +129,8 @@ func (o *CIAppTestEventsResponse) SetMeta(v CIAppResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o CIAppTestEventsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  []CIAppTestEvent       `json:"data,omitempty"`
-		Links *CIAppResponseLinks    `json:"links,omitempty"`
-		Meta  *CIAppResponseMetadata `json:"meta,omitempty"`
+		Data []CIAppTestEvent `json:"data,omitempty"`
+		Links *CIAppResponseLinks `json:"links,omitempty"`
+		Meta *CIAppResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -162,21 +172,21 @@ func (o *CIAppTestEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

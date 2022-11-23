@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // OrganizationListResponse Response with the list of organizations.
 type OrganizationListResponse struct {
 	// Array of organization objects.
 	Orgs []Organization `json:"orgs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationListResponse instantiates a new OrganizationListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewOrganizationListResponseWithDefaults() *OrganizationListResponse {
 	this := OrganizationListResponse{}
 	return &this
 }
-
 // GetOrgs returns the Orgs field value if set, zero value otherwise.
 func (o *OrganizationListResponse) GetOrgs() []Organization {
 	if o == nil || o.Orgs == nil {
@@ -62,6 +67,8 @@ func (o *OrganizationListResponse) SetOrgs(v []Organization) {
 	o.Orgs = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {

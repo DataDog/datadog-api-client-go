@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
@@ -80,9 +84,11 @@ func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.User)
 	}
 
+
 	if obj.Role != nil {
 		return json.Marshal(&obj.Role)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
 
+
 	if obj.Role != nil {
 		return obj.Role
 	}
+
 
 	// all schemas are nil
 	return nil

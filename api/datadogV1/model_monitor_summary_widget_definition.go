@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorSummaryWidgetDefinition The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. Only available on FREE layout dashboards.
 type MonitorSummaryWidgetDefinition struct {
@@ -42,9 +45,11 @@ type MonitorSummaryWidgetDefinition struct {
 	// Type of the monitor summary widget.
 	Type MonitorSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -70,7 +75,6 @@ func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefini
 	this.Type = typeVar
 	return &this
 }
-
 // GetColorPreference returns the ColorPreference field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetColorPreference() WidgetColorPreference {
 	if o == nil || o.ColorPreference == nil {
@@ -98,6 +102,7 @@ func (o *MonitorSummaryWidgetDefinition) HasColorPreference() bool {
 func (o *MonitorSummaryWidgetDefinition) SetColorPreference(v WidgetColorPreference) {
 	o.ColorPreference = &v
 }
+
 
 // GetCount returns the Count field value if set, zero value otherwise.
 // Deprecated
@@ -130,6 +135,7 @@ func (o *MonitorSummaryWidgetDefinition) SetCount(v int64) {
 	o.Count = &v
 }
 
+
 // GetDisplayFormat returns the DisplayFormat field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetDisplayFormat() WidgetMonitorSummaryDisplayFormat {
 	if o == nil || o.DisplayFormat == nil {
@@ -157,6 +163,7 @@ func (o *MonitorSummaryWidgetDefinition) HasDisplayFormat() bool {
 func (o *MonitorSummaryWidgetDefinition) SetDisplayFormat(v WidgetMonitorSummaryDisplayFormat) {
 	o.DisplayFormat = &v
 }
+
 
 // GetHideZeroCounts returns the HideZeroCounts field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetHideZeroCounts() bool {
@@ -186,6 +193,7 @@ func (o *MonitorSummaryWidgetDefinition) SetHideZeroCounts(v bool) {
 	o.HideZeroCounts = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *MonitorSummaryWidgetDefinition) GetQuery() string {
 	if o == nil {
@@ -208,6 +216,7 @@ func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (*string, bool) {
 func (o *MonitorSummaryWidgetDefinition) SetQuery(v string) {
 	o.Query = v
 }
+
 
 // GetShowLastTriggered returns the ShowLastTriggered field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetShowLastTriggered() bool {
@@ -237,6 +246,7 @@ func (o *MonitorSummaryWidgetDefinition) SetShowLastTriggered(v bool) {
 	o.ShowLastTriggered = &v
 }
 
+
 // GetShowPriority returns the ShowPriority field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetShowPriority() bool {
 	if o == nil || o.ShowPriority == nil {
@@ -265,6 +275,7 @@ func (o *MonitorSummaryWidgetDefinition) SetShowPriority(v bool) {
 	o.ShowPriority = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetSort() WidgetMonitorSummarySort {
 	if o == nil || o.Sort == nil {
@@ -292,6 +303,7 @@ func (o *MonitorSummaryWidgetDefinition) HasSort() bool {
 func (o *MonitorSummaryWidgetDefinition) SetSort(v WidgetMonitorSummarySort) {
 	o.Sort = &v
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise.
 // Deprecated
@@ -324,6 +336,7 @@ func (o *MonitorSummaryWidgetDefinition) SetStart(v int64) {
 	o.Start = &v
 }
 
+
 // GetSummaryType returns the SummaryType field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetSummaryType() WidgetSummaryType {
 	if o == nil || o.SummaryType == nil {
@@ -351,6 +364,7 @@ func (o *MonitorSummaryWidgetDefinition) HasSummaryType() bool {
 func (o *MonitorSummaryWidgetDefinition) SetSummaryType(v WidgetSummaryType) {
 	o.SummaryType = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetTitle() string {
@@ -380,6 +394,7 @@ func (o *MonitorSummaryWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -407,6 +422,7 @@ func (o *MonitorSummaryWidgetDefinition) HasTitleAlign() bool {
 func (o *MonitorSummaryWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *MonitorSummaryWidgetDefinition) GetTitleSize() string {
@@ -436,6 +452,7 @@ func (o *MonitorSummaryWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *MonitorSummaryWidgetDefinition) GetType() MonitorSummaryWidgetDefinitionType {
 	if o == nil {
@@ -458,6 +475,8 @@ func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*MonitorSummaryWidgetDefin
 func (o *MonitorSummaryWidgetDefinition) SetType(v MonitorSummaryWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -510,28 +529,29 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string                             `json:"query"`
-		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
+		Query *string `json:"query"`
+		Type *MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"`
-		Count             *int64                             `json:"count,omitempty"`
-		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
-		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"`
-		Query             string                             `json:"query"`
-		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"`
-		ShowPriority      *bool                              `json:"show_priority,omitempty"`
-		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"`
-		Start             *int64                             `json:"start,omitempty"`
-		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"`
-		Title             *string                            `json:"title,omitempty"`
-		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize         *string                            `json:"title_size,omitempty"`
-		Type              MonitorSummaryWidgetDefinitionType `json:"type"`
+		ColorPreference *WidgetColorPreference `json:"color_preference,omitempty"`
+		Count *int64 `json:"count,omitempty"`
+		DisplayFormat *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
+		HideZeroCounts *bool `json:"hide_zero_counts,omitempty"`
+		Query string `json:"query"`
+		ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
+		ShowPriority *bool `json:"show_priority,omitempty"`
+		Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
+		Start *int64 `json:"start,omitempty"`
+		SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -552,7 +572,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ColorPreference; v != nil && !v.IsValid() {
+	if v := all.ColorPreference; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -560,7 +580,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+	if v := all.DisplayFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -568,7 +588,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if v := all.Sort; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -576,7 +596,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.SummaryType; v != nil && !v.IsValid() {
+	if v := all.SummaryType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -584,7 +604,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

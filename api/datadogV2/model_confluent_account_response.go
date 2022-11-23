@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ConfluentAccountResponse The expected response schema when getting a Confluent account.
 type ConfluentAccountResponse struct {
 	// An API key and API secret pair that represents a Confluent account.
 	Data *ConfluentAccountResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewConfluentAccountResponse instantiates a new ConfluentAccountResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewConfluentAccountResponseWithDefaults() *ConfluentAccountResponse {
 	this := ConfluentAccountResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ConfluentAccountResponse) GetData() ConfluentAccountResponseData {
 	if o == nil || o.Data == nil {
@@ -62,6 +67,8 @@ func (o *ConfluentAccountResponse) SetData(v ConfluentAccountResponseData) {
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentAccountResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o ConfluentAccountResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *ConfluentAccountResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

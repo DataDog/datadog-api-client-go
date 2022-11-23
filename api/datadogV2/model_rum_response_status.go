@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMResponseStatus The status of the response.
 type RUMResponseStatus string
 
 // List of RUMResponseStatus.
 const (
-	RUMRESPONSESTATUS_DONE    RUMResponseStatus = "done"
+	RUMRESPONSESTATUS_DONE RUMResponseStatus = "done"
 	RUMRESPONSESTATUS_TIMEOUT RUMResponseStatus = "timeout"
 )
 

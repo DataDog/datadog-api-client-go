@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAPIErrorResponse Response returned by the Logs API when errors occur.
 type LogsAPIErrorResponse struct {
 	// Error returned by the Logs API
 	Error *LogsAPIError `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewLogsAPIErrorResponseWithDefaults() *LogsAPIErrorResponse {
 	this := LogsAPIErrorResponse{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *LogsAPIErrorResponse) GetError() LogsAPIError {
 	if o == nil || o.Error == nil {
@@ -62,6 +67,8 @@ func (o *LogsAPIErrorResponse) SetError(v LogsAPIError) {
 	o.Error = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *LogsAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Error = all.Error
 	return nil
 }

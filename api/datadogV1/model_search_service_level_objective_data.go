@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SearchServiceLevelObjectiveData A service level objective ID and attributes.
 type SearchServiceLevelObjectiveData struct {
@@ -20,9 +24,11 @@ type SearchServiceLevelObjectiveData struct {
 	// The type of the object, must be `slo`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSearchServiceLevelObjectiveData instantiates a new SearchServiceLevelObjectiveData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewSearchServiceLevelObjectiveDataWithDefaults() *SearchServiceLevelObjecti
 	this := SearchServiceLevelObjectiveData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveData) GetAttributes() SearchServiceLevelObjectiveAttributes {
 	if o == nil || o.Attributes == nil {
@@ -68,6 +73,7 @@ func (o *SearchServiceLevelObjectiveData) HasAttributes() bool {
 func (o *SearchServiceLevelObjectiveData) SetAttributes(v SearchServiceLevelObjectiveAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveData) GetId() string {
@@ -97,6 +103,7 @@ func (o *SearchServiceLevelObjectiveData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveData) GetType() string {
 	if o == nil || o.Type == nil {
@@ -125,6 +132,8 @@ func (o *SearchServiceLevelObjectiveData) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchServiceLevelObjectiveData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,13 +156,14 @@ func (o SearchServiceLevelObjectiveData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchServiceLevelObjectiveData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *SearchServiceLevelObjectiveAttributes `json:"attributes,omitempty"`
-		Id         *string                                `json:"id,omitempty"`
-		Type       *string                                `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -164,13 +174,13 @@ func (o *SearchServiceLevelObjectiveData) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

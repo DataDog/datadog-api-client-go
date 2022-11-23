@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageSpecifiedCustomReportsMeta The object containing document metadata.
 type UsageSpecifiedCustomReportsMeta struct {
 	// The object containing page total count for specified ID.
 	Page *UsageSpecifiedCustomReportsPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSpecifiedCustomReportsMeta instantiates a new UsageSpecifiedCustomReportsMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewUsageSpecifiedCustomReportsMetaWithDefaults() *UsageSpecifiedCustomRepor
 	this := UsageSpecifiedCustomReportsMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *UsageSpecifiedCustomReportsMeta) GetPage() UsageSpecifiedCustomReportsPage {
 	if o == nil || o.Page == nil {
@@ -62,6 +67,8 @@ func (o *UsageSpecifiedCustomReportsMeta) SetPage(v UsageSpecifiedCustomReportsP
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSpecifiedCustomReportsMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o UsageSpecifiedCustomReportsMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSpecifiedCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *UsageSpecifiedCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

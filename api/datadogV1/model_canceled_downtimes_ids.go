@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CanceledDowntimesIds Object containing array of IDs of canceled downtimes.
 type CanceledDowntimesIds struct {
 	// ID of downtimes that were canceled.
 	CancelledIds []int64 `json:"cancelled_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCanceledDowntimesIds instantiates a new CanceledDowntimesIds object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewCanceledDowntimesIdsWithDefaults() *CanceledDowntimesIds {
 	this := CanceledDowntimesIds{}
 	return &this
 }
-
 // GetCancelledIds returns the CancelledIds field value if set, zero value otherwise.
 func (o *CanceledDowntimesIds) GetCancelledIds() []int64 {
 	if o == nil || o.CancelledIds == nil {
@@ -62,6 +67,8 @@ func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
 	o.CancelledIds = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {

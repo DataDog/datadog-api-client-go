@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // HourlyUsageAttributionPagination The metadata for the current pagination.
 type HourlyUsageAttributionPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
 	NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHourlyUsageAttributionPagination instantiates a new HourlyUsageAttributionPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +39,6 @@ func NewHourlyUsageAttributionPaginationWithDefaults() *HourlyUsageAttributionPa
 	this := HourlyUsageAttributionPagination{}
 	return &this
 }
-
 // GetNextRecordId returns the NextRecordId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HourlyUsageAttributionPagination) GetNextRecordId() string {
 	if o == nil || o.NextRecordId.Get() == nil {
@@ -49,7 +52,7 @@ func (o *HourlyUsageAttributionPagination) GetNextRecordId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *HourlyUsageAttributionPagination) GetNextRecordIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextRecordId.Get(), o.NextRecordId.IsSet()
@@ -64,7 +67,6 @@ func (o *HourlyUsageAttributionPagination) HasNextRecordId() bool {
 func (o *HourlyUsageAttributionPagination) SetNextRecordId(v string) {
 	o.NextRecordId.Set(&v)
 }
-
 // SetNextRecordIdNil sets the value for NextRecordId to be an explicit nil.
 func (o *HourlyUsageAttributionPagination) SetNextRecordIdNil() {
 	o.NextRecordId.Set(nil)
@@ -74,6 +76,8 @@ func (o *HourlyUsageAttributionPagination) SetNextRecordIdNil() {
 func (o *HourlyUsageAttributionPagination) UnsetNextRecordId() {
 	o.NextRecordId.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
@@ -90,6 +94,7 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {

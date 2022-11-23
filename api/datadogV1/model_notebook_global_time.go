@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebookGlobalTime - Notebook global timeframe.
 type NotebookGlobalTime struct {
@@ -80,9 +84,11 @@ func (obj NotebookGlobalTime) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.NotebookRelativeTime)
 	}
 
+
 	if obj.NotebookAbsoluteTime != nil {
 		return json.Marshal(&obj.NotebookAbsoluteTime)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj NotebookGlobalTime) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *NotebookGlobalTime) GetActualInstance() interface{} {
+func (obj *NotebookGlobalTime) GetActualInstance() (interface{}) {
 	if obj.NotebookRelativeTime != nil {
 		return obj.NotebookRelativeTime
 	}
 
+
 	if obj.NotebookAbsoluteTime != nil {
 		return obj.NotebookAbsoluteTime
 	}
+
 
 	// all schemas are nil
 	return nil

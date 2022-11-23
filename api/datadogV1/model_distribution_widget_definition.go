@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DistributionWidgetDefinition The Distribution visualization is another way of showing metrics
 // aggregated across one or several tags, such as hosts.
@@ -41,9 +44,11 @@ type DistributionWidgetDefinition struct {
 	// Y Axis controls for the distribution widget.
 	Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +70,6 @@ func NewDistributionWidgetDefinitionWithDefaults() *DistributionWidgetDefinition
 	this.Type = typeVar
 	return &this
 }
-
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
 // Deprecated
 func (o *DistributionWidgetDefinition) GetLegendSize() string {
@@ -97,6 +101,7 @@ func (o *DistributionWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 
+
 // GetMarkers returns the Markers field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetMarkers() []WidgetMarker {
 	if o == nil || o.Markers == nil {
@@ -125,6 +130,7 @@ func (o *DistributionWidgetDefinition) SetMarkers(v []WidgetMarker) {
 	o.Markers = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *DistributionWidgetDefinition) GetRequests() []DistributionWidgetRequest {
 	if o == nil {
@@ -147,6 +153,7 @@ func (o *DistributionWidgetDefinition) GetRequestsOk() (*[]DistributionWidgetReq
 func (o *DistributionWidgetDefinition) SetRequests(v []DistributionWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
 // Deprecated
@@ -179,6 +186,7 @@ func (o *DistributionWidgetDefinition) SetShowLegend(v bool) {
 	o.ShowLegend = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -206,6 +214,7 @@ func (o *DistributionWidgetDefinition) HasTime() bool {
 func (o *DistributionWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitle() string {
@@ -235,6 +244,7 @@ func (o *DistributionWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -262,6 +272,7 @@ func (o *DistributionWidgetDefinition) HasTitleAlign() bool {
 func (o *DistributionWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitleSize() string {
@@ -291,6 +302,7 @@ func (o *DistributionWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *DistributionWidgetDefinition) GetType() DistributionWidgetDefinitionType {
 	if o == nil {
@@ -313,6 +325,7 @@ func (o *DistributionWidgetDefinition) GetTypeOk() (*DistributionWidgetDefinitio
 func (o *DistributionWidgetDefinition) SetType(v DistributionWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetXaxis returns the Xaxis field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetXaxis() DistributionWidgetXAxis {
@@ -342,6 +355,7 @@ func (o *DistributionWidgetDefinition) SetXaxis(v DistributionWidgetXAxis) {
 	o.Xaxis = &v
 }
 
+
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetYaxis() DistributionWidgetYAxis {
 	if o == nil || o.Yaxis == nil {
@@ -369,6 +383,8 @@ func (o *DistributionWidgetDefinition) HasYaxis() bool {
 func (o *DistributionWidgetDefinition) SetYaxis(v DistributionWidgetYAxis) {
 	o.Yaxis = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -412,25 +428,26 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]DistributionWidgetRequest      `json:"requests"`
-		Type     *DistributionWidgetDefinitionType `json:"type"`
+		Requests *[]DistributionWidgetRequest `json:"requests"`
+		Type *DistributionWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		LegendSize *string                          `json:"legend_size,omitempty"`
-		Markers    []WidgetMarker                   `json:"markers,omitempty"`
-		Requests   []DistributionWidgetRequest      `json:"requests"`
-		ShowLegend *bool                            `json:"show_legend,omitempty"`
-		Time       *WidgetTime                      `json:"time,omitempty"`
-		Title      *string                          `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                 `json:"title_align,omitempty"`
-		TitleSize  *string                          `json:"title_size,omitempty"`
-		Type       DistributionWidgetDefinitionType `json:"type"`
-		Xaxis      *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
-		Yaxis      *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
+		LegendSize *string `json:"legend_size,omitempty"`
+		Markers []WidgetMarker `json:"markers,omitempty"`
+		Requests []DistributionWidgetRequest `json:"requests"`
+		ShowLegend *bool `json:"show_legend,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type DistributionWidgetDefinitionType `json:"type"`
+		Xaxis *DistributionWidgetXAxis `json:"xaxis,omitempty"`
+		Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -451,7 +468,7 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -471,33 +488,33 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Markers = all.Markers
 	o.Requests = all.Requests
 	o.ShowLegend = all.ShowLegend
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
-	if all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Xaxis = all.Xaxis
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Yaxis = all.Yaxis
 	return nil
 }

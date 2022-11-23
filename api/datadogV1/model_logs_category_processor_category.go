@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsCategoryProcessorCategory Object describing the logs filter.
 type LogsCategoryProcessorCategory struct {
@@ -15,9 +19,11 @@ type LogsCategoryProcessorCategory struct {
 	// Value to assign to the target attribute.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsCategoryProcessorCategory instantiates a new LogsCategoryProcessorCategory object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewLogsCategoryProcessorCategoryWithDefaults() *LogsCategoryProcessorCatego
 	this := LogsCategoryProcessorCategory{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsCategoryProcessorCategory) GetFilter() LogsFilter {
 	if o == nil || o.Filter == nil {
@@ -63,6 +68,7 @@ func (o *LogsCategoryProcessorCategory) HasFilter() bool {
 func (o *LogsCategoryProcessorCategory) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsCategoryProcessorCategory) GetName() string {
@@ -92,6 +98,8 @@ func (o *LogsCategoryProcessorCategory) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Filter *LogsFilter `json:"filter,omitempty"`
-		Name   *string     `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -127,13 +136,13 @@ func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.Name = all.Name
 	return nil

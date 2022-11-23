@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOThreshold SLO thresholds (target and optionally warning) for a single time window.
 type SLOThreshold struct {
@@ -31,9 +34,11 @@ type SLOThreshold struct {
 	// Ignored in create/update requests.
 	WarningDisplay *string `json:"warning_display,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOThreshold instantiates a new SLOThreshold object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewSLOThresholdWithDefaults() *SLOThreshold {
 	this := SLOThreshold{}
 	return &this
 }
-
 // GetTarget returns the Target field value.
 func (o *SLOThreshold) GetTarget() float64 {
 	if o == nil {
@@ -76,6 +80,7 @@ func (o *SLOThreshold) GetTargetOk() (*float64, bool) {
 func (o *SLOThreshold) SetTarget(v float64) {
 	o.Target = v
 }
+
 
 // GetTargetDisplay returns the TargetDisplay field value if set, zero value otherwise.
 func (o *SLOThreshold) GetTargetDisplay() string {
@@ -105,6 +110,7 @@ func (o *SLOThreshold) SetTargetDisplay(v string) {
 	o.TargetDisplay = &v
 }
 
+
 // GetTimeframe returns the Timeframe field value.
 func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *SLOThreshold) GetTimeframeOk() (*SLOTimeframe, bool) {
 func (o *SLOThreshold) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = v
 }
+
 
 // GetWarning returns the Warning field value if set, zero value otherwise.
 func (o *SLOThreshold) GetWarning() float64 {
@@ -156,6 +163,7 @@ func (o *SLOThreshold) SetWarning(v float64) {
 	o.Warning = &v
 }
 
+
 // GetWarningDisplay returns the WarningDisplay field value if set, zero value otherwise.
 func (o *SLOThreshold) GetWarningDisplay() string {
 	if o == nil || o.WarningDisplay == nil {
@@ -184,6 +192,8 @@ func (o *SLOThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -208,19 +218,20 @@ func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Target    *float64      `json:"target"`
+		Target *float64 `json:"target"`
 		Timeframe *SLOTimeframe `json:"timeframe"`
 	}{}
 	all := struct {
-		Target         float64      `json:"target"`
-		TargetDisplay  *string      `json:"target_display,omitempty"`
-		Timeframe      SLOTimeframe `json:"timeframe"`
-		Warning        *float64     `json:"warning,omitempty"`
-		WarningDisplay *string      `json:"warning_display,omitempty"`
+		Target float64 `json:"target"`
+		TargetDisplay *string `json:"target_display,omitempty"`
+		Timeframe SLOTimeframe `json:"timeframe"`
+		Warning *float64 `json:"warning,omitempty"`
+		WarningDisplay *string `json:"warning_display,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

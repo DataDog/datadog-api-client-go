@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserError Error response object for a browser test.
 type SyntheticsBrowserError struct {
@@ -20,9 +23,11 @@ type SyntheticsBrowserError struct {
 	// Error type returned by a browser test.
 	Type SyntheticsBrowserErrorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSyntheticsBrowserErrorWithDefaults() *SyntheticsBrowserError {
 	this := SyntheticsBrowserError{}
 	return &this
 }
-
 // GetDescription returns the Description field value.
 func (o *SyntheticsBrowserError) GetDescription() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SyntheticsBrowserError) SetDescription(v string) {
 	o.Description = v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsBrowserError) GetName() string {
 	if o == nil {
@@ -89,6 +94,7 @@ func (o *SyntheticsBrowserError) GetNameOk() (*string, bool) {
 func (o *SyntheticsBrowserError) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBrowserError) GetStatus() int64 {
@@ -118,6 +124,7 @@ func (o *SyntheticsBrowserError) SetStatus(v int64) {
 	o.Status = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 	if o == nil {
@@ -141,6 +148,8 @@ func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,19 +169,20 @@ func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Description *string                     `json:"description"`
-		Name        *string                     `json:"name"`
-		Type        *SyntheticsBrowserErrorType `json:"type"`
+		Description *string `json:"description"`
+		Name *string `json:"name"`
+		Type *SyntheticsBrowserErrorType `json:"type"`
 	}{}
 	all := struct {
-		Description string                     `json:"description"`
-		Name        string                     `json:"name"`
-		Status      *int64                     `json:"status,omitempty"`
-		Type        SyntheticsBrowserErrorType `json:"type"`
+		Description string `json:"description"`
+		Name string `json:"name"`
+		Status *int64 `json:"status,omitempty"`
+		Type SyntheticsBrowserErrorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

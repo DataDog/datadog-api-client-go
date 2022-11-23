@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type DashboardsApi datadog.Service
 
 type apiCreateDashboardRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *Dashboard
 }
 
 func (a *DashboardsApi) buildCreateDashboardRequest(ctx _context.Context, body Dashboard) (apiCreateDashboardRequest, error) {
 	req := apiCreateDashboardRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -47,9 +49,9 @@ func (a *DashboardsApi) CreateDashboard(ctx _context.Context, body Dashboard) (D
 // createDashboardExecute executes the request.
 func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue Dashboard
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  Dashboard
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.CreateDashboard")
@@ -67,6 +69,8 @@ func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Das
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -117,10 +121,11 @@ func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Das
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -134,7 +139,7 @@ func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Das
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -144,13 +149,13 @@ func (a *DashboardsApi) createDashboardExecute(r apiCreateDashboardRequest) (Das
 }
 
 type apiDeleteDashboardRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	dashboardId string
 }
 
 func (a *DashboardsApi) buildDeleteDashboardRequest(ctx _context.Context, dashboardId string) (apiDeleteDashboardRequest, error) {
 	req := apiDeleteDashboardRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		dashboardId: dashboardId,
 	}
 	return req, nil
@@ -171,9 +176,9 @@ func (a *DashboardsApi) DeleteDashboard(ctx _context.Context, dashboardId string
 // deleteDashboardExecute executes the request.
 func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (DashboardDeleteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardDeleteResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardDeleteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.DeleteDashboard")
@@ -189,6 +194,7 @@ func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (Das
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -236,10 +242,11 @@ func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (Das
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -253,7 +260,7 @@ func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (Das
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -263,13 +270,13 @@ func (a *DashboardsApi) deleteDashboardExecute(r apiDeleteDashboardRequest) (Das
 }
 
 type apiDeleteDashboardsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *DashboardBulkDeleteRequest
 }
 
 func (a *DashboardsApi) buildDeleteDashboardsRequest(ctx _context.Context, body DashboardBulkDeleteRequest) (apiDeleteDashboardsRequest, error) {
 	req := apiDeleteDashboardsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -289,8 +296,8 @@ func (a *DashboardsApi) DeleteDashboards(ctx _context.Context, body DashboardBul
 // deleteDashboardsExecute executes the request.
 func (a *DashboardsApi) deleteDashboardsExecute(r apiDeleteDashboardsRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.DeleteDashboards")
@@ -307,7 +314,9 @@ func (a *DashboardsApi) deleteDashboardsExecute(r apiDeleteDashboardsRequest) (*
 		return nil, datadog.ReportError("body is required and must be specified")
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -358,10 +367,11 @@ func (a *DashboardsApi) deleteDashboardsExecute(r apiDeleteDashboardsRequest) (*
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -376,13 +386,13 @@ func (a *DashboardsApi) deleteDashboardsExecute(r apiDeleteDashboardsRequest) (*
 }
 
 type apiGetDashboardRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	dashboardId string
 }
 
 func (a *DashboardsApi) buildGetDashboardRequest(ctx _context.Context, dashboardId string) (apiGetDashboardRequest, error) {
 	req := apiGetDashboardRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		dashboardId: dashboardId,
 	}
 	return req, nil
@@ -403,9 +413,9 @@ func (a *DashboardsApi) GetDashboard(ctx _context.Context, dashboardId string) (
 // getDashboardExecute executes the request.
 func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue Dashboard
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  Dashboard
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.GetDashboard")
@@ -421,6 +431,7 @@ func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -468,10 +479,11 @@ func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -485,7 +497,7 @@ func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -495,14 +507,14 @@ func (a *DashboardsApi) getDashboardExecute(r apiGetDashboardRequest) (Dashboard
 }
 
 type apiListDashboardsRequest struct {
-	ctx           _context.Context
-	filterShared  *bool
+	ctx        _context.Context
+	filterShared *bool
 	filterDeleted *bool
 }
 
 // ListDashboardsOptionalParameters holds optional parameters for ListDashboards.
 type ListDashboardsOptionalParameters struct {
-	FilterShared  *bool
+	FilterShared *bool
 	FilterDeleted *bool
 }
 
@@ -511,13 +523,11 @@ func NewListDashboardsOptionalParameters() *ListDashboardsOptionalParameters {
 	this := ListDashboardsOptionalParameters{}
 	return &this
 }
-
 // WithFilterShared sets the corresponding parameter name and returns the struct.
 func (r *ListDashboardsOptionalParameters) WithFilterShared(filterShared bool) *ListDashboardsOptionalParameters {
 	r.FilterShared = &filterShared
 	return r
 }
-
 // WithFilterDeleted sets the corresponding parameter name and returns the struct.
 func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool) *ListDashboardsOptionalParameters {
 	r.FilterDeleted = &filterDeleted
@@ -526,7 +536,7 @@ func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool)
 
 func (a *DashboardsApi) buildListDashboardsRequest(ctx _context.Context, o ...ListDashboardsOptionalParameters) (apiListDashboardsRequest, error) {
 	req := apiListDashboardsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -558,9 +568,9 @@ func (a *DashboardsApi) ListDashboards(ctx _context.Context, o ...ListDashboards
 // listDashboardsExecute executes the request.
 func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (DashboardSummary, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardSummary
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardSummary
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.ListDashboards")
@@ -581,6 +591,7 @@ func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (Dashb
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -628,10 +639,11 @@ func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (Dashb
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -645,7 +657,7 @@ func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (Dashb
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -655,13 +667,13 @@ func (a *DashboardsApi) listDashboardsExecute(r apiListDashboardsRequest) (Dashb
 }
 
 type apiRestoreDashboardsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *DashboardRestoreRequest
 }
 
 func (a *DashboardsApi) buildRestoreDashboardsRequest(ctx _context.Context, body DashboardRestoreRequest) (apiRestoreDashboardsRequest, error) {
 	req := apiRestoreDashboardsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -681,8 +693,8 @@ func (a *DashboardsApi) RestoreDashboards(ctx _context.Context, body DashboardRe
 // restoreDashboardsExecute executes the request.
 func (a *DashboardsApi) restoreDashboardsExecute(r apiRestoreDashboardsRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodPatch
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.RestoreDashboards")
@@ -699,7 +711,9 @@ func (a *DashboardsApi) restoreDashboardsExecute(r apiRestoreDashboardsRequest) 
 		return nil, datadog.ReportError("body is required and must be specified")
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -750,10 +764,11 @@ func (a *DashboardsApi) restoreDashboardsExecute(r apiRestoreDashboardsRequest) 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -768,16 +783,16 @@ func (a *DashboardsApi) restoreDashboardsExecute(r apiRestoreDashboardsRequest) 
 }
 
 type apiUpdateDashboardRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	dashboardId string
-	body        *Dashboard
+	body *Dashboard
 }
 
 func (a *DashboardsApi) buildUpdateDashboardRequest(ctx _context.Context, dashboardId string, body Dashboard) (apiUpdateDashboardRequest, error) {
 	req := apiUpdateDashboardRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		dashboardId: dashboardId,
-		body:        &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -797,9 +812,9 @@ func (a *DashboardsApi) UpdateDashboard(ctx _context.Context, dashboardId string
 // updateDashboardExecute executes the request.
 func (a *DashboardsApi) updateDashboardExecute(r apiUpdateDashboardRequest) (Dashboard, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue Dashboard
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  Dashboard
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardsApi.UpdateDashboard")
@@ -818,6 +833,8 @@ func (a *DashboardsApi) updateDashboardExecute(r apiUpdateDashboardRequest) (Das
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -868,10 +885,11 @@ func (a *DashboardsApi) updateDashboardExecute(r apiUpdateDashboardRequest) (Das
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -885,7 +903,7 @@ func (a *DashboardsApi) updateDashboardExecute(r apiUpdateDashboardRequest) (Das
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

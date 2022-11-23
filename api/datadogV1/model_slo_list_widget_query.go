@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOListWidgetQuery Updated SLO List widget.
 type SLOListWidgetQuery struct {
@@ -16,9 +19,11 @@ type SLOListWidgetQuery struct {
 	// Widget query.
 	QueryString string `json:"query_string"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOListWidgetQuery instantiates a new SLOListWidgetQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSLOListWidgetQueryWithDefaults() *SLOListWidgetQuery {
 	this.Limit = &limit
 	return &this
 }
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *SLOListWidgetQuery) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -70,6 +74,7 @@ func (o *SLOListWidgetQuery) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+
 // GetQueryString returns the QueryString field value.
 func (o *SLOListWidgetQuery) GetQueryString() string {
 	if o == nil {
@@ -93,6 +98,8 @@ func (o *SLOListWidgetQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,6 +117,7 @@ func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -117,7 +125,7 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 		QueryString *string `json:"query_string"`
 	}{}
 	all := struct {
-		Limit       *int64 `json:"limit,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
 		QueryString string `json:"query_string"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

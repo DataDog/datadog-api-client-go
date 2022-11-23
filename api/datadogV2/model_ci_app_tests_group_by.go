@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CIAppTestsGroupBy A group-by rule.
 type CIAppTestsGroupBy struct {
@@ -25,9 +28,11 @@ type CIAppTestsGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *CIAppGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestsGroupBy instantiates a new CIAppTestsGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewCIAppTestsGroupByWithDefaults() *CIAppTestsGroupBy {
 	this.Limit = &limit
 	return &this
 }
-
 // GetFacet returns the Facet field value.
 func (o *CIAppTestsGroupBy) GetFacet() string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *CIAppTestsGroupBy) GetFacetOk() (*string, bool) {
 func (o *CIAppTestsGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetHistogram returns the Histogram field value if set, zero value otherwise.
 func (o *CIAppTestsGroupBy) GetHistogram() CIAppGroupByHistogram {
@@ -102,6 +107,7 @@ func (o *CIAppTestsGroupBy) SetHistogram(v CIAppGroupByHistogram) {
 	o.Histogram = &v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *CIAppTestsGroupBy) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -129,6 +135,7 @@ func (o *CIAppTestsGroupBy) HasLimit() bool {
 func (o *CIAppTestsGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetMissing returns the Missing field value if set, zero value otherwise.
 func (o *CIAppTestsGroupBy) GetMissing() CIAppGroupByMissing {
@@ -158,6 +165,7 @@ func (o *CIAppTestsGroupBy) SetMissing(v CIAppGroupByMissing) {
 	o.Missing = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *CIAppTestsGroupBy) GetSort() CIAppAggregateSort {
 	if o == nil || o.Sort == nil {
@@ -186,6 +194,7 @@ func (o *CIAppTestsGroupBy) SetSort(v CIAppAggregateSort) {
 	o.Sort = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *CIAppTestsGroupBy) GetTotal() CIAppGroupByTotal {
 	if o == nil || o.Total == nil {
@@ -213,6 +222,8 @@ func (o *CIAppTestsGroupBy) HasTotal() bool {
 func (o *CIAppTestsGroupBy) SetTotal(v CIAppGroupByTotal) {
 	o.Total = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsGroupBy) MarshalJSON() ([]byte, error) {
@@ -243,6 +254,7 @@ func (o CIAppTestsGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -250,12 +262,12 @@ func (o *CIAppTestsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet     string                 `json:"facet"`
+		Facet string `json:"facet"`
 		Histogram *CIAppGroupByHistogram `json:"histogram,omitempty"`
-		Limit     *int64                 `json:"limit,omitempty"`
-		Missing   *CIAppGroupByMissing   `json:"missing,omitempty"`
-		Sort      *CIAppAggregateSort    `json:"sort,omitempty"`
-		Total     *CIAppGroupByTotal     `json:"total,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Missing *CIAppGroupByMissing `json:"missing,omitempty"`
+		Sort *CIAppAggregateSort `json:"sort,omitempty"`
+		Total *CIAppGroupByTotal `json:"total,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -274,23 +286,23 @@ func (o *CIAppTestsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Facet = all.Facet
-	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Histogram = all.Histogram
 	o.Limit = all.Limit
 	o.Missing = all.Missing
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Sort = all.Sort
 	o.Total = all.Total
 	return nil

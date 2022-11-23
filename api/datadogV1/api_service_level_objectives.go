@@ -2,6 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
@@ -12,7 +13,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -21,13 +21,13 @@ import (
 type ServiceLevelObjectivesApi datadog.Service
 
 type apiCheckCanDeleteSLORequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ids *string
 }
 
 func (a *ServiceLevelObjectivesApi) buildCheckCanDeleteSLORequest(ctx _context.Context, ids string) (apiCheckCanDeleteSLORequest, error) {
 	req := apiCheckCanDeleteSLORequest{
-		ctx: ctx,
+		ctx:        ctx,
 		ids: &ids,
 	}
 	return req, nil
@@ -49,9 +49,9 @@ func (a *ServiceLevelObjectivesApi) CheckCanDeleteSLO(ctx _context.Context, ids 
 // checkCanDeleteSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDeleteSLORequest) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CheckCanDeleteSLOResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CheckCanDeleteSLOResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CheckCanDeleteSLO")
@@ -70,6 +70,7 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDelete
 	localVarQueryParams.Add("ids", datadog.ParameterToString(*r.ids, ""))
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -117,10 +118,11 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDelete
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -129,7 +131,8 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDelete
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
+		if
+		localVarHTTPResponse.StatusCode == 409{
 			var v CheckCanDeleteSLOResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -143,7 +146,7 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDelete
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -153,13 +156,13 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(r apiCheckCanDelete
 }
 
 type apiCreateSLORequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *ServiceLevelObjectiveRequest
 }
 
 func (a *ServiceLevelObjectivesApi) buildCreateSLORequest(ctx _context.Context, body ServiceLevelObjectiveRequest) (apiCreateSLORequest, error) {
 	req := apiCreateSLORequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -180,9 +183,9 @@ func (a *ServiceLevelObjectivesApi) CreateSLO(ctx _context.Context, body Service
 // createSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SLOListResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.CreateSLO")
@@ -200,6 +203,8 @@ func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLO
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -250,10 +255,11 @@ func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLO
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -267,7 +273,7 @@ func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLO
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -277,7 +283,7 @@ func (a *ServiceLevelObjectivesApi) createSLOExecute(r apiCreateSLORequest) (SLO
 }
 
 type apiDeleteSLORequest struct {
-	ctx   _context.Context
+	ctx        _context.Context
 	sloId string
 	force *string
 }
@@ -292,7 +298,6 @@ func NewDeleteSLOOptionalParameters() *DeleteSLOOptionalParameters {
 	this := DeleteSLOOptionalParameters{}
 	return &this
 }
-
 // WithForce sets the corresponding parameter name and returns the struct.
 func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptionalParameters {
 	r.Force = &force
@@ -301,7 +306,7 @@ func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptional
 
 func (a *ServiceLevelObjectivesApi) buildDeleteSLORequest(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (apiDeleteSLORequest, error) {
 	req := apiDeleteSLORequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		sloId: sloId,
 	}
 
@@ -333,9 +338,9 @@ func (a *ServiceLevelObjectivesApi) DeleteSLO(ctx _context.Context, sloId string
 // deleteSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue SLODeleteResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  SLODeleteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLO")
@@ -354,6 +359,7 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLO
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -401,10 +407,11 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLO
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -413,7 +420,8 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLO
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
+		if
+		localVarHTTPResponse.StatusCode == 409{
 			var v SLODeleteResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -427,7 +435,7 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLO
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -437,13 +445,13 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(r apiDeleteSLORequest) (SLO
 }
 
 type apiDeleteSLOTimeframeInBulkRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *map[string][]SLOTimeframe
 }
 
 func (a *ServiceLevelObjectivesApi) buildDeleteSLOTimeframeInBulkRequest(ctx _context.Context, body map[string][]SLOTimeframe) (apiDeleteSLOTimeframeInBulkRequest, error) {
 	req := apiDeleteSLOTimeframeInBulkRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -468,9 +476,9 @@ func (a *ServiceLevelObjectivesApi) DeleteSLOTimeframeInBulk(ctx _context.Contex
 // deleteSLOTimeframeInBulkExecute executes the request.
 func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteSLOTimeframeInBulkRequest) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SLOBulkDeleteResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOBulkDeleteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk")
@@ -488,6 +496,8 @@ func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteS
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -538,10 +548,11 @@ func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteS
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -555,7 +566,7 @@ func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteS
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -565,8 +576,8 @@ func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(r apiDeleteS
 }
 
 type apiGetSLORequest struct {
-	ctx                    _context.Context
-	sloId                  string
+	ctx        _context.Context
+	sloId string
 	withConfiguredAlertIds *bool
 }
 
@@ -580,7 +591,6 @@ func NewGetSLOOptionalParameters() *GetSLOOptionalParameters {
 	this := GetSLOOptionalParameters{}
 	return &this
 }
-
 // WithWithConfiguredAlertIds sets the corresponding parameter name and returns the struct.
 func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAlertIds bool) *GetSLOOptionalParameters {
 	r.WithConfiguredAlertIds = &withConfiguredAlertIds
@@ -589,7 +599,7 @@ func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAler
 
 func (a *ServiceLevelObjectivesApi) buildGetSLORequest(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (apiGetSLORequest, error) {
 	req := apiGetSLORequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		sloId: sloId,
 	}
 
@@ -618,9 +628,9 @@ func (a *ServiceLevelObjectivesApi) GetSLO(ctx _context.Context, sloId string, o
 // getSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLOResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SLOResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLO")
@@ -639,6 +649,7 @@ func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLORespon
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -686,10 +697,11 @@ func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLORespon
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -703,7 +715,7 @@ func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLORespon
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -713,13 +725,13 @@ func (a *ServiceLevelObjectivesApi) getSLOExecute(r apiGetSLORequest) (SLORespon
 }
 
 type apiGetSLOCorrectionsRequest struct {
-	ctx   _context.Context
+	ctx        _context.Context
 	sloId string
 }
 
 func (a *ServiceLevelObjectivesApi) buildGetSLOCorrectionsRequest(ctx _context.Context, sloId string) (apiGetSLOCorrectionsRequest, error) {
 	req := apiGetSLOCorrectionsRequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		sloId: sloId,
 	}
 	return req, nil
@@ -740,9 +752,9 @@ func (a *ServiceLevelObjectivesApi) GetSLOCorrections(ctx _context.Context, sloI
 // getSLOCorrectionsExecute executes the request.
 func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrectionsRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SLOCorrectionListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOCorrectionListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOCorrections")
@@ -758,6 +770,7 @@ func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrecti
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -805,10 +818,11 @@ func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrecti
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -822,7 +836,7 @@ func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrecti
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -832,17 +846,17 @@ func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(r apiGetSLOCorrecti
 }
 
 type apiGetSLOHistoryRequest struct {
-	ctx             _context.Context
-	sloId           string
-	fromTs          *int64
-	toTs            *int64
-	target          *float64
+	ctx        _context.Context
+	sloId string
+	fromTs *int64
+	toTs *int64
+	target *float64
 	applyCorrection *bool
 }
 
 // GetSLOHistoryOptionalParameters holds optional parameters for GetSLOHistory.
 type GetSLOHistoryOptionalParameters struct {
-	Target          *float64
+	Target *float64
 	ApplyCorrection *bool
 }
 
@@ -851,13 +865,11 @@ func NewGetSLOHistoryOptionalParameters() *GetSLOHistoryOptionalParameters {
 	this := GetSLOHistoryOptionalParameters{}
 	return &this
 }
-
 // WithTarget sets the corresponding parameter name and returns the struct.
 func (r *GetSLOHistoryOptionalParameters) WithTarget(target float64) *GetSLOHistoryOptionalParameters {
 	r.Target = &target
 	return r
 }
-
 // WithApplyCorrection sets the corresponding parameter name and returns the struct.
 func (r *GetSLOHistoryOptionalParameters) WithApplyCorrection(applyCorrection bool) *GetSLOHistoryOptionalParameters {
 	r.ApplyCorrection = &applyCorrection
@@ -866,10 +878,10 @@ func (r *GetSLOHistoryOptionalParameters) WithApplyCorrection(applyCorrection bo
 
 func (a *ServiceLevelObjectivesApi) buildGetSLOHistoryRequest(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (apiGetSLOHistoryRequest, error) {
 	req := apiGetSLOHistoryRequest{
-		ctx:    ctx,
-		sloId:  sloId,
+		ctx:        ctx,
+		sloId: sloId,
 		fromTs: &fromTs,
-		toTs:   &toTs,
+		toTs: &toTs,
 	}
 
 	if len(o) > 1 {
@@ -905,9 +917,9 @@ func (a *ServiceLevelObjectivesApi) GetSLOHistory(ctx _context.Context, sloId st
 // getSLOHistoryExecute executes the request.
 func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryRequest) (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SLOHistoryResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOHistoryResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.GetSLOHistory")
@@ -937,6 +949,7 @@ func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryReque
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -984,10 +997,11 @@ func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryReque
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1001,7 +1015,7 @@ func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryReque
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1011,23 +1025,23 @@ func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(r apiGetSLOHistoryReque
 }
 
 type apiListSLOsRequest struct {
-	ctx          _context.Context
-	ids          *string
-	query        *string
-	tagsQuery    *string
+	ctx        _context.Context
+	ids *string
+	query *string
+	tagsQuery *string
 	metricsQuery *string
-	limit        *int64
-	offset       *int64
+	limit *int64
+	offset *int64
 }
 
 // ListSLOsOptionalParameters holds optional parameters for ListSLOs.
 type ListSLOsOptionalParameters struct {
-	Ids          *string
-	Query        *string
-	TagsQuery    *string
+	Ids *string
+	Query *string
+	TagsQuery *string
 	MetricsQuery *string
-	Limit        *int64
-	Offset       *int64
+	Limit *int64
+	Offset *int64
 }
 
 // NewListSLOsOptionalParameters creates an empty struct for parameters.
@@ -1035,37 +1049,31 @@ func NewListSLOsOptionalParameters() *ListSLOsOptionalParameters {
 	this := ListSLOsOptionalParameters{}
 	return &this
 }
-
 // WithIds sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithIds(ids string) *ListSLOsOptionalParameters {
 	r.Ids = &ids
 	return r
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithQuery(query string) *ListSLOsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithTagsQuery sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithTagsQuery(tagsQuery string) *ListSLOsOptionalParameters {
 	r.TagsQuery = &tagsQuery
 	return r
 }
-
 // WithMetricsQuery sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithMetricsQuery(metricsQuery string) *ListSLOsOptionalParameters {
 	r.MetricsQuery = &metricsQuery
 	return r
 }
-
 // WithLimit sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithLimit(limit int64) *ListSLOsOptionalParameters {
 	r.Limit = &limit
 	return r
 }
-
 // WithOffset sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalParameters {
 	r.Offset = &offset
@@ -1074,7 +1082,7 @@ func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalP
 
 func (a *ServiceLevelObjectivesApi) buildListSLOsRequest(ctx _context.Context, o ...ListSLOsOptionalParameters) (apiListSLOsRequest, error) {
 	req := apiListSLOsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -1107,9 +1115,9 @@ func (a *ServiceLevelObjectivesApi) ListSLOs(ctx _context.Context, o ...ListSLOs
 // listSLOsExecute executes the request.
 func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SLOListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.ListSLOs")
@@ -1142,6 +1150,7 @@ func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOLi
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1189,10 +1198,11 @@ func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOLi
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1206,7 +1216,7 @@ func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOLi
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1216,18 +1226,18 @@ func (a *ServiceLevelObjectivesApi) listSLOsExecute(r apiListSLOsRequest) (SLOLi
 }
 
 type apiSearchSLORequest struct {
-	ctx           _context.Context
-	query         *string
-	pageSize      *int64
-	pageNumber    *int64
+	ctx        _context.Context
+	query *string
+	pageSize *int64
+	pageNumber *int64
 	includeFacets *bool
 }
 
 // SearchSLOOptionalParameters holds optional parameters for SearchSLO.
 type SearchSLOOptionalParameters struct {
-	Query         *string
-	PageSize      *int64
-	PageNumber    *int64
+	Query *string
+	PageSize *int64
+	PageNumber *int64
 	IncludeFacets *bool
 }
 
@@ -1236,25 +1246,21 @@ func NewSearchSLOOptionalParameters() *SearchSLOOptionalParameters {
 	this := SearchSLOOptionalParameters{}
 	return &this
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *SearchSLOOptionalParameters) WithQuery(query string) *SearchSLOOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *SearchSLOOptionalParameters) WithPageSize(pageSize int64) *SearchSLOOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *SearchSLOOptionalParameters) WithPageNumber(pageNumber int64) *SearchSLOOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
-
 // WithIncludeFacets sets the corresponding parameter name and returns the struct.
 func (r *SearchSLOOptionalParameters) WithIncludeFacets(includeFacets bool) *SearchSLOOptionalParameters {
 	r.IncludeFacets = &includeFacets
@@ -1263,7 +1269,7 @@ func (r *SearchSLOOptionalParameters) WithIncludeFacets(includeFacets bool) *Sea
 
 func (a *ServiceLevelObjectivesApi) buildSearchSLORequest(ctx _context.Context, o ...SearchSLOOptionalParameters) (apiSearchSLORequest, error) {
 	req := apiSearchSLORequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -1294,16 +1300,16 @@ func (a *ServiceLevelObjectivesApi) SearchSLO(ctx _context.Context, o ...SearchS
 // searchSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (SearchSLOResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SearchSLOResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SearchSLOResponse
 	)
-
+	
 	operationId := "v1.SearchSLO"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.SearchSLO")
@@ -1330,6 +1336,7 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (Sea
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1377,10 +1384,11 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (Sea
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1394,7 +1402,7 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (Sea
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1404,16 +1412,16 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(r apiSearchSLORequest) (Sea
 }
 
 type apiUpdateSLORequest struct {
-	ctx   _context.Context
+	ctx        _context.Context
 	sloId string
-	body  *ServiceLevelObjective
+	body *ServiceLevelObjective
 }
 
 func (a *ServiceLevelObjectivesApi) buildUpdateSLORequest(ctx _context.Context, sloId string, body ServiceLevelObjective) (apiUpdateSLORequest, error) {
 	req := apiUpdateSLORequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		sloId: sloId,
-		body:  &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -1433,9 +1441,9 @@ func (a *ServiceLevelObjectivesApi) UpdateSLO(ctx _context.Context, sloId string
 // updateSLOExecute executes the request.
 func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue SLOListResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  SLOListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceLevelObjectivesApi.UpdateSLO")
@@ -1454,6 +1462,8 @@ func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLO
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -1504,10 +1514,11 @@ func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLO
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1521,7 +1532,7 @@ func (a *ServiceLevelObjectivesApi) updateSLOExecute(r apiUpdateSLORequest) (SLO
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

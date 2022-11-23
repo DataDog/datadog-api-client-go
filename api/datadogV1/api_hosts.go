@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,7 +21,7 @@ import (
 type HostsApi datadog.Service
 
 type apiGetHostTotalsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	from *int64
 }
 
@@ -33,7 +35,6 @@ func NewGetHostTotalsOptionalParameters() *GetHostTotalsOptionalParameters {
 	this := GetHostTotalsOptionalParameters{}
 	return &this
 }
-
 // WithFrom sets the corresponding parameter name and returns the struct.
 func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOptionalParameters {
 	r.From = &from
@@ -42,7 +43,7 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 
 func (a *HostsApi) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
 	req := apiGetHostTotalsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -71,9 +72,9 @@ func (a *HostsApi) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptiona
 // getHostTotalsExecute executes the request.
 func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue HostTotals
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTotals
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.GetHostTotals")
@@ -91,6 +92,7 @@ func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, 
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -138,10 +140,11 @@ func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -155,7 +158,7 @@ func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -165,27 +168,27 @@ func (a *HostsApi) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, 
 }
 
 type apiListHostsRequest struct {
-	ctx                   _context.Context
-	filter                *string
-	sortField             *string
-	sortDir               *string
-	start                 *int64
-	count                 *int64
-	from                  *int64
+	ctx        _context.Context
+	filter *string
+	sortField *string
+	sortDir *string
+	start *int64
+	count *int64
+	from *int64
 	includeMutedHostsData *bool
-	includeHostsMetadata  *bool
+	includeHostsMetadata *bool
 }
 
 // ListHostsOptionalParameters holds optional parameters for ListHosts.
 type ListHostsOptionalParameters struct {
-	Filter                *string
-	SortField             *string
-	SortDir               *string
-	Start                 *int64
-	Count                 *int64
-	From                  *int64
+	Filter *string
+	SortField *string
+	SortDir *string
+	Start *int64
+	Count *int64
+	From *int64
 	IncludeMutedHostsData *bool
-	IncludeHostsMetadata  *bool
+	IncludeHostsMetadata *bool
 }
 
 // NewListHostsOptionalParameters creates an empty struct for parameters.
@@ -193,49 +196,41 @@ func NewListHostsOptionalParameters() *ListHostsOptionalParameters {
 	this := ListHostsOptionalParameters{}
 	return &this
 }
-
 // WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithFilter(filter string) *ListHostsOptionalParameters {
 	r.Filter = &filter
 	return r
 }
-
 // WithSortField sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithSortField(sortField string) *ListHostsOptionalParameters {
 	r.SortField = &sortField
 	return r
 }
-
 // WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithSortDir(sortDir string) *ListHostsOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
-
 // WithStart sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithStart(start int64) *ListHostsOptionalParameters {
 	r.Start = &start
 	return r
 }
-
 // WithCount sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithCount(count int64) *ListHostsOptionalParameters {
 	r.Count = &count
 	return r
 }
-
 // WithFrom sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithFrom(from int64) *ListHostsOptionalParameters {
 	r.From = &from
 	return r
 }
-
 // WithIncludeMutedHostsData sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithIncludeMutedHostsData(includeMutedHostsData bool) *ListHostsOptionalParameters {
 	r.IncludeMutedHostsData = &includeMutedHostsData
 	return r
 }
-
 // WithIncludeHostsMetadata sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetadata bool) *ListHostsOptionalParameters {
 	r.IncludeHostsMetadata = &includeHostsMetadata
@@ -244,7 +239,7 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 
 func (a *HostsApi) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
 	req := apiListHostsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -282,9 +277,9 @@ func (a *HostsApi) ListHosts(ctx _context.Context, o ...ListHostsOptionalParamet
 // listHostsExecute executes the request.
 func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue HostListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  HostListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.ListHosts")
@@ -323,6 +318,7 @@ func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -370,10 +366,11 @@ func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -387,7 +384,7 @@ func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -397,16 +394,16 @@ func (a *HostsApi) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_
 }
 
 type apiMuteHostRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
-	body     *HostMuteSettings
+	body *HostMuteSettings
 }
 
 func (a *HostsApi) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
 	req := apiMuteHostRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -426,9 +423,9 @@ func (a *HostsApi) MuteHost(ctx _context.Context, hostName string, body HostMute
 // muteHostExecute executes the request.
 func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue HostMuteResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  HostMuteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.MuteHost")
@@ -447,6 +444,8 @@ func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_ne
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -497,10 +496,11 @@ func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_ne
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -514,7 +514,7 @@ func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_ne
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -524,13 +524,13 @@ func (a *HostsApi) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_ne
 }
 
 type apiUnmuteHostRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
 }
 
 func (a *HostsApi) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
 	req := apiUnmuteHostRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
 	}
 	return req, nil
@@ -551,9 +551,9 @@ func (a *HostsApi) UnmuteHost(ctx _context.Context, hostName string) (HostMuteRe
 // unmuteHostExecute executes the request.
 func (a *HostsApi) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue HostMuteResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  HostMuteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApi.UnmuteHost")
@@ -569,6 +569,7 @@ func (a *HostsApi) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -616,10 +617,11 @@ func (a *HostsApi) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -633,7 +635,7 @@ func (a *HostsApi) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsGrokParserRules Set of rules for the grok parser.
 type LogsGrokParserRules struct {
@@ -16,9 +19,11 @@ type LogsGrokParserRules struct {
 	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsGrokParserRules instantiates a new LogsGrokParserRules object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewLogsGrokParserRulesWithDefaults() *LogsGrokParserRules {
 	this.SupportRules = &supportRules
 	return &this
 }
-
 // GetMatchRules returns the MatchRules field value.
 func (o *LogsGrokParserRules) GetMatchRules() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *LogsGrokParserRules) GetMatchRulesOk() (*string, bool) {
 func (o *LogsGrokParserRules) SetMatchRules(v string) {
 	o.MatchRules = v
 }
+
 
 // GetSupportRules returns the SupportRules field value if set, zero value otherwise.
 func (o *LogsGrokParserRules) GetSupportRules() string {
@@ -93,6 +98,8 @@ func (o *LogsGrokParserRules) SetSupportRules(v string) {
 	o.SupportRules = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,6 +117,7 @@ func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -117,7 +125,7 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		MatchRules *string `json:"match_rules"`
 	}{}
 	all := struct {
-		MatchRules   string  `json:"match_rules"`
+		MatchRules string `json:"match_rules"`
 		SupportRules *string `json:"support_rules,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

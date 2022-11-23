@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToIncidentIntegrationMetadataData A relationship reference for an integration metadata object.
 type RelationshipToIncidentIntegrationMetadataData struct {
@@ -16,9 +19,11 @@ type RelationshipToIncidentIntegrationMetadataData struct {
 	// Integration metadata resource type.
 	Type IncidentIntegrationMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToIncidentIntegrationMetadataData instantiates a new RelationshipToIncidentIntegrationMetadataData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewRelationshipToIncidentIntegrationMetadataDataWithDefaults() *Relationshi
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *RelationshipToIncidentIntegrationMetadataData) GetId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *RelationshipToIncidentIntegrationMetadataData) GetIdOk() (*string, bool
 func (o *RelationshipToIncidentIntegrationMetadataData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RelationshipToIncidentIntegrationMetadataData) GetType() IncidentIntegrationMetadataType {
@@ -87,6 +92,8 @@ func (o *RelationshipToIncidentIntegrationMetadataData) SetType(v IncidentIntegr
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentIntegrationMetadataData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,15 +109,16 @@ func (o RelationshipToIncidentIntegrationMetadataData) MarshalJSON() ([]byte, er
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                          `json:"id"`
+		Id *string `json:"id"`
 		Type *IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	all := struct {
-		Id   string                          `json:"id"`
+		Id string `json:"id"`
 		Type IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

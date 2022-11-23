@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // EventsListResponse The response object with all events matching the request and pagination information.
 type EventsListResponse struct {
@@ -17,9 +21,11 @@ type EventsListResponse struct {
 	// The metadata associated with a request.
 	Meta *EventsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventsListResponse instantiates a new EventsListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewEventsListResponseWithDefaults() *EventsListResponse {
 	this := EventsListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *EventsListResponse) GetData() []EventResponse {
 	if o == nil || o.Data == nil {
@@ -65,6 +70,7 @@ func (o *EventsListResponse) HasData() bool {
 func (o *EventsListResponse) SetData(v []EventResponse) {
 	o.Data = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *EventsListResponse) GetLinks() EventsListResponseLinks {
@@ -94,6 +100,7 @@ func (o *EventsListResponse) SetLinks(v EventsListResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *EventsListResponse) GetMeta() EventsResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -122,6 +129,8 @@ func (o *EventsListResponse) SetMeta(v EventsResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o EventsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  []EventResponse          `json:"data,omitempty"`
+		Data []EventResponse `json:"data,omitempty"`
 		Links *EventsListResponseLinks `json:"links,omitempty"`
-		Meta  *EventsResponseMetadata  `json:"meta,omitempty"`
+		Meta *EventsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -162,21 +172,21 @@ func (o *EventsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

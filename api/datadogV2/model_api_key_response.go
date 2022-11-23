@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // APIKeyResponse Response for retrieving an API key.
 type APIKeyResponse struct {
@@ -15,9 +19,11 @@ type APIKeyResponse struct {
 	// Array of objects related to the API key.
 	Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAPIKeyResponse instantiates a new APIKeyResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAPIKeyResponseWithDefaults() *APIKeyResponse {
 	this := APIKeyResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *APIKeyResponse) GetData() FullAPIKey {
 	if o == nil || o.Data == nil {
@@ -63,6 +68,7 @@ func (o *APIKeyResponse) HasData() bool {
 func (o *APIKeyResponse) SetData(v FullAPIKey) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *APIKeyResponse) GetIncluded() []APIKeyResponseIncludedItem {
@@ -92,6 +98,8 @@ func (o *APIKeyResponse) SetIncluded(v []APIKeyResponseIncludedItem) {
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *APIKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *FullAPIKey                  `json:"data,omitempty"`
+		Data *FullAPIKey `json:"data,omitempty"`
 		Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -127,13 +136,13 @@ func (o *APIKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

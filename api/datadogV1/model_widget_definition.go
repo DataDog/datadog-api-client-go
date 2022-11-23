@@ -2,45 +2,49 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 type WidgetDefinition struct {
-	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition
-	AlertValueWidgetDefinition     *AlertValueWidgetDefinition
-	ChangeWidgetDefinition         *ChangeWidgetDefinition
-	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition
-	DistributionWidgetDefinition   *DistributionWidgetDefinition
-	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
-	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
-	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
-	GeomapWidgetDefinition         *GeomapWidgetDefinition
-	GroupWidgetDefinition          *GroupWidgetDefinition
-	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
-	HostMapWidgetDefinition        *HostMapWidgetDefinition
-	IFrameWidgetDefinition         *IFrameWidgetDefinition
-	ImageWidgetDefinition          *ImageWidgetDefinition
-	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
+	AlertGraphWidgetDefinition *AlertGraphWidgetDefinition
+	AlertValueWidgetDefinition *AlertValueWidgetDefinition
+	ChangeWidgetDefinition *ChangeWidgetDefinition
+	CheckStatusWidgetDefinition *CheckStatusWidgetDefinition
+	DistributionWidgetDefinition *DistributionWidgetDefinition
+	EventStreamWidgetDefinition *EventStreamWidgetDefinition
+	EventTimelineWidgetDefinition *EventTimelineWidgetDefinition
+	FreeTextWidgetDefinition *FreeTextWidgetDefinition
+	GeomapWidgetDefinition *GeomapWidgetDefinition
+	GroupWidgetDefinition *GroupWidgetDefinition
+	HeatMapWidgetDefinition *HeatMapWidgetDefinition
+	HostMapWidgetDefinition *HostMapWidgetDefinition
+	IFrameWidgetDefinition *IFrameWidgetDefinition
+	ImageWidgetDefinition *ImageWidgetDefinition
+	LogStreamWidgetDefinition *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
-	NoteWidgetDefinition           *NoteWidgetDefinition
-	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
-	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
-	SLOWidgetDefinition            *SLOWidgetDefinition
-	SLOListWidgetDefinition        *SLOListWidgetDefinition
-	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
+	NoteWidgetDefinition *NoteWidgetDefinition
+	QueryValueWidgetDefinition *QueryValueWidgetDefinition
+	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition
+	SLOWidgetDefinition *SLOWidgetDefinition
+	SLOListWidgetDefinition *SLOListWidgetDefinition
+	ServiceMapWidgetDefinition *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
-	SunburstWidgetDefinition       *SunburstWidgetDefinition
-	TableWidgetDefinition          *TableWidgetDefinition
-	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition        *ToplistWidgetDefinition
-	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
-	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
-	FunnelWidgetDefinition         *FunnelWidgetDefinition
-	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition
+	SunburstWidgetDefinition *SunburstWidgetDefinition
+	TableWidgetDefinition *TableWidgetDefinition
+	TimeseriesWidgetDefinition *TimeseriesWidgetDefinition
+	ToplistWidgetDefinition *ToplistWidgetDefinition
+	TreeMapWidgetDefinition *TreeMapWidgetDefinition
+	ListStreamWidgetDefinition *ListStreamWidgetDefinition
+	FunnelWidgetDefinition *FunnelWidgetDefinition
+	TopologyMapWidgetDefinition *TopologyMapWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -776,125 +780,156 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.AlertGraphWidgetDefinition)
 	}
 
+
 	if obj.AlertValueWidgetDefinition != nil {
 		return json.Marshal(&obj.AlertValueWidgetDefinition)
 	}
+
 
 	if obj.ChangeWidgetDefinition != nil {
 		return json.Marshal(&obj.ChangeWidgetDefinition)
 	}
 
+
 	if obj.CheckStatusWidgetDefinition != nil {
 		return json.Marshal(&obj.CheckStatusWidgetDefinition)
 	}
+
 
 	if obj.DistributionWidgetDefinition != nil {
 		return json.Marshal(&obj.DistributionWidgetDefinition)
 	}
 
+
 	if obj.EventStreamWidgetDefinition != nil {
 		return json.Marshal(&obj.EventStreamWidgetDefinition)
 	}
+
 
 	if obj.EventTimelineWidgetDefinition != nil {
 		return json.Marshal(&obj.EventTimelineWidgetDefinition)
 	}
 
+
 	if obj.FreeTextWidgetDefinition != nil {
 		return json.Marshal(&obj.FreeTextWidgetDefinition)
 	}
+
 
 	if obj.GeomapWidgetDefinition != nil {
 		return json.Marshal(&obj.GeomapWidgetDefinition)
 	}
 
+
 	if obj.GroupWidgetDefinition != nil {
 		return json.Marshal(&obj.GroupWidgetDefinition)
 	}
+
 
 	if obj.HeatMapWidgetDefinition != nil {
 		return json.Marshal(&obj.HeatMapWidgetDefinition)
 	}
 
+
 	if obj.HostMapWidgetDefinition != nil {
 		return json.Marshal(&obj.HostMapWidgetDefinition)
 	}
+
 
 	if obj.IFrameWidgetDefinition != nil {
 		return json.Marshal(&obj.IFrameWidgetDefinition)
 	}
 
+
 	if obj.ImageWidgetDefinition != nil {
 		return json.Marshal(&obj.ImageWidgetDefinition)
 	}
+
 
 	if obj.LogStreamWidgetDefinition != nil {
 		return json.Marshal(&obj.LogStreamWidgetDefinition)
 	}
 
+
 	if obj.MonitorSummaryWidgetDefinition != nil {
 		return json.Marshal(&obj.MonitorSummaryWidgetDefinition)
 	}
+
 
 	if obj.NoteWidgetDefinition != nil {
 		return json.Marshal(&obj.NoteWidgetDefinition)
 	}
 
+
 	if obj.QueryValueWidgetDefinition != nil {
 		return json.Marshal(&obj.QueryValueWidgetDefinition)
 	}
+
 
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return json.Marshal(&obj.ScatterPlotWidgetDefinition)
 	}
 
+
 	if obj.SLOWidgetDefinition != nil {
 		return json.Marshal(&obj.SLOWidgetDefinition)
 	}
+
 
 	if obj.SLOListWidgetDefinition != nil {
 		return json.Marshal(&obj.SLOListWidgetDefinition)
 	}
 
+
 	if obj.ServiceMapWidgetDefinition != nil {
 		return json.Marshal(&obj.ServiceMapWidgetDefinition)
 	}
+
 
 	if obj.ServiceSummaryWidgetDefinition != nil {
 		return json.Marshal(&obj.ServiceSummaryWidgetDefinition)
 	}
 
+
 	if obj.SunburstWidgetDefinition != nil {
 		return json.Marshal(&obj.SunburstWidgetDefinition)
 	}
+
 
 	if obj.TableWidgetDefinition != nil {
 		return json.Marshal(&obj.TableWidgetDefinition)
 	}
 
+
 	if obj.TimeseriesWidgetDefinition != nil {
 		return json.Marshal(&obj.TimeseriesWidgetDefinition)
 	}
+
 
 	if obj.ToplistWidgetDefinition != nil {
 		return json.Marshal(&obj.ToplistWidgetDefinition)
 	}
 
+
 	if obj.TreeMapWidgetDefinition != nil {
 		return json.Marshal(&obj.TreeMapWidgetDefinition)
 	}
+
 
 	if obj.ListStreamWidgetDefinition != nil {
 		return json.Marshal(&obj.ListStreamWidgetDefinition)
 	}
 
+
 	if obj.FunnelWidgetDefinition != nil {
 		return json.Marshal(&obj.FunnelWidgetDefinition)
 	}
 
+
 	if obj.TopologyMapWidgetDefinition != nil {
 		return json.Marshal(&obj.TopologyMapWidgetDefinition)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -903,130 +938,161 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *WidgetDefinition) GetActualInstance() interface{} {
+func (obj *WidgetDefinition) GetActualInstance() (interface{}) {
 	if obj.AlertGraphWidgetDefinition != nil {
 		return obj.AlertGraphWidgetDefinition
 	}
+
 
 	if obj.AlertValueWidgetDefinition != nil {
 		return obj.AlertValueWidgetDefinition
 	}
 
+
 	if obj.ChangeWidgetDefinition != nil {
 		return obj.ChangeWidgetDefinition
 	}
+
 
 	if obj.CheckStatusWidgetDefinition != nil {
 		return obj.CheckStatusWidgetDefinition
 	}
 
+
 	if obj.DistributionWidgetDefinition != nil {
 		return obj.DistributionWidgetDefinition
 	}
+
 
 	if obj.EventStreamWidgetDefinition != nil {
 		return obj.EventStreamWidgetDefinition
 	}
 
+
 	if obj.EventTimelineWidgetDefinition != nil {
 		return obj.EventTimelineWidgetDefinition
 	}
+
 
 	if obj.FreeTextWidgetDefinition != nil {
 		return obj.FreeTextWidgetDefinition
 	}
 
+
 	if obj.GeomapWidgetDefinition != nil {
 		return obj.GeomapWidgetDefinition
 	}
+
 
 	if obj.GroupWidgetDefinition != nil {
 		return obj.GroupWidgetDefinition
 	}
 
+
 	if obj.HeatMapWidgetDefinition != nil {
 		return obj.HeatMapWidgetDefinition
 	}
+
 
 	if obj.HostMapWidgetDefinition != nil {
 		return obj.HostMapWidgetDefinition
 	}
 
+
 	if obj.IFrameWidgetDefinition != nil {
 		return obj.IFrameWidgetDefinition
 	}
+
 
 	if obj.ImageWidgetDefinition != nil {
 		return obj.ImageWidgetDefinition
 	}
 
+
 	if obj.LogStreamWidgetDefinition != nil {
 		return obj.LogStreamWidgetDefinition
 	}
+
 
 	if obj.MonitorSummaryWidgetDefinition != nil {
 		return obj.MonitorSummaryWidgetDefinition
 	}
 
+
 	if obj.NoteWidgetDefinition != nil {
 		return obj.NoteWidgetDefinition
 	}
+
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return obj.QueryValueWidgetDefinition
 	}
 
+
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return obj.ScatterPlotWidgetDefinition
 	}
+
 
 	if obj.SLOWidgetDefinition != nil {
 		return obj.SLOWidgetDefinition
 	}
 
+
 	if obj.SLOListWidgetDefinition != nil {
 		return obj.SLOListWidgetDefinition
 	}
+
 
 	if obj.ServiceMapWidgetDefinition != nil {
 		return obj.ServiceMapWidgetDefinition
 	}
 
+
 	if obj.ServiceSummaryWidgetDefinition != nil {
 		return obj.ServiceSummaryWidgetDefinition
 	}
+
 
 	if obj.SunburstWidgetDefinition != nil {
 		return obj.SunburstWidgetDefinition
 	}
 
+
 	if obj.TableWidgetDefinition != nil {
 		return obj.TableWidgetDefinition
 	}
+
 
 	if obj.TimeseriesWidgetDefinition != nil {
 		return obj.TimeseriesWidgetDefinition
 	}
 
+
 	if obj.ToplistWidgetDefinition != nil {
 		return obj.ToplistWidgetDefinition
 	}
+
 
 	if obj.TreeMapWidgetDefinition != nil {
 		return obj.TreeMapWidgetDefinition
 	}
 
+
 	if obj.ListStreamWidgetDefinition != nil {
 		return obj.ListStreamWidgetDefinition
 	}
+
 
 	if obj.FunnelWidgetDefinition != nil {
 		return obj.FunnelWidgetDefinition
 	}
 
+
 	if obj.TopologyMapWidgetDefinition != nil {
 		return obj.TopologyMapWidgetDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

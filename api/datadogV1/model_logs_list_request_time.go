@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // LogsListRequestTime Timeframe to retrieve the log from.
 type LogsListRequestTime struct {
@@ -20,9 +22,11 @@ type LogsListRequestTime struct {
 	// Maximum timestamp for requested logs.
 	To time.Time `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsListRequestTime instantiates a new LogsListRequestTime object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewLogsListRequestTimeWithDefaults() *LogsListRequestTime {
 	this := LogsListRequestTime{}
 	return &this
 }
-
 // GetFrom returns the From field value.
 func (o *LogsListRequestTime) GetFrom() time.Time {
 	if o == nil {
@@ -65,6 +68,7 @@ func (o *LogsListRequestTime) GetFromOk() (*time.Time, bool) {
 func (o *LogsListRequestTime) SetFrom(v time.Time) {
 	o.From = v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *LogsListRequestTime) GetTimezone() string {
@@ -94,6 +98,7 @@ func (o *LogsListRequestTime) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
 // GetTo returns the To field value.
 func (o *LogsListRequestTime) GetTo() time.Time {
 	if o == nil {
@@ -116,6 +121,8 @@ func (o *LogsListRequestTime) GetToOk() (*time.Time, bool) {
 func (o *LogsListRequestTime) SetTo(v time.Time) {
 	o.To = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
@@ -143,17 +150,18 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		From *time.Time `json:"from"`
-		To   *time.Time `json:"to"`
+		To *time.Time `json:"to"`
 	}{}
 	all := struct {
-		From     time.Time `json:"from"`
-		Timezone *string   `json:"timezone,omitempty"`
-		To       time.Time `json:"to"`
+		From time.Time `json:"from"`
+		Timezone *string `json:"timezone,omitempty"`
+		To time.Time `json:"to"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

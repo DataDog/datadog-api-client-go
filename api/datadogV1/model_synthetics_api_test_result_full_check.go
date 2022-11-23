@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsAPITestResultFullCheck Object describing the API test configuration.
 type SyntheticsAPITestResultFullCheck struct {
 	// Configuration object for a Synthetic test.
 	Config SyntheticsTestConfig `json:"config"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAPITestResultFullCheck instantiates a new SyntheticsAPITestResultFullCheck object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewSyntheticsAPITestResultFullCheckWithDefaults() *SyntheticsAPITestResultF
 	this := SyntheticsAPITestResultFullCheck{}
 	return &this
 }
-
 // GetConfig returns the Config field value.
 func (o *SyntheticsAPITestResultFullCheck) GetConfig() SyntheticsTestConfig {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 	o.Config = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err error) {
@@ -98,13 +105,13 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Config = all.Config
 	return nil
 }

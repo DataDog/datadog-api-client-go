@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type UsersApi datadog.Service
 
 type apiCreateUserRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *User
 }
 
 func (a *UsersApi) buildCreateUserRequest(ctx _context.Context, body User) (apiCreateUserRequest, error) {
 	req := apiCreateUserRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -49,9 +51,9 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body User) (UserResponse, *_
 // createUserExecute executes the request.
 func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.CreateUser")
@@ -69,6 +71,8 @@ func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_ne
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -119,10 +123,11 @@ func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_ne
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -136,7 +141,7 @@ func (a *UsersApi) createUserExecute(r apiCreateUserRequest) (UserResponse, *_ne
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -176,9 +181,9 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userHandle string) (UserDis
 // disableUserExecute executes the request.
 func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue UserDisableResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  UserDisableResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.DisableUser")
@@ -194,6 +199,7 @@ func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableRespo
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -241,10 +247,11 @@ func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableRespo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -258,7 +265,7 @@ func (a *UsersApi) disableUserExecute(r apiDisableUserRequest) (UserDisableRespo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -295,9 +302,9 @@ func (a *UsersApi) GetUser(ctx _context.Context, userHandle string) (UserRespons
 // getUserExecute executes the request.
 func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.GetUser")
@@ -313,6 +320,7 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -360,10 +368,11 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -377,7 +386,7 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -387,12 +396,12 @@ func (a *UsersApi) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.
 }
 
 type apiListUsersRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *UsersApi) buildListUsersRequest(ctx _context.Context) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -412,9 +421,9 @@ func (a *UsersApi) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.
 // listUsersExecute executes the request.
 func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.ListUsers")
@@ -429,6 +438,7 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -476,10 +486,11 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -493,7 +504,7 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -505,14 +516,14 @@ func (a *UsersApi) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_
 type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	userHandle string
-	body       *User
+	body *User
 }
 
 func (a *UsersApi) buildUpdateUserRequest(ctx _context.Context, userHandle string, body User) (apiUpdateUserRequest, error) {
 	req := apiUpdateUserRequest{
 		ctx:        ctx,
 		userHandle: userHandle,
-		body:       &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -534,9 +545,9 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userHandle string, body User
 // updateUserExecute executes the request.
 func (a *UsersApi) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsersApi.UpdateUser")
@@ -555,6 +566,8 @@ func (a *UsersApi) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_ne
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -605,10 +618,11 @@ func (a *UsersApi) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_ne
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -622,7 +636,7 @@ func (a *UsersApi) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_ne
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

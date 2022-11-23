@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookCreateData The data for a notebook create request.
 type NotebookCreateData struct {
@@ -16,9 +19,11 @@ type NotebookCreateData struct {
 	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookCreateData instantiates a new NotebookCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewNotebookCreateDataWithDefaults() *NotebookCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *NotebookCreateData) GetAttributes() NotebookCreateDataAttributes {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *NotebookCreateData) GetAttributesOk() (*NotebookCreateDataAttributes, b
 func (o *NotebookCreateData) SetAttributes(v NotebookCreateDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *NotebookCreateData) GetType() NotebookResourceType {
@@ -87,6 +92,8 @@ func (o *NotebookCreateData) SetType(v NotebookResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o NotebookCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCreateDataAttributes `json:"attributes"`
-		Type       *NotebookResourceType         `json:"type"`
+		Type *NotebookResourceType `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebookCreateDataAttributes `json:"attributes"`
-		Type       NotebookResourceType         `json:"type"`
+		Type NotebookResourceType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *NotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

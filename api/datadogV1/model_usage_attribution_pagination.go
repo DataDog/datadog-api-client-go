@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageAttributionPagination The metadata for the current pagination.
 type UsageAttributionPagination struct {
@@ -21,9 +25,11 @@ type UsageAttributionPagination struct {
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAttributionPagination instantiates a new UsageAttributionPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewUsageAttributionPaginationWithDefaults() *UsageAttributionPagination {
 	this := UsageAttributionPagination{}
 	return &this
 }
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *UsageAttributionPagination) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -69,6 +74,7 @@ func (o *UsageAttributionPagination) HasLimit() bool {
 func (o *UsageAttributionPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *UsageAttributionPagination) GetOffset() int64 {
@@ -98,6 +104,7 @@ func (o *UsageAttributionPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+
 // GetSortDirection returns the SortDirection field value if set, zero value otherwise.
 func (o *UsageAttributionPagination) GetSortDirection() string {
 	if o == nil || o.SortDirection == nil {
@@ -125,6 +132,7 @@ func (o *UsageAttributionPagination) HasSortDirection() bool {
 func (o *UsageAttributionPagination) SetSortDirection(v string) {
 	o.SortDirection = &v
 }
+
 
 // GetSortName returns the SortName field value if set, zero value otherwise.
 func (o *UsageAttributionPagination) GetSortName() string {
@@ -154,6 +162,7 @@ func (o *UsageAttributionPagination) SetSortName(v string) {
 	o.SortName = &v
 }
 
+
 // GetTotalNumberOfRecords returns the TotalNumberOfRecords field value if set, zero value otherwise.
 func (o *UsageAttributionPagination) GetTotalNumberOfRecords() int64 {
 	if o == nil || o.TotalNumberOfRecords == nil {
@@ -181,6 +190,8 @@ func (o *UsageAttributionPagination) HasTotalNumberOfRecords() bool {
 func (o *UsageAttributionPagination) SetTotalNumberOfRecords(v int64) {
 	o.TotalNumberOfRecords = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
@@ -210,15 +221,16 @@ func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Limit                *int64  `json:"limit,omitempty"`
-		Offset               *int64  `json:"offset,omitempty"`
-		SortDirection        *string `json:"sort_direction,omitempty"`
-		SortName             *string `json:"sort_name,omitempty"`
-		TotalNumberOfRecords *int64  `json:"total_number_of_records,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Offset *int64 `json:"offset,omitempty"`
+		SortDirection *string `json:"sort_direction,omitempty"`
+		SortName *string `json:"sort_name,omitempty"`
+		TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

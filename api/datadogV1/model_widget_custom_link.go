@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetCustomLink Custom links help you connect a data value to a URL, like a Datadog page or your AWS console.
 type WidgetCustomLink struct {
@@ -19,9 +23,11 @@ type WidgetCustomLink struct {
 	// The label ID that refers to a context menu link. Can be `logs`, `hosts`, `traces`, `profiles`, `processes`, `containers`, or `rum`.
 	OverrideLabel *string `json:"override_label,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetCustomLink instantiates a new WidgetCustomLink object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewWidgetCustomLinkWithDefaults() *WidgetCustomLink {
 	this := WidgetCustomLink{}
 	return &this
 }
-
 // GetIsHidden returns the IsHidden field value if set, zero value otherwise.
 func (o *WidgetCustomLink) GetIsHidden() bool {
 	if o == nil || o.IsHidden == nil {
@@ -67,6 +72,7 @@ func (o *WidgetCustomLink) HasIsHidden() bool {
 func (o *WidgetCustomLink) SetIsHidden(v bool) {
 	o.IsHidden = &v
 }
+
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *WidgetCustomLink) GetLabel() string {
@@ -96,6 +102,7 @@ func (o *WidgetCustomLink) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetLink returns the Link field value if set, zero value otherwise.
 func (o *WidgetCustomLink) GetLink() string {
 	if o == nil || o.Link == nil {
@@ -123,6 +130,7 @@ func (o *WidgetCustomLink) HasLink() bool {
 func (o *WidgetCustomLink) SetLink(v string) {
 	o.Link = &v
 }
+
 
 // GetOverrideLabel returns the OverrideLabel field value if set, zero value otherwise.
 func (o *WidgetCustomLink) GetOverrideLabel() string {
@@ -152,6 +160,8 @@ func (o *WidgetCustomLink) SetOverrideLabel(v string) {
 	o.OverrideLabel = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -177,13 +187,14 @@ func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IsHidden      *bool   `json:"is_hidden,omitempty"`
-		Label         *string `json:"label,omitempty"`
-		Link          *string `json:"link,omitempty"`
+		IsHidden *bool `json:"is_hidden,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Link *string `json:"link,omitempty"`
 		OverrideLabel *string `json:"override_label,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

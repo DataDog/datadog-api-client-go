@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,10 +21,10 @@ import (
 type TagsApi datadog.Service
 
 type apiCreateHostTagsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
-	body     *HostTags
-	source   *string
+	body *HostTags
+	source *string
 }
 
 // CreateHostTagsOptionalParameters holds optional parameters for CreateHostTags.
@@ -35,7 +37,6 @@ func NewCreateHostTagsOptionalParameters() *CreateHostTagsOptionalParameters {
 	this := CreateHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHostTagsOptionalParameters {
 	r.Source = &source
@@ -44,9 +45,9 @@ func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHost
 
 func (a *TagsApi) buildCreateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (apiCreateHostTagsRequest, error) {
 	req := apiCreateHostTagsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
-		body:     &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -75,9 +76,9 @@ func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body Hos
 // createHostTagsExecute executes the request.
 func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.CreateHostTags")
@@ -99,6 +100,8 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -149,10 +152,11 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -166,7 +170,7 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -176,9 +180,9 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 }
 
 type apiDeleteHostTagsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
-	source   *string
+	source *string
 }
 
 // DeleteHostTagsOptionalParameters holds optional parameters for DeleteHostTags.
@@ -191,7 +195,6 @@ func NewDeleteHostTagsOptionalParameters() *DeleteHostTagsOptionalParameters {
 	this := DeleteHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHostTagsOptionalParameters {
 	r.Source = &source
@@ -200,7 +203,7 @@ func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHost
 
 func (a *TagsApi) buildDeleteHostTagsRequest(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (apiDeleteHostTagsRequest, error) {
 	req := apiDeleteHostTagsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
 	}
 
@@ -229,8 +232,8 @@ func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...Del
 // deleteHostTagsExecute executes the request.
 func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.DeleteHostTags")
@@ -247,8 +250,9 @@ func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.R
 	if r.source != nil {
 		localVarQueryParams.Add("source", datadog.ParameterToString(*r.source, ""))
 	}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -296,10 +300,11 @@ func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.R
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -314,9 +319,9 @@ func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.R
 }
 
 type apiGetHostTagsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
-	source   *string
+	source *string
 }
 
 // GetHostTagsOptionalParameters holds optional parameters for GetHostTags.
@@ -329,7 +334,6 @@ func NewGetHostTagsOptionalParameters() *GetHostTagsOptionalParameters {
 	this := GetHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOptionalParameters {
 	r.Source = &source
@@ -338,7 +342,7 @@ func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOp
 
 func (a *TagsApi) buildGetHostTagsRequest(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (apiGetHostTagsRequest, error) {
 	req := apiGetHostTagsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
 	}
 
@@ -367,9 +371,9 @@ func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHos
 // getHostTagsExecute executes the request.
 func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.GetHostTags")
@@ -388,6 +392,7 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -435,10 +440,11 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -452,7 +458,7 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -462,7 +468,7 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 }
 
 type apiListHostTagsRequest struct {
-	ctx    _context.Context
+	ctx        _context.Context
 	source *string
 }
 
@@ -476,7 +482,6 @@ func NewListHostTagsOptionalParameters() *ListHostTagsOptionalParameters {
 	this := ListHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTagsOptionalParameters {
 	r.Source = &source
@@ -485,7 +490,7 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 
 func (a *TagsApi) buildListHostTagsRequest(ctx _context.Context, o ...ListHostTagsOptionalParameters) (apiListHostTagsRequest, error) {
 	req := apiListHostTagsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -513,9 +518,9 @@ func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalPa
 // listHostTagsExecute executes the request.
 func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue TagToHosts
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  TagToHosts
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.ListHostTags")
@@ -533,6 +538,7 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -580,10 +586,11 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -597,7 +604,7 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -607,10 +614,10 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 }
 
 type apiUpdateHostTagsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	hostName string
-	body     *HostTags
-	source   *string
+	body *HostTags
+	source *string
 }
 
 // UpdateHostTagsOptionalParameters holds optional parameters for UpdateHostTags.
@@ -623,7 +630,6 @@ func NewUpdateHostTagsOptionalParameters() *UpdateHostTagsOptionalParameters {
 	this := UpdateHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHostTagsOptionalParameters {
 	r.Source = &source
@@ -632,9 +638,9 @@ func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHost
 
 func (a *TagsApi) buildUpdateHostTagsRequest(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (apiUpdateHostTagsRequest, error) {
 	req := apiUpdateHostTagsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		hostName: hostName,
-		body:     &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -663,9 +669,9 @@ func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body Hos
 // updateHostTagsExecute executes the request.
 func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApi.UpdateHostTags")
@@ -687,6 +693,8 @@ func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -737,10 +745,11 @@ func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -754,7 +763,7 @@ func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

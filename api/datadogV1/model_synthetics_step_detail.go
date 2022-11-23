@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsStepDetail Object describing a step for a Synthetic test.
 type SyntheticsStepDetail struct {
@@ -46,9 +50,11 @@ type SyntheticsStepDetail struct {
 	// Warning collected that didn't failed the step.
 	Warnings []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -66,7 +72,6 @@ func NewSyntheticsStepDetailWithDefaults() *SyntheticsStepDetail {
 	this := SyntheticsStepDetail{}
 	return &this
 }
-
 // GetBrowserErrors returns the BrowserErrors field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetBrowserErrors() []SyntheticsBrowserError {
 	if o == nil || o.BrowserErrors == nil {
@@ -94,6 +99,7 @@ func (o *SyntheticsStepDetail) HasBrowserErrors() bool {
 func (o *SyntheticsStepDetail) SetBrowserErrors(v []SyntheticsBrowserError) {
 	o.BrowserErrors = v
 }
+
 
 // GetCheckType returns the CheckType field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetCheckType() SyntheticsCheckType {
@@ -123,6 +129,7 @@ func (o *SyntheticsStepDetail) SetCheckType(v SyntheticsCheckType) {
 	o.CheckType = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -150,6 +157,7 @@ func (o *SyntheticsStepDetail) HasDescription() bool {
 func (o *SyntheticsStepDetail) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetDuration() float64 {
@@ -179,6 +187,7 @@ func (o *SyntheticsStepDetail) SetDuration(v float64) {
 	o.Duration = &v
 }
 
+
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetError() string {
 	if o == nil || o.Error == nil {
@@ -206,6 +215,7 @@ func (o *SyntheticsStepDetail) HasError() bool {
 func (o *SyntheticsStepDetail) SetError(v string) {
 	o.Error = &v
 }
+
 
 // GetPlayingTab returns the PlayingTab field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetPlayingTab() SyntheticsPlayingTab {
@@ -235,6 +245,7 @@ func (o *SyntheticsStepDetail) SetPlayingTab(v SyntheticsPlayingTab) {
 	o.PlayingTab = &v
 }
 
+
 // GetScreenshotBucketKey returns the ScreenshotBucketKey field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetScreenshotBucketKey() bool {
 	if o == nil || o.ScreenshotBucketKey == nil {
@@ -262,6 +273,7 @@ func (o *SyntheticsStepDetail) HasScreenshotBucketKey() bool {
 func (o *SyntheticsStepDetail) SetScreenshotBucketKey(v bool) {
 	o.ScreenshotBucketKey = &v
 }
+
 
 // GetSkipped returns the Skipped field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetSkipped() bool {
@@ -291,6 +303,7 @@ func (o *SyntheticsStepDetail) SetSkipped(v bool) {
 	o.Skipped = &v
 }
 
+
 // GetSnapshotBucketKey returns the SnapshotBucketKey field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetSnapshotBucketKey() bool {
 	if o == nil || o.SnapshotBucketKey == nil {
@@ -318,6 +331,7 @@ func (o *SyntheticsStepDetail) HasSnapshotBucketKey() bool {
 func (o *SyntheticsStepDetail) SetSnapshotBucketKey(v bool) {
 	o.SnapshotBucketKey = &v
 }
+
 
 // GetStepId returns the StepId field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetStepId() int64 {
@@ -347,6 +361,7 @@ func (o *SyntheticsStepDetail) SetStepId(v int64) {
 	o.StepId = &v
 }
 
+
 // GetSubTestStepDetails returns the SubTestStepDetails field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetSubTestStepDetails() []SyntheticsStepDetail {
 	if o == nil || o.SubTestStepDetails == nil {
@@ -374,6 +389,7 @@ func (o *SyntheticsStepDetail) HasSubTestStepDetails() bool {
 func (o *SyntheticsStepDetail) SetSubTestStepDetails(v []SyntheticsStepDetail) {
 	o.SubTestStepDetails = v
 }
+
 
 // GetTimeToInteractive returns the TimeToInteractive field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetTimeToInteractive() float64 {
@@ -403,6 +419,7 @@ func (o *SyntheticsStepDetail) SetTimeToInteractive(v float64) {
 	o.TimeToInteractive = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetType() SyntheticsStepType {
 	if o == nil || o.Type == nil {
@@ -430,6 +447,7 @@ func (o *SyntheticsStepDetail) HasType() bool {
 func (o *SyntheticsStepDetail) SetType(v SyntheticsStepType) {
 	o.Type = &v
 }
+
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetUrl() string {
@@ -459,6 +477,7 @@ func (o *SyntheticsStepDetail) SetUrl(v string) {
 	o.Url = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetValue() interface{} {
 	if o == nil || o.Value == nil {
@@ -486,6 +505,7 @@ func (o *SyntheticsStepDetail) HasValue() bool {
 func (o *SyntheticsStepDetail) SetValue(v interface{}) {
 	o.Value = v
 }
+
 
 // GetVitalsMetrics returns the VitalsMetrics field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals {
@@ -515,6 +535,7 @@ func (o *SyntheticsStepDetail) SetVitalsMetrics(v []SyntheticsCoreWebVitals) {
 	o.VitalsMetrics = v
 }
 
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarning {
 	if o == nil || o.Warnings == nil {
@@ -542,6 +563,8 @@ func (o *SyntheticsStepDetail) HasWarnings() bool {
 func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarning) {
 	o.Warnings = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
@@ -607,27 +630,28 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserErrors       []SyntheticsBrowserError      `json:"browserErrors,omitempty"`
-		CheckType           *SyntheticsCheckType          `json:"checkType,omitempty"`
-		Description         *string                       `json:"description,omitempty"`
-		Duration            *float64                      `json:"duration,omitempty"`
-		Error               *string                       `json:"error,omitempty"`
-		PlayingTab          *SyntheticsPlayingTab         `json:"playingTab,omitempty"`
-		ScreenshotBucketKey *bool                         `json:"screenshotBucketKey,omitempty"`
-		Skipped             *bool                         `json:"skipped,omitempty"`
-		SnapshotBucketKey   *bool                         `json:"snapshotBucketKey,omitempty"`
-		StepId              *int64                        `json:"stepId,omitempty"`
-		SubTestStepDetails  []SyntheticsStepDetail        `json:"subTestStepDetails,omitempty"`
-		TimeToInteractive   *float64                      `json:"timeToInteractive,omitempty"`
-		Type                *SyntheticsStepType           `json:"type,omitempty"`
-		Url                 *string                       `json:"url,omitempty"`
-		Value               interface{}                   `json:"value,omitempty"`
-		VitalsMetrics       []SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
-		Warnings            []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+		BrowserErrors []SyntheticsBrowserError `json:"browserErrors,omitempty"`
+		CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Duration *float64 `json:"duration,omitempty"`
+		Error *string `json:"error,omitempty"`
+		PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
+		ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
+		Skipped *bool `json:"skipped,omitempty"`
+		SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
+		StepId *int64 `json:"stepId,omitempty"`
+		SubTestStepDetails []SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
+		TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+		Type *SyntheticsStepType `json:"type,omitempty"`
+		Url *string `json:"url,omitempty"`
+		Value interface{} `json:"value,omitempty"`
+		VitalsMetrics []SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
+		Warnings []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -638,7 +662,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.CheckType; v != nil && !v.IsValid() {
+	if v := all.CheckType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -646,7 +670,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.PlayingTab; v != nil && !v.IsValid() {
+	if v := all.PlayingTab; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -654,7 +678,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

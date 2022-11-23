@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // PartialAPIKeyAttributes Attributes of a partial API key.
 type PartialAPIKeyAttributes struct {
@@ -19,9 +23,11 @@ type PartialAPIKeyAttributes struct {
 	// Name of the API key.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPartialAPIKeyAttributes instantiates a new PartialAPIKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewPartialAPIKeyAttributesWithDefaults() *PartialAPIKeyAttributes {
 	this := PartialAPIKeyAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -67,6 +72,7 @@ func (o *PartialAPIKeyAttributes) HasCreatedAt() bool {
 func (o *PartialAPIKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetLast4() string {
@@ -96,6 +102,7 @@ func (o *PartialAPIKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetModifiedAt() string {
 	if o == nil || o.ModifiedAt == nil {
@@ -123,6 +130,7 @@ func (o *PartialAPIKeyAttributes) HasModifiedAt() bool {
 func (o *PartialAPIKeyAttributes) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetName() string {
@@ -152,6 +160,8 @@ func (o *PartialAPIKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -177,14 +187,15 @@ func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *string `json:"created_at,omitempty"`
-		Last4      *string `json:"last4,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
 		ModifiedAt *string `json:"modified_at,omitempty"`
-		Name       *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
 type SyntheticsCIBatchMetadata struct {
@@ -15,9 +19,11 @@ type SyntheticsCIBatchMetadata struct {
 	// Git information.
 	Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsCIBatchMetadata instantiates a new SyntheticsCIBatchMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSyntheticsCIBatchMetadataWithDefaults() *SyntheticsCIBatchMetadata {
 	this := SyntheticsCIBatchMetadata{}
 	return &this
 }
-
 // GetCi returns the Ci field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadata) GetCi() SyntheticsCIBatchMetadataCI {
 	if o == nil || o.Ci == nil {
@@ -63,6 +68,7 @@ func (o *SyntheticsCIBatchMetadata) HasCi() bool {
 func (o *SyntheticsCIBatchMetadata) SetCi(v SyntheticsCIBatchMetadataCI) {
 	o.Ci = &v
 }
+
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadata) GetGit() SyntheticsCIBatchMetadataGit {
@@ -92,6 +98,8 @@ func (o *SyntheticsCIBatchMetadata) SetGit(v SyntheticsCIBatchMetadataGit) {
 	o.Git = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+		Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`
 		Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -127,21 +136,21 @@ func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Ci = all.Ci
-	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Git = all.Git
 	return nil
 }

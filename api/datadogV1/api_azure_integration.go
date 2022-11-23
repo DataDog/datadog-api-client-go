@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,13 +21,13 @@ import (
 type AzureIntegrationApi datadog.Service
 
 type apiCreateAzureIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildCreateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiCreateAzureIntegrationRequest, error) {
 	req := apiCreateAzureIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -51,9 +54,9 @@ func (a *AzureIntegrationApi) CreateAzureIntegration(ctx _context.Context, body 
 // createAzureIntegrationExecute executes the request.
 func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.CreateAzureIntegration")
@@ -71,6 +74,8 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureInte
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -121,10 +126,11 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureInte
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -138,7 +144,7 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureInte
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -148,13 +154,13 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(r apiCreateAzureInte
 }
 
 type apiDeleteAzureIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildDeleteAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiDeleteAzureIntegrationRequest, error) {
 	req := apiDeleteAzureIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -175,9 +181,9 @@ func (a *AzureIntegrationApi) DeleteAzureIntegration(ctx _context.Context, body 
 // deleteAzureIntegrationExecute executes the request.
 func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.DeleteAzureIntegration")
@@ -195,6 +201,8 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureInte
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -245,10 +253,11 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureInte
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -262,7 +271,7 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureInte
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -272,12 +281,12 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(r apiDeleteAzureInte
 }
 
 type apiListAzureIntegrationRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *AzureIntegrationApi) buildListAzureIntegrationRequest(ctx _context.Context) (apiListAzureIntegrationRequest, error) {
 	req := apiListAzureIntegrationRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -297,9 +306,9 @@ func (a *AzureIntegrationApi) ListAzureIntegration(ctx _context.Context) ([]Azur
 // listAzureIntegrationExecute executes the request.
 func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrationRequest) ([]AzureAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []AzureAccount
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []AzureAccount
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.ListAzureIntegration")
@@ -314,6 +323,7 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrat
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -361,10 +371,11 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrat
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -378,7 +389,7 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrat
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -388,13 +399,13 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(r apiListAzureIntegrat
 }
 
 type apiUpdateAzureHostFiltersRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildUpdateAzureHostFiltersRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureHostFiltersRequest, error) {
 	req := apiUpdateAzureHostFiltersRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -415,9 +426,9 @@ func (a *AzureIntegrationApi) UpdateAzureHostFilters(ctx _context.Context, body 
 // updateAzureHostFiltersExecute executes the request.
 func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHostFiltersRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.UpdateAzureHostFilters")
@@ -435,6 +446,8 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHost
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -485,10 +498,11 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHost
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -502,7 +516,7 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHost
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -512,13 +526,13 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(r apiUpdateAzureHost
 }
 
 type apiUpdateAzureIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AzureAccount
 }
 
 func (a *AzureIntegrationApi) buildUpdateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureIntegrationRequest, error) {
 	req := apiUpdateAzureIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -541,9 +555,9 @@ func (a *AzureIntegrationApi) UpdateAzureIntegration(ctx _context.Context, body 
 // updateAzureIntegrationExecute executes the request.
 func (a *AzureIntegrationApi) updateAzureIntegrationExecute(r apiUpdateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApi.UpdateAzureIntegration")
@@ -561,6 +575,8 @@ func (a *AzureIntegrationApi) updateAzureIntegrationExecute(r apiUpdateAzureInte
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -611,10 +627,11 @@ func (a *AzureIntegrationApi) updateAzureIntegrationExecute(r apiUpdateAzureInte
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -628,7 +645,7 @@ func (a *AzureIntegrationApi) updateAzureIntegrationExecute(r apiUpdateAzureInte
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

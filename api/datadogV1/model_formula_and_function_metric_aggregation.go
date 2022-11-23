@@ -2,25 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionMetricAggregation The aggregation methods available for metrics queries.
 type FormulaAndFunctionMetricAggregation string
 
 // List of FormulaAndFunctionMetricAggregation.
 const (
-	FORMULAANDFUNCTIONMETRICAGGREGATION_AVG        FormulaAndFunctionMetricAggregation = "avg"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_MIN        FormulaAndFunctionMetricAggregation = "min"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_MAX        FormulaAndFunctionMetricAggregation = "max"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_SUM        FormulaAndFunctionMetricAggregation = "sum"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_LAST       FormulaAndFunctionMetricAggregation = "last"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA       FormulaAndFunctionMetricAggregation = "area"
-	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM     FormulaAndFunctionMetricAggregation = "l2norm"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_AVG FormulaAndFunctionMetricAggregation = "avg"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_MIN FormulaAndFunctionMetricAggregation = "min"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_MAX FormulaAndFunctionMetricAggregation = "max"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_SUM FormulaAndFunctionMetricAggregation = "sum"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_LAST FormulaAndFunctionMetricAggregation = "last"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA FormulaAndFunctionMetricAggregation = "area"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM FormulaAndFunctionMetricAggregation = "l2norm"
 	FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE FormulaAndFunctionMetricAggregation = "percentile"
 )
 

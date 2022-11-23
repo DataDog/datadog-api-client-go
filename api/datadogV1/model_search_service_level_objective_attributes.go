@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // SearchServiceLevelObjectiveAttributes A service level objective object includes a service level indicator, thresholds
 // for one or more timeframes, and metadata (`name`, `description`, and `tags`).
@@ -57,9 +59,11 @@ type SearchServiceLevelObjectiveAttributes struct {
 	// objective object.
 	Thresholds []SearchSLOThreshold `json:"thresholds,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSearchServiceLevelObjectiveAttributes instantiates a new SearchServiceLevelObjectiveAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -77,7 +81,6 @@ func NewSearchServiceLevelObjectiveAttributesWithDefaults() *SearchServiceLevelO
 	this := SearchServiceLevelObjectiveAttributes{}
 	return &this
 }
-
 // GetAllTags returns the AllTags field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetAllTags() []string {
 	if o == nil || o.AllTags == nil {
@@ -105,6 +108,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasAllTags() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetAllTags(v []string) {
 	o.AllTags = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetCreatedAt() int64 {
@@ -134,6 +138,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+
 // GetCreator returns the Creator field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetCreator() SLOCreator {
 	if o == nil || o.Creator.Get() == nil {
@@ -147,7 +152,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetCreator() SLOCreator {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchServiceLevelObjectiveAttributes) GetCreatorOk() (*SLOCreator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Creator.Get(), o.Creator.IsSet()
@@ -162,7 +167,6 @@ func (o *SearchServiceLevelObjectiveAttributes) HasCreator() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetCreator(v SLOCreator) {
 	o.Creator.Set(&v)
 }
-
 // SetCreatorNil sets the value for Creator to be an explicit nil.
 func (o *SearchServiceLevelObjectiveAttributes) SetCreatorNil() {
 	o.Creator.Set(nil)
@@ -172,6 +176,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetCreatorNil() {
 func (o *SearchServiceLevelObjectiveAttributes) UnsetCreator() {
 	o.Creator.Unset()
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetDescription() string {
@@ -186,7 +191,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchServiceLevelObjectiveAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -201,7 +206,6 @@ func (o *SearchServiceLevelObjectiveAttributes) HasDescription() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *SearchServiceLevelObjectiveAttributes) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -211,6 +215,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetDescriptionNil() {
 func (o *SearchServiceLevelObjectiveAttributes) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetEnvTags returns the EnvTags field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetEnvTags() []string {
@@ -240,9 +245,10 @@ func (o *SearchServiceLevelObjectiveAttributes) SetEnvTags(v []string) {
 	o.EnvTags = v
 }
 
+
 // GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetGroups() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -268,6 +274,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasGroups() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetGroups(v []string) {
 	o.Groups = v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetModifiedAt() int64 {
@@ -297,9 +304,10 @@ func (o *SearchServiceLevelObjectiveAttributes) SetModifiedAt(v int64) {
 	o.ModifiedAt = &v
 }
 
+
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetMonitorIds() []int64 {
-	if o == nil {
+	if o == nil  {
 		var ret []int64
 		return ret
 	}
@@ -325,6 +333,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasMonitorIds() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetMonitorIds(v []int64) {
 	o.MonitorIds = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetName() string {
@@ -354,6 +363,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOverallStatus returns the OverallStatus field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetOverallStatus() []SLOOverallStatuses {
 	if o == nil || o.OverallStatus == nil {
@@ -382,6 +392,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetOverallStatus(v []SLOOverallS
 	o.OverallStatus = v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetQuery() SearchSLOQuery {
 	if o == nil || o.Query.Get() == nil {
@@ -395,7 +406,7 @@ func (o *SearchServiceLevelObjectiveAttributes) GetQuery() SearchSLOQuery {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchServiceLevelObjectiveAttributes) GetQueryOk() (*SearchSLOQuery, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Query.Get(), o.Query.IsSet()
@@ -410,7 +421,6 @@ func (o *SearchServiceLevelObjectiveAttributes) HasQuery() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetQuery(v SearchSLOQuery) {
 	o.Query.Set(&v)
 }
-
 // SetQueryNil sets the value for Query to be an explicit nil.
 func (o *SearchServiceLevelObjectiveAttributes) SetQueryNil() {
 	o.Query.Set(nil)
@@ -420,6 +430,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetQueryNil() {
 func (o *SearchServiceLevelObjectiveAttributes) UnsetQuery() {
 	o.Query.Unset()
 }
+
 
 // GetServiceTags returns the ServiceTags field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetServiceTags() []string {
@@ -449,6 +460,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetServiceTags(v []string) {
 	o.ServiceTags = v
 }
 
+
 // GetSloType returns the SloType field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetSloType() SLOType {
 	if o == nil || o.SloType == nil {
@@ -476,6 +488,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasSloType() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetSloType(v SLOType) {
 	o.SloType = &v
 }
+
 
 // GetTeamTags returns the TeamTags field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetTeamTags() []string {
@@ -505,6 +518,7 @@ func (o *SearchServiceLevelObjectiveAttributes) SetTeamTags(v []string) {
 	o.TeamTags = v
 }
 
+
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetThresholds() []SearchSLOThreshold {
 	if o == nil || o.Thresholds == nil {
@@ -532,6 +546,8 @@ func (o *SearchServiceLevelObjectiveAttributes) HasThresholds() bool {
 func (o *SearchServiceLevelObjectiveAttributes) SetThresholds(v []SearchSLOThreshold) {
 	o.Thresholds = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
@@ -591,25 +607,26 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllTags       []string               `json:"all_tags,omitempty"`
-		CreatedAt     *int64                 `json:"created_at,omitempty"`
-		Creator       NullableSLOCreator     `json:"creator,omitempty"`
-		Description   datadog.NullableString `json:"description,omitempty"`
-		EnvTags       []string               `json:"env_tags,omitempty"`
-		Groups        []string               `json:"groups,omitempty"`
-		ModifiedAt    *int64                 `json:"modified_at,omitempty"`
-		MonitorIds    []int64                `json:"monitor_ids,omitempty"`
-		Name          *string                `json:"name,omitempty"`
-		OverallStatus []SLOOverallStatuses   `json:"overall_status,omitempty"`
-		Query         NullableSearchSLOQuery `json:"query,omitempty"`
-		ServiceTags   []string               `json:"service_tags,omitempty"`
-		SloType       *SLOType               `json:"slo_type,omitempty"`
-		TeamTags      []string               `json:"team_tags,omitempty"`
-		Thresholds    []SearchSLOThreshold   `json:"thresholds,omitempty"`
+		AllTags []string `json:"all_tags,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		Creator NullableSLOCreator `json:"creator,omitempty"`
+		Description datadog.NullableString `json:"description,omitempty"`
+		EnvTags []string `json:"env_tags,omitempty"`
+		Groups []string `json:"groups,omitempty"`
+		ModifiedAt *int64 `json:"modified_at,omitempty"`
+		MonitorIds []int64 `json:"monitor_ids,omitempty"`
+		Name *string `json:"name,omitempty"`
+		OverallStatus []SLOOverallStatuses `json:"overall_status,omitempty"`
+		Query NullableSearchSLOQuery `json:"query,omitempty"`
+		ServiceTags []string `json:"service_tags,omitempty"`
+		SloType *SLOType `json:"slo_type,omitempty"`
+		TeamTags []string `json:"team_tags,omitempty"`
+		Thresholds []SearchSLOThreshold `json:"thresholds,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -620,7 +637,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.SloType; v != nil && !v.IsValid() {
+	if v := all.SloType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

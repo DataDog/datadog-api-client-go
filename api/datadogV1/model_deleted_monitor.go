@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DeletedMonitor Response from the delete monitor call.
 type DeletedMonitor struct {
 	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDeletedMonitor instantiates a new DeletedMonitor object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewDeletedMonitorWithDefaults() *DeletedMonitor {
 	this := DeletedMonitor{}
 	return &this
 }
-
 // GetDeletedMonitorId returns the DeletedMonitorId field value if set, zero value otherwise.
 func (o *DeletedMonitor) GetDeletedMonitorId() int64 {
 	if o == nil || o.DeletedMonitorId == nil {
@@ -62,6 +67,8 @@ func (o *DeletedMonitor) SetDeletedMonitorId(v int64) {
 	o.DeletedMonitorId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {

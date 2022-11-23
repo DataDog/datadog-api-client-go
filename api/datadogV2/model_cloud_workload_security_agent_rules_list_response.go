@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRulesListResponse Response object that includes a list of Agent rule.
 type CloudWorkloadSecurityAgentRulesListResponse struct {
 	// A list of Agent rules objects.
 	Data []CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRulesListResponse instantiates a new CloudWorkloadSecurityAgentRulesListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewCloudWorkloadSecurityAgentRulesListResponseWithDefaults() *CloudWorkload
 	this := CloudWorkloadSecurityAgentRulesListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRulesListResponse) GetData() []CloudWorkloadSecurityAgentRuleData {
 	if o == nil || o.Data == nil {
@@ -62,6 +67,8 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) SetData(v []CloudWorkloadS
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRulesListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o CloudWorkloadSecurityAgentRulesListResponse) MarshalJSON() ([]byte, erro
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRulesListResponse) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricVolumesResponse Response object which includes a single metric's volume.
 type MetricVolumesResponse struct {
 	// Possible response objects for a metric's volume.
 	Data *MetricVolumes `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricVolumesResponse instantiates a new MetricVolumesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewMetricVolumesResponseWithDefaults() *MetricVolumesResponse {
 	this := MetricVolumesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricVolumesResponse) GetData() MetricVolumes {
 	if o == nil || o.Data == nil {
@@ -62,6 +67,8 @@ func (o *MetricVolumesResponse) SetData(v MetricVolumes) {
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricVolumesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o MetricVolumesResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricVolumesResponse) UnmarshalJSON(bytes []byte) (err error) {

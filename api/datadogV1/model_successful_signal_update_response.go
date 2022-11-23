@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SuccessfulSignalUpdateResponse Updated signal data following a successfully performed update.
 type SuccessfulSignalUpdateResponse struct {
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSuccessfulSignalUpdateResponse instantiates a new SuccessfulSignalUpdateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSuccessfulSignalUpdateResponseWithDefaults() *SuccessfulSignalUpdateResp
 	this := SuccessfulSignalUpdateResponse{}
 	return &this
 }
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SuccessfulSignalUpdateResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -62,6 +67,8 @@ func (o *SuccessfulSignalUpdateResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SuccessfulSignalUpdateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o SuccessfulSignalUpdateResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SuccessfulSignalUpdateResponse) UnmarshalJSON(bytes []byte) (err error) {

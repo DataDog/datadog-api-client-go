@@ -2,27 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionEventsDataSource Data source for event platform-based queries.
 type FormulaAndFunctionEventsDataSource string
 
 // List of FormulaAndFunctionEventsDataSource.
 const (
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS             FormulaAndFunctionEventsDataSource = "logs"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS            FormulaAndFunctionEventsDataSource = "spans"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK          FormulaAndFunctionEventsDataSource = "network"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM              FormulaAndFunctionEventsDataSource = "rum"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS FormulaAndFunctionEventsDataSource = "logs"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS FormulaAndFunctionEventsDataSource = "spans"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK FormulaAndFunctionEventsDataSource = "network"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM FormulaAndFunctionEventsDataSource = "rum"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_SECURITY_SIGNALS FormulaAndFunctionEventsDataSource = "security_signals"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES         FormulaAndFunctionEventsDataSource = "profiles"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT            FormulaAndFunctionEventsDataSource = "audit"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS           FormulaAndFunctionEventsDataSource = "events"
-	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS         FormulaAndFunctionEventsDataSource = "ci_tests"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_PROFILES FormulaAndFunctionEventsDataSource = "profiles"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT FormulaAndFunctionEventsDataSource = "audit"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS FormulaAndFunctionEventsDataSource = "events"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS FormulaAndFunctionEventsDataSource = "ci_tests"
 )
 
 var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEventsDataSource{

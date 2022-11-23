@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageNetworkHostsHour Number of active NPM hosts for each hour for a given organization.
 type UsageNetworkHostsHour struct {
@@ -20,9 +23,11 @@ type UsageNetworkHostsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageNetworkHostsHour instantiates a new UsageNetworkHostsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewUsageNetworkHostsHourWithDefaults() *UsageNetworkHostsHour {
 	this := UsageNetworkHostsHour{}
 	return &this
 }
-
 // GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageNetworkHostsHour) GetHostCount() int64 {
 	if o == nil || o.HostCount == nil {
@@ -68,6 +72,7 @@ func (o *UsageNetworkHostsHour) HasHostCount() bool {
 func (o *UsageNetworkHostsHour) SetHostCount(v int64) {
 	o.HostCount = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageNetworkHostsHour) GetHour() time.Time {
@@ -97,6 +102,7 @@ func (o *UsageNetworkHostsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageNetworkHostsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -125,6 +131,7 @@ func (o *UsageNetworkHostsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageNetworkHostsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -152,6 +159,8 @@ func (o *UsageNetworkHostsHour) HasPublicId() bool {
 func (o *UsageNetworkHostsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageNetworkHostsHour) MarshalJSON() ([]byte, error) {
@@ -182,14 +191,15 @@ func (o UsageNetworkHostsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageNetworkHostsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostCount *int64     `json:"host_count,omitempty"`
-		Hour      *time.Time `json:"hour,omitempty"`
-		OrgName   *string    `json:"org_name,omitempty"`
-		PublicId  *string    `json:"public_id,omitempty"`
+		HostCount *int64 `json:"host_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

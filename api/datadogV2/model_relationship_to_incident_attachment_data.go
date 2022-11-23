@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToIncidentAttachmentData The attachment relationship data.
 type RelationshipToIncidentAttachmentData struct {
@@ -16,9 +19,11 @@ type RelationshipToIncidentAttachmentData struct {
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToIncidentAttachmentData instantiates a new RelationshipToIncidentAttachmentData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewRelationshipToIncidentAttachmentDataWithDefaults() *RelationshipToIncide
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *RelationshipToIncidentAttachmentData) GetId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *RelationshipToIncidentAttachmentData) GetIdOk() (*string, bool) {
 func (o *RelationshipToIncidentAttachmentData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RelationshipToIncidentAttachmentData) GetType() IncidentAttachmentType {
@@ -87,6 +92,8 @@ func (o *RelationshipToIncidentAttachmentData) SetType(v IncidentAttachmentType)
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentAttachmentData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,15 +109,16 @@ func (o RelationshipToIncidentAttachmentData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToIncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                 `json:"id"`
+		Id *string `json:"id"`
 		Type *IncidentAttachmentType `json:"type"`
 	}{}
 	all := struct {
-		Id   string                 `json:"id"`
+		Id string `json:"id"`
 		Type IncidentAttachmentType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

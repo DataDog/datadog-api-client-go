@@ -2,15 +2,19 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurations struct {
-	Metric                 *Metric
+	Metric *Metric
 	MetricTagConfiguration *MetricTagConfiguration
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +84,11 @@ func (obj MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.Metric)
 	}
 
+
 	if obj.MetricTagConfiguration != nil {
 		return json.Marshal(&obj.MetricTagConfiguration)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
+func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() (interface{}) {
 	if obj.Metric != nil {
 		return obj.Metric
 	}
 
+
 	if obj.MetricTagConfiguration != nil {
 		return obj.MetricTagConfiguration
 	}
+
 
 	// all schemas are nil
 	return nil

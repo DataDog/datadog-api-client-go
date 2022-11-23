@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookGraphSize The size of the graph.
 type NotebookGraphSize string
@@ -15,9 +18,9 @@ type NotebookGraphSize string
 // List of NotebookGraphSize.
 const (
 	NOTEBOOKGRAPHSIZE_EXTRA_SMALL NotebookGraphSize = "xs"
-	NOTEBOOKGRAPHSIZE_SMALL       NotebookGraphSize = "s"
-	NOTEBOOKGRAPHSIZE_MEDIUM      NotebookGraphSize = "m"
-	NOTEBOOKGRAPHSIZE_LARGE       NotebookGraphSize = "l"
+	NOTEBOOKGRAPHSIZE_SMALL NotebookGraphSize = "s"
+	NOTEBOOKGRAPHSIZE_MEDIUM NotebookGraphSize = "m"
+	NOTEBOOKGRAPHSIZE_LARGE NotebookGraphSize = "l"
 	NOTEBOOKGRAPHSIZE_EXTRA_LARGE NotebookGraphSize = "xl"
 )
 

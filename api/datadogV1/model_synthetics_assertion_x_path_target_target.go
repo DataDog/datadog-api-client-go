@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsAssertionXPathTargetTarget Composed target for `validatesXPath` operator.
 type SyntheticsAssertionXPathTargetTarget struct {
@@ -17,9 +21,11 @@ type SyntheticsAssertionXPathTargetTarget struct {
 	// The X path to assert.
 	XPath *string `json:"xPath,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAssertionXPathTargetTarget instantiates a new SyntheticsAssertionXPathTargetTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSyntheticsAssertionXPathTargetTargetWithDefaults() *SyntheticsAssertionX
 	this := SyntheticsAssertionXPathTargetTarget{}
 	return &this
 }
-
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *SyntheticsAssertionXPathTargetTarget) GetOperator() string {
 	if o == nil || o.Operator == nil {
@@ -65,6 +70,7 @@ func (o *SyntheticsAssertionXPathTargetTarget) HasOperator() bool {
 func (o *SyntheticsAssertionXPathTargetTarget) SetOperator(v string) {
 	o.Operator = &v
 }
+
 
 // GetTargetValue returns the TargetValue field value if set, zero value otherwise.
 func (o *SyntheticsAssertionXPathTargetTarget) GetTargetValue() interface{} {
@@ -94,6 +100,7 @@ func (o *SyntheticsAssertionXPathTargetTarget) SetTargetValue(v interface{}) {
 	o.TargetValue = v
 }
 
+
 // GetXPath returns the XPath field value if set, zero value otherwise.
 func (o *SyntheticsAssertionXPathTargetTarget) GetXPath() string {
 	if o == nil || o.XPath == nil {
@@ -122,6 +129,8 @@ func (o *SyntheticsAssertionXPathTargetTarget) SetXPath(v string) {
 	o.XPath = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionXPathTargetTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o SyntheticsAssertionXPathTargetTarget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionXPathTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Operator    *string     `json:"operator,omitempty"`
+		Operator *string `json:"operator,omitempty"`
 		TargetValue interface{} `json:"targetValue,omitempty"`
-		XPath       *string     `json:"xPath,omitempty"`
+		XPath *string `json:"xPath,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

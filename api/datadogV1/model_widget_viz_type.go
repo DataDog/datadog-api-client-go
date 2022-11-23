@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetVizType Whether to display the Alert Graph as a timeseries or a top list.
 type WidgetVizType string
@@ -15,7 +18,7 @@ type WidgetVizType string
 // List of WidgetVizType.
 const (
 	WIDGETVIZTYPE_TIMESERIES WidgetVizType = "timeseries"
-	WIDGETVIZTYPE_TOPLIST    WidgetVizType = "toplist"
+	WIDGETVIZTYPE_TOPLIST WidgetVizType = "toplist"
 )
 
 var allowedWidgetVizTypeEnumValues = []WidgetVizType{

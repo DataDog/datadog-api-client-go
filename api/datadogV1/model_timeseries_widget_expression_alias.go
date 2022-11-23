@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TimeseriesWidgetExpressionAlias Define an expression alias.
 type TimeseriesWidgetExpressionAlias struct {
@@ -16,9 +19,11 @@ type TimeseriesWidgetExpressionAlias struct {
 	// Expression name.
 	Expression string `json:"expression"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewTimeseriesWidgetExpressionAliasWithDefaults() *TimeseriesWidgetExpressio
 	this := TimeseriesWidgetExpressionAlias{}
 	return &this
 }
-
 // GetAliasName returns the AliasName field value if set, zero value otherwise.
 func (o *TimeseriesWidgetExpressionAlias) GetAliasName() string {
 	if o == nil || o.AliasName == nil {
@@ -66,6 +70,7 @@ func (o *TimeseriesWidgetExpressionAlias) SetAliasName(v string) {
 	o.AliasName = &v
 }
 
+
 // GetExpression returns the Expression field value.
 func (o *TimeseriesWidgetExpressionAlias) GetExpression() string {
 	if o == nil {
@@ -89,6 +94,8 @@ func (o *TimeseriesWidgetExpressionAlias) SetExpression(v string) {
 	o.Expression = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,6 +113,7 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -113,8 +121,8 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 		Expression *string `json:"expression"`
 	}{}
 	all := struct {
-		AliasName  *string `json:"alias_name,omitempty"`
-		Expression string  `json:"expression"`
+		AliasName *string `json:"alias_name,omitempty"`
+		Expression string `json:"expression"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

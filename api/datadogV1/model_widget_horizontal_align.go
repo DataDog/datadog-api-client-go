@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetHorizontalAlign Horizontal alignment.
 type WidgetHorizontalAlign string
@@ -15,8 +18,8 @@ type WidgetHorizontalAlign string
 // List of WidgetHorizontalAlign.
 const (
 	WIDGETHORIZONTALALIGN_CENTER WidgetHorizontalAlign = "center"
-	WIDGETHORIZONTALALIGN_LEFT   WidgetHorizontalAlign = "left"
-	WIDGETHORIZONTALALIGN_RIGHT  WidgetHorizontalAlign = "right"
+	WIDGETHORIZONTALALIGN_LEFT WidgetHorizontalAlign = "left"
+	WIDGETHORIZONTALALIGN_RIGHT WidgetHorizontalAlign = "right"
 )
 
 var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{

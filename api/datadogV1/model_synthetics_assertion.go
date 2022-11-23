@@ -2,18 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator,
 // which property they apply, and upon which target.
 type SyntheticsAssertion struct {
-	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
+	SyntheticsAssertionTarget *SyntheticsAssertionTarget
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
-	SyntheticsAssertionXPathTarget    *SyntheticsAssertionXPathTarget
+	SyntheticsAssertionXPathTarget *SyntheticsAssertionXPathTarget
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -105,13 +109,16 @@ func (obj SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.SyntheticsAssertionTarget)
 	}
 
+
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return json.Marshal(&obj.SyntheticsAssertionJSONPathTarget)
 	}
 
+
 	if obj.SyntheticsAssertionXPathTarget != nil {
 		return json.Marshal(&obj.SyntheticsAssertionXPathTarget)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -120,18 +127,21 @@ func (obj SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsAssertion) GetActualInstance() interface{} {
+func (obj *SyntheticsAssertion) GetActualInstance() (interface{}) {
 	if obj.SyntheticsAssertionTarget != nil {
 		return obj.SyntheticsAssertionTarget
 	}
+
 
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return obj.SyntheticsAssertionJSONPathTarget
 	}
 
+
 	if obj.SyntheticsAssertionXPathTarget != nil {
 		return obj.SyntheticsAssertionXPathTarget
 	}
+
 
 	// all schemas are nil
 	return nil

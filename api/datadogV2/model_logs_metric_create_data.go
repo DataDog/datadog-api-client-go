@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsMetricCreateData The new log-based metric properties.
 type LogsMetricCreateData struct {
@@ -18,9 +21,11 @@ type LogsMetricCreateData struct {
 	// The type of the resource. The value should always be logs_metrics.
 	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricCreateData instantiates a new LogsMetricCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewLogsMetricCreateDataWithDefaults() *LogsMetricCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *LogsMetricCreateData) GetAttributes() LogsMetricCreateAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *LogsMetricCreateData) GetAttributesOk() (*LogsMetricCreateAttributes, b
 func (o *LogsMetricCreateData) SetAttributes(v LogsMetricCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *LogsMetricCreateData) GetId() string {
@@ -90,6 +95,7 @@ func (o *LogsMetricCreateData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsMetricCreateData) GetType() LogsMetricType {
 	if o == nil {
@@ -113,6 +119,8 @@ func (o *LogsMetricCreateData) SetType(v LogsMetricType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -129,18 +137,19 @@ func (o LogsMetricCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *LogsMetricCreateAttributes `json:"attributes"`
-		Id         *string                     `json:"id"`
-		Type       *LogsMetricType             `json:"type"`
+		Id *string `json:"id"`
+		Type *LogsMetricType `json:"type"`
 	}{}
 	all := struct {
 		Attributes LogsMetricCreateAttributes `json:"attributes"`
-		Id         string                     `json:"id"`
-		Type       LogsMetricType             `json:"type"`
+		Id string `json:"id"`
+		Type LogsMetricType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -172,13 +181,13 @@ func (o *LogsMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

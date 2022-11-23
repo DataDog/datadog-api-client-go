@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SearchSLOResponseDataAttributesFacets Facets
 type SearchSLOResponseDataAttributesFacets struct {
@@ -27,9 +31,11 @@ type SearchSLOResponseDataAttributesFacets struct {
 	// Timeframes of SLOs.
 	Timeframe []SearchSLOResponseDataAttributesFacetsObjectString `json:"timeframe,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSearchSLOResponseDataAttributesFacets instantiates a new SearchSLOResponseDataAttributesFacets object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +53,6 @@ func NewSearchSLOResponseDataAttributesFacetsWithDefaults() *SearchSLOResponseDa
 	this := SearchSLOResponseDataAttributesFacets{}
 	return &this
 }
-
 // GetAllTags returns the AllTags field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetAllTags() []SearchSLOResponseDataAttributesFacetsObjectString {
 	if o == nil || o.AllTags == nil {
@@ -75,6 +80,7 @@ func (o *SearchSLOResponseDataAttributesFacets) HasAllTags() bool {
 func (o *SearchSLOResponseDataAttributesFacets) SetAllTags(v []SearchSLOResponseDataAttributesFacetsObjectString) {
 	o.AllTags = v
 }
+
 
 // GetCreatorName returns the CreatorName field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetCreatorName() []SearchSLOResponseDataAttributesFacetsObjectString {
@@ -104,6 +110,7 @@ func (o *SearchSLOResponseDataAttributesFacets) SetCreatorName(v []SearchSLOResp
 	o.CreatorName = v
 }
 
+
 // GetEnvTags returns the EnvTags field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetEnvTags() []SearchSLOResponseDataAttributesFacetsObjectString {
 	if o == nil || o.EnvTags == nil {
@@ -131,6 +138,7 @@ func (o *SearchSLOResponseDataAttributesFacets) HasEnvTags() bool {
 func (o *SearchSLOResponseDataAttributesFacets) SetEnvTags(v []SearchSLOResponseDataAttributesFacetsObjectString) {
 	o.EnvTags = v
 }
+
 
 // GetServiceTags returns the ServiceTags field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetServiceTags() []SearchSLOResponseDataAttributesFacetsObjectString {
@@ -160,6 +168,7 @@ func (o *SearchSLOResponseDataAttributesFacets) SetServiceTags(v []SearchSLOResp
 	o.ServiceTags = v
 }
 
+
 // GetSloType returns the SloType field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetSloType() []SearchSLOResponseDataAttributesFacetsObjectInt {
 	if o == nil || o.SloType == nil {
@@ -187,6 +196,7 @@ func (o *SearchSLOResponseDataAttributesFacets) HasSloType() bool {
 func (o *SearchSLOResponseDataAttributesFacets) SetSloType(v []SearchSLOResponseDataAttributesFacetsObjectInt) {
 	o.SloType = v
 }
+
 
 // GetTarget returns the Target field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetTarget() []SearchSLOResponseDataAttributesFacetsObjectInt {
@@ -216,6 +226,7 @@ func (o *SearchSLOResponseDataAttributesFacets) SetTarget(v []SearchSLOResponseD
 	o.Target = v
 }
 
+
 // GetTeamTags returns the TeamTags field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetTeamTags() []SearchSLOResponseDataAttributesFacetsObjectString {
 	if o == nil || o.TeamTags == nil {
@@ -244,6 +255,7 @@ func (o *SearchSLOResponseDataAttributesFacets) SetTeamTags(v []SearchSLORespons
 	o.TeamTags = v
 }
 
+
 // GetTimeframe returns the Timeframe field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacets) GetTimeframe() []SearchSLOResponseDataAttributesFacetsObjectString {
 	if o == nil || o.Timeframe == nil {
@@ -271,6 +283,8 @@ func (o *SearchSLOResponseDataAttributesFacets) HasTimeframe() bool {
 func (o *SearchSLOResponseDataAttributesFacets) SetTimeframe(v []SearchSLOResponseDataAttributesFacetsObjectString) {
 	o.Timeframe = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseDataAttributesFacets) MarshalJSON() ([]byte, error) {
@@ -309,18 +323,19 @@ func (o SearchSLOResponseDataAttributesFacets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponseDataAttributesFacets) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllTags     []SearchSLOResponseDataAttributesFacetsObjectString `json:"all_tags,omitempty"`
+		AllTags []SearchSLOResponseDataAttributesFacetsObjectString `json:"all_tags,omitempty"`
 		CreatorName []SearchSLOResponseDataAttributesFacetsObjectString `json:"creator_name,omitempty"`
-		EnvTags     []SearchSLOResponseDataAttributesFacetsObjectString `json:"env_tags,omitempty"`
+		EnvTags []SearchSLOResponseDataAttributesFacetsObjectString `json:"env_tags,omitempty"`
 		ServiceTags []SearchSLOResponseDataAttributesFacetsObjectString `json:"service_tags,omitempty"`
-		SloType     []SearchSLOResponseDataAttributesFacetsObjectInt    `json:"slo_type,omitempty"`
-		Target      []SearchSLOResponseDataAttributesFacetsObjectInt    `json:"target,omitempty"`
-		TeamTags    []SearchSLOResponseDataAttributesFacetsObjectString `json:"team_tags,omitempty"`
-		Timeframe   []SearchSLOResponseDataAttributesFacetsObjectString `json:"timeframe,omitempty"`
+		SloType []SearchSLOResponseDataAttributesFacetsObjectInt `json:"slo_type,omitempty"`
+		Target []SearchSLOResponseDataAttributesFacetsObjectInt `json:"target,omitempty"`
+		TeamTags []SearchSLOResponseDataAttributesFacetsObjectString `json:"team_tags,omitempty"`
+		Timeframe []SearchSLOResponseDataAttributesFacetsObjectString `json:"timeframe,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

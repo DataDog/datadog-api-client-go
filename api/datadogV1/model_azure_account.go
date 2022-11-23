@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AzureAccount Datadog-Azure integrations configured for your organization.
 type AzureAccount struct {
@@ -28,9 +32,11 @@ type AzureAccount struct {
 	// Your Azure Active Directory ID.
 	TenantName *string `json:"tenant_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAzureAccount instantiates a new AzureAccount object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +54,6 @@ func NewAzureAccountWithDefaults() *AzureAccount {
 	this := AzureAccount{}
 	return &this
 }
-
 // GetAutomute returns the Automute field value if set, zero value otherwise.
 func (o *AzureAccount) GetAutomute() bool {
 	if o == nil || o.Automute == nil {
@@ -76,6 +81,7 @@ func (o *AzureAccount) HasAutomute() bool {
 func (o *AzureAccount) SetAutomute(v bool) {
 	o.Automute = &v
 }
+
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *AzureAccount) GetClientId() string {
@@ -105,6 +111,7 @@ func (o *AzureAccount) SetClientId(v string) {
 	o.ClientId = &v
 }
 
+
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *AzureAccount) GetClientSecret() string {
 	if o == nil || o.ClientSecret == nil {
@@ -132,6 +139,7 @@ func (o *AzureAccount) HasClientSecret() bool {
 func (o *AzureAccount) SetClientSecret(v string) {
 	o.ClientSecret = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *AzureAccount) GetErrors() []string {
@@ -161,6 +169,7 @@ func (o *AzureAccount) SetErrors(v []string) {
 	o.Errors = v
 }
 
+
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
 func (o *AzureAccount) GetHostFilters() string {
 	if o == nil || o.HostFilters == nil {
@@ -188,6 +197,7 @@ func (o *AzureAccount) HasHostFilters() bool {
 func (o *AzureAccount) SetHostFilters(v string) {
 	o.HostFilters = &v
 }
+
 
 // GetNewClientId returns the NewClientId field value if set, zero value otherwise.
 func (o *AzureAccount) GetNewClientId() string {
@@ -217,6 +227,7 @@ func (o *AzureAccount) SetNewClientId(v string) {
 	o.NewClientId = &v
 }
 
+
 // GetNewTenantName returns the NewTenantName field value if set, zero value otherwise.
 func (o *AzureAccount) GetNewTenantName() string {
 	if o == nil || o.NewTenantName == nil {
@@ -245,6 +256,7 @@ func (o *AzureAccount) SetNewTenantName(v string) {
 	o.NewTenantName = &v
 }
 
+
 // GetTenantName returns the TenantName field value if set, zero value otherwise.
 func (o *AzureAccount) GetTenantName() string {
 	if o == nil || o.TenantName == nil {
@@ -272,6 +284,8 @@ func (o *AzureAccount) HasTenantName() bool {
 func (o *AzureAccount) SetTenantName(v string) {
 	o.TenantName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureAccount) MarshalJSON() ([]byte, error) {
@@ -310,18 +324,19 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Automute      *bool    `json:"automute,omitempty"`
-		ClientId      *string  `json:"client_id,omitempty"`
-		ClientSecret  *string  `json:"client_secret,omitempty"`
-		Errors        []string `json:"errors,omitempty"`
-		HostFilters   *string  `json:"host_filters,omitempty"`
-		NewClientId   *string  `json:"new_client_id,omitempty"`
-		NewTenantName *string  `json:"new_tenant_name,omitempty"`
-		TenantName    *string  `json:"tenant_name,omitempty"`
+		Automute *bool `json:"automute,omitempty"`
+		ClientId *string `json:"client_id,omitempty"`
+		ClientSecret *string `json:"client_secret,omitempty"`
+		Errors []string `json:"errors,omitempty"`
+		HostFilters *string `json:"host_filters,omitempty"`
+		NewClientId *string `json:"new_client_id,omitempty"`
+		NewTenantName *string `json:"new_tenant_name,omitempty"`
+		TenantName *string `json:"tenant_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

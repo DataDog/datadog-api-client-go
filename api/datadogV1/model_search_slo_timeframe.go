@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SearchSLOTimeframe The SLO time window options.
 type SearchSLOTimeframe string
 
 // List of SearchSLOTimeframe.
 const (
-	SEARCHSLOTIMEFRAME_SEVEN_DAYS  SearchSLOTimeframe = "7d"
+	SEARCHSLOTIMEFRAME_SEVEN_DAYS SearchSLOTimeframe = "7d"
 	SEARCHSLOTIMEFRAME_THIRTY_DAYS SearchSLOTimeframe = "30d"
 	SEARCHSLOTIMEFRAME_NINETY_DAYS SearchSLOTimeframe = "90d"
 )

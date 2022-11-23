@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // PagerDutyServiceKey PagerDuty service object key.
 type PagerDutyServiceKey struct {
 	// Your service key in PagerDuty.
 	ServiceKey string `json:"service_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPagerDutyServiceKey instantiates a new PagerDutyServiceKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewPagerDutyServiceKeyWithDefaults() *PagerDutyServiceKey {
 	this := PagerDutyServiceKey{}
 	return &this
 }
-
 // GetServiceKey returns the ServiceKey field value.
 func (o *PagerDutyServiceKey) GetServiceKey() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *PagerDutyServiceKey) SetServiceKey(v string) {
 	o.ServiceKey = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PagerDutyServiceKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o PagerDutyServiceKey) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {

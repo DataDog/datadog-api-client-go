@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,25 +21,25 @@ import (
 type SnapshotsApi datadog.Service
 
 type apiGetGraphSnapshotRequest struct {
-	ctx         _context.Context
-	start       *int64
-	end         *int64
+	ctx        _context.Context
+	start *int64
+	end *int64
 	metricQuery *string
-	eventQuery  *string
-	graphDef    *string
-	title       *string
-	height      *int64
-	width       *int64
+	eventQuery *string
+	graphDef *string
+	title *string
+	height *int64
+	width *int64
 }
 
 // GetGraphSnapshotOptionalParameters holds optional parameters for GetGraphSnapshot.
 type GetGraphSnapshotOptionalParameters struct {
 	MetricQuery *string
-	EventQuery  *string
-	GraphDef    *string
-	Title       *string
-	Height      *int64
-	Width       *int64
+	EventQuery *string
+	GraphDef *string
+	Title *string
+	Height *int64
+	Width *int64
 }
 
 // NewGetGraphSnapshotOptionalParameters creates an empty struct for parameters.
@@ -44,37 +47,31 @@ func NewGetGraphSnapshotOptionalParameters() *GetGraphSnapshotOptionalParameters
 	this := GetGraphSnapshotOptionalParameters{}
 	return &this
 }
-
 // WithMetricQuery sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithMetricQuery(metricQuery string) *GetGraphSnapshotOptionalParameters {
 	r.MetricQuery = &metricQuery
 	return r
 }
-
 // WithEventQuery sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithEventQuery(eventQuery string) *GetGraphSnapshotOptionalParameters {
 	r.EventQuery = &eventQuery
 	return r
 }
-
 // WithGraphDef sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithGraphDef(graphDef string) *GetGraphSnapshotOptionalParameters {
 	r.GraphDef = &graphDef
 	return r
 }
-
 // WithTitle sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSnapshotOptionalParameters {
 	r.Title = &title
 	return r
 }
-
 // WithHeight sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithHeight(height int64) *GetGraphSnapshotOptionalParameters {
 	r.Height = &height
 	return r
 }
-
 // WithWidth sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSnapshotOptionalParameters {
 	r.Width = &width
@@ -83,9 +80,9 @@ func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSna
 
 func (a *SnapshotsApi) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
 	req := apiGetGraphSnapshotRequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		start: &start,
-		end:   &end,
+		end: &end,
 	}
 
 	if len(o) > 1 {
@@ -119,9 +116,9 @@ func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end i
 // getGraphSnapshotExecute executes the request.
 func (a *SnapshotsApi) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue GraphSnapshot
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  GraphSnapshot
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SnapshotsApi.GetGraphSnapshot")
@@ -162,6 +159,7 @@ func (a *SnapshotsApi) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (Gr
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -209,10 +207,11 @@ func (a *SnapshotsApi) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (Gr
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -226,7 +225,7 @@ func (a *SnapshotsApi) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (Gr
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

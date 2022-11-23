@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // Creator Creator of the object.
 type Creator struct {
@@ -17,9 +21,11 @@ type Creator struct {
 	// Name of the creator.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCreator instantiates a new Creator object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewCreatorWithDefaults() *Creator {
 	this := Creator{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Creator) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -65,6 +70,7 @@ func (o *Creator) HasEmail() bool {
 func (o *Creator) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *Creator) GetHandle() string {
@@ -94,6 +100,7 @@ func (o *Creator) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Creator) GetName() string {
 	if o == nil || o.Name == nil {
@@ -122,6 +129,8 @@ func (o *Creator) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Creator) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email  *string `json:"email,omitempty"`
+		Email *string `json:"email,omitempty"`
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
 type SyntheticsCIBatchMetadataCI struct {
@@ -15,9 +19,11 @@ type SyntheticsCIBatchMetadataCI struct {
 	// Description of the CI provider.
 	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSyntheticsCIBatchMetadataCIWithDefaults() *SyntheticsCIBatchMetadataCI {
 	this := SyntheticsCIBatchMetadataCI{}
 	return &this
 }
-
 // GetPipeline returns the Pipeline field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetPipeline() SyntheticsCIBatchMetadataPipeline {
 	if o == nil || o.Pipeline == nil {
@@ -63,6 +68,7 @@ func (o *SyntheticsCIBatchMetadataCI) HasPipeline() bool {
 func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v SyntheticsCIBatchMetadataPipeline) {
 	o.Pipeline = &v
 }
+
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetProvider() SyntheticsCIBatchMetadataProvider {
@@ -92,6 +98,8 @@ func (o *SyntheticsCIBatchMetadataCI) SetProvider(v SyntheticsCIBatchMetadataPro
 	o.Provider = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,6 +119,7 @@ func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -127,21 +136,21 @@ func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Pipeline != nil && all.Pipeline.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Pipeline != nil && all.Pipeline.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Pipeline = all.Pipeline
-	if all.Provider != nil && all.Provider.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Provider != nil && all.Provider.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Provider = all.Provider
 	return nil
 }

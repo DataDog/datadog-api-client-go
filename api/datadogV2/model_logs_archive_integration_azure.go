@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveIntegrationAzure The Azure archive's integration destination.
 type LogsArchiveIntegrationAzure struct {
@@ -16,9 +19,11 @@ type LogsArchiveIntegrationAzure struct {
 	// A tenant ID.
 	TenantId string `json:"tenant_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewLogsArchiveIntegrationAzureWithDefaults() *LogsArchiveIntegrationAzure {
 	this := LogsArchiveIntegrationAzure{}
 	return &this
 }
-
 // GetClientId returns the ClientId field value.
 func (o *LogsArchiveIntegrationAzure) GetClientId() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *LogsArchiveIntegrationAzure) GetClientIdOk() (*string, bool) {
 func (o *LogsArchiveIntegrationAzure) SetClientId(v string) {
 	o.ClientId = v
 }
+
 
 // GetTenantId returns the TenantId field value.
 func (o *LogsArchiveIntegrationAzure) GetTenantId() string {
@@ -85,6 +90,8 @@ func (o *LogsArchiveIntegrationAzure) SetTenantId(v string) {
 	o.TenantId = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -99,6 +106,7 @@ func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {

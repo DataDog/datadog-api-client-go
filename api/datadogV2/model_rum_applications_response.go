@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMApplicationsResponse RUM applications response.
 type RUMApplicationsResponse struct {
 	// RUM applications array response.
 	Data []RUMApplication `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMApplicationsResponse instantiates a new RUMApplicationsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewRUMApplicationsResponseWithDefaults() *RUMApplicationsResponse {
 	this := RUMApplicationsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RUMApplicationsResponse) GetData() []RUMApplication {
 	if o == nil || o.Data == nil {
@@ -62,6 +67,8 @@ func (o *RUMApplicationsResponse) SetData(v []RUMApplication) {
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o RUMApplicationsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationsResponse) UnmarshalJSON(bytes []byte) (err error) {

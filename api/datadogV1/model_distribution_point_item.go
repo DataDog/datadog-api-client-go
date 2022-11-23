@@ -2,16 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DistributionPointItem - List of distribution point.
 type DistributionPointItem struct {
 	DistributionPointTimestamp *float64
-	DistributionPointData      *[]float64
+	DistributionPointData *[]float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +84,11 @@ func (obj DistributionPointItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.DistributionPointTimestamp)
 	}
 
+
 	if obj.DistributionPointData != nil {
 		return json.Marshal(&obj.DistributionPointData)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj DistributionPointItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DistributionPointItem) GetActualInstance() interface{} {
+func (obj *DistributionPointItem) GetActualInstance() (interface{}) {
 	if obj.DistributionPointTimestamp != nil {
 		return obj.DistributionPointTimestamp
 	}
 
+
 	if obj.DistributionPointData != nil {
 		return obj.DistributionPointData
 	}
+
 
 	// all schemas are nil
 	return nil

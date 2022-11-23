@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type LogsIndexesApi datadog.Service
 
 type apiCreateLogsIndexRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *LogsIndex
 }
 
 func (a *LogsIndexesApi) buildCreateLogsIndexRequest(ctx _context.Context, body LogsIndex) (apiCreateLogsIndexRequest, error) {
 	req := apiCreateLogsIndexRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -46,9 +48,9 @@ func (a *LogsIndexesApi) CreateLogsIndex(ctx _context.Context, body LogsIndex) (
 // createLogsIndexExecute executes the request.
 func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndex
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndex
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.CreateLogsIndex")
@@ -66,6 +68,8 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -116,10 +120,11 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -128,7 +133,8 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -142,7 +148,7 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -152,13 +158,13 @@ func (a *LogsIndexesApi) createLogsIndexExecute(r apiCreateLogsIndexRequest) (Lo
 }
 
 type apiGetLogsIndexRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	name string
 }
 
 func (a *LogsIndexesApi) buildGetLogsIndexRequest(ctx _context.Context, name string) (apiGetLogsIndexRequest, error) {
 	req := apiGetLogsIndexRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		name: name,
 	}
 	return req, nil
@@ -179,9 +185,9 @@ func (a *LogsIndexesApi) GetLogsIndex(ctx _context.Context, name string) (LogsIn
 // getLogsIndexExecute executes the request.
 func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndex
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndex
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.GetLogsIndex")
@@ -197,6 +203,7 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -244,10 +251,11 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -256,7 +264,8 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if
+		localVarHTTPResponse.StatusCode == 404{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -270,7 +279,7 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -280,12 +289,12 @@ func (a *LogsIndexesApi) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsInde
 }
 
 type apiGetLogsIndexOrderRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *LogsIndexesApi) buildGetLogsIndexOrderRequest(ctx _context.Context) (apiGetLogsIndexOrderRequest, error) {
 	req := apiGetLogsIndexOrderRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -305,9 +314,9 @@ func (a *LogsIndexesApi) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrd
 // getLogsIndexOrderExecute executes the request.
 func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndexesOrder
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndexesOrder
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.GetLogsIndexOrder")
@@ -322,6 +331,7 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest)
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -369,10 +379,11 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest)
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -386,7 +397,7 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest)
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -396,12 +407,12 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest)
 }
 
 type apiListLogIndexesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *LogsIndexesApi) buildListLogIndexesRequest(ctx _context.Context) (apiListLogIndexesRequest, error) {
 	req := apiListLogIndexesRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -422,9 +433,9 @@ func (a *LogsIndexesApi) ListLogIndexes(ctx _context.Context) (LogsIndexListResp
 // listLogIndexesExecute executes the request.
 func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (LogsIndexListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndexListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndexListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.ListLogIndexes")
@@ -439,6 +450,7 @@ func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (Logs
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -486,10 +498,11 @@ func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (Logs
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -503,7 +516,7 @@ func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (Logs
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -513,14 +526,14 @@ func (a *LogsIndexesApi) listLogIndexesExecute(r apiListLogIndexesRequest) (Logs
 }
 
 type apiUpdateLogsIndexRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	name string
 	body *LogsIndexUpdateRequest
 }
 
 func (a *LogsIndexesApi) buildUpdateLogsIndexRequest(ctx _context.Context, name string, body LogsIndexUpdateRequest) (apiUpdateLogsIndexRequest, error) {
 	req := apiUpdateLogsIndexRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		name: name,
 		body: &body,
 	}
@@ -546,9 +559,9 @@ func (a *LogsIndexesApi) UpdateLogsIndex(ctx _context.Context, name string, body
 // updateLogsIndexExecute executes the request.
 func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndex
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndex
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.UpdateLogsIndex")
@@ -567,6 +580,8 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -617,10 +632,11 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -629,7 +645,8 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if
+		localVarHTTPResponse.StatusCode == 403{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -643,7 +660,7 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -653,13 +670,13 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (Lo
 }
 
 type apiUpdateLogsIndexOrderRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *LogsIndexesOrder
 }
 
 func (a *LogsIndexesApi) buildUpdateLogsIndexOrderRequest(ctx _context.Context, body LogsIndexesOrder) (apiUpdateLogsIndexOrderRequest, error) {
 	req := apiUpdateLogsIndexOrderRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -681,9 +698,9 @@ func (a *LogsIndexesApi) UpdateLogsIndexOrder(ctx _context.Context, body LogsInd
 // updateLogsIndexOrderExecute executes the request.
 func (a *LogsIndexesApi) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndexesOrder
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsIndexesOrder
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApi.UpdateLogsIndexOrder")
@@ -701,6 +718,8 @@ func (a *LogsIndexesApi) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRe
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -751,10 +770,11 @@ func (a *LogsIndexesApi) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRe
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -763,7 +783,8 @@ func (a *LogsIndexesApi) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRe
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -777,7 +798,7 @@ func (a *LogsIndexesApi) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRe
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

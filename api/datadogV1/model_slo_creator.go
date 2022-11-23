@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCreator The creator of the SLO
 type SLOCreator struct {
@@ -17,9 +21,11 @@ type SLOCreator struct {
 	// Name of the creator.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCreator instantiates a new SLOCreator object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSLOCreatorWithDefaults() *SLOCreator {
 	this := SLOCreator{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SLOCreator) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -65,6 +70,7 @@ func (o *SLOCreator) HasEmail() bool {
 func (o *SLOCreator) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SLOCreator) GetId() int64 {
@@ -94,6 +100,7 @@ func (o *SLOCreator) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOCreator) GetName() string {
 	if o == nil || o.Name == nil {
@@ -122,6 +129,8 @@ func (o *SLOCreator) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOCreator) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o SLOCreator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Email *string `json:"email,omitempty"`
-		Id    *int64  `json:"id,omitempty"`
-		Name  *string `json:"name,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -166,7 +176,6 @@ func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
-
 // NullableSLOCreator handles when a null is used for SLOCreator.
 type NullableSLOCreator struct {
 	value *SLOCreator

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentAttachmentsResponseIncludedItem - An object related to an attachment that is included in the response.
 type IncidentAttachmentsResponseIncludedItem struct {
@@ -56,6 +60,7 @@ func (obj IncidentAttachmentsResponseIncludedItem) MarshalJSON() ([]byte, error)
 		return json.Marshal(&obj.User)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +68,11 @@ func (obj IncidentAttachmentsResponseIncludedItem) MarshalJSON() ([]byte, error)
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentAttachmentsResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *IncidentAttachmentsResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	// all schemas are nil
 	return nil

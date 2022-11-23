@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type LogsPipelinesApi datadog.Service
 
 type apiCreateLogsPipelineRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *LogsPipeline
 }
 
 func (a *LogsPipelinesApi) buildCreateLogsPipelineRequest(ctx _context.Context, body LogsPipeline) (apiCreateLogsPipelineRequest, error) {
 	req := apiCreateLogsPipelineRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -46,9 +48,9 @@ func (a *LogsPipelinesApi) CreateLogsPipeline(ctx _context.Context, body LogsPip
 // createLogsPipelineExecute executes the request.
 func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.CreateLogsPipeline")
@@ -66,6 +68,8 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -116,10 +120,11 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -128,7 +133,8 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -142,7 +148,7 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -179,8 +185,8 @@ func (a *LogsPipelinesApi) DeleteLogsPipeline(ctx _context.Context, pipelineId s
 // deleteLogsPipelineExecute executes the request.
 func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.DeleteLogsPipeline")
@@ -194,8 +200,9 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -243,10 +250,11 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -255,7 +263,8 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -298,9 +307,9 @@ func (a *LogsPipelinesApi) GetLogsPipeline(ctx _context.Context, pipelineId stri
 // getLogsPipelineExecute executes the request.
 func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.GetLogsPipeline")
@@ -316,6 +325,7 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -363,10 +373,11 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -375,7 +386,8 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -389,7 +401,7 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -399,12 +411,12 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 }
 
 type apiGetLogsPipelineOrderRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *LogsPipelinesApi) buildGetLogsPipelineOrderRequest(ctx _context.Context) (apiGetLogsPipelineOrderRequest, error) {
 	req := apiGetLogsPipelineOrderRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -425,9 +437,9 @@ func (a *LogsPipelinesApi) GetLogsPipelineOrder(ctx _context.Context) (LogsPipel
 // getLogsPipelineOrderExecute executes the request.
 func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipelinesOrder
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.GetLogsPipelineOrder")
@@ -442,6 +454,7 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -489,10 +502,11 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -506,7 +520,7 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -516,12 +530,12 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 }
 
 type apiListLogsPipelinesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *LogsPipelinesApi) buildListLogsPipelinesRequest(ctx _context.Context) (apiListLogsPipelinesRequest, error) {
 	req := apiListLogsPipelinesRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -542,9 +556,9 @@ func (a *LogsPipelinesApi) ListLogsPipelines(ctx _context.Context) ([]LogsPipeli
 // listLogsPipelinesExecute executes the request.
 func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []LogsPipeline
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.ListLogsPipelines")
@@ -559,6 +573,7 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -606,10 +621,11 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -623,7 +639,7 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -635,14 +651,14 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 type apiUpdateLogsPipelineRequest struct {
 	ctx        _context.Context
 	pipelineId string
-	body       *LogsPipeline
+	body *LogsPipeline
 }
 
 func (a *LogsPipelinesApi) buildUpdateLogsPipelineRequest(ctx _context.Context, pipelineId string, body LogsPipeline) (apiUpdateLogsPipelineRequest, error) {
 	req := apiUpdateLogsPipelineRequest{
 		ctx:        ctx,
 		pipelineId: pipelineId,
-		body:       &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -665,9 +681,9 @@ func (a *LogsPipelinesApi) UpdateLogsPipeline(ctx _context.Context, pipelineId s
 // updateLogsPipelineExecute executes the request.
 func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.UpdateLogsPipeline")
@@ -686,6 +702,8 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -736,10 +754,11 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if
+		localVarHTTPResponse.StatusCode == 400{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -748,7 +767,8 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -762,7 +782,7 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -772,13 +792,13 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 }
 
 type apiUpdateLogsPipelineOrderRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *LogsPipelinesOrder
 }
 
 func (a *LogsPipelinesApi) buildUpdateLogsPipelineOrderRequest(ctx _context.Context, body LogsPipelinesOrder) (apiUpdateLogsPipelineOrderRequest, error) {
 	req := apiUpdateLogsPipelineOrderRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -803,9 +823,9 @@ func (a *LogsPipelinesApi) UpdateLogsPipelineOrder(ctx _context.Context, body Lo
 // updateLogsPipelineOrderExecute executes the request.
 func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipelinesOrder
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.UpdateLogsPipelineOrder")
@@ -823,6 +843,8 @@ func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelin
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -873,10 +895,11 @@ func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 422 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 422{
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -885,7 +908,8 @@ func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelin
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -899,7 +923,7 @@ func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelin
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

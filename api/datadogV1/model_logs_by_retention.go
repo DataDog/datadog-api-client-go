@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsByRetention Object containing logs usage data broken down by retention period.
 type LogsByRetention struct {
@@ -17,9 +21,11 @@ type LogsByRetention struct {
 	// Object containing a summary of indexed logs usage by retention period for a single month.
 	UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsByRetention instantiates a new LogsByRetention object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewLogsByRetentionWithDefaults() *LogsByRetention {
 	this := LogsByRetention{}
 	return &this
 }
-
 // GetOrgs returns the Orgs field value if set, zero value otherwise.
 func (o *LogsByRetention) GetOrgs() LogsByRetentionOrgs {
 	if o == nil || o.Orgs == nil {
@@ -65,6 +70,7 @@ func (o *LogsByRetention) HasOrgs() bool {
 func (o *LogsByRetention) SetOrgs(v LogsByRetentionOrgs) {
 	o.Orgs = &v
 }
+
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *LogsByRetention) GetUsage() []LogsRetentionAggSumUsage {
@@ -94,6 +100,7 @@ func (o *LogsByRetention) SetUsage(v []LogsRetentionAggSumUsage) {
 	o.Usage = v
 }
 
+
 // GetUsageByMonth returns the UsageByMonth field value if set, zero value otherwise.
 func (o *LogsByRetention) GetUsageByMonth() LogsByRetentionMonthlyUsage {
 	if o == nil || o.UsageByMonth == nil {
@@ -122,6 +129,8 @@ func (o *LogsByRetention) SetUsageByMonth(v LogsByRetentionMonthlyUsage) {
 	o.UsageByMonth = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,12 +153,13 @@ func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsByRetention) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Orgs         *LogsByRetentionOrgs         `json:"orgs,omitempty"`
-		Usage        []LogsRetentionAggSumUsage   `json:"usage,omitempty"`
+		Orgs *LogsByRetentionOrgs `json:"orgs,omitempty"`
+		Usage []LogsRetentionAggSumUsage `json:"usage,omitempty"`
 		UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -161,22 +171,22 @@ func (o *LogsByRetention) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Orgs != nil && all.Orgs.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Orgs != nil && all.Orgs.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Orgs = all.Orgs
 	o.Usage = all.Usage
-	if all.UsageByMonth != nil && all.UsageByMonth.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.UsageByMonth != nil && all.UsageByMonth.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.UsageByMonth = all.UsageByMonth
 	return nil
 }

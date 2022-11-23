@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // DashboardListItem A dashboard within a list.
 type DashboardListItem struct {
@@ -37,9 +39,11 @@ type DashboardListItem struct {
 	// URL path to the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardListItem instantiates a new DashboardListItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +63,6 @@ func NewDashboardListItemWithDefaults() *DashboardListItem {
 	this := DashboardListItem{}
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *DashboardListItem) GetAuthor() Creator {
 	if o == nil || o.Author == nil {
@@ -87,6 +90,7 @@ func (o *DashboardListItem) HasAuthor() bool {
 func (o *DashboardListItem) SetAuthor(v Creator) {
 	o.Author = &v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *DashboardListItem) GetCreated() time.Time {
@@ -116,6 +120,7 @@ func (o *DashboardListItem) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIcon() string {
 	if o == nil || o.Icon == nil {
@@ -144,6 +149,7 @@ func (o *DashboardListItem) SetIcon(v string) {
 	o.Icon = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *DashboardListItem) GetId() string {
 	if o == nil {
@@ -166,6 +172,7 @@ func (o *DashboardListItem) GetIdOk() (*string, bool) {
 func (o *DashboardListItem) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsFavorite() bool {
@@ -195,6 +202,7 @@ func (o *DashboardListItem) SetIsFavorite(v bool) {
 	o.IsFavorite = &v
 }
 
+
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
@@ -222,6 +230,7 @@ func (o *DashboardListItem) HasIsReadOnly() bool {
 func (o *DashboardListItem) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
+
 
 // GetIsShared returns the IsShared field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsShared() bool {
@@ -251,6 +260,7 @@ func (o *DashboardListItem) SetIsShared(v bool) {
 	o.IsShared = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *DashboardListItem) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -278,6 +288,7 @@ func (o *DashboardListItem) HasModified() bool {
 func (o *DashboardListItem) SetModified(v time.Time) {
 	o.Modified = &v
 }
+
 
 // GetPopularity returns the Popularity field value if set, zero value otherwise.
 func (o *DashboardListItem) GetPopularity() int32 {
@@ -307,6 +318,7 @@ func (o *DashboardListItem) SetPopularity(v int32) {
 	o.Popularity = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DashboardListItem) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -335,6 +347,7 @@ func (o *DashboardListItem) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *DashboardListItem) GetType() DashboardType {
 	if o == nil {
@@ -357,6 +370,7 @@ func (o *DashboardListItem) GetTypeOk() (*DashboardType, bool) {
 func (o *DashboardListItem) SetType(v DashboardType) {
 	o.Type = v
 }
+
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *DashboardListItem) GetUrl() string {
@@ -385,6 +399,8 @@ func (o *DashboardListItem) HasUrl() bool {
 func (o *DashboardListItem) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListItem) MarshalJSON() ([]byte, error) {
@@ -439,26 +455,27 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string        `json:"id"`
+		Id *string `json:"id"`
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Author     *Creator      `json:"author,omitempty"`
-		Created    *time.Time    `json:"created,omitempty"`
-		Icon       *string       `json:"icon,omitempty"`
-		Id         string        `json:"id"`
-		IsFavorite *bool         `json:"is_favorite,omitempty"`
-		IsReadOnly *bool         `json:"is_read_only,omitempty"`
-		IsShared   *bool         `json:"is_shared,omitempty"`
-		Modified   *time.Time    `json:"modified,omitempty"`
-		Popularity *int32        `json:"popularity,omitempty"`
-		Title      *string       `json:"title,omitempty"`
-		Type       DashboardType `json:"type"`
-		Url        *string       `json:"url,omitempty"`
+		Author *Creator `json:"author,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Id string `json:"id"`
+		IsFavorite *bool `json:"is_favorite,omitempty"`
+		IsReadOnly *bool `json:"is_read_only,omitempty"`
+		IsShared *bool `json:"is_shared,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Popularity *int32 `json:"popularity,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type DashboardType `json:"type"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -487,13 +504,13 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Author = all.Author
 	o.Created = all.Created
 	o.Icon = all.Icon

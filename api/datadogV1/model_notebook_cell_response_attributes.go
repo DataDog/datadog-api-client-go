@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebookCellResponseAttributes - The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,
 // `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 type NotebookCellResponseAttributes struct {
-	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
-	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
-	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
-	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
+	NotebookMarkdownCellAttributes *NotebookMarkdownCellAttributes
+	NotebookTimeseriesCellAttributes *NotebookTimeseriesCellAttributes
+	NotebookToplistCellAttributes *NotebookToplistCellAttributes
+	NotebookHeatMapCellAttributes *NotebookHeatMapCellAttributes
 	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
-	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
+	NotebookLogStreamCellAttributes *NotebookLogStreamCellAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -177,25 +181,31 @@ func (obj NotebookCellResponseAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.NotebookMarkdownCellAttributes)
 	}
 
+
 	if obj.NotebookTimeseriesCellAttributes != nil {
 		return json.Marshal(&obj.NotebookTimeseriesCellAttributes)
 	}
+
 
 	if obj.NotebookToplistCellAttributes != nil {
 		return json.Marshal(&obj.NotebookToplistCellAttributes)
 	}
 
+
 	if obj.NotebookHeatMapCellAttributes != nil {
 		return json.Marshal(&obj.NotebookHeatMapCellAttributes)
 	}
+
 
 	if obj.NotebookDistributionCellAttributes != nil {
 		return json.Marshal(&obj.NotebookDistributionCellAttributes)
 	}
 
+
 	if obj.NotebookLogStreamCellAttributes != nil {
 		return json.Marshal(&obj.NotebookLogStreamCellAttributes)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -204,30 +214,36 @@ func (obj NotebookCellResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *NotebookCellResponseAttributes) GetActualInstance() interface{} {
+func (obj *NotebookCellResponseAttributes) GetActualInstance() (interface{}) {
 	if obj.NotebookMarkdownCellAttributes != nil {
 		return obj.NotebookMarkdownCellAttributes
 	}
+
 
 	if obj.NotebookTimeseriesCellAttributes != nil {
 		return obj.NotebookTimeseriesCellAttributes
 	}
 
+
 	if obj.NotebookToplistCellAttributes != nil {
 		return obj.NotebookToplistCellAttributes
 	}
+
 
 	if obj.NotebookHeatMapCellAttributes != nil {
 		return obj.NotebookHeatMapCellAttributes
 	}
 
+
 	if obj.NotebookDistributionCellAttributes != nil {
 		return obj.NotebookDistributionCellAttributes
 	}
 
+
 	if obj.NotebookLogStreamCellAttributes != nil {
 		return obj.NotebookLogStreamCellAttributes
 	}
+
 
 	// all schemas are nil
 	return nil

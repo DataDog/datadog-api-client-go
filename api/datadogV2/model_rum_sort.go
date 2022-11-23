@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMSort Sort parameters when querying events.
 type RUMSort string
 
 // List of RUMSort.
 const (
-	RUMSORT_TIMESTAMP_ASCENDING  RUMSort = "timestamp"
+	RUMSORT_TIMESTAMP_ASCENDING RUMSort = "timestamp"
 	RUMSORT_TIMESTAMP_DESCENDING RUMSort = "-timestamp"
 )
 

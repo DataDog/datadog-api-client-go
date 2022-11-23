@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // SLOOverallStatuses Overall status of the SLO by timeframes.
 type SLOOverallStatuses struct {
@@ -28,9 +30,11 @@ type SLOOverallStatuses struct {
 	// The SLO time window options.
 	Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOOverallStatuses instantiates a new SLOOverallStatuses object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func NewSLOOverallStatusesWithDefaults() *SLOOverallStatuses {
 	this := SLOOverallStatuses{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOOverallStatuses) GetError() string {
 	if o == nil || o.Error.Get() == nil {
@@ -62,7 +65,7 @@ func (o *SLOOverallStatuses) GetError() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOOverallStatuses) GetErrorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Error.Get(), o.Error.IsSet()
@@ -77,7 +80,6 @@ func (o *SLOOverallStatuses) HasError() bool {
 func (o *SLOOverallStatuses) SetError(v string) {
 	o.Error.Set(&v)
 }
-
 // SetErrorNil sets the value for Error to be an explicit nil.
 func (o *SLOOverallStatuses) SetErrorNil() {
 	o.Error.Set(nil)
@@ -87,6 +89,7 @@ func (o *SLOOverallStatuses) SetErrorNil() {
 func (o *SLOOverallStatuses) UnsetError() {
 	o.Error.Unset()
 }
+
 
 // GetIndexedAt returns the IndexedAt field value if set, zero value otherwise.
 func (o *SLOOverallStatuses) GetIndexedAt() int64 {
@@ -116,6 +119,7 @@ func (o *SLOOverallStatuses) SetIndexedAt(v int64) {
 	o.IndexedAt = &v
 }
 
+
 // GetRawErrorBudgetRemaining returns the RawErrorBudgetRemaining field value if set, zero value otherwise.
 func (o *SLOOverallStatuses) GetRawErrorBudgetRemaining() SLORawErrorBudgetRemaining {
 	if o == nil || o.RawErrorBudgetRemaining == nil {
@@ -143,6 +147,7 @@ func (o *SLOOverallStatuses) HasRawErrorBudgetRemaining() bool {
 func (o *SLOOverallStatuses) SetRawErrorBudgetRemaining(v SLORawErrorBudgetRemaining) {
 	o.RawErrorBudgetRemaining = &v
 }
+
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
 func (o *SLOOverallStatuses) GetSpanPrecision() int64 {
@@ -172,6 +177,7 @@ func (o *SLOOverallStatuses) SetSpanPrecision(v int64) {
 	o.SpanPrecision = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOOverallStatuses) GetStatus() float64 {
 	if o == nil || o.Status.Get() == nil {
@@ -185,7 +191,7 @@ func (o *SLOOverallStatuses) GetStatus() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOOverallStatuses) GetStatusOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Status.Get(), o.Status.IsSet()
@@ -200,7 +206,6 @@ func (o *SLOOverallStatuses) HasStatus() bool {
 func (o *SLOOverallStatuses) SetStatus(v float64) {
 	o.Status.Set(&v)
 }
-
 // SetStatusNil sets the value for Status to be an explicit nil.
 func (o *SLOOverallStatuses) SetStatusNil() {
 	o.Status.Set(nil)
@@ -210,6 +215,7 @@ func (o *SLOOverallStatuses) SetStatusNil() {
 func (o *SLOOverallStatuses) UnsetStatus() {
 	o.Status.Unset()
 }
+
 
 // GetTarget returns the Target field value if set, zero value otherwise.
 func (o *SLOOverallStatuses) GetTarget() float64 {
@@ -239,6 +245,7 @@ func (o *SLOOverallStatuses) SetTarget(v float64) {
 	o.Target = &v
 }
 
+
 // GetTimeframe returns the Timeframe field value if set, zero value otherwise.
 func (o *SLOOverallStatuses) GetTimeframe() SLOTimeframe {
 	if o == nil || o.Timeframe == nil {
@@ -266,6 +273,8 @@ func (o *SLOOverallStatuses) HasTimeframe() bool {
 func (o *SLOOverallStatuses) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
@@ -301,17 +310,18 @@ func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Error                   datadog.NullableString      `json:"error,omitempty"`
-		IndexedAt               *int64                      `json:"indexed_at,omitempty"`
+		Error datadog.NullableString `json:"error,omitempty"`
+		IndexedAt *int64 `json:"indexed_at,omitempty"`
 		RawErrorBudgetRemaining *SLORawErrorBudgetRemaining `json:"raw_error_budget_remaining,omitempty"`
-		SpanPrecision           *int64                      `json:"span_precision,omitempty"`
-		Status                  datadog.NullableFloat64     `json:"status,omitempty"`
-		Target                  *float64                    `json:"target,omitempty"`
-		Timeframe               *SLOTimeframe               `json:"timeframe,omitempty"`
+		SpanPrecision *int64 `json:"span_precision,omitempty"`
+		Status datadog.NullableFloat64 `json:"status,omitempty"`
+		Target *float64 `json:"target,omitempty"`
+		Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -322,7 +332,7 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Timeframe; v != nil && !v.IsValid() {
+	if v := all.Timeframe; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -332,13 +342,13 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Error = all.Error
 	o.IndexedAt = all.IndexedAt
-	if all.RawErrorBudgetRemaining != nil && all.RawErrorBudgetRemaining.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.RawErrorBudgetRemaining != nil && all.RawErrorBudgetRemaining.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
 	o.SpanPrecision = all.SpanPrecision
 	o.Status = all.Status

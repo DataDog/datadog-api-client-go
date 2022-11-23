@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CIAppSortOrder The order to use, ascending or descending.
 type CIAppSortOrder string
 
 // List of CIAppSortOrder.
 const (
-	CIAPPSORTORDER_ASCENDING  CIAppSortOrder = "asc"
+	CIAPPSORTORDER_ASCENDING CIAppSortOrder = "asc"
 	CIAPPSORTORDER_DESCENDING CIAppSortOrder = "desc"
 )
 

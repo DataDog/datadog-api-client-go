@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ListStreamWidgetRequest Updated list stream widget.
 type ListStreamWidgetRequest struct {
@@ -18,9 +21,11 @@ type ListStreamWidgetRequest struct {
 	// Widget response format.
 	ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewListStreamWidgetRequestWithDefaults() *ListStreamWidgetRequest {
 	this := ListStreamWidgetRequest{}
 	return &this
 }
-
 // GetColumns returns the Columns field value.
 func (o *ListStreamWidgetRequest) GetColumns() []ListStreamColumn {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ListStreamWidgetRequest) GetColumnsOk() (*[]ListStreamColumn, bool) {
 func (o *ListStreamWidgetRequest) SetColumns(v []ListStreamColumn) {
 	o.Columns = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery {
@@ -88,6 +93,7 @@ func (o *ListStreamWidgetRequest) SetQuery(v ListStreamQuery) {
 	o.Query = v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value.
 func (o *ListStreamWidgetRequest) GetResponseFormat() ListStreamResponseFormat {
 	if o == nil {
@@ -111,6 +117,8 @@ func (o *ListStreamWidgetRequest) SetResponseFormat(v ListStreamResponseFormat) 
 	o.ResponseFormat = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -127,17 +135,18 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Columns        *[]ListStreamColumn       `json:"columns"`
-		Query          *ListStreamQuery          `json:"query"`
+		Columns *[]ListStreamColumn `json:"columns"`
+		Query *ListStreamQuery `json:"query"`
 		ResponseFormat *ListStreamResponseFormat `json:"response_format"`
 	}{}
 	all := struct {
-		Columns        []ListStreamColumn       `json:"columns"`
-		Query          ListStreamQuery          `json:"query"`
+		Columns []ListStreamColumn `json:"columns"`
+		Query ListStreamQuery `json:"query"`
 		ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -171,13 +180,13 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Columns = all.Columns
-	if all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Query = all.Query
 	o.ResponseFormat = all.ResponseFormat
 	return nil

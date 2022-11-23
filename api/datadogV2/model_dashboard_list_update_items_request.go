@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DashboardListUpdateItemsRequest Request containing the list of dashboards to update to.
 type DashboardListUpdateItemsRequest struct {
 	// List of dashboards to update the dashboard list to.
 	Dashboards []DashboardListItemRequest `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardListUpdateItemsRequest instantiates a new DashboardListUpdateItemsRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewDashboardListUpdateItemsRequestWithDefaults() *DashboardListUpdateItemsR
 	this := DashboardListUpdateItemsRequest{}
 	return &this
 }
-
 // GetDashboards returns the Dashboards field value if set, zero value otherwise.
 func (o *DashboardListUpdateItemsRequest) GetDashboards() []DashboardListItemRequest {
 	if o == nil || o.Dashboards == nil {
@@ -62,6 +67,8 @@ func (o *DashboardListUpdateItemsRequest) SetDashboards(v []DashboardListItemReq
 	o.Dashboards = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListUpdateItemsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o DashboardListUpdateItemsRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListUpdateItemsRequest) UnmarshalJSON(bytes []byte) (err error) {

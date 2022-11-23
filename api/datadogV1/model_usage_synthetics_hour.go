@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageSyntheticsHour The number of synthetics tests run for each hour for a given organization.
 type UsageSyntheticsHour struct {
@@ -20,9 +23,11 @@ type UsageSyntheticsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSyntheticsHour instantiates a new UsageSyntheticsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewUsageSyntheticsHourWithDefaults() *UsageSyntheticsHour {
 	this := UsageSyntheticsHour{}
 	return &this
 }
-
 // GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise.
 func (o *UsageSyntheticsHour) GetCheckCallsCount() int64 {
 	if o == nil || o.CheckCallsCount == nil {
@@ -68,6 +72,7 @@ func (o *UsageSyntheticsHour) HasCheckCallsCount() bool {
 func (o *UsageSyntheticsHour) SetCheckCallsCount(v int64) {
 	o.CheckCallsCount = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSyntheticsHour) GetHour() time.Time {
@@ -97,6 +102,7 @@ func (o *UsageSyntheticsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSyntheticsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -125,6 +131,7 @@ func (o *UsageSyntheticsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSyntheticsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -152,6 +159,8 @@ func (o *UsageSyntheticsHour) HasPublicId() bool {
 func (o *UsageSyntheticsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
@@ -182,14 +191,15 @@ func (o UsageSyntheticsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSyntheticsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CheckCallsCount *int64     `json:"check_calls_count,omitempty"`
-		Hour            *time.Time `json:"hour,omitempty"`
-		OrgName         *string    `json:"org_name,omitempty"`
-		PublicId        *string    `json:"public_id,omitempty"`
+		CheckCallsCount *int64 `json:"check_calls_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

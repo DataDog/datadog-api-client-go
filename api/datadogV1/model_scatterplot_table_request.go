@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ScatterplotTableRequest Scatterplot request containing formulas and functions.
 type ScatterplotTableRequest struct {
@@ -17,9 +21,11 @@ type ScatterplotTableRequest struct {
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewScatterplotTableRequest instantiates a new ScatterplotTableRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewScatterplotTableRequestWithDefaults() *ScatterplotTableRequest {
 	this := ScatterplotTableRequest{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *ScatterplotTableRequest) GetFormulas() []ScatterplotWidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -65,6 +70,7 @@ func (o *ScatterplotTableRequest) HasFormulas() bool {
 func (o *ScatterplotTableRequest) SetFormulas(v []ScatterplotWidgetFormula) {
 	o.Formulas = v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *ScatterplotTableRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -94,6 +100,7 @@ func (o *ScatterplotTableRequest) SetQueries(v []FormulaAndFunctionQueryDefiniti
 	o.Queries = v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *ScatterplotTableRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -122,6 +129,8 @@ func (o *ScatterplotTableRequest) SetResponseFormat(v FormulaAndFunctionResponse
 	o.ResponseFormat = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScatterplotTableRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o ScatterplotTableRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ScatterplotTableRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       []ScatterplotWidgetFormula          `json:"formulas,omitempty"`
-		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
+		Formulas []ScatterplotWidgetFormula `json:"formulas,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,7 +171,7 @@ func (o *ScatterplotTableRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

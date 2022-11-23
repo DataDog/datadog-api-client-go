@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookUpdateRequest The description of a notebook update request.
 type NotebookUpdateRequest struct {
 	// The data for a notebook update request.
 	Data NotebookUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookUpdateRequest instantiates a new NotebookUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewNotebookUpdateRequestWithDefaults() *NotebookUpdateRequest {
 	this := NotebookUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *NotebookUpdateRequest) GetData() NotebookUpdateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *NotebookUpdateRequest) SetData(v NotebookUpdateData) {
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o NotebookUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
@@ -98,13 +105,13 @@ func (o *NotebookUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

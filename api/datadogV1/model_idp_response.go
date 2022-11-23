@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IdpResponse The IdP response object.
 type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIdpResponse instantiates a new IdpResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewIdpResponseWithDefaults() *IdpResponse {
 	this := IdpResponse{}
 	return &this
 }
-
 // GetMessage returns the Message field value.
 func (o *IdpResponse) GetMessage() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *IdpResponse) SetMessage(v string) {
 	o.Message = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IdpResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o IdpResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingCreateRelationships Relationship of AuthN Mapping create object to Role.
 type AuthNMappingCreateRelationships struct {
 	// Relationship to role.
 	Role *RelationshipToRole `json:"role,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingCreateRelationships instantiates a new AuthNMappingCreateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewAuthNMappingCreateRelationshipsWithDefaults() *AuthNMappingCreateRelatio
 	this := AuthNMappingCreateRelationships{}
 	return &this
 }
-
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *AuthNMappingCreateRelationships) GetRole() RelationshipToRole {
 	if o == nil || o.Role == nil {
@@ -62,6 +67,8 @@ func (o *AuthNMappingCreateRelationships) SetRole(v RelationshipToRole) {
 	o.Role = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingCreateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o AuthNMappingCreateRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *AuthNMappingCreateRelationships) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Role != nil && all.Role.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Role != nil && all.Role.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Role = all.Role
 	return nil
 }

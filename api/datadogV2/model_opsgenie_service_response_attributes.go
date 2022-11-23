@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // OpsgenieServiceResponseAttributes The attributes from an Opsgenie service response.
 type OpsgenieServiceResponseAttributes struct {
@@ -19,9 +21,11 @@ type OpsgenieServiceResponseAttributes struct {
 	// The region for the Opsgenie service.
 	Region *OpsgenieServiceRegionType `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOpsgenieServiceResponseAttributes instantiates a new OpsgenieServiceResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewOpsgenieServiceResponseAttributesWithDefaults() *OpsgenieServiceResponse
 	this := OpsgenieServiceResponseAttributes{}
 	return &this
 }
-
 // GetCustomUrl returns the CustomUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OpsgenieServiceResponseAttributes) GetCustomUrl() string {
 	if o == nil || o.CustomUrl.Get() == nil {
@@ -53,7 +56,7 @@ func (o *OpsgenieServiceResponseAttributes) GetCustomUrl() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *OpsgenieServiceResponseAttributes) GetCustomUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomUrl.Get(), o.CustomUrl.IsSet()
@@ -68,7 +71,6 @@ func (o *OpsgenieServiceResponseAttributes) HasCustomUrl() bool {
 func (o *OpsgenieServiceResponseAttributes) SetCustomUrl(v string) {
 	o.CustomUrl.Set(&v)
 }
-
 // SetCustomUrlNil sets the value for CustomUrl to be an explicit nil.
 func (o *OpsgenieServiceResponseAttributes) SetCustomUrlNil() {
 	o.CustomUrl.Set(nil)
@@ -78,6 +80,7 @@ func (o *OpsgenieServiceResponseAttributes) SetCustomUrlNil() {
 func (o *OpsgenieServiceResponseAttributes) UnsetCustomUrl() {
 	o.CustomUrl.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OpsgenieServiceResponseAttributes) GetName() string {
@@ -107,6 +110,7 @@ func (o *OpsgenieServiceResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *OpsgenieServiceResponseAttributes) GetRegion() OpsgenieServiceRegionType {
 	if o == nil || o.Region == nil {
@@ -135,6 +139,8 @@ func (o *OpsgenieServiceResponseAttributes) SetRegion(v OpsgenieServiceRegionTyp
 	o.Region = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OpsgenieServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,13 +163,14 @@ func (o OpsgenieServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CustomUrl datadog.NullableString     `json:"custom_url,omitempty"`
-		Name      *string                    `json:"name,omitempty"`
-		Region    *OpsgenieServiceRegionType `json:"region,omitempty"`
+		CustomUrl datadog.NullableString `json:"custom_url,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Region *OpsgenieServiceRegionType `json:"region,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -174,7 +181,7 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Region; v != nil && !v.IsValid() {
+	if v := all.Region; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonthlyUsageAttributionResponse Response containing the monthly Usage Summary by tag(s).
 type MonthlyUsageAttributionResponse struct {
@@ -15,9 +19,11 @@ type MonthlyUsageAttributionResponse struct {
 	// Get usage summary by tag(s).
 	Usage []MonthlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonthlyUsageAttributionResponse instantiates a new MonthlyUsageAttributionResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMonthlyUsageAttributionResponseWithDefaults() *MonthlyUsageAttributionRe
 	this := MonthlyUsageAttributionResponse{}
 	return &this
 }
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionResponse) GetMetadata() MonthlyUsageAttributionMetadata {
 	if o == nil || o.Metadata == nil {
@@ -63,6 +68,7 @@ func (o *MonthlyUsageAttributionResponse) HasMetadata() bool {
 func (o *MonthlyUsageAttributionResponse) SetMetadata(v MonthlyUsageAttributionMetadata) {
 	o.Metadata = &v
 }
+
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionResponse) GetUsage() []MonthlyUsageAttributionBody {
@@ -92,6 +98,8 @@ func (o *MonthlyUsageAttributionResponse) SetUsage(v []MonthlyUsageAttributionBo
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o MonthlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *MonthlyUsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    []MonthlyUsageAttributionBody    `json:"usage,omitempty"`
+		Usage []MonthlyUsageAttributionBody `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -127,13 +136,13 @@ func (o *MonthlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Metadata = all.Metadata
 	o.Usage = all.Usage
 	return nil

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppWarning A warning message indicating something that went wrong with the query.
 type CIAppWarning struct {
@@ -17,9 +21,11 @@ type CIAppWarning struct {
 	// A short human-readable summary of the warning.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppWarning instantiates a new CIAppWarning object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewCIAppWarningWithDefaults() *CIAppWarning {
 	this := CIAppWarning{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *CIAppWarning) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -65,6 +70,7 @@ func (o *CIAppWarning) HasCode() bool {
 func (o *CIAppWarning) SetCode(v string) {
 	o.Code = &v
 }
+
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *CIAppWarning) GetDetail() string {
@@ -94,6 +100,7 @@ func (o *CIAppWarning) SetDetail(v string) {
 	o.Detail = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CIAppWarning) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -122,6 +129,8 @@ func (o *CIAppWarning) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o CIAppWarning) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppWarning) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code   *string `json:"code,omitempty"`
+		Code *string `json:"code,omitempty"`
 		Detail *string `json:"detail,omitempty"`
-		Title  *string `json:"title,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SearchSLOResponseDataAttributes Attributes
 type SearchSLOResponseDataAttributes struct {
@@ -15,9 +19,11 @@ type SearchSLOResponseDataAttributes struct {
 	// SLOs
 	Slos []SearchServiceLevelObjective `json:"slos,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSearchSLOResponseDataAttributes instantiates a new SearchSLOResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSearchSLOResponseDataAttributesWithDefaults() *SearchSLOResponseDataAttr
 	this := SearchSLOResponseDataAttributes{}
 	return &this
 }
-
 // GetFacets returns the Facets field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributes) GetFacets() SearchSLOResponseDataAttributesFacets {
 	if o == nil || o.Facets == nil {
@@ -63,6 +68,7 @@ func (o *SearchSLOResponseDataAttributes) HasFacets() bool {
 func (o *SearchSLOResponseDataAttributes) SetFacets(v SearchSLOResponseDataAttributesFacets) {
 	o.Facets = &v
 }
+
 
 // GetSlos returns the Slos field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributes) GetSlos() []SearchServiceLevelObjective {
@@ -92,6 +98,8 @@ func (o *SearchSLOResponseDataAttributes) SetSlos(v []SearchServiceLevelObjectiv
 	o.Slos = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o SearchSLOResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
-		Slos   []SearchServiceLevelObjective          `json:"slos,omitempty"`
+		Slos []SearchServiceLevelObjective `json:"slos,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -127,13 +136,13 @@ func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Facets != nil && all.Facets.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Facets != nil && all.Facets.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Facets = all.Facets
 	o.Slos = all.Slos
 	return nil

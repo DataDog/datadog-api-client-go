@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppAggregateSort A sort rule.
 type CIAppAggregateSort struct {
@@ -19,9 +23,11 @@ type CIAppAggregateSort struct {
 	// The type of sorting algorithm.
 	Type *CIAppAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppAggregateSort instantiates a new CIAppAggregateSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewCIAppAggregateSortWithDefaults() *CIAppAggregateSort {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *CIAppAggregateSort) GetAggregation() CIAppAggregationFunction {
 	if o == nil || o.Aggregation == nil {
@@ -71,6 +76,7 @@ func (o *CIAppAggregateSort) HasAggregation() bool {
 func (o *CIAppAggregateSort) SetAggregation(v CIAppAggregationFunction) {
 	o.Aggregation = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *CIAppAggregateSort) GetMetric() string {
@@ -100,6 +106,7 @@ func (o *CIAppAggregateSort) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *CIAppAggregateSort) GetOrder() CIAppSortOrder {
 	if o == nil || o.Order == nil {
@@ -127,6 +134,7 @@ func (o *CIAppAggregateSort) HasOrder() bool {
 func (o *CIAppAggregateSort) SetOrder(v CIAppSortOrder) {
 	o.Order = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CIAppAggregateSort) GetType() CIAppAggregateSortType {
@@ -156,6 +164,8 @@ func (o *CIAppAggregateSort) SetType(v CIAppAggregateSortType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppAggregateSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,14 +191,15 @@ func (o CIAppAggregateSort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation *CIAppAggregationFunction `json:"aggregation,omitempty"`
-		Metric      *string                   `json:"metric,omitempty"`
-		Order       *CIAppSortOrder           `json:"order,omitempty"`
-		Type        *CIAppAggregateSortType   `json:"type,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Order *CIAppSortOrder `json:"order,omitempty"`
+		Type *CIAppAggregateSortType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -199,7 +210,7 @@ func (o *CIAppAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregation; v != nil && !v.IsValid() {
+	if v := all.Aggregation; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -207,7 +218,7 @@ func (o *CIAppAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
+	if v := all.Order; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -215,7 +226,7 @@ func (o *CIAppAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

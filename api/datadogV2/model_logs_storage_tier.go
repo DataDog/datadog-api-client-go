@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsStorageTier Specifies storage type as indexes or online-archives
 type LogsStorageTier string
 
 // List of LogsStorageTier.
 const (
-	LOGSSTORAGETIER_INDEXES         LogsStorageTier = "indexes"
+	LOGSSTORAGETIER_INDEXES LogsStorageTier = "indexes"
 	LOGSSTORAGETIER_ONLINE_ARCHIVES LogsStorageTier = "online-archives"
 )
 

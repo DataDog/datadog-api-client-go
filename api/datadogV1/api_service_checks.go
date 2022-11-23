@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,13 +21,13 @@ import (
 type ServiceChecksApi datadog.Service
 
 type apiSubmitServiceCheckRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *[]ServiceCheck
 }
 
 func (a *ServiceChecksApi) buildSubmitServiceCheckRequest(ctx _context.Context, body []ServiceCheck) (apiSubmitServiceCheckRequest, error) {
 	req := apiSubmitServiceCheckRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -49,9 +52,9 @@ func (a *ServiceChecksApi) SubmitServiceCheck(ctx _context.Context, body []Servi
 // submitServiceCheckExecute executes the request.
 func (a *ServiceChecksApi) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IntakePayloadAccepted
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceChecksApi.SubmitServiceCheck")
@@ -69,6 +72,8 @@ func (a *ServiceChecksApi) submitServiceCheckExecute(r apiSubmitServiceCheckRequ
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -105,10 +110,11 @@ func (a *ServiceChecksApi) submitServiceCheckExecute(r apiSubmitServiceCheckRequ
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 408 || localVarHTTPResponse.StatusCode == 413 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 408||localVarHTTPResponse.StatusCode == 413||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -122,7 +128,7 @@ func (a *ServiceChecksApi) submitServiceCheckExecute(r apiSubmitServiceCheckRequ
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageBillableSummaryHour Response with monthly summary of data billed by Datadog.
 type UsageBillableSummaryHour struct {
@@ -30,9 +33,11 @@ type UsageBillableSummaryHour struct {
 	// Response with aggregated usage types.
 	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewUsageBillableSummaryHourWithDefaults() *UsageBillableSummaryHour {
 	this := UsageBillableSummaryHour{}
 	return &this
 }
-
 // GetBillingPlan returns the BillingPlan field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetBillingPlan() string {
 	if o == nil || o.BillingPlan == nil {
@@ -78,6 +82,7 @@ func (o *UsageBillableSummaryHour) HasBillingPlan() bool {
 func (o *UsageBillableSummaryHour) SetBillingPlan(v string) {
 	o.BillingPlan = &v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetEndDate() time.Time {
@@ -107,6 +112,7 @@ func (o *UsageBillableSummaryHour) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+
 // GetNumOrgs returns the NumOrgs field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetNumOrgs() int64 {
 	if o == nil || o.NumOrgs == nil {
@@ -134,6 +140,7 @@ func (o *UsageBillableSummaryHour) HasNumOrgs() bool {
 func (o *UsageBillableSummaryHour) SetNumOrgs(v int64) {
 	o.NumOrgs = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetOrgName() string {
@@ -163,6 +170,7 @@ func (o *UsageBillableSummaryHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -190,6 +198,7 @@ func (o *UsageBillableSummaryHour) HasPublicId() bool {
 func (o *UsageBillableSummaryHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetRatioInMonth returns the RatioInMonth field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetRatioInMonth() float64 {
@@ -219,6 +228,7 @@ func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
 	o.RatioInMonth = &v
 }
 
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -246,6 +256,7 @@ func (o *UsageBillableSummaryHour) HasRegion() bool {
 func (o *UsageBillableSummaryHour) SetRegion(v string) {
 	o.Region = &v
 }
+
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
@@ -275,6 +286,7 @@ func (o *UsageBillableSummaryHour) SetStartDate(v time.Time) {
 	o.StartDate = &v
 }
 
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetUsage() UsageBillableSummaryKeys {
 	if o == nil || o.Usage == nil {
@@ -302,6 +314,8 @@ func (o *UsageBillableSummaryHour) HasUsage() bool {
 func (o *UsageBillableSummaryHour) SetUsage(v UsageBillableSummaryKeys) {
 	o.Usage = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
@@ -351,19 +365,20 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BillingPlan  *string                   `json:"billing_plan,omitempty"`
-		EndDate      *time.Time                `json:"end_date,omitempty"`
-		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
-		OrgName      *string                   `json:"org_name,omitempty"`
-		PublicId     *string                   `json:"public_id,omitempty"`
-		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
-		Region       *string                   `json:"region,omitempty"`
-		StartDate    *time.Time                `json:"start_date,omitempty"`
-		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
+		BillingPlan *string `json:"billing_plan,omitempty"`
+		EndDate *time.Time `json:"end_date,omitempty"`
+		NumOrgs *int64 `json:"num_orgs,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+		Region *string `json:"region,omitempty"`
+		StartDate *time.Time `json:"start_date,omitempty"`
+		Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -382,13 +397,13 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.RatioInMonth = all.RatioInMonth
 	o.Region = all.Region
 	o.StartDate = all.StartDate
-	if all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Usage = all.Usage
 	return nil
 }

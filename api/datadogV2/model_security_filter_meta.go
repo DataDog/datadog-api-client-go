@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityFilterMeta Optional metadata associated to the response.
 type SecurityFilterMeta struct {
 	// A warning message.
 	Warning *string `json:"warning,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterMeta instantiates a new SecurityFilterMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSecurityFilterMetaWithDefaults() *SecurityFilterMeta {
 	this := SecurityFilterMeta{}
 	return &this
 }
-
 // GetWarning returns the Warning field value if set, zero value otherwise.
 func (o *SecurityFilterMeta) GetWarning() string {
 	if o == nil || o.Warning == nil {
@@ -62,6 +67,8 @@ func (o *SecurityFilterMeta) SetWarning(v string) {
 	o.Warning = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterMeta) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentAttachmentRelationships The incident attachment's relationships.
 type IncidentAttachmentRelationships struct {
 	// Relationship to user.
 	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentRelationships instantiates a new IncidentAttachmentRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewIncidentAttachmentRelationshipsWithDefaults() *IncidentAttachmentRelatio
 	this := IncidentAttachmentRelationships{}
 	return &this
 }
-
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentAttachmentRelationships) GetLastModifiedByUser() RelationshipToUser {
 	if o == nil || o.LastModifiedByUser == nil {
@@ -62,6 +67,8 @@ func (o *IncidentAttachmentRelationships) SetLastModifiedByUser(v RelationshipTo
 	o.LastModifiedByUser = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o IncidentAttachmentRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *IncidentAttachmentRelationships) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.LastModifiedByUser = all.LastModifiedByUser
 	return nil
 }

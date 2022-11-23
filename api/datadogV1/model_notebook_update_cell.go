@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebookUpdateCell - Updating a notebook can either insert new cell(s) or update existing cell(s) by including the cell `id`.
 // To delete existing cell(s), simply omit it from the list of cells.
@@ -81,9 +85,11 @@ func (obj NotebookUpdateCell) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.NotebookCellCreateRequest)
 	}
 
+
 	if obj.NotebookCellUpdateRequest != nil {
 		return json.Marshal(&obj.NotebookCellUpdateRequest)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -92,14 +98,16 @@ func (obj NotebookUpdateCell) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *NotebookUpdateCell) GetActualInstance() interface{} {
+func (obj *NotebookUpdateCell) GetActualInstance() (interface{}) {
 	if obj.NotebookCellCreateRequest != nil {
 		return obj.NotebookCellCreateRequest
 	}
 
+
 	if obj.NotebookCellUpdateRequest != nil {
 		return obj.NotebookCellUpdateRequest
 	}
+
 
 	// all schemas are nil
 	return nil

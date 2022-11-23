@@ -2,22 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AccessRole The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 type AccessRole string
 
 // List of AccessRole.
 const (
-	ACCESSROLE_STANDARD  AccessRole = "st"
-	ACCESSROLE_ADMIN     AccessRole = "adm"
+	ACCESSROLE_STANDARD AccessRole = "st"
+	ACCESSROLE_ADMIN AccessRole = "adm"
 	ACCESSROLE_READ_ONLY AccessRole = "ro"
-	ACCESSROLE_ERROR     AccessRole = "ERROR"
+	ACCESSROLE_ERROR AccessRole = "ERROR"
 )
 
 var allowedAccessRoleEnumValues = []AccessRole{

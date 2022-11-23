@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsIndexListResponse Object with all Index configurations for a given organization.
 type LogsIndexListResponse struct {
 	// Array of Log index configurations.
 	Indexes []LogsIndex `json:"indexes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsIndexListResponse instantiates a new LogsIndexListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewLogsIndexListResponseWithDefaults() *LogsIndexListResponse {
 	this := LogsIndexListResponse{}
 	return &this
 }
-
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *LogsIndexListResponse) GetIndexes() []LogsIndex {
 	if o == nil || o.Indexes == nil {
@@ -62,6 +67,8 @@ func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex) {
 	o.Indexes = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {

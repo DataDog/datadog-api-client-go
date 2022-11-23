@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricDistinctVolumeAttributes Object containing the definition of a metric's distinct volume.
 type MetricDistinctVolumeAttributes struct {
 	// Distinct volume for the given metric.
 	DistinctVolume *int64 `json:"distinct_volume,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricDistinctVolumeAttributes instantiates a new MetricDistinctVolumeAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewMetricDistinctVolumeAttributesWithDefaults() *MetricDistinctVolumeAttrib
 	this := MetricDistinctVolumeAttributes{}
 	return &this
 }
-
 // GetDistinctVolume returns the DistinctVolume field value if set, zero value otherwise.
 func (o *MetricDistinctVolumeAttributes) GetDistinctVolume() int64 {
 	if o == nil || o.DistinctVolume == nil {
@@ -62,6 +67,8 @@ func (o *MetricDistinctVolumeAttributes) SetDistinctVolume(v int64) {
 	o.DistinctVolume = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricDistinctVolumeAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o MetricDistinctVolumeAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricDistinctVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {

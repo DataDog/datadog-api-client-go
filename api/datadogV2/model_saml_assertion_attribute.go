@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SAMLAssertionAttribute SAML assertion attribute.
 type SAMLAssertionAttribute struct {
@@ -18,9 +21,11 @@ type SAMLAssertionAttribute struct {
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSAMLAssertionAttribute instantiates a new SAMLAssertionAttribute object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSAMLAssertionAttributeWithDefaults() *SAMLAssertionAttribute {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SAMLAssertionAttribute) GetAttributes() SAMLAssertionAttributeAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +75,7 @@ func (o *SAMLAssertionAttribute) SetAttributes(v SAMLAssertionAttributeAttribute
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *SAMLAssertionAttribute) GetId() string {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *SAMLAssertionAttribute) GetIdOk() (*string, bool) {
 func (o *SAMLAssertionAttribute) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SAMLAssertionAttribute) GetType() SAMLAssertionAttributesType {
@@ -117,6 +123,8 @@ func (o *SAMLAssertionAttribute) SetType(v SAMLAssertionAttributesType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -135,17 +143,18 @@ func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                      `json:"id"`
+		Id *string `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	all := struct {
 		Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
-		Id         string                            `json:"id"`
-		Type       SAMLAssertionAttributesType       `json:"type"`
+		Id string `json:"id"`
+		Type SAMLAssertionAttributesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -174,13 +183,13 @@ func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

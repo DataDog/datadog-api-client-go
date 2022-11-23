@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingUpdateAttributes Key/Value pair of attributes used for update request.
 type AuthNMappingUpdateAttributes struct {
@@ -15,9 +19,11 @@ type AuthNMappingUpdateAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingUpdateAttributes instantiates a new AuthNMappingUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAuthNMappingUpdateAttributesWithDefaults() *AuthNMappingUpdateAttributes
 	this := AuthNMappingUpdateAttributes{}
 	return &this
 }
-
 // GetAttributeKey returns the AttributeKey field value if set, zero value otherwise.
 func (o *AuthNMappingUpdateAttributes) GetAttributeKey() string {
 	if o == nil || o.AttributeKey == nil {
@@ -63,6 +68,7 @@ func (o *AuthNMappingUpdateAttributes) HasAttributeKey() bool {
 func (o *AuthNMappingUpdateAttributes) SetAttributeKey(v string) {
 	o.AttributeKey = &v
 }
+
 
 // GetAttributeValue returns the AttributeValue field value if set, zero value otherwise.
 func (o *AuthNMappingUpdateAttributes) GetAttributeValue() string {
@@ -92,6 +98,8 @@ func (o *AuthNMappingUpdateAttributes) SetAttributeValue(v string) {
 	o.AttributeValue = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o AuthNMappingUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey   *string `json:"attribute_key,omitempty"`
+		AttributeKey *string `json:"attribute_key,omitempty"`
 		AttributeValue *string `json:"attribute_value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

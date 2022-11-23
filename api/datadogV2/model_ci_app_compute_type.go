@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CIAppComputeType The type of compute.
 type CIAppComputeType string
@@ -15,7 +18,7 @@ type CIAppComputeType string
 // List of CIAppComputeType.
 const (
 	CIAPPCOMPUTETYPE_TIMESERIES CIAppComputeType = "timeseries"
-	CIAPPCOMPUTETYPE_TOTAL      CIAppComputeType = "total"
+	CIAPPCOMPUTETYPE_TOTAL CIAppComputeType = "total"
 )
 
 var allowedCIAppComputeTypeEnumValues = []CIAppComputeType{

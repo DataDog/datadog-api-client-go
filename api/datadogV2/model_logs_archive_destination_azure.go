@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveDestinationAzure The Azure archive destination.
 type LogsArchiveDestinationAzure struct {
@@ -24,9 +27,11 @@ type LogsArchiveDestinationAzure struct {
 	// Type of the Azure archive destination.
 	Type LogsArchiveDestinationAzureType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveDestinationAzure instantiates a new LogsArchiveDestinationAzure object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewLogsArchiveDestinationAzureWithDefaults() *LogsArchiveDestinationAzure {
 	this.Type = typeVar
 	return &this
 }
-
 // GetContainer returns the Container field value.
 func (o *LogsArchiveDestinationAzure) GetContainer() string {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *LogsArchiveDestinationAzure) SetContainer(v string) {
 	o.Container = v
 }
 
+
 // GetIntegration returns the Integration field value.
 func (o *LogsArchiveDestinationAzure) GetIntegration() LogsArchiveIntegrationAzure {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *LogsArchiveDestinationAzure) GetIntegrationOk() (*LogsArchiveIntegratio
 func (o *LogsArchiveDestinationAzure) SetIntegration(v LogsArchiveIntegrationAzure) {
 	o.Integration = v
 }
+
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationAzure) GetPath() string {
@@ -125,6 +131,7 @@ func (o *LogsArchiveDestinationAzure) SetPath(v string) {
 	o.Path = &v
 }
 
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationAzure) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -153,6 +160,7 @@ func (o *LogsArchiveDestinationAzure) SetRegion(v string) {
 	o.Region = &v
 }
 
+
 // GetStorageAccount returns the StorageAccount field value.
 func (o *LogsArchiveDestinationAzure) GetStorageAccount() string {
 	if o == nil {
@@ -175,6 +183,7 @@ func (o *LogsArchiveDestinationAzure) GetStorageAccountOk() (*string, bool) {
 func (o *LogsArchiveDestinationAzure) SetStorageAccount(v string) {
 	o.StorageAccount = v
 }
+
 
 // GetType returns the Type field value.
 func (o *LogsArchiveDestinationAzure) GetType() LogsArchiveDestinationAzureType {
@@ -199,6 +208,8 @@ func (o *LogsArchiveDestinationAzure) SetType(v LogsArchiveDestinationAzureType)
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -222,22 +233,23 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Container      *string                          `json:"container"`
-		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
-		StorageAccount *string                          `json:"storage_account"`
-		Type           *LogsArchiveDestinationAzureType `json:"type"`
+		Container *string `json:"container"`
+		Integration *LogsArchiveIntegrationAzure `json:"integration"`
+		StorageAccount *string `json:"storage_account"`
+		Type *LogsArchiveDestinationAzureType `json:"type"`
 	}{}
 	all := struct {
-		Container      string                          `json:"container"`
-		Integration    LogsArchiveIntegrationAzure     `json:"integration"`
-		Path           *string                         `json:"path,omitempty"`
-		Region         *string                         `json:"region,omitempty"`
-		StorageAccount string                          `json:"storage_account"`
-		Type           LogsArchiveDestinationAzureType `json:"type"`
+		Container string `json:"container"`
+		Integration LogsArchiveIntegrationAzure `json:"integration"`
+		Path *string `json:"path,omitempty"`
+		Region *string `json:"region,omitempty"`
+		StorageAccount string `json:"storage_account"`
+		Type LogsArchiveDestinationAzureType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -273,13 +285,13 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Container = all.Container
-	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Integration = all.Integration
 	o.Path = all.Path
 	o.Region = all.Region

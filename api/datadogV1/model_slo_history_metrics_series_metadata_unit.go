@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // SLOHistoryMetricsSeriesMetadataUnit An Object of metric units.
 type SLOHistoryMetricsSeriesMetadataUnit struct {
@@ -25,9 +27,11 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	// A shorter and abbreviated version of the metric unit, for instance `B`.
 	ShortName datadog.NullableString `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +49,6 @@ func NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults() *SLOHistoryMetricsSeri
 	this := SLOHistoryMetricsSeriesMetadataUnit{}
 	return &this
 }
-
 // GetFamily returns the Family field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetFamily() string {
 	if o == nil || o.Family == nil {
@@ -73,6 +76,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasFamily() bool {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetFamily(v string) {
 	o.Family = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetId() int64 {
@@ -102,6 +106,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetName() string {
 	if o == nil || o.Name == nil {
@@ -130,6 +135,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPlural returns the Plural field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPlural() string {
 	if o == nil || o.Plural.Get() == nil {
@@ -143,7 +149,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPlural() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPluralOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Plural.Get(), o.Plural.IsSet()
@@ -158,7 +164,6 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasPlural() bool {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPlural(v string) {
 	o.Plural.Set(&v)
 }
-
 // SetPluralNil sets the value for Plural to be an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPluralNil() {
 	o.Plural.Set(nil)
@@ -168,6 +173,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPluralNil() {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetPlural() {
 	o.Plural.Unset()
 }
+
 
 // GetScaleFactor returns the ScaleFactor field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetScaleFactor() float64 {
@@ -197,6 +203,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetScaleFactor(v float64) {
 	o.ScaleFactor = &v
 }
 
+
 // GetShortName returns the ShortName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortName() string {
 	if o == nil || o.ShortName.Get() == nil {
@@ -210,7 +217,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ShortName.Get(), o.ShortName.IsSet()
@@ -225,7 +232,6 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasShortName() bool {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortName(v string) {
 	o.ShortName.Set(&v)
 }
-
 // SetShortNameNil sets the value for ShortName to be an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortNameNil() {
 	o.ShortName.Set(nil)
@@ -235,6 +241,8 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortNameNil() {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetShortName() {
 	o.ShortName.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
@@ -267,16 +275,17 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Family      *string                `json:"family,omitempty"`
-		Id          *int64                 `json:"id,omitempty"`
-		Name        *string                `json:"name,omitempty"`
-		Plural      datadog.NullableString `json:"plural,omitempty"`
-		ScaleFactor *float64               `json:"scale_factor,omitempty"`
-		ShortName   datadog.NullableString `json:"short_name,omitempty"`
+		Family *string `json:"family,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Plural datadog.NullableString `json:"plural,omitempty"`
+		ScaleFactor *float64 `json:"scale_factor,omitempty"`
+		ShortName datadog.NullableString `json:"short_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -295,7 +304,6 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err e
 	o.ShortName = all.ShortName
 	return nil
 }
-
 // NullableSLOHistoryMetricsSeriesMetadataUnit handles when a null is used for SLOHistoryMetricsSeriesMetadataUnit.
 type NullableSLOHistoryMetricsSeriesMetadataUnit struct {
 	value *SLOHistoryMetricsSeriesMetadataUnit

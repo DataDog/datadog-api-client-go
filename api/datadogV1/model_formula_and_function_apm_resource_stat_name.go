@@ -2,29 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionApmResourceStatName APM resource stat name.
 type FormulaAndFunctionApmResourceStatName string
 
 // List of FormulaAndFunctionApmResourceStatName.
 const (
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERRORS               FormulaAndFunctionApmResourceStatName = "errors"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERROR_RATE           FormulaAndFunctionApmResourceStatName = "error_rate"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_HITS                 FormulaAndFunctionApmResourceStatName = "hits"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_AVG          FormulaAndFunctionApmResourceStatName = "latency_avg"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERRORS FormulaAndFunctionApmResourceStatName = "errors"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERROR_RATE FormulaAndFunctionApmResourceStatName = "error_rate"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_HITS FormulaAndFunctionApmResourceStatName = "hits"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_AVG FormulaAndFunctionApmResourceStatName = "latency_avg"
 	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_DISTRIBUTION FormulaAndFunctionApmResourceStatName = "latency_distribution"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_MAX          FormulaAndFunctionApmResourceStatName = "latency_max"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P50          FormulaAndFunctionApmResourceStatName = "latency_p50"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P75          FormulaAndFunctionApmResourceStatName = "latency_p75"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P90          FormulaAndFunctionApmResourceStatName = "latency_p90"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P95          FormulaAndFunctionApmResourceStatName = "latency_p95"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P99          FormulaAndFunctionApmResourceStatName = "latency_p99"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_MAX FormulaAndFunctionApmResourceStatName = "latency_max"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P50 FormulaAndFunctionApmResourceStatName = "latency_p50"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P75 FormulaAndFunctionApmResourceStatName = "latency_p75"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P90 FormulaAndFunctionApmResourceStatName = "latency_p90"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P95 FormulaAndFunctionApmResourceStatName = "latency_p95"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P99 FormulaAndFunctionApmResourceStatName = "latency_p99"
 )
 
 var allowedFormulaAndFunctionApmResourceStatNameEnumValues = []FormulaAndFunctionApmResourceStatName{

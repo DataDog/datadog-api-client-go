@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricTagConfigurationCreateAttributes Object containing the definition of a metric tag configuration to be created.
 type MetricTagConfigurationCreateAttributes struct {
@@ -36,9 +39,11 @@ type MetricTagConfigurationCreateAttributes struct {
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricTagConfigurationCreateAttributes instantiates a new MetricTagConfigurationCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigura
 	this.MetricType = metricType
 	return &this
 }
-
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
 func (o *MetricTagConfigurationCreateAttributes) GetAggregations() []MetricCustomAggregation {
 	if o == nil || o.Aggregations == nil {
@@ -88,6 +92,7 @@ func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
 func (o *MetricTagConfigurationCreateAttributes) SetAggregations(v []MetricCustomAggregation) {
 	o.Aggregations = v
 }
+
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *MetricTagConfigurationCreateAttributes) GetIncludePercentiles() bool {
@@ -117,6 +122,7 @@ func (o *MetricTagConfigurationCreateAttributes) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
+
 // GetMetricType returns the MetricType field value.
 func (o *MetricTagConfigurationCreateAttributes) GetMetricType() MetricTagConfigurationMetricTypes {
 	if o == nil {
@@ -139,6 +145,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetMetricTypeOk() (*MetricTagCo
 func (o *MetricTagConfigurationCreateAttributes) SetMetricType(v MetricTagConfigurationMetricTypes) {
 	o.MetricType = v
 }
+
 
 // GetTags returns the Tags field value.
 func (o *MetricTagConfigurationCreateAttributes) GetTags() []string {
@@ -163,6 +170,8 @@ func (o *MetricTagConfigurationCreateAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -184,18 +193,19 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags       *[]string                          `json:"tags"`
+		Tags *[]string `json:"tags"`
 	}{}
 	all := struct {
-		Aggregations       []MetricCustomAggregation         `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags               []string                          `json:"tags"`
+		Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
+		Tags []string `json:"tags"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentAttachmentUpdateRequest The update request for an incident's attachments.
 type IncidentAttachmentUpdateRequest struct {
@@ -17,9 +20,11 @@ type IncidentAttachmentUpdateRequest struct {
 	// indicates that you want to update that attachment.
 	Data []IncidentAttachmentUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentUpdateRequest instantiates a new IncidentAttachmentUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewIncidentAttachmentUpdateRequestWithDefaults() *IncidentAttachmentUpdateR
 	this := IncidentAttachmentUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *IncidentAttachmentUpdateRequest) GetData() []IncidentAttachmentUpdateData {
 	if o == nil {
@@ -62,6 +66,8 @@ func (o *IncidentAttachmentUpdateRequest) SetData(v []IncidentAttachmentUpdateDa
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -75,6 +81,7 @@ func (o IncidentAttachmentUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {

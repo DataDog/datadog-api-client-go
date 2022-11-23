@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
@@ -21,9 +25,11 @@ type IncidentResponseRelationships struct {
 	// Relationship to user.
 	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentResponseRelationships instantiates a new IncidentResponseRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewIncidentResponseRelationshipsWithDefaults() *IncidentResponseRelationshi
 	this := IncidentResponseRelationships{}
 	return &this
 }
-
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetAttachments() RelationshipToIncidentAttachment {
 	if o == nil || o.Attachments == nil {
@@ -69,6 +74,7 @@ func (o *IncidentResponseRelationships) HasAttachments() bool {
 func (o *IncidentResponseRelationships) SetAttachments(v RelationshipToIncidentAttachment) {
 	o.Attachments = &v
 }
+
 
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipToUser {
@@ -98,6 +104,7 @@ func (o *IncidentResponseRelationships) SetCommanderUser(v NullableRelationshipT
 	o.CommanderUser = &v
 }
 
+
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetCreatedByUser() RelationshipToUser {
 	if o == nil || o.CreatedByUser == nil {
@@ -125,6 +132,7 @@ func (o *IncidentResponseRelationships) HasCreatedByUser() bool {
 func (o *IncidentResponseRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
@@ -154,6 +162,7 @@ func (o *IncidentResponseRelationships) SetIntegrations(v RelationshipToIncident
 	o.Integrations = &v
 }
 
+
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetLastModifiedByUser() RelationshipToUser {
 	if o == nil || o.LastModifiedByUser == nil {
@@ -181,6 +190,8 @@ func (o *IncidentResponseRelationships) HasLastModifiedByUser() bool {
 func (o *IncidentResponseRelationships) SetLastModifiedByUser(v RelationshipToUser) {
 	o.LastModifiedByUser = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
@@ -210,15 +221,16 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attachments        *RelationshipToIncidentAttachment           `json:"attachments,omitempty"`
-		CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
-		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
+		Attachments *RelationshipToIncidentAttachment `json:"attachments,omitempty"`
+		CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+		Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -229,45 +241,45 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attachments = all.Attachments
-	if all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.CommanderUser = all.CommanderUser
-	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.CreatedByUser = all.CreatedByUser
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Integrations = all.Integrations
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.LastModifiedByUser = all.LastModifiedByUser
 	return nil
 }

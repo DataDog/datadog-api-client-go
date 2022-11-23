@@ -2,21 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestExecutionRule Execution rule for a Synthetics test.
 type SyntheticsTestExecutionRule string
 
 // List of SyntheticsTestExecutionRule.
 const (
-	SYNTHETICSTESTEXECUTIONRULE_BLOCKING     SyntheticsTestExecutionRule = "blocking"
+	SYNTHETICSTESTEXECUTIONRULE_BLOCKING SyntheticsTestExecutionRule = "blocking"
 	SYNTHETICSTESTEXECUTIONRULE_NON_BLOCKING SyntheticsTestExecutionRule = "non_blocking"
-	SYNTHETICSTESTEXECUTIONRULE_SKIPPED      SyntheticsTestExecutionRule = "skipped"
+	SYNTHETICSTESTEXECUTIONRULE_SKIPPED SyntheticsTestExecutionRule = "skipped"
 )
 
 var allowedSyntheticsTestExecutionRuleEnumValues = []SyntheticsTestExecutionRule{

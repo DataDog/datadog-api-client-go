@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // RUMAggregateBucketValueTimeseriesPoint A timeseries point.
 type RUMAggregateBucketValueTimeseriesPoint struct {
@@ -16,9 +19,11 @@ type RUMAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMAggregateBucketValueTimeseriesPoint instantiates a new RUMAggregateBucketValueTimeseriesPoint object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRUMAggregateBucketValueTimeseriesPointWithDefaults() *RUMAggregateBucket
 	this := RUMAggregateBucketValueTimeseriesPoint{}
 	return &this
 }
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *RUMAggregateBucketValueTimeseriesPoint) GetTime() time.Time {
 	if o == nil || o.Time == nil {
@@ -64,6 +68,7 @@ func (o *RUMAggregateBucketValueTimeseriesPoint) HasTime() bool {
 func (o *RUMAggregateBucketValueTimeseriesPoint) SetTime(v time.Time) {
 	o.Time = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *RUMAggregateBucketValueTimeseriesPoint) GetValue() float64 {
@@ -93,6 +98,8 @@ func (o *RUMAggregateBucketValueTimeseriesPoint) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -116,12 +123,13 @@ func (o RUMAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Time  *time.Time `json:"time,omitempty"`
-		Value *float64   `json:"value,omitempty"`
+		Time *time.Time `json:"time,omitempty"`
+		Value *float64 `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

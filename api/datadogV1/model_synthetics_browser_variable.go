@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserVariable Object defining a variable that can be used in your browser test.
 // Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
@@ -23,9 +26,11 @@ type SyntheticsBrowserVariable struct {
 	// Type of browser test variable.
 	Type SyntheticsBrowserVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewSyntheticsBrowserVariableWithDefaults() *SyntheticsBrowserVariable {
 	this := SyntheticsBrowserVariable{}
 	return &this
 }
-
 // GetExample returns the Example field value if set, zero value otherwise.
 func (o *SyntheticsBrowserVariable) GetExample() string {
 	if o == nil || o.Example == nil {
@@ -73,6 +77,7 @@ func (o *SyntheticsBrowserVariable) HasExample() bool {
 func (o *SyntheticsBrowserVariable) SetExample(v string) {
 	o.Example = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsBrowserVariable) GetId() string {
@@ -102,6 +107,7 @@ func (o *SyntheticsBrowserVariable) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsBrowserVariable) GetName() string {
 	if o == nil {
@@ -124,6 +130,7 @@ func (o *SyntheticsBrowserVariable) GetNameOk() (*string, bool) {
 func (o *SyntheticsBrowserVariable) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *SyntheticsBrowserVariable) GetPattern() string {
@@ -153,6 +160,7 @@ func (o *SyntheticsBrowserVariable) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *SyntheticsBrowserVariable) GetTypeOk() (*SyntheticsBrowserVariableType,
 func (o *SyntheticsBrowserVariable) SetType(v SyntheticsBrowserVariableType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
@@ -200,19 +210,20 @@ func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name *string                        `json:"name"`
+		Name *string `json:"name"`
 		Type *SyntheticsBrowserVariableType `json:"type"`
 	}{}
 	all := struct {
-		Example *string                       `json:"example,omitempty"`
-		Id      *string                       `json:"id,omitempty"`
-		Name    string                        `json:"name"`
-		Pattern *string                       `json:"pattern,omitempty"`
-		Type    SyntheticsBrowserVariableType `json:"type"`
+		Example *string `json:"example,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name string `json:"name"`
+		Pattern *string `json:"pattern,omitempty"`
+		Type SyntheticsBrowserVariableType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageOnlineArchiveHour Online Archive usage in a given hour.
 type UsageOnlineArchiveHour struct {
@@ -20,9 +23,11 @@ type UsageOnlineArchiveHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageOnlineArchiveHour instantiates a new UsageOnlineArchiveHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewUsageOnlineArchiveHourWithDefaults() *UsageOnlineArchiveHour {
 	this := UsageOnlineArchiveHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -68,6 +72,7 @@ func (o *UsageOnlineArchiveHour) HasHour() bool {
 func (o *UsageOnlineArchiveHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
@@ -97,6 +102,7 @@ func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int64) {
 	o.OnlineArchiveEventsCount = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -125,6 +131,7 @@ func (o *UsageOnlineArchiveHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -152,6 +159,8 @@ func (o *UsageOnlineArchiveHour) HasPublicId() bool {
 func (o *UsageOnlineArchiveHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
@@ -182,14 +191,15 @@ func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                     *time.Time `json:"hour,omitempty"`
-		OnlineArchiveEventsCount *int64     `json:"online_archive_events_count,omitempty"`
-		OrgName                  *string    `json:"org_name,omitempty"`
-		PublicId                 *string    `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OnlineArchiveEventsCount *int64 `json:"online_archive_events_count,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

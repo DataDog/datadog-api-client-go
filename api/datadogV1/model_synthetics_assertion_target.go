@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsAssertionTarget An assertion which uses a simple target.
 type SyntheticsAssertionTarget struct {
@@ -20,9 +23,11 @@ type SyntheticsAssertionTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSyntheticsAssertionTargetWithDefaults() *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	return &this
 }
-
 // GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *SyntheticsAssertionTarget) GetOperatorOk() (*SyntheticsAssertionOperato
 func (o *SyntheticsAssertionTarget) SetOperator(v SyntheticsAssertionOperator) {
 	o.Operator = v
 }
+
 
 // GetProperty returns the Property field value if set, zero value otherwise.
 func (o *SyntheticsAssertionTarget) GetProperty() string {
@@ -95,6 +100,7 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
+
 // GetTarget returns the Target field value.
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
 func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
 	o.Target = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
@@ -141,6 +148,8 @@ func (o *SyntheticsAssertionTarget) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,19 +169,20 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Operator *SyntheticsAssertionOperator `json:"operator"`
-		Target   *interface{}                 `json:"target"`
-		Type     *SyntheticsAssertionType     `json:"type"`
+		Target *interface{} `json:"target"`
+		Type *SyntheticsAssertionType `json:"type"`
 	}{}
 	all := struct {
 		Operator SyntheticsAssertionOperator `json:"operator"`
-		Property *string                     `json:"property,omitempty"`
-		Target   interface{}                 `json:"target"`
-		Type     SyntheticsAssertionType     `json:"type"`
+		Property *string `json:"property,omitempty"`
+		Target interface{} `json:"target"`
+		Type SyntheticsAssertionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

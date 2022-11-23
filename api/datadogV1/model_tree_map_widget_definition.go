@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TreeMapWidgetDefinition The treemap visualization enables you to display hierarchical and nested data. It is well suited for queries that describe part-whole relationships, such as resource usage by availability zone, data center, or team.
 type TreeMapWidgetDefinition struct {
@@ -31,9 +34,11 @@ type TreeMapWidgetDefinition struct {
 	// Type of the treemap widget.
 	Type TreeMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTreeMapWidgetDefinition instantiates a new TreeMapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +64,6 @@ func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetColorBy returns the ColorBy field value if set, zero value otherwise.
 // Deprecated
 func (o *TreeMapWidgetDefinition) GetColorBy() TreeMapColorBy {
@@ -91,6 +95,7 @@ func (o *TreeMapWidgetDefinition) SetColorBy(v TreeMapColorBy) {
 	o.ColorBy = &v
 }
 
+
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -118,6 +123,7 @@ func (o *TreeMapWidgetDefinition) HasCustomLinks() bool {
 func (o *TreeMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 // Deprecated
@@ -150,6 +156,7 @@ func (o *TreeMapWidgetDefinition) SetGroupBy(v TreeMapGroupBy) {
 	o.GroupBy = &v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *TreeMapWidgetDefinition) GetRequests() []TreeMapWidgetRequest {
 	if o == nil {
@@ -172,6 +179,7 @@ func (o *TreeMapWidgetDefinition) GetRequestsOk() (*[]TreeMapWidgetRequest, bool
 func (o *TreeMapWidgetDefinition) SetRequests(v []TreeMapWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetSizeBy returns the SizeBy field value if set, zero value otherwise.
 // Deprecated
@@ -204,6 +212,7 @@ func (o *TreeMapWidgetDefinition) SetSizeBy(v TreeMapSizeBy) {
 	o.SizeBy = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -231,6 +240,7 @@ func (o *TreeMapWidgetDefinition) HasTime() bool {
 func (o *TreeMapWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetTitle() string {
@@ -260,6 +270,7 @@ func (o *TreeMapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TreeMapWidgetDefinition) GetType() TreeMapWidgetDefinitionType {
 	if o == nil {
@@ -282,6 +293,8 @@ func (o *TreeMapWidgetDefinition) GetTypeOk() (*TreeMapWidgetDefinitionType, boo
 func (o *TreeMapWidgetDefinition) SetType(v TreeMapWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -316,22 +329,23 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]TreeMapWidgetRequest      `json:"requests"`
-		Type     *TreeMapWidgetDefinitionType `json:"type"`
+		Requests *[]TreeMapWidgetRequest `json:"requests"`
+		Type *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorBy     *TreeMapColorBy             `json:"color_by,omitempty"`
-		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
-		GroupBy     *TreeMapGroupBy             `json:"group_by,omitempty"`
-		Requests    []TreeMapWidgetRequest      `json:"requests"`
-		SizeBy      *TreeMapSizeBy              `json:"size_by,omitempty"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		Type        TreeMapWidgetDefinitionType `json:"type"`
+		ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
+		Requests []TreeMapWidgetRequest `json:"requests"`
+		SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -352,7 +366,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ColorBy; v != nil && !v.IsValid() {
+	if v := all.ColorBy; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -360,7 +374,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.GroupBy; v != nil && !v.IsValid() {
+	if v := all.GroupBy; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -368,7 +382,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.SizeBy; v != nil && !v.IsValid() {
+	if v := all.SizeBy; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -389,13 +403,13 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Requests = all.Requests
 	o.SizeBy = all.SizeBy
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.Type = all.Type

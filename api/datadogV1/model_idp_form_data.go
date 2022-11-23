@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
-	"os"
+
 )
+
 
 // IdpFormData Object describing the IdP configuration.
 type IdpFormData struct {
 	// The path to the XML metadata file you wish to upload.
 	IdpFile *os.File `json:"idp_file"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIdpFormData instantiates a new IdpFormData object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +40,6 @@ func NewIdpFormDataWithDefaults() *IdpFormData {
 	this := IdpFormData{}
 	return &this
 }
-
 // GetIdpFile returns the IdpFile field value.
 func (o *IdpFormData) GetIdpFile() *os.File {
 	if o == nil {
@@ -60,6 +63,8 @@ func (o *IdpFormData) SetIdpFile(v *os.File) {
 	o.IdpFile = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IdpFormData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -73,6 +78,7 @@ func (o IdpFormData) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {

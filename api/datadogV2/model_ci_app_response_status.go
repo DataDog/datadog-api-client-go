@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CIAppResponseStatus The status of the response.
 type CIAppResponseStatus string
 
 // List of CIAppResponseStatus.
 const (
-	CIAPPRESPONSESTATUS_DONE    CIAppResponseStatus = "done"
+	CIAPPRESPONSESTATUS_DONE CIAppResponseStatus = "done"
 	CIAPPRESPONSESTATUS_TIMEOUT CIAppResponseStatus = "timeout"
 )
 

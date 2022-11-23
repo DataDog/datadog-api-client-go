@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebooksResponseMeta Searches metadata returned by the API.
 type NotebooksResponseMeta struct {
 	// Pagination metadata returned by the API.
 	Page *NotebooksResponsePage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponseMeta instantiates a new NotebooksResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewNotebooksResponseMetaWithDefaults() *NotebooksResponseMeta {
 	this := NotebooksResponseMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *NotebooksResponseMeta) GetPage() NotebooksResponsePage {
 	if o == nil || o.Page == nil {
@@ -62,6 +67,8 @@ func (o *NotebooksResponseMeta) SetPage(v NotebooksResponsePage) {
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o NotebooksResponseMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

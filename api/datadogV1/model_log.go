@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // Log Object describing a log after being processed and stored by Datadog.
 type Log struct {
@@ -15,9 +19,11 @@ type Log struct {
 	// Unique ID of the Log.
 	Id *string `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLog instantiates a new Log object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewLogWithDefaults() *Log {
 	this := Log{}
 	return &this
 }
-
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Log) GetContent() LogContent {
 	if o == nil || o.Content == nil {
@@ -63,6 +68,7 @@ func (o *Log) HasContent() bool {
 func (o *Log) SetContent(v LogContent) {
 	o.Content = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Log) GetId() string {
@@ -92,6 +98,8 @@ func (o *Log) SetId(v string) {
 	o.Id = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Log) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o Log) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Content *LogContent `json:"content,omitempty"`
-		Id      *string     `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -127,13 +136,13 @@ func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Content != nil && all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Content != nil && all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Content = all.Content
 	o.Id = all.Id
 	return nil

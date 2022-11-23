@@ -2,20 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorRenotifyStatusType The different statuses for which renotification is supported.
 type MonitorRenotifyStatusType string
 
 // List of MonitorRenotifyStatusType.
 const (
-	MONITORRENOTIFYSTATUSTYPE_ALERT   MonitorRenotifyStatusType = "alert"
-	MONITORRENOTIFYSTATUSTYPE_WARN    MonitorRenotifyStatusType = "warn"
+	MONITORRENOTIFYSTATUSTYPE_ALERT MonitorRenotifyStatusType = "alert"
+	MONITORRENOTIFYSTATUSTYPE_WARN MonitorRenotifyStatusType = "warn"
 	MONITORRENOTIFYSTATUSTYPE_NO_DATA MonitorRenotifyStatusType = "no data"
 )
 

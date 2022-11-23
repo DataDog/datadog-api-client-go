@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppTestsAggregationBucketsResponse The query results.
 type CIAppTestsAggregationBucketsResponse struct {
 	// The list of matching buckets, one item per bucket.
 	Buckets []CIAppTestsBucketResponse `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestsAggregationBucketsResponse instantiates a new CIAppTestsAggregationBucketsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewCIAppTestsAggregationBucketsResponseWithDefaults() *CIAppTestsAggregatio
 	this := CIAppTestsAggregationBucketsResponse{}
 	return &this
 }
-
 // GetBuckets returns the Buckets field value if set, zero value otherwise.
 func (o *CIAppTestsAggregationBucketsResponse) GetBuckets() []CIAppTestsBucketResponse {
 	if o == nil || o.Buckets == nil {
@@ -62,6 +67,8 @@ func (o *CIAppTestsAggregationBucketsResponse) SetBuckets(v []CIAppTestsBucketRe
 	o.Buckets = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o CIAppTestsAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestsAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMWarning A warning message indicating something that went wrong with the query.
 type RUMWarning struct {
@@ -17,9 +21,11 @@ type RUMWarning struct {
 	// A short human-readable summary of the warning.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMWarning instantiates a new RUMWarning object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewRUMWarningWithDefaults() *RUMWarning {
 	this := RUMWarning{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *RUMWarning) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -65,6 +70,7 @@ func (o *RUMWarning) HasCode() bool {
 func (o *RUMWarning) SetCode(v string) {
 	o.Code = &v
 }
+
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *RUMWarning) GetDetail() string {
@@ -94,6 +100,7 @@ func (o *RUMWarning) SetDetail(v string) {
 	o.Detail = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *RUMWarning) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -122,6 +129,8 @@ func (o *RUMWarning) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o RUMWarning) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMWarning) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code   *string `json:"code,omitempty"`
+		Code *string `json:"code,omitempty"`
 		Detail *string `json:"detail,omitempty"`
-		Title  *string `json:"title,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

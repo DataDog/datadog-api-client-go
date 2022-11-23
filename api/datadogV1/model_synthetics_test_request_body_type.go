@@ -2,24 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestRequestBodyType Type of the request body.
 type SyntheticsTestRequestBodyType string
 
 // List of SyntheticsTestRequestBodyType.
 const (
-	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_PLAIN                        SyntheticsTestRequestBodyType = "text/plain"
-	SYNTHETICSTESTREQUESTBODYTYPE_APPLICATION_JSON                  SyntheticsTestRequestBodyType = "application/json"
-	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_XML                          SyntheticsTestRequestBodyType = "text/xml"
-	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_HTML                         SyntheticsTestRequestBodyType = "text/html"
+	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_PLAIN SyntheticsTestRequestBodyType = "text/plain"
+	SYNTHETICSTESTREQUESTBODYTYPE_APPLICATION_JSON SyntheticsTestRequestBodyType = "application/json"
+	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_XML SyntheticsTestRequestBodyType = "text/xml"
+	SYNTHETICSTESTREQUESTBODYTYPE_TEXT_HTML SyntheticsTestRequestBodyType = "text/html"
 	SYNTHETICSTESTREQUESTBODYTYPE_APPLICATION_X_WWW_FORM_URLENCODED SyntheticsTestRequestBodyType = "application/x-www-form-urlencoded"
-	SYNTHETICSTESTREQUESTBODYTYPE_GRAPHQL                           SyntheticsTestRequestBodyType = "graphql"
+	SYNTHETICSTESTREQUESTBODYTYPE_GRAPHQL SyntheticsTestRequestBodyType = "graphql"
 )
 
 var allowedSyntheticsTestRequestBodyTypeEnumValues = []SyntheticsTestRequestBodyType{

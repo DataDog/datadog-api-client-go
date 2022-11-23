@@ -2,14 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
 type LogsArchiveCreateRequestAttributes struct {
@@ -27,9 +28,11 @@ type LogsArchiveCreateRequestAttributes struct {
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +57,6 @@ func NewLogsArchiveCreateRequestAttributesWithDefaults() *LogsArchiveCreateReque
 	this.IncludeTags = &includeTags
 	return &this
 }
-
 // GetDestination returns the Destination field value.
 func (o *LogsArchiveCreateRequestAttributes) GetDestination() LogsArchiveCreateRequestDestination {
 	if o == nil {
@@ -77,6 +79,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetDestinationOk() (*LogsArchiveCre
 func (o *LogsArchiveCreateRequestAttributes) SetDestination(v LogsArchiveCreateRequestDestination) {
 	o.Destination = v
 }
+
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestAttributes) GetIncludeTags() bool {
@@ -106,6 +109,7 @@ func (o *LogsArchiveCreateRequestAttributes) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *LogsArchiveCreateRequestAttributes) GetName() string {
 	if o == nil {
@@ -128,6 +132,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetNameOk() (*string, bool) {
 func (o *LogsArchiveCreateRequestAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *LogsArchiveCreateRequestAttributes) GetQuery() string {
@@ -152,6 +157,7 @@ func (o *LogsArchiveCreateRequestAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+
 // GetRehydrationMaxScanSizeInGb returns the RehydrationMaxScanSizeInGb field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGb() int64 {
 	if o == nil || o.RehydrationMaxScanSizeInGb.Get() == nil {
@@ -165,7 +171,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGb() int
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGbOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RehydrationMaxScanSizeInGb.Get(), o.RehydrationMaxScanSizeInGb.IsSet()
@@ -180,7 +186,6 @@ func (o *LogsArchiveCreateRequestAttributes) HasRehydrationMaxScanSizeInGb() boo
 func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGb(v int64) {
 	o.RehydrationMaxScanSizeInGb.Set(&v)
 }
-
 // SetRehydrationMaxScanSizeInGbNil sets the value for RehydrationMaxScanSizeInGb to be an explicit nil.
 func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGbNil() {
 	o.RehydrationMaxScanSizeInGb.Set(nil)
@@ -190,6 +195,7 @@ func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGbNil() 
 func (o *LogsArchiveCreateRequestAttributes) UnsetRehydrationMaxScanSizeInGb() {
 	o.RehydrationMaxScanSizeInGb.Unset()
 }
+
 
 // GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTags() []string {
@@ -219,6 +225,8 @@ func (o *LogsArchiveCreateRequestAttributes) SetRehydrationTags(v []string) {
 	o.RehydrationTags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -244,21 +252,22 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Destination *LogsArchiveCreateRequestDestination `json:"destination"`
-		Name        *string                              `json:"name"`
-		Query       *string                              `json:"query"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
 	}{}
 	all := struct {
-		Destination                LogsArchiveCreateRequestDestination `json:"destination"`
-		IncludeTags                *bool                               `json:"include_tags,omitempty"`
-		Name                       string                              `json:"name"`
-		Query                      string                              `json:"query"`
-		RehydrationMaxScanSizeInGb datadog.NullableInt64               `json:"rehydration_max_scan_size_in_gb,omitempty"`
-		RehydrationTags            []string                            `json:"rehydration_tags,omitempty"`
+		Destination LogsArchiveCreateRequestDestination `json:"destination"`
+		IncludeTags *bool `json:"include_tags,omitempty"`
+		Name string `json:"name"`
+		Query string `json:"query"`
+		RehydrationMaxScanSizeInGb datadog.NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

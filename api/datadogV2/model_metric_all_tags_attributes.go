@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricAllTagsAttributes Object containing the definition of a metric's tags.
 type MetricAllTagsAttributes struct {
 	// List of indexed tag value pairs.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricAllTagsAttributes instantiates a new MetricAllTagsAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewMetricAllTagsAttributesWithDefaults() *MetricAllTagsAttributes {
 	this := MetricAllTagsAttributes{}
 	return &this
 }
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricAllTagsAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -62,6 +67,8 @@ func (o *MetricAllTagsAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {

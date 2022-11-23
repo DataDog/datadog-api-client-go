@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentAttachmentLinkAttributes The attributes object for a link attachment.
 type IncidentAttachmentLinkAttributes struct {
@@ -16,9 +19,11 @@ type IncidentAttachmentLinkAttributes struct {
 	// The type of link attachment attributes.
 	AttachmentType IncidentAttachmentLinkAttachmentType `json:"attachment_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentLinkAttributes instantiates a new IncidentAttachmentLinkAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewIncidentAttachmentLinkAttributesWithDefaults() *IncidentAttachmentLinkAt
 	this.AttachmentType = attachmentType
 	return &this
 }
-
 // GetAttachment returns the Attachment field value.
 func (o *IncidentAttachmentLinkAttributes) GetAttachment() IncidentAttachmentLinkAttributesAttachmentObject {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *IncidentAttachmentLinkAttributes) GetAttachmentOk() (*IncidentAttachmen
 func (o *IncidentAttachmentLinkAttributes) SetAttachment(v IncidentAttachmentLinkAttributesAttachmentObject) {
 	o.Attachment = v
 }
+
 
 // GetAttachmentType returns the AttachmentType field value.
 func (o *IncidentAttachmentLinkAttributes) GetAttachmentType() IncidentAttachmentLinkAttachmentType {
@@ -87,6 +92,8 @@ func (o *IncidentAttachmentLinkAttributes) SetAttachmentType(v IncidentAttachmen
 	o.AttachmentType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentLinkAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o IncidentAttachmentLinkAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Attachment     *IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
-		AttachmentType *IncidentAttachmentLinkAttachmentType             `json:"attachment_type"`
+		Attachment *IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
+		AttachmentType *IncidentAttachmentLinkAttachmentType `json:"attachment_type"`
 	}{}
 	all := struct {
-		Attachment     IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
-		AttachmentType IncidentAttachmentLinkAttachmentType             `json:"attachment_type"`
+		Attachment IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
+		AttachmentType IncidentAttachmentLinkAttachmentType `json:"attachment_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *IncidentAttachmentLinkAttributes) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attachment.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attachment.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attachment = all.Attachment
 	o.AttachmentType = all.AttachmentType
 	return nil

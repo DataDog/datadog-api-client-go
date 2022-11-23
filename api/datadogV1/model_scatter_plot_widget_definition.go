@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation.
 type ScatterPlotWidgetDefinition struct {
@@ -32,9 +35,11 @@ type ScatterPlotWidgetDefinition struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewScatterPlotWidgetDefinitionWithDefaults() *ScatterPlotWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetColorByGroups returns the ColorByGroups field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetColorByGroups() []string {
 	if o == nil || o.ColorByGroups == nil {
@@ -84,6 +88,7 @@ func (o *ScatterPlotWidgetDefinition) HasColorByGroups() bool {
 func (o *ScatterPlotWidgetDefinition) SetColorByGroups(v []string) {
 	o.ColorByGroups = v
 }
+
 
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
@@ -113,6 +118,7 @@ func (o *ScatterPlotWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionRequests {
 	if o == nil {
@@ -135,6 +141,7 @@ func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinit
 func (o *ScatterPlotWidgetDefinition) SetRequests(v ScatterPlotWidgetDefinitionRequests) {
 	o.Requests = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetTime() WidgetTime {
@@ -164,6 +171,7 @@ func (o *ScatterPlotWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -191,6 +199,7 @@ func (o *ScatterPlotWidgetDefinition) HasTitle() bool {
 func (o *ScatterPlotWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -220,6 +229,7 @@ func (o *ScatterPlotWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -248,6 +258,7 @@ func (o *ScatterPlotWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType {
 	if o == nil {
@@ -270,6 +281,7 @@ func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*ScatterPlotWidgetDefinitionT
 func (o *ScatterPlotWidgetDefinition) SetType(v ScatterPlotWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetXaxis returns the Xaxis field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetXaxis() WidgetAxis {
@@ -299,6 +311,7 @@ func (o *ScatterPlotWidgetDefinition) SetXaxis(v WidgetAxis) {
 	o.Xaxis = &v
 }
 
+
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinition) GetYaxis() WidgetAxis {
 	if o == nil || o.Yaxis == nil {
@@ -326,6 +339,8 @@ func (o *ScatterPlotWidgetDefinition) HasYaxis() bool {
 func (o *ScatterPlotWidgetDefinition) SetYaxis(v WidgetAxis) {
 	o.Yaxis = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -366,24 +381,25 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Requests *ScatterPlotWidgetDefinitionRequests `json:"requests"`
-		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
+		Type *ScatterPlotWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorByGroups []string                            `json:"color_by_groups,omitempty"`
-		CustomLinks   []WidgetCustomLink                  `json:"custom_links,omitempty"`
-		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"`
-		Time          *WidgetTime                         `json:"time,omitempty"`
-		Title         *string                             `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                    `json:"title_align,omitempty"`
-		TitleSize     *string                             `json:"title_size,omitempty"`
-		Type          ScatterPlotWidgetDefinitionType     `json:"type"`
-		Xaxis         *WidgetAxis                         `json:"xaxis,omitempty"`
-		Yaxis         *WidgetAxis                         `json:"yaxis,omitempty"`
+		ColorByGroups []string `json:"color_by_groups,omitempty"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type ScatterPlotWidgetDefinitionType `json:"type"`
+		Xaxis *WidgetAxis `json:"xaxis,omitempty"`
+		Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -404,7 +420,7 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -422,41 +438,41 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ColorByGroups = all.ColorByGroups
 	o.CustomLinks = all.CustomLinks
-	if all.Requests.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Requests.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Requests = all.Requests
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
-	if all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Xaxis = all.Xaxis
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Yaxis = all.Yaxis
 	return nil
 }

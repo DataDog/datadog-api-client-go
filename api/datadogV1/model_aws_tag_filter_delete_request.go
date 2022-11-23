@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AWSTagFilterDeleteRequest The objects used to delete an AWS tag filter entry.
 type AWSTagFilterDeleteRequest struct {
@@ -15,9 +19,11 @@ type AWSTagFilterDeleteRequest struct {
 	// The namespace associated with the tag filter entry.
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSTagFilterDeleteRequest instantiates a new AWSTagFilterDeleteRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAWSTagFilterDeleteRequestWithDefaults() *AWSTagFilterDeleteRequest {
 	this := AWSTagFilterDeleteRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSTagFilterDeleteRequest) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -63,6 +68,7 @@ func (o *AWSTagFilterDeleteRequest) HasAccountId() bool {
 func (o *AWSTagFilterDeleteRequest) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *AWSTagFilterDeleteRequest) GetNamespace() AWSNamespace {
@@ -92,6 +98,8 @@ func (o *AWSTagFilterDeleteRequest) SetNamespace(v AWSNamespace) {
 	o.Namespace = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSTagFilterDeleteRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o AWSTagFilterDeleteRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId *string       `json:"account_id,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
 		Namespace *AWSNamespace `json:"namespace,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -127,7 +136,7 @@ func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Namespace; v != nil && !v.IsValid() {
+	if v := all.Namespace; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

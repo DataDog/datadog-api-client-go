@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetLineType Type of lines displayed.
 type WidgetLineType string
@@ -16,7 +19,7 @@ type WidgetLineType string
 const (
 	WIDGETLINETYPE_DASHED WidgetLineType = "dashed"
 	WIDGETLINETYPE_DOTTED WidgetLineType = "dotted"
-	WIDGETLINETYPE_SOLID  WidgetLineType = "solid"
+	WIDGETLINETYPE_SOLID WidgetLineType = "solid"
 )
 
 var allowedWidgetLineTypeEnumValues = []WidgetLineType{

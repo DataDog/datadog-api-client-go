@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsTraceRemapper There are two ways to improve correlation between application traces and logs.
 //
@@ -25,9 +28,11 @@ type LogsTraceRemapper struct {
 	// Type of logs trace remapper.
 	Type LogsTraceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsTraceRemapper instantiates a new LogsTraceRemapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewLogsTraceRemapperWithDefaults() *LogsTraceRemapper {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsTraceRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -80,6 +84,7 @@ func (o *LogsTraceRemapper) HasIsEnabled() bool {
 func (o *LogsTraceRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsTraceRemapper) GetName() string {
@@ -109,6 +114,7 @@ func (o *LogsTraceRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value if set, zero value otherwise.
 func (o *LogsTraceRemapper) GetSources() []string {
 	if o == nil || o.Sources == nil {
@@ -137,6 +143,7 @@ func (o *LogsTraceRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsTraceRemapper) GetType() LogsTraceRemapperType {
 	if o == nil {
@@ -159,6 +166,8 @@ func (o *LogsTraceRemapper) GetTypeOk() (*LogsTraceRemapperType, bool) {
 func (o *LogsTraceRemapper) SetType(v LogsTraceRemapperType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
@@ -183,6 +192,7 @@ func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -190,10 +200,10 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		Type *LogsTraceRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool                 `json:"is_enabled,omitempty"`
-		Name      *string               `json:"name,omitempty"`
-		Sources   []string              `json:"sources,omitempty"`
-		Type      LogsTraceRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources,omitempty"`
+		Type LogsTraceRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

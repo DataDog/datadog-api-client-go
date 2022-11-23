@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UsageSort The field to sort by.
 type UsageSort string
@@ -15,9 +18,9 @@ type UsageSort string
 // List of UsageSort.
 const (
 	USAGESORT_COMPUTED_ON UsageSort = "computed_on"
-	USAGESORT_SIZE        UsageSort = "size"
-	USAGESORT_START_DATE  UsageSort = "start_date"
-	USAGESORT_END_DATE    UsageSort = "end_date"
+	USAGESORT_SIZE UsageSort = "size"
+	USAGESORT_START_DATE UsageSort = "start_date"
+	USAGESORT_END_DATE UsageSort = "end_date"
 )
 
 var allowedUsageSortEnumValues = []UsageSort{

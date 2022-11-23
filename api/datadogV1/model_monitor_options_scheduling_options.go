@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorOptionsSchedulingOptions Configuration options for scheduling.
 type MonitorOptionsSchedulingOptions struct {
 	// Configuration options for the evaluation window. If `hour_starts` is set, no other fields may be set. Otherwise, `day_starts` and `month_starts` must be set together.
 	EvaluationWindow *MonitorOptionsSchedulingOptionsEvaluationWindow `json:"evaluation_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorOptionsSchedulingOptions instantiates a new MonitorOptionsSchedulingOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewMonitorOptionsSchedulingOptionsWithDefaults() *MonitorOptionsSchedulingO
 	this := MonitorOptionsSchedulingOptions{}
 	return &this
 }
-
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *MonitorOptionsSchedulingOptions) GetEvaluationWindow() MonitorOptionsSchedulingOptionsEvaluationWindow {
 	if o == nil || o.EvaluationWindow == nil {
@@ -62,6 +67,8 @@ func (o *MonitorOptionsSchedulingOptions) SetEvaluationWindow(v MonitorOptionsSc
 	o.EvaluationWindow = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptionsSchedulingOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o MonitorOptionsSchedulingOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.EvaluationWindow != nil && all.EvaluationWindow.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.EvaluationWindow != nil && all.EvaluationWindow.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.EvaluationWindow = all.EvaluationWindow
 	return nil
 }

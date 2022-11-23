@@ -2,23 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetAggregator Aggregator used for the request.
 type WidgetAggregator string
 
 // List of WidgetAggregator.
 const (
-	WIDGETAGGREGATOR_AVERAGE    WidgetAggregator = "avg"
-	WIDGETAGGREGATOR_LAST       WidgetAggregator = "last"
-	WIDGETAGGREGATOR_MAXIMUM    WidgetAggregator = "max"
-	WIDGETAGGREGATOR_MINIMUM    WidgetAggregator = "min"
-	WIDGETAGGREGATOR_SUM        WidgetAggregator = "sum"
+	WIDGETAGGREGATOR_AVERAGE WidgetAggregator = "avg"
+	WIDGETAGGREGATOR_LAST WidgetAggregator = "last"
+	WIDGETAGGREGATOR_MAXIMUM WidgetAggregator = "max"
+	WIDGETAGGREGATOR_MINIMUM WidgetAggregator = "min"
+	WIDGETAGGREGATOR_SUM WidgetAggregator = "sum"
 	WIDGETAGGREGATOR_PERCENTILE WidgetAggregator = "percentile"
 )
 

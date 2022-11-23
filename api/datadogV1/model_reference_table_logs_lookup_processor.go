@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ReferenceTableLogsLookupProcessor **Note**: Reference Tables are in public beta.
 // Use the Lookup Processor to define a mapping between a log attribute
@@ -30,9 +33,11 @@ type ReferenceTableLogsLookupProcessor struct {
 	// Type of logs lookup processor.
 	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewReferenceTableLogsLookupProcessor instantiates a new ReferenceTableLogsLookupProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewReferenceTableLogsLookupProcessorWithDefaults() *ReferenceTableLogsLooku
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *ReferenceTableLogsLookupProcessor) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -89,6 +93,7 @@ func (o *ReferenceTableLogsLookupProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetLookupEnrichmentTable returns the LookupEnrichmentTable field value.
 func (o *ReferenceTableLogsLookupProcessor) GetLookupEnrichmentTable() string {
 	if o == nil {
@@ -111,6 +116,7 @@ func (o *ReferenceTableLogsLookupProcessor) GetLookupEnrichmentTableOk() (*strin
 func (o *ReferenceTableLogsLookupProcessor) SetLookupEnrichmentTable(v string) {
 	o.LookupEnrichmentTable = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ReferenceTableLogsLookupProcessor) GetName() string {
@@ -140,6 +146,7 @@ func (o *ReferenceTableLogsLookupProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSource returns the Source field value.
 func (o *ReferenceTableLogsLookupProcessor) GetSource() string {
 	if o == nil {
@@ -162,6 +169,7 @@ func (o *ReferenceTableLogsLookupProcessor) GetSourceOk() (*string, bool) {
 func (o *ReferenceTableLogsLookupProcessor) SetSource(v string) {
 	o.Source = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *ReferenceTableLogsLookupProcessor) GetTarget() string {
@@ -186,6 +194,7 @@ func (o *ReferenceTableLogsLookupProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ReferenceTableLogsLookupProcessor) GetType() LogsLookupProcessorType {
 	if o == nil {
@@ -208,6 +217,8 @@ func (o *ReferenceTableLogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorTyp
 func (o *ReferenceTableLogsLookupProcessor) SetType(v LogsLookupProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ReferenceTableLogsLookupProcessor) MarshalJSON() ([]byte, error) {
@@ -232,22 +243,23 @@ func (o ReferenceTableLogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		LookupEnrichmentTable *string                  `json:"lookup_enrichment_table"`
-		Source                *string                  `json:"source"`
-		Target                *string                  `json:"target"`
-		Type                  *LogsLookupProcessorType `json:"type"`
+		LookupEnrichmentTable *string `json:"lookup_enrichment_table"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsLookupProcessorType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled             *bool                   `json:"is_enabled,omitempty"`
-		LookupEnrichmentTable string                  `json:"lookup_enrichment_table"`
-		Name                  *string                 `json:"name,omitempty"`
-		Source                string                  `json:"source"`
-		Target                string                  `json:"target"`
-		Type                  LogsLookupProcessorType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		LookupEnrichmentTable string `json:"lookup_enrichment_table"`
+		Name *string `json:"name,omitempty"`
+		Source string `json:"source"`
+		Target string `json:"target"`
+		Type LogsLookupProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

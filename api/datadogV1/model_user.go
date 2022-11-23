@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // User Create, edit, and disable users.
 type User struct {
@@ -25,9 +29,11 @@ type User struct {
 	// Whether or not the user logged in Datadog at least once.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUser instantiates a new User object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +55,6 @@ func NewUserWithDefaults() *User {
 	this.AccessRole = &accessRole
 	return &this
 }
-
 // GetAccessRole returns the AccessRole field value if set, zero value otherwise.
 func (o *User) GetAccessRole() AccessRole {
 	if o == nil || o.AccessRole == nil {
@@ -77,6 +82,7 @@ func (o *User) HasAccessRole() bool {
 func (o *User) SetAccessRole(v AccessRole) {
 	o.AccessRole = &v
 }
+
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *User) GetDisabled() bool {
@@ -106,6 +112,7 @@ func (o *User) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *User) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -133,6 +140,7 @@ func (o *User) HasEmail() bool {
 func (o *User) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *User) GetHandle() string {
@@ -162,6 +170,7 @@ func (o *User) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *User) GetIcon() string {
 	if o == nil || o.Icon == nil {
@@ -189,6 +198,7 @@ func (o *User) HasIcon() bool {
 func (o *User) SetIcon(v string) {
 	o.Icon = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *User) GetName() string {
@@ -218,6 +228,7 @@ func (o *User) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetVerified returns the Verified field value if set, zero value otherwise.
 func (o *User) GetVerified() bool {
 	if o == nil || o.Verified == nil {
@@ -245,6 +256,8 @@ func (o *User) HasVerified() bool {
 func (o *User) SetVerified(v bool) {
 	o.Verified = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o User) MarshalJSON() ([]byte, error) {
@@ -280,17 +293,18 @@ func (o User) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		AccessRole *AccessRole `json:"access_role,omitempty"`
-		Disabled   *bool       `json:"disabled,omitempty"`
-		Email      *string     `json:"email,omitempty"`
-		Handle     *string     `json:"handle,omitempty"`
-		Icon       *string     `json:"icon,omitempty"`
-		Name       *string     `json:"name,omitempty"`
-		Verified   *bool       `json:"verified,omitempty"`
+		Disabled *bool `json:"disabled,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Verified *bool `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -301,7 +315,7 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.AccessRole; v != nil && !v.IsValid() {
+	if v := all.AccessRole; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

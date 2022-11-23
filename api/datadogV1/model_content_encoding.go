@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ContentEncoding HTTP header used to compress the media-type.
 type ContentEncoding string
 
 // List of ContentEncoding.
 const (
-	CONTENTENCODING_GZIP    ContentEncoding = "gzip"
+	CONTENTENCODING_GZIP ContentEncoding = "gzip"
 	CONTENTENCODING_DEFLATE ContentEncoding = "deflate"
 )
 

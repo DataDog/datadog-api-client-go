@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestDetailsType Type of the Synthetic test, either `api` or `browser`.
 type SyntheticsTestDetailsType string
 
 // List of SyntheticsTestDetailsType.
 const (
-	SYNTHETICSTESTDETAILSTYPE_API     SyntheticsTestDetailsType = "api"
+	SYNTHETICSTESTDETAILSTYPE_API SyntheticsTestDetailsType = "api"
 	SYNTHETICSTESTDETAILSTYPE_BROWSER SyntheticsTestDetailsType = "browser"
 )
 

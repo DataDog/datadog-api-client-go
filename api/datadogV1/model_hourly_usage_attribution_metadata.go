@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HourlyUsageAttributionMetadata The object containing document metadata.
 type HourlyUsageAttributionMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *HourlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHourlyUsageAttributionMetadata instantiates a new HourlyUsageAttributionMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewHourlyUsageAttributionMetadataWithDefaults() *HourlyUsageAttributionMeta
 	this := HourlyUsageAttributionMetadata{}
 	return &this
 }
-
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionMetadata) GetPagination() HourlyUsageAttributionPagination {
 	if o == nil || o.Pagination == nil {
@@ -62,6 +67,8 @@ func (o *HourlyUsageAttributionMetadata) SetPagination(v HourlyUsageAttributionP
 	o.Pagination = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o HourlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *HourlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,13 +101,13 @@ func (o *HourlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Pagination = all.Pagination
 	return nil
 }

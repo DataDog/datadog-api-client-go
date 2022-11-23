@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOResponse A service level objective response containing a single service level objective.
 type SLOResponse struct {
@@ -17,9 +21,11 @@ type SLOResponse struct {
 	// used.
 	Errors []string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOResponse instantiates a new SLOResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSLOResponseWithDefaults() *SLOResponse {
 	this := SLOResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOResponse) GetData() SLOResponseData {
 	if o == nil || o.Data == nil {
@@ -65,6 +70,7 @@ func (o *SLOResponse) HasData() bool {
 func (o *SLOResponse) SetData(v SLOResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOResponse) GetErrors() []string {
@@ -94,6 +100,8 @@ func (o *SLOResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -113,12 +121,13 @@ func (o SLOResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOResponseData `json:"data,omitempty"`
-		Errors []string         `json:"errors,omitempty"`
+		Data *SLOResponseData `json:"data,omitempty"`
+		Errors []string `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -129,13 +138,13 @@ func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Errors = all.Errors
 	return nil

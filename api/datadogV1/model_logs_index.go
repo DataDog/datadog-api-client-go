@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsIndex Object describing a Datadog Log index.
 type LogsIndex struct {
@@ -28,9 +31,11 @@ type LogsIndex struct {
 	// retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsIndex instantiates a new LogsIndex object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewLogsIndexWithDefaults() *LogsIndex {
 	this := LogsIndex{}
 	return &this
 }
-
 // GetDailyLimit returns the DailyLimit field value if set, zero value otherwise.
 func (o *LogsIndex) GetDailyLimit() int64 {
 	if o == nil || o.DailyLimit == nil {
@@ -78,6 +82,7 @@ func (o *LogsIndex) HasDailyLimit() bool {
 func (o *LogsIndex) SetDailyLimit(v int64) {
 	o.DailyLimit = &v
 }
+
 
 // GetExclusionFilters returns the ExclusionFilters field value if set, zero value otherwise.
 func (o *LogsIndex) GetExclusionFilters() []LogsExclusion {
@@ -107,6 +112,7 @@ func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion) {
 	o.ExclusionFilters = v
 }
 
+
 // GetFilter returns the Filter field value.
 func (o *LogsIndex) GetFilter() LogsFilter {
 	if o == nil {
@@ -129,6 +135,7 @@ func (o *LogsIndex) GetFilterOk() (*LogsFilter, bool) {
 func (o *LogsIndex) SetFilter(v LogsFilter) {
 	o.Filter = v
 }
+
 
 // GetIsRateLimited returns the IsRateLimited field value if set, zero value otherwise.
 func (o *LogsIndex) GetIsRateLimited() bool {
@@ -158,6 +165,7 @@ func (o *LogsIndex) SetIsRateLimited(v bool) {
 	o.IsRateLimited = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *LogsIndex) GetName() string {
 	if o == nil {
@@ -180,6 +188,7 @@ func (o *LogsIndex) GetNameOk() (*string, bool) {
 func (o *LogsIndex) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
 func (o *LogsIndex) GetNumRetentionDays() int64 {
@@ -209,6 +218,8 @@ func (o *LogsIndex) SetNumRetentionDays(v int64) {
 	o.NumRetentionDays = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -236,20 +247,21 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Filter *LogsFilter `json:"filter"`
-		Name   *string     `json:"name"`
+		Name *string `json:"name"`
 	}{}
 	all := struct {
-		DailyLimit       *int64          `json:"daily_limit,omitempty"`
+		DailyLimit *int64 `json:"daily_limit,omitempty"`
 		ExclusionFilters []LogsExclusion `json:"exclusion_filters,omitempty"`
-		Filter           LogsFilter      `json:"filter"`
-		IsRateLimited    *bool           `json:"is_rate_limited,omitempty"`
-		Name             string          `json:"name"`
-		NumRetentionDays *int64          `json:"num_retention_days,omitempty"`
+		Filter LogsFilter `json:"filter"`
+		IsRateLimited *bool `json:"is_rate_limited,omitempty"`
+		Name string `json:"name"`
+		NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -272,13 +284,13 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.DailyLimit = all.DailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
-	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.IsRateLimited = all.IsRateLimited
 	o.Name = all.Name

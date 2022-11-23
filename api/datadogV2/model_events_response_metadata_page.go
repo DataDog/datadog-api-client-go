@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // EventsResponseMetadataPage Pagination attributes.
 type EventsResponseMetadataPage struct {
@@ -14,9 +18,11 @@ type EventsResponseMetadataPage struct {
 	// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventsResponseMetadataPage instantiates a new EventsResponseMetadataPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +40,6 @@ func NewEventsResponseMetadataPageWithDefaults() *EventsResponseMetadataPage {
 	this := EventsResponseMetadataPage{}
 	return &this
 }
-
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *EventsResponseMetadataPage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -63,6 +68,8 @@ func (o *EventsResponseMetadataPage) SetAfter(v string) {
 	o.After = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o EventsResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsResponseMetadataPage) UnmarshalJSON(bytes []byte) (err error) {

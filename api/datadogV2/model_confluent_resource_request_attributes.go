@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ConfluentResourceRequestAttributes Attributes object for updating a Confluent resource.
 type ConfluentResourceRequestAttributes struct {
@@ -15,9 +19,11 @@ type ConfluentResourceRequestAttributes struct {
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewConfluentResourceRequestAttributes instantiates a new ConfluentResourceRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewConfluentResourceRequestAttributesWithDefaults() *ConfluentResourceReque
 	this := ConfluentResourceRequestAttributes{}
 	return &this
 }
-
 // GetResourceType returns the ResourceType field value if set, zero value otherwise.
 func (o *ConfluentResourceRequestAttributes) GetResourceType() string {
 	if o == nil || o.ResourceType == nil {
@@ -63,6 +68,7 @@ func (o *ConfluentResourceRequestAttributes) HasResourceType() bool {
 func (o *ConfluentResourceRequestAttributes) SetResourceType(v string) {
 	o.ResourceType = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ConfluentResourceRequestAttributes) GetTags() []string {
@@ -92,6 +98,8 @@ func (o *ConfluentResourceRequestAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentResourceRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ResourceType *string  `json:"resource_type,omitempty"`
-		Tags         []string `json:"tags,omitempty"`
+		ResourceType *string `json:"resource_type,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

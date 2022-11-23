@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // GroupWidgetDefinition The groups widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
 type GroupWidgetDefinition struct {
@@ -28,9 +31,11 @@ type GroupWidgetDefinition struct {
 	// List of widget groups.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewGroupWidgetDefinition instantiates a new GroupWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetBackgroundColor returns the BackgroundColor field value if set, zero value otherwise.
 func (o *GroupWidgetDefinition) GetBackgroundColor() string {
 	if o == nil || o.BackgroundColor == nil {
@@ -85,6 +89,7 @@ func (o *GroupWidgetDefinition) HasBackgroundColor() bool {
 func (o *GroupWidgetDefinition) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
+
 
 // GetBannerImg returns the BannerImg field value if set, zero value otherwise.
 func (o *GroupWidgetDefinition) GetBannerImg() string {
@@ -114,6 +119,7 @@ func (o *GroupWidgetDefinition) SetBannerImg(v string) {
 	o.BannerImg = &v
 }
 
+
 // GetLayoutType returns the LayoutType field value.
 func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType {
 	if o == nil {
@@ -136,6 +142,7 @@ func (o *GroupWidgetDefinition) GetLayoutTypeOk() (*WidgetLayoutType, bool) {
 func (o *GroupWidgetDefinition) SetLayoutType(v WidgetLayoutType) {
 	o.LayoutType = v
 }
+
 
 // GetShowTitle returns the ShowTitle field value if set, zero value otherwise.
 func (o *GroupWidgetDefinition) GetShowTitle() bool {
@@ -165,6 +172,7 @@ func (o *GroupWidgetDefinition) SetShowTitle(v bool) {
 	o.ShowTitle = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *GroupWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -192,6 +200,7 @@ func (o *GroupWidgetDefinition) HasTitle() bool {
 func (o *GroupWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *GroupWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -221,6 +230,7 @@ func (o *GroupWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *GroupWidgetDefinition) GetType() GroupWidgetDefinitionType {
 	if o == nil {
@@ -244,6 +254,7 @@ func (o *GroupWidgetDefinition) SetType(v GroupWidgetDefinitionType) {
 	o.Type = v
 }
 
+
 // GetWidgets returns the Widgets field value.
 func (o *GroupWidgetDefinition) GetWidgets() []Widget {
 	if o == nil {
@@ -266,6 +277,8 @@ func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]Widget, bool) {
 func (o *GroupWidgetDefinition) SetWidgets(v []Widget) {
 	o.Widgets = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -298,23 +311,24 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		LayoutType *WidgetLayoutType          `json:"layout_type"`
-		Type       *GroupWidgetDefinitionType `json:"type"`
-		Widgets    *[]Widget                  `json:"widgets"`
+		LayoutType *WidgetLayoutType `json:"layout_type"`
+		Type *GroupWidgetDefinitionType `json:"type"`
+		Widgets *[]Widget `json:"widgets"`
 	}{}
 	all := struct {
-		BackgroundColor *string                   `json:"background_color,omitempty"`
-		BannerImg       *string                   `json:"banner_img,omitempty"`
-		LayoutType      WidgetLayoutType          `json:"layout_type"`
-		ShowTitle       *bool                     `json:"show_title,omitempty"`
-		Title           *string                   `json:"title,omitempty"`
-		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"`
-		Type            GroupWidgetDefinitionType `json:"type"`
-		Widgets         []Widget                  `json:"widgets"`
+		BackgroundColor *string `json:"background_color,omitempty"`
+		BannerImg *string `json:"banner_img,omitempty"`
+		LayoutType WidgetLayoutType `json:"layout_type"`
+		ShowTitle *bool `json:"show_title,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		Type GroupWidgetDefinitionType `json:"type"`
+		Widgets []Widget `json:"widgets"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -346,7 +360,7 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

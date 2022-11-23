@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentAttachmentUpdateResponse The response object containing the created or updated incident attachments.
 type IncidentAttachmentUpdateResponse struct {
@@ -17,9 +20,11 @@ type IncidentAttachmentUpdateResponse struct {
 	// Included related resources that the user requested.
 	Included []IncidentAttachmentsResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentUpdateResponse instantiates a new IncidentAttachmentUpdateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewIncidentAttachmentUpdateResponseWithDefaults() *IncidentAttachmentUpdate
 	this := IncidentAttachmentUpdateResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *IncidentAttachmentUpdateResponse) GetData() []IncidentAttachmentData {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *IncidentAttachmentUpdateResponse) GetDataOk() (*[]IncidentAttachmentDat
 func (o *IncidentAttachmentUpdateResponse) SetData(v []IncidentAttachmentData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentAttachmentUpdateResponse) GetIncluded() []IncidentAttachmentsResponseIncludedItem {
@@ -90,6 +95,8 @@ func (o *IncidentAttachmentUpdateResponse) SetIncluded(v []IncidentAttachmentsRe
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentUpdateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,6 +114,7 @@ func (o IncidentAttachmentUpdateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentUpdateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -114,7 +122,7 @@ func (o *IncidentAttachmentUpdateResponse) UnmarshalJSON(bytes []byte) (err erro
 		Data *[]IncidentAttachmentData `json:"data"`
 	}{}
 	all := struct {
-		Data     []IncidentAttachmentData                  `json:"data"`
+		Data []IncidentAttachmentData `json:"data"`
 		Included []IncidentAttachmentsResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

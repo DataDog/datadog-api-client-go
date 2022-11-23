@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOHistoryResponseErrorWithType An object describing the error with error type and error message.
 type SLOHistoryResponseErrorWithType struct {
@@ -16,9 +19,11 @@ type SLOHistoryResponseErrorWithType struct {
 	// Type of the error.
 	ErrorType string `json:"error_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOHistoryResponseErrorWithType instantiates a new SLOHistoryResponseErrorWithType object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSLOHistoryResponseErrorWithTypeWithDefaults() *SLOHistoryResponseErrorWi
 	this := SLOHistoryResponseErrorWithType{}
 	return &this
 }
-
 // GetErrorMessage returns the ErrorMessage field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorMessage() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorMessageOk() (*string, bool) {
 func (o *SLOHistoryResponseErrorWithType) SetErrorMessage(v string) {
 	o.ErrorMessage = v
 }
+
 
 // GetErrorType returns the ErrorType field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorType() string {
@@ -85,6 +90,8 @@ func (o *SLOHistoryResponseErrorWithType) SetErrorType(v string) {
 	o.ErrorType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,16 +107,17 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ErrorMessage *string `json:"error_message"`
-		ErrorType    *string `json:"error_type"`
+		ErrorType *string `json:"error_type"`
 	}{}
 	all := struct {
 		ErrorMessage string `json:"error_message"`
-		ErrorType    string `json:"error_type"`
+		ErrorType string `json:"error_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

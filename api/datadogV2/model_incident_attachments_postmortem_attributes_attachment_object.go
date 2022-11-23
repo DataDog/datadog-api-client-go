@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentAttachmentsPostmortemAttributesAttachmentObject The postmortem attachment.
 type IncidentAttachmentsPostmortemAttributesAttachmentObject struct {
@@ -16,9 +19,11 @@ type IncidentAttachmentsPostmortemAttributesAttachmentObject struct {
 	// The title of this postmortem attachment.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentsPostmortemAttributesAttachmentObject instantiates a new IncidentAttachmentsPostmortemAttributesAttachmentObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewIncidentAttachmentsPostmortemAttributesAttachmentObjectWithDefaults() *I
 	this := IncidentAttachmentsPostmortemAttributesAttachmentObject{}
 	return &this
 }
-
 // GetDocumentUrl returns the DocumentUrl field value.
 func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) GetDocumentUrl() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) GetDocumentUrl
 func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) SetDocumentUrl(v string) {
 	o.DocumentUrl = v
 }
+
 
 // GetTitle returns the Title field value.
 func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) GetTitle() string {
@@ -85,6 +90,8 @@ func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) SetTitle(v str
 	o.Title = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentsPostmortemAttributesAttachmentObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,16 +107,17 @@ func (o IncidentAttachmentsPostmortemAttributesAttachmentObject) MarshalJSON() (
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		DocumentUrl *string `json:"documentUrl"`
-		Title       *string `json:"title"`
+		Title *string `json:"title"`
 	}{}
 	all := struct {
 		DocumentUrl string `json:"documentUrl"`
-		Title       string `json:"title"`
+		Title string `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

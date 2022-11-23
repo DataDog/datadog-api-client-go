@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageLambdaResponse Response containing the number of lambda functions and sum of the invocations of all lambda functions
 // for each hour for a given organization.
@@ -14,9 +18,11 @@ type UsageLambdaResponse struct {
 	// Get hourly usage for Lambda.
 	Usage []UsageLambdaHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageLambdaResponse instantiates a new UsageLambdaResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +40,6 @@ func NewUsageLambdaResponseWithDefaults() *UsageLambdaResponse {
 	this := UsageLambdaResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageLambdaResponse) GetUsage() []UsageLambdaHour {
 	if o == nil || o.Usage == nil {
@@ -63,6 +68,8 @@ func (o *UsageLambdaResponse) SetUsage(v []UsageLambdaHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLambdaResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o UsageLambdaResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageLambdaResponse) UnmarshalJSON(bytes []byte) (err error) {

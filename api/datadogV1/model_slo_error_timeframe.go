@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOErrorTimeframe The timeframe of the threshold associated with this error
 // or "all" if all thresholds are affected.
@@ -15,10 +18,10 @@ type SLOErrorTimeframe string
 
 // List of SLOErrorTimeframe.
 const (
-	SLOERRORTIMEFRAME_SEVEN_DAYS  SLOErrorTimeframe = "7d"
+	SLOERRORTIMEFRAME_SEVEN_DAYS SLOErrorTimeframe = "7d"
 	SLOERRORTIMEFRAME_THIRTY_DAYS SLOErrorTimeframe = "30d"
 	SLOERRORTIMEFRAME_NINETY_DAYS SLOErrorTimeframe = "90d"
-	SLOERRORTIMEFRAME_ALL         SLOErrorTimeframe = "all"
+	SLOERRORTIMEFRAME_ALL SLOErrorTimeframe = "all"
 )
 
 var allowedSLOErrorTimeframeEnumValues = []SLOErrorTimeframe{

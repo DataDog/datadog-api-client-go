@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -46,9 +48,9 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // checkCanDeleteMonitorExecute executes the request.
 func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorRequest) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CheckCanDeleteMonitorResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CheckCanDeleteMonitorResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.CheckCanDeleteMonitor")
@@ -67,6 +69,7 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 	localVarQueryParams.Add("monitor_ids", datadog.ParameterToString(*r.monitorIds, "csv"))
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -114,10 +117,11 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -126,7 +130,8 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 409 {
+		if
+		localVarHTTPResponse.StatusCode == 409{
 			var v CheckCanDeleteMonitorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -140,7 +145,7 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -150,13 +155,13 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorReq
 }
 
 type apiCreateMonitorRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *Monitor
 }
 
 func (a *MonitorsApi) buildCreateMonitorRequest(ctx _context.Context, body Monitor) (apiCreateMonitorRequest, error) {
 	req := apiCreateMonitorRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -359,9 +364,9 @@ func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor
 // createMonitorExecute executes the request.
 func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.CreateMonitor")
@@ -379,6 +384,8 @@ func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, 
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -429,10 +436,11 @@ func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -446,7 +454,7 @@ func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -456,9 +464,9 @@ func (a *MonitorsApi) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, 
 }
 
 type apiDeleteMonitorRequest struct {
-	ctx       _context.Context
+	ctx        _context.Context
 	monitorId int64
-	force     *string
+	force *string
 }
 
 // DeleteMonitorOptionalParameters holds optional parameters for DeleteMonitor.
@@ -471,7 +479,6 @@ func NewDeleteMonitorOptionalParameters() *DeleteMonitorOptionalParameters {
 	this := DeleteMonitorOptionalParameters{}
 	return &this
 }
-
 // WithForce sets the corresponding parameter name and returns the struct.
 func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitorOptionalParameters {
 	r.Force = &force
@@ -480,7 +487,7 @@ func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitor
 
 func (a *MonitorsApi) buildDeleteMonitorRequest(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (apiDeleteMonitorRequest, error) {
 	req := apiDeleteMonitorRequest{
-		ctx:       ctx,
+		ctx:        ctx,
 		monitorId: monitorId,
 	}
 
@@ -509,9 +516,9 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 // deleteMonitorExecute executes the request.
 func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMonitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DeletedMonitor
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  DeletedMonitor
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.DeleteMonitor")
@@ -530,6 +537,7 @@ func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMo
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -577,10 +585,11 @@ func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -594,7 +603,7 @@ func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -604,8 +613,8 @@ func (a *MonitorsApi) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMo
 }
 
 type apiGetMonitorRequest struct {
-	ctx         _context.Context
-	monitorId   int64
+	ctx        _context.Context
+	monitorId int64
 	groupStates *string
 }
 
@@ -619,7 +628,6 @@ func NewGetMonitorOptionalParameters() *GetMonitorOptionalParameters {
 	this := GetMonitorOptionalParameters{}
 	return &this
 }
-
 // WithGroupStates sets the corresponding parameter name and returns the struct.
 func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetMonitorOptionalParameters {
 	r.GroupStates = &groupStates
@@ -628,7 +636,7 @@ func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetM
 
 func (a *MonitorsApi) buildGetMonitorRequest(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (apiGetMonitorRequest, error) {
 	req := apiGetMonitorRequest{
-		ctx:       ctx,
+		ctx:        ctx,
 		monitorId: monitorId,
 	}
 
@@ -657,9 +665,9 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 // getMonitorExecute executes the request.
 func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.GetMonitor")
@@ -678,6 +686,7 @@ func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_neth
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -725,10 +734,11 @@ func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_neth
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -742,7 +752,7 @@ func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_neth
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -752,27 +762,27 @@ func (a *MonitorsApi) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_neth
 }
 
 type apiListMonitorsRequest struct {
-	ctx           _context.Context
-	groupStates   *string
-	name          *string
-	tags          *string
-	monitorTags   *string
+	ctx        _context.Context
+	groupStates *string
+	name *string
+	tags *string
+	monitorTags *string
 	withDowntimes *bool
-	idOffset      *int64
-	page          *int64
-	pageSize      *int32
+	idOffset *int64
+	page *int64
+	pageSize *int32
 }
 
 // ListMonitorsOptionalParameters holds optional parameters for ListMonitors.
 type ListMonitorsOptionalParameters struct {
-	GroupStates   *string
-	Name          *string
-	Tags          *string
-	MonitorTags   *string
+	GroupStates *string
+	Name *string
+	Tags *string
+	MonitorTags *string
 	WithDowntimes *bool
-	IdOffset      *int64
-	Page          *int64
-	PageSize      *int32
+	IdOffset *int64
+	Page *int64
+	PageSize *int32
 }
 
 // NewListMonitorsOptionalParameters creates an empty struct for parameters.
@@ -780,49 +790,41 @@ func NewListMonitorsOptionalParameters() *ListMonitorsOptionalParameters {
 	this := ListMonitorsOptionalParameters{}
 	return &this
 }
-
 // WithGroupStates sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithGroupStates(groupStates string) *ListMonitorsOptionalParameters {
 	r.GroupStates = &groupStates
 	return r
 }
-
 // WithName sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithName(name string) *ListMonitorsOptionalParameters {
 	r.Name = &name
 	return r
 }
-
 // WithTags sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithTags(tags string) *ListMonitorsOptionalParameters {
 	r.Tags = &tags
 	return r
 }
-
 // WithMonitorTags sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithMonitorTags(monitorTags string) *ListMonitorsOptionalParameters {
 	r.MonitorTags = &monitorTags
 	return r
 }
-
 // WithWithDowntimes sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithWithDowntimes(withDowntimes bool) *ListMonitorsOptionalParameters {
 	r.WithDowntimes = &withDowntimes
 	return r
 }
-
 // WithIdOffset sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithIdOffset(idOffset int64) *ListMonitorsOptionalParameters {
 	r.IdOffset = &idOffset
 	return r
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithPage(page int64) *ListMonitorsOptionalParameters {
 	r.Page = &page
 	return r
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonitorsOptionalParameters {
 	r.PageSize = &pageSize
@@ -831,7 +833,7 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 
 func (a *MonitorsApi) buildListMonitorsRequest(ctx _context.Context, o ...ListMonitorsOptionalParameters) (apiListMonitorsRequest, error) {
 	req := apiListMonitorsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -866,9 +868,9 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 // listMonitorsExecute executes the request.
 func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []Monitor
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []Monitor
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.ListMonitors")
@@ -907,6 +909,7 @@ func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, 
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -954,10 +957,11 @@ func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -971,7 +975,7 @@ func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -981,19 +985,19 @@ func (a *MonitorsApi) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, 
 }
 
 type apiSearchMonitorGroupsRequest struct {
-	ctx     _context.Context
-	query   *string
-	page    *int64
+	ctx        _context.Context
+	query *string
+	page *int64
 	perPage *int64
-	sort    *string
+	sort *string
 }
 
 // SearchMonitorGroupsOptionalParameters holds optional parameters for SearchMonitorGroups.
 type SearchMonitorGroupsOptionalParameters struct {
-	Query   *string
-	Page    *int64
+	Query *string
+	Page *int64
 	PerPage *int64
-	Sort    *string
+	Sort *string
 }
 
 // NewSearchMonitorGroupsOptionalParameters creates an empty struct for parameters.
@@ -1001,25 +1005,21 @@ func NewSearchMonitorGroupsOptionalParameters() *SearchMonitorGroupsOptionalPara
 	this := SearchMonitorGroupsOptionalParameters{}
 	return &this
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorGroupsOptionalParameters) WithQuery(query string) *SearchMonitorGroupsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorGroupsOptionalParameters) WithPage(page int64) *SearchMonitorGroupsOptionalParameters {
 	r.Page = &page
 	return r
 }
-
 // WithPerPage sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorGroupsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorGroupsOptionalParameters {
 	r.PerPage = &perPage
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMonitorGroupsOptionalParameters {
 	r.Sort = &sort
@@ -1028,7 +1028,7 @@ func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMon
 
 func (a *MonitorsApi) buildSearchMonitorGroupsRequest(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (apiSearchMonitorGroupsRequest, error) {
 	req := apiSearchMonitorGroupsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -1059,9 +1059,9 @@ func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonit
 // searchMonitorGroupsExecute executes the request.
 func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorGroupSearchResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MonitorGroupSearchResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.SearchMonitorGroups")
@@ -1088,6 +1088,7 @@ func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1135,10 +1136,11 @@ func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1152,7 +1154,7 @@ func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1162,19 +1164,19 @@ func (a *MonitorsApi) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest
 }
 
 type apiSearchMonitorsRequest struct {
-	ctx     _context.Context
-	query   *string
-	page    *int64
+	ctx        _context.Context
+	query *string
+	page *int64
 	perPage *int64
-	sort    *string
+	sort *string
 }
 
 // SearchMonitorsOptionalParameters holds optional parameters for SearchMonitors.
 type SearchMonitorsOptionalParameters struct {
-	Query   *string
-	Page    *int64
+	Query *string
+	Page *int64
 	PerPage *int64
-	Sort    *string
+	Sort *string
 }
 
 // NewSearchMonitorsOptionalParameters creates an empty struct for parameters.
@@ -1182,25 +1184,21 @@ func NewSearchMonitorsOptionalParameters() *SearchMonitorsOptionalParameters {
 	this := SearchMonitorsOptionalParameters{}
 	return &this
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorsOptionalParameters) WithQuery(query string) *SearchMonitorsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorsOptionalParameters) WithPage(page int64) *SearchMonitorsOptionalParameters {
 	r.Page = &page
 	return r
 }
-
 // WithPerPage sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorsOptionalParameters {
 	r.PerPage = &perPage
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitorsOptionalParameters {
 	r.Sort = &sort
@@ -1209,7 +1207,7 @@ func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitors
 
 func (a *MonitorsApi) buildSearchMonitorsRequest(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (apiSearchMonitorsRequest, error) {
 	req := apiSearchMonitorsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
@@ -1240,9 +1238,9 @@ func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOp
 // searchMonitorsExecute executes the request.
 func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (MonitorSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorSearchResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MonitorSearchResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.SearchMonitors")
@@ -1269,6 +1267,7 @@ func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (Monitor
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1316,10 +1315,11 @@ func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (Monitor
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1333,7 +1333,7 @@ func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (Monitor
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1343,16 +1343,16 @@ func (a *MonitorsApi) searchMonitorsExecute(r apiSearchMonitorsRequest) (Monitor
 }
 
 type apiUpdateMonitorRequest struct {
-	ctx       _context.Context
+	ctx        _context.Context
 	monitorId int64
-	body      *MonitorUpdateRequest
+	body *MonitorUpdateRequest
 }
 
 func (a *MonitorsApi) buildUpdateMonitorRequest(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (apiUpdateMonitorRequest, error) {
 	req := apiUpdateMonitorRequest{
-		ctx:       ctx,
+		ctx:        ctx,
 		monitorId: monitorId,
-		body:      &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -1372,9 +1372,9 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 // updateMonitorExecute executes the request.
 func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.UpdateMonitor")
@@ -1394,6 +1394,8 @@ func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, 
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1443,10 +1445,11 @@ func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1460,7 +1463,7 @@ func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1470,16 +1473,16 @@ func (a *MonitorsApi) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, 
 }
 
 type apiValidateExistingMonitorRequest struct {
-	ctx       _context.Context
+	ctx        _context.Context
 	monitorId int64
-	body      *Monitor
+	body *Monitor
 }
 
 func (a *MonitorsApi) buildValidateExistingMonitorRequest(ctx _context.Context, monitorId int64, body Monitor) (apiValidateExistingMonitorRequest, error) {
 	req := apiValidateExistingMonitorRequest{
-		ctx:       ctx,
+		ctx:        ctx,
 		monitorId: monitorId,
-		body:      &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -1499,9 +1502,9 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 // validateExistingMonitorExecute executes the request.
 func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.ValidateExistingMonitor")
@@ -1520,6 +1523,8 @@ func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonito
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -1570,10 +1575,11 @@ func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonito
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1587,7 +1593,7 @@ func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonito
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1597,13 +1603,13 @@ func (a *MonitorsApi) validateExistingMonitorExecute(r apiValidateExistingMonito
 }
 
 type apiValidateMonitorRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *Monitor
 }
 
 func (a *MonitorsApi) buildValidateMonitorRequest(ctx _context.Context, body Monitor) (apiValidateMonitorRequest, error) {
 	req := apiValidateMonitorRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -1624,9 +1630,9 @@ func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (inter
 // validateMonitorExecute executes the request.
 func (a *MonitorsApi) validateMonitorExecute(r apiValidateMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApi.ValidateMonitor")
@@ -1644,6 +1650,8 @@ func (a *MonitorsApi) validateMonitorExecute(r apiValidateMonitorRequest) (inter
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -1694,10 +1702,11 @@ func (a *MonitorsApi) validateMonitorExecute(r apiValidateMonitorRequest) (inter
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1711,7 +1720,7 @@ func (a *MonitorsApi) validateMonitorExecute(r apiValidateMonitorRequest) (inter
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsConfigVariableType Type of the configuration variable.
 type SyntheticsConfigVariableType string
@@ -15,7 +18,7 @@ type SyntheticsConfigVariableType string
 // List of SyntheticsConfigVariableType.
 const (
 	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL SyntheticsConfigVariableType = "global"
-	SYNTHETICSCONFIGVARIABLETYPE_TEXT   SyntheticsConfigVariableType = "text"
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT SyntheticsConfigVariableType = "text"
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{

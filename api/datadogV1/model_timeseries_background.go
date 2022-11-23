@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TimeseriesBackground Set a timeseries on the widget background.
 type TimeseriesBackground struct {
@@ -16,9 +19,11 @@ type TimeseriesBackground struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTimeseriesBackground instantiates a new TimeseriesBackground object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewTimeseriesBackgroundWithDefaults() *TimeseriesBackground {
 	this.Type = typeVar
 	return &this
 }
-
 // GetType returns the Type field value.
 func (o *TimeseriesBackground) GetType() TimeseriesBackgroundType {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *TimeseriesBackground) GetTypeOk() (*TimeseriesBackgroundType, bool) {
 func (o *TimeseriesBackground) SetType(v TimeseriesBackgroundType) {
 	o.Type = v
 }
+
 
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *TimeseriesBackground) GetYaxis() WidgetAxis {
@@ -91,6 +96,8 @@ func (o *TimeseriesBackground) SetYaxis(v WidgetAxis) {
 	o.Yaxis = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesBackground) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -108,6 +115,7 @@ func (o TimeseriesBackground) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -115,8 +123,8 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 		Type *TimeseriesBackgroundType `json:"type"`
 	}{}
 	all := struct {
-		Type  TimeseriesBackgroundType `json:"type"`
-		Yaxis *WidgetAxis              `json:"yaxis,omitempty"`
+		Type TimeseriesBackgroundType `json:"type"`
+		Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -143,13 +151,13 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Type = all.Type
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Yaxis = all.Yaxis
 	return nil
 }

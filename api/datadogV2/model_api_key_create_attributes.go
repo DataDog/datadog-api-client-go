@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // APIKeyCreateAttributes Attributes used to create an API Key.
 type APIKeyCreateAttributes struct {
 	// Name of the API key.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAPIKeyCreateAttributes instantiates a new APIKeyCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewAPIKeyCreateAttributesWithDefaults() *APIKeyCreateAttributes {
 	this := APIKeyCreateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *APIKeyCreateAttributes) GetName() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *APIKeyCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o APIKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *APIKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {

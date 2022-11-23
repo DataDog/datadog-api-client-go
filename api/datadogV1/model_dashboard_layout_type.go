@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardLayoutType Layout type of the dashboard.
 type DashboardLayoutType string
@@ -15,7 +18,7 @@ type DashboardLayoutType string
 // List of DashboardLayoutType.
 const (
 	DASHBOARDLAYOUTTYPE_ORDERED DashboardLayoutType = "ordered"
-	DASHBOARDLAYOUTTYPE_FREE    DashboardLayoutType = "free"
+	DASHBOARDLAYOUTTYPE_FREE DashboardLayoutType = "free"
 )
 
 var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{

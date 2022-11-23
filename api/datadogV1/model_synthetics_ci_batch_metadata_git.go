@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsCIBatchMetadataGit Git information.
 type SyntheticsCIBatchMetadataGit struct {
@@ -15,9 +19,11 @@ type SyntheticsCIBatchMetadataGit struct {
 	// The commit SHA.
 	CommitSha *string `json:"commitSha,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsCIBatchMetadataGit instantiates a new SyntheticsCIBatchMetadataGit object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSyntheticsCIBatchMetadataGitWithDefaults() *SyntheticsCIBatchMetadataGit
 	this := SyntheticsCIBatchMetadataGit{}
 	return &this
 }
-
 // GetBranch returns the Branch field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataGit) GetBranch() string {
 	if o == nil || o.Branch == nil {
@@ -63,6 +68,7 @@ func (o *SyntheticsCIBatchMetadataGit) HasBranch() bool {
 func (o *SyntheticsCIBatchMetadataGit) SetBranch(v string) {
 	o.Branch = &v
 }
+
 
 // GetCommitSha returns the CommitSha field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataGit) GetCommitSha() string {
@@ -92,6 +98,8 @@ func (o *SyntheticsCIBatchMetadataGit) SetCommitSha(v string) {
 	o.CommitSha = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Branch    *string `json:"branch,omitempty"`
+		Branch *string `json:"branch,omitempty"`
 		CommitSha *string `json:"commitSha,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

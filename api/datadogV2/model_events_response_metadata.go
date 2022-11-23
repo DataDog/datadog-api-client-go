@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // EventsResponseMetadata The metadata associated with a request.
 type EventsResponseMetadata struct {
@@ -20,9 +24,11 @@ type EventsResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []EventsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventsResponseMetadata instantiates a new EventsResponseMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewEventsResponseMetadataWithDefaults() *EventsResponseMetadata {
 	this := EventsResponseMetadata{}
 	return &this
 }
-
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -68,6 +73,7 @@ func (o *EventsResponseMetadata) HasElapsed() bool {
 func (o *EventsResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetPage() EventsResponseMetadataPage {
@@ -97,6 +103,7 @@ func (o *EventsResponseMetadata) SetPage(v EventsResponseMetadataPage) {
 	o.Page = &v
 }
 
+
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
@@ -124,6 +131,7 @@ func (o *EventsResponseMetadata) HasRequestId() bool {
 func (o *EventsResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
+
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetWarnings() []EventsWarning {
@@ -153,6 +161,8 @@ func (o *EventsResponseMetadata) SetWarnings(v []EventsWarning) {
 	o.Warnings = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -178,14 +188,15 @@ func (o EventsResponseMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Elapsed   *int64                      `json:"elapsed,omitempty"`
-		Page      *EventsResponseMetadataPage `json:"page,omitempty"`
-		RequestId *string                     `json:"request_id,omitempty"`
-		Warnings  []EventsWarning             `json:"warnings,omitempty"`
+		Elapsed *int64 `json:"elapsed,omitempty"`
+		Page *EventsResponseMetadataPage `json:"page,omitempty"`
+		RequestId *string `json:"request_id,omitempty"`
+		Warnings []EventsWarning `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -197,13 +208,13 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Elapsed = all.Elapsed
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Warnings = all.Warnings

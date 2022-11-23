@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsExclusion Represents the index exclusion filter object from configuration API.
 type LogsExclusion struct {
@@ -18,9 +21,11 @@ type LogsExclusion struct {
 	// Name of the index exclusion filter.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsExclusion instantiates a new LogsExclusion object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLogsExclusionWithDefaults() *LogsExclusion {
 	this := LogsExclusion{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsExclusion) GetFilter() LogsExclusionFilter {
 	if o == nil || o.Filter == nil {
@@ -67,6 +71,7 @@ func (o *LogsExclusion) HasFilter() bool {
 func (o *LogsExclusion) SetFilter(v LogsExclusionFilter) {
 	o.Filter = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsExclusion) GetIsEnabled() bool {
@@ -96,6 +101,7 @@ func (o *LogsExclusion) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *LogsExclusion) GetName() string {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *LogsExclusion) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsExclusion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,6 +147,7 @@ func (o LogsExclusion) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -146,9 +155,9 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Filter    *LogsExclusionFilter `json:"filter,omitempty"`
-		IsEnabled *bool                `json:"is_enabled,omitempty"`
-		Name      string               `json:"name"`
+		Filter *LogsExclusionFilter `json:"filter,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name string `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -166,13 +175,13 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsStep The steps used in a Synthetics browser test.
 type SyntheticsStep struct {
@@ -25,9 +29,11 @@ type SyntheticsStep struct {
 	// Step type used in your Synthetic test.
 	Type *SyntheticsStepType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsStep instantiates a new SyntheticsStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +51,6 @@ func NewSyntheticsStepWithDefaults() *SyntheticsStep {
 	this := SyntheticsStep{}
 	return &this
 }
-
 // GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetAllowFailure() bool {
 	if o == nil || o.AllowFailure == nil {
@@ -73,6 +78,7 @@ func (o *SyntheticsStep) HasAllowFailure() bool {
 func (o *SyntheticsStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
 }
+
 
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetIsCritical() bool {
@@ -102,6 +108,7 @@ func (o *SyntheticsStep) SetIsCritical(v bool) {
 	o.IsCritical = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetName() string {
 	if o == nil || o.Name == nil {
@@ -129,6 +136,7 @@ func (o *SyntheticsStep) HasName() bool {
 func (o *SyntheticsStep) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetNoScreenshot() bool {
@@ -158,6 +166,7 @@ func (o *SyntheticsStep) SetNoScreenshot(v bool) {
 	o.NoScreenshot = &v
 }
 
+
 // GetParams returns the Params field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetParams() interface{} {
 	if o == nil || o.Params == nil {
@@ -185,6 +194,7 @@ func (o *SyntheticsStep) HasParams() bool {
 func (o *SyntheticsStep) SetParams(v interface{}) {
 	o.Params = v
 }
+
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetTimeout() int64 {
@@ -214,6 +224,7 @@ func (o *SyntheticsStep) SetTimeout(v int64) {
 	o.Timeout = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetType() SyntheticsStepType {
 	if o == nil || o.Type == nil {
@@ -241,6 +252,8 @@ func (o *SyntheticsStep) HasType() bool {
 func (o *SyntheticsStep) SetType(v SyntheticsStepType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
@@ -276,17 +289,18 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowFailure *bool               `json:"allowFailure,omitempty"`
-		IsCritical   *bool               `json:"isCritical,omitempty"`
-		Name         *string             `json:"name,omitempty"`
-		NoScreenshot *bool               `json:"noScreenshot,omitempty"`
-		Params       interface{}         `json:"params,omitempty"`
-		Timeout      *int64              `json:"timeout,omitempty"`
-		Type         *SyntheticsStepType `json:"type,omitempty"`
+		AllowFailure *bool `json:"allowFailure,omitempty"`
+		IsCritical *bool `json:"isCritical,omitempty"`
+		Name *string `json:"name,omitempty"`
+		NoScreenshot *bool `json:"noScreenshot,omitempty"`
+		Params interface{} `json:"params,omitempty"`
+		Timeout *int64 `json:"timeout,omitempty"`
+		Type *SyntheticsStepType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -297,7 +311,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

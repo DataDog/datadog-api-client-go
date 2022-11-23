@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsMetricComputeAggregationType The type of aggregation to use.
 type LogsMetricComputeAggregationType string
 
 // List of LogsMetricComputeAggregationType.
 const (
-	LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT        LogsMetricComputeAggregationType = "count"
+	LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT LogsMetricComputeAggregationType = "count"
 	LOGSMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION LogsMetricComputeAggregationType = "distribution"
 )
 

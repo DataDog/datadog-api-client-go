@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageLambdaHour Number of lambda functions and sum of the invocations of all lambda functions
 // for each hour for a given organization.
@@ -23,9 +26,11 @@ type UsageLambdaHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageLambdaHour instantiates a new UsageLambdaHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewUsageLambdaHourWithDefaults() *UsageLambdaHour {
 	this := UsageLambdaHour{}
 	return &this
 }
-
 // GetFuncCount returns the FuncCount field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetFuncCount() int64 {
 	if o == nil || o.FuncCount == nil {
@@ -71,6 +75,7 @@ func (o *UsageLambdaHour) HasFuncCount() bool {
 func (o *UsageLambdaHour) SetFuncCount(v int64) {
 	o.FuncCount = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetHour() time.Time {
@@ -100,6 +105,7 @@ func (o *UsageLambdaHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetInvocationsSum() int64 {
 	if o == nil || o.InvocationsSum == nil {
@@ -127,6 +133,7 @@ func (o *UsageLambdaHour) HasInvocationsSum() bool {
 func (o *UsageLambdaHour) SetInvocationsSum(v int64) {
 	o.InvocationsSum = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetOrgName() string {
@@ -156,6 +163,7 @@ func (o *UsageLambdaHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -183,6 +191,8 @@ func (o *UsageLambdaHour) HasPublicId() bool {
 func (o *UsageLambdaHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
@@ -216,15 +226,16 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FuncCount      *int64     `json:"func_count,omitempty"`
-		Hour           *time.Time `json:"hour,omitempty"`
-		InvocationsSum *int64     `json:"invocations_sum,omitempty"`
-		OrgName        *string    `json:"org_name,omitempty"`
-		PublicId       *string    `json:"public_id,omitempty"`
+		FuncCount *int64 `json:"func_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		InvocationsSum *int64 `json:"invocations_sum,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

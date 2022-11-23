@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsListGlobalVariablesResponse Object containing an array of Synthetic global variables.
 type SyntheticsListGlobalVariablesResponse struct {
 	// Array of Synthetic global variables.
 	Variables []SyntheticsGlobalVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsListGlobalVariablesResponse instantiates a new SyntheticsListGlobalVariablesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSyntheticsListGlobalVariablesResponseWithDefaults() *SyntheticsListGloba
 	this := SyntheticsListGlobalVariablesResponse{}
 	return &this
 }
-
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsListGlobalVariablesResponse) GetVariables() []SyntheticsGlobalVariable {
 	if o == nil || o.Variables == nil {
@@ -62,6 +67,8 @@ func (o *SyntheticsListGlobalVariablesResponse) SetVariables(v []SyntheticsGloba
 	o.Variables = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsListGlobalVariablesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o SyntheticsListGlobalVariablesResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsListGlobalVariablesResponse) UnmarshalJSON(bytes []byte) (err error) {

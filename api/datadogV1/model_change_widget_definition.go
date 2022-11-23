@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ChangeWidgetDefinition The Change graph shows you the change in a value over the time period chosen.
 type ChangeWidgetDefinition struct {
@@ -29,9 +32,11 @@ type ChangeWidgetDefinition struct {
 	// Type of the change widget.
 	Type ChangeWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewChangeWidgetDefinition instantiates a new ChangeWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewChangeWidgetDefinitionWithDefaults() *ChangeWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *ChangeWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -82,6 +86,7 @@ func (o *ChangeWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *ChangeWidgetDefinition) GetRequests() []ChangeWidgetRequest {
 	if o == nil {
@@ -104,6 +109,7 @@ func (o *ChangeWidgetDefinition) GetRequestsOk() (*[]ChangeWidgetRequest, bool) 
 func (o *ChangeWidgetDefinition) SetRequests(v []ChangeWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ChangeWidgetDefinition) GetTime() WidgetTime {
@@ -133,6 +139,7 @@ func (o *ChangeWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ChangeWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -160,6 +167,7 @@ func (o *ChangeWidgetDefinition) HasTitle() bool {
 func (o *ChangeWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ChangeWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -189,6 +197,7 @@ func (o *ChangeWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ChangeWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -217,6 +226,7 @@ func (o *ChangeWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ChangeWidgetDefinition) GetType() ChangeWidgetDefinitionType {
 	if o == nil {
@@ -239,6 +249,8 @@ func (o *ChangeWidgetDefinition) GetTypeOk() (*ChangeWidgetDefinitionType, bool)
 func (o *ChangeWidgetDefinition) SetType(v ChangeWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -270,21 +282,22 @@ func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ChangeWidgetRequest      `json:"requests"`
-		Type     *ChangeWidgetDefinitionType `json:"type"`
+		Requests *[]ChangeWidgetRequest `json:"requests"`
+		Type *ChangeWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks []WidgetCustomLink         `json:"custom_links,omitempty"`
-		Requests    []ChangeWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                `json:"time,omitempty"`
-		Title       *string                    `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign           `json:"title_align,omitempty"`
-		TitleSize   *string                    `json:"title_size,omitempty"`
-		Type        ChangeWidgetDefinitionType `json:"type"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests []ChangeWidgetRequest `json:"requests"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type ChangeWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -305,7 +318,7 @@ func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -323,13 +336,13 @@ func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.CustomLinks = all.CustomLinks
 	o.Requests = all.Requests
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign

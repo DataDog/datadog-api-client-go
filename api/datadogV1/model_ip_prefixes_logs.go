@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IPPrefixesLogs Available prefix information for the Logs endpoints.
 type IPPrefixesLogs struct {
@@ -15,9 +19,11 @@ type IPPrefixesLogs struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIPPrefixesLogs instantiates a new IPPrefixesLogs object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewIPPrefixesLogsWithDefaults() *IPPrefixesLogs {
 	this := IPPrefixesLogs{}
 	return &this
 }
-
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesLogs) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -63,6 +68,7 @@ func (o *IPPrefixesLogs) HasPrefixesIpv4() bool {
 func (o *IPPrefixesLogs) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = v
 }
+
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesLogs) GetPrefixesIpv6() []string {
@@ -92,6 +98,8 @@ func (o *IPPrefixesLogs) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IPPrefixesLogs) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,6 +118,7 @@ func (o IPPrefixesLogs) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IPPrefixesLogs) UnmarshalJSON(bytes []byte) (err error) {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // EventResponse Object containing an event response.
 type EventResponse struct {
@@ -15,9 +19,11 @@ type EventResponse struct {
 	// A status.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventResponse instantiates a new EventResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewEventResponseWithDefaults() *EventResponse {
 	this := EventResponse{}
 	return &this
 }
-
 // GetEvent returns the Event field value if set, zero value otherwise.
 func (o *EventResponse) GetEvent() Event {
 	if o == nil || o.Event == nil {
@@ -63,6 +68,7 @@ func (o *EventResponse) HasEvent() bool {
 func (o *EventResponse) SetEvent(v Event) {
 	o.Event = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EventResponse) GetStatus() string {
@@ -92,6 +98,8 @@ func (o *EventResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o EventResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *EventResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Event  *Event  `json:"event,omitempty"`
+		Event *Event `json:"event,omitempty"`
 		Status *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -127,13 +136,13 @@ func (o *EventResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Event != nil && all.Event.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Event != nil && all.Event.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Event = all.Event
 	o.Status = all.Status
 	return nil

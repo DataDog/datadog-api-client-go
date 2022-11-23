@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppTestEventsRequest The request for a tests search.
 type CIAppTestEventsRequest struct {
@@ -20,9 +24,11 @@ type CIAppTestEventsRequest struct {
 	// Sort parameters when querying events.
 	Sort *CIAppSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestEventsRequest instantiates a new CIAppTestEventsRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewCIAppTestEventsRequestWithDefaults() *CIAppTestEventsRequest {
 	this := CIAppTestEventsRequest{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *CIAppTestEventsRequest) GetFilter() CIAppTestsQueryFilter {
 	if o == nil || o.Filter == nil {
@@ -68,6 +73,7 @@ func (o *CIAppTestEventsRequest) HasFilter() bool {
 func (o *CIAppTestEventsRequest) SetFilter(v CIAppTestsQueryFilter) {
 	o.Filter = &v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *CIAppTestEventsRequest) GetOptions() CIAppQueryOptions {
@@ -97,6 +103,7 @@ func (o *CIAppTestEventsRequest) SetOptions(v CIAppQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *CIAppTestEventsRequest) GetPage() CIAppQueryPageOptions {
 	if o == nil || o.Page == nil {
@@ -124,6 +131,7 @@ func (o *CIAppTestEventsRequest) HasPage() bool {
 func (o *CIAppTestEventsRequest) SetPage(v CIAppQueryPageOptions) {
 	o.Page = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *CIAppTestEventsRequest) GetSort() CIAppSort {
@@ -153,6 +161,8 @@ func (o *CIAppTestEventsRequest) SetSort(v CIAppSort) {
 	o.Sort = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestEventsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -178,14 +188,15 @@ func (o CIAppTestEventsRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *CIAppTestsQueryFilter `json:"filter,omitempty"`
-		Options *CIAppQueryOptions     `json:"options,omitempty"`
-		Page    *CIAppQueryPageOptions `json:"page,omitempty"`
-		Sort    *CIAppSort             `json:"sort,omitempty"`
+		Filter *CIAppTestsQueryFilter `json:"filter,omitempty"`
+		Options *CIAppQueryOptions `json:"options,omitempty"`
+		Page *CIAppQueryPageOptions `json:"page,omitempty"`
+		Sort *CIAppSort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -196,7 +207,7 @@ func (o *CIAppTestEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if v := all.Sort; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -204,29 +215,29 @@ func (o *CIAppTestEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	o.Sort = all.Sort
 	return nil

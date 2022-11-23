@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RelationshipToRoleData Relationship to role object.
 type RelationshipToRoleData struct {
@@ -15,9 +19,11 @@ type RelationshipToRoleData struct {
 	// Roles type.
 	Type *RolesType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToRoleData instantiates a new RelationshipToRoleData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewRelationshipToRoleDataWithDefaults() *RelationshipToRoleData {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RelationshipToRoleData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -67,6 +72,7 @@ func (o *RelationshipToRoleData) HasId() bool {
 func (o *RelationshipToRoleData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RelationshipToRoleData) GetType() RolesType {
@@ -96,6 +102,8 @@ func (o *RelationshipToRoleData) SetType(v RolesType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToRoleData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,11 +123,12 @@ func (o RelationshipToRoleData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToRoleData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id   *string    `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *RolesType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -131,7 +140,7 @@ func (o *RelationshipToRoleData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

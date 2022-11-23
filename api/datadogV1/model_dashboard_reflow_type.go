@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardReflowType Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
 // If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
@@ -16,7 +19,7 @@ type DashboardReflowType string
 
 // List of DashboardReflowType.
 const (
-	DASHBOARDREFLOWTYPE_AUTO  DashboardReflowType = "auto"
+	DASHBOARDREFLOWTYPE_AUTO DashboardReflowType = "auto"
 	DASHBOARDREFLOWTYPE_FIXED DashboardReflowType = "fixed"
 )
 

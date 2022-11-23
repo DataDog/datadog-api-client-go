@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentAttachmentPostmortemAttributes The attributes object for a postmortem attachment.
 type IncidentAttachmentPostmortemAttributes struct {
@@ -16,9 +19,11 @@ type IncidentAttachmentPostmortemAttributes struct {
 	// The type of postmortem attachment attributes.
 	AttachmentType IncidentAttachmentPostmortemAttachmentType `json:"attachment_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentAttachmentPostmortemAttributes instantiates a new IncidentAttachmentPostmortemAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewIncidentAttachmentPostmortemAttributesWithDefaults() *IncidentAttachment
 	this.AttachmentType = attachmentType
 	return &this
 }
-
 // GetAttachment returns the Attachment field value.
 func (o *IncidentAttachmentPostmortemAttributes) GetAttachment() IncidentAttachmentsPostmortemAttributesAttachmentObject {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *IncidentAttachmentPostmortemAttributes) GetAttachmentOk() (*IncidentAtt
 func (o *IncidentAttachmentPostmortemAttributes) SetAttachment(v IncidentAttachmentsPostmortemAttributesAttachmentObject) {
 	o.Attachment = v
 }
+
 
 // GetAttachmentType returns the AttachmentType field value.
 func (o *IncidentAttachmentPostmortemAttributes) GetAttachmentType() IncidentAttachmentPostmortemAttachmentType {
@@ -87,6 +92,8 @@ func (o *IncidentAttachmentPostmortemAttributes) SetAttachmentType(v IncidentAtt
 	o.AttachmentType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentPostmortemAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o IncidentAttachmentPostmortemAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Attachment     *IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
-		AttachmentType *IncidentAttachmentPostmortemAttachmentType              `json:"attachment_type"`
+		Attachment *IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
+		AttachmentType *IncidentAttachmentPostmortemAttachmentType `json:"attachment_type"`
 	}{}
 	all := struct {
-		Attachment     IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
-		AttachmentType IncidentAttachmentPostmortemAttachmentType              `json:"attachment_type"`
+		Attachment IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
+		AttachmentType IncidentAttachmentPostmortemAttachmentType `json:"attachment_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attachment.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attachment.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attachment = all.Attachment
 	o.AttachmentType = all.AttachmentType
 	return nil

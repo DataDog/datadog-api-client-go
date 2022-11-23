@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,13 +21,13 @@ import (
 type GCPIntegrationApi datadog.Service
 
 type apiCreateGCPIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildCreateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiCreateGCPIntegrationRequest, error) {
 	req := apiCreateGCPIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -45,9 +48,9 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 // createGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.CreateGCPIntegration")
@@ -65,6 +68,8 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegratio
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -115,10 +120,11 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegratio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -132,7 +138,7 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegratio
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -142,13 +148,13 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(r apiCreateGCPIntegratio
 }
 
 type apiDeleteGCPIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildDeleteGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiDeleteGCPIntegrationRequest, error) {
 	req := apiDeleteGCPIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -169,9 +175,9 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 // deleteGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.DeleteGCPIntegration")
@@ -189,6 +195,8 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegratio
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -239,10 +247,11 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegratio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -256,7 +265,7 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegratio
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -266,12 +275,12 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(r apiDeleteGCPIntegratio
 }
 
 type apiListGCPIntegrationRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *GCPIntegrationApi) buildListGCPIntegrationRequest(ctx _context.Context) (apiListGCPIntegrationRequest, error) {
 	req := apiListGCPIntegrationRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -291,9 +300,9 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 // listGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []GCPAccount
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []GCPAccount
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.ListGCPIntegration")
@@ -308,6 +317,7 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationReq
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -355,10 +365,11 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -372,7 +383,7 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -382,13 +393,13 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(r apiListGCPIntegrationReq
 }
 
 type apiUpdateGCPIntegrationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *GCPAccount
 }
 
 func (a *GCPIntegrationApi) buildUpdateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiUpdateGCPIntegrationRequest, error) {
 	req := apiUpdateGCPIntegrationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -412,9 +423,9 @@ func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPA
 // updateGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApi) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.GCPIntegrationApi.UpdateGCPIntegration")
@@ -432,6 +443,8 @@ func (a *GCPIntegrationApi) updateGCPIntegrationExecute(r apiUpdateGCPIntegratio
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -482,10 +495,11 @@ func (a *GCPIntegrationApi) updateGCPIntegrationExecute(r apiUpdateGCPIntegratio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -499,7 +513,7 @@ func (a *GCPIntegrationApi) updateGCPIntegrationExecute(r apiUpdateGCPIntegratio
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

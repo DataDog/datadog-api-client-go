@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // HTTPLogItem Logs that are sent over HTTP.
 type HTTPLogItem struct {
@@ -28,9 +31,11 @@ type HTTPLogItem struct {
 	// See [reserved attributes](https://docs.datadoghq.com/logs/log_configuration/attributes_naming_convention/#reserved-attributes).
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]string
 }
+
+
 
 // NewHTTPLogItem instantiates a new HTTPLogItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewHTTPLogItemWithDefaults() *HTTPLogItem {
 	this := HTTPLogItem{}
 	return &this
 }
-
 // GetDdsource returns the Ddsource field value if set, zero value otherwise.
 func (o *HTTPLogItem) GetDdsource() string {
 	if o == nil || o.Ddsource == nil {
@@ -77,6 +81,7 @@ func (o *HTTPLogItem) HasDdsource() bool {
 func (o *HTTPLogItem) SetDdsource(v string) {
 	o.Ddsource = &v
 }
+
 
 // GetDdtags returns the Ddtags field value if set, zero value otherwise.
 func (o *HTTPLogItem) GetDdtags() string {
@@ -106,6 +111,7 @@ func (o *HTTPLogItem) SetDdtags(v string) {
 	o.Ddtags = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *HTTPLogItem) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -134,6 +140,7 @@ func (o *HTTPLogItem) SetHostname(v string) {
 	o.Hostname = &v
 }
 
+
 // GetMessage returns the Message field value.
 func (o *HTTPLogItem) GetMessage() string {
 	if o == nil {
@@ -156,6 +163,7 @@ func (o *HTTPLogItem) GetMessageOk() (*string, bool) {
 func (o *HTTPLogItem) SetMessage(v string) {
 	o.Message = v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *HTTPLogItem) GetService() string {
@@ -185,6 +193,8 @@ func (o *HTTPLogItem) SetService(v string) {
 	o.Service = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -211,6 +221,7 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -219,10 +230,10 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Ddsource *string `json:"ddsource,omitempty"`
-		Ddtags   *string `json:"ddtags,omitempty"`
+		Ddtags *string `json:"ddtags,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  string  `json:"message"`
-		Service  *string `json:"service,omitempty"`
+		Message string `json:"message"`
+		Service *string `json:"service,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

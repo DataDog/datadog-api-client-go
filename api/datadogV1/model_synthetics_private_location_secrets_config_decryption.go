@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsPrivateLocationSecretsConfigDecryption Private key for the private location.
 type SyntheticsPrivateLocationSecretsConfigDecryption struct {
 	// Private key for the private location.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsPrivateLocationSecretsConfigDecryption instantiates a new SyntheticsPrivateLocationSecretsConfigDecryption object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSyntheticsPrivateLocationSecretsConfigDecryptionWithDefaults() *Syntheti
 	this := SyntheticsPrivateLocationSecretsConfigDecryption{}
 	return &this
 }
-
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) GetKey() string {
 	if o == nil || o.Key == nil {
@@ -62,6 +67,8 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) SetKey(v string) {
 	o.Key = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte,
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes []byte) (err error) {

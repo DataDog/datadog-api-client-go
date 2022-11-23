@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SearchSLOResponse A search SLO response containing results from the search query.
 type SearchSLOResponse struct {
@@ -17,9 +21,11 @@ type SearchSLOResponse struct {
 	// Searches metadata returned by the API.
 	Meta *SearchSLOResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSearchSLOResponse instantiates a new SearchSLOResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSearchSLOResponseWithDefaults() *SearchSLOResponse {
 	this := SearchSLOResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SearchSLOResponse) GetData() SearchSLOResponseData {
 	if o == nil || o.Data == nil {
@@ -65,6 +70,7 @@ func (o *SearchSLOResponse) HasData() bool {
 func (o *SearchSLOResponse) SetData(v SearchSLOResponseData) {
 	o.Data = &v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *SearchSLOResponse) GetLinks() SearchSLOResponseLinks {
@@ -94,6 +100,7 @@ func (o *SearchSLOResponse) SetLinks(v SearchSLOResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SearchSLOResponse) GetMeta() SearchSLOResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -122,6 +129,8 @@ func (o *SearchSLOResponse) SetMeta(v SearchSLOResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o SearchSLOResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *SearchSLOResponseData  `json:"data,omitempty"`
+		Data *SearchSLOResponseData `json:"data,omitempty"`
 		Links *SearchSLOResponseLinks `json:"links,omitempty"`
-		Meta  *SearchSLOResponseMeta  `json:"meta,omitempty"`
+		Meta *SearchSLOResponseMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,29 +171,29 @@ func (o *SearchSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

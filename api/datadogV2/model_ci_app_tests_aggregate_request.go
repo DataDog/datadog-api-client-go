@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppTestsAggregateRequest The object sent with the request to retrieve aggregation buckets of test events from your organization.
 type CIAppTestsAggregateRequest struct {
@@ -22,9 +26,11 @@ type CIAppTestsAggregateRequest struct {
 	// Paging attributes for listing events.
 	Page *CIAppQueryPageOptions `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppTestsAggregateRequest instantiates a new CIAppTestsAggregateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,6 @@ func NewCIAppTestsAggregateRequestWithDefaults() *CIAppTestsAggregateRequest {
 	this := CIAppTestsAggregateRequest{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetCompute() []CIAppCompute {
 	if o == nil || o.Compute == nil {
@@ -70,6 +75,7 @@ func (o *CIAppTestsAggregateRequest) HasCompute() bool {
 func (o *CIAppTestsAggregateRequest) SetCompute(v []CIAppCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetFilter() CIAppTestsQueryFilter {
@@ -99,6 +105,7 @@ func (o *CIAppTestsAggregateRequest) SetFilter(v CIAppTestsQueryFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetGroupBy() []CIAppTestsGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -126,6 +133,7 @@ func (o *CIAppTestsAggregateRequest) HasGroupBy() bool {
 func (o *CIAppTestsAggregateRequest) SetGroupBy(v []CIAppTestsGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetOptions() CIAppQueryOptions {
@@ -155,6 +163,7 @@ func (o *CIAppTestsAggregateRequest) SetOptions(v CIAppQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetPage() CIAppQueryPageOptions {
 	if o == nil || o.Page == nil {
@@ -182,6 +191,8 @@ func (o *CIAppTestsAggregateRequest) HasPage() bool {
 func (o *CIAppTestsAggregateRequest) SetPage(v CIAppQueryPageOptions) {
 	o.Page = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
@@ -211,15 +222,16 @@ func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute []CIAppCompute         `json:"compute,omitempty"`
-		Filter  *CIAppTestsQueryFilter `json:"filter,omitempty"`
-		GroupBy []CIAppTestsGroupBy    `json:"group_by,omitempty"`
-		Options *CIAppQueryOptions     `json:"options,omitempty"`
-		Page    *CIAppQueryPageOptions `json:"page,omitempty"`
+		Compute []CIAppCompute `json:"compute,omitempty"`
+		Filter *CIAppTestsQueryFilter `json:"filter,omitempty"`
+		GroupBy []CIAppTestsGroupBy `json:"group_by,omitempty"`
+		Options *CIAppQueryOptions `json:"options,omitempty"`
+		Page *CIAppQueryPageOptions `json:"page,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -231,30 +243,30 @@ func (o *CIAppTestsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

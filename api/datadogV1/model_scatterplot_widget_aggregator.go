@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterplotWidgetAggregator Aggregator used for the request.
 type ScatterplotWidgetAggregator string
@@ -15,10 +18,10 @@ type ScatterplotWidgetAggregator string
 // List of ScatterplotWidgetAggregator.
 const (
 	SCATTERPLOTWIDGETAGGREGATOR_AVERAGE ScatterplotWidgetAggregator = "avg"
-	SCATTERPLOTWIDGETAGGREGATOR_LAST    ScatterplotWidgetAggregator = "last"
+	SCATTERPLOTWIDGETAGGREGATOR_LAST ScatterplotWidgetAggregator = "last"
 	SCATTERPLOTWIDGETAGGREGATOR_MAXIMUM ScatterplotWidgetAggregator = "max"
 	SCATTERPLOTWIDGETAGGREGATOR_MINIMUM ScatterplotWidgetAggregator = "min"
-	SCATTERPLOTWIDGETAGGREGATOR_SUM     ScatterplotWidgetAggregator = "sum"
+	SCATTERPLOTWIDGETAGGREGATOR_SUM ScatterplotWidgetAggregator = "sum"
 )
 
 var allowedScatterplotWidgetAggregatorEnumValues = []ScatterplotWidgetAggregator{

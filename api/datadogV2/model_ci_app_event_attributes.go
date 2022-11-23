@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // CIAppEventAttributes JSON object containing all event attributes and their associated values.
 type CIAppEventAttributes struct {
@@ -22,9 +25,11 @@ type CIAppEventAttributes struct {
 	// Timestamp of your event.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCIAppEventAttributes instantiates a new CIAppEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCIAppEventAttributesWithDefaults() *CIAppEventAttributes {
 	this := CIAppEventAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +74,7 @@ func (o *CIAppEventAttributes) HasAttributes() bool {
 func (o *CIAppEventAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetService() string {
@@ -99,6 +104,7 @@ func (o *CIAppEventAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -127,6 +133,7 @@ func (o *CIAppEventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -154,6 +161,8 @@ func (o *CIAppEventAttributes) HasTimestamp() bool {
 func (o *CIAppEventAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
@@ -184,14 +193,15 @@ func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Service    *string                `json:"service,omitempty"`
-		Tags       []string               `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

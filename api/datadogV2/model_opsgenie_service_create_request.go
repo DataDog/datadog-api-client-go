@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // OpsgenieServiceCreateRequest Create request for an Opsgenie service.
 type OpsgenieServiceCreateRequest struct {
 	// Opsgenie service data for a create request.
 	Data OpsgenieServiceCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOpsgenieServiceCreateRequest instantiates a new OpsgenieServiceCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewOpsgenieServiceCreateRequestWithDefaults() *OpsgenieServiceCreateRequest
 	this := OpsgenieServiceCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *OpsgenieServiceCreateRequest) GetData() OpsgenieServiceCreateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *OpsgenieServiceCreateRequest) SetData(v OpsgenieServiceCreateData) {
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OpsgenieServiceCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o OpsgenieServiceCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
@@ -98,13 +105,13 @@ func (o *OpsgenieServiceCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

@@ -2,17 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsArchiveDestination - An archive's destination.
 type LogsArchiveDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+	LogsArchiveDestinationGCS *LogsArchiveDestinationGCS
+	LogsArchiveDestinationS3 *LogsArchiveDestinationS3
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +108,16 @@ func (obj LogsArchiveDestination) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.LogsArchiveDestinationAzure)
 	}
 
+
 	if obj.LogsArchiveDestinationGCS != nil {
 		return json.Marshal(&obj.LogsArchiveDestinationGCS)
 	}
 
+
 	if obj.LogsArchiveDestinationS3 != nil {
 		return json.Marshal(&obj.LogsArchiveDestinationS3)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -119,18 +126,21 @@ func (obj LogsArchiveDestination) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsArchiveDestination) GetActualInstance() interface{} {
+func (obj *LogsArchiveDestination) GetActualInstance() (interface{}) {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
 	}
+
 
 	if obj.LogsArchiveDestinationGCS != nil {
 		return obj.LogsArchiveDestinationGCS
 	}
 
+
 	if obj.LogsArchiveDestinationS3 != nil {
 		return obj.LogsArchiveDestinationS3
 	}
+
 
 	// all schemas are nil
 	return nil

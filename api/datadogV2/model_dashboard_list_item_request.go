@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardListItemRequest A dashboard within a list.
 type DashboardListItemRequest struct {
@@ -16,9 +19,11 @@ type DashboardListItemRequest struct {
 	// The type of the dashboard.
 	Type DashboardType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardListItemRequest instantiates a new DashboardListItemRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDashboardListItemRequestWithDefaults() *DashboardListItemRequest {
 	this := DashboardListItemRequest{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *DashboardListItemRequest) GetId() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *DashboardListItemRequest) GetIdOk() (*string, bool) {
 func (o *DashboardListItemRequest) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *DashboardListItemRequest) GetType() DashboardType {
@@ -85,6 +90,8 @@ func (o *DashboardListItemRequest) SetType(v DashboardType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListItemRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,15 +107,16 @@ func (o DashboardListItemRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItemRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string        `json:"id"`
+		Id *string `json:"id"`
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Id   string        `json:"id"`
+		Id string `json:"id"`
 		Type DashboardType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

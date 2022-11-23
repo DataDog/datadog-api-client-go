@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentUpdateRelationships The incident's relationships for an update request.
 type IncidentUpdateRelationships struct {
@@ -17,9 +21,11 @@ type IncidentUpdateRelationships struct {
 	// A relationship reference for postmortems.
 	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentUpdateRelationships instantiates a new IncidentUpdateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewIncidentUpdateRelationshipsWithDefaults() *IncidentUpdateRelationships {
 	this := IncidentUpdateRelationships{}
 	return &this
 }
-
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
 func (o *IncidentUpdateRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil || o.CommanderUser == nil {
@@ -65,6 +70,7 @@ func (o *IncidentUpdateRelationships) HasCommanderUser() bool {
 func (o *IncidentUpdateRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser = &v
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentUpdateRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
@@ -94,6 +100,7 @@ func (o *IncidentUpdateRelationships) SetIntegrations(v RelationshipToIncidentIn
 	o.Integrations = &v
 }
 
+
 // GetPostmortem returns the Postmortem field value if set, zero value otherwise.
 func (o *IncidentUpdateRelationships) GetPostmortem() RelationshipToIncidentPostmortem {
 	if o == nil || o.Postmortem == nil {
@@ -122,6 +129,8 @@ func (o *IncidentUpdateRelationships) SetPostmortem(v RelationshipToIncidentPost
 	o.Postmortem = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,13 +153,14 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CommanderUser *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-		Integrations  *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		Postmortem    *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+		CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+		Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,29 +171,29 @@ func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.CommanderUser = all.CommanderUser
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Integrations = all.Integrations
-	if all.Postmortem != nil && all.Postmortem.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Postmortem != nil && all.Postmortem.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Postmortem = all.Postmortem
 	return nil
 }

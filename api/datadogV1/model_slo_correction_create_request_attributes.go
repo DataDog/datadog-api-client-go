@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOCorrectionCreateRequestAttributes The attribute object associated with the SLO correction to be created.
 type SLOCorrectionCreateRequestAttributes struct {
@@ -29,9 +32,11 @@ type SLOCorrectionCreateRequestAttributes struct {
 	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewSLOCorrectionCreateRequestAttributesWithDefaults() *SLOCorrectionCreateR
 	this := SLOCorrectionCreateRequestAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value.
 func (o *SLOCorrectionCreateRequestAttributes) GetCategory() SLOCorrectionCategory {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetCategoryOk() (*SLOCorrectionCa
 func (o *SLOCorrectionCreateRequestAttributes) SetCategory(v SLOCorrectionCategory) {
 	o.Category = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetDescription() string {
@@ -104,6 +109,7 @@ func (o *SLOCorrectionCreateRequestAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetDuration() int64 {
 	if o == nil || o.Duration == nil {
@@ -131,6 +137,7 @@ func (o *SLOCorrectionCreateRequestAttributes) HasDuration() bool {
 func (o *SLOCorrectionCreateRequestAttributes) SetDuration(v int64) {
 	o.Duration = &v
 }
+
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetEnd() int64 {
@@ -160,6 +167,7 @@ func (o *SLOCorrectionCreateRequestAttributes) SetEnd(v int64) {
 	o.End = &v
 }
 
+
 // GetRrule returns the Rrule field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetRrule() string {
 	if o == nil || o.Rrule == nil {
@@ -188,6 +196,7 @@ func (o *SLOCorrectionCreateRequestAttributes) SetRrule(v string) {
 	o.Rrule = &v
 }
 
+
 // GetSloId returns the SloId field value.
 func (o *SLOCorrectionCreateRequestAttributes) GetSloId() string {
 	if o == nil {
@@ -211,6 +220,7 @@ func (o *SLOCorrectionCreateRequestAttributes) SetSloId(v string) {
 	o.SloId = v
 }
 
+
 // GetStart returns the Start field value.
 func (o *SLOCorrectionCreateRequestAttributes) GetStart() int64 {
 	if o == nil {
@@ -233,6 +243,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetStartOk() (*int64, bool) {
 func (o *SLOCorrectionCreateRequestAttributes) SetStart(v int64) {
 	o.Start = v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateRequestAttributes) GetTimezone() string {
@@ -261,6 +272,8 @@ func (o *SLOCorrectionCreateRequestAttributes) HasTimezone() bool {
 func (o *SLOCorrectionCreateRequestAttributes) SetTimezone(v string) {
 	o.Timezone = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -293,23 +306,24 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Category *SLOCorrectionCategory `json:"category"`
-		SloId    *string                `json:"slo_id"`
-		Start    *int64                 `json:"start"`
+		SloId *string `json:"slo_id"`
+		Start *int64 `json:"start"`
 	}{}
 	all := struct {
-		Category    SLOCorrectionCategory `json:"category"`
-		Description *string               `json:"description,omitempty"`
-		Duration    *int64                `json:"duration,omitempty"`
-		End         *int64                `json:"end,omitempty"`
-		Rrule       *string               `json:"rrule,omitempty"`
-		SloId       string                `json:"slo_id"`
-		Start       int64                 `json:"start"`
-		Timezone    *string               `json:"timezone,omitempty"`
+		Category SLOCorrectionCategory `json:"category"`
+		Description *string `json:"description,omitempty"`
+		Duration *int64 `json:"duration,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		Rrule *string `json:"rrule,omitempty"`
+		SloId string `json:"slo_id"`
+		Start int64 `json:"start"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

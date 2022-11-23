@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsSort Sort parameters when querying logs.
 type LogsSort string
 
 // List of LogsSort.
 const (
-	LOGSSORT_TIMESTAMP_ASCENDING  LogsSort = "timestamp"
+	LOGSSORT_TIMESTAMP_ASCENDING LogsSort = "timestamp"
 	LOGSSORT_TIMESTAMP_DESCENDING LogsSort = "-timestamp"
 )
 

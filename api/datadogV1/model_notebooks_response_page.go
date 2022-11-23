@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebooksResponsePage Pagination metadata returned by the API.
 type NotebooksResponsePage struct {
@@ -15,9 +19,11 @@ type NotebooksResponsePage struct {
 	// The total number of notebooks returned.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponsePage instantiates a new NotebooksResponsePage object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewNotebooksResponsePageWithDefaults() *NotebooksResponsePage {
 	this := NotebooksResponsePage{}
 	return &this
 }
-
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *NotebooksResponsePage) GetTotalCount() int64 {
 	if o == nil || o.TotalCount == nil {
@@ -63,6 +68,7 @@ func (o *NotebooksResponsePage) HasTotalCount() bool {
 func (o *NotebooksResponsePage) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
+
 
 // GetTotalFilteredCount returns the TotalFilteredCount field value if set, zero value otherwise.
 func (o *NotebooksResponsePage) GetTotalFilteredCount() int64 {
@@ -92,6 +98,8 @@ func (o *NotebooksResponsePage) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponsePage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o NotebooksResponsePage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalCount         *int64 `json:"total_count,omitempty"`
+		TotalCount *int64 `json:"total_count,omitempty"`
 		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WebhooksIntegrationCustomVariableUpdateRequest Update request of a custom variable object.
 //
@@ -20,9 +24,11 @@ type WebhooksIntegrationCustomVariableUpdateRequest struct {
 	// Value of the custom variable.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWebhooksIntegrationCustomVariableUpdateRequest instantiates a new WebhooksIntegrationCustomVariableUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewWebhooksIntegrationCustomVariableUpdateRequestWithDefaults() *WebhooksIn
 	this := WebhooksIntegrationCustomVariableUpdateRequest{}
 	return &this
 }
-
 // GetIsSecret returns the IsSecret field value if set, zero value otherwise.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetIsSecret() bool {
 	if o == nil || o.IsSecret == nil {
@@ -68,6 +73,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) HasIsSecret() bool {
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) SetIsSecret(v bool) {
 	o.IsSecret = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetName() string {
@@ -97,6 +103,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -125,6 +132,8 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) SetValue(v string) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WebhooksIntegrationCustomVariableUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,13 +156,14 @@ func (o WebhooksIntegrationCustomVariableUpdateRequest) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IsSecret *bool   `json:"is_secret,omitempty"`
-		Name     *string `json:"name,omitempty"`
-		Value    *string `json:"value,omitempty"`
+		IsSecret *bool `json:"is_secret,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Value *string `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

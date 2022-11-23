@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateRequest The object sent with the request to retrieve a list of logs from your organization.
 type LogsAggregateRequest struct {
@@ -22,9 +26,11 @@ type LogsAggregateRequest struct {
 	// Paging settings
 	Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAggregateRequest instantiates a new LogsAggregateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,6 @@ func NewLogsAggregateRequestWithDefaults() *LogsAggregateRequest {
 	this := LogsAggregateRequest{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetCompute() []LogsCompute {
 	if o == nil || o.Compute == nil {
@@ -70,6 +75,7 @@ func (o *LogsAggregateRequest) HasCompute() bool {
 func (o *LogsAggregateRequest) SetCompute(v []LogsCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetFilter() LogsQueryFilter {
@@ -99,6 +105,7 @@ func (o *LogsAggregateRequest) SetFilter(v LogsQueryFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetGroupBy() []LogsGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -126,6 +133,7 @@ func (o *LogsAggregateRequest) HasGroupBy() bool {
 func (o *LogsAggregateRequest) SetGroupBy(v []LogsGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetOptions() LogsQueryOptions {
@@ -155,6 +163,7 @@ func (o *LogsAggregateRequest) SetOptions(v LogsQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetPage() LogsAggregateRequestPage {
 	if o == nil || o.Page == nil {
@@ -182,6 +191,8 @@ func (o *LogsAggregateRequest) HasPage() bool {
 func (o *LogsAggregateRequest) SetPage(v LogsAggregateRequestPage) {
 	o.Page = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
@@ -211,15 +222,16 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute []LogsCompute             `json:"compute,omitempty"`
-		Filter  *LogsQueryFilter          `json:"filter,omitempty"`
-		GroupBy []LogsGroupBy             `json:"group_by,omitempty"`
-		Options *LogsQueryOptions         `json:"options,omitempty"`
-		Page    *LogsAggregateRequestPage `json:"page,omitempty"`
+		Compute []LogsCompute `json:"compute,omitempty"`
+		Filter *LogsQueryFilter `json:"filter,omitempty"`
+		GroupBy []LogsGroupBy `json:"group_by,omitempty"`
+		Options *LogsQueryOptions `json:"options,omitempty"`
+		Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -231,30 +243,30 @@ func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

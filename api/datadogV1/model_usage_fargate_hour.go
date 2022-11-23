@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageFargateHour Number of Fargate tasks run and hourly usage.
 type UsageFargateHour struct {
@@ -26,9 +29,11 @@ type UsageFargateHour struct {
 	// The number of Fargate tasks run.
 	TasksCount *int64 `json:"tasks_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageFargateHour instantiates a new UsageFargateHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewUsageFargateHourWithDefaults() *UsageFargateHour {
 	this := UsageFargateHour{}
 	return &this
 }
-
 // GetApmFargateCount returns the ApmFargateCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetApmFargateCount() int64 {
 	if o == nil || o.ApmFargateCount == nil {
@@ -74,6 +78,7 @@ func (o *UsageFargateHour) HasApmFargateCount() bool {
 func (o *UsageFargateHour) SetApmFargateCount(v int64) {
 	o.ApmFargateCount = &v
 }
+
 
 // GetAppsecFargateCount returns the AppsecFargateCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetAppsecFargateCount() int64 {
@@ -103,6 +108,7 @@ func (o *UsageFargateHour) SetAppsecFargateCount(v int64) {
 	o.AppsecFargateCount = &v
 }
 
+
 // GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64 {
 	if o == nil || o.AvgProfiledFargateTasks == nil {
@@ -130,6 +136,7 @@ func (o *UsageFargateHour) HasAvgProfiledFargateTasks() bool {
 func (o *UsageFargateHour) SetAvgProfiledFargateTasks(v int64) {
 	o.AvgProfiledFargateTasks = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetHour() time.Time {
@@ -159,6 +166,7 @@ func (o *UsageFargateHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -186,6 +194,7 @@ func (o *UsageFargateHour) HasOrgName() bool {
 func (o *UsageFargateHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetPublicId() string {
@@ -215,6 +224,7 @@ func (o *UsageFargateHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetTasksCount returns the TasksCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetTasksCount() int64 {
 	if o == nil || o.TasksCount == nil {
@@ -242,6 +252,8 @@ func (o *UsageFargateHour) HasTasksCount() bool {
 func (o *UsageFargateHour) SetTasksCount(v int64) {
 	o.TasksCount = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
@@ -281,17 +293,18 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmFargateCount         *int64     `json:"apm_fargate_count,omitempty"`
-		AppsecFargateCount      *int64     `json:"appsec_fargate_count,omitempty"`
-		AvgProfiledFargateTasks *int64     `json:"avg_profiled_fargate_tasks,omitempty"`
-		Hour                    *time.Time `json:"hour,omitempty"`
-		OrgName                 *string    `json:"org_name,omitempty"`
-		PublicId                *string    `json:"public_id,omitempty"`
-		TasksCount              *int64     `json:"tasks_count,omitempty"`
+		ApmFargateCount *int64 `json:"apm_fargate_count,omitempty"`
+		AppsecFargateCount *int64 `json:"appsec_fargate_count,omitempty"`
+		AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		TasksCount *int64 `json:"tasks_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

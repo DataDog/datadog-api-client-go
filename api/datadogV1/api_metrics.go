@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -46,9 +48,9 @@ func (a *MetricsApi) GetMetricMetadata(ctx _context.Context, metricName string) 
 // getMetricMetadataExecute executes the request.
 func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MetricMetadata
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MetricMetadata
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.GetMetricMetadata")
@@ -64,6 +66,7 @@ func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (Me
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -111,10 +114,11 @@ func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (Me
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -128,7 +132,7 @@ func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (Me
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -138,15 +142,15 @@ func (a *MetricsApi) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (Me
 }
 
 type apiListActiveMetricsRequest struct {
-	ctx       _context.Context
-	from      *int64
-	host      *string
+	ctx        _context.Context
+	from *int64
+	host *string
 	tagFilter *string
 }
 
 // ListActiveMetricsOptionalParameters holds optional parameters for ListActiveMetrics.
 type ListActiveMetricsOptionalParameters struct {
-	Host      *string
+	Host *string
 	TagFilter *string
 }
 
@@ -155,13 +159,11 @@ func NewListActiveMetricsOptionalParameters() *ListActiveMetricsOptionalParamete
 	this := ListActiveMetricsOptionalParameters{}
 	return &this
 }
-
 // WithHost sets the corresponding parameter name and returns the struct.
 func (r *ListActiveMetricsOptionalParameters) WithHost(host string) *ListActiveMetricsOptionalParameters {
 	r.Host = &host
 	return r
 }
-
 // WithTagFilter sets the corresponding parameter name and returns the struct.
 func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *ListActiveMetricsOptionalParameters {
 	r.TagFilter = &tagFilter
@@ -170,7 +172,7 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 
 func (a *MetricsApi) buildListActiveMetricsRequest(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (apiListActiveMetricsRequest, error) {
 	req := apiListActiveMetricsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		from: &from,
 	}
 
@@ -200,9 +202,9 @@ func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...Li
 // listActiveMetricsExecute executes the request.
 func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MetricsListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MetricsListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.ListActiveMetrics")
@@ -227,6 +229,7 @@ func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (Me
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -274,10 +277,11 @@ func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (Me
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -291,7 +295,7 @@ func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (Me
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -301,14 +305,14 @@ func (a *MetricsApi) listActiveMetricsExecute(r apiListActiveMetricsRequest) (Me
 }
 
 type apiListMetricsRequest struct {
-	ctx _context.Context
-	q   *string
+	ctx        _context.Context
+	q *string
 }
 
 func (a *MetricsApi) buildListMetricsRequest(ctx _context.Context, q string) (apiListMetricsRequest, error) {
 	req := apiListMetricsRequest{
-		ctx: ctx,
-		q:   &q,
+		ctx:        ctx,
+		q: &q,
 	}
 	return req, nil
 }
@@ -328,9 +332,9 @@ func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchRe
 // listMetricsExecute executes the request.
 func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MetricSearchResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MetricSearchResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.ListMetrics")
@@ -349,6 +353,7 @@ func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchRe
 	localVarQueryParams.Add("q", datadog.ParameterToString(*r.q, ""))
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -396,10 +401,11 @@ func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchRe
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -413,7 +419,7 @@ func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchRe
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -423,17 +429,17 @@ func (a *MetricsApi) listMetricsExecute(r apiListMetricsRequest) (MetricSearchRe
 }
 
 type apiQueryMetricsRequest struct {
-	ctx   _context.Context
-	from  *int64
-	to    *int64
+	ctx        _context.Context
+	from *int64
+	to *int64
 	query *string
 }
 
 func (a *MetricsApi) buildQueryMetricsRequest(ctx _context.Context, from int64, to int64, query string) (apiQueryMetricsRequest, error) {
 	req := apiQueryMetricsRequest{
-		ctx:   ctx,
-		from:  &from,
-		to:    &to,
+		ctx:        ctx,
+		from: &from,
+		to: &to,
 		query: &query,
 	}
 	return req, nil
@@ -454,9 +460,9 @@ func (a *MetricsApi) QueryMetrics(ctx _context.Context, from int64, to int64, qu
 // queryMetricsExecute executes the request.
 func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MetricsQueryResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MetricsQueryResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.QueryMetrics")
@@ -483,6 +489,7 @@ func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQuery
 	localVarQueryParams.Add("query", datadog.ParameterToString(*r.query, ""))
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -530,10 +537,11 @@ func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQuery
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -547,7 +555,7 @@ func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQuery
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -557,8 +565,8 @@ func (a *MetricsApi) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQuery
 }
 
 type apiSubmitDistributionPointsRequest struct {
-	ctx             _context.Context
-	body            *DistributionPointsPayload
+	ctx        _context.Context
+	body *DistributionPointsPayload
 	contentEncoding *DistributionPointsContentEncoding
 }
 
@@ -572,7 +580,6 @@ func NewSubmitDistributionPointsOptionalParameters() *SubmitDistributionPointsOp
 	this := SubmitDistributionPointsOptionalParameters{}
 	return &this
 }
-
 // WithContentEncoding sets the corresponding parameter name and returns the struct.
 func (r *SubmitDistributionPointsOptionalParameters) WithContentEncoding(contentEncoding DistributionPointsContentEncoding) *SubmitDistributionPointsOptionalParameters {
 	r.ContentEncoding = &contentEncoding
@@ -581,7 +588,7 @@ func (r *SubmitDistributionPointsOptionalParameters) WithContentEncoding(content
 
 func (a *MetricsApi) buildSubmitDistributionPointsRequest(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (apiSubmitDistributionPointsRequest, error) {
 	req := apiSubmitDistributionPointsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 
@@ -610,9 +617,9 @@ func (a *MetricsApi) SubmitDistributionPoints(ctx _context.Context, body Distrib
 // submitDistributionPointsExecute executes the request.
 func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPointsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IntakePayloadAccepted
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.SubmitDistributionPoints")
@@ -628,8 +635,10 @@ func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPoin
 	if r.body == nil {
 		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
 	}
-	localVarHeaderParams["Content-Type"] = "text/json"
+	localVarHeaderParams["Content-Type"] =  "text/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	if r.contentEncoding != nil {
 		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*r.contentEncoding, "")
@@ -670,10 +679,11 @@ func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPoin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 408 || localVarHTTPResponse.StatusCode == 413 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 408||localVarHTTPResponse.StatusCode == 413||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -687,7 +697,7 @@ func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPoin
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -697,8 +707,8 @@ func (a *MetricsApi) submitDistributionPointsExecute(r apiSubmitDistributionPoin
 }
 
 type apiSubmitMetricsRequest struct {
-	ctx             _context.Context
-	body            *MetricsPayload
+	ctx        _context.Context
+	body *MetricsPayload
 	contentEncoding *MetricContentEncoding
 }
 
@@ -712,7 +722,6 @@ func NewSubmitMetricsOptionalParameters() *SubmitMetricsOptionalParameters {
 	this := SubmitMetricsOptionalParameters{}
 	return &this
 }
-
 // WithContentEncoding sets the corresponding parameter name and returns the struct.
 func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding MetricContentEncoding) *SubmitMetricsOptionalParameters {
 	r.ContentEncoding = &contentEncoding
@@ -721,7 +730,7 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 
 func (a *MetricsApi) buildSubmitMetricsRequest(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
 	req := apiSubmitMetricsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 
@@ -760,9 +769,9 @@ func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricsPayload, o 
 // submitMetricsExecute executes the request.
 func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IntakePayloadAccepted
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.SubmitMetrics")
@@ -778,8 +787,10 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 	if r.body == nil {
 		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
 	}
-	localVarHeaderParams["Content-Type"] = "text/json"
+	localVarHeaderParams["Content-Type"] =  "text/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	if r.contentEncoding != nil {
 		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*r.contentEncoding, "")
@@ -820,10 +831,11 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 408 || localVarHTTPResponse.StatusCode == 413 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 408||localVarHTTPResponse.StatusCode == 413||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -837,7 +849,7 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -849,14 +861,14 @@ func (a *MetricsApi) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayl
 type apiUpdateMetricMetadataRequest struct {
 	ctx        _context.Context
 	metricName string
-	body       *MetricMetadata
+	body *MetricMetadata
 }
 
 func (a *MetricsApi) buildUpdateMetricMetadataRequest(ctx _context.Context, metricName string, body MetricMetadata) (apiUpdateMetricMetadataRequest, error) {
 	req := apiUpdateMetricMetadataRequest{
 		ctx:        ctx,
 		metricName: metricName,
-		body:       &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -876,9 +888,9 @@ func (a *MetricsApi) UpdateMetricMetadata(ctx _context.Context, metricName strin
 // updateMetricMetadataExecute executes the request.
 func (a *MetricsApi) updateMetricMetadataExecute(r apiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue MetricMetadata
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  MetricMetadata
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MetricsApi.UpdateMetricMetadata")
@@ -897,6 +909,8 @@ func (a *MetricsApi) updateMetricMetadataExecute(r apiUpdateMetricMetadataReques
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -947,10 +961,11 @@ func (a *MetricsApi) updateMetricMetadataExecute(r apiUpdateMetricMetadataReques
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -964,7 +979,7 @@ func (a *MetricsApi) updateMetricMetadataExecute(r apiUpdateMetricMetadataReques
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

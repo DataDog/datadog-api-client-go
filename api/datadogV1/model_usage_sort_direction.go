@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UsageSortDirection The direction to sort by.
 type UsageSortDirection string
@@ -15,7 +18,7 @@ type UsageSortDirection string
 // List of UsageSortDirection.
 const (
 	USAGESORTDIRECTION_DESC UsageSortDirection = "desc"
-	USAGESORTDIRECTION_ASC  UsageSortDirection = "asc"
+	USAGESORTDIRECTION_ASC UsageSortDirection = "asc"
 )
 
 var allowedUsageSortDirectionEnumValues = []UsageSortDirection{

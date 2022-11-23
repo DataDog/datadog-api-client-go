@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsPrivateLocationMetadata Object containing metadata about the private location.
 type SyntheticsPrivateLocationMetadata struct {
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsPrivateLocationMetadata instantiates a new SyntheticsPrivateLocationMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSyntheticsPrivateLocationMetadataWithDefaults() *SyntheticsPrivateLocati
 	this := SyntheticsPrivateLocationMetadata{}
 	return &this
 }
-
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles == nil {
@@ -62,6 +67,8 @@ func (o *SyntheticsPrivateLocationMetadata) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocationMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o SyntheticsPrivateLocationMetadata) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationMetadata) UnmarshalJSON(bytes []byte) (err error) {

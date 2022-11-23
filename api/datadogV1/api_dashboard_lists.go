@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type DashboardListsApi datadog.Service
 
 type apiCreateDashboardListRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *DashboardList
 }
 
 func (a *DashboardListsApi) buildCreateDashboardListRequest(ctx _context.Context, body DashboardList) (apiCreateDashboardListRequest, error) {
 	req := apiCreateDashboardListRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -46,9 +48,9 @@ func (a *DashboardListsApi) CreateDashboardList(ctx _context.Context, body Dashb
 // createDashboardListExecute executes the request.
 func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardList
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardList
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApi.CreateDashboardList")
@@ -66,6 +68,8 @@ func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -116,10 +120,11 @@ func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -133,7 +138,7 @@ func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -143,13 +148,13 @@ func (a *DashboardListsApi) createDashboardListExecute(r apiCreateDashboardListR
 }
 
 type apiDeleteDashboardListRequest struct {
-	ctx    _context.Context
+	ctx        _context.Context
 	listId int64
 }
 
 func (a *DashboardListsApi) buildDeleteDashboardListRequest(ctx _context.Context, listId int64) (apiDeleteDashboardListRequest, error) {
 	req := apiDeleteDashboardListRequest{
-		ctx:    ctx,
+		ctx:        ctx,
 		listId: listId,
 	}
 	return req, nil
@@ -170,9 +175,9 @@ func (a *DashboardListsApi) DeleteDashboardList(ctx _context.Context, listId int
 // deleteDashboardListExecute executes the request.
 func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListRequest) (DashboardListDeleteResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListDeleteResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListDeleteResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApi.DeleteDashboardList")
@@ -188,6 +193,7 @@ func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListR
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -235,10 +241,11 @@ func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -252,7 +259,7 @@ func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -262,13 +269,13 @@ func (a *DashboardListsApi) deleteDashboardListExecute(r apiDeleteDashboardListR
 }
 
 type apiGetDashboardListRequest struct {
-	ctx    _context.Context
+	ctx        _context.Context
 	listId int64
 }
 
 func (a *DashboardListsApi) buildGetDashboardListRequest(ctx _context.Context, listId int64) (apiGetDashboardListRequest, error) {
 	req := apiGetDashboardListRequest{
-		ctx:    ctx,
+		ctx:        ctx,
 		listId: listId,
 	}
 	return req, nil
@@ -289,9 +296,9 @@ func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64)
 // getDashboardListExecute executes the request.
 func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardList
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardList
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApi.GetDashboardList")
@@ -307,6 +314,7 @@ func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -354,10 +362,11 @@ func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -371,7 +380,7 @@ func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -381,12 +390,12 @@ func (a *DashboardListsApi) getDashboardListExecute(r apiGetDashboardListRequest
 }
 
 type apiListDashboardListsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *DashboardListsApi) buildListDashboardListsRequest(ctx _context.Context) (apiListDashboardListsRequest, error) {
 	req := apiListDashboardListsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -406,9 +415,9 @@ func (a *DashboardListsApi) ListDashboardLists(ctx _context.Context) (DashboardL
 // listDashboardListsExecute executes the request.
 func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsRequest) (DashboardListListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApi.ListDashboardLists")
@@ -423,6 +432,7 @@ func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsReq
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -470,10 +480,11 @@ func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -487,7 +498,7 @@ func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -497,16 +508,16 @@ func (a *DashboardListsApi) listDashboardListsExecute(r apiListDashboardListsReq
 }
 
 type apiUpdateDashboardListRequest struct {
-	ctx    _context.Context
+	ctx        _context.Context
 	listId int64
-	body   *DashboardList
+	body *DashboardList
 }
 
 func (a *DashboardListsApi) buildUpdateDashboardListRequest(ctx _context.Context, listId int64, body DashboardList) (apiUpdateDashboardListRequest, error) {
 	req := apiUpdateDashboardListRequest{
-		ctx:    ctx,
+		ctx:        ctx,
 		listId: listId,
-		body:   &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -526,9 +537,9 @@ func (a *DashboardListsApi) UpdateDashboardList(ctx _context.Context, listId int
 // updateDashboardListExecute executes the request.
 func (a *DashboardListsApi) updateDashboardListExecute(r apiUpdateDashboardListRequest) (DashboardList, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardList
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardList
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApi.UpdateDashboardList")
@@ -547,6 +558,8 @@ func (a *DashboardListsApi) updateDashboardListExecute(r apiUpdateDashboardListR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -597,10 +610,11 @@ func (a *DashboardListsApi) updateDashboardListExecute(r apiUpdateDashboardListR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -614,7 +628,7 @@ func (a *DashboardListsApi) updateDashboardListExecute(r apiUpdateDashboardListR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

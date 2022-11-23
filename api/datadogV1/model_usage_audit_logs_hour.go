@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageAuditLogsHour Audit logs usage for a given organization for a given hour.
 type UsageAuditLogsHour struct {
@@ -20,9 +23,11 @@ type UsageAuditLogsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAuditLogsHour instantiates a new UsageAuditLogsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewUsageAuditLogsHourWithDefaults() *UsageAuditLogsHour {
 	this := UsageAuditLogsHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageAuditLogsHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -68,6 +72,7 @@ func (o *UsageAuditLogsHour) HasHour() bool {
 func (o *UsageAuditLogsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetLinesIndexed returns the LinesIndexed field value if set, zero value otherwise.
 func (o *UsageAuditLogsHour) GetLinesIndexed() int64 {
@@ -97,6 +102,7 @@ func (o *UsageAuditLogsHour) SetLinesIndexed(v int64) {
 	o.LinesIndexed = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageAuditLogsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -125,6 +131,7 @@ func (o *UsageAuditLogsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageAuditLogsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -152,6 +159,8 @@ func (o *UsageAuditLogsHour) HasPublicId() bool {
 func (o *UsageAuditLogsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageAuditLogsHour) MarshalJSON() ([]byte, error) {
@@ -182,14 +191,15 @@ func (o UsageAuditLogsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageAuditLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour         *time.Time `json:"hour,omitempty"`
-		LinesIndexed *int64     `json:"lines_indexed,omitempty"`
-		OrgName      *string    `json:"org_name,omitempty"`
-		PublicId     *string    `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		LinesIndexed *int64 `json:"lines_indexed,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

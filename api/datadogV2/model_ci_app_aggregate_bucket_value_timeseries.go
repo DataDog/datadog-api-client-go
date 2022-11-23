@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CIAppAggregateBucketValueTimeseries A timeseries array.
 type CIAppAggregateBucketValueTimeseries struct {
@@ -15,6 +19,8 @@ type CIAppAggregateBucketValueTimeseries struct {
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`
 }
+
+
 
 // NewCIAppAggregateBucketValueTimeseries instantiates a new CIAppAggregateBucketValueTimeseries object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +50,7 @@ func (o CIAppAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {

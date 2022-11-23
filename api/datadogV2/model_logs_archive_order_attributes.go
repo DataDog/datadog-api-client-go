@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveOrderAttributes The attributes associated with the archive order.
 type LogsArchiveOrderAttributes struct {
@@ -15,9 +18,11 @@ type LogsArchiveOrderAttributes struct {
 	// define the overall archives order for Datadog.
 	ArchiveIds []string `json:"archive_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveOrderAttributes instantiates a new LogsArchiveOrderAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewLogsArchiveOrderAttributesWithDefaults() *LogsArchiveOrderAttributes {
 	this := LogsArchiveOrderAttributes{}
 	return &this
 }
-
 // GetArchiveIds returns the ArchiveIds field value.
 func (o *LogsArchiveOrderAttributes) GetArchiveIds() []string {
 	if o == nil {
@@ -60,6 +64,8 @@ func (o *LogsArchiveOrderAttributes) SetArchiveIds(v []string) {
 	o.ArchiveIds = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -73,6 +79,7 @@ func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {

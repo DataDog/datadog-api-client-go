@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,13 +21,13 @@ import (
 type EventsApi datadog.Service
 
 type apiCreateEventRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *EventCreateRequest
 }
 
 func (a *EventsApi) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
 	req := apiCreateEventRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -47,9 +49,9 @@ func (a *EventsApi) CreateEvent(ctx _context.Context, body EventCreateRequest) (
 // createEventExecute executes the request.
 func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue EventCreateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  EventCreateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.CreateEvent")
@@ -67,6 +69,8 @@ func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResp
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -103,10 +107,11 @@ func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResp
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -120,7 +125,7 @@ func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResp
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -130,13 +135,13 @@ func (a *EventsApi) createEventExecute(r apiCreateEventRequest) (EventCreateResp
 }
 
 type apiGetEventRequest struct {
-	ctx     _context.Context
+	ctx        _context.Context
 	eventId int64
 }
 
 func (a *EventsApi) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
 	req := apiGetEventRequest{
-		ctx:     ctx,
+		ctx:        ctx,
 		eventId: eventId,
 	}
 	return req, nil
@@ -160,9 +165,9 @@ func (a *EventsApi) GetEvent(ctx _context.Context, eventId int64) (EventResponse
 // getEventExecute executes the request.
 func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue EventResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  EventResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.GetEvent")
@@ -178,6 +183,7 @@ func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_neth
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -225,10 +231,11 @@ func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_neth
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -242,7 +249,7 @@ func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_neth
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -252,25 +259,25 @@ func (a *EventsApi) getEventExecute(r apiGetEventRequest) (EventResponse, *_neth
 }
 
 type apiListEventsRequest struct {
-	ctx              _context.Context
-	start            *int64
-	end              *int64
-	priority         *EventPriority
-	sources          *string
-	tags             *string
-	unaggregated     *bool
+	ctx        _context.Context
+	start *int64
+	end *int64
+	priority *EventPriority
+	sources *string
+	tags *string
+	unaggregated *bool
 	excludeAggregate *bool
-	page             *int32
+	page *int32
 }
 
 // ListEventsOptionalParameters holds optional parameters for ListEvents.
 type ListEventsOptionalParameters struct {
-	Priority         *EventPriority
-	Sources          *string
-	Tags             *string
-	Unaggregated     *bool
+	Priority *EventPriority
+	Sources *string
+	Tags *string
+	Unaggregated *bool
 	ExcludeAggregate *bool
-	Page             *int32
+	Page *int32
 }
 
 // NewListEventsOptionalParameters creates an empty struct for parameters.
@@ -278,37 +285,31 @@ func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
 	this := ListEventsOptionalParameters{}
 	return &this
 }
-
 // WithPriority sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPriority(priority EventPriority) *ListEventsOptionalParameters {
 	r.Priority = &priority
 	return r
 }
-
 // WithSources sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithSources(sources string) *ListEventsOptionalParameters {
 	r.Sources = &sources
 	return r
 }
-
 // WithTags sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithTags(tags string) *ListEventsOptionalParameters {
 	r.Tags = &tags
 	return r
 }
-
 // WithUnaggregated sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithUnaggregated(unaggregated bool) *ListEventsOptionalParameters {
 	r.Unaggregated = &unaggregated
 	return r
 }
-
 // WithExcludeAggregate sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithExcludeAggregate(excludeAggregate bool) *ListEventsOptionalParameters {
 	r.ExcludeAggregate = &excludeAggregate
 	return r
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalParameters {
 	r.Page = &page
@@ -317,9 +318,9 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 
 func (a *EventsApi) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
 	req := apiListEventsRequest{
-		ctx:   ctx,
+		ctx:        ctx,
 		start: &start,
-		end:   &end,
+		end: &end,
 	}
 
 	if len(o) > 1 {
@@ -360,9 +361,9 @@ func (a *EventsApi) ListEvents(ctx _context.Context, start int64, end int64, o .
 // listEventsExecute executes the request.
 func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue EventListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  EventListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApi.ListEvents")
@@ -403,6 +404,7 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventListResponse
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -450,10 +452,11 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventListResponse
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -467,7 +470,7 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventListResponse
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

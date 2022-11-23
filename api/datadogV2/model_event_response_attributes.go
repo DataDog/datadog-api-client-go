@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // EventResponseAttributes The object description of an event response attribute.
 type EventResponseAttributes struct {
@@ -18,9 +21,11 @@ type EventResponseAttributes struct {
 	// The timestamp of the event.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventResponseAttributes instantiates a new EventResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewEventResponseAttributesWithDefaults() *EventResponseAttributes {
 	this := EventResponseAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *EventResponseAttributes) GetAttributes() EventAttributes {
 	if o == nil || o.Attributes == nil {
@@ -66,6 +70,7 @@ func (o *EventResponseAttributes) HasAttributes() bool {
 func (o *EventResponseAttributes) SetAttributes(v EventAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EventResponseAttributes) GetTags() []string {
@@ -95,6 +100,7 @@ func (o *EventResponseAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *EventResponseAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -123,6 +129,8 @@ func (o *EventResponseAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,13 +157,14 @@ func (o EventResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *EventResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *EventAttributes `json:"attributes,omitempty"`
-		Tags       []string         `json:"tags,omitempty"`
-		Timestamp  *time.Time       `json:"timestamp,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -166,13 +175,13 @@ func (o *EventResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp

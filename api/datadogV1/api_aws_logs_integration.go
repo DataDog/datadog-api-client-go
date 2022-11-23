@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,13 +21,13 @@ import (
 type AWSLogsIntegrationApi datadog.Service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCheckAWSLogsLambdaAsyncRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCheckAWSLogsLambdaAsyncRequest, error) {
 	req := apiCheckAWSLogsLambdaAsyncRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -52,9 +55,9 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, bo
 // checkAWSLogsLambdaAsyncExecute executes the request.
 func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogsLambdaAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue AWSLogsAsyncResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  AWSLogsAsyncResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CheckAWSLogsLambdaAsync")
@@ -72,6 +75,8 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogs
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -122,10 +127,11 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogs
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -139,7 +145,7 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogs
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -149,13 +155,13 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogs
 }
 
 type apiCheckAWSLogsServicesAsyncRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AWSLogsServicesRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCheckAWSLogsServicesAsyncRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiCheckAWSLogsServicesAsyncRequest, error) {
 	req := apiCheckAWSLogsServicesAsyncRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -185,9 +191,9 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, 
 // checkAWSLogsServicesAsyncExecute executes the request.
 func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLogsServicesAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue AWSLogsAsyncResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  AWSLogsAsyncResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CheckAWSLogsServicesAsync")
@@ -205,6 +211,8 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLo
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -255,10 +263,11 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -272,7 +281,7 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -282,13 +291,13 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLo
 }
 
 type apiCreateAWSLambdaARNRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildCreateAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiCreateAWSLambdaARNRequest, error) {
 	req := apiCreateAWSLambdaARNRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -309,9 +318,9 @@ func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AW
 // createAWSLambdaARNExecute executes the request.
 func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.CreateAWSLambdaARN")
@@ -329,6 +338,8 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaAR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -379,10 +390,11 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaAR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -396,7 +408,7 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaAR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -406,13 +418,13 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(r apiCreateAWSLambdaAR
 }
 
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AWSAccountAndLambdaRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildDeleteAWSLambdaARNRequest(ctx _context.Context, body AWSAccountAndLambdaRequest) (apiDeleteAWSLambdaARNRequest, error) {
 	req := apiDeleteAWSLambdaARNRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -433,9 +445,9 @@ func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AW
 // deleteAWSLambdaARNExecute executes the request.
 func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.DeleteAWSLambdaARN")
@@ -453,6 +465,8 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaAR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -503,10 +517,11 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaAR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -520,7 +535,7 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaAR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -530,13 +545,13 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaAR
 }
 
 type apiEnableAWSLogServicesRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *AWSLogsServicesRequest
 }
 
 func (a *AWSLogsIntegrationApi) buildEnableAWSLogServicesRequest(ctx _context.Context, body AWSLogsServicesRequest) (apiEnableAWSLogServicesRequest, error) {
 	req := apiEnableAWSLogServicesRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -557,9 +572,9 @@ func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body 
 // enableAWSLogServicesExecute executes the request.
 func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogServicesRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.EnableAWSLogServices")
@@ -577,6 +592,8 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogSer
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -627,10 +644,11 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogSer
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -644,7 +662,7 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogSer
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -654,12 +672,12 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(r apiEnableAWSLogSer
 }
 
 type apiListAWSLogsIntegrationsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *AWSLogsIntegrationApi) buildListAWSLogsIntegrationsRequest(ctx _context.Context) (apiListAWSLogsIntegrationsRequest, error) {
 	req := apiListAWSLogsIntegrationsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -679,9 +697,9 @@ func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([
 // listAWSLogsIntegrationsExecute executes the request.
 func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsIntegrationsRequest) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []AWSLogsListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []AWSLogsListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.ListAWSLogsIntegrations")
@@ -696,6 +714,7 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsI
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -743,10 +762,11 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -760,7 +780,7 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -770,12 +790,12 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(r apiListAWSLogsI
 }
 
 type apiListAWSLogsServicesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *AWSLogsIntegrationApi) buildListAWSLogsServicesRequest(ctx _context.Context) (apiListAWSLogsServicesRequest, error) {
 	req := apiListAWSLogsServicesRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -795,9 +815,9 @@ func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWS
 // listAWSLogsServicesExecute executes the request.
 func (a *AWSLogsIntegrationApi) listAWSLogsServicesExecute(r apiListAWSLogsServicesRequest) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []AWSLogsListServicesResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []AWSLogsListServicesResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApi.ListAWSLogsServices")
@@ -812,6 +832,7 @@ func (a *AWSLogsIntegrationApi) listAWSLogsServicesExecute(r apiListAWSLogsServi
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -859,10 +880,11 @@ func (a *AWSLogsIntegrationApi) listAWSLogsServicesExecute(r apiListAWSLogsServi
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -876,7 +898,7 @@ func (a *AWSLogsIntegrationApi) listAWSLogsServicesExecute(r apiListAWSLogsServi
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

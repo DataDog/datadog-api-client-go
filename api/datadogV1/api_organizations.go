@@ -2,16 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -20,13 +21,13 @@ import (
 type OrganizationsApi datadog.Service
 
 type apiCreateChildOrgRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *OrganizationCreateBody
 }
 
 func (a *OrganizationsApi) buildCreateChildOrgRequest(ctx _context.Context, body OrganizationCreateBody) (apiCreateChildOrgRequest, error) {
 	req := apiCreateChildOrgRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -56,9 +57,9 @@ func (a *OrganizationsApi) CreateChildOrg(ctx _context.Context, body Organizatio
 // createChildOrgExecute executes the request.
 func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (OrganizationCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue OrganizationCreateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  OrganizationCreateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.CreateChildOrg")
@@ -76,6 +77,8 @@ func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (Or
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -126,10 +129,11 @@ func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (Or
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -143,7 +147,7 @@ func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (Or
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -153,13 +157,13 @@ func (a *OrganizationsApi) createChildOrgExecute(r apiCreateChildOrgRequest) (Or
 }
 
 type apiDowngradeOrgRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 }
 
 func (a *OrganizationsApi) buildDowngradeOrgRequest(ctx _context.Context, publicId string) (apiDowngradeOrgRequest, error) {
 	req := apiDowngradeOrgRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 	return req, nil
@@ -180,9 +184,9 @@ func (a *OrganizationsApi) DowngradeOrg(ctx _context.Context, publicId string) (
 // downgradeOrgExecute executes the request.
 func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDowngradedResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue OrgDowngradedResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  OrgDowngradedResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.DowngradeOrg")
@@ -198,6 +202,7 @@ func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDow
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -245,10 +250,11 @@ func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDow
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -262,7 +268,7 @@ func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDow
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -272,13 +278,13 @@ func (a *OrganizationsApi) downgradeOrgExecute(r apiDowngradeOrgRequest) (OrgDow
 }
 
 type apiGetOrgRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 }
 
 func (a *OrganizationsApi) buildGetOrgRequest(ctx _context.Context, publicId string) (apiGetOrgRequest, error) {
 	req := apiGetOrgRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 	return req, nil
@@ -299,9 +305,9 @@ func (a *OrganizationsApi) GetOrg(ctx _context.Context, publicId string) (Organi
 // getOrgExecute executes the request.
 func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue OrganizationResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  OrganizationResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.GetOrg")
@@ -317,6 +323,7 @@ func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationRespon
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -364,10 +371,11 @@ func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationRespon
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -381,7 +389,7 @@ func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationRespon
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -391,12 +399,12 @@ func (a *OrganizationsApi) getOrgExecute(r apiGetOrgRequest) (OrganizationRespon
 }
 
 type apiListOrgsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *OrganizationsApi) buildListOrgsRequest(ctx _context.Context) (apiListOrgsRequest, error) {
 	req := apiListOrgsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -416,9 +424,9 @@ func (a *OrganizationsApi) ListOrgs(ctx _context.Context) (OrganizationListRespo
 // listOrgsExecute executes the request.
 func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue OrganizationListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  OrganizationListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.ListOrgs")
@@ -433,6 +441,7 @@ func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationLi
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -480,10 +489,11 @@ func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationLi
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -497,7 +507,7 @@ func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationLi
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -507,16 +517,16 @@ func (a *OrganizationsApi) listOrgsExecute(r apiListOrgsRequest) (OrganizationLi
 }
 
 type apiUpdateOrgRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	body     *Organization
+	body *Organization
 }
 
 func (a *OrganizationsApi) buildUpdateOrgRequest(ctx _context.Context, publicId string, body Organization) (apiUpdateOrgRequest, error) {
 	req := apiUpdateOrgRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -536,9 +546,9 @@ func (a *OrganizationsApi) UpdateOrg(ctx _context.Context, publicId string, body
 // updateOrgExecute executes the request.
 func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue OrganizationResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  OrganizationResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.UpdateOrg")
@@ -557,6 +567,8 @@ func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (Organization
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -607,10 +619,11 @@ func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (Organization
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -624,7 +637,7 @@ func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (Organization
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -634,16 +647,16 @@ func (a *OrganizationsApi) updateOrgExecute(r apiUpdateOrgRequest) (Organization
 }
 
 type apiUploadIdPForOrgRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	idpFile  **os.File
+	idpFile **os.File
 }
 
 func (a *OrganizationsApi) buildUploadIdPForOrgRequest(ctx _context.Context, publicId string, idpFile *os.File) (apiUploadIdPForOrgRequest, error) {
 	req := apiUploadIdPForOrgRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
-		idpFile:  &idpFile,
+		idpFile: &idpFile,
 	}
 	return req, nil
 }
@@ -668,9 +681,9 @@ func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string
 // uploadIdPForOrgExecute executes the request.
 func (a *OrganizationsApi) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (IdpResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IdpResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IdpResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApi.UploadIdPForOrg")
@@ -687,10 +700,11 @@ func (a *OrganizationsApi) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (
 	if r.idpFile == nil {
 		return localVarReturnValue, nil, datadog.ReportError("idpFile is required and must be specified")
 	}
-	localVarHeaderParams["Content-Type"] = "multipart/form-data"
+	localVarHeaderParams["Content-Type"] =  "multipart/form-data"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	formFile := datadog.FormFile{}
+	
+        formFile := datadog.FormFile{}
 	formFile.FormFileName = "idp_file"
 	localVarFile := *r.idpFile
 	if localVarFile != nil {
@@ -746,10 +760,11 @@ func (a *OrganizationsApi) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 415 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 415||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -763,7 +778,7 @@ func (a *OrganizationsApi) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

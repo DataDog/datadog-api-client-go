@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SunburstWidgetLegendInlineAutomaticType Whether to show the legend inline or let it be automatically generated.
 type SunburstWidgetLegendInlineAutomaticType string
 
 // List of SunburstWidgetLegendInlineAutomaticType.
 const (
-	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_INLINE    SunburstWidgetLegendInlineAutomaticType = "inline"
+	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_INLINE SunburstWidgetLegendInlineAutomaticType = "inline"
 	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_AUTOMATIC SunburstWidgetLegendInlineAutomaticType = "automatic"
 )
 

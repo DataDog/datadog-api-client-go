@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMApplicationUpdateAttributes RUM application update attributes.
 type RUMApplicationUpdateAttributes struct {
@@ -15,9 +19,11 @@ type RUMApplicationUpdateAttributes struct {
 	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMApplicationUpdateAttributes instantiates a new RUMApplicationUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewRUMApplicationUpdateAttributesWithDefaults() *RUMApplicationUpdateAttrib
 	this := RUMApplicationUpdateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RUMApplicationUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +68,7 @@ func (o *RUMApplicationUpdateAttributes) HasName() bool {
 func (o *RUMApplicationUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMApplicationUpdateAttributes) GetType() string {
@@ -92,6 +98,8 @@ func (o *RUMApplicationUpdateAttributes) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,6 +118,7 @@ func (o RUMApplicationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {

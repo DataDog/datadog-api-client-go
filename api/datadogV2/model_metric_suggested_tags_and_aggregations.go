@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricSuggestedTagsAndAggregations Object for a single metric's actively queried tags and aggregations.
 type MetricSuggestedTagsAndAggregations struct {
@@ -17,9 +21,11 @@ type MetricSuggestedTagsAndAggregations struct {
 	// The metric actively queried configuration resource type.
 	Type *MetricActiveConfigurationType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricSuggestedTagsAndAggregations instantiates a new MetricSuggestedTagsAndAggregations object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewMetricSuggestedTagsAndAggregationsWithDefaults() *MetricSuggestedTagsAnd
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricSuggestedTagsAndAggregations) GetAttributes() MetricSuggestedTagsAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +74,7 @@ func (o *MetricSuggestedTagsAndAggregations) HasAttributes() bool {
 func (o *MetricSuggestedTagsAndAggregations) SetAttributes(v MetricSuggestedTagsAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricSuggestedTagsAndAggregations) GetId() string {
@@ -98,6 +104,7 @@ func (o *MetricSuggestedTagsAndAggregations) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricSuggestedTagsAndAggregations) GetType() MetricActiveConfigurationType {
 	if o == nil || o.Type == nil {
@@ -126,6 +133,8 @@ func (o *MetricSuggestedTagsAndAggregations) SetType(v MetricActiveConfiguration
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSuggestedTagsAndAggregations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,13 +157,14 @@ func (o MetricSuggestedTagsAndAggregations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSuggestedTagsAndAggregations) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *MetricSuggestedTagsAttributes `json:"attributes,omitempty"`
-		Id         *string                        `json:"id,omitempty"`
-		Type       *MetricActiveConfigurationType `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *MetricActiveConfigurationType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -165,7 +175,7 @@ func (o *MetricSuggestedTagsAndAggregations) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -173,13 +183,13 @@ func (o *MetricSuggestedTagsAndAggregations) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

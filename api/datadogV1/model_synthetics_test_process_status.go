@@ -2,21 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestProcessStatus Status of a Synthetic test.
 type SyntheticsTestProcessStatus string
 
 // List of SyntheticsTestProcessStatus.
 const (
-	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED       SyntheticsTestProcessStatus = "not_scheduled"
-	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED           SyntheticsTestProcessStatus = "scheduled"
-	SYNTHETICSTESTPROCESSSTATUS_FINISHED            SyntheticsTestProcessStatus = "finished"
+	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED SyntheticsTestProcessStatus = "not_scheduled"
+	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED SyntheticsTestProcessStatus = "scheduled"
+	SYNTHETICSTESTPROCESSSTATUS_FINISHED SyntheticsTestProcessStatus = "finished"
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR SyntheticsTestProcessStatus = "finished_with_error"
 )
 

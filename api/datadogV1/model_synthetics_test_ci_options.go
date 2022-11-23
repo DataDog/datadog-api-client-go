@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTestCiOptions CI/CD options for a Synthetic test.
 type SyntheticsTestCiOptions struct {
 	// Execution rule for a Synthetics test.
 	ExecutionRule *SyntheticsTestExecutionRule `json:"executionRule,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTestCiOptions instantiates a new SyntheticsTestCiOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewSyntheticsTestCiOptionsWithDefaults() *SyntheticsTestCiOptions {
 	this := SyntheticsTestCiOptions{}
 	return &this
 }
-
 // GetExecutionRule returns the ExecutionRule field value if set, zero value otherwise.
 func (o *SyntheticsTestCiOptions) GetExecutionRule() SyntheticsTestExecutionRule {
 	if o == nil || o.ExecutionRule == nil {
@@ -62,6 +67,8 @@ func (o *SyntheticsTestCiOptions) SetExecutionRule(v SyntheticsTestExecutionRule
 	o.ExecutionRule = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestCiOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -78,6 +85,7 @@ func (o SyntheticsTestCiOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -93,7 +101,7 @@ func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+	if v := all.ExecutionRule; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

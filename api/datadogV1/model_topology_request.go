@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // TopologyRequest Request that will return nodes and edges to be used by topology map.
 type TopologyRequest struct {
@@ -15,9 +19,11 @@ type TopologyRequest struct {
 	// Widget request type.
 	RequestType *TopologyRequestType `json:"request_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTopologyRequest instantiates a new TopologyRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewTopologyRequestWithDefaults() *TopologyRequest {
 	this := TopologyRequest{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *TopologyRequest) GetQuery() TopologyQuery {
 	if o == nil || o.Query == nil {
@@ -63,6 +68,7 @@ func (o *TopologyRequest) HasQuery() bool {
 func (o *TopologyRequest) SetQuery(v TopologyQuery) {
 	o.Query = &v
 }
+
 
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
 func (o *TopologyRequest) GetRequestType() TopologyRequestType {
@@ -92,6 +98,8 @@ func (o *TopologyRequest) SetRequestType(v TopologyRequestType) {
 	o.RequestType = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TopologyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,11 +119,12 @@ func (o TopologyRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Query       *TopologyQuery       `json:"query,omitempty"`
+		Query *TopologyQuery `json:"query,omitempty"`
 		RequestType *TopologyRequestType `json:"request_type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -127,7 +136,7 @@ func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.RequestType; v != nil && !v.IsValid() {
+	if v := all.RequestType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -135,13 +144,13 @@ func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Query = all.Query
 	o.RequestType = all.RequestType
 	return nil

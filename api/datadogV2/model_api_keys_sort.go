@@ -2,26 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // APIKeysSort Sorting options
 type APIKeysSort string
 
 // List of APIKeysSort.
 const (
-	APIKEYSSORT_CREATED_AT_ASCENDING   APIKeysSort = "created_at"
-	APIKEYSSORT_CREATED_AT_DESCENDING  APIKeysSort = "-created_at"
-	APIKEYSSORT_LAST4_ASCENDING        APIKeysSort = "last4"
-	APIKEYSSORT_LAST4_DESCENDING       APIKeysSort = "-last4"
-	APIKEYSSORT_MODIFIED_AT_ASCENDING  APIKeysSort = "modified_at"
+	APIKEYSSORT_CREATED_AT_ASCENDING APIKeysSort = "created_at"
+	APIKEYSSORT_CREATED_AT_DESCENDING APIKeysSort = "-created_at"
+	APIKEYSSORT_LAST4_ASCENDING APIKeysSort = "last4"
+	APIKEYSSORT_LAST4_DESCENDING APIKeysSort = "-last4"
+	APIKEYSSORT_MODIFIED_AT_ASCENDING APIKeysSort = "modified_at"
 	APIKEYSSORT_MODIFIED_AT_DESCENDING APIKeysSort = "-modified_at"
-	APIKEYSSORT_NAME_ASCENDING         APIKeysSort = "name"
-	APIKEYSSORT_NAME_DESCENDING        APIKeysSort = "-name"
+	APIKEYSSORT_NAME_ASCENDING APIKeysSort = "name"
+	APIKEYSSORT_NAME_DESCENDING APIKeysSort = "-name"
 )
 
 var allowedAPIKeysSortEnumValues = []APIKeysSort{

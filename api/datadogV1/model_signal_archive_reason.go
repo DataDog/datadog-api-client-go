@@ -2,22 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SignalArchiveReason Reason why a signal has been archived.
 type SignalArchiveReason string
 
 // List of SignalArchiveReason.
 const (
-	SIGNALARCHIVEREASON_NONE                   SignalArchiveReason = "none"
-	SIGNALARCHIVEREASON_FALSE_POSITIVE         SignalArchiveReason = "false_positive"
+	SIGNALARCHIVEREASON_NONE SignalArchiveReason = "none"
+	SIGNALARCHIVEREASON_FALSE_POSITIVE SignalArchiveReason = "false_positive"
 	SIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE SignalArchiveReason = "testing_or_maintenance"
-	SIGNALARCHIVEREASON_OTHER                  SignalArchiveReason = "other"
+	SIGNALARCHIVEREASON_OTHER SignalArchiveReason = "other"
 )
 
 var allowedSignalArchiveReasonEnumValues = []SignalArchiveReason{

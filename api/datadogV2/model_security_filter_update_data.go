@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityFilterUpdateData The new security filter properties.
 type SecurityFilterUpdateData struct {
@@ -16,9 +19,11 @@ type SecurityFilterUpdateData struct {
 	// The type of the resource. The value should always be `security_filters`.
 	Type SecurityFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterUpdateData instantiates a new SecurityFilterUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewSecurityFilterUpdateDataWithDefaults() *SecurityFilterUpdateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SecurityFilterUpdateData) GetAttributes() SecurityFilterUpdateAttributes {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *SecurityFilterUpdateData) GetAttributesOk() (*SecurityFilterUpdateAttri
 func (o *SecurityFilterUpdateData) SetAttributes(v SecurityFilterUpdateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SecurityFilterUpdateData) GetType() SecurityFilterType {
@@ -87,6 +92,8 @@ func (o *SecurityFilterUpdateData) SetType(v SecurityFilterType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o SecurityFilterUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *SecurityFilterUpdateAttributes `json:"attributes"`
-		Type       *SecurityFilterType             `json:"type"`
+		Type *SecurityFilterType `json:"type"`
 	}{}
 	all := struct {
 		Attributes SecurityFilterUpdateAttributes `json:"attributes"`
-		Type       SecurityFilterType             `json:"type"`
+		Type SecurityFilterType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *SecurityFilterUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

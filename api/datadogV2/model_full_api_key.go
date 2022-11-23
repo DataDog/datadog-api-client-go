@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // FullAPIKey Datadog API key.
 type FullAPIKey struct {
@@ -19,9 +23,11 @@ type FullAPIKey struct {
 	// API Keys resource type.
 	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFullAPIKey instantiates a new FullAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewFullAPIKeyWithDefaults() *FullAPIKey {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *FullAPIKey) GetAttributes() FullAPIKeyAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +76,7 @@ func (o *FullAPIKey) HasAttributes() bool {
 func (o *FullAPIKey) SetAttributes(v FullAPIKeyAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FullAPIKey) GetId() string {
@@ -100,6 +106,7 @@ func (o *FullAPIKey) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *FullAPIKey) GetRelationships() APIKeyRelationships {
 	if o == nil || o.Relationships == nil {
@@ -127,6 +134,7 @@ func (o *FullAPIKey) HasRelationships() bool {
 func (o *FullAPIKey) SetRelationships(v APIKeyRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FullAPIKey) GetType() APIKeysType {
@@ -156,6 +164,8 @@ func (o *FullAPIKey) SetType(v APIKeysType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FullAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,14 +191,15 @@ func (o FullAPIKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *FullAPIKeyAttributes `json:"attributes,omitempty"`
-		Id            *string               `json:"id,omitempty"`
-		Relationships *APIKeyRelationships  `json:"relationships,omitempty"`
-		Type          *APIKeysType          `json:"type,omitempty"`
+		Attributes *FullAPIKeyAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Relationships *APIKeyRelationships `json:"relationships,omitempty"`
+		Type *APIKeysType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -199,7 +210,7 @@ func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -207,22 +218,22 @@ func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil

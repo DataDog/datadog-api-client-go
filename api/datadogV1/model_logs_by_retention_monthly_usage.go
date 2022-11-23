@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // LogsByRetentionMonthlyUsage Object containing a summary of indexed logs usage by retention period for a single month.
 type LogsByRetentionMonthlyUsage struct {
@@ -16,9 +19,11 @@ type LogsByRetentionMonthlyUsage struct {
 	// Indexed logs usage for each active retention for the month.
 	Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsByRetentionMonthlyUsage instantiates a new LogsByRetentionMonthlyUsage object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewLogsByRetentionMonthlyUsageWithDefaults() *LogsByRetentionMonthlyUsage {
 	this := LogsByRetentionMonthlyUsage{}
 	return &this
 }
-
 // GetDate returns the Date field value if set, zero value otherwise.
 func (o *LogsByRetentionMonthlyUsage) GetDate() time.Time {
 	if o == nil || o.Date == nil {
@@ -64,6 +68,7 @@ func (o *LogsByRetentionMonthlyUsage) HasDate() bool {
 func (o *LogsByRetentionMonthlyUsage) SetDate(v time.Time) {
 	o.Date = &v
 }
+
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *LogsByRetentionMonthlyUsage) GetUsage() []LogsRetentionSumUsage {
@@ -93,6 +98,8 @@ func (o *LogsByRetentionMonthlyUsage) SetUsage(v []LogsRetentionSumUsage) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -116,11 +123,12 @@ func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsByRetentionMonthlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Date  *time.Time              `json:"date,omitempty"`
+		Date *time.Time `json:"date,omitempty"`
 		Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

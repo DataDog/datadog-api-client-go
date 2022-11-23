@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringFilterAction The type of filtering action.
 type SecurityMonitoringFilterAction string
 
 // List of SecurityMonitoringFilterAction.
 const (
-	SECURITYMONITORINGFILTERACTION_REQUIRE  SecurityMonitoringFilterAction = "require"
+	SECURITYMONITORINGFILTERACTION_REQUIRE SecurityMonitoringFilterAction = "require"
 	SECURITYMONITORINGFILTERACTION_SUPPRESS SecurityMonitoringFilterAction = "suppress"
 )
 

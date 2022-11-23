@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuditLogsResponseStatus The status of the response.
 type AuditLogsResponseStatus string
 
 // List of AuditLogsResponseStatus.
 const (
-	AUDITLOGSRESPONSESTATUS_DONE    AuditLogsResponseStatus = "done"
+	AUDITLOGSRESPONSESTATUS_DONE AuditLogsResponseStatus = "done"
 	AUDITLOGSRESPONSESTATUS_TIMEOUT AuditLogsResponseStatus = "timeout"
 )
 

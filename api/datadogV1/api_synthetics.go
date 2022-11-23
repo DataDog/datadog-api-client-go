@@ -2,16 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -20,13 +21,13 @@ import (
 type SyntheticsApi datadog.Service
 
 type apiCreateGlobalVariableRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsGlobalVariable
 }
 
 func (a *SyntheticsApi) buildCreateGlobalVariableRequest(ctx _context.Context, body SyntheticsGlobalVariable) (apiCreateGlobalVariableRequest, error) {
 	req := apiCreateGlobalVariableRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -47,9 +48,9 @@ func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body Syntheti
 // createGlobalVariableExecute executes the request.
 func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsGlobalVariable
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.CreateGlobalVariable")
@@ -67,6 +68,8 @@ func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableReq
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -117,10 +120,11 @@ func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -134,7 +138,7 @@ func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -144,13 +148,13 @@ func (a *SyntheticsApi) createGlobalVariableExecute(r apiCreateGlobalVariableReq
 }
 
 type apiCreatePrivateLocationRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsPrivateLocation
 }
 
 func (a *SyntheticsApi) buildCreatePrivateLocationRequest(ctx _context.Context, body SyntheticsPrivateLocation) (apiCreatePrivateLocationRequest, error) {
 	req := apiCreatePrivateLocationRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -171,9 +175,9 @@ func (a *SyntheticsApi) CreatePrivateLocation(ctx _context.Context, body Synthet
 // createPrivateLocationExecute executes the request.
 func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationRequest) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsPrivateLocationCreationResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsPrivateLocationCreationResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.CreatePrivateLocation")
@@ -191,6 +195,8 @@ func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -241,10 +247,11 @@ func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 402 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 402||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -258,7 +265,7 @@ func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -268,13 +275,13 @@ func (a *SyntheticsApi) createPrivateLocationExecute(r apiCreatePrivateLocationR
 }
 
 type apiCreateSyntheticsAPITestRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsAPITest
 }
 
 func (a *SyntheticsApi) buildCreateSyntheticsAPITestRequest(ctx _context.Context, body SyntheticsAPITest) (apiCreateSyntheticsAPITestRequest, error) {
 	req := apiCreateSyntheticsAPITestRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -295,9 +302,9 @@ func (a *SyntheticsApi) CreateSyntheticsAPITest(ctx _context.Context, body Synth
 // createSyntheticsAPITestExecute executes the request.
 func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsAPITest
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsAPITest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.CreateSyntheticsAPITest")
@@ -315,6 +322,8 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPIT
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -365,10 +374,11 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPIT
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 402 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 402||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -382,7 +392,7 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPIT
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -392,13 +402,13 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPIT
 }
 
 type apiCreateSyntheticsBrowserTestRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsBrowserTest
 }
 
 func (a *SyntheticsApi) buildCreateSyntheticsBrowserTestRequest(ctx _context.Context, body SyntheticsBrowserTest) (apiCreateSyntheticsBrowserTestRequest, error) {
 	req := apiCreateSyntheticsBrowserTestRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -419,9 +429,9 @@ func (a *SyntheticsApi) CreateSyntheticsBrowserTest(ctx _context.Context, body S
 // createSyntheticsBrowserTestExecute executes the request.
 func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(r apiCreateSyntheticsBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsBrowserTest
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.CreateSyntheticsBrowserTest")
@@ -439,6 +449,8 @@ func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(r apiCreateSynthetics
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -489,10 +501,11 @@ func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(r apiCreateSynthetics
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 402 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 402||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -506,7 +519,7 @@ func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(r apiCreateSynthetics
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -542,8 +555,8 @@ func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId st
 // deleteGlobalVariableExecute executes the request.
 func (a *SyntheticsApi) deleteGlobalVariableExecute(r apiDeleteGlobalVariableRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.DeleteGlobalVariable")
@@ -557,8 +570,9 @@ func (a *SyntheticsApi) deleteGlobalVariableExecute(r apiDeleteGlobalVariableReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -606,10 +620,11 @@ func (a *SyntheticsApi) deleteGlobalVariableExecute(r apiDeleteGlobalVariableReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -650,8 +665,8 @@ func (a *SyntheticsApi) DeletePrivateLocation(ctx _context.Context, locationId s
 // deletePrivateLocationExecute executes the request.
 func (a *SyntheticsApi) deletePrivateLocationExecute(r apiDeletePrivateLocationRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.DeletePrivateLocation")
@@ -665,8 +680,9 @@ func (a *SyntheticsApi) deletePrivateLocationExecute(r apiDeletePrivateLocationR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -714,10 +730,11 @@ func (a *SyntheticsApi) deletePrivateLocationExecute(r apiDeletePrivateLocationR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -732,13 +749,13 @@ func (a *SyntheticsApi) deletePrivateLocationExecute(r apiDeletePrivateLocationR
 }
 
 type apiDeleteTestsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsDeleteTestsPayload
 }
 
 func (a *SyntheticsApi) buildDeleteTestsRequest(ctx _context.Context, body SyntheticsDeleteTestsPayload) (apiDeleteTestsRequest, error) {
 	req := apiDeleteTestsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -759,9 +776,9 @@ func (a *SyntheticsApi) DeleteTests(ctx _context.Context, body SyntheticsDeleteT
 // deleteTestsExecute executes the request.
 func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsDeleteTestsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsDeleteTestsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.DeleteTests")
@@ -779,6 +796,8 @@ func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsD
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -829,10 +848,11 @@ func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsD
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -846,7 +866,7 @@ func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsD
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -858,14 +878,14 @@ func (a *SyntheticsApi) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsD
 type apiEditGlobalVariableRequest struct {
 	ctx        _context.Context
 	variableId string
-	body       *SyntheticsGlobalVariable
+	body *SyntheticsGlobalVariable
 }
 
 func (a *SyntheticsApi) buildEditGlobalVariableRequest(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (apiEditGlobalVariableRequest, error) {
 	req := apiEditGlobalVariableRequest{
 		ctx:        ctx,
 		variableId: variableId,
-		body:       &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -885,9 +905,9 @@ func (a *SyntheticsApi) EditGlobalVariable(ctx _context.Context, variableId stri
 // editGlobalVariableExecute executes the request.
 func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsGlobalVariable
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.EditGlobalVariable")
@@ -906,6 +926,8 @@ func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -956,10 +978,11 @@ func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -973,7 +996,7 @@ func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -983,13 +1006,13 @@ func (a *SyntheticsApi) editGlobalVariableExecute(r apiEditGlobalVariableRequest
 }
 
 type apiGetAPITestRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetAPITestRequest(ctx _context.Context, publicId string) (apiGetAPITestRequest, error) {
 	req := apiGetAPITestRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 	return req, nil
@@ -1011,9 +1034,9 @@ func (a *SyntheticsApi) GetAPITest(ctx _context.Context, publicId string) (Synth
 // getAPITestExecute executes the request.
 func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsAPITest
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsAPITest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetAPITest")
@@ -1029,6 +1052,7 @@ func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPI
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1076,10 +1100,11 @@ func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1093,7 +1118,7 @@ func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1103,17 +1128,17 @@ func (a *SyntheticsApi) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPI
 }
 
 type apiGetAPITestLatestResultsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	fromTs   *int64
-	toTs     *int64
-	probeDc  *[]string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 // GetAPITestLatestResultsOptionalParameters holds optional parameters for GetAPITestLatestResults.
 type GetAPITestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
+	FromTs *int64
+	ToTs *int64
 	ProbeDc *[]string
 }
 
@@ -1122,19 +1147,16 @@ func NewGetAPITestLatestResultsOptionalParameters() *GetAPITestLatestResultsOpti
 	this := GetAPITestLatestResultsOptionalParameters{}
 	return &this
 }
-
 // WithFromTs sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetAPITestLatestResultsOptionalParameters {
 	r.FromTs = &fromTs
 	return r
 }
-
 // WithToTs sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetAPITestLatestResultsOptionalParameters {
 	r.ToTs = &toTs
 	return r
 }
-
 // WithProbeDc sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetAPITestLatestResultsOptionalParameters {
 	r.ProbeDc = &probeDc
@@ -1143,7 +1165,7 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 
 func (a *SyntheticsApi) buildGetAPITestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (apiGetAPITestLatestResultsRequest, error) {
 	req := apiGetAPITestLatestResultsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 
@@ -1174,9 +1196,9 @@ func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId s
 // getAPITestLatestResultsExecute executes the request.
 func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResultsRequest) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsGetAPITestLatestResultsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetAPITestLatestResults")
@@ -1209,6 +1231,7 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResu
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1256,10 +1279,11 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResu
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1273,7 +1297,7 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResu
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1283,14 +1307,14 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(r apiGetAPITestLatestResu
 }
 
 type apiGetAPITestResultRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 	resultId string
 }
 
 func (a *SyntheticsApi) buildGetAPITestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetAPITestResultRequest, error) {
 	req := apiGetAPITestResultRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 		resultId: resultId,
 	}
@@ -1312,9 +1336,9 @@ func (a *SyntheticsApi) GetAPITestResult(ctx _context.Context, publicId string, 
 // getAPITestResultExecute executes the request.
 func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsAPITestResultFull
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsAPITestResultFull
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetAPITestResult")
@@ -1331,6 +1355,7 @@ func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (S
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1378,10 +1403,11 @@ func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (S
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1395,7 +1421,7 @@ func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (S
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1405,13 +1431,13 @@ func (a *SyntheticsApi) getAPITestResultExecute(r apiGetAPITestResultRequest) (S
 }
 
 type apiGetBrowserTestRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetBrowserTestRequest(ctx _context.Context, publicId string) (apiGetBrowserTestRequest, error) {
 	req := apiGetBrowserTestRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 	return req, nil
@@ -1433,9 +1459,9 @@ func (a *SyntheticsApi) GetBrowserTest(ctx _context.Context, publicId string) (S
 // getBrowserTestExecute executes the request.
 func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsBrowserTest
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetBrowserTest")
@@ -1451,6 +1477,7 @@ func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (Synth
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1498,10 +1525,11 @@ func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (Synth
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1515,7 +1543,7 @@ func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (Synth
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1525,17 +1553,17 @@ func (a *SyntheticsApi) getBrowserTestExecute(r apiGetBrowserTestRequest) (Synth
 }
 
 type apiGetBrowserTestLatestResultsRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	fromTs   *int64
-	toTs     *int64
-	probeDc  *[]string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 // GetBrowserTestLatestResultsOptionalParameters holds optional parameters for GetBrowserTestLatestResults.
 type GetBrowserTestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
+	FromTs *int64
+	ToTs *int64
 	ProbeDc *[]string
 }
 
@@ -1544,19 +1572,16 @@ func NewGetBrowserTestLatestResultsOptionalParameters() *GetBrowserTestLatestRes
 	this := GetBrowserTestLatestResultsOptionalParameters{}
 	return &this
 }
-
 // WithFromTs sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetBrowserTestLatestResultsOptionalParameters {
 	r.FromTs = &fromTs
 	return r
 }
-
 // WithToTs sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetBrowserTestLatestResultsOptionalParameters {
 	r.ToTs = &toTs
 	return r
 }
-
 // WithProbeDc sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetBrowserTestLatestResultsOptionalParameters {
 	r.ProbeDc = &probeDc
@@ -1565,7 +1590,7 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 
 func (a *SyntheticsApi) buildGetBrowserTestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (apiGetBrowserTestLatestResultsRequest, error) {
 	req := apiGetBrowserTestLatestResultsRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 
@@ -1596,9 +1621,9 @@ func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, public
 // getBrowserTestLatestResultsExecute executes the request.
 func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLatestResultsRequest) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsGetBrowserTestLatestResultsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetBrowserTestLatestResults")
@@ -1631,6 +1656,7 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLa
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1678,10 +1704,11 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLa
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1695,7 +1722,7 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLa
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1705,14 +1732,14 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLa
 }
 
 type apiGetBrowserTestResultRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 	resultId string
 }
 
 func (a *SyntheticsApi) buildGetBrowserTestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetBrowserTestResultRequest, error) {
 	req := apiGetBrowserTestResultRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 		resultId: resultId,
 	}
@@ -1734,9 +1761,9 @@ func (a *SyntheticsApi) GetBrowserTestResult(ctx _context.Context, publicId stri
 // getBrowserTestResultExecute executes the request.
 func (a *SyntheticsApi) getBrowserTestResultExecute(r apiGetBrowserTestResultRequest) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsBrowserTestResultFull
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsBrowserTestResultFull
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetBrowserTestResult")
@@ -1753,6 +1780,7 @@ func (a *SyntheticsApi) getBrowserTestResultExecute(r apiGetBrowserTestResultReq
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1800,10 +1828,11 @@ func (a *SyntheticsApi) getBrowserTestResultExecute(r apiGetBrowserTestResultReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1817,7 +1846,7 @@ func (a *SyntheticsApi) getBrowserTestResultExecute(r apiGetBrowserTestResultReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1854,9 +1883,9 @@ func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId strin
 // getGlobalVariableExecute executes the request.
 func (a *SyntheticsApi) getGlobalVariableExecute(r apiGetGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsGlobalVariable
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetGlobalVariable")
@@ -1872,6 +1901,7 @@ func (a *SyntheticsApi) getGlobalVariableExecute(r apiGetGlobalVariableRequest) 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -1919,10 +1949,11 @@ func (a *SyntheticsApi) getGlobalVariableExecute(r apiGetGlobalVariableRequest) 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1936,7 +1967,7 @@ func (a *SyntheticsApi) getGlobalVariableExecute(r apiGetGlobalVariableRequest) 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1973,9 +2004,9 @@ func (a *SyntheticsApi) GetPrivateLocation(ctx _context.Context, locationId stri
 // getPrivateLocationExecute executes the request.
 func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsPrivateLocation
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsPrivateLocation
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetPrivateLocation")
@@ -1991,6 +2022,7 @@ func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2038,10 +2070,11 @@ func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2055,7 +2088,7 @@ func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2065,13 +2098,13 @@ func (a *SyntheticsApi) getPrivateLocationExecute(r apiGetPrivateLocationRequest
 }
 
 type apiGetSyntheticsCIBatchRequest struct {
-	ctx     _context.Context
+	ctx        _context.Context
 	batchId string
 }
 
 func (a *SyntheticsApi) buildGetSyntheticsCIBatchRequest(ctx _context.Context, batchId string) (apiGetSyntheticsCIBatchRequest, error) {
 	req := apiGetSyntheticsCIBatchRequest{
-		ctx:     ctx,
+		ctx:        ctx,
 		batchId: batchId,
 	}
 	return req, nil
@@ -2092,9 +2125,9 @@ func (a *SyntheticsApi) GetSyntheticsCIBatch(ctx _context.Context, batchId strin
 // getSyntheticsCIBatchExecute executes the request.
 func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchRequest) (SyntheticsBatchDetails, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsBatchDetails
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsBatchDetails
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetSyntheticsCIBatch")
@@ -2110,6 +2143,7 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchReq
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2157,10 +2191,11 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2174,7 +2209,7 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2184,13 +2219,13 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchReq
 }
 
 type apiGetTestRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
 }
 
 func (a *SyntheticsApi) buildGetTestRequest(ctx _context.Context, publicId string) (apiGetTestRequest, error) {
 	req := apiGetTestRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
 	}
 	return req, nil
@@ -2211,9 +2246,9 @@ func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (Syntheti
 // getTestExecute executes the request.
 func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsTestDetails
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsTestDetails
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.GetTest")
@@ -2229,6 +2264,7 @@ func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetai
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2276,10 +2312,11 @@ func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetai
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2293,7 +2330,7 @@ func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetai
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2303,12 +2340,12 @@ func (a *SyntheticsApi) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetai
 }
 
 type apiListGlobalVariablesRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *SyntheticsApi) buildListGlobalVariablesRequest(ctx _context.Context) (apiListGlobalVariablesRequest, error) {
 	req := apiListGlobalVariablesRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -2328,9 +2365,9 @@ func (a *SyntheticsApi) ListGlobalVariables(ctx _context.Context) (SyntheticsLis
 // listGlobalVariablesExecute executes the request.
 func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesRequest) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsListGlobalVariablesResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsListGlobalVariablesResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.ListGlobalVariables")
@@ -2345,6 +2382,7 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesReque
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2392,10 +2430,11 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesReque
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2409,7 +2448,7 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesReque
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2419,12 +2458,12 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(r apiListGlobalVariablesReque
 }
 
 type apiListLocationsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *SyntheticsApi) buildListLocationsRequest(ctx _context.Context) (apiListLocationsRequest, error) {
 	req := apiListLocationsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -2445,9 +2484,9 @@ func (a *SyntheticsApi) ListLocations(ctx _context.Context) (SyntheticsLocations
 // listLocationsExecute executes the request.
 func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (SyntheticsLocations, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsLocations
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsLocations
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.ListLocations")
@@ -2462,6 +2501,7 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2509,10 +2549,11 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2526,7 +2567,7 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2536,12 +2577,12 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 }
 
 type apiListTestsRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 }
 
 func (a *SyntheticsApi) buildListTestsRequest(ctx _context.Context) (apiListTestsRequest, error) {
 	req := apiListTestsRequest{
-		ctx: ctx,
+		ctx:        ctx,
 	}
 	return req, nil
 }
@@ -2561,9 +2602,9 @@ func (a *SyntheticsApi) ListTests(ctx _context.Context) (SyntheticsListTestsResp
 // listTestsExecute executes the request.
 func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsListTestsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsListTestsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.ListTests")
@@ -2578,6 +2619,7 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -2625,10 +2667,11 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2642,7 +2685,7 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2652,13 +2695,13 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 }
 
 type apiTriggerCITestsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsCITestBody
 }
 
 func (a *SyntheticsApi) buildTriggerCITestsRequest(ctx _context.Context, body SyntheticsCITestBody) (apiTriggerCITestsRequest, error) {
 	req := apiTriggerCITestsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -2679,9 +2722,9 @@ func (a *SyntheticsApi) TriggerCITests(ctx _context.Context, body SyntheticsCITe
 // triggerCITestsExecute executes the request.
 func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsTriggerCITestsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsTriggerCITestsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.TriggerCITests")
@@ -2699,6 +2742,8 @@ func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (Synth
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -2749,10 +2794,11 @@ func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (Synth
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2766,7 +2812,7 @@ func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (Synth
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2776,13 +2822,13 @@ func (a *SyntheticsApi) triggerCITestsExecute(r apiTriggerCITestsRequest) (Synth
 }
 
 type apiTriggerTestsRequest struct {
-	ctx  _context.Context
+	ctx        _context.Context
 	body *SyntheticsTriggerBody
 }
 
 func (a *SyntheticsApi) buildTriggerTestsRequest(ctx _context.Context, body SyntheticsTriggerBody) (apiTriggerTestsRequest, error) {
 	req := apiTriggerTestsRequest{
-		ctx:  ctx,
+		ctx:        ctx,
 		body: &body,
 	}
 	return req, nil
@@ -2803,9 +2849,9 @@ func (a *SyntheticsApi) TriggerTests(ctx _context.Context, body SyntheticsTrigge
 // triggerTestsExecute executes the request.
 func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsTriggerCITestsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsTriggerCITestsResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.TriggerTests")
@@ -2823,6 +2869,8 @@ func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (Synthetic
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -2873,10 +2921,11 @@ func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (Synthetic
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2890,7 +2939,7 @@ func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (Synthetic
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -2900,16 +2949,16 @@ func (a *SyntheticsApi) triggerTestsExecute(r apiTriggerTestsRequest) (Synthetic
 }
 
 type apiUpdateAPITestRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	body     *SyntheticsAPITest
+	body *SyntheticsAPITest
 }
 
 func (a *SyntheticsApi) buildUpdateAPITestRequest(ctx _context.Context, publicId string, body SyntheticsAPITest) (apiUpdateAPITestRequest, error) {
 	req := apiUpdateAPITestRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -2929,9 +2978,9 @@ func (a *SyntheticsApi) UpdateAPITest(ctx _context.Context, publicId string, bod
 // updateAPITestExecute executes the request.
 func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsAPITest
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsAPITest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.UpdateAPITest")
@@ -2951,6 +3000,8 @@ func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (Synthet
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -3000,10 +3051,11 @@ func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (Synthet
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3017,7 +3069,7 @@ func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (Synthet
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -3027,16 +3079,16 @@ func (a *SyntheticsApi) updateAPITestExecute(r apiUpdateAPITestRequest) (Synthet
 }
 
 type apiUpdateBrowserTestRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	body     *SyntheticsBrowserTest
+	body *SyntheticsBrowserTest
 }
 
 func (a *SyntheticsApi) buildUpdateBrowserTestRequest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (apiUpdateBrowserTestRequest, error) {
 	req := apiUpdateBrowserTestRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -3056,9 +3108,9 @@ func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string,
 // updateBrowserTestExecute executes the request.
 func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsBrowserTest
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.UpdateBrowserTest")
@@ -3078,6 +3130,8 @@ func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) 
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -3127,10 +3181,11 @@ func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3144,7 +3199,7 @@ func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -3156,14 +3211,14 @@ func (a *SyntheticsApi) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) 
 type apiUpdatePrivateLocationRequest struct {
 	ctx        _context.Context
 	locationId string
-	body       *SyntheticsPrivateLocation
+	body *SyntheticsPrivateLocation
 }
 
 func (a *SyntheticsApi) buildUpdatePrivateLocationRequest(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (apiUpdatePrivateLocationRequest, error) {
 	req := apiUpdatePrivateLocationRequest{
 		ctx:        ctx,
 		locationId: locationId,
-		body:       &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -3183,9 +3238,9 @@ func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId s
 // updatePrivateLocationExecute executes the request.
 func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue SyntheticsPrivateLocation
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  SyntheticsPrivateLocation
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.UpdatePrivateLocation")
@@ -3205,6 +3260,8 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationR
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -3254,10 +3311,11 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3271,7 +3329,7 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -3281,16 +3339,16 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(r apiUpdatePrivateLocationR
 }
 
 type apiUpdateTestPauseStatusRequest struct {
-	ctx      _context.Context
+	ctx        _context.Context
 	publicId string
-	body     *SyntheticsUpdateTestPauseStatusPayload
+	body *SyntheticsUpdateTestPauseStatusPayload
 }
 
 func (a *SyntheticsApi) buildUpdateTestPauseStatusRequest(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (apiUpdateTestPauseStatusRequest, error) {
 	req := apiUpdateTestPauseStatusRequest{
-		ctx:      ctx,
+		ctx:        ctx,
 		publicId: publicId,
-		body:     &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -3310,9 +3368,9 @@ func (a *SyntheticsApi) UpdateTestPauseStatus(ctx _context.Context, publicId str
 // updateTestPauseStatusExecute executes the request.
 func (a *SyntheticsApi) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusRequest) (bool, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue bool
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  bool
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApi.UpdateTestPauseStatus")
@@ -3331,6 +3389,8 @@ func (a *SyntheticsApi) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusR
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -3381,10 +3441,11 @@ func (a *SyntheticsApi) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3398,7 +3459,7 @@ func (a *SyntheticsApi) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

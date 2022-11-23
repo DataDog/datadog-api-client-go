@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookRelativeTime Relative timeframe.
 type NotebookRelativeTime struct {
 	// The available timeframes depend on the widget you are using.
 	LiveSpan WidgetLiveSpan `json:"live_span"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookRelativeTime instantiates a new NotebookRelativeTime object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewNotebookRelativeTimeWithDefaults() *NotebookRelativeTime {
 	this := NotebookRelativeTime{}
 	return &this
 }
-
 // GetLiveSpan returns the LiveSpan field value.
 func (o *NotebookRelativeTime) GetLiveSpan() WidgetLiveSpan {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *NotebookRelativeTime) SetLiveSpan(v WidgetLiveSpan) {
 	o.LiveSpan = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookRelativeTime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o NotebookRelativeTime) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
@@ -109,7 +116,6 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.LiveSpan = all.LiveSpan
 	return nil
 }
-
 // NullableNotebookRelativeTime handles when a null is used for NotebookRelativeTime.
 type NullableNotebookRelativeTime struct {
 	value *NotebookRelativeTime

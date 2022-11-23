@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,16 +21,16 @@ import (
 type SlackIntegrationApi datadog.Service
 
 type apiCreateSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	accountName string
-	body        *SlackIntegrationChannel
+	body *SlackIntegrationChannel
 }
 
 func (a *SlackIntegrationApi) buildCreateSlackIntegrationChannelRequest(ctx _context.Context, accountName string, body SlackIntegrationChannel) (apiCreateSlackIntegrationChannelRequest, error) {
 	req := apiCreateSlackIntegrationChannelRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		accountName: accountName,
-		body:        &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -48,9 +50,9 @@ func (a *SlackIntegrationApi) CreateSlackIntegrationChannel(ctx _context.Context
 // createSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApi.CreateSlackIntegrationChannel")
@@ -69,6 +71,8 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSl
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -119,10 +123,11 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSl
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -136,7 +141,7 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSl
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -146,14 +151,14 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(r apiCreateSl
 }
 
 type apiGetSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	accountName string
 	channelName string
 }
 
 func (a *SlackIntegrationApi) buildGetSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string) (apiGetSlackIntegrationChannelRequest, error) {
 	req := apiGetSlackIntegrationChannelRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
@@ -175,9 +180,9 @@ func (a *SlackIntegrationApi) GetSlackIntegrationChannel(ctx _context.Context, a
 // getSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApi.GetSlackIntegrationChannel")
@@ -194,6 +199,7 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackInt
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -241,10 +247,11 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackInt
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -258,7 +265,7 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackInt
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -268,13 +275,13 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(r apiGetSlackInt
 }
 
 type apiGetSlackIntegrationChannelsRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	accountName string
 }
 
 func (a *SlackIntegrationApi) buildGetSlackIntegrationChannelsRequest(ctx _context.Context, accountName string) (apiGetSlackIntegrationChannelsRequest, error) {
 	req := apiGetSlackIntegrationChannelsRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		accountName: accountName,
 	}
 	return req, nil
@@ -295,9 +302,9 @@ func (a *SlackIntegrationApi) GetSlackIntegrationChannels(ctx _context.Context, 
 // getSlackIntegrationChannelsExecute executes the request.
 func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApi.GetSlackIntegrationChannels")
@@ -313,6 +320,7 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIn
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -360,10 +368,11 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIn
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -377,7 +386,7 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIn
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -387,14 +396,14 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(r apiGetSlackIn
 }
 
 type apiRemoveSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	accountName string
 	channelName string
 }
 
 func (a *SlackIntegrationApi) buildRemoveSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string) (apiRemoveSlackIntegrationChannelRequest, error) {
 	req := apiRemoveSlackIntegrationChannelRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
@@ -415,8 +424,8 @@ func (a *SlackIntegrationApi) RemoveSlackIntegrationChannel(ctx _context.Context
 // removeSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(r apiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApi.RemoveSlackIntegrationChannel")
@@ -431,8 +440,9 @@ func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(r apiRemoveSl
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
+	
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -480,10 +490,11 @@ func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(r apiRemoveSl
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -498,18 +509,18 @@ func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(r apiRemoveSl
 }
 
 type apiUpdateSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
+	ctx        _context.Context
 	accountName string
 	channelName string
-	body        *SlackIntegrationChannel
+	body *SlackIntegrationChannel
 }
 
 func (a *SlackIntegrationApi) buildUpdateSlackIntegrationChannelRequest(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (apiUpdateSlackIntegrationChannelRequest, error) {
 	req := apiUpdateSlackIntegrationChannelRequest{
-		ctx:         ctx,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
-		body:        &body,
+		body: &body,
 	}
 	return req, nil
 }
@@ -529,9 +540,9 @@ func (a *SlackIntegrationApi) UpdateSlackIntegrationChannel(ctx _context.Context
 // updateSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApi) updateSlackIntegrationChannelExecute(r apiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApi.UpdateSlackIntegrationChannel")
@@ -551,6 +562,8 @@ func (a *SlackIntegrationApi) updateSlackIntegrationChannelExecute(r apiUpdateSl
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
+
+	
 
 	// body params
 	localVarPostBody = r.body
@@ -601,10 +614,11 @@ func (a *SlackIntegrationApi) updateSlackIntegrationChannelExecute(r apiUpdateSl
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -618,7 +632,7 @@ func (a *SlackIntegrationApi) updateSlackIntegrationChannelExecute(r apiUpdateSl
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

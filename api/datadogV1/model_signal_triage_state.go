@@ -2,20 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SignalTriageState The new triage state of the signal.
 type SignalTriageState string
 
 // List of SignalTriageState.
 const (
-	SIGNALTRIAGESTATE_OPEN         SignalTriageState = "open"
-	SIGNALTRIAGESTATE_ARCHIVED     SignalTriageState = "archived"
+	SIGNALTRIAGESTATE_OPEN SignalTriageState = "open"
+	SIGNALTRIAGESTATE_ARCHIVED SignalTriageState = "archived"
 	SIGNALTRIAGESTATE_UNDER_REVIEW SignalTriageState = "under_review"
 )
 

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DistributionPointsSeries A distribution points metric to submit to Datadog.
 type DistributionPointsSeries struct {
@@ -22,9 +25,11 @@ type DistributionPointsSeries struct {
 	// The type of the distribution point.
 	Type *DistributionPointsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDistributionPointsSeries instantiates a new DistributionPointsSeries object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewDistributionPointsSeriesWithDefaults() *DistributionPointsSeries {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *DistributionPointsSeries) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -77,6 +81,7 @@ func (o *DistributionPointsSeries) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetMetric returns the Metric field value.
 func (o *DistributionPointsSeries) GetMetric() string {
 	if o == nil {
@@ -100,6 +105,7 @@ func (o *DistributionPointsSeries) SetMetric(v string) {
 	o.Metric = v
 }
 
+
 // GetPoints returns the Points field value.
 func (o *DistributionPointsSeries) GetPoints() [][]DistributionPointItem {
 	if o == nil {
@@ -122,6 +128,7 @@ func (o *DistributionPointsSeries) GetPointsOk() (*[][]DistributionPointItem, bo
 func (o *DistributionPointsSeries) SetPoints(v [][]DistributionPointItem) {
 	o.Points = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *DistributionPointsSeries) GetTags() []string {
@@ -151,6 +158,7 @@ func (o *DistributionPointsSeries) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DistributionPointsSeries) GetType() DistributionPointsType {
 	if o == nil || o.Type == nil {
@@ -179,6 +187,8 @@ func (o *DistributionPointsSeries) SetType(v DistributionPointsType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DistributionPointsSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,19 +213,20 @@ func (o DistributionPointsSeries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Metric *string                    `json:"metric"`
+		Metric *string `json:"metric"`
 		Points *[][]DistributionPointItem `json:"points"`
 	}{}
 	all := struct {
-		Host   *string                   `json:"host,omitempty"`
-		Metric string                    `json:"metric"`
+		Host *string `json:"host,omitempty"`
+		Metric string `json:"metric"`
 		Points [][]DistributionPointItem `json:"points"`
-		Tags   []string                  `json:"tags,omitempty"`
-		Type   *DistributionPointsType   `json:"type,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *DistributionPointsType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -236,7 +247,7 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

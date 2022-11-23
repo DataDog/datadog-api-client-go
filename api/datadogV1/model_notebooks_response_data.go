@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebooksResponseData The data for a notebook in get all response.
 type NotebooksResponseData struct {
@@ -18,9 +21,11 @@ type NotebooksResponseData struct {
 	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponseData instantiates a new NotebooksResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewNotebooksResponseDataWithDefaults() *NotebooksResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *NotebooksResponseData) GetAttributes() NotebooksResponseDataAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *NotebooksResponseData) GetAttributesOk() (*NotebooksResponseDataAttribu
 func (o *NotebooksResponseData) SetAttributes(v NotebooksResponseDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *NotebooksResponseData) GetId() int64 {
@@ -90,6 +95,7 @@ func (o *NotebooksResponseData) SetId(v int64) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *NotebooksResponseData) GetType() NotebookResourceType {
 	if o == nil {
@@ -113,6 +119,8 @@ func (o *NotebooksResponseData) SetType(v NotebookResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -129,18 +137,19 @@ func (o NotebooksResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebooksResponseDataAttributes `json:"attributes"`
-		Id         *int64                           `json:"id"`
-		Type       *NotebookResourceType            `json:"type"`
+		Id *int64 `json:"id"`
+		Type *NotebookResourceType `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebooksResponseDataAttributes `json:"attributes"`
-		Id         int64                           `json:"id"`
-		Type       NotebookResourceType            `json:"type"`
+		Id int64 `json:"id"`
+		Type NotebookResourceType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -172,13 +181,13 @@ func (o *NotebooksResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

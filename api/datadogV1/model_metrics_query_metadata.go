@@ -2,13 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
+
 
 // MetricsQueryMetadata Object containing all metric names returned and their associated metadata.
 type MetricsQueryMetadata struct {
@@ -41,9 +43,11 @@ type MetricsQueryMetadata struct {
 	// second describes the "per unit" (for example, `second` in `bytes per second`).
 	Unit []MetricsQueryUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricsQueryMetadata instantiates a new MetricsQueryMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +65,6 @@ func NewMetricsQueryMetadataWithDefaults() *MetricsQueryMetadata {
 	this := MetricsQueryMetadata{}
 	return &this
 }
-
 // GetAggr returns the Aggr field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricsQueryMetadata) GetAggr() string {
 	if o == nil || o.Aggr.Get() == nil {
@@ -75,7 +78,7 @@ func (o *MetricsQueryMetadata) GetAggr() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MetricsQueryMetadata) GetAggrOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Aggr.Get(), o.Aggr.IsSet()
@@ -90,7 +93,6 @@ func (o *MetricsQueryMetadata) HasAggr() bool {
 func (o *MetricsQueryMetadata) SetAggr(v string) {
 	o.Aggr.Set(&v)
 }
-
 // SetAggrNil sets the value for Aggr to be an explicit nil.
 func (o *MetricsQueryMetadata) SetAggrNil() {
 	o.Aggr.Set(nil)
@@ -100,6 +102,7 @@ func (o *MetricsQueryMetadata) SetAggrNil() {
 func (o *MetricsQueryMetadata) UnsetAggr() {
 	o.Aggr.Unset()
 }
+
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetDisplayName() string {
@@ -129,6 +132,7 @@ func (o *MetricsQueryMetadata) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
+
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetEnd() int64 {
 	if o == nil || o.End == nil {
@@ -156,6 +160,7 @@ func (o *MetricsQueryMetadata) HasEnd() bool {
 func (o *MetricsQueryMetadata) SetEnd(v int64) {
 	o.End = &v
 }
+
 
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetExpression() string {
@@ -185,6 +190,7 @@ func (o *MetricsQueryMetadata) SetExpression(v string) {
 	o.Expression = &v
 }
 
+
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetInterval() int64 {
 	if o == nil || o.Interval == nil {
@@ -212,6 +218,7 @@ func (o *MetricsQueryMetadata) HasInterval() bool {
 func (o *MetricsQueryMetadata) SetInterval(v int64) {
 	o.Interval = &v
 }
+
 
 // GetLength returns the Length field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetLength() int64 {
@@ -241,6 +248,7 @@ func (o *MetricsQueryMetadata) SetLength(v int64) {
 	o.Length = &v
 }
 
+
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -268,6 +276,7 @@ func (o *MetricsQueryMetadata) HasMetric() bool {
 func (o *MetricsQueryMetadata) SetMetric(v string) {
 	o.Metric = &v
 }
+
 
 // GetPointlist returns the Pointlist field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetPointlist() [][]*float64 {
@@ -297,6 +306,7 @@ func (o *MetricsQueryMetadata) SetPointlist(v [][]*float64) {
 	o.Pointlist = v
 }
 
+
 // GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetQueryIndex() int64 {
 	if o == nil || o.QueryIndex == nil {
@@ -324,6 +334,7 @@ func (o *MetricsQueryMetadata) HasQueryIndex() bool {
 func (o *MetricsQueryMetadata) SetQueryIndex(v int64) {
 	o.QueryIndex = &v
 }
+
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetScope() string {
@@ -353,6 +364,7 @@ func (o *MetricsQueryMetadata) SetScope(v string) {
 	o.Scope = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetStart() int64 {
 	if o == nil || o.Start == nil {
@@ -380,6 +392,7 @@ func (o *MetricsQueryMetadata) HasStart() bool {
 func (o *MetricsQueryMetadata) SetStart(v int64) {
 	o.Start = &v
 }
+
 
 // GetTagSet returns the TagSet field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetTagSet() []string {
@@ -409,6 +422,7 @@ func (o *MetricsQueryMetadata) SetTagSet(v []string) {
 	o.TagSet = v
 }
 
+
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *MetricsQueryMetadata) GetUnit() []MetricsQueryUnit {
 	if o == nil || o.Unit == nil {
@@ -436,6 +450,8 @@ func (o *MetricsQueryMetadata) HasUnit() bool {
 func (o *MetricsQueryMetadata) SetUnit(v []MetricsQueryUnit) {
 	o.Unit = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
@@ -489,23 +505,24 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggr        datadog.NullableString `json:"aggr,omitempty"`
-		DisplayName *string                `json:"display_name,omitempty"`
-		End         *int64                 `json:"end,omitempty"`
-		Expression  *string                `json:"expression,omitempty"`
-		Interval    *int64                 `json:"interval,omitempty"`
-		Length      *int64                 `json:"length,omitempty"`
-		Metric      *string                `json:"metric,omitempty"`
-		Pointlist   [][]*float64           `json:"pointlist,omitempty"`
-		QueryIndex  *int64                 `json:"query_index,omitempty"`
-		Scope       *string                `json:"scope,omitempty"`
-		Start       *int64                 `json:"start,omitempty"`
-		TagSet      []string               `json:"tag_set,omitempty"`
-		Unit        []MetricsQueryUnit     `json:"unit,omitempty"`
+		Aggr datadog.NullableString `json:"aggr,omitempty"`
+		DisplayName *string `json:"display_name,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		Expression *string `json:"expression,omitempty"`
+		Interval *int64 `json:"interval,omitempty"`
+		Length *int64 `json:"length,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Pointlist [][]*float64 `json:"pointlist,omitempty"`
+		QueryIndex *int64 `json:"query_index,omitempty"`
+		Scope *string `json:"scope,omitempty"`
+		Start *int64 `json:"start,omitempty"`
+		TagSet []string `json:"tag_set,omitempty"`
+		Unit []MetricsQueryUnit `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -2,16 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentAttachmentUpdateAttributes - Incident attachment attributes.
 type IncidentAttachmentUpdateAttributes struct {
 	IncidentAttachmentPostmortemAttributes *IncidentAttachmentPostmortemAttributes
-	IncidentAttachmentLinkAttributes       *IncidentAttachmentLinkAttributes
+	IncidentAttachmentLinkAttributes *IncidentAttachmentLinkAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +84,11 @@ func (obj IncidentAttachmentUpdateAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.IncidentAttachmentPostmortemAttributes)
 	}
 
+
 	if obj.IncidentAttachmentLinkAttributes != nil {
 		return json.Marshal(&obj.IncidentAttachmentLinkAttributes)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj IncidentAttachmentUpdateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentAttachmentUpdateAttributes) GetActualInstance() interface{} {
+func (obj *IncidentAttachmentUpdateAttributes) GetActualInstance() (interface{}) {
 	if obj.IncidentAttachmentPostmortemAttributes != nil {
 		return obj.IncidentAttachmentPostmortemAttributes
 	}
 
+
 	if obj.IncidentAttachmentLinkAttributes != nil {
 		return obj.IncidentAttachmentLinkAttributes
 	}
+
 
 	// all schemas are nil
 	return nil

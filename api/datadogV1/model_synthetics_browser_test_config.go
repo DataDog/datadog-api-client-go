@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserTestConfig Configuration object for a Synthetic browser test.
 type SyntheticsBrowserTestConfig struct {
@@ -22,9 +25,11 @@ type SyntheticsBrowserTestConfig struct {
 	// Array of variables used for the test steps.
 	Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserTestConfig instantiates a new SyntheticsBrowserTestConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSyntheticsBrowserTestConfigWithDefaults() *SyntheticsBrowserTestConfig {
 	this := SyntheticsBrowserTestConfig{}
 	return &this
 }
-
 // GetAssertions returns the Assertions field value.
 func (o *SyntheticsBrowserTestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SyntheticsBrowserTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion,
 func (o *SyntheticsBrowserTestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = v
 }
+
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetConfigVariables() []SyntheticsConfigVariable {
@@ -96,6 +101,7 @@ func (o *SyntheticsBrowserTestConfig) SetConfigVariables(v []SyntheticsConfigVar
 	o.ConfigVariables = v
 }
 
+
 // GetRequest returns the Request field value.
 func (o *SyntheticsBrowserTestConfig) GetRequest() SyntheticsTestRequest {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *SyntheticsBrowserTestConfig) GetRequestOk() (*SyntheticsTestRequest, bo
 func (o *SyntheticsBrowserTestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = v
 }
+
 
 // GetSetCookie returns the SetCookie field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetSetCookie() string {
@@ -147,6 +154,7 @@ func (o *SyntheticsBrowserTestConfig) SetSetCookie(v string) {
 	o.SetCookie = &v
 }
 
+
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetVariables() []SyntheticsBrowserVariable {
 	if o == nil || o.Variables == nil {
@@ -175,6 +183,8 @@ func (o *SyntheticsBrowserTestConfig) SetVariables(v []SyntheticsBrowserVariable
 	o.Variables = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -199,19 +209,20 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Assertions *[]SyntheticsAssertion `json:"assertions"`
-		Request    *SyntheticsTestRequest `json:"request"`
+		Request *SyntheticsTestRequest `json:"request"`
 	}{}
 	all := struct {
-		Assertions      []SyntheticsAssertion       `json:"assertions"`
-		ConfigVariables []SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         SyntheticsTestRequest       `json:"request"`
-		SetCookie       *string                     `json:"setCookie,omitempty"`
-		Variables       []SyntheticsBrowserVariable `json:"variables,omitempty"`
+		Assertions []SyntheticsAssertion `json:"assertions"`
+		ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
+		Request SyntheticsTestRequest `json:"request"`
+		SetCookie *string `json:"setCookie,omitempty"`
+		Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -234,13 +245,13 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Assertions = all.Assertions
 	o.ConfigVariables = all.ConfigVariables
-	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Request = all.Request
 	o.SetCookie = all.SetCookie
 	o.Variables = all.Variables

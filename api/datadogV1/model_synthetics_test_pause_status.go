@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestPauseStatus Define whether you want to start (`live`) or pause (`paused`) a
 // Synthetic test.
@@ -15,7 +18,7 @@ type SyntheticsTestPauseStatus string
 
 // List of SyntheticsTestPauseStatus.
 const (
-	SYNTHETICSTESTPAUSESTATUS_LIVE   SyntheticsTestPauseStatus = "live"
+	SYNTHETICSTESTPAUSESTATUS_LIVE SyntheticsTestPauseStatus = "live"
 	SYNTHETICSTESTPAUSESTATUS_PAUSED SyntheticsTestPauseStatus = "paused"
 )
 

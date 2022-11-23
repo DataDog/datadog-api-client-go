@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMAggregateRequest The object sent with the request to retrieve aggregation buckets of RUM events from your organization.
 type RUMAggregateRequest struct {
@@ -22,9 +26,11 @@ type RUMAggregateRequest struct {
 	// Paging attributes for listing events.
 	Page *RUMQueryPageOptions `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMAggregateRequest instantiates a new RUMAggregateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,6 @@ func NewRUMAggregateRequestWithDefaults() *RUMAggregateRequest {
 	this := RUMAggregateRequest{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *RUMAggregateRequest) GetCompute() []RUMCompute {
 	if o == nil || o.Compute == nil {
@@ -70,6 +75,7 @@ func (o *RUMAggregateRequest) HasCompute() bool {
 func (o *RUMAggregateRequest) SetCompute(v []RUMCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *RUMAggregateRequest) GetFilter() RUMQueryFilter {
@@ -99,6 +105,7 @@ func (o *RUMAggregateRequest) SetFilter(v RUMQueryFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *RUMAggregateRequest) GetGroupBy() []RUMGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -126,6 +133,7 @@ func (o *RUMAggregateRequest) HasGroupBy() bool {
 func (o *RUMAggregateRequest) SetGroupBy(v []RUMGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *RUMAggregateRequest) GetOptions() RUMQueryOptions {
@@ -155,6 +163,7 @@ func (o *RUMAggregateRequest) SetOptions(v RUMQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *RUMAggregateRequest) GetPage() RUMQueryPageOptions {
 	if o == nil || o.Page == nil {
@@ -182,6 +191,8 @@ func (o *RUMAggregateRequest) HasPage() bool {
 func (o *RUMAggregateRequest) SetPage(v RUMQueryPageOptions) {
 	o.Page = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMAggregateRequest) MarshalJSON() ([]byte, error) {
@@ -211,15 +222,16 @@ func (o RUMAggregateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute []RUMCompute         `json:"compute,omitempty"`
-		Filter  *RUMQueryFilter      `json:"filter,omitempty"`
-		GroupBy []RUMGroupBy         `json:"group_by,omitempty"`
-		Options *RUMQueryOptions     `json:"options,omitempty"`
-		Page    *RUMQueryPageOptions `json:"page,omitempty"`
+		Compute []RUMCompute `json:"compute,omitempty"`
+		Filter *RUMQueryFilter `json:"filter,omitempty"`
+		GroupBy []RUMGroupBy `json:"group_by,omitempty"`
+		Options *RUMQueryOptions `json:"options,omitempty"`
+		Page *RUMQueryPageOptions `json:"page,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -231,30 +243,30 @@ func (o *RUMAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

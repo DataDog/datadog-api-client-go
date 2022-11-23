@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityFilterCreateData Object for a single security filter.
 type SecurityFilterCreateData struct {
@@ -16,9 +19,11 @@ type SecurityFilterCreateData struct {
 	// The type of the resource. The value should always be `security_filters`.
 	Type SecurityFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterCreateData instantiates a new SecurityFilterCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewSecurityFilterCreateDataWithDefaults() *SecurityFilterCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SecurityFilterCreateData) GetAttributes() SecurityFilterCreateAttributes {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *SecurityFilterCreateData) GetAttributesOk() (*SecurityFilterCreateAttri
 func (o *SecurityFilterCreateData) SetAttributes(v SecurityFilterCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SecurityFilterCreateData) GetType() SecurityFilterType {
@@ -87,6 +92,8 @@ func (o *SecurityFilterCreateData) SetType(v SecurityFilterType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -102,16 +109,17 @@ func (o SecurityFilterCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *SecurityFilterCreateAttributes `json:"attributes"`
-		Type       *SecurityFilterType             `json:"type"`
+		Type *SecurityFilterType `json:"type"`
 	}{}
 	all := struct {
 		Attributes SecurityFilterCreateAttributes `json:"attributes"`
-		Type       SecurityFilterType             `json:"type"`
+		Type SecurityFilterType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *SecurityFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

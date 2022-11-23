@@ -2,20 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetServiceSummaryDisplayFormat Number of columns to display.
 type WidgetServiceSummaryDisplayFormat string
 
 // List of WidgetServiceSummaryDisplayFormat.
 const (
-	WIDGETSERVICESUMMARYDISPLAYFORMAT_ONE_COLUMN   WidgetServiceSummaryDisplayFormat = "one_column"
-	WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN   WidgetServiceSummaryDisplayFormat = "two_column"
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_ONE_COLUMN WidgetServiceSummaryDisplayFormat = "one_column"
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN WidgetServiceSummaryDisplayFormat = "two_column"
 	WIDGETSERVICESUMMARYDISPLAYFORMAT_THREE_COLUMN WidgetServiceSummaryDisplayFormat = "three_column"
 )
 

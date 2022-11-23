@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WebhooksIntegrationCustomVariableResponse Custom variable for Webhook integration.
 type WebhooksIntegrationCustomVariableResponse struct {
@@ -19,9 +22,11 @@ type WebhooksIntegrationCustomVariableResponse struct {
 	// Value of the custom variable. It won't be returned if the variable is secret.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWebhooksIntegrationCustomVariableResponse instantiates a new WebhooksIntegrationCustomVariableResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewWebhooksIntegrationCustomVariableResponseWithDefaults() *WebhooksIntegra
 	this := WebhooksIntegrationCustomVariableResponse{}
 	return &this
 }
-
 // GetIsSecret returns the IsSecret field value.
 func (o *WebhooksIntegrationCustomVariableResponse) GetIsSecret() bool {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) SetIsSecret(v bool) {
 	o.IsSecret = v
 }
 
+
 // GetName returns the Name field value.
 func (o *WebhooksIntegrationCustomVariableResponse) GetName() string {
 	if o == nil {
@@ -87,6 +92,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetNameOk() (*string, bool) 
 func (o *WebhooksIntegrationCustomVariableResponse) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *WebhooksIntegrationCustomVariableResponse) GetValue() string {
@@ -116,6 +122,8 @@ func (o *WebhooksIntegrationCustomVariableResponse) SetValue(v string) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WebhooksIntegrationCustomVariableResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,17 +142,18 @@ func (o WebhooksIntegrationCustomVariableResponse) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		IsSecret *bool   `json:"is_secret"`
-		Name     *string `json:"name"`
+		IsSecret *bool `json:"is_secret"`
+		Name *string `json:"name"`
 	}{}
 	all := struct {
-		IsSecret bool    `json:"is_secret"`
-		Name     string  `json:"name"`
-		Value    *string `json:"value,omitempty"`
+		IsSecret bool `json:"is_secret"`
+		Name string `json:"name"`
+		Value *string `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

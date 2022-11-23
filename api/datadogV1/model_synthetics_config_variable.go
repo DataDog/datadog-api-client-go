@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsConfigVariable Object defining a variable that can be used in your test configuration.
 type SyntheticsConfigVariable struct {
@@ -22,9 +25,11 @@ type SyntheticsConfigVariable struct {
 	// Type of the configuration variable.
 	Type SyntheticsConfigVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsConfigVariable instantiates a new SyntheticsConfigVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSyntheticsConfigVariableWithDefaults() *SyntheticsConfigVariable {
 	this := SyntheticsConfigVariable{}
 	return &this
 }
-
 // GetExample returns the Example field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetExample() string {
 	if o == nil || o.Example == nil {
@@ -72,6 +76,7 @@ func (o *SyntheticsConfigVariable) HasExample() bool {
 func (o *SyntheticsConfigVariable) SetExample(v string) {
 	o.Example = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetId() string {
@@ -101,6 +106,7 @@ func (o *SyntheticsConfigVariable) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsConfigVariable) GetName() string {
 	if o == nil {
@@ -123,6 +129,7 @@ func (o *SyntheticsConfigVariable) GetNameOk() (*string, bool) {
 func (o *SyntheticsConfigVariable) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetPattern() string {
@@ -152,6 +159,7 @@ func (o *SyntheticsConfigVariable) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsConfigVariable) GetType() SyntheticsConfigVariableType {
 	if o == nil {
@@ -174,6 +182,8 @@ func (o *SyntheticsConfigVariable) GetTypeOk() (*SyntheticsConfigVariableType, b
 func (o *SyntheticsConfigVariable) SetType(v SyntheticsConfigVariableType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
@@ -199,19 +209,20 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name *string                       `json:"name"`
+		Name *string `json:"name"`
 		Type *SyntheticsConfigVariableType `json:"type"`
 	}{}
 	all := struct {
-		Example *string                      `json:"example,omitempty"`
-		Id      *string                      `json:"id,omitempty"`
-		Name    string                       `json:"name"`
-		Pattern *string                      `json:"pattern,omitempty"`
-		Type    SyntheticsConfigVariableType `json:"type"`
+		Example *string `json:"example,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name string `json:"name"`
+		Pattern *string `json:"pattern,omitempty"`
+		Type SyntheticsConfigVariableType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

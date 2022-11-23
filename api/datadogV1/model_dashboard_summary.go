@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DashboardSummary Dashboard summary response.
 type DashboardSummary struct {
 	// List of dashboard definitions.
 	Dashboards []DashboardSummaryDefinition `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardSummary instantiates a new DashboardSummary object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewDashboardSummaryWithDefaults() *DashboardSummary {
 	this := DashboardSummary{}
 	return &this
 }
-
 // GetDashboards returns the Dashboards field value if set, zero value otherwise.
 func (o *DashboardSummary) GetDashboards() []DashboardSummaryDefinition {
 	if o == nil || o.Dashboards == nil {
@@ -62,6 +67,8 @@ func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDefinition) {
 	o.Dashboards = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardSummary) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o DashboardSummary) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardSummary) UnmarshalJSON(bytes []byte) (err error) {

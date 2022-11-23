@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageLogsByRetentionHour The number of indexed logs for each hour for a given organization broken down by retention period.
 type UsageLogsByRetentionHour struct {
@@ -23,9 +27,11 @@ type UsageLogsByRetentionHour struct {
 	// The retention period in days or "custom" for all custom retention usage.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageLogsByRetentionHour instantiates a new UsageLogsByRetentionHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewUsageLogsByRetentionHourWithDefaults() *UsageLogsByRetentionHour {
 	this := UsageLogsByRetentionHour{}
 	return &this
 }
-
 // GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetIndexedEventsCount() int64 {
 	if o == nil || o.IndexedEventsCount == nil {
@@ -71,6 +76,7 @@ func (o *UsageLogsByRetentionHour) HasIndexedEventsCount() bool {
 func (o *UsageLogsByRetentionHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
+
 
 // GetLiveIndexedEventsCount returns the LiveIndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetLiveIndexedEventsCount() int64 {
@@ -100,6 +106,7 @@ func (o *UsageLogsByRetentionHour) SetLiveIndexedEventsCount(v int64) {
 	o.LiveIndexedEventsCount = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -127,6 +134,7 @@ func (o *UsageLogsByRetentionHour) HasOrgName() bool {
 func (o *UsageLogsByRetentionHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetPublicId() string {
@@ -156,6 +164,7 @@ func (o *UsageLogsByRetentionHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetRehydratedIndexedEventsCount returns the RehydratedIndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetRehydratedIndexedEventsCount() int64 {
 	if o == nil || o.RehydratedIndexedEventsCount == nil {
@@ -184,6 +193,7 @@ func (o *UsageLogsByRetentionHour) SetRehydratedIndexedEventsCount(v int64) {
 	o.RehydratedIndexedEventsCount = &v
 }
 
+
 // GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetRetention() string {
 	if o == nil || o.Retention == nil {
@@ -211,6 +221,8 @@ func (o *UsageLogsByRetentionHour) HasRetention() bool {
 func (o *UsageLogsByRetentionHour) SetRetention(v string) {
 	o.Retention = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
@@ -243,16 +255,17 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedEventsCount           *int64  `json:"indexed_events_count,omitempty"`
-		LiveIndexedEventsCount       *int64  `json:"live_indexed_events_count,omitempty"`
-		OrgName                      *string `json:"org_name,omitempty"`
-		PublicId                     *string `json:"public_id,omitempty"`
-		RehydratedIndexedEventsCount *int64  `json:"rehydrated_indexed_events_count,omitempty"`
-		Retention                    *string `json:"retention,omitempty"`
+		IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+		LiveIndexedEventsCount *int64 `json:"live_indexed_events_count,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
+		Retention *string `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

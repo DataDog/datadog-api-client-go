@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // EventPriority The priority of the event's monitor. For example, `normal` or `low`.
 type EventPriority string
@@ -15,7 +18,7 @@ type EventPriority string
 // List of EventPriority.
 const (
 	EVENTPRIORITY_NORMAL EventPriority = "normal"
-	EVENTPRIORITY_LOW    EventPriority = "low"
+	EVENTPRIORITY_LOW EventPriority = "low"
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{

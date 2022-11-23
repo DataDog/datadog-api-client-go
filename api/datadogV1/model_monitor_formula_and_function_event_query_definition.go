@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorFormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type MonitorFormulaAndFunctionEventQueryDefinition struct {
@@ -24,9 +27,11 @@ type MonitorFormulaAndFunctionEventQueryDefinition struct {
 	// Search options.
 	Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorFormulaAndFunctionEventQueryDefinition instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewMonitorFormulaAndFunctionEventQueryDefinitionWithDefaults() *MonitorForm
 	this := MonitorFormulaAndFunctionEventQueryDefinition{}
 	return &this
 }
-
 // GetCompute returns the Compute field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetCompute() MonitorFormulaAndFunctionEventQueryDefinitionCompute {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetCompute(v MonitorForm
 	o.Compute = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSource() MonitorFormulaAndFunctionEventsDataSource {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*Moni
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetDataSource(v MonitorFormulaAndFunctionEventsDataSource) {
 	o.DataSource = v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetGroupBy() []MonitorFormulaAndFunctionEventQueryGroupBy {
@@ -122,6 +128,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetGroupBy(v []MonitorFo
 	o.GroupBy = v
 }
 
+
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -150,6 +157,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
+
 // GetName returns the Name field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetName() string {
 	if o == nil {
@@ -172,6 +180,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bo
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetSearch() MonitorFormulaAndFunctionEventQueryDefinitionSearch {
@@ -201,6 +210,8 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetSearch(v MonitorFormu
 	o.Search = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -226,21 +237,22 @@ func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, er
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Compute    *MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource *MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
-		Name       *string                                               `json:"name"`
+		Compute *MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource *MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
+		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Compute    MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    []MonitorFormulaAndFunctionEventQueryGroupBy         `json:"group_by,omitempty"`
-		Indexes    []string                                             `json:"indexes,omitempty"`
-		Name       string                                               `json:"name"`
-		Search     *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+		Compute MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
+		GroupBy []MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+		Indexes []string `json:"indexes,omitempty"`
+		Name string `json:"name"`
+		Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -272,25 +284,25 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Compute = all.Compute
 	o.DataSource = all.DataSource
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.Name = all.Name
-	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Search = all.Search
 	return nil
 }

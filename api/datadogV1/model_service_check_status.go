@@ -2,22 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceCheckStatus The status of a service check.
 type ServiceCheckStatus int32
 
 // List of ServiceCheckStatus.
 const (
-	SERVICECHECKSTATUS_OK       ServiceCheckStatus = 0
-	SERVICECHECKSTATUS_WARNING  ServiceCheckStatus = 1
+	SERVICECHECKSTATUS_OK ServiceCheckStatus = 0
+	SERVICECHECKSTATUS_WARNING ServiceCheckStatus = 1
 	SERVICECHECKSTATUS_CRITICAL ServiceCheckStatus = 2
-	SERVICECHECKSTATUS_UNKNOWN  ServiceCheckStatus = 3
+	SERVICECHECKSTATUS_UNKNOWN ServiceCheckStatus = 3
 )
 
 var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{

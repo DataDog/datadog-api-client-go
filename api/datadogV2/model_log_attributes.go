@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // LogAttributes JSON object containing all log attributes and their associated values.
 type LogAttributes struct {
@@ -30,9 +33,11 @@ type LogAttributes struct {
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogAttributes instantiates a new LogAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewLogAttributesWithDefaults() *LogAttributes {
 	this := LogAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *LogAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -78,6 +82,7 @@ func (o *LogAttributes) HasAttributes() bool {
 func (o *LogAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *LogAttributes) GetHost() string {
@@ -107,6 +112,7 @@ func (o *LogAttributes) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *LogAttributes) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -134,6 +140,7 @@ func (o *LogAttributes) HasMessage() bool {
 func (o *LogAttributes) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *LogAttributes) GetService() string {
@@ -163,6 +170,7 @@ func (o *LogAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LogAttributes) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -190,6 +198,7 @@ func (o *LogAttributes) HasStatus() bool {
 func (o *LogAttributes) SetStatus(v string) {
 	o.Status = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *LogAttributes) GetTags() []string {
@@ -219,6 +228,7 @@ func (o *LogAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *LogAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -246,6 +256,8 @@ func (o *LogAttributes) HasTimestamp() bool {
 func (o *LogAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogAttributes) MarshalJSON() ([]byte, error) {
@@ -285,17 +297,18 @@ func (o LogAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Host       *string                `json:"host,omitempty"`
-		Message    *string                `json:"message,omitempty"`
-		Service    *string                `json:"service,omitempty"`
-		Status     *string                `json:"status,omitempty"`
-		Tags       []string               `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Host *string `json:"host,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // Metric Object for a single metric tag configuration.
 type Metric struct {
@@ -15,9 +19,11 @@ type Metric struct {
 	// The metric resource type.
 	Type *MetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetric instantiates a new Metric object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewMetricWithDefaults() *Metric {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Metric) GetId() string {
 	if o == nil || o.Id == nil {
@@ -67,6 +72,7 @@ func (o *Metric) HasId() bool {
 func (o *Metric) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Metric) GetType() MetricType {
@@ -96,6 +102,8 @@ func (o *Metric) SetType(v MetricType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Metric) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,11 +123,12 @@ func (o Metric) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *Metric) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id   *string     `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *MetricType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -131,7 +140,7 @@ func (o *Metric) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
@@ -15,9 +19,11 @@ type NotebooksResponse struct {
 	// Searches metadata returned by the API.
 	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponse instantiates a new NotebooksResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewNotebooksResponseWithDefaults() *NotebooksResponse {
 	this := NotebooksResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetData() []NotebooksResponseData {
 	if o == nil || o.Data == nil {
@@ -63,6 +68,7 @@ func (o *NotebooksResponse) HasData() bool {
 func (o *NotebooksResponse) SetData(v []NotebooksResponseData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetMeta() NotebooksResponseMeta {
@@ -92,6 +98,8 @@ func (o *NotebooksResponse) SetMeta(v NotebooksResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data []NotebooksResponseData `json:"data,omitempty"`
-		Meta *NotebooksResponseMeta  `json:"meta,omitempty"`
+		Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -128,13 +137,13 @@ func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

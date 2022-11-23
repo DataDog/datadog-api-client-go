@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMResponsePage Paging attributes.
 type RUMResponsePage struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMResponsePage instantiates a new RUMResponsePage object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewRUMResponsePageWithDefaults() *RUMResponsePage {
 	this := RUMResponsePage{}
 	return &this
 }
-
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *RUMResponsePage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -62,6 +67,8 @@ func (o *RUMResponsePage) SetAfter(v string) {
 	o.After = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMResponsePage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o RUMResponsePage) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMResponsePage) UnmarshalJSON(bytes []byte) (err error) {

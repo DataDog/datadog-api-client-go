@@ -2,21 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToOrganizations Relationship to organizations.
 type RelationshipToOrganizations struct {
 	// Relationships to organization objects.
 	Data []RelationshipToOrganizationData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToOrganizations instantiates a new RelationshipToOrganizations object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewRelationshipToOrganizationsWithDefaults() *RelationshipToOrganizations {
 	this := RelationshipToOrganizations{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RelationshipToOrganizations) GetData() []RelationshipToOrganizationData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RelationshipToOrganizations) SetData(v []RelationshipToOrganizationData
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToOrganizations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -72,6 +78,7 @@ func (o RelationshipToOrganizations) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToOrganizations) UnmarshalJSON(bytes []byte) (err error) {

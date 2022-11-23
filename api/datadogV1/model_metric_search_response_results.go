@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricSearchResponseResults Search result.
 type MetricSearchResponseResults struct {
 	// List of metrics that match the search query.
 	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricSearchResponseResults instantiates a new MetricSearchResponseResults object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +39,6 @@ func NewMetricSearchResponseResultsWithDefaults() *MetricSearchResponseResults {
 	this := MetricSearchResponseResults{}
 	return &this
 }
-
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *MetricSearchResponseResults) GetMetrics() []string {
 	if o == nil || o.Metrics == nil {
@@ -62,6 +67,8 @@ func (o *MetricSearchResponseResults) SetMetrics(v []string) {
 	o.Metrics = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -77,6 +84,7 @@ func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {

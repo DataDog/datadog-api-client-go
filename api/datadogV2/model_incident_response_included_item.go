@@ -2,15 +2,19 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
 type IncidentResponseIncludedItem struct {
-	User                   *User
+	User *User
 	IncidentAttachmentData *IncidentAttachmentData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +84,11 @@ func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&obj.User)
 	}
 
+
 	if obj.IncidentAttachmentData != nil {
 		return json.Marshal(&obj.IncidentAttachmentData)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return json.Marshal(obj.UnparsedObject)
@@ -91,14 +97,16 @@ func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *IncidentResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
 
+
 	if obj.IncidentAttachmentData != nil {
 		return obj.IncidentAttachmentData
 	}
+
 
 	// all schemas are nil
 	return nil

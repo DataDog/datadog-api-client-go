@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // AuthNMappingAttributes Attributes of AuthN Mapping.
 type AuthNMappingAttributes struct {
@@ -22,9 +25,11 @@ type AuthNMappingAttributes struct {
 	// The ID of the SAML assertion attribute.
 	SamlAssertionAttributeId *string `json:"saml_assertion_attribute_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingAttributes instantiates a new AuthNMappingAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewAuthNMappingAttributesWithDefaults() *AuthNMappingAttributes {
 	this := AuthNMappingAttributes{}
 	return &this
 }
-
 // GetAttributeKey returns the AttributeKey field value if set, zero value otherwise.
 func (o *AuthNMappingAttributes) GetAttributeKey() string {
 	if o == nil || o.AttributeKey == nil {
@@ -70,6 +74,7 @@ func (o *AuthNMappingAttributes) HasAttributeKey() bool {
 func (o *AuthNMappingAttributes) SetAttributeKey(v string) {
 	o.AttributeKey = &v
 }
+
 
 // GetAttributeValue returns the AttributeValue field value if set, zero value otherwise.
 func (o *AuthNMappingAttributes) GetAttributeValue() string {
@@ -99,6 +104,7 @@ func (o *AuthNMappingAttributes) SetAttributeValue(v string) {
 	o.AttributeValue = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AuthNMappingAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -126,6 +132,7 @@ func (o *AuthNMappingAttributes) HasCreatedAt() bool {
 func (o *AuthNMappingAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *AuthNMappingAttributes) GetModifiedAt() time.Time {
@@ -155,6 +162,7 @@ func (o *AuthNMappingAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetSamlAssertionAttributeId returns the SamlAssertionAttributeId field value if set, zero value otherwise.
 func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() string {
 	if o == nil || o.SamlAssertionAttributeId == nil {
@@ -182,6 +190,8 @@ func (o *AuthNMappingAttributes) HasSamlAssertionAttributeId() bool {
 func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v string) {
 	o.SamlAssertionAttributeId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
@@ -219,15 +229,16 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey             *string    `json:"attribute_key,omitempty"`
-		AttributeValue           *string    `json:"attribute_value,omitempty"`
-		CreatedAt                *time.Time `json:"created_at,omitempty"`
-		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
-		SamlAssertionAttributeId *string    `json:"saml_assertion_attribute_id,omitempty"`
+		AttributeKey *string `json:"attribute_key,omitempty"`
+		AttributeValue *string `json:"attribute_value,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		SamlAssertionAttributeId *string `json:"saml_assertion_attribute_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

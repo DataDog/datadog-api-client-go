@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageSyntheticsBrowserHour Number of Synthetics Browser tests run for each hour for a given organization.
 type UsageSyntheticsBrowserHour struct {
@@ -20,9 +23,11 @@ type UsageSyntheticsBrowserHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSyntheticsBrowserHour instantiates a new UsageSyntheticsBrowserHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewUsageSyntheticsBrowserHourWithDefaults() *UsageSyntheticsBrowserHour {
 	this := UsageSyntheticsBrowserHour{}
 	return &this
 }
-
 // GetBrowserCheckCallsCount returns the BrowserCheckCallsCount field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCount() int64 {
 	if o == nil || o.BrowserCheckCallsCount == nil {
@@ -68,6 +72,7 @@ func (o *UsageSyntheticsBrowserHour) HasBrowserCheckCallsCount() bool {
 func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCount(v int64) {
 	o.BrowserCheckCallsCount = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetHour() time.Time {
@@ -97,6 +102,7 @@ func (o *UsageSyntheticsBrowserHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -125,6 +131,7 @@ func (o *UsageSyntheticsBrowserHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -152,6 +159,8 @@ func (o *UsageSyntheticsBrowserHour) HasPublicId() bool {
 func (o *UsageSyntheticsBrowserHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
@@ -182,14 +191,15 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserCheckCallsCount *int64     `json:"browser_check_calls_count,omitempty"`
-		Hour                   *time.Time `json:"hour,omitempty"`
-		OrgName                *string    `json:"org_name,omitempty"`
-		PublicId               *string    `json:"public_id,omitempty"`
+		BrowserCheckCallsCount *int64 `json:"browser_check_calls_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

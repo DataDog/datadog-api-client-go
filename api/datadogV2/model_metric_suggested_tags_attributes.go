@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricSuggestedTagsAttributes Object containing the definition of a metric's actively queried tags and aggregations.
 type MetricSuggestedTagsAttributes struct {
@@ -15,9 +19,11 @@ type MetricSuggestedTagsAttributes struct {
 	// List of tag keys that have been actively queried.
 	ActiveTags []string `json:"active_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricSuggestedTagsAttributes instantiates a new MetricSuggestedTagsAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMetricSuggestedTagsAttributesWithDefaults() *MetricSuggestedTagsAttribut
 	this := MetricSuggestedTagsAttributes{}
 	return &this
 }
-
 // GetActiveAggregations returns the ActiveAggregations field value if set, zero value otherwise.
 func (o *MetricSuggestedTagsAttributes) GetActiveAggregations() []MetricCustomAggregation {
 	if o == nil || o.ActiveAggregations == nil {
@@ -63,6 +68,7 @@ func (o *MetricSuggestedTagsAttributes) HasActiveAggregations() bool {
 func (o *MetricSuggestedTagsAttributes) SetActiveAggregations(v []MetricCustomAggregation) {
 	o.ActiveAggregations = v
 }
+
 
 // GetActiveTags returns the ActiveTags field value if set, zero value otherwise.
 func (o *MetricSuggestedTagsAttributes) GetActiveTags() []string {
@@ -92,6 +98,8 @@ func (o *MetricSuggestedTagsAttributes) SetActiveTags(v []string) {
 	o.ActiveTags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSuggestedTagsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,12 +119,13 @@ func (o MetricSuggestedTagsAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSuggestedTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		ActiveAggregations []MetricCustomAggregation `json:"active_aggregations,omitempty"`
-		ActiveTags         []string                  `json:"active_tags,omitempty"`
+		ActiveTags []string `json:"active_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

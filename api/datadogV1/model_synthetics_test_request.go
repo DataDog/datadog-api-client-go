@@ -2,11 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTestRequest Object describing the Synthetic test request.
 type SyntheticsTestRequest struct {
@@ -61,9 +65,11 @@ type SyntheticsTestRequest struct {
 	// URL to perform the test with.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -81,7 +87,6 @@ func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest {
 	this := SyntheticsTestRequest{}
 	return &this
 }
-
 // GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetAllowInsecure() bool {
 	if o == nil || o.AllowInsecure == nil {
@@ -109,6 +114,7 @@ func (o *SyntheticsTestRequest) HasAllowInsecure() bool {
 func (o *SyntheticsTestRequest) SetAllowInsecure(v bool) {
 	o.AllowInsecure = &v
 }
+
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsBasicAuth {
@@ -138,6 +144,7 @@ func (o *SyntheticsTestRequest) SetBasicAuth(v SyntheticsBasicAuth) {
 	o.BasicAuth = &v
 }
 
+
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetBody() string {
 	if o == nil || o.Body == nil {
@@ -165,6 +172,7 @@ func (o *SyntheticsTestRequest) HasBody() bool {
 func (o *SyntheticsTestRequest) SetBody(v string) {
 	o.Body = &v
 }
+
 
 // GetBodyType returns the BodyType field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetBodyType() SyntheticsTestRequestBodyType {
@@ -194,6 +202,7 @@ func (o *SyntheticsTestRequest) SetBodyType(v SyntheticsTestRequestBodyType) {
 	o.BodyType = &v
 }
 
+
 // GetCertificate returns the Certificate field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetCertificate() SyntheticsTestRequestCertificate {
 	if o == nil || o.Certificate == nil {
@@ -221,6 +230,7 @@ func (o *SyntheticsTestRequest) HasCertificate() bool {
 func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate) {
 	o.Certificate = &v
 }
+
 
 // GetCertificateDomains returns the CertificateDomains field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetCertificateDomains() []string {
@@ -250,6 +260,7 @@ func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
 	o.CertificateDomains = v
 }
 
+
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetDnsServer() string {
 	if o == nil || o.DnsServer == nil {
@@ -277,6 +288,7 @@ func (o *SyntheticsTestRequest) HasDnsServer() bool {
 func (o *SyntheticsTestRequest) SetDnsServer(v string) {
 	o.DnsServer = &v
 }
+
 
 // GetDnsServerPort returns the DnsServerPort field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetDnsServerPort() int32 {
@@ -306,6 +318,7 @@ func (o *SyntheticsTestRequest) SetDnsServerPort(v int32) {
 	o.DnsServerPort = &v
 }
 
+
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetFollowRedirects() bool {
 	if o == nil || o.FollowRedirects == nil {
@@ -333,6 +346,7 @@ func (o *SyntheticsTestRequest) HasFollowRedirects() bool {
 func (o *SyntheticsTestRequest) SetFollowRedirects(v bool) {
 	o.FollowRedirects = &v
 }
+
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetHeaders() map[string]string {
@@ -362,6 +376,7 @@ func (o *SyntheticsTestRequest) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -389,6 +404,7 @@ func (o *SyntheticsTestRequest) HasHost() bool {
 func (o *SyntheticsTestRequest) SetHost(v string) {
 	o.Host = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMessage() string {
@@ -418,6 +434,7 @@ func (o *SyntheticsTestRequest) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMetadata() map[string]string {
 	if o == nil || o.Metadata == nil {
@@ -445,6 +462,7 @@ func (o *SyntheticsTestRequest) HasMetadata() bool {
 func (o *SyntheticsTestRequest) SetMetadata(v map[string]string) {
 	o.Metadata = v
 }
+
 
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
@@ -474,6 +492,7 @@ func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod) {
 	o.Method = &v
 }
 
+
 // GetNoSavingResponseBody returns the NoSavingResponseBody field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetNoSavingResponseBody() bool {
 	if o == nil || o.NoSavingResponseBody == nil {
@@ -501,6 +520,7 @@ func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool {
 func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool) {
 	o.NoSavingResponseBody = &v
 }
+
 
 // GetNumberOfPackets returns the NumberOfPackets field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetNumberOfPackets() int32 {
@@ -530,6 +550,7 @@ func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32) {
 	o.NumberOfPackets = &v
 }
 
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetPort() int64 {
 	if o == nil || o.Port == nil {
@@ -557,6 +578,7 @@ func (o *SyntheticsTestRequest) HasPort() bool {
 func (o *SyntheticsTestRequest) SetPort(v int64) {
 	o.Port = &v
 }
+
 
 // GetProxy returns the Proxy field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetProxy() SyntheticsTestRequestProxy {
@@ -586,6 +608,7 @@ func (o *SyntheticsTestRequest) SetProxy(v SyntheticsTestRequestProxy) {
 	o.Proxy = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetQuery() interface{} {
 	if o == nil || o.Query == nil {
@@ -613,6 +636,7 @@ func (o *SyntheticsTestRequest) HasQuery() bool {
 func (o *SyntheticsTestRequest) SetQuery(v interface{}) {
 	o.Query = v
 }
+
 
 // GetServername returns the Servername field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetServername() string {
@@ -642,6 +666,7 @@ func (o *SyntheticsTestRequest) SetServername(v string) {
 	o.Servername = &v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetService() string {
 	if o == nil || o.Service == nil {
@@ -669,6 +694,7 @@ func (o *SyntheticsTestRequest) HasService() bool {
 func (o *SyntheticsTestRequest) SetService(v string) {
 	o.Service = &v
 }
+
 
 // GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
@@ -698,6 +724,7 @@ func (o *SyntheticsTestRequest) SetShouldTrackHops(v bool) {
 	o.ShouldTrackHops = &v
 }
 
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetTimeout() float64 {
 	if o == nil || o.Timeout == nil {
@@ -726,6 +753,7 @@ func (o *SyntheticsTestRequest) SetTimeout(v float64) {
 	o.Timeout = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -753,6 +781,8 @@ func (o *SyntheticsTestRequest) HasUrl() bool {
 func (o *SyntheticsTestRequest) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
@@ -839,34 +869,35 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
-		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
-		Body                 *string                           `json:"body,omitempty"`
-		BodyType             *SyntheticsTestRequestBodyType    `json:"bodyType,omitempty"`
-		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
-		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
-		DnsServer            *string                           `json:"dnsServer,omitempty"`
-		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
-		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
-		Headers              map[string]string                 `json:"headers,omitempty"`
-		Host                 *string                           `json:"host,omitempty"`
-		Message              *string                           `json:"message,omitempty"`
-		Metadata             map[string]string                 `json:"metadata,omitempty"`
-		Method               *HTTPMethod                       `json:"method,omitempty"`
-		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
-		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
-		Port                 *int64                            `json:"port,omitempty"`
-		Proxy                *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
-		Query                interface{}                       `json:"query,omitempty"`
-		Servername           *string                           `json:"servername,omitempty"`
-		Service              *string                           `json:"service,omitempty"`
-		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
-		Timeout              *float64                          `json:"timeout,omitempty"`
-		Url                  *string                           `json:"url,omitempty"`
+		AllowInsecure *bool `json:"allow_insecure,omitempty"`
+		BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+		Body *string `json:"body,omitempty"`
+		BodyType *SyntheticsTestRequestBodyType `json:"bodyType,omitempty"`
+		Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+		CertificateDomains []string `json:"certificateDomains,omitempty"`
+		DnsServer *string `json:"dnsServer,omitempty"`
+		DnsServerPort *int32 `json:"dnsServerPort,omitempty"`
+		FollowRedirects *bool `json:"follow_redirects,omitempty"`
+		Headers map[string]string `json:"headers,omitempty"`
+		Host *string `json:"host,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Metadata map[string]string `json:"metadata,omitempty"`
+		Method *HTTPMethod `json:"method,omitempty"`
+		NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
+		NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
+		Port *int64 `json:"port,omitempty"`
+		Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
+		Query interface{} `json:"query,omitempty"`
+		Servername *string `json:"servername,omitempty"`
+		Service *string `json:"service,omitempty"`
+		ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
+		Timeout *float64 `json:"timeout,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -877,7 +908,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.BodyType; v != nil && !v.IsValid() {
+	if v := all.BodyType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -885,7 +916,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Method; v != nil && !v.IsValid() {
+	if v := all.Method; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -897,13 +928,13 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
 	o.BodyType = all.BodyType
-	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Certificate = all.Certificate
 	o.CertificateDomains = all.CertificateDomains
 	o.DnsServer = all.DnsServer
@@ -917,13 +948,13 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets
 	o.Port = all.Port
-	if all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Proxy = all.Proxy
 	o.Query = all.Query
 	o.Servername = all.Servername

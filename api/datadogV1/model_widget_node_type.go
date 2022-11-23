@@ -2,19 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetNodeType Which type of node to use in the map.
 type WidgetNodeType string
 
 // List of WidgetNodeType.
 const (
-	WIDGETNODETYPE_HOST      WidgetNodeType = "host"
+	WIDGETNODETYPE_HOST WidgetNodeType = "host"
 	WIDGETNODETYPE_CONTAINER WidgetNodeType = "container"
 )
 

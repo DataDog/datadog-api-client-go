@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricEstimateType Estimate type based on the queried configuration. By default, `count_or_gauge` is returned. `distribution` is returned for distribution metrics without percentiles enabled. Lastly, `percentile` is returned if `filter[pct]=true` is queried with a distribution metric.
 type MetricEstimateType string
@@ -15,8 +18,8 @@ type MetricEstimateType string
 // List of MetricEstimateType.
 const (
 	METRICESTIMATETYPE_COUNT_OR_GAUGE MetricEstimateType = "count_or_gauge"
-	METRICESTIMATETYPE_DISTRIBUTION   MetricEstimateType = "distribution"
-	METRICESTIMATETYPE_PERCENTILE     MetricEstimateType = "percentile"
+	METRICESTIMATETYPE_DISTRIBUTION MetricEstimateType = "distribution"
+	METRICESTIMATETYPE_PERCENTILE MetricEstimateType = "percentile"
 )
 
 var allowedMetricEstimateTypeEnumValues = []MetricEstimateType{

@@ -2,12 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsGeoIPParser The GeoIP parser takes an IP address attribute and extracts if available
 // the Continent, Country, Subdivision, and City information in the target attribute path.
@@ -23,9 +26,11 @@ type LogsGeoIPParser struct {
 	// Type of GeoIP parser.
 	Type LogsGeoIPParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsGeoIPParser instantiates a new LogsGeoIPParser object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewLogsGeoIPParserWithDefaults() *LogsGeoIPParser {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsGeoIPParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -82,6 +86,7 @@ func (o *LogsGeoIPParser) HasIsEnabled() bool {
 func (o *LogsGeoIPParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsGeoIPParser) GetName() string {
@@ -111,6 +116,7 @@ func (o *LogsGeoIPParser) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value.
 func (o *LogsGeoIPParser) GetSources() []string {
 	if o == nil {
@@ -133,6 +139,7 @@ func (o *LogsGeoIPParser) GetSourcesOk() (*[]string, bool) {
 func (o *LogsGeoIPParser) SetSources(v []string) {
 	o.Sources = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *LogsGeoIPParser) GetTarget() string {
@@ -157,6 +164,7 @@ func (o *LogsGeoIPParser) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsGeoIPParser) GetType() LogsGeoIPParserType {
 	if o == nil {
@@ -180,6 +188,8 @@ func (o *LogsGeoIPParser) SetType(v LogsGeoIPParserType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -202,20 +212,21 @@ func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string            `json:"sources"`
-		Target  *string              `json:"target"`
-		Type    *LogsGeoIPParserType `json:"type"`
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsGeoIPParserType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool               `json:"is_enabled,omitempty"`
-		Name      *string             `json:"name,omitempty"`
-		Sources   []string            `json:"sources"`
-		Target    string              `json:"target"`
-		Type      LogsGeoIPParserType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources"`
+		Target string `json:"target"`
+		Type LogsGeoIPParserType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
