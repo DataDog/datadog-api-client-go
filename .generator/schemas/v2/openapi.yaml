@@ -8332,6 +8332,51 @@ components:
         or credentialed API access.'
       example: true
       type: boolean
+    SecurityMonitoringRuleComplianceRuleOptions:
+      description: "Options for compliance rules."
+      type: object
+      properties:
+        resourceType:
+          description: "The main resource type to be checked."
+          type: string
+        complianceFrameworks:
+          type: array
+          items:
+            type: object
+            properties:
+              framework:
+                type: string
+              version:
+                type: string
+              requirements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    requirements:
+                      type: string
+                    controls:
+                      type: array
+                      items:
+                        type: string
+        regoRule:
+          description: "Description of the rego rule. Can be null in case rule is in Lucene format."
+          type: object
+          properties:
+            policy:
+              description: "The policy written in OPA format."
+              type: string
+            resourceTypes:
+              type: array
+              description: "List of resource types checked by the rule, including the main resource type."
+              items:
+                type: string
+        validationQuery:
+          description: "The lucene query describing the failing condition. Empty if rule is in rego format."
+          type: string
+        complexRule:
+          description: "Whether the rule is complex or not. A rule is complex if it checks resources of different types."
+          type: boolean
     SecurityMonitoringRuleKeepAlive:
       description: "Once a signal is generated, the signal will remain \u201Copen\u201D
         if a case is matched at least once within\nthis keep alive window."
@@ -8474,6 +8519,8 @@ components:
           $ref: '#/components/schemas/SecurityMonitoringRuleHardcodedEvaluatorType'
         impossibleTravelOptions:
           $ref: '#/components/schemas/SecurityMonitoringRuleImpossibleTravelOptions'
+        complianceRuleOptions:
+          $ref: '#/components/schemas/SecurityMonitoringRuleComplianceRuleOptions'
         keepAlive:
           $ref: '#/components/schemas/SecurityMonitoringRuleKeepAlive'
         maxSignalDuration:
