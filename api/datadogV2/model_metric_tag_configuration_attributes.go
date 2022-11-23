@@ -30,7 +30,7 @@ type MetricTagConfigurationAttributes struct {
 	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Timestamp when the tag configuration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// Toggle to include or exclude percentile aggregations for distribution metrics.
+	// Toggle to turn on/off percentile aggregations for distribution metrics.
 	// Only present when the `metric_type` is `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// The metric's type.

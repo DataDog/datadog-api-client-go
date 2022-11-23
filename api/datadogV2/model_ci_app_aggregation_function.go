@@ -26,10 +26,6 @@ const (
 	CIAPPAGGREGATIONFUNCTION_MAX           CIAppAggregationFunction = "max"
 	CIAPPAGGREGATIONFUNCTION_AVG           CIAppAggregationFunction = "avg"
 	CIAPPAGGREGATIONFUNCTION_MEDIAN        CIAppAggregationFunction = "median"
-	CIAPPAGGREGATIONFUNCTION_LATEST        CIAppAggregationFunction = "latest"
-	CIAPPAGGREGATIONFUNCTION_EARLIEST      CIAppAggregationFunction = "earliest"
-	CIAPPAGGREGATIONFUNCTION_MOST_FREQUENT CIAppAggregationFunction = "most_frequent"
-	CIAPPAGGREGATIONFUNCTION_DELTA         CIAppAggregationFunction = "delta"
 )
 
 var allowedCIAppAggregationFunctionEnumValues = []CIAppAggregationFunction{
@@ -45,10 +41,6 @@ var allowedCIAppAggregationFunctionEnumValues = []CIAppAggregationFunction{
 	CIAPPAGGREGATIONFUNCTION_MAX,
 	CIAPPAGGREGATIONFUNCTION_AVG,
 	CIAPPAGGREGATIONFUNCTION_MEDIAN,
-	CIAPPAGGREGATIONFUNCTION_LATEST,
-	CIAPPAGGREGATIONFUNCTION_EARLIEST,
-	CIAPPAGGREGATIONFUNCTION_MOST_FREQUENT,
-	CIAPPAGGREGATIONFUNCTION_DELTA,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -19,9 +19,7 @@ func main() {
 			Type: datadogV2.LOGSMETRICTYPE_LOGS_METRICS,
 			Attributes: datadogV2.LogsMetricCreateAttributes{
 				Compute: datadogV2.LogsMetricCompute{
-					AggregationType:    datadogV2.LOGSMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
-					IncludePercentiles: datadog.PtrBool(true),
-					Path:               datadog.PtrString("@duration"),
+					AggregationType: datadogV2.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
 				},
 			},
 		},

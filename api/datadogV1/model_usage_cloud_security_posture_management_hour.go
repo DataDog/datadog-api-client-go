@@ -23,8 +23,6 @@ type UsageCloudSecurityPostureManagementHour struct {
 	ComplianceHostCount datadog.NullableFloat64 `json:"compliance_host_count,omitempty"`
 	// The total number of Cloud Security Posture Management containers during a given hour.
 	ContainerCount datadog.NullableFloat64 `json:"container_count,omitempty"`
-	// The number of Cloud Security Posture Management GCP hosts during a given hour.
-	GcpHostCount datadog.NullableFloat64 `json:"gcp_host_count,omitempty"`
 	// The total number of Cloud Security Posture Management hosts during a given hour.
 	HostCount datadog.NullableFloat64 `json:"host_count,omitempty"`
 	// The hour for the usage.
@@ -250,45 +248,6 @@ func (o *UsageCloudSecurityPostureManagementHour) UnsetContainerCount() {
 	o.ContainerCount.Unset()
 }
 
-// GetGcpHostCount returns the GcpHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UsageCloudSecurityPostureManagementHour) GetGcpHostCount() float64 {
-	if o == nil || o.GcpHostCount.Get() == nil {
-		var ret float64
-		return ret
-	}
-	return *o.GcpHostCount.Get()
-}
-
-// GetGcpHostCountOk returns a tuple with the GcpHostCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *UsageCloudSecurityPostureManagementHour) GetGcpHostCountOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GcpHostCount.Get(), o.GcpHostCount.IsSet()
-}
-
-// HasGcpHostCount returns a boolean if a field has been set.
-func (o *UsageCloudSecurityPostureManagementHour) HasGcpHostCount() bool {
-	return o != nil && o.GcpHostCount.IsSet()
-}
-
-// SetGcpHostCount gets a reference to the given datadog.NullableFloat64 and assigns it to the GcpHostCount field.
-func (o *UsageCloudSecurityPostureManagementHour) SetGcpHostCount(v float64) {
-	o.GcpHostCount.Set(&v)
-}
-
-// SetGcpHostCountNil sets the value for GcpHostCount to be an explicit nil.
-func (o *UsageCloudSecurityPostureManagementHour) SetGcpHostCountNil() {
-	o.GcpHostCount.Set(nil)
-}
-
-// UnsetGcpHostCount ensures that no value is present for GcpHostCount, not even an explicit nil.
-func (o *UsageCloudSecurityPostureManagementHour) UnsetGcpHostCount() {
-	o.GcpHostCount.Unset()
-}
-
 // GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetHostCount() float64 {
 	if o == nil || o.HostCount.Get() == nil {
@@ -433,9 +392,6 @@ func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 	if o.ContainerCount.IsSet() {
 		toSerialize["container_count"] = o.ContainerCount.Get()
 	}
-	if o.GcpHostCount.IsSet() {
-		toSerialize["gcp_host_count"] = o.GcpHostCount.Get()
-	}
 	if o.HostCount.IsSet() {
 		toSerialize["host_count"] = o.HostCount.Get()
 	}
@@ -468,7 +424,6 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 		AzureHostCount      datadog.NullableFloat64 `json:"azure_host_count,omitempty"`
 		ComplianceHostCount datadog.NullableFloat64 `json:"compliance_host_count,omitempty"`
 		ContainerCount      datadog.NullableFloat64 `json:"container_count,omitempty"`
-		GcpHostCount        datadog.NullableFloat64 `json:"gcp_host_count,omitempty"`
 		HostCount           datadog.NullableFloat64 `json:"host_count,omitempty"`
 		Hour                *time.Time              `json:"hour,omitempty"`
 		OrgName             *string                 `json:"org_name,omitempty"`
@@ -488,7 +443,6 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 	o.AzureHostCount = all.AzureHostCount
 	o.ComplianceHostCount = all.ComplianceHostCount
 	o.ContainerCount = all.ContainerCount
-	o.GcpHostCount = all.GcpHostCount
 	o.HostCount = all.HostCount
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName

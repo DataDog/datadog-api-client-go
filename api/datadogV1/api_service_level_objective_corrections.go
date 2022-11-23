@@ -370,55 +370,20 @@ func (a *ServiceLevelObjectiveCorrectionsApi) getSLOCorrectionExecute(r apiGetSL
 }
 
 type apiListSLOCorrectionRequest struct {
-	ctx    _context.Context
-	offset *int64
-	limit  *int64
+	ctx _context.Context
 }
 
-// ListSLOCorrectionOptionalParameters holds optional parameters for ListSLOCorrection.
-type ListSLOCorrectionOptionalParameters struct {
-	Offset *int64
-	Limit  *int64
-}
-
-// NewListSLOCorrectionOptionalParameters creates an empty struct for parameters.
-func NewListSLOCorrectionOptionalParameters() *ListSLOCorrectionOptionalParameters {
-	this := ListSLOCorrectionOptionalParameters{}
-	return &this
-}
-
-// WithOffset sets the corresponding parameter name and returns the struct.
-func (r *ListSLOCorrectionOptionalParameters) WithOffset(offset int64) *ListSLOCorrectionOptionalParameters {
-	r.Offset = &offset
-	return r
-}
-
-// WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListSLOCorrectionOptionalParameters) WithLimit(limit int64) *ListSLOCorrectionOptionalParameters {
-	r.Limit = &limit
-	return r
-}
-
-func (a *ServiceLevelObjectiveCorrectionsApi) buildListSLOCorrectionRequest(ctx _context.Context, o ...ListSLOCorrectionOptionalParameters) (apiListSLOCorrectionRequest, error) {
+func (a *ServiceLevelObjectiveCorrectionsApi) buildListSLOCorrectionRequest(ctx _context.Context) (apiListSLOCorrectionRequest, error) {
 	req := apiListSLOCorrectionRequest{
 		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListSLOCorrectionOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.offset = o[0].Offset
-		req.limit = o[0].Limit
 	}
 	return req, nil
 }
 
 // ListSLOCorrection Get all SLO corrections.
 // Get all Service Level Objective corrections.
-func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrection(ctx _context.Context, o ...ListSLOCorrectionOptionalParameters) (SLOCorrectionListResponse, *_nethttp.Response, error) {
-	req, err := a.buildListSLOCorrectionRequest(ctx, o...)
+func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrection(ctx _context.Context) (SLOCorrectionListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListSLOCorrectionRequest(ctx)
 	if err != nil {
 		var localVarReturnValue SLOCorrectionListResponse
 		return localVarReturnValue, nil, err
@@ -445,12 +410,6 @@ func (a *ServiceLevelObjectiveCorrectionsApi) listSLOCorrectionExecute(r apiList
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", datadog.ParameterToString(*r.offset, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", datadog.ParameterToString(*r.limit, ""))
-	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if r.ctx != nil {

@@ -10,8 +10,6 @@ import (
 
 // LogsMetricUpdateAttributes The log-based metric properties that will be updated.
 type LogsMetricUpdateAttributes struct {
-	// The compute rule to compute the log-based metric.
-	Compute *LogsMetricUpdateCompute `json:"compute,omitempty"`
 	// The log-based metric filter. Logs matching this filter will be aggregated in this metric.
 	Filter *LogsMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
@@ -36,34 +34,6 @@ func NewLogsMetricUpdateAttributes() *LogsMetricUpdateAttributes {
 func NewLogsMetricUpdateAttributesWithDefaults() *LogsMetricUpdateAttributes {
 	this := LogsMetricUpdateAttributes{}
 	return &this
-}
-
-// GetCompute returns the Compute field value if set, zero value otherwise.
-func (o *LogsMetricUpdateAttributes) GetCompute() LogsMetricUpdateCompute {
-	if o == nil || o.Compute == nil {
-		var ret LogsMetricUpdateCompute
-		return ret
-	}
-	return *o.Compute
-}
-
-// GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogsMetricUpdateAttributes) GetComputeOk() (*LogsMetricUpdateCompute, bool) {
-	if o == nil || o.Compute == nil {
-		return nil, false
-	}
-	return o.Compute, true
-}
-
-// HasCompute returns a boolean if a field has been set.
-func (o *LogsMetricUpdateAttributes) HasCompute() bool {
-	return o != nil && o.Compute != nil
-}
-
-// SetCompute gets a reference to the given LogsMetricUpdateCompute and assigns it to the Compute field.
-func (o *LogsMetricUpdateAttributes) SetCompute(v LogsMetricUpdateCompute) {
-	o.Compute = &v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -128,9 +98,6 @@ func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Compute != nil {
-		toSerialize["compute"] = o.Compute
-	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -148,9 +115,8 @@ func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *LogsMetricUpdateCompute `json:"compute,omitempty"`
-		Filter  *LogsMetricFilter        `json:"filter,omitempty"`
-		GroupBy []LogsMetricGroupBy      `json:"group_by,omitempty"`
+		Filter  *LogsMetricFilter   `json:"filter,omitempty"`
+		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -161,14 +127,6 @@ func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.Compute = all.Compute
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
