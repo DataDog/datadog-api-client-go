@@ -23,7 +23,7 @@ func main() {
 		},
 		Filter: &datadogV2.CIAppPipelinesQueryFilter{
 			From:  datadog.PtrString("now-15m"),
-			Query: datadog.PtrString("@ci.provider.name:github AND @ci.provider.instance:github-actions"),
+			Query: datadog.PtrString("@ci.provider.name:(gitlab OR github)"),
 			To:    datadog.PtrString("now"),
 		},
 		GroupBy: []datadogV2.CIAppPipelinesGroupBy{
