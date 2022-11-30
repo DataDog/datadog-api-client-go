@@ -25,7 +25,11 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	ApmTraceSearchSum *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
+	ApplicationSecurityFargateAverage *UsageBillableSummaryBody `json:"application_security_fargate_average,omitempty"`
+	// Response with properties for each aggregated usage type.
 	ApplicationSecurityHostSum *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ApplicationSecurityHostTop99 *UsageBillableSummaryBody `json:"application_security_host_top99,omitempty"`
 	// Response with properties for each aggregated usage type.
 	CiPipelineIndexedSpansSum *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
@@ -38,6 +42,10 @@ type UsageBillableSummaryKeys struct {
 	CiTestingMaximum *UsageBillableSummaryBody `json:"ci_testing_maximum,omitempty"`
 	// Response with properties for each aggregated usage type.
 	CiTestingSum *UsageBillableSummaryBody `json:"ci_testing_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	CloudCostManagementAverage *UsageBillableSummaryBody `json:"cloud_cost_management_average,omitempty"`
+	// Response with properties for each aggregated usage type.
+	CloudCostManagementSum *UsageBillableSummaryBody `json:"cloud_cost_management_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
 	CspmContainerSum *UsageBillableSummaryBody `json:"cspm_container_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
@@ -101,6 +109,8 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	LambdaFunctionSum *UsageBillableSummaryBody `json:"lambda_function_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
+	LogsForwardingSum *UsageBillableSummaryBody `json:"logs_forwarding_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
 	LogsIndexed15daySum *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
 	LogsIndexed180daySum *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
@@ -155,6 +165,12 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	SensitiveDataScannerSum *UsageBillableSummaryBody `json:"sensitive_data_scanner_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
+	ServerlessApmSum *UsageBillableSummaryBody `json:"serverless_apm_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ServerlessInfraAverage *UsageBillableSummaryBody `json:"serverless_infra_average,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ServerlessInfraSum *UsageBillableSummaryBody `json:"serverless_infra_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
 	ServerlessInvocationSum *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
 	SiemSum *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
@@ -162,6 +178,8 @@ type UsageBillableSummaryKeys struct {
 	StandardTimeseriesAverage *UsageBillableSummaryBody `json:"standard_timeseries_average,omitempty"`
 	// Response with properties for each aggregated usage type.
 	SyntheticsApiTestsSum *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	SyntheticsAppTestingMaximum *UsageBillableSummaryBody `json:"synthetics_app_testing_maximum,omitempty"`
 	// Response with properties for each aggregated usage type.
 	SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
@@ -386,6 +404,34 @@ func (o *UsageBillableSummaryKeys) SetApmTraceSearchSum(v UsageBillableSummaryBo
 	o.ApmTraceSearchSum = &v
 }
 
+// GetApplicationSecurityFargateAverage returns the ApplicationSecurityFargateAverage field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityFargateAverage() UsageBillableSummaryBody {
+	if o == nil || o.ApplicationSecurityFargateAverage == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ApplicationSecurityFargateAverage
+}
+
+// GetApplicationSecurityFargateAverageOk returns a tuple with the ApplicationSecurityFargateAverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityFargateAverageOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ApplicationSecurityFargateAverage == nil {
+		return nil, false
+	}
+	return o.ApplicationSecurityFargateAverage, true
+}
+
+// HasApplicationSecurityFargateAverage returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasApplicationSecurityFargateAverage() bool {
+	return o != nil && o.ApplicationSecurityFargateAverage != nil
+}
+
+// SetApplicationSecurityFargateAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityFargateAverage field.
+func (o *UsageBillableSummaryKeys) SetApplicationSecurityFargateAverage(v UsageBillableSummaryBody) {
+	o.ApplicationSecurityFargateAverage = &v
+}
+
 // GetApplicationSecurityHostSum returns the ApplicationSecurityHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostSum() UsageBillableSummaryBody {
 	if o == nil || o.ApplicationSecurityHostSum == nil {
@@ -412,6 +458,34 @@ func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostSum() bool {
 // SetApplicationSecurityHostSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityHostSum field.
 func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostSum(v UsageBillableSummaryBody) {
 	o.ApplicationSecurityHostSum = &v
+}
+
+// GetApplicationSecurityHostTop99 returns the ApplicationSecurityHostTop99 field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99() UsageBillableSummaryBody {
+	if o == nil || o.ApplicationSecurityHostTop99 == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ApplicationSecurityHostTop99
+}
+
+// GetApplicationSecurityHostTop99Ok returns a tuple with the ApplicationSecurityHostTop99 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99Ok() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ApplicationSecurityHostTop99 == nil {
+		return nil, false
+	}
+	return o.ApplicationSecurityHostTop99, true
+}
+
+// HasApplicationSecurityHostTop99 returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostTop99() bool {
+	return o != nil && o.ApplicationSecurityHostTop99 != nil
+}
+
+// SetApplicationSecurityHostTop99 gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityHostTop99 field.
+func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostTop99(v UsageBillableSummaryBody) {
+	o.ApplicationSecurityHostTop99 = &v
 }
 
 // GetCiPipelineIndexedSpansSum returns the CiPipelineIndexedSpansSum field value if set, zero value otherwise.
@@ -580,6 +654,62 @@ func (o *UsageBillableSummaryKeys) HasCiTestingSum() bool {
 // SetCiTestingSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CiTestingSum field.
 func (o *UsageBillableSummaryKeys) SetCiTestingSum(v UsageBillableSummaryBody) {
 	o.CiTestingSum = &v
+}
+
+// GetCloudCostManagementAverage returns the CloudCostManagementAverage field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetCloudCostManagementAverage() UsageBillableSummaryBody {
+	if o == nil || o.CloudCostManagementAverage == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.CloudCostManagementAverage
+}
+
+// GetCloudCostManagementAverageOk returns a tuple with the CloudCostManagementAverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetCloudCostManagementAverageOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.CloudCostManagementAverage == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementAverage, true
+}
+
+// HasCloudCostManagementAverage returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasCloudCostManagementAverage() bool {
+	return o != nil && o.CloudCostManagementAverage != nil
+}
+
+// SetCloudCostManagementAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the CloudCostManagementAverage field.
+func (o *UsageBillableSummaryKeys) SetCloudCostManagementAverage(v UsageBillableSummaryBody) {
+	o.CloudCostManagementAverage = &v
+}
+
+// GetCloudCostManagementSum returns the CloudCostManagementSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetCloudCostManagementSum() UsageBillableSummaryBody {
+	if o == nil || o.CloudCostManagementSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.CloudCostManagementSum
+}
+
+// GetCloudCostManagementSumOk returns a tuple with the CloudCostManagementSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetCloudCostManagementSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.CloudCostManagementSum == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementSum, true
+}
+
+// HasCloudCostManagementSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasCloudCostManagementSum() bool {
+	return o != nil && o.CloudCostManagementSum != nil
+}
+
+// SetCloudCostManagementSum gets a reference to the given UsageBillableSummaryBody and assigns it to the CloudCostManagementSum field.
+func (o *UsageBillableSummaryKeys) SetCloudCostManagementSum(v UsageBillableSummaryBody) {
+	o.CloudCostManagementSum = &v
 }
 
 // GetCspmContainerSum returns the CspmContainerSum field value if set, zero value otherwise.
@@ -1450,6 +1580,34 @@ func (o *UsageBillableSummaryKeys) SetLambdaFunctionSum(v UsageBillableSummaryBo
 	o.LambdaFunctionSum = &v
 }
 
+// GetLogsForwardingSum returns the LogsForwardingSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetLogsForwardingSum() UsageBillableSummaryBody {
+	if o == nil || o.LogsForwardingSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.LogsForwardingSum
+}
+
+// GetLogsForwardingSumOk returns a tuple with the LogsForwardingSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetLogsForwardingSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.LogsForwardingSum == nil {
+		return nil, false
+	}
+	return o.LogsForwardingSum, true
+}
+
+// HasLogsForwardingSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasLogsForwardingSum() bool {
+	return o != nil && o.LogsForwardingSum != nil
+}
+
+// SetLogsForwardingSum gets a reference to the given UsageBillableSummaryBody and assigns it to the LogsForwardingSum field.
+func (o *UsageBillableSummaryKeys) SetLogsForwardingSum(v UsageBillableSummaryBody) {
+	o.LogsForwardingSum = &v
+}
+
 // GetLogsIndexed15daySum returns the LogsIndexed15daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed15daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed15daySum == nil {
@@ -2206,6 +2364,90 @@ func (o *UsageBillableSummaryKeys) SetSensitiveDataScannerSum(v UsageBillableSum
 	o.SensitiveDataScannerSum = &v
 }
 
+// GetServerlessApmSum returns the ServerlessApmSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetServerlessApmSum() UsageBillableSummaryBody {
+	if o == nil || o.ServerlessApmSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ServerlessApmSum
+}
+
+// GetServerlessApmSumOk returns a tuple with the ServerlessApmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetServerlessApmSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ServerlessApmSum == nil {
+		return nil, false
+	}
+	return o.ServerlessApmSum, true
+}
+
+// HasServerlessApmSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasServerlessApmSum() bool {
+	return o != nil && o.ServerlessApmSum != nil
+}
+
+// SetServerlessApmSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ServerlessApmSum field.
+func (o *UsageBillableSummaryKeys) SetServerlessApmSum(v UsageBillableSummaryBody) {
+	o.ServerlessApmSum = &v
+}
+
+// GetServerlessInfraAverage returns the ServerlessInfraAverage field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetServerlessInfraAverage() UsageBillableSummaryBody {
+	if o == nil || o.ServerlessInfraAverage == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ServerlessInfraAverage
+}
+
+// GetServerlessInfraAverageOk returns a tuple with the ServerlessInfraAverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetServerlessInfraAverageOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ServerlessInfraAverage == nil {
+		return nil, false
+	}
+	return o.ServerlessInfraAverage, true
+}
+
+// HasServerlessInfraAverage returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasServerlessInfraAverage() bool {
+	return o != nil && o.ServerlessInfraAverage != nil
+}
+
+// SetServerlessInfraAverage gets a reference to the given UsageBillableSummaryBody and assigns it to the ServerlessInfraAverage field.
+func (o *UsageBillableSummaryKeys) SetServerlessInfraAverage(v UsageBillableSummaryBody) {
+	o.ServerlessInfraAverage = &v
+}
+
+// GetServerlessInfraSum returns the ServerlessInfraSum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetServerlessInfraSum() UsageBillableSummaryBody {
+	if o == nil || o.ServerlessInfraSum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.ServerlessInfraSum
+}
+
+// GetServerlessInfraSumOk returns a tuple with the ServerlessInfraSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetServerlessInfraSumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ServerlessInfraSum == nil {
+		return nil, false
+	}
+	return o.ServerlessInfraSum, true
+}
+
+// HasServerlessInfraSum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasServerlessInfraSum() bool {
+	return o != nil && o.ServerlessInfraSum != nil
+}
+
+// SetServerlessInfraSum gets a reference to the given UsageBillableSummaryBody and assigns it to the ServerlessInfraSum field.
+func (o *UsageBillableSummaryKeys) SetServerlessInfraSum(v UsageBillableSummaryBody) {
+	o.ServerlessInfraSum = &v
+}
+
 // GetServerlessInvocationSum returns the ServerlessInvocationSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetServerlessInvocationSum() UsageBillableSummaryBody {
 	if o == nil || o.ServerlessInvocationSum == nil {
@@ -2316,6 +2558,34 @@ func (o *UsageBillableSummaryKeys) HasSyntheticsApiTestsSum() bool {
 // SetSyntheticsApiTestsSum gets a reference to the given UsageBillableSummaryBody and assigns it to the SyntheticsApiTestsSum field.
 func (o *UsageBillableSummaryKeys) SetSyntheticsApiTestsSum(v UsageBillableSummaryBody) {
 	o.SyntheticsApiTestsSum = &v
+}
+
+// GetSyntheticsAppTestingMaximum returns the SyntheticsAppTestingMaximum field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetSyntheticsAppTestingMaximum() UsageBillableSummaryBody {
+	if o == nil || o.SyntheticsAppTestingMaximum == nil {
+		var ret UsageBillableSummaryBody
+		return ret
+	}
+	return *o.SyntheticsAppTestingMaximum
+}
+
+// GetSyntheticsAppTestingMaximumOk returns a tuple with the SyntheticsAppTestingMaximum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageBillableSummaryKeys) GetSyntheticsAppTestingMaximumOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.SyntheticsAppTestingMaximum == nil {
+		return nil, false
+	}
+	return o.SyntheticsAppTestingMaximum, true
+}
+
+// HasSyntheticsAppTestingMaximum returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasSyntheticsAppTestingMaximum() bool {
+	return o != nil && o.SyntheticsAppTestingMaximum != nil
+}
+
+// SetSyntheticsAppTestingMaximum gets a reference to the given UsageBillableSummaryBody and assigns it to the SyntheticsAppTestingMaximum field.
+func (o *UsageBillableSummaryKeys) SetSyntheticsAppTestingMaximum(v UsageBillableSummaryBody) {
+	o.SyntheticsAppTestingMaximum = &v
 }
 
 // GetSyntheticsBrowserChecksSum returns the SyntheticsBrowserChecksSum field value if set, zero value otherwise.
@@ -2429,8 +2699,14 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.ApmTraceSearchSum != nil {
 		toSerialize["apm_trace_search_sum"] = o.ApmTraceSearchSum
 	}
+	if o.ApplicationSecurityFargateAverage != nil {
+		toSerialize["application_security_fargate_average"] = o.ApplicationSecurityFargateAverage
+	}
 	if o.ApplicationSecurityHostSum != nil {
 		toSerialize["application_security_host_sum"] = o.ApplicationSecurityHostSum
+	}
+	if o.ApplicationSecurityHostTop99 != nil {
+		toSerialize["application_security_host_top99"] = o.ApplicationSecurityHostTop99
 	}
 	if o.CiPipelineIndexedSpansSum != nil {
 		toSerialize["ci_pipeline_indexed_spans_sum"] = o.CiPipelineIndexedSpansSum
@@ -2449,6 +2725,12 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	}
 	if o.CiTestingSum != nil {
 		toSerialize["ci_testing_sum"] = o.CiTestingSum
+	}
+	if o.CloudCostManagementAverage != nil {
+		toSerialize["cloud_cost_management_average"] = o.CloudCostManagementAverage
+	}
+	if o.CloudCostManagementSum != nil {
+		toSerialize["cloud_cost_management_sum"] = o.CloudCostManagementSum
 	}
 	if o.CspmContainerSum != nil {
 		toSerialize["cspm_container_sum"] = o.CspmContainerSum
@@ -2543,6 +2825,9 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.LambdaFunctionSum != nil {
 		toSerialize["lambda_function_sum"] = o.LambdaFunctionSum
 	}
+	if o.LogsForwardingSum != nil {
+		toSerialize["logs_forwarding_sum"] = o.LogsForwardingSum
+	}
 	if o.LogsIndexed15daySum != nil {
 		toSerialize["logs_indexed_15day_sum"] = o.LogsIndexed15daySum
 	}
@@ -2624,6 +2909,15 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.SensitiveDataScannerSum != nil {
 		toSerialize["sensitive_data_scanner_sum"] = o.SensitiveDataScannerSum
 	}
+	if o.ServerlessApmSum != nil {
+		toSerialize["serverless_apm_sum"] = o.ServerlessApmSum
+	}
+	if o.ServerlessInfraAverage != nil {
+		toSerialize["serverless_infra_average"] = o.ServerlessInfraAverage
+	}
+	if o.ServerlessInfraSum != nil {
+		toSerialize["serverless_infra_sum"] = o.ServerlessInfraSum
+	}
 	if o.ServerlessInvocationSum != nil {
 		toSerialize["serverless_invocation_sum"] = o.ServerlessInvocationSum
 	}
@@ -2635,6 +2929,9 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	}
 	if o.SyntheticsApiTestsSum != nil {
 		toSerialize["synthetics_api_tests_sum"] = o.SyntheticsApiTestsSum
+	}
+	if o.SyntheticsAppTestingMaximum != nil {
+		toSerialize["synthetics_app_testing_maximum"] = o.SyntheticsAppTestingMaximum
 	}
 	if o.SyntheticsBrowserChecksSum != nil {
 		toSerialize["synthetics_browser_checks_sum"] = o.SyntheticsBrowserChecksSum
@@ -2663,13 +2960,17 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		ApmProfilerHostSum                    *UsageBillableSummaryBody `json:"apm_profiler_host_sum,omitempty"`
 		ApmProfilerHostTop99p                 *UsageBillableSummaryBody `json:"apm_profiler_host_top99p,omitempty"`
 		ApmTraceSearchSum                     *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+		ApplicationSecurityFargateAverage     *UsageBillableSummaryBody `json:"application_security_fargate_average,omitempty"`
 		ApplicationSecurityHostSum            *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
+		ApplicationSecurityHostTop99          *UsageBillableSummaryBody `json:"application_security_host_top99,omitempty"`
 		CiPipelineIndexedSpansSum             *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
 		CiPipelineMaximum                     *UsageBillableSummaryBody `json:"ci_pipeline_maximum,omitempty"`
 		CiPipelineSum                         *UsageBillableSummaryBody `json:"ci_pipeline_sum,omitempty"`
 		CiTestIndexedSpansSum                 *UsageBillableSummaryBody `json:"ci_test_indexed_spans_sum,omitempty"`
 		CiTestingMaximum                      *UsageBillableSummaryBody `json:"ci_testing_maximum,omitempty"`
 		CiTestingSum                          *UsageBillableSummaryBody `json:"ci_testing_sum,omitempty"`
+		CloudCostManagementAverage            *UsageBillableSummaryBody `json:"cloud_cost_management_average,omitempty"`
+		CloudCostManagementSum                *UsageBillableSummaryBody `json:"cloud_cost_management_sum,omitempty"`
 		CspmContainerSum                      *UsageBillableSummaryBody `json:"cspm_container_sum,omitempty"`
 		CspmHostSum                           *UsageBillableSummaryBody `json:"cspm_host_sum,omitempty"`
 		CspmHostTop99p                        *UsageBillableSummaryBody `json:"cspm_host_top99p,omitempty"`
@@ -2701,6 +3002,7 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		IotTop99p                             *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
 		LambdaFunctionAverage                 *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
 		LambdaFunctionSum                     *UsageBillableSummaryBody `json:"lambda_function_sum,omitempty"`
+		LogsForwardingSum                     *UsageBillableSummaryBody `json:"logs_forwarding_sum,omitempty"`
 		LogsIndexed15daySum                   *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
 		LogsIndexed180daySum                  *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
 		LogsIndexed30daySum                   *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
@@ -2728,10 +3030,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		RumSum                                *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
 		RumUnitsSum                           *UsageBillableSummaryBody `json:"rum_units_sum,omitempty"`
 		SensitiveDataScannerSum               *UsageBillableSummaryBody `json:"sensitive_data_scanner_sum,omitempty"`
+		ServerlessApmSum                      *UsageBillableSummaryBody `json:"serverless_apm_sum,omitempty"`
+		ServerlessInfraAverage                *UsageBillableSummaryBody `json:"serverless_infra_average,omitempty"`
+		ServerlessInfraSum                    *UsageBillableSummaryBody `json:"serverless_infra_sum,omitempty"`
 		ServerlessInvocationSum               *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
 		SiemSum                               *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
 		StandardTimeseriesAverage             *UsageBillableSummaryBody `json:"standard_timeseries_average,omitempty"`
 		SyntheticsApiTestsSum                 *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+		SyntheticsAppTestingMaximum           *UsageBillableSummaryBody `json:"synthetics_app_testing_maximum,omitempty"`
 		SyntheticsBrowserChecksSum            *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
 		TimeseriesAverage                     *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
 		TimeseriesSum                         *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
@@ -2801,6 +3107,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.ApmTraceSearchSum = all.ApmTraceSearchSum
+	if all.ApplicationSecurityFargateAverage != nil && all.ApplicationSecurityFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ApplicationSecurityFargateAverage = all.ApplicationSecurityFargateAverage
 	if all.ApplicationSecurityHostSum != nil && all.ApplicationSecurityHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -2809,6 +3123,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.ApplicationSecurityHostSum = all.ApplicationSecurityHostSum
+	if all.ApplicationSecurityHostTop99 != nil && all.ApplicationSecurityHostTop99.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ApplicationSecurityHostTop99 = all.ApplicationSecurityHostTop99
 	if all.CiPipelineIndexedSpansSum != nil && all.CiPipelineIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -2857,6 +3179,22 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.CiTestingSum = all.CiTestingSum
+	if all.CloudCostManagementAverage != nil && all.CloudCostManagementAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.CloudCostManagementAverage = all.CloudCostManagementAverage
+	if all.CloudCostManagementSum != nil && all.CloudCostManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.CloudCostManagementSum = all.CloudCostManagementSum
 	if all.CspmContainerSum != nil && all.CspmContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -3105,6 +3443,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.LambdaFunctionSum = all.LambdaFunctionSum
+	if all.LogsForwardingSum != nil && all.LogsForwardingSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.LogsForwardingSum = all.LogsForwardingSum
 	if all.LogsIndexed15daySum != nil && all.LogsIndexed15daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -3321,6 +3667,30 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.SensitiveDataScannerSum = all.SensitiveDataScannerSum
+	if all.ServerlessApmSum != nil && all.ServerlessApmSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ServerlessApmSum = all.ServerlessApmSum
+	if all.ServerlessInfraAverage != nil && all.ServerlessInfraAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ServerlessInfraAverage = all.ServerlessInfraAverage
+	if all.ServerlessInfraSum != nil && all.ServerlessInfraSum.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ServerlessInfraSum = all.ServerlessInfraSum
 	if all.ServerlessInvocationSum != nil && all.ServerlessInvocationSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -3353,6 +3723,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.SyntheticsApiTestsSum = all.SyntheticsApiTestsSum
+	if all.SyntheticsAppTestingMaximum != nil && all.SyntheticsAppTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.SyntheticsAppTestingMaximum = all.SyntheticsAppTestingMaximum
 	if all.SyntheticsBrowserChecksSum != nil && all.SyntheticsBrowserChecksSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
