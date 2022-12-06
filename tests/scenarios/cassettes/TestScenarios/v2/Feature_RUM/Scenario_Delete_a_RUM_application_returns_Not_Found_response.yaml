@@ -8,9 +8,7 @@ interactions:
     method: DELETE
     url: https://api.datadoghq.com/api/v2/rum/applications/abcde-12345
   response:
-    body: '{"errors":["Application Not Found not found"]}
-
-      '
+    body: '{"errors":["Application Not Found not found"]}'
     code: 404
     duration: ''
     headers:

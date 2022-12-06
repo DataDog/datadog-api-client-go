@@ -9,12 +9,10 @@ import (
 	"fmt"
 )
 
-// RUMApplicationAttributes RUM application attributes.
-type RUMApplicationAttributes struct {
+// RUMApplicationListAttributes RUM application list attributes.
+type RUMApplicationListAttributes struct {
 	// ID of the RUM application.
 	ApplicationId string `json:"application_id"`
-	// Client token of the RUM application.
-	ClientToken string `json:"client_token"`
 	// Timestamp in ms of the creation date.
 	CreatedAt int64 `json:"created_at"`
 	// Handle of the creator user.
@@ -38,14 +36,13 @@ type RUMApplicationAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRUMApplicationAttributes instantiates a new RUMApplicationAttributes object.
+// NewRUMApplicationListAttributes instantiates a new RUMApplicationListAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRUMApplicationAttributes(applicationId string, clientToken string, createdAt int64, createdByHandle string, name string, orgId int32, typeVar string, updatedAt int64, updatedByHandle string) *RUMApplicationAttributes {
-	this := RUMApplicationAttributes{}
+func NewRUMApplicationListAttributes(applicationId string, createdAt int64, createdByHandle string, name string, orgId int32, typeVar string, updatedAt int64, updatedByHandle string) *RUMApplicationListAttributes {
+	this := RUMApplicationListAttributes{}
 	this.ApplicationId = applicationId
-	this.ClientToken = clientToken
 	this.CreatedAt = createdAt
 	this.CreatedByHandle = createdByHandle
 	this.Name = name
@@ -56,16 +53,16 @@ func NewRUMApplicationAttributes(applicationId string, clientToken string, creat
 	return &this
 }
 
-// NewRUMApplicationAttributesWithDefaults instantiates a new RUMApplicationAttributes object.
+// NewRUMApplicationListAttributesWithDefaults instantiates a new RUMApplicationListAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRUMApplicationAttributesWithDefaults() *RUMApplicationAttributes {
-	this := RUMApplicationAttributes{}
+func NewRUMApplicationListAttributesWithDefaults() *RUMApplicationListAttributes {
+	this := RUMApplicationListAttributes{}
 	return &this
 }
 
 // GetApplicationId returns the ApplicationId field value.
-func (o *RUMApplicationAttributes) GetApplicationId() string {
+func (o *RUMApplicationListAttributes) GetApplicationId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,7 +72,7 @@ func (o *RUMApplicationAttributes) GetApplicationId() string {
 
 // GetApplicationIdOk returns a tuple with the ApplicationId field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetApplicationIdOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetApplicationIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,35 +80,12 @@ func (o *RUMApplicationAttributes) GetApplicationIdOk() (*string, bool) {
 }
 
 // SetApplicationId sets field value.
-func (o *RUMApplicationAttributes) SetApplicationId(v string) {
+func (o *RUMApplicationListAttributes) SetApplicationId(v string) {
 	o.ApplicationId = v
 }
 
-// GetClientToken returns the ClientToken field value.
-func (o *RUMApplicationAttributes) GetClientToken() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ClientToken
-}
-
-// GetClientTokenOk returns a tuple with the ClientToken field value
-// and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetClientTokenOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ClientToken, true
-}
-
-// SetClientToken sets field value.
-func (o *RUMApplicationAttributes) SetClientToken(v string) {
-	o.ClientToken = v
-}
-
 // GetCreatedAt returns the CreatedAt field value.
-func (o *RUMApplicationAttributes) GetCreatedAt() int64 {
+func (o *RUMApplicationListAttributes) GetCreatedAt() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -121,7 +95,7 @@ func (o *RUMApplicationAttributes) GetCreatedAt() int64 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetCreatedAtOk() (*int64, bool) {
+func (o *RUMApplicationListAttributes) GetCreatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,12 +103,12 @@ func (o *RUMApplicationAttributes) GetCreatedAtOk() (*int64, bool) {
 }
 
 // SetCreatedAt sets field value.
-func (o *RUMApplicationAttributes) SetCreatedAt(v int64) {
+func (o *RUMApplicationListAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = v
 }
 
 // GetCreatedByHandle returns the CreatedByHandle field value.
-func (o *RUMApplicationAttributes) GetCreatedByHandle() string {
+func (o *RUMApplicationListAttributes) GetCreatedByHandle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -144,7 +118,7 @@ func (o *RUMApplicationAttributes) GetCreatedByHandle() string {
 
 // GetCreatedByHandleOk returns a tuple with the CreatedByHandle field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetCreatedByHandleOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetCreatedByHandleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -152,12 +126,12 @@ func (o *RUMApplicationAttributes) GetCreatedByHandleOk() (*string, bool) {
 }
 
 // SetCreatedByHandle sets field value.
-func (o *RUMApplicationAttributes) SetCreatedByHandle(v string) {
+func (o *RUMApplicationListAttributes) SetCreatedByHandle(v string) {
 	o.CreatedByHandle = v
 }
 
 // GetHash returns the Hash field value if set, zero value otherwise.
-func (o *RUMApplicationAttributes) GetHash() string {
+func (o *RUMApplicationListAttributes) GetHash() string {
 	if o == nil || o.Hash == nil {
 		var ret string
 		return ret
@@ -167,7 +141,7 @@ func (o *RUMApplicationAttributes) GetHash() string {
 
 // GetHashOk returns a tuple with the Hash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetHashOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetHashOk() (*string, bool) {
 	if o == nil || o.Hash == nil {
 		return nil, false
 	}
@@ -175,17 +149,17 @@ func (o *RUMApplicationAttributes) GetHashOk() (*string, bool) {
 }
 
 // HasHash returns a boolean if a field has been set.
-func (o *RUMApplicationAttributes) HasHash() bool {
+func (o *RUMApplicationListAttributes) HasHash() bool {
 	return o != nil && o.Hash != nil
 }
 
 // SetHash gets a reference to the given string and assigns it to the Hash field.
-func (o *RUMApplicationAttributes) SetHash(v string) {
+func (o *RUMApplicationListAttributes) SetHash(v string) {
 	o.Hash = &v
 }
 
 // GetIsActive returns the IsActive field value if set, zero value otherwise.
-func (o *RUMApplicationAttributes) GetIsActive() bool {
+func (o *RUMApplicationListAttributes) GetIsActive() bool {
 	if o == nil || o.IsActive == nil {
 		var ret bool
 		return ret
@@ -195,7 +169,7 @@ func (o *RUMApplicationAttributes) GetIsActive() bool {
 
 // GetIsActiveOk returns a tuple with the IsActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetIsActiveOk() (*bool, bool) {
+func (o *RUMApplicationListAttributes) GetIsActiveOk() (*bool, bool) {
 	if o == nil || o.IsActive == nil {
 		return nil, false
 	}
@@ -203,17 +177,17 @@ func (o *RUMApplicationAttributes) GetIsActiveOk() (*bool, bool) {
 }
 
 // HasIsActive returns a boolean if a field has been set.
-func (o *RUMApplicationAttributes) HasIsActive() bool {
+func (o *RUMApplicationListAttributes) HasIsActive() bool {
 	return o != nil && o.IsActive != nil
 }
 
 // SetIsActive gets a reference to the given bool and assigns it to the IsActive field.
-func (o *RUMApplicationAttributes) SetIsActive(v bool) {
+func (o *RUMApplicationListAttributes) SetIsActive(v bool) {
 	o.IsActive = &v
 }
 
 // GetName returns the Name field value.
-func (o *RUMApplicationAttributes) GetName() string {
+func (o *RUMApplicationListAttributes) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -223,7 +197,7 @@ func (o *RUMApplicationAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetNameOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -231,12 +205,12 @@ func (o *RUMApplicationAttributes) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value.
-func (o *RUMApplicationAttributes) SetName(v string) {
+func (o *RUMApplicationListAttributes) SetName(v string) {
 	o.Name = v
 }
 
 // GetOrgId returns the OrgId field value.
-func (o *RUMApplicationAttributes) GetOrgId() int32 {
+func (o *RUMApplicationListAttributes) GetOrgId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -246,7 +220,7 @@ func (o *RUMApplicationAttributes) GetOrgId() int32 {
 
 // GetOrgIdOk returns a tuple with the OrgId field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetOrgIdOk() (*int32, bool) {
+func (o *RUMApplicationListAttributes) GetOrgIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -254,12 +228,12 @@ func (o *RUMApplicationAttributes) GetOrgIdOk() (*int32, bool) {
 }
 
 // SetOrgId sets field value.
-func (o *RUMApplicationAttributes) SetOrgId(v int32) {
+func (o *RUMApplicationListAttributes) SetOrgId(v int32) {
 	o.OrgId = v
 }
 
 // GetType returns the Type field value.
-func (o *RUMApplicationAttributes) GetType() string {
+func (o *RUMApplicationListAttributes) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -269,7 +243,7 @@ func (o *RUMApplicationAttributes) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetTypeOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -277,12 +251,12 @@ func (o *RUMApplicationAttributes) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *RUMApplicationAttributes) SetType(v string) {
+func (o *RUMApplicationListAttributes) SetType(v string) {
 	o.Type = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value.
-func (o *RUMApplicationAttributes) GetUpdatedAt() int64 {
+func (o *RUMApplicationListAttributes) GetUpdatedAt() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -292,7 +266,7 @@ func (o *RUMApplicationAttributes) GetUpdatedAt() int64 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetUpdatedAtOk() (*int64, bool) {
+func (o *RUMApplicationListAttributes) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -300,12 +274,12 @@ func (o *RUMApplicationAttributes) GetUpdatedAtOk() (*int64, bool) {
 }
 
 // SetUpdatedAt sets field value.
-func (o *RUMApplicationAttributes) SetUpdatedAt(v int64) {
+func (o *RUMApplicationListAttributes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = v
 }
 
 // GetUpdatedByHandle returns the UpdatedByHandle field value.
-func (o *RUMApplicationAttributes) GetUpdatedByHandle() string {
+func (o *RUMApplicationListAttributes) GetUpdatedByHandle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -315,7 +289,7 @@ func (o *RUMApplicationAttributes) GetUpdatedByHandle() string {
 
 // GetUpdatedByHandleOk returns a tuple with the UpdatedByHandle field value
 // and a boolean to check if the value has been set.
-func (o *RUMApplicationAttributes) GetUpdatedByHandleOk() (*string, bool) {
+func (o *RUMApplicationListAttributes) GetUpdatedByHandleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -323,18 +297,17 @@ func (o *RUMApplicationAttributes) GetUpdatedByHandleOk() (*string, bool) {
 }
 
 // SetUpdatedByHandle sets field value.
-func (o *RUMApplicationAttributes) SetUpdatedByHandle(v string) {
+func (o *RUMApplicationListAttributes) SetUpdatedByHandle(v string) {
 	o.UpdatedByHandle = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
+func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["application_id"] = o.ApplicationId
-	toSerialize["client_token"] = o.ClientToken
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["created_by_handle"] = o.CreatedByHandle
 	if o.Hash != nil {
@@ -356,11 +329,10 @@ func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ApplicationId   *string `json:"application_id"`
-		ClientToken     *string `json:"client_token"`
 		CreatedAt       *int64  `json:"created_at"`
 		CreatedByHandle *string `json:"created_by_handle"`
 		Name            *string `json:"name"`
@@ -371,7 +343,6 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		ApplicationId   string  `json:"application_id"`
-		ClientToken     string  `json:"client_token"`
 		CreatedAt       int64   `json:"created_at"`
 		CreatedByHandle string  `json:"created_by_handle"`
 		Hash            *string `json:"hash,omitempty"`
@@ -388,9 +359,6 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.ApplicationId == nil {
 		return fmt.Errorf("required field application_id missing")
-	}
-	if required.ClientToken == nil {
-		return fmt.Errorf("required field client_token missing")
 	}
 	if required.CreatedAt == nil {
 		return fmt.Errorf("required field created_at missing")
@@ -423,7 +391,6 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.ApplicationId = all.ApplicationId
-	o.ClientToken = all.ClientToken
 	o.CreatedAt = all.CreatedAt
 	o.CreatedByHandle = all.CreatedByHandle
 	o.Hash = all.Hash
