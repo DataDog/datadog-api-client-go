@@ -83,7 +83,9 @@ func main() {
 
 Save it to `example.go`, then run `go get github.com/DataDog/datadog-api-client-go/v2`.
 Set the `DD_CLIENT_API_KEY` and `DD_CLIENT_APP_KEY` to your Datadog
-credentials, and then run `go run example.go`.
+credentials, and then run `go run example.go`.  
+
+More examples available [here](./examples)
 
 ### Unstable Endpoints
 
