@@ -286,12 +286,12 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
     "config": {
         "request": {
             "url": "https://www.10.0.0.1.xip.io",
-            "method": "A non existent method",
+            "method": "GET",
             "timeout": 30
         },
         "assertions": [
             {
-                "operator": "is",
+                "operator": "not-an-operator",
                 "type": "statusCode",
                 "target": 200
             }
@@ -316,13 +316,10 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	resp, httpresp, err := api.GetAPITest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
-	// UnparsedObject is propagated up
-	assert.NotNil(resp.UnparsedObject)
-	assert.NotNil(resp.Config.UnparsedObject)
 	// Direct parent of invalid enum is unparsed
-	assert.NotNil(resp.Config.Request.UnparsedObject)
-	assert.Equal("A non existent method", resp.Config.Request.UnparsedObject["method"])
-	assert.Equal(float64(30), resp.Config.Request.UnparsedObject["timeout"])
+	assert.NotNil(resp.Config.Assertions[0].UnparsedObject)
+	assert.Equal("not-an-operator", resp.Config.Assertions[0].UnparsedObject.(map[string]interface{})["operator"])
+	assert.Equal(float64(200), resp.Config.Assertions[0].UnparsedObject.(map[string]interface{})["target"])
 	assert.True(datadog.ContainsUnparsedObject(resp))
 }
 
