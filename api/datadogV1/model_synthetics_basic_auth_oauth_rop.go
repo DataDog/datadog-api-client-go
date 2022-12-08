@@ -25,6 +25,8 @@ type SyntheticsBasicAuthOauthROP struct {
 	Resource *string `json:"resource,omitempty"`
 	// Scope to use when performing the authentication.
 	Scope *string `json:"scope,omitempty"`
+	// Type of token to use when performing the authentication.
+	TokenApiAuthentication SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
 	// The type of basic authentication to use when performing the test.
 	Type *SyntheticsBasicAuthOauthROPType `json:"type,omitempty"`
 	// Username to use when performing the authentication.
@@ -38,10 +40,11 @@ type SyntheticsBasicAuthOauthROP struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsBasicAuthOauthROP(accessTokenUrl string, password string, username string) *SyntheticsBasicAuthOauthROP {
+func NewSyntheticsBasicAuthOauthROP(accessTokenUrl string, password string, tokenApiAuthentication SyntheticsBasicAuthOauthTokenApiAuthentication, username string) *SyntheticsBasicAuthOauthROP {
 	this := SyntheticsBasicAuthOauthROP{}
 	this.AccessTokenUrl = accessTokenUrl
 	this.Password = password
+	this.TokenApiAuthentication = tokenApiAuthentication
 	var typeVar SyntheticsBasicAuthOauthROPType = SYNTHETICSBASICAUTHOAUTHROPTYPE_OAUTH_ROP
 	this.Type = &typeVar
 	this.Username = username
@@ -244,6 +247,29 @@ func (o *SyntheticsBasicAuthOauthROP) SetScope(v string) {
 	o.Scope = &v
 }
 
+// GetTokenApiAuthentication returns the TokenApiAuthentication field value.
+func (o *SyntheticsBasicAuthOauthROP) GetTokenApiAuthentication() SyntheticsBasicAuthOauthTokenApiAuthentication {
+	if o == nil {
+		var ret SyntheticsBasicAuthOauthTokenApiAuthentication
+		return ret
+	}
+	return o.TokenApiAuthentication
+}
+
+// GetTokenApiAuthenticationOk returns a tuple with the TokenApiAuthentication field value
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBasicAuthOauthROP) GetTokenApiAuthenticationOk() (*SyntheticsBasicAuthOauthTokenApiAuthentication, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TokenApiAuthentication, true
+}
+
+// SetTokenApiAuthentication sets field value.
+func (o *SyntheticsBasicAuthOauthROP) SetTokenApiAuthentication(v SyntheticsBasicAuthOauthTokenApiAuthentication) {
+	o.TokenApiAuthentication = v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetType() SyntheticsBasicAuthOauthROPType {
 	if o == nil || o.Type == nil {
@@ -318,6 +344,7 @@ func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
+	toSerialize["tokenApiAuthentication"] = o.TokenApiAuthentication
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -333,20 +360,22 @@ func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AccessTokenUrl *string `json:"accessTokenUrl"`
-		Password       *string `json:"password"`
-		Username       *string `json:"username"`
+		AccessTokenUrl         *string                                         `json:"accessTokenUrl"`
+		Password               *string                                         `json:"password"`
+		TokenApiAuthentication *SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
+		Username               *string                                         `json:"username"`
 	}{}
 	all := struct {
-		AccessTokenUrl string                           `json:"accessTokenUrl"`
-		Audience       *string                          `json:"audience,omitempty"`
-		ClientId       *string                          `json:"clientId,omitempty"`
-		ClientSecret   *string                          `json:"clientSecret,omitempty"`
-		Password       string                           `json:"password"`
-		Resource       *string                          `json:"resource,omitempty"`
-		Scope          *string                          `json:"scope,omitempty"`
-		Type           *SyntheticsBasicAuthOauthROPType `json:"type,omitempty"`
-		Username       string                           `json:"username"`
+		AccessTokenUrl         string                                         `json:"accessTokenUrl"`
+		Audience               *string                                        `json:"audience,omitempty"`
+		ClientId               *string                                        `json:"clientId,omitempty"`
+		ClientSecret           *string                                        `json:"clientSecret,omitempty"`
+		Password               string                                         `json:"password"`
+		Resource               *string                                        `json:"resource,omitempty"`
+		Scope                  *string                                        `json:"scope,omitempty"`
+		TokenApiAuthentication SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
+		Type                   *SyntheticsBasicAuthOauthROPType               `json:"type,omitempty"`
+		Username               string                                         `json:"username"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -358,11 +387,22 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	if required.Password == nil {
 		return fmt.Errorf("required field password missing")
 	}
+	if required.TokenApiAuthentication == nil {
+		return fmt.Errorf("required field tokenApiAuthentication missing")
+	}
 	if required.Username == nil {
 		return fmt.Errorf("required field username missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.TokenApiAuthentication; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -385,6 +425,7 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	o.Password = all.Password
 	o.Resource = all.Resource
 	o.Scope = all.Scope
+	o.TokenApiAuthentication = all.TokenApiAuthentication
 	o.Type = all.Type
 	o.Username = all.Username
 	return nil
