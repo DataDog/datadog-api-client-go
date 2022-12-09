@@ -18,8 +18,6 @@ type SyntheticsTestRequest struct {
 	Body *string `json:"body,omitempty"`
 	// Type of the request body.
 	BodyType *SyntheticsTestRequestBodyType `json:"bodyType,omitempty"`
-	// The type of gRPC call to perform.
-	CallType *SyntheticsTestCallType `json:"callType,omitempty"`
 	// Client certificate to use when performing the test request.
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 	// By default, the client certificate is applied on the domain of the starting URL for browser tests. If you want your client certificate to be applied on other domains instead, add them in `certificateDomains`.
@@ -38,8 +36,8 @@ type SyntheticsTestRequest struct {
 	Message *string `json:"message,omitempty"`
 	// Metadata to include when performing the gRPC test.
 	Metadata map[string]string `json:"metadata,omitempty"`
-	// Either the HTTP method/verb to use or a gRPC method available on the service set in the `service` field. Required if `subtype` is `HTTP` or if `subtype` is `grpc` and `callType` is `unary`.
-	Method *string `json:"method,omitempty"`
+	// The HTTP method.
+	Method *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
 	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
 	// Number of pings to use per test.
@@ -54,7 +52,7 @@ type SyntheticsTestRequest struct {
 	// allowing the server to present one of multiple possible certificates on
 	// the same IP address and TCP port number.
 	Servername *string `json:"servername,omitempty"`
-	// The gRPC service on which you want to perform the gRPC call.
+	// gRPC service on which you want to perform the healthcheck.
 	Service *string `json:"service,omitempty"`
 	// Turns on a traceroute probe to discover all gateways along the path to the host destination.
 	ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
@@ -194,34 +192,6 @@ func (o *SyntheticsTestRequest) HasBodyType() bool {
 // SetBodyType gets a reference to the given SyntheticsTestRequestBodyType and assigns it to the BodyType field.
 func (o *SyntheticsTestRequest) SetBodyType(v SyntheticsTestRequestBodyType) {
 	o.BodyType = &v
-}
-
-// GetCallType returns the CallType field value if set, zero value otherwise.
-func (o *SyntheticsTestRequest) GetCallType() SyntheticsTestCallType {
-	if o == nil || o.CallType == nil {
-		var ret SyntheticsTestCallType
-		return ret
-	}
-	return *o.CallType
-}
-
-// GetCallTypeOk returns a tuple with the CallType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetCallTypeOk() (*SyntheticsTestCallType, bool) {
-	if o == nil || o.CallType == nil {
-		return nil, false
-	}
-	return o.CallType, true
-}
-
-// HasCallType returns a boolean if a field has been set.
-func (o *SyntheticsTestRequest) HasCallType() bool {
-	return o != nil && o.CallType != nil
-}
-
-// SetCallType gets a reference to the given SyntheticsTestCallType and assigns it to the CallType field.
-func (o *SyntheticsTestRequest) SetCallType(v SyntheticsTestCallType) {
-	o.CallType = &v
 }
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise.
@@ -477,9 +447,9 @@ func (o *SyntheticsTestRequest) SetMetadata(v map[string]string) {
 }
 
 // GetMethod returns the Method field value if set, zero value otherwise.
-func (o *SyntheticsTestRequest) GetMethod() string {
+func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
 	if o == nil || o.Method == nil {
-		var ret string
+		var ret HTTPMethod
 		return ret
 	}
 	return *o.Method
@@ -487,7 +457,7 @@ func (o *SyntheticsTestRequest) GetMethod() string {
 
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetMethodOk() (*string, bool) {
+func (o *SyntheticsTestRequest) GetMethodOk() (*HTTPMethod, bool) {
 	if o == nil || o.Method == nil {
 		return nil, false
 	}
@@ -499,8 +469,8 @@ func (o *SyntheticsTestRequest) HasMethod() bool {
 	return o != nil && o.Method != nil
 }
 
-// SetMethod gets a reference to the given string and assigns it to the Method field.
-func (o *SyntheticsTestRequest) SetMethod(v string) {
+// SetMethod gets a reference to the given HTTPMethod and assigns it to the Method field.
+func (o *SyntheticsTestRequest) SetMethod(v HTTPMethod) {
 	o.Method = &v
 }
 
@@ -802,9 +772,6 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.BodyType != nil {
 		toSerialize["bodyType"] = o.BodyType
 	}
-	if o.CallType != nil {
-		toSerialize["callType"] = o.CallType
-	}
 	if o.Certificate != nil {
 		toSerialize["certificate"] = o.Certificate
 	}
@@ -880,7 +847,6 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
 		Body                 *string                           `json:"body,omitempty"`
 		BodyType             *SyntheticsTestRequestBodyType    `json:"bodyType,omitempty"`
-		CallType             *SyntheticsTestCallType           `json:"callType,omitempty"`
 		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
 		DnsServer            *string                           `json:"dnsServer,omitempty"`
@@ -890,7 +856,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Host                 *string                           `json:"host,omitempty"`
 		Message              *string                           `json:"message,omitempty"`
 		Metadata             map[string]string                 `json:"metadata,omitempty"`
-		Method               *string                           `json:"method,omitempty"`
+		Method               *HTTPMethod                       `json:"method,omitempty"`
 		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
 		Port                 *int64                            `json:"port,omitempty"`
@@ -919,7 +885,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.CallType; v != nil && !v.IsValid() {
+	if v := all.Method; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -931,7 +897,6 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
 	o.BodyType = all.BodyType
-	o.CallType = all.CallType
 	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

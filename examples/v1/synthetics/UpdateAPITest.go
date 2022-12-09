@@ -65,7 +65,7 @@ func main() {
 				Headers: map[string]string{
 					"unique": "exampleeditanapitestreturnsokresponse",
 				},
-				Method:  datadog.PtrString("GET"),
+				Method:  datadogV1.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
 				Url:     datadog.PtrString("https://datadoghq.com"),
 			},

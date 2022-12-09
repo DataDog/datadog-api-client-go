@@ -56,6 +56,13 @@ Feature: Security Monitoring
     Then the response status is 200 OK
 
   @team:DataDog/k9-cloud-security-platform
+  Scenario: Create a cloud configuration rule returns "OK" response
+    Given new "CreateSecurityMonitoringRule" request
+    And body with value {"name":"{{ unique }}", "filters":[],"cases":[{"status":"info","notifications":[]}],"options":{"complianceRuleOptions": {"regoRule": {"policy": "package datadog", "resourceTypes": ["gcp_compute_disk"]}}}, "complianceSignalOptions": {"userActivationStatus": false, "userGroupByFields": []}, "message":"Test rule", "tags":[], "isEnabled":true, "type":"cloud_configuration"}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/k9-cloud-security-platform
   Scenario: Create a detection rule returns "Bad Request" response
     Given new "CreateSecurityMonitoringRule" request
     And body with value {"name":"{{ unique }}", "queries":[{"query":""}],"cases":[{"status":"info"}],"options":{},"message":"Test rule","tags":[],"isEnabled":true}

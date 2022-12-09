@@ -27,7 +27,7 @@ func main() {
 				Host:     datadog.PtrString("localhost"),
 				Port:     datadog.PtrInt64(50051),
 				Service:  datadog.PtrString("Hello"),
-				Method:   datadog.PtrString("GET"),
+				Method:   datadogV1.HTTPMETHOD_GET.Ptr(),
 				Message:  datadog.PtrString(""),
 				Metadata: map[string]string{},
 			},
