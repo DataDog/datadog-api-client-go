@@ -25,7 +25,7 @@ func main() {
 				},
 			},
 			Request: datadogV1.SyntheticsTestRequest{
-				Method: datadogV1.HTTPMETHOD_GET.Ptr(),
+				Method: datadog.PtrString("GET"),
 				Url:    datadog.PtrString("https://datadoghq.com"),
 			},
 			SetCookie: datadog.PtrString("name:test"),

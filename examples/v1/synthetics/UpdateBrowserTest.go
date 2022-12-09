@@ -30,16 +30,17 @@ func main() {
 						Username: "my_username",
 					}},
 				BodyType: datadogV1.SYNTHETICSTESTREQUESTBODYTYPE_TEXT_PLAIN.Ptr(),
+				CallType: datadogV1.SYNTHETICSTESTCALLTYPE_UNARY.Ptr(),
 				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
 					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{},
 					Key:  &datadogV1.SyntheticsTestRequestCertificateItem{},
 				},
 				CertificateDomains: []string{},
-				Method:             datadogV1.HTTPMETHOD_GET.Ptr(),
 				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},
-				Url: datadog.PtrString("https://example.com"),
+				Service: datadog.PtrString("Greeter"),
+				Url:     datadog.PtrString("https://example.com"),
 			},
 			Variables: []datadogV1.SyntheticsBrowserVariable{
 				{
