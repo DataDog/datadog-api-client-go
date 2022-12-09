@@ -47,7 +47,7 @@ func main() {
 					IsCritical: datadog.PtrBool(true),
 					Name:       "request is sent",
 					Request: datadogV1.SyntheticsTestRequest{
-						Method:  datadogV1.HTTPMETHOD_GET.Ptr(),
+						Method:  datadog.PtrString("GET"),
 						Timeout: datadog.PtrFloat64(10),
 						Url:     datadog.PtrString("https://datadoghq.com"),
 					},
