@@ -19,6 +19,8 @@ type MonitorOptions struct {
 	DeviceIds []MonitorDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
+	// Whether or not to send a list of samples when the monitor triggers. This is only used by CI Test and Pipeline monitors.
+	EnableSamples *bool `json:"enable_samples,omitempty"`
 	// We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),
 	// block in the original message instead.
 	// A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.
@@ -250,6 +252,34 @@ func (o *MonitorOptions) HasEnableLogsSample() bool {
 // SetEnableLogsSample gets a reference to the given bool and assigns it to the EnableLogsSample field.
 func (o *MonitorOptions) SetEnableLogsSample(v bool) {
 	o.EnableLogsSample = &v
+}
+
+// GetEnableSamples returns the EnableSamples field value if set, zero value otherwise.
+func (o *MonitorOptions) GetEnableSamples() bool {
+	if o == nil || o.EnableSamples == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableSamples
+}
+
+// GetEnableSamplesOk returns a tuple with the EnableSamples field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetEnableSamplesOk() (*bool, bool) {
+	if o == nil || o.EnableSamples == nil {
+		return nil, false
+	}
+	return o.EnableSamples, true
+}
+
+// HasEnableSamples returns a boolean if a field has been set.
+func (o *MonitorOptions) HasEnableSamples() bool {
+	return o != nil && o.EnableSamples != nil
+}
+
+// SetEnableSamples gets a reference to the given bool and assigns it to the EnableSamples field.
+func (o *MonitorOptions) SetEnableSamples(v bool) {
+	o.EnableSamples = &v
 }
 
 // GetEscalationMessage returns the EscalationMessage field value if set, zero value otherwise.
@@ -1118,6 +1148,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.EnableLogsSample != nil {
 		toSerialize["enable_logs_sample"] = o.EnableLogsSample
 	}
+	if o.EnableSamples != nil {
+		toSerialize["enable_samples"] = o.EnableSamples
+	}
 	if o.EscalationMessage != nil {
 		toSerialize["escalation_message"] = o.EscalationMessage
 	}
@@ -1210,6 +1243,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Aggregation            *MonitorOptionsAggregation                 `json:"aggregation,omitempty"`
 		DeviceIds              []MonitorDeviceID                          `json:"device_ids,omitempty"`
 		EnableLogsSample       *bool                                      `json:"enable_logs_sample,omitempty"`
+		EnableSamples          *bool                                      `json:"enable_samples,omitempty"`
 		EscalationMessage      *string                                    `json:"escalation_message,omitempty"`
 		EvaluationDelay        datadog.NullableInt64                      `json:"evaluation_delay,omitempty"`
 		GroupRetentionDuration *string                                    `json:"group_retention_duration,omitempty"`
@@ -1264,6 +1298,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Aggregation = all.Aggregation
 	o.DeviceIds = all.DeviceIds
 	o.EnableLogsSample = all.EnableLogsSample
+	o.EnableSamples = all.EnableSamples
 	o.EscalationMessage = all.EscalationMessage
 	o.EvaluationDelay = all.EvaluationDelay
 	o.GroupRetentionDuration = all.GroupRetentionDuration
