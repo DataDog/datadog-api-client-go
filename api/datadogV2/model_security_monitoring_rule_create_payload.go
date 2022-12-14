@@ -12,6 +12,7 @@ import (
 type SecurityMonitoringRuleCreatePayload struct {
 	SecurityMonitoringStandardRuleCreatePayload *SecurityMonitoringStandardRuleCreatePayload
 	SecurityMonitoringSignalRuleCreatePayload   *SecurityMonitoringSignalRuleCreatePayload
+	CloudConfigurationRuleCreatePayload         *CloudConfigurationRuleCreatePayload
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func SecurityMonitoringStandardRuleCreatePayloadAsSecurityMonitoringRuleCreatePa
 // SecurityMonitoringSignalRuleCreatePayloadAsSecurityMonitoringRuleCreatePayload is a convenience function that returns SecurityMonitoringSignalRuleCreatePayload wrapped in SecurityMonitoringRuleCreatePayload.
 func SecurityMonitoringSignalRuleCreatePayloadAsSecurityMonitoringRuleCreatePayload(v *SecurityMonitoringSignalRuleCreatePayload) SecurityMonitoringRuleCreatePayload {
 	return SecurityMonitoringRuleCreatePayload{SecurityMonitoringSignalRuleCreatePayload: v}
+}
+
+// CloudConfigurationRuleCreatePayloadAsSecurityMonitoringRuleCreatePayload is a convenience function that returns CloudConfigurationRuleCreatePayload wrapped in SecurityMonitoringRuleCreatePayload.
+func CloudConfigurationRuleCreatePayloadAsSecurityMonitoringRuleCreatePayload(v *CloudConfigurationRuleCreatePayload) SecurityMonitoringRuleCreatePayload {
+	return SecurityMonitoringRuleCreatePayload{CloudConfigurationRuleCreatePayload: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 		obj.SecurityMonitoringSignalRuleCreatePayload = nil
 	}
 
+	// try to unmarshal data into CloudConfigurationRuleCreatePayload
+	err = json.Unmarshal(data, &obj.CloudConfigurationRuleCreatePayload)
+	if err == nil {
+		if obj.CloudConfigurationRuleCreatePayload != nil && obj.CloudConfigurationRuleCreatePayload.UnparsedObject == nil {
+			jsonCloudConfigurationRuleCreatePayload, _ := json.Marshal(obj.CloudConfigurationRuleCreatePayload)
+			if string(jsonCloudConfigurationRuleCreatePayload) == "{}" { // empty struct
+				obj.CloudConfigurationRuleCreatePayload = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.CloudConfigurationRuleCreatePayload = nil
+		}
+	} else {
+		obj.CloudConfigurationRuleCreatePayload = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SecurityMonitoringStandardRuleCreatePayload = nil
 		obj.SecurityMonitoringSignalRuleCreatePayload = nil
+		obj.CloudConfigurationRuleCreatePayload = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 
 	if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
 		return json.Marshal(&obj.SecurityMonitoringSignalRuleCreatePayload)
+	}
+
+	if obj.CloudConfigurationRuleCreatePayload != nil {
+		return json.Marshal(&obj.CloudConfigurationRuleCreatePayload)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *SecurityMonitoringRuleCreatePayload) GetActualInstance() interface{} 
 
 	if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
 		return obj.SecurityMonitoringSignalRuleCreatePayload
+	}
+
+	if obj.CloudConfigurationRuleCreatePayload != nil {
+		return obj.CloudConfigurationRuleCreatePayload
 	}
 
 	// all schemas are nil

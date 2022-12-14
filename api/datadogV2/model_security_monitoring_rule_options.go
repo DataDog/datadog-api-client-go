@@ -10,6 +10,8 @@ import (
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
+	// Options for cloud_configuration rules.
+	ComplianceRuleOptions *CloudConfigurationComplianceRuleOptions `json:"complianceRuleOptions,omitempty"`
 	// If true, signals in non-production environments have a lower severity than what is defined by the rule case, which can reduce signal noise.
 	// The severity is decreased by one level: `CRITICAL` in production becomes `HIGH` in non-production, `HIGH` becomes `MEDIUM` and so on. `INFO` remains `INFO`.
 	// The decrement is applied when the environment tag of the signal starts with `staging`, `test` or `dev`.
@@ -51,6 +53,34 @@ func NewSecurityMonitoringRuleOptions() *SecurityMonitoringRuleOptions {
 func NewSecurityMonitoringRuleOptionsWithDefaults() *SecurityMonitoringRuleOptions {
 	this := SecurityMonitoringRuleOptions{}
 	return &this
+}
+
+// GetComplianceRuleOptions returns the ComplianceRuleOptions field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
+	if o == nil || o.ComplianceRuleOptions == nil {
+		var ret CloudConfigurationComplianceRuleOptions
+		return ret
+	}
+	return *o.ComplianceRuleOptions
+}
+
+// GetComplianceRuleOptionsOk returns a tuple with the ComplianceRuleOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetComplianceRuleOptionsOk() (*CloudConfigurationComplianceRuleOptions, bool) {
+	if o == nil || o.ComplianceRuleOptions == nil {
+		return nil, false
+	}
+	return o.ComplianceRuleOptions, true
+}
+
+// HasComplianceRuleOptions returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasComplianceRuleOptions() bool {
+	return o != nil && o.ComplianceRuleOptions != nil
+}
+
+// SetComplianceRuleOptions gets a reference to the given CloudConfigurationComplianceRuleOptions and assigns it to the ComplianceRuleOptions field.
+func (o *SecurityMonitoringRuleOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
+	o.ComplianceRuleOptions = &v
 }
 
 // GetDecreaseCriticalityBasedOnEnv returns the DecreaseCriticalityBasedOnEnv field value if set, zero value otherwise.
@@ -283,6 +313,9 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.ComplianceRuleOptions != nil {
+		toSerialize["complianceRuleOptions"] = o.ComplianceRuleOptions
+	}
 	if o.DecreaseCriticalityBasedOnEnv != nil {
 		toSerialize["decreaseCriticalityBasedOnEnv"] = o.DecreaseCriticalityBasedOnEnv
 	}
@@ -318,6 +351,7 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
+		ComplianceRuleOptions         *CloudConfigurationComplianceRuleOptions       `json:"complianceRuleOptions,omitempty"`
 		DecreaseCriticalityBasedOnEnv *bool                                          `json:"decreaseCriticalityBasedOnEnv,omitempty"`
 		DetectionMethod               *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
 		EvaluationWindow              *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
@@ -376,6 +410,14 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ComplianceRuleOptions = all.ComplianceRuleOptions
 	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
 	o.DetectionMethod = all.DetectionMethod
 	o.EvaluationWindow = all.EvaluationWindow
