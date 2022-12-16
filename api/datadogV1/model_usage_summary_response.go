@@ -165,6 +165,8 @@ type UsageSummaryResponse struct {
 	SyntheticsBrowserCheckCallsCountAggSum *int64 `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
 	// Shows the sum of all Synthetic API tests over all hours in the current months for all organizations.
 	SyntheticsCheckCallsCountAggSum *int64 `json:"synthetics_check_calls_count_agg_sum,omitempty"`
+	// Shows the sum of the high-water marks of used synthetics parallel testing slots over all hours in the current month for all organizations.
+	SyntheticsParallelTestingMaxSlotsHwmSum *int64 `json:"synthetics_parallel_testing_max_slots_hwm_sum,omitempty"`
 	// Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations.
 	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
 	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
@@ -2351,6 +2353,34 @@ func (o *UsageSummaryResponse) SetSyntheticsCheckCallsCountAggSum(v int64) {
 	o.SyntheticsCheckCallsCountAggSum = &v
 }
 
+// GetSyntheticsParallelTestingMaxSlotsHwmSum returns the SyntheticsParallelTestingMaxSlotsHwmSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetSyntheticsParallelTestingMaxSlotsHwmSum() int64 {
+	if o == nil || o.SyntheticsParallelTestingMaxSlotsHwmSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SyntheticsParallelTestingMaxSlotsHwmSum
+}
+
+// GetSyntheticsParallelTestingMaxSlotsHwmSumOk returns a tuple with the SyntheticsParallelTestingMaxSlotsHwmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetSyntheticsParallelTestingMaxSlotsHwmSumOk() (*int64, bool) {
+	if o == nil || o.SyntheticsParallelTestingMaxSlotsHwmSum == nil {
+		return nil, false
+	}
+	return o.SyntheticsParallelTestingMaxSlotsHwmSum, true
+}
+
+// HasSyntheticsParallelTestingMaxSlotsHwmSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasSyntheticsParallelTestingMaxSlotsHwmSum() bool {
+	return o != nil && o.SyntheticsParallelTestingMaxSlotsHwmSum != nil
+}
+
+// SetSyntheticsParallelTestingMaxSlotsHwmSum gets a reference to the given int64 and assigns it to the SyntheticsParallelTestingMaxSlotsHwmSum field.
+func (o *UsageSummaryResponse) SetSyntheticsParallelTestingMaxSlotsHwmSum(v int64) {
+	o.SyntheticsParallelTestingMaxSlotsHwmSum = &v
+}
+
 // GetTraceSearchIndexedEventsCountAggSum returns the TraceSearchIndexedEventsCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetTraceSearchIndexedEventsCountAggSum() int64 {
 	if o == nil || o.TraceSearchIndexedEventsCountAggSum == nil {
@@ -2712,6 +2742,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.SyntheticsCheckCallsCountAggSum != nil {
 		toSerialize["synthetics_check_calls_count_agg_sum"] = o.SyntheticsCheckCallsCountAggSum
 	}
+	if o.SyntheticsParallelTestingMaxSlotsHwmSum != nil {
+		toSerialize["synthetics_parallel_testing_max_slots_hwm_sum"] = o.SyntheticsParallelTestingMaxSlotsHwmSum
+	}
 	if o.TraceSearchIndexedEventsCountAggSum != nil {
 		toSerialize["trace_search_indexed_events_count_agg_sum"] = o.TraceSearchIndexedEventsCountAggSum
 	}
@@ -2812,6 +2845,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		StartDate                                  *time.Time         `json:"start_date,omitempty"`
 		SyntheticsBrowserCheckCallsCountAggSum     *int64             `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
 		SyntheticsCheckCallsCountAggSum            *int64             `json:"synthetics_check_calls_count_agg_sum,omitempty"`
+		SyntheticsParallelTestingMaxSlotsHwmSum    *int64             `json:"synthetics_parallel_testing_max_slots_hwm_sum,omitempty"`
 		TraceSearchIndexedEventsCountAggSum        *int64             `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
 		TwolIngestedEventsBytesAggSum              *int64             `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 		Usage                                      []UsageSummaryDate `json:"usage,omitempty"`
@@ -2910,6 +2944,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.StartDate = all.StartDate
 	o.SyntheticsBrowserCheckCallsCountAggSum = all.SyntheticsBrowserCheckCallsCountAggSum
 	o.SyntheticsCheckCallsCountAggSum = all.SyntheticsCheckCallsCountAggSum
+	o.SyntheticsParallelTestingMaxSlotsHwmSum = all.SyntheticsParallelTestingMaxSlotsHwmSum
 	o.TraceSearchIndexedEventsCountAggSum = all.TraceSearchIndexedEventsCountAggSum
 	o.TwolIngestedEventsBytesAggSum = all.TwolIngestedEventsBytesAggSum
 	o.Usage = all.Usage
