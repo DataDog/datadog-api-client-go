@@ -152,6 +152,8 @@ type UsageSummaryDateOrg struct {
 	SyntheticsBrowserCheckCallsCountSum *int64 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
 	// Shows the sum of all Synthetic API tests over all hours in the current date for the given org.
 	SyntheticsCheckCallsCountSum *int64 `json:"synthetics_check_calls_count_sum,omitempty"`
+	// Shows the high-water mark of used synthetics parallel testing slots over all hours in the current date for the given org.
+	SyntheticsParallelTestingMaxSlotsHwm *int64 `json:"synthetics_parallel_testing_max_slots_hwm,omitempty"`
 	// Shows the sum of all Indexed Spans indexed over all hours in the current date for the given org.
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 	// Shows the sum of all ingested APM span bytes over all hours in the current date for the given org.
@@ -2168,6 +2170,34 @@ func (o *UsageSummaryDateOrg) SetSyntheticsCheckCallsCountSum(v int64) {
 	o.SyntheticsCheckCallsCountSum = &v
 }
 
+// GetSyntheticsParallelTestingMaxSlotsHwm returns the SyntheticsParallelTestingMaxSlotsHwm field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetSyntheticsParallelTestingMaxSlotsHwm() int64 {
+	if o == nil || o.SyntheticsParallelTestingMaxSlotsHwm == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SyntheticsParallelTestingMaxSlotsHwm
+}
+
+// GetSyntheticsParallelTestingMaxSlotsHwmOk returns a tuple with the SyntheticsParallelTestingMaxSlotsHwm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetSyntheticsParallelTestingMaxSlotsHwmOk() (*int64, bool) {
+	if o == nil || o.SyntheticsParallelTestingMaxSlotsHwm == nil {
+		return nil, false
+	}
+	return o.SyntheticsParallelTestingMaxSlotsHwm, true
+}
+
+// HasSyntheticsParallelTestingMaxSlotsHwm returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasSyntheticsParallelTestingMaxSlotsHwm() bool {
+	return o != nil && o.SyntheticsParallelTestingMaxSlotsHwm != nil
+}
+
+// SetSyntheticsParallelTestingMaxSlotsHwm gets a reference to the given int64 and assigns it to the SyntheticsParallelTestingMaxSlotsHwm field.
+func (o *UsageSummaryDateOrg) SetSyntheticsParallelTestingMaxSlotsHwm(v int64) {
+	o.SyntheticsParallelTestingMaxSlotsHwm = &v
+}
+
 // GetTraceSearchIndexedEventsCountSum returns the TraceSearchIndexedEventsCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetTraceSearchIndexedEventsCountSum() int64 {
 	if o == nil || o.TraceSearchIndexedEventsCountSum == nil {
@@ -2471,6 +2501,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.SyntheticsCheckCallsCountSum != nil {
 		toSerialize["synthetics_check_calls_count_sum"] = o.SyntheticsCheckCallsCountSum
 	}
+	if o.SyntheticsParallelTestingMaxSlotsHwm != nil {
+		toSerialize["synthetics_parallel_testing_max_slots_hwm"] = o.SyntheticsParallelTestingMaxSlotsHwm
+	}
 	if o.TraceSearchIndexedEventsCountSum != nil {
 		toSerialize["trace_search_indexed_events_count_sum"] = o.TraceSearchIndexedEventsCountSum
 	}
@@ -2562,6 +2595,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		SdsTotalScannedBytesSum                 *int64  `json:"sds_total_scanned_bytes_sum,omitempty"`
 		SyntheticsBrowserCheckCallsCountSum     *int64  `json:"synthetics_browser_check_calls_count_sum,omitempty"`
 		SyntheticsCheckCallsCountSum            *int64  `json:"synthetics_check_calls_count_sum,omitempty"`
+		SyntheticsParallelTestingMaxSlotsHwm    *int64  `json:"synthetics_parallel_testing_max_slots_hwm,omitempty"`
 		TraceSearchIndexedEventsCountSum        *int64  `json:"trace_search_indexed_events_count_sum,omitempty"`
 		TwolIngestedEventsBytesSum              *int64  `json:"twol_ingested_events_bytes_sum,omitempty"`
 		VsphereHostTop99p                       *int64  `json:"vsphere_host_top99p,omitempty"`
@@ -2646,6 +2680,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.SdsTotalScannedBytesSum = all.SdsTotalScannedBytesSum
 	o.SyntheticsBrowserCheckCallsCountSum = all.SyntheticsBrowserCheckCallsCountSum
 	o.SyntheticsCheckCallsCountSum = all.SyntheticsCheckCallsCountSum
+	o.SyntheticsParallelTestingMaxSlotsHwm = all.SyntheticsParallelTestingMaxSlotsHwm
 	o.TraceSearchIndexedEventsCountSum = all.TraceSearchIndexedEventsCountSum
 	o.TwolIngestedEventsBytesSum = all.TwolIngestedEventsBytesSum
 	o.VsphereHostTop99p = all.VsphereHostTop99p
