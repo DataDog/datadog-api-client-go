@@ -17,17 +17,17 @@ type HostMeta struct {
 	// The number of cores.
 	CpuCores *int64 `json:"cpuCores,omitempty"`
 	// An array of Mac versions.
-	FbsdV []string `json:"fbsdV,omitempty"`
+	FbsdV []*string `json:"fbsdV,omitempty"`
 	// JSON string containing system information.
 	Gohai *string `json:"gohai,omitempty"`
 	// Agent install method.
 	InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
 	// An array of Mac versions.
-	MacV []string `json:"macV,omitempty"`
+	MacV []*string `json:"macV,omitempty"`
 	// The machine architecture.
 	Machine *string `json:"machine,omitempty"`
 	// Array of Unix versions.
-	NixV []string `json:"nixV,omitempty"`
+	NixV []*string `json:"nixV,omitempty"`
 	// The OS platform.
 	Platform *string `json:"platform,omitempty"`
 	// The processor.
@@ -39,7 +39,7 @@ type HostMeta struct {
 	// The socket hostname.
 	SocketHostname *string `json:"socket-hostname,omitempty"`
 	// An array of Windows versions.
-	WinV []string `json:"winV,omitempty"`
+	WinV []*string `json:"winV,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -147,9 +147,9 @@ func (o *HostMeta) SetCpuCores(v int64) {
 }
 
 // GetFbsdV returns the FbsdV field value if set, zero value otherwise.
-func (o *HostMeta) GetFbsdV() []string {
+func (o *HostMeta) GetFbsdV() []*string {
 	if o == nil || o.FbsdV == nil {
-		var ret []string
+		var ret []*string
 		return ret
 	}
 	return o.FbsdV
@@ -157,7 +157,7 @@ func (o *HostMeta) GetFbsdV() []string {
 
 // GetFbsdVOk returns a tuple with the FbsdV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetFbsdVOk() (*[]string, bool) {
+func (o *HostMeta) GetFbsdVOk() (*[]*string, bool) {
 	if o == nil || o.FbsdV == nil {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *HostMeta) HasFbsdV() bool {
 	return o != nil && o.FbsdV != nil
 }
 
-// SetFbsdV gets a reference to the given []string and assigns it to the FbsdV field.
-func (o *HostMeta) SetFbsdV(v []string) {
+// SetFbsdV gets a reference to the given []*string and assigns it to the FbsdV field.
+func (o *HostMeta) SetFbsdV(v []*string) {
 	o.FbsdV = v
 }
 
@@ -231,9 +231,9 @@ func (o *HostMeta) SetInstallMethod(v HostMetaInstallMethod) {
 }
 
 // GetMacV returns the MacV field value if set, zero value otherwise.
-func (o *HostMeta) GetMacV() []string {
+func (o *HostMeta) GetMacV() []*string {
 	if o == nil || o.MacV == nil {
-		var ret []string
+		var ret []*string
 		return ret
 	}
 	return o.MacV
@@ -241,7 +241,7 @@ func (o *HostMeta) GetMacV() []string {
 
 // GetMacVOk returns a tuple with the MacV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetMacVOk() (*[]string, bool) {
+func (o *HostMeta) GetMacVOk() (*[]*string, bool) {
 	if o == nil || o.MacV == nil {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *HostMeta) HasMacV() bool {
 	return o != nil && o.MacV != nil
 }
 
-// SetMacV gets a reference to the given []string and assigns it to the MacV field.
-func (o *HostMeta) SetMacV(v []string) {
+// SetMacV gets a reference to the given []*string and assigns it to the MacV field.
+func (o *HostMeta) SetMacV(v []*string) {
 	o.MacV = v
 }
 
@@ -287,9 +287,9 @@ func (o *HostMeta) SetMachine(v string) {
 }
 
 // GetNixV returns the NixV field value if set, zero value otherwise.
-func (o *HostMeta) GetNixV() []string {
+func (o *HostMeta) GetNixV() []*string {
 	if o == nil || o.NixV == nil {
-		var ret []string
+		var ret []*string
 		return ret
 	}
 	return o.NixV
@@ -297,7 +297,7 @@ func (o *HostMeta) GetNixV() []string {
 
 // GetNixVOk returns a tuple with the NixV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetNixVOk() (*[]string, bool) {
+func (o *HostMeta) GetNixVOk() (*[]*string, bool) {
 	if o == nil || o.NixV == nil {
 		return nil, false
 	}
@@ -309,8 +309,8 @@ func (o *HostMeta) HasNixV() bool {
 	return o != nil && o.NixV != nil
 }
 
-// SetNixV gets a reference to the given []string and assigns it to the NixV field.
-func (o *HostMeta) SetNixV(v []string) {
+// SetNixV gets a reference to the given []*string and assigns it to the NixV field.
+func (o *HostMeta) SetNixV(v []*string) {
 	o.NixV = v
 }
 
@@ -455,9 +455,9 @@ func (o *HostMeta) SetSocketHostname(v string) {
 }
 
 // GetWinV returns the WinV field value if set, zero value otherwise.
-func (o *HostMeta) GetWinV() []string {
+func (o *HostMeta) GetWinV() []*string {
 	if o == nil || o.WinV == nil {
-		var ret []string
+		var ret []*string
 		return ret
 	}
 	return o.WinV
@@ -465,7 +465,7 @@ func (o *HostMeta) GetWinV() []string {
 
 // GetWinVOk returns a tuple with the WinV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetWinVOk() (*[]string, bool) {
+func (o *HostMeta) GetWinVOk() (*[]*string, bool) {
 	if o == nil || o.WinV == nil {
 		return nil, false
 	}
@@ -477,8 +477,8 @@ func (o *HostMeta) HasWinV() bool {
 	return o != nil && o.WinV != nil
 }
 
-// SetWinV gets a reference to the given []string and assigns it to the WinV field.
-func (o *HostMeta) SetWinV(v []string) {
+// SetWinV gets a reference to the given []*string and assigns it to the WinV field.
+func (o *HostMeta) SetWinV(v []*string) {
 	o.WinV = v
 }
 
@@ -547,18 +547,18 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 		AgentChecks    [][]interface{}        `json:"agent_checks,omitempty"`
 		AgentVersion   *string                `json:"agent_version,omitempty"`
 		CpuCores       *int64                 `json:"cpuCores,omitempty"`
-		FbsdV          []string               `json:"fbsdV,omitempty"`
+		FbsdV          []*string              `json:"fbsdV,omitempty"`
 		Gohai          *string                `json:"gohai,omitempty"`
 		InstallMethod  *HostMetaInstallMethod `json:"install_method,omitempty"`
-		MacV           []string               `json:"macV,omitempty"`
+		MacV           []*string              `json:"macV,omitempty"`
 		Machine        *string                `json:"machine,omitempty"`
-		NixV           []string               `json:"nixV,omitempty"`
+		NixV           []*string              `json:"nixV,omitempty"`
 		Platform       *string                `json:"platform,omitempty"`
 		Processor      *string                `json:"processor,omitempty"`
 		PythonV        *string                `json:"pythonV,omitempty"`
 		SocketFqdn     *string                `json:"socket-fqdn,omitempty"`
 		SocketHostname *string                `json:"socket-hostname,omitempty"`
-		WinV           []string               `json:"winV,omitempty"`
+		WinV           []*string              `json:"winV,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
