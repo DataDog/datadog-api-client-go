@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.ListTests(ctx, *datadogV1.NewListTestsOptionalParameters())
+	resp, r, err := api.ListTests(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests`: %v\n", err)

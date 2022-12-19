@@ -1,4 +1,4 @@
-// Get the list of all Synthetic tests returns "OK - Returns the list of all Synthetic tests." response
+// Get the list of all tests returns "OK - Returns the list of all Synthetic tests." response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.ListTests(ctx, *datadogV1.NewListTestsOptionalParameters())
+	resp, r, err := api.ListTests(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.ListTests`: %v\n", err)

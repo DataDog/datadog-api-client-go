@@ -17,9 +17,6 @@ type CloudConfigurationComplianceRuleOptions struct {
 	ComplexRule *bool `json:"complexRule,omitempty"`
 	// Rule details.
 	RegoRule CloudConfigurationRegoRule `json:"regoRule"`
-	// Main resource type to be checked by the rule. It should be specified again in `regoRule.resourceTypes`.
-	//
-	ResourceType string `json:"resourceType"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -29,10 +26,9 @@ type CloudConfigurationComplianceRuleOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCloudConfigurationComplianceRuleOptions(regoRule CloudConfigurationRegoRule, resourceType string) *CloudConfigurationComplianceRuleOptions {
+func NewCloudConfigurationComplianceRuleOptions(regoRule CloudConfigurationRegoRule) *CloudConfigurationComplianceRuleOptions {
 	this := CloudConfigurationComplianceRuleOptions{}
 	this.RegoRule = regoRule
-	this.ResourceType = resourceType
 	return &this
 }
 
@@ -95,29 +91,6 @@ func (o *CloudConfigurationComplianceRuleOptions) SetRegoRule(v CloudConfigurati
 	o.RegoRule = v
 }
 
-// GetResourceType returns the ResourceType field value.
-func (o *CloudConfigurationComplianceRuleOptions) GetResourceType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ResourceType
-}
-
-// GetResourceTypeOk returns a tuple with the ResourceType field value
-// and a boolean to check if the value has been set.
-func (o *CloudConfigurationComplianceRuleOptions) GetResourceTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ResourceType, true
-}
-
-// SetResourceType sets field value.
-func (o *CloudConfigurationComplianceRuleOptions) SetResourceType(v string) {
-	o.ResourceType = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -128,7 +101,6 @@ func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 		toSerialize["complexRule"] = o.ComplexRule
 	}
 	toSerialize["regoRule"] = o.RegoRule
-	toSerialize["resourceType"] = o.ResourceType
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -140,13 +112,11 @@ func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		RegoRule     *CloudConfigurationRegoRule `json:"regoRule"`
-		ResourceType *string                     `json:"resourceType"`
+		RegoRule *CloudConfigurationRegoRule `json:"regoRule"`
 	}{}
 	all := struct {
-		ComplexRule  *bool                      `json:"complexRule,omitempty"`
-		RegoRule     CloudConfigurationRegoRule `json:"regoRule"`
-		ResourceType string                     `json:"resourceType"`
+		ComplexRule *bool                      `json:"complexRule,omitempty"`
+		RegoRule    CloudConfigurationRegoRule `json:"regoRule"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -154,9 +124,6 @@ func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (e
 	}
 	if required.RegoRule == nil {
 		return fmt.Errorf("required field regoRule missing")
-	}
-	if required.ResourceType == nil {
-		return fmt.Errorf("required field resourceType missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -176,6 +143,5 @@ func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 	}
 	o.RegoRule = all.RegoRule
-	o.ResourceType = all.ResourceType
 	return nil
 }

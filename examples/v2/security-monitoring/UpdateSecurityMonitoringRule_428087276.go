@@ -27,7 +27,6 @@ func main() {
 		},
 		Options: &datadogV2.SecurityMonitoringRuleOptions{
 			ComplianceRuleOptions: &datadogV2.CloudConfigurationComplianceRuleOptions{
-				ResourceType: "gcp_compute_disk",
 				RegoRule: datadogV2.CloudConfigurationRegoRule{
 					Policy: `package datadog
 `,

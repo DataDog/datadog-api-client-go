@@ -2536,55 +2536,20 @@ func (a *SyntheticsApi) listLocationsExecute(r apiListLocationsRequest) (Synthet
 }
 
 type apiListTestsRequest struct {
-	ctx        _context.Context
-	pageSize   *string
-	pageNumber *string
+	ctx _context.Context
 }
 
-// ListTestsOptionalParameters holds optional parameters for ListTests.
-type ListTestsOptionalParameters struct {
-	PageSize   *string
-	PageNumber *string
-}
-
-// NewListTestsOptionalParameters creates an empty struct for parameters.
-func NewListTestsOptionalParameters() *ListTestsOptionalParameters {
-	this := ListTestsOptionalParameters{}
-	return &this
-}
-
-// WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListTestsOptionalParameters) WithPageSize(pageSize string) *ListTestsOptionalParameters {
-	r.PageSize = &pageSize
-	return r
-}
-
-// WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListTestsOptionalParameters) WithPageNumber(pageNumber string) *ListTestsOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
-}
-
-func (a *SyntheticsApi) buildListTestsRequest(ctx _context.Context, o ...ListTestsOptionalParameters) (apiListTestsRequest, error) {
+func (a *SyntheticsApi) buildListTestsRequest(ctx _context.Context) (apiListTestsRequest, error) {
 	req := apiListTestsRequest{
 		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListTestsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
 	}
 	return req, nil
 }
 
-// ListTests Get the list of all Synthetic tests.
+// ListTests Get the list of all tests.
 // Get the list of all Synthetic tests.
-func (a *SyntheticsApi) ListTests(ctx _context.Context, o ...ListTestsOptionalParameters) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
-	req, err := a.buildListTestsRequest(ctx, o...)
+func (a *SyntheticsApi) ListTests(ctx _context.Context) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListTestsRequest(ctx)
 	if err != nil {
 		var localVarReturnValue SyntheticsListTestsResponse
 		return localVarReturnValue, nil, err
@@ -2611,12 +2576,6 @@ func (a *SyntheticsApi) listTestsExecute(r apiListTestsRequest) (SyntheticsListT
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", datadog.ParameterToString(*r.pageSize, ""))
-	}
-	if r.pageNumber != nil {
-		localVarQueryParams.Add("page_number", datadog.ParameterToString(*r.pageNumber, ""))
-	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if r.ctx != nil {
