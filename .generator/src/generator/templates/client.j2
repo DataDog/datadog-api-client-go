@@ -51,6 +51,18 @@ type Service struct {
 	Client *APIClient
 }
 
+func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
+	if ctx != nil {
+		for _, key := range keys {
+			if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+				if apiKey, ok := auth[key[0]]; ok {
+					(*headerParams)[key[1]] = apiKey.Key
+				}
+			}
+		}
+	}
+}
+
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewAPIClient(cfg *Configuration) *APIClient {

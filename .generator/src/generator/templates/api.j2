@@ -385,41 +385,20 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	localVarPostBody = r.{{ operation.get("x-codegen-request-body-name", "body")|variable_name}}
 	{%- endif %}
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
+	{%- if authMethods %}
+        {{ common_package_name }}.SetAuthKeys(
+		r.ctx,
+		&localVarHeaderParams,
 	{%- for authMethod in authMethods %}
 	{%- for name in authMethod %}
 	{%- set schema = openapi.components.securitySchemes[name] %}
 	{%- if schema.type == "apiKey" and schema.in != "cookie" %}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value({{ common_package_name }}.ContextAPIKeys).(map[string]{{ common_package_name }}.APIKey); ok {
-			{%- if "x-auth-id-alias" in schema %}
-			if apiKey, ok := auth["{{ schema["x-auth-id-alias"] }}"]; ok {
-				var key string
-				if prefix, ok := auth["{{ name }}"]; ok && prefix.Prefix != "" {
-					key = prefix.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-			{%- else %}
-			if apiKey, ok := auth["{{ name }}"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-			{%- endif %}
-				{%- if schema.in == "header"%}
-				localVarHeaderParams["{{ schema.name }}"] = key
-				{%- elif schema.in == "query"%}
-				localVarQueryParams.Add("{{ schema.name }}", key)
-				{%- endif %}
-			}
-		}
-	}
+		[2]string{"{{ name }}", "{{ schema.name }}"},
 	{%- endif %}
 	{%- endfor %}
 	{%- endfor %}
+	)
+	{%- endif %}
 	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
