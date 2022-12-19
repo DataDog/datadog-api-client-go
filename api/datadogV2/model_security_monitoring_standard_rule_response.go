@@ -12,6 +12,8 @@ import (
 type SecurityMonitoringStandardRuleResponse struct {
 	// Cases for generating signals.
 	Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
+	// How to generate compliance signals. Useful for cloud_configuration rules only.
+	ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 	// When the rule was created, timestamp in milliseconds.
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// User ID of the user who created the rule.
@@ -92,6 +94,34 @@ func (o *SecurityMonitoringStandardRuleResponse) HasCases() bool {
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
 func (o *SecurityMonitoringStandardRuleResponse) SetCases(v []SecurityMonitoringRuleCase) {
 	o.Cases = v
+}
+
+// GetComplianceSignalOptions returns the ComplianceSignalOptions field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetComplianceSignalOptions() CloudConfigurationRuleComplianceSignalOptions {
+	if o == nil || o.ComplianceSignalOptions == nil {
+		var ret CloudConfigurationRuleComplianceSignalOptions
+		return ret
+	}
+	return *o.ComplianceSignalOptions
+}
+
+// GetComplianceSignalOptionsOk returns a tuple with the ComplianceSignalOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetComplianceSignalOptionsOk() (*CloudConfigurationRuleComplianceSignalOptions, bool) {
+	if o == nil || o.ComplianceSignalOptions == nil {
+		return nil, false
+	}
+	return o.ComplianceSignalOptions, true
+}
+
+// HasComplianceSignalOptions returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasComplianceSignalOptions() bool {
+	return o != nil && o.ComplianceSignalOptions != nil
+}
+
+// SetComplianceSignalOptions gets a reference to the given CloudConfigurationRuleComplianceSignalOptions and assigns it to the ComplianceSignalOptions field.
+func (o *SecurityMonitoringStandardRuleResponse) SetComplianceSignalOptions(v CloudConfigurationRuleComplianceSignalOptions) {
+	o.ComplianceSignalOptions = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -551,6 +581,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Cases != nil {
 		toSerialize["cases"] = o.Cases
 	}
+	if o.ComplianceSignalOptions != nil {
+		toSerialize["complianceSignalOptions"] = o.ComplianceSignalOptions
+	}
 	if o.CreatedAt != nil {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
@@ -610,23 +643,24 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            []SecurityMonitoringRuleCase          `json:"cases,omitempty"`
-		CreatedAt        *int64                                `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                                `json:"creationAuthorId,omitempty"`
-		Filters          []SecurityMonitoringFilter            `json:"filters,omitempty"`
-		HasExtendedTitle *bool                                 `json:"hasExtendedTitle,omitempty"`
-		Id               *string                               `json:"id,omitempty"`
-		IsDefault        *bool                                 `json:"isDefault,omitempty"`
-		IsDeleted        *bool                                 `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                                 `json:"isEnabled,omitempty"`
-		Message          *string                               `json:"message,omitempty"`
-		Name             *string                               `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions        `json:"options,omitempty"`
-		Queries          []SecurityMonitoringStandardRuleQuery `json:"queries,omitempty"`
-		Tags             []string                              `json:"tags,omitempty"`
-		Type             *SecurityMonitoringRuleTypeRead       `json:"type,omitempty"`
-		UpdateAuthorId   *int64                                `json:"updateAuthorId,omitempty"`
-		Version          *int64                                `json:"version,omitempty"`
+		Cases                   []SecurityMonitoringRuleCase                   `json:"cases,omitempty"`
+		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
+		CreatedAt               *int64                                         `json:"createdAt,omitempty"`
+		CreationAuthorId        *int64                                         `json:"creationAuthorId,omitempty"`
+		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
+		HasExtendedTitle        *bool                                          `json:"hasExtendedTitle,omitempty"`
+		Id                      *string                                        `json:"id,omitempty"`
+		IsDefault               *bool                                          `json:"isDefault,omitempty"`
+		IsDeleted               *bool                                          `json:"isDeleted,omitempty"`
+		IsEnabled               *bool                                          `json:"isEnabled,omitempty"`
+		Message                 *string                                        `json:"message,omitempty"`
+		Name                    *string                                        `json:"name,omitempty"`
+		Options                 *SecurityMonitoringRuleOptions                 `json:"options,omitempty"`
+		Queries                 []SecurityMonitoringStandardRuleQuery          `json:"queries,omitempty"`
+		Tags                    []string                                       `json:"tags,omitempty"`
+		Type                    *SecurityMonitoringRuleTypeRead                `json:"type,omitempty"`
+		UpdateAuthorId          *int64                                         `json:"updateAuthorId,omitempty"`
+		Version                 *int64                                         `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -646,6 +680,14 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		return nil
 	}
 	o.Cases = all.Cases
+	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.CreatedAt = all.CreatedAt
 	o.CreationAuthorId = all.CreationAuthorId
 	o.Filters = all.Filters

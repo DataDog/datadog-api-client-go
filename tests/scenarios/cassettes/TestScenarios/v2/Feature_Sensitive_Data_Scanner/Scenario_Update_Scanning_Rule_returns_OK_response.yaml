@@ -1,0 +1,125 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config
+  response:
+    body: '{"meta":{"count_limit":100,"version":1318,"group_count_limit":20,"is_pci_compliant":false,"has_highlight_enabled":true},"data":{"relationships":{"groups":{"data":[]}},"attributes":{},"type":"sensitive_data_scanner_configuration","id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"filter":{"query":"*"},"is_enabled":false,"name":"my-test-group","product_list":["logs"]},"relationships":{"configuration":{"data":{"id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87","type":"sensitive_data_scanner_configuration"}},"rules":{"data":[]}},"type":"sensitive_data_scanner_group"},"meta":{}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups
+  response:
+    body: '{"meta":{"version":1319},"data":{"relationships":{"rules":{"data":[]},"configuration":{"data":{"type":"sensitive_data_scanner_configuration","id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87"}}},"attributes":{"is_enabled":false,"filter":{"query":"*"},"product_list":["logs"],"name":"my-test-group"},"type":"sensitive_data_scanner_group","id":"LvetUHRAS_-QENoqFwKE9w"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"relationships":{"group":{"data":{"id":"LvetUHRAS_-QENoqFwKE9w","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules
+  response:
+    body: '{"meta":{"version":1320},"data":{"relationships":{"group":{"data":{"type":"sensitive_data_scanner_group","id":"LvetUHRAS_-QENoqFwKE9w"}}},"attributes":{"is_enabled":true,"excluded_namespaces":[],"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","tags":["sensitive_data:true"],"pattern":"pattern","namespaces":[],"text_replacement":{"type":"none"}},"type":"sensitive_data_scanner_rule","id":"xhid6C6USka2JdxmZCYg9w"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"id":"xhid6C6USka2JdxmZCYg9w","relationships":{"group":{"data":{"id":"LvetUHRAS_-QENoqFwKE9w","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/xhid6C6USka2JdxmZCYg9w
+  response:
+    body: '{"meta":{"version":1321}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"meta":{}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/xhid6C6USka2JdxmZCYg9w
+  response:
+    body: '{"meta":{"version":1322}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"meta":{}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups/LvetUHRAS_-QENoqFwKE9w
+  response:
+    body: '{"meta":{"version":1323}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1
