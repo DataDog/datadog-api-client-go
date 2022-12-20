@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 2.6.0 / 2022-12-20
+
+### Fixed
+* Fix service catalog schema change by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1749
+* Add missing response fields to MTD usage attribution endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1776
+* Fix missing field in Synthetics tests authentication configuration by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1782
+* Mark `hosts` response version fields as nullable by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1778
+### Added
+* Add fields for CSPM GCP usage by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1756
+* Introduce `PaginationResult` type to return errors in WithPagination methods by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1755
+* Add offset and limit parameter to SLO correction API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1759
+* Add documentation for Logs Pipelines ReferenceTableLogsLookupProcessor  by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1758
+* Adding new field for the usage metering infra hosts by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1761
+* Add `include_percentiles` field in Logs Custom Metrics by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1740
+* Add OAuth support for Synthetics tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1764
+* Add new billable summary fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1774
+* RUM Applications Management API add client_token by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1765
+* Support GRPC unary calls in Synthetics by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1772
+* Add style object to dashboard widget formulas by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1787
+* Add enable_samples monitor option by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1789
+* Update security_monitoring endpoints for cloud_configuration rules by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1790
+* Add support for sensitive data scanner APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1784
+* Add synthetics_parallel_testing to Usage Metering API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1792
+* Synthetics add pagination params to get all tests endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1793
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.5.0...v2.6.0
+
 ## 2.5.0 / 2022-11-09
 
 ### Added
