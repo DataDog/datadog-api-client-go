@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2.6.1 / 2022-12-20
+
+### Fixed
+* Remove incorrect required fields from CloudConfigurationComplianceRuleOptions by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1801
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.6.0...v2.6.1
+
 ## 2.6.0 / 2022-12-20
 
 ### Fixed
