@@ -12,6 +12,8 @@ import (
 // CloudConfigurationRuleOptions Options on cloud configuration rules.
 type CloudConfigurationRuleOptions struct {
 	// Options for cloud_configuration rules.
+	// Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.
+	//
 	ComplianceRuleOptions CloudConfigurationComplianceRuleOptions `json:"complianceRuleOptions"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
