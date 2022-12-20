@@ -28,9 +28,9 @@ func main() {
 			},
 			Options: datadogV2.CloudConfigurationRuleOptions{
 				ComplianceRuleOptions: datadogV2.CloudConfigurationComplianceRuleOptions{
-					ResourceType: "gcp_compute_disk",
+					ResourceType: datadog.PtrString("gcp_compute_disk"),
 					ComplexRule:  datadog.PtrBool(false),
-					RegoRule: datadogV2.CloudConfigurationRegoRule{
+					RegoRule: &datadogV2.CloudConfigurationRegoRule{
 						Policy: `package datadog
 `,
 						ResourceTypes: []string{
