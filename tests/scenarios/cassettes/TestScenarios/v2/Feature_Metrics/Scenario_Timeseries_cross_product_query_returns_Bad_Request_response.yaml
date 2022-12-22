@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"formulas":[{"formula":"a+b","limit":{"count":10,"order":"desc"}}],"from":1671617641,"interval":5000,"queries":[{"data_source":"metrics","query":"avg:system.cpu.user{*}"}],"to":1671621241},"type":"timeseries_rquest"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/query/timeseries
+  response:
+    body: '{"errors":["API input validation failed: Invalid type. Expected \"timeseries_request\"."]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

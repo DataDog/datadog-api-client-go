@@ -98,6 +98,8 @@
 //  - [MetricsApi.ListTagConfigurations]
 //  - [MetricsApi.ListTagsByMetricName]
 //  - [MetricsApi.ListVolumesByMetricName]
+//  - [MetricsApi.QueryScalarData]
+//  - [MetricsApi.QueryTimeseriesData]
 //  - [MetricsApi.SubmitMetrics]
 //  - [MetricsApi.UpdateTagConfiguration]
 //  - [OpsgenieIntegrationApi.CreateOpsgenieService]

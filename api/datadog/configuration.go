@@ -369,6 +369,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListIncidents":             false,
 			"v2.UpdateIncident":            false,
 			"v2.UpdateIncidentAttachments": false,
+			"v2.QueryScalarData":           false,
+			"v2.QueryTimeseriesData":       false,
 			"v2.CreateIncidentService":     false,
 			"v2.DeleteIncidentService":     false,
 			"v2.GetIncidentService":        false,
