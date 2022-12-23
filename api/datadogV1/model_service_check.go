@@ -17,7 +17,7 @@ type ServiceCheck struct {
 	HostName string `json:"host_name"`
 	// Message containing check status.
 	Message *string `json:"message,omitempty"`
-	// The status of a service check.
+	// The status of a service check. Set to `0` for OK, `1` for warning, `2` for critical, and `3` for unknown.
 	Status ServiceCheckStatus `json:"status"`
 	// Tags related to a check.
 	Tags []string `json:"tags"`

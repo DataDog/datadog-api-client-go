@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// ServiceCheckStatus The status of a service check.
+// ServiceCheckStatus The status of a service check. Set to `0` for OK, `1` for warning, `2` for critical, and `3` for unknown.
 type ServiceCheckStatus int32
 
 // List of ServiceCheckStatus.
