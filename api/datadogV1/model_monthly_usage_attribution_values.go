@@ -82,6 +82,10 @@ type MonthlyUsageAttributionValues struct {
 	EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 	// The estimated ingested spans usage by tag(s). This field is in private beta.
 	EstimatedIngestedSpansUsage *float64 `json:"estimated_ingested_spans_usage,omitempty"`
+	// The percentage of estimated rum sessions usage by tag(s). This field is in private beta.
+	EstimatedRumSessionsPercentage *float64 `json:"estimated_rum_sessions_percentage,omitempty"`
+	// The estimated rum sessions usage by tag(s). This field is in private beta.
+	EstimatedRumSessionsUsage *float64 `json:"estimated_rum_sessions_usage,omitempty"`
 	// The percentage of Fargate usage by tags.
 	FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
 	// The Fargate usage by tags.
@@ -1148,6 +1152,62 @@ func (o *MonthlyUsageAttributionValues) SetEstimatedIngestedSpansUsage(v float64
 	o.EstimatedIngestedSpansUsage = &v
 }
 
+// GetEstimatedRumSessionsPercentage returns the EstimatedRumSessionsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetEstimatedRumSessionsPercentage() float64 {
+	if o == nil || o.EstimatedRumSessionsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedRumSessionsPercentage
+}
+
+// GetEstimatedRumSessionsPercentageOk returns a tuple with the EstimatedRumSessionsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetEstimatedRumSessionsPercentageOk() (*float64, bool) {
+	if o == nil || o.EstimatedRumSessionsPercentage == nil {
+		return nil, false
+	}
+	return o.EstimatedRumSessionsPercentage, true
+}
+
+// HasEstimatedRumSessionsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasEstimatedRumSessionsPercentage() bool {
+	return o != nil && o.EstimatedRumSessionsPercentage != nil
+}
+
+// SetEstimatedRumSessionsPercentage gets a reference to the given float64 and assigns it to the EstimatedRumSessionsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetEstimatedRumSessionsPercentage(v float64) {
+	o.EstimatedRumSessionsPercentage = &v
+}
+
+// GetEstimatedRumSessionsUsage returns the EstimatedRumSessionsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetEstimatedRumSessionsUsage() float64 {
+	if o == nil || o.EstimatedRumSessionsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedRumSessionsUsage
+}
+
+// GetEstimatedRumSessionsUsageOk returns a tuple with the EstimatedRumSessionsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetEstimatedRumSessionsUsageOk() (*float64, bool) {
+	if o == nil || o.EstimatedRumSessionsUsage == nil {
+		return nil, false
+	}
+	return o.EstimatedRumSessionsUsage, true
+}
+
+// HasEstimatedRumSessionsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasEstimatedRumSessionsUsage() bool {
+	return o != nil && o.EstimatedRumSessionsUsage != nil
+}
+
+// SetEstimatedRumSessionsUsage gets a reference to the given float64 and assigns it to the EstimatedRumSessionsUsage field.
+func (o *MonthlyUsageAttributionValues) SetEstimatedRumSessionsUsage(v float64) {
+	o.EstimatedRumSessionsUsage = &v
+}
+
 // GetFargatePercentage returns the FargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetFargatePercentage() float64 {
 	if o == nil || o.FargatePercentage == nil {
@@ -1766,6 +1826,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.EstimatedIngestedSpansUsage != nil {
 		toSerialize["estimated_ingested_spans_usage"] = o.EstimatedIngestedSpansUsage
 	}
+	if o.EstimatedRumSessionsPercentage != nil {
+		toSerialize["estimated_rum_sessions_percentage"] = o.EstimatedRumSessionsPercentage
+	}
+	if o.EstimatedRumSessionsUsage != nil {
+		toSerialize["estimated_rum_sessions_usage"] = o.EstimatedRumSessionsUsage
+	}
 	if o.FargatePercentage != nil {
 		toSerialize["fargate_percentage"] = o.FargatePercentage
 	}
@@ -1867,6 +1933,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		EstimatedIngestedLogsUsage       *float64 `json:"estimated_ingested_logs_usage,omitempty"`
 		EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
 		EstimatedIngestedSpansUsage      *float64 `json:"estimated_ingested_spans_usage,omitempty"`
+		EstimatedRumSessionsPercentage   *float64 `json:"estimated_rum_sessions_percentage,omitempty"`
+		EstimatedRumSessionsUsage        *float64 `json:"estimated_rum_sessions_usage,omitempty"`
 		FargatePercentage                *float64 `json:"fargate_percentage,omitempty"`
 		FargateUsage                     *float64 `json:"fargate_usage,omitempty"`
 		FunctionsPercentage              *float64 `json:"functions_percentage,omitempty"`
@@ -1931,6 +1999,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.EstimatedIngestedLogsUsage = all.EstimatedIngestedLogsUsage
 	o.EstimatedIngestedSpansPercentage = all.EstimatedIngestedSpansPercentage
 	o.EstimatedIngestedSpansUsage = all.EstimatedIngestedSpansUsage
+	o.EstimatedRumSessionsPercentage = all.EstimatedRumSessionsPercentage
+	o.EstimatedRumSessionsUsage = all.EstimatedRumSessionsUsage
 	o.FargatePercentage = all.FargatePercentage
 	o.FargateUsage = all.FargateUsage
 	o.FunctionsPercentage = all.FunctionsPercentage
