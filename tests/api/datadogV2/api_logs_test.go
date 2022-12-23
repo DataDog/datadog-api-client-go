@@ -130,23 +130,6 @@ func TestLogsList(t *testing.T) {
 	assert.NotEqual(firstID, secondID)
 }
 
-func TestGetLogsNilBody(t *testing.T) {
-	ctx, finish := tests.WithTestSpan(context.Background(), t)
-	defer finish()
-	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-	client := Client(ctx)
-	api := datadogV2.NewLogsApi(client)
-
-	_, httpResp, err := api.ListLogs(ctx, *datadogV2.NewListLogsOptionalParameters())
-	if err != nil {
-		t.Fatalf("Could not list logs: %v", err)
-	}
-
-	assert.Equal(200, httpResp.StatusCode)
-}
-
 func TestLogsListGet(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
