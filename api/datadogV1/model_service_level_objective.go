@@ -59,11 +59,21 @@ type ServiceLevelObjective struct {
 	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
 	Tags []string `json:"tags,omitempty"`
+	// The target threshold such that when the service level indicator is above this
+	// threshold over the given timeframe, the objective is being met.
+	TargetThreshold *float64 `json:"target_threshold,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level
 	// objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
+	// The SLO time window options.
+	Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
 	// The type of the service level objective.
 	Type SLOType `json:"type"`
+	// The optional warning threshold such that when the service level indicator is
+	// below this value for the given threshold, but above the target threshold, the
+	// objective appears in a "warning" state. This value must be greater than the target
+	// threshold.
+	WarningThreshold *float64 `json:"warning_threshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -403,6 +413,34 @@ func (o *ServiceLevelObjective) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetTargetThreshold returns the TargetThreshold field value if set, zero value otherwise.
+func (o *ServiceLevelObjective) GetTargetThreshold() float64 {
+	if o == nil || o.TargetThreshold == nil {
+		var ret float64
+		return ret
+	}
+	return *o.TargetThreshold
+}
+
+// GetTargetThresholdOk returns a tuple with the TargetThreshold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjective) GetTargetThresholdOk() (*float64, bool) {
+	if o == nil || o.TargetThreshold == nil {
+		return nil, false
+	}
+	return o.TargetThreshold, true
+}
+
+// HasTargetThreshold returns a boolean if a field has been set.
+func (o *ServiceLevelObjective) HasTargetThreshold() bool {
+	return o != nil && o.TargetThreshold != nil
+}
+
+// SetTargetThreshold gets a reference to the given float64 and assigns it to the TargetThreshold field.
+func (o *ServiceLevelObjective) SetTargetThreshold(v float64) {
+	o.TargetThreshold = &v
+}
+
 // GetThresholds returns the Thresholds field value.
 func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold {
 	if o == nil {
@@ -426,6 +464,34 @@ func (o *ServiceLevelObjective) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 
+// GetTimeframe returns the Timeframe field value if set, zero value otherwise.
+func (o *ServiceLevelObjective) GetTimeframe() SLOTimeframe {
+	if o == nil || o.Timeframe == nil {
+		var ret SLOTimeframe
+		return ret
+	}
+	return *o.Timeframe
+}
+
+// GetTimeframeOk returns a tuple with the Timeframe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjective) GetTimeframeOk() (*SLOTimeframe, bool) {
+	if o == nil || o.Timeframe == nil {
+		return nil, false
+	}
+	return o.Timeframe, true
+}
+
+// HasTimeframe returns a boolean if a field has been set.
+func (o *ServiceLevelObjective) HasTimeframe() bool {
+	return o != nil && o.Timeframe != nil
+}
+
+// SetTimeframe gets a reference to the given SLOTimeframe and assigns it to the Timeframe field.
+func (o *ServiceLevelObjective) SetTimeframe(v SLOTimeframe) {
+	o.Timeframe = &v
+}
+
 // GetType returns the Type field value.
 func (o *ServiceLevelObjective) GetType() SLOType {
 	if o == nil {
@@ -447,6 +513,34 @@ func (o *ServiceLevelObjective) GetTypeOk() (*SLOType, bool) {
 // SetType sets field value.
 func (o *ServiceLevelObjective) SetType(v SLOType) {
 	o.Type = v
+}
+
+// GetWarningThreshold returns the WarningThreshold field value if set, zero value otherwise.
+func (o *ServiceLevelObjective) GetWarningThreshold() float64 {
+	if o == nil || o.WarningThreshold == nil {
+		var ret float64
+		return ret
+	}
+	return *o.WarningThreshold
+}
+
+// GetWarningThresholdOk returns a tuple with the WarningThreshold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceLevelObjective) GetWarningThresholdOk() (*float64, bool) {
+	if o == nil || o.WarningThreshold == nil {
+		return nil, false
+	}
+	return o.WarningThreshold, true
+}
+
+// HasWarningThreshold returns a boolean if a field has been set.
+func (o *ServiceLevelObjective) HasWarningThreshold() bool {
+	return o != nil && o.WarningThreshold != nil
+}
+
+// SetWarningThreshold gets a reference to the given float64 and assigns it to the WarningThreshold field.
+func (o *ServiceLevelObjective) SetWarningThreshold(v float64) {
+	o.WarningThreshold = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -486,8 +580,17 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if o.TargetThreshold != nil {
+		toSerialize["target_threshold"] = o.TargetThreshold
+	}
 	toSerialize["thresholds"] = o.Thresholds
+	if o.Timeframe != nil {
+		toSerialize["timeframe"] = o.Timeframe
+	}
 	toSerialize["type"] = o.Type
+	if o.WarningThreshold != nil {
+		toSerialize["warning_threshold"] = o.WarningThreshold
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -504,19 +607,22 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *SLOType        `json:"type"`
 	}{}
 	all := struct {
-		CreatedAt   *int64                      `json:"created_at,omitempty"`
-		Creator     *Creator                    `json:"creator,omitempty"`
-		Description datadog.NullableString      `json:"description,omitempty"`
-		Groups      []string                    `json:"groups,omitempty"`
-		Id          *string                     `json:"id,omitempty"`
-		ModifiedAt  *int64                      `json:"modified_at,omitempty"`
-		MonitorIds  []int64                     `json:"monitor_ids,omitempty"`
-		MonitorTags []string                    `json:"monitor_tags,omitempty"`
-		Name        string                      `json:"name"`
-		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags        []string                    `json:"tags,omitempty"`
-		Thresholds  []SLOThreshold              `json:"thresholds"`
-		Type        SLOType                     `json:"type"`
+		CreatedAt        *int64                      `json:"created_at,omitempty"`
+		Creator          *Creator                    `json:"creator,omitempty"`
+		Description      datadog.NullableString      `json:"description,omitempty"`
+		Groups           []string                    `json:"groups,omitempty"`
+		Id               *string                     `json:"id,omitempty"`
+		ModifiedAt       *int64                      `json:"modified_at,omitempty"`
+		MonitorIds       []int64                     `json:"monitor_ids,omitempty"`
+		MonitorTags      []string                    `json:"monitor_tags,omitempty"`
+		Name             string                      `json:"name"`
+		Query            *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags             []string                    `json:"tags,omitempty"`
+		TargetThreshold  *float64                    `json:"target_threshold,omitempty"`
+		Thresholds       []SLOThreshold              `json:"thresholds"`
+		Timeframe        *SLOTimeframe               `json:"timeframe,omitempty"`
+		Type             SLOType                     `json:"type"`
+		WarningThreshold *float64                    `json:"warning_threshold,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -533,6 +639,14 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Timeframe; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -573,7 +687,10 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Query = all.Query
 	o.Tags = all.Tags
+	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = all.Thresholds
+	o.Timeframe = all.Timeframe
 	o.Type = all.Type
+	o.WarningThreshold = all.WarningThreshold
 	return nil
 }

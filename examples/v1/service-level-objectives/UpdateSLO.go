@@ -27,6 +27,9 @@ func main() {
 				Warning:   datadog.PtrFloat64(98.0),
 			},
 		},
+		Timeframe:        datadogV1.SLOTIMEFRAME_SEVEN_DAYS.Ptr(),
+		TargetThreshold:  datadog.PtrFloat64(97.0),
+		WarningThreshold: datadog.PtrFloat64(98),
 		Query: &datadogV1.ServiceLevelObjectiveQuery{
 			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
 			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
