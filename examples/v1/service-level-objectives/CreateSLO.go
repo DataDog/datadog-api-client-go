@@ -39,6 +39,9 @@ func main() {
 				WarningDisplay: datadog.PtrString("98.0"),
 			},
 		},
+		Timeframe:        datadogV1.SLOTIMEFRAME_SEVEN_DAYS.Ptr(),
+		TargetThreshold:  datadog.PtrFloat64(97.0),
+		WarningThreshold: datadog.PtrFloat64(98),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

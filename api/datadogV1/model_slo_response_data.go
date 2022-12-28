@@ -60,11 +60,21 @@ type SLOResponseData struct {
 	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
 	Tags []string `json:"tags,omitempty"`
+	// The target threshold such that when the service level indicator is above this
+	// threshold over the given timeframe, the objective is being met.
+	TargetThreshold *float64 `json:"target_threshold,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level
 	// objective object.
 	Thresholds []SLOThreshold `json:"thresholds,omitempty"`
+	// The SLO time window options.
+	Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
 	// The type of the service level objective.
 	Type *SLOType `json:"type,omitempty"`
+	// The optional warning threshold such that when the service level indicator is
+	// below this value for the given threshold, but above the target threshold, the
+	// objective appears in a "warning" state. This value must be greater than the target
+	// threshold.
+	WarningThreshold *float64 `json:"warning_threshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -434,6 +444,34 @@ func (o *SLOResponseData) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetTargetThreshold returns the TargetThreshold field value if set, zero value otherwise.
+func (o *SLOResponseData) GetTargetThreshold() float64 {
+	if o == nil || o.TargetThreshold == nil {
+		var ret float64
+		return ret
+	}
+	return *o.TargetThreshold
+}
+
+// GetTargetThresholdOk returns a tuple with the TargetThreshold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOResponseData) GetTargetThresholdOk() (*float64, bool) {
+	if o == nil || o.TargetThreshold == nil {
+		return nil, false
+	}
+	return o.TargetThreshold, true
+}
+
+// HasTargetThreshold returns a boolean if a field has been set.
+func (o *SLOResponseData) HasTargetThreshold() bool {
+	return o != nil && o.TargetThreshold != nil
+}
+
+// SetTargetThreshold gets a reference to the given float64 and assigns it to the TargetThreshold field.
+func (o *SLOResponseData) SetTargetThreshold(v float64) {
+	o.TargetThreshold = &v
+}
+
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *SLOResponseData) GetThresholds() []SLOThreshold {
 	if o == nil || o.Thresholds == nil {
@@ -462,6 +500,34 @@ func (o *SLOResponseData) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 
+// GetTimeframe returns the Timeframe field value if set, zero value otherwise.
+func (o *SLOResponseData) GetTimeframe() SLOTimeframe {
+	if o == nil || o.Timeframe == nil {
+		var ret SLOTimeframe
+		return ret
+	}
+	return *o.Timeframe
+}
+
+// GetTimeframeOk returns a tuple with the Timeframe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOResponseData) GetTimeframeOk() (*SLOTimeframe, bool) {
+	if o == nil || o.Timeframe == nil {
+		return nil, false
+	}
+	return o.Timeframe, true
+}
+
+// HasTimeframe returns a boolean if a field has been set.
+func (o *SLOResponseData) HasTimeframe() bool {
+	return o != nil && o.Timeframe != nil
+}
+
+// SetTimeframe gets a reference to the given SLOTimeframe and assigns it to the Timeframe field.
+func (o *SLOResponseData) SetTimeframe(v SLOTimeframe) {
+	o.Timeframe = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SLOResponseData) GetType() SLOType {
 	if o == nil || o.Type == nil {
@@ -488,6 +554,34 @@ func (o *SLOResponseData) HasType() bool {
 // SetType gets a reference to the given SLOType and assigns it to the Type field.
 func (o *SLOResponseData) SetType(v SLOType) {
 	o.Type = &v
+}
+
+// GetWarningThreshold returns the WarningThreshold field value if set, zero value otherwise.
+func (o *SLOResponseData) GetWarningThreshold() float64 {
+	if o == nil || o.WarningThreshold == nil {
+		var ret float64
+		return ret
+	}
+	return *o.WarningThreshold
+}
+
+// GetWarningThresholdOk returns a tuple with the WarningThreshold field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOResponseData) GetWarningThresholdOk() (*float64, bool) {
+	if o == nil || o.WarningThreshold == nil {
+		return nil, false
+	}
+	return o.WarningThreshold, true
+}
+
+// HasWarningThreshold returns a boolean if a field has been set.
+func (o *SLOResponseData) HasWarningThreshold() bool {
+	return o != nil && o.WarningThreshold != nil
+}
+
+// SetWarningThreshold gets a reference to the given float64 and assigns it to the WarningThreshold field.
+func (o *SLOResponseData) SetWarningThreshold(v float64) {
+	o.WarningThreshold = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -532,11 +626,20 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
+	if o.TargetThreshold != nil {
+		toSerialize["target_threshold"] = o.TargetThreshold
+	}
 	if o.Thresholds != nil {
 		toSerialize["thresholds"] = o.Thresholds
 	}
+	if o.Timeframe != nil {
+		toSerialize["timeframe"] = o.Timeframe
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+	if o.WarningThreshold != nil {
+		toSerialize["warning_threshold"] = o.WarningThreshold
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -561,11 +664,22 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Name               *string                     `json:"name,omitempty"`
 		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 		Tags               []string                    `json:"tags,omitempty"`
+		TargetThreshold    *float64                    `json:"target_threshold,omitempty"`
 		Thresholds         []SLOThreshold              `json:"thresholds,omitempty"`
+		Timeframe          *SLOTimeframe               `json:"timeframe,omitempty"`
 		Type               *SLOType                    `json:"type,omitempty"`
+		WarningThreshold   *float64                    `json:"warning_threshold,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.Timeframe; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -607,7 +721,10 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Query = all.Query
 	o.Tags = all.Tags
+	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = all.Thresholds
+	o.Timeframe = all.Timeframe
 	o.Type = all.Type
+	o.WarningThreshold = all.WarningThreshold
 	return nil
 }
