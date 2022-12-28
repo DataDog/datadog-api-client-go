@@ -34,6 +34,10 @@ type MonthlyUsageAttributionValues struct {
 	BrowserPercentage *float64 `json:"browser_percentage,omitempty"`
 	// The synthetic browser test usage by tag(s).
 	BrowserUsage *float64 `json:"browser_usage,omitempty"`
+	// The percentage of container usage without the Datadog Agent by tag(s).
+	ContPercentage *float64 `json:"cont_percentage,omitempty"`
+	// The container usage without the Datadog Agent by tag(s).
+	ContUsage *float64 `json:"cont_usage,omitempty"`
 	// The percentage of container usage by tag(s).
 	ContainerPercentage *float64 `json:"container_percentage,omitempty"`
 	// The container usage by tag(s).
@@ -478,6 +482,62 @@ func (o *MonthlyUsageAttributionValues) HasBrowserUsage() bool {
 // SetBrowserUsage gets a reference to the given float64 and assigns it to the BrowserUsage field.
 func (o *MonthlyUsageAttributionValues) SetBrowserUsage(v float64) {
 	o.BrowserUsage = &v
+}
+
+// GetContPercentage returns the ContPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetContPercentage() float64 {
+	if o == nil || o.ContPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ContPercentage
+}
+
+// GetContPercentageOk returns a tuple with the ContPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetContPercentageOk() (*float64, bool) {
+	if o == nil || o.ContPercentage == nil {
+		return nil, false
+	}
+	return o.ContPercentage, true
+}
+
+// HasContPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasContPercentage() bool {
+	return o != nil && o.ContPercentage != nil
+}
+
+// SetContPercentage gets a reference to the given float64 and assigns it to the ContPercentage field.
+func (o *MonthlyUsageAttributionValues) SetContPercentage(v float64) {
+	o.ContPercentage = &v
+}
+
+// GetContUsage returns the ContUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetContUsage() float64 {
+	if o == nil || o.ContUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ContUsage
+}
+
+// GetContUsageOk returns a tuple with the ContUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetContUsageOk() (*float64, bool) {
+	if o == nil || o.ContUsage == nil {
+		return nil, false
+	}
+	return o.ContUsage, true
+}
+
+// HasContUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasContUsage() bool {
+	return o != nil && o.ContUsage != nil
+}
+
+// SetContUsage gets a reference to the given float64 and assigns it to the ContUsage field.
+func (o *MonthlyUsageAttributionValues) SetContUsage(v float64) {
+	o.ContUsage = &v
 }
 
 // GetContainerPercentage returns the ContainerPercentage field value if set, zero value otherwise.
@@ -1754,6 +1814,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.BrowserUsage != nil {
 		toSerialize["browser_usage"] = o.BrowserUsage
 	}
+	if o.ContPercentage != nil {
+		toSerialize["cont_percentage"] = o.ContPercentage
+	}
+	if o.ContUsage != nil {
+		toSerialize["cont_usage"] = o.ContUsage
+	}
 	if o.ContainerPercentage != nil {
 		toSerialize["container_percentage"] = o.ContainerPercentage
 	}
@@ -1909,6 +1975,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		AppsecUsage                      *float64 `json:"appsec_usage,omitempty"`
 		BrowserPercentage                *float64 `json:"browser_percentage,omitempty"`
 		BrowserUsage                     *float64 `json:"browser_usage,omitempty"`
+		ContPercentage                   *float64 `json:"cont_percentage,omitempty"`
+		ContUsage                        *float64 `json:"cont_usage,omitempty"`
 		ContainerPercentage              *float64 `json:"container_percentage,omitempty"`
 		ContainerUsage                   *float64 `json:"container_usage,omitempty"`
 		CspmContainersPercentage         *float64 `json:"cspm_containers_percentage,omitempty"`
@@ -1975,6 +2043,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.AppsecUsage = all.AppsecUsage
 	o.BrowserPercentage = all.BrowserPercentage
 	o.BrowserUsage = all.BrowserUsage
+	o.ContPercentage = all.ContPercentage
+	o.ContUsage = all.ContUsage
 	o.ContainerPercentage = all.ContainerPercentage
 	o.ContainerUsage = all.ContainerUsage
 	o.CspmContainersPercentage = all.CspmContainersPercentage
