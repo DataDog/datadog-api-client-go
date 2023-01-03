@@ -18,8 +18,9 @@ func main() {
 			Assertions: []datadogV1.SyntheticsAssertion{},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
-					Name: "VARIABLE_NAME",
-					Type: datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Name:   "VARIABLE_NAME",
+					Secure: datadog.PtrBool(false),
+					Type:   datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
 			Request: datadogV1.SyntheticsTestRequest{

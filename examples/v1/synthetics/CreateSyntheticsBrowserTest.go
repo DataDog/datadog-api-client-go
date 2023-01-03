@@ -22,6 +22,7 @@ func main() {
 					Name:    "PROPERTY",
 					Pattern: datadog.PtrString("content-type"),
 					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+					Secure:  datadog.PtrBool(true),
 				},
 			},
 			Request: datadogV1.SyntheticsTestRequest{
