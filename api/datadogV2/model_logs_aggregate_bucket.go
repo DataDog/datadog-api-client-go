@@ -11,7 +11,7 @@ import (
 // LogsAggregateBucket A bucket values
 type LogsAggregateBucket struct {
 	// The key, value pairs for each group by
-	By map[string]string `json:"by,omitempty"`
+	By map[string]interface{} `json:"by,omitempty"`
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
 	Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,9 +37,9 @@ func NewLogsAggregateBucketWithDefaults() *LogsAggregateBucket {
 }
 
 // GetBy returns the By field value if set, zero value otherwise.
-func (o *LogsAggregateBucket) GetBy() map[string]string {
+func (o *LogsAggregateBucket) GetBy() map[string]interface{} {
 	if o == nil || o.By == nil {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.By
@@ -47,7 +47,7 @@ func (o *LogsAggregateBucket) GetBy() map[string]string {
 
 // GetByOk returns a tuple with the By field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsAggregateBucket) GetByOk() (*map[string]string, bool) {
+func (o *LogsAggregateBucket) GetByOk() (*map[string]interface{}, bool) {
 	if o == nil || o.By == nil {
 		return nil, false
 	}
@@ -59,8 +59,8 @@ func (o *LogsAggregateBucket) HasBy() bool {
 	return o != nil && o.By != nil
 }
 
-// SetBy gets a reference to the given map[string]string and assigns it to the By field.
-func (o *LogsAggregateBucket) SetBy(v map[string]string) {
+// SetBy gets a reference to the given map[string]interface{} and assigns it to the By field.
+func (o *LogsAggregateBucket) SetBy(v map[string]interface{}) {
 	o.By = v
 }
 
@@ -115,7 +115,7 @@ func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		By       map[string]string                   `json:"by,omitempty"`
+		By       map[string]interface{}              `json:"by,omitempty"`
 		Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
