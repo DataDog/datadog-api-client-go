@@ -53,6 +53,7 @@
 //  - [IncidentsApi.GetIncident]
 //  - [IncidentsApi.ListIncidentAttachments]
 //  - [IncidentsApi.ListIncidents]
+//  - [IncidentsApi.SearchIncidents]
 //  - [IncidentsApi.UpdateIncident]
 //  - [IncidentsApi.UpdateIncidentAttachments]
 //  - [KeyManagementApi.CreateAPIKey]

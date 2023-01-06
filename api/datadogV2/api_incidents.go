@@ -711,6 +711,154 @@ func (a *IncidentsApi) listIncidentsExecute(r apiListIncidentsRequest) (Incident
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiSearchIncidentsRequest struct {
+	ctx     _context.Context
+	query   *string
+	include *IncidentRelatedObject
+	sort    *IncidentSearchSortOrder
+}
+
+// SearchIncidentsOptionalParameters holds optional parameters for SearchIncidents.
+type SearchIncidentsOptionalParameters struct {
+	Include *IncidentRelatedObject
+	Sort    *IncidentSearchSortOrder
+}
+
+// NewSearchIncidentsOptionalParameters creates an empty struct for parameters.
+func NewSearchIncidentsOptionalParameters() *SearchIncidentsOptionalParameters {
+	this := SearchIncidentsOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *SearchIncidentsOptionalParameters) WithInclude(include IncidentRelatedObject) *SearchIncidentsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *SearchIncidentsOptionalParameters) WithSort(sort IncidentSearchSortOrder) *SearchIncidentsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+func (a *IncidentsApi) buildSearchIncidentsRequest(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (apiSearchIncidentsRequest, error) {
+	req := apiSearchIncidentsRequest{
+		ctx:   ctx,
+		query: &query,
+	}
+
+	if len(o) > 1 {
+		return req, datadog.ReportError("only one argument of type SearchIncidentsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
+		req.sort = o[0].Sort
+	}
+	return req, nil
+}
+
+// SearchIncidents Search for incidents.
+// Search for incidents matching a certain query.
+func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (IncidentSearchResponse, *_nethttp.Response, error) {
+	req, err := a.buildSearchIncidentsRequest(ctx, query, o...)
+	if err != nil {
+		var localVarReturnValue IncidentSearchResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return a.searchIncidentsExecute(req)
+}
+
+// searchIncidentsExecute executes the request.
+func (a *IncidentsApi) searchIncidentsExecute(r apiSearchIncidentsRequest) (IncidentSearchResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentSearchResponse
+	)
+
+	operationId := "v2.SearchIncidents"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentsApi.SearchIncidents")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/incidents/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.query == nil {
+		return localVarReturnValue, nil, datadog.ReportError("query is required and must be specified")
+	}
+	localVarQueryParams.Add("query", datadog.ParameterToString(*r.query, ""))
+	if r.include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*r.include, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*r.sort, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		r.ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiUpdateIncidentRequest struct {
 	ctx        _context.Context
 	incidentId string
