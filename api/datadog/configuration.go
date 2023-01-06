@@ -367,6 +367,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetIncident":               false,
 			"v2.ListIncidentAttachments":   false,
 			"v2.ListIncidents":             false,
+			"v2.SearchIncidents":           false,
 			"v2.UpdateIncident":            false,
 			"v2.UpdateIncidentAttachments": false,
 			"v2.QueryScalarData":           false,
