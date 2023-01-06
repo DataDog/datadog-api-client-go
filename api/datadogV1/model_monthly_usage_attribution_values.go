@@ -98,10 +98,6 @@ type MonthlyUsageAttributionValues struct {
 	FunctionsPercentage *float64 `json:"functions_percentage,omitempty"`
 	// The Lambda function usage by tag(s).
 	FunctionsUsage *float64 `json:"functions_usage,omitempty"`
-	// The percentage of indexed logs usage by tags.
-	IndexedLogsPercentage *float64 `json:"indexed_logs_percentage,omitempty"`
-	// The indexed logs usage by tags.
-	IndexedLogsUsage *float64 `json:"indexed_logs_usage,omitempty"`
 	// The percentage of infrastructure host usage by tag(s).
 	InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
 	// The infrastructure host usage by tag(s).
@@ -1380,62 +1376,6 @@ func (o *MonthlyUsageAttributionValues) SetFunctionsUsage(v float64) {
 	o.FunctionsUsage = &v
 }
 
-// GetIndexedLogsPercentage returns the IndexedLogsPercentage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetIndexedLogsPercentage() float64 {
-	if o == nil || o.IndexedLogsPercentage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.IndexedLogsPercentage
-}
-
-// GetIndexedLogsPercentageOk returns a tuple with the IndexedLogsPercentage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetIndexedLogsPercentageOk() (*float64, bool) {
-	if o == nil || o.IndexedLogsPercentage == nil {
-		return nil, false
-	}
-	return o.IndexedLogsPercentage, true
-}
-
-// HasIndexedLogsPercentage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasIndexedLogsPercentage() bool {
-	return o != nil && o.IndexedLogsPercentage != nil
-}
-
-// SetIndexedLogsPercentage gets a reference to the given float64 and assigns it to the IndexedLogsPercentage field.
-func (o *MonthlyUsageAttributionValues) SetIndexedLogsPercentage(v float64) {
-	o.IndexedLogsPercentage = &v
-}
-
-// GetIndexedLogsUsage returns the IndexedLogsUsage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetIndexedLogsUsage() float64 {
-	if o == nil || o.IndexedLogsUsage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.IndexedLogsUsage
-}
-
-// GetIndexedLogsUsageOk returns a tuple with the IndexedLogsUsage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetIndexedLogsUsageOk() (*float64, bool) {
-	if o == nil || o.IndexedLogsUsage == nil {
-		return nil, false
-	}
-	return o.IndexedLogsUsage, true
-}
-
-// HasIndexedLogsUsage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasIndexedLogsUsage() bool {
-	return o != nil && o.IndexedLogsUsage != nil
-}
-
-// SetIndexedLogsUsage gets a reference to the given float64 and assigns it to the IndexedLogsUsage field.
-func (o *MonthlyUsageAttributionValues) SetIndexedLogsUsage(v float64) {
-	o.IndexedLogsUsage = &v
-}
-
 // GetInfraHostPercentage returns the InfraHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetInfraHostPercentage() float64 {
 	if o == nil || o.InfraHostPercentage == nil {
@@ -1910,12 +1850,6 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.FunctionsUsage != nil {
 		toSerialize["functions_usage"] = o.FunctionsUsage
 	}
-	if o.IndexedLogsPercentage != nil {
-		toSerialize["indexed_logs_percentage"] = o.IndexedLogsPercentage
-	}
-	if o.IndexedLogsUsage != nil {
-		toSerialize["indexed_logs_usage"] = o.IndexedLogsUsage
-	}
 	if o.InfraHostPercentage != nil {
 		toSerialize["infra_host_percentage"] = o.InfraHostPercentage
 	}
@@ -2007,8 +1941,6 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		FargateUsage                     *float64 `json:"fargate_usage,omitempty"`
 		FunctionsPercentage              *float64 `json:"functions_percentage,omitempty"`
 		FunctionsUsage                   *float64 `json:"functions_usage,omitempty"`
-		IndexedLogsPercentage            *float64 `json:"indexed_logs_percentage,omitempty"`
-		IndexedLogsUsage                 *float64 `json:"indexed_logs_usage,omitempty"`
 		InfraHostPercentage              *float64 `json:"infra_host_percentage,omitempty"`
 		InfraHostUsage                   *float64 `json:"infra_host_usage,omitempty"`
 		InvocationsPercentage            *float64 `json:"invocations_percentage,omitempty"`
@@ -2075,8 +2007,6 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.FargateUsage = all.FargateUsage
 	o.FunctionsPercentage = all.FunctionsPercentage
 	o.FunctionsUsage = all.FunctionsUsage
-	o.IndexedLogsPercentage = all.IndexedLogsPercentage
-	o.IndexedLogsUsage = all.IndexedLogsUsage
 	o.InfraHostPercentage = all.InfraHostPercentage
 	o.InfraHostUsage = all.InfraHostUsage
 	o.InvocationsPercentage = all.InvocationsPercentage
