@@ -40,9 +40,6 @@ func main() {
 		Options: &datadogV2.CIAppQueryOptions{
 			Timezone: datadog.PtrString("GMT"),
 		},
-		Page: &datadogV2.CIAppQueryPageOptions{
-			Limit: datadog.PtrInt32(25),
-		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
