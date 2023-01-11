@@ -15,7 +15,7 @@ type CIAppPipelineEventsResponse struct {
 	// Links attributes.
 	Links *CIAppResponseLinks `json:"links,omitempty"`
 	// The metadata associated with a request.
-	Meta *CIAppResponseMetadataWithPagination `json:"meta,omitempty"`
+	Meta *CIAppResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -95,9 +95,9 @@ func (o *CIAppPipelineEventsResponse) SetLinks(v CIAppResponseLinks) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *CIAppPipelineEventsResponse) GetMeta() CIAppResponseMetadataWithPagination {
+func (o *CIAppPipelineEventsResponse) GetMeta() CIAppResponseMetadata {
 	if o == nil || o.Meta == nil {
-		var ret CIAppResponseMetadataWithPagination
+		var ret CIAppResponseMetadata
 		return ret
 	}
 	return *o.Meta
@@ -105,7 +105,7 @@ func (o *CIAppPipelineEventsResponse) GetMeta() CIAppResponseMetadataWithPaginat
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppPipelineEventsResponse) GetMetaOk() (*CIAppResponseMetadataWithPagination, bool) {
+func (o *CIAppPipelineEventsResponse) GetMetaOk() (*CIAppResponseMetadata, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -117,8 +117,8 @@ func (o *CIAppPipelineEventsResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given CIAppResponseMetadataWithPagination and assigns it to the Meta field.
-func (o *CIAppPipelineEventsResponse) SetMeta(v CIAppResponseMetadataWithPagination) {
+// SetMeta gets a reference to the given CIAppResponseMetadata and assigns it to the Meta field.
+func (o *CIAppPipelineEventsResponse) SetMeta(v CIAppResponseMetadata) {
 	o.Meta = &v
 }
 
@@ -148,9 +148,9 @@ func (o CIAppPipelineEventsResponse) MarshalJSON() ([]byte, error) {
 func (o *CIAppPipelineEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  []CIAppPipelineEvent                 `json:"data,omitempty"`
-		Links *CIAppResponseLinks                  `json:"links,omitempty"`
-		Meta  *CIAppResponseMetadataWithPagination `json:"meta,omitempty"`
+		Data  []CIAppPipelineEvent   `json:"data,omitempty"`
+		Links *CIAppResponseLinks    `json:"links,omitempty"`
+		Meta  *CIAppResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

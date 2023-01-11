@@ -12,6 +12,8 @@ import (
 type CIAppResponseMetadata struct {
 	// The time elapsed in milliseconds.
 	Elapsed *int64 `json:"elapsed,omitempty"`
+	// Paging attributes.
+	Page *CIAppResponsePage `json:"page,omitempty"`
 	// The identifier of the request.
 	RequestId *string `json:"request_id,omitempty"`
 	// The status of the response.
@@ -67,6 +69,34 @@ func (o *CIAppResponseMetadata) HasElapsed() bool {
 // SetElapsed gets a reference to the given int64 and assigns it to the Elapsed field.
 func (o *CIAppResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
+}
+
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *CIAppResponseMetadata) GetPage() CIAppResponsePage {
+	if o == nil || o.Page == nil {
+		var ret CIAppResponsePage
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CIAppResponseMetadata) GetPageOk() (*CIAppResponsePage, bool) {
+	if o == nil || o.Page == nil {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *CIAppResponseMetadata) HasPage() bool {
+	return o != nil && o.Page != nil
+}
+
+// SetPage gets a reference to the given CIAppResponsePage and assigns it to the Page field.
+func (o *CIAppResponseMetadata) SetPage(v CIAppResponsePage) {
+	o.Page = &v
 }
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
@@ -162,6 +192,9 @@ func (o CIAppResponseMetadata) MarshalJSON() ([]byte, error) {
 	if o.Elapsed != nil {
 		toSerialize["elapsed"] = o.Elapsed
 	}
+	if o.Page != nil {
+		toSerialize["page"] = o.Page
+	}
 	if o.RequestId != nil {
 		toSerialize["request_id"] = o.RequestId
 	}
@@ -183,6 +216,7 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Elapsed   *int64               `json:"elapsed,omitempty"`
+		Page      *CIAppResponsePage   `json:"page,omitempty"`
 		RequestId *string              `json:"request_id,omitempty"`
 		Status    *CIAppResponseStatus `json:"status,omitempty"`
 		Warnings  []CIAppWarning       `json:"warnings,omitempty"`
@@ -205,6 +239,14 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Elapsed = all.Elapsed
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Status = all.Status
 	o.Warnings = all.Warnings

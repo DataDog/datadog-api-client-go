@@ -16,7 +16,7 @@ func main() {
 	body := datadogV1.Monitor{
 		Name:    datadog.PtrString("Example-Create_a_metric_monitor_returns_OK_response"),
 		Type:    datadogV1.MONITORTYPE_METRIC_ALERT,
-		Query:   "avg(current_1mo):avg:system.load.5{*} > 0.5",
+		Query:   "avg(current_1d):avg:system.load.5{*} > 0.5",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Options: &datadogV1.MonitorOptions{
 			Thresholds: &datadogV1.MonitorThresholds{
