@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.7.0 / 2023-01-11
+
+### Fixed
+* Update CI Visibility types of BucketResponse schema by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1805
+* Fix logs aggregate integer facets by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1812
+### Added
+* Add support for query scalar and timeseries endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1798
+* Add estimated rum sessions usage types to UA enums by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1791
+* Update API spec to allow primary timeframe, target, and warning by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1808
+* Add Usage Metering Cont Usage fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1809
+* Add secure field to synthetics config variables by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1811
+* Add Support for Incident Management Search API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1769
+* Add TOTP parameters to Synthetics test options by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1815
+### Changed
+* Remove indexed logs from Usage Attribution by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1814
+* Remove pagination parameter from CI visibility aggregate endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1818
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.6.1...v2.7.0
+
 ## 2.6.1 / 2022-12-20
 
 ### Fixed
