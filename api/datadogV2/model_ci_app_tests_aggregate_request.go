@@ -19,8 +19,6 @@ type CIAppTestsAggregateRequest struct {
 	// Global query options that are used during the query.
 	// Only supply timezone or time offset, not both. Otherwise, the query fails.
 	Options *CIAppQueryOptions `json:"options,omitempty"`
-	// Paging attributes for listing events.
-	Page *CIAppQueryPageOptions `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -155,34 +153,6 @@ func (o *CIAppTestsAggregateRequest) SetOptions(v CIAppQueryOptions) {
 	o.Options = &v
 }
 
-// GetPage returns the Page field value if set, zero value otherwise.
-func (o *CIAppTestsAggregateRequest) GetPage() CIAppQueryPageOptions {
-	if o == nil || o.Page == nil {
-		var ret CIAppQueryPageOptions
-		return ret
-	}
-	return *o.Page
-}
-
-// GetPageOk returns a tuple with the Page field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CIAppTestsAggregateRequest) GetPageOk() (*CIAppQueryPageOptions, bool) {
-	if o == nil || o.Page == nil {
-		return nil, false
-	}
-	return o.Page, true
-}
-
-// HasPage returns a boolean if a field has been set.
-func (o *CIAppTestsAggregateRequest) HasPage() bool {
-	return o != nil && o.Page != nil
-}
-
-// SetPage gets a reference to the given CIAppQueryPageOptions and assigns it to the Page field.
-func (o *CIAppTestsAggregateRequest) SetPage(v CIAppQueryPageOptions) {
-	o.Page = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -201,9 +171,6 @@ func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
 	if o.Options != nil {
 		toSerialize["options"] = o.Options
 	}
-	if o.Page != nil {
-		toSerialize["page"] = o.Page
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -219,7 +186,6 @@ func (o *CIAppTestsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Filter  *CIAppTestsQueryFilter `json:"filter,omitempty"`
 		GroupBy []CIAppTestsGroupBy    `json:"group_by,omitempty"`
 		Options *CIAppQueryOptions     `json:"options,omitempty"`
-		Page    *CIAppQueryPageOptions `json:"page,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -248,13 +214,5 @@ func (o *CIAppTestsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.Page = all.Page
 	return nil
 }

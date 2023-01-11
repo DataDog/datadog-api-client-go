@@ -8,10 +8,12 @@ import (
 	"encoding/json"
 )
 
-// CIAppResponseMetadata The metadata associated with a request.
-type CIAppResponseMetadata struct {
+// CIAppResponseMetadataWithPagination The metadata associated with a request.
+type CIAppResponseMetadataWithPagination struct {
 	// The time elapsed in milliseconds.
 	Elapsed *int64 `json:"elapsed,omitempty"`
+	// Paging attributes.
+	Page *CIAppResponsePage `json:"page,omitempty"`
 	// The identifier of the request.
 	RequestId *string `json:"request_id,omitempty"`
 	// The status of the response.
@@ -24,25 +26,25 @@ type CIAppResponseMetadata struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewCIAppResponseMetadata instantiates a new CIAppResponseMetadata object.
+// NewCIAppResponseMetadataWithPagination instantiates a new CIAppResponseMetadataWithPagination object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCIAppResponseMetadata() *CIAppResponseMetadata {
-	this := CIAppResponseMetadata{}
+func NewCIAppResponseMetadataWithPagination() *CIAppResponseMetadataWithPagination {
+	this := CIAppResponseMetadataWithPagination{}
 	return &this
 }
 
-// NewCIAppResponseMetadataWithDefaults instantiates a new CIAppResponseMetadata object.
+// NewCIAppResponseMetadataWithPaginationWithDefaults instantiates a new CIAppResponseMetadataWithPagination object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCIAppResponseMetadataWithDefaults() *CIAppResponseMetadata {
-	this := CIAppResponseMetadata{}
+func NewCIAppResponseMetadataWithPaginationWithDefaults() *CIAppResponseMetadataWithPagination {
+	this := CIAppResponseMetadataWithPagination{}
 	return &this
 }
 
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
-func (o *CIAppResponseMetadata) GetElapsed() int64 {
+func (o *CIAppResponseMetadataWithPagination) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
 		var ret int64
 		return ret
@@ -52,7 +54,7 @@ func (o *CIAppResponseMetadata) GetElapsed() int64 {
 
 // GetElapsedOk returns a tuple with the Elapsed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppResponseMetadata) GetElapsedOk() (*int64, bool) {
+func (o *CIAppResponseMetadataWithPagination) GetElapsedOk() (*int64, bool) {
 	if o == nil || o.Elapsed == nil {
 		return nil, false
 	}
@@ -60,17 +62,45 @@ func (o *CIAppResponseMetadata) GetElapsedOk() (*int64, bool) {
 }
 
 // HasElapsed returns a boolean if a field has been set.
-func (o *CIAppResponseMetadata) HasElapsed() bool {
+func (o *CIAppResponseMetadataWithPagination) HasElapsed() bool {
 	return o != nil && o.Elapsed != nil
 }
 
 // SetElapsed gets a reference to the given int64 and assigns it to the Elapsed field.
-func (o *CIAppResponseMetadata) SetElapsed(v int64) {
+func (o *CIAppResponseMetadataWithPagination) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
 
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *CIAppResponseMetadataWithPagination) GetPage() CIAppResponsePage {
+	if o == nil || o.Page == nil {
+		var ret CIAppResponsePage
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CIAppResponseMetadataWithPagination) GetPageOk() (*CIAppResponsePage, bool) {
+	if o == nil || o.Page == nil {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *CIAppResponseMetadataWithPagination) HasPage() bool {
+	return o != nil && o.Page != nil
+}
+
+// SetPage gets a reference to the given CIAppResponsePage and assigns it to the Page field.
+func (o *CIAppResponseMetadataWithPagination) SetPage(v CIAppResponsePage) {
+	o.Page = &v
+}
+
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
-func (o *CIAppResponseMetadata) GetRequestId() string {
+func (o *CIAppResponseMetadataWithPagination) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
 		var ret string
 		return ret
@@ -80,7 +110,7 @@ func (o *CIAppResponseMetadata) GetRequestId() string {
 
 // GetRequestIdOk returns a tuple with the RequestId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppResponseMetadata) GetRequestIdOk() (*string, bool) {
+func (o *CIAppResponseMetadataWithPagination) GetRequestIdOk() (*string, bool) {
 	if o == nil || o.RequestId == nil {
 		return nil, false
 	}
@@ -88,17 +118,17 @@ func (o *CIAppResponseMetadata) GetRequestIdOk() (*string, bool) {
 }
 
 // HasRequestId returns a boolean if a field has been set.
-func (o *CIAppResponseMetadata) HasRequestId() bool {
+func (o *CIAppResponseMetadataWithPagination) HasRequestId() bool {
 	return o != nil && o.RequestId != nil
 }
 
 // SetRequestId gets a reference to the given string and assigns it to the RequestId field.
-func (o *CIAppResponseMetadata) SetRequestId(v string) {
+func (o *CIAppResponseMetadataWithPagination) SetRequestId(v string) {
 	o.RequestId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CIAppResponseMetadata) GetStatus() CIAppResponseStatus {
+func (o *CIAppResponseMetadataWithPagination) GetStatus() CIAppResponseStatus {
 	if o == nil || o.Status == nil {
 		var ret CIAppResponseStatus
 		return ret
@@ -108,7 +138,7 @@ func (o *CIAppResponseMetadata) GetStatus() CIAppResponseStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppResponseMetadata) GetStatusOk() (*CIAppResponseStatus, bool) {
+func (o *CIAppResponseMetadataWithPagination) GetStatusOk() (*CIAppResponseStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -116,17 +146,17 @@ func (o *CIAppResponseMetadata) GetStatusOk() (*CIAppResponseStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *CIAppResponseMetadata) HasStatus() bool {
+func (o *CIAppResponseMetadataWithPagination) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given CIAppResponseStatus and assigns it to the Status field.
-func (o *CIAppResponseMetadata) SetStatus(v CIAppResponseStatus) {
+func (o *CIAppResponseMetadataWithPagination) SetStatus(v CIAppResponseStatus) {
 	o.Status = &v
 }
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
-func (o *CIAppResponseMetadata) GetWarnings() []CIAppWarning {
+func (o *CIAppResponseMetadataWithPagination) GetWarnings() []CIAppWarning {
 	if o == nil || o.Warnings == nil {
 		var ret []CIAppWarning
 		return ret
@@ -136,7 +166,7 @@ func (o *CIAppResponseMetadata) GetWarnings() []CIAppWarning {
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppResponseMetadata) GetWarningsOk() (*[]CIAppWarning, bool) {
+func (o *CIAppResponseMetadataWithPagination) GetWarningsOk() (*[]CIAppWarning, bool) {
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
@@ -144,23 +174,26 @@ func (o *CIAppResponseMetadata) GetWarningsOk() (*[]CIAppWarning, bool) {
 }
 
 // HasWarnings returns a boolean if a field has been set.
-func (o *CIAppResponseMetadata) HasWarnings() bool {
+func (o *CIAppResponseMetadataWithPagination) HasWarnings() bool {
 	return o != nil && o.Warnings != nil
 }
 
 // SetWarnings gets a reference to the given []CIAppWarning and assigns it to the Warnings field.
-func (o *CIAppResponseMetadata) SetWarnings(v []CIAppWarning) {
+func (o *CIAppResponseMetadataWithPagination) SetWarnings(v []CIAppWarning) {
 	o.Warnings = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o CIAppResponseMetadata) MarshalJSON() ([]byte, error) {
+func (o CIAppResponseMetadataWithPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Elapsed != nil {
 		toSerialize["elapsed"] = o.Elapsed
+	}
+	if o.Page != nil {
+		toSerialize["page"] = o.Page
 	}
 	if o.RequestId != nil {
 		toSerialize["request_id"] = o.RequestId
@@ -179,10 +212,11 @@ func (o CIAppResponseMetadata) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CIAppResponseMetadataWithPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Elapsed   *int64               `json:"elapsed,omitempty"`
+		Page      *CIAppResponsePage   `json:"page,omitempty"`
 		RequestId *string              `json:"request_id,omitempty"`
 		Status    *CIAppResponseStatus `json:"status,omitempty"`
 		Warnings  []CIAppWarning       `json:"warnings,omitempty"`
@@ -205,6 +239,14 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Elapsed = all.Elapsed
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Status = all.Status
 	o.Warnings = all.Warnings
