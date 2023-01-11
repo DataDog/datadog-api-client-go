@@ -10,6 +10,8 @@ import (
 
 // SyntheticsGlobalVariableValue Value of the global variable.
 type SyntheticsGlobalVariableValue struct {
+	// Options for the Global Variable for MFA.
+	Options *SyntheticsGlobalVariableOptions `json:"options,omitempty"`
 	// Determines if the value of the variable is hidden.
 	Secure *bool `json:"secure,omitempty"`
 	// Value of the global variable. When reading a global variable,
@@ -35,6 +37,34 @@ func NewSyntheticsGlobalVariableValue() *SyntheticsGlobalVariableValue {
 func NewSyntheticsGlobalVariableValueWithDefaults() *SyntheticsGlobalVariableValue {
 	this := SyntheticsGlobalVariableValue{}
 	return &this
+}
+
+// GetOptions returns the Options field value if set, zero value otherwise.
+func (o *SyntheticsGlobalVariableValue) GetOptions() SyntheticsGlobalVariableOptions {
+	if o == nil || o.Options == nil {
+		var ret SyntheticsGlobalVariableOptions
+		return ret
+	}
+	return *o.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsGlobalVariableValue) GetOptionsOk() (*SyntheticsGlobalVariableOptions, bool) {
+	if o == nil || o.Options == nil {
+		return nil, false
+	}
+	return o.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableValue) HasOptions() bool {
+	return o != nil && o.Options != nil
+}
+
+// SetOptions gets a reference to the given SyntheticsGlobalVariableOptions and assigns it to the Options field.
+func (o *SyntheticsGlobalVariableValue) SetOptions(v SyntheticsGlobalVariableOptions) {
+	o.Options = &v
 }
 
 // GetSecure returns the Secure field value if set, zero value otherwise.
@@ -99,6 +129,9 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.Options != nil {
+		toSerialize["options"] = o.Options
+	}
 	if o.Secure != nil {
 		toSerialize["secure"] = o.Secure
 	}
@@ -116,8 +149,9 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Secure *bool   `json:"secure,omitempty"`
-		Value  *string `json:"value,omitempty"`
+		Options *SyntheticsGlobalVariableOptions `json:"options,omitempty"`
+		Secure  *bool                            `json:"secure,omitempty"`
+		Value   *string                          `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -128,6 +162,14 @@ func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Options = all.Options
 	o.Secure = all.Secure
 	o.Value = all.Value
 	return nil
