@@ -23,6 +23,12 @@ func main() {
 		Value: datadogV1.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),
 			Value:  datadog.PtrString(""),
+			Options: &datadogV1.SyntheticsGlobalVariableOptions{
+				TotpParameters: &datadogV1.SyntheticsGlobalVariableTOTPParameters{
+					Digits:          datadog.PtrInt32(6),
+					RefreshInterval: datadog.PtrInt32(30),
+				},
+			},
 		},
 		ParseTestPublicId: datadog.PtrString(SyntheticsAPITestMultiStepPublicID),
 		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
