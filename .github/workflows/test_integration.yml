@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Post pending status check
         if: github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
-        uses: DataDog/github-actions/post-status-check@v1.0.0
+        uses: DataDog/github-actions/post-status-check@v2
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
@@ -71,7 +71,7 @@ jobs:
           SLEEP_AFTER_REQUEST: "${{ secrets.SLEEP_AFTER_REQUEST }}"
       - name: Post failure status check
         if: failure() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
-        uses: DataDog/github-actions/post-status-check@v1.0.0
+        uses: DataDog/github-actions/post-status-check@v2
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
@@ -79,7 +79,7 @@ jobs:
           context: integration
       - name: Post success status check
         if: "!failure() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')"
-        uses: DataDog/github-actions/post-status-check@v1.0.0
+        uses: DataDog/github-actions/post-status-check@v2
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
