@@ -111,7 +111,8 @@ func main() {
 				Count:    datadog.PtrInt64(3),
 				Interval: datadog.PtrFloat64(10),
 			},
-			TickEvery: datadog.PtrInt64(60),
+			TickEvery:   datadog.PtrInt64(60),
+			HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP2.Ptr(),
 		},
 		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags: []string{

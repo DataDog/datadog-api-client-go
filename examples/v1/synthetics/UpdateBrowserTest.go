@@ -62,6 +62,7 @@ func main() {
 			DeviceIds: []datadogV1.SyntheticsDeviceID{
 				datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
+			HttpVersion:    datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
 			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
