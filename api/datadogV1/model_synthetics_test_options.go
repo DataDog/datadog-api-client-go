@@ -27,8 +27,6 @@ type SyntheticsTestOptions struct {
 	DisableCsp *bool `json:"disableCsp,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
-	// HTTP version to use for a Synthetic test.
-	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 	// Ignore server certificate error for browser tests.
 	IgnoreServerCertificateError *bool `json:"ignoreServerCertificateError,omitempty"`
 	// Timeout before declaring the initial step as failed (in seconds) for browser tests.
@@ -309,34 +307,6 @@ func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
 // SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.
 func (o *SyntheticsTestOptions) SetFollowRedirects(v bool) {
 	o.FollowRedirects = &v
-}
-
-// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.
-func (o *SyntheticsTestOptions) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
-	if o == nil || o.HttpVersion == nil {
-		var ret SyntheticsTestOptionsHTTPVersion
-		return ret
-	}
-	return *o.HttpVersion
-}
-
-// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsTestOptions) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
-	if o == nil || o.HttpVersion == nil {
-		return nil, false
-	}
-	return o.HttpVersion, true
-}
-
-// HasHttpVersion returns a boolean if a field has been set.
-func (o *SyntheticsTestOptions) HasHttpVersion() bool {
-	return o != nil && o.HttpVersion != nil
-}
-
-// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.
-func (o *SyntheticsTestOptions) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
-	o.HttpVersion = &v
 }
 
 // GetIgnoreServerCertificateError returns the IgnoreServerCertificateError field value if set, zero value otherwise.
@@ -705,9 +675,6 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.FollowRedirects != nil {
 		toSerialize["follow_redirects"] = o.FollowRedirects
 	}
-	if o.HttpVersion != nil {
-		toSerialize["httpVersion"] = o.HttpVersion
-	}
 	if o.IgnoreServerCertificateError != nil {
 		toSerialize["ignoreServerCertificateError"] = o.IgnoreServerCertificateError
 	}
@@ -763,7 +730,6 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		DisableCors                  *bool                                `json:"disableCors,omitempty"`
 		DisableCsp                   *bool                                `json:"disableCsp,omitempty"`
 		FollowRedirects              *bool                                `json:"follow_redirects,omitempty"`
-		HttpVersion                  *SyntheticsTestOptionsHTTPVersion    `json:"httpVersion,omitempty"`
 		IgnoreServerCertificateError *bool                                `json:"ignoreServerCertificateError,omitempty"`
 		InitialNavigationTimeout     *int64                               `json:"initialNavigationTimeout,omitempty"`
 		MinFailureDuration           *int64                               `json:"min_failure_duration,omitempty"`
@@ -786,14 +752,6 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.HttpVersion; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
 	o.AcceptSelfSigned = all.AcceptSelfSigned
 	o.AllowInsecure = all.AllowInsecure
 	o.CheckCertificateRevocation = all.CheckCertificateRevocation
@@ -809,7 +767,6 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.DisableCors = all.DisableCors
 	o.DisableCsp = all.DisableCsp
 	o.FollowRedirects = all.FollowRedirects
-	o.HttpVersion = all.HttpVersion
 	o.IgnoreServerCertificateError = all.IgnoreServerCertificateError
 	o.InitialNavigationTimeout = all.InitialNavigationTimeout
 	o.MinFailureDuration = all.MinFailureDuration
