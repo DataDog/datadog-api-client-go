@@ -15,7 +15,7 @@ type TimeseriesResponseAttributes struct {
 	// Array of times, 1-1 match with individual values arrays.
 	Times []int64 `json:"times,omitempty"`
 	// Array of value-arrays. The index here corresponds to the index in the `formulas` or `queries` array from the request.
-	Values [][]float64 `json:"values,omitempty"`
+	Values [][]*float64 `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -95,9 +95,9 @@ func (o *TimeseriesResponseAttributes) SetTimes(v []int64) {
 }
 
 // GetValues returns the Values field value if set, zero value otherwise.
-func (o *TimeseriesResponseAttributes) GetValues() [][]float64 {
+func (o *TimeseriesResponseAttributes) GetValues() [][]*float64 {
 	if o == nil || o.Values == nil {
-		var ret [][]float64
+		var ret [][]*float64
 		return ret
 	}
 	return o.Values
@@ -105,7 +105,7 @@ func (o *TimeseriesResponseAttributes) GetValues() [][]float64 {
 
 // GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesResponseAttributes) GetValuesOk() (*[][]float64, bool) {
+func (o *TimeseriesResponseAttributes) GetValuesOk() (*[][]*float64, bool) {
 	if o == nil || o.Values == nil {
 		return nil, false
 	}
@@ -117,8 +117,8 @@ func (o *TimeseriesResponseAttributes) HasValues() bool {
 	return o != nil && o.Values != nil
 }
 
-// SetValues gets a reference to the given [][]float64 and assigns it to the Values field.
-func (o *TimeseriesResponseAttributes) SetValues(v [][]float64) {
+// SetValues gets a reference to the given [][]*float64 and assigns it to the Values field.
+func (o *TimeseriesResponseAttributes) SetValues(v [][]*float64) {
 	o.Values = v
 }
 
@@ -150,7 +150,7 @@ func (o *TimeseriesResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Series []TimeseriesResponseSeries `json:"series,omitempty"`
 		Times  []int64                    `json:"times,omitempty"`
-		Values [][]float64                `json:"values,omitempty"`
+		Values [][]*float64               `json:"values,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
