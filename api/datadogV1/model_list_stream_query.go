@@ -11,8 +11,12 @@ import (
 
 // ListStreamQuery Updated list stream widget.
 type ListStreamQuery struct {
+	// Compute configuration for the List Stream Widget. Compute can be used only with the logs_transaction_stream (from 1 to 5 items) list stream source.
+	Compute []ListStreamComputeItems `json:"compute,omitempty"`
 	// Source from which to query items to display in the stream.
 	DataSource ListStreamSource `json:"data_source"`
+	// Group by configuration for the List Stream Widget. Group by can be used only with logs_pattern_stream (up to 3 items) or logs_transaction_stream (one group by item is required) list stream source.
+	GroupBy []ListStreamGroupByItems `json:"group_by,omitempty"`
 	// List of indexes.
 	Indexes []string `json:"indexes,omitempty"`
 	// Widget query.
@@ -45,6 +49,34 @@ func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	return &this
 }
 
+// GetCompute returns the Compute field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetCompute() []ListStreamComputeItems {
+	if o == nil || o.Compute == nil {
+		var ret []ListStreamComputeItems
+		return ret
+	}
+	return o.Compute
+}
+
+// GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetComputeOk() (*[]ListStreamComputeItems, bool) {
+	if o == nil || o.Compute == nil {
+		return nil, false
+	}
+	return &o.Compute, true
+}
+
+// HasCompute returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasCompute() bool {
+	return o != nil && o.Compute != nil
+}
+
+// SetCompute gets a reference to the given []ListStreamComputeItems and assigns it to the Compute field.
+func (o *ListStreamQuery) SetCompute(v []ListStreamComputeItems) {
+	o.Compute = v
+}
+
 // GetDataSource returns the DataSource field value.
 func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 	if o == nil {
@@ -66,6 +98,34 @@ func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
 // SetDataSource sets field value.
 func (o *ListStreamQuery) SetDataSource(v ListStreamSource) {
 	o.DataSource = v
+}
+
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetGroupBy() []ListStreamGroupByItems {
+	if o == nil || o.GroupBy == nil {
+		var ret []ListStreamGroupByItems
+		return ret
+	}
+	return o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetGroupByOk() (*[]ListStreamGroupByItems, bool) {
+	if o == nil || o.GroupBy == nil {
+		return nil, false
+	}
+	return &o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasGroupBy() bool {
+	return o != nil && o.GroupBy != nil
+}
+
+// SetGroupBy gets a reference to the given []ListStreamGroupByItems and assigns it to the GroupBy field.
+func (o *ListStreamQuery) SetGroupBy(v []ListStreamGroupByItems) {
+	o.GroupBy = v
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
@@ -153,7 +213,13 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.Compute != nil {
+		toSerialize["compute"] = o.Compute
+	}
 	toSerialize["data_source"] = o.DataSource
+	if o.GroupBy != nil {
+		toSerialize["group_by"] = o.GroupBy
+	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
@@ -176,10 +242,12 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		QueryString *string           `json:"query_string"`
 	}{}
 	all := struct {
-		DataSource  ListStreamSource `json:"data_source"`
-		Indexes     []string         `json:"indexes,omitempty"`
-		QueryString string           `json:"query_string"`
-		Storage     *string          `json:"storage,omitempty"`
+		Compute     []ListStreamComputeItems `json:"compute,omitempty"`
+		DataSource  ListStreamSource         `json:"data_source"`
+		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
+		Indexes     []string                 `json:"indexes,omitempty"`
+		QueryString string                   `json:"query_string"`
+		Storage     *string                  `json:"storage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -208,7 +276,9 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.Compute = all.Compute
 	o.DataSource = all.DataSource
+	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = all.QueryString
 	o.Storage = all.Storage
