@@ -51,6 +51,21 @@ func main() {
 				ClientTokenId: datadog.PtrInt64(12345),
 				IsEnabled:     true,
 			},
+			Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
+				Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
+					{
+						Day:  datadog.PtrInt32(1),
+						From: datadog.PtrString("07:00"),
+						To:   datadog.PtrString("16:00"),
+					},
+					{
+						Day:  datadog.PtrInt32(3),
+						From: datadog.PtrString("07:00"),
+						To:   datadog.PtrString("16:00"),
+					},
+				},
+				Timezone: datadog.PtrString("America/New_York"),
+			},
 		},
 		Status:  datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
