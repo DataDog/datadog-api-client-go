@@ -63,6 +63,8 @@ type SyntheticsTestOptions struct {
 	// `{ isEnabled: true, applicationId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", clientTokenId: 12345 }`
 	// RUM data is collected using the specified application.
 	RumSettings *SyntheticsBrowserTestRumSettings `json:"rumSettings,omitempty"`
+	// Object containing timeframes and timezone used for advanced scheduling.
+	Scheduling *SyntheticsTestOptionsScheduling `json:"scheduling,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -647,6 +649,34 @@ func (o *SyntheticsTestOptions) SetRumSettings(v SyntheticsBrowserTestRumSetting
 	o.RumSettings = &v
 }
 
+// GetScheduling returns the Scheduling field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetScheduling() SyntheticsTestOptionsScheduling {
+	if o == nil || o.Scheduling == nil {
+		var ret SyntheticsTestOptionsScheduling
+		return ret
+	}
+	return *o.Scheduling
+}
+
+// GetSchedulingOk returns a tuple with the Scheduling field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetSchedulingOk() (*SyntheticsTestOptionsScheduling, bool) {
+	if o == nil || o.Scheduling == nil {
+		return nil, false
+	}
+	return o.Scheduling, true
+}
+
+// HasScheduling returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasScheduling() bool {
+	return o != nil && o.Scheduling != nil
+}
+
+// SetScheduling gets a reference to the given SyntheticsTestOptionsScheduling and assigns it to the Scheduling field.
+func (o *SyntheticsTestOptions) SetScheduling(v SyntheticsTestOptionsScheduling) {
+	o.Scheduling = &v
+}
+
 // GetTickEvery returns the TickEvery field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetTickEvery() int64 {
 	if o == nil || o.TickEvery == nil {
@@ -741,6 +771,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.RumSettings != nil {
 		toSerialize["rumSettings"] = o.RumSettings
 	}
+	if o.Scheduling != nil {
+		toSerialize["scheduling"] = o.Scheduling
+	}
 	if o.TickEvery != nil {
 		toSerialize["tick_every"] = o.TickEvery
 	}
@@ -775,6 +808,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		RestrictedRoles              []string                             `json:"restricted_roles,omitempty"`
 		Retry                        *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
 		RumSettings                  *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
+		Scheduling                   *SyntheticsTestOptionsScheduling     `json:"scheduling,omitempty"`
 		TickEvery                    *int64                               `json:"tick_every,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -842,6 +876,14 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.RumSettings = all.RumSettings
+	if all.Scheduling != nil && all.Scheduling.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Scheduling = all.Scheduling
 	o.TickEvery = all.TickEvery
 	return nil
 }
