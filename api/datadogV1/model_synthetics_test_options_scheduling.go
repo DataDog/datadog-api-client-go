@@ -12,7 +12,7 @@ import (
 type SyntheticsTestOptionsScheduling struct {
 	// Array containing objects describing the scheduling pattern to apply to each day.
 	Timeframes []SyntheticsTestOptionsSchedulingTimeframe `json:"timeframes,omitempty"`
-	// Timezone on which the timeframe are based.
+	// Timezone in which the timeframe is based.
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
