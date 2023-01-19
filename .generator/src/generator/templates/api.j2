@@ -251,7 +251,7 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{
 
 	{%- for name, parameter in operation|parameters if parameter.required %}
 	{%- set schema = parameter.get("schema") %}
-	{%- set isPathParam = "*" if parameter.in == "path" else "" %}
+	{%- set isPathParam = "*" if parameter.in == "path" and not parameter.required else "" %}
 	{%- if parameter.in != "path" %}
 	if r.{{ name|variable_name}} == nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} is required and must be specified")
@@ -268,12 +268,12 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{
 	}
 	{%- endif %}
 	{%- if schema.minLength is defined %}
-	if strlen({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minLength }} {
+	if datadog.Strlen({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minLength }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxLength is defined %}
-	if strlen({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxLength }} {
+	if datadog.Strlen({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxLength }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
 	}
 	{%- endif %}
