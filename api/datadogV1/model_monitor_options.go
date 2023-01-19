@@ -69,6 +69,8 @@ type MonitorOptions struct {
 	// Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks.
 	// If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks.
 	NoDataTimeframe datadog.NullableInt64 `json:"no_data_timeframe,omitempty"`
+	// Toggles the display of additional content sent in the monitor notification.
+	NotificationPresetName *MonitorOptionsNotificationPresets `json:"notification_preset_name,omitempty"`
 	// A Boolean indicating whether tagged users is notified on changes to this monitor.
 	NotifyAudit *bool `json:"notify_audit,omitempty"`
 	// Controls what granularity a monitor alerts on. Only available for monitors with groupings.
@@ -134,6 +136,8 @@ func NewMonitorOptions() *MonitorOptions {
 	this.MinLocationFailed = *datadog.NewNullableInt64(&minLocationFailed)
 	var newHostDelay int64 = 300
 	this.NewHostDelay = *datadog.NewNullableInt64(&newHostDelay)
+	var notificationPresetName MonitorOptionsNotificationPresets = MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL
+	this.NotificationPresetName = &notificationPresetName
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
 	var notifyNoData bool = false
@@ -158,6 +162,8 @@ func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this.MinLocationFailed = *datadog.NewNullableInt64(&minLocationFailed)
 	var newHostDelay int64 = 300
 	this.NewHostDelay = *datadog.NewNullableInt64(&newHostDelay)
+	var notificationPresetName MonitorOptionsNotificationPresets = MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL
+	this.NotificationPresetName = &notificationPresetName
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
 	var notifyNoData bool = false
@@ -660,6 +666,34 @@ func (o *MonitorOptions) SetNoDataTimeframeNil() {
 // UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil.
 func (o *MonitorOptions) UnsetNoDataTimeframe() {
 	o.NoDataTimeframe.Unset()
+}
+
+// GetNotificationPresetName returns the NotificationPresetName field value if set, zero value otherwise.
+func (o *MonitorOptions) GetNotificationPresetName() MonitorOptionsNotificationPresets {
+	if o == nil || o.NotificationPresetName == nil {
+		var ret MonitorOptionsNotificationPresets
+		return ret
+	}
+	return *o.NotificationPresetName
+}
+
+// GetNotificationPresetNameOk returns a tuple with the NotificationPresetName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetNotificationPresetNameOk() (*MonitorOptionsNotificationPresets, bool) {
+	if o == nil || o.NotificationPresetName == nil {
+		return nil, false
+	}
+	return o.NotificationPresetName, true
+}
+
+// HasNotificationPresetName returns a boolean if a field has been set.
+func (o *MonitorOptions) HasNotificationPresetName() bool {
+	return o != nil && o.NotificationPresetName != nil
+}
+
+// SetNotificationPresetName gets a reference to the given MonitorOptionsNotificationPresets and assigns it to the NotificationPresetName field.
+func (o *MonitorOptions) SetNotificationPresetName(v MonitorOptionsNotificationPresets) {
+	o.NotificationPresetName = &v
 }
 
 // GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.
@@ -1184,6 +1218,9 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.NoDataTimeframe.IsSet() {
 		toSerialize["no_data_timeframe"] = o.NoDataTimeframe.Get()
 	}
+	if o.NotificationPresetName != nil {
+		toSerialize["notification_preset_name"] = o.NotificationPresetName
+	}
 	if o.NotifyAudit != nil {
 		toSerialize["notify_audit"] = o.NotifyAudit
 	}
@@ -1255,6 +1292,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		NewGroupDelay          datadog.NullableInt64                      `json:"new_group_delay,omitempty"`
 		NewHostDelay           datadog.NullableInt64                      `json:"new_host_delay,omitempty"`
 		NoDataTimeframe        datadog.NullableInt64                      `json:"no_data_timeframe,omitempty"`
+		NotificationPresetName *MonitorOptionsNotificationPresets         `json:"notification_preset_name,omitempty"`
 		NotifyAudit            *bool                                      `json:"notify_audit,omitempty"`
 		NotifyBy               []string                                   `json:"notify_by,omitempty"`
 		NotifyNoData           *bool                                      `json:"notify_no_data,omitempty"`
@@ -1273,6 +1311,14 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.NotificationPresetName; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -1310,6 +1356,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewGroupDelay = all.NewGroupDelay
 	o.NewHostDelay = all.NewHostDelay
 	o.NoDataTimeframe = all.NoDataTimeframe
+	o.NotificationPresetName = all.NotificationPresetName
 	o.NotifyAudit = all.NotifyAudit
 	o.NotifyBy = all.NotifyBy
 	o.NotifyNoData = all.NotifyNoData
