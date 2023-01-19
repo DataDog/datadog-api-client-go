@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 // PtrBool is a helper routine that returns a pointer to given boolean value.
@@ -440,4 +441,9 @@ func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 		}
 	}
 	return false, nil
+}
+
+// Strlen returns number of runes in string
+func Strlen(s string) int {
+	return utf8.RuneCountInString(s)
 }
