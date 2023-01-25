@@ -5,9 +5,7 @@
 package datadogV1
 
 import (
-	"bytes"
 	_context "context"
-	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -118,9 +116,7 @@ func (a *TagsApi) createHostTagsExecute(r apiCreateHostTagsRequest) (HostTags, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -243,9 +239,7 @@ func (a *TagsApi) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_nethttp.R
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -360,9 +354,7 @@ func (a *TagsApi) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, *_netht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -483,9 +475,7 @@ func (a *TagsApi) listHostTagsExecute(r apiListHostTagsRequest) (TagToHosts, *_n
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -618,9 +608,7 @@ func (a *TagsApi) updateHostTagsExecute(r apiUpdateHostTagsRequest) (HostTags, *
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

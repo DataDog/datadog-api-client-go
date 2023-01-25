@@ -5,9 +5,7 @@
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -89,9 +87,7 @@ func (a *SensitiveDataScannerApi) createScanningGroupExecute(r apiCreateScanning
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -195,9 +191,7 @@ func (a *SensitiveDataScannerApi) createScanningRuleExecute(r apiCreateScanningR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -300,9 +294,7 @@ func (a *SensitiveDataScannerApi) deleteScanningGroupExecute(r apiDeleteScanning
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -405,9 +397,7 @@ func (a *SensitiveDataScannerApi) deleteScanningRuleExecute(r apiDeleteScanningR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -499,9 +489,7 @@ func (a *SensitiveDataScannerApi) listScanningGroupsExecute(r apiListScanningGro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -593,9 +581,7 @@ func (a *SensitiveDataScannerApi) listStandardPatternsExecute(r apiListStandardP
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -695,9 +681,7 @@ func (a *SensitiveDataScannerApi) reorderScanningGroupsExecute(r apiReorderScann
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -803,9 +787,7 @@ func (a *SensitiveDataScannerApi) updateScanningGroupExecute(r apiUpdateScanning
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -911,9 +893,7 @@ func (a *SensitiveDataScannerApi) updateScanningRuleExecute(r apiUpdateScanningR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

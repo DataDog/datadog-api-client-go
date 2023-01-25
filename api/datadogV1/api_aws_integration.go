@@ -5,9 +5,7 @@
 package datadogV1
 
 import (
-	"bytes"
 	_context "context"
-	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -87,9 +85,7 @@ func (a *AWSIntegrationApi) createAWSAccountExecute(r apiCreateAWSAccountRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -189,9 +185,7 @@ func (a *AWSIntegrationApi) createAWSTagFilterExecute(r apiCreateAWSTagFilterReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -291,9 +285,7 @@ func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(r apiCreateNewAWSExter
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -393,9 +385,7 @@ func (a *AWSIntegrationApi) deleteAWSAccountExecute(r apiDeleteAWSAccountRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -495,9 +485,7 @@ func (a *AWSIntegrationApi) deleteAWSTagFilterExecute(r apiDeleteAWSTagFilterReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -642,9 +630,7 @@ func (a *AWSIntegrationApi) listAWSAccountsExecute(r apiListAWSAccountsRequest) 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -742,9 +728,7 @@ func (a *AWSIntegrationApi) listAWSTagFiltersExecute(r apiListAWSTagFiltersReque
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -836,9 +820,7 @@ func (a *AWSIntegrationApi) listAvailableAWSNamespacesExecute(r apiListAvailable
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -991,9 +973,7 @@ func (a *AWSIntegrationApi) updateAWSAccountExecute(r apiUpdateAWSAccountRequest
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

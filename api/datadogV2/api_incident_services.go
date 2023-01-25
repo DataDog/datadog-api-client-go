@@ -5,10 +5,8 @@
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
 	_fmt "fmt"
-	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -94,9 +92,7 @@ func (a *IncidentServicesApi) createIncidentServiceExecute(r apiCreateIncidentSe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -196,9 +192,7 @@ func (a *IncidentServicesApi) deleteIncidentServiceExecute(r apiDeleteIncidentSe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -321,9 +315,7 @@ func (a *IncidentServicesApi) getIncidentServiceExecute(r apiGetIncidentServiceR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -487,9 +479,7 @@ func (a *IncidentServicesApi) listIncidentServicesExecute(r apiListIncidentServi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -599,9 +589,7 @@ func (a *IncidentServicesApi) updateIncidentServiceExecute(r apiUpdateIncidentSe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -5,9 +5,7 @@
 package datadogV1
 
 import (
-	"bytes"
 	_context "context"
-	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -148,9 +146,7 @@ func (a *UsageMeteringApi) getDailyCustomReportsExecute(r apiGetDailyCustomRepor
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -333,9 +329,7 @@ func (a *UsageMeteringApi) getHourlyUsageAttributionExecute(r apiGetHourlyUsageA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -463,9 +457,7 @@ func (a *UsageMeteringApi) getIncidentManagementExecute(r apiGetIncidentManageme
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -593,9 +585,7 @@ func (a *UsageMeteringApi) getIngestedSpansExecute(r apiGetIngestedSpansRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -756,9 +746,7 @@ func (a *UsageMeteringApi) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -965,9 +953,7 @@ func (a *UsageMeteringApi) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsag
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1066,9 +1052,7 @@ func (a *UsageMeteringApi) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1167,9 +1151,7 @@ func (a *UsageMeteringApi) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpeci
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1297,9 +1279,7 @@ func (a *UsageMeteringApi) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogs
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1496,9 +1476,7 @@ func (a *UsageMeteringApi) getUsageAttributionExecute(r apiGetUsageAttributionRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1626,9 +1604,7 @@ func (a *UsageMeteringApi) getUsageAuditLogsExecute(r apiGetUsageAuditLogsReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1749,9 +1725,7 @@ func (a *UsageMeteringApi) getUsageBillableSummaryExecute(r apiGetUsageBillableS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1879,9 +1853,7 @@ func (a *UsageMeteringApi) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (Usag
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2009,9 +1981,7 @@ func (a *UsageMeteringApi) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2139,9 +2109,7 @@ func (a *UsageMeteringApi) getUsageCloudSecurityPostureManagementExecute(r apiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2269,9 +2237,7 @@ func (a *UsageMeteringApi) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBM
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2399,9 +2365,7 @@ func (a *UsageMeteringApi) getUsageFargateExecute(r apiGetUsageFargateRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2529,9 +2493,7 @@ func (a *UsageMeteringApi) getUsageHostsExecute(r apiGetUsageHostsRequest) (Usag
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2659,9 +2621,7 @@ func (a *UsageMeteringApi) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpans
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2789,9 +2749,7 @@ func (a *UsageMeteringApi) getUsageInternetOfThingsExecute(r apiGetUsageInternet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2919,9 +2877,7 @@ func (a *UsageMeteringApi) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (Us
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3049,9 +3005,7 @@ func (a *UsageMeteringApi) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageL
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3198,9 +3152,7 @@ func (a *UsageMeteringApi) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3328,9 +3280,7 @@ func (a *UsageMeteringApi) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3458,9 +3408,7 @@ func (a *UsageMeteringApi) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlows
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3588,9 +3536,7 @@ func (a *UsageMeteringApi) getUsageNetworkHostsExecute(r apiGetUsageNetworkHosts
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3718,9 +3664,7 @@ func (a *UsageMeteringApi) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3848,9 +3792,7 @@ func (a *UsageMeteringApi) getUsageProfilingExecute(r apiGetUsageProfilingReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -3990,9 +3932,7 @@ func (a *UsageMeteringApi) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4120,9 +4060,7 @@ func (a *UsageMeteringApi) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4250,9 +4188,7 @@ func (a *UsageMeteringApi) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4380,9 +4316,7 @@ func (a *UsageMeteringApi) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageS
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4521,9 +4455,7 @@ func (a *UsageMeteringApi) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4653,9 +4585,7 @@ func (a *UsageMeteringApi) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4783,9 +4713,7 @@ func (a *UsageMeteringApi) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -4913,9 +4841,7 @@ func (a *UsageMeteringApi) getUsageSyntheticsBrowserExecute(r apiGetUsageSynthet
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5043,9 +4969,7 @@ func (a *UsageMeteringApi) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -5222,9 +5146,7 @@ func (a *UsageMeteringApi) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetri
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _io.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
