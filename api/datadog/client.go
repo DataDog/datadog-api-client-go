@@ -52,6 +52,7 @@ type Service struct {
 	Client *APIClient
 }
 
+// SetAuthKeys sets the appropriate values in the headers parameter.
 func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
 	if ctx != nil {
 		for _, key := range keys {
@@ -62,6 +63,14 @@ func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[
 			}
 		}
 	}
+}
+
+// ReadBody returns the byte content of the response and make it available again on the response object.
+func ReadBody(response *http.Response) ([]byte, error) {
+	body, err := io.ReadAll(response.Body)
+	response.Body.Close()
+	response.Body = io.NopCloser(bytes.NewBuffer(body))
+	return body, err
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
