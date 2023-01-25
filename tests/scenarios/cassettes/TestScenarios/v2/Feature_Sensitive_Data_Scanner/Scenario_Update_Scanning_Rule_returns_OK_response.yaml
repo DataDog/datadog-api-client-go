@@ -8,7 +8,7 @@ interactions:
     method: GET
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config
   response:
-    body: '{"meta":{"count_limit":100,"version":1318,"group_count_limit":20,"is_pci_compliant":false,"has_highlight_enabled":true},"data":{"relationships":{"groups":{"data":[]}},"attributes":{},"type":"sensitive_data_scanner_configuration","id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87"}}
+    body: '{"data":{"id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87","attributes":{},"type":"sensitive_data_scanner_configuration","relationships":{"groups":{"data":[]}}},"meta":{"version":12586,"count_limit":100,"group_count_limit":20,"is_pci_compliant":false,"has_highlight_enabled":true,"has_multi_pass_enabled":true}}
 
       '
     code: 200
@@ -29,7 +29,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups
   response:
-    body: '{"meta":{"version":1319},"data":{"relationships":{"rules":{"data":[]},"configuration":{"data":{"type":"sensitive_data_scanner_configuration","id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87"}}},"attributes":{"is_enabled":false,"filter":{"query":"*"},"product_list":["logs"],"name":"my-test-group"},"type":"sensitive_data_scanner_group","id":"LvetUHRAS_-QENoqFwKE9w"}}
+    body: '{"data":{"id":"g0hUfjkqQEejgzkTN8J1sA","attributes":{"name":"my-test-group","is_enabled":false,"filter":{"query":"*"},"product_list":["logs"]},"type":"sensitive_data_scanner_group","relationships":{"configuration":{"data":{"id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87","type":"sensitive_data_scanner_configuration"}},"rules":{"data":[]}}},"meta":{"version":12587}}
 
       '
     code: 200
@@ -40,7 +40,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"relationships":{"group":{"data":{"id":"LvetUHRAS_-QENoqFwKE9w","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
+      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1674565940","namespaces":["admin.email"],"pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"relationships":{"group":{"data":{"id":"g0hUfjkqQEejgzkTN8J1sA","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
     form: {}
     headers:
       Accept:
@@ -50,7 +50,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules
   response:
-    body: '{"meta":{"version":1320},"data":{"relationships":{"group":{"data":{"type":"sensitive_data_scanner_group","id":"LvetUHRAS_-QENoqFwKE9w"}}},"attributes":{"is_enabled":true,"excluded_namespaces":[],"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","tags":["sensitive_data:true"],"pattern":"pattern","namespaces":[],"text_replacement":{"type":"none"}},"type":"sensitive_data_scanner_rule","id":"xhid6C6USka2JdxmZCYg9w"}}
+    body: '{"data":{"id":"miOWlXzWQXCJaJktLUW40g","attributes":{"name":"Test-Update_Scanning_Rule_returns_OK_response-1674565940","namespaces":["admin.email"],"excluded_namespaces":[],"pattern":"pattern","text_replacement":{"type":"none"},"tags":["sensitive_data:true"],"is_enabled":true},"type":"sensitive_data_scanner_rule","relationships":{"group":{"data":{"id":"g0hUfjkqQEejgzkTN8J1sA","type":"sensitive_data_scanner_group"}}}},"meta":{"version":12588}}
 
       '
     code: 200
@@ -61,7 +61,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1671115858","pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"id":"xhid6C6USka2JdxmZCYg9w","relationships":{"group":{"data":{"id":"LvetUHRAS_-QENoqFwKE9w","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
+      {"data":{"attributes":{"is_enabled":true,"name":"Test-Update_Scanning_Rule_returns_OK_response-1674565940","pattern":"pattern","tags":["sensitive_data:true"],"text_replacement":{"type":"none"}},"id":"miOWlXzWQXCJaJktLUW40g","relationships":{"group":{"data":{"id":"g0hUfjkqQEejgzkTN8J1sA","type":"sensitive_data_scanner_group"}}},"type":"sensitive_data_scanner_rule"},"meta":{}}
     form: {}
     headers:
       Accept:
@@ -69,9 +69,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/xhid6C6USka2JdxmZCYg9w
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/miOWlXzWQXCJaJktLUW40g
   response:
-    body: '{"meta":{"version":1321}}
+    body: '{"meta":{"version":12589}}
 
       '
     code: 200
@@ -90,9 +90,9 @@ interactions:
       Content-Type:
       - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/xhid6C6USka2JdxmZCYg9w
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/rules/miOWlXzWQXCJaJktLUW40g
   response:
-    body: '{"meta":{"version":1322}}
+    body: '{"meta":{"version":12590}}
 
       '
     code: 200
@@ -111,9 +111,9 @@ interactions:
       Content-Type:
       - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups/LvetUHRAS_-QENoqFwKE9w
+    url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups/g0hUfjkqQEejgzkTN8J1sA
   response:
-    body: '{"meta":{"version":1323}}
+    body: '{"meta":{"version":12591}}
 
       '
     code: 200

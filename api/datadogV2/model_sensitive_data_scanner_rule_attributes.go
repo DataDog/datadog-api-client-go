@@ -12,12 +12,15 @@ import (
 type SensitiveDataScannerRuleAttributes struct {
 	// Description of the rule.
 	Description *string `json:"description,omitempty"`
-	// Attributes excluded from the scan.
-	ExcludedAttributes []string `json:"excluded_attributes,omitempty"`
+	// Attributes excluded from the scan. If namespaces is provided, it has to be a sub-path of the namespaces array.
+	ExcludedNamespaces []string `json:"excluded_namespaces,omitempty"`
 	// Whether or not the rule is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the rule.
 	Name *string `json:"name,omitempty"`
+	// Attributes included in the scan. If namespaces is empty or missing, all attributes except excluded_namespaces are scanned.
+	// If both are missing the whole event is scanned.
+	Namespaces []string `json:"namespaces,omitempty"`
 	// Not included if there is a relationship to a standard pattern.
 	Pattern *string `json:"pattern,omitempty"`
 	// List of tags.
@@ -74,32 +77,32 @@ func (o *SensitiveDataScannerRuleAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetExcludedAttributes returns the ExcludedAttributes field value if set, zero value otherwise.
-func (o *SensitiveDataScannerRuleAttributes) GetExcludedAttributes() []string {
-	if o == nil || o.ExcludedAttributes == nil {
+// GetExcludedNamespaces returns the ExcludedNamespaces field value if set, zero value otherwise.
+func (o *SensitiveDataScannerRuleAttributes) GetExcludedNamespaces() []string {
+	if o == nil || o.ExcludedNamespaces == nil {
 		var ret []string
 		return ret
 	}
-	return o.ExcludedAttributes
+	return o.ExcludedNamespaces
 }
 
-// GetExcludedAttributesOk returns a tuple with the ExcludedAttributes field value if set, nil otherwise
+// GetExcludedNamespacesOk returns a tuple with the ExcludedNamespaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SensitiveDataScannerRuleAttributes) GetExcludedAttributesOk() (*[]string, bool) {
-	if o == nil || o.ExcludedAttributes == nil {
+func (o *SensitiveDataScannerRuleAttributes) GetExcludedNamespacesOk() (*[]string, bool) {
+	if o == nil || o.ExcludedNamespaces == nil {
 		return nil, false
 	}
-	return &o.ExcludedAttributes, true
+	return &o.ExcludedNamespaces, true
 }
 
-// HasExcludedAttributes returns a boolean if a field has been set.
-func (o *SensitiveDataScannerRuleAttributes) HasExcludedAttributes() bool {
-	return o != nil && o.ExcludedAttributes != nil
+// HasExcludedNamespaces returns a boolean if a field has been set.
+func (o *SensitiveDataScannerRuleAttributes) HasExcludedNamespaces() bool {
+	return o != nil && o.ExcludedNamespaces != nil
 }
 
-// SetExcludedAttributes gets a reference to the given []string and assigns it to the ExcludedAttributes field.
-func (o *SensitiveDataScannerRuleAttributes) SetExcludedAttributes(v []string) {
-	o.ExcludedAttributes = v
+// SetExcludedNamespaces gets a reference to the given []string and assigns it to the ExcludedNamespaces field.
+func (o *SensitiveDataScannerRuleAttributes) SetExcludedNamespaces(v []string) {
+	o.ExcludedNamespaces = v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
@@ -156,6 +159,34 @@ func (o *SensitiveDataScannerRuleAttributes) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SensitiveDataScannerRuleAttributes) SetName(v string) {
 	o.Name = &v
+}
+
+// GetNamespaces returns the Namespaces field value if set, zero value otherwise.
+func (o *SensitiveDataScannerRuleAttributes) GetNamespaces() []string {
+	if o == nil || o.Namespaces == nil {
+		var ret []string
+		return ret
+	}
+	return o.Namespaces
+}
+
+// GetNamespacesOk returns a tuple with the Namespaces field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerRuleAttributes) GetNamespacesOk() (*[]string, bool) {
+	if o == nil || o.Namespaces == nil {
+		return nil, false
+	}
+	return &o.Namespaces, true
+}
+
+// HasNamespaces returns a boolean if a field has been set.
+func (o *SensitiveDataScannerRuleAttributes) HasNamespaces() bool {
+	return o != nil && o.Namespaces != nil
+}
+
+// SetNamespaces gets a reference to the given []string and assigns it to the Namespaces field.
+func (o *SensitiveDataScannerRuleAttributes) SetNamespaces(v []string) {
+	o.Namespaces = v
 }
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
@@ -251,14 +282,17 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.ExcludedAttributes != nil {
-		toSerialize["excluded_attributes"] = o.ExcludedAttributes
+	if o.ExcludedNamespaces != nil {
+		toSerialize["excluded_namespaces"] = o.ExcludedNamespaces
 	}
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Namespaces != nil {
+		toSerialize["namespaces"] = o.Namespaces
 	}
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
@@ -281,9 +315,10 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	all := struct {
 		Description        *string                              `json:"description,omitempty"`
-		ExcludedAttributes []string                             `json:"excluded_attributes,omitempty"`
+		ExcludedNamespaces []string                             `json:"excluded_namespaces,omitempty"`
 		IsEnabled          *bool                                `json:"is_enabled,omitempty"`
 		Name               *string                              `json:"name,omitempty"`
+		Namespaces         []string                             `json:"namespaces,omitempty"`
 		Pattern            *string                              `json:"pattern,omitempty"`
 		Tags               []string                             `json:"tags,omitempty"`
 		TextReplacement    *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
@@ -298,9 +333,10 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		return nil
 	}
 	o.Description = all.Description
-	o.ExcludedAttributes = all.ExcludedAttributes
+	o.ExcludedNamespaces = all.ExcludedNamespaces
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
+	o.Namespaces = all.Namespaces
 	o.Pattern = all.Pattern
 	o.Tags = all.Tags
 	if all.TextReplacement != nil && all.TextReplacement.UnparsedObject != nil && o.UnparsedObject == nil {
