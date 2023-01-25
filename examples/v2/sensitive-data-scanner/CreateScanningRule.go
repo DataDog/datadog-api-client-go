@@ -23,6 +23,12 @@ func main() {
 			Attributes: datadogV2.SensitiveDataScannerRuleAttributes{
 				Name:    datadog.PtrString("Example-Create_Scanning_Rule_returns_OK_response"),
 				Pattern: datadog.PtrString("pattern"),
+				Namespaces: []string{
+					"admin",
+				},
+				ExcludedNamespaces: []string{
+					"admin.name",
+				},
 				TextReplacement: &datadogV2.SensitiveDataScannerTextReplacement{
 					Type: datadogV2.SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_NONE.Ptr(),
 				},
