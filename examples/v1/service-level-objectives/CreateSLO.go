@@ -40,7 +40,7 @@ func main() {
 			},
 		},
 		Timeframe:        datadogV1.SLOTIMEFRAME_SEVEN_DAYS.Ptr(),
-		TargetThreshold:  datadog.PtrFloat64(97.0),
+		TargetThreshold:  datadog.PtrFloat64(95),
 		WarningThreshold: datadog.PtrFloat64(98),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
