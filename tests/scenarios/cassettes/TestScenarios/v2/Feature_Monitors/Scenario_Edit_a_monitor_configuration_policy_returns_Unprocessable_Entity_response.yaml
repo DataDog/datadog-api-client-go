@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"policy":{"tag_key":"dc","tag_key_required":true,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"type":"monitor-config-policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/monitor/policy
+  response:
+    body: '{"data":{"type":"monitor-config-policy","attributes":{"policy":{"valid_tag_values":["prod","staging"],"tag_key_required":true,"tag_key":"dc"},"policy_type":"tag"},"id":"cfe204b6-9833-11ed-bd33-da7ad0900002"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"policy":{"tag_key":"datacenter","tag_key_required":true,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"id":"00000000-0000-1234-0000-000000000000","type":"monitor-config-policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/monitor/policy/cfe204b6-9833-11ed-bd33-da7ad0900002
+  response:
+    body: '{"errors":["Policy id in request body does not match id in URL param"]}'
+    code: 422
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 422 Unprocessable Entity
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/monitor/policy/cfe204b6-9833-11ed-bd33-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 1

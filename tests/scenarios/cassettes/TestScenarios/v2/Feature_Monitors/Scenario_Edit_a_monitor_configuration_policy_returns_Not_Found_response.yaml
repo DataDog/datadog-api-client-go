@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"policy":{"tag_key":"datacenter","tag_key_required":true,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"id":"00000000-0000-1234-0000-000000000000","type":"monitor-config-policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/monitor/policy/00000000-0000-1234-0000-000000000000
+  response:
+    body: '{"errors":["Monitor configuration policy not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1
