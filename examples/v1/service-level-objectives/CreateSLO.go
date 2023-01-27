@@ -32,8 +32,8 @@ func main() {
 		},
 		Thresholds: []datadogV1.SLOThreshold{
 			{
-				Target:         95.0,
-				TargetDisplay:  datadog.PtrString("95.0"),
+				Target:         97.0,
+				TargetDisplay:  datadog.PtrString("97.0"),
 				Timeframe:      datadogV1.SLOTIMEFRAME_SEVEN_DAYS,
 				Warning:        datadog.PtrFloat64(98),
 				WarningDisplay: datadog.PtrString("98.0"),
