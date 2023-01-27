@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"dev@datadog.com","name":"datadog-dev"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetoinvalidapikey1674809971"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"datadog-dev"},"type":"cloudflare-accounts","id":"683184a71c14fb788635d4a977ffb541"}}
+    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetoinvalidapikey1674809971"},"type":"cloudflare-accounts","id":"56a7295bd711e0aea34906a3bea8a2b3"}}
 
       '
     code: 201
@@ -30,10 +30,11 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/683184a71c14fb788635d4a977ffb541
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/56a7295bd711e0aea34906a3bea8a2b3
   response:
     body: '{"errors":["Invalid account. Your Cloudflare configuration is invalid.
-      Impossible to get zones for the account datadog-dev: API key or email is unknown."]}'
+      Impossible to get zones for the account testupdatecloudflareaccountreturnsbadrequestresponseduetoinvalidapikey1674809971:
+      API key or email is unknown."]}'
     code: 400
     duration: ''
     headers:
@@ -47,7 +48,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/683184a71c14fb788635d4a977ffb541
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/56a7295bd711e0aea34906a3bea8a2b3
   response:
     body: ''
     code: 204

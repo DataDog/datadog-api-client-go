@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","name":"test-name"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","name":"testaddcloudflareaccountreturnsbadrequestresponseusinginvalidauthkey1674730487"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
     body: '{"errors":["Invalid account. Your Cloudflare configuration is invalid.
-      Impossible to get zones for the account test-name: API key or email is unknown."]}'
+      Impossible to get zones for the account testaddcloudflareaccountreturnsbadrequestresponseusinginvalidauthkey1674730487:
+      API key or email is unknown."]}'
     code: 400
     duration: ''
     headers:

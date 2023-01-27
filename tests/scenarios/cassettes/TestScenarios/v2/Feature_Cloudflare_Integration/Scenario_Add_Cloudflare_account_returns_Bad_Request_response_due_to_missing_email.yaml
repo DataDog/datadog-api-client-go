@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"test-api-key","name":"test-name"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"test-api-key","name":"testaddcloudflareaccountreturnsbadrequestresponseduetomissingemail1674730504"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:

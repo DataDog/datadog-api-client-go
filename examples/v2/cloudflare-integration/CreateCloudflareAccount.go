@@ -18,7 +18,7 @@ func main() {
 			Attributes: datadogV2.CloudflareAccountCreateRequestAttributes{
 				ApiKey: "6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu",
 				Email:  datadog.PtrString("new@email"),
-				Name:   "test-name",
+				Name:   "exampleaddcloudflareaccountreturnscreatedresponse",
 			},
 			Type: datadogV2.CLOUDFLAREACCOUNTTYPE_CLOUDFLARE_ACCOUNTS,
 		},
