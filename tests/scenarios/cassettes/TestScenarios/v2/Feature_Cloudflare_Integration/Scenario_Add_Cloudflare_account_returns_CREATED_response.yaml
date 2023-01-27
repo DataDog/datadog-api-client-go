@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"new@email","name":"test-name"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"new@email","name":"testaddcloudflareaccountreturnscreatedresponse1674730464"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"new@email","name":"test-name"},"type":"cloudflare-accounts","id":"42ed7da188c8af4a6964376d49bb7caa"}}
+    body: '{"data":{"attributes":{"email":"new@email","name":"testaddcloudflareaccountreturnscreatedresponse1674730464"},"type":"cloudflare-accounts","id":"328432a98957fd7bcba6f70daea72519"}}
 
       '
     code: 201
@@ -27,7 +27,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/42ed7da188c8af4a6964376d49bb7caa
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/328432a98957fd7bcba6f70daea72519
   response:
     body: ''
     code: 204

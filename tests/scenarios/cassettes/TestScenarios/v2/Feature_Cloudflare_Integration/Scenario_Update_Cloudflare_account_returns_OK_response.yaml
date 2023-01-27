@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"dev@datadog.com","name":"datadog-dev"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"datadog-dev"},"type":"cloudflare-accounts","id":"683184a71c14fb788635d4a977ffb541"}}
+    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts","id":"4d22579092049210a1db06b632485219"}}
 
       '
     code: 201
@@ -30,9 +30,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/683184a71c14fb788635d4a977ffb541
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/4d22579092049210a1db06b632485219
   response:
-    body: '{"data":{"attributes":{"email":"new@email","name":"datadog-dev"},"type":"cloudflare-accounts","id":"683184a71c14fb788635d4a977ffb541"}}
+    body: '{"data":{"attributes":{"email":"new@email","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts","id":"4d22579092049210a1db06b632485219"}}
 
       '
     code: 200
@@ -48,7 +48,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/683184a71c14fb788635d4a977ffb541
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/4d22579092049210a1db06b632485219
   response:
     body: ''
     code: 204
