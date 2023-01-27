@@ -1206,8 +1206,9 @@ func (a *MetricsApi) buildQueryScalarDataRequest(ctx _context.Context, body Scal
 	return req, nil
 }
 
-// QueryScalarData Scalar cross product query.
-// The internal endpoint to query scalar/table data for multiple data sources and
+// QueryScalarData Query scalar data across multiple products.
+// Query scalar values (as seen on Query Value, Table and Toplist widgets).
+// Multiple data sources are supported with the ability to
 // process the data using formulas and functions.
 func (a *MetricsApi) QueryScalarData(ctx _context.Context, body ScalarFormulaQueryRequest) (ScalarFormulaQueryResponse, *_nethttp.Response, error) {
 	req, err := a.buildQueryScalarDataRequest(ctx, body)
@@ -1314,8 +1315,8 @@ func (a *MetricsApi) buildQueryTimeseriesDataRequest(ctx _context.Context, body 
 	return req, nil
 }
 
-// QueryTimeseriesData Timeseries cross product query.
-// The internal endpoint to query timeseries data for multiple data sources and
+// QueryTimeseriesData Query timeseries data across multiple products.
+// Query timeseries data across various data sources and
 // process the data by applying formulas and functions.
 func (a *MetricsApi) QueryTimeseriesData(ctx _context.Context, body TimeseriesFormulaQueryRequest) (TimeseriesFormulaQueryResponse, *_nethttp.Response, error) {
 	req, err := a.buildQueryTimeseriesDataRequest(ctx, body)

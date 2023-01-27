@@ -12,8 +12,6 @@ import (
 type ScalarFormulaResponseAtrributes struct {
 	// List of response columns, each corresponding to an individual formula or query in the request and with values in parallel arrays matching the series list.
 	Columns []ScalarColumn `json:"columns,omitempty"`
-	// List of group-by tags for the response. Parallel array to the values in each scalar column.
-	Series [][]string `json:"series,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -64,34 +62,6 @@ func (o *ScalarFormulaResponseAtrributes) SetColumns(v []ScalarColumn) {
 	o.Columns = v
 }
 
-// GetSeries returns the Series field value if set, zero value otherwise.
-func (o *ScalarFormulaResponseAtrributes) GetSeries() [][]string {
-	if o == nil || o.Series == nil {
-		var ret [][]string
-		return ret
-	}
-	return o.Series
-}
-
-// GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScalarFormulaResponseAtrributes) GetSeriesOk() (*[][]string, bool) {
-	if o == nil || o.Series == nil {
-		return nil, false
-	}
-	return &o.Series, true
-}
-
-// HasSeries returns a boolean if a field has been set.
-func (o *ScalarFormulaResponseAtrributes) HasSeries() bool {
-	return o != nil && o.Series != nil
-}
-
-// SetSeries gets a reference to the given [][]string and assigns it to the Series field.
-func (o *ScalarFormulaResponseAtrributes) SetSeries(v [][]string) {
-	o.Series = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ScalarFormulaResponseAtrributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,9 +70,6 @@ func (o ScalarFormulaResponseAtrributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Columns != nil {
 		toSerialize["columns"] = o.Columns
-	}
-	if o.Series != nil {
-		toSerialize["series"] = o.Series
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,7 +83,6 @@ func (o *ScalarFormulaResponseAtrributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		Columns []ScalarColumn `json:"columns,omitempty"`
-		Series  [][]string     `json:"series,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -128,6 +94,5 @@ func (o *ScalarFormulaResponseAtrributes) UnmarshalJSON(bytes []byte) (err error
 		return nil
 	}
 	o.Columns = all.Columns
-	o.Series = all.Series
 	return nil
 }

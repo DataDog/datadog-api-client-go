@@ -1,4 +1,4 @@
-// Query timeseries data across multiple products returns "OK" response
+// Timeseries cross product query returns "OK" response
 
 package main
 
@@ -18,23 +18,24 @@ func main() {
 			Attributes: datadogV2.TimeseriesFormulaRequestAttributes{
 				Formulas: []datadogV2.QueryFormula{
 					{
-						Formula: "a+b",
+						Formula: "a",
 						Limit: &datadogV2.FormulaLimit{
 							Count: datadog.PtrInt32(10),
 							Order: datadogV2.QUERYSORTORDER_DESC.Ptr(),
 						},
 					},
 				},
-				From:     1568899800000,
+				From:     1671612804000,
 				Interval: datadog.PtrInt64(5000),
 				Queries: []datadogV2.TimeseriesQuery{
 					datadogV2.TimeseriesQuery{
 						MetricsTimeseriesQuery: &datadogV2.MetricsTimeseriesQuery{
 							DataSource: datadogV2.METRICSDATASOURCE_METRICS,
-							Query:      "avg:system.cpu.user{*} by {env}",
+							Query:      "avg:system.cpu.user{*}",
+							Name:       datadog.PtrString("a"),
 						}},
 				},
-				To: 1568923200000,
+				To: 1671620004000,
 			},
 			Type: datadogV2.TIMESERIESFORMULAREQUESTTYPE_TIMESERIES_REQUEST,
 		},

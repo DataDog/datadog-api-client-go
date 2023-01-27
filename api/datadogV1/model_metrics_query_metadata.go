@@ -37,8 +37,9 @@ type MetricsQueryMetadata struct {
 	// Unique tags identifying this series.
 	TagSet []string `json:"tag_set,omitempty"`
 	// Detailed information about the metric unit.
-	// First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
-	// second describes the "per unit" (for example, `second` in `bytes per second`).
+	// The first element describes the "primary unit" (for example, `bytes` in `bytes per second`).
+	// The second element describes the "per unit" (for example, `second` in `bytes per second`).
+	// If the second element is not present, the API returns null.
 	Unit []MetricsQueryUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
