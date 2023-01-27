@@ -14,7 +14,10 @@ type TimeseriesResponseSeries struct {
 	GroupTags []string `json:"group_tags,omitempty"`
 	// The index of the query in the "formulas" array (or "queries" array if no "formulas" was specified).
 	QueryIndex *int32 `json:"query_index,omitempty"`
-	// List of units.
+	// Detailed information about the unit.
+	// The first element describes the "primary unit" (for example, `bytes` in `bytes per second`).
+	// The second element describes the "per unit" (for example, `second` in `bytes per second`).
+	// If the second element is not present, the API returns null.
 	Unit []Unit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
