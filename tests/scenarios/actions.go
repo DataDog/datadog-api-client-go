@@ -30,9 +30,9 @@ import (
 type UndoAction struct {
 	Tag  string `json:"tag"`
 	Undo *struct {
-		Tags        []string `json:"tags"`
-		Type        string   `json:"type"`
-		OperationID string   `json:"operationId"`
+		Tag         *string `json:"tag"`
+		Type        string  `json:"type"`
+		OperationID string  `json:"operationId"`
 		Parameters  []struct {
 			Name     string  `json:"name"`
 			Source   *string `json:"source"`
@@ -254,8 +254,8 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 
 	// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 	tag := strings.Replace(undo.Tag, " ", "", -1) + "Api"
-	if undo.Undo.Tags != nil {
-		tag = strings.Replace(undo.Undo.Tags[0], " ", "", -1) + "Api"
+	if undo.Undo.Tag != nil {
+		tag = strings.Replace(*undo.Undo.Tag, " ", "", -1) + "Api"
 	}
 	undoAPI := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{undoClientInterface})[0]
 	if !undoAPI.IsValid() {
