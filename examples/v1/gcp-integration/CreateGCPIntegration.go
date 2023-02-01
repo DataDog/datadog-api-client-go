@@ -22,12 +22,13 @@ func main() {
 		Errors: []string{
 			"*",
 		},
-		HostFilters:  datadog.PtrString("key:value,filter:example"),
-		PrivateKey:   datadog.PtrString("private_key"),
-		PrivateKeyId: datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
-		ProjectId:    datadog.PtrString("datadog-apitest"),
-		TokenUri:     datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
-		Type:         datadog.PtrString("service_account"),
+		HostFilters:   datadog.PtrString("key:value,filter:example"),
+		IsCspmEnabled: datadog.PtrBool(true),
+		PrivateKey:    datadog.PtrString("private_key"),
+		PrivateKeyId:  datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
+		ProjectId:     datadog.PtrString("datadog-apitest"),
+		TokenUri:      datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
+		Type:          datadog.PtrString("service_account"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

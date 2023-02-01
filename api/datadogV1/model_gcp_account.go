@@ -28,6 +28,8 @@ type GCPAccount struct {
 	// Limit the GCE instances that are pulled into Datadog by using tags.
 	// Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
+	// When enabled, Datadog performs configuration checks across your Google Cloud environment by continuously scanning every resource.
+	IsCspmEnabled *bool `json:"is_cspm_enabled,omitempty"`
 	// Your private key name found in your JSON service account key.
 	PrivateKey *string `json:"private_key,omitempty"`
 	// Your private key ID found in your JSON service account key.
@@ -49,6 +51,8 @@ type GCPAccount struct {
 // will change when the set of required properties is changed.
 func NewGCPAccount() *GCPAccount {
 	this := GCPAccount{}
+	var isCspmEnabled bool = false
+	this.IsCspmEnabled = &isCspmEnabled
 	return &this
 }
 
@@ -57,6 +61,8 @@ func NewGCPAccount() *GCPAccount {
 // but it doesn't guarantee that properties required by API are set.
 func NewGCPAccountWithDefaults() *GCPAccount {
 	this := GCPAccount{}
+	var isCspmEnabled bool = false
+	this.IsCspmEnabled = &isCspmEnabled
 	return &this
 }
 
@@ -284,6 +290,34 @@ func (o *GCPAccount) SetHostFilters(v string) {
 	o.HostFilters = &v
 }
 
+// GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.
+func (o *GCPAccount) GetIsCspmEnabled() bool {
+	if o == nil || o.IsCspmEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsCspmEnabled
+}
+
+// GetIsCspmEnabledOk returns a tuple with the IsCspmEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPAccount) GetIsCspmEnabledOk() (*bool, bool) {
+	if o == nil || o.IsCspmEnabled == nil {
+		return nil, false
+	}
+	return o.IsCspmEnabled, true
+}
+
+// HasIsCspmEnabled returns a boolean if a field has been set.
+func (o *GCPAccount) HasIsCspmEnabled() bool {
+	return o != nil && o.IsCspmEnabled != nil
+}
+
+// SetIsCspmEnabled gets a reference to the given bool and assigns it to the IsCspmEnabled field.
+func (o *GCPAccount) SetIsCspmEnabled(v bool) {
+	o.IsCspmEnabled = &v
+}
+
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *GCPAccount) GetPrivateKey() string {
 	if o == nil || o.PrivateKey == nil {
@@ -454,6 +488,9 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	if o.HostFilters != nil {
 		toSerialize["host_filters"] = o.HostFilters
 	}
+	if o.IsCspmEnabled != nil {
+		toSerialize["is_cspm_enabled"] = o.IsCspmEnabled
+	}
 	if o.PrivateKey != nil {
 		toSerialize["private_key"] = o.PrivateKey
 	}
@@ -488,6 +525,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		ClientX509CertUrl       *string  `json:"client_x509_cert_url,omitempty"`
 		Errors                  []string `json:"errors,omitempty"`
 		HostFilters             *string  `json:"host_filters,omitempty"`
+		IsCspmEnabled           *bool    `json:"is_cspm_enabled,omitempty"`
 		PrivateKey              *string  `json:"private_key,omitempty"`
 		PrivateKeyId            *string  `json:"private_key_id,omitempty"`
 		ProjectId               *string  `json:"project_id,omitempty"`
@@ -511,6 +549,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ClientX509CertUrl = all.ClientX509CertUrl
 	o.Errors = all.Errors
 	o.HostFilters = all.HostFilters
+	o.IsCspmEnabled = all.IsCspmEnabled
 	o.PrivateKey = all.PrivateKey
 	o.PrivateKeyId = all.PrivateKeyId
 	o.ProjectId = all.ProjectId
