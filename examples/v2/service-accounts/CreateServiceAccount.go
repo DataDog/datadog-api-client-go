@@ -39,14 +39,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewUsersApi(apiClient)
+	api := datadogV2.NewServiceAccountsApi(apiClient)
 	resp, r, err := api.CreateServiceAccount(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateServiceAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateServiceAccount`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ServiceAccountsApi.CreateServiceAccount`:\n%s\n", responseContent)
 }
