@@ -28,6 +28,7 @@ type WidgetDefinition struct {
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
 	NoteWidgetDefinition           *NoteWidgetDefinition
 	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
+	RunWorkflowWidgetDefinition    *RunWorkflowWidgetDefinition
 	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
 	SLOWidgetDefinition            *SLOWidgetDefinition
 	SLOListWidgetDefinition        *SLOListWidgetDefinition
@@ -134,6 +135,11 @@ func NoteWidgetDefinitionAsWidgetDefinition(v *NoteWidgetDefinition) WidgetDefin
 // QueryValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns QueryValueWidgetDefinition wrapped in WidgetDefinition.
 func QueryValueWidgetDefinitionAsWidgetDefinition(v *QueryValueWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{QueryValueWidgetDefinition: v}
+}
+
+// RunWorkflowWidgetDefinitionAsWidgetDefinition is a convenience function that returns RunWorkflowWidgetDefinition wrapped in WidgetDefinition.
+func RunWorkflowWidgetDefinitionAsWidgetDefinition(v *RunWorkflowWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{RunWorkflowWidgetDefinition: v}
 }
 
 // ScatterPlotWidgetDefinitionAsWidgetDefinition is a convenience function that returns ScatterPlotWidgetDefinition wrapped in WidgetDefinition.
@@ -511,6 +517,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.QueryValueWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into RunWorkflowWidgetDefinition
+	err = json.Unmarshal(data, &obj.RunWorkflowWidgetDefinition)
+	if err == nil {
+		if obj.RunWorkflowWidgetDefinition != nil && obj.RunWorkflowWidgetDefinition.UnparsedObject == nil {
+			jsonRunWorkflowWidgetDefinition, _ := json.Marshal(obj.RunWorkflowWidgetDefinition)
+			if string(jsonRunWorkflowWidgetDefinition) == "{}" { // empty struct
+				obj.RunWorkflowWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.RunWorkflowWidgetDefinition = nil
+		}
+	} else {
+		obj.RunWorkflowWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into ScatterPlotWidgetDefinition
 	err = json.Unmarshal(data, &obj.ScatterPlotWidgetDefinition)
 	if err == nil {
@@ -752,6 +775,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.MonitorSummaryWidgetDefinition = nil
 		obj.NoteWidgetDefinition = nil
 		obj.QueryValueWidgetDefinition = nil
+		obj.RunWorkflowWidgetDefinition = nil
 		obj.ScatterPlotWidgetDefinition = nil
 		obj.SLOWidgetDefinition = nil
 		obj.SLOListWidgetDefinition = nil
@@ -842,6 +866,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return json.Marshal(&obj.QueryValueWidgetDefinition)
+	}
+
+	if obj.RunWorkflowWidgetDefinition != nil {
+		return json.Marshal(&obj.RunWorkflowWidgetDefinition)
 	}
 
 	if obj.ScatterPlotWidgetDefinition != nil {
@@ -974,6 +1002,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return obj.QueryValueWidgetDefinition
+	}
+
+	if obj.RunWorkflowWidgetDefinition != nil {
+		return obj.RunWorkflowWidgetDefinition
 	}
 
 	if obj.ScatterPlotWidgetDefinition != nil {
