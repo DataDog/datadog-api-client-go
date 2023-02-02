@@ -640,26 +640,6 @@ func TestUsageSummary(t *testing.T) {
 	assert.Equal(int64(18), usageOrgItem.GetApmAzureAppServiceHostTop99p())
 }
 
-func TestUsageAttribution(t *testing.T) {
-	ctx, finish := tests.WithTestSpan(context.Background(), t)
-	defer finish()
-	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
-
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
-	api := datadogV1.NewUsageMeteringApi(Client(ctx))
-	usage, httpresp, err := api.GetUsageAttribution(ctx, startMonth, "*")
-	if err != nil {
-		t.Errorf("Error getting Usage Attribution: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-
-	assert.Equal(200, httpresp.StatusCode)
-	assert.True(usage.HasUsage())
-	assert.True(usage.HasMetadata())
-}
-
 func TestUsageGetAnalyzedLogsErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
@@ -1254,35 +1234,6 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			api := datadogV1.NewUsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, "2010-01-01")
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadogV1.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}
-
-func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
-	ctx, finish := tests.WithTestSpan(context.Background(), t)
-	defer finish()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		"400 Bad Request": {WithTestAuth, 400},
-		"403 Forbidden":   {WithFakeAuth, 403},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-			api := datadogV1.NewUsageMeteringApi(Client(ctx))
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
-			_, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadogV1.APIErrorResponse)
 			assert.True(ok)
