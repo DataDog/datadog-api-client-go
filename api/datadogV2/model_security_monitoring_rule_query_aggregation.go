@@ -21,6 +21,7 @@ const (
 	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE   SecurityMonitoringRuleQueryAggregation = "new_value"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA    SecurityMonitoringRuleQueryAggregation = "geo_data"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT SecurityMonitoringRuleQueryAggregation = "event_count"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NONE        SecurityMonitoringRuleQueryAggregation = "none"
 )
 
 var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitoringRuleQueryAggregation{
@@ -31,6 +32,7 @@ var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitori
 	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE,
 	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA,
 	SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NONE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
