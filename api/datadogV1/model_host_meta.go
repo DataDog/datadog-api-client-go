@@ -23,7 +23,7 @@ type HostMeta struct {
 	// Agent install method.
 	InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
 	// An array of Mac versions.
-	MacV []*string `json:"macV,omitempty"`
+	MacV []interface{} `json:"macV,omitempty"`
 	// The machine architecture.
 	Machine *string `json:"machine,omitempty"`
 	// Array of Unix versions.
@@ -231,9 +231,9 @@ func (o *HostMeta) SetInstallMethod(v HostMetaInstallMethod) {
 }
 
 // GetMacV returns the MacV field value if set, zero value otherwise.
-func (o *HostMeta) GetMacV() []*string {
+func (o *HostMeta) GetMacV() []interface{} {
 	if o == nil || o.MacV == nil {
-		var ret []*string
+		var ret []interface{}
 		return ret
 	}
 	return o.MacV
@@ -241,7 +241,7 @@ func (o *HostMeta) GetMacV() []*string {
 
 // GetMacVOk returns a tuple with the MacV field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMeta) GetMacVOk() (*[]*string, bool) {
+func (o *HostMeta) GetMacVOk() (*[]interface{}, bool) {
 	if o == nil || o.MacV == nil {
 		return nil, false
 	}
@@ -253,8 +253,8 @@ func (o *HostMeta) HasMacV() bool {
 	return o != nil && o.MacV != nil
 }
 
-// SetMacV gets a reference to the given []*string and assigns it to the MacV field.
-func (o *HostMeta) SetMacV(v []*string) {
+// SetMacV gets a reference to the given []interface{} and assigns it to the MacV field.
+func (o *HostMeta) SetMacV(v []interface{}) {
 	o.MacV = v
 }
 
@@ -550,7 +550,7 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 		FbsdV          []*string              `json:"fbsdV,omitempty"`
 		Gohai          *string                `json:"gohai,omitempty"`
 		InstallMethod  *HostMetaInstallMethod `json:"install_method,omitempty"`
-		MacV           []*string              `json:"macV,omitempty"`
+		MacV           []interface{}          `json:"macV,omitempty"`
 		Machine        *string                `json:"machine,omitempty"`
 		NixV           []*string              `json:"nixV,omitempty"`
 		Platform       *string                `json:"platform,omitempty"`
