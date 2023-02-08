@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 2.8.0 / 2023-02-08
+
+### Fixed
+* Mark timeseries values as nullable by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1819
+* Fix path constraints check by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/1833
+* Add namespaces attribute and rename excluded_attributes in SDS Public API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1834
+* Set macV as `type any` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1851
+### Added
+* Add httpVersion option to Synthetics API tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1824
+* Add deprecationDate to security monitoring rule response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1825
+* Add new group by configuration to list stream widget by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1821
+* Add synthetics advanced scheduling by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1810
+* Add notification preset enum field to monitor options by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1829
+* Add support for Cloudflare integration API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1828
+* Add support for Fastly account API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1750
+* Add monitor configuration policies by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1832
+* Support is_cspm_enabled field in GCP integrations by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1843
+* Add run workflow widget to dashboard schema by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1837
+* Add new missing enum values for `aggregation` and `detectionMethod` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1854
+* Add region to estimated cost and historical cost response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1855
+* Add Usage Metering container_excl_agent_usage fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1857
+* Add event_stream fields to dashboard list stream widget by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1858
+### Changed
+* Move Service account create from users to service accounts by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1841
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.7.0...v2.8.0
+
 ## 2.7.0 / 2023-01-11
 
 ### Fixed
