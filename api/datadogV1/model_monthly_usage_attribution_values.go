@@ -35,9 +35,9 @@ type MonthlyUsageAttributionValues struct {
 	// The synthetic browser test usage by tag(s).
 	BrowserUsage *float64 `json:"browser_usage,omitempty"`
 	// The percentage of container usage without the Datadog Agent by tag(s).
-	ContPercentage *float64 `json:"cont_percentage,omitempty"`
+	ContainerExclAgentPercentage *float64 `json:"container_excl_agent_percentage,omitempty"`
 	// The container usage without the Datadog Agent by tag(s).
-	ContUsage *float64 `json:"cont_usage,omitempty"`
+	ContainerExclAgentUsage *float64 `json:"container_excl_agent_usage,omitempty"`
 	// The percentage of container usage by tag(s).
 	ContainerPercentage *float64 `json:"container_percentage,omitempty"`
 	// The container usage by tag(s).
@@ -480,60 +480,60 @@ func (o *MonthlyUsageAttributionValues) SetBrowserUsage(v float64) {
 	o.BrowserUsage = &v
 }
 
-// GetContPercentage returns the ContPercentage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetContPercentage() float64 {
-	if o == nil || o.ContPercentage == nil {
+// GetContainerExclAgentPercentage returns the ContainerExclAgentPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetContainerExclAgentPercentage() float64 {
+	if o == nil || o.ContainerExclAgentPercentage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ContPercentage
+	return *o.ContainerExclAgentPercentage
 }
 
-// GetContPercentageOk returns a tuple with the ContPercentage field value if set, nil otherwise
+// GetContainerExclAgentPercentageOk returns a tuple with the ContainerExclAgentPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetContPercentageOk() (*float64, bool) {
-	if o == nil || o.ContPercentage == nil {
+func (o *MonthlyUsageAttributionValues) GetContainerExclAgentPercentageOk() (*float64, bool) {
+	if o == nil || o.ContainerExclAgentPercentage == nil {
 		return nil, false
 	}
-	return o.ContPercentage, true
+	return o.ContainerExclAgentPercentage, true
 }
 
-// HasContPercentage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasContPercentage() bool {
-	return o != nil && o.ContPercentage != nil
+// HasContainerExclAgentPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasContainerExclAgentPercentage() bool {
+	return o != nil && o.ContainerExclAgentPercentage != nil
 }
 
-// SetContPercentage gets a reference to the given float64 and assigns it to the ContPercentage field.
-func (o *MonthlyUsageAttributionValues) SetContPercentage(v float64) {
-	o.ContPercentage = &v
+// SetContainerExclAgentPercentage gets a reference to the given float64 and assigns it to the ContainerExclAgentPercentage field.
+func (o *MonthlyUsageAttributionValues) SetContainerExclAgentPercentage(v float64) {
+	o.ContainerExclAgentPercentage = &v
 }
 
-// GetContUsage returns the ContUsage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetContUsage() float64 {
-	if o == nil || o.ContUsage == nil {
+// GetContainerExclAgentUsage returns the ContainerExclAgentUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetContainerExclAgentUsage() float64 {
+	if o == nil || o.ContainerExclAgentUsage == nil {
 		var ret float64
 		return ret
 	}
-	return *o.ContUsage
+	return *o.ContainerExclAgentUsage
 }
 
-// GetContUsageOk returns a tuple with the ContUsage field value if set, nil otherwise
+// GetContainerExclAgentUsageOk returns a tuple with the ContainerExclAgentUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetContUsageOk() (*float64, bool) {
-	if o == nil || o.ContUsage == nil {
+func (o *MonthlyUsageAttributionValues) GetContainerExclAgentUsageOk() (*float64, bool) {
+	if o == nil || o.ContainerExclAgentUsage == nil {
 		return nil, false
 	}
-	return o.ContUsage, true
+	return o.ContainerExclAgentUsage, true
 }
 
-// HasContUsage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasContUsage() bool {
-	return o != nil && o.ContUsage != nil
+// HasContainerExclAgentUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasContainerExclAgentUsage() bool {
+	return o != nil && o.ContainerExclAgentUsage != nil
 }
 
-// SetContUsage gets a reference to the given float64 and assigns it to the ContUsage field.
-func (o *MonthlyUsageAttributionValues) SetContUsage(v float64) {
-	o.ContUsage = &v
+// SetContainerExclAgentUsage gets a reference to the given float64 and assigns it to the ContainerExclAgentUsage field.
+func (o *MonthlyUsageAttributionValues) SetContainerExclAgentUsage(v float64) {
+	o.ContainerExclAgentUsage = &v
 }
 
 // GetContainerPercentage returns the ContainerPercentage field value if set, zero value otherwise.
@@ -1754,11 +1754,11 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.BrowserUsage != nil {
 		toSerialize["browser_usage"] = o.BrowserUsage
 	}
-	if o.ContPercentage != nil {
-		toSerialize["cont_percentage"] = o.ContPercentage
+	if o.ContainerExclAgentPercentage != nil {
+		toSerialize["container_excl_agent_percentage"] = o.ContainerExclAgentPercentage
 	}
-	if o.ContUsage != nil {
-		toSerialize["cont_usage"] = o.ContUsage
+	if o.ContainerExclAgentUsage != nil {
+		toSerialize["container_excl_agent_usage"] = o.ContainerExclAgentUsage
 	}
 	if o.ContainerPercentage != nil {
 		toSerialize["container_percentage"] = o.ContainerPercentage
@@ -1909,8 +1909,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		AppsecUsage                      *float64 `json:"appsec_usage,omitempty"`
 		BrowserPercentage                *float64 `json:"browser_percentage,omitempty"`
 		BrowserUsage                     *float64 `json:"browser_usage,omitempty"`
-		ContPercentage                   *float64 `json:"cont_percentage,omitempty"`
-		ContUsage                        *float64 `json:"cont_usage,omitempty"`
+		ContainerExclAgentPercentage     *float64 `json:"container_excl_agent_percentage,omitempty"`
+		ContainerExclAgentUsage          *float64 `json:"container_excl_agent_usage,omitempty"`
 		ContainerPercentage              *float64 `json:"container_percentage,omitempty"`
 		ContainerUsage                   *float64 `json:"container_usage,omitempty"`
 		CspmContainersPercentage         *float64 `json:"cspm_containers_percentage,omitempty"`
@@ -1975,8 +1975,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.AppsecUsage = all.AppsecUsage
 	o.BrowserPercentage = all.BrowserPercentage
 	o.BrowserUsage = all.BrowserUsage
-	o.ContPercentage = all.ContPercentage
-	o.ContUsage = all.ContUsage
+	o.ContainerExclAgentPercentage = all.ContainerExclAgentPercentage
+	o.ContainerExclAgentUsage = all.ContainerExclAgentUsage
 	o.ContainerPercentage = all.ContainerPercentage
 	o.ContainerUsage = all.ContainerUsage
 	o.CspmContainersPercentage = all.CspmContainersPercentage

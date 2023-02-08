@@ -20,6 +20,7 @@ const (
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_FARGATE_USAGE           HourlyUsageAttributionUsageType = "appsec_fargate_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_USAGE                   HourlyUsageAttributionUsageType = "appsec_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE                  HourlyUsageAttributionUsageType = "browser_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_EXCL_AGENT_USAGE     HourlyUsageAttributionUsageType = "container_excl_agent_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE                HourlyUsageAttributionUsageType = "container_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CSPM_CONTAINERS_USAGE          HourlyUsageAttributionUsageType = "cspm_containers_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CSPM_HOSTS_USAGE               HourlyUsageAttributionUsageType = "cspm_hosts_usage"
@@ -41,7 +42,6 @@ const (
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_HOST_USAGE            HourlyUsageAttributionUsageType = "profiled_host_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE                     HourlyUsageAttributionUsageType = "snmp_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_ESTIMATED_RUM_SESSIONS_USAGE   HourlyUsageAttributionUsageType = "estimated_rum_sessions_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONT_USAGE                     HourlyUsageAttributionUsageType = "cont_usage"
 )
 
 var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionUsageType{
@@ -51,6 +51,7 @@ var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionU
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_FARGATE_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE,
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_EXCL_AGENT_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CSPM_CONTAINERS_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CSPM_HOSTS_USAGE,
@@ -72,7 +73,6 @@ var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionU
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_HOST_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_ESTIMATED_RUM_SESSIONS_USAGE,
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONT_USAGE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
