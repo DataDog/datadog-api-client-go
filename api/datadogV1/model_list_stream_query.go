@@ -15,6 +15,8 @@ type ListStreamQuery struct {
 	Compute []ListStreamComputeItems `json:"compute,omitempty"`
 	// Source from which to query items to display in the stream.
 	DataSource ListStreamSource `json:"data_source"`
+	// Size to use to display an event.
+	EventSize *WidgetEventSize `json:"event_size,omitempty"`
 	// Group by configuration for the List Stream Widget. Group by can be used only with logs_pattern_stream (up to 3 items) or logs_transaction_stream (one group by item is required) list stream source.
 	GroupBy []ListStreamGroupByItems `json:"group_by,omitempty"`
 	// List of indexes.
@@ -98,6 +100,34 @@ func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
 // SetDataSource sets field value.
 func (o *ListStreamQuery) SetDataSource(v ListStreamSource) {
 	o.DataSource = v
+}
+
+// GetEventSize returns the EventSize field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetEventSize() WidgetEventSize {
+	if o == nil || o.EventSize == nil {
+		var ret WidgetEventSize
+		return ret
+	}
+	return *o.EventSize
+}
+
+// GetEventSizeOk returns a tuple with the EventSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetEventSizeOk() (*WidgetEventSize, bool) {
+	if o == nil || o.EventSize == nil {
+		return nil, false
+	}
+	return o.EventSize, true
+}
+
+// HasEventSize returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasEventSize() bool {
+	return o != nil && o.EventSize != nil
+}
+
+// SetEventSize gets a reference to the given WidgetEventSize and assigns it to the EventSize field.
+func (o *ListStreamQuery) SetEventSize(v WidgetEventSize) {
+	o.EventSize = &v
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
@@ -217,6 +247,9 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["compute"] = o.Compute
 	}
 	toSerialize["data_source"] = o.DataSource
+	if o.EventSize != nil {
+		toSerialize["event_size"] = o.EventSize
+	}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
@@ -244,6 +277,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Compute     []ListStreamComputeItems `json:"compute,omitempty"`
 		DataSource  ListStreamSource         `json:"data_source"`
+		EventSize   *WidgetEventSize         `json:"event_size,omitempty"`
 		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
 		Indexes     []string                 `json:"indexes,omitempty"`
 		QueryString string                   `json:"query_string"`
@@ -276,8 +310,17 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if v := all.EventSize; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
 	o.Compute = all.Compute
 	o.DataSource = all.DataSource
+	o.EventSize = all.EventSize
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = all.QueryString
