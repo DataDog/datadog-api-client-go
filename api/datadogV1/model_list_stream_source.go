@@ -20,7 +20,6 @@ const (
 	LISTSTREAMSOURCE_APM_ISSUE_STREAM        ListStreamSource = "apm_issue_stream"
 	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM     ListStreamSource = "logs_pattern_stream"
 	LISTSTREAMSOURCE_LOGS_TRANSACTION_STREAM ListStreamSource = "logs_transaction_stream"
-	LISTSTREAMSOURCE_EVENT_STREAM            ListStreamSource = "event_stream"
 )
 
 var allowedListStreamSourceEnumValues = []ListStreamSource{
@@ -30,7 +29,6 @@ var allowedListStreamSourceEnumValues = []ListStreamSource{
 	LISTSTREAMSOURCE_APM_ISSUE_STREAM,
 	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM,
 	LISTSTREAMSOURCE_LOGS_TRANSACTION_STREAM,
-	LISTSTREAMSOURCE_EVENT_STREAM,
 }
 
 // GetAllowedValues reeturns the list of possible values.

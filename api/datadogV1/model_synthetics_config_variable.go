@@ -19,7 +19,7 @@ type SyntheticsConfigVariable struct {
 	Name string `json:"name"`
 	// Pattern of the variable.
 	Pattern *string `json:"pattern,omitempty"`
-	// Whether the value of this variable will be obfuscated in test results. Only for config variables of type `text`.
+	// Whether the value of this variable will be obfuscated in test results.
 	Secure *bool `json:"secure,omitempty"`
 	// Type of the configuration variable.
 	Type SyntheticsConfigVariableType `json:"type"`

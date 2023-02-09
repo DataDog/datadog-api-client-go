@@ -138,6 +138,7 @@
 //  - [RUMApi.ListRUMEvents]
 //  - [RUMApi.SearchRUMEvents]
 //  - [RUMApi.UpdateRUMApplication]
+//  - [RestrictionPoliciesApi.GetRestrictionPolicy]
 //  - [RolesApi.AddPermissionToRole]
 //  - [RolesApi.AddUserToRole]
 //  - [RolesApi.CloneRole]
