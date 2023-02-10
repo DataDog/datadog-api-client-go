@@ -70,25 +70,25 @@ type MonthlyUsageAttributionValues struct {
 	DbmQueriesPercentage *float64 `json:"dbm_queries_percentage,omitempty"`
 	// The Database Monitoring queries usage by tag(s).
 	DbmQueriesUsage *float64 `json:"dbm_queries_usage,omitempty"`
-	// The percentage of estimated live indexed logs usage by tag(s). This field is in private beta.
+	// The percentage of estimated live indexed logs usage by tag(s).
 	EstimatedIndexedLogsPercentage *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
-	// The estimated live indexed logs usage by tag(s). This field is in private beta.
+	// The estimated live indexed logs usage by tag(s).
 	EstimatedIndexedLogsUsage *float64 `json:"estimated_indexed_logs_usage,omitempty"`
-	// The percentage of estimated indexed spans usage by tag(s). This field is in private beta.
+	// The percentage of estimated indexed spans usage by tag(s).
 	EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
-	// The estimated indexed spans usage by tag(s). This field is in private beta.
+	// The estimated indexed spans usage by tag(s).
 	EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
-	// The percentage of estimated live ingested logs usage by tag(s). This field is in private beta.
+	// The percentage of estimated live ingested logs usage by tag(s).
 	EstimatedIngestedLogsPercentage *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
-	// The estimated live ingested logs usage by tag(s). This field is in private beta.
+	// The estimated live ingested logs usage by tag(s).
 	EstimatedIngestedLogsUsage *float64 `json:"estimated_ingested_logs_usage,omitempty"`
-	// The percentage of estimated ingested spans usage by tag(s). This field is in private beta.
+	// The percentage of estimated ingested spans usage by tag(s).
 	EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
-	// The estimated ingested spans usage by tag(s). This field is in private beta.
+	// The estimated ingested spans usage by tag(s).
 	EstimatedIngestedSpansUsage *float64 `json:"estimated_ingested_spans_usage,omitempty"`
-	// The percentage of estimated rum sessions usage by tag(s). This field is in private beta.
+	// The percentage of estimated rum sessions usage by tag(s).
 	EstimatedRumSessionsPercentage *float64 `json:"estimated_rum_sessions_percentage,omitempty"`
-	// The estimated rum sessions usage by tag(s). This field is in private beta.
+	// The estimated rum sessions usage by tag(s).
 	EstimatedRumSessionsUsage *float64 `json:"estimated_rum_sessions_usage,omitempty"`
 	// The percentage of Fargate usage by tags.
 	FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
