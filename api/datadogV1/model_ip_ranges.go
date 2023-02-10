@@ -20,6 +20,8 @@ type IPRanges struct {
 	Logs *IPPrefixesLogs `json:"logs,omitempty"`
 	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
 	Modified *string `json:"modified,omitempty"`
+	// Available prefix information for the Orchestrator endpoints.
+	Orchestrator *IPPrefixesOrchestrator `json:"orchestrator,omitempty"`
 	// Available prefix information for the Process endpoints.
 	Process *IPPrefixesProcess `json:"process,omitempty"`
 	// Available prefix information for the Synthetics endpoints.
@@ -192,6 +194,34 @@ func (o *IPRanges) SetModified(v string) {
 	o.Modified = &v
 }
 
+// GetOrchestrator returns the Orchestrator field value if set, zero value otherwise.
+func (o *IPRanges) GetOrchestrator() IPPrefixesOrchestrator {
+	if o == nil || o.Orchestrator == nil {
+		var ret IPPrefixesOrchestrator
+		return ret
+	}
+	return *o.Orchestrator
+}
+
+// GetOrchestratorOk returns a tuple with the Orchestrator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPRanges) GetOrchestratorOk() (*IPPrefixesOrchestrator, bool) {
+	if o == nil || o.Orchestrator == nil {
+		return nil, false
+	}
+	return o.Orchestrator, true
+}
+
+// HasOrchestrator returns a boolean if a field has been set.
+func (o *IPRanges) HasOrchestrator() bool {
+	return o != nil && o.Orchestrator != nil
+}
+
+// SetOrchestrator gets a reference to the given IPPrefixesOrchestrator and assigns it to the Orchestrator field.
+func (o *IPRanges) SetOrchestrator(v IPPrefixesOrchestrator) {
+	o.Orchestrator = &v
+}
+
 // GetProcess returns the Process field value if set, zero value otherwise.
 func (o *IPRanges) GetProcess() IPPrefixesProcess {
 	if o == nil || o.Process == nil {
@@ -353,6 +383,9 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified
 	}
+	if o.Orchestrator != nil {
+		toSerialize["orchestrator"] = o.Orchestrator
+	}
 	if o.Process != nil {
 		toSerialize["process"] = o.Process
 	}
@@ -384,6 +417,7 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 		Apm                        *IPPrefixesAPM                        `json:"apm,omitempty"`
 		Logs                       *IPPrefixesLogs                       `json:"logs,omitempty"`
 		Modified                   *string                               `json:"modified,omitempty"`
+		Orchestrator               *IPPrefixesOrchestrator               `json:"orchestrator,omitempty"`
 		Process                    *IPPrefixesProcess                    `json:"process,omitempty"`
 		Synthetics                 *IPPrefixesSynthetics                 `json:"synthetics,omitempty"`
 		SyntheticsPrivateLocations *IPPrefixesSyntheticsPrivateLocations `json:"synthetics-private-locations,omitempty"`
@@ -432,6 +466,14 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Logs = all.Logs
 	o.Modified = all.Modified
+	if all.Orchestrator != nil && all.Orchestrator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Orchestrator = all.Orchestrator
 	if all.Process != nil && all.Process.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
