@@ -51,6 +51,8 @@ type UsageSummaryResponse struct {
 	CiVisibilityPipelineCommittersHwmSum *int64 `json:"ci_visibility_pipeline_committers_hwm_sum,omitempty"`
 	// Shows the high-water mark of all CI visibility test committers over all hours in the current months for all organizations.
 	CiVisibilityTestCommittersHwmSum *int64 `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
+	// Sum of the host count average for Cloud Cost Management.
+	CloudCostManagementHostCountAvgSum *int64 `json:"cloud_cost_management_host_count_avg_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current months for all organizations.
 	ContainerAvgSum *int64 `json:"container_avg_sum,omitempty"`
 	// Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations.
@@ -755,6 +757,34 @@ func (o *UsageSummaryResponse) HasCiVisibilityTestCommittersHwmSum() bool {
 // SetCiVisibilityTestCommittersHwmSum gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwmSum field.
 func (o *UsageSummaryResponse) SetCiVisibilityTestCommittersHwmSum(v int64) {
 	o.CiVisibilityTestCommittersHwmSum = &v
+}
+
+// GetCloudCostManagementHostCountAvgSum returns the CloudCostManagementHostCountAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCloudCostManagementHostCountAvgSum() int64 {
+	if o == nil || o.CloudCostManagementHostCountAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CloudCostManagementHostCountAvgSum
+}
+
+// GetCloudCostManagementHostCountAvgSumOk returns a tuple with the CloudCostManagementHostCountAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCloudCostManagementHostCountAvgSumOk() (*int64, bool) {
+	if o == nil || o.CloudCostManagementHostCountAvgSum == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementHostCountAvgSum, true
+}
+
+// HasCloudCostManagementHostCountAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCloudCostManagementHostCountAvgSum() bool {
+	return o != nil && o.CloudCostManagementHostCountAvgSum != nil
+}
+
+// SetCloudCostManagementHostCountAvgSum gets a reference to the given int64 and assigns it to the CloudCostManagementHostCountAvgSum field.
+func (o *UsageSummaryResponse) SetCloudCostManagementHostCountAvgSum(v int64) {
+	o.CloudCostManagementHostCountAvgSum = &v
 }
 
 // GetContainerAvgSum returns the ContainerAvgSum field value if set, zero value otherwise.
@@ -2559,6 +2589,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.CiVisibilityTestCommittersHwmSum != nil {
 		toSerialize["ci_visibility_test_committers_hwm_sum"] = o.CiVisibilityTestCommittersHwmSum
 	}
+	if o.CloudCostManagementHostCountAvgSum != nil {
+		toSerialize["cloud_cost_management_host_count_avg_sum"] = o.CloudCostManagementHostCountAvgSum
+	}
 	if o.ContainerAvgSum != nil {
 		toSerialize["container_avg_sum"] = o.ContainerAvgSum
 	}
@@ -2788,6 +2821,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		CiTestIndexedSpansAggSum                   *int64             `json:"ci_test_indexed_spans_agg_sum,omitempty"`
 		CiVisibilityPipelineCommittersHwmSum       *int64             `json:"ci_visibility_pipeline_committers_hwm_sum,omitempty"`
 		CiVisibilityTestCommittersHwmSum           *int64             `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
+		CloudCostManagementHostCountAvgSum         *int64             `json:"cloud_cost_management_host_count_avg_sum,omitempty"`
 		ContainerAvgSum                            *int64             `json:"container_avg_sum,omitempty"`
 		ContainerHwmSum                            *int64             `json:"container_hwm_sum,omitempty"`
 		CspmAasHostTop99pSum                       *int64             `json:"cspm_aas_host_top99p_sum,omitempty"`
@@ -2880,6 +2914,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiTestIndexedSpansAggSum = all.CiTestIndexedSpansAggSum
 	o.CiVisibilityPipelineCommittersHwmSum = all.CiVisibilityPipelineCommittersHwmSum
 	o.CiVisibilityTestCommittersHwmSum = all.CiVisibilityTestCommittersHwmSum
+	o.CloudCostManagementHostCountAvgSum = all.CloudCostManagementHostCountAvgSum
 	o.ContainerAvgSum = all.ContainerAvgSum
 	o.ContainerHwmSum = all.ContainerHwmSum
 	o.CspmAasHostTop99pSum = all.CspmAasHostTop99pSum
