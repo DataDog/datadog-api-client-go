@@ -48,6 +48,8 @@ type UsageSummaryDateOrg struct {
 	CiVisibilityPipelineCommittersHwm *int64 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
 	// Shows the high-water mark of all CI visibility test committers over all hours in the current date for the given org.
 	CiVisibilityTestCommittersHwm *int64 `json:"ci_visibility_test_committers_hwm,omitempty"`
+	// Host count average of Cloud Cost Management for the given date and given org.
+	CloudCostManagementHostCountAvg *int64 `json:"cloud_cost_management_host_count_avg,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for the given org.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for the given org.
@@ -712,6 +714,34 @@ func (o *UsageSummaryDateOrg) HasCiVisibilityTestCommittersHwm() bool {
 // SetCiVisibilityTestCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwm field.
 func (o *UsageSummaryDateOrg) SetCiVisibilityTestCommittersHwm(v int64) {
 	o.CiVisibilityTestCommittersHwm = &v
+}
+
+// GetCloudCostManagementHostCountAvg returns the CloudCostManagementHostCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCloudCostManagementHostCountAvg() int64 {
+	if o == nil || o.CloudCostManagementHostCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CloudCostManagementHostCountAvg
+}
+
+// GetCloudCostManagementHostCountAvgOk returns a tuple with the CloudCostManagementHostCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCloudCostManagementHostCountAvgOk() (*int64, bool) {
+	if o == nil || o.CloudCostManagementHostCountAvg == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementHostCountAvg, true
+}
+
+// HasCloudCostManagementHostCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCloudCostManagementHostCountAvg() bool {
+	return o != nil && o.CloudCostManagementHostCountAvg != nil
+}
+
+// SetCloudCostManagementHostCountAvg gets a reference to the given int64 and assigns it to the CloudCostManagementHostCountAvg field.
+func (o *UsageSummaryDateOrg) SetCloudCostManagementHostCountAvg(v int64) {
+	o.CloudCostManagementHostCountAvg = &v
 }
 
 // GetContainerAvg returns the ContainerAvg field value if set, zero value otherwise.
@@ -2345,6 +2375,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.CiVisibilityTestCommittersHwm != nil {
 		toSerialize["ci_visibility_test_committers_hwm"] = o.CiVisibilityTestCommittersHwm
 	}
+	if o.CloudCostManagementHostCountAvg != nil {
+		toSerialize["cloud_cost_management_host_count_avg"] = o.CloudCostManagementHostCountAvg
+	}
 	if o.ContainerAvg != nil {
 		toSerialize["container_avg"] = o.ContainerAvg
 	}
@@ -2543,6 +2576,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CiTestIndexedSpansSum                   *int64  `json:"ci_test_indexed_spans_sum,omitempty"`
 		CiVisibilityPipelineCommittersHwm       *int64  `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
 		CiVisibilityTestCommittersHwm           *int64  `json:"ci_visibility_test_committers_hwm,omitempty"`
+		CloudCostManagementHostCountAvg         *int64  `json:"cloud_cost_management_host_count_avg,omitempty"`
 		ContainerAvg                            *int64  `json:"container_avg,omitempty"`
 		ContainerHwm                            *int64  `json:"container_hwm,omitempty"`
 		CspmAasHostTop99p                       *int64  `json:"cspm_aas_host_top99p,omitempty"`
@@ -2628,6 +2662,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
 	o.CiVisibilityPipelineCommittersHwm = all.CiVisibilityPipelineCommittersHwm
 	o.CiVisibilityTestCommittersHwm = all.CiVisibilityTestCommittersHwm
+	o.CloudCostManagementHostCountAvg = all.CloudCostManagementHostCountAvg
 	o.ContainerAvg = all.ContainerAvg
 	o.ContainerHwm = all.ContainerHwm
 	o.CspmAasHostTop99p = all.CspmAasHostTop99p
