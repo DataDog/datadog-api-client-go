@@ -52,6 +52,8 @@ type UsageSummaryDateOrg struct {
 	CloudCostManagementHostCountAvg *int64 `json:"cloud_cost_management_host_count_avg,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for the given org.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
+	// Shows the average of containers without the Datadog Agent over all hours in the current date for the given organization.
+	ContainerExclAgentAvg *int64 `json:"container_excl_agent_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for the given org.
 	ContainerHwm *int64 `json:"container_hwm,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current date for the given org.
@@ -770,6 +772,34 @@ func (o *UsageSummaryDateOrg) HasContainerAvg() bool {
 // SetContainerAvg gets a reference to the given int64 and assigns it to the ContainerAvg field.
 func (o *UsageSummaryDateOrg) SetContainerAvg(v int64) {
 	o.ContainerAvg = &v
+}
+
+// GetContainerExclAgentAvg returns the ContainerExclAgentAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetContainerExclAgentAvg() int64 {
+	if o == nil || o.ContainerExclAgentAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ContainerExclAgentAvg
+}
+
+// GetContainerExclAgentAvgOk returns a tuple with the ContainerExclAgentAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetContainerExclAgentAvgOk() (*int64, bool) {
+	if o == nil || o.ContainerExclAgentAvg == nil {
+		return nil, false
+	}
+	return o.ContainerExclAgentAvg, true
+}
+
+// HasContainerExclAgentAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasContainerExclAgentAvg() bool {
+	return o != nil && o.ContainerExclAgentAvg != nil
+}
+
+// SetContainerExclAgentAvg gets a reference to the given int64 and assigns it to the ContainerExclAgentAvg field.
+func (o *UsageSummaryDateOrg) SetContainerExclAgentAvg(v int64) {
+	o.ContainerExclAgentAvg = &v
 }
 
 // GetContainerHwm returns the ContainerHwm field value if set, zero value otherwise.
@@ -2381,6 +2411,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.ContainerAvg != nil {
 		toSerialize["container_avg"] = o.ContainerAvg
 	}
+	if o.ContainerExclAgentAvg != nil {
+		toSerialize["container_excl_agent_avg"] = o.ContainerExclAgentAvg
+	}
 	if o.ContainerHwm != nil {
 		toSerialize["container_hwm"] = o.ContainerHwm
 	}
@@ -2578,6 +2611,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CiVisibilityTestCommittersHwm           *int64  `json:"ci_visibility_test_committers_hwm,omitempty"`
 		CloudCostManagementHostCountAvg         *int64  `json:"cloud_cost_management_host_count_avg,omitempty"`
 		ContainerAvg                            *int64  `json:"container_avg,omitempty"`
+		ContainerExclAgentAvg                   *int64  `json:"container_excl_agent_avg,omitempty"`
 		ContainerHwm                            *int64  `json:"container_hwm,omitempty"`
 		CspmAasHostTop99p                       *int64  `json:"cspm_aas_host_top99p,omitempty"`
 		CspmAwsHostTop99p                       *int64  `json:"cspm_aws_host_top99p,omitempty"`
@@ -2664,6 +2698,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiVisibilityTestCommittersHwm = all.CiVisibilityTestCommittersHwm
 	o.CloudCostManagementHostCountAvg = all.CloudCostManagementHostCountAvg
 	o.ContainerAvg = all.ContainerAvg
+	o.ContainerExclAgentAvg = all.ContainerExclAgentAvg
 	o.ContainerHwm = all.ContainerHwm
 	o.CspmAasHostTop99p = all.CspmAasHostTop99p
 	o.CspmAwsHostTop99p = all.CspmAwsHostTop99p
