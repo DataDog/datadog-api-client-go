@@ -11,7 +11,7 @@ import (
 
 // MetricsTimeseriesQuery An individual timeseries metrics query.
 type MetricsTimeseriesQuery struct {
-	// A data source that is powered by the Metrics backend.
+	// A data source that is powered by the Metrics platform.
 	DataSource MetricsDataSource `json:"data_source"`
 	// The variable name for use in formulas.
 	Name *string `json:"name,omitempty"`

@@ -9,16 +9,18 @@ import (
 	"fmt"
 )
 
-// MetricsDataSource A data source that is powered by the Metrics backend.
+// MetricsDataSource A data source that is powered by the Metrics platform.
 type MetricsDataSource string
 
 // List of MetricsDataSource.
 const (
-	METRICSDATASOURCE_METRICS MetricsDataSource = "metrics"
+	METRICSDATASOURCE_METRICS    MetricsDataSource = "metrics"
+	METRICSDATASOURCE_CLOUD_COST MetricsDataSource = "cloud_cost"
 )
 
 var allowedMetricsDataSourceEnumValues = []MetricsDataSource{
 	METRICSDATASOURCE_METRICS,
+	METRICSDATASOURCE_CLOUD_COST,
 }
 
 // GetAllowedValues reeturns the list of possible values.
