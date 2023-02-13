@@ -55,6 +55,8 @@ type UsageSummaryResponse struct {
 	CloudCostManagementHostCountAvgSum *int64 `json:"cloud_cost_management_host_count_avg_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current months for all organizations.
 	ContainerAvgSum *int64 `json:"container_avg_sum,omitempty"`
+	// Shows the average of the containers without the Datadog Agent over all hours in the current month for all organizations.
+	ContainerExclAgentAvgSum *int64 `json:"container_excl_agent_avg_sum,omitempty"`
 	// Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations.
 	ContainerHwmSum *int64 `json:"container_hwm_sum,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current months for all organizations.
@@ -813,6 +815,34 @@ func (o *UsageSummaryResponse) HasContainerAvgSum() bool {
 // SetContainerAvgSum gets a reference to the given int64 and assigns it to the ContainerAvgSum field.
 func (o *UsageSummaryResponse) SetContainerAvgSum(v int64) {
 	o.ContainerAvgSum = &v
+}
+
+// GetContainerExclAgentAvgSum returns the ContainerExclAgentAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetContainerExclAgentAvgSum() int64 {
+	if o == nil || o.ContainerExclAgentAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ContainerExclAgentAvgSum
+}
+
+// GetContainerExclAgentAvgSumOk returns a tuple with the ContainerExclAgentAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetContainerExclAgentAvgSumOk() (*int64, bool) {
+	if o == nil || o.ContainerExclAgentAvgSum == nil {
+		return nil, false
+	}
+	return o.ContainerExclAgentAvgSum, true
+}
+
+// HasContainerExclAgentAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasContainerExclAgentAvgSum() bool {
+	return o != nil && o.ContainerExclAgentAvgSum != nil
+}
+
+// SetContainerExclAgentAvgSum gets a reference to the given int64 and assigns it to the ContainerExclAgentAvgSum field.
+func (o *UsageSummaryResponse) SetContainerExclAgentAvgSum(v int64) {
+	o.ContainerExclAgentAvgSum = &v
 }
 
 // GetContainerHwmSum returns the ContainerHwmSum field value if set, zero value otherwise.
@@ -2595,6 +2625,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ContainerAvgSum != nil {
 		toSerialize["container_avg_sum"] = o.ContainerAvgSum
 	}
+	if o.ContainerExclAgentAvgSum != nil {
+		toSerialize["container_excl_agent_avg_sum"] = o.ContainerExclAgentAvgSum
+	}
 	if o.ContainerHwmSum != nil {
 		toSerialize["container_hwm_sum"] = o.ContainerHwmSum
 	}
@@ -2823,6 +2856,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		CiVisibilityTestCommittersHwmSum           *int64             `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
 		CloudCostManagementHostCountAvgSum         *int64             `json:"cloud_cost_management_host_count_avg_sum,omitempty"`
 		ContainerAvgSum                            *int64             `json:"container_avg_sum,omitempty"`
+		ContainerExclAgentAvgSum                   *int64             `json:"container_excl_agent_avg_sum,omitempty"`
 		ContainerHwmSum                            *int64             `json:"container_hwm_sum,omitempty"`
 		CspmAasHostTop99pSum                       *int64             `json:"cspm_aas_host_top99p_sum,omitempty"`
 		CspmAwsHostTop99pSum                       *int64             `json:"cspm_aws_host_top99p_sum,omitempty"`
@@ -2916,6 +2950,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiVisibilityTestCommittersHwmSum = all.CiVisibilityTestCommittersHwmSum
 	o.CloudCostManagementHostCountAvgSum = all.CloudCostManagementHostCountAvgSum
 	o.ContainerAvgSum = all.ContainerAvgSum
+	o.ContainerExclAgentAvgSum = all.ContainerExclAgentAvgSum
 	o.ContainerHwmSum = all.ContainerHwmSum
 	o.CspmAasHostTop99pSum = all.CspmAasHostTop99pSum
 	o.CspmAwsHostTop99pSum = all.CspmAwsHostTop99pSum
