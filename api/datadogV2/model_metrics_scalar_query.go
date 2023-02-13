@@ -13,7 +13,7 @@ import (
 type MetricsScalarQuery struct {
 	// The type of aggregation that can be performed on metrics queries.
 	Aggregator MetricsAggregator `json:"aggregator"`
-	// A data source that is powered by the Metrics backend.
+	// A data source that is powered by the Metrics platform.
 	DataSource MetricsDataSource `json:"data_source"`
 	// The variable name for use in formulas.
 	Name *string `json:"name,omitempty"`
