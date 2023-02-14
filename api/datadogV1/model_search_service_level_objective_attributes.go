@@ -51,6 +51,8 @@ type SearchServiceLevelObjectiveAttributes struct {
 	ServiceTags []string `json:"service_tags,omitempty"`
 	// The type of the service level objective.
 	SloType *SLOType `json:"slo_type,omitempty"`
+	// Status of the SLO's primary timeframe.
+	Status *SLOStatus `json:"status,omitempty"`
 	// Tags with the `team` tag key.
 	TeamTags []string `json:"team_tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level
@@ -477,6 +479,34 @@ func (o *SearchServiceLevelObjectiveAttributes) SetSloType(v SLOType) {
 	o.SloType = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *SearchServiceLevelObjectiveAttributes) GetStatus() SLOStatus {
+	if o == nil || o.Status == nil {
+		var ret SLOStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SearchServiceLevelObjectiveAttributes) GetStatusOk() (*SLOStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *SearchServiceLevelObjectiveAttributes) HasStatus() bool {
+	return o != nil && o.Status != nil
+}
+
+// SetStatus gets a reference to the given SLOStatus and assigns it to the Status field.
+func (o *SearchServiceLevelObjectiveAttributes) SetStatus(v SLOStatus) {
+	o.Status = &v
+}
+
 // GetTeamTags returns the TeamTags field value if set, zero value otherwise.
 func (o *SearchServiceLevelObjectiveAttributes) GetTeamTags() []string {
 	if o == nil || o.TeamTags == nil {
@@ -578,6 +608,9 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 	if o.SloType != nil {
 		toSerialize["slo_type"] = o.SloType
 	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
 	if o.TeamTags != nil {
 		toSerialize["team_tags"] = o.TeamTags
 	}
@@ -608,6 +641,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 		Query         NullableSearchSLOQuery `json:"query,omitempty"`
 		ServiceTags   []string               `json:"service_tags,omitempty"`
 		SloType       *SLOType               `json:"slo_type,omitempty"`
+		Status        *SLOStatus             `json:"status,omitempty"`
 		TeamTags      []string               `json:"team_tags,omitempty"`
 		Thresholds    []SearchSLOThreshold   `json:"thresholds,omitempty"`
 	}{}
@@ -641,6 +675,14 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	o.Query = all.Query
 	o.ServiceTags = all.ServiceTags
 	o.SloType = all.SloType
+	if all.Status != nil && all.Status.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Status = all.Status
 	o.TeamTags = all.TeamTags
 	o.Thresholds = all.Thresholds
 	return nil

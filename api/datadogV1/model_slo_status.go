@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SLOOverallStatuses Overall status of the SLO by timeframes.
-type SLOOverallStatuses struct {
+// SLOStatus Status of the SLO's primary timeframe.
+type SLOStatus struct {
 	// Error message if SLO status or error budget could not be calculated.
-	Error datadog.NullableString `json:"error,omitempty"`
+	CalculationError datadog.NullableString `json:"calculation_error,omitempty"`
 	// Remaining error budget of the SLO in percentage.
 	ErrorBudgetRemaining datadog.NullableFloat64 `json:"error_budget_remaining,omitempty"`
 	// timestamp (UNIX time in seconds) of when the SLO status and error budget
@@ -21,79 +21,75 @@ type SLOOverallStatuses struct {
 	IndexedAt *int64 `json:"indexed_at,omitempty"`
 	// Error budget remaining for an SLO.
 	RawErrorBudgetRemaining NullableSLORawErrorBudgetRemaining `json:"raw_error_budget_remaining,omitempty"`
-	// The amount of decimal places the SLI value is accurate to.
+	// The current service level indicator (SLI) of the SLO, also known as 'status'. This is a percentage value from 0-100 (inclusive).
+	Sli datadog.NullableFloat64 `json:"sli,omitempty"`
+	// The number of decimal places the SLI value is accurate to.
 	SpanPrecision datadog.NullableInt64 `json:"span_precision,omitempty"`
 	// State of the SLO.
 	State *SLOState `json:"state,omitempty"`
-	// The status of the SLO.
-	Status datadog.NullableFloat64 `json:"status,omitempty"`
-	// The target of the SLO.
-	Target *float64 `json:"target,omitempty"`
-	// The SLO time window options.
-	Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOOverallStatuses instantiates a new SLOOverallStatuses object.
+// NewSLOStatus instantiates a new SLOStatus object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSLOOverallStatuses() *SLOOverallStatuses {
-	this := SLOOverallStatuses{}
+func NewSLOStatus() *SLOStatus {
+	this := SLOStatus{}
 	return &this
 }
 
-// NewSLOOverallStatusesWithDefaults instantiates a new SLOOverallStatuses object.
+// NewSLOStatusWithDefaults instantiates a new SLOStatus object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSLOOverallStatusesWithDefaults() *SLOOverallStatuses {
-	this := SLOOverallStatuses{}
+func NewSLOStatusWithDefaults() *SLOStatus {
+	this := SLOStatus{}
 	return &this
 }
 
-// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOOverallStatuses) GetError() string {
-	if o == nil || o.Error.Get() == nil {
+// GetCalculationError returns the CalculationError field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SLOStatus) GetCalculationError() string {
+	if o == nil || o.CalculationError.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Error.Get()
+	return *o.CalculationError.Get()
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// GetCalculationErrorOk returns a tuple with the CalculationError field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *SLOOverallStatuses) GetErrorOk() (*string, bool) {
+func (o *SLOStatus) GetCalculationErrorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Error.Get(), o.Error.IsSet()
+	return o.CalculationError.Get(), o.CalculationError.IsSet()
 }
 
-// HasError returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasError() bool {
-	return o != nil && o.Error.IsSet()
+// HasCalculationError returns a boolean if a field has been set.
+func (o *SLOStatus) HasCalculationError() bool {
+	return o != nil && o.CalculationError.IsSet()
 }
 
-// SetError gets a reference to the given datadog.NullableString and assigns it to the Error field.
-func (o *SLOOverallStatuses) SetError(v string) {
-	o.Error.Set(&v)
+// SetCalculationError gets a reference to the given datadog.NullableString and assigns it to the CalculationError field.
+func (o *SLOStatus) SetCalculationError(v string) {
+	o.CalculationError.Set(&v)
 }
 
-// SetErrorNil sets the value for Error to be an explicit nil.
-func (o *SLOOverallStatuses) SetErrorNil() {
-	o.Error.Set(nil)
+// SetCalculationErrorNil sets the value for CalculationError to be an explicit nil.
+func (o *SLOStatus) SetCalculationErrorNil() {
+	o.CalculationError.Set(nil)
 }
 
-// UnsetError ensures that no value is present for Error, not even an explicit nil.
-func (o *SLOOverallStatuses) UnsetError() {
-	o.Error.Unset()
+// UnsetCalculationError ensures that no value is present for CalculationError, not even an explicit nil.
+func (o *SLOStatus) UnsetCalculationError() {
+	o.CalculationError.Unset()
 }
 
 // GetErrorBudgetRemaining returns the ErrorBudgetRemaining field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOOverallStatuses) GetErrorBudgetRemaining() float64 {
+func (o *SLOStatus) GetErrorBudgetRemaining() float64 {
 	if o == nil || o.ErrorBudgetRemaining.Get() == nil {
 		var ret float64
 		return ret
@@ -104,7 +100,7 @@ func (o *SLOOverallStatuses) GetErrorBudgetRemaining() float64 {
 // GetErrorBudgetRemainingOk returns a tuple with the ErrorBudgetRemaining field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *SLOOverallStatuses) GetErrorBudgetRemainingOk() (*float64, bool) {
+func (o *SLOStatus) GetErrorBudgetRemainingOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,27 +108,27 @@ func (o *SLOOverallStatuses) GetErrorBudgetRemainingOk() (*float64, bool) {
 }
 
 // HasErrorBudgetRemaining returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasErrorBudgetRemaining() bool {
+func (o *SLOStatus) HasErrorBudgetRemaining() bool {
 	return o != nil && o.ErrorBudgetRemaining.IsSet()
 }
 
 // SetErrorBudgetRemaining gets a reference to the given datadog.NullableFloat64 and assigns it to the ErrorBudgetRemaining field.
-func (o *SLOOverallStatuses) SetErrorBudgetRemaining(v float64) {
+func (o *SLOStatus) SetErrorBudgetRemaining(v float64) {
 	o.ErrorBudgetRemaining.Set(&v)
 }
 
 // SetErrorBudgetRemainingNil sets the value for ErrorBudgetRemaining to be an explicit nil.
-func (o *SLOOverallStatuses) SetErrorBudgetRemainingNil() {
+func (o *SLOStatus) SetErrorBudgetRemainingNil() {
 	o.ErrorBudgetRemaining.Set(nil)
 }
 
 // UnsetErrorBudgetRemaining ensures that no value is present for ErrorBudgetRemaining, not even an explicit nil.
-func (o *SLOOverallStatuses) UnsetErrorBudgetRemaining() {
+func (o *SLOStatus) UnsetErrorBudgetRemaining() {
 	o.ErrorBudgetRemaining.Unset()
 }
 
 // GetIndexedAt returns the IndexedAt field value if set, zero value otherwise.
-func (o *SLOOverallStatuses) GetIndexedAt() int64 {
+func (o *SLOStatus) GetIndexedAt() int64 {
 	if o == nil || o.IndexedAt == nil {
 		var ret int64
 		return ret
@@ -142,7 +138,7 @@ func (o *SLOOverallStatuses) GetIndexedAt() int64 {
 
 // GetIndexedAtOk returns a tuple with the IndexedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOOverallStatuses) GetIndexedAtOk() (*int64, bool) {
+func (o *SLOStatus) GetIndexedAtOk() (*int64, bool) {
 	if o == nil || o.IndexedAt == nil {
 		return nil, false
 	}
@@ -150,17 +146,17 @@ func (o *SLOOverallStatuses) GetIndexedAtOk() (*int64, bool) {
 }
 
 // HasIndexedAt returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasIndexedAt() bool {
+func (o *SLOStatus) HasIndexedAt() bool {
 	return o != nil && o.IndexedAt != nil
 }
 
 // SetIndexedAt gets a reference to the given int64 and assigns it to the IndexedAt field.
-func (o *SLOOverallStatuses) SetIndexedAt(v int64) {
+func (o *SLOStatus) SetIndexedAt(v int64) {
 	o.IndexedAt = &v
 }
 
 // GetRawErrorBudgetRemaining returns the RawErrorBudgetRemaining field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOOverallStatuses) GetRawErrorBudgetRemaining() SLORawErrorBudgetRemaining {
+func (o *SLOStatus) GetRawErrorBudgetRemaining() SLORawErrorBudgetRemaining {
 	if o == nil || o.RawErrorBudgetRemaining.Get() == nil {
 		var ret SLORawErrorBudgetRemaining
 		return ret
@@ -171,7 +167,7 @@ func (o *SLOOverallStatuses) GetRawErrorBudgetRemaining() SLORawErrorBudgetRemai
 // GetRawErrorBudgetRemainingOk returns a tuple with the RawErrorBudgetRemaining field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *SLOOverallStatuses) GetRawErrorBudgetRemainingOk() (*SLORawErrorBudgetRemaining, bool) {
+func (o *SLOStatus) GetRawErrorBudgetRemainingOk() (*SLORawErrorBudgetRemaining, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,27 +175,66 @@ func (o *SLOOverallStatuses) GetRawErrorBudgetRemainingOk() (*SLORawErrorBudgetR
 }
 
 // HasRawErrorBudgetRemaining returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasRawErrorBudgetRemaining() bool {
+func (o *SLOStatus) HasRawErrorBudgetRemaining() bool {
 	return o != nil && o.RawErrorBudgetRemaining.IsSet()
 }
 
 // SetRawErrorBudgetRemaining gets a reference to the given NullableSLORawErrorBudgetRemaining and assigns it to the RawErrorBudgetRemaining field.
-func (o *SLOOverallStatuses) SetRawErrorBudgetRemaining(v SLORawErrorBudgetRemaining) {
+func (o *SLOStatus) SetRawErrorBudgetRemaining(v SLORawErrorBudgetRemaining) {
 	o.RawErrorBudgetRemaining.Set(&v)
 }
 
 // SetRawErrorBudgetRemainingNil sets the value for RawErrorBudgetRemaining to be an explicit nil.
-func (o *SLOOverallStatuses) SetRawErrorBudgetRemainingNil() {
+func (o *SLOStatus) SetRawErrorBudgetRemainingNil() {
 	o.RawErrorBudgetRemaining.Set(nil)
 }
 
 // UnsetRawErrorBudgetRemaining ensures that no value is present for RawErrorBudgetRemaining, not even an explicit nil.
-func (o *SLOOverallStatuses) UnsetRawErrorBudgetRemaining() {
+func (o *SLOStatus) UnsetRawErrorBudgetRemaining() {
 	o.RawErrorBudgetRemaining.Unset()
 }
 
+// GetSli returns the Sli field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SLOStatus) GetSli() float64 {
+	if o == nil || o.Sli.Get() == nil {
+		var ret float64
+		return ret
+	}
+	return *o.Sli.Get()
+}
+
+// GetSliOk returns a tuple with the Sli field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *SLOStatus) GetSliOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sli.Get(), o.Sli.IsSet()
+}
+
+// HasSli returns a boolean if a field has been set.
+func (o *SLOStatus) HasSli() bool {
+	return o != nil && o.Sli.IsSet()
+}
+
+// SetSli gets a reference to the given datadog.NullableFloat64 and assigns it to the Sli field.
+func (o *SLOStatus) SetSli(v float64) {
+	o.Sli.Set(&v)
+}
+
+// SetSliNil sets the value for Sli to be an explicit nil.
+func (o *SLOStatus) SetSliNil() {
+	o.Sli.Set(nil)
+}
+
+// UnsetSli ensures that no value is present for Sli, not even an explicit nil.
+func (o *SLOStatus) UnsetSli() {
+	o.Sli.Unset()
+}
+
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOOverallStatuses) GetSpanPrecision() int64 {
+func (o *SLOStatus) GetSpanPrecision() int64 {
 	if o == nil || o.SpanPrecision.Get() == nil {
 		var ret int64
 		return ret
@@ -210,7 +245,7 @@ func (o *SLOOverallStatuses) GetSpanPrecision() int64 {
 // GetSpanPrecisionOk returns a tuple with the SpanPrecision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *SLOOverallStatuses) GetSpanPrecisionOk() (*int64, bool) {
+func (o *SLOStatus) GetSpanPrecisionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -218,27 +253,27 @@ func (o *SLOOverallStatuses) GetSpanPrecisionOk() (*int64, bool) {
 }
 
 // HasSpanPrecision returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasSpanPrecision() bool {
+func (o *SLOStatus) HasSpanPrecision() bool {
 	return o != nil && o.SpanPrecision.IsSet()
 }
 
 // SetSpanPrecision gets a reference to the given datadog.NullableInt64 and assigns it to the SpanPrecision field.
-func (o *SLOOverallStatuses) SetSpanPrecision(v int64) {
+func (o *SLOStatus) SetSpanPrecision(v int64) {
 	o.SpanPrecision.Set(&v)
 }
 
 // SetSpanPrecisionNil sets the value for SpanPrecision to be an explicit nil.
-func (o *SLOOverallStatuses) SetSpanPrecisionNil() {
+func (o *SLOStatus) SetSpanPrecisionNil() {
 	o.SpanPrecision.Set(nil)
 }
 
 // UnsetSpanPrecision ensures that no value is present for SpanPrecision, not even an explicit nil.
-func (o *SLOOverallStatuses) UnsetSpanPrecision() {
+func (o *SLOStatus) UnsetSpanPrecision() {
 	o.SpanPrecision.Unset()
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *SLOOverallStatuses) GetState() SLOState {
+func (o *SLOStatus) GetState() SLOState {
 	if o == nil || o.State == nil {
 		var ret SLOState
 		return ret
@@ -248,7 +283,7 @@ func (o *SLOOverallStatuses) GetState() SLOState {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SLOOverallStatuses) GetStateOk() (*SLOState, bool) {
+func (o *SLOStatus) GetStateOk() (*SLOState, bool) {
 	if o == nil || o.State == nil {
 		return nil, false
 	}
@@ -256,118 +291,23 @@ func (o *SLOOverallStatuses) GetStateOk() (*SLOState, bool) {
 }
 
 // HasState returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasState() bool {
+func (o *SLOStatus) HasState() bool {
 	return o != nil && o.State != nil
 }
 
 // SetState gets a reference to the given SLOState and assigns it to the State field.
-func (o *SLOOverallStatuses) SetState(v SLOState) {
+func (o *SLOStatus) SetState(v SLOState) {
 	o.State = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SLOOverallStatuses) GetStatus() float64 {
-	if o == nil || o.Status.Get() == nil {
-		var ret float64
-		return ret
-	}
-	return *o.Status.Get()
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *SLOOverallStatuses) GetStatusOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status.Get(), o.Status.IsSet()
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasStatus() bool {
-	return o != nil && o.Status.IsSet()
-}
-
-// SetStatus gets a reference to the given datadog.NullableFloat64 and assigns it to the Status field.
-func (o *SLOOverallStatuses) SetStatus(v float64) {
-	o.Status.Set(&v)
-}
-
-// SetStatusNil sets the value for Status to be an explicit nil.
-func (o *SLOOverallStatuses) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil.
-func (o *SLOOverallStatuses) UnsetStatus() {
-	o.Status.Unset()
-}
-
-// GetTarget returns the Target field value if set, zero value otherwise.
-func (o *SLOOverallStatuses) GetTarget() float64 {
-	if o == nil || o.Target == nil {
-		var ret float64
-		return ret
-	}
-	return *o.Target
-}
-
-// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SLOOverallStatuses) GetTargetOk() (*float64, bool) {
-	if o == nil || o.Target == nil {
-		return nil, false
-	}
-	return o.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasTarget() bool {
-	return o != nil && o.Target != nil
-}
-
-// SetTarget gets a reference to the given float64 and assigns it to the Target field.
-func (o *SLOOverallStatuses) SetTarget(v float64) {
-	o.Target = &v
-}
-
-// GetTimeframe returns the Timeframe field value if set, zero value otherwise.
-func (o *SLOOverallStatuses) GetTimeframe() SLOTimeframe {
-	if o == nil || o.Timeframe == nil {
-		var ret SLOTimeframe
-		return ret
-	}
-	return *o.Timeframe
-}
-
-// GetTimeframeOk returns a tuple with the Timeframe field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SLOOverallStatuses) GetTimeframeOk() (*SLOTimeframe, bool) {
-	if o == nil || o.Timeframe == nil {
-		return nil, false
-	}
-	return o.Timeframe, true
-}
-
-// HasTimeframe returns a boolean if a field has been set.
-func (o *SLOOverallStatuses) HasTimeframe() bool {
-	return o != nil && o.Timeframe != nil
-}
-
-// SetTimeframe gets a reference to the given SLOTimeframe and assigns it to the Timeframe field.
-func (o *SLOOverallStatuses) SetTimeframe(v SLOTimeframe) {
-	o.Timeframe = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
-func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
+func (o SLOStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Error.IsSet() {
-		toSerialize["error"] = o.Error.Get()
+	if o.CalculationError.IsSet() {
+		toSerialize["calculation_error"] = o.CalculationError.Get()
 	}
 	if o.ErrorBudgetRemaining.IsSet() {
 		toSerialize["error_budget_remaining"] = o.ErrorBudgetRemaining.Get()
@@ -378,20 +318,14 @@ func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
 	if o.RawErrorBudgetRemaining.IsSet() {
 		toSerialize["raw_error_budget_remaining"] = o.RawErrorBudgetRemaining.Get()
 	}
+	if o.Sli.IsSet() {
+		toSerialize["sli"] = o.Sli.Get()
+	}
 	if o.SpanPrecision.IsSet() {
 		toSerialize["span_precision"] = o.SpanPrecision.Get()
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
-	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
-	}
-	if o.Target != nil {
-		toSerialize["target"] = o.Target
-	}
-	if o.Timeframe != nil {
-		toSerialize["timeframe"] = o.Timeframe
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -401,18 +335,16 @@ func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Error                   datadog.NullableString             `json:"error,omitempty"`
+		CalculationError        datadog.NullableString             `json:"calculation_error,omitempty"`
 		ErrorBudgetRemaining    datadog.NullableFloat64            `json:"error_budget_remaining,omitempty"`
 		IndexedAt               *int64                             `json:"indexed_at,omitempty"`
 		RawErrorBudgetRemaining NullableSLORawErrorBudgetRemaining `json:"raw_error_budget_remaining,omitempty"`
+		Sli                     datadog.NullableFloat64            `json:"sli,omitempty"`
 		SpanPrecision           datadog.NullableInt64              `json:"span_precision,omitempty"`
 		State                   *SLOState                          `json:"state,omitempty"`
-		Status                  datadog.NullableFloat64            `json:"status,omitempty"`
-		Target                  *float64                           `json:"target,omitempty"`
-		Timeframe               *SLOTimeframe                      `json:"timeframe,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -431,22 +363,12 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Timeframe; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Error = all.Error
+	o.CalculationError = all.CalculationError
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.IndexedAt = all.IndexedAt
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
+	o.Sli = all.Sli
 	o.SpanPrecision = all.SpanPrecision
 	o.State = all.State
-	o.Status = all.Status
-	o.Target = all.Target
-	o.Timeframe = all.Timeframe
 	return nil
 }

@@ -18,7 +18,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v1.SearchSLO", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewServiceLevelObjectivesApi(apiClient)
 	resp, r, err := api.SearchSLO(ctx, *datadogV1.NewSearchSLOOptionalParameters().WithQuery(SloData0Name).WithPageSize(20).WithPageNumber(0))
