@@ -15,6 +15,8 @@ type SLOListWidgetQuery struct {
 	Limit *int64 `json:"limit,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
+	// Options for sorting results.
+	Sort []WidgetFieldSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -93,6 +95,34 @@ func (o *SLOListWidgetQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *SLOListWidgetQuery) GetSort() []WidgetFieldSort {
+	if o == nil || o.Sort == nil {
+		var ret []WidgetFieldSort
+		return ret
+	}
+	return o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOListWidgetQuery) GetSortOk() (*[]WidgetFieldSort, bool) {
+	if o == nil || o.Sort == nil {
+		return nil, false
+	}
+	return &o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *SLOListWidgetQuery) HasSort() bool {
+	return o != nil && o.Sort != nil
+}
+
+// SetSort gets a reference to the given []WidgetFieldSort and assigns it to the Sort field.
+func (o *SLOListWidgetQuery) SetSort(v []WidgetFieldSort) {
+	o.Sort = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -103,6 +133,9 @@ func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["limit"] = o.Limit
 	}
 	toSerialize["query_string"] = o.QueryString
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -117,8 +150,9 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 		QueryString *string `json:"query_string"`
 	}{}
 	all := struct {
-		Limit       *int64 `json:"limit,omitempty"`
-		QueryString string `json:"query_string"`
+		Limit       *int64            `json:"limit,omitempty"`
+		QueryString string            `json:"query_string"`
+		Sort        []WidgetFieldSort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -138,5 +172,6 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Limit = all.Limit
 	o.QueryString = all.QueryString
+	o.Sort = all.Sort
 	return nil
 }
