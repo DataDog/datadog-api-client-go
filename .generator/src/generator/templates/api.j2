@@ -22,14 +22,6 @@ type {{ classname }} {{ common_package_name }}.Service
 {%- set returnType = operation|return_type %}
 {%- set formParameter = operation|form_parameter %}
 
-type api{{ operation.operationId }}Request struct {
-	ctx        _context.Context
-
-	{%- for name, parameter in operation|parameters %}
-	{{ name|variable_name}} {% if parameter.in != "path" %}*{% endif %}{{ get_type_for_parameter(parameter) }}
-	{%- endfor %}
-}
-
 {%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
 {%- if loop.first %}
 
@@ -57,47 +49,13 @@ func (r *{{ operation.operationId }}OptionalParameters) With{{ name|camel_case }
 }
 {%- endfor %}
 
-func (a *{{ classname }}) build{{ operation.operationId }}Request(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (api{{ operation.operationId }}Request, error) {
-	req := api{{ operation.operationId }}Request{
-		ctx:        ctx,
-		{%- for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}
-		{%- if loop.first %}
-		
-		{%- endif %}
-		{{ name|variable_name}}: {% if parameter.in != "path" %}&{% endif %}{{ name|variable_name}},
-		{%- endfor %}
-	}
-	{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
-	{%- if loop.first %}
-
-	if len(o) > 1 {
-		return req, {{ common_package_name }}.ReportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
-	}
-
-	if o != nil {
-	{%- endif %}
-		req.{{ name|variable_name}} = o[0].{{ name|attribute_name }}
-	{%- if loop.last %}
-	}
-	{%- endif %}
-	{%- endfor %}
-	return req, nil
-}
-
 // {{ operation.operationId }} {{ operation.summary }}.
 {{ operation.description|block_comment(prefix="//") }}{% if operation.deprecated %}
 //
 // Deprecated: This API is deprecated.{% endif %}
 func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
-	req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
-	if err != nil {
-		{%- if returnType %}
-		var localVarReturnValue {{ returnType }}
-		{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
-	}
 
-	return a.{{ operation.operationId|untitle_case }}Execute(req)
+	return a.{{ operation.operationId|untitle_case }}Execute(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 }
 {%- if operation["x-pagination"] %}
 {%- set pagination = operation["x-pagination"] %}
@@ -144,14 +102,7 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 	items := make(chan datadog.PaginationResult[{{ itemType }}], pageSize_)
 	go func() {
 		for {
-			req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
-			if err != nil {
-				var returnItem {{ itemType }}
-				items <- datadog.PaginationResult[{{ itemType }}]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.{{ operation.operationId|untitle_case }}Execute(req)
+			resp, _, err := a.{{ operation.operationId|untitle_case }}Execute(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 			if err != nil {
 				var returnItem {{ itemType }}
 				items <- datadog.PaginationResult[{{ itemType }}]{returnItem, err}
@@ -217,14 +168,27 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 {%- endif %}
 
 // {{ operation.operationId|untitle_case }}Execute executes the request.
-func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{{ operation.operationId }}Request) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{ httpMethod.lower().title() }}
 		localVarPostBody     interface{}
 		{%- if returnType %}
 		localVarReturnValue  {{ returnType }}
 		{%- endif %}
+		{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}
+		optionalParams {{ operation.operationId }}OptionalParameters
+		{%- endif %}{% endfor %}
 	)
+
+    {% for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}
+    if len(o) > 1 {
+        return {% if returnType %} localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    {% endif %}{% endfor %}
+
 	{%- if "x-unstable" in operation %}
 	
 	operationId := "{{ version }}.{{ operation.operationId }}"
@@ -235,14 +199,14 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{
 	}
 	{%- endif %}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "{{ version }}.{{ classname }}.{{ operation.operationId }}")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "{{ version }}.{{ classname }}.{{ operation.operationId }}")
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "{{ path }}"
 	{%- for name, parameter in operation|parameters if parameter.in == "path" %}
-	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape({{ common_package_name }}.ParameterToString(r.{{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape({{ common_package_name }}.ParameterToString({{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
 	{%- endfor %}
 
 	localVarHeaderParams := make(map[string]string)
@@ -251,48 +215,45 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{
 
 	{%- for name, parameter in operation|parameters if parameter.required %}
 	{%- set schema = parameter.get("schema") %}
-	{%- set isPathParam = "*" if parameter.in == "path" and not parameter.required else "" %}
+	{%- set isOptional = True if parameter.in != "path" and not parameter.required else False %}
 	{%- if parameter.in != "path" %}
-	if r.{{ name|variable_name}} == nil {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} is required and must be specified")
-	}
 	{%- endif %}
 	{%- if schema.minItems is defined %}
-	if len({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minItems }} {
+	if len({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) < {{ schema.minItems }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxItems is defined %}
-	if len({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxItems }} {
+	if len({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) > {{ schema.maxItems }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minLength is defined %}
-	if datadog.Strlen({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minLength }} {
+	if datadog.Strlen({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) < {{ schema.minLength }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxLength is defined %}
-	if datadog.Strlen({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxLength }} {
+	if datadog.Strlen({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) > {{ schema.maxLength }} {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minimum is defined %}
 	{%- if parameter.type == "string" %}
-	{{ name|variable_name}}Txt, err := atoi({{ isPathParam }}r.{{ name|variable_name}})
+	{{ name|variable_name}}Txt, err := atoi({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %})
 	if {{ name|variable_name}}Txt < {{minimum}} {
 	{%- else %}
-	if {{ isPathParam }}r.{{ name|variable_name}} < {{ schema.minimum}} {
+	if {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %} < {{ schema.minimum}} {
 	{%- endif %}
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
 	}
 	{%- endif %}
 	{%- if schema.maximum is defined %}
 	{%- if parameter.type == "string" %}
-	{{ name|variable_name}}Txt, err := atoi({{ isPathParam }}r.{{ name|variable_name}})
+	{{ name|variable_name}}Txt, err := atoi({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %})
 	if {{ name|variable_name}}Txt > {{ schema.maximum }} {
 	{%- else %}
-	if {{ isPathParam }}r.{{ name|variable_name}} > {{ schema.maximum }} {
+	if {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %} > {{ schema.maximum }} {
 	{%- endif %}
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
 	}
@@ -300,8 +261,9 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(r api{
 	{%- endfor %}
 {%- macro add_local_var_query_params(name, parameter) %}
 {%- set collectionFormat = parameter|collection_format %}
+{%- set isOptional = True if parameter.in != "path" and not parameter.required else False %}
 {%- if collectionFormat == "multi" -%}
-t := *r.{{ name|variable_name}}
+t := {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}
 if reflect.TypeOf(t).Kind() == reflect.Slice {
 	s := reflect.ValueOf(t)
 	for i := 0; i < s.Len(); i++ {
@@ -311,14 +273,14 @@ if reflect.TypeOf(t).Kind() == reflect.Slice {
 	localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(t, "{{ collectionFormat }}"))
 }
 {%- else -%}
-localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
+localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}, "{{collectionFormat}}"))
 {%- endif %}
 {%- endmacro %}
 	{%- for name, parameter in operation|parameters if parameter.in == "query" %}
 	{%- if parameter.required %}
 	{{ add_local_var_query_params(name, parameter)|indent("\t") }}
 	{%- else %}
-	if r.{{ name|variable_name}} != nil {
+	if optionalParams.{{ name|attribute_name }} != nil {
 		{{ add_local_var_query_params(name, parameter)|indent("\t\t") }}
 	}
 	{%- endif %}
@@ -351,11 +313,11 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- for name, parameter in operation|parameters if parameter.in == "header" %}
 	{%- if parameter.required %}
 
-	localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+	localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString({{ name|variable_name}}, "{{collectionFormat}}")
 	{%- else %}
 
-	if r.{{ name|variable_name}} != nil {
-		localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+	if optionalParams.{{ name|attribute_name }} != nil {
+		localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(optionalParams.{{ name|attribute_name }}, "{{collectionFormat}}")
 	}
 	{%- endif %}
 	{%- endfor %}
@@ -364,11 +326,11 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
         formFile := {{ common_package_name }}.FormFile{}
 	formFile.FormFileName = "{{ formParameter.name }}"
 	{%- if formParameter.required %}
-	localVarFile := *r.{{ formParameter.name|variable_name}}
+	localVarFile := {% if isOptional %}optionalParams.{{ formParameter|attribute_name }}{% else %}{{ formParameter.name|variable_name}}{% endif %}
 	{%- else %}
 	var localVarFile {{ get_type_for_parameter(formParameter) }}
-	if r.{{ formParameter.name|variable_name}} != nil {
-		localVarFile = *r.{{ formParameter.name|variable_name}}
+	if {% if isOptional %}optionalParams.{% endif %}{{ formParameter.name|variable_name}} != nil {
+		localVarFile = {% if isOptional %}optionalParams.{% endif %}{{ formParameter.name|variable_name}}
 	}
 	{%- endif %}
 	if localVarFile != nil {
@@ -380,14 +342,15 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endif %}
 
 	{%- if operation.requestBody is defined and not formParameter %}
+    {%- set isBodyOptional = True if "required" not in operation.requestBody else False %}
 
 	// body params
-	localVarPostBody = r.{{ operation.get("x-codegen-request-body-name", "body")|variable_name}}
+	localVarPostBody = {% if isBodyOptional %}optionalParams.{{ operation.get("x-codegen-request-body-name", "body")|attribute_name }}{% else %}{{ operation.get("x-codegen-request-body-name", "body")|variable_name }}{% endif %}
 	{%- endif %}
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
 	{%- if authMethods %}
         {{ common_package_name }}.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 	{%- for authMethod in authMethods %}
 	{%- for name in authMethod %}
@@ -399,7 +362,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endfor %}
 	)
 	{%- endif %}
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
 	}
