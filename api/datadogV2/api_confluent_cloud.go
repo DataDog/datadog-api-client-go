@@ -19,7 +19,6 @@ type ConfluentCloudApi datadog.Service
 // CreateConfluentAccount Add Confluent account.
 // Create a Confluent account.
 func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body ConfluentAccountCreateRequest) (ConfluentAccountResponse, *_nethttp.Response, error) {
-
 	return a.createConfluentAccountExecute(ctx, body)
 }
 
@@ -98,7 +97,6 @@ func (a *ConfluentCloudApi) createConfluentAccountExecute(ctx _context.Context, 
 // CreateConfluentResource Add resource to Confluent account.
 // Create a Confluent resource for the account associated with the provided ID.
 func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accountId string, body ConfluentResourceRequest) (ConfluentResourceResponse, *_nethttp.Response, error) {
-
 	return a.createConfluentResourceExecute(ctx, accountId, body)
 }
 
@@ -178,7 +176,6 @@ func (a *ConfluentCloudApi) createConfluentResourceExecute(ctx _context.Context,
 // DeleteConfluentAccount Delete Confluent account.
 // Delete a Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) DeleteConfluentAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
-
 	return a.deleteConfluentAccountExecute(ctx, accountId)
 }
 
@@ -245,7 +242,6 @@ func (a *ConfluentCloudApi) deleteConfluentAccountExecute(ctx _context.Context, 
 // DeleteConfluentResource Delete resource from Confluent account.
 // Delete a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) DeleteConfluentResource(ctx _context.Context, accountId string, resourceId string) (*_nethttp.Response, error) {
-
 	return a.deleteConfluentResourceExecute(ctx, accountId, resourceId)
 }
 
@@ -313,7 +309,6 @@ func (a *ConfluentCloudApi) deleteConfluentResourceExecute(ctx _context.Context,
 // GetConfluentAccount Get Confluent account.
 // Get the Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId string) (ConfluentAccountResponse, *_nethttp.Response, error) {
-
 	return a.getConfluentAccountExecute(ctx, accountId)
 }
 
@@ -390,7 +385,6 @@ func (a *ConfluentCloudApi) getConfluentAccountExecute(ctx _context.Context, acc
 // GetConfluentResource Get resource from Confluent account.
 // Get a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId string, resourceId string) (ConfluentResourceResponse, *_nethttp.Response, error) {
-
 	return a.getConfluentResourceExecute(ctx, accountId, resourceId)
 }
 
@@ -468,7 +462,6 @@ func (a *ConfluentCloudApi) getConfluentResourceExecute(ctx _context.Context, ac
 // ListConfluentAccount List Confluent accounts.
 // List Confluent accounts.
 func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (ConfluentAccountsResponse, *_nethttp.Response, error) {
-
 	return a.listConfluentAccountExecute(ctx)
 }
 
@@ -544,7 +537,6 @@ func (a *ConfluentCloudApi) listConfluentAccountExecute(ctx _context.Context) (C
 // ListConfluentResource List Confluent Account resources.
 // Get a Confluent resource for the account associated with the provided ID.
 func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountId string) (ConfluentResourcesResponse, *_nethttp.Response, error) {
-
 	return a.listConfluentResourceExecute(ctx, accountId)
 }
 
@@ -621,7 +613,6 @@ func (a *ConfluentCloudApi) listConfluentResourceExecute(ctx _context.Context, a
 // UpdateConfluentAccount Update Confluent account.
 // Update the Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, accountId string, body ConfluentAccountUpdateRequest) (ConfluentAccountResponse, *_nethttp.Response, error) {
-
 	return a.updateConfluentAccountExecute(ctx, accountId, body)
 }
 
@@ -701,7 +692,6 @@ func (a *ConfluentCloudApi) updateConfluentAccountExecute(ctx _context.Context, 
 // UpdateConfluentResource Update resource in Confluent account.
 // Update a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) UpdateConfluentResource(ctx _context.Context, accountId string, resourceId string, body ConfluentResourceRequest) (ConfluentResourceResponse, *_nethttp.Response, error) {
-
 	return a.updateConfluentResourceExecute(ctx, accountId, resourceId, body)
 }
 

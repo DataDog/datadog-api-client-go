@@ -26,7 +26,6 @@ type MetricsApi datadog.Service
 // expect deterministic ordering of concurrent calls.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
-
 	return a.createBulkTagsMetricsConfigurationExecute(ctx, body)
 }
 
@@ -108,7 +107,6 @@ func (a *MetricsApi) createBulkTagsMetricsConfigurationExecute(ctx _context.Cont
 // on any count, rate, or gauge metric.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-
 	return a.createTagConfigurationExecute(ctx, metricName, body)
 }
 
@@ -191,7 +189,6 @@ func (a *MetricsApi) createTagConfigurationExecute(ctx _context.Context, metricN
 // Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
 // Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
-
 	return a.deleteBulkTagsMetricsConfigurationExecute(ctx, body)
 }
 
@@ -271,7 +268,6 @@ func (a *MetricsApi) deleteBulkTagsMetricsConfigurationExecute(ctx _context.Cont
 // Deletes a metric's tag configuration. Can only be used with application
 // keys from users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
-
 	return a.deleteTagConfigurationExecute(ctx, metricName)
 }
 
@@ -383,7 +379,6 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 // EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
 // Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
 func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
-
 	return a.estimateMetricsOutputSeriesExecute(ctx, metricName, o...)
 }
 
@@ -500,7 +495,6 @@ func (r *ListActiveMetricConfigurationsOptionalParameters) WithWindowSeconds(win
 // ListActiveMetricConfigurations List active tags and aggregations.
 // List tags and aggregations that are actively queried on dashboards and monitors for a given metric name.
 func (a *MetricsApi) ListActiveMetricConfigurations(ctx _context.Context, metricName string, o ...ListActiveMetricConfigurationsOptionalParameters) (MetricSuggestedTagsAndAggregationsResponse, *_nethttp.Response, error) {
-
 	return a.listActiveMetricConfigurationsExecute(ctx, metricName, o...)
 }
 
@@ -588,7 +582,6 @@ func (a *MetricsApi) listActiveMetricConfigurationsExecute(ctx _context.Context,
 // ListTagConfigurationByName List tag configuration by name.
 // Returns the tag configuration for the given metric name.
 func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-
 	return a.listTagConfigurationByNameExecute(ctx, metricName)
 }
 
@@ -724,7 +717,6 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 // ListTagConfigurations Get a list of metrics.
 // Returns all metrics that can be configured in the Metrics Summary page or with Metrics without Limits™ (matching additional filters if specified).
 func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
-
 	return a.listTagConfigurationsExecute(ctx, o...)
 }
 
@@ -829,7 +821,6 @@ func (a *MetricsApi) listTagConfigurationsExecute(ctx _context.Context, o ...Lis
 // ListTagsByMetricName List tags by metric name.
 // View indexed tag key-value pairs for a given metric name.
 func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
-
 	return a.listTagsByMetricNameExecute(ctx, metricName)
 }
 
@@ -908,7 +899,6 @@ func (a *MetricsApi) listTagsByMetricNameExecute(ctx _context.Context, metricNam
 //
 // Custom metrics generated in-app from other products will return `null` for ingested volumes.
 func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
-
 	return a.listVolumesByMetricNameExecute(ctx, metricName)
 }
 
@@ -987,7 +977,6 @@ func (a *MetricsApi) listVolumesByMetricNameExecute(ctx _context.Context, metric
 // Multiple data sources are supported with the ability to
 // process the data using formulas and functions.
 func (a *MetricsApi) QueryScalarData(ctx _context.Context, body ScalarFormulaQueryRequest) (ScalarFormulaQueryResponse, *_nethttp.Response, error) {
-
 	return a.queryScalarDataExecute(ctx, body)
 }
 
@@ -1074,7 +1063,6 @@ func (a *MetricsApi) queryScalarDataExecute(ctx _context.Context, body ScalarFor
 // Query timeseries data across various data sources and
 // process the data by applying formulas and functions.
 func (a *MetricsApi) QueryTimeseriesData(ctx _context.Context, body TimeseriesFormulaQueryRequest) (TimeseriesFormulaQueryResponse, *_nethttp.Response, error) {
-
 	return a.queryTimeseriesDataExecute(ctx, body)
 }
 
@@ -1188,7 +1176,6 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 //
 // Host name is one of the resources in the Resources field.
 func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
-
 	return a.submitMetricsExecute(ctx, body, o...)
 }
 
@@ -1280,7 +1267,6 @@ func (a *MetricsApi) submitMetricsExecute(ctx _context.Context, body MetricPaylo
 // of a count, rate, or gauge metric.
 // Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-
 	return a.updateTagConfigurationExecute(ctx, metricName, body)
 }
 

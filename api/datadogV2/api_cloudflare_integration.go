@@ -19,7 +19,6 @@ type CloudflareIntegrationApi datadog.Service
 // CreateCloudflareAccount Add Cloudflare account.
 // Create a Cloudflare account.
 func (a *CloudflareIntegrationApi) CreateCloudflareAccount(ctx _context.Context, body CloudflareAccountCreateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
-
 	return a.createCloudflareAccountExecute(ctx, body)
 }
 
@@ -98,7 +97,6 @@ func (a *CloudflareIntegrationApi) createCloudflareAccountExecute(ctx _context.C
 // DeleteCloudflareAccount Delete Cloudflare account.
 // Delete a Cloudflare account.
 func (a *CloudflareIntegrationApi) DeleteCloudflareAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
-
 	return a.deleteCloudflareAccountExecute(ctx, accountId)
 }
 
@@ -165,7 +163,6 @@ func (a *CloudflareIntegrationApi) deleteCloudflareAccountExecute(ctx _context.C
 // GetCloudflareAccount Get Cloudflare account.
 // Get a Cloudflare account.
 func (a *CloudflareIntegrationApi) GetCloudflareAccount(ctx _context.Context, accountId string) (CloudflareAccountResponse, *_nethttp.Response, error) {
-
 	return a.getCloudflareAccountExecute(ctx, accountId)
 }
 
@@ -242,7 +239,6 @@ func (a *CloudflareIntegrationApi) getCloudflareAccountExecute(ctx _context.Cont
 // ListCloudflareAccounts List Cloudflare accounts.
 // List Cloudflare accounts.
 func (a *CloudflareIntegrationApi) ListCloudflareAccounts(ctx _context.Context) (CloudflareAccountsResponse, *_nethttp.Response, error) {
-
 	return a.listCloudflareAccountsExecute(ctx)
 }
 
@@ -318,7 +314,6 @@ func (a *CloudflareIntegrationApi) listCloudflareAccountsExecute(ctx _context.Co
 // UpdateCloudflareAccount Update Cloudflare account.
 // Update a Cloudflare account.
 func (a *CloudflareIntegrationApi) UpdateCloudflareAccount(ctx _context.Context, accountId string, body CloudflareAccountUpdateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
-
 	return a.updateCloudflareAccountExecute(ctx, accountId, body)
 }
 

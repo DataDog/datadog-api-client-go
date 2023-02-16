@@ -23,7 +23,6 @@ type SecurityMonitoringApi datadog.Service
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-
 	return a.createSecurityFilterExecute(ctx, body)
 }
 
@@ -102,7 +101,6 @@ func (a *SecurityMonitoringApi) createSecurityFilterExecute(ctx _context.Context
 // CreateSecurityMonitoringRule Create a detection rule.
 // Create a detection rule.
 func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-
 	return a.createSecurityMonitoringRuleExecute(ctx, body)
 }
 
@@ -181,7 +179,6 @@ func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(ctx _context
 // DeleteSecurityFilter Delete a security filter.
 // Delete a specific security filter.
 func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
-
 	return a.deleteSecurityFilterExecute(ctx, securityFilterId)
 }
 
@@ -248,7 +245,6 @@ func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(ctx _context.Context
 // DeleteSecurityMonitoringRule Delete an existing rule.
 // Delete an existing rule. Default rules cannot be deleted.
 func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
-
 	return a.deleteSecurityMonitoringRuleExecute(ctx, ruleId)
 }
 
@@ -315,7 +311,6 @@ func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(ctx _context
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-
 	return a.editSecurityMonitoringSignalAssigneeExecute(ctx, signalId, body)
 }
 
@@ -395,7 +390,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx 
 // EditSecurityMonitoringSignalIncidents Change the related incidents of a security signal.
 // Change the related incidents for a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-
 	return a.editSecurityMonitoringSignalIncidentsExecute(ctx, signalId, body)
 }
 
@@ -475,7 +469,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(ctx
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-
 	return a.editSecurityMonitoringSignalStateExecute(ctx, signalId, body)
 }
 
@@ -558,7 +551,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(ctx _co
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
-
 	return a.getSecurityFilterExecute(ctx, securityFilterId)
 }
 
@@ -635,7 +627,6 @@ func (a *SecurityMonitoringApi) getSecurityFilterExecute(ctx _context.Context, s
 // GetSecurityMonitoringRule Get a rule's details.
 // Get a rule's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-
 	return a.getSecurityMonitoringRuleExecute(ctx, ruleId)
 }
 
@@ -712,7 +703,6 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(ctx _context.Co
 // GetSecurityMonitoringSignal Get a signal's details.
 // Get a signal's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
-
 	return a.getSecurityMonitoringSignalExecute(ctx, signalId)
 }
 
@@ -789,7 +779,6 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(ctx _context.
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
 func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
-
 	return a.listSecurityFiltersExecute(ctx)
 }
 
@@ -889,7 +878,6 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 // ListSecurityMonitoringRules List rules.
 // List rules.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
-
 	return a.listSecurityMonitoringRulesExecute(ctx, o...)
 }
 
@@ -1033,7 +1021,6 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 // Both this endpoint and the POST endpoint can be used interchangeably when listing
 // security signals.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-
 	return a.listSecurityMonitoringSignalsExecute(ctx, o...)
 }
 
@@ -1212,7 +1199,6 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 // Both this endpoint and the GET endpoint can be used interchangeably for listing
 // security signals.
 func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-
 	return a.searchSecurityMonitoringSignalsExecute(ctx, o...)
 }
 
@@ -1364,7 +1350,6 @@ func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(ctx _cont
 // Update a specific security filter.
 // Returns the security filter object when the request is successful.
 func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-
 	return a.updateSecurityFilterExecute(ctx, securityFilterId, body)
 }
 
@@ -1446,7 +1431,6 @@ func (a *SecurityMonitoringApi) updateSecurityFilterExecute(ctx _context.Context
 // must be included. For example, when modifying a query all queries must be included.
 // Default rules can only be updated to be enabled and to change notifications.
 func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-
 	return a.updateSecurityMonitoringRuleExecute(ctx, ruleId, body)
 }
 

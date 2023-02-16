@@ -20,7 +20,6 @@ type SyntheticsApi datadog.Service
 // CreateGlobalVariable Create a global variable.
 // Create a Synthetics global variable.
 func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-
 	return a.createGlobalVariableExecute(ctx, body)
 }
 
@@ -99,7 +98,6 @@ func (a *SyntheticsApi) createGlobalVariableExecute(ctx _context.Context, body S
 // CreatePrivateLocation Create a private location.
 // Create a new Synthetics private location.
 func (a *SyntheticsApi) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
-
 	return a.createPrivateLocationExecute(ctx, body)
 }
 
@@ -178,7 +176,6 @@ func (a *SyntheticsApi) createPrivateLocationExecute(ctx _context.Context, body 
 // CreateSyntheticsAPITest Create an API test.
 // Create a Synthetic API test.
 func (a *SyntheticsApi) CreateSyntheticsAPITest(ctx _context.Context, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
-
 	return a.createSyntheticsAPITestExecute(ctx, body)
 }
 
@@ -257,7 +254,6 @@ func (a *SyntheticsApi) createSyntheticsAPITestExecute(ctx _context.Context, bod
 // CreateSyntheticsBrowserTest Create a browser test.
 // Create a Synthetic browser test.
 func (a *SyntheticsApi) CreateSyntheticsBrowserTest(ctx _context.Context, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
-
 	return a.createSyntheticsBrowserTestExecute(ctx, body)
 }
 
@@ -336,7 +332,6 @@ func (a *SyntheticsApi) createSyntheticsBrowserTestExecute(ctx _context.Context,
 // DeleteGlobalVariable Delete a global variable.
 // Delete a Synthetics global variable.
 func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
-
 	return a.deleteGlobalVariableExecute(ctx, variableId)
 }
 
@@ -403,7 +398,6 @@ func (a *SyntheticsApi) deleteGlobalVariableExecute(ctx _context.Context, variab
 // DeletePrivateLocation Delete a private location.
 // Delete a Synthetics private location.
 func (a *SyntheticsApi) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
-
 	return a.deletePrivateLocationExecute(ctx, locationId)
 }
 
@@ -470,7 +464,6 @@ func (a *SyntheticsApi) deletePrivateLocationExecute(ctx _context.Context, locat
 // DeleteTests Delete tests.
 // Delete multiple Synthetic tests by ID.
 func (a *SyntheticsApi) DeleteTests(ctx _context.Context, body SyntheticsDeleteTestsPayload) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
-
 	return a.deleteTestsExecute(ctx, body)
 }
 
@@ -549,7 +542,6 @@ func (a *SyntheticsApi) deleteTestsExecute(ctx _context.Context, body Synthetics
 // EditGlobalVariable Edit a global variable.
 // Edit a Synthetics global variable.
 func (a *SyntheticsApi) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-
 	return a.editGlobalVariableExecute(ctx, variableId, body)
 }
 
@@ -630,7 +622,6 @@ func (a *SyntheticsApi) editGlobalVariableExecute(ctx _context.Context, variable
 // Get the detailed configuration associated with
 // a Synthetic API test.
 func (a *SyntheticsApi) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
-
 	return a.getAPITestExecute(ctx, publicId)
 }
 
@@ -738,7 +729,6 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 // GetAPITestLatestResults Get an API test's latest results summaries.
 // Get the last 50 test results summaries for a given Synthetics API test.
 func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
-
 	return a.getAPITestLatestResultsExecute(ctx, publicId, o...)
 }
 
@@ -840,7 +830,6 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(ctx _context.Context, pub
 // GetAPITestResult Get an API test result.
 // Get a specific full result from a given (API) Synthetic test.
 func (a *SyntheticsApi) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
-
 	return a.getAPITestResultExecute(ctx, publicId, resultId)
 }
 
@@ -919,7 +908,6 @@ func (a *SyntheticsApi) getAPITestResultExecute(ctx _context.Context, publicId s
 // Get the detailed configuration (including steps) associated with
 // a Synthetic browser test.
 func (a *SyntheticsApi) GetBrowserTest(ctx _context.Context, publicId string) (SyntheticsBrowserTest, *_nethttp.Response, error) {
-
 	return a.getBrowserTestExecute(ctx, publicId)
 }
 
@@ -1027,7 +1015,6 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 // GetBrowserTestLatestResults Get a browser test's latest results summaries.
 // Get the last 50 test results summaries for a given Synthetics Browser test.
 func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
-
 	return a.getBrowserTestLatestResultsExecute(ctx, publicId, o...)
 }
 
@@ -1129,7 +1116,6 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(ctx _context.Context,
 // GetBrowserTestResult Get a browser test result.
 // Get a specific full result from a given (browser) Synthetic test.
 func (a *SyntheticsApi) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
-
 	return a.getBrowserTestResultExecute(ctx, publicId, resultId)
 }
 
@@ -1207,7 +1193,6 @@ func (a *SyntheticsApi) getBrowserTestResultExecute(ctx _context.Context, public
 // GetGlobalVariable Get a global variable.
 // Get the detailed configuration of a global variable.
 func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId string) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
-
 	return a.getGlobalVariableExecute(ctx, variableId)
 }
 
@@ -1284,7 +1269,6 @@ func (a *SyntheticsApi) getGlobalVariableExecute(ctx _context.Context, variableI
 // GetPrivateLocation Get a private location.
 // Get a Synthetics private location.
 func (a *SyntheticsApi) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
-
 	return a.getPrivateLocationExecute(ctx, locationId)
 }
 
@@ -1361,7 +1345,6 @@ func (a *SyntheticsApi) getPrivateLocationExecute(ctx _context.Context, location
 // GetSyntheticsCIBatch Get details of batch.
 // Get a batch's updated details.
 func (a *SyntheticsApi) GetSyntheticsCIBatch(ctx _context.Context, batchId string) (SyntheticsBatchDetails, *_nethttp.Response, error) {
-
 	return a.getSyntheticsCIBatchExecute(ctx, batchId)
 }
 
@@ -1438,7 +1421,6 @@ func (a *SyntheticsApi) getSyntheticsCIBatchExecute(ctx _context.Context, batchI
 // GetTest Get a test configuration.
 // Get the detailed configuration associated with a Synthetics test.
 func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
-
 	return a.getTestExecute(ctx, publicId)
 }
 
@@ -1515,7 +1497,6 @@ func (a *SyntheticsApi) getTestExecute(ctx _context.Context, publicId string) (S
 // ListGlobalVariables Get all global variables.
 // Get the list of all Synthetics global variables.
 func (a *SyntheticsApi) ListGlobalVariables(ctx _context.Context) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
-
 	return a.listGlobalVariablesExecute(ctx)
 }
 
@@ -1592,7 +1573,6 @@ func (a *SyntheticsApi) listGlobalVariablesExecute(ctx _context.Context) (Synthe
 // Get the list of public and private locations available for Synthetic
 // tests. No arguments required.
 func (a *SyntheticsApi) ListLocations(ctx _context.Context) (SyntheticsLocations, *_nethttp.Response, error) {
-
 	return a.listLocationsExecute(ctx)
 }
 
@@ -1692,7 +1672,6 @@ func (r *ListTestsOptionalParameters) WithPageNumber(pageNumber string) *ListTes
 // ListTests Get the list of all Synthetic tests.
 // Get the list of all Synthetic tests.
 func (a *SyntheticsApi) ListTests(ctx _context.Context, o ...ListTestsOptionalParameters) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
-
 	return a.listTestsExecute(ctx, o...)
 }
 
@@ -1782,7 +1761,6 @@ func (a *SyntheticsApi) listTestsExecute(ctx _context.Context, o ...ListTestsOpt
 // TriggerCITests Trigger tests from CI/CD pipelines.
 // Trigger a set of Synthetics tests for continuous integration.
 func (a *SyntheticsApi) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
-
 	return a.triggerCITestsExecute(ctx, body)
 }
 
@@ -1861,7 +1839,6 @@ func (a *SyntheticsApi) triggerCITestsExecute(ctx _context.Context, body Synthet
 // TriggerTests Trigger Synthetics tests.
 // Trigger a set of Synthetics tests.
 func (a *SyntheticsApi) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
-
 	return a.triggerTestsExecute(ctx, body)
 }
 
@@ -1940,7 +1917,6 @@ func (a *SyntheticsApi) triggerTestsExecute(ctx _context.Context, body Synthetic
 // UpdateAPITest Edit an API test.
 // Edit the configuration of a Synthetic API test.
 func (a *SyntheticsApi) UpdateAPITest(ctx _context.Context, publicId string, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
-
 	return a.updateAPITestExecute(ctx, publicId, body)
 }
 
@@ -2020,7 +1996,6 @@ func (a *SyntheticsApi) updateAPITestExecute(ctx _context.Context, publicId stri
 // UpdateBrowserTest Edit a browser test.
 // Edit the configuration of a Synthetic browser test.
 func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
-
 	return a.updateBrowserTestExecute(ctx, publicId, body)
 }
 
@@ -2100,7 +2075,6 @@ func (a *SyntheticsApi) updateBrowserTestExecute(ctx _context.Context, publicId 
 // UpdatePrivateLocation Edit a private location.
 // Edit a Synthetics private location.
 func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
-
 	return a.updatePrivateLocationExecute(ctx, locationId, body)
 }
 
@@ -2180,7 +2154,6 @@ func (a *SyntheticsApi) updatePrivateLocationExecute(ctx _context.Context, locat
 // UpdateTestPauseStatus Pause or start a test.
 // Pause or start a Synthetics test by changing the status.
 func (a *SyntheticsApi) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
-
 	return a.updateTestPauseStatusExecute(ctx, publicId, body)
 }
 

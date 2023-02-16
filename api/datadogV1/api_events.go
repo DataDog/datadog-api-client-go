@@ -20,7 +20,6 @@ type EventsApi datadog.Service
 // This endpoint allows you to post events to the stream.
 // Tag them, set priority and event aggregate them with other events.
 func (a *EventsApi) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
-
 	return a.createEventExecute(ctx, body)
 }
 
@@ -101,7 +100,6 @@ func (a *EventsApi) createEventExecute(ctx _context.Context, body EventCreateReq
 // **Note**: If the event you’re querying contains markdown formatting of any kind,
 // you may see characters such as `%`,`\`,`n` in your output.
 func (a *EventsApi) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
-
 	return a.getEventExecute(ctx, eventId)
 }
 
@@ -238,7 +236,6 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 // identify the last timestamp of the last result and set that as the `end` query time to
 // paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
 func (a *EventsApi) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
-
 	return a.listEventsExecute(ctx, start, end, o...)
 }
 

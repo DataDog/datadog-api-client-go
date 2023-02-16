@@ -76,7 +76,6 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *AuditApi) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
-
 	return a.listAuditLogsExecute(ctx, o...)
 }
 
@@ -258,7 +257,6 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
-
 	return a.searchAuditLogsExecute(ctx, o...)
 }
 

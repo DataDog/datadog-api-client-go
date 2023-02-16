@@ -21,7 +21,6 @@ type IncidentServicesApi datadog.Service
 // CreateIncidentService Create a new incident service.
 // Creates a new incident service.
 func (a *IncidentServicesApi) CreateIncidentService(ctx _context.Context, body IncidentServiceCreateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
-
 	return a.createIncidentServiceExecute(ctx, body)
 }
 
@@ -107,7 +106,6 @@ func (a *IncidentServicesApi) createIncidentServiceExecute(ctx _context.Context,
 // DeleteIncidentService Delete an existing incident service.
 // Deletes an existing incident service.
 func (a *IncidentServicesApi) DeleteIncidentService(ctx _context.Context, serviceId string) (*_nethttp.Response, error) {
-
 	return a.deleteIncidentServiceExecute(ctx, serviceId)
 }
 
@@ -199,7 +197,6 @@ func (r *GetIncidentServiceOptionalParameters) WithInclude(include IncidentRelat
 // Get details of an incident service. If the `include[users]` query parameter is provided,
 // the included attribute will contain the users related to these incident services.
 func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (IncidentServiceResponse, *_nethttp.Response, error) {
-
 	return a.getIncidentServiceExecute(ctx, serviceId, o...)
 }
 
@@ -332,7 +329,6 @@ func (r *ListIncidentServicesOptionalParameters) WithFilter(filter string) *List
 // ListIncidentServices Get a list of all incident services.
 // Get all incident services uploaded for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident services.
 func (a *IncidentServicesApi) ListIncidentServices(ctx _context.Context, o ...ListIncidentServicesOptionalParameters) (IncidentServicesResponse, *_nethttp.Response, error) {
-
 	return a.listIncidentServicesExecute(ctx, o...)
 }
 
@@ -435,7 +431,6 @@ func (a *IncidentServicesApi) listIncidentServicesExecute(ctx _context.Context, 
 // UpdateIncidentService Update an existing incident service.
 // Updates an existing incident service. Only provide the attributes which should be updated as this request is a partial update.
 func (a *IncidentServicesApi) UpdateIncidentService(ctx _context.Context, serviceId string, body IncidentServiceUpdateRequest) (IncidentServiceResponse, *_nethttp.Response, error) {
-
 	return a.updateIncidentServiceExecute(ctx, serviceId, body)
 }
 

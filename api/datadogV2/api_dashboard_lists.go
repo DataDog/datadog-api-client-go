@@ -19,7 +19,6 @@ type DashboardListsApi datadog.Service
 // CreateDashboardListItems Add Items to a Dashboard List.
 // Add dashboards to an existing dashboard list.
 func (a *DashboardListsApi) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
-
 	return a.createDashboardListItemsExecute(ctx, dashboardListId, body)
 }
 
@@ -99,7 +98,6 @@ func (a *DashboardListsApi) createDashboardListItemsExecute(ctx _context.Context
 // DeleteDashboardListItems Delete items from a dashboard list.
 // Delete dashboards from an existing dashboard list.
 func (a *DashboardListsApi) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
-
 	return a.deleteDashboardListItemsExecute(ctx, dashboardListId, body)
 }
 
@@ -179,7 +177,6 @@ func (a *DashboardListsApi) deleteDashboardListItemsExecute(ctx _context.Context
 // GetDashboardListItems Get items of a Dashboard List.
 // Fetch the dashboard list’s dashboard definitions.
 func (a *DashboardListsApi) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
-
 	return a.getDashboardListItemsExecute(ctx, dashboardListId)
 }
 
@@ -256,7 +253,6 @@ func (a *DashboardListsApi) getDashboardListItemsExecute(ctx _context.Context, d
 // UpdateDashboardListItems Update items of a dashboard list.
 // Update dashboards of an existing dashboard list.
 func (a *DashboardListsApi) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
-
 	return a.updateDashboardListItemsExecute(ctx, dashboardListId, body)
 }
 

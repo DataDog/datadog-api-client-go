@@ -22,7 +22,6 @@ type ServiceChecksApi datadog.Service
 // - A valid API key is required.
 // - Service checks can be submitted up to 10 minutes in the past.
 func (a *ServiceChecksApi) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
-
 	return a.submitServiceCheckExecute(ctx, body)
 }
 

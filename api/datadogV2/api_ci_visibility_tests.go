@@ -19,7 +19,6 @@ type CIVisibilityTestsApi datadog.Service
 // AggregateCIAppTestEvents Aggregate tests events.
 // The API endpoint to aggregate CI Visibility test events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityTestsApi) AggregateCIAppTestEvents(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
-
 	return a.aggregateCIAppTestEventsExecute(ctx, body)
 }
 
@@ -153,7 +152,6 @@ func (r *ListCIAppTestEventsOptionalParameters) WithPageLimit(pageLimit int32) *
 //
 // Use this endpoint to see your latest test events.
 func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-
 	return a.listCIAppTestEventsExecute(ctx, o...)
 }
 
@@ -333,7 +331,6 @@ func (r *SearchCIAppTestEventsOptionalParameters) WithBody(body CIAppTestEventsR
 //
 // Use this endpoint to build complex events filtering and search.
 func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-
 	return a.searchCIAppTestEventsExecute(ctx, o...)
 }
 

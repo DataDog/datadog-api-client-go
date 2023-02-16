@@ -70,7 +70,6 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 // ListProcesses Get all processes.
 // Get all processes for your organization.
 func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
-
 	return a.listProcessesExecute(ctx, o...)
 }
 

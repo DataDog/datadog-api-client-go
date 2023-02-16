@@ -19,7 +19,6 @@ type DowntimesApi datadog.Service
 // CancelDowntime Cancel a downtime.
 // Cancel a downtime.
 func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
-
 	return a.cancelDowntimeExecute(ctx, downtimeId)
 }
 
@@ -86,7 +85,6 @@ func (a *DowntimesApi) cancelDowntimeExecute(ctx _context.Context, downtimeId in
 // CancelDowntimesByScope Cancel downtimes by scope.
 // Delete all downtimes that match the scope of `X`.
 func (a *DowntimesApi) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
-
 	return a.cancelDowntimesByScopeExecute(ctx, body)
 }
 
@@ -165,7 +163,6 @@ func (a *DowntimesApi) cancelDowntimesByScopeExecute(ctx _context.Context, body 
 // CreateDowntime Schedule a downtime.
 // Schedule a downtime.
 func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
-
 	return a.createDowntimeExecute(ctx, body)
 }
 
@@ -244,7 +241,6 @@ func (a *DowntimesApi) createDowntimeExecute(ctx _context.Context, body Downtime
 // GetDowntime Get a downtime.
 // Get downtime detail by `downtime_id`.
 func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
-
 	return a.getDowntimeExecute(ctx, downtimeId)
 }
 
@@ -338,7 +334,6 @@ func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *Lis
 // ListDowntimes Get all downtimes.
 // Get all scheduled downtimes.
 func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
-
 	return a.listDowntimesExecute(ctx, o...)
 }
 
@@ -425,7 +420,6 @@ func (a *DowntimesApi) listDowntimesExecute(ctx _context.Context, o ...ListDownt
 // ListMonitorDowntimes Get all downtimes for a monitor.
 // Get all active downtimes for the specified monitor.
 func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
-
 	return a.listMonitorDowntimesExecute(ctx, monitorId)
 }
 
@@ -502,7 +496,6 @@ func (a *DowntimesApi) listMonitorDowntimesExecute(ctx _context.Context, monitor
 // UpdateDowntime Update a downtime.
 // Update a single downtime by `downtime_id`.
 func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
-
 	return a.updateDowntimeExecute(ctx, downtimeId, body)
 }
 

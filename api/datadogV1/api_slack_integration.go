@@ -19,7 +19,6 @@ type SlackIntegrationApi datadog.Service
 // CreateSlackIntegrationChannel Create a Slack integration channel.
 // Add a channel to your Datadog-Slack integration.
 func (a *SlackIntegrationApi) CreateSlackIntegrationChannel(ctx _context.Context, accountName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
-
 	return a.createSlackIntegrationChannelExecute(ctx, accountName, body)
 }
 
@@ -99,7 +98,6 @@ func (a *SlackIntegrationApi) createSlackIntegrationChannelExecute(ctx _context.
 // GetSlackIntegrationChannel Get a Slack integration channel.
 // Get a channel configured for your Datadog-Slack integration.
 func (a *SlackIntegrationApi) GetSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (SlackIntegrationChannel, *_nethttp.Response, error) {
-
 	return a.getSlackIntegrationChannelExecute(ctx, accountName, channelName)
 }
 
@@ -177,7 +175,6 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelExecute(ctx _context.Con
 // GetSlackIntegrationChannels Get all channels in a Slack integration.
 // Get a list of all channels configured for your Datadog-Slack integration.
 func (a *SlackIntegrationApi) GetSlackIntegrationChannels(ctx _context.Context, accountName string) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
-
 	return a.getSlackIntegrationChannelsExecute(ctx, accountName)
 }
 
@@ -254,7 +251,6 @@ func (a *SlackIntegrationApi) getSlackIntegrationChannelsExecute(ctx _context.Co
 // RemoveSlackIntegrationChannel Remove a Slack integration channel.
 // Remove a channel from your Datadog-Slack integration.
 func (a *SlackIntegrationApi) RemoveSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (*_nethttp.Response, error) {
-
 	return a.removeSlackIntegrationChannelExecute(ctx, accountName, channelName)
 }
 
@@ -322,7 +318,6 @@ func (a *SlackIntegrationApi) removeSlackIntegrationChannelExecute(ctx _context.
 // UpdateSlackIntegrationChannel Update a Slack integration channel.
 // Update a channel used in your Datadog-Slack integration.
 func (a *SlackIntegrationApi) UpdateSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
-
 	return a.updateSlackIntegrationChannelExecute(ctx, accountName, channelName, body)
 }
 

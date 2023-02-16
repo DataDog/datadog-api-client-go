@@ -20,7 +20,6 @@ type RUMApi datadog.Service
 // AggregateRUMEvents Aggregate RUM events.
 // The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
 func (a *RUMApi) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
-
 	return a.aggregateRUMEventsExecute(ctx, body)
 }
 
@@ -99,7 +98,6 @@ func (a *RUMApi) aggregateRUMEventsExecute(ctx _context.Context, body RUMAggrega
 // CreateRUMApplication Create a new RUM application.
 // Create a new RUM application in your organization.
 func (a *RUMApi) CreateRUMApplication(ctx _context.Context, body RUMApplicationCreateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
-
 	return a.createRUMApplicationExecute(ctx, body)
 }
 
@@ -178,7 +176,6 @@ func (a *RUMApi) createRUMApplicationExecute(ctx _context.Context, body RUMAppli
 // DeleteRUMApplication Delete a RUM application.
 // Delete an existing RUM application in your organization.
 func (a *RUMApi) DeleteRUMApplication(ctx _context.Context, id string) (*_nethttp.Response, error) {
-
 	return a.deleteRUMApplicationExecute(ctx, id)
 }
 
@@ -245,7 +242,6 @@ func (a *RUMApi) deleteRUMApplicationExecute(ctx _context.Context, id string) (*
 // GetRUMApplication Get a RUM application.
 // Get the RUM application with given ID in your organization.
 func (a *RUMApi) GetRUMApplication(ctx _context.Context, id string) (RUMApplicationResponse, *_nethttp.Response, error) {
-
 	return a.getRUMApplicationExecute(ctx, id)
 }
 
@@ -322,7 +318,6 @@ func (a *RUMApi) getRUMApplicationExecute(ctx _context.Context, id string) (RUMA
 // GetRUMApplications List all the RUM applications.
 // List all the RUM applications in your organization.
 func (a *RUMApi) GetRUMApplications(ctx _context.Context) (RUMApplicationsResponse, *_nethttp.Response, error) {
-
 	return a.getRUMApplicationsExecute(ctx)
 }
 
@@ -455,7 +450,6 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
-
 	return a.listRUMEventsExecute(ctx, o...)
 }
 
@@ -620,7 +614,6 @@ func (a *RUMApi) listRUMEventsExecute(ctx _context.Context, o ...ListRUMEventsOp
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
-
 	return a.searchRUMEventsExecute(ctx, body)
 }
 
@@ -759,7 +752,6 @@ func (a *RUMApi) searchRUMEventsExecute(ctx _context.Context, body RUMSearchEven
 // UpdateRUMApplication Update a RUM application.
 // Update the RUM application with given ID in your organization.
 func (a *RUMApi) UpdateRUMApplication(ctx _context.Context, id string, body RUMApplicationUpdateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
-
 	return a.updateRUMApplicationExecute(ctx, id, body)
 }
 

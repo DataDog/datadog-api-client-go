@@ -19,7 +19,6 @@ type ServiceLevelObjectiveCorrectionsApi datadog.Service
 // CreateSLOCorrection Create an SLO correction.
 // Create an SLO Correction.
 func (a *ServiceLevelObjectiveCorrectionsApi) CreateSLOCorrection(ctx _context.Context, body SLOCorrectionCreateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
-
 	return a.createSLOCorrectionExecute(ctx, body)
 }
 
@@ -98,7 +97,6 @@ func (a *ServiceLevelObjectiveCorrectionsApi) createSLOCorrectionExecute(ctx _co
 // DeleteSLOCorrection Delete an SLO correction.
 // Permanently delete the specified SLO correction object.
 func (a *ServiceLevelObjectiveCorrectionsApi) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
-
 	return a.deleteSLOCorrectionExecute(ctx, sloCorrectionId)
 }
 
@@ -165,7 +163,6 @@ func (a *ServiceLevelObjectiveCorrectionsApi) deleteSLOCorrectionExecute(ctx _co
 // GetSLOCorrection Get an SLO correction for an SLO.
 // Get an SLO correction.
 func (a *ServiceLevelObjectiveCorrectionsApi) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
-
 	return a.getSLOCorrectionExecute(ctx, sloCorrectionId)
 }
 
@@ -266,7 +263,6 @@ func (r *ListSLOCorrectionOptionalParameters) WithLimit(limit int64) *ListSLOCor
 // ListSLOCorrection Get all SLO corrections.
 // Get all Service Level Objective corrections.
 func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrection(ctx _context.Context, o ...ListSLOCorrectionOptionalParameters) (SLOCorrectionListResponse, *_nethttp.Response, error) {
-
 	return a.listSLOCorrectionExecute(ctx, o...)
 }
 
@@ -356,7 +352,6 @@ func (a *ServiceLevelObjectiveCorrectionsApi) listSLOCorrectionExecute(ctx _cont
 // UpdateSLOCorrection Update an SLO correction.
 // Update the specified SLO correction object.
 func (a *ServiceLevelObjectiveCorrectionsApi) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
-
 	return a.updateSLOCorrectionExecute(ctx, sloCorrectionId, body)
 }
 

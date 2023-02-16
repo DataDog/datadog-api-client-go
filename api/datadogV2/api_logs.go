@@ -19,7 +19,6 @@ type LogsApi datadog.Service
 // AggregateLogs Aggregate events.
 // The API endpoint to aggregate events into buckets and compute metrics and timeseries.
 func (a *LogsApi) AggregateLogs(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
-
 	return a.aggregateLogsExecute(ctx, body)
 }
 
@@ -125,7 +124,6 @@ func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOpt
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApi) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-
 	return a.listLogsExecute(ctx, o...)
 }
 
@@ -352,7 +350,6 @@ func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogs
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApi) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-
 	return a.listLogsGetExecute(ctx, o...)
 }
 
@@ -564,7 +561,6 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 // - 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time
 // - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
 func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
-
 	return a.submitLogExecute(ctx, body, o...)
 }
 

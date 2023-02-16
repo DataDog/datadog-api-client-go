@@ -25,7 +25,6 @@ type AWSLogsIntegrationApi datadog.Service
 // - Returns a status of 'checked and ok' if the Lambda exists.
 // - Returns a status of 'error' if the Lambda does not exist.
 func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, body AWSAccountAndLambdaRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
-
 	return a.checkAWSLogsLambdaAsyncExecute(ctx, body)
 }
 
@@ -113,7 +112,6 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsLambdaAsyncExecute(ctx _context.Cont
 //   - Returns a status of `checked and ok` if the Lambda exists.
 //   - Returns a status of `error` if the Lambda does not exist.
 func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, body AWSLogsServicesRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
-
 	return a.checkAWSLogsServicesAsyncExecute(ctx, body)
 }
 
@@ -192,7 +190,6 @@ func (a *AWSLogsIntegrationApi) checkAWSLogsServicesAsyncExecute(ctx _context.Co
 // CreateAWSLambdaARN Add AWS Log Lambda ARN.
 // Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
 func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
-
 	return a.createAWSLambdaARNExecute(ctx, body)
 }
 
@@ -271,7 +268,6 @@ func (a *AWSLogsIntegrationApi) createAWSLambdaARNExecute(ctx _context.Context, 
 // DeleteAWSLambdaARN Delete an AWS Logs integration.
 // Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
 func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
-
 	return a.deleteAWSLambdaARNExecute(ctx, body)
 }
 
@@ -350,7 +346,6 @@ func (a *AWSLogsIntegrationApi) deleteAWSLambdaARNExecute(ctx _context.Context, 
 // EnableAWSLogServices Enable an AWS Logs integration.
 // Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the configuration.
 func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body AWSLogsServicesRequest) (interface{}, *_nethttp.Response, error) {
-
 	return a.enableAWSLogServicesExecute(ctx, body)
 }
 
@@ -429,7 +424,6 @@ func (a *AWSLogsIntegrationApi) enableAWSLogServicesExecute(ctx _context.Context
 // ListAWSLogsIntegrations List all AWS Logs integrations.
 // List all Datadog-AWS Logs integrations configured in your Datadog account.
 func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([]AWSLogsListResponse, *_nethttp.Response, error) {
-
 	return a.listAWSLogsIntegrationsExecute(ctx)
 }
 
@@ -505,7 +499,6 @@ func (a *AWSLogsIntegrationApi) listAWSLogsIntegrationsExecute(ctx _context.Cont
 // ListAWSLogsServices Get list of AWS log ready services.
 // Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
 func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
-
 	return a.listAWSLogsServicesExecute(ctx)
 }
 

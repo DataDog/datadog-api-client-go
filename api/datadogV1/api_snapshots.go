@@ -71,7 +71,6 @@ func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSna
 // Take graph snapshots.
 // **Note**: When a snapshot is created, there is some delay before it is available.
 func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
-
 	return a.getGraphSnapshotExecute(ctx, start, end, o...)
 }
 

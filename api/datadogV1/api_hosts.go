@@ -37,7 +37,6 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 // This endpoint returns the total number of active and up hosts in your Datadog account.
 // Active means the host has reported in the past hour, and up means it has reported in the past two hours.
 func (a *HostsApi) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
-
 	return a.getHostTotalsExecute(ctx, o...)
 }
 
@@ -193,7 +192,6 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 // Retention is 7 days.
 // Results are paginated with a max of 1000 results at a time.
 func (a *HostsApi) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
-
 	return a.listHostsExecute(ctx, o...)
 }
 
@@ -301,7 +299,6 @@ func (a *HostsApi) listHostsExecute(ctx _context.Context, o ...ListHostsOptional
 // MuteHost Mute a host.
 // Mute a host.
 func (a *HostsApi) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
-
 	return a.muteHostExecute(ctx, hostName, body)
 }
 
@@ -381,7 +378,6 @@ func (a *HostsApi) muteHostExecute(ctx _context.Context, hostName string, body H
 // UnmuteHost Unmute a host.
 // Unmutes a host. This endpoint takes no JSON arguments.
 func (a *HostsApi) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
-
 	return a.unmuteHostExecute(ctx, hostName)
 }
 

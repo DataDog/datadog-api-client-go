@@ -19,7 +19,6 @@ type MonitorsApi datadog.Service
 // CheckCanDeleteMonitor Check if a monitor can be deleted.
 // Check if the given monitors can be deleted.
 func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []int64) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
-
 	return a.checkCanDeleteMonitorExecute(ctx, monitorIds)
 }
 
@@ -289,7 +288,6 @@ func (a *MonitorsApi) checkCanDeleteMonitorExecute(ctx _context.Context, monitor
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
 func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
-
 	return a.createMonitorExecute(ctx, body)
 }
 
@@ -385,7 +383,6 @@ func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitor
 // DeleteMonitor Delete a monitor.
 // Delete the specified monitor
 func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
-
 	return a.deleteMonitorExecute(ctx, monitorId, o...)
 }
 
@@ -490,7 +487,6 @@ func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetM
 // GetMonitor Get a monitor's details.
 // Get details about the specified monitor from your organization.
 func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
-
 	return a.getMonitorExecute(ctx, monitorId, o...)
 }
 
@@ -644,7 +640,6 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 // ListMonitors Get all monitor details.
 // Get details about the specified monitor from your organization.
 func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
-
 	return a.listMonitorsExecute(ctx, o...)
 }
 
@@ -790,7 +785,6 @@ func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMon
 // SearchMonitorGroups Monitors group search.
 // Search and filter your monitor groups details.
 func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
-
 	return a.searchMonitorGroupsExecute(ctx, o...)
 }
 
@@ -924,7 +918,6 @@ func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitors
 // SearchMonitors Monitors search.
 // Search and filter your monitors details.
 func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
-
 	return a.searchMonitorsExecute(ctx, o...)
 }
 
@@ -1020,7 +1013,6 @@ func (a *MonitorsApi) searchMonitorsExecute(ctx _context.Context, o ...SearchMon
 // UpdateMonitor Edit a monitor.
 // Edit the specified monitor.
 func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
-
 	return a.updateMonitorExecute(ctx, monitorId, body)
 }
 
@@ -1100,7 +1092,6 @@ func (a *MonitorsApi) updateMonitorExecute(ctx _context.Context, monitorId int64
 // ValidateExistingMonitor Validate an existing monitor.
 // Validate the monitor provided in the request.
 func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
-
 	return a.validateExistingMonitorExecute(ctx, monitorId, body)
 }
 
@@ -1180,7 +1171,6 @@ func (a *MonitorsApi) validateExistingMonitorExecute(ctx _context.Context, monit
 // ValidateMonitor Validate a monitor.
 // Validate the monitor provided in the request.
 func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
-
 	return a.validateMonitorExecute(ctx, body)
 }
 

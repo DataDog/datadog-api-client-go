@@ -20,7 +20,6 @@ type CloudWorkloadSecurityApi datadog.Service
 // CreateCloudWorkloadSecurityAgentRule Create a Cloud Workload Security Agent rule.
 // Create a new Agent rule with the given parameters.
 func (a *CloudWorkloadSecurityApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
-
 	return a.createCloudWorkloadSecurityAgentRuleExecute(ctx, body)
 }
 
@@ -99,7 +98,6 @@ func (a *CloudWorkloadSecurityApi) createCloudWorkloadSecurityAgentRuleExecute(c
 // DeleteCloudWorkloadSecurityAgentRule Delete a Cloud Workload Security Agent rule.
 // Delete a specific Agent rule.
 func (a *CloudWorkloadSecurityApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
-
 	return a.deleteCloudWorkloadSecurityAgentRuleExecute(ctx, agentRuleId)
 }
 
@@ -168,7 +166,6 @@ func (a *CloudWorkloadSecurityApi) deleteCloudWorkloadSecurityAgentRuleExecute(c
 // Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
 // your Agents to update the policy running in your environment.
 func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (*os.File, *_nethttp.Response, error) {
-
 	return a.downloadCloudWorkloadPolicyFileExecute(ctx)
 }
 
@@ -244,7 +241,6 @@ func (a *CloudWorkloadSecurityApi) downloadCloudWorkloadPolicyFileExecute(ctx _c
 // GetCloudWorkloadSecurityAgentRule Get a Cloud Workload Security Agent rule.
 // Get the details of a specific Agent rule.
 func (a *CloudWorkloadSecurityApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
-
 	return a.getCloudWorkloadSecurityAgentRuleExecute(ctx, agentRuleId)
 }
 
@@ -321,7 +317,6 @@ func (a *CloudWorkloadSecurityApi) getCloudWorkloadSecurityAgentRuleExecute(ctx 
 // ListCloudWorkloadSecurityAgentRules Get all Cloud Workload Security Agent rules.
 // Get the list of Agent rules.
 func (a *CloudWorkloadSecurityApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
-
 	return a.listCloudWorkloadSecurityAgentRulesExecute(ctx)
 }
 
@@ -398,7 +393,6 @@ func (a *CloudWorkloadSecurityApi) listCloudWorkloadSecurityAgentRulesExecute(ct
 // Update a specific Agent rule.
 // Returns the Agent rule object when the request is successful.
 func (a *CloudWorkloadSecurityApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
-
 	return a.updateCloudWorkloadSecurityAgentRuleExecute(ctx, agentRuleId, body)
 }
 

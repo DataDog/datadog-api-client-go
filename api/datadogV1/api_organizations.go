@@ -30,7 +30,6 @@ type OrganizationsApi datadog.Service
 // by using the `org.public_id`, `api_key.key`, and
 // `application_key.hash` provided in the response.
 func (a *OrganizationsApi) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
-
 	return a.createChildOrgExecute(ctx, body)
 }
 
@@ -109,7 +108,6 @@ func (a *OrganizationsApi) createChildOrgExecute(ctx _context.Context, body Orga
 // DowngradeOrg Spin-off Child Organization.
 // Only available for MSP customers. Removes a child organization from the hierarchy of the master organization and places the child organization on a 30-day trial.
 func (a *OrganizationsApi) DowngradeOrg(ctx _context.Context, publicId string) (OrgDowngradedResponse, *_nethttp.Response, error) {
-
 	return a.downgradeOrgExecute(ctx, publicId)
 }
 
@@ -186,7 +184,6 @@ func (a *OrganizationsApi) downgradeOrgExecute(ctx _context.Context, publicId st
 // GetOrg Get organization information.
 // Get organization information.
 func (a *OrganizationsApi) GetOrg(ctx _context.Context, publicId string) (OrganizationResponse, *_nethttp.Response, error) {
-
 	return a.getOrgExecute(ctx, publicId)
 }
 
@@ -263,7 +260,6 @@ func (a *OrganizationsApi) getOrgExecute(ctx _context.Context, publicId string) 
 // ListOrgs List your managed organizations.
 // This endpoint returns data on your top-level organization.
 func (a *OrganizationsApi) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
-
 	return a.listOrgsExecute(ctx)
 }
 
@@ -339,7 +335,6 @@ func (a *OrganizationsApi) listOrgsExecute(ctx _context.Context) (OrganizationLi
 // UpdateOrg Update your organization.
 // Update your organization.
 func (a *OrganizationsApi) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
-
 	return a.updateOrgExecute(ctx, publicId, body)
 }
 
@@ -424,7 +419,6 @@ func (a *OrganizationsApi) updateOrgExecute(ctx _context.Context, publicId strin
 //
 // * **XML Body:** Post the IdP metadata file as the body of the request.
 func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
-
 	return a.uploadIdPForOrgExecute(ctx, publicId, idpFile)
 }
 

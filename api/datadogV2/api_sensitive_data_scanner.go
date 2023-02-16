@@ -23,7 +23,6 @@ type SensitiveDataScannerApi datadog.Service
 // null or an empty array (rules cannot be created at the same time).
 // The new group will be ordered last within the configuration.
 func (a *SensitiveDataScannerApi) CreateScanningGroup(ctx _context.Context, body SensitiveDataScannerGroupCreateRequest) (SensitiveDataScannerCreateGroupResponse, *_nethttp.Response, error) {
-
 	return a.createScanningGroupExecute(ctx, body)
 }
 
@@ -106,7 +105,6 @@ func (a *SensitiveDataScannerApi) createScanningGroupExecute(ctx _context.Contex
 // If included_attributes is empty or missing, we will scan all attributes except
 // excluded_attributes. If both are missing, we will scan the whole event.
 func (a *SensitiveDataScannerApi) CreateScanningRule(ctx _context.Context, body SensitiveDataScannerRuleCreateRequest) (SensitiveDataScannerCreateRuleResponse, *_nethttp.Response, error) {
-
 	return a.createScanningRuleExecute(ctx, body)
 }
 
@@ -185,7 +183,6 @@ func (a *SensitiveDataScannerApi) createScanningRuleExecute(ctx _context.Context
 // DeleteScanningGroup Delete Scanning Group.
 // Delete a given group.
 func (a *SensitiveDataScannerApi) DeleteScanningGroup(ctx _context.Context, groupId string, body SensitiveDataScannerGroupDeleteRequest) (SensitiveDataScannerGroupDeleteResponse, *_nethttp.Response, error) {
-
 	return a.deleteScanningGroupExecute(ctx, groupId, body)
 }
 
@@ -265,7 +262,6 @@ func (a *SensitiveDataScannerApi) deleteScanningGroupExecute(ctx _context.Contex
 // DeleteScanningRule Delete Scanning Rule.
 // Delete a given rule.
 func (a *SensitiveDataScannerApi) DeleteScanningRule(ctx _context.Context, ruleId string, body SensitiveDataScannerRuleDeleteRequest) (SensitiveDataScannerRuleDeleteResponse, *_nethttp.Response, error) {
-
 	return a.deleteScanningRuleExecute(ctx, ruleId, body)
 }
 
@@ -345,7 +341,6 @@ func (a *SensitiveDataScannerApi) deleteScanningRuleExecute(ctx _context.Context
 // ListScanningGroups List Scanning Groups.
 // List all the Scanning groups in your organization.
 func (a *SensitiveDataScannerApi) ListScanningGroups(ctx _context.Context) (SensitiveDataScannerGetConfigResponse, *_nethttp.Response, error) {
-
 	return a.listScanningGroupsExecute(ctx)
 }
 
@@ -421,7 +416,6 @@ func (a *SensitiveDataScannerApi) listScanningGroupsExecute(ctx _context.Context
 // ListStandardPatterns List standard patterns.
 // Returns all standard patterns.
 func (a *SensitiveDataScannerApi) ListStandardPatterns(ctx _context.Context) (SensitiveDataScannerStandardPatternsResponseData, *_nethttp.Response, error) {
-
 	return a.listStandardPatternsExecute(ctx)
 }
 
@@ -497,7 +491,6 @@ func (a *SensitiveDataScannerApi) listStandardPatternsExecute(ctx _context.Conte
 // ReorderScanningGroups Reorder Groups.
 // Reorder the list of groups.
 func (a *SensitiveDataScannerApi) ReorderScanningGroups(ctx _context.Context, body SensitiveDataScannerConfigRequest) (SensitiveDataScannerReorderGroupsResponse, *_nethttp.Response, error) {
-
 	return a.reorderScanningGroupsExecute(ctx, body)
 }
 
@@ -579,7 +572,6 @@ func (a *SensitiveDataScannerApi) reorderScanningGroupsExecute(ctx _context.Cont
 // relationship is present, its data section MUST contain linkages for all of the rules
 // currently in the group, and MUST NOT contain any others.
 func (a *SensitiveDataScannerApi) UpdateScanningGroup(ctx _context.Context, groupId string, body SensitiveDataScannerGroupUpdateRequest) (SensitiveDataScannerGroupUpdateResponse, *_nethttp.Response, error) {
-
 	return a.updateScanningGroupExecute(ctx, groupId, body)
 }
 
@@ -662,7 +654,6 @@ func (a *SensitiveDataScannerApi) updateScanningGroupExecute(ctx _context.Contex
 // is non-editable. Trying to edit the regex attribute of a rule with a standard_pattern
 // relationship will also result in an error.
 func (a *SensitiveDataScannerApi) UpdateScanningRule(ctx _context.Context, ruleId string, body SensitiveDataScannerRuleUpdateRequest) (SensitiveDataScannerRuleUpdateResponse, *_nethttp.Response, error) {
-
 	return a.updateScanningRuleExecute(ctx, ruleId, body)
 }
 

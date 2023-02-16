@@ -19,7 +19,6 @@ type MetricsApi datadog.Service
 // GetMetricMetadata Get metric metadata.
 // Get metadata about a specific metric.
 func (a *MetricsApi) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
-
 	return a.getMetricMetadataExecute(ctx, metricName)
 }
 
@@ -120,7 +119,6 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 // ListActiveMetrics Get active metrics list.
 // Get the list of actively reporting metrics from a given time until now.
 func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
-
 	return a.listActiveMetricsExecute(ctx, from, o...)
 }
 
@@ -211,7 +209,6 @@ func (a *MetricsApi) listActiveMetricsExecute(ctx _context.Context, from int64, 
 // ListMetrics Search metrics.
 // Search for metrics from the last 24 hours in Datadog.
 func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
-
 	return a.listMetricsExecute(ctx, q)
 }
 
@@ -288,7 +285,6 @@ func (a *MetricsApi) listMetricsExecute(ctx _context.Context, q string) (MetricS
 // QueryMetrics Query timeseries points.
 // Query timeseries points.
 func (a *MetricsApi) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
-
 	return a.queryMetricsExecute(ctx, from, to, query)
 }
 
@@ -384,7 +380,6 @@ func (r *SubmitDistributionPointsOptionalParameters) WithContentEncoding(content
 // SubmitDistributionPoints Submit distribution points.
 // The distribution points end-point allows you to post distribution data that can be graphed on Datadog’s dashboards.
 func (a *MetricsApi) SubmitDistributionPoints(ctx _context.Context, body DistributionPointsPayload, o ...SubmitDistributionPointsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
-
 	return a.submitDistributionPointsExecute(ctx, body, o...)
 }
 
@@ -501,7 +496,6 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 // - The full payload is approximately 100 bytes. However, with the DogStatsD API,
 // compression is applied, which reduces the payload size.
 func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
-
 	return a.submitMetricsExecute(ctx, body, o...)
 }
 
@@ -591,7 +585,6 @@ func (a *MetricsApi) submitMetricsExecute(ctx _context.Context, body MetricsPayl
 // UpdateMetricMetadata Edit metric metadata.
 // Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
 func (a *MetricsApi) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
-
 	return a.updateMetricMetadataExecute(ctx, metricName, body)
 }
 

@@ -19,7 +19,6 @@ type CIVisibilityPipelinesApi datadog.Service
 // AggregateCIAppPipelineEvents Aggregate pipelines events.
 // The API endpoint to aggregate CI Visibility pipeline events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Context, body CIAppPipelinesAggregateRequest) (CIAppPipelinesAnalyticsAggregateResponse, *_nethttp.Response, error) {
-
 	return a.aggregateCIAppPipelineEventsExecute(ctx, body)
 }
 
@@ -153,7 +152,6 @@ func (r *ListCIAppPipelineEventsOptionalParameters) WithPageLimit(pageLimit int3
 //
 // Use this endpoint to see your latest pipeline events.
 func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
-
 	return a.listCIAppPipelineEventsExecute(ctx, o...)
 }
 
@@ -333,7 +331,6 @@ func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelin
 //
 // Use this endpoint to build complex events filtering and search.
 func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
-
 	return a.searchCIAppPipelineEventsExecute(ctx, o...)
 }
 

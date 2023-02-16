@@ -20,7 +20,6 @@ type DashboardsApi datadog.Service
 // Create a dashboard using the specified options. When defining queries in your widgets, take note of which queries should have the `as_count()` or `as_rate()` modifiers appended.
 // Refer to the following [documentation](https://docs.datadoghq.com/developers/metrics/type_modifiers/?tab=count#in-application-modifiers) for more information on these modifiers.
 func (a *DashboardsApi) CreateDashboard(ctx _context.Context, body Dashboard) (Dashboard, *_nethttp.Response, error) {
-
 	return a.createDashboardExecute(ctx, body)
 }
 
@@ -99,7 +98,6 @@ func (a *DashboardsApi) createDashboardExecute(ctx _context.Context, body Dashbo
 // DeleteDashboard Delete a dashboard.
 // Delete a dashboard using the specified ID.
 func (a *DashboardsApi) DeleteDashboard(ctx _context.Context, dashboardId string) (DashboardDeleteResponse, *_nethttp.Response, error) {
-
 	return a.deleteDashboardExecute(ctx, dashboardId)
 }
 
@@ -176,7 +174,6 @@ func (a *DashboardsApi) deleteDashboardExecute(ctx _context.Context, dashboardId
 // DeleteDashboards Delete dashboards.
 // Delete dashboards using the specified IDs. If there are any failures, no dashboards will be deleted (partial success is not allowed).
 func (a *DashboardsApi) DeleteDashboards(ctx _context.Context, body DashboardBulkDeleteRequest) (*_nethttp.Response, error) {
-
 	return a.deleteDashboardsExecute(ctx, body)
 }
 
@@ -245,7 +242,6 @@ func (a *DashboardsApi) deleteDashboardsExecute(ctx _context.Context, body Dashb
 // GetDashboard Get a dashboard.
 // Get a dashboard using the specified ID.
 func (a *DashboardsApi) GetDashboard(ctx _context.Context, dashboardId string) (Dashboard, *_nethttp.Response, error) {
-
 	return a.getDashboardExecute(ctx, dashboardId)
 }
 
@@ -349,7 +345,6 @@ func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool)
 // **Note**: This query will only return custom created or cloned dashboards.
 // This query will not return preset dashboards.
 func (a *DashboardsApi) ListDashboards(ctx _context.Context, o ...ListDashboardsOptionalParameters) (DashboardSummary, *_nethttp.Response, error) {
-
 	return a.listDashboardsExecute(ctx, o...)
 }
 
@@ -439,7 +434,6 @@ func (a *DashboardsApi) listDashboardsExecute(ctx _context.Context, o ...ListDas
 // RestoreDashboards Restore deleted dashboards.
 // Restore dashboards using the specified IDs. If there are any failures, no dashboards will be restored (partial success is not allowed).
 func (a *DashboardsApi) RestoreDashboards(ctx _context.Context, body DashboardRestoreRequest) (*_nethttp.Response, error) {
-
 	return a.restoreDashboardsExecute(ctx, body)
 }
 
@@ -508,7 +502,6 @@ func (a *DashboardsApi) restoreDashboardsExecute(ctx _context.Context, body Dash
 // UpdateDashboard Update a dashboard.
 // Update a dashboard using the specified ID.
 func (a *DashboardsApi) UpdateDashboard(ctx _context.Context, dashboardId string, body Dashboard) (Dashboard, *_nethttp.Response, error) {
-
 	return a.updateDashboardExecute(ctx, dashboardId, body)
 }
 

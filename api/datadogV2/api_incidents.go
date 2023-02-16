@@ -21,7 +21,6 @@ type IncidentsApi datadog.Service
 // CreateIncident Create an incident.
 // Create an incident.
 func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
-
 	return a.createIncidentExecute(ctx, body)
 }
 
@@ -107,7 +106,6 @@ func (a *IncidentsApi) createIncidentExecute(ctx _context.Context, body Incident
 // DeleteIncident Delete an existing incident.
 // Deletes an existing incident from the users organization.
 func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
-
 	return a.deleteIncidentExecute(ctx, incidentId)
 }
 
@@ -198,7 +196,6 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 // GetIncident Get the details of an incident.
 // Get the details of an incident by `incident_id`.
 func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
-
 	return a.getIncidentExecute(ctx, incidentId, o...)
 }
 
@@ -317,7 +314,6 @@ func (r *ListIncidentAttachmentsOptionalParameters) WithFilterAttachmentType(fil
 // ListIncidentAttachments Get a list of attachments.
 // Get all attachments for a given incident.
 func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
-
 	return a.listIncidentAttachmentsExecute(ctx, incidentId, o...)
 }
 
@@ -446,7 +442,6 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 // ListIncidents Get a list of incidents.
 // Get all incidents for the user's organization.
 func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
-
 	return a.listIncidentsExecute(ctx, o...)
 }
 
@@ -620,7 +615,6 @@ func (r *SearchIncidentsOptionalParameters) WithSort(sort IncidentSearchSortOrde
 // SearchIncidents Search for incidents.
 // Search for incidents matching a certain query.
 func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (IncidentSearchResponse, *_nethttp.Response, error) {
-
 	return a.searchIncidentsExecute(ctx, query, o...)
 }
 
@@ -735,7 +729,6 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 // UpdateIncident Update an existing incident.
 // Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
-
 	return a.updateIncidentExecute(ctx, incidentId, body, o...)
 }
 
@@ -850,7 +843,6 @@ func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []Inci
 // UpdateIncidentAttachments Create, update, and delete incident attachments.
 // The bulk update endpoint for creating, updating, and deleting attachments for a given incident.
 func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
-
 	return a.updateIncidentAttachmentsExecute(ctx, incidentId, body, o...)
 }
 

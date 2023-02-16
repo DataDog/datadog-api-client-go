@@ -19,7 +19,6 @@ type DashboardListsApi datadog.Service
 // CreateDashboardList Create a dashboard list.
 // Create an empty dashboard list.
 func (a *DashboardListsApi) CreateDashboardList(ctx _context.Context, body DashboardList) (DashboardList, *_nethttp.Response, error) {
-
 	return a.createDashboardListExecute(ctx, body)
 }
 
@@ -98,7 +97,6 @@ func (a *DashboardListsApi) createDashboardListExecute(ctx _context.Context, bod
 // DeleteDashboardList Delete a dashboard list.
 // Delete a dashboard list.
 func (a *DashboardListsApi) DeleteDashboardList(ctx _context.Context, listId int64) (DashboardListDeleteResponse, *_nethttp.Response, error) {
-
 	return a.deleteDashboardListExecute(ctx, listId)
 }
 
@@ -175,7 +173,6 @@ func (a *DashboardListsApi) deleteDashboardListExecute(ctx _context.Context, lis
 // GetDashboardList Get a dashboard list.
 // Fetch an existing dashboard list's definition.
 func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64) (DashboardList, *_nethttp.Response, error) {
-
 	return a.getDashboardListExecute(ctx, listId)
 }
 
@@ -252,7 +249,6 @@ func (a *DashboardListsApi) getDashboardListExecute(ctx _context.Context, listId
 // ListDashboardLists Get all dashboard lists.
 // Fetch all of your existing dashboard list definitions.
 func (a *DashboardListsApi) ListDashboardLists(ctx _context.Context) (DashboardListListResponse, *_nethttp.Response, error) {
-
 	return a.listDashboardListsExecute(ctx)
 }
 
@@ -328,7 +324,6 @@ func (a *DashboardListsApi) listDashboardListsExecute(ctx _context.Context) (Das
 // UpdateDashboardList Update a dashboard list.
 // Update the name of a dashboard list.
 func (a *DashboardListsApi) UpdateDashboardList(ctx _context.Context, listId int64, body DashboardList) (DashboardList, *_nethttp.Response, error) {
-
 	return a.updateDashboardListExecute(ctx, listId, body)
 }
 

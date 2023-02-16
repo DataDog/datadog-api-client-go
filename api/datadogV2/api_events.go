@@ -75,7 +75,6 @@ func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEvent
 //
 // Use this endpoint to see your latest events.
 func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-
 	return a.listEventsExecute(ctx, o...)
 }
 
@@ -262,7 +261,6 @@ func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *Searc
 //
 // Use this endpoint to build complex events filtering and search.
 func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-
 	return a.searchEventsExecute(ctx, o...)
 }
 

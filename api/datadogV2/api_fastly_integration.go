@@ -19,7 +19,6 @@ type FastlyIntegrationApi datadog.Service
 // CreateFastlyAccount Add Fastly account.
 // Create a Fastly account.
 func (a *FastlyIntegrationApi) CreateFastlyAccount(ctx _context.Context, body FastlyAccountCreateRequest) (FastlyAccountResponse, *_nethttp.Response, error) {
-
 	return a.createFastlyAccountExecute(ctx, body)
 }
 
@@ -98,7 +97,6 @@ func (a *FastlyIntegrationApi) createFastlyAccountExecute(ctx _context.Context, 
 // CreateFastlyService Add Fastly service.
 // Create a Fastly service for an account.
 func (a *FastlyIntegrationApi) CreateFastlyService(ctx _context.Context, accountId string, body FastlyServiceRequest) (FastlyServiceResponse, *_nethttp.Response, error) {
-
 	return a.createFastlyServiceExecute(ctx, accountId, body)
 }
 
@@ -178,7 +176,6 @@ func (a *FastlyIntegrationApi) createFastlyServiceExecute(ctx _context.Context, 
 // DeleteFastlyAccount Delete Fastly account.
 // Delete a Fastly account.
 func (a *FastlyIntegrationApi) DeleteFastlyAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
-
 	return a.deleteFastlyAccountExecute(ctx, accountId)
 }
 
@@ -245,7 +242,6 @@ func (a *FastlyIntegrationApi) deleteFastlyAccountExecute(ctx _context.Context, 
 // DeleteFastlyService Delete Fastly service.
 // Delete a Fastly service for an account.
 func (a *FastlyIntegrationApi) DeleteFastlyService(ctx _context.Context, accountId string, serviceId string) (*_nethttp.Response, error) {
-
 	return a.deleteFastlyServiceExecute(ctx, accountId, serviceId)
 }
 
@@ -313,7 +309,6 @@ func (a *FastlyIntegrationApi) deleteFastlyServiceExecute(ctx _context.Context, 
 // GetFastlyAccount Get Fastly account.
 // Get a Fastly account.
 func (a *FastlyIntegrationApi) GetFastlyAccount(ctx _context.Context, accountId string) (FastlyAccountResponse, *_nethttp.Response, error) {
-
 	return a.getFastlyAccountExecute(ctx, accountId)
 }
 
@@ -390,7 +385,6 @@ func (a *FastlyIntegrationApi) getFastlyAccountExecute(ctx _context.Context, acc
 // GetFastlyService Get Fastly service.
 // Get a Fastly service for an account.
 func (a *FastlyIntegrationApi) GetFastlyService(ctx _context.Context, accountId string, serviceId string) (FastlyServiceResponse, *_nethttp.Response, error) {
-
 	return a.getFastlyServiceExecute(ctx, accountId, serviceId)
 }
 
@@ -468,7 +462,6 @@ func (a *FastlyIntegrationApi) getFastlyServiceExecute(ctx _context.Context, acc
 // ListFastlyAccounts List Fastly accounts.
 // List Fastly accounts.
 func (a *FastlyIntegrationApi) ListFastlyAccounts(ctx _context.Context) (FastlyAccountsResponse, *_nethttp.Response, error) {
-
 	return a.listFastlyAccountsExecute(ctx)
 }
 
@@ -544,7 +537,6 @@ func (a *FastlyIntegrationApi) listFastlyAccountsExecute(ctx _context.Context) (
 // ListFastlyServices List Fastly services.
 // List Fastly services for an account.
 func (a *FastlyIntegrationApi) ListFastlyServices(ctx _context.Context, accountId string) (FastlyServicesResponse, *_nethttp.Response, error) {
-
 	return a.listFastlyServicesExecute(ctx, accountId)
 }
 
@@ -621,7 +613,6 @@ func (a *FastlyIntegrationApi) listFastlyServicesExecute(ctx _context.Context, a
 // UpdateFastlyAccount Update Fastly account.
 // Update a Fastly account.
 func (a *FastlyIntegrationApi) UpdateFastlyAccount(ctx _context.Context, accountId string, body FastlyAccountUpdateRequest) (FastlyAccountResponse, *_nethttp.Response, error) {
-
 	return a.updateFastlyAccountExecute(ctx, accountId, body)
 }
 
@@ -701,7 +692,6 @@ func (a *FastlyIntegrationApi) updateFastlyAccountExecute(ctx _context.Context, 
 // UpdateFastlyService Update Fastly service.
 // Update a Fastly service for an account.
 func (a *FastlyIntegrationApi) UpdateFastlyService(ctx _context.Context, accountId string, serviceId string, body FastlyServiceRequest) (FastlyServiceResponse, *_nethttp.Response, error) {
-
 	return a.updateFastlyServiceExecute(ctx, accountId, serviceId, body)
 }
 
