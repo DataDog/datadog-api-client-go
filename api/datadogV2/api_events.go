@@ -17,16 +17,6 @@ import (
 // EventsApi service type
 type EventsApi datadog.Service
 
-type apiListEventsRequest struct {
-	ctx         _context.Context
-	filterQuery *string
-	filterFrom  *string
-	filterTo    *string
-	sort        *EventsSort
-	pageCursor  *string
-	pageLimit   *int32
-}
-
 // ListEventsOptionalParameters holds optional parameters for ListEvents.
 type ListEventsOptionalParameters struct {
 	FilterQuery *string
@@ -79,39 +69,14 @@ func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEvent
 	return r
 }
 
-func (a *EventsApi) buildListEventsRequest(ctx _context.Context, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
-	req := apiListEventsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListEventsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
-	return req, nil
-}
-
 // ListEvents Get a list of events.
 // List endpoint returns events that match an events search query.
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to see your latest events.
 func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-	req, err := a.buildListEventsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue EventsListResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listEventsExecute(req)
+	return a.listEventsExecute(ctx, o...)
 }
 
 // ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
@@ -129,14 +94,7 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildListEventsRequest(ctx, o...)
-			if err != nil {
-				var returnItem EventResponse
-				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.listEventsExecute(req)
+			resp, _, err := a.listEventsExecute(ctx, o...)
 			if err != nil {
 				var returnItem EventResponse
 				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
@@ -180,12 +138,20 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 }
 
 // listEventsExecute executes the request.
-func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventsListResponse, *_nethttp.Response, error) {
+func (a *EventsApi) listEventsExecute(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue EventsListResponse
+		optionalParams      ListEventsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.ListEvents"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
@@ -194,7 +160,7 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventsListRespons
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.EventsApi.ListEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.EventsApi.ListEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -204,33 +170,33 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventsListRespons
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*r.filterQuery, ""))
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
 	}
-	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*r.filterFrom, ""))
+	if optionalParams.FilterFrom != nil {
+		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*optionalParams.FilterFrom, ""))
 	}
-	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*r.filterTo, ""))
+	if optionalParams.FilterTo != nil {
+		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*optionalParams.FilterTo, ""))
 	}
-	if r.sort != nil {
-		localVarQueryParams.Add("sort", datadog.ParameterToString(*r.sort, ""))
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
-	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*r.pageCursor, ""))
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
 	}
-	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*r.pageLimit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -273,11 +239,6 @@ func (a *EventsApi) listEventsExecute(r apiListEventsRequest) (EventsListRespons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiSearchEventsRequest struct {
-	ctx  _context.Context
-	body *EventsListRequest
-}
-
 // SearchEventsOptionalParameters holds optional parameters for SearchEvents.
 type SearchEventsOptionalParameters struct {
 	Body *EventsListRequest
@@ -295,34 +256,14 @@ func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *Searc
 	return r
 }
 
-func (a *EventsApi) buildSearchEventsRequest(ctx _context.Context, o ...SearchEventsOptionalParameters) (apiSearchEventsRequest, error) {
-	req := apiSearchEventsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type SearchEventsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
-	}
-	return req, nil
-}
-
 // SearchEvents Search events.
 // List endpoint returns events that match an events search query.
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to build complex events filtering and search.
 func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-	req, err := a.buildSearchEventsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue EventsListResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.searchEventsExecute(req)
+	return a.searchEventsExecute(ctx, o...)
 }
 
 // SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
@@ -346,14 +287,7 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildSearchEventsRequest(ctx, o...)
-			if err != nil {
-				var returnItem EventResponse
-				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.searchEventsExecute(req)
+			resp, _, err := a.searchEventsExecute(ctx, o...)
 			if err != nil {
 				var returnItem EventResponse
 				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
@@ -397,12 +331,20 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 }
 
 // searchEventsExecute executes the request.
-func (a *EventsApi) searchEventsExecute(r apiSearchEventsRequest) (EventsListResponse, *_nethttp.Response, error) {
+func (a *EventsApi) searchEventsExecute(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue EventsListResponse
+		optionalParams      SearchEventsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.SearchEvents"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
@@ -411,7 +353,7 @@ func (a *EventsApi) searchEventsExecute(r apiSearchEventsRequest) (EventsListRes
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.EventsApi.SearchEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.EventsApi.SearchEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -425,14 +367,14 @@ func (a *EventsApi) searchEventsExecute(r apiSearchEventsRequest) (EventsListRes
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &optionalParams.Body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

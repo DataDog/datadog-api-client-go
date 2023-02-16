@@ -16,40 +16,22 @@ import (
 // LogsPipelinesApi service type
 type LogsPipelinesApi datadog.Service
 
-type apiCreateLogsPipelineRequest struct {
-	ctx  _context.Context
-	body *LogsPipeline
-}
-
-func (a *LogsPipelinesApi) buildCreateLogsPipelineRequest(ctx _context.Context, body LogsPipeline) (apiCreateLogsPipelineRequest, error) {
-	req := apiCreateLogsPipelineRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // CreateLogsPipeline Create a pipeline.
 // Create a pipeline in your organization.
 func (a *LogsPipelinesApi) CreateLogsPipeline(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
-	req, err := a.buildCreateLogsPipelineRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue LogsPipeline
-		return localVarReturnValue, nil, err
-	}
 
-	return a.createLogsPipelineExecute(req)
+	return a.createLogsPipelineExecute(ctx, body)
 }
 
 // createLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) createLogsPipelineExecute(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.CreateLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.CreateLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,21 +41,18 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -125,45 +104,28 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(r apiCreateLogsPipelineRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiDeleteLogsPipelineRequest struct {
-	ctx        _context.Context
-	pipelineId string
-}
-
-func (a *LogsPipelinesApi) buildDeleteLogsPipelineRequest(ctx _context.Context, pipelineId string) (apiDeleteLogsPipelineRequest, error) {
-	req := apiDeleteLogsPipelineRequest{
-		ctx:        ctx,
-		pipelineId: pipelineId,
-	}
-	return req, nil
-}
-
 // DeleteLogsPipeline Delete a pipeline.
 // Delete a given pipeline from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) DeleteLogsPipeline(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
-	req, err := a.buildDeleteLogsPipelineRequest(ctx, pipelineId)
-	if err != nil {
-		return nil, err
-	}
 
-	return a.deleteLogsPipelineExecute(req)
+	return a.deleteLogsPipelineExecute(ctx, pipelineId)
 }
 
 // deleteLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
+func (a *LogsPipelinesApi) deleteLogsPipelineExecute(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.DeleteLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.DeleteLogsPipeline")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -171,12 +133,12 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -219,47 +181,29 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequ
 	return localVarHTTPResponse, nil
 }
 
-type apiGetLogsPipelineRequest struct {
-	ctx        _context.Context
-	pipelineId string
-}
-
-func (a *LogsPipelinesApi) buildGetLogsPipelineRequest(ctx _context.Context, pipelineId string) (apiGetLogsPipelineRequest, error) {
-	req := apiGetLogsPipelineRequest{
-		ctx:        ctx,
-		pipelineId: pipelineId,
-	}
-	return req, nil
-}
-
 // GetLogsPipeline Get a pipeline.
 // Get a specific pipeline from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) GetLogsPipeline(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
-	req, err := a.buildGetLogsPipelineRequest(ctx, pipelineId)
-	if err != nil {
-		var localVarReturnValue LogsPipeline
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getLogsPipelineExecute(req)
+	return a.getLogsPipelineExecute(ctx, pipelineId)
 }
 
 // getLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) getLogsPipelineExecute(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.GetLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.GetLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -267,12 +211,12 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -324,39 +268,23 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetLogsPipelineOrderRequest struct {
-	ctx _context.Context
-}
-
-func (a *LogsPipelinesApi) buildGetLogsPipelineOrderRequest(ctx _context.Context) (apiGetLogsPipelineOrderRequest, error) {
-	req := apiGetLogsPipelineOrderRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // GetLogsPipelineOrder Get pipeline order.
 // Get the current order of your pipelines.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) GetLogsPipelineOrder(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
-	req, err := a.buildGetLogsPipelineOrderRequest(ctx)
-	if err != nil {
-		var localVarReturnValue LogsPipelinesOrder
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getLogsPipelineOrderExecute(req)
+	return a.getLogsPipelineOrderExecute(ctx)
 }
 
 // getLogsPipelineOrderExecute executes the request.
-func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue LogsPipelinesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.GetLogsPipelineOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.GetLogsPipelineOrder")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -369,12 +297,12 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -417,39 +345,23 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrder
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiListLogsPipelinesRequest struct {
-	ctx _context.Context
-}
-
-func (a *LogsPipelinesApi) buildListLogsPipelinesRequest(ctx _context.Context) (apiListLogsPipelinesRequest, error) {
-	req := apiListLogsPipelinesRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // ListLogsPipelines Get all pipelines.
 // Get all pipelines from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) ListLogsPipelines(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
-	req, err := a.buildListLogsPipelinesRequest(ctx)
-	if err != nil {
-		var localVarReturnValue []LogsPipeline
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listLogsPipelinesExecute(req)
+	return a.listLogsPipelinesExecute(ctx)
 }
 
 // listLogsPipelinesExecute executes the request.
-func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) listLogsPipelinesExecute(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue []LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.ListLogsPipelines")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.ListLogsPipelines")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -462,12 +374,12 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -510,70 +422,47 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(r apiListLogsPipelinesReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateLogsPipelineRequest struct {
-	ctx        _context.Context
-	pipelineId string
-	body       *LogsPipeline
-}
-
-func (a *LogsPipelinesApi) buildUpdateLogsPipelineRequest(ctx _context.Context, pipelineId string, body LogsPipeline) (apiUpdateLogsPipelineRequest, error) {
-	req := apiUpdateLogsPipelineRequest{
-		ctx:        ctx,
-		pipelineId: pipelineId,
-		body:       &body,
-	}
-	return req, nil
-}
-
 // UpdateLogsPipeline Update a pipeline.
 // Update a given pipeline configuration to change it’s processors or their order.
 //
 // **Note**: Using this method updates your pipeline configuration by **replacing**
 // your current configuration with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApi) UpdateLogsPipeline(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
-	req, err := a.buildUpdateLogsPipelineRequest(ctx, pipelineId, body)
-	if err != nil {
-		var localVarReturnValue LogsPipeline
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateLogsPipelineExecute(req)
+	return a.updateLogsPipelineExecute(ctx, pipelineId, body)
 }
 
 // updateLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) updateLogsPipelineExecute(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.UpdateLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.UpdateLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/pipelines/{pipeline_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.pipelineId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"pipeline_id"+"}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -625,19 +514,6 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateLogsPipelineOrderRequest struct {
-	ctx  _context.Context
-	body *LogsPipelinesOrder
-}
-
-func (a *LogsPipelinesApi) buildUpdateLogsPipelineOrderRequest(ctx _context.Context, body LogsPipelinesOrder) (apiUpdateLogsPipelineOrderRequest, error) {
-	req := apiUpdateLogsPipelineOrderRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // UpdateLogsPipelineOrder Update pipeline order.
 // Update the order of your pipelines. Since logs are processed sequentially, reordering a pipeline may change
 // the structure and content of the data processed by other pipelines and their processors.
@@ -645,24 +521,19 @@ func (a *LogsPipelinesApi) buildUpdateLogsPipelineOrderRequest(ctx _context.Cont
 // **Note**: Using the `PUT` method updates your pipeline order by replacing your current order
 // with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApi) UpdateLogsPipelineOrder(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
-	req, err := a.buildUpdateLogsPipelineOrderRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue LogsPipelinesOrder
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateLogsPipelineOrderExecute(req)
+	return a.updateLogsPipelineOrderExecute(ctx, body)
 }
 
 // updateLogsPipelineOrderExecute executes the request.
-func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
+func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue LogsPipelinesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApi.UpdateLogsPipelineOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsPipelinesApi.UpdateLogsPipelineOrder")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -672,21 +543,18 @@ func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

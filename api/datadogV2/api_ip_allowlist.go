@@ -15,38 +15,22 @@ import (
 // IPAllowlistApi service type
 type IPAllowlistApi datadog.Service
 
-type apiGetIPAllowlistRequest struct {
-	ctx _context.Context
-}
-
-func (a *IPAllowlistApi) buildGetIPAllowlistRequest(ctx _context.Context) (apiGetIPAllowlistRequest, error) {
-	req := apiGetIPAllowlistRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // GetIPAllowlist Get IP Allowlist.
 // Returns the IP allowlist and its enabled or disabled state.
 func (a *IPAllowlistApi) GetIPAllowlist(ctx _context.Context) (IPAllowlistResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetIPAllowlistRequest(ctx)
-	if err != nil {
-		var localVarReturnValue IPAllowlistResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getIPAllowlistExecute(req)
+	return a.getIPAllowlistExecute(ctx)
 }
 
 // getIPAllowlistExecute executes the request.
-func (a *IPAllowlistApi) getIPAllowlistExecute(r apiGetIPAllowlistRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
+func (a *IPAllowlistApi) getIPAllowlistExecute(ctx _context.Context) (IPAllowlistResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue IPAllowlistResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IPAllowlistApi.GetIPAllowlist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IPAllowlistApi.GetIPAllowlist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,12 +43,12 @@ func (a *IPAllowlistApi) getIPAllowlistExecute(r apiGetIPAllowlistRequest) (IPAl
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -107,40 +91,22 @@ func (a *IPAllowlistApi) getIPAllowlistExecute(r apiGetIPAllowlistRequest) (IPAl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateIPAllowlistRequest struct {
-	ctx  _context.Context
-	body *IPAllowlistUpdateRequest
-}
-
-func (a *IPAllowlistApi) buildUpdateIPAllowlistRequest(ctx _context.Context, body IPAllowlistUpdateRequest) (apiUpdateIPAllowlistRequest, error) {
-	req := apiUpdateIPAllowlistRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // UpdateIPAllowlist Update IP Allowlist.
 // Edit the entries in the IP allowlist, and enable or disable it.
 func (a *IPAllowlistApi) UpdateIPAllowlist(ctx _context.Context, body IPAllowlistUpdateRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
-	req, err := a.buildUpdateIPAllowlistRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue IPAllowlistResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateIPAllowlistExecute(req)
+	return a.updateIPAllowlistExecute(ctx, body)
 }
 
 // updateIPAllowlistExecute executes the request.
-func (a *IPAllowlistApi) updateIPAllowlistExecute(r apiUpdateIPAllowlistRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
+func (a *IPAllowlistApi) updateIPAllowlistExecute(ctx _context.Context, body IPAllowlistUpdateRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue IPAllowlistResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IPAllowlistApi.UpdateIPAllowlist")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IPAllowlistApi.UpdateIPAllowlist")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -150,21 +116,18 @@ func (a *IPAllowlistApi) updateIPAllowlistExecute(r apiUpdateIPAllowlistRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

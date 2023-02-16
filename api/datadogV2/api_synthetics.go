@@ -15,38 +15,22 @@ import (
 // SyntheticsApi service type
 type SyntheticsApi datadog.Service
 
-type apiGetOnDemandConcurrencyCapRequest struct {
-	ctx _context.Context
-}
-
-func (a *SyntheticsApi) buildGetOnDemandConcurrencyCapRequest(ctx _context.Context) (apiGetOnDemandConcurrencyCapRequest, error) {
-	req := apiGetOnDemandConcurrencyCapRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // GetOnDemandConcurrencyCap Get the on-demand concurrency cap.
 // Get the on-demand concurrency cap.
 func (a *SyntheticsApi) GetOnDemandConcurrencyCap(ctx _context.Context) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetOnDemandConcurrencyCapRequest(ctx)
-	if err != nil {
-		var localVarReturnValue OnDemandConcurrencyCapResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getOnDemandConcurrencyCapExecute(req)
+	return a.getOnDemandConcurrencyCapExecute(ctx)
 }
 
 // getOnDemandConcurrencyCapExecute executes the request.
-func (a *SyntheticsApi) getOnDemandConcurrencyCapExecute(r apiGetOnDemandConcurrencyCapRequest) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApi) getOnDemandConcurrencyCapExecute(ctx _context.Context) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OnDemandConcurrencyCapResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SyntheticsApi.GetOnDemandConcurrencyCap")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.GetOnDemandConcurrencyCap")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,12 +43,12 @@ func (a *SyntheticsApi) getOnDemandConcurrencyCapExecute(r apiGetOnDemandConcurr
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -107,40 +91,22 @@ func (a *SyntheticsApi) getOnDemandConcurrencyCapExecute(r apiGetOnDemandConcurr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiSetOnDemandConcurrencyCapRequest struct {
-	ctx  _context.Context
-	body *OnDemandConcurrencyCapAttributes
-}
-
-func (a *SyntheticsApi) buildSetOnDemandConcurrencyCapRequest(ctx _context.Context, body OnDemandConcurrencyCapAttributes) (apiSetOnDemandConcurrencyCapRequest, error) {
-	req := apiSetOnDemandConcurrencyCapRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // SetOnDemandConcurrencyCap Save new value for on-demand concurrency cap.
 // Save new value for on-demand concurrency cap.
 func (a *SyntheticsApi) SetOnDemandConcurrencyCap(ctx _context.Context, body OnDemandConcurrencyCapAttributes) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
-	req, err := a.buildSetOnDemandConcurrencyCapRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue OnDemandConcurrencyCapResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.setOnDemandConcurrencyCapExecute(req)
+	return a.setOnDemandConcurrencyCapExecute(ctx, body)
 }
 
 // setOnDemandConcurrencyCapExecute executes the request.
-func (a *SyntheticsApi) setOnDemandConcurrencyCapExecute(r apiSetOnDemandConcurrencyCapRequest) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApi) setOnDemandConcurrencyCapExecute(ctx _context.Context, body OnDemandConcurrencyCapAttributes) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue OnDemandConcurrencyCapResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SyntheticsApi.SetOnDemandConcurrencyCap")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.SetOnDemandConcurrencyCap")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -150,21 +116,18 @@ func (a *SyntheticsApi) setOnDemandConcurrencyCapExecute(r apiSetOnDemandConcurr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

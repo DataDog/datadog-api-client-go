@@ -15,16 +15,6 @@ import (
 // ProcessesApi service type
 type ProcessesApi datadog.Service
 
-type apiListProcessesRequest struct {
-	ctx        _context.Context
-	search     *string
-	tags       *string
-	from       *int64
-	to         *int64
-	pageLimit  *int32
-	pageCursor *string
-}
-
 // ListProcessesOptionalParameters holds optional parameters for ListProcesses.
 type ListProcessesOptionalParameters struct {
 	Search     *string
@@ -77,36 +67,11 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 	return r
 }
 
-func (a *ProcessesApi) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
-	req := apiListProcessesRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListProcessesOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.search = o[0].Search
-		req.tags = o[0].Tags
-		req.from = o[0].From
-		req.to = o[0].To
-		req.pageLimit = o[0].PageLimit
-		req.pageCursor = o[0].PageCursor
-	}
-	return req, nil
-}
-
 // ListProcesses Get all processes.
 // Get all processes for your organization.
 func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
-	req, err := a.buildListProcessesRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue ProcessSummariesResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listProcessesExecute(req)
+	return a.listProcessesExecute(ctx, o...)
 }
 
 // ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
@@ -124,14 +89,7 @@ func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...Li
 	items := make(chan datadog.PaginationResult[ProcessSummary], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildListProcessesRequest(ctx, o...)
-			if err != nil {
-				var returnItem ProcessSummary
-				items <- datadog.PaginationResult[ProcessSummary]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.listProcessesExecute(req)
+			resp, _, err := a.listProcessesExecute(ctx, o...)
 			if err != nil {
 				var returnItem ProcessSummary
 				items <- datadog.PaginationResult[ProcessSummary]{returnItem, err}
@@ -175,14 +133,22 @@ func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...Li
 }
 
 // listProcessesExecute executes the request.
-func (a *ProcessesApi) listProcessesExecute(r apiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApi) listProcessesExecute(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ProcessSummariesResponse
+		optionalParams      ListProcessesOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ProcessesApi.ListProcesses")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListProcessesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ProcessesApi.ListProcesses")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -192,33 +158,33 @@ func (a *ProcessesApi) listProcessesExecute(r apiListProcessesRequest) (ProcessS
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.search != nil {
-		localVarQueryParams.Add("search", datadog.ParameterToString(*r.search, ""))
+	if optionalParams.Search != nil {
+		localVarQueryParams.Add("search", datadog.ParameterToString(*optionalParams.Search, ""))
 	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", datadog.ParameterToString(*r.tags, ""))
+	if optionalParams.Tags != nil {
+		localVarQueryParams.Add("tags", datadog.ParameterToString(*optionalParams.Tags, ""))
 	}
-	if r.from != nil {
-		localVarQueryParams.Add("from", datadog.ParameterToString(*r.from, ""))
+	if optionalParams.From != nil {
+		localVarQueryParams.Add("from", datadog.ParameterToString(*optionalParams.From, ""))
 	}
-	if r.to != nil {
-		localVarQueryParams.Add("to", datadog.ParameterToString(*r.to, ""))
+	if optionalParams.To != nil {
+		localVarQueryParams.Add("to", datadog.ParameterToString(*optionalParams.To, ""))
 	}
-	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*r.pageLimit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
-	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*r.pageCursor, ""))
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

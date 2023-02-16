@@ -16,40 +16,22 @@ import (
 // CIVisibilityTestsApi service type
 type CIVisibilityTestsApi datadog.Service
 
-type apiAggregateCIAppTestEventsRequest struct {
-	ctx  _context.Context
-	body *CIAppTestsAggregateRequest
-}
-
-func (a *CIVisibilityTestsApi) buildAggregateCIAppTestEventsRequest(ctx _context.Context, body CIAppTestsAggregateRequest) (apiAggregateCIAppTestEventsRequest, error) {
-	req := apiAggregateCIAppTestEventsRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // AggregateCIAppTestEvents Aggregate tests events.
 // The API endpoint to aggregate CI Visibility test events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityTestsApi) AggregateCIAppTestEvents(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
-	req, err := a.buildAggregateCIAppTestEventsRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue CIAppTestsAnalyticsAggregateResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.aggregateCIAppTestEventsExecute(req)
+	return a.aggregateCIAppTestEventsExecute(ctx, body)
 }
 
 // aggregateCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) aggregateCIAppTestEventsExecute(r apiAggregateCIAppTestEventsRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
+func (a *CIVisibilityTestsApi) aggregateCIAppTestEventsExecute(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CIAppTestsAnalyticsAggregateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CIVisibilityTestsApi.AggregateCIAppTestEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.AggregateCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,21 +41,18 @@ func (a *CIVisibilityTestsApi) aggregateCIAppTestEventsExecute(r apiAggregateCIA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -114,16 +93,6 @@ func (a *CIVisibilityTestsApi) aggregateCIAppTestEventsExecute(r apiAggregateCIA
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiListCIAppTestEventsRequest struct {
-	ctx         _context.Context
-	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *CIAppSort
-	pageCursor  *string
-	pageLimit   *int32
 }
 
 // ListCIAppTestEventsOptionalParameters holds optional parameters for ListCIAppTestEvents.
@@ -178,39 +147,14 @@ func (r *ListCIAppTestEventsOptionalParameters) WithPageLimit(pageLimit int32) *
 	return r
 }
 
-func (a *CIVisibilityTestsApi) buildListCIAppTestEventsRequest(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (apiListCIAppTestEventsRequest, error) {
-	req := apiListCIAppTestEventsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListCIAppTestEventsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
-	return req, nil
-}
-
 // ListCIAppTestEvents Get a list of tests events.
 // List endpoint returns CI Visibility test events that match a log search query.
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to see your latest test events.
 func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-	req, err := a.buildListCIAppTestEventsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue CIAppTestEventsResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listCIAppTestEventsExecute(req)
+	return a.listCIAppTestEventsExecute(ctx, o...)
 }
 
 // ListCIAppTestEventsWithPagination provides a paginated version of ListCIAppTestEvents returning a channel with all items.
@@ -228,14 +172,7 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Co
 	items := make(chan datadog.PaginationResult[CIAppTestEvent], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildListCIAppTestEventsRequest(ctx, o...)
-			if err != nil {
-				var returnItem CIAppTestEvent
-				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.listCIAppTestEventsExecute(req)
+			resp, _, err := a.listCIAppTestEventsExecute(ctx, o...)
 			if err != nil {
 				var returnItem CIAppTestEvent
 				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
@@ -279,14 +216,22 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Co
 }
 
 // listCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(r apiListCIAppTestEventsRequest) (CIAppTestEventsResponse, *_nethttp.Response, error) {
+func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CIAppTestEventsResponse
+		optionalParams      ListCIAppTestEventsOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CIVisibilityTestsApi.ListCIAppTestEvents")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCIAppTestEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.ListCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -296,33 +241,33 @@ func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(r apiListCIAppTestEven
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*r.filterQuery, ""))
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
 	}
-	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*r.filterFrom, ""))
+	if optionalParams.FilterFrom != nil {
+		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*optionalParams.FilterFrom, ""))
 	}
-	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*r.filterTo, ""))
+	if optionalParams.FilterTo != nil {
+		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*optionalParams.FilterTo, ""))
 	}
-	if r.sort != nil {
-		localVarQueryParams.Add("sort", datadog.ParameterToString(*r.sort, ""))
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
-	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*r.pageCursor, ""))
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
 	}
-	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*r.pageLimit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -365,11 +310,6 @@ func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(r apiListCIAppTestEven
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiSearchCIAppTestEventsRequest struct {
-	ctx  _context.Context
-	body *CIAppTestEventsRequest
-}
-
 // SearchCIAppTestEventsOptionalParameters holds optional parameters for SearchCIAppTestEvents.
 type SearchCIAppTestEventsOptionalParameters struct {
 	Body *CIAppTestEventsRequest
@@ -387,34 +327,14 @@ func (r *SearchCIAppTestEventsOptionalParameters) WithBody(body CIAppTestEventsR
 	return r
 }
 
-func (a *CIVisibilityTestsApi) buildSearchCIAppTestEventsRequest(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (apiSearchCIAppTestEventsRequest, error) {
-	req := apiSearchCIAppTestEventsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type SearchCIAppTestEventsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
-	}
-	return req, nil
-}
-
 // SearchCIAppTestEvents Search tests events.
 // List endpoint returns CI Visibility test events that match a log search query.
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to build complex events filtering and search.
 func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-	req, err := a.buildSearchCIAppTestEventsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue CIAppTestEventsResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.searchCIAppTestEventsExecute(req)
+	return a.searchCIAppTestEventsExecute(ctx, o...)
 }
 
 // SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
@@ -438,14 +358,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 	items := make(chan datadog.PaginationResult[CIAppTestEvent], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildSearchCIAppTestEventsRequest(ctx, o...)
-			if err != nil {
-				var returnItem CIAppTestEvent
-				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.searchCIAppTestEventsExecute(req)
+			resp, _, err := a.searchCIAppTestEventsExecute(ctx, o...)
 			if err != nil {
 				var returnItem CIAppTestEvent
 				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
@@ -489,14 +402,22 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 }
 
 // searchCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) searchCIAppTestEventsExecute(r apiSearchCIAppTestEventsRequest) (CIAppTestEventsResponse, *_nethttp.Response, error) {
+func (a *CIVisibilityTestsApi) searchCIAppTestEventsExecute(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CIAppTestEventsResponse
+		optionalParams      SearchCIAppTestEventsOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CIVisibilityTestsApi.SearchCIAppTestEvents")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchCIAppTestEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.SearchCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -510,14 +431,14 @@ func (a *CIVisibilityTestsApi) searchCIAppTestEventsExecute(r apiSearchCIAppTest
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &optionalParams.Body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

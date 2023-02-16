@@ -16,40 +16,22 @@ import (
 // OpsgenieIntegrationApi service type
 type OpsgenieIntegrationApi datadog.Service
 
-type apiCreateOpsgenieServiceRequest struct {
-	ctx  _context.Context
-	body *OpsgenieServiceCreateRequest
-}
-
-func (a *OpsgenieIntegrationApi) buildCreateOpsgenieServiceRequest(ctx _context.Context, body OpsgenieServiceCreateRequest) (apiCreateOpsgenieServiceRequest, error) {
-	req := apiCreateOpsgenieServiceRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // CreateOpsgenieService Create a new service object.
 // Create a new service object in the Opsgenie integration.
 func (a *OpsgenieIntegrationApi) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	req, err := a.buildCreateOpsgenieServiceRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue OpsgenieServiceResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.createOpsgenieServiceExecute(req)
+	return a.createOpsgenieServiceExecute(ctx, body)
 }
 
 // createOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.CreateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OpsgenieIntegrationApi.CreateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -59,21 +41,18 @@ func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgeni
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -116,44 +95,27 @@ func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(r apiCreateOpsgeni
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiDeleteOpsgenieServiceRequest struct {
-	ctx                  _context.Context
-	integrationServiceId string
-}
-
-func (a *OpsgenieIntegrationApi) buildDeleteOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiDeleteOpsgenieServiceRequest, error) {
-	req := apiDeleteOpsgenieServiceRequest{
-		ctx:                  ctx,
-		integrationServiceId: integrationServiceId,
-	}
-	return req, nil
-}
-
 // DeleteOpsgenieService Delete a single service object.
 // Delete a single service object in the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
-	req, err := a.buildDeleteOpsgenieServiceRequest(ctx, integrationServiceId)
-	if err != nil {
-		return nil, err
-	}
 
-	return a.deleteOpsgenieServiceExecute(req)
+	return a.deleteOpsgenieServiceExecute(ctx, integrationServiceId)
 }
 
 // deleteOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgenieServiceRequest) (*_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.DeleteOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OpsgenieIntegrationApi.DeleteOpsgenieService")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -161,12 +123,12 @@ func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgeni
 	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -200,46 +162,28 @@ func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(r apiDeleteOpsgeni
 	return localVarHTTPResponse, nil
 }
 
-type apiGetOpsgenieServiceRequest struct {
-	ctx                  _context.Context
-	integrationServiceId string
-}
-
-func (a *OpsgenieIntegrationApi) buildGetOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string) (apiGetOpsgenieServiceRequest, error) {
-	req := apiGetOpsgenieServiceRequest{
-		ctx:                  ctx,
-		integrationServiceId: integrationServiceId,
-	}
-	return req, nil
-}
-
 // GetOpsgenieService Get a single service object.
 // Get a single service from the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetOpsgenieServiceRequest(ctx, integrationServiceId)
-	if err != nil {
-		var localVarReturnValue OpsgenieServiceResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getOpsgenieServiceExecute(req)
+	return a.getOpsgenieServiceExecute(ctx, integrationServiceId)
 }
 
 // getOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.GetOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OpsgenieIntegrationApi.GetOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -247,12 +191,12 @@ func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServi
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -295,38 +239,22 @@ func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(r apiGetOpsgenieServi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiListOpsgenieServicesRequest struct {
-	ctx _context.Context
-}
-
-func (a *OpsgenieIntegrationApi) buildListOpsgenieServicesRequest(ctx _context.Context) (apiListOpsgenieServicesRequest, error) {
-	req := apiListOpsgenieServicesRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // ListOpsgenieServices Get all service objects.
 // Get a list of all services from the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
-	req, err := a.buildListOpsgenieServicesRequest(ctx)
-	if err != nil {
-		var localVarReturnValue OpsgenieServicesResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listOpsgenieServicesExecute(req)
+	return a.listOpsgenieServicesExecute(ctx)
 }
 
 // listOpsgenieServicesExecute executes the request.
-func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieServicesRequest) (OpsgenieServicesResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServicesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.ListOpsgenieServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OpsgenieIntegrationApi.ListOpsgenieServices")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -339,12 +267,12 @@ func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieSe
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -387,67 +315,44 @@ func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(r apiListOpsgenieSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateOpsgenieServiceRequest struct {
-	ctx                  _context.Context
-	integrationServiceId string
-	body                 *OpsgenieServiceUpdateRequest
-}
-
-func (a *OpsgenieIntegrationApi) buildUpdateOpsgenieServiceRequest(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (apiUpdateOpsgenieServiceRequest, error) {
-	req := apiUpdateOpsgenieServiceRequest{
-		ctx:                  ctx,
-		integrationServiceId: integrationServiceId,
-		body:                 &body,
-	}
-	return req, nil
-}
-
 // UpdateOpsgenieService Update a single service object.
 // Update a single service object in the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	req, err := a.buildUpdateOpsgenieServiceRequest(ctx, integrationServiceId, body)
-	if err != nil {
-		var localVarReturnValue OpsgenieServiceResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateOpsgenieServiceExecute(req)
+	return a.updateOpsgenieServiceExecute(ctx, integrationServiceId, body)
 }
 
 // updateOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) updateOpsgenieServiceExecute(r apiUpdateOpsgenieServiceRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
+func (a *OpsgenieIntegrationApi) updateOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApi.UpdateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OpsgenieIntegrationApi.UpdateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/opsgenie/services/{integration_service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.integrationServiceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(integrationServiceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

@@ -17,43 +17,25 @@ import (
 // SecurityMonitoringApi service type
 type SecurityMonitoringApi datadog.Service
 
-type apiCreateSecurityFilterRequest struct {
-	ctx  _context.Context
-	body *SecurityFilterCreateRequest
-}
-
-func (a *SecurityMonitoringApi) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
-	req := apiCreateSecurityFilterRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // CreateSecurityFilter Create a security filter.
 // Create a security filter.
 //
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req, err := a.buildCreateSecurityFilterRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue SecurityFilterResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.createSecurityFilterExecute(req)
+	return a.createSecurityFilterExecute(ctx, body)
 }
 
 // createSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityFilterExecute(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -63,21 +45,18 @@ func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityF
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -120,40 +99,22 @@ func (a *SecurityMonitoringApi) createSecurityFilterExecute(r apiCreateSecurityF
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiCreateSecurityMonitoringRuleRequest struct {
-	ctx  _context.Context
-	body *SecurityMonitoringRuleCreatePayload
-}
-
-func (a *SecurityMonitoringApi) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
-	req := apiCreateSecurityMonitoringRuleRequest{
-		ctx:  ctx,
-		body: &body,
-	}
-	return req, nil
-}
-
 // CreateSecurityMonitoringRule Create a detection rule.
 // Create a detection rule.
 func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req, err := a.buildCreateSecurityMonitoringRuleRequest(ctx, body)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringRuleResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.createSecurityMonitoringRuleExecute(req)
+	return a.createSecurityMonitoringRuleExecute(ctx, body)
 }
 
 // createSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.CreateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -163,21 +124,18 @@ func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateS
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -220,44 +178,27 @@ func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(r apiCreateS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiDeleteSecurityFilterRequest struct {
-	ctx              _context.Context
-	securityFilterId string
-}
-
-func (a *SecurityMonitoringApi) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
-	req := apiDeleteSecurityFilterRequest{
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
-	}
-	return req, nil
-}
-
 // DeleteSecurityFilter Delete a security filter.
 // Delete a specific security filter.
 func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
-	req, err := a.buildDeleteSecurityFilterRequest(ctx, securityFilterId)
-	if err != nil {
-		return nil, err
-	}
 
-	return a.deleteSecurityFilterExecute(req)
+	return a.deleteSecurityFilterExecute(ctx, securityFilterId)
 }
 
 // deleteSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.DeleteSecurityFilter")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -265,12 +206,12 @@ func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityF
 	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -302,46 +243,29 @@ func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(r apiDeleteSecurityF
 	}
 
 	return localVarHTTPResponse, nil
-}
-
-type apiDeleteSecurityMonitoringRuleRequest struct {
-	ctx    _context.Context
-	ruleId string
-}
-
-func (a *SecurityMonitoringApi) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
-	req := apiDeleteSecurityMonitoringRuleRequest{
-		ctx:    ctx,
-		ruleId: ruleId,
-	}
-	return req, nil
 }
 
 // DeleteSecurityMonitoringRule Delete an existing rule.
 // Delete an existing rule. Default rules cannot be deleted.
 func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
-	req, err := a.buildDeleteSecurityMonitoringRuleRequest(ctx, ruleId)
-	if err != nil {
-		return nil, err
-	}
 
-	return a.deleteSecurityMonitoringRuleExecute(req)
+	return a.deleteSecurityMonitoringRuleExecute(ctx, ruleId)
 }
 
 // deleteSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.DeleteSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.DeleteSecurityMonitoringRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -349,12 +273,12 @@ func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteS
 	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -388,67 +312,44 @@ func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(r apiDeleteS
 	return localVarHTTPResponse, nil
 }
 
-type apiEditSecurityMonitoringSignalAssigneeRequest struct {
-	ctx      _context.Context
-	signalId string
-	body     *SecurityMonitoringSignalAssigneeUpdateRequest
-}
-
-func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalAssigneeRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (apiEditSecurityMonitoringSignalAssigneeRequest, error) {
-	req := apiEditSecurityMonitoringSignalAssigneeRequest{
-		ctx:      ctx,
-		signalId: signalId,
-		body:     &body,
-	}
-	return req, nil
-}
-
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	req, err := a.buildEditSecurityMonitoringSignalAssigneeRequest(ctx, signalId, body)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.editSecurityMonitoringSignalAssigneeExecute(req)
+	return a.editSecurityMonitoringSignalAssigneeExecute(ctx, signalId, body)
 }
 
 // editSecurityMonitoringSignalAssigneeExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/assignee"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -489,69 +390,46 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(r ap
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiEditSecurityMonitoringSignalIncidentsRequest struct {
-	ctx      _context.Context
-	signalId string
-	body     *SecurityMonitoringSignalIncidentsUpdateRequest
-}
-
-func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalIncidentsRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (apiEditSecurityMonitoringSignalIncidentsRequest, error) {
-	req := apiEditSecurityMonitoringSignalIncidentsRequest{
-		ctx:      ctx,
-		signalId: signalId,
-		body:     &body,
-	}
-	return req, nil
 }
 
 // EditSecurityMonitoringSignalIncidents Change the related incidents of a security signal.
 // Change the related incidents for a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	req, err := a.buildEditSecurityMonitoringSignalIncidentsRequest(ctx, signalId, body)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.editSecurityMonitoringSignalIncidentsExecute(req)
+	return a.editSecurityMonitoringSignalIncidentsExecute(ctx, signalId, body)
 }
 
 // editSecurityMonitoringSignalIncidentsExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(r apiEditSecurityMonitoringSignalIncidentsRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalIncidents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalIncidents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/incidents"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -594,67 +472,44 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(r a
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiEditSecurityMonitoringSignalStateRequest struct {
-	ctx      _context.Context
-	signalId string
-	body     *SecurityMonitoringSignalStateUpdateRequest
-}
-
-func (a *SecurityMonitoringApi) buildEditSecurityMonitoringSignalStateRequest(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (apiEditSecurityMonitoringSignalStateRequest, error) {
-	req := apiEditSecurityMonitoringSignalStateRequest{
-		ctx:      ctx,
-		signalId: signalId,
-		body:     &body,
-	}
-	return req, nil
-}
-
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	req, err := a.buildEditSecurityMonitoringSignalStateRequest(ctx, signalId, body)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.editSecurityMonitoringSignalStateExecute(req)
+	return a.editSecurityMonitoringSignalStateExecute(ctx, signalId, body)
 }
 
 // editSecurityMonitoringSignalStateExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalTriageUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalState")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.EditSecurityMonitoringSignalState")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/state"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -695,19 +550,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(r apiEd
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiGetSecurityFilterRequest struct {
-	ctx              _context.Context
-	securityFilterId string
-}
-
-func (a *SecurityMonitoringApi) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
-	req := apiGetSecurityFilterRequest{
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
-	}
-	return req, nil
 }
 
 // GetSecurityFilter Get a security filter.
@@ -716,30 +558,25 @@ func (a *SecurityMonitoringApi) buildGetSecurityFilterRequest(ctx _context.Conte
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetSecurityFilterRequest(ctx, securityFilterId)
-	if err != nil {
-		var localVarReturnValue SecurityFilterResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getSecurityFilterExecute(req)
+	return a.getSecurityFilterExecute(ctx, securityFilterId)
 }
 
 // getSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityFilterExecute(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -747,12 +584,12 @@ func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterR
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -795,46 +632,28 @@ func (a *SecurityMonitoringApi) getSecurityFilterExecute(r apiGetSecurityFilterR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetSecurityMonitoringRuleRequest struct {
-	ctx    _context.Context
-	ruleId string
-}
-
-func (a *SecurityMonitoringApi) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
-	req := apiGetSecurityMonitoringRuleRequest{
-		ctx:    ctx,
-		ruleId: ruleId,
-	}
-	return req, nil
-}
-
 // GetSecurityMonitoringRule Get a rule's details.
 // Get a rule's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetSecurityMonitoringRuleRequest(ctx, ruleId)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringRuleResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getSecurityMonitoringRuleExecute(req)
+	return a.getSecurityMonitoringRuleExecute(ctx, ruleId)
 }
 
 // getSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -842,12 +661,12 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurit
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -890,46 +709,28 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(r apiGetSecurit
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetSecurityMonitoringSignalRequest struct {
-	ctx      _context.Context
-	signalId string
-}
-
-func (a *SecurityMonitoringApi) buildGetSecurityMonitoringSignalRequest(ctx _context.Context, signalId string) (apiGetSecurityMonitoringSignalRequest, error) {
-	req := apiGetSecurityMonitoringSignalRequest{
-		ctx:      ctx,
-		signalId: signalId,
-	}
-	return req, nil
-}
-
 // GetSecurityMonitoringSignal Get a signal's details.
 // Get a signal's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
-	req, err := a.buildGetSecurityMonitoringSignalRequest(ctx, signalId)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignal
-		return localVarReturnValue, nil, err
-	}
 
-	return a.getSecurityMonitoringSignalExecute(req)
+	return a.getSecurityMonitoringSignalExecute(ctx, signalId)
 }
 
 // getSecurityMonitoringSignalExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(r apiGetSecurityMonitoringSignalRequest) (SecurityMonitoringSignal, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignal
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringSignal")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringSignal")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.signalId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -937,12 +738,12 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(r apiGetSecur
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -985,38 +786,22 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(r apiGetSecur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiListSecurityFiltersRequest struct {
-	ctx _context.Context
-}
-
-func (a *SecurityMonitoringApi) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
-	req := apiListSecurityFiltersRequest{
-		ctx: ctx,
-	}
-	return req, nil
-}
-
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
 func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
-	req, err := a.buildListSecurityFiltersRequest(ctx)
-	if err != nil {
-		var localVarReturnValue SecurityFiltersResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listSecurityFiltersExecute(req)
+	return a.listSecurityFiltersExecute(ctx)
 }
 
 // listSecurityFiltersExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityFiltersExecute(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityFilters")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1029,12 +814,12 @@ func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFilt
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1077,12 +862,6 @@ func (a *SecurityMonitoringApi) listSecurityFiltersExecute(r apiListSecurityFilt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiListSecurityMonitoringRulesRequest struct {
-	ctx        _context.Context
-	pageSize   *int64
-	pageNumber *int64
-}
-
 // ListSecurityMonitoringRulesOptionalParameters holds optional parameters for ListSecurityMonitoringRules.
 type ListSecurityMonitoringRulesOptionalParameters struct {
 	PageSize   *int64
@@ -1107,43 +886,30 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 	return r
 }
 
-func (a *SecurityMonitoringApi) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
-	req := apiListSecurityMonitoringRulesRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-	}
-	return req, nil
-}
-
 // ListSecurityMonitoringRules List rules.
 // List rules.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
-	req, err := a.buildListSecurityMonitoringRulesRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringListRulesResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listSecurityMonitoringRulesExecute(req)
+	return a.listSecurityMonitoringRulesExecute(ctx, o...)
 }
 
 // listSecurityMonitoringRulesExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringListRulesResponse
+		optionalParams      ListSecurityMonitoringRulesOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringRules")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1153,21 +919,21 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*r.pageSize, ""))
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
 	}
-	if r.pageNumber != nil {
-		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*r.pageNumber, ""))
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1208,16 +974,6 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(r apiListSecu
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiListSecurityMonitoringSignalsRequest struct {
-	ctx         _context.Context
-	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *SecurityMonitoringSignalsSort
-	pageCursor  *string
-	pageLimit   *int32
 }
 
 // ListSecurityMonitoringSignalsOptionalParameters holds optional parameters for ListSecurityMonitoringSignals.
@@ -1272,38 +1028,13 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 	return r
 }
 
-func (a *SecurityMonitoringApi) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
-	req := apiListSecurityMonitoringSignalsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
-	return req, nil
-}
-
 // ListSecurityMonitoringSignals Get a quick list of security signals.
 // The list endpoint returns security signals that match a search query.
 // Both this endpoint and the POST endpoint can be used interchangeably when listing
 // security signals.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignalsListResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.listSecurityMonitoringSignalsExecute(req)
+	return a.listSecurityMonitoringSignalsExecute(ctx, o...)
 }
 
 // ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
@@ -1321,14 +1052,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
-			if err != nil {
-				var returnItem SecurityMonitoringSignal
-				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.listSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.listSecurityMonitoringSignalsExecute(ctx, o...)
 			if err != nil {
 				var returnItem SecurityMonitoringSignal
 				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
@@ -1372,14 +1096,22 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 }
 
 // listSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
+		optionalParams      ListSecurityMonitoringSignalsOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringSignals")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1389,33 +1121,33 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.filterQuery != nil {
-		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*r.filterQuery, ""))
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
 	}
-	if r.filterFrom != nil {
-		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*r.filterFrom, ""))
+	if optionalParams.FilterFrom != nil {
+		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*optionalParams.FilterFrom, ""))
 	}
-	if r.filterTo != nil {
-		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*r.filterTo, ""))
+	if optionalParams.FilterTo != nil {
+		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*optionalParams.FilterTo, ""))
 	}
-	if r.sort != nil {
-		localVarQueryParams.Add("sort", datadog.ParameterToString(*r.sort, ""))
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
-	if r.pageCursor != nil {
-		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*r.pageCursor, ""))
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
 	}
-	if r.pageLimit != nil {
-		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*r.pageLimit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1458,11 +1190,6 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(r apiListSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiSearchSecurityMonitoringSignalsRequest struct {
-	ctx  _context.Context
-	body *SecurityMonitoringSignalListRequest
-}
-
 // SearchSecurityMonitoringSignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringSignals.
 type SearchSecurityMonitoringSignalsOptionalParameters struct {
 	Body *SecurityMonitoringSignalListRequest
@@ -1480,33 +1207,13 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 	return r
 }
 
-func (a *SecurityMonitoringApi) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
-	req := apiSearchSecurityMonitoringSignalsRequest{
-		ctx: ctx,
-	}
-
-	if len(o) > 1 {
-		return req, datadog.ReportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
-	}
-	return req, nil
-}
-
 // SearchSecurityMonitoringSignals Get a list of security signals.
 // Returns security signals that match a search query.
 // Both this endpoint and the GET endpoint can be used interchangeably for listing
 // security signals.
 func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringSignalsListResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.searchSecurityMonitoringSignalsExecute(req)
+	return a.searchSecurityMonitoringSignalsExecute(ctx, o...)
 }
 
 // SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
@@ -1530,14 +1237,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
 	go func() {
 		for {
-			req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
-			if err != nil {
-				var returnItem SecurityMonitoringSignal
-				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
-				break
-			}
-
-			resp, _, err := a.searchSecurityMonitoringSignalsExecute(req)
+			resp, _, err := a.searchSecurityMonitoringSignalsExecute(ctx, o...)
 			if err != nil {
 				var returnItem SecurityMonitoringSignal
 				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
@@ -1581,14 +1281,22 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 }
 
 // searchSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
+		optionalParams      SearchSecurityMonitoringSignalsOptionalParameters
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.SearchSecurityMonitoringSignals")
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.SearchSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1602,14 +1310,14 @@ func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSear
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &optionalParams.Body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1652,68 +1360,45 @@ func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(r apiSear
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateSecurityFilterRequest struct {
-	ctx              _context.Context
-	securityFilterId string
-	body             *SecurityFilterUpdateRequest
-}
-
-func (a *SecurityMonitoringApi) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
-	req := apiUpdateSecurityFilterRequest{
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
-		body:             &body,
-	}
-	return req, nil
-}
-
 // UpdateSecurityFilter Update a security filter.
 // Update a specific security filter.
 // Returns the security filter object when the request is successful.
 func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req, err := a.buildUpdateSecurityFilterRequest(ctx, securityFilterId, body)
-	if err != nil {
-		var localVarReturnValue SecurityFilterResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateSecurityFilterExecute(req)
+	return a.updateSecurityFilterExecute(ctx, securityFilterId, body)
 }
 
 // updateSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityFilterExecute(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.UpdateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.securityFilterId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1756,69 +1441,46 @@ func (a *SecurityMonitoringApi) updateSecurityFilterExecute(r apiUpdateSecurityF
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateSecurityMonitoringRuleRequest struct {
-	ctx    _context.Context
-	ruleId string
-	body   *SecurityMonitoringRuleUpdatePayload
-}
-
-func (a *SecurityMonitoringApi) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
-	req := apiUpdateSecurityMonitoringRuleRequest{
-		ctx:    ctx,
-		ruleId: ruleId,
-		body:   &body,
-	}
-	return req, nil
-}
-
 // UpdateSecurityMonitoringRule Update an existing rule.
 // Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
 // must be included. For example, when modifying a query all queries must be included.
 // Default rules can only be updated to be enabled and to change notifications.
 func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req, err := a.buildUpdateSecurityMonitoringRuleRequest(ctx, ruleId, body)
-	if err != nil {
-		var localVarReturnValue SecurityMonitoringRuleResponse
-		return localVarReturnValue, nil, err
-	}
 
-	return a.updateSecurityMonitoringRuleExecute(req)
+	return a.updateSecurityMonitoringRuleExecute(ctx, ruleId, body)
 }
 
 // updateSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) updateSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApi.UpdateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.UpdateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.ruleId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
