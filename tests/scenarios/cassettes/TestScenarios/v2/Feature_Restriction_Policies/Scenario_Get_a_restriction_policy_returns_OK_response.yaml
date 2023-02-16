@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Aabc-def-ghi
+  response:
+    body: '{"data":{"type":"restriction_policy","id":"dashboard:abc-def-ghi","attributes":{"bindings":[]}}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1
