@@ -273,7 +273,7 @@ if reflect.TypeOf(t).Kind() == reflect.Slice {
 	localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString(t, "{{ collectionFormat }}"))
 }
 {%- else -%}
-localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}, "{{collectionFormat}}"))
+localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.ParameterToString({% if isOptional %}*optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}, "{{collectionFormat}}"))
 {%- endif %}
 {%- endmacro %}
 	{%- for name, parameter in operation|parameters if parameter.in == "query" %}
