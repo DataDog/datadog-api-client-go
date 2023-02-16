@@ -323,14 +323,14 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endfor %}
 	
 	{%- if formParameter %}
-        formFile := {{ common_package_name }}.FormFile{}
+    formFile := {{ common_package_name }}.FormFile{}
 	formFile.FormFileName = "{{ formParameter.name }}"
 	{%- if formParameter.required %}
-	localVarFile := {% if isOptional %}optionalParams.{{ formParameter|attribute_name }}{% else %}{{ formParameter.name|variable_name}}{% endif %}
+	localVarFile := {{ formParameter.name|variable_name}}
 	{%- else %}
 	var localVarFile {{ get_type_for_parameter(formParameter) }}
-	if {% if isOptional %}optionalParams.{% endif %}{{ formParameter.name|variable_name}} != nil {
-		localVarFile = {% if isOptional %}optionalParams.{% endif %}{{ formParameter.name|variable_name}}
+	if optionalParams.{{ formParameter.name|attribute_name }} != nil {
+		localVarFile = *optionalParams.{{ formParameter.name|attribute_name }}
 	}
 	{%- endif %}
 	if localVarFile != nil {
@@ -342,10 +342,10 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endif %}
 
 	{%- if operation.requestBody is defined and not formParameter %}
-    {%- set isBodyOptional = True if "required" not in operation.requestBody else False %}
+    {%- set isBodyOptional = False if "required" in operation.requestBody and operation.requestBody.required else True %}
 
 	// body params
-	localVarPostBody = {% if isBodyOptional %}optionalParams.{{ operation.get("x-codegen-request-body-name", "body")|attribute_name }}{% else %}{{ operation.get("x-codegen-request-body-name", "body")|variable_name }}{% endif %}
+	localVarPostBody = &{% if isBodyOptional %}optionalParams.{{ operation.get("x-codegen-request-body-name", "body")|attribute_name }}{% else %}{{ operation.get("x-codegen-request-body-name", "body")|variable_name }}{% endif %}
 	{%- endif %}
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
 	{%- if authMethods %}
