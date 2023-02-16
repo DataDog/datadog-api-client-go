@@ -776,7 +776,7 @@ func (a *SyntheticsApi) getAPITestLatestResultsExecute(ctx _context.Context, pub
 		localVarQueryParams.Add("to_ts", datadog.ParameterToString(*optionalParams.ToTs, ""))
 	}
 	if optionalParams.ProbeDc != nil {
-		t := optionalParams.ProbeDc
+		t := *optionalParams.ProbeDc
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
@@ -1065,7 +1065,7 @@ func (a *SyntheticsApi) getBrowserTestLatestResultsExecute(ctx _context.Context,
 		localVarQueryParams.Add("to_ts", datadog.ParameterToString(*optionalParams.ToTs, ""))
 	}
 	if optionalParams.ProbeDc != nil {
-		t := optionalParams.ProbeDc
+		t := *optionalParams.ProbeDc
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {

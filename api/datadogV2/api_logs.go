@@ -601,7 +601,7 @@ func (a *LogsApi) submitLogExecute(ctx _context.Context, body []HTTPLogItem, o .
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if optionalParams.ContentEncoding != nil {
-		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(optionalParams.ContentEncoding, "")
+		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*optionalParams.ContentEncoding, "")
 	}
 
 	// body params

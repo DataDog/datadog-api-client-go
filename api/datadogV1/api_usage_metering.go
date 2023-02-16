@@ -2590,7 +2590,7 @@ func (a *UsageMeteringApi) getUsageLogsByIndexExecute(ctx _context.Context, star
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
 	if optionalParams.IndexName != nil {
-		t := optionalParams.IndexName
+		t := *optionalParams.IndexName
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
@@ -4241,7 +4241,7 @@ func (a *UsageMeteringApi) getUsageTopAvgMetricsExecute(ctx _context.Context, o 
 		localVarQueryParams.Add("day", datadog.ParameterToString(*optionalParams.Day, ""))
 	}
 	if optionalParams.Names != nil {
-		t := optionalParams.Names
+		t := *optionalParams.Names
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {

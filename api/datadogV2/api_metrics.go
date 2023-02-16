@@ -1222,7 +1222,7 @@ func (a *MetricsApi) submitMetricsExecute(ctx _context.Context, body MetricPaylo
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if optionalParams.ContentEncoding != nil {
-		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(optionalParams.ContentEncoding, "")
+		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*optionalParams.ContentEncoding, "")
 	}
 
 	// body params

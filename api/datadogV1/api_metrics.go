@@ -418,7 +418,7 @@ func (a *MetricsApi) submitDistributionPointsExecute(ctx _context.Context, body 
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if optionalParams.ContentEncoding != nil {
-		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(optionalParams.ContentEncoding, "")
+		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*optionalParams.ContentEncoding, "")
 	}
 
 	// body params
@@ -535,7 +535,7 @@ func (a *MetricsApi) submitMetricsExecute(ctx _context.Context, body MetricsPayl
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if optionalParams.ContentEncoding != nil {
-		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(optionalParams.ContentEncoding, "")
+		localVarHeaderParams["Content-Encoding"] = datadog.ParameterToString(*optionalParams.ContentEncoding, "")
 	}
 
 	// body params

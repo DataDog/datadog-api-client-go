@@ -263,7 +263,7 @@ func (a *{{ classname }}) {{ operation.operationId|untitle_case }}Execute(ctx _c
 {%- set collectionFormat = parameter|collection_format %}
 {%- set isOptional = True if parameter.in != "path" and not parameter.required else False %}
 {%- if collectionFormat == "multi" -%}
-t := {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}
+t := {% if isOptional %}*optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}
 if reflect.TypeOf(t).Kind() == reflect.Slice {
 	s := reflect.ValueOf(t)
 	for i := 0; i < s.Len(); i++ {
@@ -317,7 +317,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- else %}
 
 	if optionalParams.{{ name|attribute_name }} != nil {
-		localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(optionalParams.{{ name|attribute_name }}, "{{collectionFormat}}")
+		localVarHeaderParams["{{ parameter.name }}"] = {{ common_package_name }}.ParameterToString(*optionalParams.{{ name|attribute_name }}, "{{collectionFormat}}")
 	}
 	{%- endif %}
 	{%- endfor %}
