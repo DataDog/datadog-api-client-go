@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"on_demand_concurrency_cap":20}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/synthetics/settings/on_demand_concurrency_cap
+  response:
+    body: '{"data":{"type":"on_demand_concurrency_cap","attributes":{"on_demand_concurrency_cap":20}}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

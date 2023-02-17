@@ -189,6 +189,8 @@
 //  - [ServiceDefinitionApi.DeleteServiceDefinition]
 //  - [ServiceDefinitionApi.GetServiceDefinition]
 //  - [ServiceDefinitionApi.ListServiceDefinitions]
+//  - [SyntheticsApi.GetOnDemandConcurrencyCap]
+//  - [SyntheticsApi.SetOnDemandConcurrencyCap]
 //  - [UsageMeteringApi.GetCostByOrg]
 //  - [UsageMeteringApi.GetEstimatedCostByOrg]
 //  - [UsageMeteringApi.GetHistoricalCostByOrg]
