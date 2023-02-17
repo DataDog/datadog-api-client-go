@@ -19,7 +19,6 @@ type RestrictionPoliciesApi datadog.Service
 // DeleteRestrictionPolicy Delete a restriction policy.
 // Deletes the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, resourceId string) (*_nethttp.Response, error) {
-
 	return a.deleteRestrictionPolicyExecute(ctx, resourceId)
 }
 
@@ -86,7 +85,6 @@ func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(ctx _context.Con
 // GetRestrictionPolicy Get a restriction policy.
 // Retrieves the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, resourceId string) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-
 	return a.getRestrictionPolicyExecute(ctx, resourceId)
 }
 
@@ -170,7 +168,6 @@ func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(ctx _context.Contex
 // - Notebooks: `notebook`
 // - Security Rules: `security-rule`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-
 	return a.updateRestrictionPolicyExecute(ctx, resourceId, body)
 }
 

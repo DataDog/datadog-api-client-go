@@ -18,7 +18,6 @@ type SyntheticsApi datadog.Service
 // GetOnDemandConcurrencyCap Get the on-demand concurrency cap.
 // Get the on-demand concurrency cap.
 func (a *SyntheticsApi) GetOnDemandConcurrencyCap(ctx _context.Context) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
-
 	return a.getOnDemandConcurrencyCapExecute(ctx)
 }
 
@@ -94,7 +93,6 @@ func (a *SyntheticsApi) getOnDemandConcurrencyCapExecute(ctx _context.Context) (
 // SetOnDemandConcurrencyCap Save new value for on-demand concurrency cap.
 // Save new value for on-demand concurrency cap.
 func (a *SyntheticsApi) SetOnDemandConcurrencyCap(ctx _context.Context, body OnDemandConcurrencyCapAttributes) (OnDemandConcurrencyCapResponse, *_nethttp.Response, error) {
-
 	return a.setOnDemandConcurrencyCapExecute(ctx, body)
 }
 

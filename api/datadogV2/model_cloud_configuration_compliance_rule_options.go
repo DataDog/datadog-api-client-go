@@ -10,6 +10,7 @@ import (
 
 // CloudConfigurationComplianceRuleOptions Options for cloud_configuration rules.
 // Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.
+//
 type CloudConfigurationComplianceRuleOptions struct {
 	// Whether the rule is a complex one.
 	// Must be set to true if `regoRule.resourceTypes` contains more than one item. Defaults to false.
