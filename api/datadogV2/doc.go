@@ -53,6 +53,8 @@
 //  - [FastlyIntegrationApi.ListFastlyServices]
 //  - [FastlyIntegrationApi.UpdateFastlyAccount]
 //  - [FastlyIntegrationApi.UpdateFastlyService]
+//  - [IPAllowlistApi.GetIPAllowlist]
+//  - [IPAllowlistApi.UpdateIPAllowlist]
 //  - [IncidentServicesApi.CreateIncidentService]
 //  - [IncidentServicesApi.DeleteIncidentService]
 //  - [IncidentServicesApi.GetIncidentService]
