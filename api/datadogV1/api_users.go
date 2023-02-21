@@ -22,11 +22,6 @@ type UsersApi datadog.Service
 // **Note**: Users can only be created with the admin access role
 // if application keys belong to administrators.
 func (a *UsersApi) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
-	return a.createUserExecute(ctx, body)
-}
-
-// createUserExecute executes the request.
-func (a *UsersApi) createUserExecute(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -103,11 +98,6 @@ func (a *UsersApi) createUserExecute(ctx _context.Context, body User) (UserRespo
 // **Note**: This endpoint can only be used with application keys belonging to
 // administrators.
 func (a *UsersApi) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
-	return a.disableUserExecute(ctx, userHandle)
-}
-
-// disableUserExecute executes the request.
-func (a *UsersApi) disableUserExecute(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -179,11 +169,6 @@ func (a *UsersApi) disableUserExecute(ctx _context.Context, userHandle string) (
 // GetUser Get user details.
 // Get a user's details.
 func (a *UsersApi) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
-	return a.getUserExecute(ctx, userHandle)
-}
-
-// getUserExecute executes the request.
-func (a *UsersApi) getUserExecute(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -255,11 +240,6 @@ func (a *UsersApi) getUserExecute(ctx _context.Context, userHandle string) (User
 // ListUsers List all users.
 // List all users for your organization.
 func (a *UsersApi) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
-	return a.listUsersExecute(ctx)
-}
-
-// listUsersExecute executes the request.
-func (a *UsersApi) listUsersExecute(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -332,11 +312,6 @@ func (a *UsersApi) listUsersExecute(ctx _context.Context) (UserListResponse, *_n
 //
 // **Note**: It can only be used with application keys belonging to administrators.
 func (a *UsersApi) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
-	return a.updateUserExecute(ctx, userHandle, body)
-}
-
-// updateUserExecute executes the request.
-func (a *UsersApi) updateUserExecute(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

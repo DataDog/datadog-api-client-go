@@ -21,11 +21,6 @@ type IncidentsApi datadog.Service
 // CreateIncident Create an incident.
 // Create an incident.
 func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
-	return a.createIncidentExecute(ctx, body)
-}
-
-// createIncidentExecute executes the request.
-func (a *IncidentsApi) createIncidentExecute(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -106,11 +101,6 @@ func (a *IncidentsApi) createIncidentExecute(ctx _context.Context, body Incident
 // DeleteIncident Delete an existing incident.
 // Deletes an existing incident from the users organization.
 func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
-	return a.deleteIncidentExecute(ctx, incidentId)
-}
-
-// deleteIncidentExecute executes the request.
-func (a *IncidentsApi) deleteIncidentExecute(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -196,11 +186,6 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 // GetIncident Get the details of an incident.
 // Get the details of an incident by `incident_id`.
 func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
-	return a.getIncidentExecute(ctx, incidentId, o...)
-}
-
-// getIncidentExecute executes the request.
-func (a *IncidentsApi) getIncidentExecute(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -314,11 +299,6 @@ func (r *ListIncidentAttachmentsOptionalParameters) WithFilterAttachmentType(fil
 // ListIncidentAttachments Get a list of attachments.
 // Get all attachments for a given incident.
 func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
-	return a.listIncidentAttachmentsExecute(ctx, incidentId, o...)
-}
-
-// listIncidentAttachmentsExecute executes the request.
-func (a *IncidentsApi) listIncidentAttachmentsExecute(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -442,61 +422,6 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 // ListIncidents Get a list of incidents.
 // Get all incidents for the user's organization.
 func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
-	return a.listIncidentsExecute(ctx, o...)
-}
-
-// ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
-func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int64(10)
-	if len(o) == 0 {
-		o = append(o, ListIncidentsOptionalParameters{})
-	}
-	if o[0].PageSize != nil {
-		pageSize_ = *o[0].PageSize
-	}
-	o[0].PageSize = &pageSize_
-
-	items := make(chan datadog.PaginationResult[IncidentResponseData], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listIncidentsExecute(ctx, o...)
-			if err != nil {
-				var returnItem IncidentResponseData
-				items <- datadog.PaginationResult[IncidentResponseData]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[IncidentResponseData]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			if o[0].PageOffset == nil {
-				o[0].PageOffset = &pageSize_
-			} else {
-				pageOffset_ := *o[0].PageOffset + pageSize_
-				o[0].PageOffset = &pageOffset_
-			}
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listIncidentsExecute executes the request.
-func (a *IncidentsApi) listIncidentsExecute(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -588,6 +513,56 @@ func (a *IncidentsApi) listIncidentsExecute(ctx _context.Context, o ...ListIncid
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
+func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListIncidentsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+
+	items := make(chan datadog.PaginationResult[IncidentResponseData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListIncidents(ctx, o...)
+			if err != nil {
+				var returnItem IncidentResponseData
+				items <- datadog.PaginationResult[IncidentResponseData]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[IncidentResponseData]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // SearchIncidentsOptionalParameters holds optional parameters for SearchIncidents.
 type SearchIncidentsOptionalParameters struct {
 	Include *IncidentRelatedObject
@@ -615,11 +590,6 @@ func (r *SearchIncidentsOptionalParameters) WithSort(sort IncidentSearchSortOrde
 // SearchIncidents Search for incidents.
 // Search for incidents matching a certain query.
 func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (IncidentSearchResponse, *_nethttp.Response, error) {
-	return a.searchIncidentsExecute(ctx, query, o...)
-}
-
-// searchIncidentsExecute executes the request.
-func (a *IncidentsApi) searchIncidentsExecute(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (IncidentSearchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -729,11 +699,6 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 // UpdateIncident Update an existing incident.
 // Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
-	return a.updateIncidentExecute(ctx, incidentId, body, o...)
-}
-
-// updateIncidentExecute executes the request.
-func (a *IncidentsApi) updateIncidentExecute(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -843,11 +808,6 @@ func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []Inci
 // UpdateIncidentAttachments Create, update, and delete incident attachments.
 // The bulk update endpoint for creating, updating, and deleting attachments for a given incident.
 func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
-	return a.updateIncidentAttachmentsExecute(ctx, incidentId, body, o...)
-}
-
-// updateIncidentAttachmentsExecute executes the request.
-func (a *IncidentsApi) updateIncidentAttachmentsExecute(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

@@ -19,11 +19,6 @@ type LogsApi datadog.Service
 // AggregateLogs Aggregate events.
 // The API endpoint to aggregate events into buckets and compute metrics and timeseries.
 func (a *LogsApi) AggregateLogs(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
-	return a.aggregateLogsExecute(ctx, body)
-}
-
-// aggregateLogsExecute executes the request.
-func (a *LogsApi) aggregateLogsExecute(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -124,75 +119,6 @@ func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOpt
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApi) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-	return a.listLogsExecute(ctx, o...)
-}
-
-// ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
-func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListLogsOptionalParameters{})
-	}
-	if o[0].Body == nil {
-		o[0].Body = NewLogsListRequest()
-	}
-	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewLogsListRequestPage()
-	}
-	if o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
-	o[0].Body.Page.Limit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[Log], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listLogsExecute(ctx, o...)
-			if err != nil {
-				var returnItem Log
-				items <- datadog.PaginationResult[Log]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[Log]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].Body.Page.Cursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listLogsExecute executes the request.
-func (a *LogsApi) listLogsExecute(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -269,6 +195,70 @@ func (a *LogsApi) listLogsExecute(ctx _context.Context, o ...ListLogsOptionalPar
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
+func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, ListLogsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewLogsListRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewLogsListRequestPage()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[Log], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListLogs(ctx, o...)
+			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[Log]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // ListLogsGetOptionalParameters holds optional parameters for ListLogsGet.
@@ -350,69 +340,6 @@ func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogs
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApi) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-	return a.listLogsGetExecute(ctx, o...)
-}
-
-// ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
-func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListLogsGetOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[Log], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listLogsGetExecute(ctx, o...)
-			if err != nil {
-				var returnItem Log
-				items <- datadog.PaginationResult[Log]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[Log]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listLogsGetExecute executes the request.
-func (a *LogsApi) listLogsGetExecute(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -512,6 +439,64 @@ func (a *LogsApi) listLogsGetExecute(ctx _context.Context, o ...ListLogsGetOptio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
+func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan datadog.PaginationResult[Log], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, ListLogsGetOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[Log], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListLogsGet(ctx, o...)
+			if err != nil {
+				var returnItem Log
+				items <- datadog.PaginationResult[Log]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[Log]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // SubmitLogOptionalParameters holds optional parameters for SubmitLog.
 type SubmitLogOptionalParameters struct {
 	ContentEncoding *ContentEncoding
@@ -561,11 +546,6 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 // - 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time
 // - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
 func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
-	return a.submitLogExecute(ctx, body, o...)
-}
-
-// submitLogExecute executes the request.
-func (a *LogsApi) submitLogExecute(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}

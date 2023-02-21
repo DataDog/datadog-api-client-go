@@ -18,11 +18,6 @@ type IPAllowlistApi datadog.Service
 // GetIPAllowlist Get IP Allowlist.
 // Returns the IP allowlist and its enabled or disabled state.
 func (a *IPAllowlistApi) GetIPAllowlist(ctx _context.Context) (IPAllowlistResponse, *_nethttp.Response, error) {
-	return a.getIPAllowlistExecute(ctx)
-}
-
-// getIPAllowlistExecute executes the request.
-func (a *IPAllowlistApi) getIPAllowlistExecute(ctx _context.Context) (IPAllowlistResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -93,11 +88,6 @@ func (a *IPAllowlistApi) getIPAllowlistExecute(ctx _context.Context) (IPAllowlis
 // UpdateIPAllowlist Update IP Allowlist.
 // Edit the entries in the IP allowlist, and enable or disable it.
 func (a *IPAllowlistApi) UpdateIPAllowlist(ctx _context.Context, body IPAllowlistUpdateRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
-	return a.updateIPAllowlistExecute(ctx, body)
-}
-
-// updateIPAllowlistExecute executes the request.
-func (a *IPAllowlistApi) updateIPAllowlistExecute(ctx _context.Context, body IPAllowlistUpdateRequest) (IPAllowlistResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

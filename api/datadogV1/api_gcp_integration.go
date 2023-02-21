@@ -18,11 +18,6 @@ type GCPIntegrationApi datadog.Service
 // CreateGCPIntegration Create a GCP integration.
 // Create a Datadog-GCP integration.
 func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	return a.createGCPIntegrationExecute(ctx, body)
-}
-
-// createGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApi) createGCPIntegrationExecute(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -96,11 +91,6 @@ func (a *GCPIntegrationApi) createGCPIntegrationExecute(ctx _context.Context, bo
 // DeleteGCPIntegration Delete a GCP integration.
 // Delete a given Datadog-GCP integration.
 func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	return a.deleteGCPIntegrationExecute(ctx, body)
-}
-
-// deleteGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -174,11 +164,6 @@ func (a *GCPIntegrationApi) deleteGCPIntegrationExecute(ctx _context.Context, bo
 // ListGCPIntegration List all GCP integrations.
 // List all Datadog-GCP integrations configured in your Datadog account.
 func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
-	return a.listGCPIntegrationExecute(ctx)
-}
-
-// listGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApi) listGCPIntegrationExecute(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -252,11 +237,6 @@ func (a *GCPIntegrationApi) listGCPIntegrationExecute(ctx _context.Context) ([]G
 // If you need to update these fields, delete and use the create (`POST`) endpoint.
 // The unspecified fields will keep their original values.
 func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	return a.updateGCPIntegrationExecute(ctx, body)
-}
-
-// updateGCPIntegrationExecute executes the request.
-func (a *GCPIntegrationApi) updateGCPIntegrationExecute(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

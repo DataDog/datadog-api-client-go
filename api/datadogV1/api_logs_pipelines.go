@@ -19,11 +19,6 @@ type LogsPipelinesApi datadog.Service
 // CreateLogsPipeline Create a pipeline.
 // Create a pipeline in your organization.
 func (a *LogsPipelinesApi) CreateLogsPipeline(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
-	return a.createLogsPipelineExecute(ctx, body)
-}
-
-// createLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) createLogsPipelineExecute(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -107,11 +102,6 @@ func (a *LogsPipelinesApi) createLogsPipelineExecute(ctx _context.Context, body 
 // Delete a given pipeline from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) DeleteLogsPipeline(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
-	return a.deleteLogsPipelineExecute(ctx, pipelineId)
-}
-
-// deleteLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) deleteLogsPipelineExecute(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -183,11 +173,6 @@ func (a *LogsPipelinesApi) deleteLogsPipelineExecute(ctx _context.Context, pipel
 // Get a specific pipeline from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) GetLogsPipeline(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
-	return a.getLogsPipelineExecute(ctx, pipelineId)
-}
-
-// getLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) getLogsPipelineExecute(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -269,11 +254,6 @@ func (a *LogsPipelinesApi) getLogsPipelineExecute(ctx _context.Context, pipeline
 // Get the current order of your pipelines.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) GetLogsPipelineOrder(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
-	return a.getLogsPipelineOrderExecute(ctx)
-}
-
-// getLogsPipelineOrderExecute executes the request.
-func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -345,11 +325,6 @@ func (a *LogsPipelinesApi) getLogsPipelineOrderExecute(ctx _context.Context) (Lo
 // Get all pipelines from your organization.
 // This endpoint takes no JSON arguments.
 func (a *LogsPipelinesApi) ListLogsPipelines(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
-	return a.listLogsPipelinesExecute(ctx)
-}
-
-// listLogsPipelinesExecute executes the request.
-func (a *LogsPipelinesApi) listLogsPipelinesExecute(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -423,11 +398,6 @@ func (a *LogsPipelinesApi) listLogsPipelinesExecute(ctx _context.Context) ([]Log
 // **Note**: Using this method updates your pipeline configuration by **replacing**
 // your current configuration with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApi) UpdateLogsPipeline(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
-	return a.updateLogsPipelineExecute(ctx, pipelineId, body)
-}
-
-// updateLogsPipelineExecute executes the request.
-func (a *LogsPipelinesApi) updateLogsPipelineExecute(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -515,11 +485,6 @@ func (a *LogsPipelinesApi) updateLogsPipelineExecute(ctx _context.Context, pipel
 // **Note**: Using the `PUT` method updates your pipeline order by replacing your current order
 // with the new one sent to your Datadog organization.
 func (a *LogsPipelinesApi) UpdateLogsPipelineOrder(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
-	return a.updateLogsPipelineOrderExecute(ctx, body)
-}
-
-// updateLogsPipelineOrderExecute executes the request.
-func (a *LogsPipelinesApi) updateLogsPipelineOrderExecute(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

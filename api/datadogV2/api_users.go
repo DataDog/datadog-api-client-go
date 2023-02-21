@@ -19,11 +19,6 @@ type UsersApi datadog.Service
 // CreateUser Create a user.
 // Create a user for your organization.
 func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
-	return a.createUserExecute(ctx, body)
-}
-
-// createUserExecute executes the request.
-func (a *UsersApi) createUserExecute(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -98,11 +93,6 @@ func (a *UsersApi) createUserExecute(ctx _context.Context, body UserCreateReques
 // Disable a user. Can only be used with an application key belonging
 // to an administrator user.
 func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
-	return a.disableUserExecute(ctx, userId)
-}
-
-// disableUserExecute executes the request.
-func (a *UsersApi) disableUserExecute(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -164,11 +154,6 @@ func (a *UsersApi) disableUserExecute(ctx _context.Context, userId string) (*_ne
 // GetInvitation Get a user invitation.
 // Returns a single user invitation by its UUID.
 func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
-	return a.getInvitationExecute(ctx, userInvitationUuid)
-}
-
-// getInvitationExecute executes the request.
-func (a *UsersApi) getInvitationExecute(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -240,11 +225,6 @@ func (a *UsersApi) getInvitationExecute(ctx _context.Context, userInvitationUuid
 // GetUser Get user details.
 // Get a user in the organization specified by the user’s `user_id`.
 func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
-	return a.getUserExecute(ctx, userId)
-}
-
-// getUserExecute executes the request.
-func (a *UsersApi) getUserExecute(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -317,11 +297,6 @@ func (a *UsersApi) getUserExecute(ctx _context.Context, userId string) (UserResp
 // Get a user organization. Returns the user information and all organizations
 // joined by this user.
 func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
-	return a.listUserOrganizationsExecute(ctx, userId)
-}
-
-// listUserOrganizationsExecute executes the request.
-func (a *UsersApi) listUserOrganizationsExecute(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -394,11 +369,6 @@ func (a *UsersApi) listUserOrganizationsExecute(ctx _context.Context, userId str
 // Get a user permission set. Returns a list of the user’s permissions
 // granted by the associated user's roles.
 func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
-	return a.listUserPermissionsExecute(ctx, userId)
-}
-
-// listUserPermissionsExecute executes the request.
-func (a *UsersApi) listUserPermissionsExecute(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -523,11 +493,6 @@ func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *Lis
 // Get the list of all users in the organization. This list includes
 // all users even if they are deactivated or unverified.
 func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
-	return a.listUsersExecute(ctx, o...)
-}
-
-// listUsersExecute executes the request.
-func (a *UsersApi) listUsersExecute(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -624,11 +589,6 @@ func (a *UsersApi) listUsersExecute(ctx _context.Context, o ...ListUsersOptional
 // SendInvitations Send invitation emails.
 // Sends emails to one or more users inviting them to join the organization.
 func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
-	return a.sendInvitationsExecute(ctx, body)
-}
-
-// sendInvitationsExecute executes the request.
-func (a *UsersApi) sendInvitationsExecute(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -703,11 +663,6 @@ func (a *UsersApi) sendInvitationsExecute(ctx _context.Context, body UserInvitat
 // Edit a user. Can only be used with an application key belonging
 // to an administrator user.
 func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
-	return a.updateUserExecute(ctx, userId, body)
-}
-
-// updateUserExecute executes the request.
-func (a *UsersApi) updateUserExecute(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

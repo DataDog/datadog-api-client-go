@@ -26,11 +26,6 @@ type LogsApi datadog.Service
 // [1]: /logs/guide/collect-multiple-logs-with-pagination
 // [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApi) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
-	return a.listLogsExecute(ctx, body)
-}
-
-// listLogsExecute executes the request.
-func (a *LogsApi) listLogsExecute(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -157,11 +152,6 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 //
 // Deprecated: This API is deprecated.
 func (a *LogsApi) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
-	return a.submitLogExecute(ctx, body, o...)
-}
-
-// submitLogExecute executes the request.
-func (a *LogsApi) submitLogExecute(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}

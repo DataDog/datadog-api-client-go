@@ -20,11 +20,6 @@ type LogsMetricsApi datadog.Service
 // Create a metric based on your ingested logs in your organization.
 // Returns the log-based metric object from the request body when the request is successful.
 func (a *LogsMetricsApi) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
-	return a.createLogsMetricExecute(ctx, body)
-}
-
-// createLogsMetricExecute executes the request.
-func (a *LogsMetricsApi) createLogsMetricExecute(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -98,11 +93,6 @@ func (a *LogsMetricsApi) createLogsMetricExecute(ctx _context.Context, body Logs
 // DeleteLogsMetric Delete a log-based metric.
 // Delete a specific log-based metric from your organization.
 func (a *LogsMetricsApi) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
-	return a.deleteLogsMetricExecute(ctx, metricId)
-}
-
-// deleteLogsMetricExecute executes the request.
-func (a *LogsMetricsApi) deleteLogsMetricExecute(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -164,11 +154,6 @@ func (a *LogsMetricsApi) deleteLogsMetricExecute(ctx _context.Context, metricId 
 // GetLogsMetric Get a log-based metric.
 // Get a specific log-based metric from your organization.
 func (a *LogsMetricsApi) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
-	return a.getLogsMetricExecute(ctx, metricId)
-}
-
-// getLogsMetricExecute executes the request.
-func (a *LogsMetricsApi) getLogsMetricExecute(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -240,11 +225,6 @@ func (a *LogsMetricsApi) getLogsMetricExecute(ctx _context.Context, metricId str
 // ListLogsMetrics Get all log-based metrics.
 // Get the list of configured log-based metrics with their definitions.
 func (a *LogsMetricsApi) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
-	return a.listLogsMetricsExecute(ctx)
-}
-
-// listLogsMetricsExecute executes the request.
-func (a *LogsMetricsApi) listLogsMetricsExecute(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -316,11 +296,6 @@ func (a *LogsMetricsApi) listLogsMetricsExecute(ctx _context.Context) (LogsMetri
 // Update a specific log-based metric from your organization.
 // Returns the log-based metric object from the request body when the request is successful.
 func (a *LogsMetricsApi) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
-	return a.updateLogsMetricExecute(ctx, metricId, body)
-}
-
-// updateLogsMetricExecute executes the request.
-func (a *LogsMetricsApi) updateLogsMetricExecute(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

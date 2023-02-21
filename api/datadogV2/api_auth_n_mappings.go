@@ -19,11 +19,6 @@ type AuthNMappingsApi datadog.Service
 // CreateAuthNMapping Create an AuthN Mapping.
 // Create an AuthN Mapping.
 func (a *AuthNMappingsApi) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
-	return a.createAuthNMappingExecute(ctx, body)
-}
-
-// createAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApi) createAuthNMappingExecute(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *AuthNMappingsApi) createAuthNMappingExecute(ctx _context.Context, body 
 // DeleteAuthNMapping Delete an AuthN Mapping.
 // Delete an AuthN Mapping specified by AuthN Mapping UUID.
 func (a *AuthNMappingsApi) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
-	return a.deleteAuthNMappingExecute(ctx, authnMappingId)
-}
-
-// deleteAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApi) deleteAuthNMappingExecute(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *AuthNMappingsApi) deleteAuthNMappingExecute(ctx _context.Context, authn
 // GetAuthNMapping Get an AuthN Mapping by UUID.
 // Get an AuthN Mapping specified by the AuthN Mapping UUID.
 func (a *AuthNMappingsApi) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
-	return a.getAuthNMappingExecute(ctx, authnMappingId)
-}
-
-// getAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApi) getAuthNMappingExecute(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -277,11 +262,6 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 // ListAuthNMappings List all AuthN Mappings.
 // List all AuthN Mappings in the org.
 func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
-	return a.listAuthNMappingsExecute(ctx, o...)
-}
-
-// listAuthNMappingsExecute executes the request.
-func (a *AuthNMappingsApi) listAuthNMappingsExecute(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -372,11 +352,6 @@ func (a *AuthNMappingsApi) listAuthNMappingsExecute(ctx _context.Context, o ...L
 // UpdateAuthNMapping Edit an AuthN Mapping.
 // Edit an AuthN Mapping.
 func (a *AuthNMappingsApi) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
-	return a.updateAuthNMappingExecute(ctx, authnMappingId, body)
-}
-
-// updateAuthNMappingExecute executes the request.
-func (a *AuthNMappingsApi) updateAuthNMappingExecute(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

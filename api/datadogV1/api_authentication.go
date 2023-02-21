@@ -18,11 +18,6 @@ type AuthenticationApi datadog.Service
 // Validate Validate API key.
 // Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
 func (a *AuthenticationApi) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
-	return a.validateExecute(ctx)
-}
-
-// validateExecute executes the request.
-func (a *AuthenticationApi) validateExecute(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}

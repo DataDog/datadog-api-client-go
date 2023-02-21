@@ -42,11 +42,6 @@ func (r *GetCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetCo
 //
 // Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
-	return a.getCostByOrgExecute(ctx, startMonth, o...)
-}
-
-// getCostByOrgExecute executes the request.
-func (a *UsageMeteringApi) getCostByOrgExecute(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -177,11 +172,6 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time)
 // and is delayed by up to 72 hours from when it was incurred.
 // To access historical costs prior to this, use the `/historical_cost` endpoint.
 func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
-	return a.getEstimatedCostByOrgExecute(ctx, o...)
-}
-
-// getEstimatedCostByOrgExecute executes the request.
-func (a *UsageMeteringApi) getEstimatedCostByOrgExecute(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -300,11 +290,6 @@ func (r *GetHistoricalCostByOrgOptionalParameters) WithEndMonth(endMonth time.Ti
 // Get historical cost across multi-org and single root-org accounts.
 // Cost data for a given month becomes available no later than the 16th of the following month.
 func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetHistoricalCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
-	return a.getHistoricalCostByOrgExecute(ctx, startMonth, o...)
-}
-
-// getHistoricalCostByOrgExecute executes the request.
-func (a *UsageMeteringApi) getHistoricalCostByOrgExecute(ctx _context.Context, startMonth time.Time, o ...GetHistoricalCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -435,11 +420,6 @@ func (r *GetHourlyUsageOptionalParameters) WithPageNextRecordId(pageNextRecordId
 // GetHourlyUsage Get hourly usage by product family.
 // Get hourly usage by product family.
 func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (HourlyUsageResponse, *_nethttp.Response, error) {
-	return a.getHourlyUsageExecute(ctx, filterTimestampStart, filterProductFamilies, o...)
-}
-
-// getHourlyUsageExecute executes the request.
-func (a *UsageMeteringApi) getHourlyUsageExecute(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (HourlyUsageResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -553,11 +533,6 @@ func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endH
 // Get hourly usage for application security .
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
-	return a.getUsageApplicationSecurityMonitoringExecute(ctx, startHr, o...)
-}
-
-// getUsageApplicationSecurityMonitoringExecute executes the request.
-func (a *UsageMeteringApi) getUsageApplicationSecurityMonitoringExecute(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -658,11 +633,6 @@ func (r *GetUsageLambdaTracedInvocationsOptionalParameters) WithEndHr(endHr time
 // Get hourly usage for lambda traced invocations.
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
-	return a.getUsageLambdaTracedInvocationsExecute(ctx, startHr, o...)
-}
-
-// getUsageLambdaTracedInvocationsExecute executes the request.
-func (a *UsageMeteringApi) getUsageLambdaTracedInvocationsExecute(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -763,11 +733,6 @@ func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.
 // Get hourly usage for observability pipelines.
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)
 func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
-	return a.getUsageObservabilityPipelinesExecute(ctx, startHr, o...)
-}
-
-// getUsageObservabilityPipelinesExecute executes the request.
-func (a *UsageMeteringApi) getUsageObservabilityPipelinesExecute(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}

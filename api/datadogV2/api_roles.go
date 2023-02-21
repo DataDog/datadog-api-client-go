@@ -19,11 +19,6 @@ type RolesApi datadog.Service
 // AddPermissionToRole Grant permission to a role.
 // Adds a permission to a role.
 func (a *RolesApi) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
-	return a.addPermissionToRoleExecute(ctx, roleId, body)
-}
-
-// addPermissionToRoleExecute executes the request.
-func (a *RolesApi) addPermissionToRoleExecute(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -98,11 +93,6 @@ func (a *RolesApi) addPermissionToRoleExecute(ctx _context.Context, roleId strin
 // AddUserToRole Add a user to a role.
 // Adds a user to a role.
 func (a *RolesApi) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
-	return a.addUserToRoleExecute(ctx, roleId, body)
-}
-
-// addUserToRoleExecute executes the request.
-func (a *RolesApi) addUserToRoleExecute(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -177,11 +167,6 @@ func (a *RolesApi) addUserToRoleExecute(ctx _context.Context, roleId string, bod
 // CloneRole Create a new role by cloning an existing role.
 // Clone an existing role
 func (a *RolesApi) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
-	return a.cloneRoleExecute(ctx, roleId, body)
-}
-
-// cloneRoleExecute executes the request.
-func (a *RolesApi) cloneRoleExecute(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -256,11 +241,6 @@ func (a *RolesApi) cloneRoleExecute(ctx _context.Context, roleId string, body Ro
 // CreateRole Create role.
 // Create a new role for your organization.
 func (a *RolesApi) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
-	return a.createRoleExecute(ctx, body)
-}
-
-// createRoleExecute executes the request.
-func (a *RolesApi) createRoleExecute(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -334,11 +314,6 @@ func (a *RolesApi) createRoleExecute(ctx _context.Context, body RoleCreateReques
 // DeleteRole Delete role.
 // Disables a role.
 func (a *RolesApi) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
-	return a.deleteRoleExecute(ctx, roleId)
-}
-
-// deleteRoleExecute executes the request.
-func (a *RolesApi) deleteRoleExecute(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -400,11 +375,6 @@ func (a *RolesApi) deleteRoleExecute(ctx _context.Context, roleId string) (*_net
 // GetRole Get a role.
 // Get a role in the organization specified by the role’s `role_id`.
 func (a *RolesApi) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
-	return a.getRoleExecute(ctx, roleId)
-}
-
-// getRoleExecute executes the request.
-func (a *RolesApi) getRoleExecute(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -476,11 +446,6 @@ func (a *RolesApi) getRoleExecute(ctx _context.Context, roleId string) (RoleResp
 // ListPermissions List permissions.
 // Returns a list of all permissions, including name, description, and ID.
 func (a *RolesApi) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
-	return a.listPermissionsExecute(ctx)
-}
-
-// listPermissionsExecute executes the request.
-func (a *RolesApi) listPermissionsExecute(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -551,11 +516,6 @@ func (a *RolesApi) listPermissionsExecute(ctx _context.Context) (PermissionsResp
 // ListRolePermissions List permissions for a role.
 // Returns a list of all permissions for a single role.
 func (a *RolesApi) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
-	return a.listRolePermissionsExecute(ctx, roleId)
-}
-
-// listRolePermissionsExecute executes the request.
-func (a *RolesApi) listRolePermissionsExecute(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -665,11 +625,6 @@ func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUse
 // ListRoleUsers Get all users of a role.
 // Gets all users of a role.
 func (a *RolesApi) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
-	return a.listRoleUsersExecute(ctx, roleId, o...)
-}
-
-// listRoleUsersExecute executes the request.
-func (a *RolesApi) listRoleUsersExecute(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -799,11 +754,6 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 // ListRoles List roles.
 // Returns all roles, including their names and their unique identifiers.
 func (a *RolesApi) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
-	return a.listRolesExecute(ctx, o...)
-}
-
-// listRolesExecute executes the request.
-func (a *RolesApi) listRolesExecute(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -894,11 +844,6 @@ func (a *RolesApi) listRolesExecute(ctx _context.Context, o ...ListRolesOptional
 // RemovePermissionFromRole Revoke permission.
 // Removes a permission from a role.
 func (a *RolesApi) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
-	return a.removePermissionFromRoleExecute(ctx, roleId, body)
-}
-
-// removePermissionFromRoleExecute executes the request.
-func (a *RolesApi) removePermissionFromRoleExecute(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -973,11 +918,6 @@ func (a *RolesApi) removePermissionFromRoleExecute(ctx _context.Context, roleId 
 // RemoveUserFromRole Remove a user from a role.
 // Removes a user from a role.
 func (a *RolesApi) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
-	return a.removeUserFromRoleExecute(ctx, roleId, body)
-}
-
-// removeUserFromRoleExecute executes the request.
-func (a *RolesApi) removeUserFromRoleExecute(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -1052,11 +992,6 @@ func (a *RolesApi) removeUserFromRoleExecute(ctx _context.Context, roleId string
 // UpdateRole Update a role.
 // Edit a role. Can only be used with application keys belonging to administrators.
 func (a *RolesApi) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
-	return a.updateRoleExecute(ctx, roleId, body)
-}
-
-// updateRoleExecute executes the request.
-func (a *RolesApi) updateRoleExecute(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

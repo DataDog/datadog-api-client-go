@@ -19,11 +19,6 @@ type RestrictionPoliciesApi datadog.Service
 // DeleteRestrictionPolicy Delete a restriction policy.
 // Deletes the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, resourceId string) (*_nethttp.Response, error) {
-	return a.deleteRestrictionPolicyExecute(ctx, resourceId)
-}
-
-// deleteRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(ctx _context.Context, resourceId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -85,11 +80,6 @@ func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(ctx _context.Con
 // GetRestrictionPolicy Get a restriction policy.
 // Retrieves the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, resourceId string) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-	return a.getRestrictionPolicyExecute(ctx, resourceId)
-}
-
-// getRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(ctx _context.Context, resourceId string) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -168,11 +158,6 @@ func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(ctx _context.Contex
 // - Notebooks: `notebook`
 // - Security Rules: `security-rule`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-	return a.updateRestrictionPolicyExecute(ctx, resourceId, body)
-}
-
-// updateRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) updateRestrictionPolicyExecute(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}

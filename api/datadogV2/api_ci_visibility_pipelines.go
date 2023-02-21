@@ -19,11 +19,6 @@ type CIVisibilityPipelinesApi datadog.Service
 // AggregateCIAppPipelineEvents Aggregate pipelines events.
 // The API endpoint to aggregate CI Visibility pipeline events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Context, body CIAppPipelinesAggregateRequest) (CIAppPipelinesAnalyticsAggregateResponse, *_nethttp.Response, error) {
-	return a.aggregateCIAppPipelineEventsExecute(ctx, body)
-}
-
-// aggregateCIAppPipelineEventsExecute executes the request.
-func (a *CIVisibilityPipelinesApi) aggregateCIAppPipelineEventsExecute(ctx _context.Context, body CIAppPipelinesAggregateRequest) (CIAppPipelinesAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -152,69 +147,6 @@ func (r *ListCIAppPipelineEventsOptionalParameters) WithPageLimit(pageLimit int3
 //
 // Use this endpoint to see your latest pipeline events.
 func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
-	return a.listCIAppPipelineEventsExecute(ctx, o...)
-}
-
-// ListCIAppPipelineEventsWithPagination provides a paginated version of ListCIAppPipelineEvents returning a channel with all items.
-func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListCIAppPipelineEventsOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[CIAppPipelineEvent], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listCIAppPipelineEventsExecute(ctx, o...)
-			if err != nil {
-				var returnItem CIAppPipelineEvent
-				items <- datadog.PaginationResult[CIAppPipelineEvent]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[CIAppPipelineEvent]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listCIAppPipelineEventsExecute executes the request.
-func (a *CIVisibilityPipelinesApi) listCIAppPipelineEventsExecute(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -308,54 +240,22 @@ func (a *CIVisibilityPipelinesApi) listCIAppPipelineEventsExecute(ctx _context.C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchCIAppPipelineEventsOptionalParameters holds optional parameters for SearchCIAppPipelineEvents.
-type SearchCIAppPipelineEventsOptionalParameters struct {
-	Body *CIAppPipelineEventsRequest
-}
-
-// NewSearchCIAppPipelineEventsOptionalParameters creates an empty struct for parameters.
-func NewSearchCIAppPipelineEventsOptionalParameters() *SearchCIAppPipelineEventsOptionalParameters {
-	this := SearchCIAppPipelineEventsOptionalParameters{}
-	return &this
-}
-
-// WithBody sets the corresponding parameter name and returns the struct.
-func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelineEventsRequest) *SearchCIAppPipelineEventsOptionalParameters {
-	r.Body = &body
-	return r
-}
-
-// SearchCIAppPipelineEvents Search pipelines events.
-// List endpoint returns CI Visibility pipeline events that match a log search query.
-// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
-//
-// Use this endpoint to build complex events filtering and search.
-func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
-	return a.searchCIAppPipelineEventsExecute(ctx, o...)
-}
-
-// SearchCIAppPipelineEventsWithPagination provides a paginated version of SearchCIAppPipelineEvents returning a channel with all items.
-func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
+// ListCIAppPipelineEventsWithPagination provides a paginated version of ListCIAppPipelineEvents returning a channel with all items.
+func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
-		o = append(o, SearchCIAppPipelineEventsOptionalParameters{})
+		o = append(o, ListCIAppPipelineEventsOptionalParameters{})
 	}
-	if o[0].Body == nil {
-		o[0].Body = NewCIAppPipelineEventsRequest()
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
-	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewCIAppQueryPageOptions()
-	}
-	if o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
-	o[0].Body.Page.Limit = &pageSize_
+	o[0].PageLimit = &pageSize_
 
 	items := make(chan datadog.PaginationResult[CIAppPipelineEvent], pageSize_)
 	go func() {
 		for {
-			resp, _, err := a.searchCIAppPipelineEventsExecute(ctx, o...)
+			resp, _, err := a.ListCIAppPipelineEvents(ctx, o...)
 			if err != nil {
 				var returnItem CIAppPipelineEvent
 				items <- datadog.PaginationResult[CIAppPipelineEvent]{returnItem, err}
@@ -391,15 +291,36 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _
 				break
 			}
 
-			o[0].Body.Page.Cursor = cursorMetaPageAfter
+			o[0].PageCursor = cursorMetaPageAfter
 		}
 		close(items)
 	}()
 	return items, cancel
 }
 
-// searchCIAppPipelineEventsExecute executes the request.
-func (a *CIVisibilityPipelinesApi) searchCIAppPipelineEventsExecute(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
+// SearchCIAppPipelineEventsOptionalParameters holds optional parameters for SearchCIAppPipelineEvents.
+type SearchCIAppPipelineEventsOptionalParameters struct {
+	Body *CIAppPipelineEventsRequest
+}
+
+// NewSearchCIAppPipelineEventsOptionalParameters creates an empty struct for parameters.
+func NewSearchCIAppPipelineEventsOptionalParameters() *SearchCIAppPipelineEventsOptionalParameters {
+	this := SearchCIAppPipelineEventsOptionalParameters{}
+	return &this
+}
+
+// WithBody sets the corresponding parameter name and returns the struct.
+func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelineEventsRequest) *SearchCIAppPipelineEventsOptionalParameters {
+	r.Body = &body
+	return r
+}
+
+// SearchCIAppPipelineEvents Search pipelines events.
+// List endpoint returns CI Visibility pipeline events that match a log search query.
+// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
+//
+// Use this endpoint to build complex events filtering and search.
+func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -476,6 +397,70 @@ func (a *CIVisibilityPipelinesApi) searchCIAppPipelineEventsExecute(ctx _context
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchCIAppPipelineEventsWithPagination provides a paginated version of SearchCIAppPipelineEvents returning a channel with all items.
+func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, SearchCIAppPipelineEventsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewCIAppPipelineEventsRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewCIAppQueryPageOptions()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[CIAppPipelineEvent], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchCIAppPipelineEvents(ctx, o...)
+			if err != nil {
+				var returnItem CIAppPipelineEvent
+				items <- datadog.PaginationResult[CIAppPipelineEvent]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[CIAppPipelineEvent]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewCIVisibilityPipelinesApi Returns NewCIVisibilityPipelinesApi.

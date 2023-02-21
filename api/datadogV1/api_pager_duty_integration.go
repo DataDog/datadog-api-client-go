@@ -19,11 +19,6 @@ type PagerDutyIntegrationApi datadog.Service
 // CreatePagerDutyIntegrationService Create a new service object.
 // Create a new service object in the PagerDuty integration.
 func (a *PagerDutyIntegrationApi) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
-	return a.createPagerDutyIntegrationServiceExecute(ctx, body)
-}
-
-// createPagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApi) createPagerDutyIntegrationServiceExecute(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *PagerDutyIntegrationApi) createPagerDutyIntegrationServiceExecute(ctx _
 // DeletePagerDutyIntegrationService Delete a single service object.
 // Delete a single service object in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApi) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
-	return a.deletePagerDutyIntegrationServiceExecute(ctx, serviceName)
-}
-
-// deletePagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApi) deletePagerDutyIntegrationServiceExecute(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *PagerDutyIntegrationApi) deletePagerDutyIntegrationServiceExecute(ctx _
 // GetPagerDutyIntegrationService Get a single service object.
 // Get service name in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApi) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
-	return a.getPagerDutyIntegrationServiceExecute(ctx, serviceName)
-}
-
-// getPagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApi) getPagerDutyIntegrationServiceExecute(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -239,11 +224,6 @@ func (a *PagerDutyIntegrationApi) getPagerDutyIntegrationServiceExecute(ctx _con
 // UpdatePagerDutyIntegrationService Update a single service object.
 // Update a single service object in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApi) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
-	return a.updatePagerDutyIntegrationServiceExecute(ctx, serviceName, body)
-}
-
-// updatePagerDutyIntegrationServiceExecute executes the request.
-func (a *PagerDutyIntegrationApi) updatePagerDutyIntegrationServiceExecute(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
 		localVarPostBody   interface{}

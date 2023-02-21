@@ -19,11 +19,6 @@ type KeyManagementApi datadog.Service
 // CreateAPIKey Create an API key.
 // Creates an API key with a given name.
 func (a *KeyManagementApi) CreateAPIKey(ctx _context.Context, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
-	return a.createAPIKeyExecute(ctx, body)
-}
-
-// createAPIKeyExecute executes the request.
-func (a *KeyManagementApi) createAPIKeyExecute(ctx _context.Context, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *KeyManagementApi) createAPIKeyExecute(ctx _context.Context, body ApiKey
 // CreateApplicationKey Create an application key.
 // Create an application key with a given name.
 func (a *KeyManagementApi) CreateApplicationKey(ctx _context.Context, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.createApplicationKeyExecute(ctx, body)
-}
-
-// createApplicationKeyExecute executes the request.
-func (a *KeyManagementApi) createApplicationKeyExecute(ctx _context.Context, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -175,11 +165,6 @@ func (a *KeyManagementApi) createApplicationKeyExecute(ctx _context.Context, bod
 // DeleteAPIKey Delete an API key.
 // Delete a given API key.
 func (a *KeyManagementApi) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
-	return a.deleteAPIKeyExecute(ctx, key)
-}
-
-// deleteAPIKeyExecute executes the request.
-func (a *KeyManagementApi) deleteAPIKeyExecute(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -251,11 +236,6 @@ func (a *KeyManagementApi) deleteAPIKeyExecute(ctx _context.Context, key string)
 // DeleteApplicationKey Delete an application key.
 // Delete a given application key.
 func (a *KeyManagementApi) DeleteApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.deleteApplicationKeyExecute(ctx, key)
-}
-
-// deleteApplicationKeyExecute executes the request.
-func (a *KeyManagementApi) deleteApplicationKeyExecute(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -327,11 +307,6 @@ func (a *KeyManagementApi) deleteApplicationKeyExecute(ctx _context.Context, key
 // GetAPIKey Get API key.
 // Get a given API key.
 func (a *KeyManagementApi) GetAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
-	return a.getAPIKeyExecute(ctx, key)
-}
-
-// getAPIKeyExecute executes the request.
-func (a *KeyManagementApi) getAPIKeyExecute(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -403,11 +378,6 @@ func (a *KeyManagementApi) getAPIKeyExecute(ctx _context.Context, key string) (A
 // GetApplicationKey Get an application key.
 // Get a given application key.
 func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.getApplicationKeyExecute(ctx, key)
-}
-
-// getApplicationKeyExecute executes the request.
-func (a *KeyManagementApi) getApplicationKeyExecute(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -479,11 +449,6 @@ func (a *KeyManagementApi) getApplicationKeyExecute(ctx _context.Context, key st
 // ListAPIKeys Get all API keys.
 // Get all API keys available for your account.
 func (a *KeyManagementApi) ListAPIKeys(ctx _context.Context) (ApiKeyListResponse, *_nethttp.Response, error) {
-	return a.listAPIKeysExecute(ctx)
-}
-
-// listAPIKeysExecute executes the request.
-func (a *KeyManagementApi) listAPIKeysExecute(ctx _context.Context) (ApiKeyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -554,11 +519,6 @@ func (a *KeyManagementApi) listAPIKeysExecute(ctx _context.Context) (ApiKeyListR
 // ListApplicationKeys Get all application keys.
 // Get all application keys available for your Datadog account.
 func (a *KeyManagementApi) ListApplicationKeys(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
-	return a.listApplicationKeysExecute(ctx)
-}
-
-// listApplicationKeysExecute executes the request.
-func (a *KeyManagementApi) listApplicationKeysExecute(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -629,11 +589,6 @@ func (a *KeyManagementApi) listApplicationKeysExecute(ctx _context.Context) (App
 // UpdateAPIKey Edit an API key.
 // Edit an API key name.
 func (a *KeyManagementApi) UpdateAPIKey(ctx _context.Context, key string, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
-	return a.updateAPIKeyExecute(ctx, key, body)
-}
-
-// updateAPIKeyExecute executes the request.
-func (a *KeyManagementApi) updateAPIKeyExecute(ctx _context.Context, key string, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -708,11 +663,6 @@ func (a *KeyManagementApi) updateAPIKeyExecute(ctx _context.Context, key string,
 // UpdateApplicationKey Edit an application key.
 // Edit an application key name.
 func (a *KeyManagementApi) UpdateApplicationKey(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.updateApplicationKeyExecute(ctx, key, body)
-}
-
-// updateApplicationKeyExecute executes the request.
-func (a *KeyManagementApi) updateApplicationKeyExecute(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

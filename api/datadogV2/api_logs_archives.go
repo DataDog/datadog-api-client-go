@@ -19,11 +19,6 @@ type LogsArchivesApi datadog.Service
 // AddReadRoleToArchive Grant role to an archive.
 // Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
 func (a *LogsArchivesApi) AddReadRoleToArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
-	return a.addReadRoleToArchiveExecute(ctx, archiveId, body)
-}
-
-// addReadRoleToArchiveExecute executes the request.
-func (a *LogsArchivesApi) addReadRoleToArchiveExecute(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
@@ -88,11 +83,6 @@ func (a *LogsArchivesApi) addReadRoleToArchiveExecute(ctx _context.Context, arch
 // CreateLogsArchive Create an archive.
 // Create an archive in your organization.
 func (a *LogsArchivesApi) CreateLogsArchive(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
-	return a.createLogsArchiveExecute(ctx, body)
-}
-
-// createLogsArchiveExecute executes the request.
-func (a *LogsArchivesApi) createLogsArchiveExecute(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -166,11 +156,6 @@ func (a *LogsArchivesApi) createLogsArchiveExecute(ctx _context.Context, body Lo
 // DeleteLogsArchive Delete an archive.
 // Delete a given archive from your organization.
 func (a *LogsArchivesApi) DeleteLogsArchive(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
-	return a.deleteLogsArchiveExecute(ctx, archiveId)
-}
-
-// deleteLogsArchiveExecute executes the request.
-func (a *LogsArchivesApi) deleteLogsArchiveExecute(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -232,11 +217,6 @@ func (a *LogsArchivesApi) deleteLogsArchiveExecute(ctx _context.Context, archive
 // GetLogsArchive Get an archive.
 // Get a specific archive from your organization.
 func (a *LogsArchivesApi) GetLogsArchive(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
-	return a.getLogsArchiveExecute(ctx, archiveId)
-}
-
-// getLogsArchiveExecute executes the request.
-func (a *LogsArchivesApi) getLogsArchiveExecute(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -309,11 +289,6 @@ func (a *LogsArchivesApi) getLogsArchiveExecute(ctx _context.Context, archiveId 
 // Get the current order of your archives.
 // This endpoint takes no JSON arguments.
 func (a *LogsArchivesApi) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
-	return a.getLogsArchiveOrderExecute(ctx)
-}
-
-// getLogsArchiveOrderExecute executes the request.
-func (a *LogsArchivesApi) getLogsArchiveOrderExecute(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -384,11 +359,6 @@ func (a *LogsArchivesApi) getLogsArchiveOrderExecute(ctx _context.Context) (Logs
 // ListArchiveReadRoles List read roles for an archive.
 // Returns all read roles a given archive is restricted to.
 func (a *LogsArchivesApi) ListArchiveReadRoles(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
-	return a.listArchiveReadRolesExecute(ctx, archiveId)
-}
-
-// listArchiveReadRolesExecute executes the request.
-func (a *LogsArchivesApi) listArchiveReadRolesExecute(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -460,11 +430,6 @@ func (a *LogsArchivesApi) listArchiveReadRolesExecute(ctx _context.Context, arch
 // ListLogsArchives Get all archives.
 // Get the list of configured logs archives with their definitions.
 func (a *LogsArchivesApi) ListLogsArchives(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
-	return a.listLogsArchivesExecute(ctx)
-}
-
-// listLogsArchivesExecute executes the request.
-func (a *LogsArchivesApi) listLogsArchivesExecute(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -535,11 +500,6 @@ func (a *LogsArchivesApi) listLogsArchivesExecute(ctx _context.Context) (LogsArc
 // RemoveRoleFromArchive Revoke role from an archive.
 // Removes a role from an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
 func (a *LogsArchivesApi) RemoveRoleFromArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
-	return a.removeRoleFromArchiveExecute(ctx, archiveId, body)
-}
-
-// removeRoleFromArchiveExecute executes the request.
-func (a *LogsArchivesApi) removeRoleFromArchiveExecute(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -607,11 +567,6 @@ func (a *LogsArchivesApi) removeRoleFromArchiveExecute(ctx _context.Context, arc
 // **Note**: Using this method updates your archive configuration by **replacing**
 // your current configuration with the new one sent to your Datadog organization.
 func (a *LogsArchivesApi) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
-	return a.updateLogsArchiveExecute(ctx, archiveId, body)
-}
-
-// updateLogsArchiveExecute executes the request.
-func (a *LogsArchivesApi) updateLogsArchiveExecute(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -690,11 +645,6 @@ func (a *LogsArchivesApi) updateLogsArchiveExecute(ctx _context.Context, archive
 // **Note**: Using the `PUT` method updates your archive's order by replacing the current order
 // with the new one.
 func (a *LogsArchivesApi) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
-	return a.updateLogsArchiveOrderExecute(ctx, body)
-}
-
-// updateLogsArchiveOrderExecute executes the request.
-func (a *LogsArchivesApi) updateLogsArchiveOrderExecute(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

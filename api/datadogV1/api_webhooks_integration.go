@@ -19,11 +19,6 @@ type WebhooksIntegrationApi datadog.Service
 // CreateWebhooksIntegration Create a webhooks integration.
 // Creates an endpoint with the name `<WEBHOOK_NAME>`.
 func (a *WebhooksIntegrationApi) CreateWebhooksIntegration(ctx _context.Context, body WebhooksIntegration) (WebhooksIntegration, *_nethttp.Response, error) {
-	return a.createWebhooksIntegrationExecute(ctx, body)
-}
-
-// createWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApi) createWebhooksIntegrationExecute(ctx _context.Context, body WebhooksIntegration) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *WebhooksIntegrationApi) createWebhooksIntegrationExecute(ctx _context.C
 // CreateWebhooksIntegrationCustomVariable Create a custom variable.
 // Creates an endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
 func (a *WebhooksIntegrationApi) CreateWebhooksIntegrationCustomVariable(ctx _context.Context, body WebhooksIntegrationCustomVariable) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
-	return a.createWebhooksIntegrationCustomVariableExecute(ctx, body)
-}
-
-// createWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApi) createWebhooksIntegrationCustomVariableExecute(ctx _context.Context, body WebhooksIntegrationCustomVariable) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -175,11 +165,6 @@ func (a *WebhooksIntegrationApi) createWebhooksIntegrationCustomVariableExecute(
 // DeleteWebhooksIntegration Delete a webhook.
 // Deletes the endpoint with the name `<WEBHOOK NAME>`.
 func (a *WebhooksIntegrationApi) DeleteWebhooksIntegration(ctx _context.Context, webhookName string) (*_nethttp.Response, error) {
-	return a.deleteWebhooksIntegrationExecute(ctx, webhookName)
-}
-
-// deleteWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationExecute(ctx _context.Context, webhookName string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -241,11 +226,6 @@ func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationExecute(ctx _context.C
 // DeleteWebhooksIntegrationCustomVariable Delete a custom variable.
 // Deletes the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
 func (a *WebhooksIntegrationApi) DeleteWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (*_nethttp.Response, error) {
-	return a.deleteWebhooksIntegrationCustomVariableExecute(ctx, customVariableName)
-}
-
-// deleteWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationCustomVariableExecute(ctx _context.Context, customVariableName string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -307,11 +287,6 @@ func (a *WebhooksIntegrationApi) deleteWebhooksIntegrationCustomVariableExecute(
 // GetWebhooksIntegration Get a webhook integration.
 // Gets the content of the webhook with the name `<WEBHOOK_NAME>`.
 func (a *WebhooksIntegrationApi) GetWebhooksIntegration(ctx _context.Context, webhookName string) (WebhooksIntegration, *_nethttp.Response, error) {
-	return a.getWebhooksIntegrationExecute(ctx, webhookName)
-}
-
-// getWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApi) getWebhooksIntegrationExecute(ctx _context.Context, webhookName string) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -386,11 +361,6 @@ func (a *WebhooksIntegrationApi) getWebhooksIntegrationExecute(ctx _context.Cont
 // If the custom variable is secret, the value does not return in the
 // response payload.
 func (a *WebhooksIntegrationApi) GetWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
-	return a.getWebhooksIntegrationCustomVariableExecute(ctx, customVariableName)
-}
-
-// getWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApi) getWebhooksIntegrationCustomVariableExecute(ctx _context.Context, customVariableName string) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -462,11 +432,6 @@ func (a *WebhooksIntegrationApi) getWebhooksIntegrationCustomVariableExecute(ctx
 // UpdateWebhooksIntegration Update a webhook.
 // Updates the endpoint with the name `<WEBHOOK_NAME>`.
 func (a *WebhooksIntegrationApi) UpdateWebhooksIntegration(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
-	return a.updateWebhooksIntegrationExecute(ctx, webhookName, body)
-}
-
-// updateWebhooksIntegrationExecute executes the request.
-func (a *WebhooksIntegrationApi) updateWebhooksIntegrationExecute(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -541,11 +506,6 @@ func (a *WebhooksIntegrationApi) updateWebhooksIntegrationExecute(ctx _context.C
 // UpdateWebhooksIntegrationCustomVariable Update a custom variable.
 // Updates the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
 func (a *WebhooksIntegrationApi) UpdateWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
-	return a.updateWebhooksIntegrationCustomVariableExecute(ctx, customVariableName, body)
-}
-
-// updateWebhooksIntegrationCustomVariableExecute executes the request.
-func (a *WebhooksIntegrationApi) updateWebhooksIntegrationCustomVariableExecute(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

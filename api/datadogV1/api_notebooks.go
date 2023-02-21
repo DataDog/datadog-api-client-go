@@ -19,11 +19,6 @@ type NotebooksApi datadog.Service
 // CreateNotebook Create a notebook.
 // Create a notebook using the specified options.
 func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
-	return a.createNotebookExecute(ctx, body)
-}
-
-// createNotebookExecute executes the request.
-func (a *NotebooksApi) createNotebookExecute(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *NotebooksApi) createNotebookExecute(ctx _context.Context, body Notebook
 // DeleteNotebook Delete a notebook.
 // Delete a notebook using the specified ID.
 func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
-	return a.deleteNotebookExecute(ctx, notebookId)
-}
-
-// deleteNotebookExecute executes the request.
-func (a *NotebooksApi) deleteNotebookExecute(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *NotebooksApi) deleteNotebookExecute(ctx _context.Context, notebookId in
 // GetNotebook Get a notebook.
 // Get a notebook using the specified notebook ID.
 func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
-	return a.getNotebookExecute(ctx, notebookId)
-}
-
-// getNotebookExecute executes the request.
-func (a *NotebooksApi) getNotebookExecute(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -320,11 +305,6 @@ func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebook
 // Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
 // `name` or author `handle`.
 func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
-	return a.listNotebooksExecute(ctx, o...)
-}
-
-// listNotebooksExecute executes the request.
-func (a *NotebooksApi) listNotebooksExecute(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -433,11 +413,6 @@ func (a *NotebooksApi) listNotebooksExecute(ctx _context.Context, o ...ListNoteb
 // UpdateNotebook Update a notebook.
 // Update a notebook using the specified ID.
 func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
-	return a.updateNotebookExecute(ctx, notebookId, body)
-}
-
-// updateNotebookExecute executes the request.
-func (a *NotebooksApi) updateNotebookExecute(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

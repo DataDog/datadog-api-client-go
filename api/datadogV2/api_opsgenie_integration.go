@@ -19,11 +19,6 @@ type OpsgenieIntegrationApi datadog.Service
 // CreateOpsgenieService Create a new service object.
 // Create a new service object in the Opsgenie integration.
 func (a *OpsgenieIntegrationApi) CreateOpsgenieService(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	return a.createOpsgenieServiceExecute(ctx, body)
-}
-
-// createOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(ctx _context.Context, body OpsgenieServiceCreateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *OpsgenieIntegrationApi) createOpsgenieServiceExecute(ctx _context.Conte
 // DeleteOpsgenieService Delete a single service object.
 // Delete a single service object in the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) DeleteOpsgenieService(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
-	return a.deleteOpsgenieServiceExecute(ctx, integrationServiceId)
-}
-
-// deleteOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *OpsgenieIntegrationApi) deleteOpsgenieServiceExecute(ctx _context.Conte
 // GetOpsgenieService Get a single service object.
 // Get a single service from the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) GetOpsgenieService(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	return a.getOpsgenieServiceExecute(ctx, integrationServiceId)
-}
-
-// getOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -239,11 +224,6 @@ func (a *OpsgenieIntegrationApi) getOpsgenieServiceExecute(ctx _context.Context,
 // ListOpsgenieServices Get all service objects.
 // Get a list of all services from the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) ListOpsgenieServices(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
-	return a.listOpsgenieServicesExecute(ctx)
-}
-
-// listOpsgenieServicesExecute executes the request.
-func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(ctx _context.Context) (OpsgenieServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -314,11 +294,6 @@ func (a *OpsgenieIntegrationApi) listOpsgenieServicesExecute(ctx _context.Contex
 // UpdateOpsgenieService Update a single service object.
 // Update a single service object in the Datadog Opsgenie integration.
 func (a *OpsgenieIntegrationApi) UpdateOpsgenieService(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
-	return a.updateOpsgenieServiceExecute(ctx, integrationServiceId, body)
-}
-
-// updateOpsgenieServiceExecute executes the request.
-func (a *OpsgenieIntegrationApi) updateOpsgenieServiceExecute(ctx _context.Context, integrationServiceId string, body OpsgenieServiceUpdateRequest) (OpsgenieServiceResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

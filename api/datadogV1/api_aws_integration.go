@@ -21,11 +21,6 @@ type AWSIntegrationApi datadog.Service
 // by adding your new configuration to the existing one in your Datadog organization.
 // A unique AWS Account ID for role based authentication.
 func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
-	return a.createAWSAccountExecute(ctx, body)
-}
-
-// createAWSAccountExecute executes the request.
-func (a *AWSIntegrationApi) createAWSAccountExecute(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -99,11 +94,6 @@ func (a *AWSIntegrationApi) createAWSAccountExecute(ctx _context.Context, body A
 // CreateAWSTagFilter Set an AWS tag filter.
 // Set an AWS tag filter.
 func (a *AWSIntegrationApi) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
-	return a.createAWSTagFilterExecute(ctx, body)
-}
-
-// createAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApi) createAWSTagFilterExecute(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -177,11 +167,6 @@ func (a *AWSIntegrationApi) createAWSTagFilterExecute(ctx _context.Context, body
 // CreateNewAWSExternalID Generate a new external ID.
 // Generate a new AWS external ID for a given AWS account ID and role name pair.
 func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
-	return a.createNewAWSExternalIDExecute(ctx, body)
-}
-
-// createNewAWSExternalIDExecute executes the request.
-func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -255,11 +240,6 @@ func (a *AWSIntegrationApi) createNewAWSExternalIDExecute(ctx _context.Context, 
 // DeleteAWSAccount Delete an AWS integration.
 // Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.
 func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
-	return a.deleteAWSAccountExecute(ctx, body)
-}
-
-// deleteAWSAccountExecute executes the request.
-func (a *AWSIntegrationApi) deleteAWSAccountExecute(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -333,11 +313,6 @@ func (a *AWSIntegrationApi) deleteAWSAccountExecute(ctx _context.Context, body A
 // DeleteAWSTagFilter Delete a tag filtering entry.
 // Delete a tag filtering entry.
 func (a *AWSIntegrationApi) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
-	return a.deleteAWSTagFilterExecute(ctx, body)
-}
-
-// deleteAWSTagFilterExecute executes the request.
-func (a *AWSIntegrationApi) deleteAWSTagFilterExecute(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -442,11 +417,6 @@ func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) 
 // ListAWSAccounts List all AWS integrations.
 // List all Datadog-AWS integrations available in your Datadog organization.
 func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
-	return a.listAWSAccountsExecute(ctx, o...)
-}
-
-// listAWSAccountsExecute executes the request.
-func (a *AWSIntegrationApi) listAWSAccountsExecute(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -534,11 +504,6 @@ func (a *AWSIntegrationApi) listAWSAccountsExecute(ctx _context.Context, o ...Li
 // ListAWSTagFilters Get all AWS tag filters.
 // Get all AWS tag filters.
 func (a *AWSIntegrationApi) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
-	return a.listAWSTagFiltersExecute(ctx, accountId)
-}
-
-// listAWSTagFiltersExecute executes the request.
-func (a *AWSIntegrationApi) listAWSTagFiltersExecute(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -610,11 +575,6 @@ func (a *AWSIntegrationApi) listAWSTagFiltersExecute(ctx _context.Context, accou
 // ListAvailableAWSNamespaces List namespace rules.
 // List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.
 func (a *AWSIntegrationApi) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
-	return a.listAvailableAWSNamespacesExecute(ctx)
-}
-
-// listAvailableAWSNamespacesExecute executes the request.
-func (a *AWSIntegrationApi) listAvailableAWSNamespacesExecute(ctx _context.Context) ([]string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -716,11 +676,6 @@ func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string)
 // UpdateAWSAccount Update an AWS integration.
 // Update a Datadog-Amazon Web Services integration.
 func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
-	return a.updateAWSAccountExecute(ctx, body, o...)
-}
-
-// updateAWSAccountExecute executes the request.
-func (a *AWSIntegrationApi) updateAWSAccountExecute(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

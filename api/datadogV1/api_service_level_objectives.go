@@ -20,11 +20,6 @@ type ServiceLevelObjectivesApi datadog.Service
 // Check if an SLO can be safely deleted. For example,
 // assure an SLO can be deleted without disrupting a dashboard.
 func (a *ServiceLevelObjectivesApi) CheckCanDeleteSLO(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
-	return a.checkCanDeleteSLOExecute(ctx, ids)
-}
-
-// checkCanDeleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(ctx _context.Context, ids string) (CheckCanDeleteSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -105,11 +100,6 @@ func (a *ServiceLevelObjectivesApi) checkCanDeleteSLOExecute(ctx _context.Contex
 // CreateSLO Create an SLO object.
 // Create a service level objective object.
 func (a *ServiceLevelObjectivesApi) CreateSLO(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
-	return a.createSLOExecute(ctx, body)
-}
-
-// createSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) createSLOExecute(ctx _context.Context, body ServiceLevelObjectiveRequest) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -203,11 +193,6 @@ func (r *DeleteSLOOptionalParameters) WithForce(force string) *DeleteSLOOptional
 // If an SLO is used in a dashboard, the `DELETE /v1/slo/` endpoint returns
 // a 409 conflict error because the SLO is referenced in a dashboard.
 func (a *ServiceLevelObjectivesApi) DeleteSLO(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
-	return a.deleteSLOExecute(ctx, sloId, o...)
-}
-
-// deleteSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) deleteSLOExecute(ctx _context.Context, sloId string, o ...DeleteSLOOptionalParameters) (SLODeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -303,11 +288,6 @@ func (a *ServiceLevelObjectivesApi) deleteSLOExecute(ctx _context.Context, sloId
 // service level objective objects. If all thresholds are deleted, the service level
 // objective object is deleted as well.
 func (a *ServiceLevelObjectivesApi) DeleteSLOTimeframeInBulk(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
-	return a.deleteSLOTimeframeInBulkExecute(ctx, body)
-}
-
-// deleteSLOTimeframeInBulkExecute executes the request.
-func (a *ServiceLevelObjectivesApi) deleteSLOTimeframeInBulkExecute(ctx _context.Context, body map[string][]SLOTimeframe) (SLOBulkDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -398,11 +378,6 @@ func (r *GetSLOOptionalParameters) WithWithConfiguredAlertIds(withConfiguredAler
 // GetSLO Get an SLO's details.
 // Get a service level objective object.
 func (a *ServiceLevelObjectivesApi) GetSLO(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
-	return a.getSLOExecute(ctx, sloId, o...)
-}
-
-// getSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) getSLOExecute(ctx _context.Context, sloId string, o ...GetSLOOptionalParameters) (SLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -485,11 +460,6 @@ func (a *ServiceLevelObjectivesApi) getSLOExecute(ctx _context.Context, sloId st
 // GetSLOCorrections Get Corrections For an SLO.
 // Get corrections applied to an SLO
 func (a *ServiceLevelObjectivesApi) GetSLOCorrections(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
-	return a.getSLOCorrectionsExecute(ctx, sloId)
-}
-
-// getSLOCorrectionsExecute executes the request.
-func (a *ServiceLevelObjectivesApi) getSLOCorrectionsExecute(ctx _context.Context, sloId string) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -592,11 +562,6 @@ func (r *GetSLOHistoryOptionalParameters) WithApplyCorrection(applyCorrection bo
 // **Note:** There are different response formats for event based and time based SLOs.
 // Examples of both are shown.
 func (a *ServiceLevelObjectivesApi) GetSLOHistory(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
-	return a.getSLOHistoryExecute(ctx, sloId, fromTs, toTs, o...)
-}
-
-// getSLOHistoryExecute executes the request.
-func (a *ServiceLevelObjectivesApi) getSLOHistoryExecute(ctx _context.Context, sloId string, fromTs int64, toTs int64, o ...GetSLOHistoryOptionalParameters) (SLOHistoryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -736,11 +701,6 @@ func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalP
 // ListSLOs Get all SLOs.
 // Get a list of service level objective objects for your organization.
 func (a *ServiceLevelObjectivesApi) ListSLOs(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
-	return a.listSLOsExecute(ctx, o...)
-}
-
-// listSLOsExecute executes the request.
-func (a *ServiceLevelObjectivesApi) listSLOsExecute(ctx _context.Context, o ...ListSLOsOptionalParameters) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -875,11 +835,6 @@ func (r *SearchSLOOptionalParameters) WithIncludeFacets(includeFacets bool) *Sea
 // SearchSLO Search for SLOs.
 // Get a list of service level objective objects for your organization.
 func (a *ServiceLevelObjectivesApi) SearchSLO(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
-	return a.searchSLOExecute(ctx, o...)
-}
-
-// searchSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) searchSLOExecute(ctx _context.Context, o ...SearchSLOOptionalParameters) (SearchSLOResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -970,11 +925,6 @@ func (a *ServiceLevelObjectivesApi) searchSLOExecute(ctx _context.Context, o ...
 // UpdateSLO Update an SLO.
 // Update the specified service level objective object.
 func (a *ServiceLevelObjectivesApi) UpdateSLO(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
-	return a.updateSLOExecute(ctx, sloId, body)
-}
-
-// updateSLOExecute executes the request.
-func (a *ServiceLevelObjectivesApi) updateSLOExecute(ctx _context.Context, sloId string, body ServiceLevelObjective) (SLOListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

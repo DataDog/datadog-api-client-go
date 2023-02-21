@@ -70,69 +70,6 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 // ListProcesses Get all processes.
 // Get all processes for your organization.
 func (a *ProcessesApi) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
-	return a.listProcessesExecute(ctx, o...)
-}
-
-// ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
-func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan datadog.PaginationResult[ProcessSummary], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(1000)
-	if len(o) == 0 {
-		o = append(o, ListProcessesOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[ProcessSummary], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listProcessesExecute(ctx, o...)
-			if err != nil {
-				var returnItem ProcessSummary
-				items <- datadog.PaginationResult[ProcessSummary]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[ProcessSummary]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listProcessesExecute executes the request.
-func (a *ProcessesApi) listProcessesExecute(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -224,6 +161,64 @@ func (a *ProcessesApi) listProcessesExecute(ctx _context.Context, o ...ListProce
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
+func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan datadog.PaginationResult[ProcessSummary], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(1000)
+	if len(o) == 0 {
+		o = append(o, ListProcessesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[ProcessSummary], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListProcesses(ctx, o...)
+			if err != nil {
+				var returnItem ProcessSummary
+				items <- datadog.PaginationResult[ProcessSummary]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[ProcessSummary]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewProcessesApi Returns NewProcessesApi.

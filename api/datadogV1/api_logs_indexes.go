@@ -19,11 +19,6 @@ type LogsIndexesApi datadog.Service
 // CreateLogsIndex Create an index.
 // Creates a new index. Returns the Index object passed in the request body when the request is successful.
 func (a *LogsIndexesApi) CreateLogsIndex(ctx _context.Context, body LogsIndex) (LogsIndex, *_nethttp.Response, error) {
-	return a.createLogsIndexExecute(ctx, body)
-}
-
-// createLogsIndexExecute executes the request.
-func (a *LogsIndexesApi) createLogsIndexExecute(ctx _context.Context, body LogsIndex) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -106,11 +101,6 @@ func (a *LogsIndexesApi) createLogsIndexExecute(ctx _context.Context, body LogsI
 // GetLogsIndex Get an index.
 // Get one log index from your organization. This endpoint takes no JSON arguments.
 func (a *LogsIndexesApi) GetLogsIndex(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
-	return a.getLogsIndexExecute(ctx, name)
-}
-
-// getLogsIndexExecute executes the request.
-func (a *LogsIndexesApi) getLogsIndexExecute(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -191,11 +181,6 @@ func (a *LogsIndexesApi) getLogsIndexExecute(ctx _context.Context, name string) 
 // GetLogsIndexOrder Get indexes order.
 // Get the current order of your log indexes. This endpoint takes no JSON arguments.
 func (a *LogsIndexesApi) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrder, *_nethttp.Response, error) {
-	return a.getLogsIndexOrderExecute(ctx)
-}
-
-// getLogsIndexOrderExecute executes the request.
-func (a *LogsIndexesApi) getLogsIndexOrderExecute(ctx _context.Context) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -267,11 +252,6 @@ func (a *LogsIndexesApi) getLogsIndexOrderExecute(ctx _context.Context) (LogsInd
 // The Index object describes the configuration of a log index.
 // This endpoint returns an array of the `LogIndex` objects of your organization.
 func (a *LogsIndexesApi) ListLogIndexes(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
-	return a.listLogIndexesExecute(ctx)
-}
-
-// listLogIndexesExecute executes the request.
-func (a *LogsIndexesApi) listLogIndexesExecute(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -346,11 +326,6 @@ func (a *LogsIndexesApi) listLogIndexesExecute(ctx _context.Context) (LogsIndexL
 // Using the `PUT` method updates your index’s configuration by **replacing**
 // your current configuration with the new one sent to your Datadog organization.
 func (a *LogsIndexesApi) UpdateLogsIndex(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
-	return a.updateLogsIndexExecute(ctx, name, body)
-}
-
-// updateLogsIndexExecute executes the request.
-func (a *LogsIndexesApi) updateLogsIndexExecute(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -435,11 +410,6 @@ func (a *LogsIndexesApi) updateLogsIndexExecute(ctx _context.Context, name strin
 // This endpoint updates the index order of your organization.
 // It returns the index order object passed in the request body when the request is successful.
 func (a *LogsIndexesApi) UpdateLogsIndexOrder(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
-	return a.updateLogsIndexOrderExecute(ctx, body)
-}
-
-// updateLogsIndexOrderExecute executes the request.
-func (a *LogsIndexesApi) updateLogsIndexOrderExecute(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

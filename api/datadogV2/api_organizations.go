@@ -39,11 +39,6 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
 //
 // Use this endpoint to upload or replace IdP metadata for SAML login configuration.
 func (a *OrganizationsApi) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
-	return a.uploadIdPMetadataExecute(ctx, o...)
-}
-
-// uploadIdPMetadataExecute executes the request.
-func (a *OrganizationsApi) uploadIdPMetadataExecute(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}

@@ -19,11 +19,6 @@ type CloudflareIntegrationApi datadog.Service
 // CreateCloudflareAccount Add Cloudflare account.
 // Create a Cloudflare account.
 func (a *CloudflareIntegrationApi) CreateCloudflareAccount(ctx _context.Context, body CloudflareAccountCreateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
-	return a.createCloudflareAccountExecute(ctx, body)
-}
-
-// createCloudflareAccountExecute executes the request.
-func (a *CloudflareIntegrationApi) createCloudflareAccountExecute(ctx _context.Context, body CloudflareAccountCreateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *CloudflareIntegrationApi) createCloudflareAccountExecute(ctx _context.C
 // DeleteCloudflareAccount Delete Cloudflare account.
 // Delete a Cloudflare account.
 func (a *CloudflareIntegrationApi) DeleteCloudflareAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
-	return a.deleteCloudflareAccountExecute(ctx, accountId)
-}
-
-// deleteCloudflareAccountExecute executes the request.
-func (a *CloudflareIntegrationApi) deleteCloudflareAccountExecute(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *CloudflareIntegrationApi) deleteCloudflareAccountExecute(ctx _context.C
 // GetCloudflareAccount Get Cloudflare account.
 // Get a Cloudflare account.
 func (a *CloudflareIntegrationApi) GetCloudflareAccount(ctx _context.Context, accountId string) (CloudflareAccountResponse, *_nethttp.Response, error) {
-	return a.getCloudflareAccountExecute(ctx, accountId)
-}
-
-// getCloudflareAccountExecute executes the request.
-func (a *CloudflareIntegrationApi) getCloudflareAccountExecute(ctx _context.Context, accountId string) (CloudflareAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -239,11 +224,6 @@ func (a *CloudflareIntegrationApi) getCloudflareAccountExecute(ctx _context.Cont
 // ListCloudflareAccounts List Cloudflare accounts.
 // List Cloudflare accounts.
 func (a *CloudflareIntegrationApi) ListCloudflareAccounts(ctx _context.Context) (CloudflareAccountsResponse, *_nethttp.Response, error) {
-	return a.listCloudflareAccountsExecute(ctx)
-}
-
-// listCloudflareAccountsExecute executes the request.
-func (a *CloudflareIntegrationApi) listCloudflareAccountsExecute(ctx _context.Context) (CloudflareAccountsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -314,11 +294,6 @@ func (a *CloudflareIntegrationApi) listCloudflareAccountsExecute(ctx _context.Co
 // UpdateCloudflareAccount Update Cloudflare account.
 // Update a Cloudflare account.
 func (a *CloudflareIntegrationApi) UpdateCloudflareAccount(ctx _context.Context, accountId string, body CloudflareAccountUpdateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
-	return a.updateCloudflareAccountExecute(ctx, accountId, body)
-}
-
-// updateCloudflareAccountExecute executes the request.
-func (a *CloudflareIntegrationApi) updateCloudflareAccountExecute(ctx _context.Context, accountId string, body CloudflareAccountUpdateRequest) (CloudflareAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

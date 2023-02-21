@@ -24,11 +24,6 @@ type AzureIntegrationApi datadog.Service
 // Using the `PUT` method updates your integration configuration by replacing your
 // current configuration with the new one sent to your Datadog organization.
 func (a *AzureIntegrationApi) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	return a.createAzureIntegrationExecute(ctx, body)
-}
-
-// createAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApi) createAzureIntegrationExecute(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -102,11 +97,6 @@ func (a *AzureIntegrationApi) createAzureIntegrationExecute(ctx _context.Context
 // DeleteAzureIntegration Delete an Azure integration.
 // Delete a given Datadog-Azure integration from your Datadog account.
 func (a *AzureIntegrationApi) DeleteAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	return a.deleteAzureIntegrationExecute(ctx, body)
-}
-
-// deleteAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
@@ -180,11 +170,6 @@ func (a *AzureIntegrationApi) deleteAzureIntegrationExecute(ctx _context.Context
 // ListAzureIntegration List all Azure integrations.
 // List all Datadog-Azure integrations configured in your Datadog account.
 func (a *AzureIntegrationApi) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
-	return a.listAzureIntegrationExecute(ctx)
-}
-
-// listAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApi) listAzureIntegrationExecute(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -255,11 +240,6 @@ func (a *AzureIntegrationApi) listAzureIntegrationExecute(ctx _context.Context) 
 // UpdateAzureHostFilters Update Azure integration host filters.
 // Update the defined list of host filters for a given Datadog-Azure integration.
 func (a *AzureIntegrationApi) UpdateAzureHostFilters(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	return a.updateAzureHostFiltersExecute(ctx, body)
-}
-
-// updateAzureHostFiltersExecute executes the request.
-func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -335,11 +315,6 @@ func (a *AzureIntegrationApi) updateAzureHostFiltersExecute(ctx _context.Context
 // Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
 // use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
 func (a *AzureIntegrationApi) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	return a.updateAzureIntegrationExecute(ctx, body)
-}
-
-// updateAzureIntegrationExecute executes the request.
-func (a *AzureIntegrationApi) updateAzureIntegrationExecute(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

@@ -20,11 +20,6 @@ type RUMApi datadog.Service
 // AggregateRUMEvents Aggregate RUM events.
 // The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
 func (a *RUMApi) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
-	return a.aggregateRUMEventsExecute(ctx, body)
-}
-
-// aggregateRUMEventsExecute executes the request.
-func (a *RUMApi) aggregateRUMEventsExecute(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -98,11 +93,6 @@ func (a *RUMApi) aggregateRUMEventsExecute(ctx _context.Context, body RUMAggrega
 // CreateRUMApplication Create a new RUM application.
 // Create a new RUM application in your organization.
 func (a *RUMApi) CreateRUMApplication(ctx _context.Context, body RUMApplicationCreateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
-	return a.createRUMApplicationExecute(ctx, body)
-}
-
-// createRUMApplicationExecute executes the request.
-func (a *RUMApi) createRUMApplicationExecute(ctx _context.Context, body RUMApplicationCreateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -176,11 +166,6 @@ func (a *RUMApi) createRUMApplicationExecute(ctx _context.Context, body RUMAppli
 // DeleteRUMApplication Delete a RUM application.
 // Delete an existing RUM application in your organization.
 func (a *RUMApi) DeleteRUMApplication(ctx _context.Context, id string) (*_nethttp.Response, error) {
-	return a.deleteRUMApplicationExecute(ctx, id)
-}
-
-// deleteRUMApplicationExecute executes the request.
-func (a *RUMApi) deleteRUMApplicationExecute(ctx _context.Context, id string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -242,11 +227,6 @@ func (a *RUMApi) deleteRUMApplicationExecute(ctx _context.Context, id string) (*
 // GetRUMApplication Get a RUM application.
 // Get the RUM application with given ID in your organization.
 func (a *RUMApi) GetRUMApplication(ctx _context.Context, id string) (RUMApplicationResponse, *_nethttp.Response, error) {
-	return a.getRUMApplicationExecute(ctx, id)
-}
-
-// getRUMApplicationExecute executes the request.
-func (a *RUMApi) getRUMApplicationExecute(ctx _context.Context, id string) (RUMApplicationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -318,11 +298,6 @@ func (a *RUMApi) getRUMApplicationExecute(ctx _context.Context, id string) (RUMA
 // GetRUMApplications List all the RUM applications.
 // List all the RUM applications in your organization.
 func (a *RUMApi) GetRUMApplications(ctx _context.Context) (RUMApplicationsResponse, *_nethttp.Response, error) {
-	return a.getRUMApplicationsExecute(ctx)
-}
-
-// getRUMApplicationsExecute executes the request.
-func (a *RUMApi) getRUMApplicationsExecute(ctx _context.Context) (RUMApplicationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -450,69 +425,6 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 //
 // [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *RUMApi) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
-	return a.listRUMEventsExecute(ctx, o...)
-}
-
-// ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
-func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan datadog.PaginationResult[RUMEvent], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListRUMEventsOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[RUMEvent], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listRUMEventsExecute(ctx, o...)
-			if err != nil {
-				var returnItem RUMEvent
-				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[RUMEvent]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listRUMEventsExecute executes the request.
-func (a *RUMApi) listRUMEventsExecute(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -606,35 +518,22 @@ func (a *RUMApi) listRUMEventsExecute(ctx _context.Context, o ...ListRUMEventsOp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchRUMEvents Search RUM events.
-// List endpoint returns RUM events that match a RUM search query.
-// [Results are paginated][1].
-//
-// Use this endpoint to build complex RUM events filtering and search.
-//
-// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
-	return a.searchRUMEventsExecute(ctx, body)
-}
-
-// SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
-func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan datadog.PaginationResult[RUMEvent], func()) {
+// ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
+func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan datadog.PaginationResult[RUMEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if body.Page == nil {
-		body.Page = NewRUMQueryPageOptions()
+	if len(o) == 0 {
+		o = append(o, ListRUMEventsOptionalParameters{})
 	}
-	if body.Page.Limit == nil {
-		// int32
-		body.Page.Limit = &pageSize_
-	} else {
-		pageSize_ = *body.Page.Limit
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
+	o[0].PageLimit = &pageSize_
 
 	items := make(chan datadog.PaginationResult[RUMEvent], pageSize_)
 	go func() {
 		for {
-			resp, _, err := a.searchRUMEventsExecute(ctx, body)
+			resp, _, err := a.ListRUMEvents(ctx, o...)
 			if err != nil {
 				var returnItem RUMEvent
 				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
@@ -670,15 +569,21 @@ func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSea
 				break
 			}
 
-			body.Page.Cursor = cursorMetaPageAfter
+			o[0].PageCursor = cursorMetaPageAfter
 		}
 		close(items)
 	}()
 	return items, cancel
 }
 
-// searchRUMEventsExecute executes the request.
-func (a *RUMApi) searchRUMEventsExecute(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
+// SearchRUMEvents Search RUM events.
+// List endpoint returns RUM events that match a RUM search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to build complex RUM events filtering and search.
+//
+// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
+func (a *RUMApi) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -749,14 +654,69 @@ func (a *RUMApi) searchRUMEventsExecute(ctx _context.Context, body RUMSearchEven
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
+func (a *RUMApi) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan datadog.PaginationResult[RUMEvent], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if body.Page == nil {
+		body.Page = NewRUMQueryPageOptions()
+	}
+	if body.Page.Limit == nil {
+		// int32
+		body.Page.Limit = &pageSize_
+	} else {
+		pageSize_ = *body.Page.Limit
+	}
+
+	items := make(chan datadog.PaginationResult[RUMEvent], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchRUMEvents(ctx, body)
+			if err != nil {
+				var returnItem RUMEvent
+				items <- datadog.PaginationResult[RUMEvent]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[RUMEvent]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // UpdateRUMApplication Update a RUM application.
 // Update the RUM application with given ID in your organization.
 func (a *RUMApi) UpdateRUMApplication(ctx _context.Context, id string, body RUMApplicationUpdateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
-	return a.updateRUMApplicationExecute(ctx, id, body)
-}
-
-// updateRUMApplicationExecute executes the request.
-func (a *RUMApi) updateRUMApplicationExecute(ctx _context.Context, id string, body RUMApplicationUpdateRequest) (RUMApplicationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

@@ -75,69 +75,6 @@ func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEvent
 //
 // Use this endpoint to see your latest events.
 func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-	return a.listEventsExecute(ctx, o...)
-}
-
-// ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
-func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListEventsOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listEventsExecute(ctx, o...)
-			if err != nil {
-				var returnItem EventResponse
-				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[EventResponse]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listEventsExecute executes the request.
-func (a *EventsApi) listEventsExecute(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -238,54 +175,22 @@ func (a *EventsApi) listEventsExecute(ctx _context.Context, o ...ListEventsOptio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchEventsOptionalParameters holds optional parameters for SearchEvents.
-type SearchEventsOptionalParameters struct {
-	Body *EventsListRequest
-}
-
-// NewSearchEventsOptionalParameters creates an empty struct for parameters.
-func NewSearchEventsOptionalParameters() *SearchEventsOptionalParameters {
-	this := SearchEventsOptionalParameters{}
-	return &this
-}
-
-// WithBody sets the corresponding parameter name and returns the struct.
-func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *SearchEventsOptionalParameters {
-	r.Body = &body
-	return r
-}
-
-// SearchEvents Search events.
-// List endpoint returns events that match an events search query.
-// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
-//
-// Use this endpoint to build complex events filtering and search.
-func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
-	return a.searchEventsExecute(ctx, o...)
-}
-
-// SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
-func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
+// ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
+func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
-		o = append(o, SearchEventsOptionalParameters{})
+		o = append(o, ListEventsOptionalParameters{})
 	}
-	if o[0].Body == nil {
-		o[0].Body = NewEventsListRequest()
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
-	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewEventsRequestPage()
-	}
-	if o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
-	o[0].Body.Page.Limit = &pageSize_
+	o[0].PageLimit = &pageSize_
 
 	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
 	go func() {
 		for {
-			resp, _, err := a.searchEventsExecute(ctx, o...)
+			resp, _, err := a.ListEvents(ctx, o...)
 			if err != nil {
 				var returnItem EventResponse
 				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
@@ -321,15 +226,36 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 				break
 			}
 
-			o[0].Body.Page.Cursor = cursorMetaPageAfter
+			o[0].PageCursor = cursorMetaPageAfter
 		}
 		close(items)
 	}()
 	return items, cancel
 }
 
-// searchEventsExecute executes the request.
-func (a *EventsApi) searchEventsExecute(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
+// SearchEventsOptionalParameters holds optional parameters for SearchEvents.
+type SearchEventsOptionalParameters struct {
+	Body *EventsListRequest
+}
+
+// NewSearchEventsOptionalParameters creates an empty struct for parameters.
+func NewSearchEventsOptionalParameters() *SearchEventsOptionalParameters {
+	this := SearchEventsOptionalParameters{}
+	return &this
+}
+
+// WithBody sets the corresponding parameter name and returns the struct.
+func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *SearchEventsOptionalParameters {
+	r.Body = &body
+	return r
+}
+
+// SearchEvents Search events.
+// List endpoint returns events that match an events search query.
+// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
+//
+// Use this endpoint to build complex events filtering and search.
+func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -413,6 +339,70 @@ func (a *EventsApi) searchEventsExecute(ctx _context.Context, o ...SearchEventsO
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
+func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, SearchEventsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewEventsListRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewEventsRequestPage()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[EventResponse], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchEvents(ctx, o...)
+			if err != nil {
+				var returnItem EventResponse
+				items <- datadog.PaginationResult[EventResponse]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[EventResponse]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewEventsApi Returns NewEventsApi.

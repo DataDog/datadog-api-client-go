@@ -19,11 +19,6 @@ type SecurityMonitoringApi datadog.Service
 // AddSecurityMonitoringSignalToIncident Add a security signal to an incident.
 // Add a security signal to an incident. This makes it possible to search for signals by incident within the signal explorer and to view the signals on the incident timeline.
 func (a *SecurityMonitoringApi) AddSecurityMonitoringSignalToIncident(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
-	return a.addSecurityMonitoringSignalToIncidentExecute(ctx, signalId, body)
-}
-
-// addSecurityMonitoringSignalToIncidentExecute executes the request.
-func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -98,11 +93,6 @@ func (a *SecurityMonitoringApi) addSecurityMonitoringSignalToIncidentExecute(ctx
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
-	return a.editSecurityMonitoringSignalAssigneeExecute(ctx, signalId, body)
-}
-
-// editSecurityMonitoringSignalAssigneeExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -177,11 +167,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx 
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
-	return a.editSecurityMonitoringSignalStateExecute(ctx, signalId, body)
-}
-
-// editSecurityMonitoringSignalStateExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

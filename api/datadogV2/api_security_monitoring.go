@@ -23,11 +23,6 @@ type SecurityMonitoringApi datadog.Service
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	return a.createSecurityFilterExecute(ctx, body)
-}
-
-// createSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) createSecurityFilterExecute(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -101,11 +96,6 @@ func (a *SecurityMonitoringApi) createSecurityFilterExecute(ctx _context.Context
 // CreateSecurityMonitoringRule Create a detection rule.
 // Create a detection rule.
 func (a *SecurityMonitoringApi) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return a.createSecurityMonitoringRuleExecute(ctx, body)
-}
-
-// createSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -179,11 +169,6 @@ func (a *SecurityMonitoringApi) createSecurityMonitoringRuleExecute(ctx _context
 // DeleteSecurityFilter Delete a security filter.
 // Delete a specific security filter.
 func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
-	return a.deleteSecurityFilterExecute(ctx, securityFilterId)
-}
-
-// deleteSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -245,11 +230,6 @@ func (a *SecurityMonitoringApi) deleteSecurityFilterExecute(ctx _context.Context
 // DeleteSecurityMonitoringRule Delete an existing rule.
 // Delete an existing rule. Default rules cannot be deleted.
 func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
-	return a.deleteSecurityMonitoringRuleExecute(ctx, ruleId)
-}
-
-// deleteSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -311,11 +291,6 @@ func (a *SecurityMonitoringApi) deleteSecurityMonitoringRuleExecute(ctx _context
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
 // Modify the triage assignee of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	return a.editSecurityMonitoringSignalAssigneeExecute(ctx, signalId, body)
-}
-
-// editSecurityMonitoringSignalAssigneeExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalAssigneeUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -390,11 +365,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalAssigneeExecute(ctx 
 // EditSecurityMonitoringSignalIncidents Change the related incidents of a security signal.
 // Change the related incidents for a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	return a.editSecurityMonitoringSignalIncidentsExecute(ctx, signalId, body)
-}
-
-// editSecurityMonitoringSignalIncidentsExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalIncidentsUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -469,11 +439,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalIncidentsExecute(ctx
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
 // Change the triage state of a security signal.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
-	return a.editSecurityMonitoringSignalStateExecute(ctx, signalId, body)
-}
-
-// editSecurityMonitoringSignalStateExecute executes the request.
-func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(ctx _context.Context, signalId string, body SecurityMonitoringSignalStateUpdateRequest) (SecurityMonitoringSignalTriageUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -551,11 +516,6 @@ func (a *SecurityMonitoringApi) editSecurityMonitoringSignalStateExecute(ctx _co
 // See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 // for more examples.
 func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
-	return a.getSecurityFilterExecute(ctx, securityFilterId)
-}
-
-// getSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityFilterExecute(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -627,11 +587,6 @@ func (a *SecurityMonitoringApi) getSecurityFilterExecute(ctx _context.Context, s
 // GetSecurityMonitoringRule Get a rule's details.
 // Get a rule's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return a.getSecurityMonitoringRuleExecute(ctx, ruleId)
-}
-
-// getSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -703,11 +658,6 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringRuleExecute(ctx _context.Co
 // GetSecurityMonitoringSignal Get a signal's details.
 // Get a signal's details.
 func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
-	return a.getSecurityMonitoringSignalExecute(ctx, signalId)
-}
-
-// getSecurityMonitoringSignalExecute executes the request.
-func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -779,11 +729,6 @@ func (a *SecurityMonitoringApi) getSecurityMonitoringSignalExecute(ctx _context.
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
 func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
-	return a.listSecurityFiltersExecute(ctx)
-}
-
-// listSecurityFiltersExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityFiltersExecute(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -878,11 +823,6 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 // ListSecurityMonitoringRules List rules.
 // List rules.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
-	return a.listSecurityMonitoringRulesExecute(ctx, o...)
-}
-
-// listSecurityMonitoringRulesExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityMonitoringRulesExecute(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1021,69 +961,6 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 // Both this endpoint and the POST endpoint can be used interchangeably when listing
 // security signals.
 func (a *SecurityMonitoringApi) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	return a.listSecurityMonitoringSignalsExecute(ctx, o...)
-}
-
-// ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListSecurityMonitoringSignalsOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listSecurityMonitoringSignalsExecute(ctx, o...)
-			if err != nil {
-				var returnItem SecurityMonitoringSignal
-				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -1177,53 +1054,22 @@ func (a *SecurityMonitoringApi) listSecurityMonitoringSignalsExecute(ctx _contex
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchSecurityMonitoringSignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringSignals.
-type SearchSecurityMonitoringSignalsOptionalParameters struct {
-	Body *SecurityMonitoringSignalListRequest
-}
-
-// NewSearchSecurityMonitoringSignalsOptionalParameters creates an empty struct for parameters.
-func NewSearchSecurityMonitoringSignalsOptionalParameters() *SearchSecurityMonitoringSignalsOptionalParameters {
-	this := SearchSecurityMonitoringSignalsOptionalParameters{}
-	return &this
-}
-
-// WithBody sets the corresponding parameter name and returns the struct.
-func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body SecurityMonitoringSignalListRequest) *SearchSecurityMonitoringSignalsOptionalParameters {
-	r.Body = &body
-	return r
-}
-
-// SearchSecurityMonitoringSignals Get a list of security signals.
-// Returns security signals that match a search query.
-// Both this endpoint and the GET endpoint can be used interchangeably for listing
-// security signals.
-func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	return a.searchSecurityMonitoringSignalsExecute(ctx, o...)
-}
-
-// SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
-func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
+// ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
-		o = append(o, SearchSecurityMonitoringSignalsOptionalParameters{})
+		o = append(o, ListSecurityMonitoringSignalsOptionalParameters{})
 	}
-	if o[0].Body == nil {
-		o[0].Body = NewSecurityMonitoringSignalListRequest()
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
-	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewSecurityMonitoringSignalListRequestPage()
-	}
-	if o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
-	o[0].Body.Page.Limit = &pageSize_
+	o[0].PageLimit = &pageSize_
 
 	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
 	go func() {
 		for {
-			resp, _, err := a.searchSecurityMonitoringSignalsExecute(ctx, o...)
+			resp, _, err := a.ListSecurityMonitoringSignals(ctx, o...)
 			if err != nil {
 				var returnItem SecurityMonitoringSignal
 				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
@@ -1259,15 +1105,35 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 				break
 			}
 
-			o[0].Body.Page.Cursor = cursorMetaPageAfter
+			o[0].PageCursor = cursorMetaPageAfter
 		}
 		close(items)
 	}()
 	return items, cancel
 }
 
-// searchSecurityMonitoringSignalsExecute executes the request.
-func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+// SearchSecurityMonitoringSignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringSignals.
+type SearchSecurityMonitoringSignalsOptionalParameters struct {
+	Body *SecurityMonitoringSignalListRequest
+}
+
+// NewSearchSecurityMonitoringSignalsOptionalParameters creates an empty struct for parameters.
+func NewSearchSecurityMonitoringSignalsOptionalParameters() *SearchSecurityMonitoringSignalsOptionalParameters {
+	this := SearchSecurityMonitoringSignalsOptionalParameters{}
+	return &this
+}
+
+// WithBody sets the corresponding parameter name and returns the struct.
+func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body SecurityMonitoringSignalListRequest) *SearchSecurityMonitoringSignalsOptionalParameters {
+	r.Body = &body
+	return r
+}
+
+// SearchSecurityMonitoringSignals Get a list of security signals.
+// Returns security signals that match a search query.
+// Both this endpoint and the GET endpoint can be used interchangeably for listing
+// security signals.
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -1346,15 +1212,74 @@ func (a *SecurityMonitoringApi) searchSecurityMonitoringSignalsExecute(ctx _cont
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
+func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan datadog.PaginationResult[SecurityMonitoringSignal], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, SearchSecurityMonitoringSignalsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewSecurityMonitoringSignalListRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewSecurityMonitoringSignalListRequestPage()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[SecurityMonitoringSignal], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchSecurityMonitoringSignals(ctx, o...)
+			if err != nil {
+				var returnItem SecurityMonitoringSignal
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // UpdateSecurityFilter Update a security filter.
 // Update a specific security filter.
 // Returns the security filter object when the request is successful.
 func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	return a.updateSecurityFilterExecute(ctx, securityFilterId, body)
-}
-
-// updateSecurityFilterExecute executes the request.
-func (a *SecurityMonitoringApi) updateSecurityFilterExecute(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -1431,11 +1356,6 @@ func (a *SecurityMonitoringApi) updateSecurityFilterExecute(ctx _context.Context
 // must be included. For example, when modifying a query all queries must be included.
 // Default rules can only be updated to be enabled and to change notifications.
 func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	return a.updateSecurityMonitoringRuleExecute(ctx, ruleId, body)
-}
-
-// updateSecurityMonitoringRuleExecute executes the request.
-func (a *SecurityMonitoringApi) updateSecurityMonitoringRuleExecute(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

@@ -19,11 +19,6 @@ type MonitorsApi datadog.Service
 // CreateMonitorConfigPolicy Create a monitor configuration policy.
 // Create a monitor configuration policy.
 func (a *MonitorsApi) CreateMonitorConfigPolicy(ctx _context.Context, body MonitorConfigPolicyCreateRequest) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
-	return a.createMonitorConfigPolicyExecute(ctx, body)
-}
-
-// createMonitorConfigPolicyExecute executes the request.
-func (a *MonitorsApi) createMonitorConfigPolicyExecute(ctx _context.Context, body MonitorConfigPolicyCreateRequest) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *MonitorsApi) createMonitorConfigPolicyExecute(ctx _context.Context, bod
 // DeleteMonitorConfigPolicy Delete a monitor configuration policy.
 // Delete a monitor configuration policy.
 func (a *MonitorsApi) DeleteMonitorConfigPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
-	return a.deleteMonitorConfigPolicyExecute(ctx, policyId)
-}
-
-// deleteMonitorConfigPolicyExecute executes the request.
-func (a *MonitorsApi) deleteMonitorConfigPolicyExecute(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *MonitorsApi) deleteMonitorConfigPolicyExecute(ctx _context.Context, pol
 // GetMonitorConfigPolicy Get a monitor configuration policy.
 // Get a monitor configuration policy by `policy_id`.
 func (a *MonitorsApi) GetMonitorConfigPolicy(ctx _context.Context, policyId string) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
-	return a.getMonitorConfigPolicyExecute(ctx, policyId)
-}
-
-// getMonitorConfigPolicyExecute executes the request.
-func (a *MonitorsApi) getMonitorConfigPolicyExecute(ctx _context.Context, policyId string) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -239,11 +224,6 @@ func (a *MonitorsApi) getMonitorConfigPolicyExecute(ctx _context.Context, policy
 // ListMonitorConfigPolicies Get all monitor configuration policies.
 // Get all monitor configuration policies.
 func (a *MonitorsApi) ListMonitorConfigPolicies(ctx _context.Context) (MonitorConfigPolicyListResponse, *_nethttp.Response, error) {
-	return a.listMonitorConfigPoliciesExecute(ctx)
-}
-
-// listMonitorConfigPoliciesExecute executes the request.
-func (a *MonitorsApi) listMonitorConfigPoliciesExecute(ctx _context.Context) (MonitorConfigPolicyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -314,11 +294,6 @@ func (a *MonitorsApi) listMonitorConfigPoliciesExecute(ctx _context.Context) (Mo
 // UpdateMonitorConfigPolicy Edit a monitor configuration policy.
 // Edit a monitor configuration policy.
 func (a *MonitorsApi) UpdateMonitorConfigPolicy(ctx _context.Context, policyId string, body MonitorConfigPolicyEditRequest) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
-	return a.updateMonitorConfigPolicyExecute(ctx, policyId, body)
-}
-
-// updateMonitorConfigPolicyExecute executes the request.
-func (a *MonitorsApi) updateMonitorConfigPolicyExecute(ctx _context.Context, policyId string, body MonitorConfigPolicyEditRequest) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

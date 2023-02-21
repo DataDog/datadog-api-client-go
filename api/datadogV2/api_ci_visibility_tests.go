@@ -19,11 +19,6 @@ type CIVisibilityTestsApi datadog.Service
 // AggregateCIAppTestEvents Aggregate tests events.
 // The API endpoint to aggregate CI Visibility test events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityTestsApi) AggregateCIAppTestEvents(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
-	return a.aggregateCIAppTestEventsExecute(ctx, body)
-}
-
-// aggregateCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) aggregateCIAppTestEventsExecute(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -152,69 +147,6 @@ func (r *ListCIAppTestEventsOptionalParameters) WithPageLimit(pageLimit int32) *
 //
 // Use this endpoint to see your latest test events.
 func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-	return a.listCIAppTestEventsExecute(ctx, o...)
-}
-
-// ListCIAppTestEventsWithPagination provides a paginated version of ListCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
-	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
-	if len(o) == 0 {
-		o = append(o, ListCIAppTestEventsOptionalParameters{})
-	}
-	if o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
-	o[0].PageLimit = &pageSize_
-
-	items := make(chan datadog.PaginationResult[CIAppTestEvent], pageSize_)
-	go func() {
-		for {
-			resp, _, err := a.listCIAppTestEventsExecute(ctx, o...)
-			if err != nil {
-				var returnItem CIAppTestEvent
-				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
-				break
-			}
-			respData, ok := resp.GetDataOk()
-			if !ok {
-				break
-			}
-			results := *respData
-
-			for _, item := range results {
-				select {
-				case items <- datadog.PaginationResult[CIAppTestEvent]{item, nil}:
-				case <-ctx.Done():
-					close(items)
-					return
-				}
-			}
-			if len(results) < int(pageSize_) {
-				break
-			}
-			cursorMeta, ok := resp.GetMetaOk()
-			if !ok {
-				break
-			}
-			cursorMetaPage, ok := cursorMeta.GetPageOk()
-			if !ok {
-				break
-			}
-			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-			if !ok {
-				break
-			}
-
-			o[0].PageCursor = cursorMetaPageAfter
-		}
-		close(items)
-	}()
-	return items, cancel
-}
-
-// listCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -308,54 +240,22 @@ func (a *CIVisibilityTestsApi) listCIAppTestEventsExecute(ctx _context.Context, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchCIAppTestEventsOptionalParameters holds optional parameters for SearchCIAppTestEvents.
-type SearchCIAppTestEventsOptionalParameters struct {
-	Body *CIAppTestEventsRequest
-}
-
-// NewSearchCIAppTestEventsOptionalParameters creates an empty struct for parameters.
-func NewSearchCIAppTestEventsOptionalParameters() *SearchCIAppTestEventsOptionalParameters {
-	this := SearchCIAppTestEventsOptionalParameters{}
-	return &this
-}
-
-// WithBody sets the corresponding parameter name and returns the struct.
-func (r *SearchCIAppTestEventsOptionalParameters) WithBody(body CIAppTestEventsRequest) *SearchCIAppTestEventsOptionalParameters {
-	r.Body = &body
-	return r
-}
-
-// SearchCIAppTestEvents Search tests events.
-// List endpoint returns CI Visibility test events that match a log search query.
-// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
-//
-// Use this endpoint to build complex events filtering and search.
-func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
-	return a.searchCIAppTestEventsExecute(ctx, o...)
-}
-
-// SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
+// ListCIAppTestEventsWithPagination provides a paginated version of ListCIAppTestEvents returning a channel with all items.
+func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
-		o = append(o, SearchCIAppTestEventsOptionalParameters{})
+		o = append(o, ListCIAppTestEventsOptionalParameters{})
 	}
-	if o[0].Body == nil {
-		o[0].Body = NewCIAppTestEventsRequest()
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
-	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewCIAppQueryPageOptions()
-	}
-	if o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
-	o[0].Body.Page.Limit = &pageSize_
+	o[0].PageLimit = &pageSize_
 
 	items := make(chan datadog.PaginationResult[CIAppTestEvent], pageSize_)
 	go func() {
 		for {
-			resp, _, err := a.searchCIAppTestEventsExecute(ctx, o...)
+			resp, _, err := a.ListCIAppTestEvents(ctx, o...)
 			if err != nil {
 				var returnItem CIAppTestEvent
 				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
@@ -391,15 +291,36 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 				break
 			}
 
-			o[0].Body.Page.Cursor = cursorMetaPageAfter
+			o[0].PageCursor = cursorMetaPageAfter
 		}
 		close(items)
 	}()
 	return items, cancel
 }
 
-// searchCIAppTestEventsExecute executes the request.
-func (a *CIVisibilityTestsApi) searchCIAppTestEventsExecute(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
+// SearchCIAppTestEventsOptionalParameters holds optional parameters for SearchCIAppTestEvents.
+type SearchCIAppTestEventsOptionalParameters struct {
+	Body *CIAppTestEventsRequest
+}
+
+// NewSearchCIAppTestEventsOptionalParameters creates an empty struct for parameters.
+func NewSearchCIAppTestEventsOptionalParameters() *SearchCIAppTestEventsOptionalParameters {
+	this := SearchCIAppTestEventsOptionalParameters{}
+	return &this
+}
+
+// WithBody sets the corresponding parameter name and returns the struct.
+func (r *SearchCIAppTestEventsOptionalParameters) WithBody(body CIAppTestEventsRequest) *SearchCIAppTestEventsOptionalParameters {
+	r.Body = &body
+	return r
+}
+
+// SearchCIAppTestEvents Search tests events.
+// List endpoint returns CI Visibility test events that match a log search query.
+// [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
+//
+// Use this endpoint to build complex events filtering and search.
+func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -476,6 +397,70 @@ func (a *CIVisibilityTestsApi) searchCIAppTestEventsExecute(ctx _context.Context
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
+func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, SearchCIAppTestEventsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewCIAppTestEventsRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewCIAppQueryPageOptions()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[CIAppTestEvent], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchCIAppTestEvents(ctx, o...)
+			if err != nil {
+				var returnItem CIAppTestEvent
+				items <- datadog.PaginationResult[CIAppTestEvent]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[CIAppTestEvent]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewCIVisibilityTestsApi Returns NewCIVisibilityTestsApi.

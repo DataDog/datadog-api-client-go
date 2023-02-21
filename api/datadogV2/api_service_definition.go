@@ -19,11 +19,6 @@ type ServiceDefinitionApi datadog.Service
 // CreateOrUpdateServiceDefinitions Create or update service definition.
 // Create or update service definition in the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Context, body ServiceDefinitionsCreateRequest) (ServiceDefinitionCreateResponse, *_nethttp.Response, error) {
-	return a.createOrUpdateServiceDefinitionsExecute(ctx, body)
-}
-
-// createOrUpdateServiceDefinitionsExecute executes the request.
-func (a *ServiceDefinitionApi) createOrUpdateServiceDefinitionsExecute(ctx _context.Context, body ServiceDefinitionsCreateRequest) (ServiceDefinitionCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *ServiceDefinitionApi) createOrUpdateServiceDefinitionsExecute(ctx _cont
 // DeleteServiceDefinition Delete a single service definition.
 // Delete a single service definition in the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) DeleteServiceDefinition(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
-	return a.deleteServiceDefinitionExecute(ctx, serviceName)
-}
-
-// deleteServiceDefinitionExecute executes the request.
-func (a *ServiceDefinitionApi) deleteServiceDefinitionExecute(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -163,11 +153,6 @@ func (a *ServiceDefinitionApi) deleteServiceDefinitionExecute(ctx _context.Conte
 // GetServiceDefinition Get a single service definition.
 // Get a single service definition from the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, serviceName string) (ServiceDefinitionGetResponse, *_nethttp.Response, error) {
-	return a.getServiceDefinitionExecute(ctx, serviceName)
-}
-
-// getServiceDefinitionExecute executes the request.
-func (a *ServiceDefinitionApi) getServiceDefinitionExecute(ctx _context.Context, serviceName string) (ServiceDefinitionGetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -239,11 +224,6 @@ func (a *ServiceDefinitionApi) getServiceDefinitionExecute(ctx _context.Context,
 // ListServiceDefinitions Get all service definitions.
 // Get a list of all service definitions from the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context) (ServiceDefinitionsListResponse, *_nethttp.Response, error) {
-	return a.listServiceDefinitionsExecute(ctx)
-}
-
-// listServiceDefinitionsExecute executes the request.
-func (a *ServiceDefinitionApi) listServiceDefinitionsExecute(ctx _context.Context) (ServiceDefinitionsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}

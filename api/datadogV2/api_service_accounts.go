@@ -19,11 +19,6 @@ type ServiceAccountsApi datadog.Service
 // CreateServiceAccount Create a service account.
 // Create a service account for your organization.
 func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body ServiceAccountCreateRequest) (UserResponse, *_nethttp.Response, error) {
-	return a.createServiceAccountExecute(ctx, body)
-}
-
-// createServiceAccountExecute executes the request.
-func (a *ServiceAccountsApi) createServiceAccountExecute(ctx _context.Context, body ServiceAccountCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -97,11 +92,6 @@ func (a *ServiceAccountsApi) createServiceAccountExecute(ctx _context.Context, b
 // CreateServiceAccountApplicationKey Create an application key for this service account.
 // Create an application key for this service account.
 func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.createServiceAccountApplicationKeyExecute(ctx, serviceAccountId, body)
-}
-
-// createServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApi) createServiceAccountApplicationKeyExecute(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -176,11 +166,6 @@ func (a *ServiceAccountsApi) createServiceAccountApplicationKeyExecute(ctx _cont
 // DeleteServiceAccountApplicationKey Delete an application key for this service account.
 // Delete an application key owned by this service account.
 func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
-	return a.deleteServiceAccountApplicationKeyExecute(ctx, serviceAccountId, appKeyId)
-}
-
-// deleteServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApi) deleteServiceAccountApplicationKeyExecute(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -243,11 +228,6 @@ func (a *ServiceAccountsApi) deleteServiceAccountApplicationKeyExecute(ctx _cont
 // GetServiceAccountApplicationKey Get one application key for this service account.
 // Get an application key owned by this service account.
 func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.getServiceAccountApplicationKeyExecute(ctx, serviceAccountId, appKeyId)
-}
-
-// getServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApi) getServiceAccountApplicationKeyExecute(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -372,11 +352,6 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
 // ListServiceAccountApplicationKeys List application keys for this service account.
 // List all application keys available for this service account.
 func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
-	return a.listServiceAccountApplicationKeysExecute(ctx, serviceAccountId, o...)
-}
-
-// listServiceAccountApplicationKeysExecute executes the request.
-func (a *ServiceAccountsApi) listServiceAccountApplicationKeysExecute(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -474,11 +449,6 @@ func (a *ServiceAccountsApi) listServiceAccountApplicationKeysExecute(ctx _conte
 // UpdateServiceAccountApplicationKey Edit an application key for this service account.
 // Edit an application key owned by this service account.
 func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
-	return a.updateServiceAccountApplicationKeyExecute(ctx, serviceAccountId, appKeyId, body)
-}
-
-// updateServiceAccountApplicationKeyExecute executes the request.
-func (a *ServiceAccountsApi) updateServiceAccountApplicationKeyExecute(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

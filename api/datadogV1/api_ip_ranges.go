@@ -18,11 +18,6 @@ type IPRangesApi datadog.Service
 // GetIPRanges List IP Ranges.
 // Get information about Datadog IP ranges.
 func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
-	return a.getIPRangesExecute(ctx)
-}
-
-// getIPRangesExecute executes the request.
-func (a *IPRangesApi) getIPRangesExecute(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}

@@ -21,11 +21,6 @@ type IncidentTeamsApi datadog.Service
 // CreateIncidentTeam Create a new incident team.
 // Creates a new incident team.
 func (a *IncidentTeamsApi) CreateIncidentTeam(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
-	return a.createIncidentTeamExecute(ctx, body)
-}
-
-// createIncidentTeamExecute executes the request.
-func (a *IncidentTeamsApi) createIncidentTeamExecute(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -106,11 +101,6 @@ func (a *IncidentTeamsApi) createIncidentTeamExecute(ctx _context.Context, body 
 // DeleteIncidentTeam Delete an existing incident team.
 // Deletes an existing incident team.
 func (a *IncidentTeamsApi) DeleteIncidentTeam(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
-	return a.deleteIncidentTeamExecute(ctx, teamId)
-}
-
-// deleteIncidentTeamExecute executes the request.
-func (a *IncidentTeamsApi) deleteIncidentTeamExecute(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -197,11 +187,6 @@ func (r *GetIncidentTeamOptionalParameters) WithInclude(include IncidentRelatedO
 // Get details of an incident team. If the `include[users]` query parameter is provided,
 // the included attribute will contain the users related to these incident teams.
 func (a *IncidentTeamsApi) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
-	return a.getIncidentTeamExecute(ctx, teamId, o...)
-}
-
-// getIncidentTeamExecute executes the request.
-func (a *IncidentTeamsApi) getIncidentTeamExecute(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -329,11 +314,6 @@ func (r *ListIncidentTeamsOptionalParameters) WithFilter(filter string) *ListInc
 // ListIncidentTeams Get a list of all incident teams.
 // Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
 func (a *IncidentTeamsApi) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
-	return a.listIncidentTeamsExecute(ctx, o...)
-}
-
-// listIncidentTeamsExecute executes the request.
-func (a *IncidentTeamsApi) listIncidentTeamsExecute(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -431,11 +411,6 @@ func (a *IncidentTeamsApi) listIncidentTeamsExecute(ctx _context.Context, o ...L
 // UpdateIncidentTeam Update an existing incident team.
 // Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
 func (a *IncidentTeamsApi) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
-	return a.updateIncidentTeamExecute(ctx, teamId, body)
-}
-
-// updateIncidentTeamExecute executes the request.
-func (a *IncidentTeamsApi) updateIncidentTeamExecute(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
