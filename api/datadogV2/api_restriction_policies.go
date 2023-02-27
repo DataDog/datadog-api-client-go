@@ -16,44 +16,21 @@ import (
 // RestrictionPoliciesApi service type
 type RestrictionPoliciesApi datadog.Service
 
-type apiDeleteRestrictionPolicyRequest struct {
-	ctx        _context.Context
-	resourceId string
-}
-
-func (a *RestrictionPoliciesApi) buildDeleteRestrictionPolicyRequest(ctx _context.Context, resourceId string) (apiDeleteRestrictionPolicyRequest, error) {
-	req := apiDeleteRestrictionPolicyRequest{
-		ctx:        ctx,
-		resourceId: resourceId,
-	}
-	return req, nil
-}
-
 // DeleteRestrictionPolicy Delete a restriction policy.
 // Deletes the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, resourceId string) (*_nethttp.Response, error) {
-	req, err := a.buildDeleteRestrictionPolicyRequest(ctx, resourceId)
-	if err != nil {
-		return nil, err
-	}
-
-	return a.deleteRestrictionPolicyExecute(req)
-}
-
-// deleteRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(r apiDeleteRestrictionPolicyRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RestrictionPoliciesApi.DeleteRestrictionPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RestrictionPoliciesApi.DeleteRestrictionPolicy")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.resourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -61,12 +38,12 @@ func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(r apiDeleteRestr
 	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -100,46 +77,22 @@ func (a *RestrictionPoliciesApi) deleteRestrictionPolicyExecute(r apiDeleteRestr
 	return localVarHTTPResponse, nil
 }
 
-type apiGetRestrictionPolicyRequest struct {
-	ctx        _context.Context
-	resourceId string
-}
-
-func (a *RestrictionPoliciesApi) buildGetRestrictionPolicyRequest(ctx _context.Context, resourceId string) (apiGetRestrictionPolicyRequest, error) {
-	req := apiGetRestrictionPolicyRequest{
-		ctx:        ctx,
-		resourceId: resourceId,
-	}
-	return req, nil
-}
-
 // GetRestrictionPolicy Get a restriction policy.
 // Retrieves the restriction policy associated with a specified resource.
 func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, resourceId string) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-	req, err := a.buildGetRestrictionPolicyRequest(ctx, resourceId)
-	if err != nil {
-		var localVarReturnValue RestrictionPolicyResponse
-		return localVarReturnValue, nil, err
-	}
-
-	return a.getRestrictionPolicyExecute(req)
-}
-
-// getRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(r apiGetRestrictionPolicyRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue RestrictionPolicyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RestrictionPoliciesApi.GetRestrictionPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RestrictionPoliciesApi.GetRestrictionPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.resourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -147,12 +100,12 @@ func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(r apiGetRestriction
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -195,21 +148,6 @@ func (a *RestrictionPoliciesApi) getRestrictionPolicyExecute(r apiGetRestriction
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateRestrictionPolicyRequest struct {
-	ctx        _context.Context
-	resourceId string
-	body       *RestrictionPolicyUpdateRequest
-}
-
-func (a *RestrictionPoliciesApi) buildUpdateRestrictionPolicyRequest(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (apiUpdateRestrictionPolicyRequest, error) {
-	req := apiUpdateRestrictionPolicyRequest{
-		ctx:        ctx,
-		resourceId: resourceId,
-		body:       &body,
-	}
-	return req, nil
-}
-
 // UpdateRestrictionPolicy Update a restriction policy.
 // Updates the restriction policy associated with a resource.
 //
@@ -220,49 +158,35 @@ func (a *RestrictionPoliciesApi) buildUpdateRestrictionPolicyRequest(ctx _contex
 // - Notebooks: `notebook`
 // - Security Rules: `security-rule`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-	req, err := a.buildUpdateRestrictionPolicyRequest(ctx, resourceId, body)
-	if err != nil {
-		var localVarReturnValue RestrictionPolicyResponse
-		return localVarReturnValue, nil, err
-	}
-
-	return a.updateRestrictionPolicyExecute(req)
-}
-
-// updateRestrictionPolicyExecute executes the request.
-func (a *RestrictionPoliciesApi) updateRestrictionPolicyExecute(r apiUpdateRestrictionPolicyRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RestrictionPolicyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RestrictionPoliciesApi.UpdateRestrictionPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RestrictionPoliciesApi.UpdateRestrictionPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(r.resourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, datadog.ReportError("body is required and must be specified")
-	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = &body
 	datadog.SetAuthKeys(
-		r.ctx,
+		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
