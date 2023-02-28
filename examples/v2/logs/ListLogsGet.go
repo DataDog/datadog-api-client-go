@@ -15,6 +15,8 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.Debug = true
+	configuration.RetryConfiguration.MaxRetries = 10
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogsGet(ctx, *datadogV2.NewListLogsGetOptionalParameters())

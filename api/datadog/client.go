@@ -32,13 +32,9 @@ import (
 )
 
 var (
-	jsonCheck                        = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
-	xmlCheck                         = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
-	maxRetries                       = 3
-	defaultBackOffMultiplier float64 = 2
-	defaultBackOffBase       float64 = 2
-	defaultHTTPRetryTimeout          = 60 * time.Second
-	rateLimitResetHeader             = "X-Ratelimit-Reset"
+	jsonCheck            = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
+	xmlCheck             = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
+	rateLimitResetHeader = "X-Ratelimit-Reset"
 )
 
 // APIClient manages communication with the Datadog API V2 Collection API v1.0.
@@ -125,9 +121,10 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	var ccancel context.CancelFunc
 	ctx := request.Context()
 	if _, set := ctx.Deadline(); !set {
-		ctx, ccancel = context.WithTimeout(ctx, defaultHTTPRetryTimeout)
+		ctx, ccancel = context.WithTimeout(ctx, c.Cfg.RetryConfiguration.HTTPRetryTimeout)
 		defer ccancel()
 	}
+	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
 	retryCount := 0
 	for {
 		if retryCount == maxRetries {
@@ -154,8 +151,14 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			return resp, requestErr
 		}
 
-		retryDuration, needRetry := c.shouldRetryRequest(resp, retryCount)
-		if !needRetry {
+		retryDuration, shouldRetry := c.shouldRetryRequest(resp, retryCount)
+		// fmt.Println("need retry:", shouldRetry)
+		// fmt.Println("Max retries:", maxRetries)
+		// fmt.Println("retry duration", retryDuration)
+		// fmt.Println("BackOffBase", c.Cfg.RetryConfiguration.BackOffBase)
+		// fmt.Println("BackoffMulti", c.Cfg.RetryConfiguration.BackOffMultiplier)
+
+		if !shouldRetry {
 			if c.Cfg.Debug {
 				dump, err := httputil.DumpResponse(resp, true)
 				if err != nil {
@@ -186,6 +189,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 				if retryCount == maxRetries {
 					fmt.Println("Max retries reached")
 				}
+				continue
 			}
 			continue
 		}
@@ -204,9 +208,9 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	}
 
 	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
-	if response.StatusCode >= 500 || err != nil {
+	if response.StatusCode >= 200 || err != nil {
 		// Calculate the retry val (base * multiplier^retryCount)
-		retryVal := defaultBackOffBase * math.Pow(defaultBackOffMultiplier, float64(retryCount))
+		retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
 		// retry duration shouldn't exceed default timeout period
 		retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
 		retryDuration := time.Duration(retryVal) * time.Second
