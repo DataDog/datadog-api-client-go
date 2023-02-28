@@ -120,6 +120,12 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	var ccancel context.CancelFunc
+	var rawBody []byte
+	if request.Body != nil && request.Body != http.NoBody {
+		rawBody, _ = ioutil.ReadAll(request.Body)
+		request.Body.Close()
+	}
+
 	ctx := request.Context()
 	if _, set := ctx.Deadline(); !set {
 		ctx, ccancel = context.WithTimeout(ctx, c.Cfg.RetryConfiguration.HTTPRetryTimeout)
@@ -128,21 +134,15 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
 	retryCount := 0
 	for {
-		var rawBody []byte
-		if request.Body != nil && request.Body != http.NoBody {
-			rawBody, _ = ioutil.ReadAll(request.Body)
-			request.Body.Close()
-		}
-		newRequest := copyRequest(request, &rawBody)
 		if retryCount == maxRetries {
 			ccancel()
 		}
-
+		newRequest := copyRequest(request, &rawBody)
 		if c.Cfg.Debug {
 			dump, err := httputil.DumpRequestOut(newRequest, true)
 			if err != nil {
 				fmt.Println("146")
-				//return nil, err
+				return nil, err
 			}
 			// Strip any api keys from the response being logged
 			keys, ok := newRequest.Context().Value(ContextAPIKeys).(map[string]APIKey)
@@ -154,9 +154,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			}
 			log.Printf("\n%s\n", string(dump))
 		}
-
 		resp, requestErr := c.Cfg.HTTPClient.Do(newRequest)
-		//fmt.Println("After calling api:", newRequest)
 
 		if requestErr != nil {
 			return resp, requestErr
