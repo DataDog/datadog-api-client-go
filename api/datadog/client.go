@@ -14,6 +14,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"math"
 	"mime/multipart"
@@ -127,16 +128,24 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
 	retryCount := 0
 	for {
+		var rawBody []byte
+		if request.Body != nil && request.Body != http.NoBody {
+			rawBody, _ = ioutil.ReadAll(request.Body)
+			request.Body.Close()
+		}
+		newRequest := copyRequest(request, &rawBody)
 		if retryCount == maxRetries {
 			ccancel()
 		}
+
 		if c.Cfg.Debug {
-			dump, err := httputil.DumpRequestOut(request, true)
+			dump, err := httputil.DumpRequestOut(newRequest, true)
 			if err != nil {
-				return nil, err
+				fmt.Println("146")
+				//return nil, err
 			}
 			// Strip any api keys from the response being logged
-			keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
+			keys, ok := newRequest.Context().Value(ContextAPIKeys).(map[string]APIKey)
 			if keys != nil && ok {
 				for _, apiKey := range keys {
 					valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
@@ -146,18 +155,14 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			log.Printf("\n%s\n", string(dump))
 		}
 
-		resp, requestErr := c.Cfg.HTTPClient.Do(request)
+		resp, requestErr := c.Cfg.HTTPClient.Do(newRequest)
+		//fmt.Println("After calling api:", newRequest)
+
 		if requestErr != nil {
 			return resp, requestErr
 		}
 
 		retryDuration, shouldRetry := c.shouldRetryRequest(resp, retryCount)
-		// fmt.Println("need retry:", shouldRetry)
-		// fmt.Println("Max retries:", maxRetries)
-		// fmt.Println("retry duration", retryDuration)
-		// fmt.Println("BackOffBase", c.Cfg.RetryConfiguration.BackOffBase)
-		// fmt.Println("BackoffMulti", c.Cfg.RetryConfiguration.BackOffMultiplier)
-
 		if !shouldRetry {
 			if c.Cfg.Debug {
 				dump, err := httputil.DumpResponse(resp, true)
@@ -170,6 +175,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 				return resp, requestErr
 			}
 		}
+
 		select {
 		case <-ctx.Done():
 			if c.Cfg.Debug {
@@ -195,6 +201,17 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		}
 
 	}
+}
+
+func copyRequest(r *http.Request, rawBody *[]byte) *http.Request {
+	newRequest := *r
+
+	if r.Body == nil || r.Body == http.NoBody {
+		return &newRequest
+	}
+	newRequest.Body = ioutil.NopCloser(bytes.NewBuffer(*rawBody))
+
+	return &newRequest
 }
 
 func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {

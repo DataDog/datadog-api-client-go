@@ -29,6 +29,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.Debug = true
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewLogsApi(apiClient)
 	resp, r, err := api.ListLogs(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(body))
