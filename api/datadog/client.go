@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math"
 	"mime/multipart"
 	"net/http"
 	"net/http/httputil"
@@ -23,6 +24,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -30,8 +32,13 @@ import (
 )
 
 var (
-	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
-	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
+	jsonCheck                        = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
+	xmlCheck                         = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
+	maxRetries                       = 3
+	defaultBackOffMultiplier float64 = 2
+	defaultBackOffBase       float64 = 2
+	defaultHTTPRetryTimeout          = 60 * time.Second
+	rateLimitResetHeader             = "X-Ratelimit-Reset"
 )
 
 // APIClient manages communication with the Datadog API V2 Collection API v1.0.
@@ -115,35 +122,95 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
-	if c.Cfg.Debug {
-		dump, err := httputil.DumpRequestOut(request, true)
-		if err != nil {
-			return nil, err
+	var ccancel context.CancelFunc
+	ctx := request.Context()
+	if _, set := ctx.Deadline(); !set {
+		ctx, ccancel = context.WithTimeout(ctx, defaultHTTPRetryTimeout)
+		defer ccancel()
+	}
+	retryCount := 0
+	for {
+		if retryCount == maxRetries {
+			ccancel()
 		}
-		// Strip any api keys from the response being logged
-		keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
-		if keys != nil && ok {
-			for _, apiKey := range keys {
-				valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
-				dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
+		if c.Cfg.Debug {
+			dump, err := httputil.DumpRequestOut(request, true)
+			if err != nil {
+				return nil, err
+			}
+			// Strip any api keys from the response being logged
+			keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
+			if keys != nil && ok {
+				for _, apiKey := range keys {
+					valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
+					dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
+				}
+			}
+			log.Printf("\n%s\n", string(dump))
+		}
+
+		resp, requestErr := c.Cfg.HTTPClient.Do(request)
+		if requestErr != nil {
+			return resp, requestErr
+		}
+
+		retryDuration, needRetry := c.shouldRetryRequest(resp, retryCount)
+		if !needRetry {
+			if c.Cfg.Debug {
+				dump, err := httputil.DumpResponse(resp, true)
+				if err != nil {
+					return resp, err
+				}
+				log.Printf("\n%s\n", string(dump))
+				return resp, requestErr
+			} else {
+				return resp, requestErr
 			}
 		}
-		log.Printf("\n%s\n", string(dump))
-	}
-
-	resp, err := c.Cfg.HTTPClient.Do(request)
-	if err != nil {
-		return resp, err
-	}
-
-	if c.Cfg.Debug {
-		dump, err := httputil.DumpResponse(resp, true)
-		if err != nil {
-			return resp, err
+		select {
+		case <-ctx.Done():
+			if c.Cfg.Debug {
+				dump, err := httputil.DumpResponse(resp, true)
+				log.Printf("\n%s\n", string(dump))
+				if err != nil {
+					return resp, err
+				}
+			}
+			return resp, requestErr
+		case <-time.After(*retryDuration):
+			retryCount++
+			if c.Cfg.Debug {
+				dump, _ := httputil.DumpResponse(resp, true)
+				log.Printf("\n%s\n", string(dump))
+			}
+			continue
 		}
-		log.Printf("\n%s\n", string(dump))
+
 	}
-	return resp, err
+}
+
+func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {
+	var err error
+	if v := response.Header.Get(rateLimitResetHeader); v != "" && response.StatusCode == 429 {
+		vInt, err := strconv.ParseInt(v, 10, 64)
+		if err == nil {
+			retryDuration := time.Duration(vInt) * time.Second
+			return &retryDuration, true
+		}
+	}
+
+	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
+	if response.StatusCode >= 400 || err != nil {
+		// Calculate the retry val (base * multiplier^retryCount)
+		retryVal := defaultBackOffBase * math.Pow(defaultBackOffMultiplier, float64(retryCount))
+		// retry duration shouldn't exceed default timeout period
+		retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
+		retryDuration := time.Duration(retryVal) * time.Second
+		return &retryDuration, true
+	}
+
+	return nil, false
+
 }
 
 // GetConfig allows modification of underlying config for alternate implementations and testing.
