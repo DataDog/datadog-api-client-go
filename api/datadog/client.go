@@ -182,6 +182,10 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			if c.Cfg.Debug {
 				dump, _ := httputil.DumpResponse(resp, true)
 				log.Printf("\n%s\n", string(dump))
+				fmt.Println("Max retries:", maxRetries, " Current retry:", retryCount)
+				if retryCount == maxRetries {
+					fmt.Println("Max retries reached")
+				}
 			}
 			continue
 		}
@@ -200,7 +204,7 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	}
 
 	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
-	if response.StatusCode >= 400 || err != nil {
+	if response.StatusCode >= 500 || err != nil {
 		// Calculate the retry val (base * multiplier^retryCount)
 		retryVal := defaultBackOffBase * math.Pow(defaultBackOffMultiplier, float64(retryCount))
 		// retry duration shouldn't exceed default timeout period
