@@ -9,6 +9,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"time"
 
 	client "{{ module }}"
 )
@@ -100,6 +101,13 @@ type Configuration struct {
 {#withCustomMiddlewareFunction
 	Middleware         MiddlewareFunction
 #}	unstableOperations map[string]bool
+	RetryConfiguration RetryConfiguration
+}
+type RetryConfiguration struct {
+	BackOffMultiplier float64
+	BackOffBase       float64
+	HTTPRetryTimeout  time.Duration
+	MaxRetries        int
 }
 
 {%- macro server_configuration(server) -%}
@@ -164,6 +172,12 @@ func NewConfiguration() *Configuration {
 		{%- endfor %}
 		{%- endfor %}
         {%- endfor %}
+		},
+		RetryConfiguration: RetryConfiguration{
+			BackOffMultiplier: 2,
+			BackOffBase:       2,
+			HTTPRetryTimeout:  60 * time.Second,
+			MaxRetries:        3,
 		},
 	}
 	return cfg
