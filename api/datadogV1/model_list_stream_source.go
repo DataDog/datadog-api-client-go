@@ -16,6 +16,7 @@ type ListStreamSource string
 const (
 	LISTSTREAMSOURCE_LOGS_STREAM             ListStreamSource = "logs_stream"
 	LISTSTREAMSOURCE_AUDIT_STREAM            ListStreamSource = "audit_stream"
+	LISTSTREAMSOURCE_CI_PIPELINE_STREAM      ListStreamSource = "ci_pipeline_stream"
 	LISTSTREAMSOURCE_RUM_ISSUE_STREAM        ListStreamSource = "rum_issue_stream"
 	LISTSTREAMSOURCE_APM_ISSUE_STREAM        ListStreamSource = "apm_issue_stream"
 	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM     ListStreamSource = "logs_pattern_stream"
@@ -26,6 +27,7 @@ const (
 var allowedListStreamSourceEnumValues = []ListStreamSource{
 	LISTSTREAMSOURCE_LOGS_STREAM,
 	LISTSTREAMSOURCE_AUDIT_STREAM,
+	LISTSTREAMSOURCE_CI_PIPELINE_STREAM,
 	LISTSTREAMSOURCE_RUM_ISSUE_STREAM,
 	LISTSTREAMSOURCE_APM_ISSUE_STREAM,
 	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM,
