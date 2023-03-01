@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.LogsMetricCreateRequest{
 		Data: datadogV2.LogsMetricCreateData{
-			Id:   "Example-Create_a_log_based_metric_returns_OK_response",
+			Id:   "ExampleCreatealogbasedmetricreturnsOKresponse",
 			Type: datadogV2.LOGSMETRICTYPE_LOGS_METRICS,
 			Attributes: datadogV2.LogsMetricCreateAttributes{
 				Compute: datadogV2.LogsMetricCompute{
