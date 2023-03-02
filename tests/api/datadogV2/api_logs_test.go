@@ -131,16 +131,20 @@ func TestLogsList(t *testing.T) {
 }
 
 func TestLogsListWithRetry(t *testing.T) {
+
+	if tests.GetRecording() != tests.ModeReplaying {
+		t.Skip("This test case must run from a recording")
+	}
+
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	client := Client(ctx)
-	client.Cfg.Debug = true
+	//Allow retry
 	client.Cfg.RetryConfiguration.EnableRetry = true
 	api := datadogV2.NewLogsApi(client)
 	suffix := tests.UniqueEntityName(ctx, t)
-
 	filter := datadogV2.NewLogsQueryFilter()
 	filter.SetQuery(*suffix)
 	filter.SetFrom("now-2h")
@@ -148,20 +152,7 @@ func TestLogsListWithRetry(t *testing.T) {
 
 	request := datadogV2.NewLogsListRequestWithDefaults()
 	request.SetFilter(*filter)
-
-	// Make sure both logs are indexed
-	// err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
-	// 	response, httpResp, err = api.ListLogs(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(*request))
-	// 	return err == nil && httpResp.StatusCode == 200 && len(response.GetData()) == 2
-	// })
-
-	// if err != nil {
-	// 	t.Fatalf("Could not list sent logs: %v", err)
-	// }
-
-	// Sort works correctly
 	request.SetSort(datadogV2.LOGSSORT_TIMESTAMP_ASCENDING)
-
 	_, _, err := api.ListLogs(ctx, *datadogV2.NewListLogsOptionalParameters().WithBody(*request))
 	if err != nil {
 		t.Fatalf("Could not list logs: %v", err)
