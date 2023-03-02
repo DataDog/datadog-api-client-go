@@ -100,6 +100,7 @@ type Configuration struct {
 	RetryConfiguration RetryConfiguration
 }
 type RetryConfiguration struct {
+	EnableRetry       bool
 	BackOffMultiplier float64
 	BackOffBase       float64
 	HTTPRetryTimeout  time.Duration
@@ -391,6 +392,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateIncidentTeam":        false,
 		},
 		RetryConfiguration: RetryConfiguration{
+			EnableRetry:       false,
 			BackOffMultiplier: 2,
 			BackOffBase:       2,
 			HTTPRetryTimeout:  60 * time.Second,
