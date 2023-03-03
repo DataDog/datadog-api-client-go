@@ -119,18 +119,14 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
-	var ccancel context.CancelFunc
 	var rawBody []byte
 	if request.Body != nil && request.Body != http.NoBody {
 		rawBody, _ = ioutil.ReadAll(request.Body)
 		request.Body.Close()
 	}
 
-	ctx := request.Context()
-	if _, set := ctx.Deadline(); !set {
-		ctx, ccancel = context.WithTimeout(ctx, c.Cfg.RetryConfiguration.HTTPRetryTimeout)
-		defer ccancel()
-	}
+	ctx, ccancel := context.WithTimeout(request.Context(), c.Cfg.RetryConfiguration.HTTPRetryTimeout)
+	defer ccancel()
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
 	retryCount := 0
 	for {
@@ -159,56 +155,29 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			return resp, requestErr
 		}
 
+		if c.Cfg.Debug {
+			dump, _ := httputil.DumpResponse(resp, true)
+			log.Printf("\n%s\n", string(dump))
+			fmt.Println("Max retries:", maxRetries, " Current retry:", retryCount)
+			if retryCount == maxRetries {
+				fmt.Println("Max retries reached")
+			}
+		}
+
 		retryDuration, shouldRetry := c.shouldRetryRequest(resp, retryCount)
 		if !shouldRetry {
-			if c.Cfg.Debug {
-				dump, err := httputil.DumpResponse(resp, true)
-				if err != nil {
-					return resp, err
-				}
-				log.Printf("\n%s\n", string(dump))
-				return resp, requestErr
-			} else {
-				return resp, requestErr
-			}
+			return resp, requestErr
 		}
 
 		select {
 		case <-ctx.Done():
-			if c.Cfg.Debug {
-				dump, err := httputil.DumpResponse(resp, true)
-				log.Printf("\n%s\n", string(dump))
-				if err != nil {
-					return resp, err
-				}
-			}
 			return resp, requestErr
 		case <-time.After(*retryDuration):
 			retryCount++
-			if c.Cfg.Debug {
-				dump, _ := httputil.DumpResponse(resp, true)
-				log.Printf("\n%s\n", string(dump))
-				fmt.Println("Max retries:", maxRetries, " Current retry:", retryCount)
-				if retryCount == maxRetries {
-					fmt.Println("Max retries reached")
-				}
-				continue
-			}
 			continue
 		}
 
 	}
-}
-
-func copyRequest(r *http.Request, rawBody *[]byte) *http.Request {
-	newRequest := *r
-
-	if r.Body == nil || r.Body == http.NoBody {
-		return &newRequest
-	}
-	newRequest.Body = ioutil.NopCloser(bytes.NewBuffer(*rawBody))
-
-	return &newRequest
 }
 
 // Determine if a request should be retried

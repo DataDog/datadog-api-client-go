@@ -141,8 +141,6 @@ func TestLogsListWithRetry(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	client := Client(ctx)
-	//Allow retry
-	client.Cfg.RetryConfiguration.EnableRetry = true
 	api := datadogV2.NewLogsApi(client)
 	suffix := tests.UniqueEntityName(ctx, t)
 	filter := datadogV2.NewLogsQueryFilter()

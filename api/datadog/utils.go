@@ -5,7 +5,10 @@
 package datadog
 
 import (
+	"bytes"
 	"encoding/json"
+	"io/ioutil"
+	"net/http"
 	"reflect"
 	"strings"
 	"time"
@@ -446,4 +449,15 @@ func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 // Strlen returns number of runes in string
 func Strlen(s string) int {
 	return utf8.RuneCountInString(s)
+}
+
+// Copy the original request so it doesn't get lost when retrying
+func copyRequest(r *http.Request, rawBody *[]byte) *http.Request {
+	newRequest := *r
+
+	if r.Body == nil || r.Body == http.NoBody {
+		return &newRequest
+	}
+	newRequest.Body = ioutil.NopCloser(bytes.NewBuffer(*rawBody))
+	return &newRequest
 }

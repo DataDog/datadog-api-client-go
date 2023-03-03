@@ -81,6 +81,7 @@ func NewDefaultContext(ctx context.Context) context.Context {
 func NewConfiguration() *datadog.Configuration {
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
+	config.RetryConfiguration.EnableRetry = true
 	return config
 }
 
