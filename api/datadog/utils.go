@@ -7,7 +7,7 @@ package datadog
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"reflect"
 	"strings"
@@ -458,6 +458,6 @@ func copyRequest(r *http.Request, rawBody *[]byte) *http.Request {
 	if r.Body == nil || r.Body == http.NoBody {
 		return &newRequest
 	}
-	newRequest.Body = ioutil.NopCloser(bytes.NewBuffer(*rawBody))
+	newRequest.Body = io.NopCloser(bytes.NewBuffer(*rawBody))
 	return &newRequest
 }

@@ -14,7 +14,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"math"
 	"mime/multipart"
@@ -121,7 +120,7 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	var rawBody []byte
 	if request.Body != nil && request.Body != http.NoBody {
-		rawBody, _ = ioutil.ReadAll(request.Body)
+		rawBody, _ = io.ReadAll(request.Body)
 		request.Body.Close()
 	}
 
@@ -183,7 +182,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 // Determine if a request should be retried
 func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {
 	var err error
-	if v := response.Header.Get(rateLimitResetHeader); v != "" && response.StatusCode == 429 && c.Cfg.RetryConfiguration.EnableRetry == true {
+	if v := response.Header.Get(rateLimitResetHeader); response.StatusCode == 429 && v != "" && c.Cfg.RetryConfiguration.EnableRetry == true {
 		vInt, err := strconv.ParseInt(v, 10, 64)
 		if err == nil {
 			retryDuration := time.Duration(vInt) * time.Second
@@ -191,8 +190,9 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 		}
 	}
 
-	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
-	if (response.StatusCode >= 500 || err != nil) && c.Cfg.RetryConfiguration.EnableRetry == true {
+	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader,
+	// or if the `rateLimitResetHeader` header is missing or if status code >= 500.
+	if (err != nil || response.StatusCode == 429 || response.StatusCode >= 500) && c.Cfg.RetryConfiguration.EnableRetry == true {
 		// Calculate the retry val (base * multiplier^retryCount)
 		retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
 		// retry duration shouldn't exceed default timeout period
