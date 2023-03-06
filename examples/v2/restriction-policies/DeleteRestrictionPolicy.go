@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRestrictionPoliciesApi(apiClient)
-	r, err := api.DeleteRestrictionPolicy(ctx, "dashboard:abc-def-ghi")
+	r, err := api.DeleteRestrictionPolicy(ctx, "dashboard:test-delete")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RestrictionPoliciesApi.DeleteRestrictionPolicy`: %v\n", err)

@@ -6,7 +6,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Aabc-def-ghi
+    url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Atest-delete
   response:
     body: ''
     code: 204

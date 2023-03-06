@@ -6,9 +6,9 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Aabc-def-ghi
+    url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Atest-get
   response:
-    body: '{"data":{"type":"restriction_policy","id":"dashboard:abc-def-ghi","attributes":{"bindings":[]}}}
+    body: '{"data":{"type":"restriction_policy","id":"dashboard:test-get","attributes":{"bindings":[]}}}
 
       '
     code: 200
