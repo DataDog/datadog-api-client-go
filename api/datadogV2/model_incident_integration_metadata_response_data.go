@@ -9,46 +9,44 @@ import (
 	"fmt"
 )
 
-// IncidentUpdateData Incident data for an update request.
-type IncidentUpdateData struct {
-	// The incident's attributes for an update request.
-	Attributes *IncidentUpdateAttributes `json:"attributes,omitempty"`
-	// The incident's ID.
+// IncidentIntegrationMetadataResponseData Incident integration metadata from a response.
+type IncidentIntegrationMetadataResponseData struct {
+	// Incident integration metadata's attributes for a create request.
+	Attributes *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
+	// The incident integration metadata's ID.
 	Id string `json:"id"`
-	// The incident's relationships for an update request.
-	Relationships *IncidentUpdateRelationships `json:"relationships,omitempty"`
-	// Incident resource type.
-	Type IncidentType `json:"type"`
+	// Integration metadata resource type.
+	Type IncidentIntegrationMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewIncidentUpdateData instantiates a new IncidentUpdateData object.
+// NewIncidentIntegrationMetadataResponseData instantiates a new IncidentIntegrationMetadataResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentUpdateData(id string, typeVar IncidentType) *IncidentUpdateData {
-	this := IncidentUpdateData{}
+func NewIncidentIntegrationMetadataResponseData(id string, typeVar IncidentIntegrationMetadataType) *IncidentIntegrationMetadataResponseData {
+	this := IncidentIntegrationMetadataResponseData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewIncidentUpdateDataWithDefaults instantiates a new IncidentUpdateData object.
+// NewIncidentIntegrationMetadataResponseDataWithDefaults instantiates a new IncidentIntegrationMetadataResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentUpdateDataWithDefaults() *IncidentUpdateData {
-	this := IncidentUpdateData{}
-	var typeVar IncidentType = INCIDENTTYPE_INCIDENTS
+func NewIncidentIntegrationMetadataResponseDataWithDefaults() *IncidentIntegrationMetadataResponseData {
+	this := IncidentIntegrationMetadataResponseData{}
+	var typeVar IncidentIntegrationMetadataType = INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *IncidentUpdateData) GetAttributes() IncidentUpdateAttributes {
+func (o *IncidentIntegrationMetadataResponseData) GetAttributes() IncidentIntegrationMetadataAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret IncidentUpdateAttributes
+		var ret IncidentIntegrationMetadataAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -56,7 +54,7 @@ func (o *IncidentUpdateData) GetAttributes() IncidentUpdateAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentUpdateData) GetAttributesOk() (*IncidentUpdateAttributes, bool) {
+func (o *IncidentIntegrationMetadataResponseData) GetAttributesOk() (*IncidentIntegrationMetadataAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -64,17 +62,17 @@ func (o *IncidentUpdateData) GetAttributesOk() (*IncidentUpdateAttributes, bool)
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *IncidentUpdateData) HasAttributes() bool {
+func (o *IncidentIntegrationMetadataResponseData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given IncidentUpdateAttributes and assigns it to the Attributes field.
-func (o *IncidentUpdateData) SetAttributes(v IncidentUpdateAttributes) {
+// SetAttributes gets a reference to the given IncidentIntegrationMetadataAttributes and assigns it to the Attributes field.
+func (o *IncidentIntegrationMetadataResponseData) SetAttributes(v IncidentIntegrationMetadataAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value.
-func (o *IncidentUpdateData) GetId() string {
+func (o *IncidentIntegrationMetadataResponseData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -84,7 +82,7 @@ func (o *IncidentUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *IncidentUpdateData) GetIdOk() (*string, bool) {
+func (o *IncidentIntegrationMetadataResponseData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,42 +90,14 @@ func (o *IncidentUpdateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *IncidentUpdateData) SetId(v string) {
+func (o *IncidentIntegrationMetadataResponseData) SetId(v string) {
 	o.Id = v
 }
 
-// GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *IncidentUpdateData) GetRelationships() IncidentUpdateRelationships {
-	if o == nil || o.Relationships == nil {
-		var ret IncidentUpdateRelationships
-		return ret
-	}
-	return *o.Relationships
-}
-
-// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentUpdateData) GetRelationshipsOk() (*IncidentUpdateRelationships, bool) {
-	if o == nil || o.Relationships == nil {
-		return nil, false
-	}
-	return o.Relationships, true
-}
-
-// HasRelationships returns a boolean if a field has been set.
-func (o *IncidentUpdateData) HasRelationships() bool {
-	return o != nil && o.Relationships != nil
-}
-
-// SetRelationships gets a reference to the given IncidentUpdateRelationships and assigns it to the Relationships field.
-func (o *IncidentUpdateData) SetRelationships(v IncidentUpdateRelationships) {
-	o.Relationships = &v
-}
-
 // GetType returns the Type field value.
-func (o *IncidentUpdateData) GetType() IncidentType {
+func (o *IncidentIntegrationMetadataResponseData) GetType() IncidentIntegrationMetadataType {
 	if o == nil {
-		var ret IncidentType
+		var ret IncidentIntegrationMetadataType
 		return ret
 	}
 	return o.Type
@@ -135,7 +105,7 @@ func (o *IncidentUpdateData) GetType() IncidentType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IncidentUpdateData) GetTypeOk() (*IncidentType, bool) {
+func (o *IncidentIntegrationMetadataResponseData) GetTypeOk() (*IncidentIntegrationMetadataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,12 +113,12 @@ func (o *IncidentUpdateData) GetTypeOk() (*IncidentType, bool) {
 }
 
 // SetType sets field value.
-func (o *IncidentUpdateData) SetType(v IncidentType) {
+func (o *IncidentIntegrationMetadataResponseData) SetType(v IncidentIntegrationMetadataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
+func (o IncidentIntegrationMetadataResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -157,9 +127,6 @@ func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	toSerialize["id"] = o.Id
-	if o.Relationships != nil {
-		toSerialize["relationships"] = o.Relationships
-	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -169,17 +136,16 @@ func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string       `json:"id"`
-		Type *IncidentType `json:"type"`
+		Id   *string                          `json:"id"`
+		Type *IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *IncidentUpdateAttributes    `json:"attributes,omitempty"`
-		Id            string                       `json:"id"`
-		Relationships *IncidentUpdateRelationships `json:"relationships,omitempty"`
-		Type          IncidentType                 `json:"type"`
+		Attributes *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
+		Id         string                                 `json:"id"`
+		Type       IncidentIntegrationMetadataType        `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -217,14 +183,6 @@ func (o *IncidentUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil
 }

@@ -9,37 +9,37 @@ import (
 	"fmt"
 )
 
-// RelationshipToIncidentIntegrationMetadatas A relationship reference for multiple integration metadata objects.
-type RelationshipToIncidentIntegrationMetadatas struct {
-	// Integration metadata relationship array
-	Data []RelationshipToIncidentIntegrationMetadataData `json:"data"`
+// IncidentIntegrationMetadataCreateRequest Create request for an incident integration metadata.
+type IncidentIntegrationMetadataCreateRequest struct {
+	// Incident integration metadata data for a create request.
+	Data IncidentIntegrationMetadataCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRelationshipToIncidentIntegrationMetadatas instantiates a new RelationshipToIncidentIntegrationMetadatas object.
+// NewIncidentIntegrationMetadataCreateRequest instantiates a new IncidentIntegrationMetadataCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRelationshipToIncidentIntegrationMetadatas(data []RelationshipToIncidentIntegrationMetadataData) *RelationshipToIncidentIntegrationMetadatas {
-	this := RelationshipToIncidentIntegrationMetadatas{}
+func NewIncidentIntegrationMetadataCreateRequest(data IncidentIntegrationMetadataCreateData) *IncidentIntegrationMetadataCreateRequest {
+	this := IncidentIntegrationMetadataCreateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewRelationshipToIncidentIntegrationMetadatasWithDefaults instantiates a new RelationshipToIncidentIntegrationMetadatas object.
+// NewIncidentIntegrationMetadataCreateRequestWithDefaults instantiates a new IncidentIntegrationMetadataCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRelationshipToIncidentIntegrationMetadatasWithDefaults() *RelationshipToIncidentIntegrationMetadatas {
-	this := RelationshipToIncidentIntegrationMetadatas{}
+func NewIncidentIntegrationMetadataCreateRequestWithDefaults() *IncidentIntegrationMetadataCreateRequest {
+	this := IncidentIntegrationMetadataCreateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *RelationshipToIncidentIntegrationMetadatas) GetData() []RelationshipToIncidentIntegrationMetadataData {
+func (o *IncidentIntegrationMetadataCreateRequest) GetData() IncidentIntegrationMetadataCreateData {
 	if o == nil {
-		var ret []RelationshipToIncidentIntegrationMetadataData
+		var ret IncidentIntegrationMetadataCreateData
 		return ret
 	}
 	return o.Data
@@ -47,7 +47,7 @@ func (o *RelationshipToIncidentIntegrationMetadatas) GetData() []RelationshipToI
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RelationshipToIncidentIntegrationMetadatas) GetDataOk() (*[]RelationshipToIncidentIntegrationMetadataData, bool) {
+func (o *IncidentIntegrationMetadataCreateRequest) GetDataOk() (*IncidentIntegrationMetadataCreateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -55,12 +55,12 @@ func (o *RelationshipToIncidentIntegrationMetadatas) GetDataOk() (*[]Relationshi
 }
 
 // SetData sets field value.
-func (o *RelationshipToIncidentIntegrationMetadatas) SetData(v []RelationshipToIncidentIntegrationMetadataData) {
+func (o *IncidentIntegrationMetadataCreateRequest) SetData(v IncidentIntegrationMetadataCreateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RelationshipToIncidentIntegrationMetadatas) MarshalJSON() ([]byte, error) {
+func (o IncidentIntegrationMetadataCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -74,13 +74,13 @@ func (o RelationshipToIncidentIntegrationMetadatas) MarshalJSON() ([]byte, error
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RelationshipToIncidentIntegrationMetadatas) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentIntegrationMetadataCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Data *[]RelationshipToIncidentIntegrationMetadataData `json:"data"`
+		Data *IncidentIntegrationMetadataCreateData `json:"data"`
 	}{}
 	all := struct {
-		Data []RelationshipToIncidentIntegrationMetadataData `json:"data"`
+		Data IncidentIntegrationMetadataCreateData `json:"data"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -97,6 +97,13 @@ func (o *RelationshipToIncidentIntegrationMetadatas) UnmarshalJSON(bytes []byte)
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 	o.Data = all.Data
 	return nil
