@@ -190,7 +190,7 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 		}
 	}
 
-	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader,
+	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
 	// or if the `rateLimitResetHeader` header is missing or if status code >= 500.
 	if (err != nil || response.StatusCode == 429 || response.StatusCode >= 500) && c.Cfg.RetryConfiguration.EnableRetry {
 		// Calculate the retry val (base * multiplier^retryCount)
