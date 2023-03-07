@@ -157,6 +157,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // - Dashboards: `dashboard`
 // - Notebooks: `notebook`
 // - Security Rules: `security-rule`
+// - Service Level Objectives: `slo`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
