@@ -17,7 +17,7 @@ func main() {
 
 	body := datadogV2.RestrictionPolicyUpdateRequest{
 		Data: datadogV2.RestrictionPolicy{
-			Id:   "dashboard:abc-def-ghi",
+			Id:   "dashboard:test-update",
 			Type: datadogV2.RESTRICTIONPOLICYTYPE_RESTRICTION_POLICY,
 			Attributes: datadogV2.RestrictionPolicyAttributes{
 				Bindings: []datadogV2.RestrictionPolicyBinding{
@@ -35,7 +35,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRestrictionPoliciesApi(apiClient)
-	resp, r, err := api.UpdateRestrictionPolicy(ctx, "dashboard:abc-def-ghi", body)
+	resp, r, err := api.UpdateRestrictionPolicy(ctx, "dashboard:test-update", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RestrictionPoliciesApi.UpdateRestrictionPolicy`: %v\n", err)
