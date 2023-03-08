@@ -179,6 +179,8 @@ type UsageSummaryResponse struct {
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage []UsageSummaryDate `json:"usage,omitempty"`
+	// Shows the 99th percentile of all Universal Service Monitoring hosts over all hours in the current months for all organizations.
+	UsmHostCountTop99pSum *int64 `json:"usm_host_count_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
 	VsphereHostTop99pSum *int64 `json:"vsphere_host_top99p_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -2555,6 +2557,34 @@ func (o *UsageSummaryResponse) SetUsage(v []UsageSummaryDate) {
 	o.Usage = v
 }
 
+// GetUsmHostCountTop99pSum returns the UsmHostCountTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetUsmHostCountTop99pSum() int64 {
+	if o == nil || o.UsmHostCountTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.UsmHostCountTop99pSum
+}
+
+// GetUsmHostCountTop99pSumOk returns a tuple with the UsmHostCountTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetUsmHostCountTop99pSumOk() (*int64, bool) {
+	if o == nil || o.UsmHostCountTop99pSum == nil {
+		return nil, false
+	}
+	return o.UsmHostCountTop99pSum, true
+}
+
+// HasUsmHostCountTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasUsmHostCountTop99pSum() bool {
+	return o != nil && o.UsmHostCountTop99pSum != nil
+}
+
+// SetUsmHostCountTop99pSum gets a reference to the given int64 and assigns it to the UsmHostCountTop99pSum field.
+func (o *UsageSummaryResponse) SetUsmHostCountTop99pSum(v int64) {
+	o.UsmHostCountTop99pSum = &v
+}
+
 // GetVsphereHostTop99pSum returns the VsphereHostTop99pSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetVsphereHostTop99pSum() int64 {
 	if o == nil || o.VsphereHostTop99pSum == nil {
@@ -2853,6 +2883,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
+	if o.UsmHostCountTop99pSum != nil {
+		toSerialize["usm_host_count_top99p_sum"] = o.UsmHostCountTop99pSum
+	}
 	if o.VsphereHostTop99pSum != nil {
 		toSerialize["vsphere_host_top99p_sum"] = o.VsphereHostTop99pSum
 	}
@@ -2951,6 +2984,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		TraceSearchIndexedEventsCountAggSum        *int64             `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
 		TwolIngestedEventsBytesAggSum              *int64             `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 		Usage                                      []UsageSummaryDate `json:"usage,omitempty"`
+		UsmHostCountTop99pSum                      *int64             `json:"usm_host_count_top99p_sum,omitempty"`
 		VsphereHostTop99pSum                       *int64             `json:"vsphere_host_top99p_sum,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -3053,6 +3087,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.TraceSearchIndexedEventsCountAggSum = all.TraceSearchIndexedEventsCountAggSum
 	o.TwolIngestedEventsBytesAggSum = all.TwolIngestedEventsBytesAggSum
 	o.Usage = all.Usage
+	o.UsmHostCountTop99pSum = all.UsmHostCountTop99pSum
 	o.VsphereHostTop99pSum = all.VsphereHostTop99pSum
 	return nil
 }
