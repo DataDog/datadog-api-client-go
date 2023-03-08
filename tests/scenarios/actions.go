@@ -114,7 +114,6 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 	debug := os.Getenv("DEBUG") == "true"
 	config := datadog.NewConfiguration()
 	config.Debug = debug
-	config.RetryConfiguration.EnableRetry = true
 	c := datadog.NewAPIClient(config)
 
 	ctx = context.WithValue(

@@ -49,7 +49,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "0"
       X-Ratelimit-Reset:
-      - "7"
+      - "1"
     status: 429 Too Many Requests
     code: 429
     duration: ""
@@ -102,7 +102,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "0"
       X-Ratelimit-Reset:
-      - "7"
+      - "1"
     status: 429 Too Many Requests
     code: 429
     duration: ""
@@ -154,7 +154,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "0"
       X-Ratelimit-Reset:
-      - "7"
+      - "1"
     status: 429 Too Many Requests
     code: 429
     duration: ""
@@ -206,7 +206,7 @@ interactions:
       X-Ratelimit-Remaining:
       - "9"
       X-Ratelimit-Reset:
-      - "10"
+      - "1"
     status: 200 OK
     code: 200
     duration: ""
