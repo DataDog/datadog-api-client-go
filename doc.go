@@ -112,6 +112,16 @@
 //
 //       configuration.Debug = true
 //
+// Enable retry
+//
+// If you want to enable retry when getting status code 429 rate-limited, set EnableRetry to true
+//
+//       configuration.RetryConfiguration.EnableRetry = true
+//
+// The default max retry is 3, you can change it with MaxRetries
+//
+//       configuration.RetryConfiguration.MaxRetries = 3
+//
 // Configure proxy
 //
 // If you want to configure proxy, set env var HTTP_PROXY, and HTTPS_PROXY or set custom

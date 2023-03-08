@@ -131,7 +131,9 @@ If you want to enable retry when getting status code `429` rate-limited, set `En
 ```go
     configuration.RetryConfiguration.EnableRetry = true
 ```
+
 The default max retry is `3`, you can change it with `MaxRetries`
+
 ```go
     configuration.RetryConfiguration.MaxRetries = 3
 ```
