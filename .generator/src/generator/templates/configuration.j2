@@ -103,6 +103,8 @@ type Configuration struct {
 #}	unstableOperations map[string]bool
 	RetryConfiguration RetryConfiguration
 }
+
+// RetryConfiguration stores the configuration of the retry behavior of the api client
 type RetryConfiguration struct {
 	EnableRetry       bool
 	BackOffMultiplier float64
