@@ -12,6 +12,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"time"
 
 	client "github.com/DataDog/datadog-api-client-go/v2"
 )
@@ -96,6 +97,16 @@ type Configuration struct {
 	OperationServers   map[string]ServerConfigurations
 	HTTPClient         *http.Client
 	unstableOperations map[string]bool
+	RetryConfiguration RetryConfiguration
+}
+
+// RetryConfiguration stores the configuration of the retry behavior of the api client
+type RetryConfiguration struct {
+	EnableRetry       bool
+	BackOffMultiplier float64
+	BackOffBase       float64
+	HTTPRetryTimeout  time.Duration
+	MaxRetries        int
 }
 
 // NewConfiguration returns a new Configuration object.
@@ -386,6 +397,13 @@ func NewConfiguration() *Configuration {
 			"v2.GetIncidentTeam":           false,
 			"v2.ListIncidentTeams":         false,
 			"v2.UpdateIncidentTeam":        false,
+		},
+		RetryConfiguration: RetryConfiguration{
+			EnableRetry:       false,
+			BackOffMultiplier: 2,
+			BackOffBase:       2,
+			HTTPRetryTimeout:  60 * time.Second,
+			MaxRetries:        3,
 		},
 	}
 	return cfg

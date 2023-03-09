@@ -335,6 +335,7 @@ func TestLogsIndexesUpdate429Error(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).
 		Put("/api/v1/logs/config/indexes/name").
+		Times(4). //default maxRetries=3, total 4 retries by default
 		Reply(429).
 		JSON(data)
 	defer gock.Off()
