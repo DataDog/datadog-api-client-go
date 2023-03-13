@@ -22,6 +22,8 @@ type UsageSummaryDateOrg struct {
 	AppsecFargateCountAvg *int64 `json:"appsec_fargate_count_avg,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current date for the given org.
 	AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
+	// Shows whether Audit Trail is enabled for the current date for the given org.
+	AuditTrailEnabledHwm *int64 `json:"audit_trail_enabled_hwm,omitempty"`
 	// The average profiled task count for Fargate Profiling.
 	AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current date for the given org.
@@ -354,6 +356,34 @@ func (o *UsageSummaryDateOrg) HasAuditLogsLinesIndexedSum() bool {
 // SetAuditLogsLinesIndexedSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedSum field.
 func (o *UsageSummaryDateOrg) SetAuditLogsLinesIndexedSum(v int64) {
 	o.AuditLogsLinesIndexedSum = &v
+}
+
+// GetAuditTrailEnabledHwm returns the AuditTrailEnabledHwm field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetAuditTrailEnabledHwm() int64 {
+	if o == nil || o.AuditTrailEnabledHwm == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AuditTrailEnabledHwm
+}
+
+// GetAuditTrailEnabledHwmOk returns a tuple with the AuditTrailEnabledHwm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetAuditTrailEnabledHwmOk() (*int64, bool) {
+	if o == nil || o.AuditTrailEnabledHwm == nil {
+		return nil, false
+	}
+	return o.AuditTrailEnabledHwm, true
+}
+
+// HasAuditTrailEnabledHwm returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasAuditTrailEnabledHwm() bool {
+	return o != nil && o.AuditTrailEnabledHwm != nil
+}
+
+// SetAuditTrailEnabledHwm gets a reference to the given int64 and assigns it to the AuditTrailEnabledHwm field.
+func (o *UsageSummaryDateOrg) SetAuditTrailEnabledHwm(v int64) {
+	o.AuditTrailEnabledHwm = &v
 }
 
 // GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
@@ -2396,6 +2426,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.AuditLogsLinesIndexedSum != nil {
 		toSerialize["audit_logs_lines_indexed_sum"] = o.AuditLogsLinesIndexedSum
 	}
+	if o.AuditTrailEnabledHwm != nil {
+		toSerialize["audit_trail_enabled_hwm"] = o.AuditTrailEnabledHwm
+	}
 	if o.AvgProfiledFargateTasks != nil {
 		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks
 	}
@@ -2629,6 +2662,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		ApmHostTop99p                           *int64  `json:"apm_host_top99p,omitempty"`
 		AppsecFargateCountAvg                   *int64  `json:"appsec_fargate_count_avg,omitempty"`
 		AuditLogsLinesIndexedSum                *int64  `json:"audit_logs_lines_indexed_sum,omitempty"`
+		AuditTrailEnabledHwm                    *int64  `json:"audit_trail_enabled_hwm,omitempty"`
 		AvgProfiledFargateTasks                 *int64  `json:"avg_profiled_fargate_tasks,omitempty"`
 		AwsHostTop99p                           *int64  `json:"aws_host_top99p,omitempty"`
 		AwsLambdaFuncCount                      *int64  `json:"aws_lambda_func_count,omitempty"`
@@ -2717,6 +2751,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApmHostTop99p = all.ApmHostTop99p
 	o.AppsecFargateCountAvg = all.AppsecFargateCountAvg
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
+	o.AuditTrailEnabledHwm = all.AuditTrailEnabledHwm
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.AwsHostTop99p = all.AwsHostTop99p
 	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount

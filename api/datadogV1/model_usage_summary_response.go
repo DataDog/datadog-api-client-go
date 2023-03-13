@@ -23,6 +23,8 @@ type UsageSummaryResponse struct {
 	AppsecFargateCountAvgSum *int64 `json:"appsec_fargate_count_avg_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
+	// Shows the total number of organizations that had Audit Trail enabled over a specific number of months.
+	AuditTrailEnabledHwmSum *int64 `json:"audit_trail_enabled_hwm_sum,omitempty"`
 	// Shows the average of all profiled Fargate tasks over all hours in the current months for all organizations.
 	AvgProfiledFargateTasksSum *int64 `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations.
@@ -369,6 +371,34 @@ func (o *UsageSummaryResponse) HasAuditLogsLinesIndexedAggSum() bool {
 // SetAuditLogsLinesIndexedAggSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedAggSum field.
 func (o *UsageSummaryResponse) SetAuditLogsLinesIndexedAggSum(v int64) {
 	o.AuditLogsLinesIndexedAggSum = &v
+}
+
+// GetAuditTrailEnabledHwmSum returns the AuditTrailEnabledHwmSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAuditTrailEnabledHwmSum() int64 {
+	if o == nil || o.AuditTrailEnabledHwmSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AuditTrailEnabledHwmSum
+}
+
+// GetAuditTrailEnabledHwmSumOk returns a tuple with the AuditTrailEnabledHwmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAuditTrailEnabledHwmSumOk() (*int64, bool) {
+	if o == nil || o.AuditTrailEnabledHwmSum == nil {
+		return nil, false
+	}
+	return o.AuditTrailEnabledHwmSum, true
+}
+
+// HasAuditTrailEnabledHwmSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAuditTrailEnabledHwmSum() bool {
+	return o != nil && o.AuditTrailEnabledHwmSum != nil
+}
+
+// SetAuditTrailEnabledHwmSum gets a reference to the given int64 and assigns it to the AuditTrailEnabledHwmSum field.
+func (o *UsageSummaryResponse) SetAuditTrailEnabledHwmSum(v int64) {
+	o.AuditTrailEnabledHwmSum = &v
 }
 
 // GetAvgProfiledFargateTasksSum returns the AvgProfiledFargateTasksSum field value if set, zero value otherwise.
@@ -2607,6 +2637,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.AuditLogsLinesIndexedAggSum != nil {
 		toSerialize["audit_logs_lines_indexed_agg_sum"] = o.AuditLogsLinesIndexedAggSum
 	}
+	if o.AuditTrailEnabledHwmSum != nil {
+		toSerialize["audit_trail_enabled_hwm_sum"] = o.AuditTrailEnabledHwmSum
+	}
 	if o.AvgProfiledFargateTasksSum != nil {
 		toSerialize["avg_profiled_fargate_tasks_sum"] = o.AvgProfiledFargateTasksSum
 	}
@@ -2873,6 +2906,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ApmHostTop99pSum                           *int64             `json:"apm_host_top99p_sum,omitempty"`
 		AppsecFargateCountAvgSum                   *int64             `json:"appsec_fargate_count_avg_sum,omitempty"`
 		AuditLogsLinesIndexedAggSum                *int64             `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
+		AuditTrailEnabledHwmSum                    *int64             `json:"audit_trail_enabled_hwm_sum,omitempty"`
 		AvgProfiledFargateTasksSum                 *int64             `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 		AwsHostTop99pSum                           *int64             `json:"aws_host_top99p_sum,omitempty"`
 		AwsLambdaFuncCount                         *int64             `json:"aws_lambda_func_count,omitempty"`
@@ -2968,6 +3002,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApmHostTop99pSum = all.ApmHostTop99pSum
 	o.AppsecFargateCountAvgSum = all.AppsecFargateCountAvgSum
 	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
+	o.AuditTrailEnabledHwmSum = all.AuditTrailEnabledHwmSum
 	o.AvgProfiledFargateTasksSum = all.AvgProfiledFargateTasksSum
 	o.AwsHostTop99pSum = all.AwsHostTop99pSum
 	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount
