@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.11.0 / 2023-03-14
+
+### Added
+* Add SLO to GRACE API spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1905
+* Add retry logic when rate limit by @HantingZhang2 in https://github.com/DataDog/datadog-api-client-go/pull/1896
+* Add audit trail to usage metering API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1902
+
+## New Contributors
+* @HantingZhang2 made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1896
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.10.0...v2.11.0
+
 ## 2.10.0 / 2023-03-07
 
 ### Added
