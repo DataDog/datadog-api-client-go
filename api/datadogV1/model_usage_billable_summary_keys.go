@@ -29,7 +29,7 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	ApplicationSecurityHostSum *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
-	ApplicationSecurityHostTop99 *UsageBillableSummaryBody `json:"application_security_host_top99,omitempty"`
+	ApplicationSecurityHostTop99p *UsageBillableSummaryBody `json:"application_security_host_top99p,omitempty"`
 	// Response with properties for each aggregated usage type.
 	CiPipelineIndexedSpansSum *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
 	// Response with properties for each aggregated usage type.
@@ -460,32 +460,32 @@ func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostSum(v UsageBillable
 	o.ApplicationSecurityHostSum = &v
 }
 
-// GetApplicationSecurityHostTop99 returns the ApplicationSecurityHostTop99 field value if set, zero value otherwise.
-func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99() UsageBillableSummaryBody {
-	if o == nil || o.ApplicationSecurityHostTop99 == nil {
+// GetApplicationSecurityHostTop99p returns the ApplicationSecurityHostTop99p field value if set, zero value otherwise.
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99p() UsageBillableSummaryBody {
+	if o == nil || o.ApplicationSecurityHostTop99p == nil {
 		var ret UsageBillableSummaryBody
 		return ret
 	}
-	return *o.ApplicationSecurityHostTop99
+	return *o.ApplicationSecurityHostTop99p
 }
 
-// GetApplicationSecurityHostTop99Ok returns a tuple with the ApplicationSecurityHostTop99 field value if set, nil otherwise
+// GetApplicationSecurityHostTop99pOk returns a tuple with the ApplicationSecurityHostTop99p field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99Ok() (*UsageBillableSummaryBody, bool) {
-	if o == nil || o.ApplicationSecurityHostTop99 == nil {
+func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99pOk() (*UsageBillableSummaryBody, bool) {
+	if o == nil || o.ApplicationSecurityHostTop99p == nil {
 		return nil, false
 	}
-	return o.ApplicationSecurityHostTop99, true
+	return o.ApplicationSecurityHostTop99p, true
 }
 
-// HasApplicationSecurityHostTop99 returns a boolean if a field has been set.
-func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostTop99() bool {
-	return o != nil && o.ApplicationSecurityHostTop99 != nil
+// HasApplicationSecurityHostTop99p returns a boolean if a field has been set.
+func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostTop99p() bool {
+	return o != nil && o.ApplicationSecurityHostTop99p != nil
 }
 
-// SetApplicationSecurityHostTop99 gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityHostTop99 field.
-func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostTop99(v UsageBillableSummaryBody) {
-	o.ApplicationSecurityHostTop99 = &v
+// SetApplicationSecurityHostTop99p gets a reference to the given UsageBillableSummaryBody and assigns it to the ApplicationSecurityHostTop99p field.
+func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostTop99p(v UsageBillableSummaryBody) {
+	o.ApplicationSecurityHostTop99p = &v
 }
 
 // GetCiPipelineIndexedSpansSum returns the CiPipelineIndexedSpansSum field value if set, zero value otherwise.
@@ -2705,8 +2705,8 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	if o.ApplicationSecurityHostSum != nil {
 		toSerialize["application_security_host_sum"] = o.ApplicationSecurityHostSum
 	}
-	if o.ApplicationSecurityHostTop99 != nil {
-		toSerialize["application_security_host_top99"] = o.ApplicationSecurityHostTop99
+	if o.ApplicationSecurityHostTop99p != nil {
+		toSerialize["application_security_host_top99p"] = o.ApplicationSecurityHostTop99p
 	}
 	if o.CiPipelineIndexedSpansSum != nil {
 		toSerialize["ci_pipeline_indexed_spans_sum"] = o.CiPipelineIndexedSpansSum
@@ -2962,7 +2962,7 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		ApmTraceSearchSum                     *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
 		ApplicationSecurityFargateAverage     *UsageBillableSummaryBody `json:"application_security_fargate_average,omitempty"`
 		ApplicationSecurityHostSum            *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
-		ApplicationSecurityHostTop99          *UsageBillableSummaryBody `json:"application_security_host_top99,omitempty"`
+		ApplicationSecurityHostTop99p         *UsageBillableSummaryBody `json:"application_security_host_top99p,omitempty"`
 		CiPipelineIndexedSpansSum             *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
 		CiPipelineMaximum                     *UsageBillableSummaryBody `json:"ci_pipeline_maximum,omitempty"`
 		CiPipelineSum                         *UsageBillableSummaryBody `json:"ci_pipeline_sum,omitempty"`
@@ -3123,14 +3123,14 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.ApplicationSecurityHostSum = all.ApplicationSecurityHostSum
-	if all.ApplicationSecurityHostTop99 != nil && all.ApplicationSecurityHostTop99.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ApplicationSecurityHostTop99p != nil && all.ApplicationSecurityHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 	}
-	o.ApplicationSecurityHostTop99 = all.ApplicationSecurityHostTop99
+	o.ApplicationSecurityHostTop99p = all.ApplicationSecurityHostTop99p
 	if all.CiPipelineIndexedSpansSum != nil && all.CiPipelineIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
