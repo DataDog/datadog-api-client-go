@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.AuditLogsSearchEventsRequest{
 		Filter: &datadogV2.AuditLogsQueryFilter{
 			From:  datadog.PtrString("now-15m"),
-			Query: datadog.PtrString("@type:session AND @session.type:user"),
+			Query: datadog.PtrString("@evt.name:Request @auth_method:API_AND_APP_KEY"),
 			To:    datadog.PtrString("now"),
 		},
 		Options: &datadogV2.AuditLogsQueryOptions{
