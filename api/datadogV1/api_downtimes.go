@@ -297,6 +297,7 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId int64) (Down
 // ListDowntimesOptionalParameters holds optional parameters for ListDowntimes.
 type ListDowntimesOptionalParameters struct {
 	CurrentOnly *bool
+	WithCreator *bool
 }
 
 // NewListDowntimesOptionalParameters creates an empty struct for parameters.
@@ -308,6 +309,12 @@ func NewListDowntimesOptionalParameters() *ListDowntimesOptionalParameters {
 // WithCurrentOnly sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *ListDowntimesOptionalParameters {
 	r.CurrentOnly = &currentOnly
+	return r
+}
+
+// WithWithCreator sets the corresponding parameter name and returns the struct.
+func (r *ListDowntimesOptionalParameters) WithWithCreator(withCreator bool) *ListDowntimesOptionalParameters {
+	r.WithCreator = &withCreator
 	return r
 }
 
@@ -340,6 +347,9 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.CurrentOnly != nil {
 		localVarQueryParams.Add("current_only", datadog.ParameterToString(*optionalParams.CurrentOnly, ""))
+	}
+	if optionalParams.WithCreator != nil {
+		localVarQueryParams.Add("with_creator", datadog.ParameterToString(*optionalParams.WithCreator, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
