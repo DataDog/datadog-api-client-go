@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDowntimesApi(apiClient)
-	resp, r, err := api.ListDowntimes(ctx, *datadogV1.NewListDowntimesOptionalParameters())
+	resp, r, err := api.ListDowntimes(ctx, *datadogV1.NewListDowntimesOptionalParameters().WithWithCreator(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListDowntimes`: %v\n", err)
