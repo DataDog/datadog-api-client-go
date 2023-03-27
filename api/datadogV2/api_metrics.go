@@ -1140,7 +1140,7 @@ func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o .
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Content-Type"] = "application/x-protobuf"
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if optionalParams.ContentEncoding != nil {
