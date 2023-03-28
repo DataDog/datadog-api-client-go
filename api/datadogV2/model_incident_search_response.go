@@ -15,6 +15,8 @@ type IncidentSearchResponse struct {
 	Data IncidentSearchResponseData `json:"data"`
 	// Included related resources that the user requested.
 	Included []IncidentResponseIncludedItem `json:"included,omitempty"`
+	// The metadata object containing pagination metadata.
+	Meta *IncidentSearchResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -89,6 +91,34 @@ func (o *IncidentSearchResponse) SetIncluded(v []IncidentResponseIncludedItem) {
 	o.Included = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *IncidentSearchResponse) GetMeta() IncidentSearchResponseMeta {
+	if o == nil || o.Meta == nil {
+		var ret IncidentSearchResponseMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentSearchResponse) GetMetaOk() (*IncidentSearchResponseMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *IncidentSearchResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given IncidentSearchResponseMeta and assigns it to the Meta field.
+func (o *IncidentSearchResponse) SetMeta(v IncidentSearchResponseMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -98,6 +128,9 @@ func (o IncidentSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize["data"] = o.Data
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -115,6 +148,7 @@ func (o *IncidentSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     IncidentSearchResponseData     `json:"data"`
 		Included []IncidentResponseIncludedItem `json:"included,omitempty"`
+		Meta     *IncidentSearchResponseMeta    `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -141,5 +175,13 @@ func (o *IncidentSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Data = all.Data
 	o.Included = all.Included
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Meta = all.Meta
 	return nil
 }
