@@ -1179,8 +1179,10 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 
 // SearchIncidentsOptionalParameters holds optional parameters for SearchIncidents.
 type SearchIncidentsOptionalParameters struct {
-	Include *IncidentRelatedObject
-	Sort    *IncidentSearchSortOrder
+	Include    *IncidentRelatedObject
+	Sort       *IncidentSearchSortOrder
+	PageSize   *int64
+	PageOffset *int64
 }
 
 // NewSearchIncidentsOptionalParameters creates an empty struct for parameters.
@@ -1198,6 +1200,18 @@ func (r *SearchIncidentsOptionalParameters) WithInclude(include IncidentRelatedO
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *SearchIncidentsOptionalParameters) WithSort(sort IncidentSearchSortOrder) *SearchIncidentsOptionalParameters {
 	r.Sort = &sort
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *SearchIncidentsOptionalParameters) WithPageSize(pageSize int64) *SearchIncidentsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *SearchIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *SearchIncidentsOptionalParameters {
+	r.PageOffset = &pageOffset
 	return r
 }
 
@@ -1241,6 +1255,12 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1291,6 +1311,64 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchIncidentsWithPagination provides a paginated version of SearchIncidents returning a channel with all items.
+func (a *IncidentsApi) SearchIncidentsWithPagination(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentSearchResponseIncidentsData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, SearchIncidentsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+
+	items := make(chan datadog.PaginationResult[IncidentSearchResponseIncidentsData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchIncidents(ctx, query, o...)
+			if err != nil {
+				var returnItem IncidentSearchResponseIncidentsData
+				items <- datadog.PaginationResult[IncidentSearchResponseIncidentsData]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			respDataAttributes, ok := respData.GetAttributesOk()
+			if !ok {
+				break
+			}
+			respDataAttributesIncidents, ok := respDataAttributes.GetIncidentsOk()
+			if !ok {
+				break
+			}
+			results := *respDataAttributesIncidents
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[IncidentSearchResponseIncidentsData]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // UpdateIncidentOptionalParameters holds optional parameters for UpdateIncident.
