@@ -1,4 +1,4 @@
-// Create or update service definition returns "CREATED" response
+// Create or update service definition using schema v2-1 returns "CREATED" response
 
 package main
 
@@ -15,7 +15,6 @@ import (
 func main() {
 	body := datadogV2.ServiceDefinitionsCreateRequest{
 		ServiceDefinitionV2Dot1: &datadogV2.ServiceDefinitionV2Dot1{
-			Application: datadog.PtrString("my-app"),
 			Contacts: []datadogV2.ServiceDefinitionV2Dot1Contact{
 				datadogV2.ServiceDefinitionV2Dot1Contact{
 					ServiceDefinitionV2Dot1Email: &datadogV2.ServiceDefinitionV2Dot1Email{
@@ -24,10 +23,9 @@ func main() {
 						Type:    datadogV2.SERVICEDEFINITIONV2DOT1EMAILTYPE_EMAIL,
 					}},
 			},
-			DdService:   "my-service",
-			Description: datadog.PtrString("My service description"),
+			DdService: "service-Example-Create_or_update_service_definition_using_schema_v2_1_returns_CREATED_response",
 			Extensions: map[string]interface{}{
-				"myorg/extension": "extensionValue",
+				"myorgextension": "extensionvalue",
 			},
 			Integrations: &datadogV2.ServiceDefinitionV2Dot1Integrations{
 				Opsgenie: &datadogV2.ServiceDefinitionV2Dot1Opsgenie{
@@ -38,12 +36,22 @@ func main() {
 					ServiceUrl: datadog.PtrString("https://my-org.pagerduty.com/service-directory/PMyService"),
 				},
 			},
-			Lifecycle: datadog.PtrString("sandbox"),
 			Links: []datadogV2.ServiceDefinitionV2Dot1Link{
 				{
-					Name:     "Runbook",
-					Provider: datadog.PtrString("Github"),
-					Type:     datadogV2.SERVICEDEFINITIONV2DOT1LINKTYPE_RUNBOOK,
+					Name: "Runbook",
+					Type: datadogV2.SERVICEDEFINITIONV2DOT1LINKTYPE_RUNBOOK,
+					Url:  "https://my-runbook",
+				},
+				{
+					Name:     "Source Code",
+					Type:     datadogV2.SERVICEDEFINITIONV2DOT1LINKTYPE_REPO,
+					Provider: datadog.PtrString("GitHub"),
+					Url:      "https://github.com/DataDog/schema",
+				},
+				{
+					Name:     "Architecture",
+					Type:     datadogV2.SERVICEDEFINITIONV2DOT1LINKTYPE_DOC,
+					Provider: datadog.PtrString("Gigoogle drivetHub"),
 					Url:      "https://my-runbook",
 				},
 			},
@@ -53,7 +61,6 @@ func main() {
 				"service:tag",
 			},
 			Team: datadog.PtrString("my-team"),
-			Tier: datadog.PtrString("High"),
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
