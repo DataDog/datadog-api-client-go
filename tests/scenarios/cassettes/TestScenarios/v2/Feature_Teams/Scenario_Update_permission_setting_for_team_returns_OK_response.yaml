@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"1679942007","name":"1679942007"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"type":"team","id":"ddf389ac-cccd-11ed-ae16-da7ad0900002","attributes":{"name":"1679942007","handle":"1679942007","summary":null,"description":null,"color":9,"created_at":"2023-03-27T18:33:28.242940+00:00","modified_at":"2023-03-27T18:33:28.242944+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/ddf389ac-cccd-11ed-ae16-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/ddf389ac-cccd-11ed-ae16-da7ad0900002/permission-settings"}}}}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"value":"admins"},"type":"team_permission_settings"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/team/ddf389ac-cccd-11ed-ae16-da7ad0900002/permission-settings/manage_membership
+  response:
+    body: '{"data":{"type":"team_permission_settings","id":"TeamPermission-ddf389ac-cccd-11ed-ae16-da7ad0900002-manage_membership","attributes":{"value":"admins","action":"manage_membership","options":["admins","members","organization","user_access_manage","teams_manage"]}}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/ddf389ac-cccd-11ed-ae16-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1
