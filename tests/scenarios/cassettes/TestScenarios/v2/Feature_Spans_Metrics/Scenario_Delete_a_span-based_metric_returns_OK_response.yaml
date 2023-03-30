@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1680015325"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Delete_a_span_based_metric_returns_OK_response-1680015325","type":"spans_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics
+  response:
+    body: '{"data":{"id":"Test_Delete_a_span_based_metric_returns_OK_response_1680015325","attributes":{"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1680015325"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1680015325
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1680015325
+  response:
+    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_span_based_metric_returns_OK_response_1680015325''
+      not found)"]}
+
+      '
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1
