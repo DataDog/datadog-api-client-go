@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"1679941981","name":"1679941981"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"type":"team","id":"cddc7ff6-cccd-11ed-9329-da7ad0900002","attributes":{"name":"1679941981","handle":"1679941981","summary":null,"description":null,"color":11,"created_at":"2023-03-27T18:33:01.249180+00:00","modified_at":"2023-03-27T18:33:01.249185+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/cddc7ff6-cccd-11ed-9329-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/cddc7ff6-cccd-11ed-9329-da7ad0900002/permission-settings"}}}}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"1679941981","name":"Example Team"},"relationships":{"users":{"data":[]}},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"errors":["Team name and handle must be unique"]}'
+    code: 409
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/cddc7ff6-cccd-11ed-9329-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

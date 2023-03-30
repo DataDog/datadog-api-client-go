@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"1679941978","name":"1679941978"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"type":"team","id":"cc3d71dc-cccd-11ed-ac3a-da7ad0900002","attributes":{"name":"1679941978","handle":"1679941978","summary":null,"description":null,"color":10,"created_at":"2023-03-27T18:32:58.528371+00:00","modified_at":"2023-03-27T18:32:58.528375+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/cc3d71dc-cccd-11ed-ac3a-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/cc3d71dc-cccd-11ed-ac3a-da7ad0900002/permission-settings"}}}}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"label":"","position":0,"url":"https://example.com"},"type":"team_links"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team/cc3d71dc-cccd-11ed-ac3a-da7ad0900002/links
+  response:
+    body: '{"errors":["label cannot be empty"]}'
+    code: 422
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 422 Unprocessable Entity
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/cc3d71dc-cccd-11ed-ac3a-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

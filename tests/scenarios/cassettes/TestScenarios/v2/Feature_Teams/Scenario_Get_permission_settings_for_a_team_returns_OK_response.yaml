@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"1679941991","name":"1679941991"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"type":"team","id":"d3fcfa50-cccd-11ed-ba3b-da7ad0900002","attributes":{"name":"1679941991","handle":"1679941991","summary":null,"description":null,"color":11,"created_at":"2023-03-27T18:33:11.528141+00:00","modified_at":"2023-03-27T18:33:11.528147+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/d3fcfa50-cccd-11ed-ba3b-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/d3fcfa50-cccd-11ed-ba3b-da7ad0900002/permission-settings"}}}}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/team/d3fcfa50-cccd-11ed-ba3b-da7ad0900002/permission-settings
+  response:
+    body: '{"data":[{"type":"team_permission_settings","attributes":{"title":"Add
+      and Remove Members","editable":true,"value":"organization","options":["user_access_manage","admins","members","organization"],"action":"manage_membership"},"id":"TeamPermission-d3fcfa50-cccd-11ed-ba3b-da7ad0900002-manage_membership"},{"type":"team_permission_settings","attributes":{"title":"Edit
+      Team Details","editable":true,"value":"members","options":["teams_manage","admins","members"],"action":"edit"},"id":"TeamPermission-d3fcfa50-cccd-11ed-ba3b-da7ad0900002-edit"}]}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/d3fcfa50-cccd-11ed-ba3b-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1
