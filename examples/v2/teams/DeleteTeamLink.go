@@ -1,4 +1,4 @@
-// Remove a team returns "No Content" response
+// Remove a team link returns "No Content" response
 
 package main
 
@@ -15,14 +15,17 @@ func main() {
 	// there is a valid "dd_team" in the system
 	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
 
+	// there is a valid "team_link" in the system
+	TeamLinkDataID := os.Getenv("TEAM_LINK_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	r, err := api.RemoveTeam(ctx, DdTeamDataID)
+	r, err := api.DeleteTeamLink(ctx, DdTeamDataID, TeamLinkDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.RemoveTeam`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.DeleteTeamLink`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

@@ -1,9 +1,10 @@
-// Remove a user from a team returns "No Content" response
+// Get all teams returns "OK" response
 
 package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -12,17 +13,17 @@ import (
 )
 
 func main() {
-	// there is a valid "dd_team" in the system
-	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	r, err := api.RemoveTeamMembership(ctx, DdTeamDataID, "user_id")
+	resp, r, err := api.ListTeams(ctx, *datadogV2.NewListTeamsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.RemoveTeamMembership`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeams`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.ListTeams`:\n%s\n", responseContent)
 }
