@@ -221,14 +221,46 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListServiceDefinitionsOptionalParameters holds optional parameters for ListServiceDefinitions.
+type ListServiceDefinitionsOptionalParameters struct {
+	PageSize   *int64
+	PageNumber *int64
+}
+
+// NewListServiceDefinitionsOptionalParameters creates an empty struct for parameters.
+func NewListServiceDefinitionsOptionalParameters() *ListServiceDefinitionsOptionalParameters {
+	this := ListServiceDefinitionsOptionalParameters{}
+	return &this
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListServiceDefinitionsOptionalParameters) WithPageSize(pageSize int64) *ListServiceDefinitionsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListServiceDefinitionsOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceDefinitionsOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
 // ListServiceDefinitions Get all service definitions.
 // Get a list of all service definitions from the Datadog Service Catalog.
-func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context) (ServiceDefinitionsListResponse, *_nethttp.Response, error) {
+func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ...ListServiceDefinitionsOptionalParameters) (ServiceDefinitionsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceDefinitionsListResponse
+		optionalParams      ListServiceDefinitionsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListServiceDefinitionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.ListServiceDefinitions")
 	if err != nil {
@@ -240,6 +272,12 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context) (Ser
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
@@ -289,6 +327,56 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context) (Ser
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListServiceDefinitionsWithPagination provides a paginated version of ListServiceDefinitions returning a channel with all items.
+func (a *ServiceDefinitionApi) ListServiceDefinitionsWithPagination(ctx _context.Context, o ...ListServiceDefinitionsOptionalParameters) (<-chan datadog.PaginationResult[ServiceDefinitionData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListServiceDefinitionsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+
+	items := make(chan datadog.PaginationResult[ServiceDefinitionData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListServiceDefinitions(ctx, o...)
+			if err != nil {
+				var returnItem ServiceDefinitionData
+				items <- datadog.PaginationResult[ServiceDefinitionData]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[ServiceDefinitionData]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageNumber == nil {
+				o[0].PageNumber = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageNumber + pageSize_
+				o[0].PageNumber = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // NewServiceDefinitionApi Returns NewServiceDefinitionApi.

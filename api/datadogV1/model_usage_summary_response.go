@@ -179,8 +179,6 @@ type UsageSummaryResponse struct {
 	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
 	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
-	// Shows the 99th percentile of all Universal Service Monitoring hosts over all hours in the current months for all organizations.
-	UniversalServiceMonitoringHostTop99pSum *int64 `json:"universal_service_monitoring_host_top99p_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage []UsageSummaryDate `json:"usage,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
@@ -2559,34 +2557,6 @@ func (o *UsageSummaryResponse) SetTwolIngestedEventsBytesAggSum(v int64) {
 	o.TwolIngestedEventsBytesAggSum = &v
 }
 
-// GetUniversalServiceMonitoringHostTop99pSum returns the UniversalServiceMonitoringHostTop99pSum field value if set, zero value otherwise.
-func (o *UsageSummaryResponse) GetUniversalServiceMonitoringHostTop99pSum() int64 {
-	if o == nil || o.UniversalServiceMonitoringHostTop99pSum == nil {
-		var ret int64
-		return ret
-	}
-	return *o.UniversalServiceMonitoringHostTop99pSum
-}
-
-// GetUniversalServiceMonitoringHostTop99pSumOk returns a tuple with the UniversalServiceMonitoringHostTop99pSum field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetUniversalServiceMonitoringHostTop99pSumOk() (*int64, bool) {
-	if o == nil || o.UniversalServiceMonitoringHostTop99pSum == nil {
-		return nil, false
-	}
-	return o.UniversalServiceMonitoringHostTop99pSum, true
-}
-
-// HasUniversalServiceMonitoringHostTop99pSum returns a boolean if a field has been set.
-func (o *UsageSummaryResponse) HasUniversalServiceMonitoringHostTop99pSum() bool {
-	return o != nil && o.UniversalServiceMonitoringHostTop99pSum != nil
-}
-
-// SetUniversalServiceMonitoringHostTop99pSum gets a reference to the given int64 and assigns it to the UniversalServiceMonitoringHostTop99pSum field.
-func (o *UsageSummaryResponse) SetUniversalServiceMonitoringHostTop99pSum(v int64) {
-	o.UniversalServiceMonitoringHostTop99pSum = &v
-}
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetUsage() []UsageSummaryDate {
 	if o == nil || o.Usage == nil {
@@ -2913,9 +2883,6 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.TwolIngestedEventsBytesAggSum != nil {
 		toSerialize["twol_ingested_events_bytes_agg_sum"] = o.TwolIngestedEventsBytesAggSum
 	}
-	if o.UniversalServiceMonitoringHostTop99pSum != nil {
-		toSerialize["universal_service_monitoring_host_top99p_sum"] = o.UniversalServiceMonitoringHostTop99pSum
-	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
 	}
@@ -3017,7 +2984,6 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		SyntheticsParallelTestingMaxSlotsHwmSum    *int64             `json:"synthetics_parallel_testing_max_slots_hwm_sum,omitempty"`
 		TraceSearchIndexedEventsCountAggSum        *int64             `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
 		TwolIngestedEventsBytesAggSum              *int64             `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
-		UniversalServiceMonitoringHostTop99pSum    *int64             `json:"universal_service_monitoring_host_top99p_sum,omitempty"`
 		Usage                                      []UsageSummaryDate `json:"usage,omitempty"`
 		VsphereHostTop99pSum                       *int64             `json:"vsphere_host_top99p_sum,omitempty"`
 	}{}
@@ -3121,7 +3087,6 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.SyntheticsParallelTestingMaxSlotsHwmSum = all.SyntheticsParallelTestingMaxSlotsHwmSum
 	o.TraceSearchIndexedEventsCountAggSum = all.TraceSearchIndexedEventsCountAggSum
 	o.TwolIngestedEventsBytesAggSum = all.TwolIngestedEventsBytesAggSum
-	o.UniversalServiceMonitoringHostTop99pSum = all.UniversalServiceMonitoringHostTop99pSum
 	o.Usage = all.Usage
 	o.VsphereHostTop99pSum = all.VsphereHostTop99pSum
 	return nil

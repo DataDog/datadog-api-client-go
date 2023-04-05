@@ -130,10 +130,6 @@ type MonthlyUsageAttributionValues struct {
 	SnmpPercentage *float64 `json:"snmp_percentage,omitempty"`
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
-	// The percentage of universal service monitoring usage by tag(s).
-	UniversalServiceMonitoringPercentage *float64 `json:"universal_service_monitoring_percentage,omitempty"`
-	// The universal service monitoring usage by tag(s).
-	UniversalServiceMonitoringUsage *float64 `json:"universal_service_monitoring_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -1836,62 +1832,6 @@ func (o *MonthlyUsageAttributionValues) SetSnmpUsage(v float64) {
 	o.SnmpUsage = &v
 }
 
-// GetUniversalServiceMonitoringPercentage returns the UniversalServiceMonitoringPercentage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringPercentage() float64 {
-	if o == nil || o.UniversalServiceMonitoringPercentage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.UniversalServiceMonitoringPercentage
-}
-
-// GetUniversalServiceMonitoringPercentageOk returns a tuple with the UniversalServiceMonitoringPercentage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringPercentageOk() (*float64, bool) {
-	if o == nil || o.UniversalServiceMonitoringPercentage == nil {
-		return nil, false
-	}
-	return o.UniversalServiceMonitoringPercentage, true
-}
-
-// HasUniversalServiceMonitoringPercentage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasUniversalServiceMonitoringPercentage() bool {
-	return o != nil && o.UniversalServiceMonitoringPercentage != nil
-}
-
-// SetUniversalServiceMonitoringPercentage gets a reference to the given float64 and assigns it to the UniversalServiceMonitoringPercentage field.
-func (o *MonthlyUsageAttributionValues) SetUniversalServiceMonitoringPercentage(v float64) {
-	o.UniversalServiceMonitoringPercentage = &v
-}
-
-// GetUniversalServiceMonitoringUsage returns the UniversalServiceMonitoringUsage field value if set, zero value otherwise.
-func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringUsage() float64 {
-	if o == nil || o.UniversalServiceMonitoringUsage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.UniversalServiceMonitoringUsage
-}
-
-// GetUniversalServiceMonitoringUsageOk returns a tuple with the UniversalServiceMonitoringUsage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringUsageOk() (*float64, bool) {
-	if o == nil || o.UniversalServiceMonitoringUsage == nil {
-		return nil, false
-	}
-	return o.UniversalServiceMonitoringUsage, true
-}
-
-// HasUniversalServiceMonitoringUsage returns a boolean if a field has been set.
-func (o *MonthlyUsageAttributionValues) HasUniversalServiceMonitoringUsage() bool {
-	return o != nil && o.UniversalServiceMonitoringUsage != nil
-}
-
-// SetUniversalServiceMonitoringUsage gets a reference to the given float64 and assigns it to the UniversalServiceMonitoringUsage field.
-func (o *MonthlyUsageAttributionValues) SetUniversalServiceMonitoringUsage(v float64) {
-	o.UniversalServiceMonitoringUsage = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -2078,12 +2018,6 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.SnmpUsage != nil {
 		toSerialize["snmp_usage"] = o.SnmpUsage
 	}
-	if o.UniversalServiceMonitoringPercentage != nil {
-		toSerialize["universal_service_monitoring_percentage"] = o.UniversalServiceMonitoringPercentage
-	}
-	if o.UniversalServiceMonitoringUsage != nil {
-		toSerialize["universal_service_monitoring_usage"] = o.UniversalServiceMonitoringUsage
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -2095,68 +2029,66 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiPercentage                        *float64 `json:"api_percentage,omitempty"`
-		ApiUsage                             *float64 `json:"api_usage,omitempty"`
-		ApmFargatePercentage                 *float64 `json:"apm_fargate_percentage,omitempty"`
-		ApmFargateUsage                      *float64 `json:"apm_fargate_usage,omitempty"`
-		ApmHostPercentage                    *float64 `json:"apm_host_percentage,omitempty"`
-		ApmHostUsage                         *float64 `json:"apm_host_usage,omitempty"`
-		AppsecFargatePercentage              *float64 `json:"appsec_fargate_percentage,omitempty"`
-		AppsecFargateUsage                   *float64 `json:"appsec_fargate_usage,omitempty"`
-		AppsecPercentage                     *float64 `json:"appsec_percentage,omitempty"`
-		AppsecUsage                          *float64 `json:"appsec_usage,omitempty"`
-		BrowserPercentage                    *float64 `json:"browser_percentage,omitempty"`
-		BrowserUsage                         *float64 `json:"browser_usage,omitempty"`
-		ContainerExclAgentPercentage         *float64 `json:"container_excl_agent_percentage,omitempty"`
-		ContainerExclAgentUsage              *float64 `json:"container_excl_agent_usage,omitempty"`
-		ContainerPercentage                  *float64 `json:"container_percentage,omitempty"`
-		ContainerUsage                       *float64 `json:"container_usage,omitempty"`
-		CspmContainersPercentage             *float64 `json:"cspm_containers_percentage,omitempty"`
-		CspmContainersUsage                  *float64 `json:"cspm_containers_usage,omitempty"`
-		CspmHostsPercentage                  *float64 `json:"cspm_hosts_percentage,omitempty"`
-		CspmHostsUsage                       *float64 `json:"cspm_hosts_usage,omitempty"`
-		CustomIngestedTimeseriesPercentage   *float64 `json:"custom_ingested_timeseries_percentage,omitempty"`
-		CustomIngestedTimeseriesUsage        *float64 `json:"custom_ingested_timeseries_usage,omitempty"`
-		CustomTimeseriesPercentage           *float64 `json:"custom_timeseries_percentage,omitempty"`
-		CustomTimeseriesUsage                *float64 `json:"custom_timeseries_usage,omitempty"`
-		CwsContainersPercentage              *float64 `json:"cws_containers_percentage,omitempty"`
-		CwsContainersUsage                   *float64 `json:"cws_containers_usage,omitempty"`
-		CwsHostsPercentage                   *float64 `json:"cws_hosts_percentage,omitempty"`
-		CwsHostsUsage                        *float64 `json:"cws_hosts_usage,omitempty"`
-		DbmHostsPercentage                   *float64 `json:"dbm_hosts_percentage,omitempty"`
-		DbmHostsUsage                        *float64 `json:"dbm_hosts_usage,omitempty"`
-		DbmQueriesPercentage                 *float64 `json:"dbm_queries_percentage,omitempty"`
-		DbmQueriesUsage                      *float64 `json:"dbm_queries_usage,omitempty"`
-		EstimatedIndexedLogsPercentage       *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
-		EstimatedIndexedLogsUsage            *float64 `json:"estimated_indexed_logs_usage,omitempty"`
-		EstimatedIndexedSpansPercentage      *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
-		EstimatedIndexedSpansUsage           *float64 `json:"estimated_indexed_spans_usage,omitempty"`
-		EstimatedIngestedLogsPercentage      *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
-		EstimatedIngestedLogsUsage           *float64 `json:"estimated_ingested_logs_usage,omitempty"`
-		EstimatedIngestedSpansPercentage     *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
-		EstimatedIngestedSpansUsage          *float64 `json:"estimated_ingested_spans_usage,omitempty"`
-		EstimatedRumSessionsPercentage       *float64 `json:"estimated_rum_sessions_percentage,omitempty"`
-		EstimatedRumSessionsUsage            *float64 `json:"estimated_rum_sessions_usage,omitempty"`
-		FargatePercentage                    *float64 `json:"fargate_percentage,omitempty"`
-		FargateUsage                         *float64 `json:"fargate_usage,omitempty"`
-		FunctionsPercentage                  *float64 `json:"functions_percentage,omitempty"`
-		FunctionsUsage                       *float64 `json:"functions_usage,omitempty"`
-		InfraHostPercentage                  *float64 `json:"infra_host_percentage,omitempty"`
-		InfraHostUsage                       *float64 `json:"infra_host_usage,omitempty"`
-		InvocationsPercentage                *float64 `json:"invocations_percentage,omitempty"`
-		InvocationsUsage                     *float64 `json:"invocations_usage,omitempty"`
-		NpmHostPercentage                    *float64 `json:"npm_host_percentage,omitempty"`
-		NpmHostUsage                         *float64 `json:"npm_host_usage,omitempty"`
-		ProfiledContainerPercentage          *float64 `json:"profiled_container_percentage,omitempty"`
-		ProfiledContainerUsage               *float64 `json:"profiled_container_usage,omitempty"`
-		ProfiledFargatePercentage            *float64 `json:"profiled_fargate_percentage,omitempty"`
-		ProfiledFargateUsage                 *float64 `json:"profiled_fargate_usage,omitempty"`
-		ProfiledHostPercentage               *float64 `json:"profiled_host_percentage,omitempty"`
-		ProfiledHostUsage                    *float64 `json:"profiled_host_usage,omitempty"`
-		SnmpPercentage                       *float64 `json:"snmp_percentage,omitempty"`
-		SnmpUsage                            *float64 `json:"snmp_usage,omitempty"`
-		UniversalServiceMonitoringPercentage *float64 `json:"universal_service_monitoring_percentage,omitempty"`
-		UniversalServiceMonitoringUsage      *float64 `json:"universal_service_monitoring_usage,omitempty"`
+		ApiPercentage                      *float64 `json:"api_percentage,omitempty"`
+		ApiUsage                           *float64 `json:"api_usage,omitempty"`
+		ApmFargatePercentage               *float64 `json:"apm_fargate_percentage,omitempty"`
+		ApmFargateUsage                    *float64 `json:"apm_fargate_usage,omitempty"`
+		ApmHostPercentage                  *float64 `json:"apm_host_percentage,omitempty"`
+		ApmHostUsage                       *float64 `json:"apm_host_usage,omitempty"`
+		AppsecFargatePercentage            *float64 `json:"appsec_fargate_percentage,omitempty"`
+		AppsecFargateUsage                 *float64 `json:"appsec_fargate_usage,omitempty"`
+		AppsecPercentage                   *float64 `json:"appsec_percentage,omitempty"`
+		AppsecUsage                        *float64 `json:"appsec_usage,omitempty"`
+		BrowserPercentage                  *float64 `json:"browser_percentage,omitempty"`
+		BrowserUsage                       *float64 `json:"browser_usage,omitempty"`
+		ContainerExclAgentPercentage       *float64 `json:"container_excl_agent_percentage,omitempty"`
+		ContainerExclAgentUsage            *float64 `json:"container_excl_agent_usage,omitempty"`
+		ContainerPercentage                *float64 `json:"container_percentage,omitempty"`
+		ContainerUsage                     *float64 `json:"container_usage,omitempty"`
+		CspmContainersPercentage           *float64 `json:"cspm_containers_percentage,omitempty"`
+		CspmContainersUsage                *float64 `json:"cspm_containers_usage,omitempty"`
+		CspmHostsPercentage                *float64 `json:"cspm_hosts_percentage,omitempty"`
+		CspmHostsUsage                     *float64 `json:"cspm_hosts_usage,omitempty"`
+		CustomIngestedTimeseriesPercentage *float64 `json:"custom_ingested_timeseries_percentage,omitempty"`
+		CustomIngestedTimeseriesUsage      *float64 `json:"custom_ingested_timeseries_usage,omitempty"`
+		CustomTimeseriesPercentage         *float64 `json:"custom_timeseries_percentage,omitempty"`
+		CustomTimeseriesUsage              *float64 `json:"custom_timeseries_usage,omitempty"`
+		CwsContainersPercentage            *float64 `json:"cws_containers_percentage,omitempty"`
+		CwsContainersUsage                 *float64 `json:"cws_containers_usage,omitempty"`
+		CwsHostsPercentage                 *float64 `json:"cws_hosts_percentage,omitempty"`
+		CwsHostsUsage                      *float64 `json:"cws_hosts_usage,omitempty"`
+		DbmHostsPercentage                 *float64 `json:"dbm_hosts_percentage,omitempty"`
+		DbmHostsUsage                      *float64 `json:"dbm_hosts_usage,omitempty"`
+		DbmQueriesPercentage               *float64 `json:"dbm_queries_percentage,omitempty"`
+		DbmQueriesUsage                    *float64 `json:"dbm_queries_usage,omitempty"`
+		EstimatedIndexedLogsPercentage     *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
+		EstimatedIndexedLogsUsage          *float64 `json:"estimated_indexed_logs_usage,omitempty"`
+		EstimatedIndexedSpansPercentage    *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
+		EstimatedIndexedSpansUsage         *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+		EstimatedIngestedLogsPercentage    *float64 `json:"estimated_ingested_logs_percentage,omitempty"`
+		EstimatedIngestedLogsUsage         *float64 `json:"estimated_ingested_logs_usage,omitempty"`
+		EstimatedIngestedSpansPercentage   *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
+		EstimatedIngestedSpansUsage        *float64 `json:"estimated_ingested_spans_usage,omitempty"`
+		EstimatedRumSessionsPercentage     *float64 `json:"estimated_rum_sessions_percentage,omitempty"`
+		EstimatedRumSessionsUsage          *float64 `json:"estimated_rum_sessions_usage,omitempty"`
+		FargatePercentage                  *float64 `json:"fargate_percentage,omitempty"`
+		FargateUsage                       *float64 `json:"fargate_usage,omitempty"`
+		FunctionsPercentage                *float64 `json:"functions_percentage,omitempty"`
+		FunctionsUsage                     *float64 `json:"functions_usage,omitempty"`
+		InfraHostPercentage                *float64 `json:"infra_host_percentage,omitempty"`
+		InfraHostUsage                     *float64 `json:"infra_host_usage,omitempty"`
+		InvocationsPercentage              *float64 `json:"invocations_percentage,omitempty"`
+		InvocationsUsage                   *float64 `json:"invocations_usage,omitempty"`
+		NpmHostPercentage                  *float64 `json:"npm_host_percentage,omitempty"`
+		NpmHostUsage                       *float64 `json:"npm_host_usage,omitempty"`
+		ProfiledContainerPercentage        *float64 `json:"profiled_container_percentage,omitempty"`
+		ProfiledContainerUsage             *float64 `json:"profiled_container_usage,omitempty"`
+		ProfiledFargatePercentage          *float64 `json:"profiled_fargate_percentage,omitempty"`
+		ProfiledFargateUsage               *float64 `json:"profiled_fargate_usage,omitempty"`
+		ProfiledHostPercentage             *float64 `json:"profiled_host_percentage,omitempty"`
+		ProfiledHostUsage                  *float64 `json:"profiled_host_usage,omitempty"`
+		SnmpPercentage                     *float64 `json:"snmp_percentage,omitempty"`
+		SnmpUsage                          *float64 `json:"snmp_usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -2227,7 +2159,5 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.ProfiledHostUsage = all.ProfiledHostUsage
 	o.SnmpPercentage = all.SnmpPercentage
 	o.SnmpUsage = all.SnmpUsage
-	o.UniversalServiceMonitoringPercentage = all.UniversalServiceMonitoringPercentage
-	o.UniversalServiceMonitoringUsage = all.UniversalServiceMonitoringUsage
 	return nil
 }
