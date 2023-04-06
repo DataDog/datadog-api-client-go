@@ -10,9 +10,8 @@ import (
 
 // ServiceDefinitionV2Contact - Service owner's contacts information.
 type ServiceDefinitionV2Contact struct {
-	ServiceDefinitionV2Email   *ServiceDefinitionV2Email
-	ServiceDefinitionV2Slack   *ServiceDefinitionV2Slack
-	ServiceDefinitionV2MSTeams *ServiceDefinitionV2MSTeams
+	ServiceDefinitionV2Email *ServiceDefinitionV2Email
+	ServiceDefinitionV2Slack *ServiceDefinitionV2Slack
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -26,11 +25,6 @@ func ServiceDefinitionV2EmailAsServiceDefinitionV2Contact(v *ServiceDefinitionV2
 // ServiceDefinitionV2SlackAsServiceDefinitionV2Contact is a convenience function that returns ServiceDefinitionV2Slack wrapped in ServiceDefinitionV2Contact.
 func ServiceDefinitionV2SlackAsServiceDefinitionV2Contact(v *ServiceDefinitionV2Slack) ServiceDefinitionV2Contact {
 	return ServiceDefinitionV2Contact{ServiceDefinitionV2Slack: v}
-}
-
-// ServiceDefinitionV2MSTeamsAsServiceDefinitionV2Contact is a convenience function that returns ServiceDefinitionV2MSTeams wrapped in ServiceDefinitionV2Contact.
-func ServiceDefinitionV2MSTeamsAsServiceDefinitionV2Contact(v *ServiceDefinitionV2MSTeams) ServiceDefinitionV2Contact {
-	return ServiceDefinitionV2Contact{ServiceDefinitionV2MSTeams: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -71,28 +65,10 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 		obj.ServiceDefinitionV2Slack = nil
 	}
 
-	// try to unmarshal data into ServiceDefinitionV2MSTeams
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2MSTeams)
-	if err == nil {
-		if obj.ServiceDefinitionV2MSTeams != nil && obj.ServiceDefinitionV2MSTeams.UnparsedObject == nil {
-			jsonServiceDefinitionV2MSTeams, _ := json.Marshal(obj.ServiceDefinitionV2MSTeams)
-			if string(jsonServiceDefinitionV2MSTeams) == "{}" { // empty struct
-				obj.ServiceDefinitionV2MSTeams = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.ServiceDefinitionV2MSTeams = nil
-		}
-	} else {
-		obj.ServiceDefinitionV2MSTeams = nil
-	}
-
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ServiceDefinitionV2Email = nil
 		obj.ServiceDefinitionV2Slack = nil
-		obj.ServiceDefinitionV2MSTeams = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -106,10 +82,6 @@ func (obj ServiceDefinitionV2Contact) MarshalJSON() ([]byte, error) {
 
 	if obj.ServiceDefinitionV2Slack != nil {
 		return json.Marshal(&obj.ServiceDefinitionV2Slack)
-	}
-
-	if obj.ServiceDefinitionV2MSTeams != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2MSTeams)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -126,10 +98,6 @@ func (obj *ServiceDefinitionV2Contact) GetActualInstance() interface{} {
 
 	if obj.ServiceDefinitionV2Slack != nil {
 		return obj.ServiceDefinitionV2Slack
-	}
-
-	if obj.ServiceDefinitionV2MSTeams != nil {
-		return obj.ServiceDefinitionV2MSTeams
 	}
 
 	// all schemas are nil
