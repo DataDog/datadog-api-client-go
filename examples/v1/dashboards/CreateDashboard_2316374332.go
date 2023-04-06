@@ -16,7 +16,7 @@ func main() {
 	// there is a valid "monitor" in the system
 
 	body := datadogV1.Dashboard{
-		Title:       "Example-Create_a_new_dashboard_with_alert_value_widget",
+		Title:       "Example-Dashboard",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
 		Widgets: []datadogV1.Widget{
 			{

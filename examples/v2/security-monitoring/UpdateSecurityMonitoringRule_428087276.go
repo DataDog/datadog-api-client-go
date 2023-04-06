@@ -17,7 +17,7 @@ func main() {
 	CloudConfigurationRuleID := os.Getenv("CLOUD_CONFIGURATION_RULE_ID")
 
 	body := datadogV2.SecurityMonitoringRuleUpdatePayload{
-		Name:      datadog.PtrString("Example-Update_a_cloud_configuration_rule_s_details_returns_OK_response_cloud_updated"),
+		Name:      datadog.PtrString("Example-Security-Monitoring_cloud_updated"),
 		IsEnabled: datadog.PtrBool(false),
 		Cases: []datadogV2.SecurityMonitoringRuleCase{
 			{

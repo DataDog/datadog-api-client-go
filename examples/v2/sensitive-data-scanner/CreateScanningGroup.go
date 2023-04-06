@@ -21,7 +21,7 @@ func main() {
 		Data: &datadogV2.SensitiveDataScannerGroupCreate{
 			Type: datadogV2.SENSITIVEDATASCANNERGROUPTYPE_SENSITIVE_DATA_SCANNER_GROUP,
 			Attributes: datadogV2.SensitiveDataScannerGroupAttributes{
-				Name:      datadog.PtrString("Example-Create_Scanning_Group_returns_OK_response"),
+				Name:      datadog.PtrString("Example-Sensitive-Data-Scanner"),
 				IsEnabled: datadog.PtrBool(false),
 				ProductList: []datadogV2.SensitiveDataScannerProduct{
 					datadogV2.SENSITIVEDATASCANNERPRODUCT_LOGS,

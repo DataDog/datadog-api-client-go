@@ -18,7 +18,7 @@ func main() {
 
 	body := datadogV1.SyntheticsGlobalVariable{
 		Description: "",
-		Name:        "GLOBAL_VARIABLE_PAYLOAD_EXAMPLECREATEAGLOBALVARIABLEFROMTESTRETURNSOKRESPONSE",
+		Name:        "GLOBAL_VARIABLE_PAYLOAD_EXAMPLESYNTHETIC",
 		Tags:        []string{},
 		Value: datadogV1.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(false),

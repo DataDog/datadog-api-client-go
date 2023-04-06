@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_metric_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Example-Monitor"),
 		Type:    datadogV1.MONITORTYPE_METRIC_ALERT,
 		Query:   "avg(current_1mo):avg:system.load.5{*} > 0.5",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),

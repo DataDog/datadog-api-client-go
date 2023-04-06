@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.WebhooksIntegration{
-		Name: "Example-Create_a_webhooks_integration_returns_OK_response",
+		Name: "Example-Webhooks-Integration",
 		Url:  "https://example.com/webhook",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -18,7 +18,7 @@ func main() {
 
 	body := datadogV1.Dashboard{
 		LayoutType:  datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:       "Example-Update_a_dashboard_with_tags_returns_OK_response with list_stream widget",
+		Title:       "Example-Dashboard with list_stream widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("Updated description")),
 		Tags: []string{
 			"team:foo",

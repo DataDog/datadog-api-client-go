@@ -17,12 +17,12 @@ func main() {
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadogV1.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Example-Monitor"),
 		Type:    datadogV1.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
-			"test:examplecreateamonitorreturnsokresponse",
+			"test:examplemonitor",
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),

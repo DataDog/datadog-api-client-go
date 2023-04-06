@@ -20,7 +20,7 @@ func main() {
 		Data: datadogV2.IncidentCreateData{
 			Type: datadogV2.INCIDENTTYPE_INCIDENTS,
 			Attributes: datadogV2.IncidentCreateAttributes{
-				Title:            "Example-Create_an_incident_returns_CREATED_response",
+				Title:            "Example-Incident",
 				CustomerImpacted: false,
 				Fields: map[string]datadogV2.IncidentFieldAttributes{
 					"state": datadogV2.IncidentFieldAttributes{

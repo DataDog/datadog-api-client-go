@@ -14,10 +14,10 @@ import (
 
 func main() {
 	body := datadogV1.EventCreateRequest{
-		Title: "Example-Post_an_event_returns_OK_response",
+		Title: "Example-Event",
 		Text:  "A text message.",
 		Tags: []string{
-			"test:ExamplePostaneventreturnsOKresponse",
+			"test:ExampleEvent",
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

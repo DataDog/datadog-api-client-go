@@ -15,11 +15,11 @@ import (
 
 func main() {
 	body := datadogV1.Downtime{
-		Message:  datadog.PtrString("Example-Schedule_a_downtime_returns_OK_response"),
+		Message:  datadog.PtrString("Example-Downtime"),
 		Start:    datadog.PtrInt64(time.Now().Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope: []string{
-			"test:examplescheduleadowntimereturnsokresponse",
+			"test:exampledowntime",
 		},
 		Recurrence: *datadogV1.NewNullableDowntimeRecurrence(&datadogV1.DowntimeRecurrence{
 			Type:   datadog.PtrString("weeks"),

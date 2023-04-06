@@ -17,15 +17,15 @@ func main() {
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadogV1.SyntheticsPrivateLocation{
-		Description: "Test Example-Create_a_private_location_returns_OK_response description",
+		Description: "Test Example-Synthetic description",
 		Metadata: &datadogV1.SyntheticsPrivateLocationMetadata{
 			RestrictedRoles: []string{
 				RoleDataID,
 			},
 		},
-		Name: "Example-Create_a_private_location_returns_OK_response",
+		Name: "Example-Synthetic",
 		Tags: []string{
-			"test:examplecreateaprivatelocationreturnsokresponse",
+			"test:examplesynthetic",
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -21,7 +21,7 @@ func main() {
 			Type: datadogV2.APIKEYSTYPE_API_KEYS,
 			Id:   APIKeyDataID,
 			Attributes: datadogV2.APIKeyUpdateAttributes{
-				Name: "Example-Edit_an_API_key_returns_OK_response",
+				Name: "Example-Key-Management",
 			},
 		},
 	}

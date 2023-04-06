@@ -18,7 +18,7 @@ func main() {
 	DashboardListID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
 
 	body := datadogV1.DashboardList{
-		Name: "updated Example-Update_a_dashboard_list_returns_OK_response",
+		Name: "updated Example-Dashboard-List",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
