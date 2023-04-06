@@ -24,7 +24,7 @@ func main() {
 				},
 				Tags: []string{
 					"test",
-					"exampleconfiguretagsformultiplemetricsreturnsacceptedresponse",
+					"examplemetric",
 				},
 			},
 			Id:   "system.load.1",

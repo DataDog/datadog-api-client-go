@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		CloudConfigurationRuleCreatePayload: &datadogV2.CloudConfigurationRuleCreatePayload{
 			Type:      datadogV2.CLOUDCONFIGURATIONRULETYPE_CLOUD_CONFIGURATION.Ptr(),
-			Name:      "Example-Create_a_cloud_configuration_rule_returns_OK_response_cloud",
+			Name:      "Example-Security-Monitoring_cloud",
 			IsEnabled: false,
 			Cases: []datadogV2.CloudConfigurationRuleCaseCreate{
 				{

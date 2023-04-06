@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title: "Example-Create_a_new_dashboard_with_timeseries_widget_and_formula_style_attributes with formula style",
+		Title: "Example-Dashboard with formula style",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

@@ -31,7 +31,7 @@ func main() {
 					},
 				},
 			},
-			Id:   "ExampleCreateaspanbasedmetricreturnsOKresponse",
+			Id:   "ExampleSpansMetric",
 			Type: datadogV2.SPANSMETRICTYPE_SPANS_METRICS,
 		},
 	}

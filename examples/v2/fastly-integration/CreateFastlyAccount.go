@@ -16,8 +16,8 @@ func main() {
 	body := datadogV2.FastlyAccountCreateRequest{
 		Data: datadogV2.FastlyAccountCreateRequestData{
 			Attributes: datadogV2.FastlyAccountCreateRequestAttributes{
-				ApiKey:   "ExampleAddFastlyaccountreturnsCREATEDresponse",
-				Name:     "Example-Add_Fastly_account_returns_CREATED_response",
+				ApiKey:   "ExampleFastlyIntegration",
+				Name:     "Example-Fastly-Integration",
 				Services: []datadogV2.FastlyService{},
 			},
 			Type: datadogV2.FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS,

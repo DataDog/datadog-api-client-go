@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title: "Example-Create_a_new_timeseries_widget_with_ci_pipelines_data_source with ci_pipelines datasource",
+		Title: "Example-Dashboard with ci_pipelines datasource",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

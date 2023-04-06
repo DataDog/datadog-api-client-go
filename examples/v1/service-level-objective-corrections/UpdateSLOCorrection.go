@@ -21,7 +21,7 @@ func main() {
 		Data: &datadogV1.SLOCorrectionUpdateData{
 			Attributes: &datadogV1.SLOCorrectionUpdateRequestAttributes{
 				Category:    datadogV1.SLOCORRECTIONCATEGORY_DEPLOYMENT.Ptr(),
-				Description: datadog.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
+				Description: datadog.PtrString("Example-Service-Level-Objective-Correction"),
 				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
 				Start:       datadog.PtrInt64(time.Now().Unix()),
 				Timezone:    datadog.PtrString("UTC"),

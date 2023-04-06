@@ -21,7 +21,7 @@ func main() {
 		Data: &datadogV1.SLOCorrectionCreateData{
 			Attributes: &datadogV1.SLOCorrectionCreateRequestAttributes{
 				Category:    datadogV1.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
-				Description: datadog.PtrString("Example-Create_an_SLO_correction_returns_OK_response"),
+				Description: datadog.PtrString("Example-Service-Level-Objective-Correction"),
 				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
 				SloId:       SloData0ID,
 				Start:       time.Now().Unix(),

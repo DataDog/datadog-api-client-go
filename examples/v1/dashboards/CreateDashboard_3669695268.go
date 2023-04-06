@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_logs_query_table_widget_and_storage_parameter with query table widget and storage parameter",
+		Title:      "Example-Dashboard with query table widget and storage parameter",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

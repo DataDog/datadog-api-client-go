@@ -35,7 +35,7 @@ func main() {
 			"aws:us-east-2",
 		},
 		Message: "Test message",
-		Name:    "Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response",
+		Name:    "Example-Synthetic",
 		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),

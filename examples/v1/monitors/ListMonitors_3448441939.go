@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewMonitorsApi(apiClient)
-	resp, r, err := api.ListMonitors(ctx, *datadogV1.NewListMonitorsOptionalParameters().WithTags("test:examplegetallmonitordetailswithtags").WithPageSize(1))
+	resp, r, err := api.ListMonitors(ctx, *datadogV1.NewListMonitorsOptionalParameters().WithTags("test:examplemonitor").WithPageSize(1))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors`: %v\n", err)

@@ -25,7 +25,7 @@ func main() {
 					"myTag2:myValue",
 				},
 			},
-			Id:   "exampleaddresourcetoconfluentaccountreturnsokresponse",
+			Id:   "exampleconfluentcloud",
 			Type: datadogV2.CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
 		},
 	}

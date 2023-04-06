@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.DashboardList{
-		Name: "Example-Create_a_dashboard_list_returns_OK_response",
+		Name: "Example-Dashboard-List",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

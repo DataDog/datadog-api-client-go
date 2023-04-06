@@ -14,12 +14,12 @@ import (
 
 func main() {
 	body := datadogV1.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_RUM_formula_and_functions_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Example-Monitor"),
 		Type:    datadogV1.MONITORTYPE_RUM_ALERT,
 		Query:   `formula("query2 / query1 * 100").last("15m") >= 0.8`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
-			"test:examplecreatearumformulaandfunctionsmonitorreturnsokresponse",
+			"test:examplemonitor",
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),

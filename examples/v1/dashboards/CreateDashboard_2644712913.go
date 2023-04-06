@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_a_query_value_widget_using_the_percentile_aggregator with QVW Percentile Aggregator",
+		Title:      "Example-Dashboard with QVW Percentile Aggregator",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title:       "Example-Create_a_new_dashboard_with_image_widget",
+		Title:       "Example-Dashboard",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
 		Widgets: []datadogV1.Widget{
 			{

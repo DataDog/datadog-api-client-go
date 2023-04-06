@@ -21,7 +21,7 @@ func main() {
 		Data: datadogV2.SensitiveDataScannerRuleCreate{
 			Type: datadogV2.SENSITIVEDATASCANNERRULETYPE_SENSITIVE_DATA_SCANNER_RULE,
 			Attributes: datadogV2.SensitiveDataScannerRuleAttributes{
-				Name:    datadog.PtrString("Example-Create_Scanning_Rule_returns_OK_response"),
+				Name:    datadog.PtrString("Example-Sensitive-Data-Scanner"),
 				Pattern: datadog.PtrString("pattern"),
 				Namespaces: []string{
 					"admin",

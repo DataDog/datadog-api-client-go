@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title: "Example-Create_a_new_dashboard_with_team_tags_returns_OK_response",
+		Title: "Example-Dashboard",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

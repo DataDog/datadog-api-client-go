@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_a_query_value_widget_using_timeseries_background with QVW Timeseries Background",
+		Title:      "Example-Dashboard with QVW Timeseries Background",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

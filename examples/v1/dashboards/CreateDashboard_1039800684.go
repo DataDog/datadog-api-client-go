@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_logs_pattern_stream_list_stream_widget with list_stream widget",
+		Title:      "Example-Dashboard with list_stream widget",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{
