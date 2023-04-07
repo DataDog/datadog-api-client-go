@@ -91,6 +91,8 @@ type UsageSummaryResponse struct {
 	FargateTasksCountAvgSum *int64 `json:"fargate_tasks_count_avg_sum,omitempty"`
 	// Shows the sum of the high-water marks of all Fargate tasks over all hours in the current months for all organizations.
 	FargateTasksCountHwmSum *int64 `json:"fargate_tasks_count_hwm_sum,omitempty"`
+	// Shows the sum of all logs forwarding bytes over all hours in the current months for all organizations (data available as of April 1, 2023)
+	ForwardingEventsBytesAggSum *int64 `json:"forwarding_events_bytes_agg_sum,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current months for all organizations.
 	GcpHostTop99pSum *int64 `json:"gcp_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current months for all organizations.
@@ -1325,6 +1327,34 @@ func (o *UsageSummaryResponse) HasFargateTasksCountHwmSum() bool {
 // SetFargateTasksCountHwmSum gets a reference to the given int64 and assigns it to the FargateTasksCountHwmSum field.
 func (o *UsageSummaryResponse) SetFargateTasksCountHwmSum(v int64) {
 	o.FargateTasksCountHwmSum = &v
+}
+
+// GetForwardingEventsBytesAggSum returns the ForwardingEventsBytesAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetForwardingEventsBytesAggSum() int64 {
+	if o == nil || o.ForwardingEventsBytesAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ForwardingEventsBytesAggSum
+}
+
+// GetForwardingEventsBytesAggSumOk returns a tuple with the ForwardingEventsBytesAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetForwardingEventsBytesAggSumOk() (*int64, bool) {
+	if o == nil || o.ForwardingEventsBytesAggSum == nil {
+		return nil, false
+	}
+	return o.ForwardingEventsBytesAggSum, true
+}
+
+// HasForwardingEventsBytesAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasForwardingEventsBytesAggSum() bool {
+	return o != nil && o.ForwardingEventsBytesAggSum != nil
+}
+
+// SetForwardingEventsBytesAggSum gets a reference to the given int64 and assigns it to the ForwardingEventsBytesAggSum field.
+func (o *UsageSummaryResponse) SetForwardingEventsBytesAggSum(v int64) {
+	o.ForwardingEventsBytesAggSum = &v
 }
 
 // GetGcpHostTop99pSum returns the GcpHostTop99pSum field value if set, zero value otherwise.
@@ -2773,6 +2803,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.FargateTasksCountHwmSum != nil {
 		toSerialize["fargate_tasks_count_hwm_sum"] = o.FargateTasksCountHwmSum
 	}
+	if o.ForwardingEventsBytesAggSum != nil {
+		toSerialize["forwarding_events_bytes_agg_sum"] = o.ForwardingEventsBytesAggSum
+	}
 	if o.GcpHostTop99pSum != nil {
 		toSerialize["gcp_host_top99p_sum"] = o.GcpHostTop99pSum
 	}
@@ -2973,6 +3006,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		EndDate                                    *time.Time         `json:"end_date,omitempty"`
 		FargateTasksCountAvgSum                    *int64             `json:"fargate_tasks_count_avg_sum,omitempty"`
 		FargateTasksCountHwmSum                    *int64             `json:"fargate_tasks_count_hwm_sum,omitempty"`
+		ForwardingEventsBytesAggSum                *int64             `json:"forwarding_events_bytes_agg_sum,omitempty"`
 		GcpHostTop99pSum                           *int64             `json:"gcp_host_top99p_sum,omitempty"`
 		HerokuHostTop99pSum                        *int64             `json:"heroku_host_top99p_sum,omitempty"`
 		IncidentManagementMonthlyActiveUsersHwmSum *int64             `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
@@ -3070,6 +3104,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.EndDate = all.EndDate
 	o.FargateTasksCountAvgSum = all.FargateTasksCountAvgSum
 	o.FargateTasksCountHwmSum = all.FargateTasksCountHwmSum
+	o.ForwardingEventsBytesAggSum = all.ForwardingEventsBytesAggSum
 	o.GcpHostTop99pSum = all.GcpHostTop99pSum
 	o.HerokuHostTop99pSum = all.HerokuHostTop99pSum
 	o.IncidentManagementMonthlyActiveUsersHwmSum = all.IncidentManagementMonthlyActiveUsersHwmSum

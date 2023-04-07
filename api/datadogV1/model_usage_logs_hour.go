@@ -19,6 +19,8 @@ type UsageLogsHour struct {
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
 	// Contains the number of log bytes ingested.
 	IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+	// Contains the number of logs forwarded bytes (data available as of April 1st 2023)
+	LogsForwardingEventsBytes *int64 `json:"logs_forwarding_events_bytes,omitempty"`
 	// Contains the number of live log events indexed (data available as of December 1, 2020).
 	LogsLiveIndexedCount *int64 `json:"logs_live_indexed_count,omitempty"`
 	// Contains the number of live log bytes ingested (data available as of December 1, 2020).
@@ -163,6 +165,34 @@ func (o *UsageLogsHour) HasIngestedEventsBytes() bool {
 // SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
 func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes = &v
+}
+
+// GetLogsForwardingEventsBytes returns the LogsForwardingEventsBytes field value if set, zero value otherwise.
+func (o *UsageLogsHour) GetLogsForwardingEventsBytes() int64 {
+	if o == nil || o.LogsForwardingEventsBytes == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LogsForwardingEventsBytes
+}
+
+// GetLogsForwardingEventsBytesOk returns a tuple with the LogsForwardingEventsBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageLogsHour) GetLogsForwardingEventsBytesOk() (*int64, bool) {
+	if o == nil || o.LogsForwardingEventsBytes == nil {
+		return nil, false
+	}
+	return o.LogsForwardingEventsBytes, true
+}
+
+// HasLogsForwardingEventsBytes returns a boolean if a field has been set.
+func (o *UsageLogsHour) HasLogsForwardingEventsBytes() bool {
+	return o != nil && o.LogsForwardingEventsBytes != nil
+}
+
+// SetLogsForwardingEventsBytes gets a reference to the given int64 and assigns it to the LogsForwardingEventsBytes field.
+func (o *UsageLogsHour) SetLogsForwardingEventsBytes(v int64) {
+	o.LogsForwardingEventsBytes = &v
 }
 
 // GetLogsLiveIndexedCount returns the LogsLiveIndexedCount field value if set, zero value otherwise.
@@ -355,6 +385,9 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	if o.IngestedEventsBytes != nil {
 		toSerialize["ingested_events_bytes"] = o.IngestedEventsBytes
 	}
+	if o.LogsForwardingEventsBytes != nil {
+		toSerialize["logs_forwarding_events_bytes"] = o.LogsForwardingEventsBytes
+	}
 	if o.LogsLiveIndexedCount != nil {
 		toSerialize["logs_live_indexed_count"] = o.LogsLiveIndexedCount
 	}
@@ -388,6 +421,7 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 		Hour                        *time.Time `json:"hour,omitempty"`
 		IndexedEventsCount          *int64     `json:"indexed_events_count,omitempty"`
 		IngestedEventsBytes         *int64     `json:"ingested_events_bytes,omitempty"`
+		LogsForwardingEventsBytes   *int64     `json:"logs_forwarding_events_bytes,omitempty"`
 		LogsLiveIndexedCount        *int64     `json:"logs_live_indexed_count,omitempty"`
 		LogsLiveIngestedBytes       *int64     `json:"logs_live_ingested_bytes,omitempty"`
 		LogsRehydratedIndexedCount  *int64     `json:"logs_rehydrated_indexed_count,omitempty"`
@@ -408,6 +442,7 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Hour = all.Hour
 	o.IndexedEventsCount = all.IndexedEventsCount
 	o.IngestedEventsBytes = all.IngestedEventsBytes
+	o.LogsForwardingEventsBytes = all.LogsForwardingEventsBytes
 	o.LogsLiveIndexedCount = all.LogsLiveIndexedCount
 	o.LogsLiveIngestedBytes = all.LogsLiveIngestedBytes
 	o.LogsRehydratedIndexedCount = all.LogsRehydratedIndexedCount

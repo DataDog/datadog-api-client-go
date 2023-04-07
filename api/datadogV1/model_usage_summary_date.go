@@ -89,6 +89,8 @@ type UsageSummaryDate struct {
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current date for all organizations.
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
+	// Shows the sum of all log bytes forwarded over all hours in the current date for all organizations.
+	ForwardingEventsBytesSum *int64 `json:"forwarding_events_bytes_sum,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations.
 	GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current date for all organizations.
@@ -1279,6 +1281,34 @@ func (o *UsageSummaryDate) HasFargateTasksCountHwm() bool {
 // SetFargateTasksCountHwm gets a reference to the given int64 and assigns it to the FargateTasksCountHwm field.
 func (o *UsageSummaryDate) SetFargateTasksCountHwm(v int64) {
 	o.FargateTasksCountHwm = &v
+}
+
+// GetForwardingEventsBytesSum returns the ForwardingEventsBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetForwardingEventsBytesSum() int64 {
+	if o == nil || o.ForwardingEventsBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ForwardingEventsBytesSum
+}
+
+// GetForwardingEventsBytesSumOk returns a tuple with the ForwardingEventsBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetForwardingEventsBytesSumOk() (*int64, bool) {
+	if o == nil || o.ForwardingEventsBytesSum == nil {
+		return nil, false
+	}
+	return o.ForwardingEventsBytesSum, true
+}
+
+// HasForwardingEventsBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasForwardingEventsBytesSum() bool {
+	return o != nil && o.ForwardingEventsBytesSum != nil
+}
+
+// SetForwardingEventsBytesSum gets a reference to the given int64 and assigns it to the ForwardingEventsBytesSum field.
+func (o *UsageSummaryDate) SetForwardingEventsBytesSum(v int64) {
+	o.ForwardingEventsBytesSum = &v
 }
 
 // GetGcpHostTop99p returns the GcpHostTop99p field value if set, zero value otherwise.
@@ -2500,6 +2530,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.FargateTasksCountHwm != nil {
 		toSerialize["fargate_tasks_count_hwm"] = o.FargateTasksCountHwm
 	}
+	if o.ForwardingEventsBytesSum != nil {
+		toSerialize["forwarding_events_bytes_sum"] = o.ForwardingEventsBytesSum
+	}
 	if o.GcpHostTop99p != nil {
 		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
 	}
@@ -2667,6 +2700,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		DbmQueriesCountAvg                      *int64                `json:"dbm_queries_count_avg,omitempty"`
 		FargateTasksCountAvg                    *int64                `json:"fargate_tasks_count_avg,omitempty"`
 		FargateTasksCountHwm                    *int64                `json:"fargate_tasks_count_hwm,omitempty"`
+		ForwardingEventsBytesSum                *int64                `json:"forwarding_events_bytes_sum,omitempty"`
 		GcpHostTop99p                           *int64                `json:"gcp_host_top99p,omitempty"`
 		HerokuHostTop99p                        *int64                `json:"heroku_host_top99p,omitempty"`
 		IncidentManagementMonthlyActiveUsersHwm *int64                `json:"incident_management_monthly_active_users_hwm,omitempty"`
@@ -2755,6 +2789,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.DbmQueriesCountAvg = all.DbmQueriesCountAvg
 	o.FargateTasksCountAvg = all.FargateTasksCountAvg
 	o.FargateTasksCountHwm = all.FargateTasksCountHwm
+	o.ForwardingEventsBytesSum = all.ForwardingEventsBytesSum
 	o.GcpHostTop99p = all.GcpHostTop99p
 	o.HerokuHostTop99p = all.HerokuHostTop99p
 	o.IncidentManagementMonthlyActiveUsersHwm = all.IncidentManagementMonthlyActiveUsersHwm
