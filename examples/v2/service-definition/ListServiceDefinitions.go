@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceDefinitionApi(apiClient)
-	resp, r, err := api.ListServiceDefinitions(ctx, *datadogV2.NewListServiceDefinitionsOptionalParameters())
+	resp, r, err := api.ListServiceDefinitions(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceDefinitionApi.ListServiceDefinitions`: %v\n", err)
