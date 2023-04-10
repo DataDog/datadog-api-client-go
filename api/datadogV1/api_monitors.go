@@ -243,7 +243,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
 //
-// **NOTE** Only available on US1-FED and in closed beta on US1, EU, US3, and US5.
+// **NOTE** Only available on US1-FED and in closed beta on US1, EU, AP1, US3, and US5.
 //
 // **CI Pipelines Alert Query**
 //
@@ -256,7 +256,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
 //
-// **NOTE** CI Pipeline monitors are in alpha on US1, EU, US3 and US5.
+// **NOTE** CI Pipeline monitors are in alpha on US1, EU, AP1, US3, and US5.
 //
 // **CI Tests Alert Query**
 //
@@ -269,7 +269,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
 //
-// **NOTE** CI Test monitors are available only in closed beta on US1, EU, US3 and US5.
+// **NOTE** CI Test monitors are available only in closed beta on US1, EU, AP1, US3, and US5.
 //
 // **Error Tracking Alert Query**
 //
