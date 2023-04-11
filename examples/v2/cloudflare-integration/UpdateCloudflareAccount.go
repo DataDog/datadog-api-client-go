@@ -19,7 +19,7 @@ func main() {
 	body := datadogV2.CloudflareAccountUpdateRequest{
 		Data: datadogV2.CloudflareAccountUpdateRequestData{
 			Attributes: &datadogV2.CloudflareAccountUpdateRequestAttributes{
-				ApiKey: "6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu",
+				ApiKey: "fakekey",
 				Email:  datadog.PtrString("new@email"),
 			},
 			Type: datadogV2.CLOUDFLAREACCOUNTTYPE_CLOUDFLARE_ACCOUNTS.Ptr(),
