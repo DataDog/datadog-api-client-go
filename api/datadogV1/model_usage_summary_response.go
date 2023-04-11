@@ -22,6 +22,7 @@ type UsageSummaryResponse struct {
 	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current months for all organizations.
 	AppsecFargateCountAvgSum *int64 `json:"appsec_fargate_count_avg_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
+	// Deprecated
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 	// Shows the total number of organizations that had Audit Trail enabled over a specific number of months.
 	AuditTrailEnabledHwmSum *int64 `json:"audit_trail_enabled_hwm_sum,omitempty"`
@@ -350,6 +351,7 @@ func (o *UsageSummaryResponse) SetAppsecFargateCountAvgSum(v int64) {
 }
 
 // GetAuditLogsLinesIndexedAggSum returns the AuditLogsLinesIndexedAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetAuditLogsLinesIndexedAggSum() int64 {
 	if o == nil || o.AuditLogsLinesIndexedAggSum == nil {
 		var ret int64
@@ -360,6 +362,7 @@ func (o *UsageSummaryResponse) GetAuditLogsLinesIndexedAggSum() int64 {
 
 // GetAuditLogsLinesIndexedAggSumOk returns a tuple with the AuditLogsLinesIndexedAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetAuditLogsLinesIndexedAggSumOk() (*int64, bool) {
 	if o == nil || o.AuditLogsLinesIndexedAggSum == nil {
 		return nil, false
@@ -373,6 +376,7 @@ func (o *UsageSummaryResponse) HasAuditLogsLinesIndexedAggSum() bool {
 }
 
 // SetAuditLogsLinesIndexedAggSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetAuditLogsLinesIndexedAggSum(v int64) {
 	o.AuditLogsLinesIndexedAggSum = &v
 }
