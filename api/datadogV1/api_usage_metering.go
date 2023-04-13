@@ -189,7 +189,7 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(inc
 }
 
 // GetHourlyUsageAttribution Get hourly usage attribution.
-// Get hourly usage attribution.
+// Get hourly usage attribution. Multi-region data is available starting March 1, 2023.
 //
 // This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
 // set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -679,7 +679,7 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(in
 }
 
 // GetMonthlyUsageAttribution Get monthly usage attribution.
-// Get monthly usage attribution.
+// Get monthly usage attribution. Multi-region data is available starting March 1, 2023.
 //
 // This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
 // set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -1213,7 +1213,9 @@ func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 
 // GetUsageAuditLogs Get hourly usage for audit logs.
 // Get hourly usage for audit logs.
-// **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.
+// **Note:** This endpoint has been deprecated.
+//
+// Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

@@ -19,8 +19,8 @@ func main() {
 	body := datadogV2.AuthNMappingCreateRequest{
 		Data: datadogV2.AuthNMappingCreateData{
 			Attributes: &datadogV2.AuthNMappingCreateAttributes{
-				AttributeKey:   datadog.PtrString("examplecreateanauthnmappingreturnsokresponse"),
-				AttributeValue: datadog.PtrString("Example-Create_an_AuthN_Mapping_returns_OK_response"),
+				AttributeKey:   datadog.PtrString("exampleauthnmapping"),
+				AttributeValue: datadog.PtrString("Example-AuthN-Mapping"),
 			},
 			Relationships: &datadogV2.AuthNMappingCreateRelationships{
 				Role: &datadogV2.RelationshipToRole{

@@ -21,7 +21,7 @@ func main() {
 				Resources: []datadogV2.ConfluentAccountResourceAttributes{
 					{
 						Id:           datadog.PtrString("resource-id-123"),
-						ResourceType: datadog.PtrString("kafka"),
+						ResourceType: "kafka",
 						Tags: []string{
 							"myTag",
 							"myTag2:myValue",

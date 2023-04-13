@@ -23,7 +23,7 @@ func main() {
 						Type:    datadogV2.SERVICEDEFINITIONV2DOT1EMAILTYPE_EMAIL,
 					}},
 			},
-			DdService: "service-examplecreateorupdateservicedefinitionusingschemav21returnscreatedresponse",
+			DdService: "service-exampleservicedefinition",
 			Extensions: map[string]interface{}{
 				"myorgextension": "extensionvalue",
 			},

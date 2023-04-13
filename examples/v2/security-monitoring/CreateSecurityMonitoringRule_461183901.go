@@ -45,7 +45,7 @@ func main() {
 					BaselineUserLocations: datadog.PtrBool(false),
 				},
 			},
-			Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
+			Name:    "Example-Security-Monitoring",
 			Type:    datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
 			Tags:    []string{},
 			Filters: []datadogV2.SecurityMonitoringFilter{},

@@ -19,13 +19,13 @@ func main() {
 	body := datadogV2.ConfluentResourceRequest{
 		Data: datadogV2.ConfluentResourceRequestData{
 			Attributes: datadogV2.ConfluentResourceRequestAttributes{
-				ResourceType: datadog.PtrString("kafka"),
+				ResourceType: "kafka",
 				Tags: []string{
 					"myTag",
 					"myTag2:myValue",
 				},
 			},
-			Id:   "exampleaddresourcetoconfluentaccountreturnsokresponse",
+			Id:   "exampleconfluentcloud",
 			Type: datadogV2.CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
 		},
 	}

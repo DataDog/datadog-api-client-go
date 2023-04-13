@@ -21,6 +21,7 @@ type UsageSummaryDateOrg struct {
 	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current months for the given org.
 	AppsecFargateCountAvg *int64 `json:"appsec_fargate_count_avg,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current date for the given org.
+	// Deprecated
 	AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
 	// Shows whether Audit Trail is enabled for the current date for the given org.
 	AuditTrailEnabledHwm *int64 `json:"audit_trail_enabled_hwm,omitempty"`
@@ -86,6 +87,8 @@ type UsageSummaryDateOrg struct {
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org.
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
+	// Shows the sum of all log bytes forwarded over all hours in the current date for the given org.
+	ForwardingEventsBytesSum *int64 `json:"forwarding_events_bytes_sum,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org.
 	GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current date for the given org.
@@ -166,6 +169,8 @@ type UsageSummaryDateOrg struct {
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 	// Shows the sum of all ingested APM span bytes over all hours in the current date for the given org.
 	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
+	// Shows the 99th percentile of all Universal Service Monitoring hosts over all hours in the current date for the given org.
+	UniversalServiceMonitoringHostTop99p *int64 `json:"universal_service_monitoring_host_top99p,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for the given org.
 	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -331,6 +336,7 @@ func (o *UsageSummaryDateOrg) SetAppsecFargateCountAvg(v int64) {
 }
 
 // GetAuditLogsLinesIndexedSum returns the AuditLogsLinesIndexedSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryDateOrg) GetAuditLogsLinesIndexedSum() int64 {
 	if o == nil || o.AuditLogsLinesIndexedSum == nil {
 		var ret int64
@@ -341,6 +347,7 @@ func (o *UsageSummaryDateOrg) GetAuditLogsLinesIndexedSum() int64 {
 
 // GetAuditLogsLinesIndexedSumOk returns a tuple with the AuditLogsLinesIndexedSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryDateOrg) GetAuditLogsLinesIndexedSumOk() (*int64, bool) {
 	if o == nil || o.AuditLogsLinesIndexedSum == nil {
 		return nil, false
@@ -354,6 +361,7 @@ func (o *UsageSummaryDateOrg) HasAuditLogsLinesIndexedSum() bool {
 }
 
 // SetAuditLogsLinesIndexedSum gets a reference to the given int64 and assigns it to the AuditLogsLinesIndexedSum field.
+// Deprecated
 func (o *UsageSummaryDateOrg) SetAuditLogsLinesIndexedSum(v int64) {
 	o.AuditLogsLinesIndexedSum = &v
 }
@@ -1252,6 +1260,34 @@ func (o *UsageSummaryDateOrg) HasFargateTasksCountHwm() bool {
 // SetFargateTasksCountHwm gets a reference to the given int64 and assigns it to the FargateTasksCountHwm field.
 func (o *UsageSummaryDateOrg) SetFargateTasksCountHwm(v int64) {
 	o.FargateTasksCountHwm = &v
+}
+
+// GetForwardingEventsBytesSum returns the ForwardingEventsBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetForwardingEventsBytesSum() int64 {
+	if o == nil || o.ForwardingEventsBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ForwardingEventsBytesSum
+}
+
+// GetForwardingEventsBytesSumOk returns a tuple with the ForwardingEventsBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetForwardingEventsBytesSumOk() (*int64, bool) {
+	if o == nil || o.ForwardingEventsBytesSum == nil {
+		return nil, false
+	}
+	return o.ForwardingEventsBytesSum, true
+}
+
+// HasForwardingEventsBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasForwardingEventsBytesSum() bool {
+	return o != nil && o.ForwardingEventsBytesSum != nil
+}
+
+// SetForwardingEventsBytesSum gets a reference to the given int64 and assigns it to the ForwardingEventsBytesSum field.
+func (o *UsageSummaryDateOrg) SetForwardingEventsBytesSum(v int64) {
+	o.ForwardingEventsBytesSum = &v
 }
 
 // GetGcpHostTop99p returns the GcpHostTop99p field value if set, zero value otherwise.
@@ -2374,6 +2410,34 @@ func (o *UsageSummaryDateOrg) SetTwolIngestedEventsBytesSum(v int64) {
 	o.TwolIngestedEventsBytesSum = &v
 }
 
+// GetUniversalServiceMonitoringHostTop99p returns the UniversalServiceMonitoringHostTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetUniversalServiceMonitoringHostTop99p() int64 {
+	if o == nil || o.UniversalServiceMonitoringHostTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.UniversalServiceMonitoringHostTop99p
+}
+
+// GetUniversalServiceMonitoringHostTop99pOk returns a tuple with the UniversalServiceMonitoringHostTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetUniversalServiceMonitoringHostTop99pOk() (*int64, bool) {
+	if o == nil || o.UniversalServiceMonitoringHostTop99p == nil {
+		return nil, false
+	}
+	return o.UniversalServiceMonitoringHostTop99p, true
+}
+
+// HasUniversalServiceMonitoringHostTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasUniversalServiceMonitoringHostTop99p() bool {
+	return o != nil && o.UniversalServiceMonitoringHostTop99p != nil
+}
+
+// SetUniversalServiceMonitoringHostTop99p gets a reference to the given int64 and assigns it to the UniversalServiceMonitoringHostTop99p field.
+func (o *UsageSummaryDateOrg) SetUniversalServiceMonitoringHostTop99p(v int64) {
+	o.UniversalServiceMonitoringHostTop99p = &v
+}
+
 // GetVsphereHostTop99p returns the VsphereHostTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetVsphereHostTop99p() int64 {
 	if o == nil || o.VsphereHostTop99p == nil {
@@ -2522,6 +2586,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.FargateTasksCountHwm != nil {
 		toSerialize["fargate_tasks_count_hwm"] = o.FargateTasksCountHwm
 	}
+	if o.ForwardingEventsBytesSum != nil {
+		toSerialize["forwarding_events_bytes_sum"] = o.ForwardingEventsBytesSum
+	}
 	if o.GcpHostTop99p != nil {
 		toSerialize["gcp_host_top99p"] = o.GcpHostTop99p
 	}
@@ -2642,6 +2709,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.TwolIngestedEventsBytesSum != nil {
 		toSerialize["twol_ingested_events_bytes_sum"] = o.TwolIngestedEventsBytesSum
 	}
+	if o.UniversalServiceMonitoringHostTop99p != nil {
+		toSerialize["universal_service_monitoring_host_top99p"] = o.UniversalServiceMonitoringHostTop99p
+	}
 	if o.VsphereHostTop99p != nil {
 		toSerialize["vsphere_host_top99p"] = o.VsphereHostTop99p
 	}
@@ -2694,6 +2764,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		DbmQueriesAvgSum                        *int64  `json:"dbm_queries_avg_sum,omitempty"`
 		FargateTasksCountAvg                    *int64  `json:"fargate_tasks_count_avg,omitempty"`
 		FargateTasksCountHwm                    *int64  `json:"fargate_tasks_count_hwm,omitempty"`
+		ForwardingEventsBytesSum                *int64  `json:"forwarding_events_bytes_sum,omitempty"`
 		GcpHostTop99p                           *int64  `json:"gcp_host_top99p,omitempty"`
 		HerokuHostTop99p                        *int64  `json:"heroku_host_top99p,omitempty"`
 		Id                                      *string `json:"id,omitempty"`
@@ -2734,6 +2805,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		SyntheticsParallelTestingMaxSlotsHwm    *int64  `json:"synthetics_parallel_testing_max_slots_hwm,omitempty"`
 		TraceSearchIndexedEventsCountSum        *int64  `json:"trace_search_indexed_events_count_sum,omitempty"`
 		TwolIngestedEventsBytesSum              *int64  `json:"twol_ingested_events_bytes_sum,omitempty"`
+		UniversalServiceMonitoringHostTop99p    *int64  `json:"universal_service_monitoring_host_top99p,omitempty"`
 		VsphereHostTop99p                       *int64  `json:"vsphere_host_top99p,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -2783,6 +2855,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.DbmQueriesAvgSum = all.DbmQueriesAvgSum
 	o.FargateTasksCountAvg = all.FargateTasksCountAvg
 	o.FargateTasksCountHwm = all.FargateTasksCountHwm
+	o.ForwardingEventsBytesSum = all.ForwardingEventsBytesSum
 	o.GcpHostTop99p = all.GcpHostTop99p
 	o.HerokuHostTop99p = all.HerokuHostTop99p
 	o.Id = all.Id
@@ -2823,6 +2896,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.SyntheticsParallelTestingMaxSlotsHwm = all.SyntheticsParallelTestingMaxSlotsHwm
 	o.TraceSearchIndexedEventsCountSum = all.TraceSearchIndexedEventsCountSum
 	o.TwolIngestedEventsBytesSum = all.TwolIngestedEventsBytesSum
+	o.UniversalServiceMonitoringHostTop99p = all.UniversalServiceMonitoringHostTop99p
 	o.VsphereHostTop99p = all.VsphereHostTop99p
 	return nil
 }

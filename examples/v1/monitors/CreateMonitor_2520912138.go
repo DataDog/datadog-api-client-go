@@ -14,12 +14,12 @@ import (
 
 func main() {
 	body := datadogV1.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_ci_tests_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Example-Monitor"),
 		Type:    datadogV1.MONITORTYPE_CI_TESTS_ALERT,
 		Query:   `ci-tests("type:test @git.branch:staging* @test.status:fail").rollup("count").by("@test.name").last("5m") >= 1`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
-			"test:examplecreateacitestsmonitorreturnsokresponse",
+			"test:examplemonitor",
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),

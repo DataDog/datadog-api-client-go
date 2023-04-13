@@ -20,7 +20,7 @@ func main() {
 					{
 						Data: datadogV2.IPAllowlistEntryData{
 							Attributes: &datadogV2.IPAllowlistEntryAttributes{
-								Note:      datadog.PtrString("Example-Update_IP_Allowlist_returns_OK_response"),
+								Note:      datadog.PtrString("Example-IP-Allowlist"),
 								CidrBlock: datadog.PtrString("127.0.0.1"),
 							},
 							Type: datadogV2.IPALLOWLISTENTRYTYPE_IP_ALLOWLIST_ENTRY,

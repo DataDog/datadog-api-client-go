@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
 		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
-			Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
+			Name: "Example-Security-Monitoring",
 			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
 				{
 					Query:          "@test:true",

@@ -16,9 +16,9 @@ func main() {
 	body := datadogV2.CloudflareAccountCreateRequest{
 		Data: datadogV2.CloudflareAccountCreateRequestData{
 			Attributes: datadogV2.CloudflareAccountCreateRequestAttributes{
-				ApiKey: "6Zm7WEgKzAlCnt_4exfEK0mSoeHHAaDf41O1AAfu",
+				ApiKey: "fakekey",
 				Email:  datadog.PtrString("new@email"),
-				Name:   "exampleaddcloudflareaccountreturnscreatedresponse",
+				Name:   "examplecloudflareintegration",
 			},
 			Type: datadogV2.CLOUDFLAREACCOUNTTYPE_CLOUDFLARE_ACCOUNTS,
 		},

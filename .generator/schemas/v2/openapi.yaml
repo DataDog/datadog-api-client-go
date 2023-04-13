@@ -2405,6 +2405,8 @@ components:
           items:
             type: string
           type: array
+      required:
+      - resource_type
       type: object
     ConfluentAccountResponse:
       description: The expected response schema when getting a Confluent account.
@@ -2539,6 +2541,8 @@ components:
           items:
             type: string
           type: array
+      required:
+      - resource_type
       type: object
     ConfluentResourceRequestData:
       description: JSON:API request for updating a Confluent resource.
@@ -3694,28 +3698,6 @@ components:
           nullable: true
           type: array
       type: object
-    GetAllTeamsInclude:
-      description: Included related resources optionally requested.
-      enum:
-      - team_links
-      - user_team_permissions
-      type: string
-      x-enum-varnames:
-      - TEAM_LINKS
-      - USER_TEAM_PERMISSIONS
-    GetAllTeamsSort:
-      description: Specifies the order of the returned teams
-      enum:
-      - name
-      - -name
-      - user_count
-      - -user_count
-      type: string
-      x-enum-varnames:
-      - NAME
-      - _NAME
-      - USER_COUNT
-      - _USER_COUNT
     GetTeamMembershipsSort:
       description: Specifies the order of returned team memberships
       enum:
@@ -5781,6 +5763,28 @@ components:
             $ref: '#/components/schemas/ApplicationKeyResponseIncludedItem'
           type: array
       type: object
+    ListTeamsInclude:
+      description: Included related resources optionally requested.
+      enum:
+      - team_links
+      - user_team_permissions
+      type: string
+      x-enum-varnames:
+      - TEAM_LINKS
+      - USER_TEAM_PERMISSIONS
+    ListTeamsSort:
+      description: Specifies the order of the returned teams
+      enum:
+      - name
+      - -name
+      - user_count
+      - -user_count
+      type: string
+      x-enum-varnames:
+      - NAME
+      - _NAME
+      - USER_COUNT
+      - _USER_COUNT
     Log:
       description: Object description of a log after being processed and stored by
         Datadog.
@@ -12425,6 +12429,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/ServiceDefinitionV2Email'
       - $ref: '#/components/schemas/ServiceDefinitionV2Slack'
+      - $ref: '#/components/schemas/ServiceDefinitionV2MSTeams'
     ServiceDefinitionV2Doc:
       description: Service documents.
       properties:
@@ -12511,6 +12516,7 @@ components:
       oneOf:
       - $ref: '#/components/schemas/ServiceDefinitionV2Dot1Email'
       - $ref: '#/components/schemas/ServiceDefinitionV2Dot1Slack'
+      - $ref: '#/components/schemas/ServiceDefinitionV2Dot1MSTeams'
     ServiceDefinitionV2Dot1Email:
       description: Service owner's email.
       properties:
@@ -12583,6 +12589,31 @@ components:
       - RUNBOOK
       - DASHBOARD
       - OTHER
+    ServiceDefinitionV2Dot1MSTeams:
+      description: Service owner's Microsoft Teams.
+      properties:
+        contact:
+          description: Contact value.
+          example: https://teams.microsoft.com/myteam
+          type: string
+        name:
+          description: Contact Microsoft Teams.
+          example: My team channel
+          type: string
+        type:
+          $ref: '#/components/schemas/ServiceDefinitionV2Dot1MSTeamsType'
+      required:
+      - type
+      - contact
+      type: object
+    ServiceDefinitionV2Dot1MSTeamsType:
+      description: Contact type.
+      enum:
+      - microsoft-teams
+      example: microsoft-teams
+      type: string
+      x-enum-varnames:
+      - MICROSOFT_TEAMS
     ServiceDefinitionV2Dot1Opsgenie:
       description: Opsgenie integration for the service.
       properties:
@@ -12723,6 +12754,31 @@ components:
       - ONCALL
       - CODE
       - LINK
+    ServiceDefinitionV2MSTeams:
+      description: Service owner's Microsoft Teams.
+      properties:
+        contact:
+          description: Contact value.
+          example: https://teams.microsoft.com/myteam
+          type: string
+        name:
+          description: Contact Microsoft Teams.
+          example: My team channel
+          type: string
+        type:
+          $ref: '#/components/schemas/ServiceDefinitionV2MSTeamsType'
+      required:
+      - type
+      - contact
+      type: object
+    ServiceDefinitionV2MSTeamsType:
+      description: Contact type.
+      enum:
+      - microsoft-teams
+      example: microsoft-teams
+      type: string
+      x-enum-varnames:
+      - MICROSOFT_TEAMS
     ServiceDefinitionV2Opsgenie:
       description: Opsgenie integration for the service.
       properties:
@@ -17536,6 +17592,7 @@ paths:
             - datadoghq.com
             - us3.datadoghq.com
             - us5.datadoghq.com
+            - ap1.datadoghq.com
             - datadoghq.eu
             - ddog-gov.com
           subdomain:
@@ -21706,6 +21763,9 @@ paths:
       description: Get a list of all service definitions from the Datadog Service
         Catalog.
       operationId: ListServiceDefinitions
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
       responses:
         '200':
           content:
@@ -21720,6 +21780,10 @@ paths:
       summary: Get all service definitions
       tags:
       - Service Definition
+      x-pagination:
+        limitParam: page[size]
+        pageOffsetParam: page[number]
+        resultsPath: data
     post:
       description: Create or update service definition in the Datadog Service Catalog.
       operationId: CreateOrUpdateServiceDefinitions
@@ -21948,7 +22012,7 @@ paths:
 
         Can be used to search for teams using the `filter[keyword]` and `filter[me]`
         query parameters.'
-      operationId: GetAllTeams
+      operationId: ListTeams
       parameters:
       - $ref: '#/components/parameters/PageNumber'
       - $ref: '#/components/parameters/PageSize'
@@ -21956,14 +22020,14 @@ paths:
         in: query
         name: sort
         schema:
-          $ref: '#/components/schemas/GetAllTeamsSort'
+          $ref: '#/components/schemas/ListTeamsSort'
       - description: 'Included related resources optionally requested. Allowed enum
           values: `team_links, user_team_permissions`'
         in: query
         name: include
         schema:
           items:
-            $ref: '#/components/schemas/GetAllTeamsInclude'
+            $ref: '#/components/schemas/ListTeamsInclude'
           type: array
       - description: Search query. Can be team name, team handle, or email of team
           member
@@ -22031,7 +22095,7 @@ paths:
   /api/v2/team/{team_id}:
     delete:
       description: Remove a team using the team's `id`.
-      operationId: RemoveTeam
+      operationId: DeleteTeam
       parameters:
       - description: None
         in: path
@@ -22230,7 +22294,7 @@ paths:
   /api/v2/team/{team_id}/links/{link_id}:
     delete:
       description: Remove a link from a team.
-      operationId: RemoveTeamLink
+      operationId: DeleteTeamLink
       parameters:
       - description: None
         in: path
@@ -22443,7 +22507,7 @@ paths:
   /api/v2/team/{team_id}/memberships/{user_id}:
     delete:
       description: Remove a user from a team.
-      operationId: RemoveTeamMembership
+      operationId: DeleteTeamMembership
       parameters:
       - description: None
         in: path
@@ -23090,8 +23154,7 @@ paths:
       - description: 'Comma separated list of product families to retrieve. Available
           families are `all`, `analyzed_logs`,
 
-          `application_security`, `audit_logs`, `audit_trail`, `serverless`, `ci_app`,
-          `cloud_cost_management`,
+          `application_security`, `audit_trail`, `serverless`, `ci_app`, `cloud_cost_management`,
 
           `cspm`, `custom_events`, `cws`, `dbm`, `fargate`,
 
@@ -23104,7 +23167,9 @@ paths:
           `sds`, `snmp`,
 
           `synthetics_api`, `synthetics_browser`, `synthetics_parallel_testing`, and
-          `timeseries`.'
+          `timeseries`.
+
+          The following product family has been **deprecated**: `audit_logs`.'
         in: query
         name: filter[product_families]
         required: true
@@ -23708,6 +23773,7 @@ servers:
       - datadoghq.com
       - us3.datadoghq.com
       - us5.datadoghq.com
+      - ap1.datadoghq.com
       - datadoghq.eu
       - ddog-gov.com
     subdomain:

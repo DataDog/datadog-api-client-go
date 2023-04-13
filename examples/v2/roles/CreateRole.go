@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.RoleCreateData{
 			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 			Attributes: datadogV2.RoleCreateAttributes{
-				Name: "Example-Create_role_returns_OK_response",
+				Name: "Example-Role",
 			},
 		},
 	}

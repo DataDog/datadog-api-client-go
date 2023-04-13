@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.OpsgenieServiceCreateRequest{
 		Data: datadogV2.OpsgenieServiceCreateData{
 			Attributes: datadogV2.OpsgenieServiceCreateAttributes{
-				Name:           "Example-Create_a_new_service_object_returns_CREATED_response",
+				Name:           "Example-Opsgenie-Integration",
 				OpsgenieApiKey: "00000000-0000-0000-0000-000000000000",
 				Region:         datadogV2.OPSGENIESERVICEREGIONTYPE_US,
 			},

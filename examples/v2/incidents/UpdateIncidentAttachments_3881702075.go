@@ -25,7 +25,7 @@ func main() {
 						AttachmentType: datadogV2.INCIDENTATTACHMENTLINKATTACHMENTTYPE_LINK,
 						Attachment: datadogV2.IncidentAttachmentLinkAttributesAttachmentObject{
 							DocumentUrl: "https://www.example.com/doc",
-							Title:       "Example-Create_an_incident_attachment_returns_OK_response",
+							Title:       "Example-Incident",
 						},
 					}},
 			},

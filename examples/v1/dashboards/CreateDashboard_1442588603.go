@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title:       "Example-Create_a_distribution_widget_using_a_histogram_request_containing_a_formulas_and_functions_APM_Stats",
+		Title:       "Example-Dashboard",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
 		Widgets: []datadogV1.Widget{
 			{

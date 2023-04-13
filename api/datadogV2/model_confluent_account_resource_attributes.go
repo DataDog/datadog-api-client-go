@@ -6,6 +6,7 @@ package datadogV2
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ConfluentAccountResourceAttributes Attributes object for updating a Confluent resource.
@@ -13,7 +14,7 @@ type ConfluentAccountResourceAttributes struct {
 	// The ID associated with a Confluent resource.
 	Id *string `json:"id,omitempty"`
 	// The resource type of the Resource. Can be `kafka`, `connector`, `ksql`, or `schema_registry`.
-	ResourceType *string `json:"resource_type,omitempty"`
+	ResourceType string `json:"resource_type"`
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,8 +26,9 @@ type ConfluentAccountResourceAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewConfluentAccountResourceAttributes() *ConfluentAccountResourceAttributes {
+func NewConfluentAccountResourceAttributes(resourceType string) *ConfluentAccountResourceAttributes {
 	this := ConfluentAccountResourceAttributes{}
+	this.ResourceType = resourceType
 	return &this
 }
 
@@ -66,32 +68,27 @@ func (o *ConfluentAccountResourceAttributes) SetId(v string) {
 	o.Id = &v
 }
 
-// GetResourceType returns the ResourceType field value if set, zero value otherwise.
+// GetResourceType returns the ResourceType field value.
 func (o *ConfluentAccountResourceAttributes) GetResourceType() string {
-	if o == nil || o.ResourceType == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ResourceType
+	return o.ResourceType
 }
 
-// GetResourceTypeOk returns a tuple with the ResourceType field value if set, nil otherwise
+// GetResourceTypeOk returns a tuple with the ResourceType field value
 // and a boolean to check if the value has been set.
 func (o *ConfluentAccountResourceAttributes) GetResourceTypeOk() (*string, bool) {
-	if o == nil || o.ResourceType == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ResourceType, true
+	return &o.ResourceType, true
 }
 
-// HasResourceType returns a boolean if a field has been set.
-func (o *ConfluentAccountResourceAttributes) HasResourceType() bool {
-	return o != nil && o.ResourceType != nil
-}
-
-// SetResourceType gets a reference to the given string and assigns it to the ResourceType field.
+// SetResourceType sets field value.
 func (o *ConfluentAccountResourceAttributes) SetResourceType(v string) {
-	o.ResourceType = &v
+	o.ResourceType = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -131,9 +128,7 @@ func (o ConfluentAccountResourceAttributes) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.ResourceType != nil {
-		toSerialize["resource_type"] = o.ResourceType
-	}
+	toSerialize["resource_type"] = o.ResourceType
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -147,11 +142,21 @@ func (o ConfluentAccountResourceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountResourceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+	required := struct {
+		ResourceType *string `json:"resource_type"`
+	}{}
 	all := struct {
 		Id           *string  `json:"id,omitempty"`
-		ResourceType *string  `json:"resource_type,omitempty"`
+		ResourceType string   `json:"resource_type"`
 		Tags         []string `json:"tags,omitempty"`
 	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.ResourceType == nil {
+		return fmt.Errorf("required field resource_type missing")
+	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)

@@ -70,7 +70,7 @@ y = 6;
 							Type: datadogV1.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 						}},
 				},
-				Name:   "Example-Update_a_notebook_returns_OK_response-updated",
+				Name:   "Example-Notebook-updated",
 				Status: datadogV1.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
 				Time: datadogV1.NotebookGlobalTime{
 					NotebookRelativeTime: &datadogV1.NotebookRelativeTime{

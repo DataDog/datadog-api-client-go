@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.MetricTagConfigurationCreateRequest{
 		Data: datadogV2.MetricTagConfigurationCreateData{
 			Type: datadogV2.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
-			Id:   "ExampleCreateatagconfigurationreturnsCreatedresponse",
+			Id:   "ExampleMetric",
 			Attributes: &datadogV2.MetricTagConfigurationCreateAttributes{
 				Tags: []string{
 					"app",
@@ -30,7 +30,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.CreateTagConfiguration(ctx, "ExampleCreateatagconfigurationreturnsCreatedresponse", body)
+	resp, r, err := api.CreateTagConfiguration(ctx, "ExampleMetric", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration`: %v\n", err)

@@ -23,7 +23,7 @@ func main() {
 						Type:    datadogV2.SERVICEDEFINITIONV2EMAILTYPE_EMAIL,
 					}},
 			},
-			DdService: "service-examplecreateorupdateservicedefinitionusingschemav2returnscreatedresponse",
+			DdService: "service-exampleservicedefinition",
 			DdTeam:    datadog.PtrString("my-team"),
 			Docs: []datadogV2.ServiceDefinitionV2Doc{
 				{

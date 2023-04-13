@@ -24,6 +24,8 @@ type SyntheticsTestRequest struct {
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 	// By default, the client certificate is applied on the domain of the starting URL for browser tests. If you want your client certificate to be applied on other domains instead, add them in `certificateDomains`.
 	CertificateDomains []string `json:"certificateDomains,omitempty"`
+	// A protobuf JSON descriptor that needs to be gzipped first then base64 encoded.
+	CompressedJsonDescriptor *string `json:"compressedJsonDescriptor,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
@@ -278,6 +280,34 @@ func (o *SyntheticsTestRequest) HasCertificateDomains() bool {
 // SetCertificateDomains gets a reference to the given []string and assigns it to the CertificateDomains field.
 func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
 	o.CertificateDomains = v
+}
+
+// GetCompressedJsonDescriptor returns the CompressedJsonDescriptor field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetCompressedJsonDescriptor() string {
+	if o == nil || o.CompressedJsonDescriptor == nil {
+		var ret string
+		return ret
+	}
+	return *o.CompressedJsonDescriptor
+}
+
+// GetCompressedJsonDescriptorOk returns a tuple with the CompressedJsonDescriptor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetCompressedJsonDescriptorOk() (*string, bool) {
+	if o == nil || o.CompressedJsonDescriptor == nil {
+		return nil, false
+	}
+	return o.CompressedJsonDescriptor, true
+}
+
+// HasCompressedJsonDescriptor returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasCompressedJsonDescriptor() bool {
+	return o != nil && o.CompressedJsonDescriptor != nil
+}
+
+// SetCompressedJsonDescriptor gets a reference to the given string and assigns it to the CompressedJsonDescriptor field.
+func (o *SyntheticsTestRequest) SetCompressedJsonDescriptor(v string) {
+	o.CompressedJsonDescriptor = &v
 }
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
@@ -811,6 +841,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.CertificateDomains != nil {
 		toSerialize["certificateDomains"] = o.CertificateDomains
 	}
+	if o.CompressedJsonDescriptor != nil {
+		toSerialize["compressedJsonDescriptor"] = o.CompressedJsonDescriptor
+	}
 	if o.DnsServer != nil {
 		toSerialize["dnsServer"] = o.DnsServer
 	}
@@ -876,31 +909,32 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
-		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
-		Body                 *string                           `json:"body,omitempty"`
-		BodyType             *SyntheticsTestRequestBodyType    `json:"bodyType,omitempty"`
-		CallType             *SyntheticsTestCallType           `json:"callType,omitempty"`
-		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
-		CertificateDomains   []string                          `json:"certificateDomains,omitempty"`
-		DnsServer            *string                           `json:"dnsServer,omitempty"`
-		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
-		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
-		Headers              map[string]string                 `json:"headers,omitempty"`
-		Host                 *string                           `json:"host,omitempty"`
-		Message              *string                           `json:"message,omitempty"`
-		Metadata             map[string]string                 `json:"metadata,omitempty"`
-		Method               *string                           `json:"method,omitempty"`
-		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
-		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
-		Port                 *int64                            `json:"port,omitempty"`
-		Proxy                *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
-		Query                interface{}                       `json:"query,omitempty"`
-		Servername           *string                           `json:"servername,omitempty"`
-		Service              *string                           `json:"service,omitempty"`
-		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
-		Timeout              *float64                          `json:"timeout,omitempty"`
-		Url                  *string                           `json:"url,omitempty"`
+		AllowInsecure            *bool                             `json:"allow_insecure,omitempty"`
+		BasicAuth                *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
+		Body                     *string                           `json:"body,omitempty"`
+		BodyType                 *SyntheticsTestRequestBodyType    `json:"bodyType,omitempty"`
+		CallType                 *SyntheticsTestCallType           `json:"callType,omitempty"`
+		Certificate              *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+		CertificateDomains       []string                          `json:"certificateDomains,omitempty"`
+		CompressedJsonDescriptor *string                           `json:"compressedJsonDescriptor,omitempty"`
+		DnsServer                *string                           `json:"dnsServer,omitempty"`
+		DnsServerPort            *int32                            `json:"dnsServerPort,omitempty"`
+		FollowRedirects          *bool                             `json:"follow_redirects,omitempty"`
+		Headers                  map[string]string                 `json:"headers,omitempty"`
+		Host                     *string                           `json:"host,omitempty"`
+		Message                  *string                           `json:"message,omitempty"`
+		Metadata                 map[string]string                 `json:"metadata,omitempty"`
+		Method                   *string                           `json:"method,omitempty"`
+		NoSavingResponseBody     *bool                             `json:"noSavingResponseBody,omitempty"`
+		NumberOfPackets          *int32                            `json:"numberOfPackets,omitempty"`
+		Port                     *int64                            `json:"port,omitempty"`
+		Proxy                    *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
+		Query                    interface{}                       `json:"query,omitempty"`
+		Servername               *string                           `json:"servername,omitempty"`
+		Service                  *string                           `json:"service,omitempty"`
+		ShouldTrackHops          *bool                             `json:"shouldTrackHops,omitempty"`
+		Timeout                  *float64                          `json:"timeout,omitempty"`
+		Url                      *string                           `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -941,6 +975,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Certificate = all.Certificate
 	o.CertificateDomains = all.CertificateDomains
+	o.CompressedJsonDescriptor = all.CompressedJsonDescriptor
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
 	o.FollowRedirects = all.FollowRedirects

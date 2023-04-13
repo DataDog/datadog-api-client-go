@@ -17,7 +17,7 @@ func main() {
 	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
 
 	body := datadogV2.SecurityMonitoringRuleUpdatePayload{
-		Name: datadog.PtrString("Example-Update_an_existing_rule_returns_OK_response-Updated"),
+		Name: datadog.PtrString("Example-Security-Monitoring-Updated"),
 		Queries: []datadogV2.SecurityMonitoringRuleQuery{
 			datadogV2.SecurityMonitoringRuleQuery{
 				SecurityMonitoringStandardRuleQuery: &datadogV2.SecurityMonitoringStandardRuleQuery{

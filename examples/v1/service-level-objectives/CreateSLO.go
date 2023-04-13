@@ -21,7 +21,7 @@ func main() {
 			"role:mysql",
 		},
 		MonitorIds: []int64{},
-		Name:       "Example-Create_an_SLO_object_returns_OK_response",
+		Name:       "Example-Service-Level-Objective",
 		Query: &datadogV1.ServiceLevelObjectiveQuery{
 			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
 			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",

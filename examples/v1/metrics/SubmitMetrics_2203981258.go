@@ -26,7 +26,7 @@ func main() {
 					},
 				},
 				Tags: []string{
-					"test:ExampleSubmitdeflatemetricsreturnsPayloadacceptedresponse",
+					"test:ExampleMetric",
 				},
 			},
 		},
