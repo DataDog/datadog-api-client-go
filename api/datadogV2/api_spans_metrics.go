@@ -92,15 +92,16 @@ func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetr
 
 // DeleteSpansMetric Delete a span-based metric.
 // Delete a specific span-based metric from your organization.
-func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
+func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId string) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.DeleteSpansMetric")
 	if err != nil {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v2/apm/config/metrics/{metric_id}"
@@ -109,7 +110,7 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -119,17 +120,17 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 	)
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -141,14 +142,23 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // GetSpansMetric Get a span-based metric.

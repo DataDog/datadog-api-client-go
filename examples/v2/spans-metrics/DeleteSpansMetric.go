@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -19,10 +20,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSpansMetricsApi(apiClient)
-	r, err := api.DeleteSpansMetric(ctx, SpansMetricDataID)
+	resp, r, err := api.DeleteSpansMetric(ctx, SpansMetricDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SpansMetricsApi.DeleteSpansMetric`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `SpansMetricsApi.DeleteSpansMetric`:\n%s\n", responseContent)
 }
