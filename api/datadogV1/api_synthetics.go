@@ -682,7 +682,7 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 }
 
 // GetAPITestLatestResults Get an API test's latest results summaries.
-// Get the last 50 test results summaries for a given Synthetics API test.
+// Get the last 150 test results summaries for a given Synthetics API test.
 func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -953,7 +953,7 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 }
 
 // GetBrowserTestLatestResults Get a browser test's latest results summaries.
-// Get the last 50 test results summaries for a given Synthetics Browser test.
+// Get the last 150 test results summaries for a given Synthetics Browser test.
 func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
