@@ -318,118 +318,6 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	return json.Marshal(toSerialize)
 }
 
-{#
-{%- if model.get("additionalProperties", True) %}
-func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
-{{#parent}}
-{{^isMap}}
-	type {{ propertyName }}WithoutEmbeddedStruct struct {
-	{{#vars}}
-	{{^-first}}
-	{{/-first}}
-	{{#description}}
-		// {{{.}}}
-	{{/description}}
-	{%- if spec.deprecated %}
-		// Deprecated
-	{%- endif %}
-		{{ propertyName }} {% if attr not in model.get("required", []) %}{% if not isNullable %}{% if not isAnyType %}*{% endif %}{%- endif %}{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"{{#withXml}} xml:"{{ attr }}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
-	{{/vars}}
-	}
-
-	var{{ propertyName }}WithoutEmbeddedStruct := {{ propertyName }}WithoutEmbeddedStruct{}
-
-	err = json.Unmarshal(bytes, &var{{ propertyName }}WithoutEmbeddedStruct)
-	if err == nil {
-		var{{ propertyName }} := _{{ propertyName }}{}
-		{{#vars}}
-		var{{ propertyName }}.{{ propertyName }} = var{{ propertyName }}WithoutEmbeddedStruct.{{ propertyName }}
-		{{/vars}}
-		*o = {{ propertyName }}(var{{ propertyName }})
-	} else {
-		return err
-	}
-
-	var{{ propertyName }} := _{{ propertyName }}{}
-
-	err = json.Unmarshal(bytes, &var{{ propertyName }})
-	if err == nil {
-		o.{{{parent}}} = var{{ propertyName }}.{{{parent}}}
-	} else {
-		return err
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		{{#vars}}
-		delete(additionalProperties, "{{{ attr }}}")
-		{{/vars}}
-
-		// remove fields from embedded structs
-		reflect{{{parent}}} := reflect.ValueOf(o.{{{parent}}})
-		for i := 0; i < reflect{{{parent}}}.Type().NumField(); i++ {
-			t := reflect{{{parent}}}.Type().Field(i)
-
-			if jsonTag := t.Tag.Get("json"); jsonTag != "" {
-				fieldName := ""
-				if commaIdx := strings.Index(jsonTag, ","); commaIdx > 0 {
-					fieldName = jsonTag[:commaIdx]
-				} else {
-					fieldName = jsonTag
-				}
-				if fieldName != "AdditionalProperties" {
-					delete(additionalProperties, fieldName)
-				}
-			}
-		}
-
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
-{{/isMap}}
-{{#isMap}}
-	var{{ propertyName }} := _{{ propertyName }}{}
-
-	if err = json.Unmarshal(bytes, &var{{ propertyName }}); err == nil {
-		*o = {{ propertyName }}(var{{ propertyName }})
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		{{#vars}}
-		delete(additionalProperties, "{{{ attr }}}")
-		{{/vars}}
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
-{{/isMap}}
-{{/parent}}
-{{^parent}}
-	var{{ propertyName }} := _{{ propertyName }}{}
-
-	if err = json.Unmarshal(bytes, &var{{ propertyName }}); err == nil {
-		*o = {{ propertyName }}(var{{ propertyName }})
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		{{#vars}}
-		delete(additionalProperties, "{{{ attr }}}")
-		{{/vars}}
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
-{{/parent}}
-}
-
-{{/isAdditionalPropertiesTrue}}
-#}
 // UnmarshalJSON deserializes the given payload.
 {%- if model.type == "array" %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
@@ -483,6 +371,16 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+
+	{%- if model.get("additionalProperties", True) %}
+	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		{%- for attr, schema in model.get("properties", {}).items() %}
+		delete(additionalProperties, "{{ attr }}")
+		{%- endfor %}
+	}
+	{%- endif %}
+
 	{#- check enums #}
 	{%- for attr, spec in model.get("properties", {}).items() if spec.enum is defined %}
 	{%- set propertyName = attr|attribute_name %}
@@ -510,6 +408,12 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
         {%- endif %}
 	o.{{ propertyName }} = all.{{ propertyName }}
 	{%- endfor %}
+	{%- if model.get("additionalProperties", True) %}
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+	{%- endif %}
+
 	return nil
 }
 

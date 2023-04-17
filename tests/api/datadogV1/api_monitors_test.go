@@ -9,8 +9,9 @@ package test
 import (
 	"context"
 	"fmt"
-	"gopkg.in/h2non/gock.v1"
 	"testing"
+
+	"gopkg.in/h2non/gock.v1"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
@@ -167,7 +168,12 @@ func TestMonitorLifecycle(t *testing.T) {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.Contains(monitors, fetchedMonitor)
+
+	allMonitorIds := []int64{}
+	for _, m := range monitors {
+		allMonitorIds = append(allMonitorIds, m.GetId())
+	}
+	assert.Contains(allMonitorIds, fetchedMonitor.GetId())
 
 	// Can delete
 	ids := []int64{monitor.GetId()}
