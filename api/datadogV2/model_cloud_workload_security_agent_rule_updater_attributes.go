@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CloudWorkloadSecurityAgentRuleUpdaterAttributes The attributes of the user who last updated the Agent rule.
@@ -13,7 +15,7 @@ type CloudWorkloadSecurityAgentRuleUpdaterAttributes struct {
 	// The handle of the user.
 	Handle *string `json:"handle,omitempty"`
 	// The name of the user.
-	Name *string `json:"name,omitempty"`
+	Name datadog.NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -64,32 +66,43 @@ func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) HasName() bool {
-	return o != nil && o.Name != nil
+	return o != nil && o.Name.IsSet()
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given datadog.NullableString and assigns it to the Name field.
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil.
+func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil.
+func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) UnsetName() {
+	o.Name.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -101,8 +114,8 @@ func (o CloudWorkloadSecurityAgentRuleUpdaterAttributes) MarshalJSON() ([]byte, 
 	if o.Handle != nil {
 		toSerialize["handle"] = o.Handle
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -115,8 +128,8 @@ func (o CloudWorkloadSecurityAgentRuleUpdaterAttributes) MarshalJSON() ([]byte, 
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Handle *string                `json:"handle,omitempty"`
+		Name   datadog.NullableString `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

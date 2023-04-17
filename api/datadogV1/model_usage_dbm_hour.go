@@ -7,14 +7,16 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageDBMHour Database Monitoring usage for a given organization for a given hour.
 type UsageDBMHour struct {
 	// The total number of Database Monitoring host hours from the start of the given hour’s month until the given hour.
-	DbmHostCount *int64 `json:"dbm_host_count,omitempty"`
+	DbmHostCount datadog.NullableInt64 `json:"dbm_host_count,omitempty"`
 	// The total number of normalized Database Monitoring queries from the start of the given hour’s month until the given hour.
-	DbmQueriesCount *int64 `json:"dbm_queries_count,omitempty"`
+	DbmQueriesCount datadog.NullableInt64 `json:"dbm_queries_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -43,60 +45,82 @@ func NewUsageDBMHourWithDefaults() *UsageDBMHour {
 	return &this
 }
 
-// GetDbmHostCount returns the DbmHostCount field value if set, zero value otherwise.
+// GetDbmHostCount returns the DbmHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageDBMHour) GetDbmHostCount() int64 {
-	if o == nil || o.DbmHostCount == nil {
+	if o == nil || o.DbmHostCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.DbmHostCount
+	return *o.DbmHostCount.Get()
 }
 
 // GetDbmHostCountOk returns a tuple with the DbmHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageDBMHour) GetDbmHostCountOk() (*int64, bool) {
-	if o == nil || o.DbmHostCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.DbmHostCount, true
+	return o.DbmHostCount.Get(), o.DbmHostCount.IsSet()
 }
 
 // HasDbmHostCount returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasDbmHostCount() bool {
-	return o != nil && o.DbmHostCount != nil
+	return o != nil && o.DbmHostCount.IsSet()
 }
 
-// SetDbmHostCount gets a reference to the given int64 and assigns it to the DbmHostCount field.
+// SetDbmHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the DbmHostCount field.
 func (o *UsageDBMHour) SetDbmHostCount(v int64) {
-	o.DbmHostCount = &v
+	o.DbmHostCount.Set(&v)
 }
 
-// GetDbmQueriesCount returns the DbmQueriesCount field value if set, zero value otherwise.
+// SetDbmHostCountNil sets the value for DbmHostCount to be an explicit nil.
+func (o *UsageDBMHour) SetDbmHostCountNil() {
+	o.DbmHostCount.Set(nil)
+}
+
+// UnsetDbmHostCount ensures that no value is present for DbmHostCount, not even an explicit nil.
+func (o *UsageDBMHour) UnsetDbmHostCount() {
+	o.DbmHostCount.Unset()
+}
+
+// GetDbmQueriesCount returns the DbmQueriesCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageDBMHour) GetDbmQueriesCount() int64 {
-	if o == nil || o.DbmQueriesCount == nil {
+	if o == nil || o.DbmQueriesCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.DbmQueriesCount
+	return *o.DbmQueriesCount.Get()
 }
 
 // GetDbmQueriesCountOk returns a tuple with the DbmQueriesCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageDBMHour) GetDbmQueriesCountOk() (*int64, bool) {
-	if o == nil || o.DbmQueriesCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.DbmQueriesCount, true
+	return o.DbmQueriesCount.Get(), o.DbmQueriesCount.IsSet()
 }
 
 // HasDbmQueriesCount returns a boolean if a field has been set.
 func (o *UsageDBMHour) HasDbmQueriesCount() bool {
-	return o != nil && o.DbmQueriesCount != nil
+	return o != nil && o.DbmQueriesCount.IsSet()
 }
 
-// SetDbmQueriesCount gets a reference to the given int64 and assigns it to the DbmQueriesCount field.
+// SetDbmQueriesCount gets a reference to the given datadog.NullableInt64 and assigns it to the DbmQueriesCount field.
 func (o *UsageDBMHour) SetDbmQueriesCount(v int64) {
-	o.DbmQueriesCount = &v
+	o.DbmQueriesCount.Set(&v)
+}
+
+// SetDbmQueriesCountNil sets the value for DbmQueriesCount to be an explicit nil.
+func (o *UsageDBMHour) SetDbmQueriesCountNil() {
+	o.DbmQueriesCount.Set(nil)
+}
+
+// UnsetDbmQueriesCount ensures that no value is present for DbmQueriesCount, not even an explicit nil.
+func (o *UsageDBMHour) UnsetDbmQueriesCount() {
+	o.DbmQueriesCount.Unset()
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -189,11 +213,11 @@ func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.DbmHostCount != nil {
-		toSerialize["dbm_host_count"] = o.DbmHostCount
+	if o.DbmHostCount.IsSet() {
+		toSerialize["dbm_host_count"] = o.DbmHostCount.Get()
 	}
-	if o.DbmQueriesCount != nil {
-		toSerialize["dbm_queries_count"] = o.DbmQueriesCount
+	if o.DbmQueriesCount.IsSet() {
+		toSerialize["dbm_queries_count"] = o.DbmQueriesCount.Get()
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -219,11 +243,11 @@ func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DbmHostCount    *int64     `json:"dbm_host_count,omitempty"`
-		DbmQueriesCount *int64     `json:"dbm_queries_count,omitempty"`
-		Hour            *time.Time `json:"hour,omitempty"`
-		OrgName         *string    `json:"org_name,omitempty"`
-		PublicId        *string    `json:"public_id,omitempty"`
+		DbmHostCount    datadog.NullableInt64 `json:"dbm_host_count,omitempty"`
+		DbmQueriesCount datadog.NullableInt64 `json:"dbm_queries_count,omitempty"`
+		Hour            *time.Time            `json:"hour,omitempty"`
+		OrgName         *string               `json:"org_name,omitempty"`
+		PublicId        *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

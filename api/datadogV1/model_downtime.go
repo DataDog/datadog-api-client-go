@@ -37,7 +37,7 @@ type Downtime struct {
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this downtime.
 	// Email notifications can be sent to specific users by using the same `@username` notation as events.
-	Message *string `json:"message,omitempty"`
+	Message datadog.NullableString `json:"message,omitempty"`
 	// A single monitor to which the downtime applies.
 	// If not provided, the downtime applies to all monitors.
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
@@ -342,32 +342,43 @@ func (o *Downtime) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
+// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Downtime) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || o.Message.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+	return *o.Message.Get()
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Message, true
+	return o.Message.Get(), o.Message.IsSet()
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Downtime) HasMessage() bool {
-	return o != nil && o.Message != nil
+	return o != nil && o.Message.IsSet()
 }
 
-// SetMessage gets a reference to the given string and assigns it to the Message field.
+// SetMessage gets a reference to the given datadog.NullableString and assigns it to the Message field.
 func (o *Downtime) SetMessage(v string) {
-	o.Message = &v
+	o.Message.Set(&v)
+}
+
+// SetMessageNil sets the value for Message to be an explicit nil.
+func (o *Downtime) SetMessageNil() {
+	o.Message.Set(nil)
+}
+
+// UnsetMessage ensures that no value is present for Message, not even an explicit nil.
+func (o *Downtime) UnsetMessage() {
+	o.Message.Unset()
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -696,8 +707,8 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
+	if o.Message.IsSet() {
+		toSerialize["message"] = o.Message.Get()
 	}
 	if o.MonitorId.IsSet() {
 		toSerialize["monitor_id"] = o.MonitorId.Get()
@@ -745,7 +756,7 @@ func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 		DowntimeType                  *int32                     `json:"downtime_type,omitempty"`
 		End                           datadog.NullableInt64      `json:"end,omitempty"`
 		Id                            *int64                     `json:"id,omitempty"`
-		Message                       *string                    `json:"message,omitempty"`
+		Message                       datadog.NullableString     `json:"message,omitempty"`
 		MonitorId                     datadog.NullableInt64      `json:"monitor_id,omitempty"`
 		MonitorTags                   []string                   `json:"monitor_tags,omitempty"`
 		MuteFirstRecoveryNotification *bool                      `json:"mute_first_recovery_notification,omitempty"`
