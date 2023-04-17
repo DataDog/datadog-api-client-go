@@ -378,6 +378,8 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		{%- for attr, schema in model.get("properties", {}).items() %}
 		delete(additionalProperties, "{{ attr }}")
 		{%- endfor %}
+	} else {
+		return err
 	}
 	{%- endif %}
 
