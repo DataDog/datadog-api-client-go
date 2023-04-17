@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
@@ -31,12 +33,12 @@ type SLOHistorySLIData struct {
 	// calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
-	SliValue *float64 `json:"sli_value,omitempty"`
+	SliValue datadog.NullableFloat64 `json:"sli_value,omitempty"`
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp.
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
 	// Use `sli_value` instead.
 	// Deprecated
-	Uptime *float64 `json:"uptime,omitempty"`
+	Uptime datadog.NullableFloat64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -311,32 +313,43 @@ func (o *SLOHistorySLIData) SetPreview(v bool) {
 	o.Preview = &v
 }
 
-// GetSliValue returns the SliValue field value if set, zero value otherwise.
+// GetSliValue returns the SliValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistorySLIData) GetSliValue() float64 {
-	if o == nil || o.SliValue == nil {
+	if o == nil || o.SliValue.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.SliValue
+	return *o.SliValue.Get()
 }
 
 // GetSliValueOk returns a tuple with the SliValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
-	if o == nil || o.SliValue == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.SliValue, true
+	return o.SliValue.Get(), o.SliValue.IsSet()
 }
 
 // HasSliValue returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasSliValue() bool {
-	return o != nil && o.SliValue != nil
+	return o != nil && o.SliValue.IsSet()
 }
 
-// SetSliValue gets a reference to the given float64 and assigns it to the SliValue field.
+// SetSliValue gets a reference to the given datadog.NullableFloat64 and assigns it to the SliValue field.
 func (o *SLOHistorySLIData) SetSliValue(v float64) {
-	o.SliValue = &v
+	o.SliValue.Set(&v)
+}
+
+// SetSliValueNil sets the value for SliValue to be an explicit nil.
+func (o *SLOHistorySLIData) SetSliValueNil() {
+	o.SliValue.Set(nil)
+}
+
+// UnsetSliValue ensures that no value is present for SliValue, not even an explicit nil.
+func (o *SLOHistorySLIData) UnsetSliValue() {
+	o.SliValue.Unset()
 }
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
@@ -367,35 +380,46 @@ func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
 
-// GetUptime returns the Uptime field value if set, zero value otherwise.
+// GetUptime returns the Uptime field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *SLOHistorySLIData) GetUptime() float64 {
-	if o == nil || o.Uptime == nil {
+	if o == nil || o.Uptime.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Uptime
+	return *o.Uptime.Get()
 }
 
 // GetUptimeOk returns a tuple with the Uptime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
-	if o == nil || o.Uptime == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Uptime, true
+	return o.Uptime.Get(), o.Uptime.IsSet()
 }
 
 // HasUptime returns a boolean if a field has been set.
 func (o *SLOHistorySLIData) HasUptime() bool {
-	return o != nil && o.Uptime != nil
+	return o != nil && o.Uptime.IsSet()
 }
 
-// SetUptime gets a reference to the given float64 and assigns it to the Uptime field.
+// SetUptime gets a reference to the given datadog.NullableFloat64 and assigns it to the Uptime field.
 // Deprecated
 func (o *SLOHistorySLIData) SetUptime(v float64) {
-	o.Uptime = &v
+	o.Uptime.Set(&v)
+}
+
+// SetUptimeNil sets the value for Uptime to be an explicit nil.
+func (o *SLOHistorySLIData) SetUptimeNil() {
+	o.Uptime.Set(nil)
+}
+
+// UnsetUptime ensures that no value is present for Uptime, not even an explicit nil.
+func (o *SLOHistorySLIData) UnsetUptime() {
+	o.Uptime.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -431,14 +455,14 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	if o.Preview != nil {
 		toSerialize["preview"] = o.Preview
 	}
-	if o.SliValue != nil {
-		toSerialize["sli_value"] = o.SliValue
+	if o.SliValue.IsSet() {
+		toSerialize["sli_value"] = o.SliValue.Get()
 	}
 	if o.SpanPrecision != nil {
 		toSerialize["span_precision"] = o.SpanPrecision
 	}
-	if o.Uptime != nil {
-		toSerialize["uptime"] = o.Uptime
+	if o.Uptime.IsSet() {
+		toSerialize["uptime"] = o.Uptime.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -460,9 +484,9 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 		Name                 *string                           `json:"name,omitempty"`
 		Precision            map[string]float64                `json:"precision,omitempty"`
 		Preview              *bool                             `json:"preview,omitempty"`
-		SliValue             *float64                          `json:"sli_value,omitempty"`
+		SliValue             datadog.NullableFloat64           `json:"sli_value,omitempty"`
 		SpanPrecision        *float64                          `json:"span_precision,omitempty"`
-		Uptime               *float64                          `json:"uptime,omitempty"`
+		Uptime               datadog.NullableFloat64           `json:"uptime,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringTriageUser Object representing a given user entity.
@@ -16,7 +18,7 @@ type SecurityMonitoringTriageUser struct {
 	// Numerical ID assigned by Datadog to this user account.
 	Id *int64 `json:"id,omitempty"`
 	// The name for this user account.
-	Name *string `json:"name,omitempty"`
+	Name datadog.NullableString `json:"name,omitempty"`
 	// UUID assigned by Datadog to this user account.
 	Uuid string `json:"uuid"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -98,32 +100,43 @@ func (o *SecurityMonitoringTriageUser) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringTriageUser) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || o.Name.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringTriageUser) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SecurityMonitoringTriageUser) HasName() bool {
-	return o != nil && o.Name != nil
+	return o != nil && o.Name.IsSet()
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName gets a reference to the given datadog.NullableString and assigns it to the Name field.
 func (o *SecurityMonitoringTriageUser) SetName(v string) {
-	o.Name = &v
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil.
+func (o *SecurityMonitoringTriageUser) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil.
+func (o *SecurityMonitoringTriageUser) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetUuid returns the Uuid field value.
@@ -161,8 +174,8 @@ func (o SecurityMonitoringTriageUser) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	toSerialize["uuid"] = o.Uuid
 
@@ -179,10 +192,10 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 		Uuid *string `json:"uuid"`
 	}{}
 	all := struct {
-		Handle *string `json:"handle,omitempty"`
-		Id     *int64  `json:"id,omitempty"`
-		Name   *string `json:"name,omitempty"`
-		Uuid   string  `json:"uuid"`
+		Handle *string                `json:"handle,omitempty"`
+		Id     *int64                 `json:"id,omitempty"`
+		Name   datadog.NullableString `json:"name,omitempty"`
+		Uuid   string                 `json:"uuid"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

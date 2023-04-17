@@ -6,12 +6,14 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CloudConfigurationRuleComplianceSignalOptions How to generate compliance signals. Useful for cloud_configuration rules only.
 type CloudConfigurationRuleComplianceSignalOptions struct {
 	// Whether signals will be sent.
-	UserActivationStatus *bool `json:"userActivationStatus,omitempty"`
+	UserActivationStatus datadog.NullableBool `json:"userActivationStatus,omitempty"`
 	// Fields to use to group findings by when sending signals.
 	UserGroupByFields []string `json:"userGroupByFields,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,37 +38,48 @@ func NewCloudConfigurationRuleComplianceSignalOptionsWithDefaults() *CloudConfig
 	return &this
 }
 
-// GetUserActivationStatus returns the UserActivationStatus field value if set, zero value otherwise.
+// GetUserActivationStatus returns the UserActivationStatus field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserActivationStatus() bool {
-	if o == nil || o.UserActivationStatus == nil {
+	if o == nil || o.UserActivationStatus.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.UserActivationStatus
+	return *o.UserActivationStatus.Get()
 }
 
 // GetUserActivationStatusOk returns a tuple with the UserActivationStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserActivationStatusOk() (*bool, bool) {
-	if o == nil || o.UserActivationStatus == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.UserActivationStatus, true
+	return o.UserActivationStatus.Get(), o.UserActivationStatus.IsSet()
 }
 
 // HasUserActivationStatus returns a boolean if a field has been set.
 func (o *CloudConfigurationRuleComplianceSignalOptions) HasUserActivationStatus() bool {
-	return o != nil && o.UserActivationStatus != nil
+	return o != nil && o.UserActivationStatus.IsSet()
 }
 
-// SetUserActivationStatus gets a reference to the given bool and assigns it to the UserActivationStatus field.
+// SetUserActivationStatus gets a reference to the given datadog.NullableBool and assigns it to the UserActivationStatus field.
 func (o *CloudConfigurationRuleComplianceSignalOptions) SetUserActivationStatus(v bool) {
-	o.UserActivationStatus = &v
+	o.UserActivationStatus.Set(&v)
 }
 
-// GetUserGroupByFields returns the UserGroupByFields field value if set, zero value otherwise.
+// SetUserActivationStatusNil sets the value for UserActivationStatus to be an explicit nil.
+func (o *CloudConfigurationRuleComplianceSignalOptions) SetUserActivationStatusNil() {
+	o.UserActivationStatus.Set(nil)
+}
+
+// UnsetUserActivationStatus ensures that no value is present for UserActivationStatus, not even an explicit nil.
+func (o *CloudConfigurationRuleComplianceSignalOptions) UnsetUserActivationStatus() {
+	o.UserActivationStatus.Unset()
+}
+
+// GetUserGroupByFields returns the UserGroupByFields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserGroupByFields() []string {
-	if o == nil || o.UserGroupByFields == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -75,6 +88,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserGroupByFields() [
 
 // GetUserGroupByFieldsOk returns a tuple with the UserGroupByFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserGroupByFieldsOk() (*[]string, bool) {
 	if o == nil || o.UserGroupByFields == nil {
 		return nil, false
@@ -98,8 +112,8 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.UserActivationStatus != nil {
-		toSerialize["userActivationStatus"] = o.UserActivationStatus
+	if o.UserActivationStatus.IsSet() {
+		toSerialize["userActivationStatus"] = o.UserActivationStatus.Get()
 	}
 	if o.UserGroupByFields != nil {
 		toSerialize["userGroupByFields"] = o.UserGroupByFields
@@ -115,8 +129,8 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		UserActivationStatus *bool    `json:"userActivationStatus,omitempty"`
-		UserGroupByFields    []string `json:"userGroupByFields,omitempty"`
+		UserActivationStatus datadog.NullableBool `json:"userActivationStatus,omitempty"`
+		UserGroupByFields    []string             `json:"userGroupByFields,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
