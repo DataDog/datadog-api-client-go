@@ -393,6 +393,13 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+// DeleteKeys helper method to delete keys from a map
+func DeleteKeys[V any](obj map[string]V, keysToDelete *[]string) {
+	for _, s := range *keysToDelete {
+		delete(obj, s)
+	}
+}
+
 // ContainsUnparsedObject returns true if the given data contains an unparsed object from the API.
 func ContainsUnparsedObject(i interface{}) (bool, interface{}) {
 	v := reflect.ValueOf(i)
