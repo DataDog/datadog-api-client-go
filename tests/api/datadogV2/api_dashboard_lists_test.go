@@ -166,7 +166,8 @@ func TestDashboardListItemCRUD(t *testing.T) {
 	assert.NotNil(getResponse.GetDashboards()[0].Author)
 	assert.NotNil(getResponse.GetDashboards()[0].Modified)
 	assert.NotNil(getResponse.GetDashboards()[0].Created)
-	assert.Nil(getResponse.GetDashboards()[0].Icon)
+	icon, _ := getResponse.GetDashboards()[0].GetIconOk()
+	assert.Nil(icon)
 }
 
 func TestDashboardListGetItemsErrors(t *testing.T) {

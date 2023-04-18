@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // Host Object representing a host.
@@ -29,7 +31,7 @@ type Host struct {
 	// Host Metrics collected.
 	Metrics *HostMetrics `json:"metrics,omitempty"`
 	// Timeout of the mute applied to your host.
-	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
+	MuteTimeout datadog.NullableInt64 `json:"mute_timeout,omitempty"`
 	// The host name.
 	Name *string `json:"name,omitempty"`
 	// Source or cloud provider associated with your host.
@@ -312,32 +314,43 @@ func (o *Host) SetMetrics(v HostMetrics) {
 	o.Metrics = &v
 }
 
-// GetMuteTimeout returns the MuteTimeout field value if set, zero value otherwise.
+// GetMuteTimeout returns the MuteTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Host) GetMuteTimeout() int64 {
-	if o == nil || o.MuteTimeout == nil {
+	if o == nil || o.MuteTimeout.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MuteTimeout
+	return *o.MuteTimeout.Get()
 }
 
 // GetMuteTimeoutOk returns a tuple with the MuteTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Host) GetMuteTimeoutOk() (*int64, bool) {
-	if o == nil || o.MuteTimeout == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MuteTimeout, true
+	return o.MuteTimeout.Get(), o.MuteTimeout.IsSet()
 }
 
 // HasMuteTimeout returns a boolean if a field has been set.
 func (o *Host) HasMuteTimeout() bool {
-	return o != nil && o.MuteTimeout != nil
+	return o != nil && o.MuteTimeout.IsSet()
 }
 
-// SetMuteTimeout gets a reference to the given int64 and assigns it to the MuteTimeout field.
+// SetMuteTimeout gets a reference to the given datadog.NullableInt64 and assigns it to the MuteTimeout field.
 func (o *Host) SetMuteTimeout(v int64) {
-	o.MuteTimeout = &v
+	o.MuteTimeout.Set(&v)
+}
+
+// SetMuteTimeoutNil sets the value for MuteTimeout to be an explicit nil.
+func (o *Host) SetMuteTimeoutNil() {
+	o.MuteTimeout.Set(nil)
+}
+
+// UnsetMuteTimeout ensures that no value is present for MuteTimeout, not even an explicit nil.
+func (o *Host) UnsetMuteTimeout() {
+	o.MuteTimeout.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -485,8 +498,8 @@ func (o Host) MarshalJSON() ([]byte, error) {
 	if o.Metrics != nil {
 		toSerialize["metrics"] = o.Metrics
 	}
-	if o.MuteTimeout != nil {
-		toSerialize["mute_timeout"] = o.MuteTimeout
+	if o.MuteTimeout.IsSet() {
+		toSerialize["mute_timeout"] = o.MuteTimeout.Get()
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -511,20 +524,20 @@ func (o Host) MarshalJSON() ([]byte, error) {
 func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aliases          []string            `json:"aliases,omitempty"`
-		Apps             []string            `json:"apps,omitempty"`
-		AwsName          *string             `json:"aws_name,omitempty"`
-		HostName         *string             `json:"host_name,omitempty"`
-		Id               *int64              `json:"id,omitempty"`
-		IsMuted          *bool               `json:"is_muted,omitempty"`
-		LastReportedTime *int64              `json:"last_reported_time,omitempty"`
-		Meta             *HostMeta           `json:"meta,omitempty"`
-		Metrics          *HostMetrics        `json:"metrics,omitempty"`
-		MuteTimeout      *int64              `json:"mute_timeout,omitempty"`
-		Name             *string             `json:"name,omitempty"`
-		Sources          []string            `json:"sources,omitempty"`
-		TagsBySource     map[string][]string `json:"tags_by_source,omitempty"`
-		Up               *bool               `json:"up,omitempty"`
+		Aliases          []string              `json:"aliases,omitempty"`
+		Apps             []string              `json:"apps,omitempty"`
+		AwsName          *string               `json:"aws_name,omitempty"`
+		HostName         *string               `json:"host_name,omitempty"`
+		Id               *int64                `json:"id,omitempty"`
+		IsMuted          *bool                 `json:"is_muted,omitempty"`
+		LastReportedTime *int64                `json:"last_reported_time,omitempty"`
+		Meta             *HostMeta             `json:"meta,omitempty"`
+		Metrics          *HostMetrics          `json:"metrics,omitempty"`
+		MuteTimeout      datadog.NullableInt64 `json:"mute_timeout,omitempty"`
+		Name             *string               `json:"name,omitempty"`
+		Sources          []string              `json:"sources,omitempty"`
+		TagsBySource     map[string][]string   `json:"tags_by_source,omitempty"`
+		Up               *bool                 `json:"up,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

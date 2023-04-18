@@ -7,17 +7,19 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageLambdaHour Number of lambda functions and sum of the invocations of all lambda functions
 // for each hour for a given organization.
 type UsageLambdaHour struct {
 	// Contains the number of different functions for each region and AWS account.
-	FuncCount *int64 `json:"func_count,omitempty"`
+	FuncCount datadog.NullableInt64 `json:"func_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the sum of invocations of all functions.
-	InvocationsSum *int64 `json:"invocations_sum,omitempty"`
+	InvocationsSum datadog.NullableInt64 `json:"invocations_sum,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -44,32 +46,43 @@ func NewUsageLambdaHourWithDefaults() *UsageLambdaHour {
 	return &this
 }
 
-// GetFuncCount returns the FuncCount field value if set, zero value otherwise.
+// GetFuncCount returns the FuncCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLambdaHour) GetFuncCount() int64 {
-	if o == nil || o.FuncCount == nil {
+	if o == nil || o.FuncCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.FuncCount
+	return *o.FuncCount.Get()
 }
 
 // GetFuncCountOk returns a tuple with the FuncCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetFuncCountOk() (*int64, bool) {
-	if o == nil || o.FuncCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.FuncCount, true
+	return o.FuncCount.Get(), o.FuncCount.IsSet()
 }
 
 // HasFuncCount returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasFuncCount() bool {
-	return o != nil && o.FuncCount != nil
+	return o != nil && o.FuncCount.IsSet()
 }
 
-// SetFuncCount gets a reference to the given int64 and assigns it to the FuncCount field.
+// SetFuncCount gets a reference to the given datadog.NullableInt64 and assigns it to the FuncCount field.
 func (o *UsageLambdaHour) SetFuncCount(v int64) {
-	o.FuncCount = &v
+	o.FuncCount.Set(&v)
+}
+
+// SetFuncCountNil sets the value for FuncCount to be an explicit nil.
+func (o *UsageLambdaHour) SetFuncCountNil() {
+	o.FuncCount.Set(nil)
+}
+
+// UnsetFuncCount ensures that no value is present for FuncCount, not even an explicit nil.
+func (o *UsageLambdaHour) UnsetFuncCount() {
+	o.FuncCount.Unset()
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -100,32 +113,43 @@ func (o *UsageLambdaHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise.
+// GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLambdaHour) GetInvocationsSum() int64 {
-	if o == nil || o.InvocationsSum == nil {
+	if o == nil || o.InvocationsSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.InvocationsSum
+	return *o.InvocationsSum.Get()
 }
 
 // GetInvocationsSumOk returns a tuple with the InvocationsSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetInvocationsSumOk() (*int64, bool) {
-	if o == nil || o.InvocationsSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.InvocationsSum, true
+	return o.InvocationsSum.Get(), o.InvocationsSum.IsSet()
 }
 
 // HasInvocationsSum returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasInvocationsSum() bool {
-	return o != nil && o.InvocationsSum != nil
+	return o != nil && o.InvocationsSum.IsSet()
 }
 
-// SetInvocationsSum gets a reference to the given int64 and assigns it to the InvocationsSum field.
+// SetInvocationsSum gets a reference to the given datadog.NullableInt64 and assigns it to the InvocationsSum field.
 func (o *UsageLambdaHour) SetInvocationsSum(v int64) {
-	o.InvocationsSum = &v
+	o.InvocationsSum.Set(&v)
+}
+
+// SetInvocationsSumNil sets the value for InvocationsSum to be an explicit nil.
+func (o *UsageLambdaHour) SetInvocationsSumNil() {
+	o.InvocationsSum.Set(nil)
+}
+
+// UnsetInvocationsSum ensures that no value is present for InvocationsSum, not even an explicit nil.
+func (o *UsageLambdaHour) UnsetInvocationsSum() {
+	o.InvocationsSum.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -190,8 +214,8 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.FuncCount != nil {
-		toSerialize["func_count"] = o.FuncCount
+	if o.FuncCount.IsSet() {
+		toSerialize["func_count"] = o.FuncCount.Get()
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -200,8 +224,8 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.InvocationsSum != nil {
-		toSerialize["invocations_sum"] = o.InvocationsSum
+	if o.InvocationsSum.IsSet() {
+		toSerialize["invocations_sum"] = o.InvocationsSum.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -220,11 +244,11 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FuncCount      *int64     `json:"func_count,omitempty"`
-		Hour           *time.Time `json:"hour,omitempty"`
-		InvocationsSum *int64     `json:"invocations_sum,omitempty"`
-		OrgName        *string    `json:"org_name,omitempty"`
-		PublicId       *string    `json:"public_id,omitempty"`
+		FuncCount      datadog.NullableInt64 `json:"func_count,omitempty"`
+		Hour           *time.Time            `json:"hour,omitempty"`
+		InvocationsSum datadog.NullableInt64 `json:"invocations_sum,omitempty"`
+		OrgName        *string               `json:"org_name,omitempty"`
+		PublicId       *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
