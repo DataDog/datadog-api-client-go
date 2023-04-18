@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1680015325"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Delete_a_span_based_metric_returns_OK_response-1680015325","type":"spans_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1681838888"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Delete_a_span_based_metric_returns_OK_response-1681838888","type":"spans_metrics"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/apm/config/metrics
   response:
-    body: '{"data":{"id":"Test_Delete_a_span_based_metric_returns_OK_response_1680015325","attributes":{"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1680015325"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
+    body: '{"data":{"id":"Test_Delete_a_span_based_metric_returns_OK_response_1681838888","attributes":{"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1681838888"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
 
       '
     code: 200
@@ -27,17 +27,15 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1680015325
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1681838888
   response:
-    body: '{}
-
-      '
-    code: 200
+    body: ''
+    code: 204
     duration: ''
     headers:
       Content-Type:
-      - application/json
-    status: 200 OK
+      - text/html; charset=utf-8
+    status: 204 No Content
 - request:
     body: ''
     form: {}
@@ -45,9 +43,9 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1680015325
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Delete_a_span_based_metric_returns_OK_response_1681838888
   response:
-    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_span_based_metric_returns_OK_response_1680015325''
+    body: '{"errors":["not_found(Metric with name ''Test_Delete_a_span_based_metric_returns_OK_response_1681838888''
       not found)"]}
 
       '
