@@ -6,18 +6,20 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageCIVisibilityHour CI visibility usage in a given hour.
 type UsageCIVisibilityHour struct {
 	// The number of spans for pipelines in the queried hour.
-	CiPipelineIndexedSpans *int64 `json:"ci_pipeline_indexed_spans,omitempty"`
+	CiPipelineIndexedSpans datadog.NullableInt64 `json:"ci_pipeline_indexed_spans,omitempty"`
 	// The number of spans for tests in the queried hour.
-	CiTestIndexedSpans *int64 `json:"ci_test_indexed_spans,omitempty"`
+	CiTestIndexedSpans datadog.NullableInt64 `json:"ci_test_indexed_spans,omitempty"`
 	// Shows the total count of all active Git committers for Pipelines in the current month. A committer is active if they commit at least 3 times in a given month.
-	CiVisibilityPipelineCommitters *int64 `json:"ci_visibility_pipeline_committers,omitempty"`
+	CiVisibilityPipelineCommitters datadog.NullableInt64 `json:"ci_visibility_pipeline_committers,omitempty"`
 	// The total count of all active Git committers for tests in the current month. A committer is active if they commit at least 3 times in a given month.
-	CiVisibilityTestCommitters *int64 `json:"ci_visibility_test_committers,omitempty"`
+	CiVisibilityTestCommitters datadog.NullableInt64 `json:"ci_visibility_test_committers,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -44,116 +46,160 @@ func NewUsageCIVisibilityHourWithDefaults() *UsageCIVisibilityHour {
 	return &this
 }
 
-// GetCiPipelineIndexedSpans returns the CiPipelineIndexedSpans field value if set, zero value otherwise.
+// GetCiPipelineIndexedSpans returns the CiPipelineIndexedSpans field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpans() int64 {
-	if o == nil || o.CiPipelineIndexedSpans == nil {
+	if o == nil || o.CiPipelineIndexedSpans.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CiPipelineIndexedSpans
+	return *o.CiPipelineIndexedSpans.Get()
 }
 
 // GetCiPipelineIndexedSpansOk returns a tuple with the CiPipelineIndexedSpans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpansOk() (*int64, bool) {
-	if o == nil || o.CiPipelineIndexedSpans == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CiPipelineIndexedSpans, true
+	return o.CiPipelineIndexedSpans.Get(), o.CiPipelineIndexedSpans.IsSet()
 }
 
 // HasCiPipelineIndexedSpans returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiPipelineIndexedSpans() bool {
-	return o != nil && o.CiPipelineIndexedSpans != nil
+	return o != nil && o.CiPipelineIndexedSpans.IsSet()
 }
 
-// SetCiPipelineIndexedSpans gets a reference to the given int64 and assigns it to the CiPipelineIndexedSpans field.
+// SetCiPipelineIndexedSpans gets a reference to the given datadog.NullableInt64 and assigns it to the CiPipelineIndexedSpans field.
 func (o *UsageCIVisibilityHour) SetCiPipelineIndexedSpans(v int64) {
-	o.CiPipelineIndexedSpans = &v
+	o.CiPipelineIndexedSpans.Set(&v)
 }
 
-// GetCiTestIndexedSpans returns the CiTestIndexedSpans field value if set, zero value otherwise.
+// SetCiPipelineIndexedSpansNil sets the value for CiPipelineIndexedSpans to be an explicit nil.
+func (o *UsageCIVisibilityHour) SetCiPipelineIndexedSpansNil() {
+	o.CiPipelineIndexedSpans.Set(nil)
+}
+
+// UnsetCiPipelineIndexedSpans ensures that no value is present for CiPipelineIndexedSpans, not even an explicit nil.
+func (o *UsageCIVisibilityHour) UnsetCiPipelineIndexedSpans() {
+	o.CiPipelineIndexedSpans.Unset()
+}
+
+// GetCiTestIndexedSpans returns the CiTestIndexedSpans field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCIVisibilityHour) GetCiTestIndexedSpans() int64 {
-	if o == nil || o.CiTestIndexedSpans == nil {
+	if o == nil || o.CiTestIndexedSpans.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CiTestIndexedSpans
+	return *o.CiTestIndexedSpans.Get()
 }
 
 // GetCiTestIndexedSpansOk returns a tuple with the CiTestIndexedSpans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCIVisibilityHour) GetCiTestIndexedSpansOk() (*int64, bool) {
-	if o == nil || o.CiTestIndexedSpans == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CiTestIndexedSpans, true
+	return o.CiTestIndexedSpans.Get(), o.CiTestIndexedSpans.IsSet()
 }
 
 // HasCiTestIndexedSpans returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiTestIndexedSpans() bool {
-	return o != nil && o.CiTestIndexedSpans != nil
+	return o != nil && o.CiTestIndexedSpans.IsSet()
 }
 
-// SetCiTestIndexedSpans gets a reference to the given int64 and assigns it to the CiTestIndexedSpans field.
+// SetCiTestIndexedSpans gets a reference to the given datadog.NullableInt64 and assigns it to the CiTestIndexedSpans field.
 func (o *UsageCIVisibilityHour) SetCiTestIndexedSpans(v int64) {
-	o.CiTestIndexedSpans = &v
+	o.CiTestIndexedSpans.Set(&v)
 }
 
-// GetCiVisibilityPipelineCommitters returns the CiVisibilityPipelineCommitters field value if set, zero value otherwise.
+// SetCiTestIndexedSpansNil sets the value for CiTestIndexedSpans to be an explicit nil.
+func (o *UsageCIVisibilityHour) SetCiTestIndexedSpansNil() {
+	o.CiTestIndexedSpans.Set(nil)
+}
+
+// UnsetCiTestIndexedSpans ensures that no value is present for CiTestIndexedSpans, not even an explicit nil.
+func (o *UsageCIVisibilityHour) UnsetCiTestIndexedSpans() {
+	o.CiTestIndexedSpans.Unset()
+}
+
+// GetCiVisibilityPipelineCommitters returns the CiVisibilityPipelineCommitters field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommitters() int64 {
-	if o == nil || o.CiVisibilityPipelineCommitters == nil {
+	if o == nil || o.CiVisibilityPipelineCommitters.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CiVisibilityPipelineCommitters
+	return *o.CiVisibilityPipelineCommitters.Get()
 }
 
 // GetCiVisibilityPipelineCommittersOk returns a tuple with the CiVisibilityPipelineCommitters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommittersOk() (*int64, bool) {
-	if o == nil || o.CiVisibilityPipelineCommitters == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CiVisibilityPipelineCommitters, true
+	return o.CiVisibilityPipelineCommitters.Get(), o.CiVisibilityPipelineCommitters.IsSet()
 }
 
 // HasCiVisibilityPipelineCommitters returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiVisibilityPipelineCommitters() bool {
-	return o != nil && o.CiVisibilityPipelineCommitters != nil
+	return o != nil && o.CiVisibilityPipelineCommitters.IsSet()
 }
 
-// SetCiVisibilityPipelineCommitters gets a reference to the given int64 and assigns it to the CiVisibilityPipelineCommitters field.
+// SetCiVisibilityPipelineCommitters gets a reference to the given datadog.NullableInt64 and assigns it to the CiVisibilityPipelineCommitters field.
 func (o *UsageCIVisibilityHour) SetCiVisibilityPipelineCommitters(v int64) {
-	o.CiVisibilityPipelineCommitters = &v
+	o.CiVisibilityPipelineCommitters.Set(&v)
 }
 
-// GetCiVisibilityTestCommitters returns the CiVisibilityTestCommitters field value if set, zero value otherwise.
+// SetCiVisibilityPipelineCommittersNil sets the value for CiVisibilityPipelineCommitters to be an explicit nil.
+func (o *UsageCIVisibilityHour) SetCiVisibilityPipelineCommittersNil() {
+	o.CiVisibilityPipelineCommitters.Set(nil)
+}
+
+// UnsetCiVisibilityPipelineCommitters ensures that no value is present for CiVisibilityPipelineCommitters, not even an explicit nil.
+func (o *UsageCIVisibilityHour) UnsetCiVisibilityPipelineCommitters() {
+	o.CiVisibilityPipelineCommitters.Unset()
+}
+
+// GetCiVisibilityTestCommitters returns the CiVisibilityTestCommitters field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommitters() int64 {
-	if o == nil || o.CiVisibilityTestCommitters == nil {
+	if o == nil || o.CiVisibilityTestCommitters.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CiVisibilityTestCommitters
+	return *o.CiVisibilityTestCommitters.Get()
 }
 
 // GetCiVisibilityTestCommittersOk returns a tuple with the CiVisibilityTestCommitters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommittersOk() (*int64, bool) {
-	if o == nil || o.CiVisibilityTestCommitters == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CiVisibilityTestCommitters, true
+	return o.CiVisibilityTestCommitters.Get(), o.CiVisibilityTestCommitters.IsSet()
 }
 
 // HasCiVisibilityTestCommitters returns a boolean if a field has been set.
 func (o *UsageCIVisibilityHour) HasCiVisibilityTestCommitters() bool {
-	return o != nil && o.CiVisibilityTestCommitters != nil
+	return o != nil && o.CiVisibilityTestCommitters.IsSet()
 }
 
-// SetCiVisibilityTestCommitters gets a reference to the given int64 and assigns it to the CiVisibilityTestCommitters field.
+// SetCiVisibilityTestCommitters gets a reference to the given datadog.NullableInt64 and assigns it to the CiVisibilityTestCommitters field.
 func (o *UsageCIVisibilityHour) SetCiVisibilityTestCommitters(v int64) {
-	o.CiVisibilityTestCommitters = &v
+	o.CiVisibilityTestCommitters.Set(&v)
+}
+
+// SetCiVisibilityTestCommittersNil sets the value for CiVisibilityTestCommitters to be an explicit nil.
+func (o *UsageCIVisibilityHour) SetCiVisibilityTestCommittersNil() {
+	o.CiVisibilityTestCommitters.Set(nil)
+}
+
+// UnsetCiVisibilityTestCommitters ensures that no value is present for CiVisibilityTestCommitters, not even an explicit nil.
+func (o *UsageCIVisibilityHour) UnsetCiVisibilityTestCommitters() {
+	o.CiVisibilityTestCommitters.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -218,17 +264,17 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.CiPipelineIndexedSpans != nil {
-		toSerialize["ci_pipeline_indexed_spans"] = o.CiPipelineIndexedSpans
+	if o.CiPipelineIndexedSpans.IsSet() {
+		toSerialize["ci_pipeline_indexed_spans"] = o.CiPipelineIndexedSpans.Get()
 	}
-	if o.CiTestIndexedSpans != nil {
-		toSerialize["ci_test_indexed_spans"] = o.CiTestIndexedSpans
+	if o.CiTestIndexedSpans.IsSet() {
+		toSerialize["ci_test_indexed_spans"] = o.CiTestIndexedSpans.Get()
 	}
-	if o.CiVisibilityPipelineCommitters != nil {
-		toSerialize["ci_visibility_pipeline_committers"] = o.CiVisibilityPipelineCommitters
+	if o.CiVisibilityPipelineCommitters.IsSet() {
+		toSerialize["ci_visibility_pipeline_committers"] = o.CiVisibilityPipelineCommitters.Get()
 	}
-	if o.CiVisibilityTestCommitters != nil {
-		toSerialize["ci_visibility_test_committers"] = o.CiVisibilityTestCommitters
+	if o.CiVisibilityTestCommitters.IsSet() {
+		toSerialize["ci_visibility_test_committers"] = o.CiVisibilityTestCommitters.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -247,12 +293,12 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CiPipelineIndexedSpans         *int64  `json:"ci_pipeline_indexed_spans,omitempty"`
-		CiTestIndexedSpans             *int64  `json:"ci_test_indexed_spans,omitempty"`
-		CiVisibilityPipelineCommitters *int64  `json:"ci_visibility_pipeline_committers,omitempty"`
-		CiVisibilityTestCommitters     *int64  `json:"ci_visibility_test_committers,omitempty"`
-		OrgName                        *string `json:"org_name,omitempty"`
-		PublicId                       *string `json:"public_id,omitempty"`
+		CiPipelineIndexedSpans         datadog.NullableInt64 `json:"ci_pipeline_indexed_spans,omitempty"`
+		CiTestIndexedSpans             datadog.NullableInt64 `json:"ci_test_indexed_spans,omitempty"`
+		CiVisibilityPipelineCommitters datadog.NullableInt64 `json:"ci_visibility_pipeline_committers,omitempty"`
+		CiVisibilityTestCommitters     datadog.NullableInt64 `json:"ci_visibility_test_committers,omitempty"`
+		OrgName                        *string               `json:"org_name,omitempty"`
+		PublicId                       *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

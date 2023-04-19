@@ -26,7 +26,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 
 	start := tests.ClockFromContext(ctx).Now()
 	testDowntime := datadogV1.Downtime{
-		Message:  tests.UniqueEntityName(ctx, t),
+		Message:  *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:    datadog.PtrInt64(start.Unix()),
 		End:      *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 		Timezone: datadog.PtrString("Etc/UTC"),
@@ -55,7 +55,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	assert.Nil(val)
 
 	// Edit a downtime
-	editedDowntime := datadogV1.Downtime{Message: datadog.PtrString(fmt.Sprintf("%s-updated", testDowntime.GetMessage()))}
+	editedDowntime := datadogV1.Downtime{Message: *datadog.NewNullableString(datadog.PtrString(fmt.Sprintf("%s-updated", testDowntime.GetMessage())))}
 	updatedDowntime, httpresp, err := api.UpdateDowntime(ctx, downtime.GetId(), editedDowntime)
 	if err != nil {
 		t.Errorf("Error updating Downtime %v: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
@@ -119,7 +119,7 @@ func TestMonitorDowntime(t *testing.T) {
 
 	start := tests.ClockFromContext(ctx).Now()
 	testDowntime := datadogV1.Downtime{
-		Message:   tests.UniqueEntityName(ctx, t),
+		Message:   *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:     datadog.PtrInt64(start.Unix()),
 		Timezone:  datadog.PtrString("Etc/UTC"),
 		Scope:     []string{"*"},
@@ -151,17 +151,17 @@ func TestScopedDowntime(t *testing.T) {
 	scopeGo := fmt.Sprintf("test:go-%s-%d", t.Name(), tests.ClockFromContext(ctx).Now().UnixNano())
 
 	testDowntimes := []datadogV1.Downtime{{
-		Message:  tests.UniqueEntityName(ctx, t),
+		Message:  *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    []string{scopeClient, scopeGo},
 	}, {
-		Message:  tests.UniqueEntityName(ctx, t),
+		Message:  *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    []string{scopeGo},
 	}, {
-		Message:  tests.UniqueEntityName(ctx, t),
+		Message:  *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope:    []string{scopeClient},
@@ -271,7 +271,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 			api := datadogV1.NewDowntimesApi(Client(ctx))
 
 			testDowntime := datadogV1.Downtime{
-				Message:    datadog.PtrString(fmt.Sprintf("%s; %s", *tests.UniqueEntityName(ctx, t), name)),
+				Message:    *datadog.NewNullableString(datadog.PtrString(fmt.Sprintf("%s; %s", *tests.UniqueEntityName(ctx, t), name))),
 				Start:      datadog.PtrInt64(start.Unix()),
 				End:        *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 				Timezone:   datadog.PtrString("Etc/UTC"),

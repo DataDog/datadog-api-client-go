@@ -40,7 +40,7 @@ func main() {
 		Message: datadog.PtrString("ddd"),
 		Tags:    []string{},
 		ComplianceSignalOptions: &datadogV2.CloudConfigurationRuleComplianceSignalOptions{
-			UserActivationStatus: datadog.PtrBool(false),
+			UserActivationStatus: *datadog.NewNullableBool(datadog.PtrBool(false)),
 			UserGroupByFields:    []string{},
 		},
 	}

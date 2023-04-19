@@ -518,7 +518,8 @@ def format_data_with_schema_list(
 
         one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
         reference = "" if one_of_schema.get("required", False) else "&"
-        return f"{{{one_of_schema_name}: {reference}{parameters}}}"
+        prefix = f"{name_prefix}{schema_name(schema)}" if schema_name(schema) else ""
+        return f"{prefix}{{{one_of_schema_name}: {reference}{parameters}}}"
 
     parameters = ""
     # collect nested array types until you find a non-array type

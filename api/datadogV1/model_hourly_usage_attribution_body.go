@@ -195,9 +195,9 @@ func (o *HourlyUsageAttributionBody) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HourlyUsageAttributionBody) GetTags() map[string][]string {
-	if o == nil || o.Tags == nil {
+	if o == nil {
 		var ret map[string][]string
 		return ret
 	}
@@ -206,6 +206,7 @@ func (o *HourlyUsageAttributionBody) GetTags() map[string][]string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *HourlyUsageAttributionBody) GetTagsOk() (*map[string][]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false

@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"testing"
 	"time"
 
@@ -20,7 +21,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 
 	"gopkg.in/h2non/gock.v1"
-	is "gotest.tools/assert/cmp"
 )
 
 func TestHosts(t *testing.T) {
@@ -135,7 +135,7 @@ func TestHostTotalsMocked(t *testing.T) {
 		t.Errorf("Failed to get host totals: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMocked(t *testing.T) {
@@ -180,7 +180,7 @@ func TestHostsSearchMocked(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsListErrors(t *testing.T) {
@@ -358,7 +358,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
@@ -406,7 +406,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
@@ -452,7 +452,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
@@ -500,7 +500,7 @@ func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
@@ -548,7 +548,7 @@ func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
@@ -593,7 +593,7 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 		t.Errorf("Failed to get hosts: %v", err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
-	assert.True(is.DeepEqual(expected, hostListResp)().Success())
+	assert.True(reflect.DeepEqual(expected, hostListResp))
 }
 
 func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
@@ -710,5 +710,6 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 	assert.Equal(int64(1), *hostListResp.TotalReturned)
 	host = hostListResp.HostList[0]
 	assert.False(*host.IsMuted)
-	assert.Nil(host.MuteTimeout)
+	muteTimeout, _ := host.GetMuteTimeoutOk()
+	assert.Nil(muteTimeout)
 }

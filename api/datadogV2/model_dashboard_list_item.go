@@ -8,6 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DashboardListItem A dashboard within a list.
@@ -17,7 +19,7 @@ type DashboardListItem struct {
 	// Date of creation of the dashboard.
 	Created *time.Time `json:"created,omitempty"`
 	// URL to the icon of the dashboard.
-	Icon *string `json:"icon,omitempty"`
+	Icon datadog.NullableString `json:"icon,omitempty"`
 	// ID of the dashboard.
 	Id string `json:"id"`
 	// Whether or not the dashboard is in the favorites.
@@ -116,32 +118,43 @@ func (o *DashboardListItem) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardListItem) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DashboardListItem) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *DashboardListItem) HasIcon() bool {
-	return o != nil && o.Icon != nil
+	return o != nil && o.Icon.IsSet()
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given datadog.NullableString and assigns it to the Icon field.
 func (o *DashboardListItem) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+
+// SetIconNil sets the value for Icon to be an explicit nil.
+func (o *DashboardListItem) SetIconNil() {
+	o.Icon.Set(nil)
+}
+
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil.
+func (o *DashboardListItem) UnsetIcon() {
+	o.Icon.Unset()
 }
 
 // GetId returns the Id field value.
@@ -402,8 +415,8 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
 	toSerialize["id"] = o.Id
 	if o.IsFavorite != nil {
@@ -447,18 +460,18 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Author     *Creator      `json:"author,omitempty"`
-		Created    *time.Time    `json:"created,omitempty"`
-		Icon       *string       `json:"icon,omitempty"`
-		Id         string        `json:"id"`
-		IsFavorite *bool         `json:"is_favorite,omitempty"`
-		IsReadOnly *bool         `json:"is_read_only,omitempty"`
-		IsShared   *bool         `json:"is_shared,omitempty"`
-		Modified   *time.Time    `json:"modified,omitempty"`
-		Popularity *int32        `json:"popularity,omitempty"`
-		Title      *string       `json:"title,omitempty"`
-		Type       DashboardType `json:"type"`
-		Url        *string       `json:"url,omitempty"`
+		Author     *Creator               `json:"author,omitempty"`
+		Created    *time.Time             `json:"created,omitempty"`
+		Icon       datadog.NullableString `json:"icon,omitempty"`
+		Id         string                 `json:"id"`
+		IsFavorite *bool                  `json:"is_favorite,omitempty"`
+		IsReadOnly *bool                  `json:"is_read_only,omitempty"`
+		IsShared   *bool                  `json:"is_shared,omitempty"`
+		Modified   *time.Time             `json:"modified,omitempty"`
+		Popularity *int32                 `json:"popularity,omitempty"`
+		Title      *string                `json:"title,omitempty"`
+		Type       DashboardType          `json:"type"`
+		Url        *string                `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
