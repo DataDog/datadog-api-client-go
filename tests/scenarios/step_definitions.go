@@ -13,14 +13,17 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+	"regexp"
 	"strconv"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 	is "gotest.tools/assert/cmp"
 )
+
+// Copy from the client code
+var jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
 
 func setAPIKey(ctx gobdd.Context, name string, value string) {
 	if keys, ok := GetCtx(ctx).Value(datadog.ContextAPIKeys).(map[string]datadog.APIKey); ok {
@@ -217,7 +220,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		code := resp.StatusCode
 
 		contentType := resp.Header.Get("Content-Type")
-		if code < 300 && !strings.Contains(contentType, "application/json") && !strings.Contains(contentType, "text/json") {
+		if code < 300 && !jsonCheck.MatchString(contentType) {
 			// We don't care about non-JSON responses
 			t.Logf("Response is not JSON: %s", contentType)
 			ctx.Set(jsonResponseKey{}, result[0])

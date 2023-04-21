@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	_context "context"
+	_fmt "fmt"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -510,6 +512,84 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetFinding Get a finding.
+// Returns a single finding with message and resource configuration.
+func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId string) (GetFindingResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue GetFindingResponse
+	)
+
+	operationId := "v2.GetFinding"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetFinding")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/posture_management/findings/{finding_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"finding_id"+"}", _neturl.PathEscape(datadog.ParameterToString(findingId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetSecurityFilter Get a security filter.
 // Get the details of a specific security filter.
 //
@@ -704,6 +784,221 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListFindingsOptionalParameters holds optional parameters for ListFindings.
+type ListFindingsOptionalParameters struct {
+	Limit                     *int64
+	SnapshotTimestamp         *int64
+	PageCursor                *string
+	FilterTags                *string
+	FilterEvaluationChangedAt *string
+	FilterMuted               *bool
+	FilterRuleId              *string
+	FilterRuleName            *string
+	FilterResourceType        *string
+	FilterDiscoveryTimestamp  *string
+	FilterEvaluation          *FindingEvaluation
+	FilterStatus              *FindingStatus
+}
+
+// NewListFindingsOptionalParameters creates an empty struct for parameters.
+func NewListFindingsOptionalParameters() *ListFindingsOptionalParameters {
+	this := ListFindingsOptionalParameters{}
+	return &this
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithLimit(limit int64) *ListFindingsOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithSnapshotTimestamp sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithSnapshotTimestamp(snapshotTimestamp int64) *ListFindingsOptionalParameters {
+	r.SnapshotTimestamp = &snapshotTimestamp
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithPageCursor(pageCursor string) *ListFindingsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterTags(filterTags string) *ListFindingsOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+
+// WithFilterEvaluationChangedAt sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterEvaluationChangedAt(filterEvaluationChangedAt string) *ListFindingsOptionalParameters {
+	r.FilterEvaluationChangedAt = &filterEvaluationChangedAt
+	return r
+}
+
+// WithFilterMuted sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterMuted(filterMuted bool) *ListFindingsOptionalParameters {
+	r.FilterMuted = &filterMuted
+	return r
+}
+
+// WithFilterRuleId sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterRuleId(filterRuleId string) *ListFindingsOptionalParameters {
+	r.FilterRuleId = &filterRuleId
+	return r
+}
+
+// WithFilterRuleName sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterRuleName(filterRuleName string) *ListFindingsOptionalParameters {
+	r.FilterRuleName = &filterRuleName
+	return r
+}
+
+// WithFilterResourceType sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterResourceType(filterResourceType string) *ListFindingsOptionalParameters {
+	r.FilterResourceType = &filterResourceType
+	return r
+}
+
+// WithFilterDiscoveryTimestamp sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterDiscoveryTimestamp(filterDiscoveryTimestamp string) *ListFindingsOptionalParameters {
+	r.FilterDiscoveryTimestamp = &filterDiscoveryTimestamp
+	return r
+}
+
+// WithFilterEvaluation sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterEvaluation(filterEvaluation FindingEvaluation) *ListFindingsOptionalParameters {
+	r.FilterEvaluation = &filterEvaluation
+	return r
+}
+
+// WithFilterStatus sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterStatus(filterStatus FindingStatus) *ListFindingsOptionalParameters {
+	r.FilterStatus = &filterStatus
+	return r
+}
+
+// ListFindings List findings.
+// Get a list of CSPM findings.
+func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFindingsOptionalParameters) (ListFindingsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListFindingsResponse
+		optionalParams      ListFindingsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListFindingsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListFindings"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListFindings")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/posture_management/findings"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.SnapshotTimestamp != nil {
+		localVarQueryParams.Add("snapshot_timestamp", datadog.ParameterToString(*optionalParams.SnapshotTimestamp, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	if optionalParams.FilterTags != nil {
+		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
+	}
+	if optionalParams.FilterEvaluationChangedAt != nil {
+		localVarQueryParams.Add("filter[evaluation_changed_at]", datadog.ParameterToString(*optionalParams.FilterEvaluationChangedAt, ""))
+	}
+	if optionalParams.FilterMuted != nil {
+		localVarQueryParams.Add("filter[muted]", datadog.ParameterToString(*optionalParams.FilterMuted, ""))
+	}
+	if optionalParams.FilterRuleId != nil {
+		localVarQueryParams.Add("filter[rule_id]", datadog.ParameterToString(*optionalParams.FilterRuleId, ""))
+	}
+	if optionalParams.FilterRuleName != nil {
+		localVarQueryParams.Add("filter[rule_name]", datadog.ParameterToString(*optionalParams.FilterRuleName, ""))
+	}
+	if optionalParams.FilterResourceType != nil {
+		localVarQueryParams.Add("filter[resource_type]", datadog.ParameterToString(*optionalParams.FilterResourceType, ""))
+	}
+	if optionalParams.FilterDiscoveryTimestamp != nil {
+		localVarQueryParams.Add("filter[discovery_timestamp]", datadog.ParameterToString(*optionalParams.FilterDiscoveryTimestamp, ""))
+	}
+	if optionalParams.FilterEvaluation != nil {
+		localVarQueryParams.Add("filter[evaluation]", datadog.ParameterToString(*optionalParams.FilterEvaluation, ""))
+	}
+	if optionalParams.FilterStatus != nil {
+		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
