@@ -310,6 +310,12 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"group", "group_tags", "last_nodata_ts", "last_triggered_ts", "monitor_id", "monitor_name", "status"})
+	} else {
+		return err
+	}
 	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -325,5 +331,9 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorId = all.MonitorId
 	o.MonitorName = all.MonitorName
 	o.Status = all.Status
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

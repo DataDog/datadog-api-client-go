@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ConfluentAccountUpdateRequestData Data object for updating a Confluent account.
@@ -132,6 +134,12 @@ func (o *ConfluentAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -149,5 +157,9 @@ func (o *ConfluentAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err err
 	}
 	o.Attributes = all.Attributes
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

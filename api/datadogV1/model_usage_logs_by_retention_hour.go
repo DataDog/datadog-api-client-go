@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageLogsByRetentionHour The number of indexed logs for each hour for a given organization broken down by retention period.
@@ -263,11 +265,21 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"indexed_events_count", "live_indexed_events_count", "org_name", "public_id", "rehydrated_indexed_events_count", "retention"})
+	} else {
+		return err
+	}
 	o.IndexedEventsCount = all.IndexedEventsCount
 	o.LiveIndexedEventsCount = all.LiveIndexedEventsCount
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.RehydratedIndexedEventsCount = all.RehydratedIndexedEventsCount
 	o.Retention = all.Retention
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

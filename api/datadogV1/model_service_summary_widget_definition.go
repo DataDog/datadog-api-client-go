@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
@@ -604,6 +606,12 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_format", "env", "service", "show_breakdown", "show_distribution", "show_errors", "show_hits", "show_latency", "show_resource_list", "size_format", "span_name", "time", "title", "title_align", "title_size", "type"})
+	} else {
+		return err
+	}
 	if v := all.DisplayFormat; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -659,5 +667,9 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

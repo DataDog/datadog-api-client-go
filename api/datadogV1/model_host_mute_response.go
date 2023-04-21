@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HostMuteResponse Response with the list of muted host for your organization.
@@ -195,9 +197,19 @@ func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "end", "hostname", "message"})
+	} else {
+		return err
+	}
 	o.Action = all.Action
 	o.End = all.End
 	o.Hostname = all.Hostname
 	o.Message = all.Message
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

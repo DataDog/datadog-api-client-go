@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DeletedMonitor Response from the delete monitor call.
@@ -93,6 +95,16 @@ func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_monitor_id"})
+	} else {
+		return err
+	}
 	o.DeletedMonitorId = all.DeletedMonitorId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

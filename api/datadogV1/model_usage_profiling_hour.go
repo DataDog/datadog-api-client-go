@@ -258,10 +258,20 @@ func (o *UsageProfilingHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"avg_container_agent_count", "host_count", "hour", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.AvgContainerAgentCount = all.AvgContainerAgentCount
 	o.HostCount = all.HostCount
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

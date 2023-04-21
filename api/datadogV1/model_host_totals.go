@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HostTotals Total number of host currently monitored by Datadog.
@@ -127,7 +129,17 @@ func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"total_active", "total_up"})
+	} else {
+		return err
+	}
 	o.TotalActive = all.TotalActive
 	o.TotalUp = all.TotalUp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // OpsgenieServiceCreateAttributes The Opsgenie service attributes for a create request.
@@ -196,6 +198,12 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "opsgenie_api_key", "region"})
+	} else {
+		return err
+	}
 	if v := all.Region; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -208,5 +216,9 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	o.OpsgenieApiKey = all.OpsgenieApiKey
 	o.Region = all.Region
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

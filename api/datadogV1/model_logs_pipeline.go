@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsPipeline Pipelines and processors operate on incoming logs,
@@ -306,6 +308,12 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "id", "is_enabled", "is_read_only", "name", "processors", "type"})
+	} else {
+		return err
+	}
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -320,5 +328,9 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Processors = all.Processors
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

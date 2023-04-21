@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page.
@@ -506,6 +508,12 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "group", "no_group_hosts", "no_metric_hosts", "node_type", "notes", "requests", "scope", "style", "title", "title_align", "title_size", "type"})
+	} else {
+		return err
+	}
 	if v := all.NodeType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -557,5 +565,9 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

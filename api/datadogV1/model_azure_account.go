@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AzureAccount Datadog-Azure integrations configured for your organization.
@@ -332,6 +334,12 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"automute", "client_id", "client_secret", "errors", "host_filters", "new_client_id", "new_tenant_name", "tenant_name"})
+	} else {
+		return err
+	}
 	o.Automute = all.Automute
 	o.ClientId = all.ClientId
 	o.ClientSecret = all.ClientSecret
@@ -340,5 +348,9 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewClientId = all.NewClientId
 	o.NewTenantName = all.NewTenantName
 	o.TenantName = all.TenantName
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

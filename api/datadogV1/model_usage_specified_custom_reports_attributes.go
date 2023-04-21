@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageSpecifiedCustomReportsAttributes The response containing attributes for specified custom reports.
@@ -263,11 +265,21 @@ func (o *UsageSpecifiedCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"computed_on", "end_date", "location", "size", "start_date", "tags"})
+	} else {
+		return err
+	}
 	o.ComputedOn = all.ComputedOn
 	o.EndDate = all.EndDate
 	o.Location = all.Location
 	o.Size = all.Size
 	o.StartDate = all.StartDate
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

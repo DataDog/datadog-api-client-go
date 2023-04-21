@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionApmResourceStatsQueryDefinition APM resource stats query using formulas and functions.
@@ -396,6 +398,12 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "env", "group_by", "name", "operation_name", "primary_tag_name", "primary_tag_value", "resource_name", "service", "stat"})
+	} else {
+		return err
+	}
 	if v := all.DataSource; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -422,5 +430,9 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	o.ResourceName = all.ResourceName
 	o.Service = all.Service
 	o.Stat = all.Stat
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

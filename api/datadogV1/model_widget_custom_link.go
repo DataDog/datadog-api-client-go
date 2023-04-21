@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetCustomLink Custom links help you connect a data value to a URL, like a Datadog page or your AWS console.
@@ -195,9 +197,19 @@ func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_hidden", "label", "link", "override_label"})
+	} else {
+		return err
+	}
 	o.IsHidden = all.IsHidden
 	o.Label = all.Label
 	o.Link = all.Link
 	o.OverrideLabel = all.OverrideLabel
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).
@@ -273,6 +275,12 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"grok", "is_enabled", "name", "samples", "source", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -294,5 +302,9 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Samples = all.Samples
 	o.Source = all.Source
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

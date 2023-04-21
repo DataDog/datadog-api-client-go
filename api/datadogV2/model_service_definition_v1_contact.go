@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV1Contact Contact information about the service.
@@ -127,7 +129,17 @@ func (o *ServiceDefinitionV1Contact) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"email", "slack"})
+	} else {
+		return err
+	}
 	o.Email = all.Email
 	o.Slack = all.Slack
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

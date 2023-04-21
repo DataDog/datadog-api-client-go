@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringStandardRuleQuery Query for matching rule.
@@ -307,6 +309,12 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "distinctFields", "groupByFields", "metric", "metrics", "name", "query"})
+	} else {
+		return err
+	}
 	if v := all.Aggregation; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -322,5 +330,9 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.Query = all.Query
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

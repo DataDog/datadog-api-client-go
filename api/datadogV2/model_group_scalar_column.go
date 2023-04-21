@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // GroupScalarColumn A column containing the tag keys and values in a group.
@@ -161,8 +163,18 @@ func (o *GroupScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type", "values"})
+	} else {
+		return err
+	}
 	o.Name = all.Name
 	o.Type = all.Type
 	o.Values = all.Values
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

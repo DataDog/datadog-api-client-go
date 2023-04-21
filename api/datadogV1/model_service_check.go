@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceCheck An object containing service check and status.
@@ -262,6 +264,12 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"check", "host_name", "message", "status", "tags", "timestamp"})
+	} else {
+		return err
+	}
 	if v := all.Status; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -276,5 +284,9 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

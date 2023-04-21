@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageTopAvgMetricsResponse Response containing the number of hourly recorded custom metrics for a given organization.
@@ -127,6 +129,12 @@ func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"metadata", "usage"})
+	} else {
+		return err
+	}
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -136,5 +144,9 @@ func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Metadata = all.Metadata
 	o.Usage = all.Usage
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

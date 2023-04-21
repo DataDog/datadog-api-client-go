@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsAssertionTarget An assertion which uses a simple target.
@@ -196,6 +198,12 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "property", "target", "type"})
+	} else {
+		return err
+	}
 	if v := all.Operator; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -216,5 +224,9 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	o.Property = all.Property
 	o.Target = all.Target
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

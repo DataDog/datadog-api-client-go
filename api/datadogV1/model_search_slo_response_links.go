@@ -253,10 +253,20 @@ func (o *SearchSLOResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"first", "last", "next", "prev", "self"})
+	} else {
+		return err
+	}
 	o.First = all.First
 	o.Last = all.Last
 	o.Next = all.Next
 	o.Prev = all.Prev
 	o.Self = all.Self
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

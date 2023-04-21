@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
@@ -94,6 +96,12 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"new_status"})
+	} else {
+		return err
+	}
 	if v := all.NewStatus; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -103,5 +111,9 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 		return nil
 	}
 	o.NewStatus = all.NewStatus
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

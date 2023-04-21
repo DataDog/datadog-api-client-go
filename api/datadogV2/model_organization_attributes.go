@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // OrganizationAttributes Attributes of the organization.
@@ -340,6 +342,12 @@ func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "description", "disabled", "modified_at", "name", "public_id", "sharing", "url"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Disabled = all.Disabled
@@ -348,5 +356,9 @@ func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.Sharing = all.Sharing
 	o.Url = all.Url
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

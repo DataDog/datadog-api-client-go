@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TopologyQuery Query to service-based topology data sources like the service map or data streams.
@@ -161,6 +163,12 @@ func (o *TopologyQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "filters", "service"})
+	} else {
+		return err
+	}
 	if v := all.DataSource; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -172,5 +180,9 @@ func (o *TopologyQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.DataSource = all.DataSource
 	o.Filters = all.Filters
 	o.Service = all.Service
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

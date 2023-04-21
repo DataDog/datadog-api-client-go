@@ -548,6 +548,12 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aliases", "apps", "aws_name", "host_name", "id", "is_muted", "last_reported_time", "meta", "metrics", "mute_timeout", "name", "sources", "tags_by_source", "up"})
+	} else {
+		return err
+	}
 	o.Aliases = all.Aliases
 	o.Apps = all.Apps
 	o.AwsName = all.AwsName
@@ -576,5 +582,9 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sources = all.Sources
 	o.TagsBySource = all.TagsBySource
 	o.Up = all.Up
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

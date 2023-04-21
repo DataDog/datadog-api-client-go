@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SignalStateUpdateRequest Attributes describing the change of state for a given state.
@@ -200,6 +202,12 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"archiveComment", "archiveReason", "state", "version"})
+	} else {
+		return err
+	}
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -220,5 +228,9 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ArchiveReason = all.ArchiveReason
 	o.State = all.State
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

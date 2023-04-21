@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentTeamResponseAttributes The incident team's attributes from a response.
@@ -170,8 +172,18 @@ func (o *IncidentTeamResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "modified", "name"})
+	} else {
+		return err
+	}
 	o.Created = all.Created
 	o.Modified = all.Modified
 	o.Name = all.Name
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalIncidentsUpdateAttributes Attributes describing the new list of related signals for a security signal.
@@ -132,7 +134,17 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"incident_ids", "version"})
+	} else {
+		return err
+	}
 	o.IncidentIds = all.IncidentIds
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

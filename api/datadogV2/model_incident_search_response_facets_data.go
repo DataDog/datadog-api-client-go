@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentSearchResponseFacetsData Facet data for incidents returned by a search query.
@@ -433,6 +435,12 @@ func (o *IncidentSearchResponseFacetsData) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"commander", "created_by", "fields", "impact", "last_modified_by", "postmortem", "responder", "severity", "state", "time_to_repair", "time_to_resolve"})
+	} else {
+		return err
+	}
 	o.Commander = all.Commander
 	o.CreatedBy = all.CreatedBy
 	o.Fields = all.Fields
@@ -444,5 +452,9 @@ func (o *IncidentSearchResponseFacetsData) UnmarshalJSON(bytes []byte) (err erro
 	o.State = all.State
 	o.TimeToRepair = all.TimeToRepair
 	o.TimeToResolve = all.TimeToResolve
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

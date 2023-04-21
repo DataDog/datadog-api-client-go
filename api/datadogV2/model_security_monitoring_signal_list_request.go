@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalListRequest The request for a security signal list.
@@ -161,6 +163,12 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "page", "sort"})
+	} else {
+		return err
+	}
 	if v := all.Sort; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -186,5 +194,9 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Page = all.Page
 	o.Sort = all.Sort
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

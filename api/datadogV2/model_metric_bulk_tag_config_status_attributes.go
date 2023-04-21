@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricBulkTagConfigStatusAttributes Optional attributes for the status of a bulk tag configuration request.
@@ -161,8 +163,18 @@ func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"emails", "status", "tags"})
+	} else {
+		return err
+	}
 	o.Emails = all.Emails
 	o.Status = all.Status
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

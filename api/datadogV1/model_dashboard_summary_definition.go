@@ -387,6 +387,12 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "created_at", "description", "id", "is_read_only", "layout_type", "modified_at", "title", "url"})
+	} else {
+		return err
+	}
 	if v := all.LayoutType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -404,5 +410,9 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.Title = all.Title
 	o.Url = all.Url
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

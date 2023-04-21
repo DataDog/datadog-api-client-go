@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsPrivateLocationCreationResponse Object that contains the new private location, the public key for result encryption, and the configuration skeleton.
@@ -161,6 +163,12 @@ func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "private_location", "result_encryption"})
+	} else {
+		return err
+	}
 	o.Config = all.Config
 	if all.PrivateLocation != nil && all.PrivateLocation.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -178,5 +186,9 @@ func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 	}
 	o.ResultEncryption = all.ResultEncryption
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

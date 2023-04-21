@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerGroupAttributes Attributes of the Sensitive Data Scanner group.
@@ -229,6 +231,12 @@ func (o *SensitiveDataScannerGroupAttributes) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "filter", "is_enabled", "name", "product_list"})
+	} else {
+		return err
+	}
 	o.Description = all.Description
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -241,5 +249,9 @@ func (o *SensitiveDataScannerGroupAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.ProductList = all.ProductList
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

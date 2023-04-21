@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOHistoryMetrics A `metric` based SLO history response.
@@ -328,6 +330,12 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"denominator", "interval", "message", "numerator", "query", "res_type", "resp_version", "times"})
+	} else {
+		return err
+	}
 	if all.Denominator.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -350,5 +358,9 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResType = all.ResType
 	o.RespVersion = all.RespVersion
 	o.Times = all.Times
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

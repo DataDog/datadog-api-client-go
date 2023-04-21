@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBrowserTestResultShortResult Object with the result of the last browser test run.
@@ -229,6 +231,12 @@ func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"device", "duration", "errorCount", "stepCountCompleted", "stepCountTotal"})
+	} else {
+		return err
+	}
 	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -241,5 +249,9 @@ func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (er
 	o.ErrorCount = all.ErrorCount
 	o.StepCountCompleted = all.StepCountCompleted
 	o.StepCountTotal = all.StepCountTotal
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

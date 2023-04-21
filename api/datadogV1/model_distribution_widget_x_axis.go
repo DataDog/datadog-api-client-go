@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DistributionWidgetXAxis X Axis controls for the distribution widget.
@@ -207,9 +209,19 @@ func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"include_zero", "max", "min", "scale"})
+	} else {
+		return err
+	}
 	o.IncludeZero = all.IncludeZero
 	o.Max = all.Max
 	o.Min = all.Min
 	o.Scale = all.Scale
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

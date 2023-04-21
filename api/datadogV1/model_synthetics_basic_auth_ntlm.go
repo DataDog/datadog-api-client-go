@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBasicAuthNTLM Object to handle `NTLM` authentication when performing the test.
@@ -236,6 +238,12 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"domain", "password", "type", "username", "workstation"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -249,5 +257,9 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	o.Username = all.Username
 	o.Workstation = all.Workstation
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

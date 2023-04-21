@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SearchSLOQuery A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
@@ -165,9 +167,19 @@ func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"denominator", "metrics", "numerator"})
+	} else {
+		return err
+	}
 	o.Denominator = all.Denominator
 	o.Metrics = all.Metrics
 	o.Numerator = all.Numerator
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
 

@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ReferenceTableLogsLookupProcessor **Note**: Reference Tables are in public beta.
@@ -274,6 +276,12 @@ func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "lookup_enrichment_table", "name", "source", "target", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -288,5 +296,9 @@ func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err err
 	o.Source = all.Source
 	o.Target = all.Target
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

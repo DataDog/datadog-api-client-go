@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricIngestedIndexedVolumeAttributes Object containing the definition of a metric's ingested and indexed volume.
@@ -127,7 +129,17 @@ func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"indexed_volume", "ingested_volume"})
+	} else {
+		return err
+	}
 	o.IndexedVolume = all.IndexedVolume
 	o.IngestedVolume = all.IngestedVolume
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

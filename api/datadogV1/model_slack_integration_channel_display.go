@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SlackIntegrationChannelDisplay Configuration options for what is shown in an alert event message.
@@ -211,9 +213,19 @@ func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"message", "notified", "snapshot", "tags"})
+	} else {
+		return err
+	}
 	o.Message = all.Message
 	o.Notified = all.Notified
 	o.Snapshot = all.Snapshot
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

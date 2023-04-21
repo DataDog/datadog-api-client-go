@@ -266,6 +266,12 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_headers", "encode_as", "name", "payload", "url"})
+	} else {
+		return err
+	}
 	if v := all.EncodeAs; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -279,5 +285,9 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Payload = all.Payload
 	o.Url = all.Url
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

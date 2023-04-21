@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DistributionPointsSeries A distribution points metric to submit to Datadog.
@@ -236,6 +238,12 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"host", "metric", "points", "tags", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -249,5 +257,9 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	o.Points = all.Points
 	o.Tags = all.Tags
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

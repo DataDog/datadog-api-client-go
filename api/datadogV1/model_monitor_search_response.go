@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorSearchResponse The response form a monitor search.
@@ -161,6 +163,12 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"counts", "metadata", "monitors"})
+	} else {
+		return err
+	}
 	if all.Counts != nil && all.Counts.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -178,5 +186,9 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Metadata = all.Metadata
 	o.Monitors = all.Monitors
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

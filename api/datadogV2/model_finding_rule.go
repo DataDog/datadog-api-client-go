@@ -124,5 +124,6 @@ func (o *FindingRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Id = all.Id
 	o.Name = all.Name
+
 	return nil
 }

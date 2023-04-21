@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RUMApplicationAttributes RUM application attributes.
@@ -422,6 +424,12 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"application_id", "client_token", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "type", "updated_at", "updated_by_handle"})
+	} else {
+		return err
+	}
 	o.ApplicationId = all.ApplicationId
 	o.ClientToken = all.ClientToken
 	o.CreatedAt = all.CreatedAt
@@ -433,5 +441,9 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	o.UpdatedAt = all.UpdatedAt
 	o.UpdatedByHandle = all.UpdatedByHandle
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

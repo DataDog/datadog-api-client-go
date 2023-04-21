@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsGrokParserRules Set of rules for the grok parser.
@@ -136,7 +138,17 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"match_rules", "support_rules"})
+	} else {
+		return err
+	}
 	o.MatchRules = all.MatchRules
 	o.SupportRules = all.SupportRules
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

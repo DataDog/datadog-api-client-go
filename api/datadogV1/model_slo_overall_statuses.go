@@ -423,6 +423,12 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"error", "error_budget_remaining", "indexed_at", "raw_error_budget_remaining", "span_precision", "state", "status", "target", "timeframe"})
+	} else {
+		return err
+	}
 	if v := all.State; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -448,5 +454,9 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Target = all.Target
 	o.Timeframe = all.Timeframe
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

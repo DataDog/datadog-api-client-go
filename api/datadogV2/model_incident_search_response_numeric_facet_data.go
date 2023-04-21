@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentSearchResponseNumericFacetData Facet data numeric attributes of an incident.
@@ -130,6 +132,12 @@ func (o *IncidentSearchResponseNumericFacetData) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregates", "name"})
+	} else {
+		return err
+	}
 	if all.Aggregates.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -139,5 +147,9 @@ func (o *IncidentSearchResponseNumericFacetData) UnmarshalJSON(bytes []byte) (er
 	}
 	o.Aggregates = all.Aggregates
 	o.Name = all.Name
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

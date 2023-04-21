@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentSearchResponseFieldFacetData Facet value and number of occurrences for a property field of an incident.
@@ -127,7 +129,17 @@ func (o *IncidentSearchResponseFieldFacetData) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"count", "name"})
+	} else {
+		return err
+	}
 	o.Count = all.Count
 	o.Name = all.Name
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

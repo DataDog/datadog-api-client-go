@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FastlyAccountCreateRequestAttributes Attributes object for creating a Fastly account.
@@ -164,8 +166,18 @@ func (o *FastlyAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "name", "services"})
+	} else {
+		return err
+	}
 	o.ApiKey = all.ApiKey
 	o.Name = all.Name
 	o.Services = all.Services
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -263,10 +263,20 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"available_values", "default", "defaults", "name", "prefix"})
+	} else {
+		return err
+	}
 	o.AvailableValues = all.AvailableValues
 	o.Default = all.Default
 	o.Defaults = all.Defaults
 	o.Name = all.Name
 	o.Prefix = all.Prefix
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

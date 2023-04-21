@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HourlyUsageAttributionBody The usage for one set of tags for one hour.
@@ -375,6 +377,12 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "org_name", "public_id", "region", "tag_config_source", "tags", "total_usage_sum", "updated_at", "usage_type"})
+	} else {
+		return err
+	}
 	if v := all.UsageType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -392,5 +400,9 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalUsageSum = all.TotalUsageSum
 	o.UpdatedAt = all.UpdatedAt
 	o.UsageType = all.UsageType
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

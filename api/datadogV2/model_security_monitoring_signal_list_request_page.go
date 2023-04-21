@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalListRequestPage The paging attributes for listing security signals.
@@ -131,7 +133,17 @@ func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"cursor", "limit"})
+	} else {
+		return err
+	}
 	o.Cursor = all.Cursor
 	o.Limit = all.Limit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

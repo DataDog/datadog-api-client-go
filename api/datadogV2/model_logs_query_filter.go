@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsQueryFilter The search and filter query settings
@@ -245,6 +247,12 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"from", "indexes", "query", "storage_tier", "to"})
+	} else {
+		return err
+	}
 	if v := all.StorageTier; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -258,5 +266,9 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	o.StorageTier = all.StorageTier
 	o.To = all.To
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

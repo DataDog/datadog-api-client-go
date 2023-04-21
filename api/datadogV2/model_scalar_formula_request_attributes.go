@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ScalarFormulaRequestAttributes The object describing a scalar formula request.
@@ -196,9 +198,19 @@ func (o *ScalarFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "from", "queries", "to"})
+	} else {
+		return err
+	}
 	o.Formulas = all.Formulas
 	o.From = all.From
 	o.Queries = all.Queries
 	o.To = all.To
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

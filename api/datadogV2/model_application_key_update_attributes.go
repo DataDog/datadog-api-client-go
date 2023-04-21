@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ApplicationKeyUpdateAttributes Attributes used to update an application Key.
@@ -128,7 +130,17 @@ func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "scopes"})
+	} else {
+		return err
+	}
 	o.Name = all.Name
 	o.Scopes = all.Scopes
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

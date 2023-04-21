@@ -654,6 +654,12 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"all_tags", "created_at", "creator", "description", "env_tags", "groups", "modified_at", "monitor_ids", "name", "overall_status", "query", "service_tags", "slo_type", "status", "team_tags", "thresholds"})
+	} else {
+		return err
+	}
 	if v := all.SloType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -685,5 +691,9 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	o.Status = all.Status
 	o.TeamTags = all.TeamTags
 	o.Thresholds = all.Thresholds
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

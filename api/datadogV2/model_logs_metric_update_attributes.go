@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsMetricUpdateAttributes The log-based metric properties that will be updated.
@@ -161,6 +163,12 @@ func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by"})
+	} else {
+		return err
+	}
 	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -178,5 +186,9 @@ func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

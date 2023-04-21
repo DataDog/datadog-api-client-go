@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SearchSLOResponseMetaPage Pagination metadata returned by the API.
@@ -331,6 +333,12 @@ func (o *SearchSLOResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"first_number", "last_number", "next_number", "number", "prev_number", "size", "total", "type"})
+	} else {
+		return err
+	}
 	o.FirstNumber = all.FirstNumber
 	o.LastNumber = all.LastNumber
 	o.NextNumber = all.NextNumber
@@ -339,5 +347,9 @@ func (o *SearchSLOResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Size = all.Size
 	o.Total = all.Total
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

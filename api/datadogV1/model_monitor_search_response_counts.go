@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorSearchResponseCounts The counts of monitors per different criteria.
@@ -195,9 +197,19 @@ func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"muted", "status", "tag", "type"})
+	} else {
+		return err
+	}
 	o.Muted = all.Muted
 	o.Status = all.Status
 	o.Tag = all.Tag
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

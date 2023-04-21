@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentResponseMetaPagination Pagination properties.
@@ -161,8 +163,18 @@ func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"next_offset", "offset", "size"})
+	} else {
+		return err
+	}
 	o.NextOffset = all.NextOffset
 	o.Offset = all.Offset
 	o.Size = all.Size
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

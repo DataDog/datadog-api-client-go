@@ -287,12 +287,22 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"family", "id", "name", "plural", "scale_factor", "short_name"})
+	} else {
+		return err
+	}
 	o.Family = all.Family
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Plural = all.Plural
 	o.ScaleFactor = all.ScaleFactor
 	o.ShortName = all.ShortName
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
 

@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV2Dot1Pagerduty PagerDuty integration for the service.
@@ -93,6 +95,16 @@ func (o *ServiceDefinitionV2Dot1Pagerduty) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"service-url"})
+	} else {
+		return err
+	}
 	o.ServiceUrl = all.ServiceUrl
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

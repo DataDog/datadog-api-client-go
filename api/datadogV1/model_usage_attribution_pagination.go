@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageAttributionPagination The metadata for the current pagination.
@@ -229,10 +231,20 @@ func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"limit", "offset", "sort_direction", "sort_name", "total_number_of_records"})
+	} else {
+		return err
+	}
 	o.Limit = all.Limit
 	o.Offset = all.Offset
 	o.SortDirection = all.SortDirection
 	o.SortName = all.SortName
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

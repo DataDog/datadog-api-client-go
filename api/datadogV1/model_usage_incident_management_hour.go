@@ -213,9 +213,19 @@ func (o *UsageIncidentManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "monthly_active_users", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.Hour = all.Hour
 	o.MonthlyActiveUsers = all.MonthlyActiveUsers
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

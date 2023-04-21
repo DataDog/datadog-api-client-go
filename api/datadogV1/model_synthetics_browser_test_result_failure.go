@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBrowserTestResultFailure The browser test failure details.
@@ -127,6 +129,12 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"code", "message"})
+	} else {
+		return err
+	}
 	if v := all.Code; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -137,5 +145,9 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 	}
 	o.Code = all.Code
 	o.Message = all.Message
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

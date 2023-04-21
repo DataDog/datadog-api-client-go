@@ -490,6 +490,12 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"error_budget_remaining", "errors", "group", "history", "monitor_modified", "monitor_type", "name", "precision", "preview", "sli_value", "span_precision", "uptime"})
+	} else {
+		return err
+	}
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.Errors = all.Errors
 	o.Group = all.Group
@@ -502,5 +508,9 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.SliValue = all.SliValue
 	o.SpanPrecision = all.SpanPrecision
 	o.Uptime = all.Uptime
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

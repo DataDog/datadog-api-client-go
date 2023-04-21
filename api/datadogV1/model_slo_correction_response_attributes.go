@@ -536,6 +536,12 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "creator", "description", "duration", "end", "modified_at", "modifier", "rrule", "slo_id", "start", "timezone"})
+	} else {
+		return err
+	}
 	if v := all.Category; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -563,5 +569,9 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.SloId = all.SloId
 	o.Start = all.Start
 	o.Timezone = all.Timezone
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -1318,6 +1318,12 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "device_ids", "enable_logs_sample", "enable_samples", "escalation_message", "evaluation_delay", "group_retention_duration", "groupby_simple_monitor", "include_tags", "locked", "min_failure_duration", "min_location_failed", "new_group_delay", "new_host_delay", "no_data_timeframe", "notification_preset_name", "notify_audit", "notify_by", "notify_no_data", "on_missing_data", "renotify_interval", "renotify_occurrences", "renotify_statuses", "require_full_window", "scheduling_options", "silenced", "synthetics_check_id", "threshold_windows", "thresholds", "timeout_h", "variables"})
+	} else {
+		return err
+	}
 	if v := all.NotificationPresetName; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -1393,5 +1399,9 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Thresholds = all.Thresholds
 	o.TimeoutH = all.TimeoutH
 	o.Variables = all.Variables
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

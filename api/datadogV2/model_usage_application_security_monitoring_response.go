@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageApplicationSecurityMonitoringResponse Application Security Monitoring usage response.
@@ -93,6 +95,16 @@ func (o *UsageApplicationSecurityMonitoringResponse) UnmarshalJSON(bytes []byte)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+	} else {
+		return err
+	}
 	o.Data = all.Data
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

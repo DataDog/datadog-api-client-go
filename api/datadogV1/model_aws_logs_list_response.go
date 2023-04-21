@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AWSLogsListResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
@@ -161,8 +163,18 @@ func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "lambdas", "services"})
+	} else {
+		return err
+	}
 	o.AccountId = all.AccountId
 	o.Lambdas = all.Lambdas
 	o.Services = all.Services
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

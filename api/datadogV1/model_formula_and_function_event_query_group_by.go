@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionEventQueryGroupBy List of objects used to group by.
@@ -166,6 +168,12 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "limit", "sort"})
+	} else {
+		return err
+	}
 	o.Facet = all.Facet
 	o.Limit = all.Limit
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -176,5 +184,9 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 	}
 	o.Sort = all.Sort
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

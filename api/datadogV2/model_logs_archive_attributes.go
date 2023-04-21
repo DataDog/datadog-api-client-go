@@ -318,6 +318,12 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags", "state"})
+	} else {
+		return err
+	}
 	if v := all.State; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -333,5 +339,9 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.RehydrationMaxScanSizeInGb = all.RehydrationMaxScanSizeInGb
 	o.RehydrationTags = all.RehydrationTags
 	o.State = all.State
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

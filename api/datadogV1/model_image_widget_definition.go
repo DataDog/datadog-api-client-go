@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ImageWidgetDefinition The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. Only available on FREE layout dashboards.
@@ -380,6 +382,12 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"has_background", "has_border", "horizontal_align", "margin", "sizing", "type", "url", "url_dark_theme", "vertical_align"})
+	} else {
+		return err
+	}
 	if v := all.HorizontalAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -429,5 +437,9 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	o.UrlDarkTheme = all.UrlDarkTheme
 	o.VerticalAlign = all.VerticalAlign
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

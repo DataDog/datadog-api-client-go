@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalRuleQuery Query for matching rule on signals.
@@ -268,6 +270,12 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "correlatedByFields", "correlatedQueryIndex", "metrics", "name", "ruleId"})
+	} else {
+		return err
+	}
 	if v := all.Aggregation; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -282,5 +290,9 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.RuleId = all.RuleId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

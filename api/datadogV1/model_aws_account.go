@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AWSAccount Returns the AWS account associated with this integration.
@@ -453,6 +455,12 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"access_key_id", "account_id", "account_specific_namespace_rules", "cspm_resource_collection_enabled", "excluded_regions", "filter_tags", "host_tags", "metrics_collection_enabled", "resource_collection_enabled", "role_name", "secret_access_key"})
+	} else {
+		return err
+	}
 	o.AccessKeyId = all.AccessKeyId
 	o.AccountId = all.AccountId
 	o.AccountSpecificNamespaceRules = all.AccountSpecificNamespaceRules
@@ -464,5 +472,9 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
 	o.RoleName = all.RoleName
 	o.SecretAccessKey = all.SecretAccessKey
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

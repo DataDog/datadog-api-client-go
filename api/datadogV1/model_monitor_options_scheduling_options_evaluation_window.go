@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorOptionsSchedulingOptionsEvaluationWindow Configuration options for the evaluation window. If `hour_starts` is set, no other fields may be set. Otherwise, `day_starts` and `month_starts` must be set together.
@@ -161,8 +163,18 @@ func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) UnmarshalJSON(bytes []
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"day_starts", "hour_starts", "month_starts"})
+	} else {
+		return err
+	}
 	o.DayStarts = all.DayStarts
 	o.HourStarts = all.HourStarts
 	o.MonthStarts = all.MonthStarts
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

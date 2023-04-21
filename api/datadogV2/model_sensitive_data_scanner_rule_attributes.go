@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerRuleAttributes Attributes of the Sensitive Data Scanner rule.
@@ -332,6 +334,12 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "is_enabled", "name", "namespaces", "pattern", "tags", "text_replacement"})
+	} else {
+		return err
+	}
 	o.Description = all.Description
 	o.ExcludedNamespaces = all.ExcludedNamespaces
 	o.IsEnabled = all.IsEnabled
@@ -347,5 +355,9 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 	}
 	o.TextReplacement = all.TextReplacement
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

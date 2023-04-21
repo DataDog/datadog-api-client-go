@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HTTPLogItem Logs that are sent over HTTP.
@@ -240,10 +242,20 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]string)
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"ddsource", "ddtags", "hostname", "message", "service"})
+	} else {
+		return err
+	}
 	o.Ddsource = all.Ddsource
 	o.Ddtags = all.Ddtags
 	o.Hostname = all.Hostname
 	o.Message = all.Message
 	o.Service = all.Service
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

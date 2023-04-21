@@ -297,12 +297,22 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"period", "rrule", "type", "until_date", "until_occurrences", "week_days"})
+	} else {
+		return err
+	}
 	o.Period = all.Period
 	o.Rrule = all.Rrule
 	o.Type = all.Type
 	o.UntilDate = all.UntilDate
 	o.UntilOccurrences = all.UntilOccurrences
 	o.WeekDays = all.WeekDays
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
 

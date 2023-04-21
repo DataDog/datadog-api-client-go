@@ -367,6 +367,12 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "description", "handle", "link_count", "modified_at", "name", "summary", "user_count"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Handle = all.Handle
@@ -375,5 +381,9 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Summary = all.Summary
 	o.UserCount = all.UserCount
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

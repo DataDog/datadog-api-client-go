@@ -140,7 +140,17 @@ func (o *HourlyUsageMeasurement) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"usage_type", "value"})
+	} else {
+		return err
+	}
 	o.UsageType = all.UsageType
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

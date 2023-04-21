@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalAttributes The object containing all signal attributes and their
@@ -201,9 +203,19 @@ func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "message", "tags", "timestamp"})
+	} else {
+		return err
+	}
 	o.Attributes = all.Attributes
 	o.Message = all.Message
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

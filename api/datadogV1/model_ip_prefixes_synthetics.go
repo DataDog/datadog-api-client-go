@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IPPrefixesSynthetics Available prefix information for the Synthetics endpoints.
@@ -195,9 +197,19 @@ func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"prefixes_ipv4", "prefixes_ipv4_by_location", "prefixes_ipv6", "prefixes_ipv6_by_location"})
+	} else {
+		return err
+	}
 	o.PrefixesIpv4 = all.PrefixesIpv4
 	o.PrefixesIpv4ByLocation = all.PrefixesIpv4ByLocation
 	o.PrefixesIpv6 = all.PrefixesIpv6
 	o.PrefixesIpv6ByLocation = all.PrefixesIpv6ByLocation
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

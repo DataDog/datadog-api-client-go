@@ -138,5 +138,6 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Type = all.Type
+
 	return nil
 }

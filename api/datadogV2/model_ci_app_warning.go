@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppWarning A warning message indicating something that went wrong with the query.
@@ -161,8 +163,18 @@ func (o *CIAppWarning) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"code", "detail", "title"})
+	} else {
+		return err
+	}
 	o.Code = all.Code
 	o.Detail = all.Detail
 	o.Title = all.Title
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

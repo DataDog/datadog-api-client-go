@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SharedDashboardUpdateRequestGlobalTime Timeframe setting for the shared dashboard.
@@ -93,6 +95,12 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"live_span"})
+	} else {
+		return err
+	}
 	if v := all.LiveSpan; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -102,6 +110,10 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 		return nil
 	}
 	o.LiveSpan = all.LiveSpan
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
 

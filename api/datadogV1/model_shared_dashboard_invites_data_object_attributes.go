@@ -285,11 +285,21 @@ func (o *SharedDashboardInvitesDataObjectAttributes) UnmarshalJSON(bytes []byte)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "email", "has_session", "invitation_expiry", "session_expiry", "share_token"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.Email = all.Email
 	o.HasSession = all.HasSession
 	o.InvitationExpiry = all.InvitationExpiry
 	o.SessionExpiry = all.SessionExpiry
 	o.ShareToken = all.ShareToken
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

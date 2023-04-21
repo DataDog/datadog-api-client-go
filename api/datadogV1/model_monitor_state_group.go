@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorStateGroup Monitor state for a single group.
@@ -263,6 +265,12 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"last_nodata_ts", "last_notified_ts", "last_resolved_ts", "last_triggered_ts", "name", "status"})
+	} else {
+		return err
+	}
 	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -277,5 +285,9 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastTriggeredTs = all.LastTriggeredTs
 	o.Name = all.Name
 	o.Status = all.Status
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SunburstWidgetLegendInlineAutomatic Configuration of inline or automatic legends.
@@ -166,6 +168,12 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"hide_percent", "hide_value", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -177,5 +185,9 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	o.HidePercent = all.HidePercent
 	o.HideValue = all.HideValue
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SlackIntegrationMetadataChannelItem Item in the Slack integration metadata channel array.
@@ -196,9 +198,19 @@ func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"channel_id", "channel_name", "redirect_url", "team_id"})
+	} else {
+		return err
+	}
 	o.ChannelId = all.ChannelId
 	o.ChannelName = all.ChannelName
 	o.RedirectUrl = all.RedirectUrl
 	o.TeamId = all.TeamId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

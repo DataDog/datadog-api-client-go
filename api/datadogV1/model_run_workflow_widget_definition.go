@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RunWorkflowWidgetDefinition Run workflow is widget that allows you to run a workflow from a dashboard.
@@ -336,6 +338,12 @@ func (o *RunWorkflowWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "inputs", "time", "title", "title_align", "title_size", "type", "workflow_id"})
+	} else {
+		return err
+	}
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -367,5 +375,9 @@ func (o *RunWorkflowWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
 	o.WorkflowId = all.WorkflowId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

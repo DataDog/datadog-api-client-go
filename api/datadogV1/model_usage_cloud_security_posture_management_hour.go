@@ -483,6 +483,12 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aas_host_count", "aws_host_count", "azure_host_count", "compliance_host_count", "container_count", "gcp_host_count", "host_count", "hour", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.AasHostCount = all.AasHostCount
 	o.AwsHostCount = all.AwsHostCount
 	o.AzureHostCount = all.AzureHostCount
@@ -493,5 +499,9 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

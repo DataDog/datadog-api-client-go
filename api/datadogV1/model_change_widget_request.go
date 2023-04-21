@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ChangeWidgetRequest Updated change widget.
@@ -671,6 +673,12 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "change_type", "compare_to", "event_query", "formulas", "increase_good", "log_query", "network_query", "order_by", "order_dir", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "show_present"})
+	} else {
+		return err
+	}
 	if v := all.ChangeType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -785,5 +793,9 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.SecurityQuery = all.SecurityQuery
 	o.ShowPresent = all.ShowPresent
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

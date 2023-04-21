@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // Event Object representing an event.
@@ -520,6 +522,12 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"alert_type", "date_happened", "device_name", "host", "id", "id_str", "payload", "priority", "source_type_name", "tags", "text", "title", "url"})
+	} else {
+		return err
+	}
 	if v := all.AlertType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -549,5 +557,9 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	o.Text = all.Text
 	o.Title = all.Title
 	o.Url = all.Url
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

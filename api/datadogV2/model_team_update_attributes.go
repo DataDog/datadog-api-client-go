@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TeamUpdateAttributes Team update attributes
@@ -232,10 +234,20 @@ func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"color", "description", "handle", "link_count", "name"})
+	} else {
+		return err
+	}
 	o.Color = all.Color
 	o.Description = all.Description
 	o.Handle = all.Handle
 	o.LinkCount = all.LinkCount
 	o.Name = all.Name
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

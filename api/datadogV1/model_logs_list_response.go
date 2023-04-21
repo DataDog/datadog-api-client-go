@@ -175,8 +175,18 @@ func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"logs", "nextLogId", "status"})
+	} else {
+		return err
+	}
 	o.Logs = all.Logs
 	o.NextLogId = all.NextLogId
 	o.Status = all.Status
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

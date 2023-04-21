@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CloudflareAccountUpdateRequestAttributes Attributes object for updating a Cloudflare account.
@@ -132,7 +134,17 @@ func (o *CloudflareAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "email"})
+	} else {
+		return err
+	}
 	o.ApiKey = all.ApiKey
 	o.Email = all.Email
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

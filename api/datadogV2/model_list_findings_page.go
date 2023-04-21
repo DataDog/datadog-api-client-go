@@ -124,5 +124,6 @@ func (o *ListFindingsPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Cursor = all.Cursor
 	o.TotalFilteredCount = all.TotalFilteredCount
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV2Dot1Integrations Third party integrations that Datadog supports.
@@ -127,6 +129,12 @@ func (o *ServiceDefinitionV2Dot1Integrations) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"opsgenie", "pagerduty"})
+	} else {
+		return err
+	}
 	if all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -143,5 +151,9 @@ func (o *ServiceDefinitionV2Dot1Integrations) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 	}
 	o.Pagerduty = all.Pagerduty
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

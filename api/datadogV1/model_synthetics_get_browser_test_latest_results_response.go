@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic browser test run.
@@ -127,7 +129,17 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"last_timestamp_fetched", "results"})
+	} else {
+		return err
+	}
 	o.LastTimestampFetched = all.LastTimestampFetched
 	o.Results = all.Results
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

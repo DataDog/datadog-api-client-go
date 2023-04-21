@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricSuggestedTagsAndAggregations Object for a single metric's actively queried tags and aggregations.
@@ -165,6 +167,12 @@ func (o *MetricSuggestedTagsAndAggregations) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -183,5 +191,9 @@ func (o *MetricSuggestedTagsAndAggregations) UnmarshalJSON(bytes []byte) (err er
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

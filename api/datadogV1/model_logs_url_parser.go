@@ -289,6 +289,12 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "normalize_ending_slashes", "sources", "target", "type"})
+	} else {
+		return err
+	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -303,5 +309,9 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sources = all.Sources
 	o.Target = all.Target
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

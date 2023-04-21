@@ -8,6 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // NotebooksResponseDataAttributes The attributes of a notebook in get all response.
@@ -349,6 +351,12 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "cells", "created", "metadata", "modified", "name", "status", "time"})
+	} else {
+		return err
+	}
 	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -379,5 +387,9 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	o.Status = all.Status
 	o.Time = all.Time
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

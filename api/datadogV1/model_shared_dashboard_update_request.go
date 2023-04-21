@@ -262,6 +262,12 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"global_time", "global_time_selectable_enabled", "selectable_template_vars", "share_list", "share_type"})
+	} else {
+		return err
+	}
 	if v := all.ShareType; v.Get() != nil && !v.Get().IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -275,5 +281,9 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SelectableTemplateVars = all.SelectableTemplateVars
 	o.ShareList = all.ShareList
 	o.ShareType = all.ShareType
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsSSLCertificateIssuer Object describing the issuer of a SSL certificate.
@@ -263,11 +265,21 @@ func (o *SyntheticsSSLCertificateIssuer) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"C", "CN", "L", "O", "OU", "ST"})
+	} else {
+		return err
+	}
 	o.C = all.C
 	o.Cn = all.Cn
 	o.L = all.L
 	o.O = all.O
 	o.Ou = all.Ou
 	o.St = all.St
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

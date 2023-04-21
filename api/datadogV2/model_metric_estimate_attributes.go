@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricEstimateAttributes Object containing the definition of a metric estimate attribute.
@@ -170,6 +172,12 @@ func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"estimate_type", "estimated_at", "estimated_output_series"})
+	} else {
+		return err
+	}
 	if v := all.EstimateType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -181,5 +189,9 @@ func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.EstimateType = all.EstimateType
 	o.EstimatedAt = all.EstimatedAt
 	o.EstimatedOutputSeries = all.EstimatedOutputSeries
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

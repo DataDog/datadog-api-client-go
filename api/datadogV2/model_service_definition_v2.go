@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV2 Service definition V2 for providing service metadata and integrations.
@@ -438,6 +440,12 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"contacts", "dd-service", "dd-team", "docs", "extensions", "integrations", "links", "repos", "schema-version", "tags", "team"})
+	} else {
+		return err
+	}
 	if v := all.SchemaVersion; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -464,5 +472,9 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.SchemaVersion = all.SchemaVersion
 	o.Tags = all.Tags
 	o.Team = all.Team
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

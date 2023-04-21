@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageAttributionAggregatesBody The object containing the aggregates.
@@ -161,8 +163,18 @@ func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"agg_type", "field", "value"})
+	} else {
+		return err
+	}
 	o.AggType = all.AggType
 	o.Field = all.Field
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

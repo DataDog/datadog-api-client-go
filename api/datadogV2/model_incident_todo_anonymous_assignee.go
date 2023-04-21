@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentTodoAnonymousAssignee Anonymous assignee entity.
@@ -196,6 +198,12 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"icon", "id", "name", "source"})
+	} else {
+		return err
+	}
 	if v := all.Source; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -208,5 +216,9 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Source = all.Source
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

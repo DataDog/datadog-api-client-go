@@ -185,8 +185,18 @@ func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"limit", "next_record_id", "total_number_of_records"})
+	} else {
+		return err
+	}
 	o.Limit = all.Limit
 	o.NextRecordId = all.NextRecordId
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

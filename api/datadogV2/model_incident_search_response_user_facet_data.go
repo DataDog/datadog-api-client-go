@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentSearchResponseUserFacetData Facet data for user attributes of an incident.
@@ -229,10 +231,20 @@ func (o *IncidentSearchResponseUserFacetData) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"count", "email", "handle", "name", "uuid"})
+	} else {
+		return err
+	}
 	o.Count = all.Count
 	o.Email = all.Email
 	o.Handle = all.Handle
 	o.Name = all.Name
 	o.Uuid = all.Uuid
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

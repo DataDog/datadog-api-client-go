@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IPPrefixesWebhooks Available prefix information for the Webhook endpoints.
@@ -127,7 +129,17 @@ func (o *IPPrefixesWebhooks) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"prefixes_ipv4", "prefixes_ipv6"})
+	} else {
+		return err
+	}
 	o.PrefixesIpv4 = all.PrefixesIpv4
 	o.PrefixesIpv6 = all.PrefixesIpv6
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

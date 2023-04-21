@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SelectableTemplateVariableItems Object containing the template variable's name, associated tag/attribute, default value and selectable values.
@@ -196,9 +198,19 @@ func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"default_value", "name", "prefix", "visible_tags"})
+	} else {
+		return err
+	}
 	o.DefaultValue = all.DefaultValue
 	o.Name = all.Name
 	o.Prefix = all.Prefix
 	o.VisibleTags = all.VisibleTags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

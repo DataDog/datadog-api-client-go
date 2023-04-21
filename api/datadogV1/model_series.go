@@ -286,11 +286,21 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"host", "interval", "metric", "points", "tags", "type"})
+	} else {
+		return err
+	}
 	o.Host = all.Host
 	o.Interval = all.Interval
 	o.Metric = all.Metric
 	o.Points = all.Points
 	o.Tags = all.Tags
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

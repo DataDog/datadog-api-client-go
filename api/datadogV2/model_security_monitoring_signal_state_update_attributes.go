@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalStateUpdateAttributes Attributes describing the change of state of a security signal.
@@ -200,6 +202,12 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_reason", "state", "version"})
+	} else {
+		return err
+	}
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -220,5 +228,9 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 	o.ArchiveReason = all.ArchiveReason
 	o.State = all.State
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

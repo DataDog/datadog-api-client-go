@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
@@ -300,6 +302,12 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"alert_id", "time", "title", "title_align", "title_size", "type", "viz_type"})
+	} else {
+		return err
+	}
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -338,5 +346,9 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TitleSize = all.TitleSize
 	o.Type = all.Type
 	o.VizType = all.VizType
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

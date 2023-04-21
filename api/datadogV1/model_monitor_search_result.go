@@ -517,6 +517,12 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"classification", "creator", "id", "last_triggered_ts", "metrics", "name", "notifications", "org_id", "query", "scopes", "status", "tags", "type"})
+	} else {
+		return err
+	}
 	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -553,5 +559,9 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Tags = all.Tags
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

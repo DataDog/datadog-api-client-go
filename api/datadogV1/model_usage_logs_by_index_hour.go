@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageLogsByIndexHour Number of indexed logs for each hour and index for a given organization.
@@ -302,6 +304,12 @@ func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"event_count", "hour", "index_id", "index_name", "org_name", "public_id", "retention"})
+	} else {
+		return err
+	}
 	o.EventCount = all.EventCount
 	o.Hour = all.Hour
 	o.IndexId = all.IndexId
@@ -309,5 +317,9 @@ func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.Retention = all.Retention
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

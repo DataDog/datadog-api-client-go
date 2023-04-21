@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOHistoryResponseErrorWithType An object describing the error with error type and error message.
@@ -130,7 +132,17 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type"})
+	} else {
+		return err
+	}
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorType = all.ErrorType
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

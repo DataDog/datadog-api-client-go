@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RUMAnalyticsAggregateResponse The response object for the RUM events aggregate API endpoint.
@@ -161,6 +163,12 @@ func (o *RUMAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
+	} else {
+		return err
+	}
 	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -185,5 +193,9 @@ func (o *RUMAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 	}
 	o.Meta = all.Meta
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FunnelQuery Updated funnel widget.
@@ -164,6 +166,12 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "query_string", "steps"})
+	} else {
+		return err
+	}
 	if v := all.DataSource; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -175,5 +183,9 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.DataSource = all.DataSource
 	o.QueryString = all.QueryString
 	o.Steps = all.Steps
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

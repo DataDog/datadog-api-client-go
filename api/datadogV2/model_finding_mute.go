@@ -272,5 +272,6 @@ func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Reason = all.Reason
 	o.StartDate = all.StartDate
 	o.Uuid = all.Uuid
+
 	return nil
 }

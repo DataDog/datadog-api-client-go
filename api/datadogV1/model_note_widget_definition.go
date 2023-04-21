@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // NoteWidgetDefinition The notes and links widget is similar to free text widget, but allows for more formatting options.
@@ -408,6 +410,12 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"background_color", "content", "font_size", "has_padding", "show_tick", "text_align", "tick_edge", "tick_pos", "type", "vertical_align"})
+	} else {
+		return err
+	}
 	if v := all.TextAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -450,5 +458,9 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TickPos = all.TickPos
 	o.Type = all.Type
 	o.VerticalAlign = all.VerticalAlign
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

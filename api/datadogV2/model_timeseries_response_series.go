@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TimeseriesResponseSeries
@@ -164,8 +166,18 @@ func (o *TimeseriesResponseSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"group_tags", "query_index", "unit"})
+	} else {
+		return err
+	}
 	o.GroupTags = all.GroupTags
 	o.QueryIndex = all.QueryIndex
 	o.Unit = all.Unit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

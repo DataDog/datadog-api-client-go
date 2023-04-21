@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentTimelineCellMarkdownCreateAttributes Timeline cell data for Markdown timeline cells for a create request.
@@ -170,6 +172,12 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"cell_type", "content", "important"})
+	} else {
+		return err
+	}
 	if v := all.CellType; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -188,5 +196,9 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 	o.Content = all.Content
 	o.Important = all.Important
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

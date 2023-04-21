@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetFormulaLimit Options for limiting results returned.
@@ -131,6 +133,12 @@ func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"count", "order"})
+	} else {
+		return err
+	}
 	if v := all.Order; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -141,5 +149,9 @@ func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Count = all.Count
 	o.Order = all.Order
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

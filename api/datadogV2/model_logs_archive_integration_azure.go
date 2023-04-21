@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsArchiveIntegrationAzure The Azure archive's integration destination.
@@ -130,7 +132,17 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "tenant_id"})
+	} else {
+		return err
+	}
 	o.ClientId = all.ClientId
 	o.TenantId = all.TenantId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

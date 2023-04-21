@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorConfigPolicyAttributeCreateRequest Policy and policy type for a monitor configuration policy.
@@ -132,6 +134,12 @@ func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"policy", "policy_type"})
+	} else {
+		return err
+	}
 	if v := all.PolicyType; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -142,5 +150,9 @@ func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) 
 	}
 	o.Policy = all.Policy
 	o.PolicyType = all.PolicyType
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

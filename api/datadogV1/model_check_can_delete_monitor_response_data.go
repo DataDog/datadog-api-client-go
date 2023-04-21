@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CheckCanDeleteMonitorResponseData Wrapper object with the list of monitor IDs.
@@ -93,6 +95,16 @@ func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"ok"})
+	} else {
+		return err
+	}
 	o.Ok = all.Ok
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

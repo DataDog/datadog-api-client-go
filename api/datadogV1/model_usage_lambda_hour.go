@@ -259,10 +259,20 @@ func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"func_count", "hour", "invocations_sum", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.FuncCount = all.FuncCount
 	o.Hour = all.Hour
 	o.InvocationsSum = all.InvocationsSum
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

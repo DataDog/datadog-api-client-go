@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsStepDetail Object describing a step for a Synthetic test.
@@ -638,6 +640,12 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"browserErrors", "checkType", "description", "duration", "error", "playingTab", "screenshotBucketKey", "skipped", "snapshotBucketKey", "stepId", "subTestStepDetails", "timeToInteractive", "type", "url", "value", "vitalsMetrics", "warnings"})
+	} else {
+		return err
+	}
 	if v := all.CheckType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -679,5 +687,9 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	o.VitalsMetrics = all.VitalsMetrics
 	o.Warnings = all.Warnings
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

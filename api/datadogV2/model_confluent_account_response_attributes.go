@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ConfluentAccountResponseAttributes The attributes of a Confluent account.
@@ -166,8 +168,18 @@ func (o *ConfluentAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "resources", "tags"})
+	} else {
+		return err
+	}
 	o.ApiKey = all.ApiKey
 	o.Resources = all.Resources
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

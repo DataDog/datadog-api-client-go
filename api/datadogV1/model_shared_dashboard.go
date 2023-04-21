@@ -467,6 +467,12 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "dashboard_id", "dashboard_type", "global_time", "global_time_selectable_enabled", "public_url", "selectable_template_vars", "share_list", "share_type", "token"})
+	} else {
+		return err
+	}
 	if v := all.DashboardType; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -508,5 +514,9 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShareList = all.ShareList
 	o.ShareType = all.ShareType
 	o.Token = all.Token
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

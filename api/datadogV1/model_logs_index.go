@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsIndex Object describing a Datadog Log index.
@@ -270,6 +272,12 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"daily_limit", "exclusion_filters", "filter", "is_rate_limited", "name", "num_retention_days"})
+	} else {
+		return err
+	}
 	o.DailyLimit = all.DailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
 	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -283,5 +291,9 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsRateLimited = all.IsRateLimited
 	o.Name = all.Name
 	o.NumRetentionDays = all.NumRetentionDays
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

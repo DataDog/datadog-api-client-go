@@ -174,6 +174,12 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "region"})
+	} else {
+		return err
+	}
 	if v := all.Region; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -185,5 +191,9 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 	o.CustomUrl = all.CustomUrl
 	o.Name = all.Name
 	o.Region = all.Region
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

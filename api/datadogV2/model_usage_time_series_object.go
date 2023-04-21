@@ -145,7 +145,17 @@ func (o *UsageTimeSeriesObject) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"timestamp", "value"})
+	} else {
+		return err
+	}
 	o.Timestamp = all.Timestamp
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

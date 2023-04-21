@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringStandardRuleResponse Rule.
@@ -705,6 +707,12 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "type", "updateAuthorId", "version"})
+	} else {
+		return err
+	}
 	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -746,5 +754,9 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	o.Type = all.Type
 	o.UpdateAuthorId = all.UpdateAuthorId
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

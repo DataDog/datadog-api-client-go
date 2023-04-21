@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RUMEventAttributes JSON object containing all event attributes and their associated values.
@@ -202,9 +204,19 @@ func (o *RUMEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "service", "tags", "timestamp"})
+	} else {
+		return err
+	}
 	o.Attributes = all.Attributes
 	o.Service = all.Service
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

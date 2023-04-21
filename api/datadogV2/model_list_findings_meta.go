@@ -131,5 +131,6 @@ func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Page = all.Page
 	o.SnapshotTimestamp = all.SnapshotTimestamp
+
 	return nil
 }

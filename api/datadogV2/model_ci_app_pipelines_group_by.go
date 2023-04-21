@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppPipelinesGroupBy A group-by rule.
@@ -273,6 +275,12 @@ func (o *CIAppPipelinesGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "histogram", "limit", "missing", "sort", "total"})
+	} else {
+		return err
+	}
 	o.Facet = all.Facet
 	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -293,5 +301,9 @@ func (o *CIAppPipelinesGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Sort = all.Sort
 	o.Total = all.Total
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

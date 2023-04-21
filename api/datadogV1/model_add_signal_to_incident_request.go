@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AddSignalToIncidentRequest Attributes describing which incident to add the signal to.
@@ -166,8 +168,18 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"add_to_signal_timeline", "incident_id", "version"})
+	} else {
+		return err
+	}
 	o.AddToSignalTimeline = all.AddToSignalTimeline
 	o.IncidentId = all.IncidentId
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

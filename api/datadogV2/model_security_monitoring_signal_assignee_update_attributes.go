@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalAssigneeUpdateAttributes Attributes describing the new assignee of a security signal.
@@ -132,6 +134,12 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "version"})
+	} else {
+		return err
+	}
 	if all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -141,5 +149,9 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 	}
 	o.Assignee = all.Assignee
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
