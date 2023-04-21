@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppPipelinesAggregateRequest The object sent with the request to retrieve aggregation buckets of pipeline events from your organization.
@@ -196,6 +198,12 @@ func (o *CIAppPipelinesAggregateRequest) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by", "options"})
+	} else {
+		return err
+	}
 	o.Compute = all.Compute
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,5 +222,9 @@ func (o *CIAppPipelinesAggregateRequest) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 	}
 	o.Options = all.Options
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

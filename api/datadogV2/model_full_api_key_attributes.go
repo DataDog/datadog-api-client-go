@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FullAPIKeyAttributes Attributes of a full API key.
@@ -229,10 +231,20 @@ func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "key", "last4", "modified_at", "name"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.Key = all.Key
 	o.Last4 = all.Last4
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // NotebooksResponsePage Pagination metadata returned by the API.
@@ -127,7 +129,17 @@ func (o *NotebooksResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"total_count", "total_filtered_count"})
+	} else {
+		return err
+	}
 	o.TotalCount = all.TotalCount
 	o.TotalFilteredCount = all.TotalFilteredCount
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

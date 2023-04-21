@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageSDSHour Sensitive Data Scanner usage for a given organization for a given hour.
@@ -336,6 +338,12 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_scanned_bytes", "events_scanned_bytes", "hour", "logs_scanned_bytes", "org_name", "public_id", "rum_scanned_bytes", "total_scanned_bytes"})
+	} else {
+		return err
+	}
 	o.ApmScannedBytes = all.ApmScannedBytes
 	o.EventsScannedBytes = all.EventsScannedBytes
 	o.Hour = all.Hour
@@ -344,5 +352,9 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.RumScannedBytes = all.RumScannedBytes
 	o.TotalScannedBytes = all.TotalScannedBytes
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

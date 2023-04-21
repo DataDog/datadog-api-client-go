@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOHistoryMetricsSeriesMetadata Query metadata.
@@ -266,11 +268,21 @@ func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggr", "expression", "metric", "query_index", "scope", "unit"})
+	} else {
+		return err
+	}
 	o.Aggr = all.Aggr
 	o.Expression = all.Expression
 	o.Metric = all.Metric
 	o.QueryIndex = all.QueryIndex
 	o.Scope = all.Scope
 	o.Unit = all.Unit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

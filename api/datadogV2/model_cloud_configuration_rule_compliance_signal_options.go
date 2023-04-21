@@ -141,7 +141,17 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"userActivationStatus", "userGroupByFields"})
+	} else {
+		return err
+	}
 	o.UserActivationStatus = all.UserActivationStatus
 	o.UserGroupByFields = all.UserGroupByFields
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

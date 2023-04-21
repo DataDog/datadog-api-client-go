@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerGroupUpdateResponse Update group response.
@@ -93,6 +95,12 @@ func (o *SensitiveDataScannerGroupUpdateResponse) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"meta"})
+	} else {
+		return err
+	}
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -101,5 +109,9 @@ func (o *SensitiveDataScannerGroupUpdateResponse) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 	}
 	o.Meta = all.Meta
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

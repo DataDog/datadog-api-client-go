@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ProcessSummaryAttributes Attributes for a process summary.
@@ -331,6 +333,12 @@ func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"cmdline", "host", "pid", "ppid", "start", "tags", "timestamp", "user"})
+	} else {
+		return err
+	}
 	o.Cmdline = all.Cmdline
 	o.Host = all.Host
 	o.Pid = all.Pid
@@ -339,5 +347,9 @@ func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
 	o.User = all.User
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

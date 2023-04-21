@@ -320,11 +320,21 @@ func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"critical", "critical_recovery", "ok", "unknown", "warning", "warning_recovery"})
+	} else {
+		return err
+	}
 	o.Critical = all.Critical
 	o.CriticalRecovery = all.CriticalRecovery
 	o.Ok = all.Ok
 	o.Unknown = all.Unknown
 	o.Warning = all.Warning
 	o.WarningRecovery = all.WarningRecovery
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

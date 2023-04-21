@@ -394,6 +394,12 @@ func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "disabled", "email", "handle", "icon", "name", "status", "title", "verified"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.Disabled = all.Disabled
 	o.Email = all.Email
@@ -403,5 +409,9 @@ func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Title = all.Title
 	o.Verified = all.Verified
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

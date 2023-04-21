@@ -258,10 +258,20 @@ func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"dbm_host_count", "dbm_queries_count", "hour", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.DbmHostCount = all.DbmHostCount
 	o.DbmQueriesCount = all.DbmQueriesCount
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

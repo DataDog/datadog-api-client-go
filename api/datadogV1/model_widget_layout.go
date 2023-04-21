@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetLayout The layout for a widget on a `free` or **new dashboard layout** dashboard.
@@ -229,10 +231,20 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"height", "is_column_break", "width", "x", "y"})
+	} else {
+		return err
+	}
 	o.Height = all.Height
 	o.IsColumnBreak = all.IsColumnBreak
 	o.Width = all.Width
 	o.X = all.X
 	o.Y = all.Y
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

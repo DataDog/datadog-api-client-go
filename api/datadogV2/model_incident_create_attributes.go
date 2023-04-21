@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentCreateAttributes The incident's attributes for a create request.
@@ -232,10 +234,20 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impacted", "fields", "initial_cells", "notification_handles", "title"})
+	} else {
+		return err
+	}
 	o.CustomerImpacted = all.CustomerImpacted
 	o.Fields = all.Fields
 	o.InitialCells = all.InitialCells
 	o.NotificationHandles = all.NotificationHandles
 	o.Title = all.Title
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

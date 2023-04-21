@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // OrganizationSettings A JSON array of settings.
@@ -404,6 +406,12 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"private_widget_share", "saml", "saml_autocreate_access_role", "saml_autocreate_users_domains", "saml_can_be_enabled", "saml_idp_endpoint", "saml_idp_initiated_login", "saml_idp_metadata_uploaded", "saml_login_url", "saml_strict_mode"})
+	} else {
+		return err
+	}
 	if v := all.SamlAutocreateAccessRole; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -450,5 +458,9 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.SamlStrictMode = all.SamlStrictMode
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

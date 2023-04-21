@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ProcessQueryDefinition The process query to use in the widget.
@@ -200,9 +202,19 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter_by", "limit", "metric", "search_by"})
+	} else {
+		return err
+	}
 	o.FilterBy = all.FilterBy
 	o.Limit = all.Limit
 	o.Metric = all.Metric
 	o.SearchBy = all.SearchBy
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

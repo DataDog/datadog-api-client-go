@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
@@ -228,6 +230,12 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"height", "id", "isMobile", "name", "width"})
+	} else {
+		return err
+	}
 	if v := all.Id; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -241,5 +249,9 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsMobile = all.IsMobile
 	o.Name = all.Name
 	o.Width = all.Width
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

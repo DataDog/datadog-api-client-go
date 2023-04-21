@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerGroupRelationships Relationships of the group.
@@ -127,6 +129,12 @@ func (o *SensitiveDataScannerGroupRelationships) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"configuration", "rules"})
+	} else {
+		return err
+	}
 	if all.Configuration != nil && all.Configuration.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -143,5 +151,9 @@ func (o *SensitiveDataScannerGroupRelationships) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 	}
 	o.Rules = all.Rules
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageAttributionValues Fields in Usage Summary by tag(s).
@@ -1827,6 +1829,12 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "container_percentage", "container_usage", "cspm_container_percentage", "cspm_container_usage", "cspm_host_percentage", "cspm_host_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_container_percentage", "cws_container_usage", "cws_host_percentage", "cws_host_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "infra_host_percentage", "infra_host_usage", "lambda_functions_percentage", "lambda_functions_usage", "lambda_invocations_percentage", "lambda_invocations_usage", "npm_host_percentage", "npm_host_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_hosts_percentage", "profiled_hosts_usage", "snmp_percentage", "snmp_usage"})
+	} else {
+		return err
+	}
 	o.ApiPercentage = all.ApiPercentage
 	o.ApiUsage = all.ApiUsage
 	o.ApmFargatePercentage = all.ApmFargatePercentage
@@ -1879,5 +1887,9 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProfiledHostsUsage = all.ProfiledHostsUsage
 	o.SnmpPercentage = all.SnmpPercentage
 	o.SnmpUsage = all.SnmpUsage
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

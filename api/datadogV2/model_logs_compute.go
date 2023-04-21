@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsCompute A compute rule to compute metrics or timeseries
@@ -205,6 +207,12 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "interval", "metric", "type"})
+	} else {
+		return err
+	}
 	if v := all.Aggregation; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -225,5 +233,9 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = all.Interval
 	o.Metric = all.Metric
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

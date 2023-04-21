@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricCustomAggregation A time and space aggregation combination for use in query.
@@ -130,6 +132,12 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"space", "time"})
+	} else {
+		return err
+	}
 	if v := all.Space; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -148,5 +156,9 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Space = all.Space
 	o.Time = all.Time
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

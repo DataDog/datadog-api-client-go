@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DeleteSharedDashboardResponse Response containing token of deleted shared dashboard.
@@ -93,6 +95,16 @@ func (o *DeleteSharedDashboardResponse) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_public_dashboard_token"})
+	} else {
+		return err
+	}
 	o.DeletedPublicDashboardToken = all.DeletedPublicDashboardToken
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test.
@@ -366,6 +368,12 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"dns", "download", "firstByte", "handshake", "redirect", "ssl", "tcp", "total", "wait"})
+	} else {
+		return err
+	}
 	o.Dns = all.Dns
 	o.Download = all.Download
 	o.FirstByte = all.FirstByte
@@ -375,5 +383,9 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tcp = all.Tcp
 	o.Total = all.Total
 	o.Wait = all.Wait
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

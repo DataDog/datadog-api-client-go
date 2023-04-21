@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsMetricCompute The compute rule to compute the log-based metric.
@@ -167,6 +169,12 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_type", "include_percentiles", "path"})
+	} else {
+		return err
+	}
 	if v := all.AggregationType; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -178,5 +186,9 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.AggregationType = all.AggregationType
 	o.IncludePercentiles = all.IncludePercentiles
 	o.Path = all.Path
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

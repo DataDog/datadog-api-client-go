@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventResponseAttributes The object description of an event response attribute.
@@ -166,6 +168,12 @@ func (o *EventResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "tags", "timestamp"})
+	} else {
+		return err
+	}
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -176,5 +184,9 @@ func (o *EventResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Attributes = all.Attributes
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

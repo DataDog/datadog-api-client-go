@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CostByOrgAttributes Cost attributes data.
@@ -268,11 +270,21 @@ func (o *CostByOrgAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"charges", "date", "org_name", "public_id", "region", "total_cost"})
+	} else {
+		return err
+	}
 	o.Charges = all.Charges
 	o.Date = all.Date
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.TotalCost = all.TotalCost
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

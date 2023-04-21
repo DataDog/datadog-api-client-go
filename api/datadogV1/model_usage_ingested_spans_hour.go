@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageIngestedSpansHour Ingested spans usage for a given organization for a given hour.
@@ -200,9 +202,19 @@ func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "ingested_events_bytes", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.Hour = all.Hour
 	o.IngestedEventsBytes = all.IngestedEventsBytes
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

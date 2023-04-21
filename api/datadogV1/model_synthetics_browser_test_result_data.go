@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBrowserTestResultData Object containing results for your Synthetic browser test.
@@ -468,6 +470,12 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"browserType", "browserVersion", "device", "duration", "error", "failure", "passed", "receivedEmailCount", "startUrl", "stepDetails", "thumbnailsBucketKey", "timeToInteractive"})
+	} else {
+		return err
+	}
 	o.BrowserType = all.BrowserType
 	o.BrowserVersion = all.BrowserVersion
 	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -494,5 +502,9 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 	o.StepDetails = all.StepDetails
 	o.ThumbnailsBucketKey = all.ThumbnailsBucketKey
 	o.TimeToInteractive = all.TimeToInteractive
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

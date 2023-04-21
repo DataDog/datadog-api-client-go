@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppAggregateBucketValueTimeseriesPoint A timeseries point.
@@ -132,7 +134,17 @@ func (o *CIAppAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"time", "value"})
+	} else {
+		return err
+	}
 	o.Time = all.Time
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

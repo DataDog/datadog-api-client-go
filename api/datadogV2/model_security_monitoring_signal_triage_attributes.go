@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalTriageAttributes Attributes describing a triage state update operation over a security signal.
@@ -366,6 +368,12 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "incident_ids", "state", "state_update_timestamp", "state_update_user"})
+	} else {
+		return err
+	}
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -412,5 +420,9 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 	}
 	o.StateUpdateUser = all.StateUpdateUser
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

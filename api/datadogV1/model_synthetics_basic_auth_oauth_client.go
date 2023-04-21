@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBasicAuthOauthClient Object to handle `oauth client` authentication when performing the test.
@@ -334,6 +336,12 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"accessTokenUrl", "audience", "clientId", "clientSecret", "resource", "scope", "tokenApiAuthentication", "type"})
+	} else {
+		return err
+	}
 	if v := all.TokenApiAuthentication; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -358,5 +366,9 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 	o.Scope = all.Scope
 	o.TokenApiAuthentication = all.TokenApiAuthentication
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

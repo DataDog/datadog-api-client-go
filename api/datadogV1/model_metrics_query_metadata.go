@@ -517,6 +517,12 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggr", "display_name", "end", "expression", "interval", "length", "metric", "pointlist", "query_index", "scope", "start", "tag_set", "unit"})
+	} else {
+		return err
+	}
 	o.Aggr = all.Aggr
 	o.DisplayName = all.DisplayName
 	o.End = all.End
@@ -530,5 +536,9 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = all.Start
 	o.TagSet = all.TagSet
 	o.Unit = all.Unit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

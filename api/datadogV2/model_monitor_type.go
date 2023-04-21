@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorType Attributes from the monitor that triggered the event.
@@ -433,6 +435,12 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "group_status", "groups", "id", "message", "modified", "name", "query", "tags", "templated_name", "type"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.GroupStatus = all.GroupStatus
 	o.Groups = all.Groups
@@ -444,6 +452,10 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TemplatedName = all.TemplatedName
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
 

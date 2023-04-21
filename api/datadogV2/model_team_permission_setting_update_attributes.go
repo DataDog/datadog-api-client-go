@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TeamPermissionSettingUpdateAttributes Team permission setting update attributes
@@ -93,6 +95,12 @@ func (o *TeamPermissionSettingUpdateAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"value"})
+	} else {
+		return err
+	}
 	if v := all.Value; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -102,5 +110,9 @@ func (o *TeamPermissionSettingUpdateAttributes) UnmarshalJSON(bytes []byte) (err
 		return nil
 	}
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

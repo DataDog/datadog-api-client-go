@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // GCPAccount Your Google Cloud Platform Account.
@@ -541,6 +543,12 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "errors", "host_filters", "is_cspm_enabled", "private_key", "private_key_id", "project_id", "token_uri", "type"})
+	} else {
+		return err
+	}
 	o.AuthProviderX509CertUrl = all.AuthProviderX509CertUrl
 	o.AuthUri = all.AuthUri
 	o.Automute = all.Automute
@@ -555,5 +563,9 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProjectId = all.ProjectId
 	o.TokenUri = all.TokenUri
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

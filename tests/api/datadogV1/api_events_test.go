@@ -102,7 +102,11 @@ func TestEventLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	events := eventListResponse.GetEvents()
-	assert.Contains(events, fetchedEvent)
+	allEventIds := []int64{}
+	for _, m := range events {
+		allEventIds = append(allEventIds, m.GetId())
+	}
+	assert.Contains(allEventIds, fetchedEvent.GetId())
 }
 
 func TestEventListErrors(t *testing.T) {

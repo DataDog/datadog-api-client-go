@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DataScalarColumn A column containing the numerical results for a formula or query.
@@ -195,6 +197,12 @@ func (o *DataScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"meta", "name", "type", "values"})
+	} else {
+		return err
+	}
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -206,5 +214,9 @@ func (o *DataScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Type = all.Type
 	o.Values = all.Values
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

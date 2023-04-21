@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UserInvitationDataAttributes Attributes of a user invitation.
@@ -204,9 +206,19 @@ func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "expires_at", "invite_type", "uuid"})
+	} else {
+		return err
+	}
 	o.CreatedAt = all.CreatedAt
 	o.ExpiresAt = all.ExpiresAt
 	o.InviteType = all.InviteType
 	o.Uuid = all.Uuid
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

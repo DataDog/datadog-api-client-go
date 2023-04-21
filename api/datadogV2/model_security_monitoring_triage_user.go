@@ -213,9 +213,19 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "id", "name", "uuid"})
+	} else {
+		return err
+	}
 	o.Handle = all.Handle
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Uuid = all.Uuid
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

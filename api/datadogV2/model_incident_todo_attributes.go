@@ -256,10 +256,20 @@ func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignees", "completed", "content", "due_date", "incident_id"})
+	} else {
+		return err
+	}
 	o.Assignees = all.Assignees
 	o.Completed = all.Completed
 	o.Content = all.Content
 	o.DueDate = all.DueDate
 	o.IncidentId = all.IncidentId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

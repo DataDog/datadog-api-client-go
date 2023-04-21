@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalListRequestFilter Search filters for listing security signals.
@@ -170,8 +172,18 @@ func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"from", "query", "to"})
+	} else {
+		return err
+	}
 	o.From = all.From
 	o.Query = all.Query
 	o.To = all.To
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

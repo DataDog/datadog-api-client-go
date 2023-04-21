@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // JiraIntegrationMetadataIssuesItem Item in the Jira integration metadata issue array.
@@ -232,10 +234,20 @@ func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"account", "issue_key", "issuetype_id", "project_key", "redirect_url"})
+	} else {
+		return err
+	}
 	o.Account = all.Account
 	o.IssueKey = all.IssueKey
 	o.IssuetypeId = all.IssuetypeId
 	o.ProjectKey = all.ProjectKey
 	o.RedirectUrl = all.RedirectUrl
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

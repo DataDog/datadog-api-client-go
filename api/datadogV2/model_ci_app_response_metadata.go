@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppResponseMetadata The metadata associated with a request.
@@ -196,6 +198,12 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "request_id", "status", "warnings"})
+	} else {
+		return err
+	}
 	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -208,5 +216,9 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.RequestId = all.RequestId
 	o.Status = all.Status
 	o.Warnings = all.Warnings
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

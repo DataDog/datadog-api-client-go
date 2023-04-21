@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsAssertionJSONPathTargetTarget Composed target for `validatesJSONPath` operator.
@@ -161,8 +163,18 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"jsonPath", "operator", "targetValue"})
+	} else {
+		return err
+	}
 	o.JsonPath = all.JsonPath
 	o.Operator = all.Operator
 	o.TargetValue = all.TargetValue
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

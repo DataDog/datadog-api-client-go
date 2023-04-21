@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBasicAuthOauthROP Object to handle `oauth rop` authentication when performing the test.
@@ -402,6 +404,12 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"accessTokenUrl", "audience", "clientId", "clientSecret", "password", "resource", "scope", "tokenApiAuthentication", "type", "username"})
+	} else {
+		return err
+	}
 	if v := all.TokenApiAuthentication; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -428,5 +436,9 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	o.TokenApiAuthentication = all.TokenApiAuthentication
 	o.Type = all.Type
 	o.Username = all.Username
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

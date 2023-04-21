@@ -208,9 +208,19 @@ func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"batch_id", "locations", "results", "triggered_check_ids"})
+	} else {
+		return err
+	}
 	o.BatchId = all.BatchId
 	o.Locations = all.Locations
 	o.Results = all.Results
 	o.TriggeredCheckIds = all.TriggeredCheckIds
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

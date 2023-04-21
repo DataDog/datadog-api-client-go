@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventCreateRequest Object representing an event.
@@ -455,6 +457,12 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "alert_type", "date_happened", "device_name", "host", "priority", "related_event_id", "source_type_name", "tags", "text", "title"})
+	} else {
+		return err
+	}
 	if v := all.AlertType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -482,5 +490,9 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.Text = all.Text
 	o.Title = all.Title
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

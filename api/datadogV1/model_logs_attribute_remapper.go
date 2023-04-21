@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
@@ -426,6 +428,12 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "override_on_conflict", "preserve_source", "source_type", "sources", "target", "target_format", "target_type", "type"})
+	} else {
+		return err
+	}
 	if v := all.TargetFormat; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -452,5 +460,9 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.TargetFormat = all.TargetFormat
 	o.TargetType = all.TargetType
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

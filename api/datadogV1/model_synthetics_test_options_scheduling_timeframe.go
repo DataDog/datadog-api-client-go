@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsTestOptionsSchedulingTimeframe Object describing a timeframe.
@@ -161,8 +163,18 @@ func (o *SyntheticsTestOptionsSchedulingTimeframe) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"day", "from", "to"})
+	} else {
+		return err
+	}
 	o.Day = all.Day
 	o.From = all.From
 	o.To = all.To
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

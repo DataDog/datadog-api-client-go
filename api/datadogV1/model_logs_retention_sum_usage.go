@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsRetentionSumUsage Object containing indexed logs usage grouped by retention period and summed.
@@ -195,9 +197,19 @@ func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"logs_indexed_logs_usage_sum", "logs_live_indexed_logs_usage_sum", "logs_rehydrated_indexed_logs_usage_sum", "retention"})
+	} else {
+		return err
+	}
 	o.LogsIndexedLogsUsageSum = all.LogsIndexedLogsUsageSum
 	o.LogsLiveIndexedLogsUsageSum = all.LogsLiveIndexedLogsUsageSum
 	o.LogsRehydratedIndexedLogsUsageSum = all.LogsRehydratedIndexedLogsUsageSum
 	o.Retention = all.Retention
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

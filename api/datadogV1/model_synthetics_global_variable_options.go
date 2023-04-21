@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsGlobalVariableOptions Options for the Global Variable for MFA.
@@ -93,6 +95,12 @@ func (o *SyntheticsGlobalVariableOptions) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"totp_parameters"})
+	} else {
+		return err
+	}
 	if all.TotpParameters != nil && all.TotpParameters.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -101,5 +109,9 @@ func (o *SyntheticsGlobalVariableOptions) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 	}
 	o.TotpParameters = all.TotpParameters
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

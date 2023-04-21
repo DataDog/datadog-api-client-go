@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageBillableSummaryBody Response with properties for each aggregated usage type.
@@ -306,6 +308,12 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_billable_usage", "elapsed_usage_hours", "first_billable_usage_hour", "last_billable_usage_hour", "org_billable_usage", "percentage_in_account", "usage_unit"})
+	} else {
+		return err
+	}
 	o.AccountBillableUsage = all.AccountBillableUsage
 	o.ElapsedUsageHours = all.ElapsedUsageHours
 	o.FirstBillableUsageHour = all.FirstBillableUsageHour
@@ -313,5 +321,9 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgBillableUsage = all.OrgBillableUsage
 	o.PercentageInAccount = all.PercentageInAccount
 	o.UsageUnit = all.UsageUnit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

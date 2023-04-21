@@ -151,7 +151,17 @@ func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"recovery_window", "trigger_window"})
+	} else {
+		return err
+	}
 	o.RecoveryWindow = all.RecoveryWindow
 	o.TriggerWindow = all.TriggerWindow
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

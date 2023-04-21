@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricMetadata Object with all metric related metadata.
@@ -297,6 +299,12 @@ func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "integration", "per_unit", "short_name", "statsd_interval", "type", "unit"})
+	} else {
+		return err
+	}
 	o.Description = all.Description
 	o.Integration = all.Integration
 	o.PerUnit = all.PerUnit
@@ -304,5 +312,9 @@ func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.StatsdInterval = all.StatsdInterval
 	o.Type = all.Type
 	o.Unit = all.Unit
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

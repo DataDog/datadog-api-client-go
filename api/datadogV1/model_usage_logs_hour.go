@@ -528,6 +528,12 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"billable_ingested_bytes", "hour", "indexed_events_count", "ingested_events_bytes", "logs_forwarding_events_bytes", "logs_live_indexed_count", "logs_live_ingested_bytes", "logs_rehydrated_indexed_count", "logs_rehydrated_ingested_bytes", "org_name", "public_id"})
+	} else {
+		return err
+	}
 	o.BillableIngestedBytes = all.BillableIngestedBytes
 	o.Hour = all.Hour
 	o.IndexedEventsCount = all.IndexedEventsCount
@@ -539,5 +545,9 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.LogsRehydratedIngestedBytes = all.LogsRehydratedIngestedBytes
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

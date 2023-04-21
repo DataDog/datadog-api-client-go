@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorConfigPolicyTagPolicy Tag attributes of a monitor configuration policy.
@@ -161,8 +163,18 @@ func (o *MonitorConfigPolicyTagPolicy) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_key_required", "valid_tag_values"})
+	} else {
+		return err
+	}
 	o.TagKey = all.TagKey
 	o.TagKeyRequired = all.TagKeyRequired
 	o.ValidTagValues = all.ValidTagValues
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

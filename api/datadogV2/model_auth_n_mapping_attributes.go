@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AuthNMappingAttributes Attributes of AuthN Mapping.
@@ -238,10 +240,20 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attribute_key", "attribute_value", "created_at", "modified_at", "saml_assertion_attribute_id"})
+	} else {
+		return err
+	}
 	o.AttributeKey = all.AttributeKey
 	o.AttributeValue = all.AttributeValue
 	o.CreatedAt = all.CreatedAt
 	o.ModifiedAt = all.ModifiedAt
 	o.SamlAssertionAttributeId = all.SamlAssertionAttributeId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

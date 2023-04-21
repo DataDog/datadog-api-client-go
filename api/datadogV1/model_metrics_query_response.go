@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricsQueryResponse Response Object that includes your query and the list of metrics retrieved.
@@ -365,6 +367,12 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"error", "from_date", "group_by", "message", "query", "res_type", "series", "status", "to_date"})
+	} else {
+		return err
+	}
 	o.Error = all.Error
 	o.FromDate = all.FromDate
 	o.GroupBy = all.GroupBy
@@ -374,5 +382,9 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Series = all.Series
 	o.Status = all.Status
 	o.ToDate = all.ToDate
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

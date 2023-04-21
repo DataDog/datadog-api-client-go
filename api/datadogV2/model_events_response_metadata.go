@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventsResponseMetadata The metadata associated with a request.
@@ -196,6 +198,12 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "warnings"})
+	} else {
+		return err
+	}
 	o.Elapsed = all.Elapsed
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -207,5 +215,9 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Warnings = all.Warnings
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

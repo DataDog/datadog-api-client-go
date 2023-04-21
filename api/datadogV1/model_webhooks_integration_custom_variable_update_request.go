@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WebhooksIntegrationCustomVariableUpdateRequest Update request of a custom variable object.
@@ -164,8 +166,18 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) UnmarshalJSON(bytes []b
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_secret", "name", "value"})
+	} else {
+		return err
+	}
 	o.IsSecret = all.IsSecret
 	o.Name = all.Name
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

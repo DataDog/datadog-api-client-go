@@ -711,6 +711,12 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "modified", "notification_handles", "public_id", "resolved", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title"})
+	} else {
+		return err
+	}
 	o.Created = all.Created
 	o.CustomerImpactDuration = all.CustomerImpactDuration
 	o.CustomerImpactEnd = all.CustomerImpactEnd
@@ -728,5 +734,9 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.TimeToRepair = all.TimeToRepair
 	o.TimeToResolve = all.TimeToResolve
 	o.Title = all.Title
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

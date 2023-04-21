@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TimeseriesFormulaRequestAttributes The object describing a timeseries formula request.
@@ -233,10 +235,20 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "from", "interval", "queries", "to"})
+	} else {
+		return err
+	}
 	o.Formulas = all.Formulas
 	o.From = all.From
 	o.Interval = all.Interval
 	o.Queries = all.Queries
 	o.To = all.To
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

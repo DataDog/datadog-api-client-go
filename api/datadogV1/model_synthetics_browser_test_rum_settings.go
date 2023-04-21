@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBrowserTestRumSettings The RUM data collection settings for the Synthetic browser test.
@@ -176,8 +178,18 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"applicationId", "clientTokenId", "isEnabled"})
+	} else {
+		return err
+	}
 	o.ApplicationId = all.ApplicationId
 	o.ClientTokenId = all.ClientTokenId
 	o.IsEnabled = all.IsEnabled
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

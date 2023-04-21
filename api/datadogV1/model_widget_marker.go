@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
@@ -204,9 +206,19 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_type", "label", "time", "value"})
+	} else {
+		return err
+	}
 	o.DisplayType = all.DisplayType
 	o.Label = all.Label
 	o.Time = all.Time
 	o.Value = all.Value
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

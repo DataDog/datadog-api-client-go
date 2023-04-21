@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HourlyUsageAttributes Attributes of hourly usage for a product family for an org for a time period.
@@ -268,11 +270,21 @@ func (o *HourlyUsageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"measurements", "org_name", "product_family", "public_id", "region", "timestamp"})
+	} else {
+		return err
+	}
 	o.Measurements = all.Measurements
 	o.OrgName = all.OrgName
 	o.ProductFamily = all.ProductFamily
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

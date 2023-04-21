@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ConfluentAccountCreateRequestAttributes Attributes associated with the account creation request.
@@ -198,9 +200,19 @@ func (o *ConfluentAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "api_secret", "resources", "tags"})
+	} else {
+		return err
+	}
 	o.ApiKey = all.ApiKey
 	o.ApiSecret = all.ApiSecret
 	o.Resources = all.Resources
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

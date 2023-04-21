@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // HostMeta Metadata associated with your host.
@@ -569,6 +571,12 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_checks", "agent_version", "cpuCores", "fbsdV", "gohai", "install_method", "macV", "machine", "nixV", "platform", "processor", "pythonV", "socket-fqdn", "socket-hostname", "winV"})
+	} else {
+		return err
+	}
 	o.AgentChecks = all.AgentChecks
 	o.AgentVersion = all.AgentVersion
 	o.CpuCores = all.CpuCores
@@ -591,5 +599,9 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.SocketFqdn = all.SocketFqdn
 	o.SocketHostname = all.SocketHostname
 	o.WinV = all.WinV
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

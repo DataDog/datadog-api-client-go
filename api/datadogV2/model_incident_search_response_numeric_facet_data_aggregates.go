@@ -151,7 +151,17 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnmarshalJSON(bytes [
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"max", "min"})
+	} else {
+		return err
+	}
 	o.Max = all.Max
 	o.Min = all.Min
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

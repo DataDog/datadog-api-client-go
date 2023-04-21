@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsGlobalVariableTOTPParameters Parameters for the TOTP/MFA variable
@@ -127,7 +129,17 @@ func (o *SyntheticsGlobalVariableTOTPParameters) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"digits", "refresh_interval"})
+	} else {
+		return err
+	}
 	o.Digits = all.Digits
 	o.RefreshInterval = all.RefreshInterval
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

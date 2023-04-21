@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOListWidgetQuery Updated SLO List widget.
@@ -170,8 +172,18 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"limit", "query_string", "sort"})
+	} else {
+		return err
+	}
 	o.Limit = all.Limit
 	o.QueryString = all.QueryString
 	o.Sort = all.Sort
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

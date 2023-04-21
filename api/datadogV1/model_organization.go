@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // Organization Create, edit, and manage organizations.
@@ -339,6 +341,12 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"billing", "created", "description", "name", "public_id", "settings", "subscription", "trial"})
+	} else {
+		return err
+	}
 	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -368,5 +376,9 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Subscription = all.Subscription
 	o.Trial = all.Trial
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

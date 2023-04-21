@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // PermissionAttributes Attributes of a permission.
@@ -302,6 +304,12 @@ func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "description", "display_name", "display_type", "group_name", "name", "restricted"})
+	} else {
+		return err
+	}
 	o.Created = all.Created
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
@@ -309,5 +317,9 @@ func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupName = all.GroupName
 	o.Name = all.Name
 	o.Restricted = all.Restricted
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

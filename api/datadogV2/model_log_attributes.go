@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogAttributes JSON object containing all log attributes and their associated values.
@@ -306,6 +308,12 @@ func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "host", "message", "service", "status", "tags", "timestamp"})
+	} else {
+		return err
+	}
 	o.Attributes = all.Attributes
 	o.Host = all.Host
 	o.Message = all.Message
@@ -313,5 +321,9 @@ func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

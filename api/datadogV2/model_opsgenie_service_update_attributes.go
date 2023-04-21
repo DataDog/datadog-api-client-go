@@ -208,6 +208,12 @@ func (o *OpsgenieServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "opsgenie_api_key", "region"})
+	} else {
+		return err
+	}
 	if v := all.Region; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -220,5 +226,9 @@ func (o *OpsgenieServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	o.OpsgenieApiKey = all.OpsgenieApiKey
 	o.Region = all.Region
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

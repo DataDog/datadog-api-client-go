@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsSSLCertificate Object describing the SSL certificate used for a Synthetic test.
@@ -476,6 +478,12 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"cipher", "exponent", "extKeyUsage", "fingerprint", "fingerprint256", "issuer", "modulus", "protocol", "serialNumber", "subject", "validFrom", "validTo"})
+	} else {
+		return err
+	}
 	o.Cipher = all.Cipher
 	o.Exponent = all.Exponent
 	o.ExtKeyUsage = all.ExtKeyUsage
@@ -502,5 +510,9 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.Subject = all.Subject
 	o.ValidFrom = all.ValidFrom
 	o.ValidTo = all.ValidTo
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

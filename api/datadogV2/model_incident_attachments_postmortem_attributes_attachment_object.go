@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentAttachmentsPostmortemAttributesAttachmentObject The postmortem attachment.
@@ -130,7 +132,17 @@ func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) UnmarshalJSON(
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"documentUrl", "title"})
+	} else {
+		return err
+	}
 	o.DocumentUrl = all.DocumentUrl
 	o.Title = all.Title
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

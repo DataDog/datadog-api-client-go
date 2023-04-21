@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentIntegrationMetadataAttributes Incident integration metadata's attributes for a create request.
@@ -201,9 +203,19 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"incident_id", "integration_type", "metadata", "status"})
+	} else {
+		return err
+	}
 	o.IncidentId = all.IncidentId
 	o.IntegrationType = all.IntegrationType
 	o.Metadata = all.Metadata
 	o.Status = all.Status
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

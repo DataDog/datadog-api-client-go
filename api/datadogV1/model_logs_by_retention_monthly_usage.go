@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsByRetentionMonthlyUsage Object containing a summary of indexed logs usage by retention period for a single month.
@@ -132,7 +134,17 @@ func (o *LogsByRetentionMonthlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"date", "usage"})
+	} else {
+		return err
+	}
 	o.Date = all.Date
 	o.Usage = all.Usage
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerStandardPatternAttributes Attributes of the Sensitive Data Scanner standard pattern.
@@ -161,8 +163,18 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "pattern", "tags"})
+	} else {
+		return err
+	}
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Tags = all.Tags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV1Info Basic information about a service.
@@ -200,9 +202,19 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"dd-service", "description", "display-name", "service-tier"})
+	} else {
+		return err
+	}
 	o.DdService = all.DdService
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
 	o.ServiceTier = all.ServiceTier
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

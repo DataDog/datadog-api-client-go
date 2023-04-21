@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerMeta Meta response containing information about the API.
@@ -229,10 +231,20 @@ func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"count_limit", "group_count_limit", "has_highlight_enabled", "is_pci_compliant", "version"})
+	} else {
+		return err
+	}
 	o.CountLimit = all.CountLimit
 	o.GroupCountLimit = all.GroupCountLimit
 	o.HasHighlightEnabled = all.HasHighlightEnabled
 	o.IsPciCompliant = all.IsPciCompliant
 	o.Version = all.Version
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

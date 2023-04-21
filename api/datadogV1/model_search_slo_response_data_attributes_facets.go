@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SearchSLOResponseDataAttributesFacets Facets
@@ -331,6 +333,12 @@ func (o *SearchSLOResponseDataAttributesFacets) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"all_tags", "creator_name", "env_tags", "service_tags", "slo_type", "target", "team_tags", "timeframe"})
+	} else {
+		return err
+	}
 	o.AllTags = all.AllTags
 	o.CreatorName = all.CreatorName
 	o.EnvTags = all.EnvTags
@@ -339,5 +347,9 @@ func (o *SearchSLOResponseDataAttributesFacets) UnmarshalJSON(bytes []byte) (err
 	o.Target = all.Target
 	o.TeamTags = all.TeamTags
 	o.Timeframe = all.Timeframe
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

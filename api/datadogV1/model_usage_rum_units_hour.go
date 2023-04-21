@@ -264,10 +264,20 @@ func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"browser_rum_units", "mobile_rum_units", "org_name", "public_id", "rum_units"})
+	} else {
+		return err
+	}
 	o.BrowserRumUnits = all.BrowserRumUnits
 	o.MobileRumUnits = all.MobileRumUnits
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.RumUnits = all.RumUnits
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

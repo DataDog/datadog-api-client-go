@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventsGroupBySort The dimension by which to sort a query's results.
@@ -206,6 +208,12 @@ func (o *EventsGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "metric", "order", "type"})
+	} else {
+		return err
+	}
 	if v := all.Aggregation; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -234,5 +242,9 @@ func (o *EventsGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Metric = all.Metric
 	o.Order = all.Order
 	o.Type = all.Type
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

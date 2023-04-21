@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ChargebackBreakdown Charges breakdown.
@@ -161,8 +163,18 @@ func (o *ChargebackBreakdown) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"charge_type", "cost", "product_name"})
+	} else {
+		return err
+	}
 	o.ChargeType = all.ChargeType
 	o.Cost = all.Cost
 	o.ProductName = all.ProductName
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

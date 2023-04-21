@@ -7,6 +7,8 @@ package datadogV1
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageBillableSummaryHour Response with monthly summary of data billed by Datadog.
@@ -374,6 +376,12 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"billing_plan", "end_date", "num_orgs", "org_name", "public_id", "ratio_in_month", "region", "start_date", "usage"})
+	} else {
+		return err
+	}
 	o.BillingPlan = all.BillingPlan
 	o.EndDate = all.EndDate
 	o.NumOrgs = all.NumOrgs
@@ -390,5 +398,9 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Usage = all.Usage
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

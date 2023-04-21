@@ -348,6 +348,12 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_fargate_count", "appsec_fargate_count", "avg_profiled_fargate_tasks", "hour", "org_name", "public_id", "tasks_count"})
+	} else {
+		return err
+	}
 	o.ApmFargateCount = all.ApmFargateCount
 	o.AppsecFargateCount = all.AppsecFargateCount
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
@@ -355,5 +361,9 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.TasksCount = all.TasksCount
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }

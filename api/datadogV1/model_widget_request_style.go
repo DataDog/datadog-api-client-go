@@ -6,6 +6,8 @@ package datadogV1
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetRequestStyle Define request widget style.
@@ -161,6 +163,12 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"line_type", "line_width", "palette"})
+	} else {
+		return err
+	}
 	if v := all.LineType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -180,5 +188,9 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.LineType = all.LineType
 	o.LineWidth = all.LineWidth
 	o.Palette = all.Palette
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
 	return nil
 }
