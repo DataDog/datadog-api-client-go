@@ -14,16 +14,18 @@ type SecurityMonitoringSignalArchiveReason string
 
 // List of SecurityMonitoringSignalArchiveReason.
 const (
-	SECURITYMONITORINGSIGNALARCHIVEREASON_NONE                   SecurityMonitoringSignalArchiveReason = "none"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_FALSE_POSITIVE         SecurityMonitoringSignalArchiveReason = "false_positive"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE SecurityMonitoringSignalArchiveReason = "testing_or_maintenance"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER                  SecurityMonitoringSignalArchiveReason = "other"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_NONE                     SecurityMonitoringSignalArchiveReason = "none"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_FALSE_POSITIVE           SecurityMonitoringSignalArchiveReason = "false_positive"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE   SecurityMonitoringSignalArchiveReason = "testing_or_maintenance"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_INVESTIGATED_CASE_OPENED SecurityMonitoringSignalArchiveReason = "investigated_case_opened"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER                    SecurityMonitoringSignalArchiveReason = "other"
 )
 
 var allowedSecurityMonitoringSignalArchiveReasonEnumValues = []SecurityMonitoringSignalArchiveReason{
 	SECURITYMONITORINGSIGNALARCHIVEREASON_NONE,
 	SECURITYMONITORINGSIGNALARCHIVEREASON_FALSE_POSITIVE,
 	SECURITYMONITORINGSIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE,
+	SECURITYMONITORINGSIGNALARCHIVEREASON_INVESTIGATED_CASE_OPENED,
 	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER,
 }
 
