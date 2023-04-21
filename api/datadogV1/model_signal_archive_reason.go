@@ -14,16 +14,18 @@ type SignalArchiveReason string
 
 // List of SignalArchiveReason.
 const (
-	SIGNALARCHIVEREASON_NONE                   SignalArchiveReason = "none"
-	SIGNALARCHIVEREASON_FALSE_POSITIVE         SignalArchiveReason = "false_positive"
-	SIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE SignalArchiveReason = "testing_or_maintenance"
-	SIGNALARCHIVEREASON_OTHER                  SignalArchiveReason = "other"
+	SIGNALARCHIVEREASON_NONE                     SignalArchiveReason = "none"
+	SIGNALARCHIVEREASON_FALSE_POSITIVE           SignalArchiveReason = "false_positive"
+	SIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE   SignalArchiveReason = "testing_or_maintenance"
+	SIGNALARCHIVEREASON_INVESTIGATED_CASE_OPENED SignalArchiveReason = "investigated_case_opened"
+	SIGNALARCHIVEREASON_OTHER                    SignalArchiveReason = "other"
 )
 
 var allowedSignalArchiveReasonEnumValues = []SignalArchiveReason{
 	SIGNALARCHIVEREASON_NONE,
 	SIGNALARCHIVEREASON_FALSE_POSITIVE,
 	SIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE,
+	SIGNALARCHIVEREASON_INVESTIGATED_CASE_OPENED,
 	SIGNALARCHIVEREASON_OTHER,
 }
 
