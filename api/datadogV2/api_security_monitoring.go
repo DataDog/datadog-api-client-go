@@ -808,7 +808,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context
 
 // ListFindingsOptionalParameters holds optional parameters for ListFindings.
 type ListFindingsOptionalParameters struct {
-	Limit                     *int64
+	PageLimit                 *int64
 	SnapshotTimestamp         *int64
 	PageCursor                *string
 	FilterTags                *string
@@ -828,9 +828,9 @@ func NewListFindingsOptionalParameters() *ListFindingsOptionalParameters {
 	return &this
 }
 
-// WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListFindingsOptionalParameters) WithLimit(limit int64) *ListFindingsOptionalParameters {
-	r.Limit = &limit
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithPageLimit(pageLimit int64) *ListFindingsOptionalParameters {
+	r.PageLimit = &pageLimit
 	return r
 }
 
@@ -902,6 +902,34 @@ func (r *ListFindingsOptionalParameters) WithFilterStatus(filterStatus FindingSt
 
 // ListFindings List findings.
 // Get a list of CSPM findings.
+//
+// ### Filtering
+//
+// Filters can be applied by appending query parameters to the URL.
+//
+//   - Using a single filter: `?filter[attribute_key]=attribute_value`
+//   - Chaining filters: `?filter[attribute_key]=attribute_value&filter[attribute_key]=attribute_value...`
+//   - Filtering on tags: `?filter[tags]=tag_key:tag_value&filter[tags]=tag_key_2:tag_value_2`
+//
+// Here, `attribute_key` can be any of the filter keys described further below.
+//
+// Query parameters of type `integer` support comparison operators (`>`, `>=`, `<`, `<=`). This is particularly useful when filtering by `evaluation_changed_at` or `resource_discovery_timestamp`. For example: `?filter[evaluation_changed_at]=>20123123121`.
+//
+// You can also use the negation operator on strings. For example, use `filter[resource_type]=-aws*` to filter for any non-AWS resources.
+//
+// The operator must come after the equal sign. For example, to filter with the `>=` operator, add the operator after the equal sign: `filter[evaluation_changed_at]=>=1678809373257`.
+//
+// ### Response
+//
+// The response includes an array of finding objects, pagination metadata, and a count of items that match the query.
+//
+// Each finding object contains the following:
+//
+// - The finding ID that can be used in a `GetFinding` request to retrieve the full finding details.
+// - Core attributes, including status, evaluation, high-level resource details, muted state, and rule details.
+// - `evaluation_changed_at` and `resource_discovery_date` time stamps.
+// - An array of associated tags.
+//
 func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFindingsOptionalParameters) (ListFindingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -934,8 +962,8 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if optionalParams.Limit != nil {
-		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
 	if optionalParams.SnapshotTimestamp != nil {
 		localVarQueryParams.Add("snapshot_timestamp", datadog.ParameterToString(*optionalParams.SnapshotTimestamp, ""))
@@ -1019,6 +1047,64 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListFindingsWithPagination provides a paginated version of ListFindings returning a channel with all items.
+func (a *SecurityMonitoringApi) ListFindingsWithPagination(ctx _context.Context, o ...ListFindingsOptionalParameters) (<-chan datadog.PaginationResult[Finding], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(100)
+	if len(o) == 0 {
+		o = append(o, ListFindingsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[Finding], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListFindings(ctx, o...)
+			if err != nil {
+				var returnItem Finding
+				items <- datadog.PaginationResult[Finding]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[Finding]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageCursor, ok := cursorMetaPage.GetCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageCursor
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // ListSecurityFilters Get all security filters.
