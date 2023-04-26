@@ -22,6 +22,19 @@ func main() {
 						Target:   1,
 						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_GRPC_HEALTHCHECK_STATUS,
 					}},
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
+						Target:   "proto target",
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_GRPC_PROTO,
+					}},
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
+						Target:   "123",
+						Property: datadog.PtrString("property"),
+						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_GRPC_METADATA,
+					}},
 			},
 			Request: &datadogV1.SyntheticsTestRequest{
 				Host:     datadog.PtrString("localhost"),
