@@ -412,6 +412,7 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 
 func expectArrayContainsObject(t gobdd.StepTest, ctx gobdd.Context, responsePath string, keyPath string, value string) {
 	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), responsePath)
+	templatedValue := Templated(t, GetData(ctx), value)
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}
@@ -421,7 +422,11 @@ func expectArrayContainsObject(t gobdd.StepTest, ctx gobdd.Context, responsePath
 			if err != nil {
 				t.Errorf("could not lookup key value: %v", err)
 			}
-			if is.DeepEqual(responseItemValue.Interface(), value)().Success() {
+			testValue, err := stringToType(templatedValue, responseItemValue.Interface())
+			if err != nil {
+				t.Errorf("%v", err)
+			}
+			if is.DeepEqual(responseItemValue.Interface(), testValue)().Success() {
 				return
 			}
 		}
