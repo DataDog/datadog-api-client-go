@@ -14,21 +14,21 @@ import (
 // UsageSDSHour Sensitive Data Scanner usage for a given organization for a given hour.
 type UsageSDSHour struct {
 	// The total number of bytes scanned of APM usage across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
-	ApmScannedBytes *int64 `json:"apm_scanned_bytes,omitempty"`
+	ApmScannedBytes datadog.NullableInt64 `json:"apm_scanned_bytes,omitempty"`
 	// The total number of bytes scanned of Events usage across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
-	EventsScannedBytes *int64 `json:"events_scanned_bytes,omitempty"`
+	EventsScannedBytes datadog.NullableInt64 `json:"events_scanned_bytes,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The total number of bytes scanned of logs usage by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
-	LogsScannedBytes *int64 `json:"logs_scanned_bytes,omitempty"`
+	LogsScannedBytes datadog.NullableInt64 `json:"logs_scanned_bytes,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// The total number of bytes scanned of RUM usage across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
-	RumScannedBytes *int64 `json:"rum_scanned_bytes,omitempty"`
+	RumScannedBytes datadog.NullableInt64 `json:"rum_scanned_bytes,omitempty"`
 	// The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
-	TotalScannedBytes *int64 `json:"total_scanned_bytes,omitempty"`
+	TotalScannedBytes datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -51,60 +51,82 @@ func NewUsageSDSHourWithDefaults() *UsageSDSHour {
 	return &this
 }
 
-// GetApmScannedBytes returns the ApmScannedBytes field value if set, zero value otherwise.
+// GetApmScannedBytes returns the ApmScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetApmScannedBytes() int64 {
-	if o == nil || o.ApmScannedBytes == nil {
+	if o == nil || o.ApmScannedBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ApmScannedBytes
+	return *o.ApmScannedBytes.Get()
 }
 
 // GetApmScannedBytesOk returns a tuple with the ApmScannedBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetApmScannedBytesOk() (*int64, bool) {
-	if o == nil || o.ApmScannedBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ApmScannedBytes, true
+	return o.ApmScannedBytes.Get(), o.ApmScannedBytes.IsSet()
 }
 
 // HasApmScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasApmScannedBytes() bool {
-	return o != nil && o.ApmScannedBytes != nil
+	return o != nil && o.ApmScannedBytes.IsSet()
 }
 
-// SetApmScannedBytes gets a reference to the given int64 and assigns it to the ApmScannedBytes field.
+// SetApmScannedBytes gets a reference to the given datadog.NullableInt64 and assigns it to the ApmScannedBytes field.
 func (o *UsageSDSHour) SetApmScannedBytes(v int64) {
-	o.ApmScannedBytes = &v
+	o.ApmScannedBytes.Set(&v)
 }
 
-// GetEventsScannedBytes returns the EventsScannedBytes field value if set, zero value otherwise.
+// SetApmScannedBytesNil sets the value for ApmScannedBytes to be an explicit nil.
+func (o *UsageSDSHour) SetApmScannedBytesNil() {
+	o.ApmScannedBytes.Set(nil)
+}
+
+// UnsetApmScannedBytes ensures that no value is present for ApmScannedBytes, not even an explicit nil.
+func (o *UsageSDSHour) UnsetApmScannedBytes() {
+	o.ApmScannedBytes.Unset()
+}
+
+// GetEventsScannedBytes returns the EventsScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetEventsScannedBytes() int64 {
-	if o == nil || o.EventsScannedBytes == nil {
+	if o == nil || o.EventsScannedBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.EventsScannedBytes
+	return *o.EventsScannedBytes.Get()
 }
 
 // GetEventsScannedBytesOk returns a tuple with the EventsScannedBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetEventsScannedBytesOk() (*int64, bool) {
-	if o == nil || o.EventsScannedBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.EventsScannedBytes, true
+	return o.EventsScannedBytes.Get(), o.EventsScannedBytes.IsSet()
 }
 
 // HasEventsScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasEventsScannedBytes() bool {
-	return o != nil && o.EventsScannedBytes != nil
+	return o != nil && o.EventsScannedBytes.IsSet()
 }
 
-// SetEventsScannedBytes gets a reference to the given int64 and assigns it to the EventsScannedBytes field.
+// SetEventsScannedBytes gets a reference to the given datadog.NullableInt64 and assigns it to the EventsScannedBytes field.
 func (o *UsageSDSHour) SetEventsScannedBytes(v int64) {
-	o.EventsScannedBytes = &v
+	o.EventsScannedBytes.Set(&v)
+}
+
+// SetEventsScannedBytesNil sets the value for EventsScannedBytes to be an explicit nil.
+func (o *UsageSDSHour) SetEventsScannedBytesNil() {
+	o.EventsScannedBytes.Set(nil)
+}
+
+// UnsetEventsScannedBytes ensures that no value is present for EventsScannedBytes, not even an explicit nil.
+func (o *UsageSDSHour) UnsetEventsScannedBytes() {
+	o.EventsScannedBytes.Unset()
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -135,32 +157,43 @@ func (o *UsageSDSHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetLogsScannedBytes returns the LogsScannedBytes field value if set, zero value otherwise.
+// GetLogsScannedBytes returns the LogsScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetLogsScannedBytes() int64 {
-	if o == nil || o.LogsScannedBytes == nil {
+	if o == nil || o.LogsScannedBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsScannedBytes
+	return *o.LogsScannedBytes.Get()
 }
 
 // GetLogsScannedBytesOk returns a tuple with the LogsScannedBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetLogsScannedBytesOk() (*int64, bool) {
-	if o == nil || o.LogsScannedBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsScannedBytes, true
+	return o.LogsScannedBytes.Get(), o.LogsScannedBytes.IsSet()
 }
 
 // HasLogsScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasLogsScannedBytes() bool {
-	return o != nil && o.LogsScannedBytes != nil
+	return o != nil && o.LogsScannedBytes.IsSet()
 }
 
-// SetLogsScannedBytes gets a reference to the given int64 and assigns it to the LogsScannedBytes field.
+// SetLogsScannedBytes gets a reference to the given datadog.NullableInt64 and assigns it to the LogsScannedBytes field.
 func (o *UsageSDSHour) SetLogsScannedBytes(v int64) {
-	o.LogsScannedBytes = &v
+	o.LogsScannedBytes.Set(&v)
+}
+
+// SetLogsScannedBytesNil sets the value for LogsScannedBytes to be an explicit nil.
+func (o *UsageSDSHour) SetLogsScannedBytesNil() {
+	o.LogsScannedBytes.Set(nil)
+}
+
+// UnsetLogsScannedBytes ensures that no value is present for LogsScannedBytes, not even an explicit nil.
+func (o *UsageSDSHour) UnsetLogsScannedBytes() {
+	o.LogsScannedBytes.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -219,60 +252,82 @@ func (o *UsageSDSHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetRumScannedBytes returns the RumScannedBytes field value if set, zero value otherwise.
+// GetRumScannedBytes returns the RumScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetRumScannedBytes() int64 {
-	if o == nil || o.RumScannedBytes == nil {
+	if o == nil || o.RumScannedBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.RumScannedBytes
+	return *o.RumScannedBytes.Get()
 }
 
 // GetRumScannedBytesOk returns a tuple with the RumScannedBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetRumScannedBytesOk() (*int64, bool) {
-	if o == nil || o.RumScannedBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RumScannedBytes, true
+	return o.RumScannedBytes.Get(), o.RumScannedBytes.IsSet()
 }
 
 // HasRumScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasRumScannedBytes() bool {
-	return o != nil && o.RumScannedBytes != nil
+	return o != nil && o.RumScannedBytes.IsSet()
 }
 
-// SetRumScannedBytes gets a reference to the given int64 and assigns it to the RumScannedBytes field.
+// SetRumScannedBytes gets a reference to the given datadog.NullableInt64 and assigns it to the RumScannedBytes field.
 func (o *UsageSDSHour) SetRumScannedBytes(v int64) {
-	o.RumScannedBytes = &v
+	o.RumScannedBytes.Set(&v)
 }
 
-// GetTotalScannedBytes returns the TotalScannedBytes field value if set, zero value otherwise.
+// SetRumScannedBytesNil sets the value for RumScannedBytes to be an explicit nil.
+func (o *UsageSDSHour) SetRumScannedBytesNil() {
+	o.RumScannedBytes.Set(nil)
+}
+
+// UnsetRumScannedBytes ensures that no value is present for RumScannedBytes, not even an explicit nil.
+func (o *UsageSDSHour) UnsetRumScannedBytes() {
+	o.RumScannedBytes.Unset()
+}
+
+// GetTotalScannedBytes returns the TotalScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetTotalScannedBytes() int64 {
-	if o == nil || o.TotalScannedBytes == nil {
+	if o == nil || o.TotalScannedBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TotalScannedBytes
+	return *o.TotalScannedBytes.Get()
 }
 
 // GetTotalScannedBytesOk returns a tuple with the TotalScannedBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetTotalScannedBytesOk() (*int64, bool) {
-	if o == nil || o.TotalScannedBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TotalScannedBytes, true
+	return o.TotalScannedBytes.Get(), o.TotalScannedBytes.IsSet()
 }
 
 // HasTotalScannedBytes returns a boolean if a field has been set.
 func (o *UsageSDSHour) HasTotalScannedBytes() bool {
-	return o != nil && o.TotalScannedBytes != nil
+	return o != nil && o.TotalScannedBytes.IsSet()
 }
 
-// SetTotalScannedBytes gets a reference to the given int64 and assigns it to the TotalScannedBytes field.
+// SetTotalScannedBytes gets a reference to the given datadog.NullableInt64 and assigns it to the TotalScannedBytes field.
 func (o *UsageSDSHour) SetTotalScannedBytes(v int64) {
-	o.TotalScannedBytes = &v
+	o.TotalScannedBytes.Set(&v)
+}
+
+// SetTotalScannedBytesNil sets the value for TotalScannedBytes to be an explicit nil.
+func (o *UsageSDSHour) SetTotalScannedBytesNil() {
+	o.TotalScannedBytes.Set(nil)
+}
+
+// UnsetTotalScannedBytes ensures that no value is present for TotalScannedBytes, not even an explicit nil.
+func (o *UsageSDSHour) UnsetTotalScannedBytes() {
+	o.TotalScannedBytes.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -281,11 +336,11 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.ApmScannedBytes != nil {
-		toSerialize["apm_scanned_bytes"] = o.ApmScannedBytes
+	if o.ApmScannedBytes.IsSet() {
+		toSerialize["apm_scanned_bytes"] = o.ApmScannedBytes.Get()
 	}
-	if o.EventsScannedBytes != nil {
-		toSerialize["events_scanned_bytes"] = o.EventsScannedBytes
+	if o.EventsScannedBytes.IsSet() {
+		toSerialize["events_scanned_bytes"] = o.EventsScannedBytes.Get()
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -294,8 +349,8 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.LogsScannedBytes != nil {
-		toSerialize["logs_scanned_bytes"] = o.LogsScannedBytes
+	if o.LogsScannedBytes.IsSet() {
+		toSerialize["logs_scanned_bytes"] = o.LogsScannedBytes.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -303,11 +358,11 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.RumScannedBytes != nil {
-		toSerialize["rum_scanned_bytes"] = o.RumScannedBytes
+	if o.RumScannedBytes.IsSet() {
+		toSerialize["rum_scanned_bytes"] = o.RumScannedBytes.Get()
 	}
-	if o.TotalScannedBytes != nil {
-		toSerialize["total_scanned_bytes"] = o.TotalScannedBytes
+	if o.TotalScannedBytes.IsSet() {
+		toSerialize["total_scanned_bytes"] = o.TotalScannedBytes.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -320,14 +375,14 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmScannedBytes    *int64     `json:"apm_scanned_bytes,omitempty"`
-		EventsScannedBytes *int64     `json:"events_scanned_bytes,omitempty"`
-		Hour               *time.Time `json:"hour,omitempty"`
-		LogsScannedBytes   *int64     `json:"logs_scanned_bytes,omitempty"`
-		OrgName            *string    `json:"org_name,omitempty"`
-		PublicId           *string    `json:"public_id,omitempty"`
-		RumScannedBytes    *int64     `json:"rum_scanned_bytes,omitempty"`
-		TotalScannedBytes  *int64     `json:"total_scanned_bytes,omitempty"`
+		ApmScannedBytes    datadog.NullableInt64 `json:"apm_scanned_bytes,omitempty"`
+		EventsScannedBytes datadog.NullableInt64 `json:"events_scanned_bytes,omitempty"`
+		Hour               *time.Time            `json:"hour,omitempty"`
+		LogsScannedBytes   datadog.NullableInt64 `json:"logs_scanned_bytes,omitempty"`
+		OrgName            *string               `json:"org_name,omitempty"`
+		PublicId           *string               `json:"public_id,omitempty"`
+		RumScannedBytes    datadog.NullableInt64 `json:"rum_scanned_bytes,omitempty"`
+		TotalScannedBytes  datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
