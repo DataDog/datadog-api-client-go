@@ -475,7 +475,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`the response has ([0-9]+) items`:                                      expectNumberOfItems,
 		`the response "([^"]+)" is false`:                                      expectFalse,
 		`the response "([^"]+)" has item with field "([^"]+)" with value (.*)`: expectArrayContainsObject,
-		`the response "([^"]+)" contains value (.*)`:                           expectArrayContainsValue,
+		`the response "([^"]+)" array contains value (.*)`:                     expectArrayContainsValue,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
