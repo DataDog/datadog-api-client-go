@@ -21,8 +21,8 @@ func main() {
 			Attributes: datadogV2.MonitorConfigPolicyAttributeEditRequest{
 				Policy: datadogV2.MonitorConfigPolicyPolicy{
 					MonitorConfigPolicyTagPolicy: &datadogV2.MonitorConfigPolicyTagPolicy{
-						TagKey:         datadog.PtrString("datacenter"),
-						TagKeyRequired: datadog.PtrBool(true),
+						TagKey:         datadog.PtrString("examplemonitor"),
+						TagKeyRequired: datadog.PtrBool(false),
 						ValidTagValues: []string{
 							"prod",
 							"staging",
