@@ -201,7 +201,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `operator` <, <=, >, >=, ==, or !=
 // - `#` an integer or decimal number used to set the threshold
 //
-// **Logs Alert Query**
+// ##### Logs Alert Query
 //
 // Example: `logs(query).index(index_name).rollup(rollup_method[, measure]).last(time_window) operator #`
 //
