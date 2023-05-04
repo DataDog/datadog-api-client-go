@@ -20,6 +20,8 @@ type IncidentTeamsApi datadog.Service
 
 // CreateIncidentTeam Create a new incident team.
 // Creates a new incident team.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentTeamsApi) CreateIncidentTeam(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -100,6 +102,8 @@ func (a *IncidentTeamsApi) CreateIncidentTeam(ctx _context.Context, body Inciden
 
 // DeleteIncidentTeam Delete an existing incident team.
 // Deletes an existing incident team.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentTeamsApi) DeleteIncidentTeam(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -186,6 +190,8 @@ func (r *GetIncidentTeamOptionalParameters) WithInclude(include IncidentRelatedO
 // GetIncidentTeam Get details of an incident team.
 // Get details of an incident team. If the `include[users]` query parameter is provided,
 // the included attribute will contain the users related to these incident teams.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentTeamsApi) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -313,6 +319,8 @@ func (r *ListIncidentTeamsOptionalParameters) WithFilter(filter string) *ListInc
 
 // ListIncidentTeams Get a list of all incident teams.
 // Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentTeamsApi) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -410,6 +418,8 @@ func (a *IncidentTeamsApi) ListIncidentTeams(ctx _context.Context, o ...ListInci
 
 // UpdateIncidentTeam Update an existing incident team.
 // Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentTeamsApi) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
