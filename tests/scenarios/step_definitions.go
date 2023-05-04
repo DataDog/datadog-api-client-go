@@ -410,26 +410,72 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 	}
 }
 
+func expectArrayContainsObject(t gobdd.StepTest, ctx gobdd.Context, responsePath string, keyPath string, value string) {
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), responsePath)
+	templatedValue := Templated(t, GetData(ctx), value)
+	if err != nil {
+		t.Errorf("could not lookup value: %v", err)
+	}
+	if responseMap, ok := responseValue.Interface().([]interface{}); ok {
+		for _, responseItem := range responseMap {
+			responseItemValue, err := tests.LookupStringI(responseItem, keyPath)
+			if err != nil {
+				t.Errorf("could not lookup key value: %v", err)
+			}
+			testValue, err := stringToType(templatedValue, responseItemValue.Interface())
+			if err != nil {
+				t.Errorf("%v", err)
+			}
+			if is.DeepEqual(responseItemValue.Interface(), testValue)().Success() {
+				return
+			}
+		}
+	}
+	t.Errorf("could not find value: %v", value)
+}
+
+func expectArrayContainsValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), responsePath)
+	if err != nil {
+		t.Errorf("could not lookup value: %v", err)
+	}
+	templatedValue := Templated(t, GetData(ctx), value)
+	if responseList, ok := responseValue.Interface().([]interface{}); ok {
+		for _, responseItem := range responseList {
+			testValue, err := stringToType(templatedValue, responseItem)
+			if err != nil {
+				t.Errorf("%v", err)
+			}
+			if is.DeepEqual(responseItem, testValue)().Success() {
+				return
+			}
+		}
+	}
+	t.Errorf("could not find value: %v", templatedValue)
+}
+
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
-		`a valid "apiKeyAuth" key in the system`:                 aValidAPIKeyAuth,
-		`a valid "appKeyAuth" key in the system`:                 aValidAppKeyAuth,
-		`an instance of "([^"]+)" API`:                           anInstanceOf,
-		`operation "([^"]+)" enabled`:                            enableOperations,
-		`new "([^"]+)" request`:                                  newRequest,
-		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
-		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
-		`the request is sent`:                                    requestIsSent,
-		`the request with pagination is sent`:                    requestWithPaginationIsSent,
-		`the response status is (\d+) (.*)`:                      statusIs,
-		`body from file "(.*)"`:                                  bodyFromFile,
-		`body with value (.*)`:                                   body,
-		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
-		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
-		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
-		`the response has ([0-9]+) items`:                        expectNumberOfItems,
-		`the response "([^"]+)" is false`:                        expectFalse,
+		`a valid "apiKeyAuth" key in the system`:                               aValidAPIKeyAuth,
+		`a valid "appKeyAuth" key in the system`:                               aValidAppKeyAuth,
+		`an instance of "([^"]+)" API`:                                         anInstanceOf,
+		`operation "([^"]+)" enabled`:                                          enableOperations,
+		`new "([^"]+)" request`:                                                newRequest,
+		`request contains "([^"]+)" parameter from "([^"]+)"`:                  addParameterFrom,
+		`request contains "([^"]+)" parameter with value (.+)`:                 addParameterWithValue,
+		`the request is sent`:                                                  requestIsSent,
+		`the request with pagination is sent`:                                  requestWithPaginationIsSent,
+		`the response status is (\d+) (.*)`:                                    statusIs,
+		`body from file "(.*)"`:                                                bodyFromFile,
+		`body with value (.*)`:                                                 body,
+		`the response "([^"]+)" is equal to (.*)`:                              expectEqual,
+		`the response "([^"]+)" has the same value as "([^"]+)"`:               expectEqualValue,
+		`the response "([^"]+)" has length ([0-9]+)`:                           expectLengthEqual,
+		`the response has ([0-9]+) items`:                                      expectNumberOfItems,
+		`the response "([^"]+)" is false`:                                      expectFalse,
+		`the response "([^"]+)" has item with field "([^"]+)" with value (.*)`: expectArrayContainsObject,
+		`the response "([^"]+)" array contains value (.*)`:                     expectArrayContainsValue,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
