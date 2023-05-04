@@ -38,6 +38,12 @@ func main() {
 		MonitorTags: []string{
 			"tag0",
 		},
+		NotifyEndStates: []datadogV1.NotifyEndState{
+			datadogV1.NOTIFYENDSTATE_ALERT,
+		},
+		NotifyEndTypes: []datadogV1.NotifyEndType{
+			datadogV1.NOTIFYENDTYPE_CANCELED,
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
