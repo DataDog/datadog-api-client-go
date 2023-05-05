@@ -33,6 +33,15 @@ func main() {
 			},
 			UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
 		}),
+		NotifyEndStates: []datadogV1.NotifyEndState{
+			datadogV1.NOTIFYENDSTATE_ALERT,
+			datadogV1.NOTIFYENDSTATE_NO_DATA,
+			datadogV1.NOTIFYENDSTATE_WARN,
+		},
+		NotifyEndTypes: []datadogV1.NotifyEndType{
+			datadogV1.NOTIFYENDTYPE_CANCELED,
+			datadogV1.NOTIFYENDTYPE_EXPIRED,
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
