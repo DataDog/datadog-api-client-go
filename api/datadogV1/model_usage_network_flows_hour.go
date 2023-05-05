@@ -16,7 +16,7 @@ type UsageNetworkFlowsHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of netflow events indexed.
-	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+	IndexedEventsCount datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,32 +71,43 @@ func (o *UsageNetworkFlowsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
+// GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageNetworkFlowsHour) GetIndexedEventsCount() int64 {
-	if o == nil || o.IndexedEventsCount == nil {
+	if o == nil || o.IndexedEventsCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IndexedEventsCount
+	return *o.IndexedEventsCount.Get()
 }
 
 // GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageNetworkFlowsHour) GetIndexedEventsCountOk() (*int64, bool) {
-	if o == nil || o.IndexedEventsCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.IndexedEventsCount, true
+	return o.IndexedEventsCount.Get(), o.IndexedEventsCount.IsSet()
 }
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageNetworkFlowsHour) HasIndexedEventsCount() bool {
-	return o != nil && o.IndexedEventsCount != nil
+	return o != nil && o.IndexedEventsCount.IsSet()
 }
 
-// SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
+// SetIndexedEventsCount gets a reference to the given datadog.NullableInt64 and assigns it to the IndexedEventsCount field.
 func (o *UsageNetworkFlowsHour) SetIndexedEventsCount(v int64) {
-	o.IndexedEventsCount = &v
+	o.IndexedEventsCount.Set(&v)
+}
+
+// SetIndexedEventsCountNil sets the value for IndexedEventsCount to be an explicit nil.
+func (o *UsageNetworkFlowsHour) SetIndexedEventsCountNil() {
+	o.IndexedEventsCount.Set(nil)
+}
+
+// UnsetIndexedEventsCount ensures that no value is present for IndexedEventsCount, not even an explicit nil.
+func (o *UsageNetworkFlowsHour) UnsetIndexedEventsCount() {
+	o.IndexedEventsCount.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -168,8 +179,8 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.IndexedEventsCount != nil {
-		toSerialize["indexed_events_count"] = o.IndexedEventsCount
+	if o.IndexedEventsCount.IsSet() {
+		toSerialize["indexed_events_count"] = o.IndexedEventsCount.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -188,10 +199,10 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour               *time.Time `json:"hour,omitempty"`
-		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
-		OrgName            *string    `json:"org_name,omitempty"`
-		PublicId           *string    `json:"public_id,omitempty"`
+		Hour               *time.Time            `json:"hour,omitempty"`
+		IndexedEventsCount datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
+		OrgName            *string               `json:"org_name,omitempty"`
+		PublicId           *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

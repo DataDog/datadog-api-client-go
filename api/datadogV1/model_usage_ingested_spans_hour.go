@@ -16,7 +16,7 @@ type UsageIngestedSpansHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number of bytes ingested for APM spans during a given hour.
-	IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+	IngestedEventsBytes datadog.NullableInt64 `json:"ingested_events_bytes,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,32 +71,43 @@ func (o *UsageIngestedSpansHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise.
+// GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
-	if o == nil || o.IngestedEventsBytes == nil {
+	if o == nil || o.IngestedEventsBytes.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IngestedEventsBytes
+	return *o.IngestedEventsBytes.Get()
 }
 
 // GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytesOk() (*int64, bool) {
-	if o == nil || o.IngestedEventsBytes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.IngestedEventsBytes, true
+	return o.IngestedEventsBytes.Get(), o.IngestedEventsBytes.IsSet()
 }
 
 // HasIngestedEventsBytes returns a boolean if a field has been set.
 func (o *UsageIngestedSpansHour) HasIngestedEventsBytes() bool {
-	return o != nil && o.IngestedEventsBytes != nil
+	return o != nil && o.IngestedEventsBytes.IsSet()
 }
 
-// SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
+// SetIngestedEventsBytes gets a reference to the given datadog.NullableInt64 and assigns it to the IngestedEventsBytes field.
 func (o *UsageIngestedSpansHour) SetIngestedEventsBytes(v int64) {
-	o.IngestedEventsBytes = &v
+	o.IngestedEventsBytes.Set(&v)
+}
+
+// SetIngestedEventsBytesNil sets the value for IngestedEventsBytes to be an explicit nil.
+func (o *UsageIngestedSpansHour) SetIngestedEventsBytesNil() {
+	o.IngestedEventsBytes.Set(nil)
+}
+
+// UnsetIngestedEventsBytes ensures that no value is present for IngestedEventsBytes, not even an explicit nil.
+func (o *UsageIngestedSpansHour) UnsetIngestedEventsBytes() {
+	o.IngestedEventsBytes.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -168,8 +179,8 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.IngestedEventsBytes != nil {
-		toSerialize["ingested_events_bytes"] = o.IngestedEventsBytes
+	if o.IngestedEventsBytes.IsSet() {
+		toSerialize["ingested_events_bytes"] = o.IngestedEventsBytes.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -188,10 +199,10 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                *time.Time `json:"hour,omitempty"`
-		IngestedEventsBytes *int64     `json:"ingested_events_bytes,omitempty"`
-		OrgName             *string    `json:"org_name,omitempty"`
-		PublicId            *string    `json:"public_id,omitempty"`
+		Hour                *time.Time            `json:"hour,omitempty"`
+		IngestedEventsBytes datadog.NullableInt64 `json:"ingested_events_bytes,omitempty"`
+		OrgName             *string               `json:"org_name,omitempty"`
+		PublicId            *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
