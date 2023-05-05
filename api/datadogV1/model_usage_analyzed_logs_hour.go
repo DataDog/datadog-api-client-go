@@ -14,7 +14,7 @@ import (
 // UsageAnalyzedLogsHour The number of analyzed logs for each hour for a given organization.
 type UsageAnalyzedLogsHour struct {
 	// Contains the number of analyzed logs.
-	AnalyzedLogs *int64 `json:"analyzed_logs,omitempty"`
+	AnalyzedLogs datadog.NullableInt64 `json:"analyzed_logs,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -43,32 +43,43 @@ func NewUsageAnalyzedLogsHourWithDefaults() *UsageAnalyzedLogsHour {
 	return &this
 }
 
-// GetAnalyzedLogs returns the AnalyzedLogs field value if set, zero value otherwise.
+// GetAnalyzedLogs returns the AnalyzedLogs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageAnalyzedLogsHour) GetAnalyzedLogs() int64 {
-	if o == nil || o.AnalyzedLogs == nil {
+	if o == nil || o.AnalyzedLogs.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AnalyzedLogs
+	return *o.AnalyzedLogs.Get()
 }
 
 // GetAnalyzedLogsOk returns a tuple with the AnalyzedLogs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageAnalyzedLogsHour) GetAnalyzedLogsOk() (*int64, bool) {
-	if o == nil || o.AnalyzedLogs == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.AnalyzedLogs, true
+	return o.AnalyzedLogs.Get(), o.AnalyzedLogs.IsSet()
 }
 
 // HasAnalyzedLogs returns a boolean if a field has been set.
 func (o *UsageAnalyzedLogsHour) HasAnalyzedLogs() bool {
-	return o != nil && o.AnalyzedLogs != nil
+	return o != nil && o.AnalyzedLogs.IsSet()
 }
 
-// SetAnalyzedLogs gets a reference to the given int64 and assigns it to the AnalyzedLogs field.
+// SetAnalyzedLogs gets a reference to the given datadog.NullableInt64 and assigns it to the AnalyzedLogs field.
 func (o *UsageAnalyzedLogsHour) SetAnalyzedLogs(v int64) {
-	o.AnalyzedLogs = &v
+	o.AnalyzedLogs.Set(&v)
+}
+
+// SetAnalyzedLogsNil sets the value for AnalyzedLogs to be an explicit nil.
+func (o *UsageAnalyzedLogsHour) SetAnalyzedLogsNil() {
+	o.AnalyzedLogs.Set(nil)
+}
+
+// UnsetAnalyzedLogs ensures that no value is present for AnalyzedLogs, not even an explicit nil.
+func (o *UsageAnalyzedLogsHour) UnsetAnalyzedLogs() {
+	o.AnalyzedLogs.Unset()
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -161,8 +172,8 @@ func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AnalyzedLogs != nil {
-		toSerialize["analyzed_logs"] = o.AnalyzedLogs
+	if o.AnalyzedLogs.IsSet() {
+		toSerialize["analyzed_logs"] = o.AnalyzedLogs.Get()
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -188,10 +199,10 @@ func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageAnalyzedLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AnalyzedLogs *int64     `json:"analyzed_logs,omitempty"`
-		Hour         *time.Time `json:"hour,omitempty"`
-		OrgName      *string    `json:"org_name,omitempty"`
-		PublicId     *string    `json:"public_id,omitempty"`
+		AnalyzedLogs datadog.NullableInt64 `json:"analyzed_logs,omitempty"`
+		Hour         *time.Time            `json:"hour,omitempty"`
+		OrgName      *string               `json:"org_name,omitempty"`
+		PublicId     *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
