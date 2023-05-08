@@ -15,7 +15,7 @@ import (
 
 func main() {
 	body := datadogV1.Downtime{
-		Message: *datadog.NewNullableString(datadog.PtrString("Example-Downtime")),
+		Message: datadog.PtrString("Example-Downtime"),
 		Recurrence: *datadogV1.NewNullableDowntimeRecurrence(&datadogV1.DowntimeRecurrence{
 			Period: datadog.PtrInt32(1),
 			Type:   datadog.PtrString("years"),
@@ -29,13 +29,6 @@ func main() {
 		MuteFirstRecoveryNotification: datadog.PtrBool(true),
 		MonitorTags: []string{
 			"tag0",
-		},
-		NotifyEndStates: []datadogV1.NotifyEndState{
-			datadogV1.NOTIFYENDSTATE_ALERT,
-			datadogV1.NOTIFYENDSTATE_WARN,
-		},
-		NotifyEndTypes: []datadogV1.NotifyEndType{
-			datadogV1.NOTIFYENDTYPE_EXPIRED,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -20,7 +20,7 @@ type UsageSNMPHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Contains the number of SNMP devices.
-	SnmpDevices datadog.NullableInt64 `json:"snmp_devices,omitempty"`
+	SnmpDevices *int64 `json:"snmp_devices,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -127,43 +127,32 @@ func (o *UsageSNMPHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetSnmpDevices returns the SnmpDevices field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSnmpDevices returns the SnmpDevices field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetSnmpDevices() int64 {
-	if o == nil || o.SnmpDevices.Get() == nil {
+	if o == nil || o.SnmpDevices == nil {
 		var ret int64
 		return ret
 	}
-	return *o.SnmpDevices.Get()
+	return *o.SnmpDevices
 }
 
 // GetSnmpDevicesOk returns a tuple with the SnmpDevices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSNMPHour) GetSnmpDevicesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.SnmpDevices == nil {
 		return nil, false
 	}
-	return o.SnmpDevices.Get(), o.SnmpDevices.IsSet()
+	return o.SnmpDevices, true
 }
 
 // HasSnmpDevices returns a boolean if a field has been set.
 func (o *UsageSNMPHour) HasSnmpDevices() bool {
-	return o != nil && o.SnmpDevices.IsSet()
+	return o != nil && o.SnmpDevices != nil
 }
 
-// SetSnmpDevices gets a reference to the given datadog.NullableInt64 and assigns it to the SnmpDevices field.
+// SetSnmpDevices gets a reference to the given int64 and assigns it to the SnmpDevices field.
 func (o *UsageSNMPHour) SetSnmpDevices(v int64) {
-	o.SnmpDevices.Set(&v)
-}
-
-// SetSnmpDevicesNil sets the value for SnmpDevices to be an explicit nil.
-func (o *UsageSNMPHour) SetSnmpDevicesNil() {
-	o.SnmpDevices.Set(nil)
-}
-
-// UnsetSnmpDevices ensures that no value is present for SnmpDevices, not even an explicit nil.
-func (o *UsageSNMPHour) UnsetSnmpDevices() {
-	o.SnmpDevices.Unset()
+	o.SnmpDevices = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -185,8 +174,8 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.SnmpDevices.IsSet() {
-		toSerialize["snmp_devices"] = o.SnmpDevices.Get()
+	if o.SnmpDevices != nil {
+		toSerialize["snmp_devices"] = o.SnmpDevices
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -199,10 +188,10 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour        *time.Time            `json:"hour,omitempty"`
-		OrgName     *string               `json:"org_name,omitempty"`
-		PublicId    *string               `json:"public_id,omitempty"`
-		SnmpDevices datadog.NullableInt64 `json:"snmp_devices,omitempty"`
+		Hour        *time.Time `json:"hour,omitempty"`
+		OrgName     *string    `json:"org_name,omitempty"`
+		PublicId    *string    `json:"public_id,omitempty"`
+		SnmpDevices *int64     `json:"snmp_devices,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

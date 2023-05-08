@@ -44,7 +44,7 @@ func main() {
 				"my:tag",
 			},
 			ComplianceSignalOptions: datadogV2.CloudConfigurationRuleComplianceSignalOptions{
-				UserActivationStatus: *datadog.NewNullableBool(datadog.PtrBool(true)),
+				UserActivationStatus: datadog.PtrBool(true),
 				UserGroupByFields: []string{
 					"@account_id",
 				},

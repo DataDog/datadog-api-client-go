@@ -13,15 +13,15 @@ import (
 // UsageLogsByRetentionHour The number of indexed logs for each hour for a given organization broken down by retention period.
 type UsageLogsByRetentionHour struct {
 	// Total logs indexed with this retention period during a given hour.
-	IndexedEventsCount datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
+	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
 	// Live logs indexed with this retention period during a given hour.
-	LiveIndexedEventsCount datadog.NullableInt64 `json:"live_indexed_events_count,omitempty"`
+	LiveIndexedEventsCount *int64 `json:"live_indexed_events_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Rehydrated logs indexed with this retention period during a given hour.
-	RehydratedIndexedEventsCount datadog.NullableInt64 `json:"rehydrated_indexed_events_count,omitempty"`
+	RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
 	// The retention period in days or "custom" for all custom retention usage.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -46,82 +46,60 @@ func NewUsageLogsByRetentionHourWithDefaults() *UsageLogsByRetentionHour {
 	return &this
 }
 
-// GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetIndexedEventsCount() int64 {
-	if o == nil || o.IndexedEventsCount.Get() == nil {
+	if o == nil || o.IndexedEventsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IndexedEventsCount.Get()
+	return *o.IndexedEventsCount
 }
 
 // GetIndexedEventsCountOk returns a tuple with the IndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsByRetentionHour) GetIndexedEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.IndexedEventsCount == nil {
 		return nil, false
 	}
-	return o.IndexedEventsCount.Get(), o.IndexedEventsCount.IsSet()
+	return o.IndexedEventsCount, true
 }
 
 // HasIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasIndexedEventsCount() bool {
-	return o != nil && o.IndexedEventsCount.IsSet()
+	return o != nil && o.IndexedEventsCount != nil
 }
 
-// SetIndexedEventsCount gets a reference to the given datadog.NullableInt64 and assigns it to the IndexedEventsCount field.
+// SetIndexedEventsCount gets a reference to the given int64 and assigns it to the IndexedEventsCount field.
 func (o *UsageLogsByRetentionHour) SetIndexedEventsCount(v int64) {
-	o.IndexedEventsCount.Set(&v)
+	o.IndexedEventsCount = &v
 }
 
-// SetIndexedEventsCountNil sets the value for IndexedEventsCount to be an explicit nil.
-func (o *UsageLogsByRetentionHour) SetIndexedEventsCountNil() {
-	o.IndexedEventsCount.Set(nil)
-}
-
-// UnsetIndexedEventsCount ensures that no value is present for IndexedEventsCount, not even an explicit nil.
-func (o *UsageLogsByRetentionHour) UnsetIndexedEventsCount() {
-	o.IndexedEventsCount.Unset()
-}
-
-// GetLiveIndexedEventsCount returns the LiveIndexedEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetLiveIndexedEventsCount returns the LiveIndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetLiveIndexedEventsCount() int64 {
-	if o == nil || o.LiveIndexedEventsCount.Get() == nil {
+	if o == nil || o.LiveIndexedEventsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LiveIndexedEventsCount.Get()
+	return *o.LiveIndexedEventsCount
 }
 
 // GetLiveIndexedEventsCountOk returns a tuple with the LiveIndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsByRetentionHour) GetLiveIndexedEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.LiveIndexedEventsCount == nil {
 		return nil, false
 	}
-	return o.LiveIndexedEventsCount.Get(), o.LiveIndexedEventsCount.IsSet()
+	return o.LiveIndexedEventsCount, true
 }
 
 // HasLiveIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasLiveIndexedEventsCount() bool {
-	return o != nil && o.LiveIndexedEventsCount.IsSet()
+	return o != nil && o.LiveIndexedEventsCount != nil
 }
 
-// SetLiveIndexedEventsCount gets a reference to the given datadog.NullableInt64 and assigns it to the LiveIndexedEventsCount field.
+// SetLiveIndexedEventsCount gets a reference to the given int64 and assigns it to the LiveIndexedEventsCount field.
 func (o *UsageLogsByRetentionHour) SetLiveIndexedEventsCount(v int64) {
-	o.LiveIndexedEventsCount.Set(&v)
-}
-
-// SetLiveIndexedEventsCountNil sets the value for LiveIndexedEventsCount to be an explicit nil.
-func (o *UsageLogsByRetentionHour) SetLiveIndexedEventsCountNil() {
-	o.LiveIndexedEventsCount.Set(nil)
-}
-
-// UnsetLiveIndexedEventsCount ensures that no value is present for LiveIndexedEventsCount, not even an explicit nil.
-func (o *UsageLogsByRetentionHour) UnsetLiveIndexedEventsCount() {
-	o.LiveIndexedEventsCount.Unset()
+	o.LiveIndexedEventsCount = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -180,43 +158,32 @@ func (o *UsageLogsByRetentionHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetRehydratedIndexedEventsCount returns the RehydratedIndexedEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRehydratedIndexedEventsCount returns the RehydratedIndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetRehydratedIndexedEventsCount() int64 {
-	if o == nil || o.RehydratedIndexedEventsCount.Get() == nil {
+	if o == nil || o.RehydratedIndexedEventsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.RehydratedIndexedEventsCount.Get()
+	return *o.RehydratedIndexedEventsCount
 }
 
 // GetRehydratedIndexedEventsCountOk returns a tuple with the RehydratedIndexedEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsByRetentionHour) GetRehydratedIndexedEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.RehydratedIndexedEventsCount == nil {
 		return nil, false
 	}
-	return o.RehydratedIndexedEventsCount.Get(), o.RehydratedIndexedEventsCount.IsSet()
+	return o.RehydratedIndexedEventsCount, true
 }
 
 // HasRehydratedIndexedEventsCount returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasRehydratedIndexedEventsCount() bool {
-	return o != nil && o.RehydratedIndexedEventsCount.IsSet()
+	return o != nil && o.RehydratedIndexedEventsCount != nil
 }
 
-// SetRehydratedIndexedEventsCount gets a reference to the given datadog.NullableInt64 and assigns it to the RehydratedIndexedEventsCount field.
+// SetRehydratedIndexedEventsCount gets a reference to the given int64 and assigns it to the RehydratedIndexedEventsCount field.
 func (o *UsageLogsByRetentionHour) SetRehydratedIndexedEventsCount(v int64) {
-	o.RehydratedIndexedEventsCount.Set(&v)
-}
-
-// SetRehydratedIndexedEventsCountNil sets the value for RehydratedIndexedEventsCount to be an explicit nil.
-func (o *UsageLogsByRetentionHour) SetRehydratedIndexedEventsCountNil() {
-	o.RehydratedIndexedEventsCount.Set(nil)
-}
-
-// UnsetRehydratedIndexedEventsCount ensures that no value is present for RehydratedIndexedEventsCount, not even an explicit nil.
-func (o *UsageLogsByRetentionHour) UnsetRehydratedIndexedEventsCount() {
-	o.RehydratedIndexedEventsCount.Unset()
+	o.RehydratedIndexedEventsCount = &v
 }
 
 // GetRetention returns the Retention field value if set, zero value otherwise.
@@ -253,11 +220,11 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.IndexedEventsCount.IsSet() {
-		toSerialize["indexed_events_count"] = o.IndexedEventsCount.Get()
+	if o.IndexedEventsCount != nil {
+		toSerialize["indexed_events_count"] = o.IndexedEventsCount
 	}
-	if o.LiveIndexedEventsCount.IsSet() {
-		toSerialize["live_indexed_events_count"] = o.LiveIndexedEventsCount.Get()
+	if o.LiveIndexedEventsCount != nil {
+		toSerialize["live_indexed_events_count"] = o.LiveIndexedEventsCount
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -265,8 +232,8 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.RehydratedIndexedEventsCount.IsSet() {
-		toSerialize["rehydrated_indexed_events_count"] = o.RehydratedIndexedEventsCount.Get()
+	if o.RehydratedIndexedEventsCount != nil {
+		toSerialize["rehydrated_indexed_events_count"] = o.RehydratedIndexedEventsCount
 	}
 	if o.Retention != nil {
 		toSerialize["retention"] = o.Retention
@@ -282,12 +249,12 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedEventsCount           datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
-		LiveIndexedEventsCount       datadog.NullableInt64 `json:"live_indexed_events_count,omitempty"`
-		OrgName                      *string               `json:"org_name,omitempty"`
-		PublicId                     *string               `json:"public_id,omitempty"`
-		RehydratedIndexedEventsCount datadog.NullableInt64 `json:"rehydrated_indexed_events_count,omitempty"`
-		Retention                    *string               `json:"retention,omitempty"`
+		IndexedEventsCount           *int64  `json:"indexed_events_count,omitempty"`
+		LiveIndexedEventsCount       *int64  `json:"live_indexed_events_count,omitempty"`
+		OrgName                      *string `json:"org_name,omitempty"`
+		PublicId                     *string `json:"public_id,omitempty"`
+		RehydratedIndexedEventsCount *int64  `json:"rehydrated_indexed_events_count,omitempty"`
+		Retention                    *string `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

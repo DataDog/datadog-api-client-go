@@ -13,9 +13,9 @@ import (
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
 type UsageRumUnitsHour struct {
 	// The number of browser RUM units.
-	BrowserRumUnits datadog.NullableInt64 `json:"browser_rum_units,omitempty"`
+	BrowserRumUnits *int64 `json:"browser_rum_units,omitempty"`
 	// The number of mobile RUM units.
-	MobileRumUnits datadog.NullableInt64 `json:"mobile_rum_units,omitempty"`
+	MobileRumUnits *int64 `json:"mobile_rum_units,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -44,82 +44,60 @@ func NewUsageRumUnitsHourWithDefaults() *UsageRumUnitsHour {
 	return &this
 }
 
-// GetBrowserRumUnits returns the BrowserRumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBrowserRumUnits returns the BrowserRumUnits field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetBrowserRumUnits() int64 {
-	if o == nil || o.BrowserRumUnits.Get() == nil {
+	if o == nil || o.BrowserRumUnits == nil {
 		var ret int64
 		return ret
 	}
-	return *o.BrowserRumUnits.Get()
+	return *o.BrowserRumUnits
 }
 
 // GetBrowserRumUnitsOk returns a tuple with the BrowserRumUnits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumUnitsHour) GetBrowserRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.BrowserRumUnits == nil {
 		return nil, false
 	}
-	return o.BrowserRumUnits.Get(), o.BrowserRumUnits.IsSet()
+	return o.BrowserRumUnits, true
 }
 
 // HasBrowserRumUnits returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool {
-	return o != nil && o.BrowserRumUnits.IsSet()
+	return o != nil && o.BrowserRumUnits != nil
 }
 
-// SetBrowserRumUnits gets a reference to the given datadog.NullableInt64 and assigns it to the BrowserRumUnits field.
+// SetBrowserRumUnits gets a reference to the given int64 and assigns it to the BrowserRumUnits field.
 func (o *UsageRumUnitsHour) SetBrowserRumUnits(v int64) {
-	o.BrowserRumUnits.Set(&v)
+	o.BrowserRumUnits = &v
 }
 
-// SetBrowserRumUnitsNil sets the value for BrowserRumUnits to be an explicit nil.
-func (o *UsageRumUnitsHour) SetBrowserRumUnitsNil() {
-	o.BrowserRumUnits.Set(nil)
-}
-
-// UnsetBrowserRumUnits ensures that no value is present for BrowserRumUnits, not even an explicit nil.
-func (o *UsageRumUnitsHour) UnsetBrowserRumUnits() {
-	o.BrowserRumUnits.Unset()
-}
-
-// GetMobileRumUnits returns the MobileRumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMobileRumUnits returns the MobileRumUnits field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetMobileRumUnits() int64 {
-	if o == nil || o.MobileRumUnits.Get() == nil {
+	if o == nil || o.MobileRumUnits == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MobileRumUnits.Get()
+	return *o.MobileRumUnits
 }
 
 // GetMobileRumUnitsOk returns a tuple with the MobileRumUnits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumUnitsHour) GetMobileRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.MobileRumUnits == nil {
 		return nil, false
 	}
-	return o.MobileRumUnits.Get(), o.MobileRumUnits.IsSet()
+	return o.MobileRumUnits, true
 }
 
 // HasMobileRumUnits returns a boolean if a field has been set.
 func (o *UsageRumUnitsHour) HasMobileRumUnits() bool {
-	return o != nil && o.MobileRumUnits.IsSet()
+	return o != nil && o.MobileRumUnits != nil
 }
 
-// SetMobileRumUnits gets a reference to the given datadog.NullableInt64 and assigns it to the MobileRumUnits field.
+// SetMobileRumUnits gets a reference to the given int64 and assigns it to the MobileRumUnits field.
 func (o *UsageRumUnitsHour) SetMobileRumUnits(v int64) {
-	o.MobileRumUnits.Set(&v)
-}
-
-// SetMobileRumUnitsNil sets the value for MobileRumUnits to be an explicit nil.
-func (o *UsageRumUnitsHour) SetMobileRumUnitsNil() {
-	o.MobileRumUnits.Set(nil)
-}
-
-// UnsetMobileRumUnits ensures that no value is present for MobileRumUnits, not even an explicit nil.
-func (o *UsageRumUnitsHour) UnsetMobileRumUnits() {
-	o.MobileRumUnits.Unset()
+	o.MobileRumUnits = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -223,11 +201,11 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.BrowserRumUnits.IsSet() {
-		toSerialize["browser_rum_units"] = o.BrowserRumUnits.Get()
+	if o.BrowserRumUnits != nil {
+		toSerialize["browser_rum_units"] = o.BrowserRumUnits
 	}
-	if o.MobileRumUnits.IsSet() {
-		toSerialize["mobile_rum_units"] = o.MobileRumUnits.Get()
+	if o.MobileRumUnits != nil {
+		toSerialize["mobile_rum_units"] = o.MobileRumUnits
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -249,8 +227,8 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserRumUnits datadog.NullableInt64 `json:"browser_rum_units,omitempty"`
-		MobileRumUnits  datadog.NullableInt64 `json:"mobile_rum_units,omitempty"`
+		BrowserRumUnits *int64                `json:"browser_rum_units,omitempty"`
+		MobileRumUnits  *int64                `json:"mobile_rum_units,omitempty"`
 		OrgName         *string               `json:"org_name,omitempty"`
 		PublicId        *string               `json:"public_id,omitempty"`
 		RumUnits        datadog.NullableInt64 `json:"rum_units,omitempty"`

@@ -20,13 +20,13 @@ type MetricsQueryMetadata struct {
 	End *int64 `json:"end,omitempty"`
 	// Metric expression.
 	Expression *string `json:"expression,omitempty"`
-	// Number of milliseconds between data samples.
+	// Number of seconds between data samples.
 	Interval *int64 `json:"interval,omitempty"`
 	// Number of data samples.
 	Length *int64 `json:"length,omitempty"`
 	// Metric name.
 	Metric *string `json:"metric,omitempty"`
-	// List of points of the time series in milliseconds.
+	// List of points of the time series.
 	Pointlist [][]*float64 `json:"pointlist,omitempty"`
 	// The index of the series' query within the request.
 	QueryIndex *int64 `json:"query_index,omitempty"`

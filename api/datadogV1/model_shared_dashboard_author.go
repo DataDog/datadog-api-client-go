@@ -15,7 +15,7 @@ type SharedDashboardAuthor struct {
 	// Identifier of the user who shared the dashboard.
 	Handle *string `json:"handle,omitempty"`
 	// Name of the user who shared the dashboard.
-	Name datadog.NullableString `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -66,43 +66,32 @@ func (o *SharedDashboardAuthor) SetHandle(v string) {
 	o.Handle = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *SharedDashboardAuthor) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardAuthor) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SharedDashboardAuthor) HasName() bool {
-	return o != nil && o.Name.IsSet()
+	return o != nil && o.Name != nil
 }
 
-// SetName gets a reference to the given datadog.NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SharedDashboardAuthor) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil.
-func (o *SharedDashboardAuthor) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil.
-func (o *SharedDashboardAuthor) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -114,8 +103,8 @@ func (o SharedDashboardAuthor) MarshalJSON() ([]byte, error) {
 	if o.Handle != nil {
 		toSerialize["handle"] = o.Handle
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -128,8 +117,8 @@ func (o SharedDashboardAuthor) MarshalJSON() ([]byte, error) {
 func (o *SharedDashboardAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Handle *string                `json:"handle,omitempty"`
-		Name   datadog.NullableString `json:"name,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Name   *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

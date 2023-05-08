@@ -14,11 +14,11 @@ import (
 // UsageFargateHour Number of Fargate tasks run and hourly usage.
 type UsageFargateHour struct {
 	// The high-water mark of APM ECS Fargate tasks during the given hour.
-	ApmFargateCount datadog.NullableInt64 `json:"apm_fargate_count,omitempty"`
+	ApmFargateCount *int64 `json:"apm_fargate_count,omitempty"`
 	// The Application Security Monitoring ECS Fargate tasks during the given hour.
-	AppsecFargateCount datadog.NullableInt64 `json:"appsec_fargate_count,omitempty"`
+	AppsecFargateCount *int64 `json:"appsec_fargate_count,omitempty"`
 	// The average profiled task count for Fargate Profiling.
-	AvgProfiledFargateTasks datadog.NullableInt64 `json:"avg_profiled_fargate_tasks,omitempty"`
+	AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -26,7 +26,7 @@ type UsageFargateHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// The number of Fargate tasks run.
-	TasksCount datadog.NullableInt64 `json:"tasks_count,omitempty"`
+	TasksCount *int64 `json:"tasks_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -49,121 +49,88 @@ func NewUsageFargateHourWithDefaults() *UsageFargateHour {
 	return &this
 }
 
-// GetApmFargateCount returns the ApmFargateCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetApmFargateCount returns the ApmFargateCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetApmFargateCount() int64 {
-	if o == nil || o.ApmFargateCount.Get() == nil {
+	if o == nil || o.ApmFargateCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ApmFargateCount.Get()
+	return *o.ApmFargateCount
 }
 
 // GetApmFargateCountOk returns a tuple with the ApmFargateCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetApmFargateCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.ApmFargateCount == nil {
 		return nil, false
 	}
-	return o.ApmFargateCount.Get(), o.ApmFargateCount.IsSet()
+	return o.ApmFargateCount, true
 }
 
 // HasApmFargateCount returns a boolean if a field has been set.
 func (o *UsageFargateHour) HasApmFargateCount() bool {
-	return o != nil && o.ApmFargateCount.IsSet()
+	return o != nil && o.ApmFargateCount != nil
 }
 
-// SetApmFargateCount gets a reference to the given datadog.NullableInt64 and assigns it to the ApmFargateCount field.
+// SetApmFargateCount gets a reference to the given int64 and assigns it to the ApmFargateCount field.
 func (o *UsageFargateHour) SetApmFargateCount(v int64) {
-	o.ApmFargateCount.Set(&v)
+	o.ApmFargateCount = &v
 }
 
-// SetApmFargateCountNil sets the value for ApmFargateCount to be an explicit nil.
-func (o *UsageFargateHour) SetApmFargateCountNil() {
-	o.ApmFargateCount.Set(nil)
-}
-
-// UnsetApmFargateCount ensures that no value is present for ApmFargateCount, not even an explicit nil.
-func (o *UsageFargateHour) UnsetApmFargateCount() {
-	o.ApmFargateCount.Unset()
-}
-
-// GetAppsecFargateCount returns the AppsecFargateCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAppsecFargateCount returns the AppsecFargateCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetAppsecFargateCount() int64 {
-	if o == nil || o.AppsecFargateCount.Get() == nil {
+	if o == nil || o.AppsecFargateCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AppsecFargateCount.Get()
+	return *o.AppsecFargateCount
 }
 
 // GetAppsecFargateCountOk returns a tuple with the AppsecFargateCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetAppsecFargateCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AppsecFargateCount == nil {
 		return nil, false
 	}
-	return o.AppsecFargateCount.Get(), o.AppsecFargateCount.IsSet()
+	return o.AppsecFargateCount, true
 }
 
 // HasAppsecFargateCount returns a boolean if a field has been set.
 func (o *UsageFargateHour) HasAppsecFargateCount() bool {
-	return o != nil && o.AppsecFargateCount.IsSet()
+	return o != nil && o.AppsecFargateCount != nil
 }
 
-// SetAppsecFargateCount gets a reference to the given datadog.NullableInt64 and assigns it to the AppsecFargateCount field.
+// SetAppsecFargateCount gets a reference to the given int64 and assigns it to the AppsecFargateCount field.
 func (o *UsageFargateHour) SetAppsecFargateCount(v int64) {
-	o.AppsecFargateCount.Set(&v)
+	o.AppsecFargateCount = &v
 }
 
-// SetAppsecFargateCountNil sets the value for AppsecFargateCount to be an explicit nil.
-func (o *UsageFargateHour) SetAppsecFargateCountNil() {
-	o.AppsecFargateCount.Set(nil)
-}
-
-// UnsetAppsecFargateCount ensures that no value is present for AppsecFargateCount, not even an explicit nil.
-func (o *UsageFargateHour) UnsetAppsecFargateCount() {
-	o.AppsecFargateCount.Unset()
-}
-
-// GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64 {
-	if o == nil || o.AvgProfiledFargateTasks.Get() == nil {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AvgProfiledFargateTasks.Get()
+	return *o.AvgProfiledFargateTasks
 }
 
 // GetAvgProfiledFargateTasksOk returns a tuple with the AvgProfiledFargateTasks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetAvgProfiledFargateTasksOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AvgProfiledFargateTasks == nil {
 		return nil, false
 	}
-	return o.AvgProfiledFargateTasks.Get(), o.AvgProfiledFargateTasks.IsSet()
+	return o.AvgProfiledFargateTasks, true
 }
 
 // HasAvgProfiledFargateTasks returns a boolean if a field has been set.
 func (o *UsageFargateHour) HasAvgProfiledFargateTasks() bool {
-	return o != nil && o.AvgProfiledFargateTasks.IsSet()
+	return o != nil && o.AvgProfiledFargateTasks != nil
 }
 
-// SetAvgProfiledFargateTasks gets a reference to the given datadog.NullableInt64 and assigns it to the AvgProfiledFargateTasks field.
+// SetAvgProfiledFargateTasks gets a reference to the given int64 and assigns it to the AvgProfiledFargateTasks field.
 func (o *UsageFargateHour) SetAvgProfiledFargateTasks(v int64) {
-	o.AvgProfiledFargateTasks.Set(&v)
-}
-
-// SetAvgProfiledFargateTasksNil sets the value for AvgProfiledFargateTasks to be an explicit nil.
-func (o *UsageFargateHour) SetAvgProfiledFargateTasksNil() {
-	o.AvgProfiledFargateTasks.Set(nil)
-}
-
-// UnsetAvgProfiledFargateTasks ensures that no value is present for AvgProfiledFargateTasks, not even an explicit nil.
-func (o *UsageFargateHour) UnsetAvgProfiledFargateTasks() {
-	o.AvgProfiledFargateTasks.Unset()
+	o.AvgProfiledFargateTasks = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -250,43 +217,32 @@ func (o *UsageFargateHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetTasksCount returns the TasksCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTasksCount returns the TasksCount field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetTasksCount() int64 {
-	if o == nil || o.TasksCount.Get() == nil {
+	if o == nil || o.TasksCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TasksCount.Get()
+	return *o.TasksCount
 }
 
 // GetTasksCountOk returns a tuple with the TasksCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetTasksCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.TasksCount == nil {
 		return nil, false
 	}
-	return o.TasksCount.Get(), o.TasksCount.IsSet()
+	return o.TasksCount, true
 }
 
 // HasTasksCount returns a boolean if a field has been set.
 func (o *UsageFargateHour) HasTasksCount() bool {
-	return o != nil && o.TasksCount.IsSet()
+	return o != nil && o.TasksCount != nil
 }
 
-// SetTasksCount gets a reference to the given datadog.NullableInt64 and assigns it to the TasksCount field.
+// SetTasksCount gets a reference to the given int64 and assigns it to the TasksCount field.
 func (o *UsageFargateHour) SetTasksCount(v int64) {
-	o.TasksCount.Set(&v)
-}
-
-// SetTasksCountNil sets the value for TasksCount to be an explicit nil.
-func (o *UsageFargateHour) SetTasksCountNil() {
-	o.TasksCount.Set(nil)
-}
-
-// UnsetTasksCount ensures that no value is present for TasksCount, not even an explicit nil.
-func (o *UsageFargateHour) UnsetTasksCount() {
-	o.TasksCount.Unset()
+	o.TasksCount = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -295,14 +251,14 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.ApmFargateCount.IsSet() {
-		toSerialize["apm_fargate_count"] = o.ApmFargateCount.Get()
+	if o.ApmFargateCount != nil {
+		toSerialize["apm_fargate_count"] = o.ApmFargateCount
 	}
-	if o.AppsecFargateCount.IsSet() {
-		toSerialize["appsec_fargate_count"] = o.AppsecFargateCount.Get()
+	if o.AppsecFargateCount != nil {
+		toSerialize["appsec_fargate_count"] = o.AppsecFargateCount
 	}
-	if o.AvgProfiledFargateTasks.IsSet() {
-		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks.Get()
+	if o.AvgProfiledFargateTasks != nil {
+		toSerialize["avg_profiled_fargate_tasks"] = o.AvgProfiledFargateTasks
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -317,8 +273,8 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.TasksCount.IsSet() {
-		toSerialize["tasks_count"] = o.TasksCount.Get()
+	if o.TasksCount != nil {
+		toSerialize["tasks_count"] = o.TasksCount
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -331,13 +287,13 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmFargateCount         datadog.NullableInt64 `json:"apm_fargate_count,omitempty"`
-		AppsecFargateCount      datadog.NullableInt64 `json:"appsec_fargate_count,omitempty"`
-		AvgProfiledFargateTasks datadog.NullableInt64 `json:"avg_profiled_fargate_tasks,omitempty"`
-		Hour                    *time.Time            `json:"hour,omitempty"`
-		OrgName                 *string               `json:"org_name,omitempty"`
-		PublicId                *string               `json:"public_id,omitempty"`
-		TasksCount              datadog.NullableInt64 `json:"tasks_count,omitempty"`
+		ApmFargateCount         *int64     `json:"apm_fargate_count,omitempty"`
+		AppsecFargateCount      *int64     `json:"appsec_fargate_count,omitempty"`
+		AvgProfiledFargateTasks *int64     `json:"avg_profiled_fargate_tasks,omitempty"`
+		Hour                    *time.Time `json:"hour,omitempty"`
+		OrgName                 *string    `json:"org_name,omitempty"`
+		PublicId                *string    `json:"public_id,omitempty"`
+		TasksCount              *int64     `json:"tasks_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -376,7 +376,6 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 type GetHourlyUsageOptionalParameters struct {
 	FilterTimestampEnd       *time.Time
 	FilterIncludeDescendants *bool
-	FilterIncludeBreakdown   *bool
 	FilterVersions           *string
 	PageLimit                *int32
 	PageNextRecordId         *string
@@ -397,12 +396,6 @@ func (r *GetHourlyUsageOptionalParameters) WithFilterTimestampEnd(filterTimestam
 // WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetHourlyUsageOptionalParameters {
 	r.FilterIncludeDescendants = &filterIncludeDescendants
-	return r
-}
-
-// WithFilterIncludeBreakdown sets the corresponding parameter name and returns the struct.
-func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeBreakdown(filterIncludeBreakdown bool) *GetHourlyUsageOptionalParameters {
-	r.FilterIncludeBreakdown = &filterIncludeBreakdown
 	return r
 }
 
@@ -458,9 +451,6 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 	}
 	if optionalParams.FilterIncludeDescendants != nil {
 		localVarQueryParams.Add("filter[include_descendants]", datadog.ParameterToString(*optionalParams.FilterIncludeDescendants, ""))
-	}
-	if optionalParams.FilterIncludeBreakdown != nil {
-		localVarQueryParams.Add("filter[include_breakdown]", datadog.ParameterToString(*optionalParams.FilterIncludeBreakdown, ""))
 	}
 	if optionalParams.FilterVersions != nil {
 		localVarQueryParams.Add("filter[versions]", datadog.ParameterToString(*optionalParams.FilterVersions, ""))

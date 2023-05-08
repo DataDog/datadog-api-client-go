@@ -15,47 +15,47 @@ import (
 type UsageHostHour struct {
 	// Contains the total number of infrastructure hosts reporting
 	// during a given hour that were running the Datadog Agent.
-	AgentHostCount datadog.NullableInt64 `json:"agent_host_count,omitempty"`
+	AgentHostCount *int64 `json:"agent_host_count,omitempty"`
 	// Contains the total number of hosts that reported through Alibaba integration
 	// (and were NOT running the Datadog Agent).
-	AlibabaHostCount datadog.NullableInt64 `json:"alibaba_host_count,omitempty"`
+	AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
 	// Contains the total number of Azure App Services hosts using APM.
-	ApmAzureAppServiceHostCount datadog.NullableInt64 `json:"apm_azure_app_service_host_count,omitempty"`
+	ApmAzureAppServiceHostCount *int64 `json:"apm_azure_app_service_host_count,omitempty"`
 	// Shows the total number of hosts using APM during the hour,
 	// these are counted as billable (except during trial periods).
-	ApmHostCount datadog.NullableInt64 `json:"apm_host_count,omitempty"`
+	ApmHostCount *int64 `json:"apm_host_count,omitempty"`
 	// Contains the total number of hosts that reported through the AWS integration
 	// (and were NOT running the Datadog Agent).
-	AwsHostCount datadog.NullableInt64 `json:"aws_host_count,omitempty"`
+	AwsHostCount *int64 `json:"aws_host_count,omitempty"`
 	// Contains the total number of hosts that reported through Azure integration
 	// (and were NOT running the Datadog Agent).
-	AzureHostCount datadog.NullableInt64 `json:"azure_host_count,omitempty"`
+	AzureHostCount *int64 `json:"azure_host_count,omitempty"`
 	// Shows the total number of containers reported by the Docker integration during the hour.
-	ContainerCount datadog.NullableInt64 `json:"container_count,omitempty"`
+	ContainerCount *int64 `json:"container_count,omitempty"`
 	// Contains the total number of hosts that reported through the Google Cloud integration
 	// (and were NOT running the Datadog Agent).
-	GcpHostCount datadog.NullableInt64 `json:"gcp_host_count,omitempty"`
+	GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
 	// Contains the total number of Heroku dynos reported by the Datadog Agent.
-	HerokuHostCount datadog.NullableInt64 `json:"heroku_host_count,omitempty"`
+	HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
 	// Contains the total number of billable infrastructure hosts reporting during a given hour.
 	// This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
-	HostCount datadog.NullableInt64 `json:"host_count,omitempty"`
+	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
-	Hour datadog.NullableTime `json:"hour,omitempty"`
+	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number of hosts that reported through the Azure App Services integration
 	// (and were NOT running the Datadog Agent).
-	InfraAzureAppService datadog.NullableInt64 `json:"infra_azure_app_service,omitempty"`
+	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
 	// Contains the total number of hosts using APM reported by Datadog exporter for the OpenTelemetry Collector.
-	OpentelemetryApmHostCount datadog.NullableInt64 `json:"opentelemetry_apm_host_count,omitempty"`
+	OpentelemetryApmHostCount *int64 `json:"opentelemetry_apm_host_count,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
-	OpentelemetryHostCount datadog.NullableInt64 `json:"opentelemetry_host_count,omitempty"`
+	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Contains the total number of hosts that reported through vSphere integration
 	// (and were NOT running the Datadog Agent).
-	VsphereHostCount datadog.NullableInt64 `json:"vsphere_host_count,omitempty"`
+	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -78,550 +78,396 @@ func NewUsageHostHourWithDefaults() *UsageHostHour {
 	return &this
 }
 
-// GetAgentHostCount returns the AgentHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAgentHostCount returns the AgentHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAgentHostCount() int64 {
-	if o == nil || o.AgentHostCount.Get() == nil {
+	if o == nil || o.AgentHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AgentHostCount.Get()
+	return *o.AgentHostCount
 }
 
 // GetAgentHostCountOk returns a tuple with the AgentHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetAgentHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AgentHostCount == nil {
 		return nil, false
 	}
-	return o.AgentHostCount.Get(), o.AgentHostCount.IsSet()
+	return o.AgentHostCount, true
 }
 
 // HasAgentHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAgentHostCount() bool {
-	return o != nil && o.AgentHostCount.IsSet()
+	return o != nil && o.AgentHostCount != nil
 }
 
-// SetAgentHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the AgentHostCount field.
+// SetAgentHostCount gets a reference to the given int64 and assigns it to the AgentHostCount field.
 func (o *UsageHostHour) SetAgentHostCount(v int64) {
-	o.AgentHostCount.Set(&v)
+	o.AgentHostCount = &v
 }
 
-// SetAgentHostCountNil sets the value for AgentHostCount to be an explicit nil.
-func (o *UsageHostHour) SetAgentHostCountNil() {
-	o.AgentHostCount.Set(nil)
-}
-
-// UnsetAgentHostCount ensures that no value is present for AgentHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetAgentHostCount() {
-	o.AgentHostCount.Unset()
-}
-
-// GetAlibabaHostCount returns the AlibabaHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlibabaHostCount returns the AlibabaHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAlibabaHostCount() int64 {
-	if o == nil || o.AlibabaHostCount.Get() == nil {
+	if o == nil || o.AlibabaHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AlibabaHostCount.Get()
+	return *o.AlibabaHostCount
 }
 
 // GetAlibabaHostCountOk returns a tuple with the AlibabaHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetAlibabaHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AlibabaHostCount == nil {
 		return nil, false
 	}
-	return o.AlibabaHostCount.Get(), o.AlibabaHostCount.IsSet()
+	return o.AlibabaHostCount, true
 }
 
 // HasAlibabaHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAlibabaHostCount() bool {
-	return o != nil && o.AlibabaHostCount.IsSet()
+	return o != nil && o.AlibabaHostCount != nil
 }
 
-// SetAlibabaHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the AlibabaHostCount field.
+// SetAlibabaHostCount gets a reference to the given int64 and assigns it to the AlibabaHostCount field.
 func (o *UsageHostHour) SetAlibabaHostCount(v int64) {
-	o.AlibabaHostCount.Set(&v)
+	o.AlibabaHostCount = &v
 }
 
-// SetAlibabaHostCountNil sets the value for AlibabaHostCount to be an explicit nil.
-func (o *UsageHostHour) SetAlibabaHostCountNil() {
-	o.AlibabaHostCount.Set(nil)
-}
-
-// UnsetAlibabaHostCount ensures that no value is present for AlibabaHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetAlibabaHostCount() {
-	o.AlibabaHostCount.Unset()
-}
-
-// GetApmAzureAppServiceHostCount returns the ApmAzureAppServiceHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetApmAzureAppServiceHostCount returns the ApmAzureAppServiceHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetApmAzureAppServiceHostCount() int64 {
-	if o == nil || o.ApmAzureAppServiceHostCount.Get() == nil {
+	if o == nil || o.ApmAzureAppServiceHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ApmAzureAppServiceHostCount.Get()
+	return *o.ApmAzureAppServiceHostCount
 }
 
 // GetApmAzureAppServiceHostCountOk returns a tuple with the ApmAzureAppServiceHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetApmAzureAppServiceHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.ApmAzureAppServiceHostCount == nil {
 		return nil, false
 	}
-	return o.ApmAzureAppServiceHostCount.Get(), o.ApmAzureAppServiceHostCount.IsSet()
+	return o.ApmAzureAppServiceHostCount, true
 }
 
 // HasApmAzureAppServiceHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasApmAzureAppServiceHostCount() bool {
-	return o != nil && o.ApmAzureAppServiceHostCount.IsSet()
+	return o != nil && o.ApmAzureAppServiceHostCount != nil
 }
 
-// SetApmAzureAppServiceHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the ApmAzureAppServiceHostCount field.
+// SetApmAzureAppServiceHostCount gets a reference to the given int64 and assigns it to the ApmAzureAppServiceHostCount field.
 func (o *UsageHostHour) SetApmAzureAppServiceHostCount(v int64) {
-	o.ApmAzureAppServiceHostCount.Set(&v)
+	o.ApmAzureAppServiceHostCount = &v
 }
 
-// SetApmAzureAppServiceHostCountNil sets the value for ApmAzureAppServiceHostCount to be an explicit nil.
-func (o *UsageHostHour) SetApmAzureAppServiceHostCountNil() {
-	o.ApmAzureAppServiceHostCount.Set(nil)
-}
-
-// UnsetApmAzureAppServiceHostCount ensures that no value is present for ApmAzureAppServiceHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetApmAzureAppServiceHostCount() {
-	o.ApmAzureAppServiceHostCount.Unset()
-}
-
-// GetApmHostCount returns the ApmHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetApmHostCount returns the ApmHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetApmHostCount() int64 {
-	if o == nil || o.ApmHostCount.Get() == nil {
+	if o == nil || o.ApmHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ApmHostCount.Get()
+	return *o.ApmHostCount
 }
 
 // GetApmHostCountOk returns a tuple with the ApmHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetApmHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.ApmHostCount == nil {
 		return nil, false
 	}
-	return o.ApmHostCount.Get(), o.ApmHostCount.IsSet()
+	return o.ApmHostCount, true
 }
 
 // HasApmHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasApmHostCount() bool {
-	return o != nil && o.ApmHostCount.IsSet()
+	return o != nil && o.ApmHostCount != nil
 }
 
-// SetApmHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the ApmHostCount field.
+// SetApmHostCount gets a reference to the given int64 and assigns it to the ApmHostCount field.
 func (o *UsageHostHour) SetApmHostCount(v int64) {
-	o.ApmHostCount.Set(&v)
+	o.ApmHostCount = &v
 }
 
-// SetApmHostCountNil sets the value for ApmHostCount to be an explicit nil.
-func (o *UsageHostHour) SetApmHostCountNil() {
-	o.ApmHostCount.Set(nil)
-}
-
-// UnsetApmHostCount ensures that no value is present for ApmHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetApmHostCount() {
-	o.ApmHostCount.Unset()
-}
-
-// GetAwsHostCount returns the AwsHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAwsHostCount returns the AwsHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAwsHostCount() int64 {
-	if o == nil || o.AwsHostCount.Get() == nil {
+	if o == nil || o.AwsHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AwsHostCount.Get()
+	return *o.AwsHostCount
 }
 
 // GetAwsHostCountOk returns a tuple with the AwsHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetAwsHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AwsHostCount == nil {
 		return nil, false
 	}
-	return o.AwsHostCount.Get(), o.AwsHostCount.IsSet()
+	return o.AwsHostCount, true
 }
 
 // HasAwsHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAwsHostCount() bool {
-	return o != nil && o.AwsHostCount.IsSet()
+	return o != nil && o.AwsHostCount != nil
 }
 
-// SetAwsHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the AwsHostCount field.
+// SetAwsHostCount gets a reference to the given int64 and assigns it to the AwsHostCount field.
 func (o *UsageHostHour) SetAwsHostCount(v int64) {
-	o.AwsHostCount.Set(&v)
+	o.AwsHostCount = &v
 }
 
-// SetAwsHostCountNil sets the value for AwsHostCount to be an explicit nil.
-func (o *UsageHostHour) SetAwsHostCountNil() {
-	o.AwsHostCount.Set(nil)
-}
-
-// UnsetAwsHostCount ensures that no value is present for AwsHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetAwsHostCount() {
-	o.AwsHostCount.Unset()
-}
-
-// GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAzureHostCount() int64 {
-	if o == nil || o.AzureHostCount.Get() == nil {
+	if o == nil || o.AzureHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AzureHostCount.Get()
+	return *o.AzureHostCount
 }
 
 // GetAzureHostCountOk returns a tuple with the AzureHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetAzureHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AzureHostCount == nil {
 		return nil, false
 	}
-	return o.AzureHostCount.Get(), o.AzureHostCount.IsSet()
+	return o.AzureHostCount, true
 }
 
 // HasAzureHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasAzureHostCount() bool {
-	return o != nil && o.AzureHostCount.IsSet()
+	return o != nil && o.AzureHostCount != nil
 }
 
-// SetAzureHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the AzureHostCount field.
+// SetAzureHostCount gets a reference to the given int64 and assigns it to the AzureHostCount field.
 func (o *UsageHostHour) SetAzureHostCount(v int64) {
-	o.AzureHostCount.Set(&v)
+	o.AzureHostCount = &v
 }
 
-// SetAzureHostCountNil sets the value for AzureHostCount to be an explicit nil.
-func (o *UsageHostHour) SetAzureHostCountNil() {
-	o.AzureHostCount.Set(nil)
-}
-
-// UnsetAzureHostCount ensures that no value is present for AzureHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetAzureHostCount() {
-	o.AzureHostCount.Unset()
-}
-
-// GetContainerCount returns the ContainerCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetContainerCount returns the ContainerCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetContainerCount() int64 {
-	if o == nil || o.ContainerCount.Get() == nil {
+	if o == nil || o.ContainerCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ContainerCount.Get()
+	return *o.ContainerCount
 }
 
 // GetContainerCountOk returns a tuple with the ContainerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetContainerCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.ContainerCount == nil {
 		return nil, false
 	}
-	return o.ContainerCount.Get(), o.ContainerCount.IsSet()
+	return o.ContainerCount, true
 }
 
 // HasContainerCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasContainerCount() bool {
-	return o != nil && o.ContainerCount.IsSet()
+	return o != nil && o.ContainerCount != nil
 }
 
-// SetContainerCount gets a reference to the given datadog.NullableInt64 and assigns it to the ContainerCount field.
+// SetContainerCount gets a reference to the given int64 and assigns it to the ContainerCount field.
 func (o *UsageHostHour) SetContainerCount(v int64) {
-	o.ContainerCount.Set(&v)
+	o.ContainerCount = &v
 }
 
-// SetContainerCountNil sets the value for ContainerCount to be an explicit nil.
-func (o *UsageHostHour) SetContainerCountNil() {
-	o.ContainerCount.Set(nil)
-}
-
-// UnsetContainerCount ensures that no value is present for ContainerCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetContainerCount() {
-	o.ContainerCount.Unset()
-}
-
-// GetGcpHostCount returns the GcpHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetGcpHostCount returns the GcpHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetGcpHostCount() int64 {
-	if o == nil || o.GcpHostCount.Get() == nil {
+	if o == nil || o.GcpHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.GcpHostCount.Get()
+	return *o.GcpHostCount
 }
 
 // GetGcpHostCountOk returns a tuple with the GcpHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetGcpHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.GcpHostCount == nil {
 		return nil, false
 	}
-	return o.GcpHostCount.Get(), o.GcpHostCount.IsSet()
+	return o.GcpHostCount, true
 }
 
 // HasGcpHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasGcpHostCount() bool {
-	return o != nil && o.GcpHostCount.IsSet()
+	return o != nil && o.GcpHostCount != nil
 }
 
-// SetGcpHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the GcpHostCount field.
+// SetGcpHostCount gets a reference to the given int64 and assigns it to the GcpHostCount field.
 func (o *UsageHostHour) SetGcpHostCount(v int64) {
-	o.GcpHostCount.Set(&v)
+	o.GcpHostCount = &v
 }
 
-// SetGcpHostCountNil sets the value for GcpHostCount to be an explicit nil.
-func (o *UsageHostHour) SetGcpHostCountNil() {
-	o.GcpHostCount.Set(nil)
-}
-
-// UnsetGcpHostCount ensures that no value is present for GcpHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetGcpHostCount() {
-	o.GcpHostCount.Unset()
-}
-
-// GetHerokuHostCount returns the HerokuHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHerokuHostCount returns the HerokuHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHerokuHostCount() int64 {
-	if o == nil || o.HerokuHostCount.Get() == nil {
+	if o == nil || o.HerokuHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.HerokuHostCount.Get()
+	return *o.HerokuHostCount
 }
 
 // GetHerokuHostCountOk returns a tuple with the HerokuHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetHerokuHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.HerokuHostCount == nil {
 		return nil, false
 	}
-	return o.HerokuHostCount.Get(), o.HerokuHostCount.IsSet()
+	return o.HerokuHostCount, true
 }
 
 // HasHerokuHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHerokuHostCount() bool {
-	return o != nil && o.HerokuHostCount.IsSet()
+	return o != nil && o.HerokuHostCount != nil
 }
 
-// SetHerokuHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the HerokuHostCount field.
+// SetHerokuHostCount gets a reference to the given int64 and assigns it to the HerokuHostCount field.
 func (o *UsageHostHour) SetHerokuHostCount(v int64) {
-	o.HerokuHostCount.Set(&v)
+	o.HerokuHostCount = &v
 }
 
-// SetHerokuHostCountNil sets the value for HerokuHostCount to be an explicit nil.
-func (o *UsageHostHour) SetHerokuHostCountNil() {
-	o.HerokuHostCount.Set(nil)
-}
-
-// UnsetHerokuHostCount ensures that no value is present for HerokuHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetHerokuHostCount() {
-	o.HerokuHostCount.Unset()
-}
-
-// GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHostCount() int64 {
-	if o == nil || o.HostCount.Get() == nil {
+	if o == nil || o.HostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.HostCount.Get()
+	return *o.HostCount
 }
 
 // GetHostCountOk returns a tuple with the HostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.HostCount == nil {
 		return nil, false
 	}
-	return o.HostCount.Get(), o.HostCount.IsSet()
+	return o.HostCount, true
 }
 
 // HasHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHostCount() bool {
-	return o != nil && o.HostCount.IsSet()
+	return o != nil && o.HostCount != nil
 }
 
-// SetHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the HostCount field.
+// SetHostCount gets a reference to the given int64 and assigns it to the HostCount field.
 func (o *UsageHostHour) SetHostCount(v int64) {
-	o.HostCount.Set(&v)
+	o.HostCount = &v
 }
 
-// SetHostCountNil sets the value for HostCount to be an explicit nil.
-func (o *UsageHostHour) SetHostCountNil() {
-	o.HostCount.Set(nil)
-}
-
-// UnsetHostCount ensures that no value is present for HostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetHostCount() {
-	o.HostCount.Unset()
-}
-
-// GetHour returns the Hour field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHour() time.Time {
-	if o == nil || o.Hour.Get() == nil {
+	if o == nil || o.Hour == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.Hour.Get()
+	return *o.Hour
 }
 
 // GetHourOk returns a tuple with the Hour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetHourOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || o.Hour == nil {
 		return nil, false
 	}
-	return o.Hour.Get(), o.Hour.IsSet()
+	return o.Hour, true
 }
 
 // HasHour returns a boolean if a field has been set.
 func (o *UsageHostHour) HasHour() bool {
-	return o != nil && o.Hour.IsSet()
+	return o != nil && o.Hour != nil
 }
 
-// SetHour gets a reference to the given datadog.NullableTime and assigns it to the Hour field.
+// SetHour gets a reference to the given time.Time and assigns it to the Hour field.
 func (o *UsageHostHour) SetHour(v time.Time) {
-	o.Hour.Set(&v)
+	o.Hour = &v
 }
 
-// SetHourNil sets the value for Hour to be an explicit nil.
-func (o *UsageHostHour) SetHourNil() {
-	o.Hour.Set(nil)
-}
-
-// UnsetHour ensures that no value is present for Hour, not even an explicit nil.
-func (o *UsageHostHour) UnsetHour() {
-	o.Hour.Unset()
-}
-
-// GetInfraAzureAppService returns the InfraAzureAppService field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetInfraAzureAppService returns the InfraAzureAppService field value if set, zero value otherwise.
 func (o *UsageHostHour) GetInfraAzureAppService() int64 {
-	if o == nil || o.InfraAzureAppService.Get() == nil {
+	if o == nil || o.InfraAzureAppService == nil {
 		var ret int64
 		return ret
 	}
-	return *o.InfraAzureAppService.Get()
+	return *o.InfraAzureAppService
 }
 
 // GetInfraAzureAppServiceOk returns a tuple with the InfraAzureAppService field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetInfraAzureAppServiceOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.InfraAzureAppService == nil {
 		return nil, false
 	}
-	return o.InfraAzureAppService.Get(), o.InfraAzureAppService.IsSet()
+	return o.InfraAzureAppService, true
 }
 
 // HasInfraAzureAppService returns a boolean if a field has been set.
 func (o *UsageHostHour) HasInfraAzureAppService() bool {
-	return o != nil && o.InfraAzureAppService.IsSet()
+	return o != nil && o.InfraAzureAppService != nil
 }
 
-// SetInfraAzureAppService gets a reference to the given datadog.NullableInt64 and assigns it to the InfraAzureAppService field.
+// SetInfraAzureAppService gets a reference to the given int64 and assigns it to the InfraAzureAppService field.
 func (o *UsageHostHour) SetInfraAzureAppService(v int64) {
-	o.InfraAzureAppService.Set(&v)
+	o.InfraAzureAppService = &v
 }
 
-// SetInfraAzureAppServiceNil sets the value for InfraAzureAppService to be an explicit nil.
-func (o *UsageHostHour) SetInfraAzureAppServiceNil() {
-	o.InfraAzureAppService.Set(nil)
-}
-
-// UnsetInfraAzureAppService ensures that no value is present for InfraAzureAppService, not even an explicit nil.
-func (o *UsageHostHour) UnsetInfraAzureAppService() {
-	o.InfraAzureAppService.Unset()
-}
-
-// GetOpentelemetryApmHostCount returns the OpentelemetryApmHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpentelemetryApmHostCount returns the OpentelemetryApmHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetOpentelemetryApmHostCount() int64 {
-	if o == nil || o.OpentelemetryApmHostCount.Get() == nil {
+	if o == nil || o.OpentelemetryApmHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.OpentelemetryApmHostCount.Get()
+	return *o.OpentelemetryApmHostCount
 }
 
 // GetOpentelemetryApmHostCountOk returns a tuple with the OpentelemetryApmHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetOpentelemetryApmHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.OpentelemetryApmHostCount == nil {
 		return nil, false
 	}
-	return o.OpentelemetryApmHostCount.Get(), o.OpentelemetryApmHostCount.IsSet()
+	return o.OpentelemetryApmHostCount, true
 }
 
 // HasOpentelemetryApmHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasOpentelemetryApmHostCount() bool {
-	return o != nil && o.OpentelemetryApmHostCount.IsSet()
+	return o != nil && o.OpentelemetryApmHostCount != nil
 }
 
-// SetOpentelemetryApmHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the OpentelemetryApmHostCount field.
+// SetOpentelemetryApmHostCount gets a reference to the given int64 and assigns it to the OpentelemetryApmHostCount field.
 func (o *UsageHostHour) SetOpentelemetryApmHostCount(v int64) {
-	o.OpentelemetryApmHostCount.Set(&v)
+	o.OpentelemetryApmHostCount = &v
 }
 
-// SetOpentelemetryApmHostCountNil sets the value for OpentelemetryApmHostCount to be an explicit nil.
-func (o *UsageHostHour) SetOpentelemetryApmHostCountNil() {
-	o.OpentelemetryApmHostCount.Set(nil)
-}
-
-// UnsetOpentelemetryApmHostCount ensures that no value is present for OpentelemetryApmHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetOpentelemetryApmHostCount() {
-	o.OpentelemetryApmHostCount.Unset()
-}
-
-// GetOpentelemetryHostCount returns the OpentelemetryHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOpentelemetryHostCount returns the OpentelemetryHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetOpentelemetryHostCount() int64 {
-	if o == nil || o.OpentelemetryHostCount.Get() == nil {
+	if o == nil || o.OpentelemetryHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.OpentelemetryHostCount.Get()
+	return *o.OpentelemetryHostCount
 }
 
 // GetOpentelemetryHostCountOk returns a tuple with the OpentelemetryHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetOpentelemetryHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.OpentelemetryHostCount == nil {
 		return nil, false
 	}
-	return o.OpentelemetryHostCount.Get(), o.OpentelemetryHostCount.IsSet()
+	return o.OpentelemetryHostCount, true
 }
 
 // HasOpentelemetryHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasOpentelemetryHostCount() bool {
-	return o != nil && o.OpentelemetryHostCount.IsSet()
+	return o != nil && o.OpentelemetryHostCount != nil
 }
 
-// SetOpentelemetryHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the OpentelemetryHostCount field.
+// SetOpentelemetryHostCount gets a reference to the given int64 and assigns it to the OpentelemetryHostCount field.
 func (o *UsageHostHour) SetOpentelemetryHostCount(v int64) {
-	o.OpentelemetryHostCount.Set(&v)
-}
-
-// SetOpentelemetryHostCountNil sets the value for OpentelemetryHostCount to be an explicit nil.
-func (o *UsageHostHour) SetOpentelemetryHostCountNil() {
-	o.OpentelemetryHostCount.Set(nil)
-}
-
-// UnsetOpentelemetryHostCount ensures that no value is present for OpentelemetryHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetOpentelemetryHostCount() {
-	o.OpentelemetryHostCount.Unset()
+	o.OpentelemetryHostCount = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -680,43 +526,32 @@ func (o *UsageHostHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetVsphereHostCount returns the VsphereHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetVsphereHostCount returns the VsphereHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetVsphereHostCount() int64 {
-	if o == nil || o.VsphereHostCount.Get() == nil {
+	if o == nil || o.VsphereHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.VsphereHostCount.Get()
+	return *o.VsphereHostCount
 }
 
 // GetVsphereHostCountOk returns a tuple with the VsphereHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageHostHour) GetVsphereHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.VsphereHostCount == nil {
 		return nil, false
 	}
-	return o.VsphereHostCount.Get(), o.VsphereHostCount.IsSet()
+	return o.VsphereHostCount, true
 }
 
 // HasVsphereHostCount returns a boolean if a field has been set.
 func (o *UsageHostHour) HasVsphereHostCount() bool {
-	return o != nil && o.VsphereHostCount.IsSet()
+	return o != nil && o.VsphereHostCount != nil
 }
 
-// SetVsphereHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the VsphereHostCount field.
+// SetVsphereHostCount gets a reference to the given int64 and assigns it to the VsphereHostCount field.
 func (o *UsageHostHour) SetVsphereHostCount(v int64) {
-	o.VsphereHostCount.Set(&v)
-}
-
-// SetVsphereHostCountNil sets the value for VsphereHostCount to be an explicit nil.
-func (o *UsageHostHour) SetVsphereHostCountNil() {
-	o.VsphereHostCount.Set(nil)
-}
-
-// UnsetVsphereHostCount ensures that no value is present for VsphereHostCount, not even an explicit nil.
-func (o *UsageHostHour) UnsetVsphereHostCount() {
-	o.VsphereHostCount.Unset()
+	o.VsphereHostCount = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -725,47 +560,51 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AgentHostCount.IsSet() {
-		toSerialize["agent_host_count"] = o.AgentHostCount.Get()
+	if o.AgentHostCount != nil {
+		toSerialize["agent_host_count"] = o.AgentHostCount
 	}
-	if o.AlibabaHostCount.IsSet() {
-		toSerialize["alibaba_host_count"] = o.AlibabaHostCount.Get()
+	if o.AlibabaHostCount != nil {
+		toSerialize["alibaba_host_count"] = o.AlibabaHostCount
 	}
-	if o.ApmAzureAppServiceHostCount.IsSet() {
-		toSerialize["apm_azure_app_service_host_count"] = o.ApmAzureAppServiceHostCount.Get()
+	if o.ApmAzureAppServiceHostCount != nil {
+		toSerialize["apm_azure_app_service_host_count"] = o.ApmAzureAppServiceHostCount
 	}
-	if o.ApmHostCount.IsSet() {
-		toSerialize["apm_host_count"] = o.ApmHostCount.Get()
+	if o.ApmHostCount != nil {
+		toSerialize["apm_host_count"] = o.ApmHostCount
 	}
-	if o.AwsHostCount.IsSet() {
-		toSerialize["aws_host_count"] = o.AwsHostCount.Get()
+	if o.AwsHostCount != nil {
+		toSerialize["aws_host_count"] = o.AwsHostCount
 	}
-	if o.AzureHostCount.IsSet() {
-		toSerialize["azure_host_count"] = o.AzureHostCount.Get()
+	if o.AzureHostCount != nil {
+		toSerialize["azure_host_count"] = o.AzureHostCount
 	}
-	if o.ContainerCount.IsSet() {
-		toSerialize["container_count"] = o.ContainerCount.Get()
+	if o.ContainerCount != nil {
+		toSerialize["container_count"] = o.ContainerCount
 	}
-	if o.GcpHostCount.IsSet() {
-		toSerialize["gcp_host_count"] = o.GcpHostCount.Get()
+	if o.GcpHostCount != nil {
+		toSerialize["gcp_host_count"] = o.GcpHostCount
 	}
-	if o.HerokuHostCount.IsSet() {
-		toSerialize["heroku_host_count"] = o.HerokuHostCount.Get()
+	if o.HerokuHostCount != nil {
+		toSerialize["heroku_host_count"] = o.HerokuHostCount
 	}
-	if o.HostCount.IsSet() {
-		toSerialize["host_count"] = o.HostCount.Get()
+	if o.HostCount != nil {
+		toSerialize["host_count"] = o.HostCount
 	}
-	if o.Hour.IsSet() {
-		toSerialize["hour"] = o.Hour.Get()
+	if o.Hour != nil {
+		if o.Hour.Nanosecond() == 0 {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
-	if o.InfraAzureAppService.IsSet() {
-		toSerialize["infra_azure_app_service"] = o.InfraAzureAppService.Get()
+	if o.InfraAzureAppService != nil {
+		toSerialize["infra_azure_app_service"] = o.InfraAzureAppService
 	}
-	if o.OpentelemetryApmHostCount.IsSet() {
-		toSerialize["opentelemetry_apm_host_count"] = o.OpentelemetryApmHostCount.Get()
+	if o.OpentelemetryApmHostCount != nil {
+		toSerialize["opentelemetry_apm_host_count"] = o.OpentelemetryApmHostCount
 	}
-	if o.OpentelemetryHostCount.IsSet() {
-		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount.Get()
+	if o.OpentelemetryHostCount != nil {
+		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -773,8 +612,8 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.VsphereHostCount.IsSet() {
-		toSerialize["vsphere_host_count"] = o.VsphereHostCount.Get()
+	if o.VsphereHostCount != nil {
+		toSerialize["vsphere_host_count"] = o.VsphereHostCount
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -787,23 +626,23 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentHostCount              datadog.NullableInt64 `json:"agent_host_count,omitempty"`
-		AlibabaHostCount            datadog.NullableInt64 `json:"alibaba_host_count,omitempty"`
-		ApmAzureAppServiceHostCount datadog.NullableInt64 `json:"apm_azure_app_service_host_count,omitempty"`
-		ApmHostCount                datadog.NullableInt64 `json:"apm_host_count,omitempty"`
-		AwsHostCount                datadog.NullableInt64 `json:"aws_host_count,omitempty"`
-		AzureHostCount              datadog.NullableInt64 `json:"azure_host_count,omitempty"`
-		ContainerCount              datadog.NullableInt64 `json:"container_count,omitempty"`
-		GcpHostCount                datadog.NullableInt64 `json:"gcp_host_count,omitempty"`
-		HerokuHostCount             datadog.NullableInt64 `json:"heroku_host_count,omitempty"`
-		HostCount                   datadog.NullableInt64 `json:"host_count,omitempty"`
-		Hour                        datadog.NullableTime  `json:"hour,omitempty"`
-		InfraAzureAppService        datadog.NullableInt64 `json:"infra_azure_app_service,omitempty"`
-		OpentelemetryApmHostCount   datadog.NullableInt64 `json:"opentelemetry_apm_host_count,omitempty"`
-		OpentelemetryHostCount      datadog.NullableInt64 `json:"opentelemetry_host_count,omitempty"`
-		OrgName                     *string               `json:"org_name,omitempty"`
-		PublicId                    *string               `json:"public_id,omitempty"`
-		VsphereHostCount            datadog.NullableInt64 `json:"vsphere_host_count,omitempty"`
+		AgentHostCount              *int64     `json:"agent_host_count,omitempty"`
+		AlibabaHostCount            *int64     `json:"alibaba_host_count,omitempty"`
+		ApmAzureAppServiceHostCount *int64     `json:"apm_azure_app_service_host_count,omitempty"`
+		ApmHostCount                *int64     `json:"apm_host_count,omitempty"`
+		AwsHostCount                *int64     `json:"aws_host_count,omitempty"`
+		AzureHostCount              *int64     `json:"azure_host_count,omitempty"`
+		ContainerCount              *int64     `json:"container_count,omitempty"`
+		GcpHostCount                *int64     `json:"gcp_host_count,omitempty"`
+		HerokuHostCount             *int64     `json:"heroku_host_count,omitempty"`
+		HostCount                   *int64     `json:"host_count,omitempty"`
+		Hour                        *time.Time `json:"hour,omitempty"`
+		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
+		OpentelemetryApmHostCount   *int64     `json:"opentelemetry_apm_host_count,omitempty"`
+		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
+		OrgName                     *string    `json:"org_name,omitempty"`
+		PublicId                    *string    `json:"public_id,omitempty"`
+		VsphereHostCount            *int64     `json:"vsphere_host_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

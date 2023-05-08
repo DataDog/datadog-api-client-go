@@ -17,7 +17,7 @@ type SLOCreator struct {
 	// User ID of the creator.
 	Id *int64 `json:"id,omitempty"`
 	// Name of the creator.
-	Name datadog.NullableString `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -96,43 +96,32 @@ func (o *SLOCreator) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOCreator) GetName() string {
-	if o == nil || o.Name.Get() == nil {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOCreator) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *SLOCreator) HasName() bool {
-	return o != nil && o.Name.IsSet()
+	return o != nil && o.Name != nil
 }
 
-// SetName gets a reference to the given datadog.NullableString and assigns it to the Name field.
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SLOCreator) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil.
-func (o *SLOCreator) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil.
-func (o *SLOCreator) UnsetName() {
-	o.Name.Unset()
+	o.Name = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -147,8 +136,8 @@ func (o SLOCreator) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -161,9 +150,9 @@ func (o SLOCreator) MarshalJSON() ([]byte, error) {
 func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email *string                `json:"email,omitempty"`
-		Id    *int64                 `json:"id,omitempty"`
-		Name  datadog.NullableString `json:"name,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Id    *int64  `json:"id,omitempty"`
+		Name  *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -14,9 +14,9 @@ import (
 // UsageCWSHour Cloud Workload Security usage for a given organization for a given hour.
 type UsageCWSHour struct {
 	// The total number of Cloud Workload Security container hours from the start of the given hour’s month until the given hour.
-	CwsContainerCount datadog.NullableInt64 `json:"cws_container_count,omitempty"`
+	CwsContainerCount *int64 `json:"cws_container_count,omitempty"`
 	// The total number of Cloud Workload Security host hours from the start of the given hour’s month until the given hour.
-	CwsHostCount datadog.NullableInt64 `json:"cws_host_count,omitempty"`
+	CwsHostCount *int64 `json:"cws_host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -45,82 +45,60 @@ func NewUsageCWSHourWithDefaults() *UsageCWSHour {
 	return &this
 }
 
-// GetCwsContainerCount returns the CwsContainerCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCwsContainerCount returns the CwsContainerCount field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetCwsContainerCount() int64 {
-	if o == nil || o.CwsContainerCount.Get() == nil {
+	if o == nil || o.CwsContainerCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CwsContainerCount.Get()
+	return *o.CwsContainerCount
 }
 
 // GetCwsContainerCountOk returns a tuple with the CwsContainerCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCWSHour) GetCwsContainerCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.CwsContainerCount == nil {
 		return nil, false
 	}
-	return o.CwsContainerCount.Get(), o.CwsContainerCount.IsSet()
+	return o.CwsContainerCount, true
 }
 
 // HasCwsContainerCount returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasCwsContainerCount() bool {
-	return o != nil && o.CwsContainerCount.IsSet()
+	return o != nil && o.CwsContainerCount != nil
 }
 
-// SetCwsContainerCount gets a reference to the given datadog.NullableInt64 and assigns it to the CwsContainerCount field.
+// SetCwsContainerCount gets a reference to the given int64 and assigns it to the CwsContainerCount field.
 func (o *UsageCWSHour) SetCwsContainerCount(v int64) {
-	o.CwsContainerCount.Set(&v)
+	o.CwsContainerCount = &v
 }
 
-// SetCwsContainerCountNil sets the value for CwsContainerCount to be an explicit nil.
-func (o *UsageCWSHour) SetCwsContainerCountNil() {
-	o.CwsContainerCount.Set(nil)
-}
-
-// UnsetCwsContainerCount ensures that no value is present for CwsContainerCount, not even an explicit nil.
-func (o *UsageCWSHour) UnsetCwsContainerCount() {
-	o.CwsContainerCount.Unset()
-}
-
-// GetCwsHostCount returns the CwsHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCwsHostCount returns the CwsHostCount field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetCwsHostCount() int64 {
-	if o == nil || o.CwsHostCount.Get() == nil {
+	if o == nil || o.CwsHostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CwsHostCount.Get()
+	return *o.CwsHostCount
 }
 
 // GetCwsHostCountOk returns a tuple with the CwsHostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCWSHour) GetCwsHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.CwsHostCount == nil {
 		return nil, false
 	}
-	return o.CwsHostCount.Get(), o.CwsHostCount.IsSet()
+	return o.CwsHostCount, true
 }
 
 // HasCwsHostCount returns a boolean if a field has been set.
 func (o *UsageCWSHour) HasCwsHostCount() bool {
-	return o != nil && o.CwsHostCount.IsSet()
+	return o != nil && o.CwsHostCount != nil
 }
 
-// SetCwsHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the CwsHostCount field.
+// SetCwsHostCount gets a reference to the given int64 and assigns it to the CwsHostCount field.
 func (o *UsageCWSHour) SetCwsHostCount(v int64) {
-	o.CwsHostCount.Set(&v)
-}
-
-// SetCwsHostCountNil sets the value for CwsHostCount to be an explicit nil.
-func (o *UsageCWSHour) SetCwsHostCountNil() {
-	o.CwsHostCount.Set(nil)
-}
-
-// UnsetCwsHostCount ensures that no value is present for CwsHostCount, not even an explicit nil.
-func (o *UsageCWSHour) UnsetCwsHostCount() {
-	o.CwsHostCount.Unset()
+	o.CwsHostCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -213,11 +191,11 @@ func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.CwsContainerCount.IsSet() {
-		toSerialize["cws_container_count"] = o.CwsContainerCount.Get()
+	if o.CwsContainerCount != nil {
+		toSerialize["cws_container_count"] = o.CwsContainerCount
 	}
-	if o.CwsHostCount.IsSet() {
-		toSerialize["cws_host_count"] = o.CwsHostCount.Get()
+	if o.CwsHostCount != nil {
+		toSerialize["cws_host_count"] = o.CwsHostCount
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -243,11 +221,11 @@ func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCWSHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CwsContainerCount datadog.NullableInt64 `json:"cws_container_count,omitempty"`
-		CwsHostCount      datadog.NullableInt64 `json:"cws_host_count,omitempty"`
-		Hour              *time.Time            `json:"hour,omitempty"`
-		OrgName           *string               `json:"org_name,omitempty"`
-		PublicId          *string               `json:"public_id,omitempty"`
+		CwsContainerCount *int64     `json:"cws_container_count,omitempty"`
+		CwsHostCount      *int64     `json:"cws_host_count,omitempty"`
+		Hour              *time.Time `json:"hour,omitempty"`
+		OrgName           *string    `json:"org_name,omitempty"`
+		PublicId          *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

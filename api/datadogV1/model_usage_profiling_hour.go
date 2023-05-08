@@ -14,9 +14,9 @@ import (
 // UsageProfilingHour The number of profiled hosts for each hour for a given organization.
 type UsageProfilingHour struct {
 	// Get average number of container agents for that hour.
-	AvgContainerAgentCount datadog.NullableInt64 `json:"avg_container_agent_count,omitempty"`
+	AvgContainerAgentCount *int64 `json:"avg_container_agent_count,omitempty"`
 	// Contains the total number of profiled hosts reporting during a given hour.
-	HostCount datadog.NullableInt64 `json:"host_count,omitempty"`
+	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -45,82 +45,60 @@ func NewUsageProfilingHourWithDefaults() *UsageProfilingHour {
 	return &this
 }
 
-// GetAvgContainerAgentCount returns the AvgContainerAgentCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAvgContainerAgentCount returns the AvgContainerAgentCount field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetAvgContainerAgentCount() int64 {
-	if o == nil || o.AvgContainerAgentCount.Get() == nil {
+	if o == nil || o.AvgContainerAgentCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AvgContainerAgentCount.Get()
+	return *o.AvgContainerAgentCount
 }
 
 // GetAvgContainerAgentCountOk returns a tuple with the AvgContainerAgentCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageProfilingHour) GetAvgContainerAgentCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.AvgContainerAgentCount == nil {
 		return nil, false
 	}
-	return o.AvgContainerAgentCount.Get(), o.AvgContainerAgentCount.IsSet()
+	return o.AvgContainerAgentCount, true
 }
 
 // HasAvgContainerAgentCount returns a boolean if a field has been set.
 func (o *UsageProfilingHour) HasAvgContainerAgentCount() bool {
-	return o != nil && o.AvgContainerAgentCount.IsSet()
+	return o != nil && o.AvgContainerAgentCount != nil
 }
 
-// SetAvgContainerAgentCount gets a reference to the given datadog.NullableInt64 and assigns it to the AvgContainerAgentCount field.
+// SetAvgContainerAgentCount gets a reference to the given int64 and assigns it to the AvgContainerAgentCount field.
 func (o *UsageProfilingHour) SetAvgContainerAgentCount(v int64) {
-	o.AvgContainerAgentCount.Set(&v)
+	o.AvgContainerAgentCount = &v
 }
 
-// SetAvgContainerAgentCountNil sets the value for AvgContainerAgentCount to be an explicit nil.
-func (o *UsageProfilingHour) SetAvgContainerAgentCountNil() {
-	o.AvgContainerAgentCount.Set(nil)
-}
-
-// UnsetAvgContainerAgentCount ensures that no value is present for AvgContainerAgentCount, not even an explicit nil.
-func (o *UsageProfilingHour) UnsetAvgContainerAgentCount() {
-	o.AvgContainerAgentCount.Unset()
-}
-
-// GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetHostCount() int64 {
-	if o == nil || o.HostCount.Get() == nil {
+	if o == nil || o.HostCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.HostCount.Get()
+	return *o.HostCount
 }
 
 // GetHostCountOk returns a tuple with the HostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageProfilingHour) GetHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.HostCount == nil {
 		return nil, false
 	}
-	return o.HostCount.Get(), o.HostCount.IsSet()
+	return o.HostCount, true
 }
 
 // HasHostCount returns a boolean if a field has been set.
 func (o *UsageProfilingHour) HasHostCount() bool {
-	return o != nil && o.HostCount.IsSet()
+	return o != nil && o.HostCount != nil
 }
 
-// SetHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the HostCount field.
+// SetHostCount gets a reference to the given int64 and assigns it to the HostCount field.
 func (o *UsageProfilingHour) SetHostCount(v int64) {
-	o.HostCount.Set(&v)
-}
-
-// SetHostCountNil sets the value for HostCount to be an explicit nil.
-func (o *UsageProfilingHour) SetHostCountNil() {
-	o.HostCount.Set(nil)
-}
-
-// UnsetHostCount ensures that no value is present for HostCount, not even an explicit nil.
-func (o *UsageProfilingHour) UnsetHostCount() {
-	o.HostCount.Unset()
+	o.HostCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -213,11 +191,11 @@ func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AvgContainerAgentCount.IsSet() {
-		toSerialize["avg_container_agent_count"] = o.AvgContainerAgentCount.Get()
+	if o.AvgContainerAgentCount != nil {
+		toSerialize["avg_container_agent_count"] = o.AvgContainerAgentCount
 	}
-	if o.HostCount.IsSet() {
-		toSerialize["host_count"] = o.HostCount.Get()
+	if o.HostCount != nil {
+		toSerialize["host_count"] = o.HostCount
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -243,11 +221,11 @@ func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
 func (o *UsageProfilingHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AvgContainerAgentCount datadog.NullableInt64 `json:"avg_container_agent_count,omitempty"`
-		HostCount              datadog.NullableInt64 `json:"host_count,omitempty"`
-		Hour                   *time.Time            `json:"hour,omitempty"`
-		OrgName                *string               `json:"org_name,omitempty"`
-		PublicId               *string               `json:"public_id,omitempty"`
+		AvgContainerAgentCount *int64     `json:"avg_container_agent_count,omitempty"`
+		HostCount              *int64     `json:"host_count,omitempty"`
+		Hour                   *time.Time `json:"hour,omitempty"`
+		OrgName                *string    `json:"org_name,omitempty"`
+		PublicId               *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -14,7 +14,7 @@ import (
 // UsageSyntheticsBrowserHour Number of Synthetics Browser tests run for each hour for a given organization.
 type UsageSyntheticsBrowserHour struct {
 	// Contains the number of Synthetics Browser tests run.
-	BrowserCheckCallsCount datadog.NullableInt64 `json:"browser_check_calls_count,omitempty"`
+	BrowserCheckCallsCount *int64 `json:"browser_check_calls_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -43,43 +43,32 @@ func NewUsageSyntheticsBrowserHourWithDefaults() *UsageSyntheticsBrowserHour {
 	return &this
 }
 
-// GetBrowserCheckCallsCount returns the BrowserCheckCallsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetBrowserCheckCallsCount returns the BrowserCheckCallsCount field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCount() int64 {
-	if o == nil || o.BrowserCheckCallsCount.Get() == nil {
+	if o == nil || o.BrowserCheckCallsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.BrowserCheckCallsCount.Get()
+	return *o.BrowserCheckCallsCount
 }
 
 // GetBrowserCheckCallsCountOk returns a tuple with the BrowserCheckCallsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.BrowserCheckCallsCount == nil {
 		return nil, false
 	}
-	return o.BrowserCheckCallsCount.Get(), o.BrowserCheckCallsCount.IsSet()
+	return o.BrowserCheckCallsCount, true
 }
 
 // HasBrowserCheckCallsCount returns a boolean if a field has been set.
 func (o *UsageSyntheticsBrowserHour) HasBrowserCheckCallsCount() bool {
-	return o != nil && o.BrowserCheckCallsCount.IsSet()
+	return o != nil && o.BrowserCheckCallsCount != nil
 }
 
-// SetBrowserCheckCallsCount gets a reference to the given datadog.NullableInt64 and assigns it to the BrowserCheckCallsCount field.
+// SetBrowserCheckCallsCount gets a reference to the given int64 and assigns it to the BrowserCheckCallsCount field.
 func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCount(v int64) {
-	o.BrowserCheckCallsCount.Set(&v)
-}
-
-// SetBrowserCheckCallsCountNil sets the value for BrowserCheckCallsCount to be an explicit nil.
-func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCountNil() {
-	o.BrowserCheckCallsCount.Set(nil)
-}
-
-// UnsetBrowserCheckCallsCount ensures that no value is present for BrowserCheckCallsCount, not even an explicit nil.
-func (o *UsageSyntheticsBrowserHour) UnsetBrowserCheckCallsCount() {
-	o.BrowserCheckCallsCount.Unset()
+	o.BrowserCheckCallsCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -172,8 +161,8 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.BrowserCheckCallsCount.IsSet() {
-		toSerialize["browser_check_calls_count"] = o.BrowserCheckCallsCount.Get()
+	if o.BrowserCheckCallsCount != nil {
+		toSerialize["browser_check_calls_count"] = o.BrowserCheckCallsCount
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -199,10 +188,10 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserCheckCallsCount datadog.NullableInt64 `json:"browser_check_calls_count,omitempty"`
-		Hour                   *time.Time            `json:"hour,omitempty"`
-		OrgName                *string               `json:"org_name,omitempty"`
-		PublicId               *string               `json:"public_id,omitempty"`
+		BrowserCheckCallsCount *int64     `json:"browser_check_calls_count,omitempty"`
+		Hour                   *time.Time `json:"hour,omitempty"`
+		OrgName                *string    `json:"org_name,omitempty"`
+		PublicId               *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

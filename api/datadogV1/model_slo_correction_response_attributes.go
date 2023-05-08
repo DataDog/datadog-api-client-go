@@ -15,7 +15,7 @@ type SLOCorrectionResponseAttributes struct {
 	// Category the SLO correction belongs to.
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// The epoch timestamp of when the correction was created at.
-	CreatedAt datadog.NullableInt64 `json:"created_at,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Object describing the creator of the shared element.
 	Creator *Creator `json:"creator,omitempty"`
 	// Description of the correction being made.
@@ -23,9 +23,9 @@ type SLOCorrectionResponseAttributes struct {
 	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
 	Duration datadog.NullableInt64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
-	End datadog.NullableInt64 `json:"end,omitempty"`
+	End *int64 `json:"end,omitempty"`
 	// The epoch timestamp of when the correction was modified at.
-	ModifiedAt datadog.NullableInt64 `json:"modified_at,omitempty"`
+	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// Modifier of the object.
 	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
 	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections
@@ -87,43 +87,32 @@ func (o *SLOCorrectionResponseAttributes) SetCategory(v SLOCorrectionCategory) {
 	o.Category = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetCreatedAt() int64 {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || o.CreatedAt == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CreatedAt.Get()
+	return *o.CreatedAt
 }
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOCorrectionResponseAttributes) GetCreatedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
-	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasCreatedAt() bool {
-	return o != nil && o.CreatedAt.IsSet()
+	return o != nil && o.CreatedAt != nil
 }
 
-// SetCreatedAt gets a reference to the given datadog.NullableInt64 and assigns it to the CreatedAt field.
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
 func (o *SLOCorrectionResponseAttributes) SetCreatedAt(v int64) {
-	o.CreatedAt.Set(&v)
-}
-
-// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil.
-func (o *SLOCorrectionResponseAttributes) SetCreatedAtNil() {
-	o.CreatedAt.Set(nil)
-}
-
-// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil.
-func (o *SLOCorrectionResponseAttributes) UnsetCreatedAt() {
-	o.CreatedAt.Unset()
+	o.CreatedAt = &v
 }
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
@@ -221,82 +210,60 @@ func (o *SLOCorrectionResponseAttributes) UnsetDuration() {
 	o.Duration.Unset()
 }
 
-// GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetEnd() int64 {
-	if o == nil || o.End.Get() == nil {
+	if o == nil || o.End == nil {
 		var ret int64
 		return ret
 	}
-	return *o.End.Get()
+	return *o.End
 }
 
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOCorrectionResponseAttributes) GetEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.End == nil {
 		return nil, false
 	}
-	return o.End.Get(), o.End.IsSet()
+	return o.End, true
 }
 
 // HasEnd returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasEnd() bool {
-	return o != nil && o.End.IsSet()
+	return o != nil && o.End != nil
 }
 
-// SetEnd gets a reference to the given datadog.NullableInt64 and assigns it to the End field.
+// SetEnd gets a reference to the given int64 and assigns it to the End field.
 func (o *SLOCorrectionResponseAttributes) SetEnd(v int64) {
-	o.End.Set(&v)
+	o.End = &v
 }
 
-// SetEndNil sets the value for End to be an explicit nil.
-func (o *SLOCorrectionResponseAttributes) SetEndNil() {
-	o.End.Set(nil)
-}
-
-// UnsetEnd ensures that no value is present for End, not even an explicit nil.
-func (o *SLOCorrectionResponseAttributes) UnsetEnd() {
-	o.End.Unset()
-}
-
-// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetModifiedAt() int64 {
-	if o == nil || o.ModifiedAt.Get() == nil {
+	if o == nil || o.ModifiedAt == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ModifiedAt.Get()
+	return *o.ModifiedAt
 }
 
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOCorrectionResponseAttributes) GetModifiedAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.ModifiedAt == nil {
 		return nil, false
 	}
-	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
+	return o.ModifiedAt, true
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
 func (o *SLOCorrectionResponseAttributes) HasModifiedAt() bool {
-	return o != nil && o.ModifiedAt.IsSet()
+	return o != nil && o.ModifiedAt != nil
 }
 
-// SetModifiedAt gets a reference to the given datadog.NullableInt64 and assigns it to the ModifiedAt field.
+// SetModifiedAt gets a reference to the given int64 and assigns it to the ModifiedAt field.
 func (o *SLOCorrectionResponseAttributes) SetModifiedAt(v int64) {
-	o.ModifiedAt.Set(&v)
-}
-
-// SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.
-func (o *SLOCorrectionResponseAttributes) SetModifiedAtNil() {
-	o.ModifiedAt.Set(nil)
-}
-
-// UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil.
-func (o *SLOCorrectionResponseAttributes) UnsetModifiedAt() {
-	o.ModifiedAt.Unset()
+	o.ModifiedAt = &v
 }
 
 // GetModifier returns the Modifier field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -470,8 +437,8 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
-	if o.CreatedAt.IsSet() {
-		toSerialize["created_at"] = o.CreatedAt.Get()
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.Creator != nil {
 		toSerialize["creator"] = o.Creator
@@ -482,11 +449,11 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Duration.IsSet() {
 		toSerialize["duration"] = o.Duration.Get()
 	}
-	if o.End.IsSet() {
-		toSerialize["end"] = o.End.Get()
+	if o.End != nil {
+		toSerialize["end"] = o.End
 	}
-	if o.ModifiedAt.IsSet() {
-		toSerialize["modified_at"] = o.ModifiedAt.Get()
+	if o.ModifiedAt != nil {
+		toSerialize["modified_at"] = o.ModifiedAt
 	}
 	if o.Modifier.IsSet() {
 		toSerialize["modifier"] = o.Modifier.Get()
@@ -515,12 +482,12 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		Category    *SLOCorrectionCategory                          `json:"category,omitempty"`
-		CreatedAt   datadog.NullableInt64                           `json:"created_at,omitempty"`
+		CreatedAt   *int64                                          `json:"created_at,omitempty"`
 		Creator     *Creator                                        `json:"creator,omitempty"`
 		Description *string                                         `json:"description,omitempty"`
 		Duration    datadog.NullableInt64                           `json:"duration,omitempty"`
-		End         datadog.NullableInt64                           `json:"end,omitempty"`
-		ModifiedAt  datadog.NullableInt64                           `json:"modified_at,omitempty"`
+		End         *int64                                          `json:"end,omitempty"`
+		ModifiedAt  *int64                                          `json:"modified_at,omitempty"`
 		Modifier    NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
 		Rrule       datadog.NullableString                          `json:"rrule,omitempty"`
 		SloId       *string                                         `json:"slo_id,omitempty"`

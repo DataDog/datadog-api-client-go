@@ -13,8 +13,6 @@ import (
 
 // SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
 type SLOWidgetDefinition struct {
-	// Additional filters applied to the SLO query.
-	AdditionalQueryFilters *string `json:"additional_query_filters,omitempty"`
 	// Defined global time target.
 	GlobalTimeTarget *string `json:"global_time_target,omitempty"`
 	// Defined error budget.
@@ -61,34 +59,6 @@ func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	var viewType string = "detail"
 	this.ViewType = viewType
 	return &this
-}
-
-// GetAdditionalQueryFilters returns the AdditionalQueryFilters field value if set, zero value otherwise.
-func (o *SLOWidgetDefinition) GetAdditionalQueryFilters() string {
-	if o == nil || o.AdditionalQueryFilters == nil {
-		var ret string
-		return ret
-	}
-	return *o.AdditionalQueryFilters
-}
-
-// GetAdditionalQueryFiltersOk returns a tuple with the AdditionalQueryFilters field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SLOWidgetDefinition) GetAdditionalQueryFiltersOk() (*string, bool) {
-	if o == nil || o.AdditionalQueryFilters == nil {
-		return nil, false
-	}
-	return o.AdditionalQueryFilters, true
-}
-
-// HasAdditionalQueryFilters returns a boolean if a field has been set.
-func (o *SLOWidgetDefinition) HasAdditionalQueryFilters() bool {
-	return o != nil && o.AdditionalQueryFilters != nil
-}
-
-// SetAdditionalQueryFilters gets a reference to the given string and assigns it to the AdditionalQueryFilters field.
-func (o *SLOWidgetDefinition) SetAdditionalQueryFilters(v string) {
-	o.AdditionalQueryFilters = &v
 }
 
 // GetGlobalTimeTarget returns the GlobalTimeTarget field value if set, zero value otherwise.
@@ -367,9 +337,6 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AdditionalQueryFilters != nil {
-		toSerialize["additional_query_filters"] = o.AdditionalQueryFilters
-	}
 	if o.GlobalTimeTarget != nil {
 		toSerialize["global_time_target"] = o.GlobalTimeTarget
 	}
@@ -411,17 +378,16 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		ViewType *string                  `json:"view_type"`
 	}{}
 	all := struct {
-		AdditionalQueryFilters *string                 `json:"additional_query_filters,omitempty"`
-		GlobalTimeTarget       *string                 `json:"global_time_target,omitempty"`
-		ShowErrorBudget        *bool                   `json:"show_error_budget,omitempty"`
-		SloId                  *string                 `json:"slo_id,omitempty"`
-		TimeWindows            []WidgetTimeWindows     `json:"time_windows,omitempty"`
-		Title                  *string                 `json:"title,omitempty"`
-		TitleAlign             *WidgetTextAlign        `json:"title_align,omitempty"`
-		TitleSize              *string                 `json:"title_size,omitempty"`
-		Type                   SLOWidgetDefinitionType `json:"type"`
-		ViewMode               *WidgetViewMode         `json:"view_mode,omitempty"`
-		ViewType               string                  `json:"view_type"`
+		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"`
+		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"`
+		SloId            *string                 `json:"slo_id,omitempty"`
+		TimeWindows      []WidgetTimeWindows     `json:"time_windows,omitempty"`
+		Title            *string                 `json:"title,omitempty"`
+		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"`
+		TitleSize        *string                 `json:"title_size,omitempty"`
+		Type             SLOWidgetDefinitionType `json:"type"`
+		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"`
+		ViewType         string                  `json:"view_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -444,7 +410,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"additional_query_filters", "global_time_target", "show_error_budget", "slo_id", "time_windows", "title", "title_align", "title_size", "type", "view_mode", "view_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"global_time_target", "show_error_budget", "slo_id", "time_windows", "title", "title_align", "title_size", "type", "view_mode", "view_type"})
 	} else {
 		return err
 	}
@@ -472,7 +438,6 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AdditionalQueryFilters = all.AdditionalQueryFilters
 	o.GlobalTimeTarget = all.GlobalTimeTarget
 	o.ShowErrorBudget = all.ShowErrorBudget
 	o.SloId = all.SloId

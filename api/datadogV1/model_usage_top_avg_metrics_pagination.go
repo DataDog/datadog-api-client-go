@@ -17,7 +17,7 @@ type UsageTopAvgMetricsPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
 	NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	// Total number of records.
-	TotalNumberOfRecords datadog.NullableInt64 `json:"total_number_of_records,omitempty"`
+	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -107,43 +107,32 @@ func (o *UsageTopAvgMetricsPagination) UnsetNextRecordId() {
 	o.NextRecordId.Unset()
 }
 
-// GetTotalNumberOfRecords returns the TotalNumberOfRecords field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTotalNumberOfRecords returns the TotalNumberOfRecords field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsPagination) GetTotalNumberOfRecords() int64 {
-	if o == nil || o.TotalNumberOfRecords.Get() == nil {
+	if o == nil || o.TotalNumberOfRecords == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TotalNumberOfRecords.Get()
+	return *o.TotalNumberOfRecords
 }
 
 // GetTotalNumberOfRecordsOk returns a tuple with the TotalNumberOfRecords field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTopAvgMetricsPagination) GetTotalNumberOfRecordsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.TotalNumberOfRecords == nil {
 		return nil, false
 	}
-	return o.TotalNumberOfRecords.Get(), o.TotalNumberOfRecords.IsSet()
+	return o.TotalNumberOfRecords, true
 }
 
 // HasTotalNumberOfRecords returns a boolean if a field has been set.
 func (o *UsageTopAvgMetricsPagination) HasTotalNumberOfRecords() bool {
-	return o != nil && o.TotalNumberOfRecords.IsSet()
+	return o != nil && o.TotalNumberOfRecords != nil
 }
 
-// SetTotalNumberOfRecords gets a reference to the given datadog.NullableInt64 and assigns it to the TotalNumberOfRecords field.
+// SetTotalNumberOfRecords gets a reference to the given int64 and assigns it to the TotalNumberOfRecords field.
 func (o *UsageTopAvgMetricsPagination) SetTotalNumberOfRecords(v int64) {
-	o.TotalNumberOfRecords.Set(&v)
-}
-
-// SetTotalNumberOfRecordsNil sets the value for TotalNumberOfRecords to be an explicit nil.
-func (o *UsageTopAvgMetricsPagination) SetTotalNumberOfRecordsNil() {
-	o.TotalNumberOfRecords.Set(nil)
-}
-
-// UnsetTotalNumberOfRecords ensures that no value is present for TotalNumberOfRecords, not even an explicit nil.
-func (o *UsageTopAvgMetricsPagination) UnsetTotalNumberOfRecords() {
-	o.TotalNumberOfRecords.Unset()
+	o.TotalNumberOfRecords = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -158,8 +147,8 @@ func (o UsageTopAvgMetricsPagination) MarshalJSON() ([]byte, error) {
 	if o.NextRecordId.IsSet() {
 		toSerialize["next_record_id"] = o.NextRecordId.Get()
 	}
-	if o.TotalNumberOfRecords.IsSet() {
-		toSerialize["total_number_of_records"] = o.TotalNumberOfRecords.Get()
+	if o.TotalNumberOfRecords != nil {
+		toSerialize["total_number_of_records"] = o.TotalNumberOfRecords
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -174,7 +163,7 @@ func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Limit                *int64                 `json:"limit,omitempty"`
 		NextRecordId         datadog.NullableString `json:"next_record_id,omitempty"`
-		TotalNumberOfRecords datadog.NullableInt64  `json:"total_number_of_records,omitempty"`
+		TotalNumberOfRecords *int64                 `json:"total_number_of_records,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

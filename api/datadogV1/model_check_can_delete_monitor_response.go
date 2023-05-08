@@ -63,9 +63,9 @@ func (o *CheckCanDeleteMonitorResponse) SetData(v CheckCanDeleteMonitorResponseD
 	o.Data = v
 }
 
-// GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *CheckCanDeleteMonitorResponse) GetErrors() map[string][]string {
-	if o == nil {
+	if o == nil || o.Errors == nil {
 		var ret map[string][]string
 		return ret
 	}
@@ -74,7 +74,6 @@ func (o *CheckCanDeleteMonitorResponse) GetErrors() map[string][]string {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CheckCanDeleteMonitorResponse) GetErrorsOk() (*map[string][]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false

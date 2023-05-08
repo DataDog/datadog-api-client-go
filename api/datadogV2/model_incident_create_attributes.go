@@ -13,8 +13,6 @@ import (
 
 // IncidentCreateAttributes The incident's attributes for a create request.
 type IncidentCreateAttributes struct {
-	// Required if `customer_impacted:"true"`. A summary of the impact customers experienced during the incident.
-	CustomerImpactScope *string `json:"customer_impact_scope,omitempty"`
 	// A flag indicating whether the incident caused customer impact.
 	CustomerImpacted bool `json:"customer_impacted"`
 	// A condensed view of the user-defined fields for which to create initial selections.
@@ -47,34 +45,6 @@ func NewIncidentCreateAttributes(customerImpacted bool, title string) *IncidentC
 func NewIncidentCreateAttributesWithDefaults() *IncidentCreateAttributes {
 	this := IncidentCreateAttributes{}
 	return &this
-}
-
-// GetCustomerImpactScope returns the CustomerImpactScope field value if set, zero value otherwise.
-func (o *IncidentCreateAttributes) GetCustomerImpactScope() string {
-	if o == nil || o.CustomerImpactScope == nil {
-		var ret string
-		return ret
-	}
-	return *o.CustomerImpactScope
-}
-
-// GetCustomerImpactScopeOk returns a tuple with the CustomerImpactScope field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentCreateAttributes) GetCustomerImpactScopeOk() (*string, bool) {
-	if o == nil || o.CustomerImpactScope == nil {
-		return nil, false
-	}
-	return o.CustomerImpactScope, true
-}
-
-// HasCustomerImpactScope returns a boolean if a field has been set.
-func (o *IncidentCreateAttributes) HasCustomerImpactScope() bool {
-	return o != nil && o.CustomerImpactScope != nil
-}
-
-// SetCustomerImpactScope gets a reference to the given string and assigns it to the CustomerImpactScope field.
-func (o *IncidentCreateAttributes) SetCustomerImpactScope(v string) {
-	o.CustomerImpactScope = &v
 }
 
 // GetCustomerImpacted returns the CustomerImpacted field value.
@@ -213,9 +183,6 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.CustomerImpactScope != nil {
-		toSerialize["customer_impact_scope"] = o.CustomerImpactScope
-	}
 	toSerialize["customer_impacted"] = o.CustomerImpacted
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
@@ -242,7 +209,6 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Title            *string `json:"title"`
 	}{}
 	all := struct {
-		CustomerImpactScope *string                                `json:"customer_impact_scope,omitempty"`
 		CustomerImpacted    bool                                   `json:"customer_impacted"`
 		Fields              map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
 		InitialCells        []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
@@ -270,11 +236,10 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impact_scope", "customer_impacted", "fields", "initial_cells", "notification_handles", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impacted", "fields", "initial_cells", "notification_handles", "title"})
 	} else {
 		return err
 	}
-	o.CustomerImpactScope = all.CustomerImpactScope
 	o.CustomerImpacted = all.CustomerImpacted
 	o.Fields = all.Fields
 	o.InitialCells = all.InitialCells

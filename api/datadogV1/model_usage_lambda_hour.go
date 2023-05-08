@@ -15,11 +15,11 @@ import (
 // for each hour for a given organization.
 type UsageLambdaHour struct {
 	// Contains the number of different functions for each region and AWS account.
-	FuncCount datadog.NullableInt64 `json:"func_count,omitempty"`
+	FuncCount *int64 `json:"func_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the sum of invocations of all functions.
-	InvocationsSum datadog.NullableInt64 `json:"invocations_sum,omitempty"`
+	InvocationsSum *int64 `json:"invocations_sum,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -46,43 +46,32 @@ func NewUsageLambdaHourWithDefaults() *UsageLambdaHour {
 	return &this
 }
 
-// GetFuncCount returns the FuncCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFuncCount returns the FuncCount field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetFuncCount() int64 {
-	if o == nil || o.FuncCount.Get() == nil {
+	if o == nil || o.FuncCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.FuncCount.Get()
+	return *o.FuncCount
 }
 
 // GetFuncCountOk returns a tuple with the FuncCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetFuncCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.FuncCount == nil {
 		return nil, false
 	}
-	return o.FuncCount.Get(), o.FuncCount.IsSet()
+	return o.FuncCount, true
 }
 
 // HasFuncCount returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasFuncCount() bool {
-	return o != nil && o.FuncCount.IsSet()
+	return o != nil && o.FuncCount != nil
 }
 
-// SetFuncCount gets a reference to the given datadog.NullableInt64 and assigns it to the FuncCount field.
+// SetFuncCount gets a reference to the given int64 and assigns it to the FuncCount field.
 func (o *UsageLambdaHour) SetFuncCount(v int64) {
-	o.FuncCount.Set(&v)
-}
-
-// SetFuncCountNil sets the value for FuncCount to be an explicit nil.
-func (o *UsageLambdaHour) SetFuncCountNil() {
-	o.FuncCount.Set(nil)
-}
-
-// UnsetFuncCount ensures that no value is present for FuncCount, not even an explicit nil.
-func (o *UsageLambdaHour) UnsetFuncCount() {
-	o.FuncCount.Unset()
+	o.FuncCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -113,43 +102,32 @@ func (o *UsageLambdaHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetInvocationsSum() int64 {
-	if o == nil || o.InvocationsSum.Get() == nil {
+	if o == nil || o.InvocationsSum == nil {
 		var ret int64
 		return ret
 	}
-	return *o.InvocationsSum.Get()
+	return *o.InvocationsSum
 }
 
 // GetInvocationsSumOk returns a tuple with the InvocationsSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetInvocationsSumOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.InvocationsSum == nil {
 		return nil, false
 	}
-	return o.InvocationsSum.Get(), o.InvocationsSum.IsSet()
+	return o.InvocationsSum, true
 }
 
 // HasInvocationsSum returns a boolean if a field has been set.
 func (o *UsageLambdaHour) HasInvocationsSum() bool {
-	return o != nil && o.InvocationsSum.IsSet()
+	return o != nil && o.InvocationsSum != nil
 }
 
-// SetInvocationsSum gets a reference to the given datadog.NullableInt64 and assigns it to the InvocationsSum field.
+// SetInvocationsSum gets a reference to the given int64 and assigns it to the InvocationsSum field.
 func (o *UsageLambdaHour) SetInvocationsSum(v int64) {
-	o.InvocationsSum.Set(&v)
-}
-
-// SetInvocationsSumNil sets the value for InvocationsSum to be an explicit nil.
-func (o *UsageLambdaHour) SetInvocationsSumNil() {
-	o.InvocationsSum.Set(nil)
-}
-
-// UnsetInvocationsSum ensures that no value is present for InvocationsSum, not even an explicit nil.
-func (o *UsageLambdaHour) UnsetInvocationsSum() {
-	o.InvocationsSum.Unset()
+	o.InvocationsSum = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -214,8 +192,8 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.FuncCount.IsSet() {
-		toSerialize["func_count"] = o.FuncCount.Get()
+	if o.FuncCount != nil {
+		toSerialize["func_count"] = o.FuncCount
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -224,8 +202,8 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.InvocationsSum.IsSet() {
-		toSerialize["invocations_sum"] = o.InvocationsSum.Get()
+	if o.InvocationsSum != nil {
+		toSerialize["invocations_sum"] = o.InvocationsSum
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -244,11 +222,11 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FuncCount      datadog.NullableInt64 `json:"func_count,omitempty"`
-		Hour           *time.Time            `json:"hour,omitempty"`
-		InvocationsSum datadog.NullableInt64 `json:"invocations_sum,omitempty"`
-		OrgName        *string               `json:"org_name,omitempty"`
-		PublicId       *string               `json:"public_id,omitempty"`
+		FuncCount      *int64     `json:"func_count,omitempty"`
+		Hour           *time.Time `json:"hour,omitempty"`
+		InvocationsSum *int64     `json:"invocations_sum,omitempty"`
+		OrgName        *string    `json:"org_name,omitempty"`
+		PublicId       *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -34,7 +34,7 @@ type SLOHistoryMonitor struct {
 	// calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
-	SliValue datadog.NullableFloat64 `json:"sli_value,omitempty"`
+	SliValue *float64 `json:"sli_value,omitempty"`
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp.
 	SpanPrecision *float64 `json:"span_precision,omitempty"`
 	// Use `sli_value` instead.
@@ -317,43 +317,32 @@ func (o *SLOHistoryMonitor) SetPreview(v bool) {
 	o.Preview = &v
 }
 
-// GetSliValue returns the SliValue field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSliValue returns the SliValue field value if set, zero value otherwise.
 func (o *SLOHistoryMonitor) GetSliValue() float64 {
-	if o == nil || o.SliValue.Get() == nil {
+	if o == nil || o.SliValue == nil {
 		var ret float64
 		return ret
 	}
-	return *o.SliValue.Get()
+	return *o.SliValue
 }
 
 // GetSliValueOk returns a tuple with the SliValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryMonitor) GetSliValueOk() (*float64, bool) {
-	if o == nil {
+	if o == nil || o.SliValue == nil {
 		return nil, false
 	}
-	return o.SliValue.Get(), o.SliValue.IsSet()
+	return o.SliValue, true
 }
 
 // HasSliValue returns a boolean if a field has been set.
 func (o *SLOHistoryMonitor) HasSliValue() bool {
-	return o != nil && o.SliValue.IsSet()
+	return o != nil && o.SliValue != nil
 }
 
-// SetSliValue gets a reference to the given datadog.NullableFloat64 and assigns it to the SliValue field.
+// SetSliValue gets a reference to the given float64 and assigns it to the SliValue field.
 func (o *SLOHistoryMonitor) SetSliValue(v float64) {
-	o.SliValue.Set(&v)
-}
-
-// SetSliValueNil sets the value for SliValue to be an explicit nil.
-func (o *SLOHistoryMonitor) SetSliValueNil() {
-	o.SliValue.Set(nil)
-}
-
-// UnsetSliValue ensures that no value is present for SliValue, not even an explicit nil.
-func (o *SLOHistoryMonitor) UnsetSliValue() {
-	o.SliValue.Unset()
+	o.SliValue = &v
 }
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
@@ -448,8 +437,8 @@ func (o SLOHistoryMonitor) MarshalJSON() ([]byte, error) {
 	if o.Preview != nil {
 		toSerialize["preview"] = o.Preview
 	}
-	if o.SliValue.IsSet() {
-		toSerialize["sli_value"] = o.SliValue.Get()
+	if o.SliValue != nil {
+		toSerialize["sli_value"] = o.SliValue
 	}
 	if o.SpanPrecision != nil {
 		toSerialize["span_precision"] = o.SpanPrecision
@@ -477,7 +466,7 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 		Name                 *string                           `json:"name,omitempty"`
 		Precision            *float64                          `json:"precision,omitempty"`
 		Preview              *bool                             `json:"preview,omitempty"`
-		SliValue             datadog.NullableFloat64           `json:"sli_value,omitempty"`
+		SliValue             *float64                          `json:"sli_value,omitempty"`
 		SpanPrecision        *float64                          `json:"span_precision,omitempty"`
 		Uptime               *float64                          `json:"uptime,omitempty"`
 	}{}

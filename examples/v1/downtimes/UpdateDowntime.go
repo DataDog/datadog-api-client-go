@@ -18,17 +18,8 @@ func main() {
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
 	body := datadogV1.Downtime{
-		Message:                       *datadog.NewNullableString(datadog.PtrString("Example-Downtime-updated")),
+		Message:                       datadog.PtrString("Example-Downtime-updated"),
 		MuteFirstRecoveryNotification: datadog.PtrBool(true),
-		NotifyEndStates: []datadogV1.NotifyEndState{
-			datadogV1.NOTIFYENDSTATE_ALERT,
-			datadogV1.NOTIFYENDSTATE_NO_DATA,
-			datadogV1.NOTIFYENDSTATE_WARN,
-		},
-		NotifyEndTypes: []datadogV1.NotifyEndType{
-			datadogV1.NOTIFYENDTYPE_CANCELED,
-			datadogV1.NOTIFYENDTYPE_EXPIRED,
-		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

@@ -16,7 +16,7 @@ type LogsListResponse struct {
 	Logs []Log `json:"logs,omitempty"`
 	// Hash identifier of the next log to return in the list.
 	// This parameter is used for the pagination feature.
-	NextLogId datadog.NullableString `json:"nextLogId,omitempty"`
+	NextLogId *string `json:"nextLogId,omitempty"`
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -69,43 +69,32 @@ func (o *LogsListResponse) SetLogs(v []Log) {
 	o.Logs = v
 }
 
-// GetNextLogId returns the NextLogId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetNextLogId returns the NextLogId field value if set, zero value otherwise.
 func (o *LogsListResponse) GetNextLogId() string {
-	if o == nil || o.NextLogId.Get() == nil {
+	if o == nil || o.NextLogId == nil {
 		var ret string
 		return ret
 	}
-	return *o.NextLogId.Get()
+	return *o.NextLogId
 }
 
 // GetNextLogIdOk returns a tuple with the NextLogId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsListResponse) GetNextLogIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.NextLogId == nil {
 		return nil, false
 	}
-	return o.NextLogId.Get(), o.NextLogId.IsSet()
+	return o.NextLogId, true
 }
 
 // HasNextLogId returns a boolean if a field has been set.
 func (o *LogsListResponse) HasNextLogId() bool {
-	return o != nil && o.NextLogId.IsSet()
+	return o != nil && o.NextLogId != nil
 }
 
-// SetNextLogId gets a reference to the given datadog.NullableString and assigns it to the NextLogId field.
+// SetNextLogId gets a reference to the given string and assigns it to the NextLogId field.
 func (o *LogsListResponse) SetNextLogId(v string) {
-	o.NextLogId.Set(&v)
-}
-
-// SetNextLogIdNil sets the value for NextLogId to be an explicit nil.
-func (o *LogsListResponse) SetNextLogIdNil() {
-	o.NextLogId.Set(nil)
-}
-
-// UnsetNextLogId ensures that no value is present for NextLogId, not even an explicit nil.
-func (o *LogsListResponse) UnsetNextLogId() {
-	o.NextLogId.Unset()
+	o.NextLogId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -145,8 +134,8 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	if o.Logs != nil {
 		toSerialize["logs"] = o.Logs
 	}
-	if o.NextLogId.IsSet() {
-		toSerialize["nextLogId"] = o.NextLogId.Get()
+	if o.NextLogId != nil {
+		toSerialize["nextLogId"] = o.NextLogId
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
@@ -162,9 +151,9 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Logs      []Log                  `json:"logs,omitempty"`
-		NextLogId datadog.NullableString `json:"nextLogId,omitempty"`
-		Status    *string                `json:"status,omitempty"`
+		Logs      []Log   `json:"logs,omitempty"`
+		NextLogId *string `json:"nextLogId,omitempty"`
+		Status    *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

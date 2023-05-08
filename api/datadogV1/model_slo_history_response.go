@@ -66,9 +66,9 @@ func (o *SLOHistoryResponse) SetData(v SLOHistoryResponseData) {
 	o.Data = &v
 }
 
-// GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError {
-	if o == nil {
+	if o == nil || o.Errors == nil {
 		var ret []SLOHistoryResponseError
 		return ret
 	}
@@ -77,7 +77,6 @@ func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false

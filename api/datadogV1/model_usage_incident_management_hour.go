@@ -16,7 +16,7 @@ type UsageIncidentManagementHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the total number monthly active users from the start of the given hour's month until the given hour.
-	MonthlyActiveUsers datadog.NullableInt64 `json:"monthly_active_users,omitempty"`
+	MonthlyActiveUsers *int64 `json:"monthly_active_users,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,43 +71,32 @@ func (o *UsageIncidentManagementHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetMonthlyActiveUsers returns the MonthlyActiveUsers field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMonthlyActiveUsers returns the MonthlyActiveUsers field value if set, zero value otherwise.
 func (o *UsageIncidentManagementHour) GetMonthlyActiveUsers() int64 {
-	if o == nil || o.MonthlyActiveUsers.Get() == nil {
+	if o == nil || o.MonthlyActiveUsers == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MonthlyActiveUsers.Get()
+	return *o.MonthlyActiveUsers
 }
 
 // GetMonthlyActiveUsersOk returns a tuple with the MonthlyActiveUsers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageIncidentManagementHour) GetMonthlyActiveUsersOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.MonthlyActiveUsers == nil {
 		return nil, false
 	}
-	return o.MonthlyActiveUsers.Get(), o.MonthlyActiveUsers.IsSet()
+	return o.MonthlyActiveUsers, true
 }
 
 // HasMonthlyActiveUsers returns a boolean if a field has been set.
 func (o *UsageIncidentManagementHour) HasMonthlyActiveUsers() bool {
-	return o != nil && o.MonthlyActiveUsers.IsSet()
+	return o != nil && o.MonthlyActiveUsers != nil
 }
 
-// SetMonthlyActiveUsers gets a reference to the given datadog.NullableInt64 and assigns it to the MonthlyActiveUsers field.
+// SetMonthlyActiveUsers gets a reference to the given int64 and assigns it to the MonthlyActiveUsers field.
 func (o *UsageIncidentManagementHour) SetMonthlyActiveUsers(v int64) {
-	o.MonthlyActiveUsers.Set(&v)
-}
-
-// SetMonthlyActiveUsersNil sets the value for MonthlyActiveUsers to be an explicit nil.
-func (o *UsageIncidentManagementHour) SetMonthlyActiveUsersNil() {
-	o.MonthlyActiveUsers.Set(nil)
-}
-
-// UnsetMonthlyActiveUsers ensures that no value is present for MonthlyActiveUsers, not even an explicit nil.
-func (o *UsageIncidentManagementHour) UnsetMonthlyActiveUsers() {
-	o.MonthlyActiveUsers.Unset()
+	o.MonthlyActiveUsers = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -179,8 +168,8 @@ func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.MonthlyActiveUsers.IsSet() {
-		toSerialize["monthly_active_users"] = o.MonthlyActiveUsers.Get()
+	if o.MonthlyActiveUsers != nil {
+		toSerialize["monthly_active_users"] = o.MonthlyActiveUsers
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -199,10 +188,10 @@ func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 func (o *UsageIncidentManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour               *time.Time            `json:"hour,omitempty"`
-		MonthlyActiveUsers datadog.NullableInt64 `json:"monthly_active_users,omitempty"`
-		OrgName            *string               `json:"org_name,omitempty"`
-		PublicId           *string               `json:"public_id,omitempty"`
+		Hour               *time.Time `json:"hour,omitempty"`
+		MonthlyActiveUsers *int64     `json:"monthly_active_users,omitempty"`
+		OrgName            *string    `json:"org_name,omitempty"`
+		PublicId           *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

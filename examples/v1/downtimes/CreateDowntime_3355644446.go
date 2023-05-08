@@ -19,7 +19,7 @@ func main() {
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadogV1.Downtime{
-		Message:  *datadog.NewNullableString(datadog.PtrString("Example-Downtime")),
+		Message:  datadog.PtrString("Example-Downtime"),
 		Start:    datadog.PtrInt64(time.Now().Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope: []string{

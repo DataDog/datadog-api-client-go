@@ -32,7 +32,7 @@ type DowntimeChild struct {
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this downtime.
 	// Email notifications can be sent to specific users by using the same `@username` notation as events.
-	Message datadog.NullableString `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 	// A single monitor to which the downtime applies.
 	// If not provided, the downtime applies to all monitors.
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
@@ -43,13 +43,6 @@ type DowntimeChild struct {
 	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// If the first recovery notification during a downtime should be muted.
 	MuteFirstRecoveryNotification *bool `json:"mute_first_recovery_notification,omitempty"`
-	// States for which `notify_end_types` sends out notifications for.
-	NotifyEndStates []NotifyEndState `json:"notify_end_states,omitempty"`
-	// If set, notifies if a monitor is in an alert-worthy state (`ALERT`, `WARNING`, or `NO DATA`)
-	// when this downtime expires or is canceled. Applied to monitors that change states during
-	// the downtime (such as from `OK` to `ALERT`, `WARNING`, or `NO DATA`), and to monitors that
-	// already have an alert-worthy state when downtime begins.
-	NotifyEndTypes []NotifyEndType `json:"notify_end_types,omitempty"`
 	// ID of the parent Downtime.
 	ParentId datadog.NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
@@ -305,43 +298,32 @@ func (o *DowntimeChild) SetId(v int64) {
 	o.Id = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *DowntimeChild) GetMessage() string {
-	if o == nil || o.Message.Get() == nil {
+	if o == nil || o.Message == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message.Get()
+	return *o.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Message == nil {
 		return nil, false
 	}
-	return o.Message.Get(), o.Message.IsSet()
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *DowntimeChild) HasMessage() bool {
-	return o != nil && o.Message.IsSet()
+	return o != nil && o.Message != nil
 }
 
-// SetMessage gets a reference to the given datadog.NullableString and assigns it to the Message field.
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *DowntimeChild) SetMessage(v string) {
-	o.Message.Set(&v)
-}
-
-// SetMessageNil sets the value for Message to be an explicit nil.
-func (o *DowntimeChild) SetMessageNil() {
-	o.Message.Set(nil)
-}
-
-// UnsetMessage ensures that no value is present for Message, not even an explicit nil.
-func (o *DowntimeChild) UnsetMessage() {
-	o.Message.Unset()
+	o.Message = &v
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -437,62 +419,6 @@ func (o *DowntimeChild) HasMuteFirstRecoveryNotification() bool {
 // SetMuteFirstRecoveryNotification gets a reference to the given bool and assigns it to the MuteFirstRecoveryNotification field.
 func (o *DowntimeChild) SetMuteFirstRecoveryNotification(v bool) {
 	o.MuteFirstRecoveryNotification = &v
-}
-
-// GetNotifyEndStates returns the NotifyEndStates field value if set, zero value otherwise.
-func (o *DowntimeChild) GetNotifyEndStates() []NotifyEndState {
-	if o == nil || o.NotifyEndStates == nil {
-		var ret []NotifyEndState
-		return ret
-	}
-	return o.NotifyEndStates
-}
-
-// GetNotifyEndStatesOk returns a tuple with the NotifyEndStates field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DowntimeChild) GetNotifyEndStatesOk() (*[]NotifyEndState, bool) {
-	if o == nil || o.NotifyEndStates == nil {
-		return nil, false
-	}
-	return &o.NotifyEndStates, true
-}
-
-// HasNotifyEndStates returns a boolean if a field has been set.
-func (o *DowntimeChild) HasNotifyEndStates() bool {
-	return o != nil && o.NotifyEndStates != nil
-}
-
-// SetNotifyEndStates gets a reference to the given []NotifyEndState and assigns it to the NotifyEndStates field.
-func (o *DowntimeChild) SetNotifyEndStates(v []NotifyEndState) {
-	o.NotifyEndStates = v
-}
-
-// GetNotifyEndTypes returns the NotifyEndTypes field value if set, zero value otherwise.
-func (o *DowntimeChild) GetNotifyEndTypes() []NotifyEndType {
-	if o == nil || o.NotifyEndTypes == nil {
-		var ret []NotifyEndType
-		return ret
-	}
-	return o.NotifyEndTypes
-}
-
-// GetNotifyEndTypesOk returns a tuple with the NotifyEndTypes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DowntimeChild) GetNotifyEndTypesOk() (*[]NotifyEndType, bool) {
-	if o == nil || o.NotifyEndTypes == nil {
-		return nil, false
-	}
-	return &o.NotifyEndTypes, true
-}
-
-// HasNotifyEndTypes returns a boolean if a field has been set.
-func (o *DowntimeChild) HasNotifyEndTypes() bool {
-	return o != nil && o.NotifyEndTypes != nil
-}
-
-// SetNotifyEndTypes gets a reference to the given []NotifyEndType and assigns it to the NotifyEndTypes field.
-func (o *DowntimeChild) SetNotifyEndTypes(v []NotifyEndType) {
-	o.NotifyEndTypes = v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -723,8 +649,8 @@ func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Message.IsSet() {
-		toSerialize["message"] = o.Message.Get()
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
 	}
 	if o.MonitorId.IsSet() {
 		toSerialize["monitor_id"] = o.MonitorId.Get()
@@ -734,12 +660,6 @@ func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 	}
 	if o.MuteFirstRecoveryNotification != nil {
 		toSerialize["mute_first_recovery_notification"] = o.MuteFirstRecoveryNotification
-	}
-	if o.NotifyEndStates != nil {
-		toSerialize["notify_end_states"] = o.NotifyEndStates
-	}
-	if o.NotifyEndTypes != nil {
-		toSerialize["notify_end_types"] = o.NotifyEndTypes
 	}
 	if o.ParentId.IsSet() {
 		toSerialize["parent_id"] = o.ParentId.Get()
@@ -777,12 +697,10 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 		DowntimeType                  *int32                     `json:"downtime_type,omitempty"`
 		End                           datadog.NullableInt64      `json:"end,omitempty"`
 		Id                            *int64                     `json:"id,omitempty"`
-		Message                       datadog.NullableString     `json:"message,omitempty"`
+		Message                       *string                    `json:"message,omitempty"`
 		MonitorId                     datadog.NullableInt64      `json:"monitor_id,omitempty"`
 		MonitorTags                   []string                   `json:"monitor_tags,omitempty"`
 		MuteFirstRecoveryNotification *bool                      `json:"mute_first_recovery_notification,omitempty"`
-		NotifyEndStates               []NotifyEndState           `json:"notify_end_states,omitempty"`
-		NotifyEndTypes                []NotifyEndType            `json:"notify_end_types,omitempty"`
 		ParentId                      datadog.NullableInt64      `json:"parent_id,omitempty"`
 		Recurrence                    NullableDowntimeRecurrence `json:"recurrence,omitempty"`
 		Scope                         []string                   `json:"scope,omitempty"`
@@ -801,7 +719,7 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"active", "canceled", "creator_id", "disabled", "downtime_type", "end", "id", "message", "monitor_id", "monitor_tags", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "parent_id", "recurrence", "scope", "start", "timezone", "updater_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"active", "canceled", "creator_id", "disabled", "downtime_type", "end", "id", "message", "monitor_id", "monitor_tags", "mute_first_recovery_notification", "parent_id", "recurrence", "scope", "start", "timezone", "updater_id"})
 	} else {
 		return err
 	}
@@ -816,8 +734,6 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorId = all.MonitorId
 	o.MonitorTags = all.MonitorTags
 	o.MuteFirstRecoveryNotification = all.MuteFirstRecoveryNotification
-	o.NotifyEndStates = all.NotifyEndStates
-	o.NotifyEndTypes = all.NotifyEndTypes
 	o.ParentId = all.ParentId
 	o.Recurrence = all.Recurrence
 	o.Scope = all.Scope

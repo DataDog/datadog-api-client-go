@@ -14,7 +14,7 @@ import (
 // UsageSyntheticsAPIHour Number of Synthetics API tests run for each hour for a given organization.
 type UsageSyntheticsAPIHour struct {
 	// Contains the number of Synthetics API tests run.
-	CheckCallsCount datadog.NullableInt64 `json:"check_calls_count,omitempty"`
+	CheckCallsCount *int64 `json:"check_calls_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -43,43 +43,32 @@ func NewUsageSyntheticsAPIHourWithDefaults() *UsageSyntheticsAPIHour {
 	return &this
 }
 
-// GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise.
 func (o *UsageSyntheticsAPIHour) GetCheckCallsCount() int64 {
-	if o == nil || o.CheckCallsCount.Get() == nil {
+	if o == nil || o.CheckCallsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CheckCallsCount.Get()
+	return *o.CheckCallsCount
 }
 
 // GetCheckCallsCountOk returns a tuple with the CheckCallsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSyntheticsAPIHour) GetCheckCallsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.CheckCallsCount == nil {
 		return nil, false
 	}
-	return o.CheckCallsCount.Get(), o.CheckCallsCount.IsSet()
+	return o.CheckCallsCount, true
 }
 
 // HasCheckCallsCount returns a boolean if a field has been set.
 func (o *UsageSyntheticsAPIHour) HasCheckCallsCount() bool {
-	return o != nil && o.CheckCallsCount.IsSet()
+	return o != nil && o.CheckCallsCount != nil
 }
 
-// SetCheckCallsCount gets a reference to the given datadog.NullableInt64 and assigns it to the CheckCallsCount field.
+// SetCheckCallsCount gets a reference to the given int64 and assigns it to the CheckCallsCount field.
 func (o *UsageSyntheticsAPIHour) SetCheckCallsCount(v int64) {
-	o.CheckCallsCount.Set(&v)
-}
-
-// SetCheckCallsCountNil sets the value for CheckCallsCount to be an explicit nil.
-func (o *UsageSyntheticsAPIHour) SetCheckCallsCountNil() {
-	o.CheckCallsCount.Set(nil)
-}
-
-// UnsetCheckCallsCount ensures that no value is present for CheckCallsCount, not even an explicit nil.
-func (o *UsageSyntheticsAPIHour) UnsetCheckCallsCount() {
-	o.CheckCallsCount.Unset()
+	o.CheckCallsCount = &v
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -172,8 +161,8 @@ func (o UsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.CheckCallsCount.IsSet() {
-		toSerialize["check_calls_count"] = o.CheckCallsCount.Get()
+	if o.CheckCallsCount != nil {
+		toSerialize["check_calls_count"] = o.CheckCallsCount
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -199,10 +188,10 @@ func (o UsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsAPIHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CheckCallsCount datadog.NullableInt64 `json:"check_calls_count,omitempty"`
-		Hour            *time.Time            `json:"hour,omitempty"`
-		OrgName         *string               `json:"org_name,omitempty"`
-		PublicId        *string               `json:"public_id,omitempty"`
+		CheckCallsCount *int64     `json:"check_calls_count,omitempty"`
+		Hour            *time.Time `json:"hour,omitempty"`
+		OrgName         *string    `json:"org_name,omitempty"`
+		PublicId        *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -16,7 +16,7 @@ type UsageOnlineArchiveHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Total count of online archived events within the hour.
-	OnlineArchiveEventsCount datadog.NullableInt64 `json:"online_archive_events_count,omitempty"`
+	OnlineArchiveEventsCount *int64 `json:"online_archive_events_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,43 +71,32 @@ func (o *UsageOnlineArchiveHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
-	if o == nil || o.OnlineArchiveEventsCount.Get() == nil {
+	if o == nil || o.OnlineArchiveEventsCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.OnlineArchiveEventsCount.Get()
+	return *o.OnlineArchiveEventsCount
 }
 
 // GetOnlineArchiveEventsCountOk returns a tuple with the OnlineArchiveEventsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.OnlineArchiveEventsCount == nil {
 		return nil, false
 	}
-	return o.OnlineArchiveEventsCount.Get(), o.OnlineArchiveEventsCount.IsSet()
+	return o.OnlineArchiveEventsCount, true
 }
 
 // HasOnlineArchiveEventsCount returns a boolean if a field has been set.
 func (o *UsageOnlineArchiveHour) HasOnlineArchiveEventsCount() bool {
-	return o != nil && o.OnlineArchiveEventsCount.IsSet()
+	return o != nil && o.OnlineArchiveEventsCount != nil
 }
 
-// SetOnlineArchiveEventsCount gets a reference to the given datadog.NullableInt64 and assigns it to the OnlineArchiveEventsCount field.
+// SetOnlineArchiveEventsCount gets a reference to the given int64 and assigns it to the OnlineArchiveEventsCount field.
 func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int64) {
-	o.OnlineArchiveEventsCount.Set(&v)
-}
-
-// SetOnlineArchiveEventsCountNil sets the value for OnlineArchiveEventsCount to be an explicit nil.
-func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCountNil() {
-	o.OnlineArchiveEventsCount.Set(nil)
-}
-
-// UnsetOnlineArchiveEventsCount ensures that no value is present for OnlineArchiveEventsCount, not even an explicit nil.
-func (o *UsageOnlineArchiveHour) UnsetOnlineArchiveEventsCount() {
-	o.OnlineArchiveEventsCount.Unset()
+	o.OnlineArchiveEventsCount = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -179,8 +168,8 @@ func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.OnlineArchiveEventsCount.IsSet() {
-		toSerialize["online_archive_events_count"] = o.OnlineArchiveEventsCount.Get()
+	if o.OnlineArchiveEventsCount != nil {
+		toSerialize["online_archive_events_count"] = o.OnlineArchiveEventsCount
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -199,10 +188,10 @@ func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
 func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                     *time.Time            `json:"hour,omitempty"`
-		OnlineArchiveEventsCount datadog.NullableInt64 `json:"online_archive_events_count,omitempty"`
-		OrgName                  *string               `json:"org_name,omitempty"`
-		PublicId                 *string               `json:"public_id,omitempty"`
+		Hour                     *time.Time `json:"hour,omitempty"`
+		OnlineArchiveEventsCount *int64     `json:"online_archive_events_count,omitempty"`
+		OrgName                  *string    `json:"org_name,omitempty"`
+		PublicId                 *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

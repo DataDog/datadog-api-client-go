@@ -19,8 +19,8 @@ func main() {
 				PolicyType: datadogV2.MONITORCONFIGPOLICYTYPE_TAG,
 				Policy: datadogV2.MonitorConfigPolicyPolicyCreateRequest{
 					MonitorConfigPolicyTagPolicyCreateRequest: &datadogV2.MonitorConfigPolicyTagPolicyCreateRequest{
-						TagKey:         "examplemonitor",
-						TagKeyRequired: false,
+						TagKey:         "datacenter",
+						TagKeyRequired: true,
 						ValidTagValues: []string{
 							"prod",
 							"staging",

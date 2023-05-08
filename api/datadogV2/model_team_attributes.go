@@ -17,7 +17,7 @@ type TeamAttributes struct {
 	// Creation date of the team
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Free-form markdown description/content for the team's homepage
-	Description datadog.NullableString `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
 	// The team's identifier
 	Handle string `json:"handle"`
 	// The number of links belonging to the team
@@ -27,7 +27,7 @@ type TeamAttributes struct {
 	// The name of the team
 	Name string `json:"name"`
 	// A brief summary of the team, derived from the `description`
-	Summary datadog.NullableString `json:"summary,omitempty"`
+	Summary *string `json:"summary,omitempty"`
 	// The number of users belonging to the team
 	UserCount *int32 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -82,43 +82,32 @@ func (o *TeamAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TeamAttributes) GetDescription() string {
-	if o == nil || o.Description.Get() == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TeamAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *TeamAttributes) HasDescription() bool {
-	return o != nil && o.Description.IsSet()
+	return o != nil && o.Description != nil
 }
 
-// SetDescription gets a reference to the given datadog.NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *TeamAttributes) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-
-// SetDescriptionNil sets the value for Description to be an explicit nil.
-func (o *TeamAttributes) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
-func (o *TeamAttributes) UnsetDescription() {
-	o.Description.Unset()
+	o.Description = &v
 }
 
 // GetHandle returns the Handle field value.
@@ -223,43 +212,32 @@ func (o *TeamAttributes) SetName(v string) {
 	o.Name = v
 }
 
-// GetSummary returns the Summary field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetSummary returns the Summary field value if set, zero value otherwise.
 func (o *TeamAttributes) GetSummary() string {
-	if o == nil || o.Summary.Get() == nil {
+	if o == nil || o.Summary == nil {
 		var ret string
 		return ret
 	}
-	return *o.Summary.Get()
+	return *o.Summary
 }
 
 // GetSummaryOk returns a tuple with the Summary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TeamAttributes) GetSummaryOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Summary == nil {
 		return nil, false
 	}
-	return o.Summary.Get(), o.Summary.IsSet()
+	return o.Summary, true
 }
 
 // HasSummary returns a boolean if a field has been set.
 func (o *TeamAttributes) HasSummary() bool {
-	return o != nil && o.Summary.IsSet()
+	return o != nil && o.Summary != nil
 }
 
-// SetSummary gets a reference to the given datadog.NullableString and assigns it to the Summary field.
+// SetSummary gets a reference to the given string and assigns it to the Summary field.
 func (o *TeamAttributes) SetSummary(v string) {
-	o.Summary.Set(&v)
-}
-
-// SetSummaryNil sets the value for Summary to be an explicit nil.
-func (o *TeamAttributes) SetSummaryNil() {
-	o.Summary.Set(nil)
-}
-
-// UnsetSummary ensures that no value is present for Summary, not even an explicit nil.
-func (o *TeamAttributes) UnsetSummary() {
-	o.Summary.Unset()
+	o.Summary = &v
 }
 
 // GetUserCount returns the UserCount field value if set, zero value otherwise.
@@ -303,8 +281,8 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
 	}
 	toSerialize["handle"] = o.Handle
 	if o.LinkCount != nil {
@@ -318,8 +296,8 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 		}
 	}
 	toSerialize["name"] = o.Name
-	if o.Summary.IsSet() {
-		toSerialize["summary"] = o.Summary.Get()
+	if o.Summary != nil {
+		toSerialize["summary"] = o.Summary
 	}
 	if o.UserCount != nil {
 		toSerialize["user_count"] = o.UserCount
@@ -339,14 +317,14 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name   *string `json:"name"`
 	}{}
 	all := struct {
-		CreatedAt   *time.Time             `json:"created_at,omitempty"`
-		Description datadog.NullableString `json:"description,omitempty"`
-		Handle      string                 `json:"handle"`
-		LinkCount   *int32                 `json:"link_count,omitempty"`
-		ModifiedAt  *time.Time             `json:"modified_at,omitempty"`
-		Name        string                 `json:"name"`
-		Summary     datadog.NullableString `json:"summary,omitempty"`
-		UserCount   *int32                 `json:"user_count,omitempty"`
+		CreatedAt   *time.Time `json:"created_at,omitempty"`
+		Description *string    `json:"description,omitempty"`
+		Handle      string     `json:"handle"`
+		LinkCount   *int32     `json:"link_count,omitempty"`
+		ModifiedAt  *time.Time `json:"modified_at,omitempty"`
+		Name        string     `json:"name"`
+		Summary     *string    `json:"summary,omitempty"`
+		UserCount   *int32     `json:"user_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
