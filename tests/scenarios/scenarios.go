@@ -9,6 +9,7 @@ package scenarios
 import (
 	"bytes"
 	"context"
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -251,6 +252,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	testName := strings.SplitN(nameParts[3], "_", 2)[1]
 	unique := tests.WithUniqueSurrounding(cctx, testName)
 	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
+	hash := fmt.Sprintf("%x", sha256.Sum256([]byte(unique)))
 	data := GetData(ctx)
 	data["unique"] = unique
 	data["unique_lower"] = strings.ToLower(unique)
@@ -258,6 +260,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
 	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
 	data["unique_upper_alnum"] = strings.ToUpper(data["unique_alnum"].(string))
+	data["unique_hash"] = fmt.Sprintf("test-%s", hash[:16])
 	data["now"] = tests.ClockFromContext(cctx).Now()
 }
 
