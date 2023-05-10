@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"1679941999","name":"1679941999"},"type":"team"}}
+      {"data":{"attributes":{"handle":"handle-b673fb38f29b594d","name":"name-b673fb38f29b594d"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"d90487a2-cccd-11ed-b49b-da7ad0900002","attributes":{"name":"1679941999","handle":"1679941999","summary":null,"description":null,"color":7,"created_at":"2023-03-27T18:33:19.965841+00:00","modified_at":"2023-03-27T18:33:19.965846+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/d90487a2-cccd-11ed-b49b-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/d90487a2-cccd-11ed-b49b-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"590a0ef6-ef4f-11ed-9b4a-da7ad0900002","attributes":{"name":"name-b673fb38f29b594d","handle":"handle-b673fb38f29b594d","summary":null,"description":null,"color":2,"created_at":"2023-05-10T16:25:59.363124+00:00","modified_at":"2023-05-10T16:25:59.363128+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/590a0ef6-ef4f-11ed-9b4a-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/590a0ef6-ef4f-11ed-9b4a-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 201
@@ -27,7 +27,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/d90487a2-cccd-11ed-b49b-da7ad0900002/memberships/REPLACE.ME
+    url: https://api.datadoghq.com/api/v2/team/590a0ef6-ef4f-11ed-9b4a-da7ad0900002/memberships/REPLACE.ME
   response:
     body: '{"errors":["REPLACE.ME is not a valid UUID not found"]}'
     code: 404
@@ -43,7 +43,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/d90487a2-cccd-11ed-b49b-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/590a0ef6-ef4f-11ed-9b4a-da7ad0900002
   response:
     body: ''
     code: 204
