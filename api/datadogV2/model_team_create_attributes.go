@@ -17,8 +17,6 @@ type TeamCreateAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// The team's identifier
 	Handle string `json:"handle"`
-	// The number of links belonging to the team
-	LinkCount *int32 `json:"link_count,omitempty"`
 	// The name of the team
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -96,34 +94,6 @@ func (o *TeamCreateAttributes) SetHandle(v string) {
 	o.Handle = v
 }
 
-// GetLinkCount returns the LinkCount field value if set, zero value otherwise.
-func (o *TeamCreateAttributes) GetLinkCount() int32 {
-	if o == nil || o.LinkCount == nil {
-		var ret int32
-		return ret
-	}
-	return *o.LinkCount
-}
-
-// GetLinkCountOk returns a tuple with the LinkCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TeamCreateAttributes) GetLinkCountOk() (*int32, bool) {
-	if o == nil || o.LinkCount == nil {
-		return nil, false
-	}
-	return o.LinkCount, true
-}
-
-// HasLinkCount returns a boolean if a field has been set.
-func (o *TeamCreateAttributes) HasLinkCount() bool {
-	return o != nil && o.LinkCount != nil
-}
-
-// SetLinkCount gets a reference to the given int32 and assigns it to the LinkCount field.
-func (o *TeamCreateAttributes) SetLinkCount(v int32) {
-	o.LinkCount = &v
-}
-
 // GetName returns the Name field value.
 func (o *TeamCreateAttributes) GetName() string {
 	if o == nil {
@@ -157,9 +127,6 @@ func (o TeamCreateAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["handle"] = o.Handle
-	if o.LinkCount != nil {
-		toSerialize["link_count"] = o.LinkCount
-	}
 	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
@@ -178,7 +145,6 @@ func (o *TeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		Handle      string  `json:"handle"`
-		LinkCount   *int32  `json:"link_count,omitempty"`
 		Name        string  `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -202,13 +168,12 @@ func (o *TeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "handle", "link_count", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "handle", "name"})
 	} else {
 		return err
 	}
 	o.Description = all.Description
 	o.Handle = all.Handle
-	o.LinkCount = all.LinkCount
 	o.Name = all.Name
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
