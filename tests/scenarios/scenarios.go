@@ -260,7 +260,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique_alnum"] = string(alnum.ReplaceAll([]byte(unique), []byte("")))
 	data["unique_lower_alnum"] = strings.ToLower(data["unique_alnum"].(string))
 	data["unique_upper_alnum"] = strings.ToUpper(data["unique_alnum"].(string))
-	data["unique_hash"] = fmt.Sprintf("test-%s", hash[:16])
+	data["unique_hash"] = hash[:16]
 	data["now"] = tests.ClockFromContext(cctx).Now()
 }
 
