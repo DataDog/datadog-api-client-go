@@ -512,14 +512,39 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetFindingOptionalParameters holds optional parameters for GetFinding.
+type GetFindingOptionalParameters struct {
+	SnapshotTimestamp *int64
+}
+
+// NewGetFindingOptionalParameters creates an empty struct for parameters.
+func NewGetFindingOptionalParameters() *GetFindingOptionalParameters {
+	this := GetFindingOptionalParameters{}
+	return &this
+}
+
+// WithSnapshotTimestamp sets the corresponding parameter name and returns the struct.
+func (r *GetFindingOptionalParameters) WithSnapshotTimestamp(snapshotTimestamp int64) *GetFindingOptionalParameters {
+	r.SnapshotTimestamp = &snapshotTimestamp
+	return r
+}
+
 // GetFinding Get a finding.
 // Returns a single finding with message and resource configuration.
-func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId string) (GetFindingResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId string, o ...GetFindingOptionalParameters) (GetFindingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue GetFindingResponse
+		optionalParams      GetFindingOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetFindingOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.GetFinding"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
@@ -539,6 +564,9 @@ func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId strin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.SnapshotTimestamp != nil {
+		localVarQueryParams.Add("snapshot_timestamp", datadog.ParameterToString(*optionalParams.SnapshotTimestamp, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
