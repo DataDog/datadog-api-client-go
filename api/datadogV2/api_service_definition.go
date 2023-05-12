@@ -150,14 +150,39 @@ func (a *ServiceDefinitionApi) DeleteServiceDefinition(ctx _context.Context, ser
 	return localVarHTTPResponse, nil
 }
 
+// GetServiceDefinitionOptionalParameters holds optional parameters for GetServiceDefinition.
+type GetServiceDefinitionOptionalParameters struct {
+	SchemaVersion *ServiceDefinitionSchemaVersions
+}
+
+// NewGetServiceDefinitionOptionalParameters creates an empty struct for parameters.
+func NewGetServiceDefinitionOptionalParameters() *GetServiceDefinitionOptionalParameters {
+	this := GetServiceDefinitionOptionalParameters{}
+	return &this
+}
+
+// WithSchemaVersion sets the corresponding parameter name and returns the struct.
+func (r *GetServiceDefinitionOptionalParameters) WithSchemaVersion(schemaVersion ServiceDefinitionSchemaVersions) *GetServiceDefinitionOptionalParameters {
+	r.SchemaVersion = &schemaVersion
+	return r
+}
+
 // GetServiceDefinition Get a single service definition.
 // Get a single service definition from the Datadog Service Catalog.
-func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, serviceName string) (ServiceDefinitionGetResponse, *_nethttp.Response, error) {
+func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, serviceName string, o ...GetServiceDefinitionOptionalParameters) (ServiceDefinitionGetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceDefinitionGetResponse
+		optionalParams      GetServiceDefinitionOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetServiceDefinitionOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.GetServiceDefinition")
 	if err != nil {
@@ -170,6 +195,9 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.SchemaVersion != nil {
+		localVarQueryParams.Add("schema_version", datadog.ParameterToString(*optionalParams.SchemaVersion, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
@@ -223,8 +251,9 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 
 // ListServiceDefinitionsOptionalParameters holds optional parameters for ListServiceDefinitions.
 type ListServiceDefinitionsOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
+	PageSize      *int64
+	PageNumber    *int64
+	SchemaVersion *ServiceDefinitionSchemaVersions
 }
 
 // NewListServiceDefinitionsOptionalParameters creates an empty struct for parameters.
@@ -242,6 +271,12 @@ func (r *ListServiceDefinitionsOptionalParameters) WithPageSize(pageSize int64) 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListServiceDefinitionsOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceDefinitionsOptionalParameters {
 	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithSchemaVersion sets the corresponding parameter name and returns the struct.
+func (r *ListServiceDefinitionsOptionalParameters) WithSchemaVersion(schemaVersion ServiceDefinitionSchemaVersions) *ListServiceDefinitionsOptionalParameters {
+	r.SchemaVersion = &schemaVersion
 	return r
 }
 
@@ -277,6 +312,9 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ..
 	}
 	if optionalParams.PageNumber != nil {
 		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.SchemaVersion != nil {
+		localVarQueryParams.Add("schema_version", datadog.ParameterToString(*optionalParams.SchemaVersion, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
