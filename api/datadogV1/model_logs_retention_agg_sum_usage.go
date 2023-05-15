@@ -13,13 +13,13 @@ import (
 // LogsRetentionAggSumUsage Object containing indexed logs usage aggregated across organizations and months for a retention period.
 type LogsRetentionAggSumUsage struct {
 	// Total indexed logs for this retention period.
-	LogsIndexedLogsUsageAggSum *int64 `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
+	LogsIndexedLogsUsageAggSum datadog.NullableInt64 `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
 	// Live indexed logs for this retention period.
-	LogsLiveIndexedLogsUsageAggSum *int64 `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
+	LogsLiveIndexedLogsUsageAggSum datadog.NullableInt64 `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
 	// Rehydrated indexed logs for this retention period.
-	LogsRehydratedIndexedLogsUsageAggSum *int64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
+	LogsRehydratedIndexedLogsUsageAggSum datadog.NullableInt64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
 	// The retention period in days or "custom" for all custom retention periods.
-	Retention *string `json:"retention,omitempty"`
+	Retention datadog.NullableString `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -42,116 +42,160 @@ func NewLogsRetentionAggSumUsageWithDefaults() *LogsRetentionAggSumUsage {
 	return &this
 }
 
-// GetLogsIndexedLogsUsageAggSum returns the LogsIndexedLogsUsageAggSum field value if set, zero value otherwise.
+// GetLogsIndexedLogsUsageAggSum returns the LogsIndexedLogsUsageAggSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionAggSumUsage) GetLogsIndexedLogsUsageAggSum() int64 {
-	if o == nil || o.LogsIndexedLogsUsageAggSum == nil {
+	if o == nil || o.LogsIndexedLogsUsageAggSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsIndexedLogsUsageAggSum
+	return *o.LogsIndexedLogsUsageAggSum.Get()
 }
 
 // GetLogsIndexedLogsUsageAggSumOk returns a tuple with the LogsIndexedLogsUsageAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionAggSumUsage) GetLogsIndexedLogsUsageAggSumOk() (*int64, bool) {
-	if o == nil || o.LogsIndexedLogsUsageAggSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsIndexedLogsUsageAggSum, true
+	return o.LogsIndexedLogsUsageAggSum.Get(), o.LogsIndexedLogsUsageAggSum.IsSet()
 }
 
 // HasLogsIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsIndexedLogsUsageAggSum() bool {
-	return o != nil && o.LogsIndexedLogsUsageAggSum != nil
+	return o != nil && o.LogsIndexedLogsUsageAggSum.IsSet()
 }
 
-// SetLogsIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsIndexedLogsUsageAggSum field.
+// SetLogsIndexedLogsUsageAggSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsIndexedLogsUsageAggSum field.
 func (o *LogsRetentionAggSumUsage) SetLogsIndexedLogsUsageAggSum(v int64) {
-	o.LogsIndexedLogsUsageAggSum = &v
+	o.LogsIndexedLogsUsageAggSum.Set(&v)
 }
 
-// GetLogsLiveIndexedLogsUsageAggSum returns the LogsLiveIndexedLogsUsageAggSum field value if set, zero value otherwise.
+// SetLogsIndexedLogsUsageAggSumNil sets the value for LogsIndexedLogsUsageAggSum to be an explicit nil.
+func (o *LogsRetentionAggSumUsage) SetLogsIndexedLogsUsageAggSumNil() {
+	o.LogsIndexedLogsUsageAggSum.Set(nil)
+}
+
+// UnsetLogsIndexedLogsUsageAggSum ensures that no value is present for LogsIndexedLogsUsageAggSum, not even an explicit nil.
+func (o *LogsRetentionAggSumUsage) UnsetLogsIndexedLogsUsageAggSum() {
+	o.LogsIndexedLogsUsageAggSum.Unset()
+}
+
+// GetLogsLiveIndexedLogsUsageAggSum returns the LogsLiveIndexedLogsUsageAggSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionAggSumUsage) GetLogsLiveIndexedLogsUsageAggSum() int64 {
-	if o == nil || o.LogsLiveIndexedLogsUsageAggSum == nil {
+	if o == nil || o.LogsLiveIndexedLogsUsageAggSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsLiveIndexedLogsUsageAggSum
+	return *o.LogsLiveIndexedLogsUsageAggSum.Get()
 }
 
 // GetLogsLiveIndexedLogsUsageAggSumOk returns a tuple with the LogsLiveIndexedLogsUsageAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionAggSumUsage) GetLogsLiveIndexedLogsUsageAggSumOk() (*int64, bool) {
-	if o == nil || o.LogsLiveIndexedLogsUsageAggSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsLiveIndexedLogsUsageAggSum, true
+	return o.LogsLiveIndexedLogsUsageAggSum.Get(), o.LogsLiveIndexedLogsUsageAggSum.IsSet()
 }
 
 // HasLogsLiveIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsLiveIndexedLogsUsageAggSum() bool {
-	return o != nil && o.LogsLiveIndexedLogsUsageAggSum != nil
+	return o != nil && o.LogsLiveIndexedLogsUsageAggSum.IsSet()
 }
 
-// SetLogsLiveIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsLiveIndexedLogsUsageAggSum field.
+// SetLogsLiveIndexedLogsUsageAggSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsLiveIndexedLogsUsageAggSum field.
 func (o *LogsRetentionAggSumUsage) SetLogsLiveIndexedLogsUsageAggSum(v int64) {
-	o.LogsLiveIndexedLogsUsageAggSum = &v
+	o.LogsLiveIndexedLogsUsageAggSum.Set(&v)
 }
 
-// GetLogsRehydratedIndexedLogsUsageAggSum returns the LogsRehydratedIndexedLogsUsageAggSum field value if set, zero value otherwise.
+// SetLogsLiveIndexedLogsUsageAggSumNil sets the value for LogsLiveIndexedLogsUsageAggSum to be an explicit nil.
+func (o *LogsRetentionAggSumUsage) SetLogsLiveIndexedLogsUsageAggSumNil() {
+	o.LogsLiveIndexedLogsUsageAggSum.Set(nil)
+}
+
+// UnsetLogsLiveIndexedLogsUsageAggSum ensures that no value is present for LogsLiveIndexedLogsUsageAggSum, not even an explicit nil.
+func (o *LogsRetentionAggSumUsage) UnsetLogsLiveIndexedLogsUsageAggSum() {
+	o.LogsLiveIndexedLogsUsageAggSum.Unset()
+}
+
+// GetLogsRehydratedIndexedLogsUsageAggSum returns the LogsRehydratedIndexedLogsUsageAggSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionAggSumUsage) GetLogsRehydratedIndexedLogsUsageAggSum() int64 {
-	if o == nil || o.LogsRehydratedIndexedLogsUsageAggSum == nil {
+	if o == nil || o.LogsRehydratedIndexedLogsUsageAggSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsRehydratedIndexedLogsUsageAggSum
+	return *o.LogsRehydratedIndexedLogsUsageAggSum.Get()
 }
 
 // GetLogsRehydratedIndexedLogsUsageAggSumOk returns a tuple with the LogsRehydratedIndexedLogsUsageAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionAggSumUsage) GetLogsRehydratedIndexedLogsUsageAggSumOk() (*int64, bool) {
-	if o == nil || o.LogsRehydratedIndexedLogsUsageAggSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsRehydratedIndexedLogsUsageAggSum, true
+	return o.LogsRehydratedIndexedLogsUsageAggSum.Get(), o.LogsRehydratedIndexedLogsUsageAggSum.IsSet()
 }
 
 // HasLogsRehydratedIndexedLogsUsageAggSum returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasLogsRehydratedIndexedLogsUsageAggSum() bool {
-	return o != nil && o.LogsRehydratedIndexedLogsUsageAggSum != nil
+	return o != nil && o.LogsRehydratedIndexedLogsUsageAggSum.IsSet()
 }
 
-// SetLogsRehydratedIndexedLogsUsageAggSum gets a reference to the given int64 and assigns it to the LogsRehydratedIndexedLogsUsageAggSum field.
+// SetLogsRehydratedIndexedLogsUsageAggSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsRehydratedIndexedLogsUsageAggSum field.
 func (o *LogsRetentionAggSumUsage) SetLogsRehydratedIndexedLogsUsageAggSum(v int64) {
-	o.LogsRehydratedIndexedLogsUsageAggSum = &v
+	o.LogsRehydratedIndexedLogsUsageAggSum.Set(&v)
 }
 
-// GetRetention returns the Retention field value if set, zero value otherwise.
+// SetLogsRehydratedIndexedLogsUsageAggSumNil sets the value for LogsRehydratedIndexedLogsUsageAggSum to be an explicit nil.
+func (o *LogsRetentionAggSumUsage) SetLogsRehydratedIndexedLogsUsageAggSumNil() {
+	o.LogsRehydratedIndexedLogsUsageAggSum.Set(nil)
+}
+
+// UnsetLogsRehydratedIndexedLogsUsageAggSum ensures that no value is present for LogsRehydratedIndexedLogsUsageAggSum, not even an explicit nil.
+func (o *LogsRetentionAggSumUsage) UnsetLogsRehydratedIndexedLogsUsageAggSum() {
+	o.LogsRehydratedIndexedLogsUsageAggSum.Unset()
+}
+
+// GetRetention returns the Retention field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionAggSumUsage) GetRetention() string {
-	if o == nil || o.Retention == nil {
+	if o == nil || o.Retention.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Retention
+	return *o.Retention.Get()
 }
 
 // GetRetentionOk returns a tuple with the Retention field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionAggSumUsage) GetRetentionOk() (*string, bool) {
-	if o == nil || o.Retention == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Retention, true
+	return o.Retention.Get(), o.Retention.IsSet()
 }
 
 // HasRetention returns a boolean if a field has been set.
 func (o *LogsRetentionAggSumUsage) HasRetention() bool {
-	return o != nil && o.Retention != nil
+	return o != nil && o.Retention.IsSet()
 }
 
-// SetRetention gets a reference to the given string and assigns it to the Retention field.
+// SetRetention gets a reference to the given datadog.NullableString and assigns it to the Retention field.
 func (o *LogsRetentionAggSumUsage) SetRetention(v string) {
-	o.Retention = &v
+	o.Retention.Set(&v)
+}
+
+// SetRetentionNil sets the value for Retention to be an explicit nil.
+func (o *LogsRetentionAggSumUsage) SetRetentionNil() {
+	o.Retention.Set(nil)
+}
+
+// UnsetRetention ensures that no value is present for Retention, not even an explicit nil.
+func (o *LogsRetentionAggSumUsage) UnsetRetention() {
+	o.Retention.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -160,17 +204,17 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.LogsIndexedLogsUsageAggSum != nil {
-		toSerialize["logs_indexed_logs_usage_agg_sum"] = o.LogsIndexedLogsUsageAggSum
+	if o.LogsIndexedLogsUsageAggSum.IsSet() {
+		toSerialize["logs_indexed_logs_usage_agg_sum"] = o.LogsIndexedLogsUsageAggSum.Get()
 	}
-	if o.LogsLiveIndexedLogsUsageAggSum != nil {
-		toSerialize["logs_live_indexed_logs_usage_agg_sum"] = o.LogsLiveIndexedLogsUsageAggSum
+	if o.LogsLiveIndexedLogsUsageAggSum.IsSet() {
+		toSerialize["logs_live_indexed_logs_usage_agg_sum"] = o.LogsLiveIndexedLogsUsageAggSum.Get()
 	}
-	if o.LogsRehydratedIndexedLogsUsageAggSum != nil {
-		toSerialize["logs_rehydrated_indexed_logs_usage_agg_sum"] = o.LogsRehydratedIndexedLogsUsageAggSum
+	if o.LogsRehydratedIndexedLogsUsageAggSum.IsSet() {
+		toSerialize["logs_rehydrated_indexed_logs_usage_agg_sum"] = o.LogsRehydratedIndexedLogsUsageAggSum.Get()
 	}
-	if o.Retention != nil {
-		toSerialize["retention"] = o.Retention
+	if o.Retention.IsSet() {
+		toSerialize["retention"] = o.Retention.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -183,10 +227,10 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LogsIndexedLogsUsageAggSum           *int64  `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
-		LogsLiveIndexedLogsUsageAggSum       *int64  `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageAggSum *int64  `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
-		Retention                            *string `json:"retention,omitempty"`
+		LogsIndexedLogsUsageAggSum           datadog.NullableInt64  `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
+		LogsLiveIndexedLogsUsageAggSum       datadog.NullableInt64  `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageAggSum datadog.NullableInt64  `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
+		Retention                            datadog.NullableString `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

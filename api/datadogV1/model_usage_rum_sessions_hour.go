@@ -20,7 +20,7 @@ type UsageRumSessionsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Contains the number of RUM Replay Sessions (data available beginning November 1, 2021).
-	ReplaySessionCount *int64 `json:"replay_session_count,omitempty"`
+	ReplaySessionCount datadog.NullableInt64 `json:"replay_session_count,omitempty"`
 	// Contains the number of browser RUM Lite Sessions.
 	SessionCount datadog.NullableInt64 `json:"session_count,omitempty"`
 	// Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020).
@@ -137,32 +137,43 @@ func (o *UsageRumSessionsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-// GetReplaySessionCount returns the ReplaySessionCount field value if set, zero value otherwise.
+// GetReplaySessionCount returns the ReplaySessionCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetReplaySessionCount() int64 {
-	if o == nil || o.ReplaySessionCount == nil {
+	if o == nil || o.ReplaySessionCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ReplaySessionCount
+	return *o.ReplaySessionCount.Get()
 }
 
 // GetReplaySessionCountOk returns a tuple with the ReplaySessionCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetReplaySessionCountOk() (*int64, bool) {
-	if o == nil || o.ReplaySessionCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ReplaySessionCount, true
+	return o.ReplaySessionCount.Get(), o.ReplaySessionCount.IsSet()
 }
 
 // HasReplaySessionCount returns a boolean if a field has been set.
 func (o *UsageRumSessionsHour) HasReplaySessionCount() bool {
-	return o != nil && o.ReplaySessionCount != nil
+	return o != nil && o.ReplaySessionCount.IsSet()
 }
 
-// SetReplaySessionCount gets a reference to the given int64 and assigns it to the ReplaySessionCount field.
+// SetReplaySessionCount gets a reference to the given datadog.NullableInt64 and assigns it to the ReplaySessionCount field.
 func (o *UsageRumSessionsHour) SetReplaySessionCount(v int64) {
-	o.ReplaySessionCount = &v
+	o.ReplaySessionCount.Set(&v)
+}
+
+// SetReplaySessionCountNil sets the value for ReplaySessionCount to be an explicit nil.
+func (o *UsageRumSessionsHour) SetReplaySessionCountNil() {
+	o.ReplaySessionCount.Set(nil)
+}
+
+// UnsetReplaySessionCount ensures that no value is present for ReplaySessionCount, not even an explicit nil.
+func (o *UsageRumSessionsHour) UnsetReplaySessionCount() {
+	o.ReplaySessionCount.Unset()
 }
 
 // GetSessionCount returns the SessionCount field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -379,8 +390,8 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
-	if o.ReplaySessionCount != nil {
-		toSerialize["replay_session_count"] = o.ReplaySessionCount
+	if o.ReplaySessionCount.IsSet() {
+		toSerialize["replay_session_count"] = o.ReplaySessionCount.Get()
 	}
 	if o.SessionCount.IsSet() {
 		toSerialize["session_count"] = o.SessionCount.Get()
@@ -411,7 +422,7 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 		Hour                    *time.Time            `json:"hour,omitempty"`
 		OrgName                 *string               `json:"org_name,omitempty"`
 		PublicId                *string               `json:"public_id,omitempty"`
-		ReplaySessionCount      *int64                `json:"replay_session_count,omitempty"`
+		ReplaySessionCount      datadog.NullableInt64 `json:"replay_session_count,omitempty"`
 		SessionCount            datadog.NullableInt64 `json:"session_count,omitempty"`
 		SessionCountAndroid     datadog.NullableInt64 `json:"session_count_android,omitempty"`
 		SessionCountFlutter     datadog.NullableInt64 `json:"session_count_flutter,omitempty"`

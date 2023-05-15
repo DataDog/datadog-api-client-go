@@ -16,11 +16,11 @@ type UsageTimeseriesHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of custom metrics that are inputs for aggregations (metric configured is custom).
-	NumCustomInputTimeseries *int64 `json:"num_custom_input_timeseries,omitempty"`
+	NumCustomInputTimeseries datadog.NullableInt64 `json:"num_custom_input_timeseries,omitempty"`
 	// Contains the number of custom metrics that are outputs for aggregations (metric configured is custom).
-	NumCustomOutputTimeseries *int64 `json:"num_custom_output_timeseries,omitempty"`
+	NumCustomOutputTimeseries datadog.NullableInt64 `json:"num_custom_output_timeseries,omitempty"`
 	// Contains sum of non-aggregation custom metrics and custom metrics that are outputs for aggregations.
-	NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
+	NumCustomTimeseries datadog.NullableInt64 `json:"num_custom_timeseries,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -75,88 +75,121 @@ func (o *UsageTimeseriesHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetNumCustomInputTimeseries returns the NumCustomInputTimeseries field value if set, zero value otherwise.
+// GetNumCustomInputTimeseries returns the NumCustomInputTimeseries field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageTimeseriesHour) GetNumCustomInputTimeseries() int64 {
-	if o == nil || o.NumCustomInputTimeseries == nil {
+	if o == nil || o.NumCustomInputTimeseries.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.NumCustomInputTimeseries
+	return *o.NumCustomInputTimeseries.Get()
 }
 
 // GetNumCustomInputTimeseriesOk returns a tuple with the NumCustomInputTimeseries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTimeseriesHour) GetNumCustomInputTimeseriesOk() (*int64, bool) {
-	if o == nil || o.NumCustomInputTimeseries == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumCustomInputTimeseries, true
+	return o.NumCustomInputTimeseries.Get(), o.NumCustomInputTimeseries.IsSet()
 }
 
 // HasNumCustomInputTimeseries returns a boolean if a field has been set.
 func (o *UsageTimeseriesHour) HasNumCustomInputTimeseries() bool {
-	return o != nil && o.NumCustomInputTimeseries != nil
+	return o != nil && o.NumCustomInputTimeseries.IsSet()
 }
 
-// SetNumCustomInputTimeseries gets a reference to the given int64 and assigns it to the NumCustomInputTimeseries field.
+// SetNumCustomInputTimeseries gets a reference to the given datadog.NullableInt64 and assigns it to the NumCustomInputTimeseries field.
 func (o *UsageTimeseriesHour) SetNumCustomInputTimeseries(v int64) {
-	o.NumCustomInputTimeseries = &v
+	o.NumCustomInputTimeseries.Set(&v)
 }
 
-// GetNumCustomOutputTimeseries returns the NumCustomOutputTimeseries field value if set, zero value otherwise.
+// SetNumCustomInputTimeseriesNil sets the value for NumCustomInputTimeseries to be an explicit nil.
+func (o *UsageTimeseriesHour) SetNumCustomInputTimeseriesNil() {
+	o.NumCustomInputTimeseries.Set(nil)
+}
+
+// UnsetNumCustomInputTimeseries ensures that no value is present for NumCustomInputTimeseries, not even an explicit nil.
+func (o *UsageTimeseriesHour) UnsetNumCustomInputTimeseries() {
+	o.NumCustomInputTimeseries.Unset()
+}
+
+// GetNumCustomOutputTimeseries returns the NumCustomOutputTimeseries field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseries() int64 {
-	if o == nil || o.NumCustomOutputTimeseries == nil {
+	if o == nil || o.NumCustomOutputTimeseries.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.NumCustomOutputTimeseries
+	return *o.NumCustomOutputTimeseries.Get()
 }
 
 // GetNumCustomOutputTimeseriesOk returns a tuple with the NumCustomOutputTimeseries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseriesOk() (*int64, bool) {
-	if o == nil || o.NumCustomOutputTimeseries == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumCustomOutputTimeseries, true
+	return o.NumCustomOutputTimeseries.Get(), o.NumCustomOutputTimeseries.IsSet()
 }
 
 // HasNumCustomOutputTimeseries returns a boolean if a field has been set.
 func (o *UsageTimeseriesHour) HasNumCustomOutputTimeseries() bool {
-	return o != nil && o.NumCustomOutputTimeseries != nil
+	return o != nil && o.NumCustomOutputTimeseries.IsSet()
 }
 
-// SetNumCustomOutputTimeseries gets a reference to the given int64 and assigns it to the NumCustomOutputTimeseries field.
+// SetNumCustomOutputTimeseries gets a reference to the given datadog.NullableInt64 and assigns it to the NumCustomOutputTimeseries field.
 func (o *UsageTimeseriesHour) SetNumCustomOutputTimeseries(v int64) {
-	o.NumCustomOutputTimeseries = &v
+	o.NumCustomOutputTimeseries.Set(&v)
 }
 
-// GetNumCustomTimeseries returns the NumCustomTimeseries field value if set, zero value otherwise.
+// SetNumCustomOutputTimeseriesNil sets the value for NumCustomOutputTimeseries to be an explicit nil.
+func (o *UsageTimeseriesHour) SetNumCustomOutputTimeseriesNil() {
+	o.NumCustomOutputTimeseries.Set(nil)
+}
+
+// UnsetNumCustomOutputTimeseries ensures that no value is present for NumCustomOutputTimeseries, not even an explicit nil.
+func (o *UsageTimeseriesHour) UnsetNumCustomOutputTimeseries() {
+	o.NumCustomOutputTimeseries.Unset()
+}
+
+// GetNumCustomTimeseries returns the NumCustomTimeseries field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageTimeseriesHour) GetNumCustomTimeseries() int64 {
-	if o == nil || o.NumCustomTimeseries == nil {
+	if o == nil || o.NumCustomTimeseries.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.NumCustomTimeseries
+	return *o.NumCustomTimeseries.Get()
 }
 
 // GetNumCustomTimeseriesOk returns a tuple with the NumCustomTimeseries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTimeseriesHour) GetNumCustomTimeseriesOk() (*int64, bool) {
-	if o == nil || o.NumCustomTimeseries == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumCustomTimeseries, true
+	return o.NumCustomTimeseries.Get(), o.NumCustomTimeseries.IsSet()
 }
 
 // HasNumCustomTimeseries returns a boolean if a field has been set.
 func (o *UsageTimeseriesHour) HasNumCustomTimeseries() bool {
-	return o != nil && o.NumCustomTimeseries != nil
+	return o != nil && o.NumCustomTimeseries.IsSet()
 }
 
-// SetNumCustomTimeseries gets a reference to the given int64 and assigns it to the NumCustomTimeseries field.
+// SetNumCustomTimeseries gets a reference to the given datadog.NullableInt64 and assigns it to the NumCustomTimeseries field.
 func (o *UsageTimeseriesHour) SetNumCustomTimeseries(v int64) {
-	o.NumCustomTimeseries = &v
+	o.NumCustomTimeseries.Set(&v)
+}
+
+// SetNumCustomTimeseriesNil sets the value for NumCustomTimeseries to be an explicit nil.
+func (o *UsageTimeseriesHour) SetNumCustomTimeseriesNil() {
+	o.NumCustomTimeseries.Set(nil)
+}
+
+// UnsetNumCustomTimeseries ensures that no value is present for NumCustomTimeseries, not even an explicit nil.
+func (o *UsageTimeseriesHour) UnsetNumCustomTimeseries() {
+	o.NumCustomTimeseries.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -228,14 +261,14 @@ func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.NumCustomInputTimeseries != nil {
-		toSerialize["num_custom_input_timeseries"] = o.NumCustomInputTimeseries
+	if o.NumCustomInputTimeseries.IsSet() {
+		toSerialize["num_custom_input_timeseries"] = o.NumCustomInputTimeseries.Get()
 	}
-	if o.NumCustomOutputTimeseries != nil {
-		toSerialize["num_custom_output_timeseries"] = o.NumCustomOutputTimeseries
+	if o.NumCustomOutputTimeseries.IsSet() {
+		toSerialize["num_custom_output_timeseries"] = o.NumCustomOutputTimeseries.Get()
 	}
-	if o.NumCustomTimeseries != nil {
-		toSerialize["num_custom_timeseries"] = o.NumCustomTimeseries
+	if o.NumCustomTimeseries.IsSet() {
+		toSerialize["num_custom_timeseries"] = o.NumCustomTimeseries.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -254,12 +287,12 @@ func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
 func (o *UsageTimeseriesHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                      *time.Time `json:"hour,omitempty"`
-		NumCustomInputTimeseries  *int64     `json:"num_custom_input_timeseries,omitempty"`
-		NumCustomOutputTimeseries *int64     `json:"num_custom_output_timeseries,omitempty"`
-		NumCustomTimeseries       *int64     `json:"num_custom_timeseries,omitempty"`
-		OrgName                   *string    `json:"org_name,omitempty"`
-		PublicId                  *string    `json:"public_id,omitempty"`
+		Hour                      *time.Time            `json:"hour,omitempty"`
+		NumCustomInputTimeseries  datadog.NullableInt64 `json:"num_custom_input_timeseries,omitempty"`
+		NumCustomOutputTimeseries datadog.NullableInt64 `json:"num_custom_output_timeseries,omitempty"`
+		NumCustomTimeseries       datadog.NullableInt64 `json:"num_custom_timeseries,omitempty"`
+		OrgName                   *string               `json:"org_name,omitempty"`
+		PublicId                  *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

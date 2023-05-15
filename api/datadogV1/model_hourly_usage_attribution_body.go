@@ -30,7 +30,7 @@ type HourlyUsageAttributionBody struct {
 	// In this scenario the API returns the total usage, not broken down by tags.
 	Tags map[string][]string `json:"tags,omitempty"`
 	// Total product usage for the given tags within the hour.
-	TotalUsageSum *float64 `json:"total_usage_sum,omitempty"`
+	TotalUsageSum datadog.NullableFloat64 `json:"total_usage_sum,omitempty"`
 	// Shows the most recent hour in the current month for all organizations where usages are calculated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// Supported products for hourly usage attribution requests.
@@ -226,32 +226,43 @@ func (o *HourlyUsageAttributionBody) SetTags(v map[string][]string) {
 	o.Tags = v
 }
 
-// GetTotalUsageSum returns the TotalUsageSum field value if set, zero value otherwise.
+// GetTotalUsageSum returns the TotalUsageSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HourlyUsageAttributionBody) GetTotalUsageSum() float64 {
-	if o == nil || o.TotalUsageSum == nil {
+	if o == nil || o.TotalUsageSum.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.TotalUsageSum
+	return *o.TotalUsageSum.Get()
 }
 
 // GetTotalUsageSumOk returns a tuple with the TotalUsageSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *HourlyUsageAttributionBody) GetTotalUsageSumOk() (*float64, bool) {
-	if o == nil || o.TotalUsageSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TotalUsageSum, true
+	return o.TotalUsageSum.Get(), o.TotalUsageSum.IsSet()
 }
 
 // HasTotalUsageSum returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionBody) HasTotalUsageSum() bool {
-	return o != nil && o.TotalUsageSum != nil
+	return o != nil && o.TotalUsageSum.IsSet()
 }
 
-// SetTotalUsageSum gets a reference to the given float64 and assigns it to the TotalUsageSum field.
+// SetTotalUsageSum gets a reference to the given datadog.NullableFloat64 and assigns it to the TotalUsageSum field.
 func (o *HourlyUsageAttributionBody) SetTotalUsageSum(v float64) {
-	o.TotalUsageSum = &v
+	o.TotalUsageSum.Set(&v)
+}
+
+// SetTotalUsageSumNil sets the value for TotalUsageSum to be an explicit nil.
+func (o *HourlyUsageAttributionBody) SetTotalUsageSumNil() {
+	o.TotalUsageSum.Set(nil)
+}
+
+// UnsetTotalUsageSum ensures that no value is present for TotalUsageSum, not even an explicit nil.
+func (o *HourlyUsageAttributionBody) UnsetTotalUsageSum() {
+	o.TotalUsageSum.Unset()
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -338,8 +349,8 @@ func (o HourlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.TotalUsageSum != nil {
-		toSerialize["total_usage_sum"] = o.TotalUsageSum
+	if o.TotalUsageSum.IsSet() {
+		toSerialize["total_usage_sum"] = o.TotalUsageSum.Get()
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
@@ -364,7 +375,7 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		Region          *string                          `json:"region,omitempty"`
 		TagConfigSource *string                          `json:"tag_config_source,omitempty"`
 		Tags            map[string][]string              `json:"tags,omitempty"`
-		TotalUsageSum   *float64                         `json:"total_usage_sum,omitempty"`
+		TotalUsageSum   datadog.NullableFloat64          `json:"total_usage_sum,omitempty"`
 		UpdatedAt       *string                          `json:"updated_at,omitempty"`
 		UsageType       *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
 	}{}

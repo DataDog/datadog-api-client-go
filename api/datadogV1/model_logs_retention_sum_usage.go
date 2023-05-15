@@ -13,13 +13,13 @@ import (
 // LogsRetentionSumUsage Object containing indexed logs usage grouped by retention period and summed.
 type LogsRetentionSumUsage struct {
 	// Total indexed logs for this retention period.
-	LogsIndexedLogsUsageSum *int64 `json:"logs_indexed_logs_usage_sum,omitempty"`
+	LogsIndexedLogsUsageSum datadog.NullableInt64 `json:"logs_indexed_logs_usage_sum,omitempty"`
 	// Live indexed logs for this retention period.
-	LogsLiveIndexedLogsUsageSum *int64 `json:"logs_live_indexed_logs_usage_sum,omitempty"`
+	LogsLiveIndexedLogsUsageSum datadog.NullableInt64 `json:"logs_live_indexed_logs_usage_sum,omitempty"`
 	// Rehydrated indexed logs for this retention period.
-	LogsRehydratedIndexedLogsUsageSum *int64 `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
+	LogsRehydratedIndexedLogsUsageSum datadog.NullableInt64 `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
 	// The retention period in days or "custom" for all custom retention periods.
-	Retention *string `json:"retention,omitempty"`
+	Retention datadog.NullableString `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -42,116 +42,160 @@ func NewLogsRetentionSumUsageWithDefaults() *LogsRetentionSumUsage {
 	return &this
 }
 
-// GetLogsIndexedLogsUsageSum returns the LogsIndexedLogsUsageSum field value if set, zero value otherwise.
+// GetLogsIndexedLogsUsageSum returns the LogsIndexedLogsUsageSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionSumUsage) GetLogsIndexedLogsUsageSum() int64 {
-	if o == nil || o.LogsIndexedLogsUsageSum == nil {
+	if o == nil || o.LogsIndexedLogsUsageSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsIndexedLogsUsageSum
+	return *o.LogsIndexedLogsUsageSum.Get()
 }
 
 // GetLogsIndexedLogsUsageSumOk returns a tuple with the LogsIndexedLogsUsageSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionSumUsage) GetLogsIndexedLogsUsageSumOk() (*int64, bool) {
-	if o == nil || o.LogsIndexedLogsUsageSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsIndexedLogsUsageSum, true
+	return o.LogsIndexedLogsUsageSum.Get(), o.LogsIndexedLogsUsageSum.IsSet()
 }
 
 // HasLogsIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsIndexedLogsUsageSum() bool {
-	return o != nil && o.LogsIndexedLogsUsageSum != nil
+	return o != nil && o.LogsIndexedLogsUsageSum.IsSet()
 }
 
-// SetLogsIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsIndexedLogsUsageSum field.
+// SetLogsIndexedLogsUsageSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsIndexedLogsUsageSum field.
 func (o *LogsRetentionSumUsage) SetLogsIndexedLogsUsageSum(v int64) {
-	o.LogsIndexedLogsUsageSum = &v
+	o.LogsIndexedLogsUsageSum.Set(&v)
 }
 
-// GetLogsLiveIndexedLogsUsageSum returns the LogsLiveIndexedLogsUsageSum field value if set, zero value otherwise.
+// SetLogsIndexedLogsUsageSumNil sets the value for LogsIndexedLogsUsageSum to be an explicit nil.
+func (o *LogsRetentionSumUsage) SetLogsIndexedLogsUsageSumNil() {
+	o.LogsIndexedLogsUsageSum.Set(nil)
+}
+
+// UnsetLogsIndexedLogsUsageSum ensures that no value is present for LogsIndexedLogsUsageSum, not even an explicit nil.
+func (o *LogsRetentionSumUsage) UnsetLogsIndexedLogsUsageSum() {
+	o.LogsIndexedLogsUsageSum.Unset()
+}
+
+// GetLogsLiveIndexedLogsUsageSum returns the LogsLiveIndexedLogsUsageSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionSumUsage) GetLogsLiveIndexedLogsUsageSum() int64 {
-	if o == nil || o.LogsLiveIndexedLogsUsageSum == nil {
+	if o == nil || o.LogsLiveIndexedLogsUsageSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsLiveIndexedLogsUsageSum
+	return *o.LogsLiveIndexedLogsUsageSum.Get()
 }
 
 // GetLogsLiveIndexedLogsUsageSumOk returns a tuple with the LogsLiveIndexedLogsUsageSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionSumUsage) GetLogsLiveIndexedLogsUsageSumOk() (*int64, bool) {
-	if o == nil || o.LogsLiveIndexedLogsUsageSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsLiveIndexedLogsUsageSum, true
+	return o.LogsLiveIndexedLogsUsageSum.Get(), o.LogsLiveIndexedLogsUsageSum.IsSet()
 }
 
 // HasLogsLiveIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsLiveIndexedLogsUsageSum() bool {
-	return o != nil && o.LogsLiveIndexedLogsUsageSum != nil
+	return o != nil && o.LogsLiveIndexedLogsUsageSum.IsSet()
 }
 
-// SetLogsLiveIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsLiveIndexedLogsUsageSum field.
+// SetLogsLiveIndexedLogsUsageSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsLiveIndexedLogsUsageSum field.
 func (o *LogsRetentionSumUsage) SetLogsLiveIndexedLogsUsageSum(v int64) {
-	o.LogsLiveIndexedLogsUsageSum = &v
+	o.LogsLiveIndexedLogsUsageSum.Set(&v)
 }
 
-// GetLogsRehydratedIndexedLogsUsageSum returns the LogsRehydratedIndexedLogsUsageSum field value if set, zero value otherwise.
+// SetLogsLiveIndexedLogsUsageSumNil sets the value for LogsLiveIndexedLogsUsageSum to be an explicit nil.
+func (o *LogsRetentionSumUsage) SetLogsLiveIndexedLogsUsageSumNil() {
+	o.LogsLiveIndexedLogsUsageSum.Set(nil)
+}
+
+// UnsetLogsLiveIndexedLogsUsageSum ensures that no value is present for LogsLiveIndexedLogsUsageSum, not even an explicit nil.
+func (o *LogsRetentionSumUsage) UnsetLogsLiveIndexedLogsUsageSum() {
+	o.LogsLiveIndexedLogsUsageSum.Unset()
+}
+
+// GetLogsRehydratedIndexedLogsUsageSum returns the LogsRehydratedIndexedLogsUsageSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionSumUsage) GetLogsRehydratedIndexedLogsUsageSum() int64 {
-	if o == nil || o.LogsRehydratedIndexedLogsUsageSum == nil {
+	if o == nil || o.LogsRehydratedIndexedLogsUsageSum.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LogsRehydratedIndexedLogsUsageSum
+	return *o.LogsRehydratedIndexedLogsUsageSum.Get()
 }
 
 // GetLogsRehydratedIndexedLogsUsageSumOk returns a tuple with the LogsRehydratedIndexedLogsUsageSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionSumUsage) GetLogsRehydratedIndexedLogsUsageSumOk() (*int64, bool) {
-	if o == nil || o.LogsRehydratedIndexedLogsUsageSum == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LogsRehydratedIndexedLogsUsageSum, true
+	return o.LogsRehydratedIndexedLogsUsageSum.Get(), o.LogsRehydratedIndexedLogsUsageSum.IsSet()
 }
 
 // HasLogsRehydratedIndexedLogsUsageSum returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasLogsRehydratedIndexedLogsUsageSum() bool {
-	return o != nil && o.LogsRehydratedIndexedLogsUsageSum != nil
+	return o != nil && o.LogsRehydratedIndexedLogsUsageSum.IsSet()
 }
 
-// SetLogsRehydratedIndexedLogsUsageSum gets a reference to the given int64 and assigns it to the LogsRehydratedIndexedLogsUsageSum field.
+// SetLogsRehydratedIndexedLogsUsageSum gets a reference to the given datadog.NullableInt64 and assigns it to the LogsRehydratedIndexedLogsUsageSum field.
 func (o *LogsRetentionSumUsage) SetLogsRehydratedIndexedLogsUsageSum(v int64) {
-	o.LogsRehydratedIndexedLogsUsageSum = &v
+	o.LogsRehydratedIndexedLogsUsageSum.Set(&v)
 }
 
-// GetRetention returns the Retention field value if set, zero value otherwise.
+// SetLogsRehydratedIndexedLogsUsageSumNil sets the value for LogsRehydratedIndexedLogsUsageSum to be an explicit nil.
+func (o *LogsRetentionSumUsage) SetLogsRehydratedIndexedLogsUsageSumNil() {
+	o.LogsRehydratedIndexedLogsUsageSum.Set(nil)
+}
+
+// UnsetLogsRehydratedIndexedLogsUsageSum ensures that no value is present for LogsRehydratedIndexedLogsUsageSum, not even an explicit nil.
+func (o *LogsRetentionSumUsage) UnsetLogsRehydratedIndexedLogsUsageSum() {
+	o.LogsRehydratedIndexedLogsUsageSum.Unset()
+}
+
+// GetRetention returns the Retention field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsRetentionSumUsage) GetRetention() string {
-	if o == nil || o.Retention == nil {
+	if o == nil || o.Retention.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Retention
+	return *o.Retention.Get()
 }
 
 // GetRetentionOk returns a tuple with the Retention field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsRetentionSumUsage) GetRetentionOk() (*string, bool) {
-	if o == nil || o.Retention == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Retention, true
+	return o.Retention.Get(), o.Retention.IsSet()
 }
 
 // HasRetention returns a boolean if a field has been set.
 func (o *LogsRetentionSumUsage) HasRetention() bool {
-	return o != nil && o.Retention != nil
+	return o != nil && o.Retention.IsSet()
 }
 
-// SetRetention gets a reference to the given string and assigns it to the Retention field.
+// SetRetention gets a reference to the given datadog.NullableString and assigns it to the Retention field.
 func (o *LogsRetentionSumUsage) SetRetention(v string) {
-	o.Retention = &v
+	o.Retention.Set(&v)
+}
+
+// SetRetentionNil sets the value for Retention to be an explicit nil.
+func (o *LogsRetentionSumUsage) SetRetentionNil() {
+	o.Retention.Set(nil)
+}
+
+// UnsetRetention ensures that no value is present for Retention, not even an explicit nil.
+func (o *LogsRetentionSumUsage) UnsetRetention() {
+	o.Retention.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -160,17 +204,17 @@ func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.LogsIndexedLogsUsageSum != nil {
-		toSerialize["logs_indexed_logs_usage_sum"] = o.LogsIndexedLogsUsageSum
+	if o.LogsIndexedLogsUsageSum.IsSet() {
+		toSerialize["logs_indexed_logs_usage_sum"] = o.LogsIndexedLogsUsageSum.Get()
 	}
-	if o.LogsLiveIndexedLogsUsageSum != nil {
-		toSerialize["logs_live_indexed_logs_usage_sum"] = o.LogsLiveIndexedLogsUsageSum
+	if o.LogsLiveIndexedLogsUsageSum.IsSet() {
+		toSerialize["logs_live_indexed_logs_usage_sum"] = o.LogsLiveIndexedLogsUsageSum.Get()
 	}
-	if o.LogsRehydratedIndexedLogsUsageSum != nil {
-		toSerialize["logs_rehydrated_indexed_logs_usage_sum"] = o.LogsRehydratedIndexedLogsUsageSum
+	if o.LogsRehydratedIndexedLogsUsageSum.IsSet() {
+		toSerialize["logs_rehydrated_indexed_logs_usage_sum"] = o.LogsRehydratedIndexedLogsUsageSum.Get()
 	}
-	if o.Retention != nil {
-		toSerialize["retention"] = o.Retention
+	if o.Retention.IsSet() {
+		toSerialize["retention"] = o.Retention.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -183,10 +227,10 @@ func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LogsIndexedLogsUsageSum           *int64  `json:"logs_indexed_logs_usage_sum,omitempty"`
-		LogsLiveIndexedLogsUsageSum       *int64  `json:"logs_live_indexed_logs_usage_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageSum *int64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
-		Retention                         *string `json:"retention,omitempty"`
+		LogsIndexedLogsUsageSum           datadog.NullableInt64  `json:"logs_indexed_logs_usage_sum,omitempty"`
+		LogsLiveIndexedLogsUsageSum       datadog.NullableInt64  `json:"logs_live_indexed_logs_usage_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageSum datadog.NullableInt64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
+		Retention                         datadog.NullableString `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

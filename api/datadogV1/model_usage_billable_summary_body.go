@@ -14,17 +14,17 @@ import (
 // UsageBillableSummaryBody Response with properties for each aggregated usage type.
 type UsageBillableSummaryBody struct {
 	// The total account usage.
-	AccountBillableUsage *int64 `json:"account_billable_usage,omitempty"`
+	AccountBillableUsage datadog.NullableInt64 `json:"account_billable_usage,omitempty"`
 	// Elapsed usage hours for some billable product.
-	ElapsedUsageHours *int64 `json:"elapsed_usage_hours,omitempty"`
+	ElapsedUsageHours datadog.NullableInt64 `json:"elapsed_usage_hours,omitempty"`
 	// The first billable hour for the org.
 	FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
 	// The last billable hour for the org.
 	LastBillableUsageHour *time.Time `json:"last_billable_usage_hour,omitempty"`
 	// The number of units used within the billable timeframe.
-	OrgBillableUsage *int64 `json:"org_billable_usage,omitempty"`
+	OrgBillableUsage datadog.NullableInt64 `json:"org_billable_usage,omitempty"`
 	// The percentage of account usage the org represents.
-	PercentageInAccount *float64 `json:"percentage_in_account,omitempty"`
+	PercentageInAccount datadog.NullableFloat64 `json:"percentage_in_account,omitempty"`
 	// Units pertaining to the usage.
 	UsageUnit *string `json:"usage_unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -49,60 +49,82 @@ func NewUsageBillableSummaryBodyWithDefaults() *UsageBillableSummaryBody {
 	return &this
 }
 
-// GetAccountBillableUsage returns the AccountBillableUsage field value if set, zero value otherwise.
+// GetAccountBillableUsage returns the AccountBillableUsage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageBillableSummaryBody) GetAccountBillableUsage() int64 {
-	if o == nil || o.AccountBillableUsage == nil {
+	if o == nil || o.AccountBillableUsage.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.AccountBillableUsage
+	return *o.AccountBillableUsage.Get()
 }
 
 // GetAccountBillableUsageOk returns a tuple with the AccountBillableUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageBillableSummaryBody) GetAccountBillableUsageOk() (*int64, bool) {
-	if o == nil || o.AccountBillableUsage == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.AccountBillableUsage, true
+	return o.AccountBillableUsage.Get(), o.AccountBillableUsage.IsSet()
 }
 
 // HasAccountBillableUsage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasAccountBillableUsage() bool {
-	return o != nil && o.AccountBillableUsage != nil
+	return o != nil && o.AccountBillableUsage.IsSet()
 }
 
-// SetAccountBillableUsage gets a reference to the given int64 and assigns it to the AccountBillableUsage field.
+// SetAccountBillableUsage gets a reference to the given datadog.NullableInt64 and assigns it to the AccountBillableUsage field.
 func (o *UsageBillableSummaryBody) SetAccountBillableUsage(v int64) {
-	o.AccountBillableUsage = &v
+	o.AccountBillableUsage.Set(&v)
 }
 
-// GetElapsedUsageHours returns the ElapsedUsageHours field value if set, zero value otherwise.
+// SetAccountBillableUsageNil sets the value for AccountBillableUsage to be an explicit nil.
+func (o *UsageBillableSummaryBody) SetAccountBillableUsageNil() {
+	o.AccountBillableUsage.Set(nil)
+}
+
+// UnsetAccountBillableUsage ensures that no value is present for AccountBillableUsage, not even an explicit nil.
+func (o *UsageBillableSummaryBody) UnsetAccountBillableUsage() {
+	o.AccountBillableUsage.Unset()
+}
+
+// GetElapsedUsageHours returns the ElapsedUsageHours field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageBillableSummaryBody) GetElapsedUsageHours() int64 {
-	if o == nil || o.ElapsedUsageHours == nil {
+	if o == nil || o.ElapsedUsageHours.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ElapsedUsageHours
+	return *o.ElapsedUsageHours.Get()
 }
 
 // GetElapsedUsageHoursOk returns a tuple with the ElapsedUsageHours field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageBillableSummaryBody) GetElapsedUsageHoursOk() (*int64, bool) {
-	if o == nil || o.ElapsedUsageHours == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ElapsedUsageHours, true
+	return o.ElapsedUsageHours.Get(), o.ElapsedUsageHours.IsSet()
 }
 
 // HasElapsedUsageHours returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasElapsedUsageHours() bool {
-	return o != nil && o.ElapsedUsageHours != nil
+	return o != nil && o.ElapsedUsageHours.IsSet()
 }
 
-// SetElapsedUsageHours gets a reference to the given int64 and assigns it to the ElapsedUsageHours field.
+// SetElapsedUsageHours gets a reference to the given datadog.NullableInt64 and assigns it to the ElapsedUsageHours field.
 func (o *UsageBillableSummaryBody) SetElapsedUsageHours(v int64) {
-	o.ElapsedUsageHours = &v
+	o.ElapsedUsageHours.Set(&v)
+}
+
+// SetElapsedUsageHoursNil sets the value for ElapsedUsageHours to be an explicit nil.
+func (o *UsageBillableSummaryBody) SetElapsedUsageHoursNil() {
+	o.ElapsedUsageHours.Set(nil)
+}
+
+// UnsetElapsedUsageHours ensures that no value is present for ElapsedUsageHours, not even an explicit nil.
+func (o *UsageBillableSummaryBody) UnsetElapsedUsageHours() {
+	o.ElapsedUsageHours.Unset()
 }
 
 // GetFirstBillableUsageHour returns the FirstBillableUsageHour field value if set, zero value otherwise.
@@ -161,60 +183,82 @@ func (o *UsageBillableSummaryBody) SetLastBillableUsageHour(v time.Time) {
 	o.LastBillableUsageHour = &v
 }
 
-// GetOrgBillableUsage returns the OrgBillableUsage field value if set, zero value otherwise.
+// GetOrgBillableUsage returns the OrgBillableUsage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageBillableSummaryBody) GetOrgBillableUsage() int64 {
-	if o == nil || o.OrgBillableUsage == nil {
+	if o == nil || o.OrgBillableUsage.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.OrgBillableUsage
+	return *o.OrgBillableUsage.Get()
 }
 
 // GetOrgBillableUsageOk returns a tuple with the OrgBillableUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageBillableSummaryBody) GetOrgBillableUsageOk() (*int64, bool) {
-	if o == nil || o.OrgBillableUsage == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.OrgBillableUsage, true
+	return o.OrgBillableUsage.Get(), o.OrgBillableUsage.IsSet()
 }
 
 // HasOrgBillableUsage returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasOrgBillableUsage() bool {
-	return o != nil && o.OrgBillableUsage != nil
+	return o != nil && o.OrgBillableUsage.IsSet()
 }
 
-// SetOrgBillableUsage gets a reference to the given int64 and assigns it to the OrgBillableUsage field.
+// SetOrgBillableUsage gets a reference to the given datadog.NullableInt64 and assigns it to the OrgBillableUsage field.
 func (o *UsageBillableSummaryBody) SetOrgBillableUsage(v int64) {
-	o.OrgBillableUsage = &v
+	o.OrgBillableUsage.Set(&v)
 }
 
-// GetPercentageInAccount returns the PercentageInAccount field value if set, zero value otherwise.
+// SetOrgBillableUsageNil sets the value for OrgBillableUsage to be an explicit nil.
+func (o *UsageBillableSummaryBody) SetOrgBillableUsageNil() {
+	o.OrgBillableUsage.Set(nil)
+}
+
+// UnsetOrgBillableUsage ensures that no value is present for OrgBillableUsage, not even an explicit nil.
+func (o *UsageBillableSummaryBody) UnsetOrgBillableUsage() {
+	o.OrgBillableUsage.Unset()
+}
+
+// GetPercentageInAccount returns the PercentageInAccount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageBillableSummaryBody) GetPercentageInAccount() float64 {
-	if o == nil || o.PercentageInAccount == nil {
+	if o == nil || o.PercentageInAccount.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.PercentageInAccount
+	return *o.PercentageInAccount.Get()
 }
 
 // GetPercentageInAccountOk returns a tuple with the PercentageInAccount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageBillableSummaryBody) GetPercentageInAccountOk() (*float64, bool) {
-	if o == nil || o.PercentageInAccount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.PercentageInAccount, true
+	return o.PercentageInAccount.Get(), o.PercentageInAccount.IsSet()
 }
 
 // HasPercentageInAccount returns a boolean if a field has been set.
 func (o *UsageBillableSummaryBody) HasPercentageInAccount() bool {
-	return o != nil && o.PercentageInAccount != nil
+	return o != nil && o.PercentageInAccount.IsSet()
 }
 
-// SetPercentageInAccount gets a reference to the given float64 and assigns it to the PercentageInAccount field.
+// SetPercentageInAccount gets a reference to the given datadog.NullableFloat64 and assigns it to the PercentageInAccount field.
 func (o *UsageBillableSummaryBody) SetPercentageInAccount(v float64) {
-	o.PercentageInAccount = &v
+	o.PercentageInAccount.Set(&v)
+}
+
+// SetPercentageInAccountNil sets the value for PercentageInAccount to be an explicit nil.
+func (o *UsageBillableSummaryBody) SetPercentageInAccountNil() {
+	o.PercentageInAccount.Set(nil)
+}
+
+// UnsetPercentageInAccount ensures that no value is present for PercentageInAccount, not even an explicit nil.
+func (o *UsageBillableSummaryBody) UnsetPercentageInAccount() {
+	o.PercentageInAccount.Unset()
 }
 
 // GetUsageUnit returns the UsageUnit field value if set, zero value otherwise.
@@ -251,11 +295,11 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AccountBillableUsage != nil {
-		toSerialize["account_billable_usage"] = o.AccountBillableUsage
+	if o.AccountBillableUsage.IsSet() {
+		toSerialize["account_billable_usage"] = o.AccountBillableUsage.Get()
 	}
-	if o.ElapsedUsageHours != nil {
-		toSerialize["elapsed_usage_hours"] = o.ElapsedUsageHours
+	if o.ElapsedUsageHours.IsSet() {
+		toSerialize["elapsed_usage_hours"] = o.ElapsedUsageHours.Get()
 	}
 	if o.FirstBillableUsageHour != nil {
 		if o.FirstBillableUsageHour.Nanosecond() == 0 {
@@ -271,11 +315,11 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 			toSerialize["last_billable_usage_hour"] = o.LastBillableUsageHour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.OrgBillableUsage != nil {
-		toSerialize["org_billable_usage"] = o.OrgBillableUsage
+	if o.OrgBillableUsage.IsSet() {
+		toSerialize["org_billable_usage"] = o.OrgBillableUsage.Get()
 	}
-	if o.PercentageInAccount != nil {
-		toSerialize["percentage_in_account"] = o.PercentageInAccount
+	if o.PercentageInAccount.IsSet() {
+		toSerialize["percentage_in_account"] = o.PercentageInAccount.Get()
 	}
 	if o.UsageUnit != nil {
 		toSerialize["usage_unit"] = o.UsageUnit
@@ -291,13 +335,13 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
-		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
-		FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
-		LastBillableUsageHour  *time.Time `json:"last_billable_usage_hour,omitempty"`
-		OrgBillableUsage       *int64     `json:"org_billable_usage,omitempty"`
-		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
-		UsageUnit              *string    `json:"usage_unit,omitempty"`
+		AccountBillableUsage   datadog.NullableInt64   `json:"account_billable_usage,omitempty"`
+		ElapsedUsageHours      datadog.NullableInt64   `json:"elapsed_usage_hours,omitempty"`
+		FirstBillableUsageHour *time.Time              `json:"first_billable_usage_hour,omitempty"`
+		LastBillableUsageHour  *time.Time              `json:"last_billable_usage_hour,omitempty"`
+		OrgBillableUsage       datadog.NullableInt64   `json:"org_billable_usage,omitempty"`
+		PercentageInAccount    datadog.NullableFloat64 `json:"percentage_in_account,omitempty"`
+		UsageUnit              *string                 `json:"usage_unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
