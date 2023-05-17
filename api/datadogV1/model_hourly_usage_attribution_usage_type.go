@@ -45,6 +45,7 @@ const (
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE                         HourlyUsageAttributionUsageType = "snmp_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_ESTIMATED_RUM_SESSIONS_USAGE       HourlyUsageAttributionUsageType = "estimated_rum_sessions_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_UNIVERSAL_SERVICE_MONITORING_USAGE HourlyUsageAttributionUsageType = "universal_service_monitoring_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_VULN_MANAGEMENT_HOSTS_USAGE        HourlyUsageAttributionUsageType = "vuln_management_hosts_usage"
 )
 
 var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionUsageType{
@@ -79,6 +80,7 @@ var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionU
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_ESTIMATED_RUM_SESSIONS_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_UNIVERSAL_SERVICE_MONITORING_USAGE,
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_VULN_MANAGEMENT_HOSTS_USAGE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
