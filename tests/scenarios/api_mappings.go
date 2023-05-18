@@ -53,6 +53,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "DashboardListsApi": reflect.ValueOf(datadogV2.NewDashboardListsApi),
 	    "EventsApi": reflect.ValueOf(datadogV2.NewEventsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
+	    "GCPIntegrationApi": reflect.ValueOf(datadogV2.NewGCPIntegrationApi),
 	    "OpsgenieIntegrationApi": reflect.ValueOf(datadogV2.NewOpsgenieIntegrationApi),
 	    "CloudflareIntegrationApi": reflect.ValueOf(datadogV2.NewCloudflareIntegrationApi),
 	    "ConfluentCloudApi": reflect.ValueOf(datadogV2.NewConfluentCloudApi),
