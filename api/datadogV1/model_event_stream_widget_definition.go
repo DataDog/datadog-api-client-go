@@ -18,6 +18,8 @@ type EventStreamWidgetDefinition struct {
 	EventSize *WidgetEventSize `json:"event_size,omitempty"`
 	// Query to filter the event stream with.
 	Query string `json:"query"`
+	// Option to display the year in the date column.
+	ShowYear *bool `json:"show_year,omitempty"`
 	// The execution method for multi-value filters. Can be either and or or.
 	TagsExecution *string `json:"tags_execution,omitempty"`
 	// Time setting for the widget.
@@ -105,6 +107,34 @@ func (o *EventStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 // SetQuery sets field value.
 func (o *EventStreamWidgetDefinition) SetQuery(v string) {
 	o.Query = v
+}
+
+// GetShowYear returns the ShowYear field value if set, zero value otherwise.
+func (o *EventStreamWidgetDefinition) GetShowYear() bool {
+	if o == nil || o.ShowYear == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ShowYear
+}
+
+// GetShowYearOk returns a tuple with the ShowYear field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventStreamWidgetDefinition) GetShowYearOk() (*bool, bool) {
+	if o == nil || o.ShowYear == nil {
+		return nil, false
+	}
+	return o.ShowYear, true
+}
+
+// HasShowYear returns a boolean if a field has been set.
+func (o *EventStreamWidgetDefinition) HasShowYear() bool {
+	return o != nil && o.ShowYear != nil
+}
+
+// SetShowYear gets a reference to the given bool and assigns it to the ShowYear field.
+func (o *EventStreamWidgetDefinition) SetShowYear(v bool) {
+	o.ShowYear = &v
 }
 
 // GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
@@ -280,6 +310,9 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["event_size"] = o.EventSize
 	}
 	toSerialize["query"] = o.Query
+	if o.ShowYear != nil {
+		toSerialize["show_year"] = o.ShowYear
+	}
 	if o.TagsExecution != nil {
 		toSerialize["tags_execution"] = o.TagsExecution
 	}
@@ -313,6 +346,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		EventSize     *WidgetEventSize                `json:"event_size,omitempty"`
 		Query         string                          `json:"query"`
+		ShowYear      *bool                           `json:"show_year,omitempty"`
 		TagsExecution *string                         `json:"tags_execution,omitempty"`
 		Time          *WidgetTime                     `json:"time,omitempty"`
 		Title         *string                         `json:"title,omitempty"`
@@ -341,7 +375,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"event_size", "query", "tags_execution", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"event_size", "query", "show_year", "tags_execution", "time", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
@@ -371,6 +405,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.EventSize = all.EventSize
 	o.Query = all.Query
+	o.ShowYear = all.ShowYear
 	o.TagsExecution = all.TagsExecution
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
