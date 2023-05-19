@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsGlobalVariableParseTestOptionsType Property of the Synthetics Test Response to use for a Synthetics global variable.
+// SyntheticsGlobalVariableParseTestOptionsType Property of the Synthetic Test Response to use for a Synthetic global variable.
 type SyntheticsGlobalVariableParseTestOptionsType string
 
 // List of SyntheticsGlobalVariableParseTestOptionsType.

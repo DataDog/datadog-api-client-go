@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsStep The steps used in a Synthetics browser test.
+// SyntheticsStep The steps used in a Synthetic browser test.
 type SyntheticsStep struct {
 	// A boolean set to allow this step to fail.
 	AllowFailure *bool `json:"allowFailure,omitempty"`

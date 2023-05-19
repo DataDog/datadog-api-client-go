@@ -16,7 +16,7 @@ type SyntheticsTriggerCITestRunResult struct {
 	Device *SyntheticsDeviceID `json:"device,omitempty"`
 	// The location ID of the test run.
 	Location *int64 `json:"location,omitempty"`
-	// The public ID of the Synthetics test.
+	// The public ID of the Synthetic test.
 	PublicId *string `json:"public_id,omitempty"`
 	// ID of the result.
 	ResultId *string `json:"result_id,omitempty"`

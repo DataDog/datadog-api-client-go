@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsGlobalVariableParserType Type of parser for a Synthetics global variable from a synthetics test.
+// SyntheticsGlobalVariableParserType Type of parser for a Synthetic global variable from a synthetics test.
 type SyntheticsGlobalVariableParserType string
 
 // List of SyntheticsGlobalVariableParserType.

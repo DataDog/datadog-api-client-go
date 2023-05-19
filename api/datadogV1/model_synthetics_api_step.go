@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsAPIStep The steps used in a Synthetics multistep API test.
+// SyntheticsAPIStep The steps used in a Synthetic multistep API test.
 type SyntheticsAPIStep struct {
 	// Determines whether or not to continue with test if this step fails.
 	AllowFailure *bool `json:"allowFailure,omitempty"`

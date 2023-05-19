@@ -16,6 +16,15 @@ func main() {
 	body := datadogV1.SyntheticsBrowserTest{
 		Config: datadogV1.SyntheticsBrowserTestConfig{
 			Assertions: []datadogV1.SyntheticsAssertion{},
+			Variables: []datadogV1.SyntheticsBrowserVariable{
+				{
+					Type:    datadogV1.SYNTHETICSBROWSERVARIABLETYPE_TEXT,
+					Name:    "TEST_VARIABLE",
+					Pattern: datadog.PtrString("secret"),
+					Secure:  datadog.PtrBool(true),
+					Example: datadog.PtrString("secret"),
+				},
+			},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),

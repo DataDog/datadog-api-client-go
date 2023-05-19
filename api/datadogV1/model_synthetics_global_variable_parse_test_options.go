@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
+// SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetic global variable from a Synthetic test. Used in conjunction with `parse_test_public_id`.
 type SyntheticsGlobalVariableParseTestOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
 	Field *string `json:"field,omitempty"`
@@ -19,7 +19,7 @@ type SyntheticsGlobalVariableParseTestOptions struct {
 	LocalVariableName *string `json:"localVariableName,omitempty"`
 	// Details of the parser to use for the global variable.
 	Parser *SyntheticsVariableParser `json:"parser,omitempty"`
-	// Property of the Synthetics Test Response to use for a Synthetics global variable.
+	// Property of the Synthetic Test Response to use for a Synthetic global variable.
 	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

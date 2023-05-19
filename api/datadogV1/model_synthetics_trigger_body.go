@@ -11,9 +11,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsTriggerBody Object describing the synthetics tests to trigger.
+// SyntheticsTriggerBody Object describing the Synthetic tests to trigger.
 type SyntheticsTriggerBody struct {
-	// Individual synthetics test.
+	// Individual Synthetic test.
 	Tests []SyntheticsTriggerTest `json:"tests"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -12,7 +12,7 @@ import (
 
 // SyntheticsBatchDetailsData Wrapper object that contains the details of a batch.
 type SyntheticsBatchDetailsData struct {
-	// Metadata for the Synthetics tests run.
+	// Metadata for the Synthetic tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// List of results for the batch.
 	Results []SyntheticsBatchResult `json:"results,omitempty"`

@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsGlobalVariable Synthetics global variable.
+// SyntheticsGlobalVariable Synthetic global variable.
 type SyntheticsGlobalVariable struct {
 	// Attributes of the global variable.
 	Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
@@ -19,9 +19,9 @@ type SyntheticsGlobalVariable struct {
 	Description string `json:"description"`
 	// Unique identifier of the global variable.
 	Id *string `json:"id,omitempty"`
-	// Name of the global variable. Unique across Synthetics global variables.
+	// Name of the global variable. Unique across Synthetic global variables.
 	Name string `json:"name"`
-	// Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
+	// Parser options to use for retrieving a Synthetic global variable from a Synthetic test. Used in conjunction with `parse_test_public_id`.
 	ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
 	// A Synthetic test ID to use as a test to generate the variable value.
 	ParseTestPublicId *string `json:"parse_test_public_id,omitempty"`

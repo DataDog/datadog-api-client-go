@@ -13,9 +13,9 @@ import (
 
 // SyntheticsTriggerTest Test configuration for Synthetics
 type SyntheticsTriggerTest struct {
-	// Metadata for the Synthetics tests run.
+	// Metadata for the Synthetic tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-	// The public ID of the Synthetics test to trigger.
+	// The public ID of the Synthetic test to trigger.
 	PublicId string `json:"public_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

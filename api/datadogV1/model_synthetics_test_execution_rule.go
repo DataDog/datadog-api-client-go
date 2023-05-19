@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsTestExecutionRule Execution rule for a Synthetics test.
+// SyntheticsTestExecutionRule Execution rule for a Synthetic test.
 type SyntheticsTestExecutionRule string
 
 // List of SyntheticsTestExecutionRule.

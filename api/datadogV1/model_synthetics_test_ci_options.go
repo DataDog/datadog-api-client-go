@@ -12,7 +12,7 @@ import (
 
 // SyntheticsTestCiOptions CI/CD options for a Synthetic test.
 type SyntheticsTestCiOptions struct {
-	// Execution rule for a Synthetics test.
+	// Execution rule for a Synthetic test.
 	ExecutionRule *SyntheticsTestExecutionRule `json:"executionRule,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

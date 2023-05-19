@@ -12,7 +12,7 @@ import (
 )
 
 // SyntheticsBrowserVariable Object defining a variable that can be used in your browser test.
-// Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
+// See the [Recording Steps documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions/?tab=testanelementontheactivepage#variables).
 type SyntheticsBrowserVariable struct {
 	// Example for the variable.
 	Example *string `json:"example,omitempty"`
@@ -22,6 +22,8 @@ type SyntheticsBrowserVariable struct {
 	Name string `json:"name"`
 	// Pattern of the variable.
 	Pattern *string `json:"pattern,omitempty"`
+	// Determines whether or not the browser test variable is obfuscated. Can only be used with browser variables of type `text`.
+	Secure *bool `json:"secure,omitempty"`
 	// Type of browser test variable.
 	Type SyntheticsBrowserVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -155,6 +157,34 @@ func (o *SyntheticsBrowserVariable) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+// GetSecure returns the Secure field value if set, zero value otherwise.
+func (o *SyntheticsBrowserVariable) GetSecure() bool {
+	if o == nil || o.Secure == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Secure
+}
+
+// GetSecureOk returns a tuple with the Secure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserVariable) GetSecureOk() (*bool, bool) {
+	if o == nil || o.Secure == nil {
+		return nil, false
+	}
+	return o.Secure, true
+}
+
+// HasSecure returns a boolean if a field has been set.
+func (o *SyntheticsBrowserVariable) HasSecure() bool {
+	return o != nil && o.Secure != nil
+}
+
+// SetSecure gets a reference to the given bool and assigns it to the Secure field.
+func (o *SyntheticsBrowserVariable) SetSecure(v bool) {
+	o.Secure = &v
+}
+
 // GetType returns the Type field value.
 func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
 	if o == nil {
@@ -194,6 +224,9 @@ func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
 	}
+	if o.Secure != nil {
+		toSerialize["secure"] = o.Secure
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -214,6 +247,7 @@ func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Id      *string                       `json:"id,omitempty"`
 		Name    string                        `json:"name"`
 		Pattern *string                       `json:"pattern,omitempty"`
+		Secure  *bool                         `json:"secure,omitempty"`
 		Type    SyntheticsBrowserVariableType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -237,7 +271,7 @@ func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"example", "id", "name", "pattern", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"example", "id", "name", "pattern", "secure", "type"})
 	} else {
 		return err
 	}
@@ -253,6 +287,7 @@ func (o *SyntheticsBrowserVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Pattern = all.Pattern
+	o.Secure = all.Secure
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

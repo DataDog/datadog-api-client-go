@@ -32,7 +32,7 @@ type SyntheticsStepDetail struct {
 	SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
 	// The step ID.
 	StepId *int64 `json:"stepId,omitempty"`
-	// If this steps include a sub-test.
+	// If this step includes a sub-test.
 	// [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
 	SubTestStepDetails []SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.

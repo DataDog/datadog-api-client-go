@@ -18,7 +18,7 @@ import (
 type SyntheticsApi datadog.Service
 
 // CreateGlobalVariable Create a global variable.
-// Create a Synthetics global variable.
+// Create a Synthetic global variable.
 func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -91,7 +91,7 @@ func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body Syntheti
 }
 
 // CreatePrivateLocation Create a private location.
-// Create a new Synthetics private location.
+// Create a new Synthetic private location.
 func (a *SyntheticsApi) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -310,7 +310,7 @@ func (a *SyntheticsApi) CreateSyntheticsBrowserTest(ctx _context.Context, body S
 }
 
 // DeleteGlobalVariable Delete a global variable.
-// Delete a Synthetics global variable.
+// Delete a Synthetic global variable.
 func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -371,7 +371,7 @@ func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId st
 }
 
 // DeletePrivateLocation Delete a private location.
-// Delete a Synthetics private location.
+// Delete a Synthetic private location.
 func (a *SyntheticsApi) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -505,7 +505,7 @@ func (a *SyntheticsApi) DeleteTests(ctx _context.Context, body SyntheticsDeleteT
 }
 
 // EditGlobalVariable Edit a global variable.
-// Edit a Synthetics global variable.
+// Edit a Synthetic global variable.
 func (a *SyntheticsApi) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -682,7 +682,7 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 }
 
 // GetAPITestLatestResults Get an API test's latest results summaries.
-// Get the last 150 test results summaries for a given Synthetics API test.
+// Get the last 150 test results summaries for a given Synthetic API test.
 func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -778,7 +778,7 @@ func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId s
 }
 
 // GetAPITestResult Get an API test result.
-// Get a specific full result from a given (API) Synthetic test.
+// Get a specific full result from a given Synthetic API test.
 func (a *SyntheticsApi) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -953,7 +953,7 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 }
 
 // GetBrowserTestLatestResults Get a browser test's latest results summaries.
-// Get the last 150 test results summaries for a given Synthetics Browser test.
+// Get the last 150 test results summaries for a given Synthetic browser test.
 func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1049,7 +1049,7 @@ func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, public
 }
 
 // GetBrowserTestResult Get a browser test result.
-// Get a specific full result from a given (browser) Synthetic test.
+// Get a specific full result from a given Synthetic browser test.
 func (a *SyntheticsApi) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1192,7 +1192,7 @@ func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId strin
 }
 
 // GetPrivateLocation Get a private location.
-// Get a Synthetics private location.
+// Get a Synthetic private location.
 func (a *SyntheticsApi) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1334,7 +1334,7 @@ func (a *SyntheticsApi) GetSyntheticsCIBatch(ctx _context.Context, batchId strin
 }
 
 // GetTest Get a test configuration.
-// Get the detailed configuration associated with a Synthetics test.
+// Get the detailed configuration associated with a Synthetic test.
 func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1405,7 +1405,7 @@ func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (Syntheti
 }
 
 // ListGlobalVariables Get all global variables.
-// Get the list of all Synthetics global variables.
+// Get the list of all Synthetic global variables.
 func (a *SyntheticsApi) ListGlobalVariables(ctx _context.Context) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1654,7 +1654,7 @@ func (a *SyntheticsApi) ListTests(ctx _context.Context, o ...ListTestsOptionalPa
 }
 
 // TriggerCITests Trigger tests from CI/CD pipelines.
-// Trigger a set of Synthetics tests for continuous integration.
+// Trigger a set of Synthetic tests for continuous integration.
 func (a *SyntheticsApi) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1726,8 +1726,8 @@ func (a *SyntheticsApi) TriggerCITests(ctx _context.Context, body SyntheticsCITe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// TriggerTests Trigger Synthetics tests.
-// Trigger a set of Synthetics tests.
+// TriggerTests Trigger Synthetic tests.
+// Trigger a set of Synthetic tests.
 func (a *SyntheticsApi) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1948,7 +1948,7 @@ func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string,
 }
 
 // UpdatePrivateLocation Edit a private location.
-// Edit a Synthetics private location.
+// Edit a Synthetic private location.
 func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -2022,7 +2022,7 @@ func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId s
 }
 
 // UpdateTestPauseStatus Pause or start a test.
-// Pause or start a Synthetics test by changing the status.
+// Pause or start a Synthetic test by changing the status.
 func (a *SyntheticsApi) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

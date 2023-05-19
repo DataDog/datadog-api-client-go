@@ -1,4 +1,4 @@
-// Trigger Synthetics tests returns "OK" response
+// Trigger Synthetic tests returns "OK" response
 
 package main
 

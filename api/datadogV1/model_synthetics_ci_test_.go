@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsCITest Test configuration for Synthetics CI
+// SyntheticsCITest Configuration for Continuous Testing.
 type SyntheticsCITest struct {
 	// Disable certificate checks in API tests.
 	AllowInsecureCertificates *bool `json:"allowInsecureCertificates,omitempty"`
@@ -19,7 +19,7 @@ type SyntheticsCITest struct {
 	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
-	// Type of the data sent in a synthetics API test.
+	// Type of the data sent in a Synthetic API test.
 	BodyType *string `json:"bodyType,omitempty"`
 	// Cookies for the request.
 	Cookies *string `json:"cookies,omitempty"`
@@ -31,9 +31,9 @@ type SyntheticsCITest struct {
 	Headers map[string]string `json:"headers,omitempty"`
 	// Array of locations used to run the test.
 	Locations []string `json:"locations,omitempty"`
-	// Metadata for the Synthetics tests run.
+	// Metadata for the Synthetic tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-	// The public ID of the Synthetics test to trigger.
+	// The public ID of the Synthetic test to trigger.
 	PublicId string `json:"public_id"`
 	// Object describing the retry strategy to apply to a Synthetic test.
 	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
