@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsLocations List of Synthetics locations.
+// SyntheticsLocations List of Synthetic locations.
 type SyntheticsLocations struct {
-	// List of Synthetics locations.
+	// List of Synthetic locations.
 	Locations []SyntheticsLocation `json:"locations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

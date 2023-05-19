@@ -29,7 +29,7 @@ type SyntheticsAPITestResultData struct {
 	// Global size in byte of the API test response.
 	ResponseSize *int64 `json:"responseSize,omitempty"`
 	// Object containing all metrics and their values collected for a Synthetic API test.
-	// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
+	// See the [Synthetic Monitoring Metrics documentation](https://docs.datadoghq.com/synthetics/metrics/).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

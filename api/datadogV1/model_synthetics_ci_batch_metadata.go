@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
+// SyntheticsCIBatchMetadata Metadata for the Synthetic tests run.
 type SyntheticsCIBatchMetadata struct {
 	// Description of the CI provider.
 	Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`

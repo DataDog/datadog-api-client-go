@@ -13,7 +13,7 @@ import (
 
 // SyntheticsVariableParser Details of the parser to use for the global variable.
 type SyntheticsVariableParser struct {
-	// Type of parser for a Synthetics global variable from a synthetics test.
+	// Type of parser for a Synthetic global variable from a synthetics test.
 	Type SyntheticsGlobalVariableParserType `json:"type"`
 	// Regex or JSON path used for the parser. Not used with type `raw`.
 	Value *string `json:"value,omitempty"`

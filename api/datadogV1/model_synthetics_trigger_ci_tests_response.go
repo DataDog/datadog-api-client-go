@@ -14,11 +14,11 @@ import (
 type SyntheticsTriggerCITestsResponse struct {
 	// The public ID of the batch triggered.
 	BatchId datadog.NullableString `json:"batch_id,omitempty"`
-	// List of Synthetics locations.
+	// List of Synthetic locations.
 	Locations []SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
 	Results []SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
-	// The public IDs of the Synthetics test triggered.
+	// The public IDs of the Synthetic test triggered.
 	TriggeredCheckIds []string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

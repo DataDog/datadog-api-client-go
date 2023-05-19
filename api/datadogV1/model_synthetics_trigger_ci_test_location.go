@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsTriggerCITestLocation Synthetics location.
+// SyntheticsTriggerCITestLocation Synthetic location.
 type SyntheticsTriggerCITestLocation struct {
 	// Unique identifier of the location.
 	Id *int64 `json:"id,omitempty"`

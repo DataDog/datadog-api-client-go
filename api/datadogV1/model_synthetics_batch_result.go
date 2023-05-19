@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsBatchResult Object with the results of a Synthetics batch.
+// SyntheticsBatchResult Object with the results of a Synthetic batch.
 type SyntheticsBatchResult struct {
 	// The device ID.
 	Device *SyntheticsDeviceID `json:"device,omitempty"`
 	// Total duration in millisecond of the test.
 	Duration *float64 `json:"duration,omitempty"`
-	// Execution rule for a Synthetics test.
+	// Execution rule for a Synthetic test.
 	ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
 	// Name of the location.
 	Location *string `json:"location,omitempty"`
