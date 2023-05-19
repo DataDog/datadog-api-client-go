@@ -33,6 +33,7 @@ func main() {
 						Query:         "example-query",
 						TagsExecution: datadog.PtrString("and"),
 						EventSize:     datadogV1.WIDGETEVENTSIZE_SMALL.Ptr(),
+						ShowYear:      datadog.PtrBool(true),
 					}},
 			},
 		},
