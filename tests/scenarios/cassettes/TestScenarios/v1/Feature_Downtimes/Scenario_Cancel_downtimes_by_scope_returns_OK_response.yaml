@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1652348995","recurrence":{"period":1,"type":"weeks","until_date":1654163395,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testcanceldowntimesbyscopereturnsokresponse1652348995"],"start":1652348995,"timezone":"Etc/UTC"}
+      {"end":1684769382,"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1684765782","recurrence":{"period":1,"type":"weeks","until_date":1686580182,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testcanceldowntimesbyscopereturnsokresponse1684765782"],"start":1684765782,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/downtime
   response:
-    body: '{"recurrence":{"until_date":1654163395,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"mute_first_recovery_notification":false,"created":1652348995,"org_id":321813,"modified":1652348995,"disabled":false,"start":1652348995,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testcanceldowntimesbyscopereturnsokresponse1652348995"],"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1652348995","downtime_type":2,"id":1944162243,"updater_id":null}'
+    body: '{"id":2941965647,"monitor_id":null,"org_id":321813,"start":1684765782,"end":1684769382,"canceled":null,"created":1684765783,"modified":1684765783,"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1684765782","active":true,"disabled":false,"recurrence":{"type":"weeks","period":1,"week_days":["Mon","Tue","Wed","Thu","Fri"],"until_occurrences":null,"until_date":1686580182},"timezone":"Etc/UTC","parent_id":null,"child_id":null,"creator_id":1445416,"updater_id":null,"downtime_type":2,"status":"active","monitor_tags":["*"],"mute_first_recovery_notification":false,"notify_end_types":["expired"],"notify_end_states":["alert","no
+      data","warn"],"uuid":"17fac312-f8ad-11ed-9ae8-da7ad0900002","scope":["test:testcanceldowntimesbyscopereturnsokresponse1684765782"]}
+
+      '
     code: 200
     duration: ''
     headers:
@@ -20,7 +23,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"scope":"test:testcanceldowntimesbyscopereturnsokresponse1652348995"}
+      {"scope":"test:testcanceldowntimesbyscopereturnsokresponse1684765782"}
     form: {}
     headers:
       Accept:
@@ -30,7 +33,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/downtime/cancel/by_scope
   response:
-    body: '{"cancelled_ids":[1944162243]}'
+    body: '{"cancelled_ids":[2941965647]}
+
+      '
     code: 200
     duration: ''
     headers:
@@ -44,11 +49,13 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/downtime/1944162243
+    url: https://api.datadoghq.com/api/v1/downtime/2941965647
   response:
     body: ''
     code: 204
     duration: ''
-    headers: {}
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
     status: 204 No Content
 version: 1

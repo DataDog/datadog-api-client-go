@@ -17,6 +17,7 @@ func main() {
 	body := datadogV1.Downtime{
 		Message:  *datadog.NewNullableString(datadog.PtrString("Example-Downtime")),
 		Start:    datadog.PtrInt64(time.Now().Unix()),
+		End:      *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
 		Timezone: datadog.PtrString("Etc/UTC"),
 		Scope: []string{
 			"test:exampledowntime",
