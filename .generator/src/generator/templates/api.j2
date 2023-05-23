@@ -230,8 +230,15 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
     {%- set isBodyOptional = False if "required" in operation.requestBody and operation.requestBody.required else True %}
 
 	// body params
-	localVarPostBody = &{% if isBodyOptional %}optionalParams.{{ operation.get("x-codegen-request-body-name", "body")|attribute_name }}{% else %}{{ operation.get("x-codegen-request-body-name", "body")|variable_name }}{% endif %}
+	{%- if isBodyOptional %}
+	if optionalParams.Body != nil {
+		localVarPostBody = &optionalParams.{{ operation.get("x-codegen-request-body-name", "body")|attribute_name }}
+	}
+	{%- else %}
+	localVarPostBody = &{{ operation.get("x-codegen-request-body-name", "body")|variable_name }}
 	{%- endif %}
+	{%- endif %}
+
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
 	{%- if authMethods %}
         {{ common_package_name }}.SetAuthKeys(

@@ -147,7 +147,9 @@ func (a *LogsApi) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = &optionalParams.Body
+	if optionalParams.Body != nil {
+		localVarPostBody = &optionalParams.Body
+	}
 	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
