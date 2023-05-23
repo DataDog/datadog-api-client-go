@@ -280,7 +280,9 @@ func (a *AuditApi) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOpt
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = &optionalParams.Body
+	if optionalParams.Body != nil {
+		localVarPostBody = &optionalParams.Body
+	}
 	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,

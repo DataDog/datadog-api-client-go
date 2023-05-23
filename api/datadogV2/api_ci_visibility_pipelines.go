@@ -349,7 +349,9 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 	localVarHeaderParams["Accept"] = "application/json"
 
 	// body params
-	localVarPostBody = &optionalParams.Body
+	if optionalParams.Body != nil {
+		localVarPostBody = &optionalParams.Body
+	}
 	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
