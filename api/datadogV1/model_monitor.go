@@ -22,6 +22,8 @@ type Monitor struct {
 	Deleted datadog.NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
+	// A list of active downtimes that match this monitor.
+	MatchingDowntimes []MatchingDowntime `json:"matching_downtimes,omitempty"`
 	// A message to include with notifications for this monitor.
 	Message *string `json:"message,omitempty"`
 	// Last timestamp when the monitor was edited.
@@ -191,6 +193,34 @@ func (o *Monitor) HasId() bool {
 // SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Monitor) SetId(v int64) {
 	o.Id = &v
+}
+
+// GetMatchingDowntimes returns the MatchingDowntimes field value if set, zero value otherwise.
+func (o *Monitor) GetMatchingDowntimes() []MatchingDowntime {
+	if o == nil || o.MatchingDowntimes == nil {
+		var ret []MatchingDowntime
+		return ret
+	}
+	return o.MatchingDowntimes
+}
+
+// GetMatchingDowntimesOk returns a tuple with the MatchingDowntimes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Monitor) GetMatchingDowntimesOk() (*[]MatchingDowntime, bool) {
+	if o == nil || o.MatchingDowntimes == nil {
+		return nil, false
+	}
+	return &o.MatchingDowntimes, true
+}
+
+// HasMatchingDowntimes returns a boolean if a field has been set.
+func (o *Monitor) HasMatchingDowntimes() bool {
+	return o != nil && o.MatchingDowntimes != nil
+}
+
+// SetMatchingDowntimes gets a reference to the given []MatchingDowntime and assigns it to the MatchingDowntimes field.
+func (o *Monitor) SetMatchingDowntimes(v []MatchingDowntime) {
+	o.MatchingDowntimes = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -553,6 +583,9 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.MatchingDowntimes != nil {
+		toSerialize["matching_downtimes"] = o.MatchingDowntimes
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
@@ -604,22 +637,23 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Type  *MonitorType `json:"type"`
 	}{}
 	all := struct {
-		Created         *time.Time            `json:"created,omitempty"`
-		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         datadog.NullableTime  `json:"deleted,omitempty"`
-		Id              *int64                `json:"id,omitempty"`
-		Message         *string               `json:"message,omitempty"`
-		Modified        *time.Time            `json:"modified,omitempty"`
-		Multi           *bool                 `json:"multi,omitempty"`
-		Name            *string               `json:"name,omitempty"`
-		Options         *MonitorOptions       `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
-		Priority        datadog.NullableInt64 `json:"priority,omitempty"`
-		Query           string                `json:"query"`
-		RestrictedRoles []string              `json:"restricted_roles,omitempty"`
-		State           *MonitorState         `json:"state,omitempty"`
-		Tags            []string              `json:"tags,omitempty"`
-		Type            MonitorType           `json:"type"`
+		Created           *time.Time            `json:"created,omitempty"`
+		Creator           *Creator              `json:"creator,omitempty"`
+		Deleted           datadog.NullableTime  `json:"deleted,omitempty"`
+		Id                *int64                `json:"id,omitempty"`
+		MatchingDowntimes []MatchingDowntime    `json:"matching_downtimes,omitempty"`
+		Message           *string               `json:"message,omitempty"`
+		Modified          *time.Time            `json:"modified,omitempty"`
+		Multi             *bool                 `json:"multi,omitempty"`
+		Name              *string               `json:"name,omitempty"`
+		Options           *MonitorOptions       `json:"options,omitempty"`
+		OverallState      *MonitorOverallStates `json:"overall_state,omitempty"`
+		Priority          datadog.NullableInt64 `json:"priority,omitempty"`
+		Query             string                `json:"query"`
+		RestrictedRoles   []string              `json:"restricted_roles,omitempty"`
+		State             *MonitorState         `json:"state,omitempty"`
+		Tags              []string              `json:"tags,omitempty"`
+		Type              MonitorType           `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -642,7 +676,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "matching_downtimes", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
 	} else {
 		return err
 	}
@@ -673,6 +707,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Creator = all.Creator
 	o.Deleted = all.Deleted
 	o.Id = all.Id
+	o.MatchingDowntimes = all.MatchingDowntimes
 	o.Message = all.Message
 	o.Modified = all.Modified
 	o.Multi = all.Multi
