@@ -454,7 +454,8 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 
 // GetMonitorOptionalParameters holds optional parameters for GetMonitor.
 type GetMonitorOptionalParameters struct {
-	GroupStates *string
+	GroupStates   *string
+	WithDowntimes *bool
 }
 
 // NewGetMonitorOptionalParameters creates an empty struct for parameters.
@@ -466,6 +467,12 @@ func NewGetMonitorOptionalParameters() *GetMonitorOptionalParameters {
 // WithGroupStates sets the corresponding parameter name and returns the struct.
 func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetMonitorOptionalParameters {
 	r.GroupStates = &groupStates
+	return r
+}
+
+// WithWithDowntimes sets the corresponding parameter name and returns the struct.
+func (r *GetMonitorOptionalParameters) WithWithDowntimes(withDowntimes bool) *GetMonitorOptionalParameters {
+	r.WithDowntimes = &withDowntimes
 	return r
 }
 
@@ -499,6 +506,9 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.GroupStates != nil {
 		localVarQueryParams.Add("group_states", datadog.ParameterToString(*optionalParams.GroupStates, ""))
+	}
+	if optionalParams.WithDowntimes != nil {
+		localVarQueryParams.Add("with_downtimes", datadog.ParameterToString(*optionalParams.WithDowntimes, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
