@@ -116,6 +116,10 @@ type MonthlyUsageAttributionValues struct {
 	NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
 	// The network host usage by tag(s).
 	NpmHostUsage *float64 `json:"npm_host_usage,omitempty"`
+	// The percentage of observability pipeline bytes usage by tag(s).
+	ObsPipelineBytesPercentage *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
+	// The observability pipeline bytes usage by tag(s).
+	ObsPipelineBytesUsage *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
 	// The percentage of profiled container usage by tag(s).
 	ProfiledContainerPercentage *float64 `json:"profiled_container_percentage,omitempty"`
 	// The profiled container usage by tag(s).
@@ -1618,6 +1622,62 @@ func (o *MonthlyUsageAttributionValues) SetNpmHostUsage(v float64) {
 	o.NpmHostUsage = &v
 }
 
+// GetObsPipelineBytesPercentage returns the ObsPipelineBytesPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesPercentage() float64 {
+	if o == nil || o.ObsPipelineBytesPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ObsPipelineBytesPercentage
+}
+
+// GetObsPipelineBytesPercentageOk returns a tuple with the ObsPipelineBytesPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesPercentageOk() (*float64, bool) {
+	if o == nil || o.ObsPipelineBytesPercentage == nil {
+		return nil, false
+	}
+	return o.ObsPipelineBytesPercentage, true
+}
+
+// HasObsPipelineBytesPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasObsPipelineBytesPercentage() bool {
+	return o != nil && o.ObsPipelineBytesPercentage != nil
+}
+
+// SetObsPipelineBytesPercentage gets a reference to the given float64 and assigns it to the ObsPipelineBytesPercentage field.
+func (o *MonthlyUsageAttributionValues) SetObsPipelineBytesPercentage(v float64) {
+	o.ObsPipelineBytesPercentage = &v
+}
+
+// GetObsPipelineBytesUsage returns the ObsPipelineBytesUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesUsage() float64 {
+	if o == nil || o.ObsPipelineBytesUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ObsPipelineBytesUsage
+}
+
+// GetObsPipelineBytesUsageOk returns a tuple with the ObsPipelineBytesUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesUsageOk() (*float64, bool) {
+	if o == nil || o.ObsPipelineBytesUsage == nil {
+		return nil, false
+	}
+	return o.ObsPipelineBytesUsage, true
+}
+
+// HasObsPipelineBytesUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasObsPipelineBytesUsage() bool {
+	return o != nil && o.ObsPipelineBytesUsage != nil
+}
+
+// SetObsPipelineBytesUsage gets a reference to the given float64 and assigns it to the ObsPipelineBytesUsage field.
+func (o *MonthlyUsageAttributionValues) SetObsPipelineBytesUsage(v float64) {
+	o.ObsPipelineBytesUsage = &v
+}
+
 // GetProfiledContainerPercentage returns the ProfiledContainerPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledContainerPercentage() float64 {
 	if o == nil || o.ProfiledContainerPercentage == nil {
@@ -2116,6 +2176,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.NpmHostUsage != nil {
 		toSerialize["npm_host_usage"] = o.NpmHostUsage
 	}
+	if o.ObsPipelineBytesPercentage != nil {
+		toSerialize["obs_pipeline_bytes_percentage"] = o.ObsPipelineBytesPercentage
+	}
+	if o.ObsPipelineBytesUsage != nil {
+		toSerialize["obs_pipeline_bytes_usage"] = o.ObsPipelineBytesUsage
+	}
 	if o.ProfiledContainerPercentage != nil {
 		toSerialize["profiled_container_percentage"] = o.ProfiledContainerPercentage
 	}
@@ -2215,6 +2281,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		InvocationsUsage                     *float64 `json:"invocations_usage,omitempty"`
 		NpmHostPercentage                    *float64 `json:"npm_host_percentage,omitempty"`
 		NpmHostUsage                         *float64 `json:"npm_host_usage,omitempty"`
+		ObsPipelineBytesPercentage           *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
+		ObsPipelineBytesUsage                *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
 		ProfiledContainerPercentage          *float64 `json:"profiled_container_percentage,omitempty"`
 		ProfiledContainerUsage               *float64 `json:"profiled_container_usage,omitempty"`
 		ProfiledFargatePercentage            *float64 `json:"profiled_fargate_percentage,omitempty"`
@@ -2239,7 +2307,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -2295,6 +2363,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.InvocationsUsage = all.InvocationsUsage
 	o.NpmHostPercentage = all.NpmHostPercentage
 	o.NpmHostUsage = all.NpmHostUsage
+	o.ObsPipelineBytesPercentage = all.ObsPipelineBytesPercentage
+	o.ObsPipelineBytesUsage = all.ObsPipelineBytesUsage
 	o.ProfiledContainerPercentage = all.ProfiledContainerPercentage
 	o.ProfiledContainerUsage = all.ProfiledContainerUsage
 	o.ProfiledFargatePercentage = all.ProfiledFargatePercentage
