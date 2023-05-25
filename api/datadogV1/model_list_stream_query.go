@@ -25,8 +25,6 @@ type ListStreamQuery struct {
 	Indexes []string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
-	// Option to display the year in the date column. To be used with the `event_stream`.
-	ShowYear *bool `json:"show_year,omitempty"`
 	// Option for storage location. Feature in Private Beta.
 	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -213,34 +211,6 @@ func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
-// GetShowYear returns the ShowYear field value if set, zero value otherwise.
-func (o *ListStreamQuery) GetShowYear() bool {
-	if o == nil || o.ShowYear == nil {
-		var ret bool
-		return ret
-	}
-	return *o.ShowYear
-}
-
-// GetShowYearOk returns a tuple with the ShowYear field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListStreamQuery) GetShowYearOk() (*bool, bool) {
-	if o == nil || o.ShowYear == nil {
-		return nil, false
-	}
-	return o.ShowYear, true
-}
-
-// HasShowYear returns a boolean if a field has been set.
-func (o *ListStreamQuery) HasShowYear() bool {
-	return o != nil && o.ShowYear != nil
-}
-
-// SetShowYear gets a reference to the given bool and assigns it to the ShowYear field.
-func (o *ListStreamQuery) SetShowYear(v bool) {
-	o.ShowYear = &v
-}
-
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetStorage() string {
 	if o == nil || o.Storage == nil {
@@ -289,9 +259,6 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["indexes"] = o.Indexes
 	}
 	toSerialize["query_string"] = o.QueryString
-	if o.ShowYear != nil {
-		toSerialize["show_year"] = o.ShowYear
-	}
 	if o.Storage != nil {
 		toSerialize["storage"] = o.Storage
 	}
@@ -316,7 +283,6 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
 		Indexes     []string                 `json:"indexes,omitempty"`
 		QueryString string                   `json:"query_string"`
-		ShowYear    *bool                    `json:"show_year,omitempty"`
 		Storage     *string                  `json:"storage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -340,7 +306,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "event_size", "group_by", "indexes", "query_string", "show_year", "storage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "event_size", "group_by", "indexes", "query_string", "storage"})
 	} else {
 		return err
 	}
@@ -366,7 +332,6 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = all.QueryString
-	o.ShowYear = all.ShowYear
 	o.Storage = all.Storage
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
