@@ -33,7 +33,6 @@ func main() {
 									DataSource:  datadogV1.LISTSTREAMSOURCE_EVENT_STREAM,
 									QueryString: "",
 									EventSize:   datadogV1.WIDGETEVENTSIZE_LARGE.Ptr(),
-									ShowYear:    datadog.PtrBool(true),
 								},
 								ResponseFormat: datadogV1.LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
 							},
