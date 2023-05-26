@@ -18,6 +18,8 @@ type SyntheticsParsingOptions struct {
 	Name *string `json:"name,omitempty"`
 	// Details of the parser to use for the global variable.
 	Parser *SyntheticsVariableParser `json:"parser,omitempty"`
+	// Determines whether or not the extracted value will be obfuscated.
+	Secure *bool `json:"secure,omitempty"`
 	// Property of the Synthetic Test Response to use for a Synthetic global variable.
 	Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -126,6 +128,34 @@ func (o *SyntheticsParsingOptions) SetParser(v SyntheticsVariableParser) {
 	o.Parser = &v
 }
 
+// GetSecure returns the Secure field value if set, zero value otherwise.
+func (o *SyntheticsParsingOptions) GetSecure() bool {
+	if o == nil || o.Secure == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Secure
+}
+
+// GetSecureOk returns a tuple with the Secure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsParsingOptions) GetSecureOk() (*bool, bool) {
+	if o == nil || o.Secure == nil {
+		return nil, false
+	}
+	return o.Secure, true
+}
+
+// HasSecure returns a boolean if a field has been set.
+func (o *SyntheticsParsingOptions) HasSecure() bool {
+	return o != nil && o.Secure != nil
+}
+
+// SetSecure gets a reference to the given bool and assigns it to the Secure field.
+func (o *SyntheticsParsingOptions) SetSecure(v bool) {
+	o.Secure = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsParsingOptions) GetType() SyntheticsGlobalVariableParseTestOptionsType {
 	if o == nil || o.Type == nil {
@@ -169,6 +199,9 @@ func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 	if o.Parser != nil {
 		toSerialize["parser"] = o.Parser
 	}
+	if o.Secure != nil {
+		toSerialize["secure"] = o.Secure
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -186,6 +219,7 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Field  *string                                       `json:"field,omitempty"`
 		Name   *string                                       `json:"name,omitempty"`
 		Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
+		Secure *bool                                         `json:"secure,omitempty"`
 		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -199,7 +233,7 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "name", "parser", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"field", "name", "parser", "secure", "type"})
 	} else {
 		return err
 	}
@@ -221,6 +255,7 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Parser = all.Parser
+	o.Secure = all.Secure
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
