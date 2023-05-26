@@ -173,7 +173,7 @@ func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteBulkTagsMetricsConfiguration Configure tags for multiple metrics.
+// DeleteBulkTagsMetricsConfiguration Delete tags for multiple metrics.
 // Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
 // Metrics are selected by passing a metric name prefix.
 // Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
