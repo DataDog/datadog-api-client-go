@@ -41,7 +41,8 @@ func main() {
 							Parser: &datadogV1.SyntheticsVariableParser{
 								Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW,
 							},
-							Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER.Ptr(),
+							Type:   datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER.Ptr(),
+							Secure: datadog.PtrBool(true),
 						},
 					},
 					IsCritical: datadog.PtrBool(true),
