@@ -1,4 +1,4 @@
-// Get a monitor configuration policy returns "Created" response
+// Create a tag configuration returns "Created" response
 
 package main
 
@@ -15,23 +15,22 @@ import (
 func main() {
 	body := datadogV2.MetricTagConfigurationCreateRequest{
 		Data: datadogV2.MetricTagConfigurationCreateData{
+			Type: datadogV2.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
+			Id:   "ExampleMetric",
 			Attributes: &datadogV2.MetricTagConfigurationCreateAttributes{
-				IncludePercentiles: datadog.PtrBool(false),
-				MetricType:         datadogV2.METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION,
 				Tags: []string{
 					"app",
 					"datacenter",
 				},
+				MetricType: datadogV2.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
 			},
-			Id:   "http.endpoint.request",
-			Type: datadogV2.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.CreateTagConfiguration(ctx, "metric_name", body)
+	resp, r, err := api.CreateTagConfiguration(ctx, "ExampleMetric", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration`: %v\n", err)

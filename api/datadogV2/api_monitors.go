@@ -291,7 +291,7 @@ func (a *MonitorsApi) ListMonitorConfigPolicies(ctx _context.Context) (MonitorCo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateMonitorConfigPolicy Edit a monitor configuration policy.
+// UpdateMonitorConfigPolicy Delete a monitor configuration policy.
 // Edit a monitor configuration policy.
 func (a *MonitorsApi) UpdateMonitorConfigPolicy(ctx _context.Context, policyId string, body MonitorConfigPolicyEditRequest) (MonitorConfigPolicyResponse, *_nethttp.Response, error) {
 	var (

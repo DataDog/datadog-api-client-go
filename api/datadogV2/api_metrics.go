@@ -96,7 +96,7 @@ func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateTagConfiguration Create a tag configuration.
+// CreateTagConfiguration Get a monitor configuration policy.
 // Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
 // Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
 // on any count, rate, or gauge metric.
