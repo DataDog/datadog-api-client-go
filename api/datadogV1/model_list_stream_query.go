@@ -25,6 +25,8 @@ type ListStreamQuery struct {
 	Indexes []string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
+	// Which column and order to sort by
+	Sort *WidgetFieldSort `json:"sort,omitempty"`
 	// Option for storage location. Feature in Private Beta.
 	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -211,6 +213,34 @@ func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetSort() WidgetFieldSort {
+	if o == nil || o.Sort == nil {
+		var ret WidgetFieldSort
+		return ret
+	}
+	return *o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetSortOk() (*WidgetFieldSort, bool) {
+	if o == nil || o.Sort == nil {
+		return nil, false
+	}
+	return o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasSort() bool {
+	return o != nil && o.Sort != nil
+}
+
+// SetSort gets a reference to the given WidgetFieldSort and assigns it to the Sort field.
+func (o *ListStreamQuery) SetSort(v WidgetFieldSort) {
+	o.Sort = &v
+}
+
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetStorage() string {
 	if o == nil || o.Storage == nil {
@@ -259,6 +289,9 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 		toSerialize["indexes"] = o.Indexes
 	}
 	toSerialize["query_string"] = o.QueryString
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
+	}
 	if o.Storage != nil {
 		toSerialize["storage"] = o.Storage
 	}
@@ -283,6 +316,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
 		Indexes     []string                 `json:"indexes,omitempty"`
 		QueryString string                   `json:"query_string"`
+		Sort        *WidgetFieldSort         `json:"sort,omitempty"`
 		Storage     *string                  `json:"storage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -306,7 +340,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "event_size", "group_by", "indexes", "query_string", "storage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "event_size", "group_by", "indexes", "query_string", "sort", "storage"})
 	} else {
 		return err
 	}
@@ -332,6 +366,14 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = all.QueryString
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Sort = all.Sort
 	o.Storage = all.Storage
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
