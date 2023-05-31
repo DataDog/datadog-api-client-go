@@ -9,9 +9,10 @@ package test
 import (
 	"context"
 	"fmt"
-	"gopkg.in/h2non/gock.v1"
 	"testing"
 	"time"
+
+	"gopkg.in/h2non/gock.v1"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
@@ -192,7 +193,7 @@ func TestCheckLambdaAsync(t *testing.T) {
 	assert.Equal("created", status.GetStatus())
 
 	// Give the async call time to finish
-	tests.Retry(time.Duration(5*time.Second), 10, func() bool {
+	tests.Retry(time.Duration(10*time.Second), 20, func() bool {
 		status, httpresp, err = api.CheckAWSLogsLambdaAsync(ctx, testLambdaAcc)
 		if err != nil {
 			t.Logf("Error checking the AWS Lambda Response: %s %v", err.(datadog.GenericOpenAPIError).Body(), err)
