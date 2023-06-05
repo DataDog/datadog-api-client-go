@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","points":[[1652354912,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
+      {"series":[{"metric":"static_test_metric_donotdelete","points":[[1685718947,1.1]],"tags":["test:static_test_metric_donotdelete"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
@@ -19,52 +19,21 @@ interactions:
       - text/json
     status: 202 Accepted
 - request:
-    body: |
-      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","type":"manage_tags"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Type:
-      - application/json
-    method: POST
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/tags
-  response:
-    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","attributes":{"tags":["TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","app","datacenter"],"created_at":"2022-05-12T11:28:37.078639+00:00","modified_at":"2022-05-12T11:28:37.078639+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
-    code: 201
-    duration: ''
-    headers:
-      Content-Type:
-      - application/json
-    status: 201 Created
-- request:
     body: ''
     form: {}
     headers:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/volumes
+    url: https://api.datadoghq.com/api/v2/metrics/static_test_metric_donotdelete/volumes
   response:
-    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","attributes":{"indexed_volume":1,"ingested_volume":1}}}'
+    body: '{"data":{"type":"metric_volumes","id":"static_test_metric_donotdelete","attributes":{"indexed_volume":1,"ingested_volume":1}}}
+
+      '
     code: 200
     duration: ''
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
-    body: ''
-    form: {}
-    headers:
-      Accept:
-      - '*/*'
-    method: DELETE
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/tags
-  response:
-    body: ''
-    code: 204
-    duration: ''
-    headers: {}
-    status: 204 No Content
 version: 1
