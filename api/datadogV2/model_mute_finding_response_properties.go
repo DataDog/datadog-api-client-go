@@ -8,43 +8,43 @@ import (
 	"encoding/json"
 )
 
-// FindingMute Information about the mute status of this finding.
-type FindingMute struct {
+// MuteFindingResponseProperties Information about the mute status of this finding.
+type MuteFindingResponseProperties struct {
 	// Additional information about the reason why this finding is muted or unmuted.
+	// This attribute will not be included in the response if the description is not provided in the request body.
+	//
 	Description *string `json:"description,omitempty"`
-	// The expiration date of the mute or unmute action (Unix ms).
+	// The expiration date of the mute or unmute action.
+	// If the expiration date is not provided in the request body, this attribute will not be included in the response and the finding will be muted or unmuted indefinitely.
+	//
 	ExpirationDate *int64 `json:"expiration_date,omitempty"`
 	// Whether this finding is muted or unmuted.
 	Muted *bool `json:"muted,omitempty"`
 	// The reason why this finding is muted or unmuted.
 	Reason *FindingMuteReason `json:"reason,omitempty"`
-	// The start of the mute period.
-	StartDate *int64 `json:"start_date,omitempty"`
-	// The ID of the user who muted or unmuted this finding.
-	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewFindingMute instantiates a new FindingMute object.
+// NewMuteFindingResponseProperties instantiates a new MuteFindingResponseProperties object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFindingMute() *FindingMute {
-	this := FindingMute{}
+func NewMuteFindingResponseProperties() *MuteFindingResponseProperties {
+	this := MuteFindingResponseProperties{}
 	return &this
 }
 
-// NewFindingMuteWithDefaults instantiates a new FindingMute object.
+// NewMuteFindingResponsePropertiesWithDefaults instantiates a new MuteFindingResponseProperties object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFindingMuteWithDefaults() *FindingMute {
-	this := FindingMute{}
+func NewMuteFindingResponsePropertiesWithDefaults() *MuteFindingResponseProperties {
+	this := MuteFindingResponseProperties{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *FindingMute) GetDescription() string {
+func (o *MuteFindingResponseProperties) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *FindingMute) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingMute) GetDescriptionOk() (*string, bool) {
+func (o *MuteFindingResponseProperties) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -62,17 +62,17 @@ func (o *FindingMute) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *FindingMute) HasDescription() bool {
+func (o *MuteFindingResponseProperties) HasDescription() bool {
 	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *FindingMute) SetDescription(v string) {
+func (o *MuteFindingResponseProperties) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *FindingMute) GetExpirationDate() int64 {
+func (o *MuteFindingResponseProperties) GetExpirationDate() int64 {
 	if o == nil || o.ExpirationDate == nil {
 		var ret int64
 		return ret
@@ -82,7 +82,7 @@ func (o *FindingMute) GetExpirationDate() int64 {
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingMute) GetExpirationDateOk() (*int64, bool) {
+func (o *MuteFindingResponseProperties) GetExpirationDateOk() (*int64, bool) {
 	if o == nil || o.ExpirationDate == nil {
 		return nil, false
 	}
@@ -90,17 +90,17 @@ func (o *FindingMute) GetExpirationDateOk() (*int64, bool) {
 }
 
 // HasExpirationDate returns a boolean if a field has been set.
-func (o *FindingMute) HasExpirationDate() bool {
+func (o *MuteFindingResponseProperties) HasExpirationDate() bool {
 	return o != nil && o.ExpirationDate != nil
 }
 
 // SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
-func (o *FindingMute) SetExpirationDate(v int64) {
+func (o *MuteFindingResponseProperties) SetExpirationDate(v int64) {
 	o.ExpirationDate = &v
 }
 
 // GetMuted returns the Muted field value if set, zero value otherwise.
-func (o *FindingMute) GetMuted() bool {
+func (o *MuteFindingResponseProperties) GetMuted() bool {
 	if o == nil || o.Muted == nil {
 		var ret bool
 		return ret
@@ -110,7 +110,7 @@ func (o *FindingMute) GetMuted() bool {
 
 // GetMutedOk returns a tuple with the Muted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingMute) GetMutedOk() (*bool, bool) {
+func (o *MuteFindingResponseProperties) GetMutedOk() (*bool, bool) {
 	if o == nil || o.Muted == nil {
 		return nil, false
 	}
@@ -118,17 +118,17 @@ func (o *FindingMute) GetMutedOk() (*bool, bool) {
 }
 
 // HasMuted returns a boolean if a field has been set.
-func (o *FindingMute) HasMuted() bool {
+func (o *MuteFindingResponseProperties) HasMuted() bool {
 	return o != nil && o.Muted != nil
 }
 
 // SetMuted gets a reference to the given bool and assigns it to the Muted field.
-func (o *FindingMute) SetMuted(v bool) {
+func (o *MuteFindingResponseProperties) SetMuted(v bool) {
 	o.Muted = &v
 }
 
 // GetReason returns the Reason field value if set, zero value otherwise.
-func (o *FindingMute) GetReason() FindingMuteReason {
+func (o *MuteFindingResponseProperties) GetReason() FindingMuteReason {
 	if o == nil || o.Reason == nil {
 		var ret FindingMuteReason
 		return ret
@@ -138,7 +138,7 @@ func (o *FindingMute) GetReason() FindingMuteReason {
 
 // GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingMute) GetReasonOk() (*FindingMuteReason, bool) {
+func (o *MuteFindingResponseProperties) GetReasonOk() (*FindingMuteReason, bool) {
 	if o == nil || o.Reason == nil {
 		return nil, false
 	}
@@ -146,73 +146,17 @@ func (o *FindingMute) GetReasonOk() (*FindingMuteReason, bool) {
 }
 
 // HasReason returns a boolean if a field has been set.
-func (o *FindingMute) HasReason() bool {
+func (o *MuteFindingResponseProperties) HasReason() bool {
 	return o != nil && o.Reason != nil
 }
 
 // SetReason gets a reference to the given FindingMuteReason and assigns it to the Reason field.
-func (o *FindingMute) SetReason(v FindingMuteReason) {
+func (o *MuteFindingResponseProperties) SetReason(v FindingMuteReason) {
 	o.Reason = &v
 }
 
-// GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *FindingMute) GetStartDate() int64 {
-	if o == nil || o.StartDate == nil {
-		var ret int64
-		return ret
-	}
-	return *o.StartDate
-}
-
-// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FindingMute) GetStartDateOk() (*int64, bool) {
-	if o == nil || o.StartDate == nil {
-		return nil, false
-	}
-	return o.StartDate, true
-}
-
-// HasStartDate returns a boolean if a field has been set.
-func (o *FindingMute) HasStartDate() bool {
-	return o != nil && o.StartDate != nil
-}
-
-// SetStartDate gets a reference to the given int64 and assigns it to the StartDate field.
-func (o *FindingMute) SetStartDate(v int64) {
-	o.StartDate = &v
-}
-
-// GetUuid returns the Uuid field value if set, zero value otherwise.
-func (o *FindingMute) GetUuid() string {
-	if o == nil || o.Uuid == nil {
-		var ret string
-		return ret
-	}
-	return *o.Uuid
-}
-
-// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FindingMute) GetUuidOk() (*string, bool) {
-	if o == nil || o.Uuid == nil {
-		return nil, false
-	}
-	return o.Uuid, true
-}
-
-// HasUuid returns a boolean if a field has been set.
-func (o *FindingMute) HasUuid() bool {
-	return o != nil && o.Uuid != nil
-}
-
-// SetUuid gets a reference to the given string and assigns it to the Uuid field.
-func (o *FindingMute) SetUuid(v string) {
-	o.Uuid = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
-func (o FindingMute) MarshalJSON() ([]byte, error) {
+func (o MuteFindingResponseProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -229,25 +173,17 @@ func (o FindingMute) MarshalJSON() ([]byte, error) {
 	if o.Reason != nil {
 		toSerialize["reason"] = o.Reason
 	}
-	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
-	}
-	if o.Uuid != nil {
-		toSerialize["uuid"] = o.Uuid
-	}
 	return json.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MuteFindingResponseProperties) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Description    *string            `json:"description,omitempty"`
 		ExpirationDate *int64             `json:"expiration_date,omitempty"`
 		Muted          *bool              `json:"muted,omitempty"`
 		Reason         *FindingMuteReason `json:"reason,omitempty"`
-		StartDate      *int64             `json:"start_date,omitempty"`
-		Uuid           *string            `json:"uuid,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -270,8 +206,6 @@ func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExpirationDate = all.ExpirationDate
 	o.Muted = all.Muted
 	o.Reason = all.Reason
-	o.StartDate = all.StartDate
-	o.Uuid = all.Uuid
 
 	return nil
 }

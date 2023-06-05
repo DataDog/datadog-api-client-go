@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Finding A single finding without the message and resource configuration.
-type Finding struct {
+// MuteFindingResponseData Data object containing the updated finding.
+type MuteFindingResponseData struct {
 	// The JSON:API attributes of the finding.
-	Attributes *FindingAttributes `json:"attributes,omitempty"`
+	Attributes *MuteFindingResponseAttributes `json:"attributes,omitempty"`
 	// The unique ID for this finding.
 	Id *string `json:"id,omitempty"`
 	// The JSON:API type for findings.
@@ -23,31 +23,31 @@ type Finding struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFinding instantiates a new Finding object.
+// NewMuteFindingResponseData instantiates a new MuteFindingResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFinding() *Finding {
-	this := Finding{}
+func NewMuteFindingResponseData() *MuteFindingResponseData {
+	this := MuteFindingResponseData{}
 	var typeVar FindingType = FINDINGTYPE_FINDING
 	this.Type = &typeVar
 	return &this
 }
 
-// NewFindingWithDefaults instantiates a new Finding object.
+// NewMuteFindingResponseDataWithDefaults instantiates a new MuteFindingResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFindingWithDefaults() *Finding {
-	this := Finding{}
+func NewMuteFindingResponseDataWithDefaults() *MuteFindingResponseData {
+	this := MuteFindingResponseData{}
 	var typeVar FindingType = FINDINGTYPE_FINDING
 	this.Type = &typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *Finding) GetAttributes() FindingAttributes {
+func (o *MuteFindingResponseData) GetAttributes() MuteFindingResponseAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret FindingAttributes
+		var ret MuteFindingResponseAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -55,7 +55,7 @@ func (o *Finding) GetAttributes() FindingAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Finding) GetAttributesOk() (*FindingAttributes, bool) {
+func (o *MuteFindingResponseData) GetAttributesOk() (*MuteFindingResponseAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -63,17 +63,17 @@ func (o *Finding) GetAttributesOk() (*FindingAttributes, bool) {
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *Finding) HasAttributes() bool {
+func (o *MuteFindingResponseData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given FindingAttributes and assigns it to the Attributes field.
-func (o *Finding) SetAttributes(v FindingAttributes) {
+// SetAttributes gets a reference to the given MuteFindingResponseAttributes and assigns it to the Attributes field.
+func (o *MuteFindingResponseData) SetAttributes(v MuteFindingResponseAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Finding) GetId() string {
+func (o *MuteFindingResponseData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -83,7 +83,7 @@ func (o *Finding) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Finding) GetIdOk() (*string, bool) {
+func (o *MuteFindingResponseData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -91,17 +91,17 @@ func (o *Finding) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Finding) HasId() bool {
+func (o *MuteFindingResponseData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Finding) SetId(v string) {
+func (o *MuteFindingResponseData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Finding) GetType() FindingType {
+func (o *MuteFindingResponseData) GetType() FindingType {
 	if o == nil || o.Type == nil {
 		var ret FindingType
 		return ret
@@ -111,7 +111,7 @@ func (o *Finding) GetType() FindingType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Finding) GetTypeOk() (*FindingType, bool) {
+func (o *MuteFindingResponseData) GetTypeOk() (*FindingType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -119,17 +119,17 @@ func (o *Finding) GetTypeOk() (*FindingType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *Finding) HasType() bool {
+func (o *MuteFindingResponseData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given FindingType and assigns it to the Type field.
-func (o *Finding) SetType(v FindingType) {
+func (o *MuteFindingResponseData) SetType(v FindingType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o Finding) MarshalJSON() ([]byte, error) {
+func (o MuteFindingResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -151,12 +151,12 @@ func (o Finding) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *Finding) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MuteFindingResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *FindingAttributes `json:"attributes,omitempty"`
-		Id         *string            `json:"id,omitempty"`
-		Type       *FindingType       `json:"type,omitempty"`
+		Attributes *MuteFindingResponseAttributes `json:"attributes,omitempty"`
+		Id         *string                        `json:"id,omitempty"`
+		Type       *FindingType                   `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
