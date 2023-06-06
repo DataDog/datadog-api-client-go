@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Finding A single finding without the message and resource configuration.
+// Finding A single finding without message and resource configuration.
 type Finding struct {
 	// The JSON:API attributes of the finding.
 	Attributes *FindingAttributes `json:"attributes,omitempty"`

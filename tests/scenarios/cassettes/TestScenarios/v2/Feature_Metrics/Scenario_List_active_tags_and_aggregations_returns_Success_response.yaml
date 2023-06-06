@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"static_test_metric_donotdelete","points":[[1685976245,1.1]],"tags":["test:static_test_metric_donotdelete"],"type":"gauge"}]}
+      {"series":[{"metric":"TestListactivetagsandaggregationsreturnsSuccessresponse1662033627","points":[[1662033627,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
@@ -25,9 +25,9 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/metrics/static_test_metric_donotdelete/active-configurations
+    url: https://api.datadoghq.com/api/v2/metrics/TestListactivetagsandaggregationsreturnsSuccessresponse1662033627/active-configurations
   response:
-    body: '{"data":{"type":"actively_queried_configurations","id":"static_test_metric_donotdelete","attributes":{"active_tags":[],"active_aggregations":[]}}}
+    body: '{"data":{"type":"actively_queried_configurations","id":"TestListactivetagsandaggregationsreturnsSuccessresponse1662033627","attributes":{"active_tags":[],"active_aggregations":[]}}}
 
       '
     code: 200

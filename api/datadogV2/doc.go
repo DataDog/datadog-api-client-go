@@ -188,7 +188,6 @@
 //  - [SecurityMonitoringApi.ListSecurityMonitoringRules]
 //  - [SecurityMonitoringApi.ListSecurityMonitoringSignals]
 //  - [SecurityMonitoringApi.SearchSecurityMonitoringSignals]
-//  - [SecurityMonitoringApi.UpdateFinding]
 //  - [SecurityMonitoringApi.UpdateSecurityFilter]
 //  - [SecurityMonitoringApi.UpdateSecurityMonitoringRule]
 //  - [SensitiveDataScannerApi.CreateScanningGroup]

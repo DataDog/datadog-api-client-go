@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.ListActiveMetricConfigurations(ctx, "static_test_metric_donotdelete", *datadogV2.NewListActiveMetricConfigurationsOptionalParameters())
+	resp, r, err := api.ListActiveMetricConfigurations(ctx, "ExampleMetric", *datadogV2.NewListActiveMetricConfigurationsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetricConfigurations`: %v\n", err)

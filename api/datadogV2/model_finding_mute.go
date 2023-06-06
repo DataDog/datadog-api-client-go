@@ -10,17 +10,17 @@ import (
 
 // FindingMute Information about the mute status of this finding.
 type FindingMute struct {
-	// Additional information about the reason why this finding is muted or unmuted.
+	// Additional information about the reason why this finding is muted.
 	Description *string `json:"description,omitempty"`
-	// The expiration date of the mute or unmute action (Unix ms).
+	// The end of the mute period.
 	ExpirationDate *int64 `json:"expiration_date,omitempty"`
-	// Whether this finding is muted or unmuted.
+	// Whether this finding is muted.
 	Muted *bool `json:"muted,omitempty"`
-	// The reason why this finding is muted or unmuted.
+	// The reason why this finding is muted.
 	Reason *FindingMuteReason `json:"reason,omitempty"`
 	// The start of the mute period.
 	StartDate *int64 `json:"start_date,omitempty"`
-	// The ID of the user who muted or unmuted this finding.
+	// The ID of the user who muted this finding.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
