@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1686138930"}},"id":"Test-Update_a_log_based_metric_returns_OK_response-1686138930","type":"logs_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1652349148"}},"id":"Test-Update_a_log_based_metric_returns_OK_response-1652349148","type":"logs_metrics"}}
     form: {}
     headers:
       Accept:
@@ -11,9 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/logs/config/metrics
   response:
-    body: '{"data":{"id":"Test_Update_a_log_based_metric_returns_OK_response_1686138930","attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1686138930"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}
-
-      '
+    body: '{"data":{"attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1652349148"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics","id":"Test_Update_a_log_based_metric_returns_OK_response_1652349148"}}'
     code: 200
     duration: ''
     headers:
@@ -22,7 +20,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1686138930-updated"}},"type":"logs_metrics"}}
+      {"data":{"attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1652349148-updated"}},"type":"logs_metrics"}}
     form: {}
     headers:
       Accept:
@@ -30,11 +28,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Update_a_log_based_metric_returns_OK_response_1686138930
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Update_a_log_based_metric_returns_OK_response_1652349148
   response:
-    body: '{"data":{"id":"Test_Update_a_log_based_metric_returns_OK_response_1686138930","attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1686138930-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics"}}
-
-      '
+    body: '{"data":{"attributes":{"filter":{"query":"source:Test-Update_a_log_based_metric_returns_OK_response-1652349148-updated"},"group_by":[],"compute":{"aggregation_type":"count"}},"type":"logs_metrics","id":"Test_Update_a_log_based_metric_returns_OK_response_1652349148"}}'
     code: 200
     duration: ''
     headers:
@@ -48,13 +44,13 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Update_a_log_based_metric_returns_OK_response_1686138930
+    url: https://api.datadoghq.com/api/v2/logs/config/metrics/Test_Update_a_log_based_metric_returns_OK_response_1652349148
   response:
-    body: ''
-    code: 204
+    body: '{}'
+    code: 200
     duration: ''
     headers:
       Content-Type:
-      - text/html; charset=utf-8
-    status: 204 No Content
+      - application/json
+    status: 200 OK
 version: 1

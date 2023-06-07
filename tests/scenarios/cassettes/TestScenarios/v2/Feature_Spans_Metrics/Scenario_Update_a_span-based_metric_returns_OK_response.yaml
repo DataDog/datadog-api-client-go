@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1686139559"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Update_a_span_based_metric_returns_OK_response-1686139559","type":"spans_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1680015329"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Update_a_span_based_metric_returns_OK_response-1680015329","type":"spans_metrics"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/apm/config/metrics
   response:
-    body: '{"data":{"id":"Test_Update_a_span_based_metric_returns_OK_response_1686139559","attributes":{"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1686139559"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
+    body: '{"data":{"id":"Test_Update_a_span_based_metric_returns_OK_response_1680015329","attributes":{"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1680015329"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
 
       '
     code: 200
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"include_percentiles":false},"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1686139559-updated"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"type":"spans_metrics"}}
+      {"data":{"attributes":{"compute":{"include_percentiles":false},"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1680015329-updated"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"type":"spans_metrics"}}
     form: {}
     headers:
       Accept:
@@ -30,9 +30,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Update_a_span_based_metric_returns_OK_response_1686139559
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Update_a_span_based_metric_returns_OK_response_1680015329
   response:
-    body: '{"data":{"id":"Test_Update_a_span_based_metric_returns_OK_response_1686139559","attributes":{"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1686139559-updated"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
+    body: '{"data":{"id":"Test_Update_a_span_based_metric_returns_OK_response_1680015329","attributes":{"filter":{"query":"source:Test-Update_a_span_based_metric_returns_OK_response-1680015329-updated"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}],"compute":{"aggregation_type":"distribution","path":"@duration","include_percentiles":false}},"type":"spans_metrics"}}
 
       '
     code: 200
@@ -48,13 +48,15 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Update_a_span_based_metric_returns_OK_response_1686139559
+    url: https://api.datadoghq.com/api/v2/apm/config/metrics/Test_Update_a_span_based_metric_returns_OK_response_1680015329
   response:
-    body: ''
-    code: 204
+    body: '{}
+
+      '
+    code: 200
     duration: ''
     headers:
       Content-Type:
-      - text/html; charset=utf-8
-    status: 204 No Content
+      - application/json
+    status: 200 OK
 version: 1
