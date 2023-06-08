@@ -14,22 +14,23 @@ type MonitorType string
 
 // List of MonitorType.
 const (
-	MONITORTYPE_COMPOSITE             MonitorType = "composite"
-	MONITORTYPE_EVENT_ALERT           MonitorType = "event alert"
-	MONITORTYPE_LOG_ALERT             MonitorType = "log alert"
-	MONITORTYPE_METRIC_ALERT          MonitorType = "metric alert"
-	MONITORTYPE_PROCESS_ALERT         MonitorType = "process alert"
-	MONITORTYPE_QUERY_ALERT           MonitorType = "query alert"
-	MONITORTYPE_RUM_ALERT             MonitorType = "rum alert"
-	MONITORTYPE_SERVICE_CHECK         MonitorType = "service check"
-	MONITORTYPE_SYNTHETICS_ALERT      MonitorType = "synthetics alert"
-	MONITORTYPE_TRACE_ANALYTICS_ALERT MonitorType = "trace-analytics alert"
-	MONITORTYPE_SLO_ALERT             MonitorType = "slo alert"
-	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
-	MONITORTYPE_AUDIT_ALERT           MonitorType = "audit alert"
-	MONITORTYPE_CI_PIPELINES_ALERT    MonitorType = "ci-pipelines alert"
-	MONITORTYPE_CI_TESTS_ALERT        MonitorType = "ci-tests alert"
-	MONITORTYPE_ERROR_TRACKING_ALERT  MonitorType = "error-tracking alert"
+	MONITORTYPE_COMPOSITE                 MonitorType = "composite"
+	MONITORTYPE_EVENT_ALERT               MonitorType = "event alert"
+	MONITORTYPE_LOG_ALERT                 MonitorType = "log alert"
+	MONITORTYPE_METRIC_ALERT              MonitorType = "metric alert"
+	MONITORTYPE_PROCESS_ALERT             MonitorType = "process alert"
+	MONITORTYPE_QUERY_ALERT               MonitorType = "query alert"
+	MONITORTYPE_RUM_ALERT                 MonitorType = "rum alert"
+	MONITORTYPE_SERVICE_CHECK             MonitorType = "service check"
+	MONITORTYPE_SYNTHETICS_ALERT          MonitorType = "synthetics alert"
+	MONITORTYPE_TRACE_ANALYTICS_ALERT     MonitorType = "trace-analytics alert"
+	MONITORTYPE_SLO_ALERT                 MonitorType = "slo alert"
+	MONITORTYPE_EVENT_V2_ALERT            MonitorType = "event-v2 alert"
+	MONITORTYPE_AUDIT_ALERT               MonitorType = "audit alert"
+	MONITORTYPE_CI_PIPELINES_ALERT        MonitorType = "ci-pipelines alert"
+	MONITORTYPE_CI_TESTS_ALERT            MonitorType = "ci-tests alert"
+	MONITORTYPE_ERROR_TRACKING_ALERT      MonitorType = "error-tracking alert"
+	MONITORTYPE_DATABASE_MONITORING_ALERT MonitorType = "database-monitoring alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -49,6 +50,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	MONITORTYPE_CI_PIPELINES_ALERT,
 	MONITORTYPE_CI_TESTS_ALERT,
 	MONITORTYPE_ERROR_TRACKING_ALERT,
+	MONITORTYPE_DATABASE_MONITORING_ALERT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
