@@ -414,9 +414,9 @@ func (o *MonitorUpdateRequest) SetQuery(v string) {
 	o.Query = &v
 }
 
-// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
+// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
-	if o == nil || o.RestrictedRoles == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -425,6 +425,7 @@ func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUpdateRequest) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
