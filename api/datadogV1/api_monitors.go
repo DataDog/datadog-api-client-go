@@ -123,6 +123,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - event-v2: `event-v2 alert`
 // - audit: `audit alert`
 // - error-tracking: `error-tracking alert`
+// - database-monitoring: `database-monitoring alert`
 //
 // **Note**: Synthetic monitors are created through the Synthetics API. See the [Synthetics API] (https://docs.datadoghq.com/api/latest/synthetics/) documentation for more information.
 //
@@ -282,6 +283,19 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `time_window` #m (between 1 and 2880), #h (between 1 and 48).
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
+//
+// **Database Monitoring Alert Query**
+//
+// Example: `database-monitoring(query).rollup(rollup_method[, measure]).last(time_window) operator #`
+//
+// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.
+// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
+// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).
+// - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
+// - `#` an integer or decimal number used to set the threshold.
+//
+// **NOTE** Database Monitoring monitors are in alpha on US1.
 func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
