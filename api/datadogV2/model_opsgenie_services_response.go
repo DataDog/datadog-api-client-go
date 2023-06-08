@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OpsgenieServicesResponse Response with a list of Opsgenie services.
+// OpsgenieServicesResponse Response with a list of Opsgenie services. Test coverage.
 type OpsgenieServicesResponse struct {
 	// An array of Opsgenie services.
 	Data []OpsgenieServiceResponseData `json:"data"`
