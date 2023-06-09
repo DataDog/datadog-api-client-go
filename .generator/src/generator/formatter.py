@@ -497,6 +497,8 @@ def format_data_with_schema_list(
     if not schema:
         return ""
 
+    nullable = schema.get("nullable")
+
     if "oneOf" in schema:
         parameters = ""
         matched = 0
@@ -580,6 +582,13 @@ def format_data_with_schema_list(
         for _ in range(depth):
             parameters = f"{{\n{parameters}}}"
         return parameters
+
+    if nullable and is_primitive(list_schema):
+        nullable_type = simple_type(schema, render_nullable=True, render_new=True)
+        # strip typing information from generic type for readibility:
+        # datadog.NullableList[[]string] -> datadog.NullableList
+        nullable_type = re.sub(r'\[.*\]', '', nullable_type)
+        return f"*{nullable_type}(&{nested_simple_type_name}{{\n{parameters}}})"
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
 
