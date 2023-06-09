@@ -273,12 +273,12 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 	{#- if argument is nullable, only serialize it if it is set #}
 	{%- if isNullable %}
-	{%- if ((isContainer and not isPrimitiveContainer) and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
+	{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	if o.{{ propertyName }} != nil {
 		toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	}
 	{%- endif %}
-	{%- if not (((isContainer and not isPrimitiveContainer) and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}
+	{%- if not ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}
 	{%- if isRequired %}
 	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Get()
 	{%- else %}
