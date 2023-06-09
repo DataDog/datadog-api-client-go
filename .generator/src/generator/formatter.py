@@ -163,7 +163,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
     if type_name == "array" and nullable:
         if is_primitive(schema["items"]):
             child_simple_type = simple_type(schema["items"], render_nullable=True, render_new=False)
-            nullable_suffix = "List" if render_new else f"List[[]{child_simple_type}]"
+            nullable_suffix = "List" if render_new else f"List[{child_simple_type}]"
             return nullable_prefix + nullable_suffix
 
     return None
