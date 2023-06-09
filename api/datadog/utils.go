@@ -430,7 +430,7 @@ func (v *NullableList[T]) Unset() {
 }
 
 // NewNullableList instantiates a new nullable list.
-func NewNullableList[T PrimitiveListTypes](val *T) *NullableList[T] {
+func NewNullableList[T primitiveListTypes](val *T) *NullableList[T] {
 	return &NullableList[T]{value: val, isSet: true}
 }
 
