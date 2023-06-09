@@ -72,9 +72,7 @@ SUFFIXES = {
 
 def is_primitive(schema):
     _type = schema.get("type", "object")
-    
     return _type in PRIMITIVE_TYPES and "enum" not in schema
-    
 
 
 def block_comment(comment, prefix="#", first_line=True):
