@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"message":"test msg"},"id":"00000000-0000-1234-0000-000000000000","type":"downtime"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/downtime/00000000-0000-1234-0000-000000000000
+  response:
+    body: '{"errors":["Downtime not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

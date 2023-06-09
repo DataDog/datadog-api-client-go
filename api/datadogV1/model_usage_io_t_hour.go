@@ -16,7 +16,7 @@ type UsageIoTHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The total number of IoT devices during a given hour.
-	IotDeviceCount datadog.NullableInt64 `json:"iot_device_count,omitempty"`
+	IotDeviceCount *int64 `json:"iot_device_count,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,43 +71,32 @@ func (o *UsageIoTHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetIotDeviceCount returns the IotDeviceCount field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIotDeviceCount returns the IotDeviceCount field value if set, zero value otherwise.
 func (o *UsageIoTHour) GetIotDeviceCount() int64 {
-	if o == nil || o.IotDeviceCount.Get() == nil {
+	if o == nil || o.IotDeviceCount == nil {
 		var ret int64
 		return ret
 	}
-	return *o.IotDeviceCount.Get()
+	return *o.IotDeviceCount
 }
 
 // GetIotDeviceCountOk returns a tuple with the IotDeviceCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageIoTHour) GetIotDeviceCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.IotDeviceCount == nil {
 		return nil, false
 	}
-	return o.IotDeviceCount.Get(), o.IotDeviceCount.IsSet()
+	return o.IotDeviceCount, true
 }
 
 // HasIotDeviceCount returns a boolean if a field has been set.
 func (o *UsageIoTHour) HasIotDeviceCount() bool {
-	return o != nil && o.IotDeviceCount.IsSet()
+	return o != nil && o.IotDeviceCount != nil
 }
 
-// SetIotDeviceCount gets a reference to the given datadog.NullableInt64 and assigns it to the IotDeviceCount field.
+// SetIotDeviceCount gets a reference to the given int64 and assigns it to the IotDeviceCount field.
 func (o *UsageIoTHour) SetIotDeviceCount(v int64) {
-	o.IotDeviceCount.Set(&v)
-}
-
-// SetIotDeviceCountNil sets the value for IotDeviceCount to be an explicit nil.
-func (o *UsageIoTHour) SetIotDeviceCountNil() {
-	o.IotDeviceCount.Set(nil)
-}
-
-// UnsetIotDeviceCount ensures that no value is present for IotDeviceCount, not even an explicit nil.
-func (o *UsageIoTHour) UnsetIotDeviceCount() {
-	o.IotDeviceCount.Unset()
+	o.IotDeviceCount = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -179,8 +168,8 @@ func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.IotDeviceCount.IsSet() {
-		toSerialize["iot_device_count"] = o.IotDeviceCount.Get()
+	if o.IotDeviceCount != nil {
+		toSerialize["iot_device_count"] = o.IotDeviceCount
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -199,10 +188,10 @@ func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
 func (o *UsageIoTHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour           *time.Time            `json:"hour,omitempty"`
-		IotDeviceCount datadog.NullableInt64 `json:"iot_device_count,omitempty"`
-		OrgName        *string               `json:"org_name,omitempty"`
-		PublicId       *string               `json:"public_id,omitempty"`
+		Hour           *time.Time `json:"hour,omitempty"`
+		IotDeviceCount *int64     `json:"iot_device_count,omitempty"`
+		OrgName        *string    `json:"org_name,omitempty"`
+		PublicId       *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

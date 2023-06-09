@@ -23,7 +23,7 @@ type UsageLogsByRetentionHour struct {
 	// Rehydrated logs indexed with this retention period during a given hour.
 	RehydratedIndexedEventsCount datadog.NullableInt64 `json:"rehydrated_indexed_events_count,omitempty"`
 	// The retention period in days or "custom" for all custom retention usage.
-	Retention datadog.NullableString `json:"retention,omitempty"`
+	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -219,43 +219,32 @@ func (o *UsageLogsByRetentionHour) UnsetRehydratedIndexedEventsCount() {
 	o.RehydratedIndexedEventsCount.Unset()
 }
 
-// GetRetention returns the Retention field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetRetention() string {
-	if o == nil || o.Retention.Get() == nil {
+	if o == nil || o.Retention == nil {
 		var ret string
 		return ret
 	}
-	return *o.Retention.Get()
+	return *o.Retention
 }
 
 // GetRetentionOk returns a tuple with the Retention field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsByRetentionHour) GetRetentionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Retention == nil {
 		return nil, false
 	}
-	return o.Retention.Get(), o.Retention.IsSet()
+	return o.Retention, true
 }
 
 // HasRetention returns a boolean if a field has been set.
 func (o *UsageLogsByRetentionHour) HasRetention() bool {
-	return o != nil && o.Retention.IsSet()
+	return o != nil && o.Retention != nil
 }
 
-// SetRetention gets a reference to the given datadog.NullableString and assigns it to the Retention field.
+// SetRetention gets a reference to the given string and assigns it to the Retention field.
 func (o *UsageLogsByRetentionHour) SetRetention(v string) {
-	o.Retention.Set(&v)
-}
-
-// SetRetentionNil sets the value for Retention to be an explicit nil.
-func (o *UsageLogsByRetentionHour) SetRetentionNil() {
-	o.Retention.Set(nil)
-}
-
-// UnsetRetention ensures that no value is present for Retention, not even an explicit nil.
-func (o *UsageLogsByRetentionHour) UnsetRetention() {
-	o.Retention.Unset()
+	o.Retention = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -279,8 +268,8 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	if o.RehydratedIndexedEventsCount.IsSet() {
 		toSerialize["rehydrated_indexed_events_count"] = o.RehydratedIndexedEventsCount.Get()
 	}
-	if o.Retention.IsSet() {
-		toSerialize["retention"] = o.Retention.Get()
+	if o.Retention != nil {
+		toSerialize["retention"] = o.Retention
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -293,12 +282,12 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedEventsCount           datadog.NullableInt64  `json:"indexed_events_count,omitempty"`
-		LiveIndexedEventsCount       datadog.NullableInt64  `json:"live_indexed_events_count,omitempty"`
-		OrgName                      *string                `json:"org_name,omitempty"`
-		PublicId                     *string                `json:"public_id,omitempty"`
-		RehydratedIndexedEventsCount datadog.NullableInt64  `json:"rehydrated_indexed_events_count,omitempty"`
-		Retention                    datadog.NullableString `json:"retention,omitempty"`
+		IndexedEventsCount           datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
+		LiveIndexedEventsCount       datadog.NullableInt64 `json:"live_indexed_events_count,omitempty"`
+		OrgName                      *string               `json:"org_name,omitempty"`
+		PublicId                     *string               `json:"public_id,omitempty"`
+		RehydratedIndexedEventsCount datadog.NullableInt64 `json:"rehydrated_indexed_events_count,omitempty"`
+		Retention                    *string               `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
