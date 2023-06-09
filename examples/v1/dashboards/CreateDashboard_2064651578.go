@@ -68,9 +68,9 @@ func main() {
 				},
 			},
 		},
-		Tags: []string{
+		Tags: *datadog.NewNullableList(&[]string{
 			"team:foobar",
-		},
+		}),
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -20,13 +20,13 @@ func main() {
 			Period:           datadog.PtrInt32(1),
 			Type:             datadog.PtrString("weeks"),
 			UntilOccurrences: *datadog.NewNullableInt32(datadog.PtrInt32(3)),
-			WeekDays: []string{
+			WeekDays: *datadog.NewNullableList(&[]string{
 				"Mon",
 				"Tue",
 				"Wed",
 				"Thu",
 				"Fri",
-			},
+			}),
 		}),
 		Scope: []string{
 			"*",

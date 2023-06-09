@@ -26,9 +26,9 @@ func main() {
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
-		RestrictedRoles: []string{
+		RestrictedRoles: *datadog.NewNullableList(&[]string{
 			RoleDataID,
-		},
+		}),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

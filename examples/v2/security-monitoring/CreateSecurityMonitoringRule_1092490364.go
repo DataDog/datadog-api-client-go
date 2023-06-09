@@ -45,9 +45,9 @@ func main() {
 			},
 			ComplianceSignalOptions: datadogV2.CloudConfigurationRuleComplianceSignalOptions{
 				UserActivationStatus: *datadog.NewNullableBool(datadog.PtrBool(true)),
-				UserGroupByFields: []string{
+				UserGroupByFields: *datadog.NewNullableList(&[]string{
 					"@account_id",
-				},
+				}),
 			},
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())

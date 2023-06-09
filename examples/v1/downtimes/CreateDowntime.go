@@ -25,13 +25,13 @@ func main() {
 		Recurrence: *datadogV1.NewNullableDowntimeRecurrence(&datadogV1.DowntimeRecurrence{
 			Type:   datadog.PtrString("weeks"),
 			Period: datadog.PtrInt32(1),
-			WeekDays: []string{
+			WeekDays: *datadog.NewNullableList(&[]string{
 				"Mon",
 				"Tue",
 				"Wed",
 				"Thu",
 				"Fri",
-			},
+			}),
 			UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
 		}),
 		NotifyEndStates: []datadogV1.NotifyEndState{
