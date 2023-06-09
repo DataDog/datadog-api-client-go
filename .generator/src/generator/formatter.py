@@ -163,7 +163,8 @@ def simple_type(schema, render_nullable=False, render_new=False):
     if type_name == "array" and nullable:
         if is_primitive(schema["items"]):
             child_simple_type = simple_type(schema["items"], render_nullable=True, render_new=False)
-            return f"{nullable_prefix}List[[]{child_simple_type}]"
+            nullable_suffix = "List" if render_new else f"List[[]{child_simple_type}]"
+            return nullable_prefix + nullable_suffix
 
     return None
 
@@ -585,9 +586,6 @@ def format_data_with_schema_list(
 
     if nullable and is_primitive(list_schema):
         nullable_type = simple_type(schema, render_nullable=True, render_new=True)
-        # strip typing information from generic type for readibility:
-        # datadog.NullableList[[]string] -> datadog.NullableList
-        nullable_type = re.sub(r'\[.*\]', '', nullable_type)
         return f"*{nullable_type}(&{nested_simple_type_name}{{\n{parameters}}})"
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
