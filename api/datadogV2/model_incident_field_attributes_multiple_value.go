@@ -15,7 +15,7 @@ type IncidentFieldAttributesMultipleValue struct {
 	// Type of the multiple value field definitions.
 	Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
 	// The multiple values selected for this field.
-	Value []string `json:"value,omitempty"`
+	Value datadog.NullableList[[]string] `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -72,31 +72,41 @@ func (o *IncidentFieldAttributesMultipleValue) SetType(v IncidentFieldAttributes
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentFieldAttributesMultipleValue) GetValue() []string {
-	if o == nil {
+	if o == nil || o.Value.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Value
+	return *o.Value.Get()
 }
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentFieldAttributesMultipleValue) GetValueOk() (*[]string, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value.Get(), o.Value.IsSet()
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *IncidentFieldAttributesMultipleValue) HasValue() bool {
-	return o != nil && o.Value != nil
+	return o != nil && o.Value.IsSet()
 }
 
-// SetValue gets a reference to the given []string and assigns it to the Value field.
+// SetValue gets a reference to the given datadog.NullableList[[]string] and assigns it to the Value field.
 func (o *IncidentFieldAttributesMultipleValue) SetValue(v []string) {
-	o.Value = v
+	o.Value.Set(&v)
+}
+
+// SetValueNil sets the value for Value to be an explicit nil.
+func (o *IncidentFieldAttributesMultipleValue) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil.
+func (o *IncidentFieldAttributesMultipleValue) UnsetValue() {
+	o.Value.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -108,8 +118,8 @@ func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -123,7 +133,7 @@ func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	all := struct {
 		Type  *IncidentFieldAttributesValueType `json:"type,omitempty"`
-		Value []string                          `json:"value,omitempty"`
+		Value datadog.NullableList[[]string]    `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

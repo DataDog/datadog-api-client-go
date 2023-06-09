@@ -16,7 +16,7 @@ type ApplicationKeyCreateAttributes struct {
 	// Name of the application key.
 	Name string `json:"name"`
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
-	Scopes []string `json:"scopes,omitempty"`
+	Scopes datadog.NullableList[[]string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -65,31 +65,41 @@ func (o *ApplicationKeyCreateAttributes) SetName(v string) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationKeyCreateAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil || o.Scopes.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Scopes
+	return *o.Scopes.Get()
 }
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ApplicationKeyCreateAttributes) GetScopesOk() (*[]string, bool) {
-	if o == nil || o.Scopes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Scopes, true
+	return o.Scopes.Get(), o.Scopes.IsSet()
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *ApplicationKeyCreateAttributes) HasScopes() bool {
-	return o != nil && o.Scopes != nil
+	return o != nil && o.Scopes.IsSet()
 }
 
-// SetScopes gets a reference to the given []string and assigns it to the Scopes field.
+// SetScopes gets a reference to the given datadog.NullableList[[]string] and assigns it to the Scopes field.
 func (o *ApplicationKeyCreateAttributes) SetScopes(v []string) {
-	o.Scopes = v
+	o.Scopes.Set(&v)
+}
+
+// SetScopesNil sets the value for Scopes to be an explicit nil.
+func (o *ApplicationKeyCreateAttributes) SetScopesNil() {
+	o.Scopes.Set(nil)
+}
+
+// UnsetScopes ensures that no value is present for Scopes, not even an explicit nil.
+func (o *ApplicationKeyCreateAttributes) UnsetScopes() {
+	o.Scopes.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -99,8 +109,8 @@ func (o ApplicationKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["name"] = o.Name
-	if o.Scopes != nil {
-		toSerialize["scopes"] = o.Scopes
+	if o.Scopes.IsSet() {
+		toSerialize["scopes"] = o.Scopes.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,8 +126,8 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Name   string   `json:"name"`
-		Scopes []string `json:"scopes,omitempty"`
+		Name   string                         `json:"name"`
+		Scopes datadog.NullableList[[]string] `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

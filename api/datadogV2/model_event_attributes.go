@@ -31,7 +31,7 @@ type EventAttributes struct {
 	// Attributes from the monitor that triggered the event.
 	Monitor NullableMonitorType `json:"monitor,omitempty"`
 	// List of groups referred to in the event.
-	MonitorGroups []string `json:"monitor_groups,omitempty"`
+	MonitorGroups datadog.NullableList[[]string] `json:"monitor_groups,omitempty"`
 	// ID of the monitor that triggered the event. When an event isn't related to a monitor, this field is empty.
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
 	// The priority of the event's monitor. For example, `normal` or `low`.
@@ -315,31 +315,41 @@ func (o *EventAttributes) UnsetMonitor() {
 
 // GetMonitorGroups returns the MonitorGroups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventAttributes) GetMonitorGroups() []string {
-	if o == nil {
+	if o == nil || o.MonitorGroups.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.MonitorGroups
+	return *o.MonitorGroups.Get()
 }
 
 // GetMonitorGroupsOk returns a tuple with the MonitorGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventAttributes) GetMonitorGroupsOk() (*[]string, bool) {
-	if o == nil || o.MonitorGroups == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.MonitorGroups, true
+	return o.MonitorGroups.Get(), o.MonitorGroups.IsSet()
 }
 
 // HasMonitorGroups returns a boolean if a field has been set.
 func (o *EventAttributes) HasMonitorGroups() bool {
-	return o != nil && o.MonitorGroups != nil
+	return o != nil && o.MonitorGroups.IsSet()
 }
 
-// SetMonitorGroups gets a reference to the given []string and assigns it to the MonitorGroups field.
+// SetMonitorGroups gets a reference to the given datadog.NullableList[[]string] and assigns it to the MonitorGroups field.
 func (o *EventAttributes) SetMonitorGroups(v []string) {
-	o.MonitorGroups = v
+	o.MonitorGroups.Set(&v)
+}
+
+// SetMonitorGroupsNil sets the value for MonitorGroups to be an explicit nil.
+func (o *EventAttributes) SetMonitorGroupsNil() {
+	o.MonitorGroups.Set(nil)
+}
+
+// UnsetMonitorGroups ensures that no value is present for MonitorGroups, not even an explicit nil.
+func (o *EventAttributes) UnsetMonitorGroups() {
+	o.MonitorGroups.Unset()
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -674,8 +684,8 @@ func (o EventAttributes) MarshalJSON() ([]byte, error) {
 	if o.Monitor.IsSet() {
 		toSerialize["monitor"] = o.Monitor.Get()
 	}
-	if o.MonitorGroups != nil {
-		toSerialize["monitor_groups"] = o.MonitorGroups
+	if o.MonitorGroups.IsSet() {
+		toSerialize["monitor_groups"] = o.MonitorGroups.Get()
 	}
 	if o.MonitorId.IsSet() {
 		toSerialize["monitor_id"] = o.MonitorId.Get()
@@ -718,25 +728,25 @@ func (o EventAttributes) MarshalJSON() ([]byte, error) {
 func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AggregationKey *string               `json:"aggregation_key,omitempty"`
-		DateHappened   *int64                `json:"date_happened,omitempty"`
-		DeviceName     *string               `json:"device_name,omitempty"`
-		Duration       *int64                `json:"duration,omitempty"`
-		EventObject    *string               `json:"event_object,omitempty"`
-		Evt            *Event                `json:"evt,omitempty"`
-		Hostname       *string               `json:"hostname,omitempty"`
-		Monitor        NullableMonitorType   `json:"monitor,omitempty"`
-		MonitorGroups  []string              `json:"monitor_groups,omitempty"`
-		MonitorId      datadog.NullableInt64 `json:"monitor_id,omitempty"`
-		Priority       NullableEventPriority `json:"priority,omitempty"`
-		RelatedEventId *int64                `json:"related_event_id,omitempty"`
-		Service        *string               `json:"service,omitempty"`
-		SourceTypeName *string               `json:"source_type_name,omitempty"`
-		Sourcecategory *string               `json:"sourcecategory,omitempty"`
-		Status         *EventStatusType      `json:"status,omitempty"`
-		Tags           []string              `json:"tags,omitempty"`
-		Timestamp      *int64                `json:"timestamp,omitempty"`
-		Title          *string               `json:"title,omitempty"`
+		AggregationKey *string                        `json:"aggregation_key,omitempty"`
+		DateHappened   *int64                         `json:"date_happened,omitempty"`
+		DeviceName     *string                        `json:"device_name,omitempty"`
+		Duration       *int64                         `json:"duration,omitempty"`
+		EventObject    *string                        `json:"event_object,omitempty"`
+		Evt            *Event                         `json:"evt,omitempty"`
+		Hostname       *string                        `json:"hostname,omitempty"`
+		Monitor        NullableMonitorType            `json:"monitor,omitempty"`
+		MonitorGroups  datadog.NullableList[[]string] `json:"monitor_groups,omitempty"`
+		MonitorId      datadog.NullableInt64          `json:"monitor_id,omitempty"`
+		Priority       NullableEventPriority          `json:"priority,omitempty"`
+		RelatedEventId *int64                         `json:"related_event_id,omitempty"`
+		Service        *string                        `json:"service,omitempty"`
+		SourceTypeName *string                        `json:"source_type_name,omitempty"`
+		Sourcecategory *string                        `json:"sourcecategory,omitempty"`
+		Status         *EventStatusType               `json:"status,omitempty"`
+		Tags           []string                       `json:"tags,omitempty"`
+		Timestamp      *int64                         `json:"timestamp,omitempty"`
+		Title          *string                        `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

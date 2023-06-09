@@ -15,7 +15,7 @@ type CloudConfigurationRuleComplianceSignalOptions struct {
 	// Whether signals will be sent.
 	UserActivationStatus datadog.NullableBool `json:"userActivationStatus,omitempty"`
 	// Fields to use to group findings by when sending signals.
-	UserGroupByFields []string `json:"userGroupByFields,omitempty"`
+	UserGroupByFields datadog.NullableList[[]string] `json:"userGroupByFields,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -79,31 +79,41 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnsetUserActivationStatu
 
 // GetUserGroupByFields returns the UserGroupByFields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserGroupByFields() []string {
-	if o == nil {
+	if o == nil || o.UserGroupByFields.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.UserGroupByFields
+	return *o.UserGroupByFields.Get()
 }
 
 // GetUserGroupByFieldsOk returns a tuple with the UserGroupByFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudConfigurationRuleComplianceSignalOptions) GetUserGroupByFieldsOk() (*[]string, bool) {
-	if o == nil || o.UserGroupByFields == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.UserGroupByFields, true
+	return o.UserGroupByFields.Get(), o.UserGroupByFields.IsSet()
 }
 
 // HasUserGroupByFields returns a boolean if a field has been set.
 func (o *CloudConfigurationRuleComplianceSignalOptions) HasUserGroupByFields() bool {
-	return o != nil && o.UserGroupByFields != nil
+	return o != nil && o.UserGroupByFields.IsSet()
 }
 
-// SetUserGroupByFields gets a reference to the given []string and assigns it to the UserGroupByFields field.
+// SetUserGroupByFields gets a reference to the given datadog.NullableList[[]string] and assigns it to the UserGroupByFields field.
 func (o *CloudConfigurationRuleComplianceSignalOptions) SetUserGroupByFields(v []string) {
-	o.UserGroupByFields = v
+	o.UserGroupByFields.Set(&v)
+}
+
+// SetUserGroupByFieldsNil sets the value for UserGroupByFields to be an explicit nil.
+func (o *CloudConfigurationRuleComplianceSignalOptions) SetUserGroupByFieldsNil() {
+	o.UserGroupByFields.Set(nil)
+}
+
+// UnsetUserGroupByFields ensures that no value is present for UserGroupByFields, not even an explicit nil.
+func (o *CloudConfigurationRuleComplianceSignalOptions) UnsetUserGroupByFields() {
+	o.UserGroupByFields.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -115,8 +125,8 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 	if o.UserActivationStatus.IsSet() {
 		toSerialize["userActivationStatus"] = o.UserActivationStatus.Get()
 	}
-	if o.UserGroupByFields != nil {
-		toSerialize["userGroupByFields"] = o.UserGroupByFields
+	if o.UserGroupByFields.IsSet() {
+		toSerialize["userGroupByFields"] = o.UserGroupByFields.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -129,8 +139,8 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		UserActivationStatus datadog.NullableBool `json:"userActivationStatus,omitempty"`
-		UserGroupByFields    []string             `json:"userGroupByFields,omitempty"`
+		UserActivationStatus datadog.NullableBool           `json:"userActivationStatus,omitempty"`
+		UserGroupByFields    datadog.NullableList[[]string] `json:"userGroupByFields,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -19,7 +19,7 @@ type SelectableTemplateVariableItems struct {
 	// The tag/attribute key associated with the template variable.
 	Prefix *string `json:"prefix,omitempty"`
 	// List of visible tag values on the shared dashboard.
-	VisibleTags []string `json:"visible_tags,omitempty"`
+	VisibleTags datadog.NullableList[[]string] `json:"visible_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -128,31 +128,41 @@ func (o *SelectableTemplateVariableItems) SetPrefix(v string) {
 
 // GetVisibleTags returns the VisibleTags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SelectableTemplateVariableItems) GetVisibleTags() []string {
-	if o == nil {
+	if o == nil || o.VisibleTags.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.VisibleTags
+	return *o.VisibleTags.Get()
 }
 
 // GetVisibleTagsOk returns a tuple with the VisibleTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SelectableTemplateVariableItems) GetVisibleTagsOk() (*[]string, bool) {
-	if o == nil || o.VisibleTags == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.VisibleTags, true
+	return o.VisibleTags.Get(), o.VisibleTags.IsSet()
 }
 
 // HasVisibleTags returns a boolean if a field has been set.
 func (o *SelectableTemplateVariableItems) HasVisibleTags() bool {
-	return o != nil && o.VisibleTags != nil
+	return o != nil && o.VisibleTags.IsSet()
 }
 
-// SetVisibleTags gets a reference to the given []string and assigns it to the VisibleTags field.
+// SetVisibleTags gets a reference to the given datadog.NullableList[[]string] and assigns it to the VisibleTags field.
 func (o *SelectableTemplateVariableItems) SetVisibleTags(v []string) {
-	o.VisibleTags = v
+	o.VisibleTags.Set(&v)
+}
+
+// SetVisibleTagsNil sets the value for VisibleTags to be an explicit nil.
+func (o *SelectableTemplateVariableItems) SetVisibleTagsNil() {
+	o.VisibleTags.Set(nil)
+}
+
+// UnsetVisibleTags ensures that no value is present for VisibleTags, not even an explicit nil.
+func (o *SelectableTemplateVariableItems) UnsetVisibleTags() {
+	o.VisibleTags.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -170,8 +180,8 @@ func (o SelectableTemplateVariableItems) MarshalJSON() ([]byte, error) {
 	if o.Prefix != nil {
 		toSerialize["prefix"] = o.Prefix
 	}
-	if o.VisibleTags != nil {
-		toSerialize["visible_tags"] = o.VisibleTags
+	if o.VisibleTags.IsSet() {
+		toSerialize["visible_tags"] = o.VisibleTags.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -184,10 +194,10 @@ func (o SelectableTemplateVariableItems) MarshalJSON() ([]byte, error) {
 func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DefaultValue *string  `json:"default_value,omitempty"`
-		Name         *string  `json:"name,omitempty"`
-		Prefix       *string  `json:"prefix,omitempty"`
-		VisibleTags  []string `json:"visible_tags,omitempty"`
+		DefaultValue *string                        `json:"default_value,omitempty"`
+		Name         *string                        `json:"name,omitempty"`
+		Prefix       *string                        `json:"prefix,omitempty"`
+		VisibleTags  datadog.NullableList[[]string] `json:"visible_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

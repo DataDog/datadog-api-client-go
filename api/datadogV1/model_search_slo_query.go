@@ -18,7 +18,7 @@ type SearchSLOQuery struct {
 	Denominator *string `json:"denominator,omitempty"`
 	// Metric names used in the query's numerator and denominator.
 	// This field will return null and will be implemented in the next version of this endpoint.
-	Metrics []string `json:"metrics,omitempty"`
+	Metrics datadog.NullableList[[]string] `json:"metrics,omitempty"`
 	// A Datadog metric query for good events.
 	Numerator *string `json:"numerator,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -73,31 +73,41 @@ func (o *SearchSLOQuery) SetDenominator(v string) {
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOQuery) GetMetrics() []string {
-	if o == nil {
+	if o == nil || o.Metrics.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Metrics
+	return *o.Metrics.Get()
 }
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOQuery) GetMetricsOk() (*[]string, bool) {
-	if o == nil || o.Metrics == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Metrics, true
+	return o.Metrics.Get(), o.Metrics.IsSet()
 }
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *SearchSLOQuery) HasMetrics() bool {
-	return o != nil && o.Metrics != nil
+	return o != nil && o.Metrics.IsSet()
 }
 
-// SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
+// SetMetrics gets a reference to the given datadog.NullableList[[]string] and assigns it to the Metrics field.
 func (o *SearchSLOQuery) SetMetrics(v []string) {
-	o.Metrics = v
+	o.Metrics.Set(&v)
+}
+
+// SetMetricsNil sets the value for Metrics to be an explicit nil.
+func (o *SearchSLOQuery) SetMetricsNil() {
+	o.Metrics.Set(nil)
+}
+
+// UnsetMetrics ensures that no value is present for Metrics, not even an explicit nil.
+func (o *SearchSLOQuery) UnsetMetrics() {
+	o.Metrics.Unset()
 }
 
 // GetNumerator returns the Numerator field value if set, zero value otherwise.
@@ -137,8 +147,8 @@ func (o SearchSLOQuery) MarshalJSON() ([]byte, error) {
 	if o.Denominator != nil {
 		toSerialize["denominator"] = o.Denominator
 	}
-	if o.Metrics != nil {
-		toSerialize["metrics"] = o.Metrics
+	if o.Metrics.IsSet() {
+		toSerialize["metrics"] = o.Metrics.Get()
 	}
 	if o.Numerator != nil {
 		toSerialize["numerator"] = o.Numerator
@@ -154,9 +164,9 @@ func (o SearchSLOQuery) MarshalJSON() ([]byte, error) {
 func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Denominator *string  `json:"denominator,omitempty"`
-		Metrics     []string `json:"metrics,omitempty"`
-		Numerator   *string  `json:"numerator,omitempty"`
+		Denominator *string                        `json:"denominator,omitempty"`
+		Metrics     datadog.NullableList[[]string] `json:"metrics,omitempty"`
+		Numerator   *string                        `json:"numerator,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
