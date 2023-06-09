@@ -160,12 +160,6 @@ def simple_type(schema, render_nullable=False, render_new=False):
     if type_name == "boolean":
         return "bool" if not nullable else f"{nullable_prefix}Bool"
 
-    if type_name == "array" and nullable:
-        if is_primitive(schema["items"]):
-            child_simple_type = simple_type(schema["items"], render_nullable=True, render_new=False)
-            nullable_suffix = "List" if render_new else f"List[{child_simple_type}]"
-            return nullable_prefix + nullable_suffix
-
     return None
 
 
@@ -585,8 +579,8 @@ def format_data_with_schema_list(
         return parameters
 
     if nullable and is_primitive(list_schema):
-        nullable_type = simple_type(schema, render_nullable=True, render_new=True)
-        return f"*{nullable_type}(&{nested_simple_type_name}{{\n{parameters}}})"
+        name_prefix="datadog.NewNullableList"
+        return f"*{name_prefix}(&{nested_simple_type_name}{{\n{parameters}}})"
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
 
