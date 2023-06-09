@@ -101,6 +101,7 @@ func New{{ name }}WithDefaults() *{{ name }} {
 {%- set isNullable = spec.nullable %}
 {%- set isContainer = spec.type == "array" %}
 {%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.get("additionalProperties") and not spec.get("properties") %}
+{%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
 {%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 {%- if attr in model.get("required", []) %}
 // Get{{ propertyName }} returns the {{ propertyName }} field value.
@@ -111,13 +112,13 @@ func New{{ name }}WithDefaults() *{{ name }} {
 // Deprecated
 {%- endif %}
 func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
-	if o == nil{%- if isNullable %}{% if not (isContainer or isAdditionalPropertiesContainer) %} || o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
+	if o == nil{%- if isNullable %}{% if not ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %} || o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
 		var ret {{ baseType }}
 		return ret
 	}
 
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	return o.{{ propertyName }}
 {%- else %}
 	return *o.{{ propertyName }}.Get()
@@ -136,11 +137,11 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 // Deprecated
 {%- endif %}
 func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
-	if o == nil {%- if isNullable and (isContainer or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }} == nil{%- endif %} {
+	if o == nil {%- if isNullable and ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }} == nil{%- endif %} {
 		return nil, false
 	}
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	return &o.{{ propertyName }}, true
 {%- else %}
 	return o.{{ propertyName }}.Get(), o.{{ propertyName }}.IsSet()
@@ -156,7 +157,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 {%- endif %}
 func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	o.{{ propertyName }} = v
 {%- else %}
 	o.{{ propertyName }}.Set(&v)
@@ -173,12 +174,12 @@ func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 // Deprecated
 {%- endif %}
 func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
-	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{% if not (isContainer or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
+	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{% if not ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
 		var ret {{ baseType }}
 		return ret
 	}
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	return o.{{ propertyName }}
 {%- else %}
 	return *o.{{ propertyName }}.Get()
@@ -197,11 +198,11 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 // Deprecated
 {%- endif %}
 func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
-	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{%- if isContainer or isAdditionalPropertiesContainer %}|| o.{{ propertyName }} == nil{%- endif %}{%- endif %} {
+	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}|| o.{{ propertyName }} == nil{%- endif %}{%- endif %} {
 		return nil, false
 	}
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	return &o.{{ propertyName }}, true
 {%- else %}
 	return o.{{ propertyName }}.Get(), o.{{ propertyName }}.IsSet()
@@ -213,7 +214,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 
 // Has{{ propertyName }} returns a boolean if a field has been set.
 func (o *{{ name }}) Has{{ propertyName }}() bool {
-	return o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer or isAdditionalPropertiesContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %}
+	return o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %}
 }
 
 // Set{{ propertyName }} gets a reference to the given {{ dataType }} and assigns it to the {{ propertyName }} field.
@@ -222,7 +223,7 @@ func (o *{{ name }}) Has{{ propertyName }}() bool {
 {%- endif %}
 func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	o.{{ propertyName }} = v
 {%- else %}
 	o.{{ propertyName }}.Set(&v)
@@ -232,7 +233,7 @@ func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 {%- endif %}
 }
 {%- if isNullable %}
-{%- if isContainer or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 {%- else %}
 // Set{{ propertyName }}Nil sets the value for {{ propertyName }} to be an explicit nil.
 func (o *{{ name }}) Set{{ propertyName }}Nil() {
@@ -268,16 +269,16 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- set isNullable = spec.nullable %}
 	{%- set isContainer = spec.type == "array" %}
 	{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.get("additionalProperties") and not spec.get("properties") %}
+	{%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
 	{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 	{#- if argument is nullable, only serialize it if it is set #}
 	{%- if isNullable %}
-	{%- if isContainer or isAdditionalPropertiesContainer %}
-	{#- support for container fields is not ideal at this point because of lack of Nullable* types #}
+	{%- if ((isContainer and not isPrimitiveContainer) and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
 	if o.{{ propertyName }} != nil {
 		toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	}
 	{%- endif %}
-	{%- if not (isContainer or isAdditionalPropertiesContainer) %}
+	{%- if not (((isContainer and not isPrimitiveContainer) and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}
 	{%- if isRequired %}
 	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Get()
 	{%- else %}

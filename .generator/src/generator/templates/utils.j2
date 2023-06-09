@@ -393,6 +393,54 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
+type PrimitiveListTypes interface {
+	[]int64 | []int32 | []float64 | []string
+}
+
+// NullableList is a struct to hold a nullable primitive list value.
+type NullableList[T PrimitiveListTypes] struct {
+	value *T
+	isSet bool
+}
+
+// Get returns the value associated with the nullable list.
+func (v NullableList[T]) Get() *T {
+	return v.value
+}
+
+// Set sets the value associated with the nullable list.
+func (v *NullableList[T]) Set(val *T) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns true if the value has been set.
+func (v NullableList[T]) IsSet() bool {
+	return v.isSet
+}
+
+// Unset resets fields of the nullable list.
+func (v *NullableList[T]) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableList instantiates a new nullable list.
+func NewNullableList[T PrimitiveListTypes](val *T) *NullableList[T] {
+	return &NullableList[T]{value: val, isSet: true}
+}
+
+// MarshalJSON serializes the associated value.
+func (v NullableList[T]) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// UnmarshalJSON deserializes to the associated value.
+func (v *NullableList[T]) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
 // DeleteKeys helper method to delete keys from a map
 func DeleteKeys[V any](obj map[string]V, keysToDelete *[]string) {
 	for _, s := range *keysToDelete {

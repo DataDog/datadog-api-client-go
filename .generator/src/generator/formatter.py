@@ -70,6 +70,13 @@ SUFFIXES = {
 }
 
 
+def is_primitive(schema):
+    _type = schema.get("type", "object")
+    
+    return _type in PRIMITIVE_TYPES and "enum" not in schema
+    
+
+
 def block_comment(comment, prefix="#", first_line=True):
     lines = comment.split("\n")
     start = "" if first_line else lines[0] + "\n"
@@ -154,6 +161,11 @@ def simple_type(schema, render_nullable=False, render_new=False):
         }[type_format]
     if type_name == "boolean":
         return "bool" if not nullable else f"{nullable_prefix}Bool"
+
+    if type_name == "array" and nullable:
+        if is_primitive(schema["items"]):
+            child_simple_type = simple_type(schema["items"], render_nullable=True, render_new=False)
+            return f"{nullable_prefix}List[[]{child_simple_type}]"
 
     return None
 
