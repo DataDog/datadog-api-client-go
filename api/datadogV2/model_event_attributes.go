@@ -31,7 +31,7 @@ type EventAttributes struct {
 	// Attributes from the monitor that triggered the event.
 	Monitor NullableMonitorType `json:"monitor,omitempty"`
 	// List of groups referred to in the event.
-	MonitorGroups datadog.NullableList[[]string] `json:"monitor_groups,omitempty"`
+	MonitorGroups datadog.NullableList[string] `json:"monitor_groups,omitempty"`
 	// ID of the monitor that triggered the event. When an event isn't related to a monitor, this field is empty.
 	MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
 	// The priority of the event's monitor. For example, `normal` or `low`.
@@ -337,7 +337,7 @@ func (o *EventAttributes) HasMonitorGroups() bool {
 	return o != nil && o.MonitorGroups.IsSet()
 }
 
-// SetMonitorGroups gets a reference to the given datadog.NullableList[[]string] and assigns it to the MonitorGroups field.
+// SetMonitorGroups gets a reference to the given datadog.NullableList[string] and assigns it to the MonitorGroups field.
 func (o *EventAttributes) SetMonitorGroups(v []string) {
 	o.MonitorGroups.Set(&v)
 }
@@ -728,25 +728,25 @@ func (o EventAttributes) MarshalJSON() ([]byte, error) {
 func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AggregationKey *string                        `json:"aggregation_key,omitempty"`
-		DateHappened   *int64                         `json:"date_happened,omitempty"`
-		DeviceName     *string                        `json:"device_name,omitempty"`
-		Duration       *int64                         `json:"duration,omitempty"`
-		EventObject    *string                        `json:"event_object,omitempty"`
-		Evt            *Event                         `json:"evt,omitempty"`
-		Hostname       *string                        `json:"hostname,omitempty"`
-		Monitor        NullableMonitorType            `json:"monitor,omitempty"`
-		MonitorGroups  datadog.NullableList[[]string] `json:"monitor_groups,omitempty"`
-		MonitorId      datadog.NullableInt64          `json:"monitor_id,omitempty"`
-		Priority       NullableEventPriority          `json:"priority,omitempty"`
-		RelatedEventId *int64                         `json:"related_event_id,omitempty"`
-		Service        *string                        `json:"service,omitempty"`
-		SourceTypeName *string                        `json:"source_type_name,omitempty"`
-		Sourcecategory *string                        `json:"sourcecategory,omitempty"`
-		Status         *EventStatusType               `json:"status,omitempty"`
-		Tags           []string                       `json:"tags,omitempty"`
-		Timestamp      *int64                         `json:"timestamp,omitempty"`
-		Title          *string                        `json:"title,omitempty"`
+		AggregationKey *string                      `json:"aggregation_key,omitempty"`
+		DateHappened   *int64                       `json:"date_happened,omitempty"`
+		DeviceName     *string                      `json:"device_name,omitempty"`
+		Duration       *int64                       `json:"duration,omitempty"`
+		EventObject    *string                      `json:"event_object,omitempty"`
+		Evt            *Event                       `json:"evt,omitempty"`
+		Hostname       *string                      `json:"hostname,omitempty"`
+		Monitor        NullableMonitorType          `json:"monitor,omitempty"`
+		MonitorGroups  datadog.NullableList[string] `json:"monitor_groups,omitempty"`
+		MonitorId      datadog.NullableInt64        `json:"monitor_id,omitempty"`
+		Priority       NullableEventPriority        `json:"priority,omitempty"`
+		RelatedEventId *int64                       `json:"related_event_id,omitempty"`
+		Service        *string                      `json:"service,omitempty"`
+		SourceTypeName *string                      `json:"source_type_name,omitempty"`
+		Sourcecategory *string                      `json:"sourcecategory,omitempty"`
+		Status         *EventStatusType             `json:"status,omitempty"`
+		Tags           []string                     `json:"tags,omitempty"`
+		Timestamp      *int64                       `json:"timestamp,omitempty"`
+		Title          *string                      `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

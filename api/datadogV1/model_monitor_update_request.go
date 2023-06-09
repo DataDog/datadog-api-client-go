@@ -38,7 +38,7 @@ type MonitorUpdateRequest struct {
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
 	// A list of unique role identifiers to define which roles are allowed to edit the monitor. The unique identifiers for all roles can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) and are located in the `data.id` field. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. `restricted_roles` is the successor of `locked`. For more information about `locked` and `restricted_roles`, see the [monitor options docs](https://docs.datadoghq.com/monitors/guide/monitor_api_options/#permissions-options).
-	RestrictedRoles datadog.NullableList[[]string] `json:"restricted_roles,omitempty"`
+	RestrictedRoles datadog.NullableList[string] `json:"restricted_roles,omitempty"`
 	// Wrapper object with the different monitor states.
 	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
@@ -438,7 +438,7 @@ func (o *MonitorUpdateRequest) HasRestrictedRoles() bool {
 	return o != nil && o.RestrictedRoles.IsSet()
 }
 
-// SetRestrictedRoles gets a reference to the given datadog.NullableList[[]string] and assigns it to the RestrictedRoles field.
+// SetRestrictedRoles gets a reference to the given datadog.NullableList[string] and assigns it to the RestrictedRoles field.
 func (o *MonitorUpdateRequest) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles.Set(&v)
 }
@@ -610,22 +610,22 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created         *time.Time                     `json:"created,omitempty"`
-		Creator         *Creator                       `json:"creator,omitempty"`
-		Deleted         datadog.NullableTime           `json:"deleted,omitempty"`
-		Id              *int64                         `json:"id,omitempty"`
-		Message         *string                        `json:"message,omitempty"`
-		Modified        *time.Time                     `json:"modified,omitempty"`
-		Multi           *bool                          `json:"multi,omitempty"`
-		Name            *string                        `json:"name,omitempty"`
-		Options         *MonitorOptions                `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates          `json:"overall_state,omitempty"`
-		Priority        *int64                         `json:"priority,omitempty"`
-		Query           *string                        `json:"query,omitempty"`
-		RestrictedRoles datadog.NullableList[[]string] `json:"restricted_roles,omitempty"`
-		State           *MonitorState                  `json:"state,omitempty"`
-		Tags            []string                       `json:"tags,omitempty"`
-		Type            *MonitorType                   `json:"type,omitempty"`
+		Created         *time.Time                   `json:"created,omitempty"`
+		Creator         *Creator                     `json:"creator,omitempty"`
+		Deleted         datadog.NullableTime         `json:"deleted,omitempty"`
+		Id              *int64                       `json:"id,omitempty"`
+		Message         *string                      `json:"message,omitempty"`
+		Modified        *time.Time                   `json:"modified,omitempty"`
+		Multi           *bool                        `json:"multi,omitempty"`
+		Name            *string                      `json:"name,omitempty"`
+		Options         *MonitorOptions              `json:"options,omitempty"`
+		OverallState    *MonitorOverallStates        `json:"overall_state,omitempty"`
+		Priority        *int64                       `json:"priority,omitempty"`
+		Query           *string                      `json:"query,omitempty"`
+		RestrictedRoles datadog.NullableList[string] `json:"restricted_roles,omitempty"`
+		State           *MonitorState                `json:"state,omitempty"`
+		Tags            []string                     `json:"tags,omitempty"`
+		Type            *MonitorType                 `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

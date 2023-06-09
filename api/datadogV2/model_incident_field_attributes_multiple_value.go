@@ -15,7 +15,7 @@ type IncidentFieldAttributesMultipleValue struct {
 	// Type of the multiple value field definitions.
 	Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
 	// The multiple values selected for this field.
-	Value datadog.NullableList[[]string] `json:"value,omitempty"`
+	Value datadog.NullableList[string] `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -94,7 +94,7 @@ func (o *IncidentFieldAttributesMultipleValue) HasValue() bool {
 	return o != nil && o.Value.IsSet()
 }
 
-// SetValue gets a reference to the given datadog.NullableList[[]string] and assigns it to the Value field.
+// SetValue gets a reference to the given datadog.NullableList[string] and assigns it to the Value field.
 func (o *IncidentFieldAttributesMultipleValue) SetValue(v []string) {
 	o.Value.Set(&v)
 }
@@ -133,7 +133,7 @@ func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	all := struct {
 		Type  *IncidentFieldAttributesValueType `json:"type,omitempty"`
-		Value datadog.NullableList[[]string]    `json:"value,omitempty"`
+		Value datadog.NullableList[string]      `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

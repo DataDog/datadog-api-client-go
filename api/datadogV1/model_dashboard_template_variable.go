@@ -14,7 +14,7 @@ import (
 // DashboardTemplateVariable Template variable.
 type DashboardTemplateVariable struct {
 	// The list of values that the template variable drop-down is limited to.
-	AvailableValues datadog.NullableList[[]string] `json:"available_values,omitempty"`
+	AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
 	// (deprecated) The default value for the template variable on dashboard load. Cannot be used in conjunction with `defaults`.
 	// Deprecated
 	Default datadog.NullableString `json:"default,omitempty"`
@@ -71,7 +71,7 @@ func (o *DashboardTemplateVariable) HasAvailableValues() bool {
 	return o != nil && o.AvailableValues.IsSet()
 }
 
-// SetAvailableValues gets a reference to the given datadog.NullableList[[]string] and assigns it to the AvailableValues field.
+// SetAvailableValues gets a reference to the given datadog.NullableList[string] and assigns it to the AvailableValues field.
 func (o *DashboardTemplateVariable) SetAvailableValues(v []string) {
 	o.AvailableValues.Set(&v)
 }
@@ -251,11 +251,11 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		AvailableValues datadog.NullableList[[]string] `json:"available_values,omitempty"`
-		Default         datadog.NullableString         `json:"default,omitempty"`
-		Defaults        []string                       `json:"defaults,omitempty"`
-		Name            string                         `json:"name"`
-		Prefix          datadog.NullableString         `json:"prefix,omitempty"`
+		AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
+		Default         datadog.NullableString       `json:"default,omitempty"`
+		Defaults        []string                     `json:"defaults,omitempty"`
+		Name            string                       `json:"name"`
+		Prefix          datadog.NullableString       `json:"prefix,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

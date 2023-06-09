@@ -16,7 +16,7 @@ type ApplicationKeyCreateAttributes struct {
 	// Name of the application key.
 	Name string `json:"name"`
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
-	Scopes datadog.NullableList[[]string] `json:"scopes,omitempty"`
+	Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -87,7 +87,7 @@ func (o *ApplicationKeyCreateAttributes) HasScopes() bool {
 	return o != nil && o.Scopes.IsSet()
 }
 
-// SetScopes gets a reference to the given datadog.NullableList[[]string] and assigns it to the Scopes field.
+// SetScopes gets a reference to the given datadog.NullableList[string] and assigns it to the Scopes field.
 func (o *ApplicationKeyCreateAttributes) SetScopes(v []string) {
 	o.Scopes.Set(&v)
 }
@@ -126,8 +126,8 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Name   string                         `json:"name"`
-		Scopes datadog.NullableList[[]string] `json:"scopes,omitempty"`
+		Name   string                       `json:"name"`
+		Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

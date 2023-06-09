@@ -33,7 +33,7 @@ type Dashboard struct {
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList datadog.NullableList[[]string] `json:"notify_list,omitempty"`
+	NotifyList datadog.NullableList[string] `json:"notify_list,omitempty"`
 	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
 	// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
 	// widgets should not have layouts.
@@ -41,7 +41,7 @@ type Dashboard struct {
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// List of team names representing ownership of a dashboard.
-	Tags datadog.NullableList[[]string] `json:"tags,omitempty"`
+	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
@@ -349,7 +349,7 @@ func (o *Dashboard) HasNotifyList() bool {
 	return o != nil && o.NotifyList.IsSet()
 }
 
-// SetNotifyList gets a reference to the given datadog.NullableList[[]string] and assigns it to the NotifyList field.
+// SetNotifyList gets a reference to the given datadog.NullableList[string] and assigns it to the NotifyList field.
 func (o *Dashboard) SetNotifyList(v []string) {
 	o.NotifyList.Set(&v)
 }
@@ -444,7 +444,7 @@ func (o *Dashboard) HasTags() bool {
 	return o != nil && o.Tags.IsSet()
 }
 
-// SetTags gets a reference to the given datadog.NullableList[[]string] and assigns it to the Tags field.
+// SetTags gets a reference to the given datadog.NullableList[string] and assigns it to the Tags field.
 func (o *Dashboard) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
@@ -674,10 +674,10 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
 		LayoutType              DashboardLayoutType               `json:"layout_type"`
 		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
-		NotifyList              datadog.NullableList[[]string]    `json:"notify_list,omitempty"`
+		NotifyList              datadog.NullableList[string]      `json:"notify_list,omitempty"`
 		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
 		RestrictedRoles         []string                          `json:"restricted_roles,omitempty"`
-		Tags                    datadog.NullableList[[]string]    `json:"tags,omitempty"`
+		Tags                    datadog.NullableList[string]      `json:"tags,omitempty"`
 		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
 		Title                   string                            `json:"title"`

@@ -31,7 +31,7 @@ type SharedDashboard struct {
 	// List of objects representing template variables on the shared dashboard which can have selectable values.
 	SelectableTemplateVars []SelectableTemplateVariableItems `json:"selectable_template_vars,omitempty"`
 	// List of email addresses that can receive an invitation to access to the shared dashboard.
-	ShareList datadog.NullableList[[]string] `json:"share_list,omitempty"`
+	ShareList datadog.NullableList[string] `json:"share_list,omitempty"`
 	// Type of sharing access (either open to anyone who has the public URL or invite-only).
 	ShareType NullableDashboardShareType `json:"share_type,omitempty"`
 	// A unique token assigned to the shared dashboard.
@@ -310,7 +310,7 @@ func (o *SharedDashboard) HasShareList() bool {
 	return o != nil && o.ShareList.IsSet()
 }
 
-// SetShareList gets a reference to the given datadog.NullableList[[]string] and assigns it to the ShareList field.
+// SetShareList gets a reference to the given datadog.NullableList[string] and assigns it to the ShareList field.
 func (o *SharedDashboard) SetShareList(v []string) {
 	o.ShareList.Set(&v)
 }
@@ -454,7 +454,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		GlobalTimeSelectableEnabled datadog.NullableBool              `json:"global_time_selectable_enabled,omitempty"`
 		PublicUrl                   *string                           `json:"public_url,omitempty"`
 		SelectableTemplateVars      []SelectableTemplateVariableItems `json:"selectable_template_vars,omitempty"`
-		ShareList                   datadog.NullableList[[]string]    `json:"share_list,omitempty"`
+		ShareList                   datadog.NullableList[string]      `json:"share_list,omitempty"`
 		ShareType                   NullableDashboardShareType        `json:"share_type,omitempty"`
 		Token                       *string                           `json:"token,omitempty"`
 	}{}

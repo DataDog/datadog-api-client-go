@@ -31,14 +31,14 @@ type SearchServiceLevelObjectiveAttributes struct {
 	EnvTags []string `json:"env_tags,omitempty"`
 	// A list of (up to 100) monitor groups that narrow the scope of a monitor service level objective.
 	// Included in service level objective responses if it is not empty.
-	Groups datadog.NullableList[[]string] `json:"groups,omitempty"`
+	Groups datadog.NullableList[string] `json:"groups,omitempty"`
 	// Modification timestamp (UNIX time in seconds)
 	//
 	// Always included in service level objective responses.
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level
 	// objective.
-	MonitorIds datadog.NullableList[[]int64] `json:"monitor_ids,omitempty"`
+	MonitorIds datadog.NullableList[int64] `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
 	Name *string `json:"name,omitempty"`
 	// calculated status and error budget remaining.
@@ -266,7 +266,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasGroups() bool {
 	return o != nil && o.Groups.IsSet()
 }
 
-// SetGroups gets a reference to the given datadog.NullableList[[]string] and assigns it to the Groups field.
+// SetGroups gets a reference to the given datadog.NullableList[string] and assigns it to the Groups field.
 func (o *SearchServiceLevelObjectiveAttributes) SetGroups(v []string) {
 	o.Groups.Set(&v)
 }
@@ -333,7 +333,7 @@ func (o *SearchServiceLevelObjectiveAttributes) HasMonitorIds() bool {
 	return o != nil && o.MonitorIds.IsSet()
 }
 
-// SetMonitorIds gets a reference to the given datadog.NullableList[[]int64] and assigns it to the MonitorIds field.
+// SetMonitorIds gets a reference to the given datadog.NullableList[int64] and assigns it to the MonitorIds field.
 func (o *SearchServiceLevelObjectiveAttributes) SetMonitorIds(v []int64) {
 	o.MonitorIds.Set(&v)
 }
@@ -648,22 +648,22 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllTags       []string                       `json:"all_tags,omitempty"`
-		CreatedAt     *int64                         `json:"created_at,omitempty"`
-		Creator       NullableSLOCreator             `json:"creator,omitempty"`
-		Description   datadog.NullableString         `json:"description,omitempty"`
-		EnvTags       []string                       `json:"env_tags,omitempty"`
-		Groups        datadog.NullableList[[]string] `json:"groups,omitempty"`
-		ModifiedAt    *int64                         `json:"modified_at,omitempty"`
-		MonitorIds    datadog.NullableList[[]int64]  `json:"monitor_ids,omitempty"`
-		Name          *string                        `json:"name,omitempty"`
-		OverallStatus []SLOOverallStatuses           `json:"overall_status,omitempty"`
-		Query         NullableSearchSLOQuery         `json:"query,omitempty"`
-		ServiceTags   []string                       `json:"service_tags,omitempty"`
-		SloType       *SLOType                       `json:"slo_type,omitempty"`
-		Status        *SLOStatus                     `json:"status,omitempty"`
-		TeamTags      []string                       `json:"team_tags,omitempty"`
-		Thresholds    []SearchSLOThreshold           `json:"thresholds,omitempty"`
+		AllTags       []string                     `json:"all_tags,omitempty"`
+		CreatedAt     *int64                       `json:"created_at,omitempty"`
+		Creator       NullableSLOCreator           `json:"creator,omitempty"`
+		Description   datadog.NullableString       `json:"description,omitempty"`
+		EnvTags       []string                     `json:"env_tags,omitempty"`
+		Groups        datadog.NullableList[string] `json:"groups,omitempty"`
+		ModifiedAt    *int64                       `json:"modified_at,omitempty"`
+		MonitorIds    datadog.NullableList[int64]  `json:"monitor_ids,omitempty"`
+		Name          *string                      `json:"name,omitempty"`
+		OverallStatus []SLOOverallStatuses         `json:"overall_status,omitempty"`
+		Query         NullableSearchSLOQuery       `json:"query,omitempty"`
+		ServiceTags   []string                     `json:"service_tags,omitempty"`
+		SloType       *SLOType                     `json:"slo_type,omitempty"`
+		Status        *SLOStatus                   `json:"status,omitempty"`
+		TeamTags      []string                     `json:"team_tags,omitempty"`
+		Thresholds    []SearchSLOThreshold         `json:"thresholds,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

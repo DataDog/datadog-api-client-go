@@ -18,7 +18,7 @@ type SearchSLOQuery struct {
 	Denominator *string `json:"denominator,omitempty"`
 	// Metric names used in the query's numerator and denominator.
 	// This field will return null and will be implemented in the next version of this endpoint.
-	Metrics datadog.NullableList[[]string] `json:"metrics,omitempty"`
+	Metrics datadog.NullableList[string] `json:"metrics,omitempty"`
 	// A Datadog metric query for good events.
 	Numerator *string `json:"numerator,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -95,7 +95,7 @@ func (o *SearchSLOQuery) HasMetrics() bool {
 	return o != nil && o.Metrics.IsSet()
 }
 
-// SetMetrics gets a reference to the given datadog.NullableList[[]string] and assigns it to the Metrics field.
+// SetMetrics gets a reference to the given datadog.NullableList[string] and assigns it to the Metrics field.
 func (o *SearchSLOQuery) SetMetrics(v []string) {
 	o.Metrics.Set(&v)
 }
@@ -164,9 +164,9 @@ func (o SearchSLOQuery) MarshalJSON() ([]byte, error) {
 func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Denominator *string                        `json:"denominator,omitempty"`
-		Metrics     datadog.NullableList[[]string] `json:"metrics,omitempty"`
-		Numerator   *string                        `json:"numerator,omitempty"`
+		Denominator *string                      `json:"denominator,omitempty"`
+		Metrics     datadog.NullableList[string] `json:"metrics,omitempty"`
+		Numerator   *string                      `json:"numerator,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

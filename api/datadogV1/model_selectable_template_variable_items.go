@@ -19,7 +19,7 @@ type SelectableTemplateVariableItems struct {
 	// The tag/attribute key associated with the template variable.
 	Prefix *string `json:"prefix,omitempty"`
 	// List of visible tag values on the shared dashboard.
-	VisibleTags datadog.NullableList[[]string] `json:"visible_tags,omitempty"`
+	VisibleTags datadog.NullableList[string] `json:"visible_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -150,7 +150,7 @@ func (o *SelectableTemplateVariableItems) HasVisibleTags() bool {
 	return o != nil && o.VisibleTags.IsSet()
 }
 
-// SetVisibleTags gets a reference to the given datadog.NullableList[[]string] and assigns it to the VisibleTags field.
+// SetVisibleTags gets a reference to the given datadog.NullableList[string] and assigns it to the VisibleTags field.
 func (o *SelectableTemplateVariableItems) SetVisibleTags(v []string) {
 	o.VisibleTags.Set(&v)
 }
@@ -194,10 +194,10 @@ func (o SelectableTemplateVariableItems) MarshalJSON() ([]byte, error) {
 func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DefaultValue *string                        `json:"default_value,omitempty"`
-		Name         *string                        `json:"name,omitempty"`
-		Prefix       *string                        `json:"prefix,omitempty"`
-		VisibleTags  datadog.NullableList[[]string] `json:"visible_tags,omitempty"`
+		DefaultValue *string                      `json:"default_value,omitempty"`
+		Name         *string                      `json:"name,omitempty"`
+		Prefix       *string                      `json:"prefix,omitempty"`
+		VisibleTags  datadog.NullableList[string] `json:"visible_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

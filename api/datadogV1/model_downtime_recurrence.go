@@ -32,7 +32,7 @@ type DowntimeRecurrence struct {
 	UntilOccurrences datadog.NullableInt32 `json:"until_occurrences,omitempty"`
 	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`.
 	// Only applicable when type is weeks. First letter must be capitalized.
-	WeekDays datadog.NullableList[[]string] `json:"week_days,omitempty"`
+	WeekDays datadog.NullableList[string] `json:"week_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -241,7 +241,7 @@ func (o *DowntimeRecurrence) HasWeekDays() bool {
 	return o != nil && o.WeekDays.IsSet()
 }
 
-// SetWeekDays gets a reference to the given datadog.NullableList[[]string] and assigns it to the WeekDays field.
+// SetWeekDays gets a reference to the given datadog.NullableList[string] and assigns it to the WeekDays field.
 func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 	o.WeekDays.Set(&v)
 }
@@ -291,12 +291,12 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Period           *int32                         `json:"period,omitempty"`
-		Rrule            *string                        `json:"rrule,omitempty"`
-		Type             *string                        `json:"type,omitempty"`
-		UntilDate        datadog.NullableInt64          `json:"until_date,omitempty"`
-		UntilOccurrences datadog.NullableInt32          `json:"until_occurrences,omitempty"`
-		WeekDays         datadog.NullableList[[]string] `json:"week_days,omitempty"`
+		Period           *int32                       `json:"period,omitempty"`
+		Rrule            *string                      `json:"rrule,omitempty"`
+		Type             *string                      `json:"type,omitempty"`
+		UntilDate        datadog.NullableInt64        `json:"until_date,omitempty"`
+		UntilOccurrences datadog.NullableInt32        `json:"until_occurrences,omitempty"`
+		WeekDays         datadog.NullableList[string] `json:"week_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

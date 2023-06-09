@@ -21,7 +21,7 @@ type FullApplicationKeyAttributes struct {
 	// Name of the application key.
 	Name *string `json:"name,omitempty"`
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
-	Scopes datadog.NullableList[[]string] `json:"scopes,omitempty"`
+	Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -180,7 +180,7 @@ func (o *FullApplicationKeyAttributes) HasScopes() bool {
 	return o != nil && o.Scopes.IsSet()
 }
 
-// SetScopes gets a reference to the given datadog.NullableList[[]string] and assigns it to the Scopes field.
+// SetScopes gets a reference to the given datadog.NullableList[string] and assigns it to the Scopes field.
 func (o *FullApplicationKeyAttributes) SetScopes(v []string) {
 	o.Scopes.Set(&v)
 }
@@ -227,11 +227,11 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *string                        `json:"created_at,omitempty"`
-		Key       *string                        `json:"key,omitempty"`
-		Last4     *string                        `json:"last4,omitempty"`
-		Name      *string                        `json:"name,omitempty"`
-		Scopes    datadog.NullableList[[]string] `json:"scopes,omitempty"`
+		CreatedAt *string                      `json:"created_at,omitempty"`
+		Key       *string                      `json:"key,omitempty"`
+		Last4     *string                      `json:"last4,omitempty"`
+		Name      *string                      `json:"name,omitempty"`
+		Scopes    datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

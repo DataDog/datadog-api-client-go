@@ -15,7 +15,7 @@ type CloudConfigurationRuleComplianceSignalOptions struct {
 	// Whether signals will be sent.
 	UserActivationStatus datadog.NullableBool `json:"userActivationStatus,omitempty"`
 	// Fields to use to group findings by when sending signals.
-	UserGroupByFields datadog.NullableList[[]string] `json:"userGroupByFields,omitempty"`
+	UserGroupByFields datadog.NullableList[string] `json:"userGroupByFields,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -101,7 +101,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) HasUserGroupByFields() b
 	return o != nil && o.UserGroupByFields.IsSet()
 }
 
-// SetUserGroupByFields gets a reference to the given datadog.NullableList[[]string] and assigns it to the UserGroupByFields field.
+// SetUserGroupByFields gets a reference to the given datadog.NullableList[string] and assigns it to the UserGroupByFields field.
 func (o *CloudConfigurationRuleComplianceSignalOptions) SetUserGroupByFields(v []string) {
 	o.UserGroupByFields.Set(&v)
 }
@@ -139,8 +139,8 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		UserActivationStatus datadog.NullableBool           `json:"userActivationStatus,omitempty"`
-		UserGroupByFields    datadog.NullableList[[]string] `json:"userGroupByFields,omitempty"`
+		UserActivationStatus datadog.NullableBool         `json:"userActivationStatus,omitempty"`
+		UserGroupByFields    datadog.NullableList[string] `json:"userGroupByFields,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
