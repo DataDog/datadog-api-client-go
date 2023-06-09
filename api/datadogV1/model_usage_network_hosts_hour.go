@@ -14,7 +14,7 @@ import (
 // UsageNetworkHostsHour Number of active NPM hosts for each hour for a given organization.
 type UsageNetworkHostsHour struct {
 	// Contains the number of active NPM hosts.
-	HostCount *int64 `json:"host_count,omitempty"`
+	HostCount datadog.NullableInt64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -43,32 +43,43 @@ func NewUsageNetworkHostsHourWithDefaults() *UsageNetworkHostsHour {
 	return &this
 }
 
-// GetHostCount returns the HostCount field value if set, zero value otherwise.
+// GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageNetworkHostsHour) GetHostCount() int64 {
-	if o == nil || o.HostCount == nil {
+	if o == nil || o.HostCount.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.HostCount
+	return *o.HostCount.Get()
 }
 
 // GetHostCountOk returns a tuple with the HostCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageNetworkHostsHour) GetHostCountOk() (*int64, bool) {
-	if o == nil || o.HostCount == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.HostCount, true
+	return o.HostCount.Get(), o.HostCount.IsSet()
 }
 
 // HasHostCount returns a boolean if a field has been set.
 func (o *UsageNetworkHostsHour) HasHostCount() bool {
-	return o != nil && o.HostCount != nil
+	return o != nil && o.HostCount.IsSet()
 }
 
-// SetHostCount gets a reference to the given int64 and assigns it to the HostCount field.
+// SetHostCount gets a reference to the given datadog.NullableInt64 and assigns it to the HostCount field.
 func (o *UsageNetworkHostsHour) SetHostCount(v int64) {
-	o.HostCount = &v
+	o.HostCount.Set(&v)
+}
+
+// SetHostCountNil sets the value for HostCount to be an explicit nil.
+func (o *UsageNetworkHostsHour) SetHostCountNil() {
+	o.HostCount.Set(nil)
+}
+
+// UnsetHostCount ensures that no value is present for HostCount, not even an explicit nil.
+func (o *UsageNetworkHostsHour) UnsetHostCount() {
+	o.HostCount.Unset()
 }
 
 // GetHour returns the Hour field value if set, zero value otherwise.
@@ -161,8 +172,8 @@ func (o UsageNetworkHostsHour) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.HostCount != nil {
-		toSerialize["host_count"] = o.HostCount
+	if o.HostCount.IsSet() {
+		toSerialize["host_count"] = o.HostCount.Get()
 	}
 	if o.Hour != nil {
 		if o.Hour.Nanosecond() == 0 {
@@ -188,10 +199,10 @@ func (o UsageNetworkHostsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkHostsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostCount *int64     `json:"host_count,omitempty"`
-		Hour      *time.Time `json:"hour,omitempty"`
-		OrgName   *string    `json:"org_name,omitempty"`
-		PublicId  *string    `json:"public_id,omitempty"`
+		HostCount datadog.NullableInt64 `json:"host_count,omitempty"`
+		Hour      *time.Time            `json:"hour,omitempty"`
+		OrgName   *string               `json:"org_name,omitempty"`
+		PublicId  *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
