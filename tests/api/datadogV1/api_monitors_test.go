@@ -48,9 +48,9 @@ func testMonitor(ctx context.Context, t *testing.T) datadogV1.Monitor {
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
-		RestrictedRoles: []string{
+		RestrictedRoles: *datadog.NewNullableList(&[]string{
 			"94172442-be03-11e9-a77a-3b7612558ac1",
-		},
+		}),
 	}
 }
 
