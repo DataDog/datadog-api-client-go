@@ -162,6 +162,7 @@
 //  - [SyntheticsApi.GetGlobalVariable]
 //  - [SyntheticsApi.GetPrivateLocation]
 //  - [SyntheticsApi.GetSyntheticsCIBatch]
+//  - [SyntheticsApi.GetSyntheticsDefaultLocations]
 //  - [SyntheticsApi.GetTest]
 //  - [SyntheticsApi.ListGlobalVariables]
 //  - [SyntheticsApi.ListLocations]
