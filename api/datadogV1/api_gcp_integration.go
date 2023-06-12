@@ -16,7 +16,9 @@ import (
 type GCPIntegrationApi datadog.Service
 
 // CreateGCPIntegration Create a GCP integration.
-// Create a Datadog-GCP integration.
+// This endpoint is deprecated – use the V2 endpoints instead. Create a Datadog-GCP integration.
+//
+// Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -89,7 +91,9 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 }
 
 // DeleteGCPIntegration Delete a GCP integration.
-// Delete a given Datadog-GCP integration.
+// This endpoint is deprecated – use the V2 endpoints instead. Delete a given Datadog-GCP integration.
+//
+// Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -162,7 +166,9 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 }
 
 // ListGCPIntegration List all GCP integrations.
-// List all Datadog-GCP integrations configured in your Datadog account.
+// This endpoint is deprecated – use the V2 endpoints instead. List all Datadog-GCP integrations configured in your Datadog account.
+//
+// Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -232,10 +238,12 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 }
 
 // UpdateGCPIntegration Update a GCP integration.
-// Update a Datadog-GCP integrations host_filters and/or auto-mute.
+// This endpoint is deprecated – use the V2 endpoints instead. Update a Datadog-GCP integrations host_filters and/or auto-mute.
 // Requires a `project_id` and `client_email`, however these fields cannot be updated.
 // If you need to update these fields, delete and use the create (`POST`) endpoint.
 // The unspecified fields will keep their original values.
+//
+// Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
