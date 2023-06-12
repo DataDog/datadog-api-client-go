@@ -1,4 +1,4 @@
-// Get all downtimes for a monitor returns "OK" response
+// Get active downtimes for a monitor returns "OK" response
 
 package main
 
