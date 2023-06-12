@@ -397,12 +397,8 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-type primitiveListTypes interface {
-	int | int32 | int64 | float32 | float64 | string
-}
-
-// NullableList is a struct to hold a nullable primitive list value.
-type NullableList[T primitiveListTypes] struct {
+// NullableList struct to hold nullable list value.
+type NullableList[T any] struct {
 	value *[]T
 	isSet bool
 }
@@ -430,7 +426,7 @@ func (v *NullableList[T]) Unset() {
 }
 
 // NewNullableList instantiates a new nullable list.
-func NewNullableList[T primitiveListTypes](val *[]T) *NullableList[T] {
+func NewNullableList[T any](val *[]T) *NullableList[T] {
 	return &NullableList[T]{value: val, isSet: true}
 }
 
