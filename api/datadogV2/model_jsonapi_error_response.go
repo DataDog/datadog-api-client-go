@@ -11,37 +11,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FindingsErrorResponse API error response.
-type FindingsErrorResponse struct {
+// JSONAPIErrorResponse API error response.
+type JSONAPIErrorResponse struct {
 	// A list of errors.
-	Errors []FindingsErrorItem `json:"errors"`
+	Errors []JSONAPIErrorItem `json:"errors"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFindingsErrorResponse instantiates a new FindingsErrorResponse object.
+// NewJSONAPIErrorResponse instantiates a new JSONAPIErrorResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFindingsErrorResponse(errors []FindingsErrorItem) *FindingsErrorResponse {
-	this := FindingsErrorResponse{}
+func NewJSONAPIErrorResponse(errors []JSONAPIErrorItem) *JSONAPIErrorResponse {
+	this := JSONAPIErrorResponse{}
 	this.Errors = errors
 	return &this
 }
 
-// NewFindingsErrorResponseWithDefaults instantiates a new FindingsErrorResponse object.
+// NewJSONAPIErrorResponseWithDefaults instantiates a new JSONAPIErrorResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFindingsErrorResponseWithDefaults() *FindingsErrorResponse {
-	this := FindingsErrorResponse{}
+func NewJSONAPIErrorResponseWithDefaults() *JSONAPIErrorResponse {
+	this := JSONAPIErrorResponse{}
 	return &this
 }
 
 // GetErrors returns the Errors field value.
-func (o *FindingsErrorResponse) GetErrors() []FindingsErrorItem {
+func (o *JSONAPIErrorResponse) GetErrors() []JSONAPIErrorItem {
 	if o == nil {
-		var ret []FindingsErrorItem
+		var ret []JSONAPIErrorItem
 		return ret
 	}
 	return o.Errors
@@ -49,7 +49,7 @@ func (o *FindingsErrorResponse) GetErrors() []FindingsErrorItem {
 
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-func (o *FindingsErrorResponse) GetErrorsOk() (*[]FindingsErrorItem, bool) {
+func (o *JSONAPIErrorResponse) GetErrorsOk() (*[]JSONAPIErrorItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -57,12 +57,12 @@ func (o *FindingsErrorResponse) GetErrorsOk() (*[]FindingsErrorItem, bool) {
 }
 
 // SetErrors sets field value.
-func (o *FindingsErrorResponse) SetErrors(v []FindingsErrorItem) {
+func (o *JSONAPIErrorResponse) SetErrors(v []JSONAPIErrorItem) {
 	o.Errors = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FindingsErrorResponse) MarshalJSON() ([]byte, error) {
+func (o JSONAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -76,13 +76,13 @@ func (o FindingsErrorResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FindingsErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *JSONAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Errors *[]FindingsErrorItem `json:"errors"`
+		Errors *[]JSONAPIErrorItem `json:"errors"`
 	}{}
 	all := struct {
-		Errors []FindingsErrorItem `json:"errors"`
+		Errors []JSONAPIErrorItem `json:"errors"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FindingsErrorItem API error response body
-type FindingsErrorItem struct {
+// JSONAPIErrorItem API error response body
+type JSONAPIErrorItem struct {
 	// A human-readable explanation specific to this occurrence of the error.
 	Detail *string `json:"detail,omitempty"`
 	// Status code of the response.
@@ -23,25 +23,25 @@ type FindingsErrorItem struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFindingsErrorItem instantiates a new FindingsErrorItem object.
+// NewJSONAPIErrorItem instantiates a new JSONAPIErrorItem object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFindingsErrorItem() *FindingsErrorItem {
-	this := FindingsErrorItem{}
+func NewJSONAPIErrorItem() *JSONAPIErrorItem {
+	this := JSONAPIErrorItem{}
 	return &this
 }
 
-// NewFindingsErrorItemWithDefaults instantiates a new FindingsErrorItem object.
+// NewJSONAPIErrorItemWithDefaults instantiates a new JSONAPIErrorItem object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFindingsErrorItemWithDefaults() *FindingsErrorItem {
-	this := FindingsErrorItem{}
+func NewJSONAPIErrorItemWithDefaults() *JSONAPIErrorItem {
+	this := JSONAPIErrorItem{}
 	return &this
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
-func (o *FindingsErrorItem) GetDetail() string {
+func (o *JSONAPIErrorItem) GetDetail() string {
 	if o == nil || o.Detail == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *FindingsErrorItem) GetDetail() string {
 
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingsErrorItem) GetDetailOk() (*string, bool) {
+func (o *JSONAPIErrorItem) GetDetailOk() (*string, bool) {
 	if o == nil || o.Detail == nil {
 		return nil, false
 	}
@@ -59,17 +59,17 @@ func (o *FindingsErrorItem) GetDetailOk() (*string, bool) {
 }
 
 // HasDetail returns a boolean if a field has been set.
-func (o *FindingsErrorItem) HasDetail() bool {
+func (o *JSONAPIErrorItem) HasDetail() bool {
 	return o != nil && o.Detail != nil
 }
 
 // SetDetail gets a reference to the given string and assigns it to the Detail field.
-func (o *FindingsErrorItem) SetDetail(v string) {
+func (o *JSONAPIErrorItem) SetDetail(v string) {
 	o.Detail = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *FindingsErrorItem) GetStatus() string {
+func (o *JSONAPIErrorItem) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *FindingsErrorItem) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingsErrorItem) GetStatusOk() (*string, bool) {
+func (o *JSONAPIErrorItem) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -87,17 +87,17 @@ func (o *FindingsErrorItem) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *FindingsErrorItem) HasStatus() bool {
+func (o *JSONAPIErrorItem) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *FindingsErrorItem) SetStatus(v string) {
+func (o *JSONAPIErrorItem) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *FindingsErrorItem) GetTitle() string {
+func (o *JSONAPIErrorItem) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -107,7 +107,7 @@ func (o *FindingsErrorItem) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FindingsErrorItem) GetTitleOk() (*string, bool) {
+func (o *JSONAPIErrorItem) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -115,17 +115,17 @@ func (o *FindingsErrorItem) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *FindingsErrorItem) HasTitle() bool {
+func (o *JSONAPIErrorItem) HasTitle() bool {
 	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *FindingsErrorItem) SetTitle(v string) {
+func (o *JSONAPIErrorItem) SetTitle(v string) {
 	o.Title = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FindingsErrorItem) MarshalJSON() ([]byte, error) {
+func (o JSONAPIErrorItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -147,7 +147,7 @@ func (o FindingsErrorItem) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FindingsErrorItem) UnmarshalJSON(bytes []byte) (err error) {
+func (o *JSONAPIErrorItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Detail *string `json:"detail,omitempty"`
