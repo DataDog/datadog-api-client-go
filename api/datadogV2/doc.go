@@ -11,6 +11,7 @@
 //  - [AuthNMappingsApi.ListAuthNMappings]
 //  - [AuthNMappingsApi.UpdateAuthNMapping]
 //  - [CIVisibilityPipelinesApi.AggregateCIAppPipelineEvents]
+//  - [CIVisibilityPipelinesApi.CreateCIAppPipelineEvent]
 //  - [CIVisibilityPipelinesApi.ListCIAppPipelineEvents]
 //  - [CIVisibilityPipelinesApi.SearchCIAppPipelineEvents]
 //  - [CIVisibilityTestsApi.AggregateCIAppTestEvents]
