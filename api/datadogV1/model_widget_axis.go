@@ -12,15 +12,15 @@ import (
 
 // WidgetAxis Axis controls for the widget.
 type WidgetAxis struct {
-	// True includes zero.
+	// Set to `true` to include zero.
 	IncludeZero *bool `json:"include_zero,omitempty"`
-	// The label of the axis to display on the graph.
+	// The label of the axis to display on the graph. Only usable on Scatterplot Widgets.
 	Label *string `json:"label,omitempty"`
-	// Specifies the maximum value to show on the y-axis. It takes a number, or auto for default behavior.
+	// Specifies maximum numeric value to show on the axis. Defaults to `auto`.
 	Max *string `json:"max,omitempty"`
-	// Specifies minimum value to show on the y-axis. It takes a number, or auto for default behavior.
+	// Specifies minimum numeric value to show on the axis. Defaults to `auto`.
 	Min *string `json:"min,omitempty"`
-	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, `pow##` (for example `pow2`, `pow0.5` etc.).
+	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, and `pow##` (for example `pow2` or `pow0.5`).
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
