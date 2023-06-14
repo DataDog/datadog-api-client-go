@@ -14,11 +14,11 @@ type CIAppPipelineEventTypeName string
 
 // List of CIAppPipelineEventTypeName.
 const (
-	CIAPPPIPELINEEVENTTYPENAME_cipipeline CIAppPipelineEventTypeName = "cipipeline"
+	CIAPPPIPELINEEVENTTYPENAME_CIPIPELINE CIAppPipelineEventTypeName = "cipipeline"
 )
 
 var allowedCIAppPipelineEventTypeNameEnumValues = []CIAppPipelineEventTypeName{
-	CIAPPPIPELINEEVENTTYPENAME_cipipeline,
+	CIAPPPIPELINEEVENTTYPENAME_CIPIPELINE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

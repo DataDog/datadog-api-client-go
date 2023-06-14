@@ -402,7 +402,7 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListMonitorDowntimes Get all downtimes for a monitor.
+// ListMonitorDowntimes Get active downtimes for a monitor.
 // Get all active downtimes for the specified monitor.
 func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	var (

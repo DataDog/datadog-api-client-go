@@ -1,4 +1,4 @@
-// Get active downtimes for a monitor returns "OK" response
+// Get the list of default locations returns "OK" response
 
 package main
 
@@ -16,14 +16,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV1.NewDowntimesApi(apiClient)
-	resp, r, err := api.ListMonitorDowntimes(ctx, 9223372036854775807)
+	api := datadogV1.NewSyntheticsApi(apiClient)
+	resp, r, err := api.GetSyntheticsDefaultLocations(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.ListMonitorDowntimes`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetSyntheticsDefaultLocations`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DowntimesApi.ListMonitorDowntimes`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetSyntheticsDefaultLocations`:\n%s\n", responseContent)
 }

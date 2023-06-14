@@ -54,7 +54,11 @@ type UsageSummaryDate struct {
 	CiVisibilityPipelineCommittersHwm *int64 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
 	// Shows the high-water mark of all CI visibility test committers over all hours in the current month for all organizations.
 	CiVisibilityTestCommittersHwm *int64 `json:"ci_visibility_test_committers_hwm,omitempty"`
-	// Host count average of Cloud Cost Management for the given date and given organization.
+	// Host count average of Cloud Cost Management for AWS for the given date and given organization.
+	CloudCostManagementAwsHostCountAvg *int64 `json:"cloud_cost_management_aws_host_count_avg,omitempty"`
+	// Host count average of Cloud Cost Management for Azure for the given date and given organization.
+	CloudCostManagementAzureHostCountAvg *int64 `json:"cloud_cost_management_azure_host_count_avg,omitempty"`
+	// Host count average of Cloud Cost Management for all cloud providers for the given date and given organization.
 	CloudCostManagementHostCountAvg *int64 `json:"cloud_cost_management_host_count_avg,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for all organizations.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
@@ -120,6 +124,8 @@ type UsageSummaryDate struct {
 	MobileRumSessionCountIosSum *int64 `json:"mobile_rum_session_count_ios_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current date for all organizations.
 	MobileRumSessionCountReactnativeSum *int64 `json:"mobile_rum_session_count_reactnative_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on Roku over all hours in the current date for all organizations.
+	MobileRumSessionCountRokuSum *int64 `json:"mobile_rum_session_count_roku_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations
 	MobileRumSessionCountSum *int64 `json:"mobile_rum_session_count_sum,omitempty"`
 	// Shows the sum of all mobile RUM units over all hours in the current date for all organizations.
@@ -757,6 +763,62 @@ func (o *UsageSummaryDate) HasCiVisibilityTestCommittersHwm() bool {
 // SetCiVisibilityTestCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwm field.
 func (o *UsageSummaryDate) SetCiVisibilityTestCommittersHwm(v int64) {
 	o.CiVisibilityTestCommittersHwm = &v
+}
+
+// GetCloudCostManagementAwsHostCountAvg returns the CloudCostManagementAwsHostCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetCloudCostManagementAwsHostCountAvg() int64 {
+	if o == nil || o.CloudCostManagementAwsHostCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CloudCostManagementAwsHostCountAvg
+}
+
+// GetCloudCostManagementAwsHostCountAvgOk returns a tuple with the CloudCostManagementAwsHostCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetCloudCostManagementAwsHostCountAvgOk() (*int64, bool) {
+	if o == nil || o.CloudCostManagementAwsHostCountAvg == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementAwsHostCountAvg, true
+}
+
+// HasCloudCostManagementAwsHostCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasCloudCostManagementAwsHostCountAvg() bool {
+	return o != nil && o.CloudCostManagementAwsHostCountAvg != nil
+}
+
+// SetCloudCostManagementAwsHostCountAvg gets a reference to the given int64 and assigns it to the CloudCostManagementAwsHostCountAvg field.
+func (o *UsageSummaryDate) SetCloudCostManagementAwsHostCountAvg(v int64) {
+	o.CloudCostManagementAwsHostCountAvg = &v
+}
+
+// GetCloudCostManagementAzureHostCountAvg returns the CloudCostManagementAzureHostCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetCloudCostManagementAzureHostCountAvg() int64 {
+	if o == nil || o.CloudCostManagementAzureHostCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CloudCostManagementAzureHostCountAvg
+}
+
+// GetCloudCostManagementAzureHostCountAvgOk returns a tuple with the CloudCostManagementAzureHostCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetCloudCostManagementAzureHostCountAvgOk() (*int64, bool) {
+	if o == nil || o.CloudCostManagementAzureHostCountAvg == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementAzureHostCountAvg, true
+}
+
+// HasCloudCostManagementAzureHostCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasCloudCostManagementAzureHostCountAvg() bool {
+	return o != nil && o.CloudCostManagementAzureHostCountAvg != nil
+}
+
+// SetCloudCostManagementAzureHostCountAvg gets a reference to the given int64 and assigns it to the CloudCostManagementAzureHostCountAvg field.
+func (o *UsageSummaryDate) SetCloudCostManagementAzureHostCountAvg(v int64) {
+	o.CloudCostManagementAzureHostCountAvg = &v
 }
 
 // GetCloudCostManagementHostCountAvg returns the CloudCostManagementHostCountAvg field value if set, zero value otherwise.
@@ -1683,6 +1745,34 @@ func (o *UsageSummaryDate) SetMobileRumSessionCountReactnativeSum(v int64) {
 	o.MobileRumSessionCountReactnativeSum = &v
 }
 
+// GetMobileRumSessionCountRokuSum returns the MobileRumSessionCountRokuSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetMobileRumSessionCountRokuSum() int64 {
+	if o == nil || o.MobileRumSessionCountRokuSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountRokuSum
+}
+
+// GetMobileRumSessionCountRokuSumOk returns a tuple with the MobileRumSessionCountRokuSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetMobileRumSessionCountRokuSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountRokuSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountRokuSum, true
+}
+
+// HasMobileRumSessionCountRokuSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasMobileRumSessionCountRokuSum() bool {
+	return o != nil && o.MobileRumSessionCountRokuSum != nil
+}
+
+// SetMobileRumSessionCountRokuSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountRokuSum field.
+func (o *UsageSummaryDate) SetMobileRumSessionCountRokuSum(v int64) {
+	o.MobileRumSessionCountRokuSum = &v
+}
+
 // GetMobileRumSessionCountSum returns the MobileRumSessionCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetMobileRumSessionCountSum() int64 {
 	if o == nil || o.MobileRumSessionCountSum == nil {
@@ -2505,6 +2595,12 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.CiVisibilityTestCommittersHwm != nil {
 		toSerialize["ci_visibility_test_committers_hwm"] = o.CiVisibilityTestCommittersHwm
 	}
+	if o.CloudCostManagementAwsHostCountAvg != nil {
+		toSerialize["cloud_cost_management_aws_host_count_avg"] = o.CloudCostManagementAwsHostCountAvg
+	}
+	if o.CloudCostManagementAzureHostCountAvg != nil {
+		toSerialize["cloud_cost_management_azure_host_count_avg"] = o.CloudCostManagementAzureHostCountAvg
+	}
 	if o.CloudCostManagementHostCountAvg != nil {
 		toSerialize["cloud_cost_management_host_count_avg"] = o.CloudCostManagementHostCountAvg
 	}
@@ -2607,6 +2703,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.MobileRumSessionCountReactnativeSum != nil {
 		toSerialize["mobile_rum_session_count_reactnative_sum"] = o.MobileRumSessionCountReactnativeSum
+	}
+	if o.MobileRumSessionCountRokuSum != nil {
+		toSerialize["mobile_rum_session_count_roku_sum"] = o.MobileRumSessionCountRokuSum
 	}
 	if o.MobileRumSessionCountSum != nil {
 		toSerialize["mobile_rum_session_count_sum"] = o.MobileRumSessionCountSum
@@ -2720,6 +2819,8 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		CiTestIndexedSpansSum                   *int64                `json:"ci_test_indexed_spans_sum,omitempty"`
 		CiVisibilityPipelineCommittersHwm       *int64                `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
 		CiVisibilityTestCommittersHwm           *int64                `json:"ci_visibility_test_committers_hwm,omitempty"`
+		CloudCostManagementAwsHostCountAvg      *int64                `json:"cloud_cost_management_aws_host_count_avg,omitempty"`
+		CloudCostManagementAzureHostCountAvg    *int64                `json:"cloud_cost_management_azure_host_count_avg,omitempty"`
 		CloudCostManagementHostCountAvg         *int64                `json:"cloud_cost_management_host_count_avg,omitempty"`
 		ContainerAvg                            *int64                `json:"container_avg,omitempty"`
 		ContainerExclAgentAvg                   *int64                `json:"container_excl_agent_avg,omitempty"`
@@ -2753,6 +2854,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumSessionCountFlutterSum         *int64                `json:"mobile_rum_session_count_flutter_sum,omitempty"`
 		MobileRumSessionCountIosSum             *int64                `json:"mobile_rum_session_count_ios_sum,omitempty"`
 		MobileRumSessionCountReactnativeSum     *int64                `json:"mobile_rum_session_count_reactnative_sum,omitempty"`
+		MobileRumSessionCountRokuSum            *int64                `json:"mobile_rum_session_count_roku_sum,omitempty"`
 		MobileRumSessionCountSum                *int64                `json:"mobile_rum_session_count_sum,omitempty"`
 		MobileRumUnitsSum                       *int64                `json:"mobile_rum_units_sum,omitempty"`
 		NetflowIndexedEventsCountSum            *int64                `json:"netflow_indexed_events_count_sum,omitempty"`
@@ -2792,7 +2894,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_host_count_avg", "container_avg", "container_excl_agent_avg", "container_hwm", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "date", "dbm_host_top99p", "dbm_queries_count_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_sum", "iot_device_top99p", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "orgs", "profiling_host_top99p", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_host_count_avg", "container_avg", "container_excl_agent_avg", "container_hwm", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "date", "dbm_host_top99p", "dbm_queries_count_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_sum", "iot_device_top99p", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "orgs", "profiling_host_top99p", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p"})
 	} else {
 		return err
 	}
@@ -2816,6 +2918,8 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
 	o.CiVisibilityPipelineCommittersHwm = all.CiVisibilityPipelineCommittersHwm
 	o.CiVisibilityTestCommittersHwm = all.CiVisibilityTestCommittersHwm
+	o.CloudCostManagementAwsHostCountAvg = all.CloudCostManagementAwsHostCountAvg
+	o.CloudCostManagementAzureHostCountAvg = all.CloudCostManagementAzureHostCountAvg
 	o.CloudCostManagementHostCountAvg = all.CloudCostManagementHostCountAvg
 	o.ContainerAvg = all.ContainerAvg
 	o.ContainerExclAgentAvg = all.ContainerExclAgentAvg
@@ -2849,6 +2953,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumSessionCountFlutterSum = all.MobileRumSessionCountFlutterSum
 	o.MobileRumSessionCountIosSum = all.MobileRumSessionCountIosSum
 	o.MobileRumSessionCountReactnativeSum = all.MobileRumSessionCountReactnativeSum
+	o.MobileRumSessionCountRokuSum = all.MobileRumSessionCountRokuSum
 	o.MobileRumSessionCountSum = all.MobileRumSessionCountSum
 	o.MobileRumUnitsSum = all.MobileRumUnitsSum
 	o.NetflowIndexedEventsCountSum = all.NetflowIndexedEventsCountSum
