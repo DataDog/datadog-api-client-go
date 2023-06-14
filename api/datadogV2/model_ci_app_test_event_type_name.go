@@ -14,11 +14,11 @@ type CIAppTestEventTypeName string
 
 // List of CIAppTestEventTypeName.
 const (
-	CIAPPTESTEVENTTYPENAME_citest CIAppTestEventTypeName = "citest"
+	CIAPPTESTEVENTTYPENAME_CITEST CIAppTestEventTypeName = "citest"
 )
 
 var allowedCIAppTestEventTypeNameEnumValues = []CIAppTestEventTypeName{
-	CIAPPTESTEVENTTYPENAME_citest,
+	CIAPPTESTEVENTTYPENAME_CITEST,
 }
 
 // GetAllowedValues reeturns the list of possible values.
