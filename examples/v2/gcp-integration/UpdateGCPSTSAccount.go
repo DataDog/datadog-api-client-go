@@ -13,13 +13,18 @@ import (
 )
 
 func main() {
+	// there is a valid "gcp_sts_account" in the system
+	GcpStsAccountDataID := os.Getenv("GCP_STS_ACCOUNT_DATA_ID")
+
 	body := datadogV2.GCPSTSServiceAccountUpdateRequest{
 		Data: &datadogV2.GCPSTSServiceAccountUpdateRequestData{
 			Attributes: &datadogV2.GCPSTSServiceAccountAttributes{
-				ClientEmail: datadog.PtrString("datadog-service-account@test-project.iam.gserviceaccount.com"),
-				HostFilters: []string{},
+				ClientEmail: datadog.PtrString("252bf553ef04b351@example.com"),
+				HostFilters: []string{
+					"foo:bar",
+				},
 			},
-			Id:   datadog.PtrString("d291291f-12c2-22g4-j290-123456678897"),
+			Id:   datadog.PtrString(GcpStsAccountDataID),
 			Type: datadogV2.GCPSERVICEACCOUNTTYPE_GCP_SERVICE_ACCOUNT.Ptr(),
 		},
 	}
@@ -27,7 +32,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewGCPIntegrationApi(apiClient)
-	resp, r, err := api.UpdateGCPSTSAccount(ctx, "account_id", body)
+	resp, r, err := api.UpdateGCPSTSAccount(ctx, GcpStsAccountDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPSTSAccount`: %v\n", err)
