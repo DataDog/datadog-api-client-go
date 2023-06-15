@@ -28,6 +28,7 @@ const (
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = "isInMoreThan"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN SyntheticsAssertionOperator = "isInLessThan"
 	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_EXIST       SyntheticsAssertionOperator = "doesNotExist"
+	SYNTHETICSASSERTIONOPERATOR_IS_UNDEFINED         SyntheticsAssertionOperator = "isUndefined"
 )
 
 var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator{
@@ -45,6 +46,7 @@ var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN,
 	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_EXIST,
+	SYNTHETICSASSERTIONOPERATOR_IS_UNDEFINED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
