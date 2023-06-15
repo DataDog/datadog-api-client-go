@@ -16,7 +16,7 @@ type UsageAuditLogsHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The total number of audit logs lines indexed during a given hour.
-	LinesIndexed *int64 `json:"lines_indexed,omitempty"`
+	LinesIndexed datadog.NullableInt64 `json:"lines_indexed,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -71,32 +71,43 @@ func (o *UsageAuditLogsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-// GetLinesIndexed returns the LinesIndexed field value if set, zero value otherwise.
+// GetLinesIndexed returns the LinesIndexed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageAuditLogsHour) GetLinesIndexed() int64 {
-	if o == nil || o.LinesIndexed == nil {
+	if o == nil || o.LinesIndexed.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LinesIndexed
+	return *o.LinesIndexed.Get()
 }
 
 // GetLinesIndexedOk returns a tuple with the LinesIndexed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageAuditLogsHour) GetLinesIndexedOk() (*int64, bool) {
-	if o == nil || o.LinesIndexed == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LinesIndexed, true
+	return o.LinesIndexed.Get(), o.LinesIndexed.IsSet()
 }
 
 // HasLinesIndexed returns a boolean if a field has been set.
 func (o *UsageAuditLogsHour) HasLinesIndexed() bool {
-	return o != nil && o.LinesIndexed != nil
+	return o != nil && o.LinesIndexed.IsSet()
 }
 
-// SetLinesIndexed gets a reference to the given int64 and assigns it to the LinesIndexed field.
+// SetLinesIndexed gets a reference to the given datadog.NullableInt64 and assigns it to the LinesIndexed field.
 func (o *UsageAuditLogsHour) SetLinesIndexed(v int64) {
-	o.LinesIndexed = &v
+	o.LinesIndexed.Set(&v)
+}
+
+// SetLinesIndexedNil sets the value for LinesIndexed to be an explicit nil.
+func (o *UsageAuditLogsHour) SetLinesIndexedNil() {
+	o.LinesIndexed.Set(nil)
+}
+
+// UnsetLinesIndexed ensures that no value is present for LinesIndexed, not even an explicit nil.
+func (o *UsageAuditLogsHour) UnsetLinesIndexed() {
+	o.LinesIndexed.Unset()
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -168,8 +179,8 @@ func (o UsageAuditLogsHour) MarshalJSON() ([]byte, error) {
 			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.LinesIndexed != nil {
-		toSerialize["lines_indexed"] = o.LinesIndexed
+	if o.LinesIndexed.IsSet() {
+		toSerialize["lines_indexed"] = o.LinesIndexed.Get()
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -188,10 +199,10 @@ func (o UsageAuditLogsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageAuditLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour         *time.Time `json:"hour,omitempty"`
-		LinesIndexed *int64     `json:"lines_indexed,omitempty"`
-		OrgName      *string    `json:"org_name,omitempty"`
-		PublicId     *string    `json:"public_id,omitempty"`
+		Hour         *time.Time            `json:"hour,omitempty"`
+		LinesIndexed datadog.NullableInt64 `json:"lines_indexed,omitempty"`
+		OrgName      *string               `json:"org_name,omitempty"`
+		PublicId     *string               `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
