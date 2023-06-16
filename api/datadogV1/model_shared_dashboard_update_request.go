@@ -20,7 +20,7 @@ type SharedDashboardUpdateRequest struct {
 	// List of objects representing template variables on the shared dashboard which can have selectable values.
 	SelectableTemplateVars []SelectableTemplateVariableItems `json:"selectable_template_vars,omitempty"`
 	// List of email addresses that can be given access to the shared dashboard.
-	ShareList []string `json:"share_list,omitempty"`
+	ShareList datadog.NullableList[string] `json:"share_list,omitempty"`
 	// Type of sharing access (either open to anyone who has the public URL or invite-only).
 	ShareType NullableDashboardShareType `json:"share_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -141,31 +141,41 @@ func (o *SharedDashboardUpdateRequest) SetSelectableTemplateVars(v []SelectableT
 
 // GetShareList returns the ShareList field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetShareList() []string {
-	if o == nil {
+	if o == nil || o.ShareList.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.ShareList
+	return *o.ShareList.Get()
 }
 
 // GetShareListOk returns a tuple with the ShareList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardUpdateRequest) GetShareListOk() (*[]string, bool) {
-	if o == nil || o.ShareList == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ShareList, true
+	return o.ShareList.Get(), o.ShareList.IsSet()
 }
 
 // HasShareList returns a boolean if a field has been set.
 func (o *SharedDashboardUpdateRequest) HasShareList() bool {
-	return o != nil && o.ShareList != nil
+	return o != nil && o.ShareList.IsSet()
 }
 
-// SetShareList gets a reference to the given []string and assigns it to the ShareList field.
+// SetShareList gets a reference to the given datadog.NullableList[string] and assigns it to the ShareList field.
 func (o *SharedDashboardUpdateRequest) SetShareList(v []string) {
-	o.ShareList = v
+	o.ShareList.Set(&v)
+}
+
+// SetShareListNil sets the value for ShareList to be an explicit nil.
+func (o *SharedDashboardUpdateRequest) SetShareListNil() {
+	o.ShareList.Set(nil)
+}
+
+// UnsetShareList ensures that no value is present for ShareList, not even an explicit nil.
+func (o *SharedDashboardUpdateRequest) UnsetShareList() {
+	o.ShareList.Unset()
 }
 
 // GetShareType returns the ShareType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -220,8 +230,8 @@ func (o SharedDashboardUpdateRequest) MarshalJSON() ([]byte, error) {
 	if o.SelectableTemplateVars != nil {
 		toSerialize["selectable_template_vars"] = o.SelectableTemplateVars
 	}
-	if o.ShareList != nil {
-		toSerialize["share_list"] = o.ShareList
+	if o.ShareList.IsSet() {
+		toSerialize["share_list"] = o.ShareList.Get()
 	}
 	if o.ShareType.IsSet() {
 		toSerialize["share_type"] = o.ShareType.Get()
@@ -243,7 +253,7 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		GlobalTime                  NullableSharedDashboardUpdateRequestGlobalTime `json:"global_time"`
 		GlobalTimeSelectableEnabled datadog.NullableBool                           `json:"global_time_selectable_enabled,omitempty"`
 		SelectableTemplateVars      []SelectableTemplateVariableItems              `json:"selectable_template_vars,omitempty"`
-		ShareList                   []string                                       `json:"share_list,omitempty"`
+		ShareList                   datadog.NullableList[string]                   `json:"share_list,omitempty"`
 		ShareType                   NullableDashboardShareType                     `json:"share_type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

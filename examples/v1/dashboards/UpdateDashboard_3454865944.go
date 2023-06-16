@@ -20,10 +20,10 @@ func main() {
 		LayoutType:  datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		Title:       "Example-Dashboard with list_stream widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("Updated description")),
-		Tags: []string{
+		Tags: *datadog.NewNullableList(&[]string{
 			"team:foo",
 			"team:bar",
-		},
+		}),
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{

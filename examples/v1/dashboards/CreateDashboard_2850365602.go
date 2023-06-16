@@ -17,7 +17,7 @@ func main() {
 		Description:     *datadog.NewNullableString(nil),
 		IsReadOnly:      datadog.PtrBool(false),
 		LayoutType:      datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		NotifyList:      []string{},
+		NotifyList:      *datadog.NewNullableList(&[]string{}),
 		ReflowType:      datadogV1.DASHBOARDREFLOWTYPE_AUTO.Ptr(),
 		RestrictedRoles: []string{},
 		TemplateVariablePresets: []datadogV1.DashboardTemplateVariablePreset{
@@ -36,11 +36,11 @@ func main() {
 		},
 		TemplateVariables: []datadogV1.DashboardTemplateVariable{
 			{
-				AvailableValues: []string{
+				AvailableValues: *datadog.NewNullableList(&[]string{
 					"my-host",
 					"host1",
 					"host2",
-				},
+				}),
 				Defaults: []string{
 					"my-host",
 				},

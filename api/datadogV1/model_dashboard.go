@@ -33,7 +33,7 @@ type Dashboard struct {
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList []string `json:"notify_list,omitempty"`
+	NotifyList datadog.NullableList[string] `json:"notify_list,omitempty"`
 	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
 	// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
 	// widgets should not have layouts.
@@ -41,7 +41,7 @@ type Dashboard struct {
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// List of team names representing ownership of a dashboard.
-	Tags []string `json:"tags,omitempty"`
+	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
@@ -327,31 +327,41 @@ func (o *Dashboard) SetModifiedAt(v time.Time) {
 
 // GetNotifyList returns the NotifyList field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetNotifyList() []string {
-	if o == nil {
+	if o == nil || o.NotifyList.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.NotifyList
+	return *o.NotifyList.Get()
 }
 
 // GetNotifyListOk returns a tuple with the NotifyList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetNotifyListOk() (*[]string, bool) {
-	if o == nil || o.NotifyList == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.NotifyList, true
+	return o.NotifyList.Get(), o.NotifyList.IsSet()
 }
 
 // HasNotifyList returns a boolean if a field has been set.
 func (o *Dashboard) HasNotifyList() bool {
-	return o != nil && o.NotifyList != nil
+	return o != nil && o.NotifyList.IsSet()
 }
 
-// SetNotifyList gets a reference to the given []string and assigns it to the NotifyList field.
+// SetNotifyList gets a reference to the given datadog.NullableList[string] and assigns it to the NotifyList field.
 func (o *Dashboard) SetNotifyList(v []string) {
-	o.NotifyList = v
+	o.NotifyList.Set(&v)
+}
+
+// SetNotifyListNil sets the value for NotifyList to be an explicit nil.
+func (o *Dashboard) SetNotifyListNil() {
+	o.NotifyList.Set(nil)
+}
+
+// UnsetNotifyList ensures that no value is present for NotifyList, not even an explicit nil.
+func (o *Dashboard) UnsetNotifyList() {
+	o.NotifyList.Unset()
 }
 
 // GetReflowType returns the ReflowType field value if set, zero value otherwise.
@@ -412,31 +422,41 @@ func (o *Dashboard) SetRestrictedRoles(v []string) {
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTags() []string {
-	if o == nil {
+	if o == nil || o.Tags.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Tags
+	return *o.Tags.Get()
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetTagsOk() (*[]string, bool) {
-	if o == nil || o.Tags == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Tags, true
+	return o.Tags.Get(), o.Tags.IsSet()
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *Dashboard) HasTags() bool {
-	return o != nil && o.Tags != nil
+	return o != nil && o.Tags.IsSet()
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
+// SetTags gets a reference to the given datadog.NullableList[string] and assigns it to the Tags field.
 func (o *Dashboard) SetTags(v []string) {
-	o.Tags = v
+	o.Tags.Set(&v)
+}
+
+// SetTagsNil sets the value for Tags to be an explicit nil.
+func (o *Dashboard) SetTagsNil() {
+	o.Tags.Set(nil)
+}
+
+// UnsetTags ensures that no value is present for Tags, not even an explicit nil.
+func (o *Dashboard) UnsetTags() {
+	o.Tags.Unset()
 }
 
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -607,8 +627,8 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
-	if o.NotifyList != nil {
-		toSerialize["notify_list"] = o.NotifyList
+	if o.NotifyList.IsSet() {
+		toSerialize["notify_list"] = o.NotifyList.Get()
 	}
 	if o.ReflowType != nil {
 		toSerialize["reflow_type"] = o.ReflowType
@@ -616,8 +636,8 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.RestrictedRoles != nil {
 		toSerialize["restricted_roles"] = o.RestrictedRoles
 	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	if o.Tags.IsSet() {
+		toSerialize["tags"] = o.Tags.Get()
 	}
 	if o.TemplateVariablePresets != nil {
 		toSerialize["template_variable_presets"] = o.TemplateVariablePresets
@@ -654,10 +674,10 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
 		LayoutType              DashboardLayoutType               `json:"layout_type"`
 		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
-		NotifyList              []string                          `json:"notify_list,omitempty"`
+		NotifyList              datadog.NullableList[string]      `json:"notify_list,omitempty"`
 		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
 		RestrictedRoles         []string                          `json:"restricted_roles,omitempty"`
-		Tags                    []string                          `json:"tags,omitempty"`
+		Tags                    datadog.NullableList[string]      `json:"tags,omitempty"`
 		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
 		Title                   string                            `json:"title"`

@@ -36,6 +36,7 @@ def cli(specs, output):
     env.filters["format_server"] = openapi.format_server
     env.filters["format_value"] = formatter.format_value
     env.filters["is_reference"] = formatter.is_reference
+    env.filters["is_primitive"] = formatter.is_primitive
     env.filters["parameter_schema"] = openapi.parameter_schema
     env.filters["parameters"] = openapi.parameters
     env.filters["form_parameter"] = openapi.form_parameter

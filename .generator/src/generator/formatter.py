@@ -70,6 +70,11 @@ SUFFIXES = {
 }
 
 
+def is_primitive(schema):
+    _type = schema.get("type", "object")
+    return _type in PRIMITIVE_TYPES and "enum" not in schema
+
+
 def block_comment(comment, prefix="#", first_line=True):
     lines = comment.split("\n")
     start = "" if first_line else lines[0] + "\n"
@@ -487,6 +492,8 @@ def format_data_with_schema_list(
     if not schema:
         return ""
 
+    nullable = schema.get("nullable")
+
     if "oneOf" in schema:
         parameters = ""
         matched = 0
@@ -570,6 +577,10 @@ def format_data_with_schema_list(
         for _ in range(depth):
             parameters = f"{{\n{parameters}}}"
         return parameters
+
+    if nullable and is_primitive(list_schema):
+        name_prefix="datadog.NewNullableList"
+        return f"*{name_prefix}(&{nested_simple_type_name}{{\n{parameters}}})"
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
 

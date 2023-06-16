@@ -20,11 +20,11 @@ func main() {
 		Data: datadogV2.ApplicationKeyCreateData{
 			Attributes: datadogV2.ApplicationKeyCreateAttributes{
 				Name: "Example-Service-Account",
-				Scopes: []string{
+				Scopes: *datadog.NewNullableList(&[]string{
 					"dashboards_read",
 					"dashboards_write",
 					"dashboards_public_share",
-				},
+				}),
 			},
 			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},

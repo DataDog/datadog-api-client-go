@@ -28,7 +28,7 @@ type CIAppPipelineEventPipeline struct {
 	// Used to distinguish between pipelines, stages, jobs, and steps.
 	Level CIAppPipelineEventPipelineLevel `json:"level"`
 	// A list of user-defined metrics. The metrics must follow the `key:value` pattern and the value must be numeric.
-	Metrics []string `json:"metrics,omitempty"`
+	Metrics datadog.NullableList[string] `json:"metrics,omitempty"`
 	// Name of the pipeline. All pipeline runs for the builds should have the same name.
 	Name string `json:"name"`
 	// Contains information of the host running the pipeline, stage, job, or step.
@@ -52,7 +52,7 @@ type CIAppPipelineEventPipeline struct {
 	// The final status of the pipeline.
 	Status CIAppPipelineEventPipelineStatus `json:"status"`
 	// A list of user-defined tags. The tags must follow the `key:value` pattern.
-	Tags []string `json:"tags,omitempty"`
+	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// UUID of the pipeline run. The ID has to be unique across retries and pipelines,
 	// including partial retries.
 	UniqueId string `json:"unique_id"`
@@ -297,31 +297,41 @@ func (o *CIAppPipelineEventPipeline) SetLevel(v CIAppPipelineEventPipelineLevel)
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventPipeline) GetMetrics() []string {
-	if o == nil {
+	if o == nil || o.Metrics.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Metrics
+	return *o.Metrics.Get()
 }
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventPipeline) GetMetricsOk() (*[]string, bool) {
-	if o == nil || o.Metrics == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Metrics, true
+	return o.Metrics.Get(), o.Metrics.IsSet()
 }
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *CIAppPipelineEventPipeline) HasMetrics() bool {
-	return o != nil && o.Metrics != nil
+	return o != nil && o.Metrics.IsSet()
 }
 
-// SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
+// SetMetrics gets a reference to the given datadog.NullableList[string] and assigns it to the Metrics field.
 func (o *CIAppPipelineEventPipeline) SetMetrics(v []string) {
-	o.Metrics = v
+	o.Metrics.Set(&v)
+}
+
+// SetMetricsNil sets the value for Metrics to be an explicit nil.
+func (o *CIAppPipelineEventPipeline) SetMetricsNil() {
+	o.Metrics.Set(nil)
+}
+
+// UnsetMetrics ensures that no value is present for Metrics, not even an explicit nil.
+func (o *CIAppPipelineEventPipeline) UnsetMetrics() {
+	o.Metrics.Unset()
 }
 
 // GetName returns the Name field value.
@@ -631,31 +641,41 @@ func (o *CIAppPipelineEventPipeline) SetStatus(v CIAppPipelineEventPipelineStatu
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventPipeline) GetTags() []string {
-	if o == nil {
+	if o == nil || o.Tags.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Tags
+	return *o.Tags.Get()
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventPipeline) GetTagsOk() (*[]string, bool) {
-	if o == nil || o.Tags == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Tags, true
+	return o.Tags.Get(), o.Tags.IsSet()
 }
 
 // HasTags returns a boolean if a field has been set.
 func (o *CIAppPipelineEventPipeline) HasTags() bool {
-	return o != nil && o.Tags != nil
+	return o != nil && o.Tags.IsSet()
 }
 
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
+// SetTags gets a reference to the given datadog.NullableList[string] and assigns it to the Tags field.
 func (o *CIAppPipelineEventPipeline) SetTags(v []string) {
-	o.Tags = v
+	o.Tags.Set(&v)
+}
+
+// SetTagsNil sets the value for Tags to be an explicit nil.
+func (o *CIAppPipelineEventPipeline) SetTagsNil() {
+	o.Tags.Set(nil)
+}
+
+// UnsetTags ensures that no value is present for Tags, not even an explicit nil.
+func (o *CIAppPipelineEventPipeline) UnsetTags() {
+	o.Tags.Unset()
 }
 
 // GetUniqueId returns the UniqueId field value.
@@ -767,8 +787,8 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 		toSerialize["is_resumed"] = o.IsResumed.Get()
 	}
 	toSerialize["level"] = o.Level
-	if o.Metrics != nil {
-		toSerialize["metrics"] = o.Metrics
+	if o.Metrics.IsSet() {
+		toSerialize["metrics"] = o.Metrics.Get()
 	}
 	toSerialize["name"] = o.Name
 	if o.Node.IsSet() {
@@ -796,8 +816,8 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	toSerialize["status"] = o.Status
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
+	if o.Tags.IsSet() {
+		toSerialize["tags"] = o.Tags.Get()
 	}
 	toSerialize["unique_id"] = o.UniqueId
 	toSerialize["url"] = o.Url
@@ -831,7 +851,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		IsManual        datadog.NullableBool                       `json:"is_manual,omitempty"`
 		IsResumed       datadog.NullableBool                       `json:"is_resumed,omitempty"`
 		Level           CIAppPipelineEventPipelineLevel            `json:"level"`
-		Metrics         []string                                   `json:"metrics,omitempty"`
+		Metrics         datadog.NullableList[string]               `json:"metrics,omitempty"`
 		Name            string                                     `json:"name"`
 		Node            NullableCIAppHostInfo                      `json:"node,omitempty"`
 		Parameters      map[string]string                          `json:"parameters,omitempty"`
@@ -842,7 +862,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		QueueTime       datadog.NullableInt64                      `json:"queue_time,omitempty"`
 		Start           time.Time                                  `json:"start"`
 		Status          CIAppPipelineEventPipelineStatus           `json:"status"`
-		Tags            []string                                   `json:"tags,omitempty"`
+		Tags            datadog.NullableList[string]               `json:"tags,omitempty"`
 		UniqueId        string                                     `json:"unique_id"`
 		Url             string                                     `json:"url"`
 		User            NullableCIAppUserInfo                      `json:"user,omitempty"`

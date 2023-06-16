@@ -69,6 +69,10 @@ def type_to_go(schema, alternative_name=None, render_nullable=False, render_new=
         # handle nullable arrays
         if formatter.simple_type(schema["items"]) and schema["items"].get("nullable"):
             name = "*" + name
+        if schema.get("nullable") and formatter.is_primitive(schema["items"]):
+            name = formatter.simple_type(schema["items"], render_nullable=render_nullable, render_new=render_new)
+            if render_nullable:
+                return f"datadog.{prefix}List[{name}]"
         return "[]{}".format(name)
     elif type_ == "object":
         if "additionalProperties" in schema:

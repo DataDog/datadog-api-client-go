@@ -20,7 +20,7 @@ func main() {
 		GlobalTime: *datadogV1.NewNullableSharedDashboardUpdateRequestGlobalTime(&datadogV1.SharedDashboardUpdateRequestGlobalTime{
 			LiveSpan: datadogV1.DASHBOARDGLOBALTIMELIVESPAN_PAST_FIFTEEN_MINUTES.Ptr(),
 		}),
-		ShareList: []string{},
+		ShareList: *datadog.NewNullableList(&[]string{}),
 		ShareType: *datadogV1.NewNullableDashboardShareType(datadogV1.DASHBOARDSHARETYPE_OPEN.Ptr()),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

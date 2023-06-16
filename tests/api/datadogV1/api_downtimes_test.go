@@ -25,6 +25,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 	api := datadogV1.NewDowntimesApi(Client(ctx))
 
 	start := tests.ClockFromContext(ctx).Now()
+
 	testDowntime := datadogV1.Downtime{
 		Message:  *datadog.NewNullableString(tests.UniqueEntityName(ctx, t)),
 		Start:    datadog.PtrInt64(start.Unix()),
@@ -35,7 +36,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 			&datadogV1.DowntimeRecurrence{
 				Type:      datadog.PtrString("weeks"),
 				Period:    datadog.PtrInt32(1),
-				WeekDays:  []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+				WeekDays:  *datadog.NewNullableList(&[]string{"Mon", "Tue", "Wed", "Thu", "Fri"}),
 				UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 21*24*60*60)), // +21d
 			}),
 	}
@@ -219,7 +220,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 		"invalid weekdays": {datadogV1.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: []string{"mon", "tue"},
+			WeekDays: *datadog.NewNullableList(&[]string{"mon", "tue"}),
 		}, 400},
 		/* Only applicable when type is weeks -> unclear error code
 		"weekdays only with type weeks not days": { datadogV1.DowntimeRecurrence{
@@ -240,21 +241,21 @@ func TestDowntimeRecurrence(t *testing.T) {
 		"until date": {datadogV1.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+			WeekDays: *datadog.NewNullableList(&[]string{"Mon", "Tue", "Wed", "Thu", "Fri"}),
 			UntilDate: *datadog.NewNullableInt64(
 				datadog.PtrInt64(start.Unix() + 21*24*60*60), // +21d
 			)}, 200},
 		"until occurrences": {datadogV1.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+			WeekDays: *datadog.NewNullableList(&[]string{"Mon", "Tue", "Wed", "Thu", "Fri"}),
 			UntilOccurrences: *datadog.NewNullableInt32(
 				datadog.PtrInt32(3),
 			)}, 200},
 		"until occurences and until date are mutually exclusive": {datadogV1.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
+			WeekDays: *datadog.NewNullableList(&[]string{"Mon", "Tue", "Wed", "Thu", "Fri"}),
 			UntilOccurrences: *datadog.NewNullableInt32(
 				datadog.PtrInt32(3),
 			),

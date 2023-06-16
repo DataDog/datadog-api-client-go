@@ -31,14 +31,14 @@ type SearchServiceLevelObjectiveAttributes struct {
 	EnvTags []string `json:"env_tags,omitempty"`
 	// A list of (up to 100) monitor groups that narrow the scope of a monitor service level objective.
 	// Included in service level objective responses if it is not empty.
-	Groups []string `json:"groups,omitempty"`
+	Groups datadog.NullableList[string] `json:"groups,omitempty"`
 	// Modification timestamp (UNIX time in seconds)
 	//
 	// Always included in service level objective responses.
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level
 	// objective.
-	MonitorIds []int64 `json:"monitor_ids,omitempty"`
+	MonitorIds datadog.NullableList[int64] `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
 	Name *string `json:"name,omitempty"`
 	// calculated status and error budget remaining.
@@ -244,31 +244,41 @@ func (o *SearchServiceLevelObjectiveAttributes) SetEnvTags(v []string) {
 
 // GetGroups returns the Groups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetGroups() []string {
-	if o == nil {
+	if o == nil || o.Groups.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Groups
+	return *o.Groups.Get()
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchServiceLevelObjectiveAttributes) GetGroupsOk() (*[]string, bool) {
-	if o == nil || o.Groups == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Groups, true
+	return o.Groups.Get(), o.Groups.IsSet()
 }
 
 // HasGroups returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasGroups() bool {
-	return o != nil && o.Groups != nil
+	return o != nil && o.Groups.IsSet()
 }
 
-// SetGroups gets a reference to the given []string and assigns it to the Groups field.
+// SetGroups gets a reference to the given datadog.NullableList[string] and assigns it to the Groups field.
 func (o *SearchServiceLevelObjectiveAttributes) SetGroups(v []string) {
-	o.Groups = v
+	o.Groups.Set(&v)
+}
+
+// SetGroupsNil sets the value for Groups to be an explicit nil.
+func (o *SearchServiceLevelObjectiveAttributes) SetGroupsNil() {
+	o.Groups.Set(nil)
+}
+
+// UnsetGroups ensures that no value is present for Groups, not even an explicit nil.
+func (o *SearchServiceLevelObjectiveAttributes) UnsetGroups() {
+	o.Groups.Unset()
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
@@ -301,31 +311,41 @@ func (o *SearchServiceLevelObjectiveAttributes) SetModifiedAt(v int64) {
 
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchServiceLevelObjectiveAttributes) GetMonitorIds() []int64 {
-	if o == nil {
+	if o == nil || o.MonitorIds.Get() == nil {
 		var ret []int64
 		return ret
 	}
-	return o.MonitorIds
+	return *o.MonitorIds.Get()
 }
 
 // GetMonitorIdsOk returns a tuple with the MonitorIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchServiceLevelObjectiveAttributes) GetMonitorIdsOk() (*[]int64, bool) {
-	if o == nil || o.MonitorIds == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.MonitorIds, true
+	return o.MonitorIds.Get(), o.MonitorIds.IsSet()
 }
 
 // HasMonitorIds returns a boolean if a field has been set.
 func (o *SearchServiceLevelObjectiveAttributes) HasMonitorIds() bool {
-	return o != nil && o.MonitorIds != nil
+	return o != nil && o.MonitorIds.IsSet()
 }
 
-// SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
+// SetMonitorIds gets a reference to the given datadog.NullableList[int64] and assigns it to the MonitorIds field.
 func (o *SearchServiceLevelObjectiveAttributes) SetMonitorIds(v []int64) {
-	o.MonitorIds = v
+	o.MonitorIds.Set(&v)
+}
+
+// SetMonitorIdsNil sets the value for MonitorIds to be an explicit nil.
+func (o *SearchServiceLevelObjectiveAttributes) SetMonitorIdsNil() {
+	o.MonitorIds.Set(nil)
+}
+
+// UnsetMonitorIds ensures that no value is present for MonitorIds, not even an explicit nil.
+func (o *SearchServiceLevelObjectiveAttributes) UnsetMonitorIds() {
+	o.MonitorIds.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -584,14 +604,14 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 	if o.EnvTags != nil {
 		toSerialize["env_tags"] = o.EnvTags
 	}
-	if o.Groups != nil {
-		toSerialize["groups"] = o.Groups
+	if o.Groups.IsSet() {
+		toSerialize["groups"] = o.Groups.Get()
 	}
 	if o.ModifiedAt != nil {
 		toSerialize["modified_at"] = o.ModifiedAt
 	}
-	if o.MonitorIds != nil {
-		toSerialize["monitor_ids"] = o.MonitorIds
+	if o.MonitorIds.IsSet() {
+		toSerialize["monitor_ids"] = o.MonitorIds.Get()
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -628,22 +648,22 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllTags       []string               `json:"all_tags,omitempty"`
-		CreatedAt     *int64                 `json:"created_at,omitempty"`
-		Creator       NullableSLOCreator     `json:"creator,omitempty"`
-		Description   datadog.NullableString `json:"description,omitempty"`
-		EnvTags       []string               `json:"env_tags,omitempty"`
-		Groups        []string               `json:"groups,omitempty"`
-		ModifiedAt    *int64                 `json:"modified_at,omitempty"`
-		MonitorIds    []int64                `json:"monitor_ids,omitempty"`
-		Name          *string                `json:"name,omitempty"`
-		OverallStatus []SLOOverallStatuses   `json:"overall_status,omitempty"`
-		Query         NullableSearchSLOQuery `json:"query,omitempty"`
-		ServiceTags   []string               `json:"service_tags,omitempty"`
-		SloType       *SLOType               `json:"slo_type,omitempty"`
-		Status        *SLOStatus             `json:"status,omitempty"`
-		TeamTags      []string               `json:"team_tags,omitempty"`
-		Thresholds    []SearchSLOThreshold   `json:"thresholds,omitempty"`
+		AllTags       []string                     `json:"all_tags,omitempty"`
+		CreatedAt     *int64                       `json:"created_at,omitempty"`
+		Creator       NullableSLOCreator           `json:"creator,omitempty"`
+		Description   datadog.NullableString       `json:"description,omitempty"`
+		EnvTags       []string                     `json:"env_tags,omitempty"`
+		Groups        datadog.NullableList[string] `json:"groups,omitempty"`
+		ModifiedAt    *int64                       `json:"modified_at,omitempty"`
+		MonitorIds    datadog.NullableList[int64]  `json:"monitor_ids,omitempty"`
+		Name          *string                      `json:"name,omitempty"`
+		OverallStatus []SLOOverallStatuses         `json:"overall_status,omitempty"`
+		Query         NullableSearchSLOQuery       `json:"query,omitempty"`
+		ServiceTags   []string                     `json:"service_tags,omitempty"`
+		SloType       *SLOType                     `json:"slo_type,omitempty"`
+		Status        *SLOStatus                   `json:"status,omitempty"`
+		TeamTags      []string                     `json:"team_tags,omitempty"`
+		Thresholds    []SearchSLOThreshold         `json:"thresholds,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

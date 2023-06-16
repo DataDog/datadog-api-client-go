@@ -17,11 +17,11 @@ func main() {
 		Data: datadogV2.ApplicationKeyUpdateData{
 			Attributes: datadogV2.ApplicationKeyUpdateAttributes{
 				Name: datadog.PtrString("Application Key for managing dashboards"),
-				Scopes: []string{
+				Scopes: *datadog.NewNullableList(&[]string{
 					"dashboards_read",
 					"dashboards_write",
 					"dashboards_public_share",
-				},
+				}),
 			},
 			Id:   "00112233-4455-6677-8899-aabbccddeeff",
 			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
