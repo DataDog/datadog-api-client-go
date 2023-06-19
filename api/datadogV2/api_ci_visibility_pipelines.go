@@ -91,6 +91,8 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 
 // CreateCIAppPipelineEvent Send pipeline event.
 // Send your pipeline event to your Datadog platform over HTTP.
+//
+// This API endpoint is in private beta.
 func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context, body CIAppCreatePipelineEventRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -215,7 +217,7 @@ func (r *ListCIAppPipelineEventsOptionalParameters) WithPageLimit(pageLimit int3
 }
 
 // ListCIAppPipelineEvents Get a list of pipelines events.
-// List endpoint returns CI Visibility pipeline events that match a log search query.
+// List endpoint returns CI Visibility pipeline events that match a [log search query](https://docs.datadoghq.com/logs/explorer/search_syntax/).
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to see your latest pipeline events.
@@ -389,7 +391,7 @@ func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelin
 }
 
 // SearchCIAppPipelineEvents Search pipelines events.
-// List endpoint returns CI Visibility pipeline events that match a log search query.
+// List endpoint returns CI Visibility pipeline events that match a [log search query](https://docs.datadoghq.com/logs/explorer/search_syntax/).
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to build complex events filtering and search.
