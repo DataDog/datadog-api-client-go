@@ -1820,8 +1820,7 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		SnmpPercentage                   *float64 `json:"snmp_percentage,omitempty"`
 		SnmpUsage                        *float64 `json:"snmp_usage,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

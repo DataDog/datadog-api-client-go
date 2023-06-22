@@ -231,8 +231,7 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
 		SamlAssertionAttributeId *string    `json:"saml_assertion_attribute_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

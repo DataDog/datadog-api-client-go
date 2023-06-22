@@ -134,37 +134,27 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		DataSource  *FunnelSource `json:"data_source"`
 		QueryString *string       `json:"query_string"`
 		Steps       *[]FunnelStep `json:"steps"`
 	}{}
-	all := struct {
-		DataSource  FunnelSource `json:"data_source"`
-		QueryString string       `json:"query_string"`
-		Steps       []FunnelStep `json:"steps"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.QueryString == nil {
-		return fmt.Errorf("required field query_string missing")
-	}
-	if required.Steps == nil {
-		return fmt.Errorf("required field steps missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.QueryString == nil {
+		return fmt.Errorf("required field query_string missing")
+	}
+	if all.Steps == nil {
+		return fmt.Errorf("required field steps missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -180,9 +170,9 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.DataSource = all.DataSource
-	o.QueryString = all.QueryString
-	o.Steps = all.Steps
+	o.DataSource = *all.DataSource
+	o.QueryString = *all.QueryString
+	o.Steps = *all.Steps
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

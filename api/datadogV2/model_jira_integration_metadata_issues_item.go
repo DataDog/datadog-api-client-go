@@ -204,29 +204,14 @@ func (o JiraIntegrationMetadataIssuesItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Account    *string `json:"account"`
-		ProjectKey *string `json:"project_key"`
-	}{}
 	all := struct {
-		Account     string  `json:"account"`
+		Account     *string `json:"account"`
 		IssueKey    *string `json:"issue_key,omitempty"`
 		IssuetypeId *string `json:"issuetype_id,omitempty"`
-		ProjectKey  string  `json:"project_key"`
+		ProjectKey  *string `json:"project_key"`
 		RedirectUrl *string `json:"redirect_url,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Account == nil {
-		return fmt.Errorf("required field account missing")
-	}
-	if required.ProjectKey == nil {
-		return fmt.Errorf("required field project_key missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -234,16 +219,22 @@ func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Account == nil {
+		return fmt.Errorf("required field account missing")
+	}
+	if all.ProjectKey == nil {
+		return fmt.Errorf("required field project_key missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account", "issue_key", "issuetype_id", "project_key", "redirect_url"})
 	} else {
 		return err
 	}
-	o.Account = all.Account
+	o.Account = *all.Account
 	o.IssueKey = all.IssueKey
 	o.IssuetypeId = all.IssuetypeId
-	o.ProjectKey = all.ProjectKey
+	o.ProjectKey = *all.ProjectKey
 	o.RedirectUrl = all.RedirectUrl
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -307,38 +307,29 @@ func (o ServiceDefinitionV1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Info          *ServiceDefinitionV1Info    `json:"info"`
-		SchemaVersion *ServiceDefinitionV1Version `json:"schema-version"`
-	}{}
 	all := struct {
 		Contact           *ServiceDefinitionV1Contact      `json:"contact,omitempty"`
 		Extensions        map[string]interface{}           `json:"extensions,omitempty"`
 		ExternalResources []ServiceDefinitionV1Resource    `json:"external-resources,omitempty"`
-		Info              ServiceDefinitionV1Info          `json:"info"`
+		Info              *ServiceDefinitionV1Info         `json:"info"`
 		Integrations      *ServiceDefinitionV1Integrations `json:"integrations,omitempty"`
 		Org               *ServiceDefinitionV1Org          `json:"org,omitempty"`
-		SchemaVersion     ServiceDefinitionV1Version       `json:"schema-version"`
+		SchemaVersion     *ServiceDefinitionV1Version      `json:"schema-version"`
 		Tags              []string                         `json:"tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Info == nil {
-		return fmt.Errorf("required field info missing")
-	}
-	if required.SchemaVersion == nil {
-		return fmt.Errorf("required field schema-version missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Info == nil {
+		return fmt.Errorf("required field info missing")
+	}
+	if all.SchemaVersion == nil {
+		return fmt.Errorf("required field schema-version missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -371,7 +362,7 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Info = all.Info
+	o.Info = *all.Info
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -388,7 +379,7 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Org = all.Org
-	o.SchemaVersion = all.SchemaVersion
+	o.SchemaVersion = *all.SchemaVersion
 	o.Tags = all.Tags
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -280,54 +280,41 @@ func (o CloudConfigurationRuleCreatePayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Cases                   *[]CloudConfigurationRuleCaseCreate            `json:"cases"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions"`
 		IsEnabled               *bool                                          `json:"isEnabled"`
 		Message                 *string                                        `json:"message"`
 		Name                    *string                                        `json:"name"`
 		Options                 *CloudConfigurationRuleOptions                 `json:"options"`
+		Tags                    []string                                       `json:"tags,omitempty"`
+		Type                    *CloudConfigurationRuleType                    `json:"type,omitempty"`
 	}{}
-	all := struct {
-		Cases                   []CloudConfigurationRuleCaseCreate            `json:"cases"`
-		ComplianceSignalOptions CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions"`
-		IsEnabled               bool                                          `json:"isEnabled"`
-		Message                 string                                        `json:"message"`
-		Name                    string                                        `json:"name"`
-		Options                 CloudConfigurationRuleOptions                 `json:"options"`
-		Tags                    []string                                      `json:"tags,omitempty"`
-		Type                    *CloudConfigurationRuleType                   `json:"type,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Cases == nil {
-		return fmt.Errorf("required field cases missing")
-	}
-	if required.ComplianceSignalOptions == nil {
-		return fmt.Errorf("required field complianceSignalOptions missing")
-	}
-	if required.IsEnabled == nil {
-		return fmt.Errorf("required field isEnabled missing")
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Options == nil {
-		return fmt.Errorf("required field options missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Cases == nil {
+		return fmt.Errorf("required field cases missing")
+	}
+	if all.ComplianceSignalOptions == nil {
+		return fmt.Errorf("required field complianceSignalOptions missing")
+	}
+	if all.IsEnabled == nil {
+		return fmt.Errorf("required field isEnabled missing")
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Options == nil {
+		return fmt.Errorf("required field options missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -343,7 +330,7 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Cases = all.Cases
+	o.Cases = *all.Cases
 	if all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -351,10 +338,10 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		}
 		o.UnparsedObject = raw
 	}
-	o.ComplianceSignalOptions = all.ComplianceSignalOptions
-	o.IsEnabled = all.IsEnabled
-	o.Message = all.Message
-	o.Name = all.Name
+	o.ComplianceSignalOptions = *all.ComplianceSignalOptions
+	o.IsEnabled = *all.IsEnabled
+	o.Message = *all.Message
+	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -362,7 +349,7 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		}
 		o.UnparsedObject = raw
 	}
-	o.Options = all.Options
+	o.Options = *all.Options
 	o.Tags = all.Tags
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {

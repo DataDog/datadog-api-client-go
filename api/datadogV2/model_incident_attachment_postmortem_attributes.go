@@ -107,32 +107,23 @@ func (o IncidentAttachmentPostmortemAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Attachment     *IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
 		AttachmentType *IncidentAttachmentPostmortemAttachmentType              `json:"attachment_type"`
 	}{}
-	all := struct {
-		Attachment     IncidentAttachmentsPostmortemAttributesAttachmentObject `json:"attachment"`
-		AttachmentType IncidentAttachmentPostmortemAttachmentType              `json:"attachment_type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Attachment == nil {
-		return fmt.Errorf("required field attachment missing")
-	}
-	if required.AttachmentType == nil {
-		return fmt.Errorf("required field attachment_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Attachment == nil {
+		return fmt.Errorf("required field attachment missing")
+	}
+	if all.AttachmentType == nil {
+		return fmt.Errorf("required field attachment_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -155,8 +146,8 @@ func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (er
 		}
 		o.UnparsedObject = raw
 	}
-	o.Attachment = all.Attachment
-	o.AttachmentType = all.AttachmentType
+	o.Attachment = *all.Attachment
+	o.AttachmentType = *all.AttachmentType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

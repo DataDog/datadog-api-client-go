@@ -111,28 +111,20 @@ func (o SyntheticsTriggerTest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTriggerTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		PublicId *string `json:"public_id"`
-	}{}
 	all := struct {
 		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-		PublicId string                     `json:"public_id"`
+		PublicId *string                    `json:"public_id"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.PublicId == nil {
-		return fmt.Errorf("required field public_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.PublicId == nil {
+		return fmt.Errorf("required field public_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -148,7 +140,7 @@ func (o *SyntheticsTriggerTest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.PublicId = all.PublicId
+	o.PublicId = *all.PublicId
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

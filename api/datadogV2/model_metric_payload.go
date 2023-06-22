@@ -78,21 +78,10 @@ func (o MetricPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Series *[]MetricSeries `json:"series"`
 	}{}
-	all := struct {
-		Series []MetricSeries `json:"series"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Series == nil {
-		return fmt.Errorf("required field series missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *MetricPayload) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Series == nil {
+		return fmt.Errorf("required field series missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"series"})
 	} else {
 		return err
 	}
-	o.Series = all.Series
+	o.Series = *all.Series
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

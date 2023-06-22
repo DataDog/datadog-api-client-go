@@ -86,8 +86,7 @@ func (o *SensitiveDataScannerStandardPatternsResponseData) UnmarshalJSON(bytes [
 	all := struct {
 		Data []SensitiveDataScannerStandardPatternsResponseItem `json:"data,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

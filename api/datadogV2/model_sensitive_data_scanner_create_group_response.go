@@ -120,8 +120,7 @@ func (o *SensitiveDataScannerCreateGroupResponse) UnmarshalJSON(bytes []byte) (e
 		Data *SensitiveDataScannerGroupResponse   `json:"data,omitempty"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

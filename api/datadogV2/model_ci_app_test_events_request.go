@@ -189,8 +189,7 @@ func (o *CIAppTestEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Page    *CIAppQueryPageOptions `json:"page,omitempty"`
 		Sort    *CIAppSort             `json:"sort,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

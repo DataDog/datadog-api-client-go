@@ -177,30 +177,22 @@ func (o SignalStateUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		State *SignalTriageState `json:"state"`
-	}{}
 	all := struct {
 		ArchiveComment *string              `json:"archiveComment,omitempty"`
 		ArchiveReason  *SignalArchiveReason `json:"archiveReason,omitempty"`
-		State          SignalTriageState    `json:"state"`
+		State          *SignalTriageState   `json:"state"`
 		Version        *int64               `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.State == nil {
-		return fmt.Errorf("required field state missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.State == nil {
+		return fmt.Errorf("required field state missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -226,7 +218,7 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ArchiveComment = all.ArchiveComment
 	o.ArchiveReason = all.ArchiveReason
-	o.State = all.State
+	o.State = *all.State
 	o.Version = all.Version
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

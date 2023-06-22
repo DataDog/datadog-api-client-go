@@ -217,39 +217,29 @@ func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
+		IsEnabled  *bool                            `json:"is_enabled,omitempty"`
+		Name       *string                          `json:"name,omitempty"`
 		Target     *string                          `json:"target"`
 		Type       *LogsCategoryProcessorType       `json:"type"`
 	}{}
-	all := struct {
-		Categories []LogsCategoryProcessorCategory `json:"categories"`
-		IsEnabled  *bool                           `json:"is_enabled,omitempty"`
-		Name       *string                         `json:"name,omitempty"`
-		Target     string                          `json:"target"`
-		Type       LogsCategoryProcessorType       `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Categories == nil {
-		return fmt.Errorf("required field categories missing")
-	}
-	if required.Target == nil {
-		return fmt.Errorf("required field target missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Categories == nil {
+		return fmt.Errorf("required field categories missing")
+	}
+	if all.Target == nil {
+		return fmt.Errorf("required field target missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -265,11 +255,11 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Categories = all.Categories
+	o.Categories = *all.Categories
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
-	o.Target = all.Target
-	o.Type = all.Type
+	o.Target = *all.Target
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

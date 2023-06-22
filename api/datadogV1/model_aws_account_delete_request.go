@@ -154,8 +154,7 @@ func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 		AccountId   *string `json:"account_id,omitempty"`
 		RoleName    *string `json:"role_name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

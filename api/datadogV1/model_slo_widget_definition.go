@@ -406,41 +406,32 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type     *SLOWidgetDefinitionType `json:"type"`
-		ViewType *string                  `json:"view_type"`
-	}{}
 	all := struct {
-		AdditionalQueryFilters *string                 `json:"additional_query_filters,omitempty"`
-		GlobalTimeTarget       *string                 `json:"global_time_target,omitempty"`
-		ShowErrorBudget        *bool                   `json:"show_error_budget,omitempty"`
-		SloId                  *string                 `json:"slo_id,omitempty"`
-		TimeWindows            []WidgetTimeWindows     `json:"time_windows,omitempty"`
-		Title                  *string                 `json:"title,omitempty"`
-		TitleAlign             *WidgetTextAlign        `json:"title_align,omitempty"`
-		TitleSize              *string                 `json:"title_size,omitempty"`
-		Type                   SLOWidgetDefinitionType `json:"type"`
-		ViewMode               *WidgetViewMode         `json:"view_mode,omitempty"`
-		ViewType               string                  `json:"view_type"`
+		AdditionalQueryFilters *string                  `json:"additional_query_filters,omitempty"`
+		GlobalTimeTarget       *string                  `json:"global_time_target,omitempty"`
+		ShowErrorBudget        *bool                    `json:"show_error_budget,omitempty"`
+		SloId                  *string                  `json:"slo_id,omitempty"`
+		TimeWindows            []WidgetTimeWindows      `json:"time_windows,omitempty"`
+		Title                  *string                  `json:"title,omitempty"`
+		TitleAlign             *WidgetTextAlign         `json:"title_align,omitempty"`
+		TitleSize              *string                  `json:"title_size,omitempty"`
+		Type                   *SLOWidgetDefinitionType `json:"type"`
+		ViewMode               *WidgetViewMode          `json:"view_mode,omitempty"`
+		ViewType               *string                  `json:"view_type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.ViewType == nil {
-		return fmt.Errorf("required field view_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.ViewType == nil {
+		return fmt.Errorf("required field view_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -480,9 +471,9 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	o.ViewMode = all.ViewMode
-	o.ViewType = all.ViewType
+	o.ViewType = *all.ViewType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

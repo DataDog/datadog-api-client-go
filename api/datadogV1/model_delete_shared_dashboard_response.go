@@ -86,8 +86,7 @@ func (o *DeleteSharedDashboardResponse) UnmarshalJSON(bytes []byte) (err error) 
 	all := struct {
 		DeletedPublicDashboardToken *string `json:"deleted_public_dashboard_token,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

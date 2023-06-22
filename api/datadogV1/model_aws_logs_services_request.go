@@ -105,26 +105,11 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		AccountId *string   `json:"account_id"`
 		Services  *[]string `json:"services"`
 	}{}
-	all := struct {
-		AccountId string   `json:"account_id"`
-		Services  []string `json:"services"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AccountId == nil {
-		return fmt.Errorf("required field account_id missing")
-	}
-	if required.Services == nil {
-		return fmt.Errorf("required field services missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.AccountId == nil {
+		return fmt.Errorf("required field account_id missing")
+	}
+	if all.Services == nil {
+		return fmt.Errorf("required field services missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "services"})
 	} else {
 		return err
 	}
-	o.AccountId = all.AccountId
-	o.Services = all.Services
+	o.AccountId = *all.AccountId
+	o.Services = *all.Services
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

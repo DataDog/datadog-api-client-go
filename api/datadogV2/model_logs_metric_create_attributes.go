@@ -144,29 +144,21 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Compute *LogsMetricCompute `json:"compute"`
-	}{}
 	all := struct {
-		Compute LogsMetricCompute   `json:"compute"`
+		Compute *LogsMetricCompute  `json:"compute"`
 		Filter  *LogsMetricFilter   `json:"filter,omitempty"`
 		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Compute == nil {
-		return fmt.Errorf("required field compute missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Compute == nil {
+		return fmt.Errorf("required field compute missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -181,7 +173,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Compute = all.Compute
+	o.Compute = *all.Compute
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

@@ -120,8 +120,7 @@ func (o *AWSTagFilter) UnmarshalJSON(bytes []byte) (err error) {
 		Namespace    *AWSNamespace `json:"namespace,omitempty"`
 		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

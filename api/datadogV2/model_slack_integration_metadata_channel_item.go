@@ -165,32 +165,13 @@ func (o SlackIntegrationMetadataChannelItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ChannelId   *string `json:"channel_id"`
 		ChannelName *string `json:"channel_name"`
 		RedirectUrl *string `json:"redirect_url"`
-	}{}
-	all := struct {
-		ChannelId   string  `json:"channel_id"`
-		ChannelName string  `json:"channel_name"`
-		RedirectUrl string  `json:"redirect_url"`
 		TeamId      *string `json:"team_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ChannelId == nil {
-		return fmt.Errorf("required field channel_id missing")
-	}
-	if required.ChannelName == nil {
-		return fmt.Errorf("required field channel_name missing")
-	}
-	if required.RedirectUrl == nil {
-		return fmt.Errorf("required field redirect_url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -198,15 +179,24 @@ func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ChannelId == nil {
+		return fmt.Errorf("required field channel_id missing")
+	}
+	if all.ChannelName == nil {
+		return fmt.Errorf("required field channel_name missing")
+	}
+	if all.RedirectUrl == nil {
+		return fmt.Errorf("required field redirect_url missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"channel_id", "channel_name", "redirect_url", "team_id"})
 	} else {
 		return err
 	}
-	o.ChannelId = all.ChannelId
-	o.ChannelName = all.ChannelName
-	o.RedirectUrl = all.RedirectUrl
+	o.ChannelId = *all.ChannelId
+	o.ChannelName = *all.ChannelName
+	o.RedirectUrl = *all.RedirectUrl
 	o.TeamId = all.TeamId
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

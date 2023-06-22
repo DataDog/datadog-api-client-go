@@ -161,42 +161,31 @@ func (o IncidentAttachmentData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Attributes    *IncidentAttachmentAttributes    `json:"attributes"`
 		Id            *string                          `json:"id"`
 		Relationships *IncidentAttachmentRelationships `json:"relationships"`
 		Type          *IncidentAttachmentType          `json:"type"`
 	}{}
-	all := struct {
-		Attributes    IncidentAttachmentAttributes    `json:"attributes"`
-		Id            string                          `json:"id"`
-		Relationships IncidentAttachmentRelationships `json:"relationships"`
-		Type          IncidentAttachmentType          `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Attributes == nil {
-		return fmt.Errorf("required field attributes missing")
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Relationships == nil {
-		return fmt.Errorf("required field relationships missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Relationships == nil {
+		return fmt.Errorf("required field relationships missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -212,8 +201,8 @@ func (o *IncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -221,8 +210,8 @@ func (o *IncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Relationships = all.Relationships
-	o.Type = all.Type
+	o.Relationships = *all.Relationships
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

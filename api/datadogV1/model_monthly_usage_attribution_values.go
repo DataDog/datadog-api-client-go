@@ -2296,8 +2296,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		VulnManagementHostsPercentage        *float64 `json:"vuln_management_hosts_percentage,omitempty"`
 		VulnManagementHostsUsage             *float64 `json:"vuln_management_hosts_usage,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

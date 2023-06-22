@@ -266,41 +266,31 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Filters *[]string                       `json:"filters"`
-		Service *string                         `json:"service"`
-		Type    *ServiceMapWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		CustomLinks []WidgetCustomLink             `json:"custom_links,omitempty"`
-		Filters     []string                       `json:"filters"`
-		Service     string                         `json:"service"`
-		Title       *string                        `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize   *string                        `json:"title_size,omitempty"`
-		Type        ServiceMapWidgetDefinitionType `json:"type"`
+		CustomLinks []WidgetCustomLink              `json:"custom_links,omitempty"`
+		Filters     *[]string                       `json:"filters"`
+		Service     *string                         `json:"service"`
+		Title       *string                         `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize   *string                         `json:"title_size,omitempty"`
+		Type        *ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Filters == nil {
-		return fmt.Errorf("required field filters missing")
-	}
-	if required.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Filters == nil {
+		return fmt.Errorf("required field filters missing")
+	}
+	if all.Service == nil {
+		return fmt.Errorf("required field service missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -325,12 +315,12 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.CustomLinks = all.CustomLinks
-	o.Filters = all.Filters
-	o.Service = all.Service
+	o.Filters = *all.Filters
+	o.Service = *all.Service
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

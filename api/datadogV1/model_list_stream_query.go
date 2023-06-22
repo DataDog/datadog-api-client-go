@@ -305,38 +305,29 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DataSource  *ListStreamSource `json:"data_source"`
-		QueryString *string           `json:"query_string"`
-	}{}
 	all := struct {
 		Compute     []ListStreamComputeItems `json:"compute,omitempty"`
-		DataSource  ListStreamSource         `json:"data_source"`
+		DataSource  *ListStreamSource        `json:"data_source"`
 		EventSize   *WidgetEventSize         `json:"event_size,omitempty"`
 		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
 		Indexes     []string                 `json:"indexes,omitempty"`
-		QueryString string                   `json:"query_string"`
+		QueryString *string                  `json:"query_string"`
 		Sort        *WidgetFieldSort         `json:"sort,omitempty"`
 		Storage     *string                  `json:"storage,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.QueryString == nil {
-		return fmt.Errorf("required field query_string missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.QueryString == nil {
+		return fmt.Errorf("required field query_string missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -361,11 +352,11 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Compute = all.Compute
-	o.DataSource = all.DataSource
+	o.DataSource = *all.DataSource
 	o.EventSize = all.EventSize
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
-	o.QueryString = all.QueryString
+	o.QueryString = *all.QueryString
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

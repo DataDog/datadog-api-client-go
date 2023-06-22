@@ -111,28 +111,20 @@ func (o ListStreamComputeItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamComputeItems) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Aggregation *ListStreamComputeAggregation `json:"aggregation"`
-	}{}
 	all := struct {
-		Aggregation ListStreamComputeAggregation `json:"aggregation"`
-		Facet       *string                      `json:"facet,omitempty"`
+		Aggregation *ListStreamComputeAggregation `json:"aggregation"`
+		Facet       *string                       `json:"facet,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Aggregation == nil {
-		return fmt.Errorf("required field aggregation missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Aggregation == nil {
+		return fmt.Errorf("required field aggregation missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -148,7 +140,7 @@ func (o *ListStreamComputeItems) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Aggregation = all.Aggregation
+	o.Aggregation = *all.Aggregation
 	o.Facet = all.Facet
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

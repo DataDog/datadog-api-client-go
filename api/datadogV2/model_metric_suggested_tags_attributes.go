@@ -120,8 +120,7 @@ func (o *MetricSuggestedTagsAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		ActiveAggregations []MetricCustomAggregation `json:"active_aggregations,omitempty"`
 		ActiveTags         []string                  `json:"active_tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

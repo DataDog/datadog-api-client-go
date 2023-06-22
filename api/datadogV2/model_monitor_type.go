@@ -426,8 +426,7 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 		TemplatedName *string  `json:"templated_name,omitempty"`
 		Type          *string  `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

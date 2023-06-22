@@ -300,8 +300,7 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 		RehydratedIndexedEventsCount datadog.NullableInt64  `json:"rehydrated_indexed_events_count,omitempty"`
 		Retention                    datadog.NullableString `json:"retention,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

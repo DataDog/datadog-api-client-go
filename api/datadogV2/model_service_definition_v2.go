@@ -404,41 +404,32 @@ func (o ServiceDefinitionV2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DdService     *string                     `json:"dd-service"`
-		SchemaVersion *ServiceDefinitionV2Version `json:"schema-version"`
-	}{}
 	all := struct {
 		Contacts      []ServiceDefinitionV2Contact     `json:"contacts,omitempty"`
-		DdService     string                           `json:"dd-service"`
+		DdService     *string                          `json:"dd-service"`
 		DdTeam        *string                          `json:"dd-team,omitempty"`
 		Docs          []ServiceDefinitionV2Doc         `json:"docs,omitempty"`
 		Extensions    map[string]interface{}           `json:"extensions,omitempty"`
 		Integrations  *ServiceDefinitionV2Integrations `json:"integrations,omitempty"`
 		Links         []ServiceDefinitionV2Link        `json:"links,omitempty"`
 		Repos         []ServiceDefinitionV2Repo        `json:"repos,omitempty"`
-		SchemaVersion ServiceDefinitionV2Version       `json:"schema-version"`
+		SchemaVersion *ServiceDefinitionV2Version      `json:"schema-version"`
 		Tags          []string                         `json:"tags,omitempty"`
 		Team          *string                          `json:"team,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DdService == nil {
-		return fmt.Errorf("required field dd-service missing")
-	}
-	if required.SchemaVersion == nil {
-		return fmt.Errorf("required field schema-version missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DdService == nil {
+		return fmt.Errorf("required field dd-service missing")
+	}
+	if all.SchemaVersion == nil {
+		return fmt.Errorf("required field schema-version missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -455,7 +446,7 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Contacts = all.Contacts
-	o.DdService = all.DdService
+	o.DdService = *all.DdService
 	o.DdTeam = all.DdTeam
 	o.Docs = all.Docs
 	o.Extensions = all.Extensions
@@ -469,7 +460,7 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.Integrations = all.Integrations
 	o.Links = all.Links
 	o.Repos = all.Repos
-	o.SchemaVersion = all.SchemaVersion
+	o.SchemaVersion = *all.SchemaVersion
 	o.Tags = all.Tags
 	o.Team = all.Team
 	if len(additionalProperties) > 0 {

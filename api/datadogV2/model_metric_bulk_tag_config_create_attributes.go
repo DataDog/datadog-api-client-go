@@ -120,8 +120,7 @@ func (o *MetricBulkTagConfigCreateAttributes) UnmarshalJSON(bytes []byte) (err e
 		Emails []string `json:"emails,omitempty"`
 		Tags   []string `json:"tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

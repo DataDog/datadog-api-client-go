@@ -120,8 +120,7 @@ func (o *SLORawErrorBudgetRemaining) UnmarshalJSON(bytes []byte) (err error) {
 		Unit  *string  `json:"unit,omitempty"`
 		Value *float64 `json:"value,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

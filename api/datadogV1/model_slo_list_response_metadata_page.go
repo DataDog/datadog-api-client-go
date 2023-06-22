@@ -120,8 +120,7 @@ func (o *SLOListResponseMetadataPage) UnmarshalJSON(bytes []byte) (err error) {
 		TotalCount         *int64 `json:"total_count,omitempty"`
 		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

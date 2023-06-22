@@ -171,34 +171,25 @@ func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Expression *string `json:"expression"`
-		Name       *string `json:"name"`
-	}{}
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		Enabled     *bool   `json:"enabled,omitempty"`
-		Expression  string  `json:"expression"`
-		Name        string  `json:"name"`
+		Expression  *string `json:"expression"`
+		Name        *string `json:"name"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Expression == nil {
-		return fmt.Errorf("required field expression missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Expression == nil {
+		return fmt.Errorf("required field expression missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -208,8 +199,8 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	}
 	o.Description = all.Description
 	o.Enabled = all.Enabled
-	o.Expression = all.Expression
-	o.Name = all.Name
+	o.Expression = *all.Expression
+	o.Name = *all.Name
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

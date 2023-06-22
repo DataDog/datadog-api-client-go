@@ -189,34 +189,25 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags       *[]string                          `json:"tags"`
-	}{}
 	all := struct {
-		Aggregations       []MetricCustomAggregation         `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags               []string                          `json:"tags"`
+		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
+		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
+		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type"`
+		Tags               *[]string                          `json:"tags"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.MetricType == nil {
-		return fmt.Errorf("required field metric_type missing")
-	}
-	if required.Tags == nil {
-		return fmt.Errorf("required field tags missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.MetricType == nil {
+		return fmt.Errorf("required field metric_type missing")
+	}
+	if all.Tags == nil {
+		return fmt.Errorf("required field tags missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -234,8 +225,8 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	o.Aggregations = all.Aggregations
 	o.IncludePercentiles = all.IncludePercentiles
-	o.MetricType = all.MetricType
-	o.Tags = all.Tags
+	o.MetricType = *all.MetricType
+	o.Tags = *all.Tags
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

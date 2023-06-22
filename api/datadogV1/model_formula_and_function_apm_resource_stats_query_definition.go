@@ -351,52 +351,40 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DataSource *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
-		Env        *string                                       `json:"env"`
-		Name       *string                                       `json:"name"`
-		Service    *string                                       `json:"service"`
-		Stat       *FormulaAndFunctionApmResourceStatName        `json:"stat"`
-	}{}
 	all := struct {
-		DataSource      FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
-		Env             string                                       `json:"env"`
-		GroupBy         []string                                     `json:"group_by,omitempty"`
-		Name            string                                       `json:"name"`
-		OperationName   *string                                      `json:"operation_name,omitempty"`
-		PrimaryTagName  *string                                      `json:"primary_tag_name,omitempty"`
-		PrimaryTagValue *string                                      `json:"primary_tag_value,omitempty"`
-		ResourceName    *string                                      `json:"resource_name,omitempty"`
-		Service         string                                       `json:"service"`
-		Stat            FormulaAndFunctionApmResourceStatName        `json:"stat"`
+		DataSource      *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
+		Env             *string                                       `json:"env"`
+		GroupBy         []string                                      `json:"group_by,omitempty"`
+		Name            *string                                       `json:"name"`
+		OperationName   *string                                       `json:"operation_name,omitempty"`
+		PrimaryTagName  *string                                       `json:"primary_tag_name,omitempty"`
+		PrimaryTagValue *string                                       `json:"primary_tag_value,omitempty"`
+		ResourceName    *string                                       `json:"resource_name,omitempty"`
+		Service         *string                                       `json:"service"`
+		Stat            *FormulaAndFunctionApmResourceStatName        `json:"stat"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Env == nil {
-		return fmt.Errorf("required field env missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
-	if required.Stat == nil {
-		return fmt.Errorf("required field stat missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Env == nil {
+		return fmt.Errorf("required field env missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Service == nil {
+		return fmt.Errorf("required field service missing")
+	}
+	if all.Stat == nil {
+		return fmt.Errorf("required field stat missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -420,16 +408,16 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.DataSource = all.DataSource
-	o.Env = all.Env
+	o.DataSource = *all.DataSource
+	o.Env = *all.Env
 	o.GroupBy = all.GroupBy
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.OperationName = all.OperationName
 	o.PrimaryTagName = all.PrimaryTagName
 	o.PrimaryTagValue = all.PrimaryTagValue
 	o.ResourceName = all.ResourceName
-	o.Service = all.Service
-	o.Stat = all.Stat
+	o.Service = *all.Service
+	o.Stat = *all.Stat
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

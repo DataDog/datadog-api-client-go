@@ -174,34 +174,25 @@ func (o IncidentIntegrationMetadataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		IncidentId      *string                              `json:"incident_id,omitempty"`
 		IntegrationType *int32                               `json:"integration_type"`
 		Metadata        *IncidentIntegrationMetadataMetadata `json:"metadata"`
+		Status          *int32                               `json:"status,omitempty"`
 	}{}
-	all := struct {
-		IncidentId      *string                             `json:"incident_id,omitempty"`
-		IntegrationType int32                               `json:"integration_type"`
-		Metadata        IncidentIntegrationMetadataMetadata `json:"metadata"`
-		Status          *int32                              `json:"status,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IntegrationType == nil {
-		return fmt.Errorf("required field integration_type missing")
-	}
-	if required.Metadata == nil {
-		return fmt.Errorf("required field metadata missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.IntegrationType == nil {
+		return fmt.Errorf("required field integration_type missing")
+	}
+	if all.Metadata == nil {
+		return fmt.Errorf("required field metadata missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -210,8 +201,8 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 	o.IncidentId = all.IncidentId
-	o.IntegrationType = all.IntegrationType
-	o.Metadata = all.Metadata
+	o.IntegrationType = *all.IntegrationType
+	o.Metadata = *all.Metadata
 	o.Status = all.Status
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

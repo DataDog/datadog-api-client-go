@@ -252,49 +252,37 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Env        *string               `json:"env"`
-		Name       *string               `json:"name"`
-		PrimaryTag *string               `json:"primary_tag"`
-		RowType    *ApmStatsQueryRowType `json:"row_type"`
-		Service    *string               `json:"service"`
-	}{}
 	all := struct {
 		Columns    []ApmStatsQueryColumnType `json:"columns,omitempty"`
-		Env        string                    `json:"env"`
-		Name       string                    `json:"name"`
-		PrimaryTag string                    `json:"primary_tag"`
+		Env        *string                   `json:"env"`
+		Name       *string                   `json:"name"`
+		PrimaryTag *string                   `json:"primary_tag"`
 		Resource   *string                   `json:"resource,omitempty"`
-		RowType    ApmStatsQueryRowType      `json:"row_type"`
-		Service    string                    `json:"service"`
+		RowType    *ApmStatsQueryRowType     `json:"row_type"`
+		Service    *string                   `json:"service"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Env == nil {
-		return fmt.Errorf("required field env missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.PrimaryTag == nil {
-		return fmt.Errorf("required field primary_tag missing")
-	}
-	if required.RowType == nil {
-		return fmt.Errorf("required field row_type missing")
-	}
-	if required.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Env == nil {
+		return fmt.Errorf("required field env missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.PrimaryTag == nil {
+		return fmt.Errorf("required field primary_tag missing")
+	}
+	if all.RowType == nil {
+		return fmt.Errorf("required field row_type missing")
+	}
+	if all.Service == nil {
+		return fmt.Errorf("required field service missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -311,12 +299,12 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Columns = all.Columns
-	o.Env = all.Env
-	o.Name = all.Name
-	o.PrimaryTag = all.PrimaryTag
+	o.Env = *all.Env
+	o.Name = *all.Name
+	o.PrimaryTag = *all.PrimaryTag
 	o.Resource = all.Resource
-	o.RowType = all.RowType
-	o.Service = all.Service
+	o.RowType = *all.RowType
+	o.Service = *all.Service
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

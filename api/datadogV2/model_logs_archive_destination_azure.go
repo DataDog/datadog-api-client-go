@@ -227,44 +227,33 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Container      *string                          `json:"container"`
 		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
+		Path           *string                          `json:"path,omitempty"`
+		Region         *string                          `json:"region,omitempty"`
 		StorageAccount *string                          `json:"storage_account"`
 		Type           *LogsArchiveDestinationAzureType `json:"type"`
 	}{}
-	all := struct {
-		Container      string                          `json:"container"`
-		Integration    LogsArchiveIntegrationAzure     `json:"integration"`
-		Path           *string                         `json:"path,omitempty"`
-		Region         *string                         `json:"region,omitempty"`
-		StorageAccount string                          `json:"storage_account"`
-		Type           LogsArchiveDestinationAzureType `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Container == nil {
-		return fmt.Errorf("required field container missing")
-	}
-	if required.Integration == nil {
-		return fmt.Errorf("required field integration missing")
-	}
-	if required.StorageAccount == nil {
-		return fmt.Errorf("required field storage_account missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Container == nil {
+		return fmt.Errorf("required field container missing")
+	}
+	if all.Integration == nil {
+		return fmt.Errorf("required field integration missing")
+	}
+	if all.StorageAccount == nil {
+		return fmt.Errorf("required field storage_account missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -280,7 +269,7 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Container = all.Container
+	o.Container = *all.Container
 	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -288,11 +277,11 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Integration = all.Integration
+	o.Integration = *all.Integration
 	o.Path = all.Path
 	o.Region = all.Region
-	o.StorageAccount = all.StorageAccount
-	o.Type = all.Type
+	o.StorageAccount = *all.StorageAccount
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

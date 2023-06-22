@@ -539,8 +539,7 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 		TagsBySource     map[string][]string   `json:"tags_by_source,omitempty"`
 		Up               *bool                 `json:"up,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

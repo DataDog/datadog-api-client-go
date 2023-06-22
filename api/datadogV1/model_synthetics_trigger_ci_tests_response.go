@@ -199,8 +199,7 @@ func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err erro
 		Results           []SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 		TriggeredCheckIds []string                           `json:"triggered_check_ids,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

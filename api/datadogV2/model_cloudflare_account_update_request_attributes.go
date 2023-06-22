@@ -111,22 +111,11 @@ func (o CloudflareAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		ApiKey *string `json:"api_key"`
-	}{}
 	all := struct {
-		ApiKey string  `json:"api_key"`
+		ApiKey *string `json:"api_key"`
 		Email  *string `json:"email,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ApiKey == nil {
-		return fmt.Errorf("required field api_key missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *CloudflareAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApiKey == nil {
+		return fmt.Errorf("required field api_key missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "email"})
 	} else {
 		return err
 	}
-	o.ApiKey = all.ApiKey
+	o.ApiKey = *all.ApiKey
 	o.Email = all.Email
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -154,8 +154,7 @@ func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 		Details []LogsAPIError `json:"details,omitempty"`
 		Message *string        `json:"message,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

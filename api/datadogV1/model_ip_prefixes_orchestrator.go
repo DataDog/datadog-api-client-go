@@ -120,8 +120,7 @@ func (o *IPPrefixesOrchestrator) UnmarshalJSON(bytes []byte) (err error) {
 		PrefixesIpv4 []string `json:"prefixes_ipv4,omitempty"`
 		PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

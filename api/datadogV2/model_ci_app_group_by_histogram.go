@@ -135,31 +135,12 @@ func (o CIAppGroupByHistogram) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Interval *float64 `json:"interval"`
 		Max      *float64 `json:"max"`
 		Min      *float64 `json:"min"`
 	}{}
-	all := struct {
-		Interval float64 `json:"interval"`
-		Max      float64 `json:"max"`
-		Min      float64 `json:"min"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Interval == nil {
-		return fmt.Errorf("required field interval missing")
-	}
-	if required.Max == nil {
-		return fmt.Errorf("required field max missing")
-	}
-	if required.Min == nil {
-		return fmt.Errorf("required field min missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -167,15 +148,24 @@ func (o *CIAppGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Interval == nil {
+		return fmt.Errorf("required field interval missing")
+	}
+	if all.Max == nil {
+		return fmt.Errorf("required field max missing")
+	}
+	if all.Min == nil {
+		return fmt.Errorf("required field min missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"interval", "max", "min"})
 	} else {
 		return err
 	}
-	o.Interval = all.Interval
-	o.Max = all.Max
-	o.Min = all.Min
+	o.Interval = *all.Interval
+	o.Max = *all.Max
+	o.Min = *all.Min
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

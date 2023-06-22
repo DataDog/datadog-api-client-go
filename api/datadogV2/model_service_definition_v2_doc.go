@@ -138,27 +138,12 @@ func (o ServiceDefinitionV2Doc) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Doc) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name *string `json:"name"`
-		Url  *string `json:"url"`
-	}{}
 	all := struct {
-		Name     string  `json:"name"`
+		Name     *string `json:"name"`
 		Provider *string `json:"provider,omitempty"`
-		Url      string  `json:"url"`
+		Url      *string `json:"url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -166,15 +151,21 @@ func (o *ServiceDefinitionV2Doc) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"name", "provider", "url"})
 	} else {
 		return err
 	}
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Provider = all.Provider
-	o.Url = all.Url
+	o.Url = *all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

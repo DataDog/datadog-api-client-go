@@ -225,44 +225,33 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Check    *string             `json:"check"`
-		HostName *string             `json:"host_name"`
-		Status   *ServiceCheckStatus `json:"status"`
-		Tags     *[]string           `json:"tags"`
-	}{}
 	all := struct {
-		Check     string             `json:"check"`
-		HostName  string             `json:"host_name"`
-		Message   *string            `json:"message,omitempty"`
-		Status    ServiceCheckStatus `json:"status"`
-		Tags      []string           `json:"tags"`
-		Timestamp *int64             `json:"timestamp,omitempty"`
+		Check     *string             `json:"check"`
+		HostName  *string             `json:"host_name"`
+		Message   *string             `json:"message,omitempty"`
+		Status    *ServiceCheckStatus `json:"status"`
+		Tags      *[]string           `json:"tags"`
+		Timestamp *int64              `json:"timestamp,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Check == nil {
-		return fmt.Errorf("required field check missing")
-	}
-	if required.HostName == nil {
-		return fmt.Errorf("required field host_name missing")
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	if required.Tags == nil {
-		return fmt.Errorf("required field tags missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Check == nil {
+		return fmt.Errorf("required field check missing")
+	}
+	if all.HostName == nil {
+		return fmt.Errorf("required field host_name missing")
+	}
+	if all.Status == nil {
+		return fmt.Errorf("required field status missing")
+	}
+	if all.Tags == nil {
+		return fmt.Errorf("required field tags missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -278,11 +267,11 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Check = all.Check
-	o.HostName = all.HostName
+	o.Check = *all.Check
+	o.HostName = *all.HostName
 	o.Message = all.Message
-	o.Status = all.Status
-	o.Tags = all.Tags
+	o.Status = *all.Status
+	o.Tags = *all.Tags
 	o.Timestamp = all.Timestamp
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

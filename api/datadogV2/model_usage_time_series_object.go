@@ -136,8 +136,7 @@ func (o *UsageTimeSeriesObject) UnmarshalJSON(bytes []byte) (err error) {
 		Timestamp *time.Time            `json:"timestamp,omitempty"`
 		Value     datadog.NullableInt64 `json:"value,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

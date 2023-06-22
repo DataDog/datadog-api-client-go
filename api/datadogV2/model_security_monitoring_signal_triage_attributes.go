@@ -330,43 +330,33 @@ func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assignee    *SecurityMonitoringTriageUser  `json:"assignee"`
-		IncidentIds *[]int64                       `json:"incident_ids"`
-		State       *SecurityMonitoringSignalState `json:"state"`
-	}{}
 	all := struct {
 		ArchiveComment          *string                                `json:"archive_comment,omitempty"`
 		ArchiveCommentTimestamp *int64                                 `json:"archive_comment_timestamp,omitempty"`
 		ArchiveCommentUser      *SecurityMonitoringTriageUser          `json:"archive_comment_user,omitempty"`
 		ArchiveReason           *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
-		Assignee                SecurityMonitoringTriageUser           `json:"assignee"`
-		IncidentIds             []int64                                `json:"incident_ids"`
-		State                   SecurityMonitoringSignalState          `json:"state"`
+		Assignee                *SecurityMonitoringTriageUser          `json:"assignee"`
+		IncidentIds             *[]int64                               `json:"incident_ids"`
+		State                   *SecurityMonitoringSignalState         `json:"state"`
 		StateUpdateTimestamp    *int64                                 `json:"state_update_timestamp,omitempty"`
 		StateUpdateUser         *SecurityMonitoringTriageUser          `json:"state_update_user,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assignee == nil {
-		return fmt.Errorf("required field assignee missing")
-	}
-	if required.IncidentIds == nil {
-		return fmt.Errorf("required field incident_ids missing")
-	}
-	if required.State == nil {
-		return fmt.Errorf("required field state missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Assignee == nil {
+		return fmt.Errorf("required field assignee missing")
+	}
+	if all.IncidentIds == nil {
+		return fmt.Errorf("required field incident_ids missing")
+	}
+	if all.State == nil {
+		return fmt.Errorf("required field state missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -408,9 +398,9 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		}
 		o.UnparsedObject = raw
 	}
-	o.Assignee = all.Assignee
-	o.IncidentIds = all.IncidentIds
-	o.State = all.State
+	o.Assignee = *all.Assignee
+	o.IncidentIds = *all.IncidentIds
+	o.State = *all.State
 	o.StateUpdateTimestamp = all.StateUpdateTimestamp
 	if all.StateUpdateUser != nil && all.StateUpdateUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)

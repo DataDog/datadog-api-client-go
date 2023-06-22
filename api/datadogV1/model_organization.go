@@ -332,8 +332,7 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 		Trial        *bool                     `json:"trial,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

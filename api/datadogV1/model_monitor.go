@@ -642,10 +642,6 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Query *string      `json:"query"`
-		Type  *MonitorType `json:"type"`
-	}{}
 	all := struct {
 		Created           *time.Time                   `json:"created,omitempty"`
 		Creator           *Creator                     `json:"creator,omitempty"`
@@ -659,30 +655,25 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Options           *MonitorOptions              `json:"options,omitempty"`
 		OverallState      *MonitorOverallStates        `json:"overall_state,omitempty"`
 		Priority          datadog.NullableInt64        `json:"priority,omitempty"`
-		Query             string                       `json:"query"`
+		Query             *string                      `json:"query"`
 		RestrictedRoles   datadog.NullableList[string] `json:"restricted_roles,omitempty"`
 		State             *MonitorState                `json:"state,omitempty"`
 		Tags              []string                     `json:"tags,omitempty"`
-		Type              MonitorType                  `json:"type"`
+		Type              *MonitorType                 `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -732,7 +723,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Options = all.Options
 	o.OverallState = all.OverallState
 	o.Priority = all.Priority
-	o.Query = all.Query
+	o.Query = *all.Query
 	o.RestrictedRoles = all.RestrictedRoles
 	if all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -743,7 +734,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.State = all.State
 	o.Tags = all.Tags
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

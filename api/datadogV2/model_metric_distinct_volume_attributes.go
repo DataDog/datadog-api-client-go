@@ -86,8 +86,7 @@ func (o *MetricDistinctVolumeAttributes) UnmarshalJSON(bytes []byte) (err error)
 	all := struct {
 		DistinctVolume *int64 `json:"distinct_volume,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

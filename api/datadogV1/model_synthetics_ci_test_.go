@@ -507,9 +507,6 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		PublicId *string `json:"public_id"`
-	}{}
 	all := struct {
 		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"`
 		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"`
@@ -521,26 +518,21 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		Headers                   map[string]string           `json:"headers,omitempty"`
 		Locations                 []string                    `json:"locations,omitempty"`
 		Metadata                  *SyntheticsCIBatchMetadata  `json:"metadata,omitempty"`
-		PublicId                  string                      `json:"public_id"`
+		PublicId                  *string                     `json:"public_id"`
 		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 		StartUrl                  *string                     `json:"startUrl,omitempty"`
 		Variables                 map[string]string           `json:"variables,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.PublicId == nil {
-		return fmt.Errorf("required field public_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.PublicId == nil {
+		return fmt.Errorf("required field public_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -565,7 +557,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.PublicId = all.PublicId
+	o.PublicId = *all.PublicId
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

@@ -120,8 +120,7 @@ func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Event  *Event  `json:"event,omitempty"`
 		Status *string `json:"status,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

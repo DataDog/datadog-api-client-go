@@ -300,8 +300,7 @@ func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 		OrgName                        *string               `json:"org_name,omitempty"`
 		PublicId                       *string               `json:"public_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

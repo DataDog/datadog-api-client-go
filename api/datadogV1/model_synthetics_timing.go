@@ -359,8 +359,7 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 		Total     *float64 `json:"total,omitempty"`
 		Wait      *float64 `json:"wait,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -382,57 +382,44 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Config    *SyntheticsAPITestConfig `json:"config"`
-		Locations *[]string                `json:"locations"`
-		Message   *string                  `json:"message"`
-		Name      *string                  `json:"name"`
-		Options   *SyntheticsTestOptions   `json:"options"`
-		Type      *SyntheticsAPITestType   `json:"type"`
-	}{}
 	all := struct {
-		Config    SyntheticsAPITestConfig       `json:"config"`
-		Locations []string                      `json:"locations"`
-		Message   string                        `json:"message"`
+		Config    *SyntheticsAPITestConfig      `json:"config"`
+		Locations *[]string                     `json:"locations"`
+		Message   *string                       `json:"message"`
 		MonitorId *int64                        `json:"monitor_id,omitempty"`
-		Name      string                        `json:"name"`
-		Options   SyntheticsTestOptions         `json:"options"`
+		Name      *string                       `json:"name"`
+		Options   *SyntheticsTestOptions        `json:"options"`
 		PublicId  *string                       `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
 		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 		Tags      []string                      `json:"tags,omitempty"`
-		Type      SyntheticsAPITestType         `json:"type"`
+		Type      *SyntheticsAPITestType        `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Config == nil {
-		return fmt.Errorf("required field config missing")
-	}
-	if required.Locations == nil {
-		return fmt.Errorf("required field locations missing")
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Options == nil {
-		return fmt.Errorf("required field options missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Config == nil {
+		return fmt.Errorf("required field config missing")
+	}
+	if all.Locations == nil {
+		return fmt.Errorf("required field locations missing")
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Options == nil {
+		return fmt.Errorf("required field options missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -471,11 +458,11 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Config = all.Config
-	o.Locations = all.Locations
-	o.Message = all.Message
+	o.Config = *all.Config
+	o.Locations = *all.Locations
+	o.Message = *all.Message
 	o.MonitorId = all.MonitorId
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -483,12 +470,12 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Options = all.Options
+	o.Options = *all.Options
 	o.PublicId = all.PublicId
 	o.Status = all.Status
 	o.Subtype = all.Subtype
 	o.Tags = all.Tags
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

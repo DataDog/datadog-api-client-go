@@ -199,8 +199,7 @@ func (o *OpsgenieServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 		OpsgenieApiKey *string                    `json:"opsgenie_api_key,omitempty"`
 		Region         *OpsgenieServiceRegionType `json:"region,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

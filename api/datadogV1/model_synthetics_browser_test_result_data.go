@@ -461,8 +461,7 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 		ThumbnailsBucketKey *bool                               `json:"thumbnailsBucketKey,omitempty"`
 		TimeToInteractive   *float64                            `json:"timeToInteractive,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

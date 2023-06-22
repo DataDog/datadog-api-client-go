@@ -222,8 +222,7 @@ func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 		SortName             *string `json:"sort_name,omitempty"`
 		TotalNumberOfRecords *int64  `json:"total_number_of_records,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

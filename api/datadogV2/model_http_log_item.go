@@ -216,31 +216,23 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Message *string `json:"message"`
-	}{}
 	all := struct {
 		Ddsource *string `json:"ddsource,omitempty"`
 		Ddtags   *string `json:"ddtags,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  string  `json:"message"`
+		Message  *string `json:"message"`
 		Service  *string `json:"service,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
 	}
 	additionalProperties := make(map[string]string)
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -251,7 +243,7 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Ddsource = all.Ddsource
 	o.Ddtags = all.Ddtags
 	o.Hostname = all.Hostname
-	o.Message = all.Message
+	o.Message = *all.Message
 	o.Service = all.Service
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

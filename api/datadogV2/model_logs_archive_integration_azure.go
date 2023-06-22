@@ -105,26 +105,11 @@ func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ClientId *string `json:"client_id"`
 		TenantId *string `json:"tenant_id"`
 	}{}
-	all := struct {
-		ClientId string `json:"client_id"`
-		TenantId string `json:"tenant_id"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ClientId == nil {
-		return fmt.Errorf("required field client_id missing")
-	}
-	if required.TenantId == nil {
-		return fmt.Errorf("required field tenant_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ClientId == nil {
+		return fmt.Errorf("required field client_id missing")
+	}
+	if all.TenantId == nil {
+		return fmt.Errorf("required field tenant_id missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "tenant_id"})
 	} else {
 		return err
 	}
-	o.ClientId = all.ClientId
-	o.TenantId = all.TenantId
+	o.ClientId = *all.ClientId
+	o.TenantId = *all.TenantId
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

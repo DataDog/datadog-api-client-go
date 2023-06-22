@@ -120,8 +120,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectInt) UnmarshalJSON(bytes []b
 		Count *int64   `json:"count,omitempty"`
 		Name  *float64 `json:"name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

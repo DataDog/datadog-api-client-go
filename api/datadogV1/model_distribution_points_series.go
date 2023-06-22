@@ -208,35 +208,26 @@ func (o DistributionPointsSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		Host   *string                    `json:"host,omitempty"`
 		Metric *string                    `json:"metric"`
 		Points *[][]DistributionPointItem `json:"points"`
+		Tags   []string                   `json:"tags,omitempty"`
+		Type   *DistributionPointsType    `json:"type,omitempty"`
 	}{}
-	all := struct {
-		Host   *string                   `json:"host,omitempty"`
-		Metric string                    `json:"metric"`
-		Points [][]DistributionPointItem `json:"points"`
-		Tags   []string                  `json:"tags,omitempty"`
-		Type   *DistributionPointsType   `json:"type,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Metric == nil {
-		return fmt.Errorf("required field metric missing")
-	}
-	if required.Points == nil {
-		return fmt.Errorf("required field points missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Metric == nil {
+		return fmt.Errorf("required field metric missing")
+	}
+	if all.Points == nil {
+		return fmt.Errorf("required field points missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -253,8 +244,8 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Host = all.Host
-	o.Metric = all.Metric
-	o.Points = all.Points
+	o.Metric = *all.Metric
+	o.Points = *all.Points
 	o.Tags = all.Tags
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {

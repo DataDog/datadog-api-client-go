@@ -188,8 +188,7 @@ func (o *UserResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		OtherUsers *RelationshipToUsers         `json:"other_users,omitempty"`
 		Roles      *RelationshipToRoles         `json:"roles,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -120,8 +120,7 @@ func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 		DisplayName *string `json:"display_name,omitempty"`
 		Handle      *string `json:"handle,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

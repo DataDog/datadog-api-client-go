@@ -78,21 +78,10 @@ func (o SlackIntegrationMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SlackIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Channels *[]SlackIntegrationMetadataChannelItem `json:"channels"`
 	}{}
-	all := struct {
-		Channels []SlackIntegrationMetadataChannelItem `json:"channels"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Channels == nil {
-		return fmt.Errorf("required field channels missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *SlackIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Channels == nil {
+		return fmt.Errorf("required field channels missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"channels"})
 	} else {
 		return err
 	}
-	o.Channels = all.Channels
+	o.Channels = *all.Channels
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

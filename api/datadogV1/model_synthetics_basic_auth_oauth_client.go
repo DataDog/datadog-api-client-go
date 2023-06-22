@@ -295,46 +295,35 @@ func (o SyntheticsBasicAuthOauthClient) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		AccessTokenUrl         *string                                         `json:"accessTokenUrl"`
+		Audience               *string                                         `json:"audience,omitempty"`
 		ClientId               *string                                         `json:"clientId"`
 		ClientSecret           *string                                         `json:"clientSecret"`
+		Resource               *string                                         `json:"resource,omitempty"`
+		Scope                  *string                                         `json:"scope,omitempty"`
 		TokenApiAuthentication *SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
+		Type                   *SyntheticsBasicAuthOauthClientType             `json:"type,omitempty"`
 	}{}
-	all := struct {
-		AccessTokenUrl         string                                         `json:"accessTokenUrl"`
-		Audience               *string                                        `json:"audience,omitempty"`
-		ClientId               string                                         `json:"clientId"`
-		ClientSecret           string                                         `json:"clientSecret"`
-		Resource               *string                                        `json:"resource,omitempty"`
-		Scope                  *string                                        `json:"scope,omitempty"`
-		TokenApiAuthentication SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
-		Type                   *SyntheticsBasicAuthOauthClientType            `json:"type,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AccessTokenUrl == nil {
-		return fmt.Errorf("required field accessTokenUrl missing")
-	}
-	if required.ClientId == nil {
-		return fmt.Errorf("required field clientId missing")
-	}
-	if required.ClientSecret == nil {
-		return fmt.Errorf("required field clientSecret missing")
-	}
-	if required.TokenApiAuthentication == nil {
-		return fmt.Errorf("required field tokenApiAuthentication missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.AccessTokenUrl == nil {
+		return fmt.Errorf("required field accessTokenUrl missing")
+	}
+	if all.ClientId == nil {
+		return fmt.Errorf("required field clientId missing")
+	}
+	if all.ClientSecret == nil {
+		return fmt.Errorf("required field clientSecret missing")
+	}
+	if all.TokenApiAuthentication == nil {
+		return fmt.Errorf("required field tokenApiAuthentication missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -358,13 +347,13 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AccessTokenUrl = all.AccessTokenUrl
+	o.AccessTokenUrl = *all.AccessTokenUrl
 	o.Audience = all.Audience
-	o.ClientId = all.ClientId
-	o.ClientSecret = all.ClientSecret
+	o.ClientId = *all.ClientId
+	o.ClientSecret = *all.ClientSecret
 	o.Resource = all.Resource
 	o.Scope = all.Scope
-	o.TokenApiAuthentication = all.TokenApiAuthentication
+	o.TokenApiAuthentication = *all.TokenApiAuthentication
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

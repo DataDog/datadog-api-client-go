@@ -206,35 +206,26 @@ func (o SLOListWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]SLOListWidgetRequest      `json:"requests"`
-		Type     *SLOListWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		Requests   []SLOListWidgetRequest      `json:"requests"`
-		Title      *string                     `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize  *string                     `json:"title_size,omitempty"`
-		Type       SLOListWidgetDefinitionType `json:"type"`
+		Requests   *[]SLOListWidgetRequest      `json:"requests"`
+		Title      *string                      `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign             `json:"title_align,omitempty"`
+		TitleSize  *string                      `json:"title_size,omitempty"`
+		Type       *SLOListWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -258,11 +249,11 @@ func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

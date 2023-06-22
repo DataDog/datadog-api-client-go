@@ -334,38 +334,29 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Handle *string `json:"handle"`
-		Name   *string `json:"name"`
-	}{}
 	all := struct {
 		CreatedAt   *time.Time             `json:"created_at,omitempty"`
 		Description datadog.NullableString `json:"description,omitempty"`
-		Handle      string                 `json:"handle"`
+		Handle      *string                `json:"handle"`
 		LinkCount   *int32                 `json:"link_count,omitempty"`
 		ModifiedAt  *time.Time             `json:"modified_at,omitempty"`
-		Name        string                 `json:"name"`
+		Name        *string                `json:"name"`
 		Summary     datadog.NullableString `json:"summary,omitempty"`
 		UserCount   *int32                 `json:"user_count,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Handle == nil {
-		return fmt.Errorf("required field handle missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Handle == nil {
+		return fmt.Errorf("required field handle missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -375,10 +366,10 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
-	o.Handle = all.Handle
+	o.Handle = *all.Handle
 	o.LinkCount = all.LinkCount
 	o.ModifiedAt = all.ModifiedAt
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Summary = all.Summary
 	o.UserCount = all.UserCount
 	if len(additionalProperties) > 0 {

@@ -157,8 +157,7 @@ func (o *TimeseriesResponseSeries) UnmarshalJSON(bytes []byte) (err error) {
 		QueryIndex *int32   `json:"query_index,omitempty"`
 		Unit       []Unit   `json:"unit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

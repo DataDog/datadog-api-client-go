@@ -120,8 +120,7 @@ func (o *SyntheticsGlobalVariableTOTPParameters) UnmarshalJSON(bytes []byte) (er
 		Digits          *int32 `json:"digits,omitempty"`
 		RefreshInterval *int32 `json:"refresh_interval,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -188,8 +188,7 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

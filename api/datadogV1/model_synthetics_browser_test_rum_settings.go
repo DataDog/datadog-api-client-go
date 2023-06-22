@@ -154,29 +154,21 @@ func (o SyntheticsBrowserTestRumSettings) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		IsEnabled *bool `json:"isEnabled"`
-	}{}
 	all := struct {
 		ApplicationId *string `json:"applicationId,omitempty"`
 		ClientTokenId *int64  `json:"clientTokenId,omitempty"`
-		IsEnabled     bool    `json:"isEnabled"`
+		IsEnabled     *bool   `json:"isEnabled"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IsEnabled == nil {
-		return fmt.Errorf("required field isEnabled missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.IsEnabled == nil {
+		return fmt.Errorf("required field isEnabled missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -186,7 +178,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 	}
 	o.ApplicationId = all.ApplicationId
 	o.ClientTokenId = all.ClientTokenId
-	o.IsEnabled = all.IsEnabled
+	o.IsEnabled = *all.IsEnabled
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

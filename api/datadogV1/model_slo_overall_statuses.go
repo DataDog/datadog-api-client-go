@@ -414,8 +414,7 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		Target                  *float64                           `json:"target,omitempty"`
 		Timeframe               *SLOTimeframe                      `json:"timeframe,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

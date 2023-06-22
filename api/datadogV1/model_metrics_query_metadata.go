@@ -508,8 +508,7 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		TagSet      []string               `json:"tag_set,omitempty"`
 		Unit        []MetricsQueryUnit     `json:"unit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

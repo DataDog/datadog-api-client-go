@@ -361,48 +361,37 @@ func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		AccessTokenUrl         *string                                         `json:"accessTokenUrl"`
+		Audience               *string                                         `json:"audience,omitempty"`
+		ClientId               *string                                         `json:"clientId,omitempty"`
+		ClientSecret           *string                                         `json:"clientSecret,omitempty"`
 		Password               *string                                         `json:"password"`
+		Resource               *string                                         `json:"resource,omitempty"`
+		Scope                  *string                                         `json:"scope,omitempty"`
 		TokenApiAuthentication *SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
+		Type                   *SyntheticsBasicAuthOauthROPType                `json:"type,omitempty"`
 		Username               *string                                         `json:"username"`
 	}{}
-	all := struct {
-		AccessTokenUrl         string                                         `json:"accessTokenUrl"`
-		Audience               *string                                        `json:"audience,omitempty"`
-		ClientId               *string                                        `json:"clientId,omitempty"`
-		ClientSecret           *string                                        `json:"clientSecret,omitempty"`
-		Password               string                                         `json:"password"`
-		Resource               *string                                        `json:"resource,omitempty"`
-		Scope                  *string                                        `json:"scope,omitempty"`
-		TokenApiAuthentication SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
-		Type                   *SyntheticsBasicAuthOauthROPType               `json:"type,omitempty"`
-		Username               string                                         `json:"username"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AccessTokenUrl == nil {
-		return fmt.Errorf("required field accessTokenUrl missing")
-	}
-	if required.Password == nil {
-		return fmt.Errorf("required field password missing")
-	}
-	if required.TokenApiAuthentication == nil {
-		return fmt.Errorf("required field tokenApiAuthentication missing")
-	}
-	if required.Username == nil {
-		return fmt.Errorf("required field username missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.AccessTokenUrl == nil {
+		return fmt.Errorf("required field accessTokenUrl missing")
+	}
+	if all.Password == nil {
+		return fmt.Errorf("required field password missing")
+	}
+	if all.TokenApiAuthentication == nil {
+		return fmt.Errorf("required field tokenApiAuthentication missing")
+	}
+	if all.Username == nil {
+		return fmt.Errorf("required field username missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -426,16 +415,16 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AccessTokenUrl = all.AccessTokenUrl
+	o.AccessTokenUrl = *all.AccessTokenUrl
 	o.Audience = all.Audience
 	o.ClientId = all.ClientId
 	o.ClientSecret = all.ClientSecret
-	o.Password = all.Password
+	o.Password = *all.Password
 	o.Resource = all.Resource
 	o.Scope = all.Scope
-	o.TokenApiAuthentication = all.TokenApiAuthentication
+	o.TokenApiAuthentication = *all.TokenApiAuthentication
 	o.Type = all.Type
-	o.Username = all.Username
+	o.Username = *all.Username
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

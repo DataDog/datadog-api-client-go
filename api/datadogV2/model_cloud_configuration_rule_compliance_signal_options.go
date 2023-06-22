@@ -142,8 +142,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 		UserActivationStatus datadog.NullableBool         `json:"userActivationStatus,omitempty"`
 		UserGroupByFields    datadog.NullableList[string] `json:"userGroupByFields,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

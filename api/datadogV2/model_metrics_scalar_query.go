@@ -169,38 +169,28 @@ func (o MetricsScalarQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Aggregator *MetricsAggregator `json:"aggregator"`
 		DataSource *MetricsDataSource `json:"data_source"`
+		Name       *string            `json:"name,omitempty"`
 		Query      *string            `json:"query"`
 	}{}
-	all := struct {
-		Aggregator MetricsAggregator `json:"aggregator"`
-		DataSource MetricsDataSource `json:"data_source"`
-		Name       *string           `json:"name,omitempty"`
-		Query      string            `json:"query"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Aggregator == nil {
-		return fmt.Errorf("required field aggregator missing")
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Aggregator == nil {
+		return fmt.Errorf("required field aggregator missing")
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -224,10 +214,10 @@ func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Aggregator = all.Aggregator
-	o.DataSource = all.DataSource
+	o.Aggregator = *all.Aggregator
+	o.DataSource = *all.DataSource
 	o.Name = all.Name
-	o.Query = all.Query
+	o.Query = *all.Query
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

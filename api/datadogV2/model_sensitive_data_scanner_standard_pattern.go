@@ -124,8 +124,7 @@ func (o *SensitiveDataScannerStandardPattern) UnmarshalJSON(bytes []byte) (err e
 		Id   *string                                  `json:"id,omitempty"`
 		Type *SensitiveDataScannerStandardPatternType `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

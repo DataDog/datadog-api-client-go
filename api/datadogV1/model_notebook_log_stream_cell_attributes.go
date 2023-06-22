@@ -155,29 +155,21 @@ func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Definition *LogStreamWidgetDefinition `json:"definition"`
-	}{}
 	all := struct {
-		Definition LogStreamWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
-		Time       NullableNotebookCellTime  `json:"time,omitempty"`
+		Definition *LogStreamWidgetDefinition `json:"definition"`
+		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
+		Time       NullableNotebookCellTime   `json:"time,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Definition == nil {
-		return fmt.Errorf("required field definition missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Definition == nil {
+		return fmt.Errorf("required field definition missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -200,7 +192,7 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		}
 		o.UnparsedObject = raw
 	}
-	o.Definition = all.Definition
+	o.Definition = *all.Definition
 	o.GraphSize = all.GraphSize
 	o.Time = all.Time
 	if len(additionalProperties) > 0 {

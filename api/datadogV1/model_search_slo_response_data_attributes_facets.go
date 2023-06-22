@@ -324,8 +324,7 @@ func (o *SearchSLOResponseDataAttributesFacets) UnmarshalJSON(bytes []byte) (err
 		TeamTags    []SearchSLOResponseDataAttributesFacetsObjectString `json:"team_tags,omitempty"`
 		Timeframe   []SearchSLOResponseDataAttributesFacetsObjectString `json:"timeframe,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

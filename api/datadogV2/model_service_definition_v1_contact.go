@@ -120,8 +120,7 @@ func (o *ServiceDefinitionV1Contact) UnmarshalJSON(bytes []byte) (err error) {
 		Email *string `json:"email,omitempty"`
 		Slack *string `json:"slack,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

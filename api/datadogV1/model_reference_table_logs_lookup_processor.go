@@ -237,44 +237,33 @@ func (o ReferenceTableLogsLookupProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		IsEnabled             *bool                    `json:"is_enabled,omitempty"`
 		LookupEnrichmentTable *string                  `json:"lookup_enrichment_table"`
+		Name                  *string                  `json:"name,omitempty"`
 		Source                *string                  `json:"source"`
 		Target                *string                  `json:"target"`
 		Type                  *LogsLookupProcessorType `json:"type"`
 	}{}
-	all := struct {
-		IsEnabled             *bool                   `json:"is_enabled,omitempty"`
-		LookupEnrichmentTable string                  `json:"lookup_enrichment_table"`
-		Name                  *string                 `json:"name,omitempty"`
-		Source                string                  `json:"source"`
-		Target                string                  `json:"target"`
-		Type                  LogsLookupProcessorType `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.LookupEnrichmentTable == nil {
-		return fmt.Errorf("required field lookup_enrichment_table missing")
-	}
-	if required.Source == nil {
-		return fmt.Errorf("required field source missing")
-	}
-	if required.Target == nil {
-		return fmt.Errorf("required field target missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.LookupEnrichmentTable == nil {
+		return fmt.Errorf("required field lookup_enrichment_table missing")
+	}
+	if all.Source == nil {
+		return fmt.Errorf("required field source missing")
+	}
+	if all.Target == nil {
+		return fmt.Errorf("required field target missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -291,11 +280,11 @@ func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err err
 		return nil
 	}
 	o.IsEnabled = all.IsEnabled
-	o.LookupEnrichmentTable = all.LookupEnrichmentTable
+	o.LookupEnrichmentTable = *all.LookupEnrichmentTable
 	o.Name = all.Name
-	o.Source = all.Source
-	o.Target = all.Target
-	o.Type = all.Type
+	o.Source = *all.Source
+	o.Target = *all.Target
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

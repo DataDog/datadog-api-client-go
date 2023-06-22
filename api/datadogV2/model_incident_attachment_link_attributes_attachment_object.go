@@ -105,26 +105,11 @@ func (o IncidentAttachmentLinkAttributesAttachmentObject) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		DocumentUrl *string `json:"documentUrl"`
 		Title       *string `json:"title"`
 	}{}
-	all := struct {
-		DocumentUrl string `json:"documentUrl"`
-		Title       string `json:"title"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DocumentUrl == nil {
-		return fmt.Errorf("required field documentUrl missing")
-	}
-	if required.Title == nil {
-		return fmt.Errorf("required field title missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes [
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.DocumentUrl == nil {
+		return fmt.Errorf("required field documentUrl missing")
+	}
+	if all.Title == nil {
+		return fmt.Errorf("required field title missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"documentUrl", "title"})
 	} else {
 		return err
 	}
-	o.DocumentUrl = all.DocumentUrl
-	o.Title = all.Title
+	o.DocumentUrl = *all.DocumentUrl
+	o.Title = *all.Title
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

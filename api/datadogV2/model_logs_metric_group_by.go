@@ -111,22 +111,11 @@ func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Path *string `json:"path"`
-	}{}
 	all := struct {
-		Path    string  `json:"path"`
+		Path    *string `json:"path"`
 		TagName *string `json:"tag_name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Path == nil {
-		return fmt.Errorf("required field path missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Path == nil {
+		return fmt.Errorf("required field path missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"path", "tag_name"})
 	} else {
 		return err
 	}
-	o.Path = all.Path
+	o.Path = *all.Path
 	o.TagName = all.TagName
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

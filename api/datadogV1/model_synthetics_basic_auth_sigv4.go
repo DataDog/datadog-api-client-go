@@ -233,40 +233,30 @@ func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		AccessKey *string                       `json:"accessKey"`
-		SecretKey *string                       `json:"secretKey"`
-		Type      *SyntheticsBasicAuthSigv4Type `json:"type"`
-	}{}
 	all := struct {
-		AccessKey    string                       `json:"accessKey"`
-		Region       *string                      `json:"region,omitempty"`
-		SecretKey    string                       `json:"secretKey"`
-		ServiceName  *string                      `json:"serviceName,omitempty"`
-		SessionToken *string                      `json:"sessionToken,omitempty"`
-		Type         SyntheticsBasicAuthSigv4Type `json:"type"`
+		AccessKey    *string                       `json:"accessKey"`
+		Region       *string                       `json:"region,omitempty"`
+		SecretKey    *string                       `json:"secretKey"`
+		ServiceName  *string                       `json:"serviceName,omitempty"`
+		SessionToken *string                       `json:"sessionToken,omitempty"`
+		Type         *SyntheticsBasicAuthSigv4Type `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AccessKey == nil {
-		return fmt.Errorf("required field accessKey missing")
-	}
-	if required.SecretKey == nil {
-		return fmt.Errorf("required field secretKey missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.AccessKey == nil {
+		return fmt.Errorf("required field accessKey missing")
+	}
+	if all.SecretKey == nil {
+		return fmt.Errorf("required field secretKey missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -282,12 +272,12 @@ func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AccessKey = all.AccessKey
+	o.AccessKey = *all.AccessKey
 	o.Region = all.Region
-	o.SecretKey = all.SecretKey
+	o.SecretKey = *all.SecretKey
 	o.ServiceName = all.ServiceName
 	o.SessionToken = all.SessionToken
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

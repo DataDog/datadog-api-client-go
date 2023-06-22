@@ -246,9 +246,6 @@ func (o SharedDashboardUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		GlobalTime NullableSharedDashboardUpdateRequestGlobalTime `json:"global_time"`
-	}{}
 	all := struct {
 		GlobalTime                  NullableSharedDashboardUpdateRequestGlobalTime `json:"global_time"`
 		GlobalTimeSelectableEnabled datadog.NullableBool                           `json:"global_time_selectable_enabled,omitempty"`
@@ -256,21 +253,16 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		ShareList                   datadog.NullableList[string]                   `json:"share_list,omitempty"`
 		ShareType                   NullableDashboardShareType                     `json:"share_type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if !required.GlobalTime.IsSet() {
-		return fmt.Errorf("required field global_time missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if !all.GlobalTime.IsSet() {
+		return fmt.Errorf("required field global_time missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

@@ -78,21 +78,10 @@ func (o RestrictionPolicyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RestrictionPolicyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Bindings *[]RestrictionPolicyBinding `json:"bindings"`
 	}{}
-	all := struct {
-		Bindings []RestrictionPolicyBinding `json:"bindings"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Bindings == nil {
-		return fmt.Errorf("required field bindings missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *RestrictionPolicyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Bindings == nil {
+		return fmt.Errorf("required field bindings missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"bindings"})
 	} else {
 		return err
 	}
-	o.Bindings = all.Bindings
+	o.Bindings = *all.Bindings
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

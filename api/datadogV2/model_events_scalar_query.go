@@ -239,36 +239,27 @@ func (o EventsScalarQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Compute    *EventsCompute    `json:"compute"`
 		DataSource *EventsDataSource `json:"data_source"`
+		GroupBy    []EventsGroupBy   `json:"group_by,omitempty"`
+		Indexes    []string          `json:"indexes,omitempty"`
+		Name       *string           `json:"name,omitempty"`
+		Search     *EventsSearch     `json:"search,omitempty"`
 	}{}
-	all := struct {
-		Compute    EventsCompute    `json:"compute"`
-		DataSource EventsDataSource `json:"data_source"`
-		GroupBy    []EventsGroupBy  `json:"group_by,omitempty"`
-		Indexes    []string         `json:"indexes,omitempty"`
-		Name       *string          `json:"name,omitempty"`
-		Search     *EventsSearch    `json:"search,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Compute == nil {
-		return fmt.Errorf("required field compute missing")
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Compute == nil {
+		return fmt.Errorf("required field compute missing")
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -291,8 +282,8 @@ func (o *EventsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Compute = all.Compute
-	o.DataSource = all.DataSource
+	o.Compute = *all.Compute
+	o.DataSource = *all.DataSource
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.Name = all.Name

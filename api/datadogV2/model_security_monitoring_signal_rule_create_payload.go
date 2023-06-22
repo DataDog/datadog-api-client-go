@@ -345,56 +345,43 @@ func (o SecurityMonitoringSignalRuleCreatePayload) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Cases     *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		IsEnabled *bool                                `json:"isEnabled"`
-		Message   *string                              `json:"message"`
-		Name      *string                              `json:"name"`
-		Options   *SecurityMonitoringRuleOptions       `json:"options"`
-		Queries   *[]SecurityMonitoringSignalRuleQuery `json:"queries"`
-	}{}
 	all := struct {
-		Cases            []SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		Filters          []SecurityMonitoringFilter          `json:"filters,omitempty"`
-		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        bool                                `json:"isEnabled"`
-		Message          string                              `json:"message"`
-		Name             string                              `json:"name"`
-		Options          SecurityMonitoringRuleOptions       `json:"options"`
-		Queries          []SecurityMonitoringSignalRuleQuery `json:"queries"`
-		Tags             []string                            `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleType   `json:"type,omitempty"`
+		Cases            *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
+		Filters          []SecurityMonitoringFilter           `json:"filters,omitempty"`
+		HasExtendedTitle *bool                                `json:"hasExtendedTitle,omitempty"`
+		IsEnabled        *bool                                `json:"isEnabled"`
+		Message          *string                              `json:"message"`
+		Name             *string                              `json:"name"`
+		Options          *SecurityMonitoringRuleOptions       `json:"options"`
+		Queries          *[]SecurityMonitoringSignalRuleQuery `json:"queries"`
+		Tags             []string                             `json:"tags,omitempty"`
+		Type             *SecurityMonitoringSignalRuleType    `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Cases == nil {
-		return fmt.Errorf("required field cases missing")
-	}
-	if required.IsEnabled == nil {
-		return fmt.Errorf("required field isEnabled missing")
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Options == nil {
-		return fmt.Errorf("required field options missing")
-	}
-	if required.Queries == nil {
-		return fmt.Errorf("required field queries missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Cases == nil {
+		return fmt.Errorf("required field cases missing")
+	}
+	if all.IsEnabled == nil {
+		return fmt.Errorf("required field isEnabled missing")
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Options == nil {
+		return fmt.Errorf("required field options missing")
+	}
+	if all.Queries == nil {
+		return fmt.Errorf("required field queries missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -410,12 +397,12 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Cases = all.Cases
+	o.Cases = *all.Cases
 	o.Filters = all.Filters
 	o.HasExtendedTitle = all.HasExtendedTitle
-	o.IsEnabled = all.IsEnabled
-	o.Message = all.Message
-	o.Name = all.Name
+	o.IsEnabled = *all.IsEnabled
+	o.Message = *all.Message
+	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -423,8 +410,8 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 		}
 		o.UnparsedObject = raw
 	}
-	o.Options = all.Options
-	o.Queries = all.Queries
+	o.Options = *all.Options
+	o.Queries = *all.Queries
 	o.Tags = all.Tags
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {

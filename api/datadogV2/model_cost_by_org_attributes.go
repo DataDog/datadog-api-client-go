@@ -261,8 +261,7 @@ func (o *CostByOrgAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Region    *string               `json:"region,omitempty"`
 		TotalCost *float64              `json:"total_cost,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

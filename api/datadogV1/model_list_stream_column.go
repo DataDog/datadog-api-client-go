@@ -105,32 +105,23 @@ func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Field *string                `json:"field"`
 		Width *ListStreamColumnWidth `json:"width"`
 	}{}
-	all := struct {
-		Field string                `json:"field"`
-		Width ListStreamColumnWidth `json:"width"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Field == nil {
-		return fmt.Errorf("required field field missing")
-	}
-	if required.Width == nil {
-		return fmt.Errorf("required field width missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Field == nil {
+		return fmt.Errorf("required field field missing")
+	}
+	if all.Width == nil {
+		return fmt.Errorf("required field width missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -146,8 +137,8 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Field = all.Field
-	o.Width = all.Width
+	o.Field = *all.Field
+	o.Width = *all.Width
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -338,8 +338,7 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		UpdatedAt       *time.Time                     `json:"updated_at,omitempty"`
 		Values          *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

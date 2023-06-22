@@ -86,8 +86,7 @@ func (o *SensitiveDataScannerConfigurationRelationships) UnmarshalJSON(bytes []b
 	all := struct {
 		Groups *SensitiveDataScannerGroupList `json:"groups,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

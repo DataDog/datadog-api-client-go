@@ -186,47 +186,35 @@ func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters"`
 		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type"`
 		IsEnabled        *bool                            `json:"is_enabled"`
 		Name             *string                          `json:"name"`
 		Query            *string                          `json:"query"`
 	}{}
-	all := struct {
-		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
-		FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
-		IsEnabled        bool                            `json:"is_enabled"`
-		Name             string                          `json:"name"`
-		Query            string                          `json:"query"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ExclusionFilters == nil {
-		return fmt.Errorf("required field exclusion_filters missing")
-	}
-	if required.FilteredDataType == nil {
-		return fmt.Errorf("required field filtered_data_type missing")
-	}
-	if required.IsEnabled == nil {
-		return fmt.Errorf("required field is_enabled missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.ExclusionFilters == nil {
+		return fmt.Errorf("required field exclusion_filters missing")
+	}
+	if all.FilteredDataType == nil {
+		return fmt.Errorf("required field filtered_data_type missing")
+	}
+	if all.IsEnabled == nil {
+		return fmt.Errorf("required field is_enabled missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -242,11 +230,11 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.ExclusionFilters = all.ExclusionFilters
-	o.FilteredDataType = all.FilteredDataType
-	o.IsEnabled = all.IsEnabled
-	o.Name = all.Name
-	o.Query = all.Query
+	o.ExclusionFilters = *all.ExclusionFilters
+	o.FilteredDataType = *all.FilteredDataType
+	o.IsEnabled = *all.IsEnabled
+	o.Name = *all.Name
+	o.Query = *all.Query
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

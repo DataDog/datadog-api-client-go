@@ -177,30 +177,22 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Metric *string `json:"metric"`
-	}{}
 	all := struct {
 		FilterBy []string `json:"filter_by,omitempty"`
 		Limit    *int64   `json:"limit,omitempty"`
-		Metric   string   `json:"metric"`
+		Metric   *string  `json:"metric"`
 		SearchBy *string  `json:"search_by,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Metric == nil {
-		return fmt.Errorf("required field metric missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Metric == nil {
+		return fmt.Errorf("required field metric missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -210,7 +202,7 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.FilterBy = all.FilterBy
 	o.Limit = all.Limit
-	o.Metric = all.Metric
+	o.Metric = *all.Metric
 	o.SearchBy = all.SearchBy
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

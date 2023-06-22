@@ -86,8 +86,7 @@ func (o *GCPServiceAccountMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccessibleProjects []string `json:"accessible_projects,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -243,32 +243,24 @@ func (o SecurityMonitoringSignalRuleQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		RuleId *string `json:"ruleId"`
-	}{}
 	all := struct {
 		Aggregation          *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		CorrelatedByFields   []string                                `json:"correlatedByFields,omitempty"`
 		CorrelatedQueryIndex *int32                                  `json:"correlatedQueryIndex,omitempty"`
 		Metrics              []string                                `json:"metrics,omitempty"`
 		Name                 *string                                 `json:"name,omitempty"`
-		RuleId               string                                  `json:"ruleId"`
+		RuleId               *string                                 `json:"ruleId"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.RuleId == nil {
-		return fmt.Errorf("required field ruleId missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.RuleId == nil {
+		return fmt.Errorf("required field ruleId missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -289,7 +281,7 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 	o.CorrelatedQueryIndex = all.CorrelatedQueryIndex
 	o.Metrics = all.Metrics
 	o.Name = all.Name
-	o.RuleId = all.RuleId
+	o.RuleId = *all.RuleId
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -247,31 +247,23 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name *string `json:"name"`
-	}{}
 	all := struct {
 		AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
 		Default         datadog.NullableString       `json:"default,omitempty"`
 		Defaults        []string                     `json:"defaults,omitempty"`
-		Name            string                       `json:"name"`
+		Name            *string                      `json:"name"`
 		Prefix          datadog.NullableString       `json:"prefix,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -282,7 +274,7 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.AvailableValues = all.AvailableValues
 	o.Default = all.Default
 	o.Defaults = all.Defaults
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Prefix = all.Prefix
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

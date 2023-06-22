@@ -154,8 +154,7 @@ func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err e
 		Status *string  `json:"status,omitempty"`
 		Tags   []string `json:"tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

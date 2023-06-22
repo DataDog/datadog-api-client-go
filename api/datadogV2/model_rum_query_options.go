@@ -125,8 +125,7 @@ func (o *RUMQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 		TimeOffset *int64  `json:"time_offset,omitempty"`
 		Timezone   *string `json:"timezone,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

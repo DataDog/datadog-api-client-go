@@ -307,38 +307,29 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]ListStreamWidgetRequest      `json:"requests"`
-		Type     *ListStreamWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		LegendSize *string                        `json:"legend_size,omitempty"`
-		Requests   []ListStreamWidgetRequest      `json:"requests"`
-		ShowLegend *bool                          `json:"show_legend,omitempty"`
-		Time       *WidgetTime                    `json:"time,omitempty"`
-		Title      *string                        `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize  *string                        `json:"title_size,omitempty"`
-		Type       ListStreamWidgetDefinitionType `json:"type"`
+		LegendSize *string                         `json:"legend_size,omitempty"`
+		Requests   *[]ListStreamWidgetRequest      `json:"requests"`
+		ShowLegend *bool                           `json:"show_legend,omitempty"`
+		Time       *WidgetTime                     `json:"time,omitempty"`
+		Title      *string                         `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize  *string                         `json:"title_size,omitempty"`
+		Type       *ListStreamWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -363,7 +354,7 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.LegendSize = all.LegendSize
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	o.ShowLegend = all.ShowLegend
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -376,7 +367,7 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

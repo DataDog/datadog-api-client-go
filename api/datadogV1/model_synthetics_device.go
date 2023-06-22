@@ -192,43 +192,32 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Height *int64              `json:"height"`
-		Id     *SyntheticsDeviceID `json:"id"`
-		Name   *string             `json:"name"`
-		Width  *int64              `json:"width"`
-	}{}
 	all := struct {
-		Height   int64              `json:"height"`
-		Id       SyntheticsDeviceID `json:"id"`
-		IsMobile *bool              `json:"isMobile,omitempty"`
-		Name     string             `json:"name"`
-		Width    int64              `json:"width"`
+		Height   *int64              `json:"height"`
+		Id       *SyntheticsDeviceID `json:"id"`
+		IsMobile *bool               `json:"isMobile,omitempty"`
+		Name     *string             `json:"name"`
+		Width    *int64              `json:"width"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Height == nil {
-		return fmt.Errorf("required field height missing")
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Width == nil {
-		return fmt.Errorf("required field width missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Height == nil {
+		return fmt.Errorf("required field height missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Width == nil {
+		return fmt.Errorf("required field width missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -244,11 +233,11 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Height = all.Height
-	o.Id = all.Id
+	o.Height = *all.Height
+	o.Id = *all.Id
 	o.IsMobile = all.IsMobile
-	o.Name = all.Name
-	o.Width = all.Width
+	o.Name = *all.Name
+	o.Width = *all.Width
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

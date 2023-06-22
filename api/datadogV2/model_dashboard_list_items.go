@@ -111,22 +111,11 @@ func (o DashboardListItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Dashboards *[]DashboardListItem `json:"dashboards"`
-	}{}
 	all := struct {
-		Dashboards []DashboardListItem `json:"dashboards"`
-		Total      *int64              `json:"total,omitempty"`
+		Dashboards *[]DashboardListItem `json:"dashboards"`
+		Total      *int64               `json:"total,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Dashboards == nil {
-		return fmt.Errorf("required field dashboards missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Dashboards == nil {
+		return fmt.Errorf("required field dashboards missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"dashboards", "total"})
 	} else {
 		return err
 	}
-	o.Dashboards = all.Dashboards
+	o.Dashboards = *all.Dashboards
 	o.Total = all.Total
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

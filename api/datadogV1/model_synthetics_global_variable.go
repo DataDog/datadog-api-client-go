@@ -291,46 +291,35 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Description *string                        `json:"description"`
-		Name        *string                        `json:"name"`
-		Tags        *[]string                      `json:"tags"`
-		Value       *SyntheticsGlobalVariableValue `json:"value"`
-	}{}
 	all := struct {
 		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
-		Description       string                                    `json:"description"`
+		Description       *string                                   `json:"description"`
 		Id                *string                                   `json:"id,omitempty"`
-		Name              string                                    `json:"name"`
+		Name              *string                                   `json:"name"`
 		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
 		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
-		Tags              []string                                  `json:"tags"`
-		Value             SyntheticsGlobalVariableValue             `json:"value"`
+		Tags              *[]string                                 `json:"tags"`
+		Value             *SyntheticsGlobalVariableValue            `json:"value"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Description == nil {
-		return fmt.Errorf("required field description missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Tags == nil {
-		return fmt.Errorf("required field tags missing")
-	}
-	if required.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Description == nil {
+		return fmt.Errorf("required field description missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Tags == nil {
+		return fmt.Errorf("required field tags missing")
+	}
+	if all.Value == nil {
+		return fmt.Errorf("required field value missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -346,9 +335,9 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Attributes = all.Attributes
-	o.Description = all.Description
+	o.Description = *all.Description
 	o.Id = all.Id
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.ParseTestOptions != nil && all.ParseTestOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -358,7 +347,7 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ParseTestOptions = all.ParseTestOptions
 	o.ParseTestPublicId = all.ParseTestPublicId
-	o.Tags = all.Tags
+	o.Tags = *all.Tags
 	if all.Value.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -366,7 +355,7 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Value = all.Value
+	o.Value = *all.Value
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

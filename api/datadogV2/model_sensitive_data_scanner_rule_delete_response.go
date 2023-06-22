@@ -86,8 +86,7 @@ func (o *SensitiveDataScannerRuleDeleteResponse) UnmarshalJSON(bytes []byte) (er
 	all := struct {
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

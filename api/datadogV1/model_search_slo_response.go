@@ -154,8 +154,7 @@ func (o *SearchSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Links *SearchSLOResponseLinks `json:"links,omitempty"`
 		Meta  *SearchSLOResponseMeta  `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

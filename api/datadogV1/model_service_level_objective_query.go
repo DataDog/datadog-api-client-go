@@ -107,26 +107,11 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Denominator *string `json:"denominator"`
 		Numerator   *string `json:"numerator"`
 	}{}
-	all := struct {
-		Denominator string `json:"denominator"`
-		Numerator   string `json:"numerator"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Denominator == nil {
-		return fmt.Errorf("required field denominator missing")
-	}
-	if required.Numerator == nil {
-		return fmt.Errorf("required field numerator missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,14 +119,20 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Denominator == nil {
+		return fmt.Errorf("required field denominator missing")
+	}
+	if all.Numerator == nil {
+		return fmt.Errorf("required field numerator missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"denominator", "numerator"})
 	} else {
 		return err
 	}
-	o.Denominator = all.Denominator
-	o.Numerator = all.Numerator
+	o.Denominator = *all.Denominator
+	o.Numerator = *all.Numerator
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

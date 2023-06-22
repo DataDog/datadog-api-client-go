@@ -132,31 +132,12 @@ func (o MonitorConfigPolicyTagPolicyCreateRequest) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorConfigPolicyTagPolicyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		TagKey         *string   `json:"tag_key"`
 		TagKeyRequired *bool     `json:"tag_key_required"`
 		ValidTagValues *[]string `json:"valid_tag_values"`
 	}{}
-	all := struct {
-		TagKey         string   `json:"tag_key"`
-		TagKeyRequired bool     `json:"tag_key_required"`
-		ValidTagValues []string `json:"valid_tag_values"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.TagKey == nil {
-		return fmt.Errorf("required field tag_key missing")
-	}
-	if required.TagKeyRequired == nil {
-		return fmt.Errorf("required field tag_key_required missing")
-	}
-	if required.ValidTagValues == nil {
-		return fmt.Errorf("required field valid_tag_values missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -164,15 +145,24 @@ func (o *MonitorConfigPolicyTagPolicyCreateRequest) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.TagKey == nil {
+		return fmt.Errorf("required field tag_key missing")
+	}
+	if all.TagKeyRequired == nil {
+		return fmt.Errorf("required field tag_key_required missing")
+	}
+	if all.ValidTagValues == nil {
+		return fmt.Errorf("required field valid_tag_values missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_key_required", "valid_tag_values"})
 	} else {
 		return err
 	}
-	o.TagKey = all.TagKey
-	o.TagKeyRequired = all.TagKeyRequired
-	o.ValidTagValues = all.ValidTagValues
+	o.TagKey = *all.TagKey
+	o.TagKeyRequired = *all.TagKeyRequired
+	o.ValidTagValues = *all.ValidTagValues
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

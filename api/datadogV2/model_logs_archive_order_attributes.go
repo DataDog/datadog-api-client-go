@@ -79,21 +79,10 @@ func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ArchiveIds *[]string `json:"archive_ids"`
 	}{}
-	all := struct {
-		ArchiveIds []string `json:"archive_ids"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ArchiveIds == nil {
-		return fmt.Errorf("required field archive_ids missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -101,13 +90,16 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ArchiveIds == nil {
+		return fmt.Errorf("required field archive_ids missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"archive_ids"})
 	} else {
 		return err
 	}
-	o.ArchiveIds = all.ArchiveIds
+	o.ArchiveIds = *all.ArchiveIds
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

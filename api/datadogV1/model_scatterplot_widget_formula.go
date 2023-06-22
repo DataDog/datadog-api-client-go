@@ -138,33 +138,24 @@ func (o ScatterplotWidgetFormula) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		Alias     *string               `json:"alias,omitempty"`
 		Dimension *ScatterplotDimension `json:"dimension"`
 		Formula   *string               `json:"formula"`
 	}{}
-	all := struct {
-		Alias     *string              `json:"alias,omitempty"`
-		Dimension ScatterplotDimension `json:"dimension"`
-		Formula   string               `json:"formula"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Dimension == nil {
-		return fmt.Errorf("required field dimension missing")
-	}
-	if required.Formula == nil {
-		return fmt.Errorf("required field formula missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Dimension == nil {
+		return fmt.Errorf("required field dimension missing")
+	}
+	if all.Formula == nil {
+		return fmt.Errorf("required field formula missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -181,8 +172,8 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Alias = all.Alias
-	o.Dimension = all.Dimension
-	o.Formula = all.Formula
+	o.Dimension = *all.Dimension
+	o.Formula = *all.Formula
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

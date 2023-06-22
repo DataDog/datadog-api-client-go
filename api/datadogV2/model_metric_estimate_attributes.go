@@ -163,8 +163,7 @@ func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		EstimatedAt           *time.Time          `json:"estimated_at,omitempty"`
 		EstimatedOutputSeries *int64              `json:"estimated_output_series,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

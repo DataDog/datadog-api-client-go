@@ -426,8 +426,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 		Updater      *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
 		Version      *int64                                           `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

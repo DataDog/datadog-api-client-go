@@ -298,42 +298,32 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Category *SLOCorrectionCategory `json:"category"`
-		SloId    *string                `json:"slo_id"`
-		Start    *int64                 `json:"start"`
-	}{}
 	all := struct {
-		Category    SLOCorrectionCategory `json:"category"`
-		Description *string               `json:"description,omitempty"`
-		Duration    *int64                `json:"duration,omitempty"`
-		End         *int64                `json:"end,omitempty"`
-		Rrule       *string               `json:"rrule,omitempty"`
-		SloId       string                `json:"slo_id"`
-		Start       int64                 `json:"start"`
-		Timezone    *string               `json:"timezone,omitempty"`
+		Category    *SLOCorrectionCategory `json:"category"`
+		Description *string                `json:"description,omitempty"`
+		Duration    *int64                 `json:"duration,omitempty"`
+		End         *int64                 `json:"end,omitempty"`
+		Rrule       *string                `json:"rrule,omitempty"`
+		SloId       *string                `json:"slo_id"`
+		Start       *int64                 `json:"start"`
+		Timezone    *string                `json:"timezone,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Category == nil {
-		return fmt.Errorf("required field category missing")
-	}
-	if required.SloId == nil {
-		return fmt.Errorf("required field slo_id missing")
-	}
-	if required.Start == nil {
-		return fmt.Errorf("required field start missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Category == nil {
+		return fmt.Errorf("required field category missing")
+	}
+	if all.SloId == nil {
+		return fmt.Errorf("required field slo_id missing")
+	}
+	if all.Start == nil {
+		return fmt.Errorf("required field start missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -349,13 +339,13 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Category = all.Category
+	o.Category = *all.Category
 	o.Description = all.Description
 	o.Duration = all.Duration
 	o.End = all.End
 	o.Rrule = all.Rrule
-	o.SloId = all.SloId
-	o.Start = all.Start
+	o.SloId = *all.SloId
+	o.Start = *all.Start
 	o.Timezone = all.Timezone
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

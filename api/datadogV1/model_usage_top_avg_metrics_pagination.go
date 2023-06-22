@@ -176,8 +176,7 @@ func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 		NextRecordId         datadog.NullableString `json:"next_record_id,omitempty"`
 		TotalNumberOfRecords datadog.NullableInt64  `json:"total_number_of_records,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

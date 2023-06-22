@@ -238,8 +238,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 		StorageTier *LogsStorageTier `json:"storage_tier,omitempty"`
 		To          *string          `json:"to,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

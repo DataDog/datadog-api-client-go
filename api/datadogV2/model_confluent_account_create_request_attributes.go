@@ -171,28 +171,13 @@ func (o ConfluentAccountCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		ApiKey    *string `json:"api_key"`
-		ApiSecret *string `json:"api_secret"`
-	}{}
 	all := struct {
-		ApiKey    string                               `json:"api_key"`
-		ApiSecret string                               `json:"api_secret"`
+		ApiKey    *string                              `json:"api_key"`
+		ApiSecret *string                              `json:"api_secret"`
 		Resources []ConfluentAccountResourceAttributes `json:"resources,omitempty"`
 		Tags      []string                             `json:"tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ApiKey == nil {
-		return fmt.Errorf("required field api_key missing")
-	}
-	if required.ApiSecret == nil {
-		return fmt.Errorf("required field api_secret missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -200,14 +185,20 @@ func (o *ConfluentAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApiKey == nil {
+		return fmt.Errorf("required field api_key missing")
+	}
+	if all.ApiSecret == nil {
+		return fmt.Errorf("required field api_secret missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "api_secret", "resources", "tags"})
 	} else {
 		return err
 	}
-	o.ApiKey = all.ApiKey
-	o.ApiSecret = all.ApiSecret
+	o.ApiKey = *all.ApiKey
+	o.ApiSecret = *all.ApiSecret
 	o.Resources = all.Resources
 	o.Tags = all.Tags
 	if len(additionalProperties) > 0 {

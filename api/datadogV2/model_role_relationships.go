@@ -120,8 +120,7 @@ func (o *RoleRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
 		Users       *RelationshipToUsers       `json:"users,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

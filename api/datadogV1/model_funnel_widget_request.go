@@ -105,32 +105,23 @@ func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Query       *FunnelQuery       `json:"query"`
 		RequestType *FunnelRequestType `json:"request_type"`
 	}{}
-	all := struct {
-		Query       FunnelQuery       `json:"query"`
-		RequestType FunnelRequestType `json:"request_type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	if required.RequestType == nil {
-		return fmt.Errorf("required field request_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
+	if all.RequestType == nil {
+		return fmt.Errorf("required field request_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -153,8 +144,8 @@ func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Query = all.Query
-	o.RequestType = all.RequestType
+	o.Query = *all.Query
+	o.RequestType = *all.RequestType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

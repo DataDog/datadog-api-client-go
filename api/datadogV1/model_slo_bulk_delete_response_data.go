@@ -123,8 +123,7 @@ func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Deleted []string `json:"deleted,omitempty"`
 		Updated []string `json:"updated,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

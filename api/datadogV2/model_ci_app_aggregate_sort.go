@@ -192,8 +192,7 @@ func (o *CIAppAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		Order       *CIAppSortOrder           `json:"order,omitempty"`
 		Type        *CIAppAggregateSortType   `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -171,28 +171,13 @@ func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Email          *string `json:"email"`
-		ServiceAccount *bool   `json:"service_account"`
-	}{}
 	all := struct {
-		Email          string  `json:"email"`
+		Email          *string `json:"email"`
 		Name           *string `json:"name,omitempty"`
-		ServiceAccount bool    `json:"service_account"`
+		ServiceAccount *bool   `json:"service_account"`
 		Title          *string `json:"title,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Email == nil {
-		return fmt.Errorf("required field email missing")
-	}
-	if required.ServiceAccount == nil {
-		return fmt.Errorf("required field service_account missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -200,15 +185,21 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Email == nil {
+		return fmt.Errorf("required field email missing")
+	}
+	if all.ServiceAccount == nil {
+		return fmt.Errorf("required field service_account missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "service_account", "title"})
 	} else {
 		return err
 	}
-	o.Email = all.Email
+	o.Email = *all.Email
 	o.Name = all.Name
-	o.ServiceAccount = all.ServiceAccount
+	o.ServiceAccount = *all.ServiceAccount
 	o.Title = all.Title
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -78,27 +78,19 @@ func (o UserInvitationRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		User *RelationshipToUser `json:"user"`
 	}{}
-	all := struct {
-		User RelationshipToUser `json:"user"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.User == nil {
-		return fmt.Errorf("required field user missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.User == nil {
+		return fmt.Errorf("required field user missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -113,7 +105,7 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.User = all.User
+	o.User = *all.User
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

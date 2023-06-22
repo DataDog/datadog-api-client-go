@@ -264,41 +264,31 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Compute    *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
 		DataSource *FormulaAndFunctionEventsDataSource            `json:"data_source"`
+		GroupBy    []FormulaAndFunctionEventQueryGroupBy          `json:"group_by,omitempty"`
+		Indexes    []string                                       `json:"indexes,omitempty"`
 		Name       *string                                        `json:"name"`
+		Search     *FormulaAndFunctionEventQueryDefinitionSearch  `json:"search,omitempty"`
+		Storage    *string                                        `json:"storage,omitempty"`
 	}{}
-	all := struct {
-		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    []FormulaAndFunctionEventQueryGroupBy         `json:"group_by,omitempty"`
-		Indexes    []string                                      `json:"indexes,omitempty"`
-		Name       string                                        `json:"name"`
-		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
-		Storage    *string                                       `json:"storage,omitempty"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Compute == nil {
-		return fmt.Errorf("required field compute missing")
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Compute == nil {
+		return fmt.Errorf("required field compute missing")
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -321,11 +311,11 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 		}
 		o.UnparsedObject = raw
 	}
-	o.Compute = all.Compute
-	o.DataSource = all.DataSource
+	o.Compute = *all.Compute
+	o.DataSource = *all.DataSource
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

@@ -87,8 +87,7 @@ func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

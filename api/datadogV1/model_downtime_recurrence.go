@@ -298,8 +298,7 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 		UntilOccurrences datadog.NullableInt32        `json:"until_occurrences,omitempty"`
 		WeekDays         datadog.NullableList[string] `json:"week_days,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

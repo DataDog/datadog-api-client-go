@@ -330,43 +330,33 @@ func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Comparator *WidgetComparator `json:"comparator"`
-		Palette    *WidgetPalette    `json:"palette"`
-		Value      *float64          `json:"value"`
-	}{}
 	all := struct {
-		Comparator    WidgetComparator `json:"comparator"`
-		CustomBgColor *string          `json:"custom_bg_color,omitempty"`
-		CustomFgColor *string          `json:"custom_fg_color,omitempty"`
-		HideValue     *bool            `json:"hide_value,omitempty"`
-		ImageUrl      *string          `json:"image_url,omitempty"`
-		Metric        *string          `json:"metric,omitempty"`
-		Palette       WidgetPalette    `json:"palette"`
-		Timeframe     *string          `json:"timeframe,omitempty"`
-		Value         float64          `json:"value"`
+		Comparator    *WidgetComparator `json:"comparator"`
+		CustomBgColor *string           `json:"custom_bg_color,omitempty"`
+		CustomFgColor *string           `json:"custom_fg_color,omitempty"`
+		HideValue     *bool             `json:"hide_value,omitempty"`
+		ImageUrl      *string           `json:"image_url,omitempty"`
+		Metric        *string           `json:"metric,omitempty"`
+		Palette       *WidgetPalette    `json:"palette"`
+		Timeframe     *string           `json:"timeframe,omitempty"`
+		Value         *float64          `json:"value"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Comparator == nil {
-		return fmt.Errorf("required field comparator missing")
-	}
-	if required.Palette == nil {
-		return fmt.Errorf("required field palette missing")
-	}
-	if required.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Comparator == nil {
+		return fmt.Errorf("required field comparator missing")
+	}
+	if all.Palette == nil {
+		return fmt.Errorf("required field palette missing")
+	}
+	if all.Value == nil {
+		return fmt.Errorf("required field value missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -390,15 +380,15 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Comparator = all.Comparator
+	o.Comparator = *all.Comparator
 	o.CustomBgColor = all.CustomBgColor
 	o.CustomFgColor = all.CustomFgColor
 	o.HideValue = all.HideValue
 	o.ImageUrl = all.ImageUrl
 	o.Metric = all.Metric
-	o.Palette = all.Palette
+	o.Palette = *all.Palette
 	o.Timeframe = all.Timeframe
-	o.Value = all.Value
+	o.Value = *all.Value
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

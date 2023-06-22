@@ -185,8 +185,7 @@ func (o *MuteFindingResponseProperties) UnmarshalJSON(bytes []byte) (err error) 
 		Muted          *bool              `json:"muted,omitempty"`
 		Reason         *FindingMuteReason `json:"reason,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

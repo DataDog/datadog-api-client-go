@@ -226,29 +226,14 @@ func (o IncidentTodoAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assignees *[]IncidentTodoAssignee `json:"assignees"`
-		Content   *string                 `json:"content"`
-	}{}
 	all := struct {
-		Assignees  []IncidentTodoAssignee `json:"assignees"`
-		Completed  datadog.NullableString `json:"completed,omitempty"`
-		Content    string                 `json:"content"`
-		DueDate    datadog.NullableString `json:"due_date,omitempty"`
-		IncidentId *string                `json:"incident_id,omitempty"`
+		Assignees  *[]IncidentTodoAssignee `json:"assignees"`
+		Completed  datadog.NullableString  `json:"completed,omitempty"`
+		Content    *string                 `json:"content"`
+		DueDate    datadog.NullableString  `json:"due_date,omitempty"`
+		IncidentId *string                 `json:"incident_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assignees == nil {
-		return fmt.Errorf("required field assignees missing")
-	}
-	if required.Content == nil {
-		return fmt.Errorf("required field content missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -256,15 +241,21 @@ func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Assignees == nil {
+		return fmt.Errorf("required field assignees missing")
+	}
+	if all.Content == nil {
+		return fmt.Errorf("required field content missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assignees", "completed", "content", "due_date", "incident_id"})
 	} else {
 		return err
 	}
-	o.Assignees = all.Assignees
+	o.Assignees = *all.Assignees
 	o.Completed = all.Completed
-	o.Content = all.Content
+	o.Content = *all.Content
 	o.DueDate = all.DueDate
 	o.IncidentId = all.IncidentId
 	if len(additionalProperties) > 0 {

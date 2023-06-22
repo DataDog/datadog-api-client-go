@@ -105,26 +105,11 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ErrorMessage *string `json:"error_message"`
 		ErrorType    *string `json:"error_type"`
 	}{}
-	all := struct {
-		ErrorMessage string `json:"error_message"`
-		ErrorType    string `json:"error_type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ErrorMessage == nil {
-		return fmt.Errorf("required field error_message missing")
-	}
-	if required.ErrorType == nil {
-		return fmt.Errorf("required field error_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ErrorMessage == nil {
+		return fmt.Errorf("required field error_message missing")
+	}
+	if all.ErrorType == nil {
+		return fmt.Errorf("required field error_type missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type"})
 	} else {
 		return err
 	}
-	o.ErrorMessage = all.ErrorMessage
-	o.ErrorType = all.ErrorType
+	o.ErrorMessage = *all.ErrorMessage
+	o.ErrorType = *all.ErrorType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

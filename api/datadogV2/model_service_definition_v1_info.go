@@ -177,24 +177,13 @@ func (o ServiceDefinitionV1Info) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DdService *string `json:"dd-service"`
-	}{}
 	all := struct {
-		DdService   string  `json:"dd-service"`
+		DdService   *string `json:"dd-service"`
 		Description *string `json:"description,omitempty"`
 		DisplayName *string `json:"display-name,omitempty"`
 		ServiceTier *string `json:"service-tier,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DdService == nil {
-		return fmt.Errorf("required field dd-service missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -202,13 +191,16 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.DdService == nil {
+		return fmt.Errorf("required field dd-service missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"dd-service", "description", "display-name", "service-tier"})
 	} else {
 		return err
 	}
-	o.DdService = all.DdService
+	o.DdService = *all.DdService
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
 	o.ServiceTier = all.ServiceTier

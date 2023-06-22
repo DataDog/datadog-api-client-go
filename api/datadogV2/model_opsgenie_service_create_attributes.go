@@ -165,38 +165,28 @@ func (o OpsgenieServiceCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		CustomUrl      *string                    `json:"custom_url,omitempty"`
 		Name           *string                    `json:"name"`
 		OpsgenieApiKey *string                    `json:"opsgenie_api_key"`
 		Region         *OpsgenieServiceRegionType `json:"region"`
 	}{}
-	all := struct {
-		CustomUrl      *string                   `json:"custom_url,omitempty"`
-		Name           string                    `json:"name"`
-		OpsgenieApiKey string                    `json:"opsgenie_api_key"`
-		Region         OpsgenieServiceRegionType `json:"region"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.OpsgenieApiKey == nil {
-		return fmt.Errorf("required field opsgenie_api_key missing")
-	}
-	if required.Region == nil {
-		return fmt.Errorf("required field region missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.OpsgenieApiKey == nil {
+		return fmt.Errorf("required field opsgenie_api_key missing")
+	}
+	if all.Region == nil {
+		return fmt.Errorf("required field region missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -213,9 +203,9 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		return nil
 	}
 	o.CustomUrl = all.CustomUrl
-	o.Name = all.Name
-	o.OpsgenieApiKey = all.OpsgenieApiKey
-	o.Region = all.Region
+	o.Name = *all.Name
+	o.OpsgenieApiKey = *all.OpsgenieApiKey
+	o.Region = *all.Region
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -120,8 +120,7 @@ func (o *UsageSpecifiedCustomReportsResponse) UnmarshalJSON(bytes []byte) (err e
 		Data *UsageSpecifiedCustomReportsData `json:"data,omitempty"`
 		Meta *UsageSpecifiedCustomReportsMeta `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

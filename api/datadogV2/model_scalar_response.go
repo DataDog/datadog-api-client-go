@@ -124,8 +124,7 @@ func (o *ScalarResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Attributes *ScalarFormulaResponseAtrributes `json:"attributes,omitempty"`
 		Type       *ScalarFormulaResponseType       `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

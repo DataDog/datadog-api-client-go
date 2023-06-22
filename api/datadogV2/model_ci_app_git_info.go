@@ -529,13 +529,8 @@ func (o CIAppGitInfo) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		AuthorEmail   *string `json:"author_email"`
-		RepositoryUrl *string `json:"repository_url"`
-		Sha           *string `json:"sha"`
-	}{}
 	all := struct {
-		AuthorEmail    string                 `json:"author_email"`
+		AuthorEmail    *string                `json:"author_email"`
 		AuthorName     datadog.NullableString `json:"author_name,omitempty"`
 		AuthorTime     datadog.NullableString `json:"author_time,omitempty"`
 		Branch         datadog.NullableString `json:"branch,omitempty"`
@@ -544,25 +539,11 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 		CommitterName  datadog.NullableString `json:"committer_name,omitempty"`
 		DefaultBranch  datadog.NullableString `json:"default_branch,omitempty"`
 		Message        datadog.NullableString `json:"message,omitempty"`
-		RepositoryUrl  string                 `json:"repository_url"`
-		Sha            string                 `json:"sha"`
+		RepositoryUrl  *string                `json:"repository_url"`
+		Sha            *string                `json:"sha"`
 		Tag            datadog.NullableString `json:"tag,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AuthorEmail == nil {
-		return fmt.Errorf("required field author_email missing")
-	}
-	if required.RepositoryUrl == nil {
-		return fmt.Errorf("required field repository_url missing")
-	}
-	if required.Sha == nil {
-		return fmt.Errorf("required field sha missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -570,13 +551,22 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.AuthorEmail == nil {
+		return fmt.Errorf("required field author_email missing")
+	}
+	if all.RepositoryUrl == nil {
+		return fmt.Errorf("required field repository_url missing")
+	}
+	if all.Sha == nil {
+		return fmt.Errorf("required field sha missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"author_email", "author_name", "author_time", "branch", "commit_time", "committer_email", "committer_name", "default_branch", "message", "repository_url", "sha", "tag"})
 	} else {
 		return err
 	}
-	o.AuthorEmail = all.AuthorEmail
+	o.AuthorEmail = *all.AuthorEmail
 	o.AuthorName = all.AuthorName
 	o.AuthorTime = all.AuthorTime
 	o.Branch = all.Branch
@@ -585,8 +575,8 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	o.CommitterName = all.CommitterName
 	o.DefaultBranch = all.DefaultBranch
 	o.Message = all.Message
-	o.RepositoryUrl = all.RepositoryUrl
-	o.Sha = all.Sha
+	o.RepositoryUrl = *all.RepositoryUrl
+	o.Sha = *all.Sha
 	o.Tag = all.Tag
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -480,39 +480,31 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type *LogStreamWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		Columns           []string                      `json:"columns,omitempty"`
-		Indexes           []string                      `json:"indexes,omitempty"`
-		Logset            *string                       `json:"logset,omitempty"`
-		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
-		Query             *string                       `json:"query,omitempty"`
-		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"`
-		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"`
-		Sort              *WidgetFieldSort              `json:"sort,omitempty"`
-		Time              *WidgetTime                   `json:"time,omitempty"`
-		Title             *string                       `json:"title,omitempty"`
-		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"`
-		TitleSize         *string                       `json:"title_size,omitempty"`
-		Type              LogStreamWidgetDefinitionType `json:"type"`
+		Columns           []string                       `json:"columns,omitempty"`
+		Indexes           []string                       `json:"indexes,omitempty"`
+		Logset            *string                        `json:"logset,omitempty"`
+		MessageDisplay    *WidgetMessageDisplay          `json:"message_display,omitempty"`
+		Query             *string                        `json:"query,omitempty"`
+		ShowDateColumn    *bool                          `json:"show_date_column,omitempty"`
+		ShowMessageColumn *bool                          `json:"show_message_column,omitempty"`
+		Sort              *WidgetFieldSort               `json:"sort,omitempty"`
+		Time              *WidgetTime                    `json:"time,omitempty"`
+		Title             *string                        `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize         *string                        `json:"title_size,omitempty"`
+		Type              *LogStreamWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -570,7 +562,7 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

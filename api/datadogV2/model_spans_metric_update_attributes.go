@@ -154,8 +154,7 @@ func (o *SpansMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Filter  *SpansMetricFilter        `json:"filter,omitempty"`
 		GroupBy []SpansMetricGroupBy      `json:"group_by,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

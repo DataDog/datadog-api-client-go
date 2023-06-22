@@ -188,8 +188,7 @@ func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		Request         *SyntheticsTestRequest     `json:"request,omitempty"`
 		Steps           []SyntheticsAPIStep        `json:"steps,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -212,31 +212,23 @@ func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type *SyntheticsBasicAuthNTLMType `json:"type"`
-	}{}
 	all := struct {
-		Domain      *string                     `json:"domain,omitempty"`
-		Password    *string                     `json:"password,omitempty"`
-		Type        SyntheticsBasicAuthNTLMType `json:"type"`
-		Username    *string                     `json:"username,omitempty"`
-		Workstation *string                     `json:"workstation,omitempty"`
+		Domain      *string                      `json:"domain,omitempty"`
+		Password    *string                      `json:"password,omitempty"`
+		Type        *SyntheticsBasicAuthNTLMType `json:"type"`
+		Username    *string                      `json:"username,omitempty"`
+		Workstation *string                      `json:"workstation,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -254,7 +246,7 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Domain = all.Domain
 	o.Password = all.Password
-	o.Type = all.Type
+	o.Type = *all.Type
 	o.Username = all.Username
 	o.Workstation = all.Workstation
 	if len(additionalProperties) > 0 {

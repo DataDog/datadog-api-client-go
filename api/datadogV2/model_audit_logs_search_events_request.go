@@ -189,8 +189,7 @@ func (o *AuditLogsSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Page    *AuditLogsQueryPageOptions `json:"page,omitempty"`
 		Sort    *AuditLogsSort             `json:"sort,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

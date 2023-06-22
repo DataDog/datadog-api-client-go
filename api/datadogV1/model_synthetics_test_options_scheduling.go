@@ -120,8 +120,7 @@ func (o *SyntheticsTestOptionsScheduling) UnmarshalJSON(bytes []byte) (err error
 		Timeframes []SyntheticsTestOptionsSchedulingTimeframe `json:"timeframes,omitempty"`
 		Timezone   *string                                    `json:"timezone,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -171,34 +171,25 @@ func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Operator *SyntheticsAssertionJSONPathOperator `json:"operator"`
-		Type     *SyntheticsAssertionType             `json:"type"`
-	}{}
 	all := struct {
-		Operator SyntheticsAssertionJSONPathOperator      `json:"operator"`
+		Operator *SyntheticsAssertionJSONPathOperator     `json:"operator"`
 		Property *string                                  `json:"property,omitempty"`
 		Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-		Type     SyntheticsAssertionType                  `json:"type"`
+		Type     *SyntheticsAssertionType                 `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Operator == nil {
-		return fmt.Errorf("required field operator missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Operator == nil {
+		return fmt.Errorf("required field operator missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -222,7 +213,7 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Operator = all.Operator
+	o.Operator = *all.Operator
 	o.Property = all.Property
 	if all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -232,7 +223,7 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 	}
 	o.Target = all.Target
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

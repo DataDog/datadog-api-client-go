@@ -144,23 +144,12 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Aggregation *string `json:"aggregation"`
-	}{}
 	all := struct {
-		Aggregation string  `json:"aggregation"`
+		Aggregation *string `json:"aggregation"`
 		Facet       *string `json:"facet,omitempty"`
 		Interval    *int64  `json:"interval,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Aggregation == nil {
-		return fmt.Errorf("required field aggregation missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -168,13 +157,16 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Aggregation == nil {
+		return fmt.Errorf("required field aggregation missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet", "interval"})
 	} else {
 		return err
 	}
-	o.Aggregation = all.Aggregation
+	o.Aggregation = *all.Aggregation
 	o.Facet = all.Facet
 	o.Interval = all.Interval
 	if len(additionalProperties) > 0 {

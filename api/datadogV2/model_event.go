@@ -188,8 +188,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 		SourceId *int64  `json:"source_id,omitempty"`
 		Type     *string `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

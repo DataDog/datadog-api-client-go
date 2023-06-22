@@ -86,8 +86,7 @@ func (o *OnDemandConcurrencyCapAttributes) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		OnDemandConcurrencyCap *float64 `json:"on_demand_concurrency_cap,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

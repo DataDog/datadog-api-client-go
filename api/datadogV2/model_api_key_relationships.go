@@ -120,8 +120,7 @@ func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedBy  *RelationshipToUser `json:"created_by,omitempty"`
 		ModifiedBy *RelationshipToUser `json:"modified_by,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -204,29 +204,14 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assertions *[]SyntheticsAssertion `json:"assertions"`
-		Request    *SyntheticsTestRequest `json:"request"`
-	}{}
 	all := struct {
-		Assertions      []SyntheticsAssertion       `json:"assertions"`
+		Assertions      *[]SyntheticsAssertion      `json:"assertions"`
 		ConfigVariables []SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         SyntheticsTestRequest       `json:"request"`
+		Request         *SyntheticsTestRequest      `json:"request"`
 		SetCookie       *string                     `json:"setCookie,omitempty"`
 		Variables       []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assertions == nil {
-		return fmt.Errorf("required field assertions missing")
-	}
-	if required.Request == nil {
-		return fmt.Errorf("required field request missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -234,13 +219,19 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Assertions == nil {
+		return fmt.Errorf("required field assertions missing")
+	}
+	if all.Request == nil {
+		return fmt.Errorf("required field request missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assertions", "configVariables", "request", "setCookie", "variables"})
 	} else {
 		return err
 	}
-	o.Assertions = all.Assertions
+	o.Assertions = *all.Assertions
 	o.ConfigVariables = all.ConfigVariables
 	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -249,7 +240,7 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Request = all.Request
+	o.Request = *all.Request
 	o.SetCookie = all.SetCookie
 	o.Variables = all.Variables
 	if len(additionalProperties) > 0 {

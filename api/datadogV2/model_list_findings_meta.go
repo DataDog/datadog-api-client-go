@@ -113,8 +113,7 @@ func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
 		Page              *ListFindingsPage `json:"page,omitempty"`
 		SnapshotTimestamp *int64            `json:"snapshot_timestamp,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

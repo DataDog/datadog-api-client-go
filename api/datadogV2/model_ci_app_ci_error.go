@@ -221,8 +221,7 @@ func (o *CIAppCIError) UnmarshalJSON(bytes []byte) (err error) {
 		Stack   datadog.NullableString `json:"stack,omitempty"`
 		Type    datadog.NullableString `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

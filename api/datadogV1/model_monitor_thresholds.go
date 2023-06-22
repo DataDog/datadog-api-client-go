@@ -311,8 +311,7 @@ func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 		Warning          datadog.NullableFloat64 `json:"warning,omitempty"`
 		WarningRecovery  datadog.NullableFloat64 `json:"warning_recovery,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

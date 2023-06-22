@@ -455,42 +455,33 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Id   *string        `json:"id"`
-		Type *DashboardType `json:"type"`
-	}{}
 	all := struct {
 		Author     *Creator               `json:"author,omitempty"`
 		Created    *time.Time             `json:"created,omitempty"`
 		Icon       datadog.NullableString `json:"icon,omitempty"`
-		Id         string                 `json:"id"`
+		Id         *string                `json:"id"`
 		IsFavorite *bool                  `json:"is_favorite,omitempty"`
 		IsReadOnly *bool                  `json:"is_read_only,omitempty"`
 		IsShared   *bool                  `json:"is_shared,omitempty"`
 		Modified   *time.Time             `json:"modified,omitempty"`
 		Popularity *int32                 `json:"popularity,omitempty"`
 		Title      *string                `json:"title,omitempty"`
-		Type       DashboardType          `json:"type"`
+		Type       *DashboardType         `json:"type"`
 		Url        *string                `json:"url,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -516,14 +507,14 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Author = all.Author
 	o.Created = all.Created
 	o.Icon = all.Icon
-	o.Id = all.Id
+	o.Id = *all.Id
 	o.IsFavorite = all.IsFavorite
 	o.IsReadOnly = all.IsReadOnly
 	o.IsShared = all.IsShared
 	o.Modified = all.Modified
 	o.Popularity = all.Popularity
 	o.Title = all.Title
-	o.Type = all.Type
+	o.Type = *all.Type
 	o.Url = all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

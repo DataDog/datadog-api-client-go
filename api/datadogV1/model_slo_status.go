@@ -346,8 +346,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 		SpanPrecision           datadog.NullableInt64              `json:"span_precision,omitempty"`
 		State                   *SLOState                          `json:"state,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

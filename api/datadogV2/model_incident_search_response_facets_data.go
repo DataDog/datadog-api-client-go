@@ -426,8 +426,7 @@ func (o *IncidentSearchResponseFacetsData) UnmarshalJSON(bytes []byte) (err erro
 		TimeToRepair   []IncidentSearchResponseNumericFacetData       `json:"time_to_repair,omitempty"`
 		TimeToResolve  []IncidentSearchResponseNumericFacetData       `json:"time_to_resolve,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

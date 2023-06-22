@@ -165,38 +165,28 @@ func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DataSource *FormulaAndFunctionMetricDataSource `json:"data_source"`
-		Name       *string                             `json:"name"`
-		Query      *string                             `json:"query"`
-	}{}
 	all := struct {
 		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-		DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
-		Name       string                               `json:"name"`
-		Query      string                               `json:"query"`
+		DataSource *FormulaAndFunctionMetricDataSource  `json:"data_source"`
+		Name       *string                              `json:"name"`
+		Query      *string                              `json:"query"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -221,9 +211,9 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 		return nil
 	}
 	o.Aggregator = all.Aggregator
-	o.DataSource = all.DataSource
-	o.Name = all.Name
-	o.Query = all.Query
+	o.DataSource = *all.DataSource
+	o.Name = *all.Name
+	o.Query = *all.Query
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

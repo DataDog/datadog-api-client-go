@@ -325,8 +325,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		Tags               []string                             `json:"tags,omitempty"`
 		TextReplacement    *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -188,30 +188,22 @@ func (o NotebookTimeseriesCellAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Definition *TimeseriesWidgetDefinition `json:"definition"`
-	}{}
 	all := struct {
-		Definition TimeseriesWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
-		SplitBy    *NotebookSplitBy           `json:"split_by,omitempty"`
-		Time       NullableNotebookCellTime   `json:"time,omitempty"`
+		Definition *TimeseriesWidgetDefinition `json:"definition"`
+		GraphSize  *NotebookGraphSize          `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy            `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime    `json:"time,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Definition == nil {
-		return fmt.Errorf("required field definition missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Definition == nil {
+		return fmt.Errorf("required field definition missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -234,7 +226,7 @@ func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err erro
 		}
 		o.UnparsedObject = raw
 	}
-	o.Definition = all.Definition
+	o.Definition = *all.Definition
 	o.GraphSize = all.GraphSize
 	if all.SplitBy != nil && all.SplitBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)

@@ -277,58 +277,44 @@ func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Denominator *SLOHistoryMetricsSeries `json:"denominator"`
 		Interval    *int64                   `json:"interval"`
+		Message     *string                  `json:"message,omitempty"`
 		Numerator   *SLOHistoryMetricsSeries `json:"numerator"`
 		Query       *string                  `json:"query"`
 		ResType     *string                  `json:"res_type"`
 		RespVersion *int64                   `json:"resp_version"`
 		Times       *[]float64               `json:"times"`
 	}{}
-	all := struct {
-		Denominator SLOHistoryMetricsSeries `json:"denominator"`
-		Interval    int64                   `json:"interval"`
-		Message     *string                 `json:"message,omitempty"`
-		Numerator   SLOHistoryMetricsSeries `json:"numerator"`
-		Query       string                  `json:"query"`
-		ResType     string                  `json:"res_type"`
-		RespVersion int64                   `json:"resp_version"`
-		Times       []float64               `json:"times"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Denominator == nil {
-		return fmt.Errorf("required field denominator missing")
-	}
-	if required.Interval == nil {
-		return fmt.Errorf("required field interval missing")
-	}
-	if required.Numerator == nil {
-		return fmt.Errorf("required field numerator missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	if required.ResType == nil {
-		return fmt.Errorf("required field res_type missing")
-	}
-	if required.RespVersion == nil {
-		return fmt.Errorf("required field resp_version missing")
-	}
-	if required.Times == nil {
-		return fmt.Errorf("required field times missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Denominator == nil {
+		return fmt.Errorf("required field denominator missing")
+	}
+	if all.Interval == nil {
+		return fmt.Errorf("required field interval missing")
+	}
+	if all.Numerator == nil {
+		return fmt.Errorf("required field numerator missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
+	if all.ResType == nil {
+		return fmt.Errorf("required field res_type missing")
+	}
+	if all.RespVersion == nil {
+		return fmt.Errorf("required field resp_version missing")
+	}
+	if all.Times == nil {
+		return fmt.Errorf("required field times missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -343,8 +329,8 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Denominator = all.Denominator
-	o.Interval = all.Interval
+	o.Denominator = *all.Denominator
+	o.Interval = *all.Interval
 	o.Message = all.Message
 	if all.Numerator.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -353,11 +339,11 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Numerator = all.Numerator
-	o.Query = all.Query
-	o.ResType = all.ResType
-	o.RespVersion = all.RespVersion
-	o.Times = all.Times
+	o.Numerator = *all.Numerator
+	o.Query = *all.Query
+	o.ResType = *all.ResType
+	o.RespVersion = *all.RespVersion
+	o.Times = *all.Times
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

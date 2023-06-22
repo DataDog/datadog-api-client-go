@@ -384,8 +384,7 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 		RumScannedBytes    datadog.NullableInt64 `json:"rum_scanned_bytes,omitempty"`
 		TotalScannedBytes  datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

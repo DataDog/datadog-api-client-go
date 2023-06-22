@@ -805,8 +805,7 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId                    *string               `json:"public_id,omitempty"`
 		VsphereHostCount            datadog.NullableInt64 `json:"vsphere_host_count,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

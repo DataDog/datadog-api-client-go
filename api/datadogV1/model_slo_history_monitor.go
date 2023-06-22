@@ -481,8 +481,7 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 		SpanPrecision        *float64                          `json:"span_precision,omitempty"`
 		Uptime               *float64                          `json:"uptime,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

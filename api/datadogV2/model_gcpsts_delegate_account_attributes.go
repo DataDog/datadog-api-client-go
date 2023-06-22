@@ -86,8 +86,7 @@ func (o *GCPSTSDelegateAccountAttributes) UnmarshalJSON(bytes []byte) (err error
 	all := struct {
 		DelegateAccountEmail *string `json:"delegate_account_email,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

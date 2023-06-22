@@ -192,8 +192,7 @@ func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 		Relationships *ApplicationKeyRelationships     `json:"relationships,omitempty"`
 		Type          *ApplicationKeysType             `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

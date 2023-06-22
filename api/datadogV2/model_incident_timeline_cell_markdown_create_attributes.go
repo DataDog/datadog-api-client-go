@@ -144,33 +144,24 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		CellType *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
-	}{}
 	all := struct {
-		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
-		Important *bool                                               `json:"important,omitempty"`
+		CellType  *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
+		Content   *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+		Important *bool                                                `json:"important,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.CellType == nil {
-		return fmt.Errorf("required field cell_type missing")
-	}
-	if required.Content == nil {
-		return fmt.Errorf("required field content missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.CellType == nil {
+		return fmt.Errorf("required field cell_type missing")
+	}
+	if all.Content == nil {
+		return fmt.Errorf("required field content missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -186,7 +177,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.CellType = all.CellType
+	o.CellType = *all.CellType
 	if all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -194,7 +185,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		}
 		o.UnparsedObject = raw
 	}
-	o.Content = all.Content
+	o.Content = *all.Content
 	o.Important = all.Important
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

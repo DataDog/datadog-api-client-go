@@ -142,8 +142,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnmarshalJSON(bytes [
 		Max datadog.NullableFloat64 `json:"max,omitempty"`
 		Min datadog.NullableFloat64 `json:"min,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

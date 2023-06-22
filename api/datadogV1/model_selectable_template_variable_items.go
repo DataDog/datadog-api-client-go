@@ -199,8 +199,7 @@ func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error
 		Prefix       *string                      `json:"prefix,omitempty"`
 		VisibleTags  datadog.NullableList[string] `json:"visible_tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

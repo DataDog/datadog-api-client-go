@@ -189,8 +189,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Page    *LogsListRequestPage `json:"page,omitempty"`
 		Sort    *LogsSort            `json:"sort,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

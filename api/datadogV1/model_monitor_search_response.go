@@ -154,8 +154,7 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 		Monitors []MonitorSearchResult          `json:"monitors,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

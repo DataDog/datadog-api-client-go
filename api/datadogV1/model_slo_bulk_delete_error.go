@@ -134,37 +134,27 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Id        *string            `json:"id"`
 		Message   *string            `json:"message"`
 		Timeframe *SLOErrorTimeframe `json:"timeframe"`
 	}{}
-	all := struct {
-		Id        string            `json:"id"`
-		Message   string            `json:"message"`
-		Timeframe SLOErrorTimeframe `json:"timeframe"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	if required.Timeframe == nil {
-		return fmt.Errorf("required field timeframe missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
+	}
+	if all.Timeframe == nil {
+		return fmt.Errorf("required field timeframe missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -180,9 +170,9 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Id = all.Id
-	o.Message = all.Message
-	o.Timeframe = all.Timeframe
+	o.Id = *all.Id
+	o.Message = *all.Message
+	o.Timeframe = *all.Timeframe
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

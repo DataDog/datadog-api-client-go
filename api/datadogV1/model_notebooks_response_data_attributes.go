@@ -322,34 +322,26 @@ func (o NotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name *string `json:"name"`
-	}{}
 	all := struct {
 		Author   *NotebookAuthor        `json:"author,omitempty"`
 		Cells    []NotebookCellResponse `json:"cells,omitempty"`
 		Created  *time.Time             `json:"created,omitempty"`
 		Metadata *NotebookMetadata      `json:"metadata,omitempty"`
 		Modified *time.Time             `json:"modified,omitempty"`
-		Name     string                 `json:"name"`
+		Name     *string                `json:"name"`
 		Status   *NotebookStatus        `json:"status,omitempty"`
 		Time     *NotebookGlobalTime    `json:"time,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -384,7 +376,7 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Metadata = all.Metadata
 	o.Modified = all.Modified
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Status = all.Status
 	o.Time = all.Time
 	if len(additionalProperties) > 0 {

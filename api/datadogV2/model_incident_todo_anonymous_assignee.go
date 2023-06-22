@@ -161,42 +161,31 @@ func (o IncidentTodoAnonymousAssignee) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Icon   *string                              `json:"icon"`
 		Id     *string                              `json:"id"`
 		Name   *string                              `json:"name"`
 		Source *IncidentTodoAnonymousAssigneeSource `json:"source"`
 	}{}
-	all := struct {
-		Icon   string                              `json:"icon"`
-		Id     string                              `json:"id"`
-		Name   string                              `json:"name"`
-		Source IncidentTodoAnonymousAssigneeSource `json:"source"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Icon == nil {
-		return fmt.Errorf("required field icon missing")
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Source == nil {
-		return fmt.Errorf("required field source missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Icon == nil {
+		return fmt.Errorf("required field icon missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Source == nil {
+		return fmt.Errorf("required field source missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -212,10 +201,10 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Icon = all.Icon
-	o.Id = all.Id
-	o.Name = all.Name
-	o.Source = all.Source
+	o.Icon = *all.Icon
+	o.Id = *all.Id
+	o.Name = *all.Name
+	o.Source = *all.Source
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

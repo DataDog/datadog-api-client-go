@@ -78,27 +78,19 @@ func (o SecurityMonitoringSignalAssigneeUpdateData) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalAssigneeUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Attributes *SecurityMonitoringSignalAssigneeUpdateAttributes `json:"attributes"`
 	}{}
-	all := struct {
-		Attributes SecurityMonitoringSignalAssigneeUpdateAttributes `json:"attributes"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Attributes == nil {
-		return fmt.Errorf("required field attributes missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -113,7 +105,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateData) UnmarshalJSON(bytes []byte)
 		}
 		o.UnparsedObject = raw
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -244,8 +244,7 @@ func (o *SearchSLOResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 		Prev  datadog.NullableString `json:"prev,omitempty"`
 		Self  *string                `json:"self,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

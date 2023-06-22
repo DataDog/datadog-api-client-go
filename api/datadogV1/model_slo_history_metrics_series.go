@@ -166,32 +166,13 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Count  *int64     `json:"count"`
-		Sum    *float64   `json:"sum"`
-		Values *[]float64 `json:"values"`
-	}{}
 	all := struct {
-		Count    int64                            `json:"count"`
+		Count    *int64                           `json:"count"`
 		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
-		Sum      float64                          `json:"sum"`
-		Values   []float64                        `json:"values"`
+		Sum      *float64                         `json:"sum"`
+		Values   *[]float64                       `json:"values"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Count == nil {
-		return fmt.Errorf("required field count missing")
-	}
-	if required.Sum == nil {
-		return fmt.Errorf("required field sum missing")
-	}
-	if required.Values == nil {
-		return fmt.Errorf("required field values missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -199,13 +180,22 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Count == nil {
+		return fmt.Errorf("required field count missing")
+	}
+	if all.Sum == nil {
+		return fmt.Errorf("required field sum missing")
+	}
+	if all.Values == nil {
+		return fmt.Errorf("required field values missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"count", "metadata", "sum", "values"})
 	} else {
 		return err
 	}
-	o.Count = all.Count
+	o.Count = *all.Count
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -214,8 +204,8 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.Sum = all.Sum
-	o.Values = all.Values
+	o.Sum = *all.Sum
+	o.Values = *all.Values
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

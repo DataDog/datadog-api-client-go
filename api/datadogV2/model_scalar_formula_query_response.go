@@ -120,8 +120,7 @@ func (o *ScalarFormulaQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data   *ScalarResponse `json:"data,omitempty"`
 		Errors *string         `json:"errors,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

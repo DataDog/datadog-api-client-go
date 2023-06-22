@@ -290,8 +290,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		Timeout      *int64              `json:"timeout,omitempty"`
 		Type         *SyntheticsStepType `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

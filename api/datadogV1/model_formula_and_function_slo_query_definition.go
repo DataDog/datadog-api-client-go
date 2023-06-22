@@ -231,40 +231,30 @@ func (o FormulaAndFunctionSLOQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DataSource *FormulaAndFunctionSLODataSource `json:"data_source"`
-		Measure    *FormulaAndFunctionSLOMeasure    `json:"measure"`
-		SloId      *string                          `json:"slo_id"`
-	}{}
 	all := struct {
-		DataSource   FormulaAndFunctionSLODataSource `json:"data_source"`
-		GroupMode    *FormulaAndFunctionSLOGroupMode `json:"group_mode,omitempty"`
-		Measure      FormulaAndFunctionSLOMeasure    `json:"measure"`
-		Name         *string                         `json:"name,omitempty"`
-		SloId        string                          `json:"slo_id"`
-		SloQueryType *FormulaAndFunctionSLOQueryType `json:"slo_query_type,omitempty"`
+		DataSource   *FormulaAndFunctionSLODataSource `json:"data_source"`
+		GroupMode    *FormulaAndFunctionSLOGroupMode  `json:"group_mode,omitempty"`
+		Measure      *FormulaAndFunctionSLOMeasure    `json:"measure"`
+		Name         *string                          `json:"name,omitempty"`
+		SloId        *string                          `json:"slo_id"`
+		SloQueryType *FormulaAndFunctionSLOQueryType  `json:"slo_query_type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Measure == nil {
-		return fmt.Errorf("required field measure missing")
-	}
-	if required.SloId == nil {
-		return fmt.Errorf("required field slo_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Measure == nil {
+		return fmt.Errorf("required field measure missing")
+	}
+	if all.SloId == nil {
+		return fmt.Errorf("required field slo_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -304,11 +294,11 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.DataSource = all.DataSource
+	o.DataSource = *all.DataSource
 	o.GroupMode = all.GroupMode
-	o.Measure = all.Measure
+	o.Measure = *all.Measure
 	o.Name = all.Name
-	o.SloId = all.SloId
+	o.SloId = *all.SloId
 	o.SloQueryType = all.SloQueryType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

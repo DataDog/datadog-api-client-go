@@ -105,26 +105,11 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Palette     *string `json:"palette"`
 		PaletteFlip *bool   `json:"palette_flip"`
 	}{}
-	all := struct {
-		Palette     string `json:"palette"`
-		PaletteFlip bool   `json:"palette_flip"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Palette == nil {
-		return fmt.Errorf("required field palette missing")
-	}
-	if required.PaletteFlip == nil {
-		return fmt.Errorf("required field palette_flip missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Palette == nil {
+		return fmt.Errorf("required field palette missing")
+	}
+	if all.PaletteFlip == nil {
+		return fmt.Errorf("required field palette_flip missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"palette", "palette_flip"})
 	} else {
 		return err
 	}
-	o.Palette = all.Palette
-	o.PaletteFlip = all.PaletteFlip
+	o.Palette = *all.Palette
+	o.PaletteFlip = *all.PaletteFlip
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

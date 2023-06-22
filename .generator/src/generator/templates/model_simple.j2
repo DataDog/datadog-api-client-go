@@ -328,43 +328,18 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 {%- else %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
-	{%- set propertyName = attr|attribute_name %}
-	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
-	{%- if loop.first %}
-	required := struct {
-	{%- endif %}
-		{{ propertyName }} {% if not spec.nullable %}*{% endif %}{{ dataType }} `json:"{{ attr }}"`
-	{%- if loop.last %}
-	}{}
-	{%- endif %}
-	{%- endfor %}
 	all := struct {
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
 	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
-		{{ propertyName }} {% if model|is_reference(attr) %}*{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"`
+	{%- if attr in model.get("required", []) %}
+		{{ propertyName }} {% if not spec.nullable %}*{% endif %}{{ dataType }} `json:"{{ attr }}"`
+	{%- else %}
+		{{ propertyName }} {% if model|is_reference(attr) %}*{% endif %}{{ dataType }} `json:"{{ attr }},omitempty"`
+	{%- endif %}
 	{%- endfor %}
 	}{}
-	{#- unmarshal required properties #}
-	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
-	{%- set propertyName = attr|attribute_name %}
-	{%- if loop.first %}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	{%- endif %}
-	{%- if not spec.nullable %}
-	if required.{{ propertyName }} == nil {
-	{%- else %}
-	if !required.{{ propertyName }}.IsSet() {
-	{%- endif %}
-		return fmt.Errorf("required field {{ attr }} missing")
-	}
-	{%- endfor %}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -372,6 +347,16 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- if not spec.nullable %}
+	if all.{{ propertyName }} == nil {
+	{%- else %}
+	if !all.{{ propertyName }}.IsSet() {
+	{%- endif %}
+		return fmt.Errorf("required field {{ attr }} missing")
+	}
+	{%- endfor %}
 
 	{%- if model.get("additionalProperties", True) %}
 	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
@@ -407,7 +392,11 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
         }
         {%- endif %}
+	{%- if attr in model.get("required", []) and not spec.nullable %}
+	o.{{ propertyName }} = *all.{{ propertyName }}
+        {%- else %}
 	o.{{ propertyName }} = all.{{ propertyName }}
+        {%- endif %}
 	{%- endfor %}
 	{%- if model.get("additionalProperties", True) %}
 	if len(additionalProperties) > 0 {
