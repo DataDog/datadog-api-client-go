@@ -20,7 +20,7 @@ type CIAppPipelineEventPipeline struct {
 	Error NullableCIAppCIError `json:"error,omitempty"`
 	// If pipelines are triggered due to actions to a Git repository, then all payloads must contain this.
 	// Note that either `tag` or `branch` has to be provided, but not both.
-	Git NullableCIAppGitInfo `json:"git,omitempty"`
+	Git NullableCIAppGitInfo `json:"git"`
 	// Whether or not the pipeline was triggered manually by the user.
 	IsManual datadog.NullableBool `json:"is_manual,omitempty"`
 	// Whether or not the pipeline was resumed after being blocked.
@@ -58,9 +58,6 @@ type CIAppPipelineEventPipeline struct {
 	UniqueId string `json:"unique_id"`
 	// The URL to look at the pipeline in the CI provider UI.
 	Url string `json:"url"`
-	// Used to specify user-related information when the payload does not have Git information.
-	// For example, if Git information is missing for manually triggered pipelines, this field can be used instead.
-	User NullableCIAppUserInfo `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -70,9 +67,10 @@ type CIAppPipelineEventPipeline struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCIAppPipelineEventPipeline(end time.Time, level CIAppPipelineEventPipelineLevel, name string, partialRetry bool, start time.Time, status CIAppPipelineEventPipelineStatus, uniqueId string, url string) *CIAppPipelineEventPipeline {
+func NewCIAppPipelineEventPipeline(end time.Time, git NullableCIAppGitInfo, level CIAppPipelineEventPipelineLevel, name string, partialRetry bool, start time.Time, status CIAppPipelineEventPipelineStatus, uniqueId string, url string) *CIAppPipelineEventPipeline {
 	this := CIAppPipelineEventPipeline{}
 	this.End = end
+	this.Git = git
 	this.Level = level
 	this.Name = name
 	this.PartialRetry = partialRetry
@@ -155,7 +153,8 @@ func (o *CIAppPipelineEventPipeline) UnsetError() {
 	o.Error.Unset()
 }
 
-// GetGit returns the Git field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetGit returns the Git field value.
+// If the value is explicit nil, the zero value for CIAppGitInfo will be returned.
 func (o *CIAppPipelineEventPipeline) GetGit() CIAppGitInfo {
 	if o == nil || o.Git.Get() == nil {
 		var ret CIAppGitInfo
@@ -164,7 +163,7 @@ func (o *CIAppPipelineEventPipeline) GetGit() CIAppGitInfo {
 	return *o.Git.Get()
 }
 
-// GetGitOk returns a tuple with the Git field value if set, nil otherwise
+// GetGitOk returns a tuple with the Git field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventPipeline) GetGitOk() (*CIAppGitInfo, bool) {
@@ -174,24 +173,9 @@ func (o *CIAppPipelineEventPipeline) GetGitOk() (*CIAppGitInfo, bool) {
 	return o.Git.Get(), o.Git.IsSet()
 }
 
-// HasGit returns a boolean if a field has been set.
-func (o *CIAppPipelineEventPipeline) HasGit() bool {
-	return o != nil && o.Git.IsSet()
-}
-
-// SetGit gets a reference to the given NullableCIAppGitInfo and assigns it to the Git field.
+// SetGit sets field value.
 func (o *CIAppPipelineEventPipeline) SetGit(v CIAppGitInfo) {
 	o.Git.Set(&v)
-}
-
-// SetGitNil sets the value for Git to be an explicit nil.
-func (o *CIAppPipelineEventPipeline) SetGitNil() {
-	o.Git.Set(nil)
-}
-
-// UnsetGit ensures that no value is present for Git, not even an explicit nil.
-func (o *CIAppPipelineEventPipeline) UnsetGit() {
-	o.Git.Unset()
 }
 
 // GetIsManual returns the IsManual field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -724,45 +708,6 @@ func (o *CIAppPipelineEventPipeline) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetUser returns the User field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CIAppPipelineEventPipeline) GetUser() CIAppUserInfo {
-	if o == nil || o.User.Get() == nil {
-		var ret CIAppUserInfo
-		return ret
-	}
-	return *o.User.Get()
-}
-
-// GetUserOk returns a tuple with the User field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CIAppPipelineEventPipeline) GetUserOk() (*CIAppUserInfo, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.User.Get(), o.User.IsSet()
-}
-
-// HasUser returns a boolean if a field has been set.
-func (o *CIAppPipelineEventPipeline) HasUser() bool {
-	return o != nil && o.User.IsSet()
-}
-
-// SetUser gets a reference to the given NullableCIAppUserInfo and assigns it to the User field.
-func (o *CIAppPipelineEventPipeline) SetUser(v CIAppUserInfo) {
-	o.User.Set(&v)
-}
-
-// SetUserNil sets the value for User to be an explicit nil.
-func (o *CIAppPipelineEventPipeline) SetUserNil() {
-	o.User.Set(nil)
-}
-
-// UnsetUser ensures that no value is present for User, not even an explicit nil.
-func (o *CIAppPipelineEventPipeline) UnsetUser() {
-	o.User.Unset()
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -777,9 +722,7 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
-	if o.Git.IsSet() {
-		toSerialize["git"] = o.Git.Get()
-	}
+	toSerialize["git"] = o.Git.Get()
 	if o.IsManual.IsSet() {
 		toSerialize["is_manual"] = o.IsManual.Get()
 	}
@@ -821,9 +764,6 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["unique_id"] = o.UniqueId
 	toSerialize["url"] = o.Url
-	if o.User.IsSet() {
-		toSerialize["user"] = o.User.Get()
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -836,6 +776,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		End          *time.Time                        `json:"end"`
+		Git          NullableCIAppGitInfo              `json:"git"`
 		Level        *CIAppPipelineEventPipelineLevel  `json:"level"`
 		Name         *string                           `json:"name"`
 		PartialRetry *bool                             `json:"partial_retry"`
@@ -847,7 +788,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		End             time.Time                                  `json:"end"`
 		Error           NullableCIAppCIError                       `json:"error,omitempty"`
-		Git             NullableCIAppGitInfo                       `json:"git,omitempty"`
+		Git             NullableCIAppGitInfo                       `json:"git"`
 		IsManual        datadog.NullableBool                       `json:"is_manual,omitempty"`
 		IsResumed       datadog.NullableBool                       `json:"is_resumed,omitempty"`
 		Level           CIAppPipelineEventPipelineLevel            `json:"level"`
@@ -865,7 +806,6 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Tags            datadog.NullableList[string]               `json:"tags,omitempty"`
 		UniqueId        string                                     `json:"unique_id"`
 		Url             string                                     `json:"url"`
-		User            NullableCIAppUserInfo                      `json:"user,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -873,6 +813,9 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.End == nil {
 		return fmt.Errorf("required field end missing")
+	}
+	if !required.Git.IsSet() {
+		return fmt.Errorf("required field git missing")
 	}
 	if required.Level == nil {
 		return fmt.Errorf("required field level missing")
@@ -906,7 +849,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "error", "git", "is_manual", "is_resumed", "level", "metrics", "name", "node", "parameters", "parent_pipeline", "partial_retry", "pipeline_id", "previous_attempt", "queue_time", "start", "status", "tags", "unique_id", "url", "user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"end", "error", "git", "is_manual", "is_resumed", "level", "metrics", "name", "node", "parameters", "parent_pipeline", "partial_retry", "pipeline_id", "previous_attempt", "queue_time", "start", "status", "tags", "unique_id", "url"})
 	} else {
 		return err
 	}
@@ -946,7 +889,6 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.UniqueId = all.UniqueId
 	o.Url = all.Url
-	o.User = all.User
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
