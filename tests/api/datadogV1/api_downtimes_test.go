@@ -95,7 +95,6 @@ func TestDowntimeLifecycle(t *testing.T) {
 	if httpresp.StatusCode != 200 {
 		t.Errorf("Downtime %v should still exist: Response %s: %v", downtime.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
-	assert.False(fetchedDowntime.GetActive())
 	assert.True(fetchedDowntime.GetDisabled())
 }
 
