@@ -774,31 +774,6 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-<<<<<<< HEAD
-	required := struct {
-		End          *time.Time                        `json:"end"`
-		Git          NullableCIAppGitInfo              `json:"git"`
-		Level        *CIAppPipelineEventPipelineLevel  `json:"level"`
-		Name         *string                           `json:"name"`
-		PartialRetry *bool                             `json:"partial_retry"`
-		Start        *time.Time                        `json:"start"`
-		Status       *CIAppPipelineEventPipelineStatus `json:"status"`
-		UniqueId     *string                           `json:"unique_id"`
-		Url          *string                           `json:"url"`
-	}{}
-||||||| parent of 04c075be8 (Remove required unmarshal in models)
-	required := struct {
-		End          *time.Time                        `json:"end"`
-		Level        *CIAppPipelineEventPipelineLevel  `json:"level"`
-		Name         *string                           `json:"name"`
-		PartialRetry *bool                             `json:"partial_retry"`
-		Start        *time.Time                        `json:"start"`
-		Status       *CIAppPipelineEventPipelineStatus `json:"status"`
-		UniqueId     *string                           `json:"unique_id"`
-		Url          *string                           `json:"url"`
-	}{}
-=======
->>>>>>> 04c075be8 (Remove required unmarshal in models)
 	all := struct {
 		End             *time.Time                                 `json:"end"`
 		Error           NullableCIAppCIError                       `json:"error,omitempty"`
@@ -818,87 +793,10 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Start           *time.Time                                 `json:"start"`
 		Status          *CIAppPipelineEventPipelineStatus          `json:"status"`
 		Tags            datadog.NullableList[string]               `json:"tags,omitempty"`
-<<<<<<< HEAD
-		UniqueId        string                                     `json:"unique_id"`
-		Url             string                                     `json:"url"`
-||||||| parent of 04c075be8 (Remove required unmarshal in models)
-		UniqueId        string                                     `json:"unique_id"`
-		Url             string                                     `json:"url"`
-		User            NullableCIAppUserInfo                      `json:"user,omitempty"`
-=======
 		UniqueId        *string                                    `json:"unique_id"`
 		Url             *string                                    `json:"url"`
-		User            NullableCIAppUserInfo                      `json:"user,omitempty"`
->>>>>>> 04c075be8 (Remove required unmarshal in models)
 	}{}
-<<<<<<< HEAD
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.End == nil {
-		return fmt.Errorf("required field end missing")
-	}
-	if !required.Git.IsSet() {
-		return fmt.Errorf("required field git missing")
-	}
-	if required.Level == nil {
-		return fmt.Errorf("required field level missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.PartialRetry == nil {
-		return fmt.Errorf("required field partial_retry missing")
-	}
-	if required.Start == nil {
-		return fmt.Errorf("required field start missing")
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	if required.UniqueId == nil {
-		return fmt.Errorf("required field unique_id missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
-||||||| parent of 04c075be8 (Remove required unmarshal in models)
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.End == nil {
-		return fmt.Errorf("required field end missing")
-	}
-	if required.Level == nil {
-		return fmt.Errorf("required field level missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.PartialRetry == nil {
-		return fmt.Errorf("required field partial_retry missing")
-	}
-	if required.Start == nil {
-		return fmt.Errorf("required field start missing")
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	if required.UniqueId == nil {
-		return fmt.Errorf("required field unique_id missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
-=======
 	if err = json.Unmarshal(bytes, &all); err != nil {
->>>>>>> 04c075be8 (Remove required unmarshal in models)
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -908,6 +806,9 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.End == nil {
 		return fmt.Errorf("required field end missing")
+	}
+	if !all.Git.IsSet() {
+		return fmt.Errorf("required field git missing")
 	}
 	if all.Level == nil {
 		return fmt.Errorf("required field level missing")
@@ -970,18 +871,8 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = *all.Start
 	o.Status = *all.Status
 	o.Tags = all.Tags
-<<<<<<< HEAD
-	o.UniqueId = all.UniqueId
-	o.Url = all.Url
-||||||| parent of 04c075be8 (Remove required unmarshal in models)
-	o.UniqueId = all.UniqueId
-	o.Url = all.Url
-	o.User = all.User
-=======
 	o.UniqueId = *all.UniqueId
 	o.Url = *all.Url
-	o.User = all.User
->>>>>>> 04c075be8 (Remove required unmarshal in models)
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
