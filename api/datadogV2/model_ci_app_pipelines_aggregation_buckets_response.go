@@ -86,8 +86,7 @@ func (o *CIAppPipelinesAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (
 	all := struct {
 		Buckets []CIAppPipelinesBucketResponse `json:"buckets,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

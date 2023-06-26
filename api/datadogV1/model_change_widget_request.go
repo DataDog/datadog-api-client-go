@@ -664,8 +664,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
 		ShowPresent         *bool                               `json:"show_present,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

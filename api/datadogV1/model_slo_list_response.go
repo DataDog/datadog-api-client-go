@@ -155,8 +155,7 @@ func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Errors   []string                 `json:"errors,omitempty"`
 		Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

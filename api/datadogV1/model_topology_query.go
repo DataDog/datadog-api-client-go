@@ -154,8 +154,7 @@ func (o *TopologyQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Filters    []string                 `json:"filters,omitempty"`
 		Service    *string                  `json:"service,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

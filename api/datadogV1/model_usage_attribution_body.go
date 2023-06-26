@@ -300,8 +300,7 @@ func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		UpdatedAt       *string                 `json:"updated_at,omitempty"`
 		Values          *UsageAttributionValues `json:"values,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

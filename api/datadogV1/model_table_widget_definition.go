@@ -305,38 +305,29 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]TableWidgetRequest      `json:"requests"`
-		Type     *TableWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		CustomLinks  []WidgetCustomLink        `json:"custom_links,omitempty"`
-		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"`
-		Requests     []TableWidgetRequest      `json:"requests"`
-		Time         *WidgetTime               `json:"time,omitempty"`
-		Title        *string                   `json:"title,omitempty"`
-		TitleAlign   *WidgetTextAlign          `json:"title_align,omitempty"`
-		TitleSize    *string                   `json:"title_size,omitempty"`
-		Type         TableWidgetDefinitionType `json:"type"`
+		CustomLinks  []WidgetCustomLink         `json:"custom_links,omitempty"`
+		HasSearchBar *TableWidgetHasSearchBar   `json:"has_search_bar,omitempty"`
+		Requests     *[]TableWidgetRequest      `json:"requests"`
+		Time         *WidgetTime                `json:"time,omitempty"`
+		Title        *string                    `json:"title,omitempty"`
+		TitleAlign   *WidgetTextAlign           `json:"title_align,omitempty"`
+		TitleSize    *string                    `json:"title_size,omitempty"`
+		Type         *TableWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -370,7 +361,7 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.CustomLinks = all.CustomLinks
 	o.HasSearchBar = all.HasSearchBar
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -382,7 +373,7 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

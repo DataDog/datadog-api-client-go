@@ -192,8 +192,7 @@ func (o *SensitiveDataScannerRuleResponse) UnmarshalJSON(bytes []byte) (err erro
 		Relationships *SensitiveDataScannerRuleRelationships `json:"relationships,omitempty"`
 		Type          *SensitiveDataScannerRuleType          `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

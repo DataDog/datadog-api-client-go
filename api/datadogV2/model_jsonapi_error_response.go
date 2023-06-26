@@ -78,21 +78,10 @@ func (o JSONAPIErrorResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JSONAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Errors *[]JSONAPIErrorItem `json:"errors"`
 	}{}
-	all := struct {
-		Errors []JSONAPIErrorItem `json:"errors"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Errors == nil {
-		return fmt.Errorf("required field errors missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *JSONAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Errors == nil {
+		return fmt.Errorf("required field errors missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"errors"})
 	} else {
 		return err
 	}
-	o.Errors = all.Errors
+	o.Errors = *all.Errors
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

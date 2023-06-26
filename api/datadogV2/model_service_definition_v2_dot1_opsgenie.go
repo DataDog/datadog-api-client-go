@@ -111,28 +111,20 @@ func (o ServiceDefinitionV2Dot1Opsgenie) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot1Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		ServiceUrl *string `json:"service-url"`
-	}{}
 	all := struct {
 		Region     *ServiceDefinitionV2Dot1OpsgenieRegion `json:"region,omitempty"`
-		ServiceUrl string                                 `json:"service-url"`
+		ServiceUrl *string                                `json:"service-url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ServiceUrl == nil {
-		return fmt.Errorf("required field service-url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.ServiceUrl == nil {
+		return fmt.Errorf("required field service-url missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -149,7 +141,7 @@ func (o *ServiceDefinitionV2Dot1Opsgenie) UnmarshalJSON(bytes []byte) (err error
 		return nil
 	}
 	o.Region = all.Region
-	o.ServiceUrl = all.ServiceUrl
+	o.ServiceUrl = *all.ServiceUrl
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

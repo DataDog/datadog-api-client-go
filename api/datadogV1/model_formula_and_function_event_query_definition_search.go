@@ -78,21 +78,10 @@ func (o FormulaAndFunctionEventQueryDefinitionSearch) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Query *string `json:"query"`
 	}{}
-	all := struct {
-		Query string `json:"query"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *FormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(bytes []byt
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"query"})
 	} else {
 		return err
 	}
-	o.Query = all.Query
+	o.Query = *all.Query
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

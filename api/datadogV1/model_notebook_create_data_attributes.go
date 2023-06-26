@@ -202,39 +202,29 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Cells *[]NotebookCellCreateRequest `json:"cells"`
-		Name  *string                      `json:"name"`
-		Time  *NotebookGlobalTime          `json:"time"`
-	}{}
 	all := struct {
-		Cells    []NotebookCellCreateRequest `json:"cells"`
-		Metadata *NotebookMetadata           `json:"metadata,omitempty"`
-		Name     string                      `json:"name"`
-		Status   *NotebookStatus             `json:"status,omitempty"`
-		Time     NotebookGlobalTime          `json:"time"`
+		Cells    *[]NotebookCellCreateRequest `json:"cells"`
+		Metadata *NotebookMetadata            `json:"metadata,omitempty"`
+		Name     *string                      `json:"name"`
+		Status   *NotebookStatus              `json:"status,omitempty"`
+		Time     *NotebookGlobalTime          `json:"time"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Cells == nil {
-		return fmt.Errorf("required field cells missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Time == nil {
-		return fmt.Errorf("required field time missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Cells == nil {
+		return fmt.Errorf("required field cells missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Time == nil {
+		return fmt.Errorf("required field time missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -250,7 +240,7 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Cells = all.Cells
+	o.Cells = *all.Cells
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -259,9 +249,9 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Status = all.Status
-	o.Time = all.Time
+	o.Time = *all.Time
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

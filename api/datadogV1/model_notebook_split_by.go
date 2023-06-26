@@ -105,26 +105,11 @@ func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Keys *[]string `json:"keys"`
 		Tags *[]string `json:"tags"`
 	}{}
-	all := struct {
-		Keys []string `json:"keys"`
-		Tags []string `json:"tags"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Keys == nil {
-		return fmt.Errorf("required field keys missing")
-	}
-	if required.Tags == nil {
-		return fmt.Errorf("required field tags missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Keys == nil {
+		return fmt.Errorf("required field keys missing")
+	}
+	if all.Tags == nil {
+		return fmt.Errorf("required field tags missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"keys", "tags"})
 	} else {
 		return err
 	}
-	o.Keys = all.Keys
-	o.Tags = all.Tags
+	o.Keys = *all.Keys
+	o.Tags = *all.Tags
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

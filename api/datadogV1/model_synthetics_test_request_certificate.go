@@ -120,8 +120,7 @@ func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err erro
 		Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
 		Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

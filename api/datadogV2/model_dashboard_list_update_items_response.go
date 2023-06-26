@@ -86,8 +86,7 @@ func (o *DashboardListUpdateItemsResponse) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		Dashboards []DashboardListItemResponse `json:"dashboards,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

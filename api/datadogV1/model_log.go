@@ -120,8 +120,7 @@ func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 		Content *LogContent `json:"content,omitempty"`
 		Id      *string     `json:"id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

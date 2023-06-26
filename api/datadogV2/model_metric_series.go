@@ -337,39 +337,30 @@ func (o MetricSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Metric *string        `json:"metric"`
-		Points *[]MetricPoint `json:"points"`
-	}{}
 	all := struct {
 		Interval       *int64            `json:"interval,omitempty"`
 		Metadata       *MetricMetadata   `json:"metadata,omitempty"`
-		Metric         string            `json:"metric"`
-		Points         []MetricPoint     `json:"points"`
+		Metric         *string           `json:"metric"`
+		Points         *[]MetricPoint    `json:"points"`
 		Resources      []MetricResource  `json:"resources,omitempty"`
 		SourceTypeName *string           `json:"source_type_name,omitempty"`
 		Tags           []string          `json:"tags,omitempty"`
 		Type           *MetricIntakeType `json:"type,omitempty"`
 		Unit           *string           `json:"unit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Metric == nil {
-		return fmt.Errorf("required field metric missing")
-	}
-	if required.Points == nil {
-		return fmt.Errorf("required field points missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Metric == nil {
+		return fmt.Errorf("required field metric missing")
+	}
+	if all.Points == nil {
+		return fmt.Errorf("required field points missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -394,8 +385,8 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.Metric = all.Metric
-	o.Points = all.Points
+	o.Metric = *all.Metric
+	o.Points = *all.Points
 	o.Resources = all.Resources
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags

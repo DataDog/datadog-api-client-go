@@ -222,8 +222,7 @@ func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (er
 		StepCountCompleted *int64            `json:"stepCountCompleted,omitempty"`
 		StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

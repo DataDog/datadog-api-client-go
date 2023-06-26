@@ -86,8 +86,7 @@ func (o *UsageCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TotalCount *int64 `json:"total_count,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

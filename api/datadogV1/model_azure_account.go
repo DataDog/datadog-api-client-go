@@ -325,8 +325,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 		NewTenantName *string  `json:"new_tenant_name,omitempty"`
 		TenantName    *string  `json:"tenant_name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

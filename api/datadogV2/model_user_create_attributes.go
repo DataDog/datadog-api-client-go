@@ -144,23 +144,12 @@ func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Email *string `json:"email"`
-	}{}
 	all := struct {
-		Email string  `json:"email"`
+		Email *string `json:"email"`
 		Name  *string `json:"name,omitempty"`
 		Title *string `json:"title,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Email == nil {
-		return fmt.Errorf("required field email missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -168,13 +157,16 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Email == nil {
+		return fmt.Errorf("required field email missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "title"})
 	} else {
 		return err
 	}
-	o.Email = all.Email
+	o.Email = *all.Email
 	o.Name = all.Name
 	o.Title = all.Title
 	if len(additionalProperties) > 0 {

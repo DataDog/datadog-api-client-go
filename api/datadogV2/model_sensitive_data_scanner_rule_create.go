@@ -134,37 +134,27 @@ func (o SensitiveDataScannerRuleCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Attributes    *SensitiveDataScannerRuleAttributes    `json:"attributes"`
 		Relationships *SensitiveDataScannerRuleRelationships `json:"relationships"`
 		Type          *SensitiveDataScannerRuleType          `json:"type"`
 	}{}
-	all := struct {
-		Attributes    SensitiveDataScannerRuleAttributes    `json:"attributes"`
-		Relationships SensitiveDataScannerRuleRelationships `json:"relationships"`
-		Type          SensitiveDataScannerRuleType          `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Attributes == nil {
-		return fmt.Errorf("required field attributes missing")
-	}
-	if required.Relationships == nil {
-		return fmt.Errorf("required field relationships missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Relationships == nil {
+		return fmt.Errorf("required field relationships missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -187,7 +177,7 @@ func (o *SensitiveDataScannerRuleCreate) UnmarshalJSON(bytes []byte) (err error)
 		}
 		o.UnparsedObject = raw
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	if all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -195,8 +185,8 @@ func (o *SensitiveDataScannerRuleCreate) UnmarshalJSON(bytes []byte) (err error)
 		}
 		o.UnparsedObject = raw
 	}
-	o.Relationships = all.Relationships
-	o.Type = all.Type
+	o.Relationships = *all.Relationships
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

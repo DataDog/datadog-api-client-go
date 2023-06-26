@@ -105,32 +105,23 @@ func (o SensitiveDataScannerRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Data *SensitiveDataScannerRuleUpdate      `json:"data"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	}{}
-	all := struct {
-		Data SensitiveDataScannerRuleUpdate      `json:"data"`
-		Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
-	if required.Meta == nil {
-		return fmt.Errorf("required field meta missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
+	if all.Meta == nil {
+		return fmt.Errorf("required field meta missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -145,7 +136,7 @@ func (o *SensitiveDataScannerRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err
 		}
 		o.UnparsedObject = raw
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 	if all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -153,7 +144,7 @@ func (o *SensitiveDataScannerRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err
 		}
 		o.UnparsedObject = raw
 	}
-	o.Meta = all.Meta
+	o.Meta = *all.Meta
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

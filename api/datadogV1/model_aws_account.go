@@ -446,8 +446,7 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		RoleName                      *string         `json:"role_name,omitempty"`
 		SecretAccessKey               *string         `json:"secret_access_key,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

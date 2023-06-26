@@ -86,8 +86,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) UnmarshalJSON(bytes []byte) 
 	all := struct {
 		Data []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

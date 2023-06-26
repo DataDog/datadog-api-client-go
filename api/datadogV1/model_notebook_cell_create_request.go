@@ -101,32 +101,23 @@ func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Attributes *NotebookCellCreateRequestAttributes `json:"attributes"`
 		Type       *NotebookCellResourceType            `json:"type"`
 	}{}
-	all := struct {
-		Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
-		Type       NotebookCellResourceType            `json:"type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Attributes == nil {
-		return fmt.Errorf("required field attributes missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,8 +127,8 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Attributes = all.Attributes
-	o.Type = all.Type
+	o.Attributes = *all.Attributes
+	o.Type = *all.Type
 
 	return nil
 }

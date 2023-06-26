@@ -188,8 +188,7 @@ func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Hostname *string `json:"hostname,omitempty"`
 		Message  *string `json:"message,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

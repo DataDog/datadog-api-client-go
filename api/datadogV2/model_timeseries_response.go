@@ -124,8 +124,7 @@ func (o *TimeseriesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Attributes *TimeseriesResponseAttributes  `json:"attributes,omitempty"`
 		Type       *TimeseriesFormulaResponseType `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

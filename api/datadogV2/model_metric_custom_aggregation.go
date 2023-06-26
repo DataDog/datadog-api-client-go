@@ -105,32 +105,23 @@ func (o MetricCustomAggregation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Space *MetricCustomSpaceAggregation `json:"space"`
 		Time  *MetricCustomTimeAggregation  `json:"time"`
 	}{}
-	all := struct {
-		Space MetricCustomSpaceAggregation `json:"space"`
-		Time  MetricCustomTimeAggregation  `json:"time"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Space == nil {
-		return fmt.Errorf("required field space missing")
-	}
-	if required.Time == nil {
-		return fmt.Errorf("required field time missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Space == nil {
+		return fmt.Errorf("required field space missing")
+	}
+	if all.Time == nil {
+		return fmt.Errorf("required field time missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -154,8 +145,8 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Space = all.Space
-	o.Time = all.Time
+	o.Space = *all.Space
+	o.Time = *all.Time
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

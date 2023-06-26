@@ -78,21 +78,10 @@ func (o JiraIntegrationMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Issues *[]JiraIntegrationMetadataIssuesItem `json:"issues"`
 	}{}
-	all := struct {
-		Issues []JiraIntegrationMetadataIssuesItem `json:"issues"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Issues == nil {
-		return fmt.Errorf("required field issues missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Issues == nil {
+		return fmt.Errorf("required field issues missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"issues"})
 	} else {
 		return err
 	}
-	o.Issues = all.Issues
+	o.Issues = *all.Issues
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

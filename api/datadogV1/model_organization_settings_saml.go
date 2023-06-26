@@ -87,8 +87,7 @@ func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enabled *bool `json:"enabled,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

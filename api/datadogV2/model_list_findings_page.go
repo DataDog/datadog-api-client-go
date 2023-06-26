@@ -113,8 +113,7 @@ func (o *ListFindingsPage) UnmarshalJSON(bytes []byte) (err error) {
 		Cursor             *string `json:"cursor,omitempty"`
 		TotalFilteredCount *int64  `json:"total_filtered_count,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

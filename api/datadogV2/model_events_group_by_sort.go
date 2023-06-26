@@ -183,30 +183,22 @@ func (o EventsGroupBySort) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Aggregation *EventsAggregation `json:"aggregation"`
-	}{}
 	all := struct {
-		Aggregation EventsAggregation `json:"aggregation"`
-		Metric      *string           `json:"metric,omitempty"`
-		Order       *QuerySortOrder   `json:"order,omitempty"`
-		Type        *EventsSortType   `json:"type,omitempty"`
+		Aggregation *EventsAggregation `json:"aggregation"`
+		Metric      *string            `json:"metric,omitempty"`
+		Order       *QuerySortOrder    `json:"order,omitempty"`
+		Type        *EventsSortType    `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Aggregation == nil {
-		return fmt.Errorf("required field aggregation missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Aggregation == nil {
+		return fmt.Errorf("required field aggregation missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -238,7 +230,7 @@ func (o *EventsGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Aggregation = all.Aggregation
+	o.Aggregation = *all.Aggregation
 	o.Metric = all.Metric
 	o.Order = all.Order
 	o.Type = all.Type

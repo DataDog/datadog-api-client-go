@@ -154,8 +154,7 @@ func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		TotalMatching *int64 `json:"total_matching,omitempty"`
 		TotalReturned *int64 `json:"total_returned,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

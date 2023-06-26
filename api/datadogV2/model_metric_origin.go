@@ -166,8 +166,7 @@ func (o *MetricOrigin) UnmarshalJSON(bytes []byte) (err error) {
 		Product    *int32 `json:"product,omitempty"`
 		Service    *int32 `json:"service,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

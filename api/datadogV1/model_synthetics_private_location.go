@@ -231,34 +231,15 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Description *string   `json:"description"`
-		Name        *string   `json:"name"`
-		Tags        *[]string `json:"tags"`
-	}{}
 	all := struct {
-		Description string                             `json:"description"`
+		Description *string                            `json:"description"`
 		Id          *string                            `json:"id,omitempty"`
 		Metadata    *SyntheticsPrivateLocationMetadata `json:"metadata,omitempty"`
-		Name        string                             `json:"name"`
+		Name        *string                            `json:"name"`
 		Secrets     *SyntheticsPrivateLocationSecrets  `json:"secrets,omitempty"`
-		Tags        []string                           `json:"tags"`
+		Tags        *[]string                          `json:"tags"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Description == nil {
-		return fmt.Errorf("required field description missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Tags == nil {
-		return fmt.Errorf("required field tags missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -266,13 +247,22 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Description == nil {
+		return fmt.Errorf("required field description missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Tags == nil {
+		return fmt.Errorf("required field tags missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"description", "id", "metadata", "name", "secrets", "tags"})
 	} else {
 		return err
 	}
-	o.Description = all.Description
+	o.Description = *all.Description
 	o.Id = all.Id
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -282,7 +272,7 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Metadata = all.Metadata
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -291,7 +281,7 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Secrets = all.Secrets
-	o.Tags = all.Tags
+	o.Tags = *all.Tags
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

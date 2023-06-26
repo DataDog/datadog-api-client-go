@@ -188,30 +188,22 @@ func (o SecurityMonitoringTriageUser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Uuid *string `json:"uuid"`
-	}{}
 	all := struct {
 		Handle *string                `json:"handle,omitempty"`
 		Id     *int64                 `json:"id,omitempty"`
 		Name   datadog.NullableString `json:"name,omitempty"`
-		Uuid   string                 `json:"uuid"`
+		Uuid   *string                `json:"uuid"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Uuid == nil {
-		return fmt.Errorf("required field uuid missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Uuid == nil {
+		return fmt.Errorf("required field uuid missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -222,7 +214,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Handle = all.Handle
 	o.Id = all.Id
 	o.Name = all.Name
-	o.Uuid = all.Uuid
+	o.Uuid = *all.Uuid
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -86,8 +86,7 @@ func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error
 	all := struct {
 		EvaluationWindow *MonitorOptionsSchedulingOptionsEvaluationWindow `json:"evaluation_window,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

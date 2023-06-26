@@ -79,21 +79,10 @@ func (o IdpFormData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		IdpFile **os.File `json:"idp_file"`
 	}{}
-	all := struct {
-		IdpFile *os.File `json:"idp_file"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IdpFile == nil {
-		return fmt.Errorf("required field idp_file missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -101,13 +90,16 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.IdpFile == nil {
+		return fmt.Errorf("required field idp_file missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"idp_file"})
 	} else {
 		return err
 	}
-	o.IdpFile = all.IdpFile
+	o.IdpFile = *all.IdpFile
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

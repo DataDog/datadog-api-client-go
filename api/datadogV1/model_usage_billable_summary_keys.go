@@ -3044,8 +3044,7 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 		TimeseriesAverage                     *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
 		TimeseriesSum                         *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

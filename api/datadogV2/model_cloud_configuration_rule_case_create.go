@@ -111,28 +111,20 @@ func (o CloudConfigurationRuleCaseCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Status *SecurityMonitoringRuleSeverity `json:"status"`
-	}{}
 	all := struct {
-		Notifications []string                       `json:"notifications,omitempty"`
-		Status        SecurityMonitoringRuleSeverity `json:"status"`
+		Notifications []string                        `json:"notifications,omitempty"`
+		Status        *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Status == nil {
+		return fmt.Errorf("required field status missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -149,7 +141,7 @@ func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		return nil
 	}
 	o.Notifications = all.Notifications
-	o.Status = all.Status
+	o.Status = *all.Status
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -86,8 +86,7 @@ func (o *DashboardDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

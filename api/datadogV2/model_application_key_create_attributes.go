@@ -122,22 +122,11 @@ func (o ApplicationKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name *string `json:"name"`
-	}{}
 	all := struct {
-		Name   string                       `json:"name"`
+		Name   *string                      `json:"name"`
 		Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -145,13 +134,16 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"name", "scopes"})
 	} else {
 		return err
 	}
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Scopes = all.Scopes
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

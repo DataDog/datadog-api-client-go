@@ -421,10 +421,6 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Text  *string `json:"text"`
-		Title *string `json:"title"`
-	}{}
 	all := struct {
 		AggregationKey *string               `json:"aggregation_key,omitempty"`
 		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
@@ -435,27 +431,22 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		RelatedEventId *int64                `json:"related_event_id,omitempty"`
 		SourceTypeName *string               `json:"source_type_name,omitempty"`
 		Tags           []string              `json:"tags,omitempty"`
-		Text           string                `json:"text"`
-		Title          string                `json:"title"`
+		Text           *string               `json:"text"`
+		Title          *string               `json:"title"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Text == nil {
-		return fmt.Errorf("required field text missing")
-	}
-	if required.Title == nil {
-		return fmt.Errorf("required field title missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Text == nil {
+		return fmt.Errorf("required field text missing")
+	}
+	if all.Title == nil {
+		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -488,8 +479,8 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.RelatedEventId = all.RelatedEventId
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags
-	o.Text = all.Text
-	o.Title = all.Title
+	o.Text = *all.Text
+	o.Title = *all.Title
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

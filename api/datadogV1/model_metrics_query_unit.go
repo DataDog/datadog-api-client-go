@@ -222,8 +222,7 @@ func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 		ScaleFactor *float64 `json:"scale_factor,omitempty"`
 		ShortName   *string  `json:"short_name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

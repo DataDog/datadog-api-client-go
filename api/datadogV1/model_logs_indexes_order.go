@@ -80,21 +80,10 @@ func (o LogsIndexesOrder) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		IndexNames *[]string `json:"index_names"`
 	}{}
-	all := struct {
-		IndexNames []string `json:"index_names"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IndexNames == nil {
-		return fmt.Errorf("required field index_names missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -102,13 +91,16 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.IndexNames == nil {
+		return fmt.Errorf("required field index_names missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"index_names"})
 	} else {
 		return err
 	}
-	o.IndexNames = all.IndexNames
+	o.IndexNames = *all.IndexNames
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -120,8 +120,7 @@ func (o *ServiceDefinitionV2Integrations) UnmarshalJSON(bytes []byte) (err error
 		Opsgenie  *ServiceDefinitionV2Opsgenie `json:"opsgenie,omitempty"`
 		Pagerduty *string                      `json:"pagerduty,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

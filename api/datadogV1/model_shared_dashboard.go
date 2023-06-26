@@ -441,15 +441,11 @@ func (o SharedDashboard) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DashboardId   *string        `json:"dashboard_id"`
-		DashboardType *DashboardType `json:"dashboard_type"`
-	}{}
 	all := struct {
 		Author                      *SharedDashboardAuthor            `json:"author,omitempty"`
 		CreatedAt                   *time.Time                        `json:"created_at,omitempty"`
-		DashboardId                 string                            `json:"dashboard_id"`
-		DashboardType               DashboardType                     `json:"dashboard_type"`
+		DashboardId                 *string                           `json:"dashboard_id"`
+		DashboardType               *DashboardType                    `json:"dashboard_type"`
 		GlobalTime                  *DashboardGlobalTime              `json:"global_time,omitempty"`
 		GlobalTimeSelectableEnabled datadog.NullableBool              `json:"global_time_selectable_enabled,omitempty"`
 		PublicUrl                   *string                           `json:"public_url,omitempty"`
@@ -458,24 +454,19 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		ShareType                   NullableDashboardShareType        `json:"share_type,omitempty"`
 		Token                       *string                           `json:"token,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DashboardId == nil {
-		return fmt.Errorf("required field dashboard_id missing")
-	}
-	if required.DashboardType == nil {
-		return fmt.Errorf("required field dashboard_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DashboardId == nil {
+		return fmt.Errorf("required field dashboard_id missing")
+	}
+	if all.DashboardType == nil {
+		return fmt.Errorf("required field dashboard_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -508,8 +499,8 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Author = all.Author
 	o.CreatedAt = all.CreatedAt
-	o.DashboardId = all.DashboardId
-	o.DashboardType = all.DashboardType
+	o.DashboardId = *all.DashboardId
+	o.DashboardType = *all.DashboardType
 	if all.GlobalTime != nil && all.GlobalTime.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

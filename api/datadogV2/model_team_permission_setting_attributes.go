@@ -222,8 +222,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 		Title    *string                                `json:"title,omitempty"`
 		Value    *TeamPermissionSettingValue            `json:"value,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

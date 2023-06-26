@@ -154,8 +154,7 @@ func (o *CIAppPipelinesAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (
 		Links *CIAppResponseLinks                       `json:"links,omitempty"`
 		Meta  *CIAppResponseMetadata                    `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

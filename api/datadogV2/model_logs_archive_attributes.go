@@ -282,41 +282,31 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Destination NullableLogsArchiveDestination `json:"destination"`
-		Name        *string                        `json:"name"`
-		Query       *string                        `json:"query"`
-	}{}
 	all := struct {
 		Destination                NullableLogsArchiveDestination `json:"destination"`
 		IncludeTags                *bool                          `json:"include_tags,omitempty"`
-		Name                       string                         `json:"name"`
-		Query                      string                         `json:"query"`
+		Name                       *string                        `json:"name"`
+		Query                      *string                        `json:"query"`
 		RehydrationMaxScanSizeInGb datadog.NullableInt64          `json:"rehydration_max_scan_size_in_gb,omitempty"`
 		RehydrationTags            []string                       `json:"rehydration_tags,omitempty"`
 		State                      *LogsArchiveState              `json:"state,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if !required.Destination.IsSet() {
-		return fmt.Errorf("required field destination missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if !all.Destination.IsSet() {
+		return fmt.Errorf("required field destination missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -334,8 +324,8 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Destination = all.Destination
 	o.IncludeTags = all.IncludeTags
-	o.Name = all.Name
-	o.Query = all.Query
+	o.Name = *all.Name
+	o.Query = *all.Query
 	o.RehydrationMaxScanSizeInGb = all.RehydrationMaxScanSizeInGb
 	o.RehydrationTags = all.RehydrationTags
 	o.State = all.State

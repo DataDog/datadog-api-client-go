@@ -488,8 +488,7 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 		SpanPrecision        *float64                          `json:"span_precision,omitempty"`
 		Uptime               datadog.NullableFloat64           `json:"uptime,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

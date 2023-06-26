@@ -339,60 +339,46 @@ func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		DataSource    *FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
-		Env           *string                                         `json:"env"`
-		Name          *string                                         `json:"name"`
-		OperationName *string                                         `json:"operation_name"`
-		ResourceName  *string                                         `json:"resource_name"`
-		Service       *string                                         `json:"service"`
-		Stat          *FormulaAndFunctionApmDependencyStatName        `json:"stat"`
-	}{}
 	all := struct {
-		DataSource      FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
-		Env             string                                         `json:"env"`
-		IsUpstream      *bool                                          `json:"is_upstream,omitempty"`
-		Name            string                                         `json:"name"`
-		OperationName   string                                         `json:"operation_name"`
-		PrimaryTagName  *string                                        `json:"primary_tag_name,omitempty"`
-		PrimaryTagValue *string                                        `json:"primary_tag_value,omitempty"`
-		ResourceName    string                                         `json:"resource_name"`
-		Service         string                                         `json:"service"`
-		Stat            FormulaAndFunctionApmDependencyStatName        `json:"stat"`
+		DataSource      *FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
+		Env             *string                                         `json:"env"`
+		IsUpstream      *bool                                           `json:"is_upstream,omitempty"`
+		Name            *string                                         `json:"name"`
+		OperationName   *string                                         `json:"operation_name"`
+		PrimaryTagName  *string                                         `json:"primary_tag_name,omitempty"`
+		PrimaryTagValue *string                                         `json:"primary_tag_value,omitempty"`
+		ResourceName    *string                                         `json:"resource_name"`
+		Service         *string                                         `json:"service"`
+		Stat            *FormulaAndFunctionApmDependencyStatName        `json:"stat"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.DataSource == nil {
-		return fmt.Errorf("required field data_source missing")
-	}
-	if required.Env == nil {
-		return fmt.Errorf("required field env missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.OperationName == nil {
-		return fmt.Errorf("required field operation_name missing")
-	}
-	if required.ResourceName == nil {
-		return fmt.Errorf("required field resource_name missing")
-	}
-	if required.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
-	if required.Stat == nil {
-		return fmt.Errorf("required field stat missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.DataSource == nil {
+		return fmt.Errorf("required field data_source missing")
+	}
+	if all.Env == nil {
+		return fmt.Errorf("required field env missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.OperationName == nil {
+		return fmt.Errorf("required field operation_name missing")
+	}
+	if all.ResourceName == nil {
+		return fmt.Errorf("required field resource_name missing")
+	}
+	if all.Service == nil {
+		return fmt.Errorf("required field service missing")
+	}
+	if all.Stat == nil {
+		return fmt.Errorf("required field stat missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -416,16 +402,16 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.DataSource = all.DataSource
-	o.Env = all.Env
+	o.DataSource = *all.DataSource
+	o.Env = *all.Env
 	o.IsUpstream = all.IsUpstream
-	o.Name = all.Name
-	o.OperationName = all.OperationName
+	o.Name = *all.Name
+	o.OperationName = *all.OperationName
 	o.PrimaryTagName = all.PrimaryTagName
 	o.PrimaryTagValue = all.PrimaryTagValue
-	o.ResourceName = all.ResourceName
-	o.Service = all.Service
-	o.Stat = all.Stat
+	o.ResourceName = *all.ResourceName
+	o.Service = *all.Service
+	o.Stat = *all.Stat
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

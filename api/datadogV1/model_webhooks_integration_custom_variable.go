@@ -133,31 +133,12 @@ func (o WebhooksIntegrationCustomVariable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationCustomVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		IsSecret *bool   `json:"is_secret"`
 		Name     *string `json:"name"`
 		Value    *string `json:"value"`
 	}{}
-	all := struct {
-		IsSecret bool   `json:"is_secret"`
-		Name     string `json:"name"`
-		Value    string `json:"value"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IsSecret == nil {
-		return fmt.Errorf("required field is_secret missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -165,15 +146,24 @@ func (o *WebhooksIntegrationCustomVariable) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.IsSecret == nil {
+		return fmt.Errorf("required field is_secret missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Value == nil {
+		return fmt.Errorf("required field value missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"is_secret", "name", "value"})
 	} else {
 		return err
 	}
-	o.IsSecret = all.IsSecret
-	o.Name = all.Name
-	o.Value = all.Value
+	o.IsSecret = *all.IsSecret
+	o.Name = *all.Name
+	o.Value = *all.Value
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

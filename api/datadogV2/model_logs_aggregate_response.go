@@ -120,8 +120,7 @@ func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *LogsAggregateResponseData `json:"data,omitempty"`
 		Meta *LogsResponseMetadata      `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

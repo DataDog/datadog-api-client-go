@@ -120,8 +120,7 @@ func (o *IPAllowlistAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Enabled *bool              `json:"enabled,omitempty"`
 		Entries []IPAllowlistEntry `json:"entries,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

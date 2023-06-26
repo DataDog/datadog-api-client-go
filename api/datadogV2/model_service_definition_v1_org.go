@@ -120,8 +120,7 @@ func (o *ServiceDefinitionV1Org) UnmarshalJSON(bytes []byte) (err error) {
 		Application *string `json:"application,omitempty"`
 		Team        *string `json:"team,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

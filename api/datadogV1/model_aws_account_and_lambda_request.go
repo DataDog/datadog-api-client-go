@@ -105,26 +105,11 @@ func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		AccountId *string `json:"account_id"`
 		LambdaArn *string `json:"lambda_arn"`
 	}{}
-	all := struct {
-		AccountId string `json:"account_id"`
-		LambdaArn string `json:"lambda_arn"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AccountId == nil {
-		return fmt.Errorf("required field account_id missing")
-	}
-	if required.LambdaArn == nil {
-		return fmt.Errorf("required field lambda_arn missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.AccountId == nil {
+		return fmt.Errorf("required field account_id missing")
+	}
+	if all.LambdaArn == nil {
+		return fmt.Errorf("required field lambda_arn missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "lambda_arn"})
 	} else {
 		return err
 	}
-	o.AccountId = all.AccountId
-	o.LambdaArn = all.LambdaArn
+	o.AccountId = *all.AccountId
+	o.LambdaArn = *all.LambdaArn
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

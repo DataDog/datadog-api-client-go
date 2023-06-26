@@ -149,23 +149,12 @@ func (o Widget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Definition *WidgetDefinition `json:"definition"`
-	}{}
 	all := struct {
-		Definition WidgetDefinition `json:"definition"`
-		Id         *int64           `json:"id,omitempty"`
-		Layout     *WidgetLayout    `json:"layout,omitempty"`
+		Definition *WidgetDefinition `json:"definition"`
+		Id         *int64            `json:"id,omitempty"`
+		Layout     *WidgetLayout     `json:"layout,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Definition == nil {
-		return fmt.Errorf("required field definition missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -173,13 +162,16 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Definition == nil {
+		return fmt.Errorf("required field definition missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "id", "layout"})
 	} else {
 		return err
 	}
-	o.Definition = all.Definition
+	o.Definition = *all.Definition
 	o.Id = all.Id
 	if all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)

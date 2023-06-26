@@ -154,8 +154,7 @@ func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error)
 		Offset     *int64 `json:"offset,omitempty"`
 		Size       *int64 `json:"size,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

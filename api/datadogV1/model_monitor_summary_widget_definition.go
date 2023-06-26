@@ -515,44 +515,35 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Query *string                             `json:"query"`
-		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"`
-		Count             *int64                             `json:"count,omitempty"`
-		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
-		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"`
-		Query             string                             `json:"query"`
-		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"`
-		ShowPriority      *bool                              `json:"show_priority,omitempty"`
-		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"`
-		Start             *int64                             `json:"start,omitempty"`
-		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"`
-		Title             *string                            `json:"title,omitempty"`
-		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize         *string                            `json:"title_size,omitempty"`
-		Type              MonitorSummaryWidgetDefinitionType `json:"type"`
+		ColorPreference   *WidgetColorPreference              `json:"color_preference,omitempty"`
+		Count             *int64                              `json:"count,omitempty"`
+		DisplayFormat     *WidgetMonitorSummaryDisplayFormat  `json:"display_format,omitempty"`
+		HideZeroCounts    *bool                               `json:"hide_zero_counts,omitempty"`
+		Query             *string                             `json:"query"`
+		ShowLastTriggered *bool                               `json:"show_last_triggered,omitempty"`
+		ShowPriority      *bool                               `json:"show_priority,omitempty"`
+		Sort              *WidgetMonitorSummarySort           `json:"sort,omitempty"`
+		Start             *int64                              `json:"start,omitempty"`
+		SummaryType       *WidgetSummaryType                  `json:"summary_type,omitempty"`
+		Title             *string                             `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign                    `json:"title_align,omitempty"`
+		TitleSize         *string                             `json:"title_size,omitempty"`
+		Type              *MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -612,7 +603,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Count = all.Count
 	o.DisplayFormat = all.DisplayFormat
 	o.HideZeroCounts = all.HideZeroCounts
-	o.Query = all.Query
+	o.Query = *all.Query
 	o.ShowLastTriggered = all.ShowLastTriggered
 	o.ShowPriority = all.ShowPriority
 	o.Sort = all.Sort
@@ -621,7 +612,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

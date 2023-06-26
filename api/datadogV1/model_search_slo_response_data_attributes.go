@@ -120,8 +120,7 @@ func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
 		Slos   []SearchServiceLevelObjective          `json:"slos,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

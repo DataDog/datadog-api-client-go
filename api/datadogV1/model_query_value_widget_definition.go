@@ -437,42 +437,33 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]QueryValueWidgetRequest      `json:"requests"`
-		Type     *QueryValueWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		Autoscale            *bool                          `json:"autoscale,omitempty"`
-		CustomLinks          []WidgetCustomLink             `json:"custom_links,omitempty"`
-		CustomUnit           *string                        `json:"custom_unit,omitempty"`
-		Precision            *int64                         `json:"precision,omitempty"`
-		Requests             []QueryValueWidgetRequest      `json:"requests"`
-		TextAlign            *WidgetTextAlign               `json:"text_align,omitempty"`
-		Time                 *WidgetTime                    `json:"time,omitempty"`
-		TimeseriesBackground *TimeseriesBackground          `json:"timeseries_background,omitempty"`
-		Title                *string                        `json:"title,omitempty"`
-		TitleAlign           *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize            *string                        `json:"title_size,omitempty"`
-		Type                 QueryValueWidgetDefinitionType `json:"type"`
+		Autoscale            *bool                           `json:"autoscale,omitempty"`
+		CustomLinks          []WidgetCustomLink              `json:"custom_links,omitempty"`
+		CustomUnit           *string                         `json:"custom_unit,omitempty"`
+		Precision            *int64                          `json:"precision,omitempty"`
+		Requests             *[]QueryValueWidgetRequest      `json:"requests"`
+		TextAlign            *WidgetTextAlign                `json:"text_align,omitempty"`
+		Time                 *WidgetTime                     `json:"time,omitempty"`
+		TimeseriesBackground *TimeseriesBackground           `json:"timeseries_background,omitempty"`
+		Title                *string                         `json:"title,omitempty"`
+		TitleAlign           *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize            *string                         `json:"title_size,omitempty"`
+		Type                 *QueryValueWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -508,7 +499,7 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomLinks = all.CustomLinks
 	o.CustomUnit = all.CustomUnit
 	o.Precision = all.Precision
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	o.TextAlign = all.TextAlign
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -529,7 +520,7 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -120,8 +120,7 @@ func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Query       *TopologyQuery       `json:"query,omitempty"`
 		RequestType *TopologyRequestType `json:"request_type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

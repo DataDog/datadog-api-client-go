@@ -189,8 +189,7 @@ func (o *CIAppPipelinesAggregateRequest) UnmarshalJSON(bytes []byte) (err error)
 		GroupBy []CIAppPipelinesGroupBy    `json:"group_by,omitempty"`
 		Options *CIAppQueryOptions         `json:"options,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

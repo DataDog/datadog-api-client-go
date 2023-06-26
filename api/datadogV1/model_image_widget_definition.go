@@ -348,39 +348,30 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type *ImageWidgetDefinitionType `json:"type"`
-		Url  *string                    `json:"url"`
-	}{}
 	all := struct {
-		HasBackground   *bool                     `json:"has_background,omitempty"`
-		HasBorder       *bool                     `json:"has_border,omitempty"`
-		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
-		Margin          *WidgetMargin             `json:"margin,omitempty"`
-		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
-		Type            ImageWidgetDefinitionType `json:"type"`
-		Url             string                    `json:"url"`
-		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"`
-		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"`
+		HasBackground   *bool                      `json:"has_background,omitempty"`
+		HasBorder       *bool                      `json:"has_border,omitempty"`
+		HorizontalAlign *WidgetHorizontalAlign     `json:"horizontal_align,omitempty"`
+		Margin          *WidgetMargin              `json:"margin,omitempty"`
+		Sizing          *WidgetImageSizing         `json:"sizing,omitempty"`
+		Type            *ImageWidgetDefinitionType `json:"type"`
+		Url             *string                    `json:"url"`
+		UrlDarkTheme    *string                    `json:"url_dark_theme,omitempty"`
+		VerticalAlign   *WidgetVerticalAlign       `json:"vertical_align,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -433,8 +424,8 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.HorizontalAlign = all.HorizontalAlign
 	o.Margin = all.Margin
 	o.Sizing = all.Sizing
-	o.Type = all.Type
-	o.Url = all.Url
+	o.Type = *all.Type
+	o.Url = *all.Url
 	o.UrlDarkTheme = all.UrlDarkTheme
 	o.VerticalAlign = all.VerticalAlign
 	if len(additionalProperties) > 0 {

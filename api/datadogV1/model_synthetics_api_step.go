@@ -292,46 +292,35 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assertions *[]SyntheticsAssertion    `json:"assertions"`
-		Name       *string                   `json:"name"`
-		Request    *SyntheticsTestRequest    `json:"request"`
-		Subtype    *SyntheticsAPIStepSubtype `json:"subtype"`
-	}{}
 	all := struct {
 		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
-		Assertions      []SyntheticsAssertion       `json:"assertions"`
+		Assertions      *[]SyntheticsAssertion      `json:"assertions"`
 		ExtractedValues []SyntheticsParsingOptions  `json:"extractedValues,omitempty"`
 		IsCritical      *bool                       `json:"isCritical,omitempty"`
-		Name            string                      `json:"name"`
-		Request         SyntheticsTestRequest       `json:"request"`
+		Name            *string                     `json:"name"`
+		Request         *SyntheticsTestRequest      `json:"request"`
 		Retry           *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		Subtype         SyntheticsAPIStepSubtype    `json:"subtype"`
+		Subtype         *SyntheticsAPIStepSubtype   `json:"subtype"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assertions == nil {
-		return fmt.Errorf("required field assertions missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Request == nil {
-		return fmt.Errorf("required field request missing")
-	}
-	if required.Subtype == nil {
-		return fmt.Errorf("required field subtype missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Assertions == nil {
+		return fmt.Errorf("required field assertions missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Request == nil {
+		return fmt.Errorf("required field request missing")
+	}
+	if all.Subtype == nil {
+		return fmt.Errorf("required field subtype missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -348,10 +337,10 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.AllowFailure = all.AllowFailure
-	o.Assertions = all.Assertions
+	o.Assertions = *all.Assertions
 	o.ExtractedValues = all.ExtractedValues
 	o.IsCritical = all.IsCritical
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -359,7 +348,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Request = all.Request
+	o.Request = *all.Request
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -368,7 +357,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Retry = all.Retry
-	o.Subtype = all.Subtype
+	o.Subtype = *all.Subtype
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

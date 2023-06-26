@@ -375,40 +375,31 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Content *string                   `json:"content"`
-		Type    *NoteWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		BackgroundColor *string                  `json:"background_color,omitempty"`
-		Content         string                   `json:"content"`
-		FontSize        *string                  `json:"font_size,omitempty"`
-		HasPadding      *bool                    `json:"has_padding,omitempty"`
-		ShowTick        *bool                    `json:"show_tick,omitempty"`
-		TextAlign       *WidgetTextAlign         `json:"text_align,omitempty"`
-		TickEdge        *WidgetTickEdge          `json:"tick_edge,omitempty"`
-		TickPos         *string                  `json:"tick_pos,omitempty"`
-		Type            NoteWidgetDefinitionType `json:"type"`
-		VerticalAlign   *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
+		BackgroundColor *string                   `json:"background_color,omitempty"`
+		Content         *string                   `json:"content"`
+		FontSize        *string                   `json:"font_size,omitempty"`
+		HasPadding      *bool                     `json:"has_padding,omitempty"`
+		ShowTick        *bool                     `json:"show_tick,omitempty"`
+		TextAlign       *WidgetTextAlign          `json:"text_align,omitempty"`
+		TickEdge        *WidgetTickEdge           `json:"tick_edge,omitempty"`
+		TickPos         *string                   `json:"tick_pos,omitempty"`
+		Type            *NoteWidgetDefinitionType `json:"type"`
+		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Content == nil {
-		return fmt.Errorf("required field content missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Content == nil {
+		return fmt.Errorf("required field content missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -449,14 +440,14 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.BackgroundColor = all.BackgroundColor
-	o.Content = all.Content
+	o.Content = *all.Content
 	o.FontSize = all.FontSize
 	o.HasPadding = all.HasPadding
 	o.ShowTick = all.ShowTick
 	o.TextAlign = all.TextAlign
 	o.TickEdge = all.TickEdge
 	o.TickPos = all.TickPos
-	o.Type = all.Type
+	o.Type = *all.Type
 	o.VerticalAlign = all.VerticalAlign
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

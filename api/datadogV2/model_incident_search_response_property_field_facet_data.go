@@ -138,33 +138,24 @@ func (o IncidentSearchResponsePropertyFieldFacetData) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponsePropertyFieldFacetData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Facets *[]IncidentSearchResponseFieldFacetData `json:"facets"`
-		Name   *string                                 `json:"name"`
-	}{}
 	all := struct {
 		Aggregates *IncidentSearchResponseNumericFacetDataAggregates `json:"aggregates,omitempty"`
-		Facets     []IncidentSearchResponseFieldFacetData            `json:"facets"`
-		Name       string                                            `json:"name"`
+		Facets     *[]IncidentSearchResponseFieldFacetData           `json:"facets"`
+		Name       *string                                           `json:"name"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Facets == nil {
-		return fmt.Errorf("required field facets missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Facets == nil {
+		return fmt.Errorf("required field facets missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -180,8 +171,8 @@ func (o *IncidentSearchResponsePropertyFieldFacetData) UnmarshalJSON(bytes []byt
 		o.UnparsedObject = raw
 	}
 	o.Aggregates = all.Aggregates
-	o.Facets = all.Facets
-	o.Name = all.Name
+	o.Facets = *all.Facets
+	o.Name = *all.Name
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

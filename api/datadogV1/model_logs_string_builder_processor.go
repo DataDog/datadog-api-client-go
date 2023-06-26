@@ -254,40 +254,30 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Target   *string                         `json:"target"`
-		Template *string                         `json:"template"`
-		Type     *LogsStringBuilderProcessorType `json:"type"`
-	}{}
 	all := struct {
-		IsEnabled        *bool                          `json:"is_enabled,omitempty"`
-		IsReplaceMissing *bool                          `json:"is_replace_missing,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Target           string                         `json:"target"`
-		Template         string                         `json:"template"`
-		Type             LogsStringBuilderProcessorType `json:"type"`
+		IsEnabled        *bool                           `json:"is_enabled,omitempty"`
+		IsReplaceMissing *bool                           `json:"is_replace_missing,omitempty"`
+		Name             *string                         `json:"name,omitempty"`
+		Target           *string                         `json:"target"`
+		Template         *string                         `json:"template"`
+		Type             *LogsStringBuilderProcessorType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Target == nil {
-		return fmt.Errorf("required field target missing")
-	}
-	if required.Template == nil {
-		return fmt.Errorf("required field template missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Target == nil {
+		return fmt.Errorf("required field target missing")
+	}
+	if all.Template == nil {
+		return fmt.Errorf("required field template missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -306,9 +296,9 @@ func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsEnabled = all.IsEnabled
 	o.IsReplaceMissing = all.IsReplaceMissing
 	o.Name = all.Name
-	o.Target = all.Target
-	o.Template = all.Template
-	o.Type = all.Type
+	o.Target = *all.Target
+	o.Template = *all.Template
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

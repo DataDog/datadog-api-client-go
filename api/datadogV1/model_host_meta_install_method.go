@@ -154,8 +154,7 @@ func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 		Tool             *string `json:"tool,omitempty"`
 		ToolVersion      *string `json:"tool_version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

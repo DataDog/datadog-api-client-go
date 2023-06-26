@@ -201,39 +201,29 @@ func (o TimeseriesFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		From    *int64             `json:"from"`
-		Queries *[]TimeseriesQuery `json:"queries"`
-		To      *int64             `json:"to"`
-	}{}
 	all := struct {
-		Formulas []QueryFormula    `json:"formulas,omitempty"`
-		From     int64             `json:"from"`
-		Interval *int64            `json:"interval,omitempty"`
-		Queries  []TimeseriesQuery `json:"queries"`
-		To       int64             `json:"to"`
+		Formulas []QueryFormula     `json:"formulas,omitempty"`
+		From     *int64             `json:"from"`
+		Interval *int64             `json:"interval,omitempty"`
+		Queries  *[]TimeseriesQuery `json:"queries"`
+		To       *int64             `json:"to"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.From == nil {
-		return fmt.Errorf("required field from missing")
-	}
-	if required.Queries == nil {
-		return fmt.Errorf("required field queries missing")
-	}
-	if required.To == nil {
-		return fmt.Errorf("required field to missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.From == nil {
+		return fmt.Errorf("required field from missing")
+	}
+	if all.Queries == nil {
+		return fmt.Errorf("required field queries missing")
+	}
+	if all.To == nil {
+		return fmt.Errorf("required field to missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -242,10 +232,10 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 	o.Formulas = all.Formulas
-	o.From = all.From
+	o.From = *all.From
 	o.Interval = all.Interval
-	o.Queries = all.Queries
-	o.To = all.To
+	o.Queries = *all.Queries
+	o.To = *all.To
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

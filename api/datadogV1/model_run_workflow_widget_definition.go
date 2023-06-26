@@ -305,38 +305,29 @@ func (o RunWorkflowWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RunWorkflowWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type       *RunWorkflowWidgetDefinitionType `json:"type"`
-		WorkflowId *string                          `json:"workflow_id"`
-	}{}
 	all := struct {
-		CustomLinks []WidgetCustomLink              `json:"custom_links,omitempty"`
-		Inputs      []RunWorkflowWidgetInput        `json:"inputs,omitempty"`
-		Time        *WidgetTime                     `json:"time,omitempty"`
-		Title       *string                         `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize   *string                         `json:"title_size,omitempty"`
-		Type        RunWorkflowWidgetDefinitionType `json:"type"`
-		WorkflowId  string                          `json:"workflow_id"`
+		CustomLinks []WidgetCustomLink               `json:"custom_links,omitempty"`
+		Inputs      []RunWorkflowWidgetInput         `json:"inputs,omitempty"`
+		Time        *WidgetTime                      `json:"time,omitempty"`
+		Title       *string                          `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign                 `json:"title_align,omitempty"`
+		TitleSize   *string                          `json:"title_size,omitempty"`
+		Type        *RunWorkflowWidgetDefinitionType `json:"type"`
+		WorkflowId  *string                          `json:"workflow_id"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.WorkflowId == nil {
-		return fmt.Errorf("required field workflow_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.WorkflowId == nil {
+		return fmt.Errorf("required field workflow_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -373,8 +364,8 @@ func (o *RunWorkflowWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
-	o.WorkflowId = all.WorkflowId
+	o.Type = *all.Type
+	o.WorkflowId = *all.WorkflowId
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

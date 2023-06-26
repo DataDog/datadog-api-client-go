@@ -120,8 +120,7 @@ func (o *WidgetFormulaStyle) UnmarshalJSON(bytes []byte) (err error) {
 		Palette      *string `json:"palette,omitempty"`
 		PaletteIndex *int64  `json:"palette_index,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

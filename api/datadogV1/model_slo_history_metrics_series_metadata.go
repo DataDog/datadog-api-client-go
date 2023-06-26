@@ -259,8 +259,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error
 		Scope      *string                               `json:"scope,omitempty"`
 		Unit       []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

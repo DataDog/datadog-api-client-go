@@ -148,27 +148,12 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		From *time.Time `json:"from"`
-		To   *time.Time `json:"to"`
-	}{}
 	all := struct {
-		From     time.Time `json:"from"`
-		Timezone *string   `json:"timezone,omitempty"`
-		To       time.Time `json:"to"`
+		From     *time.Time `json:"from"`
+		Timezone *string    `json:"timezone,omitempty"`
+		To       *time.Time `json:"to"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.From == nil {
-		return fmt.Errorf("required field from missing")
-	}
-	if required.To == nil {
-		return fmt.Errorf("required field to missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -176,15 +161,21 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.From == nil {
+		return fmt.Errorf("required field from missing")
+	}
+	if all.To == nil {
+		return fmt.Errorf("required field to missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"from", "timezone", "to"})
 	} else {
 		return err
 	}
-	o.From = all.From
+	o.From = *all.From
 	o.Timezone = all.Timezone
-	o.To = all.To
+	o.To = *all.To
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

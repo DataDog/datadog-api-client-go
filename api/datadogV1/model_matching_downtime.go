@@ -190,30 +190,22 @@ func (o MatchingDowntime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MatchingDowntime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Id *int64 `json:"id"`
-	}{}
 	all := struct {
 		End   datadog.NullableInt64 `json:"end,omitempty"`
-		Id    int64                 `json:"id"`
+		Id    *int64                `json:"id"`
 		Scope []string              `json:"scope,omitempty"`
 		Start *int64                `json:"start,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -222,7 +214,7 @@ func (o *MatchingDowntime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.End = all.End
-	o.Id = all.Id
+	o.Id = *all.Id
 	o.Scope = all.Scope
 	o.Start = all.Start
 	if len(additionalProperties) > 0 {

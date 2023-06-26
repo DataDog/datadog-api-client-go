@@ -146,29 +146,21 @@ func (o IncidentTeamCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTeamCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Type *IncidentTeamType `json:"type"`
-	}{}
 	all := struct {
 		Attributes    *IncidentTeamCreateAttributes `json:"attributes,omitempty"`
 		Relationships *IncidentTeamRelationships    `json:"relationships,omitempty"`
-		Type          IncidentTeamType              `json:"type"`
+		Type          *IncidentTeamType             `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -200,7 +192,7 @@ func (o *IncidentTeamCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Relationships = all.Relationships
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

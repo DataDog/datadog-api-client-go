@@ -813,8 +813,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Scheduling                   *SyntheticsTestOptionsScheduling     `json:"scheduling,omitempty"`
 		TickEvery                    *int64                               `json:"tick_every,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

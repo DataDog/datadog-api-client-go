@@ -248,32 +248,24 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Time *LogsListRequestTime `json:"time"`
-	}{}
 	all := struct {
-		Index   *string             `json:"index,omitempty"`
-		Limit   *int32              `json:"limit,omitempty"`
-		Query   *string             `json:"query,omitempty"`
-		Sort    *LogsSort           `json:"sort,omitempty"`
-		StartAt *string             `json:"startAt,omitempty"`
-		Time    LogsListRequestTime `json:"time"`
+		Index   *string              `json:"index,omitempty"`
+		Limit   *int32               `json:"limit,omitempty"`
+		Query   *string              `json:"query,omitempty"`
+		Sort    *LogsSort            `json:"sort,omitempty"`
+		StartAt *string              `json:"startAt,omitempty"`
+		Time    *LogsListRequestTime `json:"time"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Time == nil {
-		return fmt.Errorf("required field time missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Time == nil {
+		return fmt.Errorf("required field time missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -301,7 +293,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Time = all.Time
+	o.Time = *all.Time
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

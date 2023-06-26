@@ -310,42 +310,32 @@ func (o NotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Cells *[]NotebookCellResponse `json:"cells"`
-		Name  *string                 `json:"name"`
-		Time  *NotebookGlobalTime     `json:"time"`
-	}{}
 	all := struct {
-		Author   *NotebookAuthor        `json:"author,omitempty"`
-		Cells    []NotebookCellResponse `json:"cells"`
-		Created  *time.Time             `json:"created,omitempty"`
-		Metadata *NotebookMetadata      `json:"metadata,omitempty"`
-		Modified *time.Time             `json:"modified,omitempty"`
-		Name     string                 `json:"name"`
-		Status   *NotebookStatus        `json:"status,omitempty"`
-		Time     NotebookGlobalTime     `json:"time"`
+		Author   *NotebookAuthor         `json:"author,omitempty"`
+		Cells    *[]NotebookCellResponse `json:"cells"`
+		Created  *time.Time              `json:"created,omitempty"`
+		Metadata *NotebookMetadata       `json:"metadata,omitempty"`
+		Modified *time.Time              `json:"modified,omitempty"`
+		Name     *string                 `json:"name"`
+		Status   *NotebookStatus         `json:"status,omitempty"`
+		Time     *NotebookGlobalTime     `json:"time"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Cells == nil {
-		return fmt.Errorf("required field cells missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Time == nil {
-		return fmt.Errorf("required field time missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Cells == nil {
+		return fmt.Errorf("required field cells missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Time == nil {
+		return fmt.Errorf("required field time missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -369,7 +359,7 @@ func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 	}
 	o.Author = all.Author
-	o.Cells = all.Cells
+	o.Cells = *all.Cells
 	o.Created = all.Created
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -380,9 +370,9 @@ func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	o.Metadata = all.Metadata
 	o.Modified = all.Modified
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Status = all.Status
-	o.Time = all.Time
+	o.Time = *all.Time
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

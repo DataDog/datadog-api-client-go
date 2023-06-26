@@ -321,38 +321,29 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]TreeMapWidgetRequest      `json:"requests"`
-		Type     *TreeMapWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		ColorBy     *TreeMapColorBy             `json:"color_by,omitempty"`
-		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
-		GroupBy     *TreeMapGroupBy             `json:"group_by,omitempty"`
-		Requests    []TreeMapWidgetRequest      `json:"requests"`
-		SizeBy      *TreeMapSizeBy              `json:"size_by,omitempty"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		Type        TreeMapWidgetDefinitionType `json:"type"`
+		ColorBy     *TreeMapColorBy              `json:"color_by,omitempty"`
+		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
+		GroupBy     *TreeMapGroupBy              `json:"group_by,omitempty"`
+		Requests    *[]TreeMapWidgetRequest      `json:"requests"`
+		SizeBy      *TreeMapSizeBy               `json:"size_by,omitempty"`
+		Time        *WidgetTime                  `json:"time,omitempty"`
+		Title       *string                      `json:"title,omitempty"`
+		Type        *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -395,7 +386,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ColorBy = all.ColorBy
 	o.CustomLinks = all.CustomLinks
 	o.GroupBy = all.GroupBy
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	o.SizeBy = all.SizeBy
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -406,7 +397,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Time = all.Time
 	o.Title = all.Title
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

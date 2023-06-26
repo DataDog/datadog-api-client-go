@@ -105,26 +105,11 @@ func (o CloudConfigurationRegoRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRegoRule) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Policy        *string   `json:"policy"`
 		ResourceTypes *[]string `json:"resourceTypes"`
 	}{}
-	all := struct {
-		Policy        string   `json:"policy"`
-		ResourceTypes []string `json:"resourceTypes"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Policy == nil {
-		return fmt.Errorf("required field policy missing")
-	}
-	if required.ResourceTypes == nil {
-		return fmt.Errorf("required field resourceTypes missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *CloudConfigurationRegoRule) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Policy == nil {
+		return fmt.Errorf("required field policy missing")
+	}
+	if all.ResourceTypes == nil {
+		return fmt.Errorf("required field resourceTypes missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"policy", "resourceTypes"})
 	} else {
 		return err
 	}
-	o.Policy = all.Policy
-	o.ResourceTypes = all.ResourceTypes
+	o.Policy = *all.Policy
+	o.ResourceTypes = *all.ResourceTypes
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

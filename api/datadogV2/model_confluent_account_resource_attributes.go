@@ -144,29 +144,21 @@ func (o ConfluentAccountResourceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountResourceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		ResourceType *string `json:"resource_type"`
-	}{}
 	all := struct {
 		Id           *string  `json:"id,omitempty"`
-		ResourceType string   `json:"resource_type"`
+		ResourceType *string  `json:"resource_type"`
 		Tags         []string `json:"tags,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ResourceType == nil {
-		return fmt.Errorf("required field resource_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.ResourceType == nil {
+		return fmt.Errorf("required field resource_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -175,7 +167,7 @@ func (o *ConfluentAccountResourceAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 	o.Id = all.Id
-	o.ResourceType = all.ResourceType
+	o.ResourceType = *all.ResourceType
 	o.Tags = all.Tags
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -534,8 +534,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		TokenUri                *string  `json:"token_uri,omitempty"`
 		Type                    *string  `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

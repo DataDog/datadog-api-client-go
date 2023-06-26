@@ -774,78 +774,62 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		End          *time.Time                        `json:"end"`
-		Git          NullableCIAppGitInfo              `json:"git"`
-		Level        *CIAppPipelineEventPipelineLevel  `json:"level"`
-		Name         *string                           `json:"name"`
-		PartialRetry *bool                             `json:"partial_retry"`
-		Start        *time.Time                        `json:"start"`
-		Status       *CIAppPipelineEventPipelineStatus `json:"status"`
-		UniqueId     *string                           `json:"unique_id"`
-		Url          *string                           `json:"url"`
-	}{}
 	all := struct {
-		End             time.Time                                  `json:"end"`
+		End             *time.Time                                 `json:"end"`
 		Error           NullableCIAppCIError                       `json:"error,omitempty"`
 		Git             NullableCIAppGitInfo                       `json:"git"`
 		IsManual        datadog.NullableBool                       `json:"is_manual,omitempty"`
 		IsResumed       datadog.NullableBool                       `json:"is_resumed,omitempty"`
-		Level           CIAppPipelineEventPipelineLevel            `json:"level"`
+		Level           *CIAppPipelineEventPipelineLevel           `json:"level"`
 		Metrics         datadog.NullableList[string]               `json:"metrics,omitempty"`
-		Name            string                                     `json:"name"`
+		Name            *string                                    `json:"name"`
 		Node            NullableCIAppHostInfo                      `json:"node,omitempty"`
 		Parameters      map[string]string                          `json:"parameters,omitempty"`
 		ParentPipeline  NullableCIAppPipelineEventParentPipeline   `json:"parent_pipeline,omitempty"`
-		PartialRetry    bool                                       `json:"partial_retry"`
+		PartialRetry    *bool                                      `json:"partial_retry"`
 		PipelineId      *string                                    `json:"pipeline_id,omitempty"`
 		PreviousAttempt NullableCIAppPipelineEventPreviousPipeline `json:"previous_attempt,omitempty"`
 		QueueTime       datadog.NullableInt64                      `json:"queue_time,omitempty"`
-		Start           time.Time                                  `json:"start"`
-		Status          CIAppPipelineEventPipelineStatus           `json:"status"`
+		Start           *time.Time                                 `json:"start"`
+		Status          *CIAppPipelineEventPipelineStatus          `json:"status"`
 		Tags            datadog.NullableList[string]               `json:"tags,omitempty"`
-		UniqueId        string                                     `json:"unique_id"`
-		Url             string                                     `json:"url"`
+		UniqueId        *string                                    `json:"unique_id"`
+		Url             *string                                    `json:"url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.End == nil {
-		return fmt.Errorf("required field end missing")
-	}
-	if !required.Git.IsSet() {
-		return fmt.Errorf("required field git missing")
-	}
-	if required.Level == nil {
-		return fmt.Errorf("required field level missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.PartialRetry == nil {
-		return fmt.Errorf("required field partial_retry missing")
-	}
-	if required.Start == nil {
-		return fmt.Errorf("required field start missing")
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	if required.UniqueId == nil {
-		return fmt.Errorf("required field unique_id missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.End == nil {
+		return fmt.Errorf("required field end missing")
+	}
+	if !all.Git.IsSet() {
+		return fmt.Errorf("required field git missing")
+	}
+	if all.Level == nil {
+		return fmt.Errorf("required field level missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.PartialRetry == nil {
+		return fmt.Errorf("required field partial_retry missing")
+	}
+	if all.Start == nil {
+		return fmt.Errorf("required field start missing")
+	}
+	if all.Status == nil {
+		return fmt.Errorf("required field status missing")
+	}
+	if all.UniqueId == nil {
+		return fmt.Errorf("required field unique_id missing")
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -869,26 +853,26 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.End = all.End
+	o.End = *all.End
 	o.Error = all.Error
 	o.Git = all.Git
 	o.IsManual = all.IsManual
 	o.IsResumed = all.IsResumed
-	o.Level = all.Level
+	o.Level = *all.Level
 	o.Metrics = all.Metrics
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Node = all.Node
 	o.Parameters = all.Parameters
 	o.ParentPipeline = all.ParentPipeline
-	o.PartialRetry = all.PartialRetry
+	o.PartialRetry = *all.PartialRetry
 	o.PipelineId = all.PipelineId
 	o.PreviousAttempt = all.PreviousAttempt
 	o.QueueTime = all.QueueTime
-	o.Start = all.Start
-	o.Status = all.Status
+	o.Start = *all.Start
+	o.Status = *all.Status
 	o.Tags = all.Tags
-	o.UniqueId = all.UniqueId
-	o.Url = all.Url
+	o.UniqueId = *all.UniqueId
+	o.Url = *all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

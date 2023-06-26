@@ -120,8 +120,7 @@ func (o *SensitiveDataScannerRuleRelationships) UnmarshalJSON(bytes []byte) (err
 		Group           *SensitiveDataScannerGroupData           `json:"group,omitempty"`
 		StandardPattern *SensitiveDataScannerStandardPatternData `json:"standard_pattern,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

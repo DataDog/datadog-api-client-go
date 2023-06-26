@@ -181,30 +181,22 @@ func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Value *string `json:"value"`
-	}{}
 	all := struct {
 		DisplayType *string `json:"display_type,omitempty"`
 		Label       *string `json:"label,omitempty"`
 		Time        *string `json:"time,omitempty"`
-		Value       string  `json:"value"`
+		Value       *string `json:"value"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Value == nil {
+		return fmt.Errorf("required field value missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -215,7 +207,7 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	o.DisplayType = all.DisplayType
 	o.Label = all.Label
 	o.Time = all.Time
-	o.Value = all.Value
+	o.Value = *all.Value
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

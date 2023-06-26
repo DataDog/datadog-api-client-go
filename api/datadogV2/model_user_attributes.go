@@ -457,8 +457,7 @@ func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Title          datadog.NullableString `json:"title,omitempty"`
 		Verified       *bool                  `json:"verified,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -111,28 +111,20 @@ func (o IncidentResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Data *IncidentResponseData `json:"data"`
-	}{}
 	all := struct {
-		Data     IncidentResponseData           `json:"data"`
+		Data     *IncidentResponseData          `json:"data"`
 		Included []IncidentResponseIncludedItem `json:"included,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -147,7 +139,7 @@ func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 	o.Included = all.Included
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

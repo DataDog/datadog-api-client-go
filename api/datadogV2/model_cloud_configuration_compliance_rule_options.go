@@ -159,8 +159,7 @@ func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (e
 		RegoRule     *CloudConfigurationRegoRule `json:"regoRule,omitempty"`
 		ResourceType *string                     `json:"resourceType,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

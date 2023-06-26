@@ -154,8 +154,7 @@ func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		Iowait *float64 `json:"iowait,omitempty"`
 		Load   *float64 `json:"load,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

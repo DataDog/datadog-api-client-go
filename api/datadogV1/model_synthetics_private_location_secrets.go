@@ -120,8 +120,7 @@ func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err erro
 		Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
 		ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -673,9 +673,6 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Title *string `json:"title"`
-	}{}
 	all := struct {
 		Created                *time.Time                         `json:"created,omitempty"`
 		CustomerImpactDuration *int64                             `json:"customer_impact_duration,omitempty"`
@@ -693,23 +690,18 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		TimeToInternalResponse *int64                             `json:"time_to_internal_response,omitempty"`
 		TimeToRepair           *int64                             `json:"time_to_repair,omitempty"`
 		TimeToResolve          *int64                             `json:"time_to_resolve,omitempty"`
-		Title                  string                             `json:"title"`
+		Title                  *string                            `json:"title"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Title == nil {
-		return fmt.Errorf("required field title missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Title == nil {
+		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -733,7 +725,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.TimeToInternalResponse = all.TimeToInternalResponse
 	o.TimeToRepair = all.TimeToRepair
 	o.TimeToResolve = all.TimeToResolve
-	o.Title = all.Title
+	o.Title = *all.Title
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

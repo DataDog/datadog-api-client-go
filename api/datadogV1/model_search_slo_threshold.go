@@ -235,35 +235,26 @@ func (o SearchSLOThreshold) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Target    *float64            `json:"target"`
-		Timeframe *SearchSLOTimeframe `json:"timeframe"`
-	}{}
 	all := struct {
-		Target         float64                 `json:"target"`
+		Target         *float64                `json:"target"`
 		TargetDisplay  *string                 `json:"target_display,omitempty"`
-		Timeframe      SearchSLOTimeframe      `json:"timeframe"`
+		Timeframe      *SearchSLOTimeframe     `json:"timeframe"`
 		Warning        datadog.NullableFloat64 `json:"warning,omitempty"`
 		WarningDisplay datadog.NullableString  `json:"warning_display,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Target == nil {
-		return fmt.Errorf("required field target missing")
-	}
-	if required.Timeframe == nil {
-		return fmt.Errorf("required field timeframe missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Target == nil {
+		return fmt.Errorf("required field target missing")
+	}
+	if all.Timeframe == nil {
+		return fmt.Errorf("required field timeframe missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -279,9 +270,9 @@ func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Target = all.Target
+	o.Target = *all.Target
 	o.TargetDisplay = all.TargetDisplay
-	o.Timeframe = all.Timeframe
+	o.Timeframe = *all.Timeframe
 	o.Warning = all.Warning
 	o.WarningDisplay = all.WarningDisplay
 	if len(additionalProperties) > 0 {

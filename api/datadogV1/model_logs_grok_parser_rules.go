@@ -115,22 +115,11 @@ func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		MatchRules *string `json:"match_rules"`
-	}{}
 	all := struct {
-		MatchRules   string  `json:"match_rules"`
+		MatchRules   *string `json:"match_rules"`
 		SupportRules *string `json:"support_rules,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.MatchRules == nil {
-		return fmt.Errorf("required field match_rules missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -138,13 +127,16 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.MatchRules == nil {
+		return fmt.Errorf("required field match_rules missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"match_rules", "support_rules"})
 	} else {
 		return err
 	}
-	o.MatchRules = all.MatchRules
+	o.MatchRules = *all.MatchRules
 	o.SupportRules = all.SupportRules
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

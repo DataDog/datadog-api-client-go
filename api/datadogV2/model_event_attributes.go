@@ -748,8 +748,7 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Timestamp      *int64                       `json:"timestamp,omitempty"`
 		Title          *string                      `json:"title,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -148,29 +148,21 @@ func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		QueryString *string `json:"query_string"`
-	}{}
 	all := struct {
 		Limit       *int64            `json:"limit,omitempty"`
-		QueryString string            `json:"query_string"`
+		QueryString *string           `json:"query_string"`
 		Sort        []WidgetFieldSort `json:"sort,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.QueryString == nil {
-		return fmt.Errorf("required field query_string missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.QueryString == nil {
+		return fmt.Errorf("required field query_string missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -179,7 +171,7 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Limit = all.Limit
-	o.QueryString = all.QueryString
+	o.QueryString = *all.QueryString
 	o.Sort = all.Sort
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

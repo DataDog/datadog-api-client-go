@@ -389,44 +389,34 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Sources *[]string                  `json:"sources"`
-		Target  *string                    `json:"target"`
-		Type    *LogsAttributeRemapperType `json:"type"`
-	}{}
 	all := struct {
-		IsEnabled          *bool                     `json:"is_enabled,omitempty"`
-		Name               *string                   `json:"name,omitempty"`
-		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"`
-		PreserveSource     *bool                     `json:"preserve_source,omitempty"`
-		SourceType         *string                   `json:"source_type,omitempty"`
-		Sources            []string                  `json:"sources"`
-		Target             string                    `json:"target"`
-		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"`
-		TargetType         *string                   `json:"target_type,omitempty"`
-		Type               LogsAttributeRemapperType `json:"type"`
+		IsEnabled          *bool                      `json:"is_enabled,omitempty"`
+		Name               *string                    `json:"name,omitempty"`
+		OverrideOnConflict *bool                      `json:"override_on_conflict,omitempty"`
+		PreserveSource     *bool                      `json:"preserve_source,omitempty"`
+		SourceType         *string                    `json:"source_type,omitempty"`
+		Sources            *[]string                  `json:"sources"`
+		Target             *string                    `json:"target"`
+		TargetFormat       *TargetFormatType          `json:"target_format,omitempty"`
+		TargetType         *string                    `json:"target_type,omitempty"`
+		Type               *LogsAttributeRemapperType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Sources == nil {
-		return fmt.Errorf("required field sources missing")
-	}
-	if required.Target == nil {
-		return fmt.Errorf("required field target missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Sources == nil {
+		return fmt.Errorf("required field sources missing")
+	}
+	if all.Target == nil {
+		return fmt.Errorf("required field target missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -455,11 +445,11 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.OverrideOnConflict = all.OverrideOnConflict
 	o.PreserveSource = all.PreserveSource
 	o.SourceType = all.SourceType
-	o.Sources = all.Sources
-	o.Target = all.Target
+	o.Sources = *all.Sources
+	o.Target = *all.Target
 	o.TargetFormat = all.TargetFormat
 	o.TargetType = all.TargetType
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

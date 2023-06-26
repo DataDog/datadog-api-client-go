@@ -2883,8 +2883,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		VsphereHostTop99p                       *int64                `json:"vsphere_host_top99p,omitempty"`
 		VulnManagementHostCountTop99p           *int64                `json:"vuln_management_host_count_top99p,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

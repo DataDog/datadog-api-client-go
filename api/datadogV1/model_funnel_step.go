@@ -105,26 +105,11 @@ func (o FunnelStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Facet *string `json:"facet"`
 		Value *string `json:"value"`
 	}{}
-	all := struct {
-		Facet string `json:"facet"`
-		Value string `json:"value"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Facet == nil {
-		return fmt.Errorf("required field facet missing")
-	}
-	if required.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Facet == nil {
+		return fmt.Errorf("required field facet missing")
+	}
+	if all.Value == nil {
+		return fmt.Errorf("required field value missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "value"})
 	} else {
 		return err
 	}
-	o.Facet = all.Facet
-	o.Value = all.Value
+	o.Facet = *all.Facet
+	o.Value = *all.Value
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

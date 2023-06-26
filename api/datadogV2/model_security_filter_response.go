@@ -120,8 +120,7 @@ func (o *SecurityFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *SecurityFilter     `json:"data,omitempty"`
 		Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

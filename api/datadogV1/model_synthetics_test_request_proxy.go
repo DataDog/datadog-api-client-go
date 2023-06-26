@@ -111,28 +111,20 @@ func (o SyntheticsTestRequestProxy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Url *string `json:"url"`
-	}{}
 	all := struct {
 		Headers map[string]string `json:"headers,omitempty"`
-		Url     string            `json:"url"`
+		Url     *string           `json:"url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -141,7 +133,7 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Headers = all.Headers
-	o.Url = all.Url
+	o.Url = *all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

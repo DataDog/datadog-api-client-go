@@ -418,8 +418,7 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 		SessionCountIos         datadog.NullableInt64 `json:"session_count_ios,omitempty"`
 		SessionCountReactnative datadog.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

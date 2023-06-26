@@ -358,8 +358,7 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Status   *string                `json:"status,omitempty"`
 		ToDate   *int64                 `json:"to_date,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

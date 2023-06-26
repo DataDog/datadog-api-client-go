@@ -188,8 +188,7 @@ func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
 		IngestionSource       *string `json:"ingestion-source,omitempty"`
 		LastModifiedTime      *string `json:"last-modified-time,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -426,8 +426,7 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 		Version                    *int64                                `json:"version,omitempty"`
 		Webhooks                   *IPPrefixesWebhooks                   `json:"webhooks,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

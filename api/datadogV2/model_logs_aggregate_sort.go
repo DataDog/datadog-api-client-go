@@ -192,8 +192,7 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		Order       *LogsSortOrder           `json:"order,omitempty"`
 		Type        *LogsAggregateSortType   `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

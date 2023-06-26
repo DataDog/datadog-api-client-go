@@ -154,8 +154,7 @@ func (o *ChargebackBreakdown) UnmarshalJSON(bytes []byte) (err error) {
 		Cost        *float64 `json:"cost,omitempty"`
 		ProductName *string  `json:"product_name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

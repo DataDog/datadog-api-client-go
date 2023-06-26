@@ -193,37 +193,14 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Height *int64 `json:"height"`
-		Width  *int64 `json:"width"`
-		X      *int64 `json:"x"`
-		Y      *int64 `json:"y"`
-	}{}
 	all := struct {
-		Height        int64 `json:"height"`
-		IsColumnBreak *bool `json:"is_column_break,omitempty"`
-		Width         int64 `json:"width"`
-		X             int64 `json:"x"`
-		Y             int64 `json:"y"`
+		Height        *int64 `json:"height"`
+		IsColumnBreak *bool  `json:"is_column_break,omitempty"`
+		Width         *int64 `json:"width"`
+		X             *int64 `json:"x"`
+		Y             *int64 `json:"y"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Height == nil {
-		return fmt.Errorf("required field height missing")
-	}
-	if required.Width == nil {
-		return fmt.Errorf("required field width missing")
-	}
-	if required.X == nil {
-		return fmt.Errorf("required field x missing")
-	}
-	if required.Y == nil {
-		return fmt.Errorf("required field y missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -231,17 +208,29 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Height == nil {
+		return fmt.Errorf("required field height missing")
+	}
+	if all.Width == nil {
+		return fmt.Errorf("required field width missing")
+	}
+	if all.X == nil {
+		return fmt.Errorf("required field x missing")
+	}
+	if all.Y == nil {
+		return fmt.Errorf("required field y missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"height", "is_column_break", "width", "x", "y"})
 	} else {
 		return err
 	}
-	o.Height = all.Height
+	o.Height = *all.Height
 	o.IsColumnBreak = all.IsColumnBreak
-	o.Width = all.Width
-	o.X = all.X
-	o.Y = all.Y
+	o.Width = *all.Width
+	o.X = *all.X
+	o.Y = *all.Y
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

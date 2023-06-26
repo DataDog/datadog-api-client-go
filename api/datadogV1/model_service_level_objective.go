@@ -601,11 +601,6 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name       *string         `json:"name"`
-		Thresholds *[]SLOThreshold `json:"thresholds"`
-		Type       *SLOType        `json:"type"`
-	}{}
 	all := struct {
 		CreatedAt        *int64                      `json:"created_at,omitempty"`
 		Creator          *Creator                    `json:"creator,omitempty"`
@@ -615,36 +610,31 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt       *int64                      `json:"modified_at,omitempty"`
 		MonitorIds       []int64                     `json:"monitor_ids,omitempty"`
 		MonitorTags      []string                    `json:"monitor_tags,omitempty"`
-		Name             string                      `json:"name"`
+		Name             *string                     `json:"name"`
 		Query            *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 		Tags             []string                    `json:"tags,omitempty"`
 		TargetThreshold  *float64                    `json:"target_threshold,omitempty"`
-		Thresholds       []SLOThreshold              `json:"thresholds"`
+		Thresholds       *[]SLOThreshold             `json:"thresholds"`
 		Timeframe        *SLOTimeframe               `json:"timeframe,omitempty"`
-		Type             SLOType                     `json:"type"`
+		Type             *SLOType                    `json:"type"`
 		WarningThreshold *float64                    `json:"warning_threshold,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.Thresholds == nil {
-		return fmt.Errorf("required field thresholds missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Thresholds == nil {
+		return fmt.Errorf("required field thresholds missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -683,7 +673,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.MonitorIds = all.MonitorIds
 	o.MonitorTags = all.MonitorTags
-	o.Name = all.Name
+	o.Name = *all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -694,9 +684,9 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
-	o.Thresholds = all.Thresholds
+	o.Thresholds = *all.Thresholds
 	o.Timeframe = all.Timeframe
-	o.Type = all.Type
+	o.Type = *all.Type
 	o.WarningThreshold = all.WarningThreshold
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

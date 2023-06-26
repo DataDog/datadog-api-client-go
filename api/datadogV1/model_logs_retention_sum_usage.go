@@ -188,8 +188,7 @@ func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 		LogsRehydratedIndexedLogsUsageSum *int64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
 		Retention                         *string `json:"retention,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -86,8 +86,7 @@ func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err er
 	all := struct {
 		RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

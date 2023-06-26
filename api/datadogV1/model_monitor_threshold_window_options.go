@@ -142,8 +142,7 @@ func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) 
 		RecoveryWindow datadog.NullableString `json:"recovery_window,omitempty"`
 		TriggerWindow  datadog.NullableString `json:"trigger_window,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -223,8 +223,7 @@ func (o *RUMResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		Status    *RUMResponseStatus `json:"status,omitempty"`
 		Warnings  []RUMWarning       `json:"warnings,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

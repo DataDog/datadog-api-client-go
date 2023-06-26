@@ -78,27 +78,19 @@ func (o SecurityMonitoringSignalIncidentsUpdateRequest) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalIncidentsUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Data *SecurityMonitoringSignalIncidentsUpdateData `json:"data"`
 	}{}
-	all := struct {
-		Data SecurityMonitoringSignalIncidentsUpdateData `json:"data"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -113,7 +105,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateRequest) UnmarshalJSON(bytes []b
 		}
 		o.UnparsedObject = raw
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

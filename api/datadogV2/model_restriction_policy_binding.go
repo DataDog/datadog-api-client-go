@@ -107,26 +107,11 @@ func (o RestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Principals *[]string `json:"principals"`
 		Relation   *string   `json:"relation"`
 	}{}
-	all := struct {
-		Principals []string `json:"principals"`
-		Relation   string   `json:"relation"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Principals == nil {
-		return fmt.Errorf("required field principals missing")
-	}
-	if required.Relation == nil {
-		return fmt.Errorf("required field relation missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,14 +119,20 @@ func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Principals == nil {
+		return fmt.Errorf("required field principals missing")
+	}
+	if all.Relation == nil {
+		return fmt.Errorf("required field relation missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
 	} else {
 		return err
 	}
-	o.Principals = all.Principals
-	o.Relation = all.Relation
+	o.Principals = *all.Principals
+	o.Relation = *all.Relation
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

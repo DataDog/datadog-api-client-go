@@ -111,28 +111,20 @@ func (o SecurityMonitoringSignalAssigneeUpdateAttributes) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assignee *SecurityMonitoringTriageUser `json:"assignee"`
-	}{}
 	all := struct {
-		Assignee SecurityMonitoringTriageUser `json:"assignee"`
-		Version  *int64                       `json:"version,omitempty"`
+		Assignee *SecurityMonitoringTriageUser `json:"assignee"`
+		Version  *int64                        `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assignee == nil {
-		return fmt.Errorf("required field assignee missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Assignee == nil {
+		return fmt.Errorf("required field assignee missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -147,7 +139,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 		}
 		o.UnparsedObject = raw
 	}
-	o.Assignee = all.Assignee
+	o.Assignee = *all.Assignee
 	o.Version = all.Version
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

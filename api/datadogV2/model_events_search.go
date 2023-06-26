@@ -86,8 +86,7 @@ func (o *EventsSearch) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Query *string `json:"query,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

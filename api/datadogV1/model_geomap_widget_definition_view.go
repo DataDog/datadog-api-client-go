@@ -78,21 +78,10 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Focus *string `json:"focus"`
 	}{}
-	all := struct {
-		Focus string `json:"focus"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Focus == nil {
-		return fmt.Errorf("required field focus missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Focus == nil {
+		return fmt.Errorf("required field focus missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"focus"})
 	} else {
 		return err
 	}
-	o.Focus = all.Focus
+	o.Focus = *all.Focus
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

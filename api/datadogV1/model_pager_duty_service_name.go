@@ -78,21 +78,10 @@ func (o PagerDutyServiceName) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ServiceName *string `json:"service_name"`
 	}{}
-	all := struct {
-		ServiceName string `json:"service_name"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ServiceName == nil {
-		return fmt.Errorf("required field service_name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -100,13 +89,16 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ServiceName == nil {
+		return fmt.Errorf("required field service_name missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"service_name"})
 	} else {
 		return err
 	}
-	o.ServiceName = all.ServiceName
+	o.ServiceName = *all.ServiceName
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -324,8 +324,7 @@ func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Timestamp *string  `json:"timestamp,omitempty"`
 		User      *string  `json:"user,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

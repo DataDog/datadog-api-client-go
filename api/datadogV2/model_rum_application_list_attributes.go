@@ -333,58 +333,19 @@ func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		ApplicationId   *string `json:"application_id"`
 		CreatedAt       *int64  `json:"created_at"`
 		CreatedByHandle *string `json:"created_by_handle"`
+		Hash            *string `json:"hash,omitempty"`
+		IsActive        *bool   `json:"is_active,omitempty"`
 		Name            *string `json:"name"`
 		OrgId           *int32  `json:"org_id"`
 		Type            *string `json:"type"`
 		UpdatedAt       *int64  `json:"updated_at"`
 		UpdatedByHandle *string `json:"updated_by_handle"`
 	}{}
-	all := struct {
-		ApplicationId   string  `json:"application_id"`
-		CreatedAt       int64   `json:"created_at"`
-		CreatedByHandle string  `json:"created_by_handle"`
-		Hash            *string `json:"hash,omitempty"`
-		IsActive        *bool   `json:"is_active,omitempty"`
-		Name            string  `json:"name"`
-		OrgId           int32   `json:"org_id"`
-		Type            string  `json:"type"`
-		UpdatedAt       int64   `json:"updated_at"`
-		UpdatedByHandle string  `json:"updated_by_handle"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ApplicationId == nil {
-		return fmt.Errorf("required field application_id missing")
-	}
-	if required.CreatedAt == nil {
-		return fmt.Errorf("required field created_at missing")
-	}
-	if required.CreatedByHandle == nil {
-		return fmt.Errorf("required field created_by_handle missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.OrgId == nil {
-		return fmt.Errorf("required field org_id missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.UpdatedAt == nil {
-		return fmt.Errorf("required field updated_at missing")
-	}
-	if required.UpdatedByHandle == nil {
-		return fmt.Errorf("required field updated_by_handle missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -392,22 +353,46 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApplicationId == nil {
+		return fmt.Errorf("required field application_id missing")
+	}
+	if all.CreatedAt == nil {
+		return fmt.Errorf("required field created_at missing")
+	}
+	if all.CreatedByHandle == nil {
+		return fmt.Errorf("required field created_by_handle missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.OrgId == nil {
+		return fmt.Errorf("required field org_id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.UpdatedAt == nil {
+		return fmt.Errorf("required field updated_at missing")
+	}
+	if all.UpdatedByHandle == nil {
+		return fmt.Errorf("required field updated_by_handle missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"application_id", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "type", "updated_at", "updated_by_handle"})
 	} else {
 		return err
 	}
-	o.ApplicationId = all.ApplicationId
-	o.CreatedAt = all.CreatedAt
-	o.CreatedByHandle = all.CreatedByHandle
+	o.ApplicationId = *all.ApplicationId
+	o.CreatedAt = *all.CreatedAt
+	o.CreatedByHandle = *all.CreatedByHandle
 	o.Hash = all.Hash
 	o.IsActive = all.IsActive
-	o.Name = all.Name
-	o.OrgId = all.OrgId
-	o.Type = all.Type
-	o.UpdatedAt = all.UpdatedAt
-	o.UpdatedByHandle = all.UpdatedByHandle
+	o.Name = *all.Name
+	o.OrgId = *all.OrgId
+	o.Type = *all.Type
+	o.UpdatedAt = *all.UpdatedAt
+	o.UpdatedByHandle = *all.UpdatedByHandle
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

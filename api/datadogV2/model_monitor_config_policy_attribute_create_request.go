@@ -107,32 +107,23 @@ func (o MonitorConfigPolicyAttributeCreateRequest) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Policy     *MonitorConfigPolicyPolicyCreateRequest `json:"policy"`
 		PolicyType *MonitorConfigPolicyType                `json:"policy_type"`
 	}{}
-	all := struct {
-		Policy     MonitorConfigPolicyPolicyCreateRequest `json:"policy"`
-		PolicyType MonitorConfigPolicyType                `json:"policy_type"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Policy == nil {
-		return fmt.Errorf("required field policy missing")
-	}
-	if required.PolicyType == nil {
-		return fmt.Errorf("required field policy_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Policy == nil {
+		return fmt.Errorf("required field policy missing")
+	}
+	if all.PolicyType == nil {
+		return fmt.Errorf("required field policy_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -148,8 +139,8 @@ func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Policy = all.Policy
-	o.PolicyType = all.PolicyType
+	o.Policy = *all.Policy
+	o.PolicyType = *all.PolicyType
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

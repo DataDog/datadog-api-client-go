@@ -125,8 +125,7 @@ func (o *EventsQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 		TimeOffset *int64  `json:"timeOffset,omitempty"`
 		Timezone   *string `json:"timezone,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

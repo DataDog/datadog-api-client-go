@@ -318,9 +318,6 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Name *string `json:"name"`
-	}{}
 	all := struct {
 		Author         *Creator   `json:"author,omitempty"`
 		Created        *time.Time `json:"created,omitempty"`
@@ -328,24 +325,19 @@ func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 		Id             *int64     `json:"id,omitempty"`
 		IsFavorite     *bool      `json:"is_favorite,omitempty"`
 		Modified       *time.Time `json:"modified,omitempty"`
-		Name           string     `json:"name"`
+		Name           *string    `json:"name"`
 		Type           *string    `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -366,7 +358,7 @@ func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.IsFavorite = all.IsFavorite
 	o.Modified = all.Modified
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

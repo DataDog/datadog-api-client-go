@@ -132,37 +132,27 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Columns        *[]ListStreamColumn       `json:"columns"`
 		Query          *ListStreamQuery          `json:"query"`
 		ResponseFormat *ListStreamResponseFormat `json:"response_format"`
 	}{}
-	all := struct {
-		Columns        []ListStreamColumn       `json:"columns"`
-		Query          ListStreamQuery          `json:"query"`
-		ResponseFormat ListStreamResponseFormat `json:"response_format"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Columns == nil {
-		return fmt.Errorf("required field columns missing")
-	}
-	if required.Query == nil {
-		return fmt.Errorf("required field query missing")
-	}
-	if required.ResponseFormat == nil {
-		return fmt.Errorf("required field response_format missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Columns == nil {
+		return fmt.Errorf("required field columns missing")
+	}
+	if all.Query == nil {
+		return fmt.Errorf("required field query missing")
+	}
+	if all.ResponseFormat == nil {
+		return fmt.Errorf("required field response_format missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -178,7 +168,7 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Columns = all.Columns
+	o.Columns = *all.Columns
 	if all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -186,8 +176,8 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Query = all.Query
-	o.ResponseFormat = all.ResponseFormat
+	o.Query = *all.Query
+	o.ResponseFormat = *all.ResponseFormat
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

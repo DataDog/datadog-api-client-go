@@ -111,22 +111,11 @@ func (o SharedDashboardInvites) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboardInvites) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Data *SharedDashboardInvitesData `json:"data"`
-	}{}
 	all := struct {
-		Data SharedDashboardInvitesData  `json:"data"`
+		Data *SharedDashboardInvitesData `json:"data"`
 		Meta *SharedDashboardInvitesMeta `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *SharedDashboardInvites) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

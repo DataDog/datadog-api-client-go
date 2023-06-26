@@ -114,22 +114,11 @@ func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Q *string `json:"q"`
-	}{}
 	all := struct {
-		Q             string  `json:"q"`
+		Q             *string `json:"q"`
 		TagsExecution *string `json:"tags_execution,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Q == nil {
-		return fmt.Errorf("required field q missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -137,13 +126,16 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Q == nil {
+		return fmt.Errorf("required field q missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"q", "tags_execution"})
 	} else {
 		return err
 	}
-	o.Q = all.Q
+	o.Q = *all.Q
 	o.TagsExecution = all.TagsExecution
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

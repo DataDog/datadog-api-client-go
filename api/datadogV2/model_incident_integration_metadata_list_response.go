@@ -144,23 +144,12 @@ func (o IncidentIntegrationMetadataListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Data *[]IncidentIntegrationMetadataResponseData `json:"data"`
-	}{}
 	all := struct {
-		Data     []IncidentIntegrationMetadataResponseData         `json:"data"`
+		Data     *[]IncidentIntegrationMetadataResponseData        `json:"data"`
 		Included []IncidentIntegrationMetadataResponseIncludedItem `json:"included,omitempty"`
 		Meta     *IncidentResponseMeta                             `json:"meta,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -168,13 +157,16 @@ func (o *IncidentIntegrationMetadataListResponse) UnmarshalJSON(bytes []byte) (e
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta"})
 	} else {
 		return err
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 	o.Included = all.Included
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)

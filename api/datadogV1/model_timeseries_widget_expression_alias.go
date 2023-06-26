@@ -111,28 +111,20 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Expression *string `json:"expression"`
-	}{}
 	all := struct {
 		AliasName  *string `json:"alias_name,omitempty"`
-		Expression string  `json:"expression"`
+		Expression *string `json:"expression"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Expression == nil {
-		return fmt.Errorf("required field expression missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Expression == nil {
+		return fmt.Errorf("required field expression missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -141,7 +133,7 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	o.AliasName = all.AliasName
-	o.Expression = all.Expression
+	o.Expression = *all.Expression
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

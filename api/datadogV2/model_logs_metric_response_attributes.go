@@ -154,8 +154,7 @@ func (o *LogsMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Filter  *LogsMetricResponseFilter   `json:"filter,omitempty"`
 		GroupBy []LogsMetricResponseGroupBy `json:"group_by,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

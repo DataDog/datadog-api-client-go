@@ -111,22 +111,11 @@ func (o SignalAssigneeUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SignalAssigneeUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Assignee *string `json:"assignee"`
-	}{}
 	all := struct {
-		Assignee string `json:"assignee"`
-		Version  *int64 `json:"version,omitempty"`
+		Assignee *string `json:"assignee"`
+		Version  *int64  `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Assignee == nil {
-		return fmt.Errorf("required field assignee missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *SignalAssigneeUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Assignee == nil {
+		return fmt.Errorf("required field assignee missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "version"})
 	} else {
 		return err
 	}
-	o.Assignee = all.Assignee
+	o.Assignee = *all.Assignee
 	o.Version = all.Version
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

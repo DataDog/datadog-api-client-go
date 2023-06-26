@@ -154,8 +154,7 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
 		Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

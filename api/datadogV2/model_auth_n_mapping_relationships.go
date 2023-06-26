@@ -120,8 +120,7 @@ func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		Role                   *RelationshipToRole                   `json:"role,omitempty"`
 		SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

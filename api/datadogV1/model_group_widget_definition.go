@@ -303,42 +303,32 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		LayoutType *WidgetLayoutType          `json:"layout_type"`
-		Type       *GroupWidgetDefinitionType `json:"type"`
-		Widgets    *[]Widget                  `json:"widgets"`
-	}{}
 	all := struct {
-		BackgroundColor *string                   `json:"background_color,omitempty"`
-		BannerImg       *string                   `json:"banner_img,omitempty"`
-		LayoutType      WidgetLayoutType          `json:"layout_type"`
-		ShowTitle       *bool                     `json:"show_title,omitempty"`
-		Title           *string                   `json:"title,omitempty"`
-		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"`
-		Type            GroupWidgetDefinitionType `json:"type"`
-		Widgets         []Widget                  `json:"widgets"`
+		BackgroundColor *string                    `json:"background_color,omitempty"`
+		BannerImg       *string                    `json:"banner_img,omitempty"`
+		LayoutType      *WidgetLayoutType          `json:"layout_type"`
+		ShowTitle       *bool                      `json:"show_title,omitempty"`
+		Title           *string                    `json:"title,omitempty"`
+		TitleAlign      *WidgetTextAlign           `json:"title_align,omitempty"`
+		Type            *GroupWidgetDefinitionType `json:"type"`
+		Widgets         *[]Widget                  `json:"widgets"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.LayoutType == nil {
-		return fmt.Errorf("required field layout_type missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.Widgets == nil {
-		return fmt.Errorf("required field widgets missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.LayoutType == nil {
+		return fmt.Errorf("required field layout_type missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.Widgets == nil {
+		return fmt.Errorf("required field widgets missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -372,12 +362,12 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.BackgroundColor = all.BackgroundColor
 	o.BannerImg = all.BannerImg
-	o.LayoutType = all.LayoutType
+	o.LayoutType = *all.LayoutType
 	o.ShowTitle = all.ShowTitle
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
-	o.Type = all.Type
-	o.Widgets = all.Widgets
+	o.Type = *all.Type
+	o.Widgets = *all.Widgets
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

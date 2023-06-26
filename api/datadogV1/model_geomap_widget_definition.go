@@ -329,47 +329,36 @@ func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Requests *[]GeomapWidgetRequest       `json:"requests"`
-		Style    *GeomapWidgetDefinitionStyle `json:"style"`
-		Type     *GeomapWidgetDefinitionType  `json:"type"`
-		View     *GeomapWidgetDefinitionView  `json:"view"`
-	}{}
 	all := struct {
-		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
-		Requests    []GeomapWidgetRequest       `json:"requests"`
-		Style       GeomapWidgetDefinitionStyle `json:"style"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize   *string                     `json:"title_size,omitempty"`
-		Type        GeomapWidgetDefinitionType  `json:"type"`
-		View        GeomapWidgetDefinitionView  `json:"view"`
+		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
+		Requests    *[]GeomapWidgetRequest       `json:"requests"`
+		Style       *GeomapWidgetDefinitionStyle `json:"style"`
+		Time        *WidgetTime                  `json:"time,omitempty"`
+		Title       *string                      `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
+		TitleSize   *string                      `json:"title_size,omitempty"`
+		Type        *GeomapWidgetDefinitionType  `json:"type"`
+		View        *GeomapWidgetDefinitionView  `json:"view"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Requests == nil {
-		return fmt.Errorf("required field requests missing")
-	}
-	if required.Style == nil {
-		return fmt.Errorf("required field style missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	if required.View == nil {
-		return fmt.Errorf("required field view missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Requests == nil {
+		return fmt.Errorf("required field requests missing")
+	}
+	if all.Style == nil {
+		return fmt.Errorf("required field style missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
+	}
+	if all.View == nil {
+		return fmt.Errorf("required field view missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -394,7 +383,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.CustomLinks = all.CustomLinks
-	o.Requests = all.Requests
+	o.Requests = *all.Requests
 	if all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -402,7 +391,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.Style = all.Style
+	o.Style = *all.Style
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -414,7 +403,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if all.View.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -422,7 +411,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		}
 		o.UnparsedObject = raw
 	}
-	o.View = all.View
+	o.View = *all.View
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

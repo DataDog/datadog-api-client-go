@@ -138,27 +138,12 @@ func (o FastlyAccountCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		ApiKey *string `json:"api_key"`
-		Name   *string `json:"name"`
-	}{}
 	all := struct {
-		ApiKey   string          `json:"api_key"`
-		Name     string          `json:"name"`
+		ApiKey   *string         `json:"api_key"`
+		Name     *string         `json:"name"`
 		Services []FastlyService `json:"services,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.ApiKey == nil {
-		return fmt.Errorf("required field api_key missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -166,14 +151,20 @@ func (o *FastlyAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApiKey == nil {
+		return fmt.Errorf("required field api_key missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "name", "services"})
 	} else {
 		return err
 	}
-	o.ApiKey = all.ApiKey
-	o.Name = all.Name
+	o.ApiKey = *all.ApiKey
+	o.Name = *all.Name
 	o.Services = all.Services
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

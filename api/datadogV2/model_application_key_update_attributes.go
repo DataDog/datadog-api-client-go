@@ -131,8 +131,7 @@ func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Name   *string                      `json:"name,omitempty"`
 		Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

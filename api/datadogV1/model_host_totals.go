@@ -120,8 +120,7 @@ func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 		TotalActive *int64 `json:"total_active,omitempty"`
 		TotalUp     *int64 `json:"total_up,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

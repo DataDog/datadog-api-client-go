@@ -132,37 +132,27 @@ func (o IncidentSearchResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Facets    *IncidentSearchResponseFacetsData      `json:"facets"`
 		Incidents *[]IncidentSearchResponseIncidentsData `json:"incidents"`
 		Total     *int32                                 `json:"total"`
 	}{}
-	all := struct {
-		Facets    IncidentSearchResponseFacetsData      `json:"facets"`
-		Incidents []IncidentSearchResponseIncidentsData `json:"incidents"`
-		Total     int32                                 `json:"total"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Facets == nil {
-		return fmt.Errorf("required field facets missing")
-	}
-	if required.Incidents == nil {
-		return fmt.Errorf("required field incidents missing")
-	}
-	if required.Total == nil {
-		return fmt.Errorf("required field total missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Facets == nil {
+		return fmt.Errorf("required field facets missing")
+	}
+	if all.Incidents == nil {
+		return fmt.Errorf("required field incidents missing")
+	}
+	if all.Total == nil {
+		return fmt.Errorf("required field total missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -177,9 +167,9 @@ func (o *IncidentSearchResponseAttributes) UnmarshalJSON(bytes []byte) (err erro
 		}
 		o.UnparsedObject = raw
 	}
-	o.Facets = all.Facets
-	o.Incidents = all.Incidents
-	o.Total = all.Total
+	o.Facets = *all.Facets
+	o.Incidents = *all.Incidents
+	o.Total = *all.Total
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

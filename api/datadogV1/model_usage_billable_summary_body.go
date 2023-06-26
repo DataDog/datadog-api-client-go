@@ -299,8 +299,7 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
 		UsageUnit              *string    `json:"usage_unit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

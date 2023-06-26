@@ -144,29 +144,21 @@ func (o AddSignalToIncidentRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		IncidentId *int64 `json:"incident_id"`
-	}{}
 	all := struct {
 		AddToSignalTimeline *bool  `json:"add_to_signal_timeline,omitempty"`
-		IncidentId          int64  `json:"incident_id"`
+		IncidentId          *int64 `json:"incident_id"`
 		Version             *int64 `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IncidentId == nil {
-		return fmt.Errorf("required field incident_id missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.IncidentId == nil {
+		return fmt.Errorf("required field incident_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -175,7 +167,7 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.AddToSignalTimeline = all.AddToSignalTimeline
-	o.IncidentId = all.IncidentId
+	o.IncidentId = *all.IncidentId
 	o.Version = all.Version
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

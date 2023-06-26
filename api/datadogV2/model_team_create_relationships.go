@@ -86,8 +86,7 @@ func (o *TeamCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Users *RelationshipToUsers `json:"users,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

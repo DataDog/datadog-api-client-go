@@ -154,8 +154,7 @@ func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Lambdas   []AWSLogsLambda `json:"lambdas,omitempty"`
 		Services  []string        `json:"services,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -120,8 +120,7 @@ func (o *SensitiveDataScannerGroupRelationships) UnmarshalJSON(bytes []byte) (er
 		Configuration *SensitiveDataScannerConfigurationData `json:"configuration,omitempty"`
 		Rules         *SensitiveDataScannerRuleData          `json:"rules,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

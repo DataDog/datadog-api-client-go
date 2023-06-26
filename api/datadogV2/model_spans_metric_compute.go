@@ -145,29 +145,21 @@ func (o SpansMetricCompute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		AggregationType *SpansMetricComputeAggregationType `json:"aggregation_type"`
-	}{}
 	all := struct {
-		AggregationType    SpansMetricComputeAggregationType `json:"aggregation_type"`
-		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-		Path               *string                           `json:"path,omitempty"`
+		AggregationType    *SpansMetricComputeAggregationType `json:"aggregation_type"`
+		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
+		Path               *string                            `json:"path,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.AggregationType == nil {
-		return fmt.Errorf("required field aggregation_type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.AggregationType == nil {
+		return fmt.Errorf("required field aggregation_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -183,7 +175,7 @@ func (o *SpansMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AggregationType = all.AggregationType
+	o.AggregationType = *all.AggregationType
 	o.IncludePercentiles = all.IncludePercentiles
 	o.Path = all.Path
 	if len(additionalProperties) > 0 {

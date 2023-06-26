@@ -120,8 +120,7 @@ func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		Aggregates []UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
 		Pagination *UsageAttributionPagination      `json:"pagination,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

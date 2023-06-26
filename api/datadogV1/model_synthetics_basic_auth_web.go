@@ -142,33 +142,24 @@ func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Password *string `json:"password"`
-		Username *string `json:"username"`
-	}{}
 	all := struct {
-		Password string                      `json:"password"`
+		Password *string                     `json:"password"`
 		Type     *SyntheticsBasicAuthWebType `json:"type,omitempty"`
-		Username string                      `json:"username"`
+		Username *string                     `json:"username"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Password == nil {
-		return fmt.Errorf("required field password missing")
-	}
-	if required.Username == nil {
-		return fmt.Errorf("required field username missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Password == nil {
+		return fmt.Errorf("required field password missing")
+	}
+	if all.Username == nil {
+		return fmt.Errorf("required field username missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -184,9 +175,9 @@ func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Password = all.Password
+	o.Password = *all.Password
 	o.Type = all.Type
-	o.Username = all.Username
+	o.Username = *all.Username
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

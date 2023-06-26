@@ -171,28 +171,13 @@ func (o TeamLinkAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Label *string `json:"label"`
-		Url   *string `json:"url"`
-	}{}
 	all := struct {
-		Label    string  `json:"label"`
+		Label    *string `json:"label"`
 		Position *int32  `json:"position,omitempty"`
 		TeamId   *string `json:"team_id,omitempty"`
-		Url      string  `json:"url"`
+		Url      *string `json:"url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Label == nil {
-		return fmt.Errorf("required field label missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -200,16 +185,22 @@ func (o *TeamLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Label == nil {
+		return fmt.Errorf("required field label missing")
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"label", "position", "team_id", "url"})
 	} else {
 		return err
 	}
-	o.Label = all.Label
+	o.Label = *all.Label
 	o.Position = all.Position
 	o.TeamId = all.TeamId
-	o.Url = all.Url
+	o.Url = *all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

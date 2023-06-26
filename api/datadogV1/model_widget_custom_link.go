@@ -188,8 +188,7 @@ func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 		Link          *string `json:"link,omitempty"`
 		OverrideLabel *string `json:"override_label,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

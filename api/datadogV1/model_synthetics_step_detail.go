@@ -631,8 +631,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		VitalsMetrics       []SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
 		Warnings            []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

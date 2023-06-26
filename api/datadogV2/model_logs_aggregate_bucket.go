@@ -120,8 +120,7 @@ func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 		By       map[string]interface{}              `json:"by,omitempty"`
 		Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -144,29 +144,21 @@ func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
-	}{}
 	all := struct {
-		Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
-		Interval    *int64                             `json:"interval,omitempty"`
-		Metric      *string                            `json:"metric,omitempty"`
+		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
+		Interval    *int64                              `json:"interval,omitempty"`
+		Metric      *string                             `json:"metric,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Aggregation == nil {
-		return fmt.Errorf("required field aggregation missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Aggregation == nil {
+		return fmt.Errorf("required field aggregation missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -182,7 +174,7 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Aggregation = all.Aggregation
+	o.Aggregation = *all.Aggregation
 	o.Interval = all.Interval
 	o.Metric = all.Metric
 	if len(additionalProperties) > 0 {

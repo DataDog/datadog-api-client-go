@@ -97,8 +97,7 @@ func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

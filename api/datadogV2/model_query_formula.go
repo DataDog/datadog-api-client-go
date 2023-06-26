@@ -111,22 +111,11 @@ func (o QueryFormula) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *QueryFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Formula *string `json:"formula"`
-	}{}
 	all := struct {
-		Formula string        `json:"formula"`
+		Formula *string       `json:"formula"`
 		Limit   *FormulaLimit `json:"limit,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Formula == nil {
-		return fmt.Errorf("required field formula missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *QueryFormula) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Formula == nil {
+		return fmt.Errorf("required field formula missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"formula", "limit"})
 	} else {
 		return err
 	}
-	o.Formula = all.Formula
+	o.Formula = *all.Formula
 	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {

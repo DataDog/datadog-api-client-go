@@ -120,8 +120,7 @@ func (o *SecurityMonitoringFilter) UnmarshalJSON(bytes []byte) (err error) {
 		Action *SecurityMonitoringFilterAction `json:"action,omitempty"`
 		Query  *string                         `json:"query,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

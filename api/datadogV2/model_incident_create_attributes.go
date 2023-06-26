@@ -237,36 +237,27 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		CustomerImpacted *bool   `json:"customer_impacted"`
-		Title            *string `json:"title"`
-	}{}
 	all := struct {
 		CustomerImpactScope *string                                `json:"customer_impact_scope,omitempty"`
-		CustomerImpacted    bool                                   `json:"customer_impacted"`
+		CustomerImpacted    *bool                                  `json:"customer_impacted"`
 		Fields              map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
 		InitialCells        []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
 		NotificationHandles []IncidentNotificationHandle           `json:"notification_handles,omitempty"`
-		Title               string                                 `json:"title"`
+		Title               *string                                `json:"title"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.CustomerImpacted == nil {
-		return fmt.Errorf("required field customer_impacted missing")
-	}
-	if required.Title == nil {
-		return fmt.Errorf("required field title missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.CustomerImpacted == nil {
+		return fmt.Errorf("required field customer_impacted missing")
+	}
+	if all.Title == nil {
+		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -275,11 +266,11 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.CustomerImpactScope = all.CustomerImpactScope
-	o.CustomerImpacted = all.CustomerImpacted
+	o.CustomerImpacted = *all.CustomerImpacted
 	o.Fields = all.Fields
 	o.InitialCells = all.InitialCells
 	o.NotificationHandles = all.NotificationHandles
-	o.Title = all.Title
+	o.Title = *all.Title
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

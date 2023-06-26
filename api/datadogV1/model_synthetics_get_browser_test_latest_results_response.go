@@ -120,8 +120,7 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []by
 		LastTimestampFetched *int64                             `json:"last_timestamp_fetched,omitempty"`
 		Results              []SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

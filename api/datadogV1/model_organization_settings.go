@@ -397,8 +397,7 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		SamlLoginUrl               *string                                         `json:"saml_login_url,omitempty"`
 		SamlStrictMode             *OrganizationSettingsSamlStrictMode             `json:"saml_strict_mode,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

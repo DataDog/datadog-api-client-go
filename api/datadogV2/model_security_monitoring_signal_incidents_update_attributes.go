@@ -111,22 +111,11 @@ func (o SecurityMonitoringSignalIncidentsUpdateAttributes) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		IncidentIds *[]int64 `json:"incident_ids"`
-	}{}
 	all := struct {
-		IncidentIds []int64 `json:"incident_ids"`
-		Version     *int64  `json:"version,omitempty"`
+		IncidentIds *[]int64 `json:"incident_ids"`
+		Version     *int64   `json:"version,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.IncidentIds == nil {
-		return fmt.Errorf("required field incident_ids missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -134,13 +123,16 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes 
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.IncidentIds == nil {
+		return fmt.Errorf("required field incident_ids missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"incident_ids", "version"})
 	} else {
 		return err
 	}
-	o.IncidentIds = all.IncidentIds
+	o.IncidentIds = *all.IncidentIds
 	o.Version = all.Version
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

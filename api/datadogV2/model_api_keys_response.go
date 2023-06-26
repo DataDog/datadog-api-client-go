@@ -120,8 +120,7 @@ func (o *APIKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data     []PartialAPIKey              `json:"data,omitempty"`
 		Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

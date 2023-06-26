@@ -197,8 +197,7 @@ func (o *IPAllowlistEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
 		Note       *string    `json:"note,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

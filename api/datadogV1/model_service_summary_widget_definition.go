@@ -557,54 +557,43 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Env      *string                             `json:"env"`
-		Service  *string                             `json:"service"`
-		SpanName *string                             `json:"span_name"`
-		Type     *ServiceSummaryWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
-		Env              string                             `json:"env"`
-		Service          string                             `json:"service"`
-		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"`
-		ShowDistribution *bool                              `json:"show_distribution,omitempty"`
-		ShowErrors       *bool                              `json:"show_errors,omitempty"`
-		ShowHits         *bool                              `json:"show_hits,omitempty"`
-		ShowLatency      *bool                              `json:"show_latency,omitempty"`
-		ShowResourceList *bool                              `json:"show_resource_list,omitempty"`
-		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"`
-		SpanName         string                             `json:"span_name"`
-		Time             *WidgetTime                        `json:"time,omitempty"`
-		Title            *string                            `json:"title,omitempty"`
-		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize        *string                            `json:"title_size,omitempty"`
-		Type             ServiceSummaryWidgetDefinitionType `json:"type"`
+		DisplayFormat    *WidgetServiceSummaryDisplayFormat  `json:"display_format,omitempty"`
+		Env              *string                             `json:"env"`
+		Service          *string                             `json:"service"`
+		ShowBreakdown    *bool                               `json:"show_breakdown,omitempty"`
+		ShowDistribution *bool                               `json:"show_distribution,omitempty"`
+		ShowErrors       *bool                               `json:"show_errors,omitempty"`
+		ShowHits         *bool                               `json:"show_hits,omitempty"`
+		ShowLatency      *bool                               `json:"show_latency,omitempty"`
+		ShowResourceList *bool                               `json:"show_resource_list,omitempty"`
+		SizeFormat       *WidgetSizeFormat                   `json:"size_format,omitempty"`
+		SpanName         *string                             `json:"span_name"`
+		Time             *WidgetTime                         `json:"time,omitempty"`
+		Title            *string                             `json:"title,omitempty"`
+		TitleAlign       *WidgetTextAlign                    `json:"title_align,omitempty"`
+		TitleSize        *string                             `json:"title_size,omitempty"`
+		Type             *ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Env == nil {
-		return fmt.Errorf("required field env missing")
-	}
-	if required.Service == nil {
-		return fmt.Errorf("required field service missing")
-	}
-	if required.SpanName == nil {
-		return fmt.Errorf("required field span_name missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Env == nil {
+		return fmt.Errorf("required field env missing")
+	}
+	if all.Service == nil {
+		return fmt.Errorf("required field service missing")
+	}
+	if all.SpanName == nil {
+		return fmt.Errorf("required field span_name missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -645,8 +634,8 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return nil
 	}
 	o.DisplayFormat = all.DisplayFormat
-	o.Env = all.Env
-	o.Service = all.Service
+	o.Env = *all.Env
+	o.Service = *all.Service
 	o.ShowBreakdown = all.ShowBreakdown
 	o.ShowDistribution = all.ShowDistribution
 	o.ShowErrors = all.ShowErrors
@@ -654,7 +643,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.ShowLatency = all.ShowLatency
 	o.ShowResourceList = all.ShowResourceList
 	o.SizeFormat = all.SizeFormat
-	o.SpanName = all.SpanName
+	o.SpanName = *all.SpanName
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
@@ -666,7 +655,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

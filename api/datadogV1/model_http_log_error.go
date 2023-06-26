@@ -105,26 +105,11 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Code    *int32  `json:"code"`
 		Message *string `json:"message"`
 	}{}
-	all := struct {
-		Code    int32  `json:"code"`
-		Message string `json:"message"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Code == nil {
-		return fmt.Errorf("required field code missing")
-	}
-	if required.Message == nil {
-		return fmt.Errorf("required field message missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -132,14 +117,20 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Code == nil {
+		return fmt.Errorf("required field code missing")
+	}
+	if all.Message == nil {
+		return fmt.Errorf("required field message missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"code", "message"})
 	} else {
 		return err
 	}
-	o.Code = all.Code
-	o.Message = all.Message
+	o.Code = *all.Code
+	o.Message = *all.Message
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

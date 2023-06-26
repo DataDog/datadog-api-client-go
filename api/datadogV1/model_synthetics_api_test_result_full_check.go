@@ -78,27 +78,19 @@ func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
 		Config *SyntheticsTestConfig `json:"config"`
 	}{}
-	all := struct {
-		Config SyntheticsTestConfig `json:"config"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Config == nil {
-		return fmt.Errorf("required field config missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Config == nil {
+		return fmt.Errorf("required field config missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -113,7 +105,7 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 		}
 		o.UnparsedObject = raw
 	}
-	o.Config = all.Config
+	o.Config = *all.Config
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

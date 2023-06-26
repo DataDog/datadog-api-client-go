@@ -721,81 +721,64 @@ func (o CIAppPipelineEventJob) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
+	all := struct {
+		Dependencies     datadog.NullableList[string] `json:"dependencies,omitempty"`
 		End              *time.Time                   `json:"end"`
+		Error            NullableCIAppCIError         `json:"error,omitempty"`
 		Git              NullableCIAppGitInfo         `json:"git"`
 		Id               *string                      `json:"id"`
 		Level            *CIAppPipelineEventJobLevel  `json:"level"`
-		Name             *string                      `json:"name"`
-		PipelineName     *string                      `json:"pipeline_name"`
-		PipelineUniqueId *string                      `json:"pipeline_unique_id"`
-		Start            *time.Time                   `json:"start"`
-		Status           *CIAppPipelineEventJobStatus `json:"status"`
-		Url              *string                      `json:"url"`
-	}{}
-	all := struct {
-		Dependencies     datadog.NullableList[string] `json:"dependencies,omitempty"`
-		End              time.Time                    `json:"end"`
-		Error            NullableCIAppCIError         `json:"error,omitempty"`
-		Git              NullableCIAppGitInfo         `json:"git"`
-		Id               string                       `json:"id"`
-		Level            CIAppPipelineEventJobLevel   `json:"level"`
 		Metrics          datadog.NullableList[string] `json:"metrics,omitempty"`
-		Name             string                       `json:"name"`
+		Name             *string                      `json:"name"`
 		Node             NullableCIAppHostInfo        `json:"node,omitempty"`
 		Parameters       map[string]string            `json:"parameters,omitempty"`
-		PipelineName     string                       `json:"pipeline_name"`
-		PipelineUniqueId string                       `json:"pipeline_unique_id"`
+		PipelineName     *string                      `json:"pipeline_name"`
+		PipelineUniqueId *string                      `json:"pipeline_unique_id"`
 		QueueTime        datadog.NullableInt64        `json:"queue_time,omitempty"`
 		StageId          datadog.NullableString       `json:"stage_id,omitempty"`
 		StageName        datadog.NullableString       `json:"stage_name,omitempty"`
-		Start            time.Time                    `json:"start"`
-		Status           CIAppPipelineEventJobStatus  `json:"status"`
+		Start            *time.Time                   `json:"start"`
+		Status           *CIAppPipelineEventJobStatus `json:"status"`
 		Tags             datadog.NullableList[string] `json:"tags,omitempty"`
-		Url              string                       `json:"url"`
+		Url              *string                      `json:"url"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.End == nil {
-		return fmt.Errorf("required field end missing")
-	}
-	if !required.Git.IsSet() {
-		return fmt.Errorf("required field git missing")
-	}
-	if required.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if required.Level == nil {
-		return fmt.Errorf("required field level missing")
-	}
-	if required.Name == nil {
-		return fmt.Errorf("required field name missing")
-	}
-	if required.PipelineName == nil {
-		return fmt.Errorf("required field pipeline_name missing")
-	}
-	if required.PipelineUniqueId == nil {
-		return fmt.Errorf("required field pipeline_unique_id missing")
-	}
-	if required.Start == nil {
-		return fmt.Errorf("required field start missing")
-	}
-	if required.Status == nil {
-		return fmt.Errorf("required field status missing")
-	}
-	if required.Url == nil {
-		return fmt.Errorf("required field url missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.End == nil {
+		return fmt.Errorf("required field end missing")
+	}
+	if !all.Git.IsSet() {
+		return fmt.Errorf("required field git missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Level == nil {
+		return fmt.Errorf("required field level missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.PipelineName == nil {
+		return fmt.Errorf("required field pipeline_name missing")
+	}
+	if all.PipelineUniqueId == nil {
+		return fmt.Errorf("required field pipeline_unique_id missing")
+	}
+	if all.Start == nil {
+		return fmt.Errorf("required field start missing")
+	}
+	if all.Status == nil {
+		return fmt.Errorf("required field status missing")
+	}
+	if all.Url == nil {
+		return fmt.Errorf("required field url missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -820,24 +803,24 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Dependencies = all.Dependencies
-	o.End = all.End
+	o.End = *all.End
 	o.Error = all.Error
 	o.Git = all.Git
-	o.Id = all.Id
-	o.Level = all.Level
+	o.Id = *all.Id
+	o.Level = *all.Level
 	o.Metrics = all.Metrics
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Node = all.Node
 	o.Parameters = all.Parameters
-	o.PipelineName = all.PipelineName
-	o.PipelineUniqueId = all.PipelineUniqueId
+	o.PipelineName = *all.PipelineName
+	o.PipelineUniqueId = *all.PipelineUniqueId
 	o.QueueTime = all.QueueTime
 	o.StageId = all.StageId
 	o.StageName = all.StageName
-	o.Start = all.Start
-	o.Status = all.Status
+	o.Start = *all.Start
+	o.Status = *all.Status
 	o.Tags = all.Tags
-	o.Url = all.Url
+	o.Url = *all.Url
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

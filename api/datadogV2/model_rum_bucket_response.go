@@ -120,8 +120,7 @@ func (o *RUMBucketResponse) UnmarshalJSON(bytes []byte) (err error) {
 		By       map[string]string                  `json:"by,omitempty"`
 		Computes map[string]RUMAggregateBucketValue `json:"computes,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

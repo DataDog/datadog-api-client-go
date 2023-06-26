@@ -206,35 +206,26 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
-	required := struct {
-		Text *string                       `json:"text"`
-		Type *FreeTextWidgetDefinitionType `json:"type"`
-	}{}
 	all := struct {
-		Color     *string                      `json:"color,omitempty"`
-		FontSize  *string                      `json:"font_size,omitempty"`
-		Text      string                       `json:"text"`
-		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
-		Type      FreeTextWidgetDefinitionType `json:"type"`
+		Color     *string                       `json:"color,omitempty"`
+		FontSize  *string                       `json:"font_size,omitempty"`
+		Text      *string                       `json:"text"`
+		TextAlign *WidgetTextAlign              `json:"text_align,omitempty"`
+		Type      *FreeTextWidgetDefinitionType `json:"type"`
 	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Text == nil {
-		return fmt.Errorf("required field text missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
 		return nil
+	}
+	if all.Text == nil {
+		return fmt.Errorf("required field text missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -260,9 +251,9 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Color = all.Color
 	o.FontSize = all.FontSize
-	o.Text = all.Text
+	o.Text = *all.Text
 	o.TextAlign = all.TextAlign
-	o.Type = all.Type
+	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

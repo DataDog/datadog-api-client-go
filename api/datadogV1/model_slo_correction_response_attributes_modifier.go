@@ -154,8 +154,7 @@ func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (e
 		Handle *string `json:"handle,omitempty"`
 		Name   *string `json:"name,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

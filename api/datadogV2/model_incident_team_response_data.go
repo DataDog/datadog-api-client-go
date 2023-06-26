@@ -192,8 +192,7 @@ func (o *IncidentTeamResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		Relationships *IncidentTeamRelationships      `json:"relationships,omitempty"`
 		Type          *IncidentTeamType               `json:"type,omitempty"`
 	}{}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
+	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
