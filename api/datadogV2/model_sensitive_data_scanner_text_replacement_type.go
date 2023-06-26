@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SensitiveDataScannerTextReplacementType Type of the replacement text. None means no replacement.

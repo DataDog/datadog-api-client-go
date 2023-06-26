@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // TimeseriesQuery - An individual timeseries query to one of the basic Datadog data sources.

@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // MonitorFormulaAndFunctionEventAggregation Aggregation methods for event platform queries.

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // IncidentTodoResponseIncludedItem - An object related to an incident todo that is included in the response.

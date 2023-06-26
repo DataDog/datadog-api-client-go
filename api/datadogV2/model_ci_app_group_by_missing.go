@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // CIAppGroupByMissing - The value to use for logs that don't have the facet used to group-by.

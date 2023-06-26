@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // IncidentIntegrationMetadataMetadata - Incident integration metadata's metadata attribute.

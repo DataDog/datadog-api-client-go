@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SensitiveDataScannerStandardPatternType Sensitive Data Scanner standard pattern type.

@@ -11,6 +11,7 @@ retract (
 
 require (
 	github.com/DataDog/zstd v1.5.2
+	github.com/goccy/go-json v0.10.2
 	golang.org/x/oauth2 v0.5.0
 )
 

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.

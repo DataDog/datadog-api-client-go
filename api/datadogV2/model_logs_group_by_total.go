@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.

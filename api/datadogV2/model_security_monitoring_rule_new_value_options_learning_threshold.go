@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SecurityMonitoringRuleNewValueOptionsLearningThreshold A number of occurrences after which signals will be generated for values that weren't learned.
