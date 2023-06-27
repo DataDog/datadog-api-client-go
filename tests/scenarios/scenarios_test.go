@@ -8,7 +8,6 @@ package scenarios
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -17,6 +16,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	msgs "github.com/cucumber/messages-go/v12"
+	"github.com/goccy/go-json"
 	"github.com/go-bdd/gobdd"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )

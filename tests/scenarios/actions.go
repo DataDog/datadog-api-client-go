@@ -8,7 +8,6 @@ package scenarios
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -22,6 +21,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV1"
 	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV2"
+	"github.com/goccy/go-json"
 
 	"github.com/go-bdd/gobdd"
 )
