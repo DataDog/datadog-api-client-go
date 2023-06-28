@@ -10,18 +10,20 @@ import (
 	"github.com/goccy/go-json"
 )
 
-// FormulaAndFunctionResponseFormat Timeseries or Scalar response.
+// FormulaAndFunctionResponseFormat Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
 type FormulaAndFunctionResponseFormat string
 
 // List of FormulaAndFunctionResponseFormat.
 const (
 	FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES FormulaAndFunctionResponseFormat = "timeseries"
 	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR     FormulaAndFunctionResponseFormat = "scalar"
+	FORMULAANDFUNCTIONRESPONSEFORMAT_EVENT_LIST FormulaAndFunctionResponseFormat = "event_list"
 )
 
 var allowedFormulaAndFunctionResponseFormatEnumValues = []FormulaAndFunctionResponseFormat{
 	FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES,
 	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR,
+	FORMULAANDFUNCTIONRESPONSEFORMAT_EVENT_LIST,
 }
 
 // GetAllowedValues reeturns the list of possible values.
