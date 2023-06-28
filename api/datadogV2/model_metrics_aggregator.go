@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// MetricsAggregator The type of aggregation that can be performed on metrics queries.
+// MetricsAggregator The type of aggregation that can be performed on metrics-based queries.
 type MetricsAggregator string
 
 // List of MetricsAggregator.
