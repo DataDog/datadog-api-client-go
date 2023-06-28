@@ -10,7 +10,7 @@ import (
 	"github.com/goccy/go-json"
 )
 
-// MetricsAggregator The type of aggregation that can be performed on metrics queries.
+// MetricsAggregator The type of aggregation that can be performed on metrics-based queries.
 type MetricsAggregator string
 
 // List of MetricsAggregator.

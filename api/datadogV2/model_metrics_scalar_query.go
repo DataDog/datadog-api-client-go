@@ -14,7 +14,7 @@ import (
 
 // MetricsScalarQuery An individual scalar metrics query.
 type MetricsScalarQuery struct {
-	// The type of aggregation that can be performed on metrics queries.
+	// The type of aggregation that can be performed on metrics-based queries.
 	Aggregator MetricsAggregator `json:"aggregator"`
 	// A data source that is powered by the Metrics platform.
 	DataSource MetricsDataSource `json:"data_source"`

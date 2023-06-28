@@ -16,7 +16,7 @@ import (
 type EventsGroupBySort struct {
 	// The type of aggregation that can be performed on events-based queries.
 	Aggregation EventsAggregation `json:"aggregation"`
-	// Metric whose calculated value should be used to define the sort order of a query's results.
+	// The metric's calculated value which should be used to define the sort order of a query's results.
 	Metric *string `json:"metric,omitempty"`
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
