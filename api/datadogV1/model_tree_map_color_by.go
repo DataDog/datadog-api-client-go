@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // TreeMapColorBy (deprecated) The attribute formerly used to determine color in the widget.

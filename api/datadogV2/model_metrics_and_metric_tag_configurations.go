@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.

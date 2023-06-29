@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SyntheticsTestDetailsType Type of the Synthetic test, either `api` or `browser`.

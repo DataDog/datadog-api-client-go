@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // ConfluentAccountType The JSON:API type for this API. Should always be `confluent-cloud-accounts`.

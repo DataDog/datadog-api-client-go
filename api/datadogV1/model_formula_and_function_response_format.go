@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // FormulaAndFunctionResponseFormat Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.

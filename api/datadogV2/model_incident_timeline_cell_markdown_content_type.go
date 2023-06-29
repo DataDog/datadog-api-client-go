@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // IncidentTimelineCellMarkdownContentType Type of the Markdown timeline cell.

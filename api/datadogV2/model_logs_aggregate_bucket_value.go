@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value

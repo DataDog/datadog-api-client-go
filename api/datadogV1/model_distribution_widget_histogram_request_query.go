@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // DistributionWidgetHistogramRequestQuery - Query definition for Distribution Widget Histogram Request

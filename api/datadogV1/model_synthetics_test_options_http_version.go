@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SyntheticsTestOptionsHTTPVersion HTTP version to use for a Synthetic test.

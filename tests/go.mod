@@ -8,6 +8,7 @@ require (
 	github.com/cucumber/messages-go/v12 v12.0.0
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/go-bdd/gobdd v1.1.4-0.20211209204431-ca566a78d075
+	github.com/goccy/go-json v0.10.2
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/net v0.7.0

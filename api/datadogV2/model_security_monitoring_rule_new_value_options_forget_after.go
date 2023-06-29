@@ -5,8 +5,9 @@
 package datadogV2
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // SecurityMonitoringRuleNewValueOptionsForgetAfter The duration in days after which a learned value is forgotten.

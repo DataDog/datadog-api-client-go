@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // MonthlyUsageAttributionSupportedMetrics Supported metrics for monthly usage attribution requests.

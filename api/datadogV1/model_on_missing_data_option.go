@@ -5,8 +5,9 @@
 package datadogV1
 
 import (
-	"encoding/json"
 	"fmt"
+
+	"github.com/goccy/go-json"
 )
 
 // OnMissingDataOption Controls how groups or monitors are treated if an evaluation does not return any data points.

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"encoding/json"
+	"github.com/goccy/go-json"
 )
 
 // SensitiveDataScannerGetConfigIncludedItem - An object related to the configuration.
