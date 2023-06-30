@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"filter":{"from":"now","query":"service:web* AND @http.status_code:[200 TO 299]","to":"now-15m"},"options":{"timezone":"GMT"},"page":{"limit":10},"sort":"timestamp"},"type":"search_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/spans/events/search
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"invalid_argument(Field ''filter.from,to''
+      is invalid: ''from'' should be anterior to ''to'')"}]}'
+    code: 422
+    duration: ''
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 422 Unprocessable Entity
+version: 1
