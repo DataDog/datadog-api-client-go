@@ -17,6 +17,7 @@ type SpansApi datadog.Service
 
 // AggregateSpans Aggregate spans.
 // The API endpoint to aggregate spans into buckets and compute metrics and timeseries.
+// This endpoint is rate limited to `300` requests per hour.
 func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateRequest) (SpansAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -93,6 +94,9 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 // [Results are paginated][1].
 //
 // Use this endpoint to build complex spans filtering and search.
+// This endpoint is rate limited to `300` requests per hour.
+//
+// [1]: /logs/guide/collect-multiple-logs-with-pagination
 func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (SpansListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -287,6 +291,9 @@ func (r *ListSpansGetOptionalParameters) WithPageLimit(pageLimit int32) *ListSpa
 // [Results are paginated][1].
 //
 // Use this endpoint to see your latest spans.
+// This endpoint is rate limited to `300` requests per hour.
+//
+// [1]: /logs/guide/collect-multiple-logs-with-pagination
 func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalParameters) (SpansListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
