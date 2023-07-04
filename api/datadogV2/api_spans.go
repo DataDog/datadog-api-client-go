@@ -96,7 +96,7 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 // Use this endpoint to build complex spans filtering and search.
 // This endpoint is rate limited to `300` requests per hour.
 //
-// [1]: /logs/guide/collect-multiple-logs-with-pagination
+// [1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api
 func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (SpansListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -293,7 +293,7 @@ func (r *ListSpansGetOptionalParameters) WithPageLimit(pageLimit int32) *ListSpa
 // Use this endpoint to see your latest spans.
 // This endpoint is rate limited to `300` requests per hour.
 //
-// [1]: /logs/guide/collect-multiple-logs-with-pagination
+// [1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api
 func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalParameters) (SpansListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
