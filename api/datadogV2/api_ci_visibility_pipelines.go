@@ -92,6 +92,8 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 // CreateCIAppPipelineEvent Send pipeline event.
 // Send your pipeline event to your Datadog platform over HTTP. For details about how pipeline executions are modeled and what execution types we support, see the [guide](https://docs.datadoghq.com/continuous_integration/guides/pipeline_data_model/).
 //
+// Pipeline events can be submitted with a timestamp that is up to 18 hours in the past.
+//
 // This API endpoint is in private beta.
 func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context, body CIAppCreatePipelineEventRequest) (interface{}, *_nethttp.Response, error) {
 	var (
