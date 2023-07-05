@@ -40,12 +40,13 @@ func main() {
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
 									datadogV1.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionSLOQueryDefinition: &datadogV1.FormulaAndFunctionSLOQueryDefinition{
-											Name:         datadog.PtrString("query1"),
-											DataSource:   datadogV1.FORMULAANDFUNCTIONSLODATASOURCE_SLO,
-											SloId:        SloData0ID,
-											Measure:      datadogV1.FORMULAANDFUNCTIONSLOMEASURE_SLO_STATUS,
-											GroupMode:    datadogV1.FORMULAANDFUNCTIONSLOGROUPMODE_OVERALL.Ptr(),
-											SloQueryType: datadogV1.FORMULAANDFUNCTIONSLOQUERYTYPE_METRIC.Ptr(),
+											Name:                   datadog.PtrString("query1"),
+											DataSource:             datadogV1.FORMULAANDFUNCTIONSLODATASOURCE_SLO,
+											SloId:                  SloData0ID,
+											Measure:                datadogV1.FORMULAANDFUNCTIONSLOMEASURE_SLO_STATUS,
+											GroupMode:              datadogV1.FORMULAANDFUNCTIONSLOGROUPMODE_OVERALL.Ptr(),
+											SloQueryType:           datadogV1.FORMULAANDFUNCTIONSLOQUERYTYPE_METRIC.Ptr(),
+											AdditionalQueryFilters: datadog.PtrString("*"),
 										}},
 								},
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
