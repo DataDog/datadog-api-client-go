@@ -46,6 +46,8 @@ def type_to_go(schema, alternative_name=None, render_nullable=False, render_new=
     name = get_name(schema)
     if name:
         if "enum" in schema:
+            if render_new and schema.get("nullable", False):
+                return f"New{prefix}{name}"
             return prefix + name
         if not (schema.get("additionalProperties") and not schema.get("properties")) and schema.get("type", "object") == "object":
             return prefix + name
