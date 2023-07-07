@@ -16,7 +16,8 @@ func main() {
 	body := datadogV2.ConfluentResourceRequest{
 		Data: datadogV2.ConfluentResourceRequestData{
 			Attributes: datadogV2.ConfluentResourceRequestAttributes{
-				ResourceType: "kafka",
+				EnableCustomMetrics: datadog.PtrBool(false),
+				ResourceType:        "kafka",
 				Tags: []string{
 					"myTag",
 					"myTag2:myValue",

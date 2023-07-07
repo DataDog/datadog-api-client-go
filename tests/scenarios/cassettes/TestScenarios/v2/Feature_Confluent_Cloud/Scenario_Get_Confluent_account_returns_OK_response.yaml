@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"TestGetConfluentaccountreturnsOKresponse1665090165","api_secret":"test-api-secret","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts"}}
+      {"data":{"attributes":{"api_key":"TestGetConfluentaccountreturnsOKresponse1688395121","api_secret":"test-api-secret","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts
   response:
-    body: '{"data":{"attributes":{"api_key":"TestGetConfluentaccountreturnsOKresponse1665090165","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts","id":"d43d474jxm"}}
+    body: '{"data":{"type":"confluent-cloud-accounts","id":"8a03a240e4d322d42edf6d4f4654a624","attributes":{"resources":[{"resource_type":"kafka","tags":["tag1","tag2:val2"],"enable_custom_metrics":false,"id":"test-resource-id"}],"api_key":"TestGetConfluentaccountreturnsOKresponse1688395121","tags":["tag1","tag2:val2"]}}}
 
       '
     code: 201
@@ -27,9 +27,9 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/d43d474jxm
+    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/8a03a240e4d322d42edf6d4f4654a624
   response:
-    body: '{"data":{"attributes":{"api_key":"TestGetConfluentaccountreturnsOKresponse1665090165","resources":[{"id":"test-resource-id","resource_type":"kafka","tags":["tag1","tag2:val2"]}],"tags":["tag1","tag2:val2"]},"type":"confluent-cloud-accounts","id":"d43d474jxm"}}
+    body: '{"data":{"type":"confluent-cloud-accounts","attributes":{"resources":[{"enable_custom_metrics":false,"id":"test-resource-id","tags":["tag1","tag2:val2"],"resource_type":"kafka"}],"api_key":"TestGetConfluentaccountreturnsOKresponse1688395121","tags":["tag1","tag2:val2"]},"id":"8a03a240e4d322d42edf6d4f4654a624"}}
 
       '
     code: 200
@@ -45,7 +45,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/d43d474jxm
+    url: https://api.datadoghq.com/api/v2/integrations/confluent-cloud/accounts/8a03a240e4d322d42edf6d4f4654a624
   response:
     body: ''
     code: 204

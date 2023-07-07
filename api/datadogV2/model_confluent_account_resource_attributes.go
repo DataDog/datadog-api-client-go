@@ -14,6 +14,8 @@ import (
 
 // ConfluentAccountResourceAttributes Attributes object for updating a Confluent resource.
 type ConfluentAccountResourceAttributes struct {
+	// Enable the `custom.consumer_lag_offset` metric, which contains extra metric tags.
+	EnableCustomMetrics *bool `json:"enable_custom_metrics,omitempty"`
 	// The ID associated with a Confluent resource.
 	Id *string `json:"id,omitempty"`
 	// The resource type of the Resource. Can be `kafka`, `connector`, `ksql`, or `schema_registry`.
@@ -31,6 +33,8 @@ type ConfluentAccountResourceAttributes struct {
 // will change when the set of required properties is changed.
 func NewConfluentAccountResourceAttributes(resourceType string) *ConfluentAccountResourceAttributes {
 	this := ConfluentAccountResourceAttributes{}
+	var enableCustomMetrics bool = false
+	this.EnableCustomMetrics = &enableCustomMetrics
 	this.ResourceType = resourceType
 	return &this
 }
@@ -40,7 +44,37 @@ func NewConfluentAccountResourceAttributes(resourceType string) *ConfluentAccoun
 // but it doesn't guarantee that properties required by API are set.
 func NewConfluentAccountResourceAttributesWithDefaults() *ConfluentAccountResourceAttributes {
 	this := ConfluentAccountResourceAttributes{}
+	var enableCustomMetrics bool = false
+	this.EnableCustomMetrics = &enableCustomMetrics
 	return &this
+}
+
+// GetEnableCustomMetrics returns the EnableCustomMetrics field value if set, zero value otherwise.
+func (o *ConfluentAccountResourceAttributes) GetEnableCustomMetrics() bool {
+	if o == nil || o.EnableCustomMetrics == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableCustomMetrics
+}
+
+// GetEnableCustomMetricsOk returns a tuple with the EnableCustomMetrics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfluentAccountResourceAttributes) GetEnableCustomMetricsOk() (*bool, bool) {
+	if o == nil || o.EnableCustomMetrics == nil {
+		return nil, false
+	}
+	return o.EnableCustomMetrics, true
+}
+
+// HasEnableCustomMetrics returns a boolean if a field has been set.
+func (o *ConfluentAccountResourceAttributes) HasEnableCustomMetrics() bool {
+	return o != nil && o.EnableCustomMetrics != nil
+}
+
+// SetEnableCustomMetrics gets a reference to the given bool and assigns it to the EnableCustomMetrics field.
+func (o *ConfluentAccountResourceAttributes) SetEnableCustomMetrics(v bool) {
+	o.EnableCustomMetrics = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -128,6 +162,9 @@ func (o ConfluentAccountResourceAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.EnableCustomMetrics != nil {
+		toSerialize["enable_custom_metrics"] = o.EnableCustomMetrics
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -146,9 +183,10 @@ func (o ConfluentAccountResourceAttributes) MarshalJSON() ([]byte, error) {
 func (o *ConfluentAccountResourceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id           *string  `json:"id,omitempty"`
-		ResourceType *string  `json:"resource_type"`
-		Tags         []string `json:"tags,omitempty"`
+		EnableCustomMetrics *bool    `json:"enable_custom_metrics,omitempty"`
+		Id                  *string  `json:"id,omitempty"`
+		ResourceType        *string  `json:"resource_type"`
+		Tags                []string `json:"tags,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -163,10 +201,11 @@ func (o *ConfluentAccountResourceAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "resource_type", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enable_custom_metrics", "id", "resource_type", "tags"})
 	} else {
 		return err
 	}
+	o.EnableCustomMetrics = all.EnableCustomMetrics
 	o.Id = all.Id
 	o.ResourceType = *all.ResourceType
 	o.Tags = all.Tags

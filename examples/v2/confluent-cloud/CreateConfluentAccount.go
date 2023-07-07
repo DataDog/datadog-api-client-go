@@ -20,8 +20,9 @@ func main() {
 				ApiSecret: "test-api-secret-123",
 				Resources: []datadogV2.ConfluentAccountResourceAttributes{
 					{
-						Id:           datadog.PtrString("resource-id-123"),
-						ResourceType: "kafka",
+						EnableCustomMetrics: datadog.PtrBool(false),
+						Id:                  datadog.PtrString("resource-id-123"),
+						ResourceType:        "kafka",
 						Tags: []string{
 							"myTag",
 							"myTag2:myValue",

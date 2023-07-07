@@ -24,6 +24,7 @@ func main() {
 					"myTag",
 					"myTag2:myValue",
 				},
+				EnableCustomMetrics: datadog.PtrBool(false),
 			},
 			Id:   "exampleconfluentcloud",
 			Type: datadogV2.CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
