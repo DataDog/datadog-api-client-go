@@ -34,7 +34,6 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadogV1.User {
 	return datadogV1.User{
 		Name:       tests.UniqueEntityName(ctx, t),
 		Disabled:   datadog.PtrBool(true),
-		AccessRole: datadogV1.ACCESSROLE_STANDARD.Ptr(),
 	}
 }
 
@@ -109,7 +108,6 @@ func TestUpdateUser(t *testing.T) {
 	// Test fields were updated
 	assert.Equal(updateUser.GetName(), user.GetName())
 	assert.Equal(updateUser.GetDisabled(), user.GetDisabled())
-	assert.Equal(updateUser.GetAccessRole(), user.GetAccessRole())
 	// Test unchanged field remains unchanged
 	assert.Equal(testUser.GetHandle(), user.GetHandle())
 }
