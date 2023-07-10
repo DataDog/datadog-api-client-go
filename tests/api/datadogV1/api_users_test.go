@@ -8,9 +8,10 @@ package test
 
 import (
 	"context"
-	"gopkg.in/h2non/gock.v1"
 	"strings"
 	"testing"
+
+	"gopkg.in/h2non/gock.v1"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
@@ -24,7 +25,7 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadogV1.User {
 		Name:       datadog.PtrString(prefix),
 		Email:      datadog.PtrString(email),
 		Handle:     datadog.PtrString(email),
-		AccessRole: datadogV1.ACCESSROLE_READ_ONLY.Ptr(),
+		AccessRole: *datadogV1.NewNullableAccessRole(datadogV1.ACCESSROLE_READ_ONLY.Ptr()),
 	}
 }
 
@@ -32,8 +33,8 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadogV1.User {
 	// [TODO] You can't update another user's email
 	// This is based on who owns the APP key that is making the changes
 	return datadogV1.User{
-		Name:       tests.UniqueEntityName(ctx, t),
-		Disabled:   datadog.PtrBool(true),
+		Name:     tests.UniqueEntityName(ctx, t),
+		Disabled: datadog.PtrBool(true),
 	}
 }
 
