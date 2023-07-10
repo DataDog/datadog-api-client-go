@@ -15,7 +15,7 @@ import (
 // DowntimeScheduleOneTimeCreateUpdateRequest A one-time downtime definition.
 type DowntimeScheduleOneTimeCreateUpdateRequest struct {
 	// ISO-8601 Datetime to end the downtime. Must include a UTC offset of zero. If not provided, the
-	// downtime starts the moment it is created.
+	// downtime continues forever.
 	End datadog.NullableTime `json:"end,omitempty"`
 	// ISO-8601 Datetime to start the downtime. Must include a UTC offset of zero. If not provided, the
 	// downtime starts the moment it is created.

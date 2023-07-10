@@ -14,8 +14,10 @@ import (
 
 // DowntimeResponseAttributes Downtime details.
 type DowntimeResponseAttributes struct {
+	// Time that the downtime was canceled.
+	Canceled datadog.NullableTime `json:"canceled,omitempty"`
 	// Creation time of the downtime.
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
 	// The timezone in which to display the downtime's start and end times in Datadog applications. This is not used
 	// as an offset for scheduling.
 	DisplayTimezone datadog.NullableString `json:"display_timezone,omitempty"`
@@ -23,7 +25,7 @@ type DowntimeResponseAttributes struct {
 	// by using the same `@username` notation as events.
 	Message datadog.NullableString `json:"message,omitempty"`
 	// Time that the downtime was last modified.
-	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
 	// Monitor identifier for the downtime.
 	MonitorIdentifier *DowntimeMonitorIdentifier `json:"monitor_identifier,omitempty"`
 	// If the first recovery notification during a downtime should be muted.
@@ -66,32 +68,71 @@ func NewDowntimeResponseAttributesWithDefaults() *DowntimeResponseAttributes {
 	return &this
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *DowntimeResponseAttributes) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+// GetCanceled returns the Canceled field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DowntimeResponseAttributes) GetCanceled() time.Time {
+	if o == nil || o.Canceled.Get() == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.Canceled.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCanceledOk returns a tuple with the Canceled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeResponseAttributes) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *DowntimeResponseAttributes) GetCanceledOk() (*time.Time, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.Canceled.Get(), o.Canceled.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *DowntimeResponseAttributes) HasCreatedAt() bool {
-	return o != nil && o.CreatedAt != nil
+// HasCanceled returns a boolean if a field has been set.
+func (o *DowntimeResponseAttributes) HasCanceled() bool {
+	return o != nil && o.Canceled.IsSet()
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *DowntimeResponseAttributes) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetCanceled gets a reference to the given datadog.NullableTime and assigns it to the Canceled field.
+func (o *DowntimeResponseAttributes) SetCanceled(v time.Time) {
+	o.Canceled.Set(&v)
+}
+
+// SetCanceledNil sets the value for Canceled to be an explicit nil.
+func (o *DowntimeResponseAttributes) SetCanceledNil() {
+	o.Canceled.Set(nil)
+}
+
+// UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil.
+func (o *DowntimeResponseAttributes) UnsetCanceled() {
+	o.Canceled.Unset()
+}
+
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *DowntimeResponseAttributes) GetCreated() time.Time {
+	if o == nil || o.Created == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DowntimeResponseAttributes) GetCreatedOk() (*time.Time, bool) {
+	if o == nil || o.Created == nil {
+		return nil, false
+	}
+	return o.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (o *DowntimeResponseAttributes) HasCreated() bool {
+	return o != nil && o.Created != nil
+}
+
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *DowntimeResponseAttributes) SetCreated(v time.Time) {
+	o.Created = &v
 }
 
 // GetDisplayTimezone returns the DisplayTimezone field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -172,32 +213,32 @@ func (o *DowntimeResponseAttributes) UnsetMessage() {
 	o.Message.Unset()
 }
 
-// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
-func (o *DowntimeResponseAttributes) GetModifiedAt() time.Time {
-	if o == nil || o.ModifiedAt == nil {
+// GetModified returns the Modified field value if set, zero value otherwise.
+func (o *DowntimeResponseAttributes) GetModified() time.Time {
+	if o == nil || o.Modified == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.ModifiedAt
+	return *o.Modified
 }
 
-// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeResponseAttributes) GetModifiedAtOk() (*time.Time, bool) {
-	if o == nil || o.ModifiedAt == nil {
+func (o *DowntimeResponseAttributes) GetModifiedOk() (*time.Time, bool) {
+	if o == nil || o.Modified == nil {
 		return nil, false
 	}
-	return o.ModifiedAt, true
+	return o.Modified, true
 }
 
-// HasModifiedAt returns a boolean if a field has been set.
-func (o *DowntimeResponseAttributes) HasModifiedAt() bool {
-	return o != nil && o.ModifiedAt != nil
+// HasModified returns a boolean if a field has been set.
+func (o *DowntimeResponseAttributes) HasModified() bool {
+	return o != nil && o.Modified != nil
 }
 
-// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.
-func (o *DowntimeResponseAttributes) SetModifiedAt(v time.Time) {
-	o.ModifiedAt = &v
+// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+func (o *DowntimeResponseAttributes) SetModified(v time.Time) {
+	o.Modified = &v
 }
 
 // GetMonitorIdentifier returns the MonitorIdentifier field value if set, zero value otherwise.
@@ -402,11 +443,14 @@ func (o DowntimeResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.CreatedAt != nil {
-		if o.CreatedAt.Nanosecond() == 0 {
-			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+	if o.Canceled.IsSet() {
+		toSerialize["canceled"] = o.Canceled.Get()
+	}
+	if o.Created != nil {
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
 		} else {
-			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
 	if o.DisplayTimezone.IsSet() {
@@ -415,11 +459,11 @@ func (o DowntimeResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Message.IsSet() {
 		toSerialize["message"] = o.Message.Get()
 	}
-	if o.ModifiedAt != nil {
-		if o.ModifiedAt.Nanosecond() == 0 {
-			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
+	if o.Modified != nil {
+		if o.Modified.Nanosecond() == 0 {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05Z07:00")
 		} else {
-			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
 	if o.MonitorIdentifier != nil {
@@ -454,10 +498,11 @@ func (o DowntimeResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt                     *time.Time                      `json:"created_at,omitempty"`
+		Canceled                      datadog.NullableTime            `json:"canceled,omitempty"`
+		Created                       *time.Time                      `json:"created,omitempty"`
 		DisplayTimezone               datadog.NullableString          `json:"display_timezone,omitempty"`
 		Message                       datadog.NullableString          `json:"message,omitempty"`
-		ModifiedAt                    *time.Time                      `json:"modified_at,omitempty"`
+		Modified                      *time.Time                      `json:"modified,omitempty"`
 		MonitorIdentifier             *DowntimeMonitorIdentifier      `json:"monitor_identifier,omitempty"`
 		MuteFirstRecoveryNotification *bool                           `json:"mute_first_recovery_notification,omitempty"`
 		NotifyEndStates               []DowntimeNotifyEndStateTypes   `json:"notify_end_states,omitempty"`
@@ -476,7 +521,7 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "display_timezone", "message", "modified_at", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "schedule", "scope", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"canceled", "created", "display_timezone", "message", "modified", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "schedule", "scope", "status"})
 	} else {
 		return err
 	}
@@ -488,10 +533,11 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.CreatedAt = all.CreatedAt
+	o.Canceled = all.Canceled
+	o.Created = all.Created
 	o.DisplayTimezone = all.DisplayTimezone
 	o.Message = all.Message
-	o.ModifiedAt = all.ModifiedAt
+	o.Modified = all.Modified
 	o.MonitorIdentifier = all.MonitorIdentifier
 	o.MuteFirstRecoveryNotification = all.MuteFirstRecoveryNotification
 	o.NotifyEndStates = all.NotifyEndStates
