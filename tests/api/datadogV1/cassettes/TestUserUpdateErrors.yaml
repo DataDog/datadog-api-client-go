@@ -3,48 +3,53 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"ro","email":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1618221311"}
+      {"access_role":"ro","email":"test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com","handle":"test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1689014335"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "240"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
       X-Datadog-Parent-Id:
-      - "4572808800988101792"
+      - "594058268962282774"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2548566477759609361"
+      - "5172472303537009867"
     url: https://api.datadoghq.com/api/v1/user
     method: POST
   response:
-    body: '{"user":{"disabled":false,"handle":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1618221311","title":null,"is_admin":false,"role":null,"access_role":"ro","verified":false,"email":"test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com","icon":"https://secure.gravatar.com/avatar/830b83ab7ed07d15a8028434db5cc8ed?s=48&d=retro"}}'
+    body: |
+      {"user":{"handle":"test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com","name":"Test-TestUserUpdateErrors-1689014335","role":null,"title":null,"email":"test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com","disabled":false,"access_role":"ro","is_admin":false,"icon":"https://secure.gravatar.com/avatar/ec69caf78c274a1fbb13f15d96d40fd3?s=48&d=retro","verified":false}}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:12 GMT
-      Pragma:
-      - no-cache
+      - Mon, 10 Jul 2023 18:38:55 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - twvpGlmuom5y6A0pjGtXzTf554cmwJgTcCZ71fK4H/RDi+v5ehBK0zQiRcTJQG5C
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "100"
+      X-Ratelimit-Name:
+      - create_user_api
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "98"
+      X-Ratelimit-Reset:
+      - "5"
     status: 200 OK
     code: 200
     duration: ""
@@ -55,39 +60,31 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
       X-Datadog-Parent-Id:
-      - "811937588064523899"
+      - "813148663059129558"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2548566477759609361"
-    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com
+      - "5172472303537009867"
+    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com
     method: DELETE
   response:
-    body: '{"message":"User test-testuserupdateerrors-1618221311@integration-tests-accnt-for-sdk-ci.com
-      disabled"}'
+    body: |
+      {"message":"User test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com disabled"}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:13 GMT
-      Pragma:
-      - no-cache
+      - Mon, 10 Jul 2023 18:38:56 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK

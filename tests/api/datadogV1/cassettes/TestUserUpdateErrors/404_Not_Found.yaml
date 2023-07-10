@@ -3,44 +3,40 @@ version: 1
 interactions:
 - request:
     body: |
-      {"access_role":"st","email":"notanemail"}
+      {"email":"notanemail"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "23"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
       X-Datadog-Parent-Id:
-      - "2229263613154744866"
+      - "7330689759881619138"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2548566477759609361"
+      - "5172472303537009867"
     url: https://api.datadoghq.com/api/v1/user/notahandle
     method: PUT
   response:
-    body: '{"errors": ["user not found"]}'
+    body: '{"errors":["user not found"]}'
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "29"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:55:13 GMT
-      Pragma:
-      - no-cache
+      - Mon, 10 Jul 2023 18:38:56 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
+      - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 404 Not Found
