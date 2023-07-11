@@ -346,8 +346,11 @@ def format_data_with_schema(
 
     name = schema_name(schema)
 
-    if "enum" in schema and data not in schema["enum"]:
-        raise ValueError(f"{data} is not valid enum value {schema['enum']}")
+    if "enum" in schema:
+        if nullable and data is None:
+            pass
+        elif data not in schema["enum"]:
+                raise ValueError(f"{data} is not valid enum value {schema['enum']}")
 
     if replace_values and data in replace_values:
         parameters = replace_values[data]
@@ -418,12 +421,18 @@ def format_data_with_schema(
             parameters = formatter(data)
 
     if "enum" in schema and name:
-        # find schema index and get name from x-enum-varnames
-        index = schema["enum"].index(data)
-        enum_varnames = schema["x-enum-varnames"][index]
-        parameters = f"{name_prefix}{name.upper()}_{enum_varnames}"
+        if data is None and nullable:
+            parameters = "nil"
+        else:
+            # find schema index and get name from x-enum-varnames
+            index = schema["enum"].index(data)
+            enum_varnames = schema["x-enum-varnames"][index]
+            parameters = f"{name_prefix}{name.upper()}_{enum_varnames}"
+
         if not required:
             if nullable:
+                if data is None:
+                    return f"*{name_prefix}NewNullable{name}({parameters})"
                 return f"*{name_prefix}NewNullable{name}({parameters}.Ptr())"
             parameters = f"{parameters}.Ptr()"
         return parameters

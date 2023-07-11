@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.User{
-		AccessRole: datadogV1.ACCESSROLE_STANDARD.Ptr(),
+		AccessRole: *datadogV1.NewNullableAccessRole(datadogV1.ACCESSROLE_READ_ONLY.Ptr()),
 		Disabled:   datadog.PtrBool(false),
 		Email:      datadog.PtrString("test@datadoghq.com"),
 		Handle:     datadog.PtrString("test@datadoghq.com"),

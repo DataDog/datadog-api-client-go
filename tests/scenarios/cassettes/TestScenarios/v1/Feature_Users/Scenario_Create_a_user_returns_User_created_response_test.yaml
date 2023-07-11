@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: |
+      {"access_role":"st","disabled":false,"email":"test@datadoghq.com","handle":"test@datadoghq.com","name":"test user"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/user
+  response:
+    body: '{"user":{"handle":"test@datadoghq.com","name":"test user","role":null,"title":null,"email":"test@datadoghq.com","disabled":false,"access_role":null,"is_admin":false,"icon":"https://secure.gravatar.com/avatar/f979f58720feb88e09cc3d11ce3d15da?s=48&d=retro","verified":false}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/user/test%40datadoghq.com
+  response:
+    body: '{"message":"User test@datadoghq.com disabled"}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

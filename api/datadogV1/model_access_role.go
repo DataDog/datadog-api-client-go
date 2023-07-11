@@ -68,3 +68,47 @@ func (v AccessRole) IsValid() bool {
 func (v AccessRole) Ptr() *AccessRole {
 	return &v
 }
+
+// NullableAccessRole handles when a null is used for AccessRole.
+type NullableAccessRole struct {
+	value *AccessRole
+	isSet bool
+}
+
+// Get returns the associated value.
+func (v NullableAccessRole) Get() *AccessRole {
+	return v.value
+}
+
+// Set changes the value and indicates it's been called.
+func (v *NullableAccessRole) Set(val *AccessRole) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns whether Set has been called.
+func (v NullableAccessRole) IsSet() bool {
+	return v.isSet
+}
+
+// Unset sets the value to nil and resets the set flag.
+func (v *NullableAccessRole) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableAccessRole initializes the struct as if Set has been called.
+func NewNullableAccessRole(val *AccessRole) *NullableAccessRole {
+	return &NullableAccessRole{value: val, isSet: true}
+}
+
+// MarshalJSON serializes the associated value.
+func (v NullableAccessRole) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
+func (v *NullableAccessRole) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

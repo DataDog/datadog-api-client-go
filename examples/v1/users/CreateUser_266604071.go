@@ -1,4 +1,4 @@
-// Update a user returns "User updated" response
+// Create a user returns null access role
 
 package main
 
@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.User{
-		AccessRole: *datadogV1.NewNullableAccessRole(datadogV1.ACCESSROLE_READ_ONLY.Ptr()),
+		AccessRole: *datadogV1.NewNullableAccessRole(nil),
 		Disabled:   datadog.PtrBool(false),
 		Email:      datadog.PtrString("test@datadoghq.com"),
 		Handle:     datadog.PtrString("test@datadoghq.com"),
@@ -24,13 +24,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewUsersApi(apiClient)
-	resp, r, err := api.UpdateUser(ctx, "test@datadoghq.com", body)
+	resp, r, err := api.CreateUser(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `UsersApi.UpdateUser`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `UsersApi.CreateUser`:\n%s\n", responseContent)
 }
