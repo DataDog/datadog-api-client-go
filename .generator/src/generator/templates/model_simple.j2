@@ -409,6 +409,6 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 
 {%- endif %}
 
-{%- if model.nullable %}
+{%- if model.get("nullable") %}
 {% include "nullable_model.j2" %}
 {%- endif %}

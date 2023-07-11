@@ -118,4 +118,6 @@ func (obj *{{ name }}) GetActualInstance() (interface{}) {
 	return nil
 }
 
+{%- if model.get("nullable") %}
 {% include "nullable_model.j2" %}
+{%- endif %}
