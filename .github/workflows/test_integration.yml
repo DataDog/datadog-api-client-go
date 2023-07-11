@@ -4,7 +4,14 @@ on:
   pull_request:
     branches:
       - master
-    types: ["opened", "reopened", "ready_for_review", "synchronize"]
+    types:
+      - opened
+      - reopened
+      - ready_for_review
+      - synchronize
+      - labeled
+      - unlabeled
+
   schedule:
     - cron: "0 0 * * *"
 
