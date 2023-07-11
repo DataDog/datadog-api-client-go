@@ -55,6 +55,7 @@ func (v {{ name }}) Ptr() *{{ name }} {
 	return &v
 }
 
+{%- if model.get("nullable") %}
 // Nullable{{ name }} handles when a null is used for {{ name }}.
 type Nullable{{ name }} struct {
 	value *{{ name }}
@@ -98,3 +99,4 @@ func (v *Nullable{{ name }}) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+{%- endif %}
