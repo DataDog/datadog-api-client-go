@@ -23,6 +23,8 @@ type DashboardListItem struct {
 	Icon datadog.NullableString `json:"icon,omitempty"`
 	// ID of the dashboard.
 	Id string `json:"id"`
+	// The short name of the integration.
+	IntegrationId datadog.NullableString `json:"integration_id,omitempty"`
 	// Whether or not the dashboard is in the favorites.
 	IsFavorite *bool `json:"is_favorite,omitempty"`
 	// Whether or not the dashboard is read only.
@@ -179,6 +181,45 @@ func (o *DashboardListItem) GetIdOk() (*string, bool) {
 // SetId sets field value.
 func (o *DashboardListItem) SetId(v string) {
 	o.Id = v
+}
+
+// GetIntegrationId returns the IntegrationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DashboardListItem) GetIntegrationId() string {
+	if o == nil || o.IntegrationId.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IntegrationId.Get()
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *DashboardListItem) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IntegrationId.Get(), o.IntegrationId.IsSet()
+}
+
+// HasIntegrationId returns a boolean if a field has been set.
+func (o *DashboardListItem) HasIntegrationId() bool {
+	return o != nil && o.IntegrationId.IsSet()
+}
+
+// SetIntegrationId gets a reference to the given datadog.NullableString and assigns it to the IntegrationId field.
+func (o *DashboardListItem) SetIntegrationId(v string) {
+	o.IntegrationId.Set(&v)
+}
+
+// SetIntegrationIdNil sets the value for IntegrationId to be an explicit nil.
+func (o *DashboardListItem) SetIntegrationIdNil() {
+	o.IntegrationId.Set(nil)
+}
+
+// UnsetIntegrationId ensures that no value is present for IntegrationId, not even an explicit nil.
+func (o *DashboardListItem) UnsetIntegrationId() {
+	o.IntegrationId.Unset()
 }
 
 // GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
@@ -420,6 +461,9 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 		toSerialize["icon"] = o.Icon.Get()
 	}
 	toSerialize["id"] = o.Id
+	if o.IntegrationId.IsSet() {
+		toSerialize["integration_id"] = o.IntegrationId.Get()
+	}
 	if o.IsFavorite != nil {
 		toSerialize["is_favorite"] = o.IsFavorite
 	}
@@ -457,18 +501,19 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Author     *Creator               `json:"author,omitempty"`
-		Created    *time.Time             `json:"created,omitempty"`
-		Icon       datadog.NullableString `json:"icon,omitempty"`
-		Id         *string                `json:"id"`
-		IsFavorite *bool                  `json:"is_favorite,omitempty"`
-		IsReadOnly *bool                  `json:"is_read_only,omitempty"`
-		IsShared   *bool                  `json:"is_shared,omitempty"`
-		Modified   *time.Time             `json:"modified,omitempty"`
-		Popularity *int32                 `json:"popularity,omitempty"`
-		Title      *string                `json:"title,omitempty"`
-		Type       *DashboardType         `json:"type"`
-		Url        *string                `json:"url,omitempty"`
+		Author        *Creator               `json:"author,omitempty"`
+		Created       *time.Time             `json:"created,omitempty"`
+		Icon          datadog.NullableString `json:"icon,omitempty"`
+		Id            *string                `json:"id"`
+		IntegrationId datadog.NullableString `json:"integration_id,omitempty"`
+		IsFavorite    *bool                  `json:"is_favorite,omitempty"`
+		IsReadOnly    *bool                  `json:"is_read_only,omitempty"`
+		IsShared      *bool                  `json:"is_shared,omitempty"`
+		Modified      *time.Time             `json:"modified,omitempty"`
+		Popularity    *int32                 `json:"popularity,omitempty"`
+		Title         *string                `json:"title,omitempty"`
+		Type          *DashboardType         `json:"type"`
+		Url           *string                `json:"url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -486,7 +531,7 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created", "icon", "id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "title", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created", "icon", "id", "integration_id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "title", "type", "url"})
 	} else {
 		return err
 	}
@@ -509,6 +554,7 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Created = all.Created
 	o.Icon = all.Icon
 	o.Id = *all.Id
+	o.IntegrationId = all.IntegrationId
 	o.IsFavorite = all.IsFavorite
 	o.IsReadOnly = all.IsReadOnly
 	o.IsShared = all.IsShared
