@@ -21,9 +21,8 @@ github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDk
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/cucumber/gherkin-go/v13 v13.0.0 h1:d09AwPZldyOFlCADAIZQMt7T+VHCrGdp5106+BCIfZU=
 github.com/cucumber/gherkin-go/v13 v13.0.0/go.mod h1:pzMEPEIPcPOBDkE8HaWC+Ck6eDBtBmIWVksUkSin/2E=
+github.com/cucumber/messages-go/v12 v12.0.0 h1:ZlZYZrYDDc35zCe0HK2y95GUcxHHqr8yB9kdrXCjnzU=
 github.com/cucumber/messages-go/v12 v12.0.0/go.mod h1:5zuJu21U6rB+BBqyGoQr839a4h4GUElPnSozdHyhCOQ=
-github.com/cucumber/messages-go/v12 v12.4.0 h1:m9Bg3QBiYlZdRtzpaNIH1dDQEyVOcok7mLKRj/+czdg=
-github.com/cucumber/messages-go/v12 v12.4.0/go.mod h1:cDd0XC62+JmPkCRM/wT5ZcNZLaObZYQnhvres3WXH7Q=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

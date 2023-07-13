@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/DataDog/datadog-api-client-go/v2 v2.14.0
 	github.com/DataDog/dd-sdk-go-testing v0.0.3
-	github.com/cucumber/messages-go/v12 v12.4.0
+	github.com/cucumber/messages-go/v12 v12.0.0
 	github.com/dnaeon/go-vcr v1.2.0
 	github.com/go-bdd/gobdd v1.1.4-0.20211209204431-ca566a78d075
 	github.com/goccy/go-json v0.10.2
