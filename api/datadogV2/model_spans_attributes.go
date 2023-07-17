@@ -16,6 +16,8 @@ import (
 type SpansAttributes struct {
 	// JSON object of attributes from your span.
 	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// JSON object of custom spans data.
+	Custom map[string]interface{} `json:"custom,omitempty"`
 	// End timestamp of your span.
 	EndTimestamp *time.Time `json:"end_timestamp,omitempty"`
 	// Name of the environment from where the spans are being sent.
@@ -96,6 +98,34 @@ func (o *SpansAttributes) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *SpansAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
+}
+
+// GetCustom returns the Custom field value if set, zero value otherwise.
+func (o *SpansAttributes) GetCustom() map[string]interface{} {
+	if o == nil || o.Custom == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Custom
+}
+
+// GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpansAttributes) GetCustomOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Custom == nil {
+		return nil, false
+	}
+	return &o.Custom, true
+}
+
+// HasCustom returns a boolean if a field has been set.
+func (o *SpansAttributes) HasCustom() bool {
+	return o != nil && o.Custom != nil
+}
+
+// SetCustom gets a reference to the given map[string]interface{} and assigns it to the Custom field.
+func (o *SpansAttributes) SetCustom(v map[string]interface{}) {
+	o.Custom = v
 }
 
 // GetEndTimestamp returns the EndTimestamp field value if set, zero value otherwise.
@@ -527,6 +557,9 @@ func (o SpansAttributes) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.Custom != nil {
+		toSerialize["custom"] = o.Custom
+	}
 	if o.EndTimestamp != nil {
 		if o.EndTimestamp.Nanosecond() == 0 {
 			toSerialize["end_timestamp"] = o.EndTimestamp.Format("2006-01-02T15:04:05Z07:00")
@@ -592,6 +625,7 @@ func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes      map[string]interface{} `json:"attributes,omitempty"`
+		Custom          map[string]interface{} `json:"custom,omitempty"`
 		EndTimestamp    *time.Time             `json:"end_timestamp,omitempty"`
 		Env             *string                `json:"env,omitempty"`
 		Host            *string                `json:"host,omitempty"`
@@ -618,11 +652,12 @@ func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "end_timestamp", "env", "host", "ingestion_reason", "parent_id", "resource_hash", "resource_name", "retained_by", "service", "single_span", "span_id", "start_timestamp", "tags", "trace_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "custom", "end_timestamp", "env", "host", "ingestion_reason", "parent_id", "resource_hash", "resource_name", "retained_by", "service", "single_span", "span_id", "start_timestamp", "tags", "trace_id", "type"})
 	} else {
 		return err
 	}
 	o.Attributes = all.Attributes
+	o.Custom = all.Custom
 	o.EndTimestamp = all.EndTimestamp
 	o.Env = all.Env
 	o.Host = all.Host
