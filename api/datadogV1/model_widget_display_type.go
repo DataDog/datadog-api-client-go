@@ -15,15 +15,17 @@ type WidgetDisplayType string
 
 // List of WidgetDisplayType.
 const (
-	WIDGETDISPLAYTYPE_AREA WidgetDisplayType = "area"
-	WIDGETDISPLAYTYPE_BARS WidgetDisplayType = "bars"
-	WIDGETDISPLAYTYPE_LINE WidgetDisplayType = "line"
+	WIDGETDISPLAYTYPE_AREA    WidgetDisplayType = "area"
+	WIDGETDISPLAYTYPE_BARS    WidgetDisplayType = "bars"
+	WIDGETDISPLAYTYPE_LINE    WidgetDisplayType = "line"
+	WIDGETDISPLAYTYPE_OVERLAY WidgetDisplayType = "overlay"
 )
 
 var allowedWidgetDisplayTypeEnumValues = []WidgetDisplayType{
 	WIDGETDISPLAYTYPE_AREA,
 	WIDGETDISPLAYTYPE_BARS,
 	WIDGETDISPLAYTYPE_LINE,
+	WIDGETDISPLAYTYPE_OVERLAY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
