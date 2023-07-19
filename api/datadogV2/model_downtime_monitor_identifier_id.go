@@ -8,6 +8,8 @@ import (
 	"fmt"
 
 	"github.com/goccy/go-json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeMonitorIdentifierId Object of the monitor identifier.
@@ -15,7 +17,8 @@ type DowntimeMonitorIdentifierId struct {
 	// ID of the monitor to prevent notifications.
 	MonitorId int64 `json:"monitor_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{}
 }
 
 // NewDowntimeMonitorIdentifierId instantiates a new DowntimeMonitorIdentifierId object.
@@ -66,6 +69,10 @@ func (o DowntimeMonitorIdentifierId) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["monitor_id"] = o.MonitorId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -86,7 +93,16 @@ func (o *DowntimeMonitorIdentifierId) UnmarshalJSON(bytes []byte) (err error) {
 	if all.MonitorId == nil {
 		return fmt.Errorf("required field monitor_id missing")
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"monitor_id"})
+	} else {
+		return err
+	}
 	o.MonitorId = *all.MonitorId
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return nil
 }

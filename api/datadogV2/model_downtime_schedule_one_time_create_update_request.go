@@ -21,7 +21,8 @@ type DowntimeScheduleOneTimeCreateUpdateRequest struct {
 	// downtime starts the moment it is created.
 	Start datadog.NullableTime `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{}
 }
 
 // NewDowntimeScheduleOneTimeCreateUpdateRequest instantiates a new DowntimeScheduleOneTimeCreateUpdateRequest object.
@@ -131,6 +132,10 @@ func (o DowntimeScheduleOneTimeCreateUpdateRequest) MarshalJSON() ([]byte, error
 	if o.Start.IsSet() {
 		toSerialize["start"] = o.Start.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -149,8 +154,17 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnmarshalJSON(bytes []byte)
 		o.UnparsedObject = raw
 		return nil
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
+	} else {
+		return err
+	}
 	o.End = all.End
 	o.Start = all.Start
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return nil
 }

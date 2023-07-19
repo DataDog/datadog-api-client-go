@@ -27,7 +27,8 @@ type DowntimeScheduleRecurrenceCreateUpdateRequest struct {
 	// downtime starts the moment it is created.
 	Start datadog.NullableString `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{}
 }
 
 // NewDowntimeScheduleRecurrenceCreateUpdateRequest instantiates a new DowntimeScheduleRecurrenceCreateUpdateRequest object.
@@ -145,6 +146,10 @@ func (o DowntimeScheduleRecurrenceCreateUpdateRequest) MarshalJSON() ([]byte, er
 	if o.Start.IsSet() {
 		toSerialize["start"] = o.Start.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -170,9 +175,18 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) UnmarshalJSON(bytes []by
 	if all.Rrule == nil {
 		return fmt.Errorf("required field rrule missing")
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "rrule", "start"})
+	} else {
+		return err
+	}
 	o.Duration = *all.Duration
 	o.Rrule = *all.Rrule
 	o.Start = all.Start
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return nil
 }
