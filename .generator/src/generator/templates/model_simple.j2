@@ -26,7 +26,7 @@ type {{ name }} struct {
 {%- endfor %}
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
-{%- if model.get("additionalProperties", True) is not false %}
+{%- if model.additionalProperties is not false %}
 	AdditionalProperties map[string]{{ get_type(model.get("additionalProperties", True)) }}
 {%- endif %}
 {%- endif %}
@@ -305,7 +305,7 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}
-	{%- if model.type != "array" and model.get("additionalProperties", True) is not false %}
+	{%- if model.type != "array" and model.additionalProperties is not false %}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -354,7 +354,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	{%- endfor %}
 
-	{%- if model.get("additionalProperties", True) is not false %}
+	{%- if model.additionalProperties is not false %}
 	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{ {% for attr, schema in model.get("properties", {}).items()%}"{{ attr }}", {% endfor %} })
@@ -394,7 +394,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	o.{{ propertyName }} = all.{{ propertyName }}
         {%- endif %}
 	{%- endfor %}
-	{%- if model.get("additionalProperties", True) is not false %}
+	{%- if model.additionalProperties is not false %}
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
