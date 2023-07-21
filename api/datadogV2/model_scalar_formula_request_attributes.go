@@ -15,7 +15,7 @@ import (
 // ScalarFormulaRequestAttributes The object describing a scalar formula request.
 type ScalarFormulaRequestAttributes struct {
 	// List of formulas to be calculated and returned as responses.
-	Formulas []QueryFormula `json:"formulas,omitempty"`
+	Formulas []QueryFormulaWithLimit `json:"formulas,omitempty"`
 	// Start date (inclusive) of the query in milliseconds since the Unix epoch.
 	From int64 `json:"from"`
 	// List of queries to be run and used as inputs to the formulas.
@@ -48,9 +48,9 @@ func NewScalarFormulaRequestAttributesWithDefaults() *ScalarFormulaRequestAttrib
 }
 
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
-func (o *ScalarFormulaRequestAttributes) GetFormulas() []QueryFormula {
+func (o *ScalarFormulaRequestAttributes) GetFormulas() []QueryFormulaWithLimit {
 	if o == nil || o.Formulas == nil {
-		var ret []QueryFormula
+		var ret []QueryFormulaWithLimit
 		return ret
 	}
 	return o.Formulas
@@ -58,7 +58,7 @@ func (o *ScalarFormulaRequestAttributes) GetFormulas() []QueryFormula {
 
 // GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScalarFormulaRequestAttributes) GetFormulasOk() (*[]QueryFormula, bool) {
+func (o *ScalarFormulaRequestAttributes) GetFormulasOk() (*[]QueryFormulaWithLimit, bool) {
 	if o == nil || o.Formulas == nil {
 		return nil, false
 	}
@@ -70,8 +70,8 @@ func (o *ScalarFormulaRequestAttributes) HasFormulas() bool {
 	return o != nil && o.Formulas != nil
 }
 
-// SetFormulas gets a reference to the given []QueryFormula and assigns it to the Formulas field.
-func (o *ScalarFormulaRequestAttributes) SetFormulas(v []QueryFormula) {
+// SetFormulas gets a reference to the given []QueryFormulaWithLimit and assigns it to the Formulas field.
+func (o *ScalarFormulaRequestAttributes) SetFormulas(v []QueryFormulaWithLimit) {
 	o.Formulas = v
 }
 
@@ -167,10 +167,10 @@ func (o ScalarFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *ScalarFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas []QueryFormula `json:"formulas,omitempty"`
-		From     *int64         `json:"from"`
-		Queries  *[]ScalarQuery `json:"queries"`
-		To       *int64         `json:"to"`
+		Formulas []QueryFormulaWithLimit `json:"formulas,omitempty"`
+		From     *int64                  `json:"from"`
+		Queries  *[]ScalarQuery          `json:"queries"`
+		To       *int64                  `json:"to"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)

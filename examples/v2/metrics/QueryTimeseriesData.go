@@ -19,10 +19,6 @@ func main() {
 				Formulas: []datadogV2.QueryFormula{
 					{
 						Formula: "a+b",
-						Limit: &datadogV2.FormulaLimit{
-							Count: datadog.PtrInt32(10),
-							Order: datadogV2.QUERYSORTORDER_DESC.Ptr(),
-						},
 					},
 				},
 				From:     1568899800000,

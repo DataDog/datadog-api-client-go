@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.ScalarFormulaQueryRequest{
 		Data: datadogV2.ScalarFormulaRequest{
 			Attributes: datadogV2.ScalarFormulaRequestAttributes{
-				Formulas: []datadogV2.QueryFormula{
+				Formulas: []datadogV2.QueryFormulaWithLimit{
 					{
 						Formula: "a",
 						Limit: &datadogV2.FormulaLimit{
