@@ -8,6 +8,8 @@ import (
 	"fmt"
 
 	"github.com/goccy/go-json"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeMonitorIdentifierTags Object of the monitor tags.
@@ -18,7 +20,8 @@ type DowntimeMonitorIdentifierTags struct {
 	// to `[*]` configures the downtime to mute all monitors for the given scope.
 	MonitorTags []string `json:"monitor_tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{}
 }
 
 // NewDowntimeMonitorIdentifierTags instantiates a new DowntimeMonitorIdentifierTags object.
@@ -69,6 +72,10 @@ func (o DowntimeMonitorIdentifierTags) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["monitor_tags"] = o.MonitorTags
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -89,7 +96,16 @@ func (o *DowntimeMonitorIdentifierTags) UnmarshalJSON(bytes []byte) (err error) 
 	if all.MonitorTags == nil {
 		return fmt.Errorf("required field monitor_tags missing")
 	}
+	additionalProperties := make(map[string]interface{})
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"monitor_tags"})
+	} else {
+		return err
+	}
 	o.MonitorTags = *all.MonitorTags
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return nil
 }
