@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"handle-7f82f490dc758fbf","name":"name-7f82f490dc758fbf"},"type":"team"}}
+      {"data":{"attributes":{"handle":"handle-93860ab913118caf","name":"name-93860ab913118caf"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"5391cf72-ef4f-11ed-9b09-da7ad0900002","attributes":{"name":"name-7f82f490dc758fbf","handle":"handle-7f82f490dc758fbf","summary":null,"description":null,"color":11,"created_at":"2023-05-10T16:25:50.187661+00:00","modified_at":"2023-05-10T16:25:50.187665+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/5391cf72-ef4f-11ed-9b09-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/5391cf72-ef4f-11ed-9b09-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"a68b555c-20d9-11ee-8739-da7ad0900002","attributes":{"name":"name-93860ab913118caf","handle":"handle-93860ab913118caf","summary":null,"description":null,"created_at":"2023-07-12T17:29:26.918845+00:00","modified_at":"2023-07-12T17:29:26.918850+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/a68b555c-20d9-11ee-8739-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/a68b555c-20d9-11ee-8739-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 201
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
     method: POST
-    url: https://api.datadoghq.com/api/v2/team/5391cf72-ef4f-11ed-9b09-da7ad0900002/links
+    url: https://api.datadoghq.com/api/v2/team/a68b555c-20d9-11ee-8739-da7ad0900002/links
   response:
     body: '{"errors":["label cannot be empty"]}'
     code: 422
@@ -46,7 +46,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/5391cf72-ef4f-11ed-9b09-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/a68b555c-20d9-11ee-8739-da7ad0900002
   response:
     body: ''
     code: 204
