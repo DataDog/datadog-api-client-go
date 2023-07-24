@@ -10,68 +10,68 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamResponse Response with a team
-type TeamResponse struct {
-	// A team
-	Data *Team `json:"data,omitempty"`
+// TeamRelationshipsLinks Links attributes.
+type TeamRelationshipsLinks struct {
+	// Related link.
+	Related *string `json:"related,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewTeamResponse instantiates a new TeamResponse object.
+// NewTeamRelationshipsLinks instantiates a new TeamRelationshipsLinks object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamResponse() *TeamResponse {
-	this := TeamResponse{}
+func NewTeamRelationshipsLinks() *TeamRelationshipsLinks {
+	this := TeamRelationshipsLinks{}
 	return &this
 }
 
-// NewTeamResponseWithDefaults instantiates a new TeamResponse object.
+// NewTeamRelationshipsLinksWithDefaults instantiates a new TeamRelationshipsLinks object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamResponseWithDefaults() *TeamResponse {
-	this := TeamResponse{}
+func NewTeamRelationshipsLinksWithDefaults() *TeamRelationshipsLinks {
+	this := TeamRelationshipsLinks{}
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *TeamResponse) GetData() Team {
-	if o == nil || o.Data == nil {
-		var ret Team
+// GetRelated returns the Related field value if set, zero value otherwise.
+func (o *TeamRelationshipsLinks) GetRelated() string {
+	if o == nil || o.Related == nil {
+		var ret string
 		return ret
 	}
-	return *o.Data
+	return *o.Related
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetRelatedOk returns a tuple with the Related field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TeamResponse) GetDataOk() (*Team, bool) {
-	if o == nil || o.Data == nil {
+func (o *TeamRelationshipsLinks) GetRelatedOk() (*string, bool) {
+	if o == nil || o.Related == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return o.Related, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *TeamResponse) HasData() bool {
-	return o != nil && o.Data != nil
+// HasRelated returns a boolean if a field has been set.
+func (o *TeamRelationshipsLinks) HasRelated() bool {
+	return o != nil && o.Related != nil
 }
 
-// SetData gets a reference to the given Team and assigns it to the Data field.
-func (o *TeamResponse) SetData(v Team) {
-	o.Data = &v
+// SetRelated gets a reference to the given string and assigns it to the Related field.
+func (o *TeamRelationshipsLinks) SetRelated(v string) {
+	o.Related = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamResponse) MarshalJSON() ([]byte, error) {
+func (o TeamRelationshipsLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+	if o.Related != nil {
+		toSerialize["related"] = o.Related
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,10 +81,10 @@ func (o TeamResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TeamRelationshipsLinks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *Team `json:"data,omitempty"`
+		Related *string `json:"related,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,18 +96,11 @@ func (o *TeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"related"})
 	} else {
 		return err
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.Data = all.Data
+	o.Related = all.Related
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
