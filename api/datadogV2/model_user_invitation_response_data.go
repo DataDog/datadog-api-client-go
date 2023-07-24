@@ -16,6 +16,8 @@ type UserInvitationResponseData struct {
 	Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
 	// ID of the user invitation.
 	Id *string `json:"id,omitempty"`
+	// Relationships data for user invitation.
+	Relationships *UserInvitationRelationships `json:"relationships,omitempty"`
 	// User invitations type.
 	Type *UserInvitationsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -100,6 +102,34 @@ func (o *UserInvitationResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *UserInvitationResponseData) GetRelationships() UserInvitationRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret UserInvitationRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserInvitationResponseData) GetRelationshipsOk() (*UserInvitationRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *UserInvitationResponseData) HasRelationships() bool {
+	return o != nil && o.Relationships != nil
+}
+
+// SetRelationships gets a reference to the given UserInvitationRelationships and assigns it to the Relationships field.
+func (o *UserInvitationResponseData) SetRelationships(v UserInvitationRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UserInvitationResponseData) GetType() UserInvitationsType {
 	if o == nil || o.Type == nil {
@@ -140,6 +170,9 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -154,9 +187,10 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id,omitempty"`
-		Type       *UserInvitationsType          `json:"type,omitempty"`
+		Attributes    *UserInvitationDataAttributes `json:"attributes,omitempty"`
+		Id            *string                       `json:"id,omitempty"`
+		Relationships *UserInvitationRelationships  `json:"relationships,omitempty"`
+		Type          *UserInvitationsType          `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -168,7 +202,7 @@ func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -189,6 +223,14 @@ func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Relationships = all.Relationships
 	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

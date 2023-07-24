@@ -18,6 +18,8 @@ type EventsResponseMetadata struct {
 	Page *EventsResponseMetadataPage `json:"page,omitempty"`
 	// The identifier of the request.
 	RequestId *string `json:"request_id,omitempty"`
+	// The request status.
+	Status *string `json:"status,omitempty"`
 	// A list of warnings (non-fatal errors) encountered. Partial results might be returned if
 	// warnings are present in the response.
 	Warnings []EventsWarning `json:"warnings,omitempty"`
@@ -127,6 +129,34 @@ func (o *EventsResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *EventsResponseMetadata) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventsResponseMetadata) GetStatusOk() (*string, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *EventsResponseMetadata) HasStatus() bool {
+	return o != nil && o.Status != nil
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *EventsResponseMetadata) SetStatus(v string) {
+	o.Status = &v
+}
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetWarnings() []EventsWarning {
 	if o == nil || o.Warnings == nil {
@@ -170,6 +200,9 @@ func (o EventsResponseMetadata) MarshalJSON() ([]byte, error) {
 	if o.RequestId != nil {
 		toSerialize["request_id"] = o.RequestId
 	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
 	if o.Warnings != nil {
 		toSerialize["warnings"] = o.Warnings
 	}
@@ -187,6 +220,7 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		Elapsed   *int64                      `json:"elapsed,omitempty"`
 		Page      *EventsResponseMetadataPage `json:"page,omitempty"`
 		RequestId *string                     `json:"request_id,omitempty"`
+		Status    *string                     `json:"status,omitempty"`
 		Warnings  []EventsWarning             `json:"warnings,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
@@ -199,7 +233,7 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "warnings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "status", "warnings"})
 	} else {
 		return err
 	}
@@ -213,6 +247,7 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Page = all.Page
 	o.RequestId = all.RequestId
+	o.Status = all.Status
 	o.Warnings = all.Warnings
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

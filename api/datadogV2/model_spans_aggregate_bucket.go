@@ -10,12 +10,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SpansAggregateBucket A bucket values.
+// SpansAggregateBucket Spans aggregate.
 type SpansAggregateBucket struct {
-	// The key, value pairs for each group by.
-	By map[string]interface{} `json:"by,omitempty"`
-	// A map of the metric name -> value for regular compute or list of values for a timeseries.
-	Computes map[string]SpansAggregateBucketValue `json:"computes,omitempty"`
+	// A bucket values.
+	Attributes *SpansAggregateBucketAttributes `json:"attributes,omitempty"`
+	// ID of the spans aggregate.
+	Id *string `json:"id,omitempty"`
+	// The spans aggregate bucket type.
+	Type *SpansAggregateBucketType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -38,60 +40,88 @@ func NewSpansAggregateBucketWithDefaults() *SpansAggregateBucket {
 	return &this
 }
 
-// GetBy returns the By field value if set, zero value otherwise.
-func (o *SpansAggregateBucket) GetBy() map[string]interface{} {
-	if o == nil || o.By == nil {
-		var ret map[string]interface{}
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *SpansAggregateBucket) GetAttributes() SpansAggregateBucketAttributes {
+	if o == nil || o.Attributes == nil {
+		var ret SpansAggregateBucketAttributes
 		return ret
 	}
-	return o.By
+	return *o.Attributes
 }
 
-// GetByOk returns a tuple with the By field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpansAggregateBucket) GetByOk() (*map[string]interface{}, bool) {
-	if o == nil || o.By == nil {
+func (o *SpansAggregateBucket) GetAttributesOk() (*SpansAggregateBucketAttributes, bool) {
+	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
-	return &o.By, true
+	return o.Attributes, true
 }
 
-// HasBy returns a boolean if a field has been set.
-func (o *SpansAggregateBucket) HasBy() bool {
-	return o != nil && o.By != nil
+// HasAttributes returns a boolean if a field has been set.
+func (o *SpansAggregateBucket) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
 }
 
-// SetBy gets a reference to the given map[string]interface{} and assigns it to the By field.
-func (o *SpansAggregateBucket) SetBy(v map[string]interface{}) {
-	o.By = v
+// SetAttributes gets a reference to the given SpansAggregateBucketAttributes and assigns it to the Attributes field.
+func (o *SpansAggregateBucket) SetAttributes(v SpansAggregateBucketAttributes) {
+	o.Attributes = &v
 }
 
-// GetComputes returns the Computes field value if set, zero value otherwise.
-func (o *SpansAggregateBucket) GetComputes() map[string]SpansAggregateBucketValue {
-	if o == nil || o.Computes == nil {
-		var ret map[string]SpansAggregateBucketValue
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SpansAggregateBucket) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
 		return ret
 	}
-	return o.Computes
+	return *o.Id
 }
 
-// GetComputesOk returns a tuple with the Computes field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpansAggregateBucket) GetComputesOk() (*map[string]SpansAggregateBucketValue, bool) {
-	if o == nil || o.Computes == nil {
+func (o *SpansAggregateBucket) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return &o.Computes, true
+	return o.Id, true
 }
 
-// HasComputes returns a boolean if a field has been set.
-func (o *SpansAggregateBucket) HasComputes() bool {
-	return o != nil && o.Computes != nil
+// HasId returns a boolean if a field has been set.
+func (o *SpansAggregateBucket) HasId() bool {
+	return o != nil && o.Id != nil
 }
 
-// SetComputes gets a reference to the given map[string]SpansAggregateBucketValue and assigns it to the Computes field.
-func (o *SpansAggregateBucket) SetComputes(v map[string]SpansAggregateBucketValue) {
-	o.Computes = v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SpansAggregateBucket) SetId(v string) {
+	o.Id = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *SpansAggregateBucket) GetType() SpansAggregateBucketType {
+	if o == nil || o.Type == nil {
+		var ret SpansAggregateBucketType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpansAggregateBucket) GetTypeOk() (*SpansAggregateBucketType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *SpansAggregateBucket) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given SpansAggregateBucketType and assigns it to the Type field.
+func (o *SpansAggregateBucket) SetType(v SpansAggregateBucketType) {
+	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -100,11 +130,14 @@ func (o SpansAggregateBucket) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.By != nil {
-		toSerialize["by"] = o.By
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Computes != nil {
-		toSerialize["computes"] = o.Computes
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -117,8 +150,9 @@ func (o SpansAggregateBucket) MarshalJSON() ([]byte, error) {
 func (o *SpansAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		By       map[string]interface{}               `json:"by,omitempty"`
-		Computes map[string]SpansAggregateBucketValue `json:"computes,omitempty"`
+		Attributes *SpansAggregateBucketAttributes `json:"attributes,omitempty"`
+		Id         *string                         `json:"id,omitempty"`
+		Type       *SpansAggregateBucketType       `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -130,12 +164,28 @@ func (o *SpansAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"by", "computes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
-	o.By = all.By
-	o.Computes = all.Computes
+	if v := all.Type; v != nil && !v.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Attributes = all.Attributes
+	o.Id = all.Id
+	o.Type = all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -16,6 +16,8 @@ import (
 type RUMApplicationList struct {
 	// RUM application list attributes.
 	Attributes RUMApplicationListAttributes `json:"attributes"`
+	// RUM application ID.
+	Id *string `json:"id,omitempty"`
 	// RUM application list type.
 	Type RUMApplicationListType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -67,6 +69,34 @@ func (o *RUMApplicationList) SetAttributes(v RUMApplicationListAttributes) {
 	o.Attributes = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *RUMApplicationList) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RUMApplicationList) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *RUMApplicationList) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *RUMApplicationList) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value.
 func (o *RUMApplicationList) GetType() RUMApplicationListType {
 	if o == nil {
@@ -97,6 +127,9 @@ func (o RUMApplicationList) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -110,6 +143,7 @@ func (o *RUMApplicationList) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *RUMApplicationListAttributes `json:"attributes"`
+		Id         *string                       `json:"id,omitempty"`
 		Type       *RUMApplicationListType       `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
@@ -128,7 +162,7 @@ func (o *RUMApplicationList) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -148,6 +182,7 @@ func (o *RUMApplicationList) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Attributes = *all.Attributes
+	o.Id = all.Id
 	o.Type = *all.Type
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
