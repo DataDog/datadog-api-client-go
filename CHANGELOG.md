@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## 2.15.0 / 2023-07-20
+
+### Fixed
+* Spans API docs update by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2070
+* Fix filter indexes parameter in logs search by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2075
+* Fix nullable `enum` default value rendering by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/2081
+* Remove unused nullable models by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/2085
+* Fix Spans endpoint schemas by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2095
+### Added
+* Add support for geomap widget using response_type `event_list` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2054
+* Add support for the spans API endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2060
+* Add a new field additional_query_filters to formula and function slo query by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2071
+* Add support for `enable_custom_metrics` in Confluent Account by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2068
+* Add missing `id` attribute for Confluent Account Response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2074
+* Fix downtimes v2 schema and add missing field `canceled` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2080
+* Add cloud_cost data source and query definition to dashboards by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2082
+* Add missing cloud workload security fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2089
+* Add `integration_id` field for dashboard list item by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2094
+* Add events response fields `message` and `status` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2091
+* Add missing `GetRUMApplications` response field `id` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2092
+* Add missing service definition fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2093
+* Add overlay type to Dashboards WidgetDisplayType by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2096
+* Update IP ranges with remote configuration section by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2098
+* Add missing `relationships` to UsersInvitations response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2100
+* Added optional field filters when creating a cloud configuration rule by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2105
+### Changed
+* Use alternative go parser by @therve in https://github.com/DataDog/datadog-api-client-go/pull/2061
+* Add downtime v2 API in private beta by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2026
+* Mark `access_role` as nullable by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2078
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.14.0...v2.15.0
+
 ## 2.14.0 / 2023-06-27
 
 ### Fixed

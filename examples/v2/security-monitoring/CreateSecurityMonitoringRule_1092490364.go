@@ -49,6 +49,16 @@ func main() {
 					"@account_id",
 				}),
 			},
+			Filters: []datadogV2.SecurityMonitoringFilter{
+				{
+					Action: datadogV2.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
+					Query:  datadog.PtrString("resource_id:helo*"),
+				},
+				{
+					Action: datadogV2.SECURITYMONITORINGFILTERACTION_SUPPRESS.Ptr(),
+					Query:  datadog.PtrString("control:helo*"),
+				},
+			},
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
