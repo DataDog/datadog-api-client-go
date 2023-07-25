@@ -5,6 +5,7 @@
 package datadogV2
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/goccy/go-json"
@@ -17,7 +18,7 @@ type DowntimeScheduleOneTimeResponse struct {
 	// ISO-8601 Datetime to end the downtime.
 	End datadog.NullableTime `json:"end,omitempty"`
 	// ISO-8601 Datetime to start the downtime.
-	Start *time.Time `json:"start,omitempty"`
+	Start time.Time `json:"start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -27,8 +28,9 @@ type DowntimeScheduleOneTimeResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDowntimeScheduleOneTimeResponse() *DowntimeScheduleOneTimeResponse {
+func NewDowntimeScheduleOneTimeResponse(start time.Time) *DowntimeScheduleOneTimeResponse {
 	this := DowntimeScheduleOneTimeResponse{}
+	this.Start = start
 	return &this
 }
 
@@ -79,32 +81,27 @@ func (o *DowntimeScheduleOneTimeResponse) UnsetEnd() {
 	o.End.Unset()
 }
 
-// GetStart returns the Start field value if set, zero value otherwise.
+// GetStart returns the Start field value.
 func (o *DowntimeScheduleOneTimeResponse) GetStart() time.Time {
-	if o == nil || o.Start == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.Start
+	return o.Start
 }
 
-// GetStartOk returns a tuple with the Start field value if set, nil otherwise
+// GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
 func (o *DowntimeScheduleOneTimeResponse) GetStartOk() (*time.Time, bool) {
-	if o == nil || o.Start == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Start, true
+	return &o.Start, true
 }
 
-// HasStart returns a boolean if a field has been set.
-func (o *DowntimeScheduleOneTimeResponse) HasStart() bool {
-	return o != nil && o.Start != nil
-}
-
-// SetStart gets a reference to the given time.Time and assigns it to the Start field.
+// SetStart sets field value.
 func (o *DowntimeScheduleOneTimeResponse) SetStart(v time.Time) {
-	o.Start = &v
+	o.Start = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -116,12 +113,10 @@ func (o DowntimeScheduleOneTimeResponse) MarshalJSON() ([]byte, error) {
 	if o.End.IsSet() {
 		toSerialize["end"] = o.End.Get()
 	}
-	if o.Start != nil {
-		if o.Start.Nanosecond() == 0 {
-			toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05Z07:00")
-		} else {
-			toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05.000Z07:00")
-		}
+	if o.Start.Nanosecond() == 0 {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -135,7 +130,7 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		End   datadog.NullableTime `json:"end,omitempty"`
-		Start *time.Time           `json:"start,omitempty"`
+		Start *time.Time           `json:"start"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -145,6 +140,9 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Start == nil {
+		return fmt.Errorf("required field start missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
@@ -152,7 +150,7 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	o.End = all.End
-	o.Start = all.Start
+	o.Start = *all.Start
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
