@@ -26,15 +26,11 @@ type {{ name }} struct {
 {%- endfor %}
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
-{%- if model.get("additionalProperties", True) %}
+{%- if model.additionalProperties is not false %}
 	AdditionalProperties map[string]{{ get_type(model.get("additionalProperties", True)) }}
 {%- endif %}
 {%- endif %}
 }
-{#%- if model.type != "array" and model.get("additionalProperties", True) %}
-
-type _{{ name }} {{ name }}
-{%- endif %#}
 
 
 // New{{ name }} instantiates a new {{ name }} object.
@@ -100,7 +96,7 @@ func New{{ name }}WithDefaults() *{{ name }} {
 {%- set baseType = get_type(spec, alternative_name=name + propertyName) %}
 {%- set isNullable = spec.nullable %}
 {%- set isContainer = spec.type == "array" %}
-{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.get("additionalProperties") and not spec.get("properties") %}
+{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.additionalProperties is defined and spec.additionalProperties is not false and not spec.get("properties") %}
 {%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
 {%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 {%- if attr in model.get("required", []) %}
@@ -268,7 +264,7 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- set isRequired = attr in model.get("required", []) %}
 	{%- set isNullable = spec.nullable %}
 	{%- set isContainer = spec.type == "array" %}
-	{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.get("additionalProperties") and not spec.get("properties") %}
+	{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.additionalProperties is defined and spec.additionalProperties is not false and not spec.get("properties") %}
 	{%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
 	{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 	{#- if argument is nullable, only serialize it if it is set #}
@@ -309,7 +305,7 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}
-	{%- if model.type != "array" and model.get("additionalProperties", True) %}
+	{%- if model.type != "array" and model.additionalProperties is not false %}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -358,7 +354,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	{%- endfor %}
 
-	{%- if model.get("additionalProperties", True) %}
+	{%- if model.additionalProperties is not false %}
 	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{ {% for attr, schema in model.get("properties", {}).items()%}"{{ attr }}", {% endfor %} })
@@ -398,7 +394,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	o.{{ propertyName }} = all.{{ propertyName }}
         {%- endif %}
 	{%- endfor %}
-	{%- if model.get("additionalProperties", True) %}
+	{%- if model.additionalProperties is not false %}
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

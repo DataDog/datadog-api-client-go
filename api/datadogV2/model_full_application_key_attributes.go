@@ -20,7 +20,7 @@ type FullApplicationKeyAttributes struct {
 	Last4 *string `json:"last4,omitempty"`
 	// Name of the application key.
 	Name *string `json:"name,omitempty"`
-	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
+	// Array of scopes to grant the application key.
 	Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
