@@ -17,6 +17,7 @@ type QueryFormula struct {
 	// Formula string, referencing one or more queries with their name property.
 	Formula string `json:"formula"`
 	// Message for specifying limits to the number of values returned by a query.
+	// This limit is only for scalar queries and has no effect on timeseries queries.
 	Limit *FormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
