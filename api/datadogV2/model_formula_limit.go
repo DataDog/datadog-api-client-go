@@ -11,6 +11,7 @@ import (
 )
 
 // FormulaLimit Message for specifying limits to the number of values returned by a query.
+// This limit is only for scalar queries and has no effect on timeseries queries.
 type FormulaLimit struct {
 	// The number of results to which to limit.
 	Count *int32 `json:"count,omitempty"`
