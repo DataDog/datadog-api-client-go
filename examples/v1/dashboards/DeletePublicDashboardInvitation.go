@@ -13,14 +13,15 @@ import (
 
 func main() {
 	body := datadogV1.SharedDashboardInvites{
-		Data: datadogV1.SharedDashboardInvitesData{SharedDashboardInvitesDataList: &[]datadogV1.SharedDashboardInvitesDataObject{
-			{
-				Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
-					Email: datadog.PtrString("test@datadoghq.com"),
+		Data: datadogV1.SharedDashboardInvitesData{
+			SharedDashboardInvitesDataList: &[]datadogV1.SharedDashboardInvitesDataObject{
+				{
+					Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
+						Email: datadog.PtrString("test@datadoghq.com"),
+					},
+					Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
 				},
-				Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
-			},
-		}},
+			}},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
