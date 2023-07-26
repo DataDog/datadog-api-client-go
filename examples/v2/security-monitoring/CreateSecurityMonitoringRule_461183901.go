@@ -23,7 +23,7 @@ func main() {
 					},
 					DistinctFields: []string{},
 					Metric:         datadog.PtrString("@network.client.geoip"),
-					Query:          "*",
+					Query:          datadog.PtrString("*"),
 				},
 			},
 			Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{

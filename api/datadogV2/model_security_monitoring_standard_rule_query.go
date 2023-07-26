@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/goccy/go-json"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -29,7 +27,7 @@ type SecurityMonitoringStandardRuleQuery struct {
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
-	Query string `json:"query"`
+	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -39,9 +37,8 @@ type SecurityMonitoringStandardRuleQuery struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityMonitoringStandardRuleQuery(query string) *SecurityMonitoringStandardRuleQuery {
+func NewSecurityMonitoringStandardRuleQuery() *SecurityMonitoringStandardRuleQuery {
 	this := SecurityMonitoringStandardRuleQuery{}
-	this.Query = query
 	return &this
 }
 
@@ -224,27 +221,32 @@ func (o *SecurityMonitoringStandardRuleQuery) SetName(v string) {
 	o.Name = &v
 }
 
-// GetQuery returns the Query field value.
+// GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetQuery() string {
-	if o == nil {
+	if o == nil || o.Query == nil {
 		var ret string
 		return ret
 	}
-	return o.Query
+	return *o.Query
 }
 
-// GetQueryOk returns a tuple with the Query field value
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringStandardRuleQuery) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Query == nil {
 		return nil, false
 	}
-	return &o.Query, true
+	return o.Query, true
 }
 
-// SetQuery sets field value.
+// HasQuery returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleQuery) HasQuery() bool {
+	return o != nil && o.Query != nil
+}
+
+// SetQuery gets a reference to the given string and assigns it to the Query field.
 func (o *SecurityMonitoringStandardRuleQuery) SetQuery(v string) {
-	o.Query = v
+	o.Query = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -271,7 +273,9 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	toSerialize["query"] = o.Query
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -289,7 +293,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		Metric         *string                                 `json:"metric,omitempty"`
 		Metrics        []string                                `json:"metrics,omitempty"`
 		Name           *string                                 `json:"name,omitempty"`
-		Query          *string                                 `json:"query"`
+		Query          *string                                 `json:"query,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -298,9 +302,6 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		}
 		o.UnparsedObject = raw
 		return nil
-	}
-	if all.Query == nil {
-		return fmt.Errorf("required field query missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -322,7 +323,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	o.Metric = all.Metric
 	o.Metrics = all.Metrics
 	o.Name = all.Name
-	o.Query = *all.Query
+	o.Query = all.Query
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
