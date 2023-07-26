@@ -21,7 +21,7 @@ func main() {
 		Queries: []datadogV2.SecurityMonitoringRuleQuery{
 			datadogV2.SecurityMonitoringRuleQuery{
 				SecurityMonitoringStandardRuleQuery: &datadogV2.SecurityMonitoringStandardRuleQuery{
-					Query:          "@test:true",
+					Query:          datadog.PtrString("@test:true"),
 					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 					GroupByFields:  []string{},
 					DistinctFields: []string{},

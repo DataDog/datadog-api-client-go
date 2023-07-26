@@ -765,11 +765,11 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, 
 
 // GetSecurityMonitoringSignal Get a signal's details.
 // Get a signal's details.
-func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context, signalId string) (SecurityMonitoringSignal, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context, signalId string) (SecurityMonitoringSignalResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue SecurityMonitoringSignal
+		localVarReturnValue SecurityMonitoringSignalResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSecurityMonitoringSignal")

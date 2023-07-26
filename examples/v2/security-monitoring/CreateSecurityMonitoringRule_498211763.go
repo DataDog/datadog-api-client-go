@@ -18,7 +18,7 @@ func main() {
 			Name: "Example-Security-Monitoring",
 			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
 				{
-					Query:          "@test:true",
+					Query:          datadog.PtrString("@test:true"),
 					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 					GroupByFields:  []string{},
 					DistinctFields: []string{},
