@@ -10,38 +10,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CIAppEventAttributes JSON object containing all event attributes and their associated values.
-type CIAppEventAttributes struct {
-	// JSON object of attributes from CI Visibility test events.
+// CIAppPipelineEventAttributes JSON object containing all event attributes and their associated values.
+type CIAppPipelineEventAttributes struct {
+	// JSON object of attributes from CI Visibility pipeline events.
 	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	// Pipeline execution level.
+	CiLevel *CIAppPipelineLevel `json:"ci_level,omitempty"`
 	// Array of tags associated with your event.
 	Tags []string `json:"tags,omitempty"`
-	// Test run level.
-	TestLevel *CIAppTestLevel `json:"test_level,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewCIAppEventAttributes instantiates a new CIAppEventAttributes object.
+// NewCIAppPipelineEventAttributes instantiates a new CIAppPipelineEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCIAppEventAttributes() *CIAppEventAttributes {
-	this := CIAppEventAttributes{}
+func NewCIAppPipelineEventAttributes() *CIAppPipelineEventAttributes {
+	this := CIAppPipelineEventAttributes{}
 	return &this
 }
 
-// NewCIAppEventAttributesWithDefaults instantiates a new CIAppEventAttributes object.
+// NewCIAppPipelineEventAttributesWithDefaults instantiates a new CIAppPipelineEventAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCIAppEventAttributesWithDefaults() *CIAppEventAttributes {
-	this := CIAppEventAttributes{}
+func NewCIAppPipelineEventAttributesWithDefaults() *CIAppPipelineEventAttributes {
+	this := CIAppPipelineEventAttributes{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *CIAppEventAttributes) GetAttributes() map[string]interface{} {
+func (o *CIAppPipelineEventAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
 		var ret map[string]interface{}
 		return ret
@@ -51,7 +51,7 @@ func (o *CIAppEventAttributes) GetAttributes() map[string]interface{} {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppEventAttributes) GetAttributesOk() (*map[string]interface{}, bool) {
+func (o *CIAppPipelineEventAttributes) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -59,17 +59,45 @@ func (o *CIAppEventAttributes) GetAttributesOk() (*map[string]interface{}, bool)
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *CIAppEventAttributes) HasAttributes() bool {
+func (o *CIAppPipelineEventAttributes) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-func (o *CIAppEventAttributes) SetAttributes(v map[string]interface{}) {
+func (o *CIAppPipelineEventAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
+// GetCiLevel returns the CiLevel field value if set, zero value otherwise.
+func (o *CIAppPipelineEventAttributes) GetCiLevel() CIAppPipelineLevel {
+	if o == nil || o.CiLevel == nil {
+		var ret CIAppPipelineLevel
+		return ret
+	}
+	return *o.CiLevel
+}
+
+// GetCiLevelOk returns a tuple with the CiLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CIAppPipelineEventAttributes) GetCiLevelOk() (*CIAppPipelineLevel, bool) {
+	if o == nil || o.CiLevel == nil {
+		return nil, false
+	}
+	return o.CiLevel, true
+}
+
+// HasCiLevel returns a boolean if a field has been set.
+func (o *CIAppPipelineEventAttributes) HasCiLevel() bool {
+	return o != nil && o.CiLevel != nil
+}
+
+// SetCiLevel gets a reference to the given CIAppPipelineLevel and assigns it to the CiLevel field.
+func (o *CIAppPipelineEventAttributes) SetCiLevel(v CIAppPipelineLevel) {
+	o.CiLevel = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *CIAppEventAttributes) GetTags() []string {
+func (o *CIAppPipelineEventAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -79,7 +107,7 @@ func (o *CIAppEventAttributes) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppEventAttributes) GetTagsOk() (*[]string, bool) {
+func (o *CIAppPipelineEventAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -87,45 +115,17 @@ func (o *CIAppEventAttributes) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *CIAppEventAttributes) HasTags() bool {
+func (o *CIAppPipelineEventAttributes) HasTags() bool {
 	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *CIAppEventAttributes) SetTags(v []string) {
+func (o *CIAppPipelineEventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetTestLevel returns the TestLevel field value if set, zero value otherwise.
-func (o *CIAppEventAttributes) GetTestLevel() CIAppTestLevel {
-	if o == nil || o.TestLevel == nil {
-		var ret CIAppTestLevel
-		return ret
-	}
-	return *o.TestLevel
-}
-
-// GetTestLevelOk returns a tuple with the TestLevel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CIAppEventAttributes) GetTestLevelOk() (*CIAppTestLevel, bool) {
-	if o == nil || o.TestLevel == nil {
-		return nil, false
-	}
-	return o.TestLevel, true
-}
-
-// HasTestLevel returns a boolean if a field has been set.
-func (o *CIAppEventAttributes) HasTestLevel() bool {
-	return o != nil && o.TestLevel != nil
-}
-
-// SetTestLevel gets a reference to the given CIAppTestLevel and assigns it to the TestLevel field.
-func (o *CIAppEventAttributes) SetTestLevel(v CIAppTestLevel) {
-	o.TestLevel = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
-func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
+func (o CIAppPipelineEventAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -133,11 +133,11 @@ func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.CiLevel != nil {
+		toSerialize["ci_level"] = o.CiLevel
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
-	}
-	if o.TestLevel != nil {
-		toSerialize["test_level"] = o.TestLevel
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -147,12 +147,12 @@ func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CIAppPipelineEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
+		CiLevel    *CIAppPipelineLevel    `json:"ci_level,omitempty"`
 		Tags       []string               `json:"tags,omitempty"`
-		TestLevel  *CIAppTestLevel        `json:"test_level,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -164,11 +164,11 @@ func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "tags", "test_level"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "ci_level", "tags"})
 	} else {
 		return err
 	}
-	if v := all.TestLevel; v != nil && !v.IsValid() {
+	if v := all.CiLevel; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -177,8 +177,8 @@ func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Attributes = all.Attributes
+	o.CiLevel = all.CiLevel
 	o.Tags = all.Tags
-	o.TestLevel = all.TestLevel
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
