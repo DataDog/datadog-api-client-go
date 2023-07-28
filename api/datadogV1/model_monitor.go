@@ -683,13 +683,12 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Created = all.Created
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Creator = all.Creator
 	}
+	o.Creator = all.Creator
 	o.Deleted = all.Deleted
 	o.Id = all.Id
 	o.MatchingDowntimes = all.MatchingDowntimes
@@ -699,9 +698,8 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	if v := all.OverallState; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -712,9 +710,8 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.RestrictedRoles = all.RestrictedRoles
 	if all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.State = all.State
 	}
+	o.State = all.State
 	o.Tags = all.Tags
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

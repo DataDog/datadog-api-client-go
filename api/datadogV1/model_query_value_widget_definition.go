@@ -473,7 +473,7 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Autoscale = all.Autoscale
 	o.CustomLinks = all.CustomLinks
 	o.CustomUnit = all.CustomUnit
@@ -486,14 +486,12 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Time = all.Time
 	}
+	o.Time = all.Time
 	if all.TimeseriesBackground != nil && all.TimeseriesBackground.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.TimeseriesBackground = all.TimeseriesBackground
 	}
+	o.TimeseriesBackground = all.TimeseriesBackground
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		hasInvalidField = true

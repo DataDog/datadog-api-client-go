@@ -316,7 +316,7 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Group = all.Group
 	o.GroupTags = all.GroupTags
 	o.LastNodataTs = all.LastNodataTs

@@ -260,7 +260,7 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomHeaders = all.CustomHeaders
 	if v := all.EncodeAs; v != nil && !v.IsValid() {
 		hasInvalidField = true

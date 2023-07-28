@@ -788,7 +788,7 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Dependencies = all.Dependencies
 	o.End = *all.End
 	o.Error = all.Error

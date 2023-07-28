@@ -554,7 +554,7 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Aliases = all.Aliases
 	o.Apps = all.Apps
 	o.AwsName = all.AwsName
@@ -564,14 +564,12 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastReportedTime = all.LastReportedTime
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Meta = all.Meta
 	}
+	o.Meta = all.Meta
 	if all.Metrics != nil && all.Metrics.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metrics = all.Metrics
 	}
+	o.Metrics = all.Metrics
 	o.MuteTimeout = all.MuteTimeout
 	o.Name = all.Name
 	o.Sources = all.Sources

@@ -340,7 +340,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = all.Description
 	o.ExcludedNamespaces = all.ExcludedNamespaces
 	o.IsEnabled = all.IsEnabled
@@ -350,9 +350,8 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Tags = all.Tags
 	if all.TextReplacement != nil && all.TextReplacement.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.TextReplacement = all.TextReplacement
 	}
+	o.TextReplacement = all.TextReplacement
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

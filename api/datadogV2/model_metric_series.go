@@ -370,13 +370,12 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Interval = all.Interval
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 	o.Metric = *all.Metric
 	o.Points = *all.Points
 	o.Resources = all.Resources

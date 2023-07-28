@@ -338,7 +338,7 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.BackgroundColor = all.BackgroundColor
 	o.BannerImg = all.BannerImg
 	if v := all.LayoutType; !v.IsValid() {

@@ -273,12 +273,11 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Grok.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Grok = *all.Grok
 	}
+	o.Grok = *all.Grok
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.Samples = all.Samples

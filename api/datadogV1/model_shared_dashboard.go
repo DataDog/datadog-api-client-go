@@ -476,12 +476,11 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Author = all.Author
 	}
+	o.Author = all.Author
 	o.CreatedAt = all.CreatedAt
 	o.DashboardId = *all.DashboardId
 	if v := all.DashboardType; !v.IsValid() {
@@ -491,9 +490,8 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.GlobalTime != nil && all.GlobalTime.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.GlobalTime = all.GlobalTime
 	}
+	o.GlobalTime = all.GlobalTime
 	o.GlobalTimeSelectableEnabled = all.GlobalTimeSelectableEnabled
 	o.PublicUrl = all.PublicUrl
 	o.SelectableTemplateVars = all.SelectableTemplateVars

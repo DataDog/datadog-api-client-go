@@ -131,12 +131,11 @@ func (o *IncidentSearchResponseNumericFacetData) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Aggregates.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Aggregates = *all.Aggregates
 	}
+	o.Aggregates = *all.Aggregates
 	o.Name = *all.Name
 
 	if len(additionalProperties) > 0 {

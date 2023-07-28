@@ -463,16 +463,15 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = all.Description
 	o.Groups = all.Groups
 	o.MonitorIds = all.MonitorIds
 	o.Name = *all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Query = all.Query
 	}
+	o.Query = all.Query
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = *all.Thresholds

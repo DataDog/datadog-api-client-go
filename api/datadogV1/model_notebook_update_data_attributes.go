@@ -234,13 +234,12 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cells = *all.Cells
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 	o.Name = *all.Name
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true

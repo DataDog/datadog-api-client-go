@@ -308,7 +308,7 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.DefaultLookup = all.DefaultLookup
 	o.IsEnabled = all.IsEnabled
 	o.LookupTable = *all.LookupTable

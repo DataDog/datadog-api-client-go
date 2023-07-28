@@ -439,7 +439,7 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Contacts = all.Contacts
 	o.DdService = *all.DdService
 	o.DdTeam = all.DdTeam
@@ -447,9 +447,8 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.Extensions = all.Extensions
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Integrations = all.Integrations
 	}
+	o.Integrations = all.Integrations
 	o.Links = all.Links
 	o.Repos = all.Repos
 	if v := all.SchemaVersion; !v.IsValid() {

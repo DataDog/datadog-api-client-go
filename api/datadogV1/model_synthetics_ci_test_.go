@@ -542,7 +542,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AllowInsecureCertificates = all.AllowInsecureCertificates
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
@@ -554,15 +554,13 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Locations = all.Locations
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 	o.PublicId = *all.PublicId
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Retry = all.Retry
 	}
+	o.Retry = all.Retry
 	o.StartUrl = all.StartUrl
 	o.Variables = all.Variables
 

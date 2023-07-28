@@ -184,12 +184,11 @@ func (o *MonitorDowntimeMatchResponseData) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = all.Attributes
 	}
+	o.Attributes = all.Attributes
 	o.Id = all.Id
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true

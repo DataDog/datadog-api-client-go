@@ -100,7 +100,7 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.LiveSpan; !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -680,7 +680,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AllTags = all.AllTags
 	o.CreatedAt = all.CreatedAt
 	o.Creator = all.Creator
@@ -700,9 +700,8 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	if all.Status != nil && all.Status.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Status = all.Status
 	}
+	o.Status = all.Status
 	o.TeamTags = all.TeamTags
 	o.Thresholds = all.Thresholds
 

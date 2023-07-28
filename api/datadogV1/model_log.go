@@ -135,12 +135,11 @@ func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Content != nil && all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Content = all.Content
 	}
+	o.Content = all.Content
 	o.Id = all.Id
 
 	if len(additionalProperties) > 0 {

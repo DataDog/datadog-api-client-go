@@ -407,7 +407,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Device; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

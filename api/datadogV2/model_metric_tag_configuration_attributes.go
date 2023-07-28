@@ -301,7 +301,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Aggregations = all.Aggregations
 	o.CreatedAt = all.CreatedAt
 	o.IncludePercentiles = all.IncludePercentiles

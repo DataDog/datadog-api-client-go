@@ -101,12 +101,11 @@ func (o *SyntheticsGlobalVariableOptions) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.TotpParameters != nil && all.TotpParameters.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.TotpParameters = all.TotpParameters
 	}
+	o.TotpParameters = all.TotpParameters
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

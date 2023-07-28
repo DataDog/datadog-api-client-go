@@ -828,15 +828,14 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AcceptSelfSigned = all.AcceptSelfSigned
 	o.AllowInsecure = all.AllowInsecure
 	o.CheckCertificateRevocation = all.CheckCertificateRevocation
 	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Ci = all.Ci
 	}
+	o.Ci = all.Ci
 	o.DeviceIds = all.DeviceIds
 	o.DisableCors = all.DisableCors
 	o.DisableCsp = all.DisableCsp
@@ -853,27 +852,23 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorName = all.MonitorName
 	if all.MonitorOptions != nil && all.MonitorOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.MonitorOptions = all.MonitorOptions
 	}
+	o.MonitorOptions = all.MonitorOptions
 	o.MonitorPriority = all.MonitorPriority
 	o.NoScreenshot = all.NoScreenshot
 	o.RestrictedRoles = all.RestrictedRoles
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Retry = all.Retry
 	}
+	o.Retry = all.Retry
 	if all.RumSettings != nil && all.RumSettings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.RumSettings = all.RumSettings
 	}
+	o.RumSettings = all.RumSettings
 	if all.Scheduling != nil && all.Scheduling.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Scheduling = all.Scheduling
 	}
+	o.Scheduling = all.Scheduling
 	o.TickEvery = all.TickEvery
 
 	if len(additionalProperties) > 0 {

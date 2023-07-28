@@ -135,12 +135,11 @@ func (o *SearchSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = all.Attributes
 	}
+	o.Attributes = all.Attributes
 	o.Type = all.Type
 
 	if len(additionalProperties) > 0 {

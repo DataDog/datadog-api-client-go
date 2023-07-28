@@ -168,7 +168,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.HidePercent = all.HidePercent
 	o.HideValue = all.HideValue
 	if v := all.Type; !v.IsValid() {

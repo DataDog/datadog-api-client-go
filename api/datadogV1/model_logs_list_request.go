@@ -275,7 +275,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Index = all.Index
 	o.Limit = all.Limit
 	o.Query = all.Query
@@ -287,9 +287,8 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.StartAt = all.StartAt
 	if all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Time = *all.Time
 	}
+	o.Time = *all.Time
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

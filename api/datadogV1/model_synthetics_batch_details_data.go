@@ -169,12 +169,11 @@ func (o *SyntheticsBatchDetailsData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 	o.Results = all.Results
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true

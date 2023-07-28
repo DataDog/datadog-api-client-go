@@ -235,7 +235,7 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Color = all.Color
 	o.FontSize = all.FontSize
 	o.Text = *all.Text

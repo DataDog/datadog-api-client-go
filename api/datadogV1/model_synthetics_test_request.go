@@ -953,7 +953,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
@@ -969,9 +969,8 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Certificate = all.Certificate
 	}
+	o.Certificate = all.Certificate
 	o.CertificateDomains = all.CertificateDomains
 	o.CompressedJsonDescriptor = all.CompressedJsonDescriptor
 	o.DnsServer = all.DnsServer
@@ -987,9 +986,8 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Port = all.Port
 	if all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Proxy = all.Proxy
 	}
+	o.Proxy = all.Proxy
 	o.Query = all.Query
 	o.Servername = all.Servername
 	o.Service = all.Service

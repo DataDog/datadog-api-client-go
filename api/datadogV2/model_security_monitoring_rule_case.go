@@ -204,7 +204,7 @@ func (o *SecurityMonitoringRuleCase) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Condition = all.Condition
 	o.Name = all.Name
 	o.Notifications = all.Notifications

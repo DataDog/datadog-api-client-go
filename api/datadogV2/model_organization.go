@@ -170,12 +170,11 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = all.Attributes
 	}
+	o.Attributes = all.Attributes
 	o.Id = all.Id
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

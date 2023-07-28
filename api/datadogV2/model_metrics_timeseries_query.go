@@ -167,7 +167,7 @@ func (o *MetricsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.DataSource; !v.IsValid() {
 		hasInvalidField = true
 	} else {

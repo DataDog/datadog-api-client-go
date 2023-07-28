@@ -305,7 +305,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AllowFailure = all.AllowFailure
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name

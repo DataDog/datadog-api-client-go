@@ -441,13 +441,12 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cases = all.Cases
 	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	}
+	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.Filters = all.Filters
 	o.HasExtendedTitle = all.HasExtendedTitle
 	o.IsEnabled = all.IsEnabled
@@ -455,9 +454,8 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
 	o.Version = all.Version

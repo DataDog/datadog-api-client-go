@@ -300,7 +300,7 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Filters = *all.Filters
 	o.Service = *all.Service

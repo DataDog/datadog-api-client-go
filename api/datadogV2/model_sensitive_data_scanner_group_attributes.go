@@ -237,13 +237,12 @@ func (o *SensitiveDataScannerGroupAttributes) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = all.Description
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Filter = all.Filter
 	}
+	o.Filter = all.Filter
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.ProductList = all.ProductList

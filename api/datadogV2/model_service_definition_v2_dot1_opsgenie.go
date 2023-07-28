@@ -134,7 +134,7 @@ func (o *ServiceDefinitionV2Dot1Opsgenie) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Region; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

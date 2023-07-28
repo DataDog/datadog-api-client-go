@@ -165,7 +165,7 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Aggregation = *all.Aggregation
 	o.Facet = all.Facet
 	if v := all.Order; !v.IsValid() {

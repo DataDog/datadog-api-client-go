@@ -316,7 +316,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Destination = all.Destination
 	o.IncludeTags = all.IncludeTags
 	o.Name = *all.Name

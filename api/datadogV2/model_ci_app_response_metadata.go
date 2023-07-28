@@ -204,7 +204,7 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Elapsed = all.Elapsed
 	o.RequestId = all.RequestId
 	if v := all.Status; v != nil && !v.IsValid() {

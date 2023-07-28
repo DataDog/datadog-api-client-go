@@ -139,7 +139,7 @@ func (o *SensitiveDataScannerGroupItem) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Id = all.Id
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true

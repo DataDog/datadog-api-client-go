@@ -337,7 +337,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Compute = all.Compute
 	if v := all.DataSource; !v.IsValid() {
 		hasInvalidField = true
@@ -354,9 +354,8 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.QueryString = *all.QueryString
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Sort = all.Sort
 	}
+	o.Sort = all.Sort
 	o.Storage = all.Storage
 
 	if len(additionalProperties) > 0 {

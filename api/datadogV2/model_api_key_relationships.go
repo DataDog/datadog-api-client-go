@@ -135,17 +135,15 @@ func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CreatedBy = all.CreatedBy
 	}
+	o.CreatedBy = all.CreatedBy
 	if all.ModifiedBy != nil && all.ModifiedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ModifiedBy = all.ModifiedBy
 	}
+	o.ModifiedBy = all.ModifiedBy
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

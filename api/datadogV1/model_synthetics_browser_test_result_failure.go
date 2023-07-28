@@ -135,7 +135,7 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Code; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -704,7 +704,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AuthorHandle = all.AuthorHandle
 	o.AuthorName = all.AuthorName
 	o.CreatedAt = all.CreatedAt

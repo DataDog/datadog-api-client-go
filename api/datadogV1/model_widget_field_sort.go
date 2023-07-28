@@ -131,7 +131,7 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Column = *all.Column
 	if v := all.Order; !v.IsValid() {
 		hasInvalidField = true

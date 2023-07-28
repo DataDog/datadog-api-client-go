@@ -135,17 +135,15 @@ func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Cert = all.Cert
 	}
+	o.Cert = all.Cert
 	if all.Key != nil && all.Key.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Key = all.Key
 	}
+	o.Key = all.Key
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -180,7 +180,7 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomUrl = all.CustomUrl
 	o.Name = all.Name
 	if v := all.Region; v != nil && !v.IsValid() {

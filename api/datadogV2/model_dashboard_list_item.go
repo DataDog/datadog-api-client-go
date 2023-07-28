@@ -536,12 +536,11 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Author = all.Author
 	}
+	o.Author = all.Author
 	o.Created = all.Created
 	o.Icon = all.Icon
 	o.Id = *all.Id

@@ -273,7 +273,7 @@ func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.IsEnabled = all.IsEnabled
 	o.LookupEnrichmentTable = *all.LookupEnrichmentTable
 	o.Name = all.Name

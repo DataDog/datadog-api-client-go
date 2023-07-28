@@ -135,12 +135,11 @@ func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Display = all.Display
 	}
+	o.Display = all.Display
 	o.Name = all.Name
 
 	if len(additionalProperties) > 0 {

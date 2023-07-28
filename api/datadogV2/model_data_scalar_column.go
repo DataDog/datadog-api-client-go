@@ -203,12 +203,11 @@ func (o *DataScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Meta = all.Meta
 	}
+	o.Meta = all.Meta
 	o.Name = all.Name
 	o.Type = all.Type
 	o.Values = all.Values

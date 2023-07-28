@@ -713,13 +713,12 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cases = all.Cases
 	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	}
+	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.CreatedAt = all.CreatedAt
 	o.CreationAuthorId = all.CreationAuthorId
 	o.DeprecationDate = all.DeprecationDate
@@ -733,9 +732,8 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
 	if v := all.Type; v != nil && !v.IsValid() {

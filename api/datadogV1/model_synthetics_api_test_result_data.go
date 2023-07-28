@@ -374,12 +374,11 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Cert = all.Cert
 	}
+	o.Cert = all.Cert
 	if v := all.EventType; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -387,9 +386,8 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Failure = all.Failure
 	}
+	o.Failure = all.Failure
 	o.HttpStatusCode = all.HttpStatusCode
 	o.RequestHeaders = all.RequestHeaders
 	o.ResponseBody = all.ResponseBody
@@ -397,9 +395,8 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResponseSize = all.ResponseSize
 	if all.Timings != nil && all.Timings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Timings = all.Timings
 	}
+	o.Timings = all.Timings
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

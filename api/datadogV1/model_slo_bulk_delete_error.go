@@ -164,7 +164,7 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Id = *all.Id
 	o.Message = *all.Message
 	if v := all.Timeframe; !v.IsValid() {

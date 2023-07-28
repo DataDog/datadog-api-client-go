@@ -603,7 +603,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.DisplayFormat; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -625,9 +625,8 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.SpanName = *all.SpanName
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Time = all.Time
 	}
+	o.Time = all.Time
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		hasInvalidField = true

@@ -168,14 +168,13 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte)
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Facet = *all.Facet
 	o.Limit = all.Limit
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Sort = all.Sort
 	}
+	o.Sort = all.Sort
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

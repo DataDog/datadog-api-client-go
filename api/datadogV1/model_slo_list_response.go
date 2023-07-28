@@ -170,14 +170,13 @@ func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Data = all.Data
 	o.Errors = all.Errors
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

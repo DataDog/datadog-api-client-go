@@ -456,7 +456,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AggregationKey = all.AggregationKey
 	if v := all.AlertType; v != nil && !v.IsValid() {
 		hasInvalidField = true

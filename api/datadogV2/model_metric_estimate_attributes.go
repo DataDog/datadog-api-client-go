@@ -179,7 +179,7 @@ func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.EstimateType; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

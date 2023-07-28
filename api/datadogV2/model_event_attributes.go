@@ -763,7 +763,7 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AggregationKey = all.AggregationKey
 	o.DateHappened = all.DateHappened
 	o.DeviceName = all.DeviceName
@@ -771,9 +771,8 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.EventObject = all.EventObject
 	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Evt = all.Evt
 	}
+	o.Evt = all.Evt
 	o.Hostname = all.Hostname
 	o.Monitor = all.Monitor
 	o.MonitorGroups = all.MonitorGroups

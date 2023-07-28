@@ -267,7 +267,7 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Example = all.Example
 	o.Id = all.Id
 	o.Name = *all.Name

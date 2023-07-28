@@ -330,7 +330,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AllowFailure = all.AllowFailure
 	o.Assertions = *all.Assertions
 	o.ExtractedValues = all.ExtractedValues
@@ -338,14 +338,12 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = *all.Name
 	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Request = *all.Request
 	}
+	o.Request = *all.Request
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Retry = all.Retry
 	}
+	o.Retry = all.Retry
 	if v := all.Subtype; !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -135,12 +135,11 @@ func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Event != nil && all.Event.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Event = all.Event
 	}
+	o.Event = all.Event
 	o.Status = all.Status
 
 	if len(additionalProperties) > 0 {

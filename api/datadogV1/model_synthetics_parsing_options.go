@@ -237,14 +237,13 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Field = all.Field
 	o.Name = all.Name
 	if all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Parser = all.Parser
 	}
+	o.Parser = all.Parser
 	o.Secure = all.Secure
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true

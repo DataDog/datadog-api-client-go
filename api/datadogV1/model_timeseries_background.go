@@ -136,7 +136,7 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -144,9 +144,8 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Yaxis = all.Yaxis
 	}
+	o.Yaxis = all.Yaxis
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -577,7 +577,7 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AgentChecks = all.AgentChecks
 	o.AgentVersion = all.AgentVersion
 	o.CpuCores = all.CpuCores
@@ -585,9 +585,8 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Gohai = all.Gohai
 	if all.InstallMethod != nil && all.InstallMethod.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.InstallMethod = all.InstallMethod
 	}
+	o.InstallMethod = all.InstallMethod
 	o.MacV = all.MacV
 	o.Machine = all.Machine
 	o.NixV = all.NixV

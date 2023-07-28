@@ -418,21 +418,19 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.FromTs = all.FromTs
 	o.GroupBy = all.GroupBy
 	o.Groups = all.Groups
 	o.Monitors = all.Monitors
 	if all.Overall != nil && all.Overall.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Overall = all.Overall
 	}
+	o.Overall = all.Overall
 	if all.Series != nil && all.Series.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Series = all.Series
 	}
+	o.Series = all.Series
 	o.Thresholds = all.Thresholds
 	o.ToTs = all.ToTs
 	if v := all.Type; v != nil && !v.IsValid() {

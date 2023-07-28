@@ -203,27 +203,23 @@ func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ApiKey = all.ApiKey
 	}
+	o.ApiKey = all.ApiKey
 	if all.ApplicationKey != nil && all.ApplicationKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ApplicationKey = all.ApplicationKey
 	}
+	o.ApplicationKey = all.ApplicationKey
 	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Org = all.Org
 	}
+	o.Org = all.Org
 	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.User = all.User
 	}
+	o.User = all.User
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

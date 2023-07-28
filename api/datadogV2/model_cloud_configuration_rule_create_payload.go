@@ -358,22 +358,20 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cases = *all.Cases
 	if all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ComplianceSignalOptions = *all.ComplianceSignalOptions
 	}
+	o.ComplianceSignalOptions = *all.ComplianceSignalOptions
 	o.Filters = all.Filters
 	o.IsEnabled = *all.IsEnabled
 	o.Message = *all.Message
 	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = *all.Options
 	}
+	o.Options = *all.Options
 	o.Tags = all.Tags
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true

@@ -575,7 +575,7 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Events = all.Events
 	o.LegendColumns = all.LegendColumns
@@ -589,15 +589,13 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Requests = *all.Requests
 	if all.RightYaxis != nil && all.RightYaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.RightYaxis = all.RightYaxis
 	}
+	o.RightYaxis = all.RightYaxis
 	o.ShowLegend = all.ShowLegend
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Time = all.Time
 	}
+	o.Time = all.Time
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		hasInvalidField = true
@@ -612,9 +610,8 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Yaxis = all.Yaxis
 	}
+	o.Yaxis = all.Yaxis
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

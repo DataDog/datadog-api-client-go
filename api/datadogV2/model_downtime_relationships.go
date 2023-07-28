@@ -135,17 +135,15 @@ func (o *DowntimeRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CreatedBy = all.CreatedBy
 	}
+	o.CreatedBy = all.CreatedBy
 	if all.Monitor != nil && all.Monitor.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Monitor = all.Monitor
 	}
+	o.Monitor = all.Monitor
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

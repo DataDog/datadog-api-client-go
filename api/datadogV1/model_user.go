@@ -316,7 +316,7 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.AccessRole; v.Get() != nil && !v.Get().IsValid() {
 		hasInvalidField = true
 	} else {

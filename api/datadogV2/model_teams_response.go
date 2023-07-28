@@ -203,19 +203,17 @@ func (o *TeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
 	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Links = all.Links
 	}
+	o.Links = all.Links
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Meta = all.Meta
 	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

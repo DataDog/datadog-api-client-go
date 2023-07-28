@@ -133,7 +133,7 @@ func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Text = *all.Text
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

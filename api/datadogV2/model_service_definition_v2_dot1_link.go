@@ -196,7 +196,7 @@ func (o *ServiceDefinitionV2Dot1Link) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Name = *all.Name
 	o.Provider = all.Provider
 	if v := all.Type; !v.IsValid() {

@@ -249,7 +249,7 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Categories = *all.Categories
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name

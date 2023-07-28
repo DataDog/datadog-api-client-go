@@ -373,21 +373,19 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Columns = all.Columns
 	o.Formulas = all.Formulas
 	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.LogQuery = all.LogQuery
 	}
+	o.LogQuery = all.LogQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Query = all.Query
 	}
+	o.Query = all.Query
 	if v := all.ResponseFormat; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -395,14 +393,12 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.RumQuery = all.RumQuery
 	}
+	o.RumQuery = all.RumQuery
 	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SecurityQuery = all.SecurityQuery
 	}
+	o.SecurityQuery = all.SecurityQuery
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

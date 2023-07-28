@@ -121,7 +121,7 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field type missing")
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Attributes = *all.Attributes
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

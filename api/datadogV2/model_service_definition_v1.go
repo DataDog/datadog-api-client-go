@@ -339,29 +339,25 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Contact != nil && all.Contact.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Contact = all.Contact
 	}
+	o.Contact = all.Contact
 	o.Extensions = all.Extensions
 	o.ExternalResources = all.ExternalResources
 	if all.Info.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Info = *all.Info
 	}
+	o.Info = *all.Info
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Integrations = all.Integrations
 	}
+	o.Integrations = all.Integrations
 	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Org = all.Org
 	}
+	o.Org = all.Org
 	if v := all.SchemaVersion; !v.IsValid() {
 		hasInvalidField = true
 	} else {

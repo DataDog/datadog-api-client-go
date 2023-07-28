@@ -394,7 +394,7 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AuthorHandle = all.AuthorHandle
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description

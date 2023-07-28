@@ -333,7 +333,7 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Category; !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -162,7 +162,7 @@ func (o *ServiceDefinitionV1Resource) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Name = *all.Name
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

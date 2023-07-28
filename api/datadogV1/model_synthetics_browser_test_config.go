@@ -233,14 +233,13 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Assertions = *all.Assertions
 	o.ConfigVariables = all.ConfigVariables
 	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Request = *all.Request
 	}
+	o.Request = *all.Request
 	o.SetCookie = all.SetCookie
 	o.Variables = all.Variables
 

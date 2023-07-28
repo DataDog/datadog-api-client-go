@@ -298,7 +298,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AdditionalQueryFilters = all.AdditionalQueryFilters
 	if v := all.DataSource; !v.IsValid() {
 		hasInvalidField = true

@@ -253,7 +253,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.From = all.From
 	o.Indexes = all.Indexes
 	o.Query = all.Query

@@ -165,7 +165,7 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Alias = all.Alias
 	if v := all.Dimension; !v.IsValid() {
 		hasInvalidField = true

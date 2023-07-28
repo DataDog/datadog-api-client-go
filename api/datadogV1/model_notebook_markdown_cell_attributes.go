@@ -100,12 +100,11 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Definition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Definition = *all.Definition
 	}
+	o.Definition = *all.Definition
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -1324,12 +1324,11 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Aggregation != nil && all.Aggregation.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Aggregation = all.Aggregation
 	}
+	o.Aggregation = all.Aggregation
 	o.DeviceIds = all.DeviceIds
 	o.EnableLogsSample = all.EnableLogsSample
 	o.EnableSamples = all.EnableSamples
@@ -1363,21 +1362,18 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.RequireFullWindow = all.RequireFullWindow
 	if all.SchedulingOptions != nil && all.SchedulingOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SchedulingOptions = all.SchedulingOptions
 	}
+	o.SchedulingOptions = all.SchedulingOptions
 	o.Silenced = all.Silenced
 	o.SyntheticsCheckId = all.SyntheticsCheckId
 	if all.ThresholdWindows != nil && all.ThresholdWindows.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ThresholdWindows = all.ThresholdWindows
 	}
+	o.ThresholdWindows = all.ThresholdWindows
 	if all.Thresholds != nil && all.Thresholds.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Thresholds = all.Thresholds
 	}
+	o.Thresholds = all.Thresholds
 	o.TimeoutH = all.TimeoutH
 	o.Variables = all.Variables
 

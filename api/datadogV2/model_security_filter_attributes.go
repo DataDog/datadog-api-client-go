@@ -305,7 +305,7 @@ func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.ExclusionFilters = all.ExclusionFilters
 	if v := all.FilteredDataType; v != nil && !v.IsValid() {
 		hasInvalidField = true

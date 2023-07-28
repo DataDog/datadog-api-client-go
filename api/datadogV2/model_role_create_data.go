@@ -172,17 +172,15 @@ func (o *RoleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = *all.Attributes
 	}
+	o.Attributes = *all.Attributes
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Relationships = all.Relationships
 	}
+	o.Relationships = all.Relationships
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

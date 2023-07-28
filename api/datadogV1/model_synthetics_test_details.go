@@ -511,26 +511,23 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Config != nil && all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Config = all.Config
 	}
+	o.Config = all.Config
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Creator = all.Creator
 	}
+	o.Creator = all.Creator
 	o.Locations = all.Locations
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	o.PublicId = all.PublicId
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true

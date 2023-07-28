@@ -238,7 +238,7 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Domain = all.Domain
 	o.Password = all.Password
 	if v := all.Type; !v.IsValid() {

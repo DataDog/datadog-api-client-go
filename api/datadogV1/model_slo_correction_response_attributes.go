@@ -542,7 +542,7 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Category; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -551,9 +551,8 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.CreatedAt = all.CreatedAt
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Creator = all.Creator
 	}
+	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Duration = all.Duration
 	o.End = all.End

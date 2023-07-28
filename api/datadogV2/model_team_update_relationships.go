@@ -101,12 +101,11 @@ func (o *TeamUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.TeamLinks != nil && all.TeamLinks.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.TeamLinks = all.TeamLinks
 	}
+	o.TeamLinks = all.TeamLinks
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

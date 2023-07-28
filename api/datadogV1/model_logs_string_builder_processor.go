@@ -287,7 +287,7 @@ func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.IsEnabled = all.IsEnabled
 	o.IsReplaceMissing = all.IsReplaceMissing
 	o.Name = all.Name

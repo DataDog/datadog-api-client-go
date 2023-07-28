@@ -271,14 +271,13 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.DailyLimit = all.DailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
 	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Filter = *all.Filter
 	}
+	o.Filter = *all.Filter
 	o.IsRateLimited = all.IsRateLimited
 	o.Name = *all.Name
 	o.NumRetentionDays = all.NumRetentionDays

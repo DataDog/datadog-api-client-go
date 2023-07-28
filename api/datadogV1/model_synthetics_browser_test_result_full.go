@@ -308,20 +308,18 @@ func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Check != nil && all.Check.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Check = all.Check
 	}
+	o.Check = all.Check
 	o.CheckTime = all.CheckTime
 	o.CheckVersion = all.CheckVersion
 	o.ProbeDc = all.ProbeDc
 	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Result = all.Result
 	}
+	o.Result = all.Result
 	o.ResultId = all.ResultId
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true

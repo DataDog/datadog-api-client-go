@@ -175,12 +175,11 @@ func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.CurrentDowntime != nil && all.CurrentDowntime.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CurrentDowntime = all.CurrentDowntime
 	}
+	o.CurrentDowntime = all.CurrentDowntime
 	o.Recurrences = *all.Recurrences
 	o.Timezone = all.Timezone
 

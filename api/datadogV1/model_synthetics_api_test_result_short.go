@@ -240,14 +240,13 @@ func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CheckTime = all.CheckTime
 	o.ProbeDc = all.ProbeDc
 	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Result = all.Result
 	}
+	o.Result = all.Result
 	o.ResultId = all.ResultId
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true

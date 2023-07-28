@@ -150,7 +150,7 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

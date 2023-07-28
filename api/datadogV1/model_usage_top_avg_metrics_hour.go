@@ -203,7 +203,7 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AvgMetricHour = all.AvgMetricHour
 	o.MaxMetricHour = all.MaxMetricHour
 	if v := all.MetricCategory; v != nil && !v.IsValid() {

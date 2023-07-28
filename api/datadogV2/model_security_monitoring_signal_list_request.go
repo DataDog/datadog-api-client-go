@@ -169,17 +169,15 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Filter = all.Filter
 	}
+	o.Filter = all.Filter
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Page = all.Page
 	}
+	o.Page = all.Page
 	if v := all.Sort; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

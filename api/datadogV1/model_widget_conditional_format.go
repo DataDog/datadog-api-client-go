@@ -366,7 +366,7 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Comparator; !v.IsValid() {
 		hasInvalidField = true
 	} else {

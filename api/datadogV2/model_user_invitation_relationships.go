@@ -100,12 +100,11 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.User = *all.User
 	}
+	o.User = *all.User
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

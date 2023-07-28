@@ -195,7 +195,7 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Icon = *all.Icon
 	o.Id = *all.Id
 	o.Name = *all.Name

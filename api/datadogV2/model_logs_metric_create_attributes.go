@@ -168,17 +168,15 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Compute = *all.Compute
 	}
+	o.Compute = *all.Compute
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Filter = all.Filter
 	}
+	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
 
 	if len(additionalProperties) > 0 {

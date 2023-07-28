@@ -203,7 +203,7 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Formulas = all.Formulas
 	o.Q = all.Q
 	o.Queries = all.Queries

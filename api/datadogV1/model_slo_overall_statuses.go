@@ -429,7 +429,7 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Error = all.Error
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.IndexedAt = all.IndexedAt

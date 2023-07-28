@@ -295,7 +295,7 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Expression = *all.Expression
 	o.IsEnabled = all.IsEnabled
 	o.IsReplaceMissing = all.IsReplaceMissing

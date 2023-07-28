@@ -196,7 +196,7 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = *all.Description
 	o.Name = *all.Name
 	o.Status = all.Status

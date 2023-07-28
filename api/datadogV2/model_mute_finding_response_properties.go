@@ -194,7 +194,7 @@ func (o *MuteFindingResponseProperties) UnmarshalJSON(bytes []byte) (err error) 
 		return nil
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = all.Description
 	o.ExpirationDate = all.ExpirationDate
 	o.Muted = all.Muted

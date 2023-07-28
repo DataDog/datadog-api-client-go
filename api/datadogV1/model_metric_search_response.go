@@ -101,12 +101,11 @@ func (o *MetricSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Results != nil && all.Results.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Results = all.Results
 	}
+	o.Results = all.Results
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

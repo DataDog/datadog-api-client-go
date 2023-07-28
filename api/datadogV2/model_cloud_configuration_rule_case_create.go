@@ -134,7 +134,7 @@ func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Notifications = all.Notifications
 	if v := all.Status; !v.IsValid() {
 		hasInvalidField = true

@@ -133,7 +133,7 @@ func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Policy = *all.Policy
 	if v := all.PolicyType; !v.IsValid() {
 		hasInvalidField = true

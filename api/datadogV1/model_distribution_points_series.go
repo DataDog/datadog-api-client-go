@@ -237,7 +237,7 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Host = all.Host
 	o.Metric = *all.Metric
 	o.Points = *all.Points

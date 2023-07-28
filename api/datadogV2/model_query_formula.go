@@ -135,13 +135,12 @@ func (o *QueryFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Formula = *all.Formula
 	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Limit = all.Limit
 	}
+	o.Limit = all.Limit
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -209,12 +209,11 @@ func (o *EventResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = all.Attributes
 	}
+	o.Attributes = all.Attributes
 	o.Message = all.Message
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp

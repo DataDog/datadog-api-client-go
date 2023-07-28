@@ -135,7 +135,7 @@ func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AccountId = all.AccountId
 	if v := all.Namespace; v != nil && !v.IsValid() {
 		hasInvalidField = true

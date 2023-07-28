@@ -523,13 +523,12 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Classification = all.Classification
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Creator = all.Creator
 	}
+	o.Creator = all.Creator
 	o.Id = all.Id
 	o.LastTriggeredTs = all.LastTriggeredTs
 	o.Metrics = all.Metrics

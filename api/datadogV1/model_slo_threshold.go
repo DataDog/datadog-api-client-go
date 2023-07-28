@@ -242,7 +242,7 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Target = *all.Target
 	o.TargetDisplay = all.TargetDisplay
 	if v := all.Timeframe; !v.IsValid() {

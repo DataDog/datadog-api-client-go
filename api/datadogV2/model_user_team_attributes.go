@@ -112,7 +112,7 @@ func (o *UserTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Role; v.Get() != nil && !v.Get().IsValid() {
 		hasInvalidField = true
 	} else {

@@ -235,7 +235,7 @@ func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Requests = *all.Requests
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {

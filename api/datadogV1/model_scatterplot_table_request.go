@@ -169,7 +169,7 @@ func (o *ScatterplotTableRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Formulas = all.Formulas
 	o.Queries = all.Queries
 	if v := all.ResponseFormat; v != nil && !v.IsValid() {

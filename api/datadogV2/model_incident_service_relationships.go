@@ -135,17 +135,15 @@ func (o *IncidentServiceRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CreatedBy = all.CreatedBy
 	}
+	o.CreatedBy = all.CreatedBy
 	if all.LastModifiedBy != nil && all.LastModifiedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.LastModifiedBy = all.LastModifiedBy
 	}
+	o.LastModifiedBy = all.LastModifiedBy
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

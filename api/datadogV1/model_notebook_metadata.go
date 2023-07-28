@@ -188,7 +188,7 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.IsTemplate = all.IsTemplate
 	o.TakeSnapshots = all.TakeSnapshots
 	if v := all.Type; v.Get() != nil && !v.Get().IsValid() {

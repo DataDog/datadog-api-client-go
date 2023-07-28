@@ -169,7 +169,7 @@ func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Attributes = all.Attributes
 	o.Tags = all.Tags
 	if v := all.TestLevel; v != nil && !v.IsValid() {

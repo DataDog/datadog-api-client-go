@@ -179,7 +179,7 @@ func (o *SensitiveDataScannerTextReplacement) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.NumberOfChars = all.NumberOfChars
 	o.ReplacementString = all.ReplacementString
 	if v := all.Type; v != nil && !v.IsValid() {

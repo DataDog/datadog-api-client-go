@@ -324,19 +324,17 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Denominator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Denominator = *all.Denominator
 	}
+	o.Denominator = *all.Denominator
 	o.Interval = *all.Interval
 	o.Message = all.Message
 	if all.Numerator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Numerator = *all.Numerator
 	}
+	o.Numerator = *all.Numerator
 	o.Query = *all.Query
 	o.ResType = *all.ResType
 	o.RespVersion = *all.RespVersion

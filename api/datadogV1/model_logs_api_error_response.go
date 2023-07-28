@@ -101,12 +101,11 @@ func (o *LogsAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Error = all.Error
 	}
+	o.Error = all.Error
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -165,7 +165,7 @@ func (o *ServiceDefinitionV2Dot1Slack) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Contact = *all.Contact
 	o.Name = all.Name
 	if v := all.Type; !v.IsValid() {

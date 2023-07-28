@@ -140,7 +140,7 @@ func (o *FormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Count = all.Count
 	if v := all.Order; v != nil && !v.IsValid() {
 		hasInvalidField = true

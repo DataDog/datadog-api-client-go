@@ -217,7 +217,7 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Aggregations = all.Aggregations
 	o.IncludePercentiles = all.IncludePercentiles
 	if v := all.MetricType; !v.IsValid() {

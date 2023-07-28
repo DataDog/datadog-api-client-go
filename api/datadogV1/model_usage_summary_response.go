@@ -3247,7 +3247,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AgentHostTop99pSum = all.AgentHostTop99pSum
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
 	o.ApmFargateCountAvgSum = all.ApmFargateCountAvgSum
@@ -3304,9 +3304,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
 	if all.LogsByRetention != nil && all.LogsByRetention.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.LogsByRetention = all.LogsByRetention
 	}
+	o.LogsByRetention = all.LogsByRetention
 	o.MobileRumLiteSessionCountAggSum = all.MobileRumLiteSessionCountAggSum
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
 	o.MobileRumSessionCountAndroidAggSum = all.MobileRumSessionCountAndroidAggSum

@@ -215,12 +215,11 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Definition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Definition = *all.Definition
 	}
+	o.Definition = *all.Definition
 	if v := all.GraphSize; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -228,9 +227,8 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	if all.SplitBy != nil && all.SplitBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SplitBy = all.SplitBy
 	}
+	o.SplitBy = all.SplitBy
 	o.Time = all.Time
 
 	if len(additionalProperties) > 0 {

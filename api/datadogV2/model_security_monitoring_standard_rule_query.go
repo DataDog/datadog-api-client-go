@@ -310,7 +310,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Aggregation; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -264,20 +264,18 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Description = *all.Description
 	o.Id = all.Id
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Metadata = all.Metadata
 	}
+	o.Metadata = all.Metadata
 	o.Name = *all.Name
 	if all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Secrets = all.Secrets
 	}
+	o.Secrets = all.Secrets
 	o.Tags = *all.Tags
 
 	if len(additionalProperties) > 0 {

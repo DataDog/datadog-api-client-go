@@ -419,13 +419,12 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.PrivateWidgetShare = all.PrivateWidgetShare
 	if all.Saml != nil && all.Saml.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Saml = all.Saml
 	}
+	o.Saml = all.Saml
 	if v := all.SamlAutocreateAccessRole; v.Get() != nil && !v.Get().IsValid() {
 		hasInvalidField = true
 	} else {
@@ -433,23 +432,20 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.SamlAutocreateUsersDomains != nil && all.SamlAutocreateUsersDomains.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SamlAutocreateUsersDomains = all.SamlAutocreateUsersDomains
 	}
+	o.SamlAutocreateUsersDomains = all.SamlAutocreateUsersDomains
 	o.SamlCanBeEnabled = all.SamlCanBeEnabled
 	o.SamlIdpEndpoint = all.SamlIdpEndpoint
 	if all.SamlIdpInitiatedLogin != nil && all.SamlIdpInitiatedLogin.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SamlIdpInitiatedLogin = all.SamlIdpInitiatedLogin
 	}
+	o.SamlIdpInitiatedLogin = all.SamlIdpInitiatedLogin
 	o.SamlIdpMetadataUploaded = all.SamlIdpMetadataUploaded
 	o.SamlLoginUrl = all.SamlLoginUrl
 	if all.SamlStrictMode != nil && all.SamlStrictMode.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SamlStrictMode = all.SamlStrictMode
 	}
+	o.SamlStrictMode = all.SamlStrictMode
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

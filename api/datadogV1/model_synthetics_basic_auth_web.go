@@ -169,7 +169,7 @@ func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Password = *all.Password
 	if v := all.Type; v != nil && !v.IsValid() {
 		hasInvalidField = true

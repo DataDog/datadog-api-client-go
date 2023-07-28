@@ -370,7 +370,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Aggregator; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

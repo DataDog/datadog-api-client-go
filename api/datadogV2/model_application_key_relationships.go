@@ -101,12 +101,11 @@ func (o *ApplicationKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.OwnedBy != nil && all.OwnedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.OwnedBy = all.OwnedBy
 	}
+	o.OwnedBy = all.OwnedBy
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

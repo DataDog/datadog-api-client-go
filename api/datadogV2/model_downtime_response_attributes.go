@@ -526,7 +526,7 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Canceled = all.Canceled
 	o.Created = all.Created
 	o.DisplayTimezone = all.DisplayTimezone

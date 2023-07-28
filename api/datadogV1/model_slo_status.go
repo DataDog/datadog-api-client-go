@@ -361,7 +361,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CalculationError = all.CalculationError
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.IndexedAt = all.IndexedAt

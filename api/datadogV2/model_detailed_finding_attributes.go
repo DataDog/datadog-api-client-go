@@ -441,7 +441,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Evaluation; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -451,18 +451,16 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	if all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Mute = all.Mute
 	}
+	o.Mute = all.Mute
 	o.Resource = all.Resource
 	o.ResourceConfiguration = all.ResourceConfiguration
 	o.ResourceDiscoveryDate = all.ResourceDiscoveryDate
 	o.ResourceType = all.ResourceType
 	if all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Rule = all.Rule
 	}
+	o.Rule = all.Rule
 	if v := all.Status; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

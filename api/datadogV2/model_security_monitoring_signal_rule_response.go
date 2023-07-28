@@ -679,7 +679,7 @@ func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cases = all.Cases
 	o.CreatedAt = all.CreatedAt
 	o.CreationAuthorId = all.CreationAuthorId
@@ -694,9 +694,8 @@ func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err 
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
 	if v := all.Type; v != nil && !v.IsValid() {

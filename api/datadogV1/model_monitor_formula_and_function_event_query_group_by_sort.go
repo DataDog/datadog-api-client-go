@@ -172,7 +172,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []b
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Aggregation; !v.IsValid() {
 		hasInvalidField = true
 	} else {

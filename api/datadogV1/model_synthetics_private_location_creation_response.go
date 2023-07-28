@@ -169,18 +169,16 @@ func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Config = all.Config
 	if all.PrivateLocation != nil && all.PrivateLocation.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.PrivateLocation = all.PrivateLocation
 	}
+	o.PrivateLocation = all.PrivateLocation
 	if all.ResultEncryption != nil && all.ResultEncryption.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ResultEncryption = all.ResultEncryption
 	}
+	o.ResultEncryption = all.ResultEncryption
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -485,7 +485,7 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cipher = all.Cipher
 	o.Exponent = all.Exponent
 	o.ExtKeyUsage = all.ExtKeyUsage
@@ -493,17 +493,15 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.Fingerprint256 = all.Fingerprint256
 	if all.Issuer != nil && all.Issuer.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Issuer = all.Issuer
 	}
+	o.Issuer = all.Issuer
 	o.Modulus = all.Modulus
 	o.Protocol = all.Protocol
 	o.SerialNumber = all.SerialNumber
 	if all.Subject != nil && all.Subject.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Subject = all.Subject
 	}
+	o.Subject = all.Subject
 	o.ValidFrom = all.ValidFrom
 	o.ValidTo = all.ValidTo
 

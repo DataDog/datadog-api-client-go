@@ -507,7 +507,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Group = all.Group
 	o.NoGroupHosts = all.NoGroupHosts
@@ -520,15 +520,13 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Notes = all.Notes
 	if all.Requests.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Requests = *all.Requests
 	}
+	o.Requests = *all.Requests
 	o.Scope = all.Scope
 	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Style = all.Style
 	}
+	o.Style = all.Style
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		hasInvalidField = true

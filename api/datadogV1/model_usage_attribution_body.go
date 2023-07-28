@@ -316,7 +316,7 @@ func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Month = all.Month
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
@@ -325,9 +325,8 @@ func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.UpdatedAt = all.UpdatedAt
 	if all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Values = all.Values
 	}
+	o.Values = all.Values
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

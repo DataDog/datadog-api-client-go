@@ -271,7 +271,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.LastNodataTs = all.LastNodataTs
 	o.LastNotifiedTs = all.LastNotifiedTs
 	o.LastResolvedTs = all.LastResolvedTs

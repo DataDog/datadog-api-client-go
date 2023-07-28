@@ -174,13 +174,12 @@ func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (e
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.ComplexRule = all.ComplexRule
 	if all.RegoRule != nil && all.RegoRule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.RegoRule = all.RegoRule
 	}
+	o.RegoRule = all.RegoRule
 	o.ResourceType = all.ResourceType
 
 	if len(additionalProperties) > 0 {

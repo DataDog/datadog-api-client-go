@@ -292,7 +292,7 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Columns = all.Columns
 	o.Env = *all.Env
 	o.Name = *all.Name

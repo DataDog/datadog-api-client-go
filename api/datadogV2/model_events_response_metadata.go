@@ -238,13 +238,12 @@ func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Elapsed = all.Elapsed
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Page = all.Page
 	}
+	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Status = all.Status
 	o.Warnings = all.Warnings

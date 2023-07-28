@@ -227,7 +227,7 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Height = *all.Height
 	if v := all.Id; !v.IsValid() {
 		hasInvalidField = true

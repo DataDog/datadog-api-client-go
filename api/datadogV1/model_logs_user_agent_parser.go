@@ -277,7 +277,7 @@ func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.IsEnabled = all.IsEnabled
 	o.IsEncoded = all.IsEncoded
 	o.Name = all.Name

@@ -202,7 +202,7 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Alias = all.Alias
 	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
 		hasInvalidField = true

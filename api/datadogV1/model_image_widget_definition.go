@@ -381,7 +381,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.HasBackground = all.HasBackground
 	o.HasBorder = all.HasBorder
 	if v := all.HorizontalAlign; v != nil && !v.IsValid() {

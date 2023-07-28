@@ -366,14 +366,13 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.ArchiveComment = all.ArchiveComment
 	o.ArchiveCommentTimestamp = all.ArchiveCommentTimestamp
 	if all.ArchiveCommentUser != nil && all.ArchiveCommentUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ArchiveCommentUser = all.ArchiveCommentUser
 	}
+	o.ArchiveCommentUser = all.ArchiveCommentUser
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -381,9 +380,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	if all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Assignee = *all.Assignee
 	}
+	o.Assignee = *all.Assignee
 	o.IncidentIds = *all.IncidentIds
 	if v := all.State; !v.IsValid() {
 		hasInvalidField = true
@@ -393,9 +391,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	o.StateUpdateTimestamp = all.StateUpdateTimestamp
 	if all.StateUpdateUser != nil && all.StateUpdateUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.StateUpdateUser = all.StateUpdateUser
 	}
+	o.StateUpdateUser = all.StateUpdateUser
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

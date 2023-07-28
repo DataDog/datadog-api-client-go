@@ -101,12 +101,11 @@ func (o *UsageSpecifiedCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Page = all.Page
 	}
+	o.Page = all.Page
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

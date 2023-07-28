@@ -237,20 +237,18 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Compute = all.Compute
 	}
+	o.Compute = all.Compute
 	o.GroupBy = all.GroupBy
 	o.Index = all.Index
 	o.MultiCompute = all.MultiCompute
 	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Search = all.Search
 	}
+	o.Search = all.Search
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

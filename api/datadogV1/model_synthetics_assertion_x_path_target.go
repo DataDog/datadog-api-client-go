@@ -199,7 +199,7 @@ func (o *SyntheticsAssertionXPathTarget) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Operator; !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -208,9 +208,8 @@ func (o *SyntheticsAssertionXPathTarget) UnmarshalJSON(bytes []byte) (err error)
 	o.Property = all.Property
 	if all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Target = all.Target
 	}
+	o.Target = all.Target
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true
 	} else {

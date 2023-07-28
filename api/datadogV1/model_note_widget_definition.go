@@ -409,7 +409,7 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.BackgroundColor = all.BackgroundColor
 	o.Content = *all.Content
 	o.FontSize = all.FontSize

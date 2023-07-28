@@ -131,7 +131,7 @@ func (o *DashboardListItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Id = *all.Id
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

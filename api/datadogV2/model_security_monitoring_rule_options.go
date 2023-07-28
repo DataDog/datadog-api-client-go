@@ -380,12 +380,11 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ComplianceRuleOptions = all.ComplianceRuleOptions
 	}
+	o.ComplianceRuleOptions = all.ComplianceRuleOptions
 	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
 	if v := all.DetectionMethod; v != nil && !v.IsValid() {
 		hasInvalidField = true
@@ -404,9 +403,8 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
 	}
+	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
 	if v := all.KeepAlive; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -419,9 +417,8 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	if all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.NewValueOptions = all.NewValueOptions
 	}
+	o.NewValueOptions = all.NewValueOptions
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

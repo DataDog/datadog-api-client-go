@@ -131,7 +131,7 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Field = *all.Field
 	if v := all.Width; !v.IsValid() {
 		hasInvalidField = true

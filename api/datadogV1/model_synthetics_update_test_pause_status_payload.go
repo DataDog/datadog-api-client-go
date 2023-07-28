@@ -102,7 +102,7 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.NewStatus; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

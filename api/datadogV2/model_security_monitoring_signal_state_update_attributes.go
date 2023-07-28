@@ -202,7 +202,7 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.ArchiveComment = all.ArchiveComment
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
 		hasInvalidField = true

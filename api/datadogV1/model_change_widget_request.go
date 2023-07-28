@@ -679,12 +679,11 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ApmQuery = all.ApmQuery
 	}
+	o.ApmQuery = all.ApmQuery
 	if v := all.ChangeType; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -697,21 +696,18 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.EventQuery = all.EventQuery
 	}
+	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
 	o.IncreaseGood = all.IncreaseGood
 	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.LogQuery = all.LogQuery
 	}
+	o.LogQuery = all.LogQuery
 	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.NetworkQuery = all.NetworkQuery
 	}
+	o.NetworkQuery = all.NetworkQuery
 	if v := all.OrderBy; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -724,14 +720,12 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ProcessQuery = all.ProcessQuery
 	}
+	o.ProcessQuery = all.ProcessQuery
 	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	}
+	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	if v := all.ResponseFormat; v != nil && !v.IsValid() {
@@ -741,14 +735,12 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.RumQuery = all.RumQuery
 	}
+	o.RumQuery = all.RumQuery
 	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SecurityQuery = all.SecurityQuery
 	}
+	o.SecurityQuery = all.SecurityQuery
 	o.ShowPresent = all.ShowPresent
 
 	if len(additionalProperties) > 0 {

@@ -202,14 +202,13 @@ func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Field = all.Field
 	o.LocalVariableName = all.LocalVariableName
 	if all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Parser = all.Parser
 	}
+	o.Parser = all.Parser
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true
 	} else {

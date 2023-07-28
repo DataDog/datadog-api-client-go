@@ -203,7 +203,7 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Device; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

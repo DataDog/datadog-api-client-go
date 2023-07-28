@@ -337,7 +337,7 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AlertId = *all.AlertId
 	o.Precision = all.Precision
 	if v := all.TextAlign; v != nil && !v.IsValid() {

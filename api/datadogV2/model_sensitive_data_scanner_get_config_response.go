@@ -169,18 +169,16 @@ func (o *SensitiveDataScannerGetConfigResponse) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Data = all.Data
 	}
+	o.Data = all.Data
 	o.Included = all.Included
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Meta = all.Meta
 	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

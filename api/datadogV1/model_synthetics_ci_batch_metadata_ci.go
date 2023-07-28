@@ -135,17 +135,15 @@ func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Pipeline != nil && all.Pipeline.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Pipeline = all.Pipeline
 	}
+	o.Pipeline = all.Pipeline
 	if all.Provider != nil && all.Provider.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Provider = all.Provider
 	}
+	o.Provider = all.Provider
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

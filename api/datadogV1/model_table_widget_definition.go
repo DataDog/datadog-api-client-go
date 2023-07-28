@@ -337,7 +337,7 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	if v := all.HasSearchBar; v != nil && !v.IsValid() {
 		hasInvalidField = true
@@ -347,9 +347,8 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Requests = *all.Requests
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Time = all.Time
 	}
+	o.Time = all.Time
 	o.Title = all.Title
 	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		hasInvalidField = true

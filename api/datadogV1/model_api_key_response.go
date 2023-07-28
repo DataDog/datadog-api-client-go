@@ -101,12 +101,11 @@ func (o *ApiKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.ApiKey = all.ApiKey
 	}
+	o.ApiKey = all.ApiKey
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

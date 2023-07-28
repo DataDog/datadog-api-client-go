@@ -87,12 +87,11 @@ func (o *MuteFindingRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field mute missing")
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Mute = *all.Mute
 	}
+	o.Mute = *all.Mute
 
 	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)

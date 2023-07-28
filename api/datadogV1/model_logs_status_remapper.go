@@ -222,7 +222,7 @@ func (o *LogsStatusRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.Sources = *all.Sources

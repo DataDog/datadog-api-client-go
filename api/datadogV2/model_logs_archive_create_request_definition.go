@@ -136,12 +136,11 @@ func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = all.Attributes
 	}
+	o.Attributes = all.Attributes
 	o.Type = *all.Type
 
 	if len(additionalProperties) > 0 {

@@ -383,7 +383,7 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.BillingPlan = all.BillingPlan
 	o.EndDate = all.EndDate
 	o.NumOrgs = all.NumOrgs
@@ -394,9 +394,8 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.StartDate = all.StartDate
 	if all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Usage = all.Usage
 	}
+	o.Usage = all.Usage
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

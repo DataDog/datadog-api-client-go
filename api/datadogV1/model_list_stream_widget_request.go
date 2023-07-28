@@ -162,13 +162,12 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Columns = *all.Columns
 	if all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Query = *all.Query
 	}
+	o.Query = *all.Query
 	if v := all.ResponseFormat; !v.IsValid() {
 		hasInvalidField = true
 	} else {

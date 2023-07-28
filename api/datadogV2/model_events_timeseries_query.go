@@ -269,12 +269,11 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Compute = *all.Compute
 	}
+	o.Compute = *all.Compute
 	if v := all.DataSource; !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -285,9 +284,8 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Search = all.Search
 	}
+	o.Search = all.Search
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

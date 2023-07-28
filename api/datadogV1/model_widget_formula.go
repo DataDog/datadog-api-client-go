@@ -270,7 +270,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Alias = all.Alias
 	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
 		hasInvalidField = true
@@ -281,14 +281,12 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	o.Formula = *all.Formula
 	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Limit = all.Limit
 	}
+	o.Limit = all.Limit
 	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Style = all.Style
 	}
+	o.Style = all.Style
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

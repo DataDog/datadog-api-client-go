@@ -100,12 +100,11 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CommanderUser = *all.CommanderUser
 	}
+	o.CommanderUser = *all.CommanderUser
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -266,7 +266,7 @@ func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AccessKey = *all.AccessKey
 	o.Region = all.Region
 	o.SecretKey = *all.SecretKey

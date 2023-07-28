@@ -196,7 +196,7 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Operator; !v.IsValid() {
 		hasInvalidField = true
 	} else {

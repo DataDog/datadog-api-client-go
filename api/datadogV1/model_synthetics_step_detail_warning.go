@@ -131,7 +131,7 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Message = *all.Message
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

@@ -135,17 +135,15 @@ func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Role != nil && all.Role.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Role = all.Role
 	}
+	o.Role = all.Role
 	if all.SamlAssertionAttribute != nil && all.SamlAssertionAttribute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.SamlAssertionAttribute = all.SamlAssertionAttribute
 	}
+	o.SamlAssertionAttribute = all.SamlAssertionAttribute
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -136,13 +136,12 @@ func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Passed = all.Passed
 	if all.Timings != nil && all.Timings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Timings = all.Timings
 	}
+	o.Timings = all.Timings
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

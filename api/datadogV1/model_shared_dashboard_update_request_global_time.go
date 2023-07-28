@@ -101,7 +101,7 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.LiveSpan; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

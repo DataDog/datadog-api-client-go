@@ -238,24 +238,21 @@ func (o *RUMAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Compute = all.Compute
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Filter = all.Filter
 	}
+	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = all.Options
 	}
+	o.Options = all.Options
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Page = all.Page
 	}
+	o.Page = all.Page
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

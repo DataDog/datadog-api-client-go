@@ -644,13 +644,12 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CreatedAt = all.CreatedAt
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Creator = all.Creator
 	}
+	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Groups = all.Groups
 	o.Id = all.Id
@@ -660,9 +659,8 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = *all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Query = all.Query
 	}
+	o.Query = all.Query
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = *all.Thresholds

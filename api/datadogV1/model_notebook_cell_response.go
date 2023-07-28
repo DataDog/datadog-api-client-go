@@ -165,7 +165,7 @@ func (o *NotebookCellResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
 	if v := all.Type; !v.IsValid() {

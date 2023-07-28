@@ -269,7 +269,7 @@ func (o *TopologyMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Requests = *all.Requests
 	o.Title = all.Title

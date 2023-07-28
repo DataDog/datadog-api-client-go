@@ -101,7 +101,7 @@ func (o *TeamPermissionSettingUpdateAttributes) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.Value; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

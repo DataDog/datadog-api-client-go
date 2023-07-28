@@ -171,7 +171,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.CellType; !v.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -179,9 +179,8 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 	if all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Content = *all.Content
 	}
+	o.Content = *all.Content
 	o.Important = all.Important
 
 	if len(additionalProperties) > 0 {

@@ -135,17 +135,15 @@ func (o *RelationshipToUserTeamPermission) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Data = all.Data
 	}
+	o.Data = all.Data
 	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Links = all.Links
 	}
+	o.Links = all.Links
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

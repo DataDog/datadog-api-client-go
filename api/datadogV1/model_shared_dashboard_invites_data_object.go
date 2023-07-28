@@ -131,12 +131,11 @@ func (o *SharedDashboardInvitesDataObject) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attributes = *all.Attributes
 	}
+	o.Attributes = *all.Attributes
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true
 	} else {

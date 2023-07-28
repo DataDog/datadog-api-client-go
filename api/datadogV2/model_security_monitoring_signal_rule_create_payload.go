@@ -391,7 +391,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Cases = *all.Cases
 	o.Filters = all.Filters
 	o.HasExtendedTitle = all.HasExtendedTitle
@@ -400,9 +400,8 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Options = *all.Options
 	}
+	o.Options = *all.Options
 	o.Queries = *all.Queries
 	o.Tags = all.Tags
 	if v := all.Type; v != nil && !v.IsValid() {

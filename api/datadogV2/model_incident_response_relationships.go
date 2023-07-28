@@ -237,32 +237,27 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Attachments = all.Attachments
 	}
+	o.Attachments = all.Attachments
 	if all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CommanderUser = all.CommanderUser
 	}
+	o.CommanderUser = all.CommanderUser
 	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.CreatedByUser = all.CreatedByUser
 	}
+	o.CreatedByUser = all.CreatedByUser
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Integrations = all.Integrations
 	}
+	o.Integrations = all.Integrations
 	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.LastModifiedByUser = all.LastModifiedByUser
 	}
+	o.LastModifiedByUser = all.LastModifiedByUser
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

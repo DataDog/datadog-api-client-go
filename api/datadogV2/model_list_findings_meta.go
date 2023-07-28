@@ -122,12 +122,11 @@ func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Page = all.Page
 	}
+	o.Page = all.Page
 	o.SnapshotTimestamp = all.SnapshotTimestamp
 
 	if hasInvalidField {

@@ -347,26 +347,23 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Billing = all.Billing
 	}
+	o.Billing = all.Billing
 	o.Created = all.Created
 	o.Description = all.Description
 	o.Name = all.Name
 	o.PublicId = all.PublicId
 	if all.Settings != nil && all.Settings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Settings = all.Settings
 	}
+	o.Settings = all.Settings
 	if all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Subscription = all.Subscription
 	}
+	o.Subscription = all.Subscription
 	o.Trial = all.Trial
 
 	if len(additionalProperties) > 0 {

@@ -196,7 +196,7 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.CustomUrl = all.CustomUrl
 	o.Name = *all.Name
 	o.OpsgenieApiKey = *all.OpsgenieApiKey

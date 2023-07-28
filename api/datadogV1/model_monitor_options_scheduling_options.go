@@ -101,12 +101,11 @@ func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.EvaluationWindow != nil && all.EvaluationWindow.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.EvaluationWindow = all.EvaluationWindow
 	}
+	o.EvaluationWindow = all.EvaluationWindow
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

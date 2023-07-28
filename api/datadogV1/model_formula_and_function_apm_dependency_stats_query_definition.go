@@ -388,7 +388,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.DataSource; !v.IsValid() {
 		hasInvalidField = true
 	} else {

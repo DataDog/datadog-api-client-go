@@ -401,7 +401,7 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.AccessTokenUrl = *all.AccessTokenUrl
 	o.Audience = all.Audience
 	o.ClientId = all.ClientId

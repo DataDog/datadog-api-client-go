@@ -198,13 +198,12 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Bucket = *all.Bucket
 	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Integration = *all.Integration
 	}
+	o.Integration = *all.Integration
 	o.Path = all.Path
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true

@@ -216,7 +216,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if v := all.ForgetAfter; v != nil && !v.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -261,7 +261,7 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.Check = *all.Check
 	o.HostName = *all.HostName
 	o.Message = all.Message

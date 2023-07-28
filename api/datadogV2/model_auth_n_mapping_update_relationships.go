@@ -101,12 +101,11 @@ func (o *AuthNMappingUpdateRelationships) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	if all.Role != nil && all.Role.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Role = all.Role
 	}
+	o.Role = all.Role
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

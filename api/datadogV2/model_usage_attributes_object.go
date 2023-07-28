@@ -237,7 +237,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	o.OrgName = all.OrgName
 	o.ProductFamily = all.ProductFamily
 	o.PublicId = all.PublicId
