@@ -101,6 +101,7 @@ func (o *RUMAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	o.Buckets = all.Buckets
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

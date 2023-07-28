@@ -162,6 +162,7 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnmarshalJSON(bytes []byte)
 	}
 	o.End = all.End
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

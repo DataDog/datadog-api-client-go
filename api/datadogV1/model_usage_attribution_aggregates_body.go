@@ -171,6 +171,7 @@ func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error)
 	o.AggType = all.AggType
 	o.Field = all.Field
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

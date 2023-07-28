@@ -237,21 +237,28 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Domain = all.Domain
+	o.Password = all.Password
 	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+	o.Username = all.Username
+	o.Workstation = all.Workstation
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Domain = all.Domain
-	o.Password = all.Password
-	o.Type = *all.Type
-	o.Username = all.Username
-	o.Workstation = all.Workstation
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

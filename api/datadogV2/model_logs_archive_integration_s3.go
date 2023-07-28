@@ -132,6 +132,7 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AccountId = *all.AccountId
 	o.RoleName = *all.RoleName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

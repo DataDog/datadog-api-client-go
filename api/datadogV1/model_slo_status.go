@@ -360,23 +360,30 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.State; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.CalculationError = all.CalculationError
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.IndexedAt = all.IndexedAt
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
 	o.Sli = all.Sli
 	o.SpanPrecision = all.SpanPrecision
-	o.State = all.State
+	if v := all.State; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.State = all.State
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

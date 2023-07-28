@@ -139,6 +139,7 @@ func (o *DowntimeScheduleRecurrencesCreateRequest) UnmarshalJSON(bytes []byte) (
 	}
 	o.Recurrences = *all.Recurrences
 	o.Timezone = all.Timezone
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

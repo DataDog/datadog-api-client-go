@@ -332,15 +332,13 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Category; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Category = *all.Category
 	}
-	o.Category = *all.Category
 	o.Description = all.Description
 	o.Duration = all.Duration
 	o.End = all.End
@@ -348,8 +346,17 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.SloId = *all.SloId
 	o.Start = *all.Start
 	o.Timezone = all.Timezone
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

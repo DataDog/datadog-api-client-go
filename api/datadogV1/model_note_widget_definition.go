@@ -408,50 +408,45 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.TextAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.TickEdge; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.VerticalAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.BackgroundColor = all.BackgroundColor
 	o.Content = *all.Content
 	o.FontSize = all.FontSize
 	o.HasPadding = all.HasPadding
 	o.ShowTick = all.ShowTick
-	o.TextAlign = all.TextAlign
-	o.TickEdge = all.TickEdge
+	if v := all.TextAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TextAlign = all.TextAlign
+	}
+	if v := all.TickEdge; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TickEdge = all.TickEdge
+	}
 	o.TickPos = all.TickPos
-	o.Type = *all.Type
-	o.VerticalAlign = all.VerticalAlign
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+	if v := all.VerticalAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.VerticalAlign = all.VerticalAlign
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

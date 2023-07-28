@@ -216,6 +216,7 @@ func (o *RoleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
 	o.UserCount = all.UserCount
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

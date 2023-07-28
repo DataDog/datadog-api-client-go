@@ -206,6 +206,7 @@ func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) 
 	o.PageCount = all.PageCount
 	o.PerPage = all.PerPage
 	o.TotalCount = all.TotalCount
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

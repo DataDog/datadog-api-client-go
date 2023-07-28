@@ -383,14 +383,8 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.UsageType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
@@ -399,9 +393,22 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TotalUsageSum = all.TotalUsageSum
 	o.UpdatedAt = all.UpdatedAt
-	o.UsageType = all.UsageType
+	if v := all.UsageType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.UsageType = all.UsageType
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -130,18 +130,25 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Column = *all.Column
 	if v := all.Order; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Order = *all.Order
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Column = *all.Column
-	o.Order = *all.Order
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

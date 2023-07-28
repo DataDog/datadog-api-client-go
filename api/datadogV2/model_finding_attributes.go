@@ -372,47 +372,44 @@ func (o *FindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Evaluation; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Evaluation = all.Evaluation
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Evaluation = all.Evaluation
 	o.EvaluationChangedAt = all.EvaluationChangedAt
 	if all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Mute = all.Mute
 	}
-	o.Mute = all.Mute
 	o.Resource = all.Resource
 	o.ResourceDiscoveryDate = all.ResourceDiscoveryDate
 	o.ResourceType = all.ResourceType
 	if all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Rule = all.Rule
+	}
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+	o.Tags = all.Tags
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Rule = all.Rule
-	o.Status = all.Status
-	o.Tags = all.Tags
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

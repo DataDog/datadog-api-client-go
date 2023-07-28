@@ -357,39 +357,40 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Cases = *all.Cases
 	if all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ComplianceSignalOptions = *all.ComplianceSignalOptions
 	}
-	o.ComplianceSignalOptions = *all.ComplianceSignalOptions
 	o.Filters = all.Filters
 	o.IsEnabled = *all.IsEnabled
 	o.Message = *all.Message
 	o.Name = *all.Name
 	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Options = *all.Options
+	}
+	o.Tags = all.Tags
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Options = *all.Options
-	o.Tags = all.Tags
-	o.Type = all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

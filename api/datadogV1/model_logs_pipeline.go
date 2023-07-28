@@ -307,22 +307,30 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Filter = all.Filter
 	}
-	o.Filter = all.Filter
 	o.Id = all.Id
 	o.IsEnabled = all.IsEnabled
 	o.IsReadOnly = all.IsReadOnly
 	o.Name = *all.Name
 	o.Processors = all.Processors
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

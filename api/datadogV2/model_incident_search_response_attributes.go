@@ -161,18 +161,26 @@ func (o *IncidentSearchResponseAttributes) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Facets.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Facets = *all.Facets
+	}
+	o.Incidents = *all.Incidents
+	o.Total = *all.Total
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Facets = *all.Facets
-	o.Incidents = *all.Incidents
-	o.Total = *all.Total
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

@@ -134,18 +134,25 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Code; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Code = all.Code
+	}
+	o.Message = all.Message
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Code = all.Code
-	o.Message = all.Message
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

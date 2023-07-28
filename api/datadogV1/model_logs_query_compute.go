@@ -170,6 +170,7 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Aggregation = *all.Aggregation
 	o.Facet = all.Facet
 	o.Interval = all.Interval
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

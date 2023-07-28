@@ -136,6 +136,7 @@ func (o *MonitorSearchResultNotification) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Handle = all.Handle
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

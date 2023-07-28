@@ -321,6 +321,7 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgBillableUsage = all.OrgBillableUsage
 	o.PercentageInAccount = all.PercentageInAccount
 	o.UsageUnit = all.UsageUnit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

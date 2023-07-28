@@ -346,6 +346,7 @@ func (o *SearchSLOResponseDataAttributesFacets) UnmarshalJSON(bytes []byte) (err
 	o.Target = all.Target
 	o.TeamTags = all.TeamTags
 	o.Timeframe = all.Timeframe
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

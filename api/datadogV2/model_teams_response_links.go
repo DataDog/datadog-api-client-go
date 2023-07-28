@@ -263,6 +263,7 @@ func (o *TeamsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	o.Next = all.Next
 	o.Prev = all.Prev
 	o.Self = all.Self
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

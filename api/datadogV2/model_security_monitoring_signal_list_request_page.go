@@ -140,6 +140,7 @@ func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (e
 	}
 	o.Cursor = all.Cursor
 	o.Limit = all.Limit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

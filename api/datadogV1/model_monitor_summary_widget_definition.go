@@ -552,70 +552,57 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.ColorPreference; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.ColorPreference = all.ColorPreference
 	}
-	if v := all.DisplayFormat; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Sort; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.SummaryType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.ColorPreference = all.ColorPreference
 	o.Count = all.Count
-	o.DisplayFormat = all.DisplayFormat
+	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DisplayFormat = all.DisplayFormat
+	}
 	o.HideZeroCounts = all.HideZeroCounts
 	o.Query = *all.Query
 	o.ShowLastTriggered = all.ShowLastTriggered
 	o.ShowPriority = all.ShowPriority
-	o.Sort = all.Sort
+	if v := all.Sort; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Sort = all.Sort
+	}
 	o.Start = all.Start
-	o.SummaryType = all.SummaryType
+	if v := all.SummaryType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SummaryType = all.SummaryType
+	}
 	o.Title = all.Title
-	o.TitleAlign = all.TitleAlign
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TitleAlign = all.TitleAlign
+	}
 	o.TitleSize = all.TitleSize
-	o.Type = *all.Type
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

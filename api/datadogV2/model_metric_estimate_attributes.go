@@ -178,19 +178,26 @@ func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.EstimateType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.EstimateType = all.EstimateType
+	}
+	o.EstimatedAt = all.EstimatedAt
+	o.EstimatedOutputSeries = all.EstimatedOutputSeries
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.EstimateType = all.EstimateType
-	o.EstimatedAt = all.EstimatedAt
-	o.EstimatedOutputSeries = all.EstimatedOutputSeries
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

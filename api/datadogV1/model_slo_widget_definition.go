@@ -440,43 +440,42 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.ViewMode; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AdditionalQueryFilters = all.AdditionalQueryFilters
 	o.GlobalTimeTarget = all.GlobalTimeTarget
 	o.ShowErrorBudget = all.ShowErrorBudget
 	o.SloId = all.SloId
 	o.TimeWindows = all.TimeWindows
 	o.Title = all.Title
-	o.TitleAlign = all.TitleAlign
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TitleAlign = all.TitleAlign
+	}
 	o.TitleSize = all.TitleSize
-	o.Type = *all.Type
-	o.ViewMode = all.ViewMode
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+	if v := all.ViewMode; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ViewMode = all.ViewMode
+	}
 	o.ViewType = *all.ViewType
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

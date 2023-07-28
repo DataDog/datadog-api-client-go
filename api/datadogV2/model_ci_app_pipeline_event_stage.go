@@ -666,28 +666,18 @@ func (o *CIAppPipelineEventStage) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Level; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Status; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Dependencies = all.Dependencies
 	o.End = *all.End
 	o.Error = all.Error
 	o.Git = all.Git
 	o.Id = *all.Id
-	o.Level = *all.Level
+	if v := all.Level; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Level = *all.Level
+	}
 	o.Metrics = all.Metrics
 	o.Name = *all.Name
 	o.Node = all.Node
@@ -696,10 +686,23 @@ func (o *CIAppPipelineEventStage) UnmarshalJSON(bytes []byte) (err error) {
 	o.PipelineUniqueId = *all.PipelineUniqueId
 	o.QueueTime = all.QueueTime
 	o.Start = *all.Start
-	o.Status = *all.Status
+	if v := all.Status; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = *all.Status
+	}
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

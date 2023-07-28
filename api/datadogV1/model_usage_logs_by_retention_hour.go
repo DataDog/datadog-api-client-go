@@ -320,6 +320,7 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.RehydratedIndexedEventsCount = all.RehydratedIndexedEventsCount
 	o.Retention = all.Retention
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

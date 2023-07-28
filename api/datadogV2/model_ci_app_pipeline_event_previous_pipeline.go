@@ -135,6 +135,7 @@ func (o *CIAppPipelineEventPreviousPipeline) UnmarshalJSON(bytes []byte) (err er
 	}
 	o.Id = *all.Id
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

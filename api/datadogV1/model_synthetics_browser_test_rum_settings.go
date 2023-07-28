@@ -180,6 +180,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 	o.ApplicationId = all.ApplicationId
 	o.ClientTokenId = all.ClientTokenId
 	o.IsEnabled = *all.IsEnabled
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

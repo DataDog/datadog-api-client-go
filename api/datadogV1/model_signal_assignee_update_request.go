@@ -135,6 +135,7 @@ func (o *SignalAssigneeUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Assignee = *all.Assignee
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

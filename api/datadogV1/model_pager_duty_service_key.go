@@ -100,6 +100,7 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ServiceKey = *all.ServiceKey
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

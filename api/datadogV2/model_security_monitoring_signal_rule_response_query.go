@@ -372,15 +372,13 @@ func (o *SecurityMonitoringSignalRuleResponseQuery) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Aggregation; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Aggregation = all.Aggregation
 	}
-	o.Aggregation = all.Aggregation
 	o.CorrelatedByFields = all.CorrelatedByFields
 	o.CorrelatedQueryIndex = all.CorrelatedQueryIndex
 	o.DefaultRuleId = all.DefaultRuleId
@@ -389,8 +387,17 @@ func (o *SecurityMonitoringSignalRuleResponseQuery) UnmarshalJSON(bytes []byte) 
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.RuleId = all.RuleId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

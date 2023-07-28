@@ -317,6 +317,7 @@ func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupName = all.GroupName
 	o.Name = all.Name
 	o.Restricted = all.Restricted
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

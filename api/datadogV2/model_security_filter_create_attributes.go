@@ -223,21 +223,28 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.ExclusionFilters = *all.ExclusionFilters
 	if v := all.FilteredDataType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.FilteredDataType = *all.FilteredDataType
+	}
+	o.IsEnabled = *all.IsEnabled
+	o.Name = *all.Name
+	o.Query = *all.Query
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.ExclusionFilters = *all.ExclusionFilters
-	o.FilteredDataType = *all.FilteredDataType
-	o.IsEnabled = *all.IsEnabled
-	o.Name = *all.Name
-	o.Query = *all.Query
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

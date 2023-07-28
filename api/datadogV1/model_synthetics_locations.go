@@ -101,6 +101,7 @@ func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Locations = all.Locations
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

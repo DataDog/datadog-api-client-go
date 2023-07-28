@@ -101,6 +101,7 @@ func (o *ServiceDefinitionV2Dot1Pagerduty) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	o.ServiceUrl = all.ServiceUrl
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

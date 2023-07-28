@@ -101,6 +101,7 @@ func (o *SyntheticsListGlobalVariablesResponse) UnmarshalJSON(bytes []byte) (err
 		return err
 	}
 	o.Variables = all.Variables
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

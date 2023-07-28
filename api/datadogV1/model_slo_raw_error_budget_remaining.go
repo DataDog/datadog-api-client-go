@@ -136,6 +136,7 @@ func (o *SLORawErrorBudgetRemaining) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Unit = all.Unit
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

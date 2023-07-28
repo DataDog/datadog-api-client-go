@@ -134,24 +134,29 @@ func (o *SensitiveDataScannerRuleRelationships) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Group != nil && all.Group.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Group = all.Group
 	}
-	o.Group = all.Group
 	if all.StandardPattern != nil && all.StandardPattern.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.StandardPattern = all.StandardPattern
 	}
-	o.StandardPattern = all.StandardPattern
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

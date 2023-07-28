@@ -241,6 +241,7 @@ func (o *Unit) UnmarshalJSON(bytes []byte) (err error) {
 	o.Plural = all.Plural
 	o.ScaleFactor = all.ScaleFactor
 	o.ShortName = all.ShortName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

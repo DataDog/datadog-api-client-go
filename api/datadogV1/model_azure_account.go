@@ -347,6 +347,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewClientId = all.NewClientId
 	o.NewTenantName = all.NewTenantName
 	o.TenantName = all.TenantName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

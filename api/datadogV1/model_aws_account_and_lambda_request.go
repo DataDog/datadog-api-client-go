@@ -132,6 +132,7 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AccountId = *all.AccountId
 	o.LambdaArn = *all.LambdaArn
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

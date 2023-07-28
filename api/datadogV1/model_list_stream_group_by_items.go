@@ -100,6 +100,7 @@ func (o *ListStreamGroupByItems) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Facet = *all.Facet
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -164,6 +164,7 @@ func (o *MonitorConfigPolicyTagPolicyCreateRequest) UnmarshalJSON(bytes []byte) 
 	o.TagKey = *all.TagKey
 	o.TagKeyRequired = *all.TagKeyRequired
 	o.ValidTagValues = *all.ValidTagValues
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -132,6 +132,7 @@ func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Facet = *all.Facet
 	o.Value = *all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

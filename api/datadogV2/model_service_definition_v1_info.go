@@ -205,6 +205,7 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
 	o.ServiceTier = all.ServiceTier
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -382,6 +382,7 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tcp = all.Tcp
 	o.Total = all.Total
 	o.Wait = all.Wait
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

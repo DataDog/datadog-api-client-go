@@ -135,6 +135,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateAttributes) UnmarshalJSON(bytes 
 	}
 	o.IncidentIds = *all.IncidentIds
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

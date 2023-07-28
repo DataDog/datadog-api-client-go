@@ -703,32 +703,26 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.LayoutType; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.ReflowType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AuthorHandle = all.AuthorHandle
 	o.AuthorName = all.AuthorName
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Id = all.Id
 	o.IsReadOnly = all.IsReadOnly
-	o.LayoutType = *all.LayoutType
+	if v := all.LayoutType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.LayoutType = *all.LayoutType
+	}
 	o.ModifiedAt = all.ModifiedAt
 	o.NotifyList = all.NotifyList
-	o.ReflowType = all.ReflowType
+	if v := all.ReflowType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ReflowType = all.ReflowType
+	}
 	o.RestrictedRoles = all.RestrictedRoles
 	o.Tags = all.Tags
 	o.TemplateVariablePresets = all.TemplateVariablePresets
@@ -736,8 +730,17 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = *all.Title
 	o.Url = all.Url
 	o.Widgets = *all.Widgets
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

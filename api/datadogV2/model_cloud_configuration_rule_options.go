@@ -101,16 +101,24 @@ func (o *CloudConfigurationRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.ComplianceRuleOptions = *all.ComplianceRuleOptions
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.ComplianceRuleOptions = *all.ComplianceRuleOptions
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

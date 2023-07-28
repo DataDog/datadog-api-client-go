@@ -329,38 +329,39 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Subtype; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AllowFailure = all.AllowFailure
 	o.Assertions = *all.Assertions
 	o.ExtractedValues = all.ExtractedValues
 	o.IsCritical = all.IsCritical
 	o.Name = *all.Name
 	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Request = *all.Request
 	}
-	o.Request = *all.Request
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Retry = all.Retry
 	}
-	o.Retry = all.Retry
-	o.Subtype = *all.Subtype
+	if v := all.Subtype; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Subtype = *all.Subtype
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

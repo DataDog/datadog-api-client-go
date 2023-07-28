@@ -250,6 +250,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 	o.DefaultGroupByFields = all.DefaultGroupByFields
 	o.UserActivationStatus = all.UserActivationStatus
 	o.UserGroupByFields = all.UserGroupByFields
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

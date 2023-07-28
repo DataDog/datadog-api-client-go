@@ -158,6 +158,7 @@ func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.RecoveryWindow = all.RecoveryWindow
 	o.TriggerWindow = all.TriggerWindow
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

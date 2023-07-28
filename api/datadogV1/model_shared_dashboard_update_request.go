@@ -271,21 +271,28 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.GlobalTime = all.GlobalTime
+	o.GlobalTimeSelectableEnabled = all.GlobalTimeSelectableEnabled
+	o.SelectableTemplateVars = all.SelectableTemplateVars
+	o.ShareList = all.ShareList
 	if v := all.ShareType; v.Get() != nil && !v.Get().IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ShareType = all.ShareType
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.GlobalTime = all.GlobalTime
-	o.GlobalTimeSelectableEnabled = all.GlobalTimeSelectableEnabled
-	o.SelectableTemplateVars = all.SelectableTemplateVars
-	o.ShareList = all.ShareList
-	o.ShareType = all.ShareType
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

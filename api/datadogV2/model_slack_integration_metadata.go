@@ -100,6 +100,7 @@ func (o *SlackIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Channels = *all.Channels
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

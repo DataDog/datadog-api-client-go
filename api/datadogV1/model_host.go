@@ -553,6 +553,8 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	o.Aliases = all.Aliases
 	o.Apps = all.Apps
 	o.AwsName = all.AwsName
@@ -561,28 +563,31 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsMuted = all.IsMuted
 	o.LastReportedTime = all.LastReportedTime
 	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Meta = all.Meta
 	}
-	o.Meta = all.Meta
 	if all.Metrics != nil && all.Metrics.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Metrics = all.Metrics
 	}
-	o.Metrics = all.Metrics
 	o.MuteTimeout = all.MuteTimeout
 	o.Name = all.Name
 	o.Sources = all.Sources
 	o.TagsBySource = all.TagsBySource
 	o.Up = all.Up
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

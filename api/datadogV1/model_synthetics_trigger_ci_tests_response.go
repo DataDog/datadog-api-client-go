@@ -217,6 +217,7 @@ func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err erro
 	o.Locations = all.Locations
 	o.Results = all.Results
 	o.TriggeredCheckIds = all.TriggeredCheckIds
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -291,23 +291,30 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.RowType; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Columns = all.Columns
 	o.Env = *all.Env
 	o.Name = *all.Name
 	o.PrimaryTag = *all.PrimaryTag
 	o.Resource = all.Resource
-	o.RowType = *all.RowType
+	if v := all.RowType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.RowType = *all.RowType
+	}
 	o.Service = *all.Service
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

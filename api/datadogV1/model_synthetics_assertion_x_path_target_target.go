@@ -171,6 +171,7 @@ func (o *SyntheticsAssertionXPathTargetTarget) UnmarshalJSON(bytes []byte) (err 
 	o.Operator = all.Operator
 	o.TargetValue = all.TargetValue
 	o.XPath = all.XPath
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

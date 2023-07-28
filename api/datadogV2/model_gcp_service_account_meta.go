@@ -101,6 +101,7 @@ func (o *GCPServiceAccountMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.AccessibleProjects = all.AccessibleProjects
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

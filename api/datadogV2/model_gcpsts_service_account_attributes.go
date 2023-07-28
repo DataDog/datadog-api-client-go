@@ -206,6 +206,7 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.ClientEmail = all.ClientEmail
 	o.HostFilters = all.HostFilters
 	o.IsCspmEnabled = all.IsCspmEnabled
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

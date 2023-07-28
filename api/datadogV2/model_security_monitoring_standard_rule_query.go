@@ -309,23 +309,30 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Aggregation; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Aggregation = all.Aggregation
 	}
-	o.Aggregation = all.Aggregation
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields
 	o.Metric = all.Metric
 	o.Metrics = all.Metrics
 	o.Name = all.Name
 	o.Query = all.Query
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

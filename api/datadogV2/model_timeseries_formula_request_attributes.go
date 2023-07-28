@@ -237,6 +237,7 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Interval = all.Interval
 	o.Queries = *all.Queries
 	o.To = *all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -130,18 +130,25 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Field = *all.Field
 	if v := all.Width; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Width = *all.Width
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Field = *all.Field
-	o.Width = *all.Width
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

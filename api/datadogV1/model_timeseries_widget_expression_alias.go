@@ -135,6 +135,7 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.AliasName = all.AliasName
 	o.Expression = *all.Expression
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

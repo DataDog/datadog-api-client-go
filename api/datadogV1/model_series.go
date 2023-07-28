@@ -290,6 +290,7 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 	o.Points = *all.Points
 	o.Tags = all.Tags
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

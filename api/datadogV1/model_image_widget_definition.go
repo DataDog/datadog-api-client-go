@@ -380,57 +380,48 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.HorizontalAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Margin; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Sizing; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.VerticalAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.HasBackground = all.HasBackground
 	o.HasBorder = all.HasBorder
-	o.HorizontalAlign = all.HorizontalAlign
-	o.Margin = all.Margin
-	o.Sizing = all.Sizing
-	o.Type = *all.Type
+	if v := all.HorizontalAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.HorizontalAlign = all.HorizontalAlign
+	}
+	if v := all.Margin; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Margin = all.Margin
+	}
+	if v := all.Sizing; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Sizing = all.Sizing
+	}
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 	o.Url = *all.Url
 	o.UrlDarkTheme = all.UrlDarkTheme
-	o.VerticalAlign = all.VerticalAlign
+	if v := all.VerticalAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.VerticalAlign = all.VerticalAlign
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

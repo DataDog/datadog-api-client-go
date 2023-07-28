@@ -101,6 +101,7 @@ func (o *GCPSTSDelegateAccountAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	o.DelegateAccountEmail = all.DelegateAccountEmail
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

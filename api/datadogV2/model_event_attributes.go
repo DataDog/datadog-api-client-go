@@ -762,50 +762,50 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AggregationKey = all.AggregationKey
 	o.DateHappened = all.DateHappened
 	o.DeviceName = all.DeviceName
 	o.Duration = all.Duration
 	o.EventObject = all.EventObject
 	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Evt = all.Evt
+	}
+	o.Hostname = all.Hostname
+	o.Monitor = all.Monitor
+	o.MonitorGroups = all.MonitorGroups
+	o.MonitorId = all.MonitorId
+	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Priority = all.Priority
+	}
+	o.RelatedEventId = all.RelatedEventId
+	o.Service = all.Service
+	o.SourceTypeName = all.SourceTypeName
+	o.Sourcecategory = all.Sourcecategory
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+	o.Tags = all.Tags
+	o.Timestamp = all.Timestamp
+	o.Title = all.Title
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Evt = all.Evt
-	o.Hostname = all.Hostname
-	o.Monitor = all.Monitor
-	o.MonitorGroups = all.MonitorGroups
-	o.MonitorId = all.MonitorId
-	o.Priority = all.Priority
-	o.RelatedEventId = all.RelatedEventId
-	o.Service = all.Service
-	o.SourceTypeName = all.SourceTypeName
-	o.Sourcecategory = all.Sourcecategory
-	o.Status = all.Status
-	o.Tags = all.Tags
-	o.Timestamp = all.Timestamp
-	o.Title = all.Title
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

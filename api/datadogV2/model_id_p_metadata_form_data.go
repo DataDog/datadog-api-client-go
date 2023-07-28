@@ -103,6 +103,7 @@ func (o *IdPMetadataFormData) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.IdpFile = all.IdpFile
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

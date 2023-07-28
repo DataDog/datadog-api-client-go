@@ -167,6 +167,7 @@ func (o *CloudflareAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (
 	o.ApiKey = *all.ApiKey
 	o.Email = all.Email
 	o.Name = *all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

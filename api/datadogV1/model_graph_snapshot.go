@@ -173,6 +173,7 @@ func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	o.GraphDef = all.GraphDef
 	o.MetricQuery = all.MetricQuery
 	o.SnapshotUrl = all.SnapshotUrl
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

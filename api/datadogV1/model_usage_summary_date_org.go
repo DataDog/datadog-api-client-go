@@ -3080,6 +3080,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99p = all.VsphereHostTop99p
 	o.VulnManagementHostCountTop99p = all.VulnManagementHostCountTop99p
 	o.WorkflowExecutionsUsageSum = all.WorkflowExecutionsUsageSum
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

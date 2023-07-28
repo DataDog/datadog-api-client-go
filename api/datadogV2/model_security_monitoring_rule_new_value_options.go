@@ -215,44 +215,39 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.ForgetAfter; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.ForgetAfter = all.ForgetAfter
 	}
 	if v := all.LearningDuration; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.LearningDuration = all.LearningDuration
 	}
 	if v := all.LearningMethod; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.LearningMethod = all.LearningMethod
 	}
 	if v := all.LearningThreshold; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.LearningThreshold = all.LearningThreshold
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.ForgetAfter = all.ForgetAfter
-	o.LearningDuration = all.LearningDuration
-	o.LearningMethod = all.LearningMethod
-	o.LearningThreshold = all.LearningThreshold
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

@@ -338,52 +338,47 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.SchemaVersion; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	if all.Contact != nil && all.Contact.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Contact = all.Contact
 	}
-	o.Contact = all.Contact
 	o.Extensions = all.Extensions
 	o.ExternalResources = all.ExternalResources
 	if all.Info.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Info = *all.Info
 	}
-	o.Info = *all.Info
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Integrations = all.Integrations
 	}
-	o.Integrations = all.Integrations
 	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Org = all.Org
 	}
-	o.Org = all.Org
-	o.SchemaVersion = *all.SchemaVersion
+	if v := all.SchemaVersion; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SchemaVersion = *all.SchemaVersion
+	}
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -102,6 +102,7 @@ func (o *SpansMetricUpdateCompute) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.IncludePercentiles = all.IncludePercentiles
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

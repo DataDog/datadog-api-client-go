@@ -213,6 +213,7 @@ func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Message = all.Message
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

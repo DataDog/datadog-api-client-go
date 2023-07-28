@@ -136,6 +136,7 @@ func (o *AuthNMappingUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AttributeKey = all.AttributeKey
 	o.AttributeValue = all.AttributeValue
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

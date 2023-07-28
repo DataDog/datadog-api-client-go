@@ -170,6 +170,7 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Email = *all.Email
 	o.Name = all.Name
 	o.Title = all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

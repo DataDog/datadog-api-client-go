@@ -102,6 +102,7 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	o.Scope = *all.Scope
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

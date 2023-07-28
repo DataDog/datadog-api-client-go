@@ -136,6 +136,7 @@ func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Id = all.Id
 	o.Label = all.Label
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

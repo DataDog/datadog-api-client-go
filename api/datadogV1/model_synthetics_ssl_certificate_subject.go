@@ -311,6 +311,7 @@ func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error
 	o.Ou = all.Ou
 	o.St = all.St
 	o.AltName = all.AltName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

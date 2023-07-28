@@ -387,23 +387,13 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
-	if v := all.Stat; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.DataSource = *all.DataSource
 	o.Env = *all.Env
 	o.IsUpstream = all.IsUpstream
 	o.Name = *all.Name
@@ -412,9 +402,22 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	o.PrimaryTagValue = all.PrimaryTagValue
 	o.ResourceName = *all.ResourceName
 	o.Service = *all.Service
-	o.Stat = *all.Stat
+	if v := all.Stat; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Stat = *all.Stat
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

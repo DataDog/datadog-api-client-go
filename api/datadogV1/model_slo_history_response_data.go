@@ -417,48 +417,45 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.TypeId; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.FromTs = all.FromTs
 	o.GroupBy = all.GroupBy
 	o.Groups = all.Groups
 	o.Monitors = all.Monitors
 	if all.Overall != nil && all.Overall.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Overall = all.Overall
 	}
-	o.Overall = all.Overall
 	if all.Series != nil && all.Series.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Series = all.Series
 	}
-	o.Series = all.Series
 	o.Thresholds = all.Thresholds
 	o.ToTs = all.ToTs
-	o.Type = all.Type
-	o.TypeId = all.TypeId
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+	if v := all.TypeId; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TypeId = all.TypeId
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

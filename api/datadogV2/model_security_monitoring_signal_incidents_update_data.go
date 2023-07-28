@@ -99,16 +99,24 @@ func (o *SecurityMonitoringSignalIncidentsUpdateData) UnmarshalJSON(bytes []byte
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Attributes = *all.Attributes
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Attributes = *all.Attributes
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

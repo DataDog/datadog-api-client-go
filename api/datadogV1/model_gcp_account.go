@@ -562,6 +562,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProjectId = all.ProjectId
 	o.TokenUri = all.TokenUri
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

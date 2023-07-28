@@ -174,6 +174,7 @@ func (o *ConfluentResourceRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.EnableCustomMetrics = all.EnableCustomMetrics
 	o.ResourceType = *all.ResourceType
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

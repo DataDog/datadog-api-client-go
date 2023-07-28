@@ -321,6 +321,7 @@ func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

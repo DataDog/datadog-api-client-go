@@ -217,6 +217,7 @@ func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Last4 = all.Last4
 	o.Name = all.Name
 	o.Scopes = all.Scopes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

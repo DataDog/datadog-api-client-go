@@ -100,6 +100,7 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Focus = *all.Focus
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

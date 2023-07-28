@@ -136,6 +136,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) UnmarshalJSON(bytes []b
 	}
 	o.Id = all.Id
 	o.Key = all.Key
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

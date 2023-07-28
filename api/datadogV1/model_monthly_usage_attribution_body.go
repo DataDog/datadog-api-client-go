@@ -353,6 +353,8 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	o.Month = all.Month
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
@@ -361,15 +363,21 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
 	if all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Values = all.Values
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Values = all.Values
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

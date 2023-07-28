@@ -212,34 +212,35 @@ func (o *NotebookHeatMapCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
-	if v := all.GraphSize; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	if all.Definition.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Definition = *all.Definition
 	}
-	o.Definition = *all.Definition
-	o.GraphSize = all.GraphSize
+	if v := all.GraphSize; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.GraphSize = all.GraphSize
+	}
 	if all.SplitBy != nil && all.SplitBy.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SplitBy = all.SplitBy
 	}
-	o.SplitBy = all.SplitBy
 	o.Time = all.Time
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

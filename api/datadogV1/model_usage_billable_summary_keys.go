@@ -3058,712 +3058,459 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.ApmFargateAverage != nil && all.ApmFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmFargateAverage = all.ApmFargateAverage
 	}
-	o.ApmFargateAverage = all.ApmFargateAverage
 	if all.ApmFargateSum != nil && all.ApmFargateSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmFargateSum = all.ApmFargateSum
 	}
-	o.ApmFargateSum = all.ApmFargateSum
 	if all.ApmHostSum != nil && all.ApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmHostSum = all.ApmHostSum
 	}
-	o.ApmHostSum = all.ApmHostSum
 	if all.ApmHostTop99p != nil && all.ApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmHostTop99p = all.ApmHostTop99p
 	}
-	o.ApmHostTop99p = all.ApmHostTop99p
 	if all.ApmProfilerHostSum != nil && all.ApmProfilerHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmProfilerHostSum = all.ApmProfilerHostSum
 	}
-	o.ApmProfilerHostSum = all.ApmProfilerHostSum
 	if all.ApmProfilerHostTop99p != nil && all.ApmProfilerHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmProfilerHostTop99p = all.ApmProfilerHostTop99p
 	}
-	o.ApmProfilerHostTop99p = all.ApmProfilerHostTop99p
 	if all.ApmTraceSearchSum != nil && all.ApmTraceSearchSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApmTraceSearchSum = all.ApmTraceSearchSum
 	}
-	o.ApmTraceSearchSum = all.ApmTraceSearchSum
 	if all.ApplicationSecurityFargateAverage != nil && all.ApplicationSecurityFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApplicationSecurityFargateAverage = all.ApplicationSecurityFargateAverage
 	}
-	o.ApplicationSecurityFargateAverage = all.ApplicationSecurityFargateAverage
 	if all.ApplicationSecurityHostSum != nil && all.ApplicationSecurityHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApplicationSecurityHostSum = all.ApplicationSecurityHostSum
 	}
-	o.ApplicationSecurityHostSum = all.ApplicationSecurityHostSum
 	if all.ApplicationSecurityHostTop99p != nil && all.ApplicationSecurityHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ApplicationSecurityHostTop99p = all.ApplicationSecurityHostTop99p
 	}
-	o.ApplicationSecurityHostTop99p = all.ApplicationSecurityHostTop99p
 	if all.CiPipelineIndexedSpansSum != nil && all.CiPipelineIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiPipelineIndexedSpansSum = all.CiPipelineIndexedSpansSum
 	}
-	o.CiPipelineIndexedSpansSum = all.CiPipelineIndexedSpansSum
 	if all.CiPipelineMaximum != nil && all.CiPipelineMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiPipelineMaximum = all.CiPipelineMaximum
 	}
-	o.CiPipelineMaximum = all.CiPipelineMaximum
 	if all.CiPipelineSum != nil && all.CiPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiPipelineSum = all.CiPipelineSum
 	}
-	o.CiPipelineSum = all.CiPipelineSum
 	if all.CiTestIndexedSpansSum != nil && all.CiTestIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
 	}
-	o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
 	if all.CiTestingMaximum != nil && all.CiTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiTestingMaximum = all.CiTestingMaximum
 	}
-	o.CiTestingMaximum = all.CiTestingMaximum
 	if all.CiTestingSum != nil && all.CiTestingSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CiTestingSum = all.CiTestingSum
 	}
-	o.CiTestingSum = all.CiTestingSum
 	if all.CloudCostManagementAverage != nil && all.CloudCostManagementAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CloudCostManagementAverage = all.CloudCostManagementAverage
 	}
-	o.CloudCostManagementAverage = all.CloudCostManagementAverage
 	if all.CloudCostManagementSum != nil && all.CloudCostManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CloudCostManagementSum = all.CloudCostManagementSum
 	}
-	o.CloudCostManagementSum = all.CloudCostManagementSum
 	if all.CspmContainerSum != nil && all.CspmContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CspmContainerSum = all.CspmContainerSum
 	}
-	o.CspmContainerSum = all.CspmContainerSum
 	if all.CspmHostSum != nil && all.CspmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CspmHostSum = all.CspmHostSum
 	}
-	o.CspmHostSum = all.CspmHostSum
 	if all.CspmHostTop99p != nil && all.CspmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CspmHostTop99p = all.CspmHostTop99p
 	}
-	o.CspmHostTop99p = all.CspmHostTop99p
 	if all.CustomEventSum != nil && all.CustomEventSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CustomEventSum = all.CustomEventSum
 	}
-	o.CustomEventSum = all.CustomEventSum
 	if all.CwsContainerSum != nil && all.CwsContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CwsContainerSum = all.CwsContainerSum
 	}
-	o.CwsContainerSum = all.CwsContainerSum
 	if all.CwsHostSum != nil && all.CwsHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CwsHostSum = all.CwsHostSum
 	}
-	o.CwsHostSum = all.CwsHostSum
 	if all.CwsHostTop99p != nil && all.CwsHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.CwsHostTop99p = all.CwsHostTop99p
 	}
-	o.CwsHostTop99p = all.CwsHostTop99p
 	if all.DbmHostSum != nil && all.DbmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.DbmHostSum = all.DbmHostSum
 	}
-	o.DbmHostSum = all.DbmHostSum
 	if all.DbmHostTop99p != nil && all.DbmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.DbmHostTop99p = all.DbmHostTop99p
 	}
-	o.DbmHostTop99p = all.DbmHostTop99p
 	if all.DbmNormalizedQueriesAverage != nil && all.DbmNormalizedQueriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.DbmNormalizedQueriesAverage = all.DbmNormalizedQueriesAverage
 	}
-	o.DbmNormalizedQueriesAverage = all.DbmNormalizedQueriesAverage
 	if all.DbmNormalizedQueriesSum != nil && all.DbmNormalizedQueriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.DbmNormalizedQueriesSum = all.DbmNormalizedQueriesSum
 	}
-	o.DbmNormalizedQueriesSum = all.DbmNormalizedQueriesSum
 	if all.FargateContainerApmAndProfilerAverage != nil && all.FargateContainerApmAndProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerApmAndProfilerAverage = all.FargateContainerApmAndProfilerAverage
 	}
-	o.FargateContainerApmAndProfilerAverage = all.FargateContainerApmAndProfilerAverage
 	if all.FargateContainerApmAndProfilerSum != nil && all.FargateContainerApmAndProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerApmAndProfilerSum = all.FargateContainerApmAndProfilerSum
 	}
-	o.FargateContainerApmAndProfilerSum = all.FargateContainerApmAndProfilerSum
 	if all.FargateContainerAverage != nil && all.FargateContainerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerAverage = all.FargateContainerAverage
 	}
-	o.FargateContainerAverage = all.FargateContainerAverage
 	if all.FargateContainerProfilerAverage != nil && all.FargateContainerProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerProfilerAverage = all.FargateContainerProfilerAverage
 	}
-	o.FargateContainerProfilerAverage = all.FargateContainerProfilerAverage
 	if all.FargateContainerProfilerSum != nil && all.FargateContainerProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerProfilerSum = all.FargateContainerProfilerSum
 	}
-	o.FargateContainerProfilerSum = all.FargateContainerProfilerSum
 	if all.FargateContainerSum != nil && all.FargateContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.FargateContainerSum = all.FargateContainerSum
 	}
-	o.FargateContainerSum = all.FargateContainerSum
 	if all.IncidentManagementMaximum != nil && all.IncidentManagementMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IncidentManagementMaximum = all.IncidentManagementMaximum
 	}
-	o.IncidentManagementMaximum = all.IncidentManagementMaximum
 	if all.IncidentManagementSum != nil && all.IncidentManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IncidentManagementSum = all.IncidentManagementSum
 	}
-	o.IncidentManagementSum = all.IncidentManagementSum
 	if all.InfraAndApmHostSum != nil && all.InfraAndApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.InfraAndApmHostSum = all.InfraAndApmHostSum
 	}
-	o.InfraAndApmHostSum = all.InfraAndApmHostSum
 	if all.InfraAndApmHostTop99p != nil && all.InfraAndApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.InfraAndApmHostTop99p = all.InfraAndApmHostTop99p
 	}
-	o.InfraAndApmHostTop99p = all.InfraAndApmHostTop99p
 	if all.InfraContainerSum != nil && all.InfraContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.InfraContainerSum = all.InfraContainerSum
 	}
-	o.InfraContainerSum = all.InfraContainerSum
 	if all.InfraHostSum != nil && all.InfraHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.InfraHostSum = all.InfraHostSum
 	}
-	o.InfraHostSum = all.InfraHostSum
 	if all.InfraHostTop99p != nil && all.InfraHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.InfraHostTop99p = all.InfraHostTop99p
 	}
-	o.InfraHostTop99p = all.InfraHostTop99p
 	if all.IngestedSpansSum != nil && all.IngestedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IngestedSpansSum = all.IngestedSpansSum
 	}
-	o.IngestedSpansSum = all.IngestedSpansSum
 	if all.IngestedTimeseriesAverage != nil && all.IngestedTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IngestedTimeseriesAverage = all.IngestedTimeseriesAverage
 	}
-	o.IngestedTimeseriesAverage = all.IngestedTimeseriesAverage
 	if all.IngestedTimeseriesSum != nil && all.IngestedTimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IngestedTimeseriesSum = all.IngestedTimeseriesSum
 	}
-	o.IngestedTimeseriesSum = all.IngestedTimeseriesSum
 	if all.IotSum != nil && all.IotSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IotSum = all.IotSum
 	}
-	o.IotSum = all.IotSum
 	if all.IotTop99p != nil && all.IotTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.IotTop99p = all.IotTop99p
 	}
-	o.IotTop99p = all.IotTop99p
 	if all.LambdaFunctionAverage != nil && all.LambdaFunctionAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LambdaFunctionAverage = all.LambdaFunctionAverage
 	}
-	o.LambdaFunctionAverage = all.LambdaFunctionAverage
 	if all.LambdaFunctionSum != nil && all.LambdaFunctionSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LambdaFunctionSum = all.LambdaFunctionSum
 	}
-	o.LambdaFunctionSum = all.LambdaFunctionSum
 	if all.LogsForwardingSum != nil && all.LogsForwardingSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsForwardingSum = all.LogsForwardingSum
 	}
-	o.LogsForwardingSum = all.LogsForwardingSum
 	if all.LogsIndexed15daySum != nil && all.LogsIndexed15daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed15daySum = all.LogsIndexed15daySum
 	}
-	o.LogsIndexed15daySum = all.LogsIndexed15daySum
 	if all.LogsIndexed180daySum != nil && all.LogsIndexed180daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed180daySum = all.LogsIndexed180daySum
 	}
-	o.LogsIndexed180daySum = all.LogsIndexed180daySum
 	if all.LogsIndexed30daySum != nil && all.LogsIndexed30daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed30daySum = all.LogsIndexed30daySum
 	}
-	o.LogsIndexed30daySum = all.LogsIndexed30daySum
 	if all.LogsIndexed360daySum != nil && all.LogsIndexed360daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed360daySum = all.LogsIndexed360daySum
 	}
-	o.LogsIndexed360daySum = all.LogsIndexed360daySum
 	if all.LogsIndexed3daySum != nil && all.LogsIndexed3daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed3daySum = all.LogsIndexed3daySum
 	}
-	o.LogsIndexed3daySum = all.LogsIndexed3daySum
 	if all.LogsIndexed45daySum != nil && all.LogsIndexed45daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed45daySum = all.LogsIndexed45daySum
 	}
-	o.LogsIndexed45daySum = all.LogsIndexed45daySum
 	if all.LogsIndexed60daySum != nil && all.LogsIndexed60daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed60daySum = all.LogsIndexed60daySum
 	}
-	o.LogsIndexed60daySum = all.LogsIndexed60daySum
 	if all.LogsIndexed7daySum != nil && all.LogsIndexed7daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed7daySum = all.LogsIndexed7daySum
 	}
-	o.LogsIndexed7daySum = all.LogsIndexed7daySum
 	if all.LogsIndexed90daySum != nil && all.LogsIndexed90daySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexed90daySum = all.LogsIndexed90daySum
 	}
-	o.LogsIndexed90daySum = all.LogsIndexed90daySum
 	if all.LogsIndexedCustomRetentionSum != nil && all.LogsIndexedCustomRetentionSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexedCustomRetentionSum = all.LogsIndexedCustomRetentionSum
 	}
-	o.LogsIndexedCustomRetentionSum = all.LogsIndexedCustomRetentionSum
 	if all.LogsIndexedSum != nil && all.LogsIndexedSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIndexedSum = all.LogsIndexedSum
 	}
-	o.LogsIndexedSum = all.LogsIndexedSum
 	if all.LogsIngestedSum != nil && all.LogsIngestedSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.LogsIngestedSum = all.LogsIngestedSum
 	}
-	o.LogsIngestedSum = all.LogsIngestedSum
 	if all.NetworkDeviceSum != nil && all.NetworkDeviceSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NetworkDeviceSum = all.NetworkDeviceSum
 	}
-	o.NetworkDeviceSum = all.NetworkDeviceSum
 	if all.NetworkDeviceTop99p != nil && all.NetworkDeviceTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NetworkDeviceTop99p = all.NetworkDeviceTop99p
 	}
-	o.NetworkDeviceTop99p = all.NetworkDeviceTop99p
 	if all.NpmFlowSum != nil && all.NpmFlowSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NpmFlowSum = all.NpmFlowSum
 	}
-	o.NpmFlowSum = all.NpmFlowSum
 	if all.NpmHostSum != nil && all.NpmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NpmHostSum = all.NpmHostSum
 	}
-	o.NpmHostSum = all.NpmHostSum
 	if all.NpmHostTop99p != nil && all.NpmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NpmHostTop99p = all.NpmHostTop99p
 	}
-	o.NpmHostTop99p = all.NpmHostTop99p
 	if all.ObservabilityPipelineSum != nil && all.ObservabilityPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ObservabilityPipelineSum = all.ObservabilityPipelineSum
 	}
-	o.ObservabilityPipelineSum = all.ObservabilityPipelineSum
 	if all.OnlineArchiveSum != nil && all.OnlineArchiveSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.OnlineArchiveSum = all.OnlineArchiveSum
 	}
-	o.OnlineArchiveSum = all.OnlineArchiveSum
 	if all.ProfContainerSum != nil && all.ProfContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ProfContainerSum = all.ProfContainerSum
 	}
-	o.ProfContainerSum = all.ProfContainerSum
 	if all.ProfHostSum != nil && all.ProfHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ProfHostSum = all.ProfHostSum
 	}
-	o.ProfHostSum = all.ProfHostSum
 	if all.ProfHostTop99p != nil && all.ProfHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ProfHostTop99p = all.ProfHostTop99p
 	}
-	o.ProfHostTop99p = all.ProfHostTop99p
 	if all.RumLiteSum != nil && all.RumLiteSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.RumLiteSum = all.RumLiteSum
 	}
-	o.RumLiteSum = all.RumLiteSum
 	if all.RumReplaySum != nil && all.RumReplaySum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.RumReplaySum = all.RumReplaySum
 	}
-	o.RumReplaySum = all.RumReplaySum
 	if all.RumSum != nil && all.RumSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.RumSum = all.RumSum
 	}
-	o.RumSum = all.RumSum
 	if all.RumUnitsSum != nil && all.RumUnitsSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.RumUnitsSum = all.RumUnitsSum
 	}
-	o.RumUnitsSum = all.RumUnitsSum
 	if all.SensitiveDataScannerSum != nil && all.SensitiveDataScannerSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SensitiveDataScannerSum = all.SensitiveDataScannerSum
 	}
-	o.SensitiveDataScannerSum = all.SensitiveDataScannerSum
 	if all.ServerlessApmSum != nil && all.ServerlessApmSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ServerlessApmSum = all.ServerlessApmSum
 	}
-	o.ServerlessApmSum = all.ServerlessApmSum
 	if all.ServerlessInfraAverage != nil && all.ServerlessInfraAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ServerlessInfraAverage = all.ServerlessInfraAverage
 	}
-	o.ServerlessInfraAverage = all.ServerlessInfraAverage
 	if all.ServerlessInfraSum != nil && all.ServerlessInfraSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ServerlessInfraSum = all.ServerlessInfraSum
 	}
-	o.ServerlessInfraSum = all.ServerlessInfraSum
 	if all.ServerlessInvocationSum != nil && all.ServerlessInvocationSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ServerlessInvocationSum = all.ServerlessInvocationSum
 	}
-	o.ServerlessInvocationSum = all.ServerlessInvocationSum
 	if all.SiemSum != nil && all.SiemSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SiemSum = all.SiemSum
 	}
-	o.SiemSum = all.SiemSum
 	if all.StandardTimeseriesAverage != nil && all.StandardTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.StandardTimeseriesAverage = all.StandardTimeseriesAverage
 	}
-	o.StandardTimeseriesAverage = all.StandardTimeseriesAverage
 	if all.SyntheticsApiTestsSum != nil && all.SyntheticsApiTestsSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SyntheticsApiTestsSum = all.SyntheticsApiTestsSum
 	}
-	o.SyntheticsApiTestsSum = all.SyntheticsApiTestsSum
 	if all.SyntheticsAppTestingMaximum != nil && all.SyntheticsAppTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SyntheticsAppTestingMaximum = all.SyntheticsAppTestingMaximum
 	}
-	o.SyntheticsAppTestingMaximum = all.SyntheticsAppTestingMaximum
 	if all.SyntheticsBrowserChecksSum != nil && all.SyntheticsBrowserChecksSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SyntheticsBrowserChecksSum = all.SyntheticsBrowserChecksSum
 	}
-	o.SyntheticsBrowserChecksSum = all.SyntheticsBrowserChecksSum
 	if all.TimeseriesAverage != nil && all.TimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.TimeseriesAverage = all.TimeseriesAverage
 	}
-	o.TimeseriesAverage = all.TimeseriesAverage
 	if all.TimeseriesSum != nil && all.TimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.TimeseriesSum = all.TimeseriesSum
 	}
-	o.TimeseriesSum = all.TimeseriesSum
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

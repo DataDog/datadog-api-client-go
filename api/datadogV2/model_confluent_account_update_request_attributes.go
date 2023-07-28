@@ -167,6 +167,7 @@ func (o *ConfluentAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 	o.ApiKey = *all.ApiKey
 	o.ApiSecret = *all.ApiSecret
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

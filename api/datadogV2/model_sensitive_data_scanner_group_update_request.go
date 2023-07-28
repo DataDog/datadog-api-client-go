@@ -130,24 +130,29 @@ func (o *SensitiveDataScannerGroupUpdateRequest) UnmarshalJSON(bytes []byte) (er
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Data = *all.Data
 	}
-	o.Data = *all.Data
 	if all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Meta = *all.Meta
 	}
-	o.Meta = *all.Meta
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

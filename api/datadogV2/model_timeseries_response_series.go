@@ -174,6 +174,7 @@ func (o *TimeseriesResponseSeries) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupTags = all.GroupTags
 	o.QueryIndex = all.QueryIndex
 	o.Unit = all.Unit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

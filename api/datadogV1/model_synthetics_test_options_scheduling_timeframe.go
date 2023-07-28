@@ -171,6 +171,7 @@ func (o *SyntheticsTestOptionsSchedulingTimeframe) UnmarshalJSON(bytes []byte) (
 	o.Day = all.Day
 	o.From = all.From
 	o.To = all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

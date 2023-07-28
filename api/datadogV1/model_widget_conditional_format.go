@@ -365,33 +365,36 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Comparator; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Comparator = *all.Comparator
 	}
-	if v := all.Palette; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Comparator = *all.Comparator
 	o.CustomBgColor = all.CustomBgColor
 	o.CustomFgColor = all.CustomFgColor
 	o.HideValue = all.HideValue
 	o.ImageUrl = all.ImageUrl
 	o.Metric = all.Metric
-	o.Palette = *all.Palette
+	if v := all.Palette; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Palette = *all.Palette
+	}
 	o.Timeframe = all.Timeframe
 	o.Value = *all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

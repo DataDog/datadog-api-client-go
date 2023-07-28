@@ -136,6 +136,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []b
 	}
 	o.Domains = all.Domains
 	o.Enabled = all.Enabled
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

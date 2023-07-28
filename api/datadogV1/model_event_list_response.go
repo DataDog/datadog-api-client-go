@@ -136,6 +136,7 @@ func (o *EventListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Events = all.Events
 	o.Status = all.Status
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

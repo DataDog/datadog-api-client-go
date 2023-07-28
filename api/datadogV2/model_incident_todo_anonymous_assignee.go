@@ -194,20 +194,27 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Icon = *all.Icon
+	o.Id = *all.Id
+	o.Name = *all.Name
 	if v := all.Source; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Source = *all.Source
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Icon = *all.Icon
-	o.Id = *all.Id
-	o.Name = *all.Name
-	o.Source = *all.Source
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

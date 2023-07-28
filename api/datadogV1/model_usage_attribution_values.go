@@ -1886,6 +1886,7 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProfiledHostsUsage = all.ProfiledHostsUsage
 	o.SnmpPercentage = all.SnmpPercentage
 	o.SnmpUsage = all.SnmpUsage
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

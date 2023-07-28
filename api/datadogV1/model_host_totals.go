@@ -136,6 +136,7 @@ func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.TotalActive = all.TotalActive
 	o.TotalUp = all.TotalUp
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

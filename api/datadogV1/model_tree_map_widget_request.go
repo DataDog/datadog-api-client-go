@@ -202,20 +202,27 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Formulas = all.Formulas
+	o.Q = all.Q
+	o.Queries = all.Queries
 	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ResponseFormat = all.ResponseFormat
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Formulas = all.Formulas
-	o.Q = all.Q
-	o.Queries = all.Queries
-	o.ResponseFormat = all.ResponseFormat
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

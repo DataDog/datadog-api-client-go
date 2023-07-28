@@ -134,17 +134,25 @@ func (o *ServiceDefinitionV2Integrations) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Opsgenie = all.Opsgenie
+	}
+	o.Pagerduty = all.Pagerduty
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Opsgenie = all.Opsgenie
-	o.Pagerduty = all.Pagerduty
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

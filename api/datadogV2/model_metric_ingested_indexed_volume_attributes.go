@@ -136,6 +136,7 @@ func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	o.IndexedVolume = all.IndexedVolume
 	o.IngestedVolume = all.IngestedVolume
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

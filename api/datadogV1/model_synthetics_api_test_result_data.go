@@ -373,46 +373,44 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.EventType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	if all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Cert = all.Cert
 	}
-	o.Cert = all.Cert
-	o.EventType = all.EventType
+	if v := all.EventType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.EventType = all.EventType
+	}
 	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Failure = all.Failure
 	}
-	o.Failure = all.Failure
 	o.HttpStatusCode = all.HttpStatusCode
 	o.RequestHeaders = all.RequestHeaders
 	o.ResponseBody = all.ResponseBody
 	o.ResponseHeaders = all.ResponseHeaders
 	o.ResponseSize = all.ResponseSize
 	if all.Timings != nil && all.Timings.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Timings = all.Timings
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Timings = all.Timings
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

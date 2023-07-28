@@ -177,6 +177,7 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = *all.From
 	o.Timezone = all.Timezone
 	o.To = *all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

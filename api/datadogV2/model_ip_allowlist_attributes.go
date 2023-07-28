@@ -136,6 +136,7 @@ func (o *IPAllowlistAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Enabled = all.Enabled
 	o.Entries = all.Entries
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

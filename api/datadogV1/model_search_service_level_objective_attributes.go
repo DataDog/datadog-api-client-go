@@ -679,14 +679,8 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
-	if v := all.SloType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AllTags = all.AllTags
 	o.CreatedAt = all.CreatedAt
 	o.Creator = all.Creator
@@ -699,19 +693,29 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	o.OverallStatus = all.OverallStatus
 	o.Query = all.Query
 	o.ServiceTags = all.ServiceTags
-	o.SloType = all.SloType
+	if v := all.SloType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SloType = all.SloType
+	}
 	if all.Status != nil && all.Status.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+	o.TeamTags = all.TeamTags
+	o.Thresholds = all.Thresholds
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Status = all.Status
-	o.TeamTags = all.TeamTags
-	o.Thresholds = all.Thresholds
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

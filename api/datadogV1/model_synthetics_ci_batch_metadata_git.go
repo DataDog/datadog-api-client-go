@@ -136,6 +136,7 @@ func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Branch = all.Branch
 	o.CommitSha = all.CommitSha
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

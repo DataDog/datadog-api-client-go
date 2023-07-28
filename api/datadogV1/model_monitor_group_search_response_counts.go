@@ -136,6 +136,7 @@ func (o *MonitorGroupSearchResponseCounts) UnmarshalJSON(bytes []byte) (err erro
 	}
 	o.Status = all.Status
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

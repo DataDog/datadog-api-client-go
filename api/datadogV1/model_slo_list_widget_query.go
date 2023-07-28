@@ -174,6 +174,7 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	o.QueryString = *all.QueryString
 	o.Sort = all.Sort
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

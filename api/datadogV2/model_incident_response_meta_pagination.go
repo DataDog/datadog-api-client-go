@@ -171,6 +171,7 @@ func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error)
 	o.NextOffset = all.NextOffset
 	o.Offset = all.Offset
 	o.Size = all.Size
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -171,6 +171,7 @@ func (o *ServiceDefinitionMetaWarnings) UnmarshalJSON(bytes []byte) (err error) 
 	o.InstanceLocation = all.InstanceLocation
 	o.KeywordLocation = all.KeywordLocation
 	o.Message = all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

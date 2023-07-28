@@ -365,54 +365,48 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	} else {
 		return err
 	}
-	if v := all.ArchiveReason; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.State; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.ArchiveComment = all.ArchiveComment
 	o.ArchiveCommentTimestamp = all.ArchiveCommentTimestamp
 	if all.ArchiveCommentUser != nil && all.ArchiveCommentUser.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.ArchiveCommentUser = all.ArchiveCommentUser
 	}
-	o.ArchiveCommentUser = all.ArchiveCommentUser
-	o.ArchiveReason = all.ArchiveReason
+	if v := all.ArchiveReason; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ArchiveReason = all.ArchiveReason
+	}
 	if all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Assignee = *all.Assignee
 	}
-	o.Assignee = *all.Assignee
 	o.IncidentIds = *all.IncidentIds
-	o.State = *all.State
+	if v := all.State; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.State = *all.State
+	}
 	o.StateUpdateTimestamp = all.StateUpdateTimestamp
 	if all.StateUpdateUser != nil && all.StateUpdateUser.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.StateUpdateUser = all.StateUpdateUser
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.StateUpdateUser = all.StateUpdateUser
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

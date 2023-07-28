@@ -279,6 +279,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error
 	o.QueryIndex = all.QueryIndex
 	o.Scope = all.Scope
 	o.Unit = all.Unit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

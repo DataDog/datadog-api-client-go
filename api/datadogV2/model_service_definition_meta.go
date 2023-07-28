@@ -311,6 +311,7 @@ func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Origin = all.Origin
 	o.OriginDetail = all.OriginDetail
 	o.Warnings = all.Warnings
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

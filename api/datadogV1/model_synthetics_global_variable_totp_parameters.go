@@ -136,6 +136,7 @@ func (o *SyntheticsGlobalVariableTOTPParameters) UnmarshalJSON(bytes []byte) (er
 	}
 	o.Digits = all.Digits
 	o.RefreshInterval = all.RefreshInterval
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

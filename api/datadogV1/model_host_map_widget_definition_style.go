@@ -206,6 +206,7 @@ func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.FillMin = all.FillMin
 	o.Palette = all.Palette
 	o.PaletteFlip = all.PaletteFlip
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

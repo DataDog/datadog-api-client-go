@@ -136,6 +136,7 @@ func (o *SLOListResponseMetadataPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.TotalCount = all.TotalCount
 	o.TotalFilteredCount = all.TotalFilteredCount
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

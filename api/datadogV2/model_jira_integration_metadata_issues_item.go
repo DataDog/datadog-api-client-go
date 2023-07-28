@@ -237,6 +237,7 @@ func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err err
 	o.IssuetypeId = all.IssuetypeId
 	o.ProjectKey = *all.ProjectKey
 	o.RedirectUrl = all.RedirectUrl
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -171,6 +171,7 @@ func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 	o.InstallerVersion = all.InstallerVersion
 	o.Tool = all.Tool
 	o.ToolVersion = all.ToolVersion
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

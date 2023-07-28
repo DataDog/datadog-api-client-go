@@ -171,6 +171,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (e
 	o.JsonPath = all.JsonPath
 	o.Operator = all.Operator
 	o.TargetValue = all.TargetValue
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

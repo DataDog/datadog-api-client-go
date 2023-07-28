@@ -139,6 +139,7 @@ func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Deleted = all.Deleted
 	o.Updated = all.Updated
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

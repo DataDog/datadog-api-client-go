@@ -171,6 +171,7 @@ func (o *SpansAggregateBucketAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.By = all.By
 	o.Compute = all.Compute
 	o.Computes = all.Computes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

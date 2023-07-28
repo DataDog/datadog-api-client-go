@@ -136,6 +136,7 @@ func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Host = all.Host
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

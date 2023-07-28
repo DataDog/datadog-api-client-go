@@ -216,6 +216,7 @@ func (o *IPAllowlistEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.ModifiedAt = all.ModifiedAt
 	o.Note = all.Note
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

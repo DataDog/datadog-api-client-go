@@ -226,21 +226,28 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Height = *all.Height
 	if v := all.Id; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Id = *all.Id
+	}
+	o.IsMobile = all.IsMobile
+	o.Name = *all.Name
+	o.Width = *all.Width
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Height = *all.Height
-	o.Id = *all.Id
-	o.IsMobile = all.IsMobile
-	o.Name = *all.Name
-	o.Width = *all.Width
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

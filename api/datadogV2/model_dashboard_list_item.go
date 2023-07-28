@@ -535,22 +535,13 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Author = all.Author
 	}
-	o.Author = all.Author
 	o.Created = all.Created
 	o.Icon = all.Icon
 	o.Id = *all.Id
@@ -561,10 +552,23 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Modified = all.Modified
 	o.Popularity = all.Popularity
 	o.Title = all.Title
-	o.Type = *all.Type
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

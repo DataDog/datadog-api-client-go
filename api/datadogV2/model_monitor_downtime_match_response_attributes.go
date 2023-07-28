@@ -223,6 +223,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Groups = all.Groups
 	o.Scope = all.Scope
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

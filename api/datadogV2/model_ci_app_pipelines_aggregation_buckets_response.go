@@ -101,6 +101,7 @@ func (o *CIAppPipelinesAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (
 		return err
 	}
 	o.Buckets = all.Buckets
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

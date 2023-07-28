@@ -272,22 +272,29 @@ func (o *ReferenceTableLogsLookupProcessor) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		return err
 	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.IsEnabled = all.IsEnabled
 	o.LookupEnrichmentTable = *all.LookupEnrichmentTable
 	o.Name = all.Name
 	o.Source = *all.Source
 	o.Target = *all.Target
-	o.Type = *all.Type
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

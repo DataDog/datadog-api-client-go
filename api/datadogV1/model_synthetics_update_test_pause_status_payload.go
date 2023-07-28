@@ -101,17 +101,24 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.NewStatus; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.NewStatus = all.NewStatus
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.NewStatus = all.NewStatus
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

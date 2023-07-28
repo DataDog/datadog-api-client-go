@@ -168,32 +168,34 @@ func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Table != nil && all.Table.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Table = all.Table
 	}
-	o.Table = all.Table
 	if all.X != nil && all.X.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.X = all.X
 	}
-	o.X = all.X
 	if all.Y != nil && all.Y.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Y = all.Y
 	}
-	o.Y = all.Y
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

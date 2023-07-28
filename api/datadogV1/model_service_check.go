@@ -260,22 +260,29 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Check = *all.Check
+	o.HostName = *all.HostName
+	o.Message = all.Message
 	if v := all.Status; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = *all.Status
+	}
+	o.Tags = *all.Tags
+	o.Timestamp = all.Timestamp
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Check = *all.Check
-	o.HostName = *all.HostName
-	o.Message = all.Message
-	o.Status = *all.Status
-	o.Tags = *all.Tags
-	o.Timestamp = all.Timestamp
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

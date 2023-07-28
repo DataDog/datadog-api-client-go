@@ -100,6 +100,7 @@ func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Series = *all.Series
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

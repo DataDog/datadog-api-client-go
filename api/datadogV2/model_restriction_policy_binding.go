@@ -135,6 +135,7 @@ func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Principals = *all.Principals
 	o.Relation = *all.Relation
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

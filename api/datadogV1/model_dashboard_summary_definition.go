@@ -393,25 +393,32 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.LayoutType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.AuthorHandle = all.AuthorHandle
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Id = all.Id
 	o.IsReadOnly = all.IsReadOnly
-	o.LayoutType = all.LayoutType
+	if v := all.LayoutType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.LayoutType = all.LayoutType
+	}
 	o.ModifiedAt = all.ModifiedAt
 	o.Title = all.Title
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -381,6 +381,7 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Series = all.Series
 	o.Status = all.Status
 	o.ToDate = all.ToDate
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

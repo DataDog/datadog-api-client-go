@@ -684,32 +684,15 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Timeframe; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.ConfiguredAlertIds = all.ConfiguredAlertIds
 	o.CreatedAt = all.CreatedAt
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Creator = all.Creator
 	}
-	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Groups = all.Groups
 	o.Id = all.Id
@@ -718,21 +701,35 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorTags = all.MonitorTags
 	o.Name = all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Query = all.Query
+	}
+	o.Tags = all.Tags
+	o.TargetThreshold = all.TargetThreshold
+	o.Thresholds = all.Thresholds
+	if v := all.Timeframe; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Timeframe = all.Timeframe
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+	o.WarningThreshold = all.WarningThreshold
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Query = all.Query
-	o.Tags = all.Tags
-	o.TargetThreshold = all.TargetThreshold
-	o.Thresholds = all.Thresholds
-	o.Timeframe = all.Timeframe
-	o.Type = all.Type
-	o.WarningThreshold = all.WarningThreshold
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

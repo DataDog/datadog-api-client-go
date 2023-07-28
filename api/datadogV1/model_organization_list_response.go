@@ -101,6 +101,7 @@ func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Orgs = all.Orgs
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

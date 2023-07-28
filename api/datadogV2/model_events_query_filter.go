@@ -183,6 +183,7 @@ func (o *EventsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = all.From
 	o.Query = all.Query
 	o.To = all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

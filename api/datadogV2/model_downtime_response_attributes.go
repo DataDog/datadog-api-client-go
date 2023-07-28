@@ -525,14 +525,8 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Canceled = all.Canceled
 	o.Created = all.Created
 	o.DisplayTimezone = all.DisplayTimezone
@@ -544,9 +538,22 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.NotifyEndTypes = all.NotifyEndTypes
 	o.Schedule = all.Schedule
 	o.Scope = all.Scope
-	o.Status = all.Status
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

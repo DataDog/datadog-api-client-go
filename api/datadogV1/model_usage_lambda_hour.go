@@ -270,6 +270,7 @@ func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.InvocationsSum = all.InvocationsSum
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

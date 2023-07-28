@@ -535,6 +535,7 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = all.Start
 	o.TagSet = all.TagSet
 	o.Unit = all.Unit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

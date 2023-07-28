@@ -182,6 +182,7 @@ func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	o.Email = all.Email
 	o.Id = all.Id
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

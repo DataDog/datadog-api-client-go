@@ -132,6 +132,7 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Palette = *all.Palette
 	o.PaletteFlip = *all.PaletteFlip
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

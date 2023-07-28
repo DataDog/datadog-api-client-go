@@ -136,6 +136,7 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (e
 	}
 	o.Time = all.Time
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

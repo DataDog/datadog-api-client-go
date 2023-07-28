@@ -241,6 +241,7 @@ func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.SortDirection = all.SortDirection
 	o.SortName = all.SortName
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

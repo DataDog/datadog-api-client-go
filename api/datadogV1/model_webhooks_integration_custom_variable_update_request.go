@@ -174,6 +174,7 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) UnmarshalJSON(bytes []b
 	o.IsSecret = all.IsSecret
 	o.Name = all.Name
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -169,18 +169,26 @@ func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Options = all.Options
+	}
+	o.Secure = all.Secure
+	o.Value = all.Value
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Options = all.Options
-	o.Secure = all.Secure
-	o.Value = all.Value
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

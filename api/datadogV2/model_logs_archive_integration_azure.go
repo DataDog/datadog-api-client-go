@@ -132,6 +132,7 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ClientId = *all.ClientId
 	o.TenantId = *all.TenantId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

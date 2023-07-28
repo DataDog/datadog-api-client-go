@@ -102,6 +102,7 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []by
 		return err
 	}
 	o.BaselineUserLocations = all.BaselineUserLocations
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

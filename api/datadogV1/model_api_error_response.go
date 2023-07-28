@@ -100,6 +100,7 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Errors = *all.Errors
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

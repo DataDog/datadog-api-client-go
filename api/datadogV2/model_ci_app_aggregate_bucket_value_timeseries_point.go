@@ -142,6 +142,7 @@ func (o *CIAppAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (
 	}
 	o.Time = all.Time
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

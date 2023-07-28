@@ -346,6 +346,7 @@ func (o *TeamsResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.PrevOffset = all.PrevOffset
 	o.Total = all.Total
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

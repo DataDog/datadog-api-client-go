@@ -475,34 +475,39 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	o.BrowserType = all.BrowserType
 	o.BrowserVersion = all.BrowserVersion
 	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Device = all.Device
 	}
-	o.Device = all.Device
 	o.Duration = all.Duration
 	o.Error = all.Error
 	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Failure = all.Failure
 	}
-	o.Failure = all.Failure
 	o.Passed = all.Passed
 	o.ReceivedEmailCount = all.ReceivedEmailCount
 	o.StartUrl = all.StartUrl
 	o.StepDetails = all.StepDetails
 	o.ThumbnailsBucketKey = all.ThumbnailsBucketKey
 	o.TimeToInteractive = all.TimeToInteractive
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

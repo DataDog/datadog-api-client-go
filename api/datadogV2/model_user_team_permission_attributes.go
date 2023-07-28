@@ -101,6 +101,7 @@ func (o *UserTeamPermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Permissions = all.Permissions
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

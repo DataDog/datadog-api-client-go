@@ -222,6 +222,7 @@ func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error)
 	o.Notified = all.Notified
 	o.Snapshot = all.Snapshot
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

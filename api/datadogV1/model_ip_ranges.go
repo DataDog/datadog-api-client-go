@@ -474,90 +474,71 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Agents != nil && all.Agents.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Agents = all.Agents
 	}
-	o.Agents = all.Agents
 	if all.Api != nil && all.Api.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Api = all.Api
 	}
-	o.Api = all.Api
 	if all.Apm != nil && all.Apm.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Apm = all.Apm
 	}
-	o.Apm = all.Apm
 	if all.Logs != nil && all.Logs.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Logs = all.Logs
 	}
-	o.Logs = all.Logs
 	o.Modified = all.Modified
 	if all.Orchestrator != nil && all.Orchestrator.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Orchestrator = all.Orchestrator
 	}
-	o.Orchestrator = all.Orchestrator
 	if all.Process != nil && all.Process.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Process = all.Process
 	}
-	o.Process = all.Process
 	if all.RemoteConfiguration != nil && all.RemoteConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.RemoteConfiguration = all.RemoteConfiguration
 	}
-	o.RemoteConfiguration = all.RemoteConfiguration
 	if all.Synthetics != nil && all.Synthetics.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Synthetics = all.Synthetics
 	}
-	o.Synthetics = all.Synthetics
 	if all.SyntheticsPrivateLocations != nil && all.SyntheticsPrivateLocations.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.SyntheticsPrivateLocations = all.SyntheticsPrivateLocations
 	}
-	o.SyntheticsPrivateLocations = all.SyntheticsPrivateLocations
 	o.Version = all.Version
 	if all.Webhooks != nil && all.Webhooks.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Webhooks = all.Webhooks
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Webhooks = all.Webhooks
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

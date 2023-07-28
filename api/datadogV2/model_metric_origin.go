@@ -183,6 +183,7 @@ func (o *MetricOrigin) UnmarshalJSON(bytes []byte) (err error) {
 	o.MetricType = all.MetricType
 	o.Product = all.Product
 	o.Service = all.Service
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

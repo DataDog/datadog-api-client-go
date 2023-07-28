@@ -134,17 +134,25 @@ func (o *TimeseriesFormulaQueryResponse) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Data = all.Data
+	}
+	o.Errors = all.Errors
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Data = all.Data
-	o.Errors = all.Errors
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

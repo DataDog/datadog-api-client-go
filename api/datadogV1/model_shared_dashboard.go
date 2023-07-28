@@ -475,49 +475,46 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.DashboardType; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.ShareType; v.Get() != nil && !v.Get().IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Author = all.Author
 	}
-	o.Author = all.Author
 	o.CreatedAt = all.CreatedAt
 	o.DashboardId = *all.DashboardId
-	o.DashboardType = *all.DashboardType
-	if all.GlobalTime != nil && all.GlobalTime.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+	if v := all.DashboardType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DashboardType = *all.DashboardType
 	}
-	o.GlobalTime = all.GlobalTime
+	if all.GlobalTime != nil && all.GlobalTime.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.GlobalTime = all.GlobalTime
+	}
 	o.GlobalTimeSelectableEnabled = all.GlobalTimeSelectableEnabled
 	o.PublicUrl = all.PublicUrl
 	o.SelectableTemplateVars = all.SelectableTemplateVars
 	o.ShareList = all.ShareList
-	o.ShareType = all.ShareType
+	if v := all.ShareType; v.Get() != nil && !v.Get().IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ShareType = all.ShareType
+	}
 	o.Token = all.Token
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

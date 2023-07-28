@@ -143,6 +143,7 @@ func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.DeletedAt = all.DeletedAt
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -394,6 +394,7 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = *all.Type
 	o.UpdatedAt = *all.UpdatedAt
 	o.UpdatedByHandle = *all.UpdatedByHandle
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

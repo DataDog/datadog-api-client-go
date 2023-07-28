@@ -241,6 +241,7 @@ func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Last4 = all.Last4
 	o.ModifiedAt = all.ModifiedAt
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

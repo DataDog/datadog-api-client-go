@@ -171,6 +171,7 @@ func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AccessKeyId = all.AccessKeyId
 	o.AccountId = all.AccountId
 	o.RoleName = all.RoleName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

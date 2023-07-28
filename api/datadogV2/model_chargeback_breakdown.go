@@ -171,6 +171,7 @@ func (o *ChargebackBreakdown) UnmarshalJSON(bytes []byte) (err error) {
 	o.ChargeType = all.ChargeType
 	o.Cost = all.Cost
 	o.ProductName = all.ProductName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

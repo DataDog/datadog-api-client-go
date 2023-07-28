@@ -202,6 +202,7 @@ func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.Handle = *all.Handle
 	o.Name = *all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

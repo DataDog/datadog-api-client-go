@@ -133,18 +133,25 @@ func (o *ServiceDefinitionV2Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Region; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Region = all.Region
+	}
+	o.ServiceUrl = *all.ServiceUrl
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Region = all.Region
-	o.ServiceUrl = *all.ServiceUrl
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

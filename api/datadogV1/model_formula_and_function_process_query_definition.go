@@ -369,41 +369,40 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if v := all.Aggregator; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Aggregator = all.Aggregator
 	}
 	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Aggregator = all.Aggregator
-	o.DataSource = *all.DataSource
 	o.IsNormalizedCpu = all.IsNormalizedCpu
 	o.Limit = all.Limit
 	o.Metric = *all.Metric
 	o.Name = *all.Name
-	o.Sort = all.Sort
+	if v := all.Sort; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Sort = all.Sort
+	}
 	o.TagFilters = all.TagFilters
 	o.TextFilter = all.TextFilter
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

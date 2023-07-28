@@ -727,6 +727,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.TimeToRepair = all.TimeToRepair
 	o.TimeToResolve = all.TimeToResolve
 	o.Title = *all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

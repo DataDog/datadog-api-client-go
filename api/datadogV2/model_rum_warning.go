@@ -171,6 +171,7 @@ func (o *RUMWarning) UnmarshalJSON(bytes []byte) (err error) {
 	o.Code = all.Code
 	o.Detail = all.Detail
 	o.Title = all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

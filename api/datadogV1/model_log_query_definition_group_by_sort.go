@@ -164,19 +164,26 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Aggregation = *all.Aggregation
+	o.Facet = all.Facet
 	if v := all.Order; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Order = *all.Order
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Aggregation = *all.Aggregation
-	o.Facet = all.Facet
-	o.Order = *all.Order
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

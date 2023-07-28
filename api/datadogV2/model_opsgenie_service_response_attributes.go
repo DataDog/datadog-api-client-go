@@ -179,19 +179,26 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.CustomUrl = all.CustomUrl
+	o.Name = all.Name
 	if v := all.Region; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Region = all.Region
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.CustomUrl = all.CustomUrl
-	o.Name = all.Name
-	o.Region = all.Region
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

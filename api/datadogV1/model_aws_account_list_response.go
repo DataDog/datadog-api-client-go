@@ -101,6 +101,7 @@ func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Accounts = all.Accounts
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

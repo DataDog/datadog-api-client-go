@@ -136,6 +136,7 @@ func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Data = all.Data
 	o.Errors = all.Errors
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

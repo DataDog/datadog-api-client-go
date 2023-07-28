@@ -135,6 +135,7 @@ func (o *IncidentAttachmentsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Data = *all.Data
 	o.Included = all.Included
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

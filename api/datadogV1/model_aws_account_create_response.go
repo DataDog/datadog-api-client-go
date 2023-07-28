@@ -101,6 +101,7 @@ func (o *AWSAccountCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ExternalId = all.ExternalId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

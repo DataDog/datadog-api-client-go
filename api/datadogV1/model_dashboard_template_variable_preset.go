@@ -136,6 +136,7 @@ func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Name = all.Name
 	o.TemplateVariables = all.TemplateVariables
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -112,6 +112,7 @@ func (o *MonthlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	o.NextRecordId = all.NextRecordId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

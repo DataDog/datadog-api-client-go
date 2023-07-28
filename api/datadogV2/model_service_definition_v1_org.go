@@ -136,6 +136,7 @@ func (o *ServiceDefinitionV1Org) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Application = all.Application
 	o.Team = all.Team
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

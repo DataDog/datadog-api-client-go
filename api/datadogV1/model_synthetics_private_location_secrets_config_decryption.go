@@ -101,6 +101,7 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes [
 		return err
 	}
 	o.Key = all.Key
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

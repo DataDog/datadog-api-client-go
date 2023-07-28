@@ -232,6 +232,7 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	o.Width = *all.Width
 	o.X = *all.X
 	o.Y = *all.Y
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

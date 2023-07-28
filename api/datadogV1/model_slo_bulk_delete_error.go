@@ -163,19 +163,26 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Id = *all.Id
+	o.Message = *all.Message
 	if v := all.Timeframe; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Timeframe = *all.Timeframe
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Id = *all.Id
-	o.Message = *all.Message
-	o.Timeframe = *all.Timeframe
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

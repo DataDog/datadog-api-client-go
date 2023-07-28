@@ -269,36 +269,37 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.Alias = all.Alias
-	o.CellDisplayMode = all.CellDisplayMode
+	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CellDisplayMode = all.CellDisplayMode
+	}
 	o.ConditionalFormats = all.ConditionalFormats
 	o.Formula = *all.Formula
 	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Limit = all.Limit
 	}
-	o.Limit = all.Limit
 	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Style = all.Style
 	}
-	o.Style = all.Style
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

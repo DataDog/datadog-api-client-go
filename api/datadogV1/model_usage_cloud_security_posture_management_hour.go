@@ -499,6 +499,7 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 	o.Hour = all.Hour
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

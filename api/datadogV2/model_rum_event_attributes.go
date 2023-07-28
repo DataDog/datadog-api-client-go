@@ -214,6 +214,7 @@ func (o *RUMEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

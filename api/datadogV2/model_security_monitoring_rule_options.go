@@ -379,78 +379,60 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.ComplianceRuleOptions = all.ComplianceRuleOptions
+	}
+	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
 	if v := all.DetectionMethod; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DetectionMethod = all.DetectionMethod
 	}
 	if v := all.EvaluationWindow; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.EvaluationWindow = all.EvaluationWindow
 	}
 	if v := all.HardcodedEvaluatorType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
+	}
+	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
 	}
 	if v := all.KeepAlive; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.KeepAlive = all.KeepAlive
 	}
 	if v := all.MaxSignalDuration; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.MaxSignalDuration = all.MaxSignalDuration
 	}
-	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.ComplianceRuleOptions = all.ComplianceRuleOptions
-	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
-	o.DetectionMethod = all.DetectionMethod
-	o.EvaluationWindow = all.EvaluationWindow
-	o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
-	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-	}
-	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
-	o.KeepAlive = all.KeepAlive
-	o.MaxSignalDuration = all.MaxSignalDuration
 	if all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.NewValueOptions = all.NewValueOptions
 	}
-	o.NewValueOptions = all.NewValueOptions
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

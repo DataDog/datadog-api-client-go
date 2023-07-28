@@ -381,6 +381,7 @@ func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Fields = all.Fields
 	o.NotificationHandles = all.NotificationHandles
 	o.Title = all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

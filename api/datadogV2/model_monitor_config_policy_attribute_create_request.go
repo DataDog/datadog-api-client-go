@@ -132,18 +132,25 @@ func (o *MonitorConfigPolicyAttributeCreateRequest) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Policy = *all.Policy
 	if v := all.PolicyType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.PolicyType = *all.PolicyType
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Policy = *all.Policy
-	o.PolicyType = *all.PolicyType
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

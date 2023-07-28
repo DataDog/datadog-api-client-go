@@ -101,6 +101,7 @@ func (o *SyntheticsPrivateLocationMetadata) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	o.RestrictedRoles = all.RestrictedRoles
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

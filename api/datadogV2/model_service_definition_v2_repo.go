@@ -167,6 +167,7 @@ func (o *ServiceDefinitionV2Repo) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = *all.Name
 	o.Provider = all.Provider
 	o.Url = *all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

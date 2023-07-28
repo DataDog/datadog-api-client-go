@@ -133,18 +133,25 @@ func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
+	o.Notifications = all.Notifications
 	if v := all.Status; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = *all.Status
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Notifications = all.Notifications
-	o.Status = *all.Status
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

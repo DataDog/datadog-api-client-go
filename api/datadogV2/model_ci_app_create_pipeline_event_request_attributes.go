@@ -170,6 +170,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) UnmarshalJSON(bytes []byte) 
 	o.Env = all.Env
 	o.Resource = *all.Resource
 	o.Service = all.Service
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

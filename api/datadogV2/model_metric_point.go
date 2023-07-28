@@ -137,6 +137,7 @@ func (o *MetricPoint) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Timestamp = all.Timestamp
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

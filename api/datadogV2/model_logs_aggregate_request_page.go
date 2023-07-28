@@ -101,6 +101,7 @@ func (o *LogsAggregateRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Cursor = all.Cursor
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

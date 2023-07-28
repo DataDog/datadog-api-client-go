@@ -409,6 +409,7 @@ func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Title = all.Title
 	o.Verified = all.Verified
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

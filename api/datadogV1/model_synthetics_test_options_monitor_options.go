@@ -103,6 +103,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	o.RenotifyInterval = all.RenotifyInterval
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

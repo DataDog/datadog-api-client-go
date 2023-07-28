@@ -246,6 +246,7 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Hostname = all.Hostname
 	o.Message = *all.Message
 	o.Service = all.Service
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

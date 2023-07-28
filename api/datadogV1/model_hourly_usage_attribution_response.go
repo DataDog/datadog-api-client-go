@@ -134,17 +134,25 @@ func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Metadata = all.Metadata
+	}
+	o.Usage = all.Usage
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Metadata = all.Metadata
-	o.Usage = all.Usage
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

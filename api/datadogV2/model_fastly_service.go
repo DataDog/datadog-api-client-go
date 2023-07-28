@@ -135,6 +135,7 @@ func (o *FastlyService) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Id = *all.Id
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

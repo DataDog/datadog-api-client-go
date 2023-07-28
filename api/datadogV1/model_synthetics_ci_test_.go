@@ -541,6 +541,8 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	var hasInvalidField bool
 	o.AllowInsecureCertificates = all.AllowInsecureCertificates
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
@@ -551,26 +553,29 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Headers = all.Headers
 	o.Locations = all.Locations
 	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
+	} else {
+		o.Metadata = all.Metadata
 	}
-	o.Metadata = all.Metadata
 	o.PublicId = *all.PublicId
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	} else {
+		o.Retry = all.Retry
+	}
+	o.StartUrl = all.StartUrl
+	o.Variables = all.Variables
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Retry = all.Retry
-	o.StartUrl = all.StartUrl
-	o.Variables = all.Variables
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

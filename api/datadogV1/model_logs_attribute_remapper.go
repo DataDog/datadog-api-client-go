@@ -425,22 +425,8 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.TargetFormat; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	var hasInvalidField bool
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.OverrideOnConflict = all.OverrideOnConflict
@@ -448,11 +434,28 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.SourceType = all.SourceType
 	o.Sources = *all.Sources
 	o.Target = *all.Target
-	o.TargetFormat = all.TargetFormat
+	if v := all.TargetFormat; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TargetFormat = all.TargetFormat
+	}
 	o.TargetType = all.TargetType
-	o.Type = *all.Type
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

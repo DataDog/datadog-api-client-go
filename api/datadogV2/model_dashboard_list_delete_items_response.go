@@ -101,6 +101,7 @@ func (o *DashboardListDeleteItemsResponse) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	o.DeletedDashboardsFromList = all.DeletedDashboardsFromList
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

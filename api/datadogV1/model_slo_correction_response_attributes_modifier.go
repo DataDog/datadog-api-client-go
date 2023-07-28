@@ -171,6 +171,7 @@ func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (e
 	o.Email = all.Email
 	o.Handle = all.Handle
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
