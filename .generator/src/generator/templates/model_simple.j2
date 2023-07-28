@@ -387,7 +387,6 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- set isNullable = spec.nullable %}
 
 	{%- if spec.enum is defined %}
-
 	if v := all.{{ propertyName }}; {% if attr not in model.get("required", []) and not isNullable %}v != nil && {%- endif %}{%- if isNullable %}v.Get() != nil && !v.Get(){% else %}!v{%- endif %}.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -398,7 +397,6 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		{%- endif %}
 	}
 	{%- elif dataType in models and not spec.enum and not spec.oneOf %}
-
 	if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	} else {
@@ -420,6 +418,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- endfor %}
 
 	{%- if model.additionalProperties is not false %}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
