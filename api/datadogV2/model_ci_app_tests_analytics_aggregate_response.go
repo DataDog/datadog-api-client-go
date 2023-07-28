@@ -17,7 +17,7 @@ type CIAppTestsAnalyticsAggregateResponse struct {
 	// Links attributes.
 	Links *CIAppResponseLinks `json:"links,omitempty"`
 	// The metadata associated with a request.
-	Meta *CIAppResponseMetadata `json:"meta,omitempty"`
+	Meta *CIAppResponseMetadataWithPagination `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -97,9 +97,9 @@ func (o *CIAppTestsAnalyticsAggregateResponse) SetLinks(v CIAppResponseLinks) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *CIAppTestsAnalyticsAggregateResponse) GetMeta() CIAppResponseMetadata {
+func (o *CIAppTestsAnalyticsAggregateResponse) GetMeta() CIAppResponseMetadataWithPagination {
 	if o == nil || o.Meta == nil {
-		var ret CIAppResponseMetadata
+		var ret CIAppResponseMetadataWithPagination
 		return ret
 	}
 	return *o.Meta
@@ -107,7 +107,7 @@ func (o *CIAppTestsAnalyticsAggregateResponse) GetMeta() CIAppResponseMetadata {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppTestsAnalyticsAggregateResponse) GetMetaOk() (*CIAppResponseMetadata, bool) {
+func (o *CIAppTestsAnalyticsAggregateResponse) GetMetaOk() (*CIAppResponseMetadataWithPagination, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -119,8 +119,8 @@ func (o *CIAppTestsAnalyticsAggregateResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given CIAppResponseMetadata and assigns it to the Meta field.
-func (o *CIAppTestsAnalyticsAggregateResponse) SetMeta(v CIAppResponseMetadata) {
+// SetMeta gets a reference to the given CIAppResponseMetadataWithPagination and assigns it to the Meta field.
+func (o *CIAppTestsAnalyticsAggregateResponse) SetMeta(v CIAppResponseMetadataWithPagination) {
 	o.Meta = &v
 }
 
@@ -152,7 +152,7 @@ func (o *CIAppTestsAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err 
 	all := struct {
 		Data  *CIAppTestsAggregationBucketsResponse `json:"data,omitempty"`
 		Links *CIAppResponseLinks                   `json:"links,omitempty"`
-		Meta  *CIAppResponseMetadata                `json:"meta,omitempty"`
+		Meta  *CIAppResponseMetadataWithPagination  `json:"meta,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)

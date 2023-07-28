@@ -1,6 +1,5 @@
 """Data formatter."""
 from functools import singledispatch
-import warnings
 import re
 
 import dateutil.parser
@@ -327,6 +326,50 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
     return parameters
 
 
+def _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs):
+    matched = 0
+    one_of_schema = None
+    for sub_schema in schema["oneOf"]:
+        try:
+            if "items" in sub_schema and not isinstance(data, list):
+                continue
+            if sub_schema.get("nullable") and data is None:
+                # only one schema can be nullable
+                formatted = "nil"
+            else:
+                sub_schema["nullable"] = False
+                formatted = format_data_with_schema(
+                    data,
+                    sub_schema,
+                    name_prefix=name_prefix,
+                    replace_values=replace_values,
+                    **kwargs,
+                )
+            if matched == 0:
+                one_of_schema = sub_schema
+                # NOTE we do not support mixed schemas with oneOf
+                # parameters += formatted
+                parameters = formatted
+            matched += 1
+        except (KeyError, ValueError, TypeError) as e:
+            print(f"{e}")
+
+    if matched != 1:
+        raise ValueError(f"[{matched}] {data} is not valid for schema {name}")
+
+    one_of_schema_name = schema_name(one_of_schema)
+    if not one_of_schema_name:
+        one_of_schema_name = simple_type(one_of_schema).title()
+    reference = "" if required or nullable else "&"
+    if name:
+        if one_of_schema.get("type") == "array":
+            parameters = f"&{parameters}"
+        return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
+    if one_of_schema.get("type") == "array":
+        reference = "&"
+    return f"{{{one_of_schema_name}: {reference}{parameters}}}"
+
+
 @singledispatch
 def format_data_with_schema(
     data,
@@ -350,7 +393,7 @@ def format_data_with_schema(
         if nullable and data is None:
             pass
         elif data not in schema["enum"]:
-                raise ValueError(f"{data} is not valid enum value {schema['enum']}")
+            raise ValueError(f"{data} is not valid enum value {schema['enum']}")
 
     if replace_values and data in replace_values:
         parameters = replace_values[data]
@@ -384,12 +427,18 @@ def format_data_with_schema(
                 d = dateutil.parser.isoparse(x)
                 return f"time.Date({d.year}, {d.month}, {d.day}, {d.hour}, {d.minute}, {d.second}, {d.microsecond}, time.UTC)"
 
-            schema = schema.copy()
+            def format_double(x):
+                if isinstance(x, (bool, str)):
+                    raise TypeError(f"{x} is not supported type {schema}")
+                return str(x)
+
+            def format_number(x):
+                if isinstance(x, bool):
+                    raise TypeError(f"{x} is not supported type {schema}")
+                return str(x)
 
             def format_interface(x):
-                if isinstance(x, int):
-                    return str(x)
-                if isinstance(x, float):
+                if isinstance(x, (int, float)):
                     return str(x)
                 if isinstance(x, str):
                     return format_string(x)
@@ -406,9 +455,9 @@ def format_data_with_schema(
             formatter = {
                 "int32": str,
                 "int64": str,
-                "double": str,
+                "double": format_double,
                 "date-time": format_datetime,
-                "number": str,
+                "number": format_number,
                 "integer": str,
                 "boolean": format_bool,
                 "string": format_string,
@@ -445,44 +494,7 @@ def format_data_with_schema(
         return reference_to_value(schema, parameters, print_nullable=not in_list, **kwargs)
 
     if "oneOf" in schema:
-        matched = 0
-        one_of_schema = None
-        for sub_schema in schema["oneOf"]:
-            try:
-                if sub_schema.get("nullable") and data is None:
-                    # only one schema can be nullable
-                    formatted = "nil"
-                else:
-                    sub_schema["nullable"] = False
-                    formatted = format_data_with_schema(
-                        data,
-                        sub_schema,
-                        name_prefix=name_prefix,
-                        replace_values=replace_values,
-                        **kwargs,
-                    )
-                if matched == 0:
-                    one_of_schema = sub_schema
-                    # NOTE we do not support mixed schemas with oneOf
-                    # parameters += formatted
-                    parameters = formatted
-                matched += 1
-            except (KeyError, ValueError, TypeError) as e:
-                print(f"{e}")
-
-        if matched == 0:
-            raise ValueError(f"[{matched}] {data} is not valid for schema {name}")
-        elif matched > 1:
-            warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
-
-        one_of_schema_name = schema_name(one_of_schema)
-        if not one_of_schema_name:
-            one_of_schema_name = simple_type(one_of_schema).title()
-        reference = "" if required or nullable else "&"
-        if name:
-            return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
-        else:
-            return f"{{{one_of_schema_name}: {reference}{parameters}}}"
+        return _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs)
 
     return parameters
 
@@ -504,38 +516,7 @@ def format_data_with_schema_list(
     nullable = schema.get("nullable")
 
     if "oneOf" in schema:
-        parameters = ""
-        matched = 0
-        one_of_schema = None
-        for sub_schema in schema["oneOf"]:
-            try:
-                if sub_schema.get("nullable") and data is None:
-                    formatted = "nil"
-                else:
-                    sub_schema["nullable"] = False
-                    formatted = format_data_with_schema(
-                        data,
-                        sub_schema,
-                        name_prefix=name_prefix,
-                        replace_values=replace_values,
-                        **kwargs,
-                    )
-                if matched == 0:
-                    one_of_schema = sub_schema
-                    parameters = formatted
-                matched += 1
-            except (KeyError, ValueError) as e:
-                print(f"{e}")
-
-        if matched == 0:
-            raise ValueError(f"[{matched}] {data} is not valid for schema {schema}")
-        elif matched > 1:
-            warnings.warn(f"[{matched}] {data} is not valid for schema {schema}")
-
-        one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
-        reference = "" if one_of_schema.get("required", False) else "&"
-        prefix = f"{name_prefix}{schema_name(schema)}" if schema_name(schema) else ""
-        return f"{prefix}{{{one_of_schema_name}: {reference}{parameters}}}"
+        return _format_oneof(schema, data, schema_name(schema), name_prefix, replace_values, required, nullable, **kwargs)
 
     parameters = ""
     # collect nested array types until you find a non-array type
@@ -550,14 +531,13 @@ def format_data_with_schema_list(
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
     nested_schema_name = schema_name(list_schema)
     if "oneOf" in list_schema:
-        if schema_name(list_schema):
-            nested_schema_name = f"{name_prefix}{schema_name(list_schema)}"
+        if nested_schema_name:
+            nested_schema_name = f"{name_prefix}{nested_schema_name}"
         elif schema_name(schema['items']):
             nested_schema_name = f"{name_prefix}{schema_name(schema['items'])}Item"
         else:
             nested_schema_name = "interface{}"
     else:
-        nested_schema_name = schema_name(list_schema)
         nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
 
     nested_type = simple_type(list_schema)
@@ -588,7 +568,7 @@ def format_data_with_schema_list(
         return parameters
 
     if nullable and is_primitive(list_schema):
-        name_prefix="datadog.NewNullableList"
+        name_prefix = "datadog.NewNullableList"
         return f"*{name_prefix}(&{nested_simple_type_name}{{\n{parameters}}})"
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
@@ -674,38 +654,7 @@ def format_data_with_schema_dict(
             return f"map[string]{nested_schema_name}{{\n{parameters}}}"
 
     if "oneOf" in schema:
-        matched = 0
-        one_of_schema = None
-        for sub_schema in schema["oneOf"]:
-            try:
-                if sub_schema.get("nullable") and data is None:
-                    # only one schema can be nullable
-                    formatted = "nil"
-                else:
-                    sub_schema["nullable"] = False
-                    formatted = format_data_with_schema(
-                        data,
-                        sub_schema,
-                        name_prefix=name_prefix,
-                        replace_values=replace_values,
-                        **kwargs,
-                    )
-                if matched == 0:
-                    one_of_schema = sub_schema
-                    # NOTE we do not support mixed schemas with oneOf
-                    # parameters += formatted
-                    parameters = formatted
-                matched += 1
-            except (KeyError, ValueError) as e:
-                print(f"{e}")
-
-        if matched == 0:
-            raise ValueError(f"[{matched}] {data} is not valid for schema {name}")
-        elif matched > 1:
-            warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
-
-        one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
-        return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
+        return _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs)
 
     if schema.get("type") == "object" and "properties" not in schema:
         if schema.get("additionalProperties") == {}:
@@ -718,13 +667,10 @@ def format_data_with_schema_dict(
             return "new(interface{})"
 
     if not name:
-        warnings.warn(f"Unnamed schema {schema} for {data}")
-        name_prefix = ""
-        name = "map[string]interface"
+        raise ValueError(f"Unnamed schema {schema} for {data}")
 
-    if parameters == "":
-        # TODO select oneOf based on data
-        warnings.warn(f"No schema matched for {data}")
+    if parameters == "" and schema.get("type") == "string":
+        raise ValueError(f"No schema matched for {data}")
 
     if nullable:
         return f"*{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"

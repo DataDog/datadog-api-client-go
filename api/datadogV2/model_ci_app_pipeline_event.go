@@ -13,7 +13,7 @@ import (
 // CIAppPipelineEvent Object description of a pipeline event after being processed and stored by Datadog.
 type CIAppPipelineEvent struct {
 	// JSON object containing all event attributes and their associated values.
-	Attributes *CIAppEventAttributes `json:"attributes,omitempty"`
+	Attributes *CIAppPipelineEventAttributes `json:"attributes,omitempty"`
 	// Unique ID of the event.
 	Id *string `json:"id,omitempty"`
 	// Type of the event.
@@ -41,9 +41,9 @@ func NewCIAppPipelineEventWithDefaults() *CIAppPipelineEvent {
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *CIAppPipelineEvent) GetAttributes() CIAppEventAttributes {
+func (o *CIAppPipelineEvent) GetAttributes() CIAppPipelineEventAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret CIAppEventAttributes
+		var ret CIAppPipelineEventAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -51,7 +51,7 @@ func (o *CIAppPipelineEvent) GetAttributes() CIAppEventAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppPipelineEvent) GetAttributesOk() (*CIAppEventAttributes, bool) {
+func (o *CIAppPipelineEvent) GetAttributesOk() (*CIAppPipelineEventAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *CIAppPipelineEvent) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given CIAppEventAttributes and assigns it to the Attributes field.
-func (o *CIAppPipelineEvent) SetAttributes(v CIAppEventAttributes) {
+// SetAttributes gets a reference to the given CIAppPipelineEventAttributes and assigns it to the Attributes field.
+func (o *CIAppPipelineEvent) SetAttributes(v CIAppPipelineEventAttributes) {
 	o.Attributes = &v
 }
 
@@ -150,9 +150,9 @@ func (o CIAppPipelineEvent) MarshalJSON() ([]byte, error) {
 func (o *CIAppPipelineEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *CIAppEventAttributes       `json:"attributes,omitempty"`
-		Id         *string                     `json:"id,omitempty"`
-		Type       *CIAppPipelineEventTypeName `json:"type,omitempty"`
+		Attributes *CIAppPipelineEventAttributes `json:"attributes,omitempty"`
+		Id         *string                       `json:"id,omitempty"`
+		Type       *CIAppPipelineEventTypeName   `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
