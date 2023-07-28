@@ -377,7 +377,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 
 	{%- if ns.hasCheckedFields %}
 
-	var hasInvalidField bool
+	hasInvalidField := false
 	{%- endif %}
 
 	{#- check enums #}
