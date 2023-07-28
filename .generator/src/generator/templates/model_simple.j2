@@ -399,7 +399,6 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- elif dataType in models and not spec.enum and not spec.oneOf %}
 	if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
 		{%- if attr in model.get("required", []) and not isNullable %}
 		o.{{ propertyName }} = *all.{{ propertyName }}
 		{%- else %}
