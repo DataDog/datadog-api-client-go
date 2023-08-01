@@ -14,7 +14,7 @@ import (
 type CIAppTestsQueryFilter struct {
 	// The minimum time for the requested events; supports date, math, and regular timestamps (in milliseconds).
 	From *string `json:"from,omitempty"`
-	// The search query following the Log search syntax.
+	// The search query following the CI Visibility Explorer search syntax.
 	Query *string `json:"query,omitempty"`
 	// The maximum time for the requested events, supports date, math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
