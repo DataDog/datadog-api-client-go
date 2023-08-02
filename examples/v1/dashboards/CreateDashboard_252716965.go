@@ -24,6 +24,12 @@ func main() {
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						ShowLegend: datadog.PtrBool(false),
 						Type:       datadogV1.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
+						CustomLinks: []datadogV1.WidgetCustomLink{
+							{
+								Label: datadog.PtrString("Example"),
+								Link:  datadog.PtrString("https://example.org/"),
+							},
+						},
 						Xaxis: &datadogV1.DistributionWidgetXAxis{
 							Max:         datadog.PtrString("auto"),
 							IncludeZero: datadog.PtrBool(true),
