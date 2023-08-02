@@ -320,11 +320,7 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 {%- set isPrimitiveContainer = model.get("items")|is_primitive %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &o.Items); err != nil {
-		err = json.Unmarshal(bytes, &o.UnparsedObject)
-		if err != nil {
-			return err
-		}
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	{%- if not isPrimitiveContainer %}
