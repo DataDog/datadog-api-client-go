@@ -18,6 +18,8 @@ type UsageAttributesObject struct {
 	ProductFamily *string `json:"product_family,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
+	// The region of the Datadog instance that the organization belongs to.
+	Region *string `json:"region,omitempty"`
 	// List of usage data reported for each requested hour.
 	Timeseries []UsageTimeSeriesObject `json:"timeseries,omitempty"`
 	// Usage type that is being measured.
@@ -128,6 +130,34 @@ func (o *UsageAttributesObject) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *UsageAttributesObject) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageAttributesObject) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *UsageAttributesObject) HasRegion() bool {
+	return o != nil && o.Region != nil
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *UsageAttributesObject) SetRegion(v string) {
+	o.Region = &v
+}
+
 // GetTimeseries returns the Timeseries field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetTimeseries() []UsageTimeSeriesObject {
 	if o == nil || o.Timeseries == nil {
@@ -199,6 +229,9 @@ func (o UsageAttributesObject) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
 	if o.Timeseries != nil {
 		toSerialize["timeseries"] = o.Timeseries
 	}
@@ -219,6 +252,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 		OrgName       *string                 `json:"org_name,omitempty"`
 		ProductFamily *string                 `json:"product_family,omitempty"`
 		PublicId      *string                 `json:"public_id,omitempty"`
+		Region        *string                 `json:"region,omitempty"`
 		Timeseries    []UsageTimeSeriesObject `json:"timeseries,omitempty"`
 		UsageType     *HourlyUsageType        `json:"usage_type,omitempty"`
 	}{}
@@ -232,7 +266,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"org_name", "product_family", "public_id", "timeseries", "usage_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"org_name", "product_family", "public_id", "region", "timeseries", "usage_type"})
 	} else {
 		return err
 	}
@@ -247,6 +281,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgName = all.OrgName
 	o.ProductFamily = all.ProductFamily
 	o.PublicId = all.PublicId
+	o.Region = all.Region
 	o.Timeseries = all.Timeseries
 	o.UsageType = all.UsageType
 	if len(additionalProperties) > 0 {
