@@ -641,7 +641,7 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 	}
 
 	// waiting for host to appear on infralist
-	err = tests.Retry(10*time.Second, 10, func() bool {
+	tests.Retry(10*time.Second, 10, func() bool {
 		hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().WithFilter(hostname))
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)

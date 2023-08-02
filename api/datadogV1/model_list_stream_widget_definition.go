@@ -14,7 +14,6 @@ import (
 
 // ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that
 // match a search criteria using user-defined columns.
-//
 type ListStreamWidgetDefinition struct {
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
