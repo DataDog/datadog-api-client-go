@@ -317,8 +317,33 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 
 // UnmarshalJSON deserializes the given payload.
 {%- if model.type == "array" %}
+{%- set isPrimitiveContainer = model.get("items")|is_primitive %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
-	return json.Unmarshal(bytes, &o.Items)
+	if err = json.Unmarshal(bytes, &o.Items); err != nil {
+		err = json.Unmarshal(bytes, &o.UnparsedObject)
+		if err != nil {
+			return err
+		}
+		return nil
+	}
+
+	{%- if not isPrimitiveContainer %}
+
+	if o.Items != nil && len(o.Items) > 0 {
+		for _, v := range o.Items {
+			if v.UnparsedObject != nil {
+				err = json.Unmarshal(bytes, &o.UnparsedObject)
+				if err != nil {
+					return err
+				}
+
+				break
+			}
+		}
+	}
+	{%- endif %}
+
+	return nil
 }
 
 {%- else %}
