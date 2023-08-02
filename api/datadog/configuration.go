@@ -323,6 +323,7 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"v2.CreateCIAppPipelineEvent":  false,
 			"v2.CancelDowntime":            false,
 			"v2.CreateDowntime":            false,
 			"v2.GetDowntime":               false,

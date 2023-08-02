@@ -16,6 +16,8 @@ import (
 // aggregated across one or several tags, such as hosts.
 // Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
 type DistributionWidgetDefinition struct {
+	// A list of custom links.
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// (Deprecated) The widget legend was replaced by a tooltip and sidebar.
 	// Deprecated
 	LegendSize *string `json:"legend_size,omitempty"`
@@ -67,6 +69,34 @@ func NewDistributionWidgetDefinitionWithDefaults() *DistributionWidgetDefinition
 	var typeVar DistributionWidgetDefinitionType = DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION
 	this.Type = typeVar
 	return &this
+}
+
+// GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
+func (o *DistributionWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
+	if o == nil || o.CustomLinks == nil {
+		var ret []WidgetCustomLink
+		return ret
+	}
+	return o.CustomLinks
+}
+
+// GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) {
+	if o == nil || o.CustomLinks == nil {
+		return nil, false
+	}
+	return &o.CustomLinks, true
+}
+
+// HasCustomLinks returns a boolean if a field has been set.
+func (o *DistributionWidgetDefinition) HasCustomLinks() bool {
+	return o != nil && o.CustomLinks != nil
+}
+
+// SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
+func (o *DistributionWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
+	o.CustomLinks = v
 }
 
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
@@ -379,6 +409,9 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.CustomLinks != nil {
+		toSerialize["custom_links"] = o.CustomLinks
+	}
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
 	}
@@ -419,17 +452,18 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LegendSize *string                           `json:"legend_size,omitempty"`
-		Markers    []WidgetMarker                    `json:"markers,omitempty"`
-		Requests   *[]DistributionWidgetRequest      `json:"requests"`
-		ShowLegend *bool                             `json:"show_legend,omitempty"`
-		Time       *WidgetTime                       `json:"time,omitempty"`
-		Title      *string                           `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                  `json:"title_align,omitempty"`
-		TitleSize  *string                           `json:"title_size,omitempty"`
-		Type       *DistributionWidgetDefinitionType `json:"type"`
-		Xaxis      *DistributionWidgetXAxis          `json:"xaxis,omitempty"`
-		Yaxis      *DistributionWidgetYAxis          `json:"yaxis,omitempty"`
+		CustomLinks []WidgetCustomLink                `json:"custom_links,omitempty"`
+		LegendSize  *string                           `json:"legend_size,omitempty"`
+		Markers     []WidgetMarker                    `json:"markers,omitempty"`
+		Requests    *[]DistributionWidgetRequest      `json:"requests"`
+		ShowLegend  *bool                             `json:"show_legend,omitempty"`
+		Time        *WidgetTime                       `json:"time,omitempty"`
+		Title       *string                           `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign                  `json:"title_align,omitempty"`
+		TitleSize   *string                           `json:"title_size,omitempty"`
+		Type        *DistributionWidgetDefinitionType `json:"type"`
+		Xaxis       *DistributionWidgetXAxis          `json:"xaxis,omitempty"`
+		Yaxis       *DistributionWidgetYAxis          `json:"yaxis,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -447,12 +481,13 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"legend_size", "markers", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "legend_size", "markers", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.CustomLinks = all.CustomLinks
 	o.LegendSize = all.LegendSize
 	o.Markers = all.Markers
 	o.Requests = *all.Requests
