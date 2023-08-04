@@ -105,18 +105,12 @@ func (o IncidentAttachmentLinkAttributesAttachmentObject) MarshalJSON() ([]byte,
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DocumentUrl *string `json:"documentUrl"`
 		Title       *string `json:"title"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DocumentUrl == nil {
 		return fmt.Errorf("required field documentUrl missing")

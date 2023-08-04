@@ -412,7 +412,6 @@ func (o DetailedFindingAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Evaluation            *FindingEvaluation `json:"evaluation,omitempty"`
 		EvaluationChangedAt   *int64             `json:"evaluation_changed_at,omitempty"`
@@ -427,12 +426,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Tags                  []string           `json:"tags,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -442,7 +436,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Evaluation; v != nil && !v.IsValid() {
+	if all.Evaluation != nil && !all.Evaluation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Evaluation = all.Evaluation
@@ -461,7 +455,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Rule = all.Rule
-	if v := all.Status; v != nil && !v.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
@@ -473,11 +467,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

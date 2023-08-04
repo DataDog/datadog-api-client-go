@@ -178,7 +178,6 @@ func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Condition     *string                         `json:"condition,omitempty"`
 		Name          *string                         `json:"name,omitempty"`
@@ -186,12 +185,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 		Status        *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Status == nil {
 		return fmt.Errorf("required field status missing")
@@ -207,7 +201,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	o.Condition = all.Condition
 	o.Name = all.Name
 	o.Notifications = all.Notifications
-	if v := all.Status; !v.IsValid() {
+	if !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = *all.Status
@@ -218,11 +212,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

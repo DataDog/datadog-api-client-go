@@ -78,17 +78,11 @@ func (o SecurityMonitoringSignalIncidentsUpdateData) MarshalJSON() ([]byte, erro
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalIncidentsUpdateData) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *SecurityMonitoringSignalIncidentsUpdateAttributes `json:"attributes"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
@@ -111,11 +105,7 @@ func (o *SecurityMonitoringSignalIncidentsUpdateData) UnmarshalJSON(bytes []byte
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

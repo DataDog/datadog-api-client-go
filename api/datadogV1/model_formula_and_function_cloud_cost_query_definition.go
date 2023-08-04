@@ -165,7 +165,6 @@ func (o FormulaAndFunctionCloudCostQueryDefinition) MarshalJSON() ([]byte, error
 
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregator *WidgetAggregator                      `json:"aggregator,omitempty"`
 		DataSource *FormulaAndFunctionCloudCostDataSource `json:"data_source"`
@@ -173,12 +172,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte)
 		Query      *string                                `json:"query"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DataSource == nil {
 		return fmt.Errorf("required field data_source missing")
@@ -197,12 +191,12 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte)
 	}
 
 	hasInvalidField := false
-	if v := all.Aggregator; v != nil && !v.IsValid() {
+	if all.Aggregator != nil && !all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator
 	}
-	if v := all.DataSource; !v.IsValid() {
+	if !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = *all.DataSource
@@ -215,11 +209,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

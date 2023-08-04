@@ -470,7 +470,6 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CustomLinks   []WidgetCustomLink               `json:"custom_links,omitempty"`
 		Group         []string                         `json:"group,omitempty"`
@@ -487,12 +486,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type          *HostMapWidgetDefinitionType     `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Requests == nil {
 		return fmt.Errorf("required field requests missing")
@@ -512,7 +506,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Group = all.Group
 	o.NoGroupHosts = all.NoGroupHosts
 	o.NoMetricHosts = all.NoMetricHosts
-	if v := all.NodeType; v != nil && !v.IsValid() {
+	if all.NodeType != nil && !all.NodeType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.NodeType = all.NodeType
@@ -528,13 +522,13 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Style = all.Style
 	o.Title = all.Title
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
 	}
 	o.TitleSize = all.TitleSize
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -545,11 +539,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

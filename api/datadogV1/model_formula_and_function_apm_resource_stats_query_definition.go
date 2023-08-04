@@ -351,7 +351,6 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DataSource      *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
 		Env             *string                                       `json:"env"`
@@ -365,12 +364,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		Stat            *FormulaAndFunctionApmResourceStatName        `json:"stat"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DataSource == nil {
 		return fmt.Errorf("required field data_source missing")
@@ -395,7 +389,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	}
 
 	hasInvalidField := false
-	if v := all.DataSource; !v.IsValid() {
+	if !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = *all.DataSource
@@ -408,7 +402,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	o.PrimaryTagValue = all.PrimaryTagValue
 	o.ResourceName = all.ResourceName
 	o.Service = *all.Service
-	if v := all.Stat; !v.IsValid() {
+	if !all.Stat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Stat = *all.Stat
@@ -419,11 +413,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -441,7 +441,6 @@ func (o SharedDashboard) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Author                      *SharedDashboardAuthor            `json:"author,omitempty"`
 		CreatedAt                   *time.Time                        `json:"created_at,omitempty"`
@@ -456,12 +455,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		Token                       *string                           `json:"token,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DashboardId == nil {
 		return fmt.Errorf("required field dashboard_id missing")
@@ -483,7 +477,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.Author = all.Author
 	o.CreatedAt = all.CreatedAt
 	o.DashboardId = *all.DashboardId
-	if v := all.DashboardType; !v.IsValid() {
+	if !all.DashboardType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DashboardType = *all.DashboardType
@@ -496,7 +490,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicUrl = all.PublicUrl
 	o.SelectableTemplateVars = all.SelectableTemplateVars
 	o.ShareList = all.ShareList
-	if v := all.ShareType; v.Get() != nil && !v.Get().IsValid() {
+	if all.ShareType.Get() != nil && !all.ShareType.Get().IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ShareType = all.ShareType
@@ -508,11 +502,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

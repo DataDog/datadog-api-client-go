@@ -182,7 +182,6 @@ func (o SpansAggregateResponseMetadata) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAggregateResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Elapsed   *int64                        `json:"elapsed,omitempty"`
 		RequestId *string                       `json:"request_id,omitempty"`
@@ -190,12 +189,7 @@ func (o *SpansAggregateResponseMetadata) UnmarshalJSON(bytes []byte) (err error)
 		Warnings  []SpansWarning                `json:"warnings,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -207,7 +201,7 @@ func (o *SpansAggregateResponseMetadata) UnmarshalJSON(bytes []byte) (err error)
 	hasInvalidField := false
 	o.Elapsed = all.Elapsed
 	o.RequestId = all.RequestId
-	if v := all.Status; v != nil && !v.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
@@ -219,11 +213,7 @@ func (o *SpansAggregateResponseMetadata) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

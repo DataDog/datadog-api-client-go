@@ -171,7 +171,6 @@ func (o TeamUpdateAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Color       *int32  `json:"color,omitempty"`
 		Description *string `json:"description,omitempty"`
@@ -179,12 +178,7 @@ func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Name        *string `json:"name"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Handle == nil {
 		return fmt.Errorf("required field handle missing")

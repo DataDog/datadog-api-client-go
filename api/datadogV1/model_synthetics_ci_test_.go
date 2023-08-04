@@ -507,7 +507,6 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"`
 		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"`
@@ -525,12 +524,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		Variables                 map[string]string           `json:"variables,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.PublicId == nil {
 		return fmt.Errorf("required field public_id missing")
@@ -569,11 +563,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

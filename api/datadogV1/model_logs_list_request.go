@@ -248,7 +248,6 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Index   *string              `json:"index,omitempty"`
 		Limit   *int32               `json:"limit,omitempty"`
@@ -258,12 +257,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Time    *LogsListRequestTime `json:"time"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Time == nil {
 		return fmt.Errorf("required field time missing")
@@ -279,7 +273,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Index = all.Index
 	o.Limit = all.Limit
 	o.Query = all.Query
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort
@@ -295,11 +289,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

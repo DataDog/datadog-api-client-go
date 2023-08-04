@@ -1275,7 +1275,6 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation            *MonitorOptionsAggregation                 `json:"aggregation,omitempty"`
 		DeviceIds              []MonitorDeviceID                          `json:"device_ids,omitempty"`
@@ -1310,12 +1309,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Variables              []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -1343,7 +1337,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewGroupDelay = all.NewGroupDelay
 	o.NewHostDelay = all.NewHostDelay
 	o.NoDataTimeframe = all.NoDataTimeframe
-	if v := all.NotificationPresetName; v != nil && !v.IsValid() {
+	if all.NotificationPresetName != nil && !all.NotificationPresetName.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.NotificationPresetName = all.NotificationPresetName
@@ -1351,7 +1345,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NotifyAudit = all.NotifyAudit
 	o.NotifyBy = all.NotifyBy
 	o.NotifyNoData = all.NotifyNoData
-	if v := all.OnMissingData; v != nil && !v.IsValid() {
+	if all.OnMissingData != nil && !all.OnMissingData.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OnMissingData = all.OnMissingData
@@ -1382,11 +1376,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

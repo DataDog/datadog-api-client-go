@@ -198,7 +198,6 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		BrowserCheckCallsCount datadog.NullableInt64 `json:"browser_check_calls_count,omitempty"`
 		Hour                   *time.Time            `json:"hour,omitempty"`
@@ -206,12 +205,7 @@ func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId               *string               `json:"public_id,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

@@ -181,7 +181,6 @@ func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AvgMetricHour  *int64               `json:"avg_metric_hour,omitempty"`
 		MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
@@ -189,12 +188,7 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 		MetricName     *string              `json:"metric_name,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -206,7 +200,7 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AvgMetricHour = all.AvgMetricHour
 	o.MaxMetricHour = all.MaxMetricHour
-	if v := all.MetricCategory; v != nil && !v.IsValid() {
+	if all.MetricCategory != nil && !all.MetricCategory.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MetricCategory = all.MetricCategory
@@ -218,11 +212,7 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

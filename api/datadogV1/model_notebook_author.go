@@ -374,7 +374,6 @@ func (o NotebookAuthor) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CreatedAt *time.Time             `json:"created_at,omitempty"`
 		Disabled  *bool                  `json:"disabled,omitempty"`
@@ -387,12 +386,7 @@ func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 		Verified  *bool                  `json:"verified,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

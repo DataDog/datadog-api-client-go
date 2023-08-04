@@ -774,7 +774,6 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		End             *time.Time                                 `json:"end"`
 		Error           NullableCIAppCIError                       `json:"error,omitempty"`
@@ -798,12 +797,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Url             *string                                    `json:"url"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.End == nil {
 		return fmt.Errorf("required field end missing")
@@ -845,7 +839,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.Git = all.Git
 	o.IsManual = all.IsManual
 	o.IsResumed = all.IsResumed
-	if v := all.Level; !v.IsValid() {
+	if !all.Level.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Level = *all.Level
@@ -860,7 +854,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.PreviousAttempt = all.PreviousAttempt
 	o.QueueTime = all.QueueTime
 	o.Start = *all.Start
-	if v := all.Status; !v.IsValid() {
+	if !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = *all.Status
@@ -874,11 +868,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

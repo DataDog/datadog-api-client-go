@@ -292,7 +292,6 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
 		Assertions      *[]SyntheticsAssertion      `json:"assertions"`
@@ -304,12 +303,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		Subtype         *SyntheticsAPIStepSubtype   `json:"subtype"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Assertions == nil {
 		return fmt.Errorf("required field assertions missing")
@@ -344,7 +338,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Retry = all.Retry
-	if v := all.Subtype; !v.IsValid() {
+	if !all.Subtype.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Subtype = *all.Subtype
@@ -355,11 +349,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

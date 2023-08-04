@@ -402,7 +402,6 @@ func (o SLOOverallStatuses) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Error                   datadog.NullableString             `json:"error,omitempty"`
 		ErrorBudgetRemaining    datadog.NullableFloat64            `json:"error_budget_remaining,omitempty"`
@@ -415,12 +414,7 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 		Timeframe               *SLOTimeframe                      `json:"timeframe,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -435,14 +429,14 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	o.IndexedAt = all.IndexedAt
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
 	o.SpanPrecision = all.SpanPrecision
-	if v := all.State; v != nil && !v.IsValid() {
+	if all.State != nil && !all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State
 	}
 	o.Status = all.Status
 	o.Target = all.Target
-	if v := all.Timeframe; v != nil && !v.IsValid() {
+	if all.Timeframe != nil && !all.Timeframe.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Timeframe = all.Timeframe
@@ -453,11 +447,7 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

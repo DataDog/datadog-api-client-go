@@ -421,7 +421,6 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AggregationKey *string               `json:"aggregation_key,omitempty"`
 		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
@@ -436,12 +435,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Title          *string               `json:"title"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Text == nil {
 		return fmt.Errorf("required field text missing")
@@ -458,7 +452,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.AggregationKey = all.AggregationKey
-	if v := all.AlertType; v != nil && !v.IsValid() {
+	if all.AlertType != nil && !all.AlertType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.AlertType = all.AlertType
@@ -466,7 +460,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.DateHappened = all.DateHappened
 	o.DeviceName = all.DeviceName
 	o.Host = all.Host
-	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
+	if all.Priority.Get() != nil && !all.Priority.Get().IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority
@@ -482,11 +476,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

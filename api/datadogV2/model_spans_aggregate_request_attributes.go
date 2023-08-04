@@ -182,7 +182,6 @@ func (o SpansAggregateRequestAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Compute []SpansCompute     `json:"compute,omitempty"`
 		Filter  *SpansQueryFilter  `json:"filter,omitempty"`
@@ -190,12 +189,7 @@ func (o *SpansAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 		Options *SpansQueryOptions `json:"options,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -221,11 +215,7 @@ func (o *SpansAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

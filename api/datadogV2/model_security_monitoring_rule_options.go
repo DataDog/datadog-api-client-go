@@ -353,7 +353,6 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ComplianceRuleOptions         *CloudConfigurationComplianceRuleOptions       `json:"complianceRuleOptions,omitempty"`
 		DecreaseCriticalityBasedOnEnv *bool                                          `json:"decreaseCriticalityBasedOnEnv,omitempty"`
@@ -366,12 +365,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		NewValueOptions               *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -386,17 +380,17 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.ComplianceRuleOptions = all.ComplianceRuleOptions
 	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
-	if v := all.DetectionMethod; v != nil && !v.IsValid() {
+	if all.DetectionMethod != nil && !all.DetectionMethod.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DetectionMethod = all.DetectionMethod
 	}
-	if v := all.EvaluationWindow; v != nil && !v.IsValid() {
+	if all.EvaluationWindow != nil && !all.EvaluationWindow.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow
 	}
-	if v := all.HardcodedEvaluatorType; v != nil && !v.IsValid() {
+	if all.HardcodedEvaluatorType != nil && !all.HardcodedEvaluatorType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
@@ -405,12 +399,12 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		hasInvalidField = true
 	}
 	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
-	if v := all.KeepAlive; v != nil && !v.IsValid() {
+	if all.KeepAlive != nil && !all.KeepAlive.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.KeepAlive = all.KeepAlive
 	}
-	if v := all.MaxSignalDuration; v != nil && !v.IsValid() {
+	if all.MaxSignalDuration != nil && !all.MaxSignalDuration.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MaxSignalDuration = all.MaxSignalDuration
@@ -425,11 +419,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

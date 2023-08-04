@@ -148,19 +148,13 @@ func (o CIAppPipelinesAnalyticsAggregateResponse) MarshalJSON() ([]byte, error) 
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelinesAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Data  *CIAppPipelinesAggregationBucketsResponse `json:"data,omitempty"`
 		Links *CIAppResponseLinks                       `json:"links,omitempty"`
 		Meta  *CIAppResponseMetadata                    `json:"meta,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -188,11 +182,7 @@ func (o *CIAppPipelinesAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

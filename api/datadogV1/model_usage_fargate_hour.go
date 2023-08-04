@@ -330,7 +330,6 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApmFargateCount         datadog.NullableInt64 `json:"apm_fargate_count,omitempty"`
 		AppsecFargateCount      datadog.NullableInt64 `json:"appsec_fargate_count,omitempty"`
@@ -341,12 +340,7 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 		TasksCount              datadog.NullableInt64 `json:"tasks_count,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

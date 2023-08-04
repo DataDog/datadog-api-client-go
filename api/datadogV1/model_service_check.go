@@ -225,7 +225,6 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Check     *string             `json:"check"`
 		HostName  *string             `json:"host_name"`
@@ -235,12 +234,7 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 		Timestamp *int64              `json:"timestamp,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Check == nil {
 		return fmt.Errorf("required field check missing")
@@ -265,7 +259,7 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	o.Check = *all.Check
 	o.HostName = *all.HostName
 	o.Message = all.Message
-	if v := all.Status; !v.IsValid() {
+	if !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = *all.Status
@@ -278,11 +272,7 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

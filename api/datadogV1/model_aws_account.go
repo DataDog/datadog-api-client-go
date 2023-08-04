@@ -432,7 +432,6 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AccessKeyId                   *string         `json:"access_key_id,omitempty"`
 		AccountId                     *string         `json:"account_id,omitempty"`
@@ -447,12 +446,7 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		SecretAccessKey               *string         `json:"secret_access_key,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

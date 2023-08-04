@@ -557,7 +557,6 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DisplayFormat    *WidgetServiceSummaryDisplayFormat  `json:"display_format,omitempty"`
 		Env              *string                             `json:"env"`
@@ -577,12 +576,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Type             *ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Env == nil {
 		return fmt.Errorf("required field env missing")
@@ -604,7 +598,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	hasInvalidField := false
-	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+	if all.DisplayFormat != nil && !all.DisplayFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DisplayFormat = all.DisplayFormat
@@ -617,7 +611,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.ShowHits = all.ShowHits
 	o.ShowLatency = all.ShowLatency
 	o.ShowResourceList = all.ShowResourceList
-	if v := all.SizeFormat; v != nil && !v.IsValid() {
+	if all.SizeFormat != nil && !all.SizeFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SizeFormat = all.SizeFormat
@@ -628,13 +622,13 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 	o.Time = all.Time
 	o.Title = all.Title
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
 	}
 	o.TitleSize = all.TitleSize
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -645,11 +639,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

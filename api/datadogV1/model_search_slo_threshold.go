@@ -235,7 +235,6 @@ func (o SearchSLOThreshold) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Target         *float64                `json:"target"`
 		TargetDisplay  *string                 `json:"target_display,omitempty"`
@@ -244,12 +243,7 @@ func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 		WarningDisplay datadog.NullableString  `json:"warning_display,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Target == nil {
 		return fmt.Errorf("required field target missing")
@@ -267,7 +261,7 @@ func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Target = *all.Target
 	o.TargetDisplay = all.TargetDisplay
-	if v := all.Timeframe; !v.IsValid() {
+	if !all.Timeframe.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Timeframe = *all.Timeframe
@@ -280,11 +274,7 @@ func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

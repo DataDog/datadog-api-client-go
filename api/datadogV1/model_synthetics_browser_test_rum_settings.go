@@ -154,19 +154,13 @@ func (o SyntheticsBrowserTestRumSettings) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApplicationId *string `json:"applicationId,omitempty"`
 		ClientTokenId *int64  `json:"clientTokenId,omitempty"`
 		IsEnabled     *bool   `json:"isEnabled"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.IsEnabled == nil {
 		return fmt.Errorf("required field isEnabled missing")

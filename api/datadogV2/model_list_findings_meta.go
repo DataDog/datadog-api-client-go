@@ -108,18 +108,12 @@ func (o ListFindingsMeta) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Page              *ListFindingsPage `json:"page,omitempty"`
 		SnapshotTimestamp *int64            `json:"snapshot_timestamp,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	hasInvalidField := false
@@ -130,11 +124,7 @@ func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnapshotTimestamp = all.SnapshotTimestamp
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

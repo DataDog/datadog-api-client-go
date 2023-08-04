@@ -151,19 +151,13 @@ func (o DowntimeScheduleRecurrencesResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CurrentDowntime *DowntimeScheduleCurrentDowntimeResponse `json:"current_downtime,omitempty"`
 		Recurrences     *[]DowntimeScheduleRecurrenceResponse    `json:"recurrences"`
 		Timezone        *string                                  `json:"timezone,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Recurrences == nil {
 		return fmt.Errorf("required field recurrences missing")
@@ -188,11 +182,7 @@ func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err e
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

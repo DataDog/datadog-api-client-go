@@ -155,19 +155,13 @@ func (o DowntimeScheduleRecurrenceCreateUpdateRequest) MarshalJSON() ([]byte, er
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Duration *string                `json:"duration"`
 		Rrule    *string                `json:"rrule"`
 		Start    datadog.NullableString `json:"start,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Duration == nil {
 		return fmt.Errorf("required field duration missing")

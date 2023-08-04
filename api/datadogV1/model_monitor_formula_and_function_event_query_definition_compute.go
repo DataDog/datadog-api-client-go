@@ -144,19 +144,13 @@ func (o MonitorFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]b
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation *MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
 		Interval    *int64                                     `json:"interval,omitempty"`
 		Metric      *string                                    `json:"metric,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Aggregation == nil {
 		return fmt.Errorf("required field aggregation missing")
@@ -169,7 +163,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 	}
 
 	hasInvalidField := false
-	if v := all.Aggregation; !v.IsValid() {
+	if !all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = *all.Aggregation
@@ -182,11 +176,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

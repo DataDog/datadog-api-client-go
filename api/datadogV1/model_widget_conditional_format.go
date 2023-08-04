@@ -330,7 +330,6 @@ func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Comparator    *WidgetComparator `json:"comparator"`
 		CustomBgColor *string           `json:"custom_bg_color,omitempty"`
@@ -343,12 +342,7 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 		Value         *float64          `json:"value"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Comparator == nil {
 		return fmt.Errorf("required field comparator missing")
@@ -367,7 +361,7 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Comparator; !v.IsValid() {
+	if !all.Comparator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Comparator = *all.Comparator
@@ -377,7 +371,7 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	o.HideValue = all.HideValue
 	o.ImageUrl = all.ImageUrl
 	o.Metric = all.Metric
-	if v := all.Palette; !v.IsValid() {
+	if !all.Palette.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Palette = *all.Palette
@@ -390,11 +384,7 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

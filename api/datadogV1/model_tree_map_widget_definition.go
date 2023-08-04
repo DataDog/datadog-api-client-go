@@ -321,7 +321,6 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ColorBy     *TreeMapColorBy              `json:"color_by,omitempty"`
 		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
@@ -333,12 +332,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Requests == nil {
 		return fmt.Errorf("required field requests missing")
@@ -354,19 +348,19 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.ColorBy; v != nil && !v.IsValid() {
+	if all.ColorBy != nil && !all.ColorBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ColorBy = all.ColorBy
 	}
 	o.CustomLinks = all.CustomLinks
-	if v := all.GroupBy; v != nil && !v.IsValid() {
+	if all.GroupBy != nil && !all.GroupBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GroupBy = all.GroupBy
 	}
 	o.Requests = *all.Requests
-	if v := all.SizeBy; v != nil && !v.IsValid() {
+	if all.SizeBy != nil && !all.SizeBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SizeBy = all.SizeBy
@@ -376,7 +370,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Time = all.Time
 	o.Title = all.Title
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -387,11 +381,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -145,19 +145,13 @@ func (o LogsMetricCompute) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AggregationType    *LogsMetricComputeAggregationType `json:"aggregation_type"`
 		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
 		Path               *string                           `json:"path,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.AggregationType == nil {
 		return fmt.Errorf("required field aggregation_type missing")
@@ -170,7 +164,7 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.AggregationType; !v.IsValid() {
+	if !all.AggregationType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.AggregationType = *all.AggregationType
@@ -183,11 +177,7 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

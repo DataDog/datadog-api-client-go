@@ -437,7 +437,6 @@ func (o ServiceDefinitionV2Dot1) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Application   *string                              `json:"application,omitempty"`
 		Contacts      []ServiceDefinitionV2Dot1Contact     `json:"contacts,omitempty"`
@@ -453,12 +452,7 @@ func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
 		Tier          *string                              `json:"tier,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DdService == nil {
 		return fmt.Errorf("required field dd-service missing")
@@ -485,7 +479,7 @@ func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
 	o.Integrations = all.Integrations
 	o.Lifecycle = all.Lifecycle
 	o.Links = all.Links
-	if v := all.SchemaVersion; !v.IsValid() {
+	if !all.SchemaVersion.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SchemaVersion = *all.SchemaVersion
@@ -499,11 +493,7 @@ func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

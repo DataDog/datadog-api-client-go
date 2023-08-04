@@ -721,7 +721,6 @@ func (o CIAppPipelineEventJob) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Dependencies     datadog.NullableList[string] `json:"dependencies,omitempty"`
 		End              *time.Time                   `json:"end"`
@@ -744,12 +743,7 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 		Url              *string                      `json:"url"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.End == nil {
 		return fmt.Errorf("required field end missing")
@@ -794,7 +788,7 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 	o.Error = all.Error
 	o.Git = all.Git
 	o.Id = *all.Id
-	if v := all.Level; !v.IsValid() {
+	if !all.Level.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Level = *all.Level
@@ -809,7 +803,7 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 	o.StageId = all.StageId
 	o.StageName = all.StageName
 	o.Start = *all.Start
-	if v := all.Status; !v.IsValid() {
+	if !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = *all.Status
@@ -822,11 +816,7 @@ func (o *CIAppPipelineEventJob) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

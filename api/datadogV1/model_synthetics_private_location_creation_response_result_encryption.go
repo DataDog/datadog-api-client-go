@@ -115,18 +115,12 @@ func (o SyntheticsPrivateLocationCreationResponseResultEncryption) MarshalJSON()
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Id  *string `json:"id,omitempty"`
 		Key *string `json:"key,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

@@ -140,19 +140,13 @@ func (o IncidentIntegrationMetadataResponseData) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
 		Id         *string                                `json:"id"`
 		Type       *IncidentIntegrationMetadataType       `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -173,7 +167,7 @@ func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (e
 	}
 	o.Attributes = all.Attributes
 	o.Id = *all.Id
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -184,11 +178,7 @@ func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (e
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -243,7 +243,6 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Alias              *string                     `json:"alias,omitempty"`
 		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
@@ -253,12 +252,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		Style              *WidgetFormulaStyle         `json:"style,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Formula == nil {
 		return fmt.Errorf("required field formula missing")
@@ -272,7 +266,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Alias = all.Alias
-	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+	if all.CellDisplayMode != nil && !all.CellDisplayMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CellDisplayMode = all.CellDisplayMode
@@ -293,11 +287,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

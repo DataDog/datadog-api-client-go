@@ -149,19 +149,13 @@ func (o SecurityMonitoringSignalsListResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalsListResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Data  []SecurityMonitoringSignal                  `json:"data,omitempty"`
 		Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
 		Meta  *SecurityMonitoringSignalsListResponseMeta  `json:"meta,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -186,11 +180,7 @@ func (o *SecurityMonitoringSignalsListResponse) UnmarshalJSON(bytes []byte) (err
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

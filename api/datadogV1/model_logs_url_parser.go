@@ -254,7 +254,6 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		IsEnabled              *bool                `json:"is_enabled,omitempty"`
 		Name                   *string              `json:"name,omitempty"`
@@ -264,12 +263,7 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type                   *LogsURLParserType   `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Sources == nil {
 		return fmt.Errorf("required field sources missing")
@@ -293,7 +287,7 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.NormalizeEndingSlashes = all.NormalizeEndingSlashes
 	o.Sources = *all.Sources
 	o.Target = *all.Target
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -304,11 +298,7 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

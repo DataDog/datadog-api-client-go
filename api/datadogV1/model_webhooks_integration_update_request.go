@@ -237,7 +237,6 @@ func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CustomHeaders *string                      `json:"custom_headers,omitempty"`
 		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
@@ -246,12 +245,7 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 		Url           *string                      `json:"url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -262,7 +256,7 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 
 	hasInvalidField := false
 	o.CustomHeaders = all.CustomHeaders
-	if v := all.EncodeAs; v != nil && !v.IsValid() {
+	if all.EncodeAs != nil && !all.EncodeAs.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EncodeAs = all.EncodeAs
@@ -276,11 +270,7 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

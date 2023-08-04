@@ -909,7 +909,6 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AllowInsecure            *bool                             `json:"allow_insecure,omitempty"`
 		BasicAuth                *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
@@ -939,12 +938,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Url                      *string                           `json:"url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -957,12 +951,12 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
-	if v := all.BodyType; v != nil && !v.IsValid() {
+	if all.BodyType != nil && !all.BodyType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.BodyType = all.BodyType
 	}
-	if v := all.CallType; v != nil && !v.IsValid() {
+	if all.CallType != nil && !all.CallType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CallType = all.CallType
@@ -1000,11 +994,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
