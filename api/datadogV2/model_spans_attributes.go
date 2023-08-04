@@ -673,6 +673,7 @@ func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TraceId = all.TraceId
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -276,6 +276,7 @@ func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.HasMultiPassEnabled = all.HasMultiPassEnabled
 	o.IsPciCompliant = all.IsPciCompliant
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

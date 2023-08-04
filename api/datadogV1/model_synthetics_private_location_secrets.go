@@ -134,24 +134,27 @@ func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Authentication != nil && all.Authentication.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Authentication = all.Authentication
 	if all.ConfigDecryption != nil && all.ConfigDecryption.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ConfigDecryption = all.ConfigDecryption
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.ConfigDecryption = all.ConfigDecryption
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

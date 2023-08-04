@@ -171,6 +171,7 @@ func (o *UserUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Disabled = all.Disabled
 	o.Email = all.Email
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

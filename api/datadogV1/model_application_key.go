@@ -171,6 +171,7 @@ func (o *ApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Hash = all.Hash
 	o.Name = all.Name
 	o.Owner = all.Owner
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

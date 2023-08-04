@@ -202,6 +202,7 @@ func (o *TeamLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Position = all.Position
 	o.TeamId = all.TeamId
 	o.Url = *all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

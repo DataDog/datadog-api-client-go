@@ -2446,6 +2446,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.UniversalServiceMonitoringUsage = all.UniversalServiceMonitoringUsage
 	o.VulnManagementHostsPercentage = all.VulnManagementHostsPercentage
 	o.VulnManagementHostsUsage = all.VulnManagementHostsUsage
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

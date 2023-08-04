@@ -134,24 +134,27 @@ func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Fill != nil && all.Fill.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Fill = all.Fill
 	if all.Size != nil && all.Size.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Size = all.Size
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Size = all.Size
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

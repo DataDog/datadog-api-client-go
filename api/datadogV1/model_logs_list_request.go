@@ -274,29 +274,32 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Index = all.Index
 	o.Limit = all.Limit
 	o.Query = all.Query
-	o.Sort = all.Sort
+	if v := all.Sort; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Sort = all.Sort
+	}
 	o.StartAt = all.StartAt
 	if all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Time = *all.Time
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Time = *all.Time
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

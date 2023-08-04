@@ -136,6 +136,7 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []by
 	}
 	o.LastTimestampFetched = all.LastTimestampFetched
 	o.Results = all.Results
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

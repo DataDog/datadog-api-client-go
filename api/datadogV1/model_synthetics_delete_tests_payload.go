@@ -102,6 +102,7 @@ func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.PublicIds = all.PublicIds
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

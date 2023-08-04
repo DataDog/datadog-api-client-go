@@ -317,6 +317,7 @@ func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.Retention = all.Retention
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

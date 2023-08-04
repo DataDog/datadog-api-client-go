@@ -105,6 +105,7 @@ func (o *SpansMetricFilter) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Query = all.Query
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

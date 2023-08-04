@@ -136,6 +136,7 @@ func (o *ServiceDefinitionV1Contact) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Email = all.Email
 	o.Slack = all.Slack
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

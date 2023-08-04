@@ -384,40 +384,74 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	{%- endif %}
 
-	{#- check enums #}
-	{%- for attr, spec in model.get("properties", {}).items() if spec.enum is defined %}
-	{%- set propertyName = attr|attribute_name %}
-	{%- set isNullable = spec.nullable %}
-	if v := all.{{ propertyName }}; {% if attr not in model.get("required", []) and not isNullable %}v != nil && {%- endif %}{%- if isNullable %}v.Get() != nil && !v.Get(){% else %}!v{%- endif %}.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	{%- endfor %}
+	{%- set ns = namespace(hasCheckedFields=False) %}
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
-        {%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
-        {%- if dataType in models and not spec.enum and not spec.oneOf %}
-        if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-        }
-        {%- endif %}
-	{%- if attr in model.get("required", []) and not spec.nullable %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+	{%- if spec.enum is defined %}
+	{%- set ns.hasCheckedFields = True %}
+	{%- endif %}
+	{%- if dataType in models and not spec.enum and not spec.oneOf %}
+	{%- set ns.hasCheckedFields = True %}
+	{%- endif %}
+	{%- endfor %}
+
+	{%- if ns.hasCheckedFields %}
+
+	hasInvalidField := false
+	{%- endif %}
+
+	{#- check enums #}
+	{%- for attr, spec in model.get("properties", {}).items() %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+	{%- set isNullable = spec.nullable %}
+
+	{%- if spec.enum is defined %}
+	if v := all.{{ propertyName }}; {% if attr not in model.get("required", []) and not isNullable %}v != nil && {%- endif %}{%- if isNullable %}v.Get() != nil && !v.Get(){% else %}!v{%- endif %}.IsValid() {
+		hasInvalidField = true
+	} else {
+		{%- if attr in model.get("required", []) and not isNullable %}
+		o.{{ propertyName }} = *all.{{ propertyName }}
+		{%- else %}
+		o.{{ propertyName }} = all.{{ propertyName }}
+		{%- endif %}
+	}
+	{%- elif dataType in models and not spec.enum and not spec.oneOf %}
+	if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	{%- if attr in model.get("required", []) and not isNullable %}
+	o.{{ propertyName }} = *all.{{ propertyName }}
+	{%- else %}
+	o.{{ propertyName }} = all.{{ propertyName }}
+	{%- endif %}
+
+	{%- else %}
+
+	{%- if attr in model.get("required", []) and not isNullable %}
 	o.{{ propertyName }} = *all.{{ propertyName }}
         {%- else %}
 	o.{{ propertyName }} = all.{{ propertyName }}
         {%- endif %}
+	{%- endif %}
 	{%- endfor %}
+
 	{%- if model.additionalProperties is not false %}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+	{%- endif %}
+
+	{%- if ns.hasCheckedFields %}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 	{%- endif %}
 

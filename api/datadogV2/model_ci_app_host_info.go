@@ -206,6 +206,7 @@ func (o *CIAppHostInfo) UnmarshalJSON(bytes []byte) (err error) {
 	o.Labels = all.Labels
 	o.Name = all.Name
 	o.Workspace = all.Workspace
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

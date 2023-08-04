@@ -428,33 +428,36 @@ func (o *SLOOverallStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.State; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Timeframe; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Error = all.Error
 	o.ErrorBudgetRemaining = all.ErrorBudgetRemaining
 	o.IndexedAt = all.IndexedAt
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
 	o.SpanPrecision = all.SpanPrecision
-	o.State = all.State
+	if v := all.State; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.State = all.State
+	}
 	o.Status = all.Status
 	o.Target = all.Target
-	o.Timeframe = all.Timeframe
+	if v := all.Timeframe; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Timeframe = all.Timeframe
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

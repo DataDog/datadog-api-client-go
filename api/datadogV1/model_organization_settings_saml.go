@@ -102,6 +102,7 @@ func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Enabled = all.Enabled
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

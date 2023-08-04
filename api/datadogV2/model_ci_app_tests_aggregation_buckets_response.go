@@ -101,6 +101,7 @@ func (o *CIAppTestsAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 	o.Buckets = all.Buckets
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

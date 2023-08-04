@@ -167,6 +167,7 @@ func (o *SpansGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = *all.Interval
 	o.Max = *all.Max
 	o.Min = *all.Min
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

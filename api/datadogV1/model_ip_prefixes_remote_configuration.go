@@ -136,6 +136,7 @@ func (o *IPPrefixesRemoteConfiguration) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.PrefixesIpv4 = all.PrefixesIpv4
 	o.PrefixesIpv6 = all.PrefixesIpv6
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

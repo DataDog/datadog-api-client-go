@@ -158,6 +158,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnmarshalJSON(bytes [
 	}
 	o.Max = all.Max
 	o.Min = all.Min
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

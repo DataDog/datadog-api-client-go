@@ -146,6 +146,7 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	o.Name = *all.Name
 	o.Scopes = all.Scopes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

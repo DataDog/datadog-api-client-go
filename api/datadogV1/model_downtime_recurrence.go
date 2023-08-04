@@ -318,6 +318,7 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	o.UntilDate = all.UntilDate
 	o.UntilOccurrences = all.UntilOccurrences
 	o.WeekDays = all.WeekDays
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

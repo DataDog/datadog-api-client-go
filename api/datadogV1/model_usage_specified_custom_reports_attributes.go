@@ -276,6 +276,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err
 	o.Size = all.Size
 	o.StartDate = all.StartDate
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

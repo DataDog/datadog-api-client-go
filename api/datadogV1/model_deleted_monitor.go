@@ -101,6 +101,7 @@ func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.DeletedMonitorId = all.DeletedMonitorId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

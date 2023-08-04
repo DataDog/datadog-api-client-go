@@ -167,19 +167,26 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.HidePercent = all.HidePercent
+	o.HideValue = all.HideValue
 	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.HidePercent = all.HidePercent
-	o.HideValue = all.HideValue
-	o.Type = *all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

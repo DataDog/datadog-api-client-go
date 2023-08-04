@@ -101,6 +101,7 @@ func (o *UsageSyntheticsBrowserResponse) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	o.Usage = all.Usage
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

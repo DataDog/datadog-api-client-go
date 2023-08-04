@@ -102,6 +102,7 @@ func (o *AuditLogsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Next = all.Next
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

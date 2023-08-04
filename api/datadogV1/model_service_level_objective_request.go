@@ -462,42 +462,41 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Timeframe; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Description = all.Description
 	o.Groups = all.Groups
 	o.MonitorIds = all.MonitorIds
 	o.Name = *all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Query = all.Query
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = *all.Thresholds
-	o.Timeframe = all.Timeframe
-	o.Type = *all.Type
+	if v := all.Timeframe; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Timeframe = all.Timeframe
+	}
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 	o.WarningThreshold = all.WarningThreshold
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

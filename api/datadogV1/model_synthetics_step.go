@@ -304,23 +304,30 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.AllowFailure = all.AllowFailure
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
 	o.NoScreenshot = all.NoScreenshot
 	o.Params = all.Params
 	o.Timeout = all.Timeout
-	o.Type = all.Type
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

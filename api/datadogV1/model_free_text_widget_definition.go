@@ -234,29 +234,32 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.TextAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Color = all.Color
 	o.FontSize = all.FontSize
 	o.Text = *all.Text
-	o.TextAlign = all.TextAlign
-	o.Type = *all.Type
+	if v := all.TextAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TextAlign = all.TextAlign
+	}
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

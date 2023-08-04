@@ -251,6 +251,7 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.ModifiedAt = all.ModifiedAt
 	o.SamlAssertionAttributeId = all.SamlAssertionAttributeId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

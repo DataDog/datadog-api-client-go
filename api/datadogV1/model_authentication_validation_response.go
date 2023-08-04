@@ -101,6 +101,7 @@ func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	o.Valid = all.Valid
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

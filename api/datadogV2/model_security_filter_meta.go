@@ -101,6 +101,7 @@ func (o *SecurityFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Warning = all.Warning
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

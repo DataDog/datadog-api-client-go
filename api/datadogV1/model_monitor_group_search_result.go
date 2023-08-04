@@ -315,23 +315,30 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Group = all.Group
 	o.GroupTags = all.GroupTags
 	o.LastNodataTs = all.LastNodataTs
 	o.LastTriggeredTs = all.LastTriggeredTs
 	o.MonitorId = all.MonitorId
 	o.MonitorName = all.MonitorName
-	o.Status = all.Status
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -171,6 +171,7 @@ func (o *GroupScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Type = all.Type
 	o.Values = all.Values
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

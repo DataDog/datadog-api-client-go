@@ -352,55 +352,46 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.ColorBy; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.ColorBy = all.ColorBy
 	}
-	if v := all.GroupBy; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.SizeBy; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.ColorBy = all.ColorBy
 	o.CustomLinks = all.CustomLinks
-	o.GroupBy = all.GroupBy
+	if v := all.GroupBy; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.GroupBy = all.GroupBy
+	}
 	o.Requests = *all.Requests
-	o.SizeBy = all.SizeBy
+	if v := all.SizeBy; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SizeBy = all.SizeBy
+	}
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Time = all.Time
 	o.Title = all.Title
-	o.Type = *all.Type
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

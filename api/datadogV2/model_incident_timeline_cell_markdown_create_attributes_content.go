@@ -101,6 +101,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributesContent) UnmarshalJSON(byte
 		return err
 	}
 	o.Content = all.Content
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

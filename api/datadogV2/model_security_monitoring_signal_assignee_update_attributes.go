@@ -133,17 +133,24 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Assignee = *all.Assignee
+	o.Version = all.Version
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Assignee = *all.Assignee
-	o.Version = all.Version
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

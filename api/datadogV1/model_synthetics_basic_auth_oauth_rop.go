@@ -400,22 +400,8 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.TokenApiAuthentication; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.AccessTokenUrl = *all.AccessTokenUrl
 	o.Audience = all.Audience
 	o.ClientId = all.ClientId
@@ -423,11 +409,28 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	o.Password = *all.Password
 	o.Resource = all.Resource
 	o.Scope = all.Scope
-	o.TokenApiAuthentication = *all.TokenApiAuthentication
-	o.Type = all.Type
+	if v := all.TokenApiAuthentication; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TokenApiAuthentication = *all.TokenApiAuthentication
+	}
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 	o.Username = *all.Username
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

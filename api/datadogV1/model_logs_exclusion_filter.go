@@ -137,6 +137,7 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Query = all.Query
 	o.SampleRate = *all.SampleRate
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

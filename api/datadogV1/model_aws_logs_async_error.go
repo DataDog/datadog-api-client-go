@@ -136,6 +136,7 @@ func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Code = all.Code
 	o.Message = all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -513,59 +513,50 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.MessageDisplay; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Columns = all.Columns
 	o.Indexes = all.Indexes
 	o.Logset = all.Logset
-	o.MessageDisplay = all.MessageDisplay
+	if v := all.MessageDisplay; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.MessageDisplay = all.MessageDisplay
+	}
 	o.Query = all.Query
 	o.ShowDateColumn = all.ShowDateColumn
 	o.ShowMessageColumn = all.ShowMessageColumn
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Sort = all.Sort
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Time = all.Time
+	o.Title = all.Title
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TitleAlign = all.TitleAlign
+	}
+	o.TitleSize = all.TitleSize
+	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Time = all.Time
-	o.Title = all.Title
-	o.TitleAlign = all.TitleAlign
-	o.TitleSize = all.TitleSize
-	o.Type = *all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

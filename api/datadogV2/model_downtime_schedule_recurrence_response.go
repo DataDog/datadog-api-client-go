@@ -177,6 +177,7 @@ func (o *DowntimeScheduleRecurrenceResponse) UnmarshalJSON(bytes []byte) (err er
 	o.Duration = all.Duration
 	o.Rrule = all.Rrule
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

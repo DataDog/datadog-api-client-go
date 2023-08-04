@@ -132,6 +132,7 @@ func (o *RunWorkflowWidgetInput) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Name = *all.Name
 	o.Value = *all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

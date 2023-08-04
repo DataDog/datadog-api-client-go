@@ -103,6 +103,7 @@ func (o *DowntimeMonitorIdentifierTags) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	o.MonitorTags = *all.MonitorTags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

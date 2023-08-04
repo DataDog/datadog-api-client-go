@@ -216,6 +216,7 @@ func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExpiresAt = all.ExpiresAt
 	o.InviteType = all.InviteType
 	o.Uuid = all.Uuid
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

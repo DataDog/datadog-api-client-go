@@ -209,6 +209,7 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	o.Label = all.Label
 	o.Time = all.Time
 	o.Value = *all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

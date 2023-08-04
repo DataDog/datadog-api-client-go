@@ -206,6 +206,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

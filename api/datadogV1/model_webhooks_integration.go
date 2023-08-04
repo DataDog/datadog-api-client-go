@@ -264,21 +264,28 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.CustomHeaders = all.CustomHeaders
 	if v := all.EncodeAs; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.EncodeAs = all.EncodeAs
+	}
+	o.Name = *all.Name
+	o.Payload = all.Payload
+	o.Url = *all.Url
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.CustomHeaders = all.CustomHeaders
-	o.EncodeAs = all.EncodeAs
-	o.Name = *all.Name
-	o.Payload = all.Payload
-	o.Url = *all.Url
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

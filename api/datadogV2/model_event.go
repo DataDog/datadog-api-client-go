@@ -206,6 +206,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.SourceId = all.SourceId
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

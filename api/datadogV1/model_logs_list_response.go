@@ -183,6 +183,7 @@ func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Logs = all.Logs
 	o.NextLogId = all.NextLogId
 	o.Status = all.Status
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

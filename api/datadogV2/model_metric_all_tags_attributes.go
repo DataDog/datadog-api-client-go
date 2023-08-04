@@ -101,6 +101,7 @@ func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

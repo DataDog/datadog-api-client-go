@@ -366,6 +366,7 @@ func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiVisibilityTestCommitters = all.CiVisibilityTestCommitters
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -527,37 +527,40 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.AlertType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.AlertType = all.AlertType
 	}
-	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.AlertType = all.AlertType
 	o.DateHappened = all.DateHappened
 	o.DeviceName = all.DeviceName
 	o.Host = all.Host
 	o.Id = all.Id
 	o.IdStr = all.IdStr
 	o.Payload = all.Payload
-	o.Priority = all.Priority
+	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Priority = all.Priority
+	}
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags
 	o.Text = all.Text
 	o.Title = all.Title
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

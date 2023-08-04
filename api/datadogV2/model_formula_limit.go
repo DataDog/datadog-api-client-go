@@ -139,18 +139,25 @@ func (o *FormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Count = all.Count
 	if v := all.Order; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Order = all.Order
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Count = all.Count
-	o.Order = all.Order
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

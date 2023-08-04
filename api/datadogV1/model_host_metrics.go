@@ -171,6 +171,7 @@ func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.Cpu = all.Cpu
 	o.Iowait = all.Iowait
 	o.Load = all.Load
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

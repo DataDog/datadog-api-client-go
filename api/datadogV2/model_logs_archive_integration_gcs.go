@@ -132,6 +132,7 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ClientEmail = *all.ClientEmail
 	o.ProjectId = *all.ProjectId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

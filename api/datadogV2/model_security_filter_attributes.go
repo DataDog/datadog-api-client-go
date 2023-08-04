@@ -304,23 +304,30 @@ func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.FilteredDataType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.ExclusionFilters = all.ExclusionFilters
-	o.FilteredDataType = all.FilteredDataType
+	if v := all.FilteredDataType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.FilteredDataType = all.FilteredDataType
+	}
 	o.IsBuiltin = all.IsBuiltin
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.Query = all.Query
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

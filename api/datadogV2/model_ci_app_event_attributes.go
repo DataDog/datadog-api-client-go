@@ -168,19 +168,26 @@ func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Attributes = all.Attributes
+	o.Tags = all.Tags
 	if v := all.TestLevel; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TestLevel = all.TestLevel
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Attributes = all.Attributes
-	o.Tags = all.Tags
-	o.TestLevel = all.TestLevel
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

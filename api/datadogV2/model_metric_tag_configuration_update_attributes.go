@@ -187,6 +187,7 @@ func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Aggregations = all.Aggregations
 	o.IncludePercentiles = all.IncludePercentiles
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -471,6 +471,7 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
 	o.RoleName = all.RoleName
 	o.SecretAccessKey = all.SecretAccessKey
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

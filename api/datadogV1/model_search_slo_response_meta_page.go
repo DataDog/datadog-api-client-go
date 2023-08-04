@@ -346,6 +346,7 @@ func (o *SearchSLOResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Size = all.Size
 	o.Total = all.Total
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

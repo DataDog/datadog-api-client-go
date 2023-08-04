@@ -171,6 +171,7 @@ func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	o.End = all.End
 	o.Message = all.Message
 	o.Override = all.Override
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -141,6 +141,7 @@ func (o *RUMQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.TimeOffset = all.TimeOffset
 	o.Timezone = all.Timezone
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

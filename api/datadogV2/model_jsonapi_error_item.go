@@ -171,6 +171,7 @@ func (o *JSONAPIErrorItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Detail = all.Detail
 	o.Status = all.Status
 	o.Title = all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

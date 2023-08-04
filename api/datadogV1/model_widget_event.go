@@ -138,6 +138,7 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Q = *all.Q
 	o.TagsExecution = all.TagsExecution
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

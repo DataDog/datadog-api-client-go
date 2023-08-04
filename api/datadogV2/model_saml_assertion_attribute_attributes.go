@@ -136,6 +136,7 @@ func (o *SAMLAssertionAttributeAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	o.AttributeKey = all.AttributeKey
 	o.AttributeValue = all.AttributeValue
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

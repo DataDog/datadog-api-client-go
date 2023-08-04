@@ -135,6 +135,7 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Dashboards = *all.Dashboards
 	o.Total = all.Total
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

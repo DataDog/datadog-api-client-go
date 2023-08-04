@@ -132,6 +132,7 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.ErrorMessage = *all.ErrorMessage
 	o.ErrorType = *all.ErrorType
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

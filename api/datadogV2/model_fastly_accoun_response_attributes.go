@@ -135,6 +135,7 @@ func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	o.Name = *all.Name
 	o.Services = all.Services
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

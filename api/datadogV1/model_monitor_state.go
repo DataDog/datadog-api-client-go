@@ -102,6 +102,7 @@ func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Groups = all.Groups
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -171,6 +171,7 @@ func (o *MonitorOptionsAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Metric = all.Metric
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

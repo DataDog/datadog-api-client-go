@@ -952,33 +952,23 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.BodyType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.CallType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
-	o.BodyType = all.BodyType
-	o.CallType = all.CallType
+	if v := all.BodyType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.BodyType = all.BodyType
+	}
+	if v := all.CallType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CallType = all.CallType
+	}
 	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Certificate = all.Certificate
 	o.CertificateDomains = all.CertificateDomains
@@ -995,11 +985,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NumberOfPackets = all.NumberOfPackets
 	o.Port = all.Port
 	if all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Proxy = all.Proxy
 	o.Query = all.Query
@@ -1008,8 +994,17 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShouldTrackHops = all.ShouldTrackHops
 	o.Timeout = all.Timeout
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

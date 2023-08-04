@@ -193,6 +193,7 @@ func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	o.NextRecordId = all.NextRecordId
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

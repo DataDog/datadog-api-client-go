@@ -185,6 +185,7 @@ func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Denominator = all.Denominator
 	o.Metrics = all.Metrics
 	o.Numerator = all.Numerator
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

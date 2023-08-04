@@ -356,6 +356,7 @@ func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.Sharing = all.Sharing
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

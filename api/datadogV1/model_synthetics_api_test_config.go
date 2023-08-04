@@ -202,19 +202,26 @@ func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Assertions = all.Assertions
 	o.ConfigVariables = all.ConfigVariables
 	if all.Request != nil && all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Request = all.Request
+	o.Steps = all.Steps
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Request = all.Request
-	o.Steps = all.Steps
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

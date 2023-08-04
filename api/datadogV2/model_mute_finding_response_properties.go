@@ -193,18 +193,24 @@ func (o *MuteFindingResponseProperties) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+
+	hasInvalidField := false
+	o.Description = all.Description
+	o.ExpirationDate = all.ExpirationDate
+	o.Muted = all.Muted
 	if v := all.Reason; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Reason = all.Reason
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
 	}
-	o.Description = all.Description
-	o.ExpirationDate = all.ExpirationDate
-	o.Muted = all.Muted
-	o.Reason = all.Reason
 
 	return nil
 }

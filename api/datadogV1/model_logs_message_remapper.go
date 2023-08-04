@@ -209,20 +209,27 @@ func (o *LogsMessageRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.IsEnabled = all.IsEnabled
+	o.Name = all.Name
+	o.Sources = *all.Sources
 	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.IsEnabled = all.IsEnabled
-	o.Name = all.Name
-	o.Sources = *all.Sources
-	o.Type = *all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

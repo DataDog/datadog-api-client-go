@@ -136,6 +136,7 @@ func (o *SpansMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Path = all.Path
 	o.TagName = all.TagName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

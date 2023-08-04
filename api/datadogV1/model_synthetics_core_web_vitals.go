@@ -171,6 +171,7 @@ func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	o.Cls = all.Cls
 	o.Lcp = all.Lcp
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -164,19 +164,26 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Alias = all.Alias
 	if v := all.Dimension; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Dimension = *all.Dimension
+	}
+	o.Formula = *all.Formula
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Alias = all.Alias
-	o.Dimension = *all.Dimension
-	o.Formula = *all.Formula
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

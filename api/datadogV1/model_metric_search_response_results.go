@@ -101,6 +101,7 @@ func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Metrics = all.Metrics
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

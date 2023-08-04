@@ -132,6 +132,7 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Search = *all.Search
 	o.TagsExecution = *all.TagsExecution
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

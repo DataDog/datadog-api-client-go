@@ -202,6 +202,7 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Name = all.Name
 	o.ServiceAccount = *all.ServiceAccount
 	o.Title = all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

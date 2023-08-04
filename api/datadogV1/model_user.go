@@ -315,23 +315,30 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.AccessRole; v.Get() != nil && !v.Get().IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.AccessRole = all.AccessRole
 	}
-	o.AccessRole = all.AccessRole
 	o.Disabled = all.Disabled
 	o.Email = all.Email
 	o.Handle = all.Handle
 	o.Icon = all.Icon
 	o.Name = all.Name
 	o.Verified = all.Verified
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

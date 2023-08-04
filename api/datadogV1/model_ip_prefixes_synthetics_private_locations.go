@@ -136,6 +136,7 @@ func (o *IPPrefixesSyntheticsPrivateLocations) UnmarshalJSON(bytes []byte) (err 
 	}
 	o.PrefixesIpv4 = all.PrefixesIpv4
 	o.PrefixesIpv6 = all.PrefixesIpv6
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

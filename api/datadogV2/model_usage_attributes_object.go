@@ -270,22 +270,29 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.UsageType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.OrgName = all.OrgName
 	o.ProductFamily = all.ProductFamily
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.Timeseries = all.Timeseries
-	o.UsageType = all.UsageType
+	if v := all.UsageType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.UsageType = all.UsageType
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

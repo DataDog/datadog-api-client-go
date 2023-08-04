@@ -181,6 +181,7 @@ func (o *IncidentServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 	o.Created = all.Created
 	o.Modified = all.Modified
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

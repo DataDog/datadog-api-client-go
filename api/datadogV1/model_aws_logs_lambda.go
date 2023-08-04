@@ -101,6 +101,7 @@ func (o *AWSLogsLambda) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Arn = all.Arn
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

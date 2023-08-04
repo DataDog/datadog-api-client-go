@@ -100,6 +100,7 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Message = *all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

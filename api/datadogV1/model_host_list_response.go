@@ -171,6 +171,7 @@ func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.HostList = all.HostList
 	o.TotalMatching = all.TotalMatching
 	o.TotalReturned = all.TotalReturned
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

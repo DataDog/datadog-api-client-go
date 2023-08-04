@@ -171,6 +171,7 @@ func (o *TimeseriesResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Series = all.Series
 	o.Times = all.Times
 	o.Values = all.Values
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

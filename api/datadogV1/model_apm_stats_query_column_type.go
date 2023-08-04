@@ -201,28 +201,31 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Order; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Alias = all.Alias
-	o.CellDisplayMode = all.CellDisplayMode
+	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CellDisplayMode = all.CellDisplayMode
+	}
 	o.Name = *all.Name
-	o.Order = all.Order
+	if v := all.Order; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Order = all.Order
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -199,6 +199,7 @@ func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err e
 	o.ChannelName = *all.ChannelName
 	o.RedirectUrl = *all.RedirectUrl
 	o.TeamId = all.TeamId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

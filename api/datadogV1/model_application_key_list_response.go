@@ -101,6 +101,7 @@ func (o *ApplicationKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ApplicationKeys = all.ApplicationKeys
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

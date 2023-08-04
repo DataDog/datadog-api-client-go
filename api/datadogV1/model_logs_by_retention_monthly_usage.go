@@ -142,6 +142,7 @@ func (o *LogsByRetentionMonthlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Date = all.Date
 	o.Usage = all.Usage
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

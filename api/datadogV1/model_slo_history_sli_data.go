@@ -514,6 +514,7 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	o.SliValue = all.SliValue
 	o.SpanPrecision = all.SpanPrecision
 	o.Uptime = all.Uptime
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

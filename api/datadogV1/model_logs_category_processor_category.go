@@ -134,17 +134,24 @@ func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) 
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Filter = all.Filter
+	o.Name = all.Name
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Filter = all.Filter
-	o.Name = all.Name
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

@@ -101,6 +101,7 @@ func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Tests = all.Tests
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

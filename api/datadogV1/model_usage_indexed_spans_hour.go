@@ -223,6 +223,7 @@ func (o *UsageIndexedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.IndexedEventsCount = all.IndexedEventsCount
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

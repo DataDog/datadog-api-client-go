@@ -171,6 +171,7 @@ func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err 
 	o.Content = all.Content
 	o.Filename = all.Filename
 	o.UpdatedAt = all.UpdatedAt
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

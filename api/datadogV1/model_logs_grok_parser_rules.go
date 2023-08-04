@@ -139,6 +139,7 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.MatchRules = *all.MatchRules
 	o.SupportRules = all.SupportRules
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

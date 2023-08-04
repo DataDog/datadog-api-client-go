@@ -1323,28 +1323,10 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.NotificationPresetName; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.OnMissingData; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	if all.Aggregation != nil && all.Aggregation.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Aggregation = all.Aggregation
 	o.DeviceIds = all.DeviceIds
@@ -1361,45 +1343,50 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.NewGroupDelay = all.NewGroupDelay
 	o.NewHostDelay = all.NewHostDelay
 	o.NoDataTimeframe = all.NoDataTimeframe
-	o.NotificationPresetName = all.NotificationPresetName
+	if v := all.NotificationPresetName; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.NotificationPresetName = all.NotificationPresetName
+	}
 	o.NotifyAudit = all.NotifyAudit
 	o.NotifyBy = all.NotifyBy
 	o.NotifyNoData = all.NotifyNoData
-	o.OnMissingData = all.OnMissingData
+	if v := all.OnMissingData; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.OnMissingData = all.OnMissingData
+	}
 	o.RenotifyInterval = all.RenotifyInterval
 	o.RenotifyOccurrences = all.RenotifyOccurrences
 	o.RenotifyStatuses = all.RenotifyStatuses
 	o.RequireFullWindow = all.RequireFullWindow
 	if all.SchedulingOptions != nil && all.SchedulingOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.SchedulingOptions = all.SchedulingOptions
 	o.Silenced = all.Silenced
 	o.SyntheticsCheckId = all.SyntheticsCheckId
 	if all.ThresholdWindows != nil && all.ThresholdWindows.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.ThresholdWindows = all.ThresholdWindows
 	if all.Thresholds != nil && all.Thresholds.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Thresholds = all.Thresholds
 	o.TimeoutH = all.TimeoutH
 	o.Variables = all.Variables
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

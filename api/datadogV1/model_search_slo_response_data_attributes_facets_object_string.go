@@ -136,6 +136,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectString) UnmarshalJSON(bytes 
 	}
 	o.Count = all.Count
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

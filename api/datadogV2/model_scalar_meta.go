@@ -104,6 +104,7 @@ func (o *ScalarMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Unit = all.Unit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

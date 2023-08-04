@@ -102,6 +102,7 @@ func (o *SecurityMonitoringSignalsListResponseMetaPage) UnmarshalJSON(bytes []by
 		return err
 	}
 	o.After = all.After
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

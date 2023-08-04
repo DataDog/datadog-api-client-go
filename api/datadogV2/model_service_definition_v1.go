@@ -338,52 +338,43 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.SchemaVersion; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	if all.Contact != nil && all.Contact.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Contact = all.Contact
 	o.Extensions = all.Extensions
 	o.ExternalResources = all.ExternalResources
 	if all.Info.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Info = *all.Info
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
 	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Org = all.Org
+	if v := all.SchemaVersion; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SchemaVersion = *all.SchemaVersion
+	}
+	o.Tags = all.Tags
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Org = all.Org
-	o.SchemaVersion = *all.SchemaVersion
-	o.Tags = all.Tags
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

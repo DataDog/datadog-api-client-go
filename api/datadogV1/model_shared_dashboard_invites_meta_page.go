@@ -101,6 +101,7 @@ func (o *SharedDashboardInvitesMetaPage) UnmarshalJSON(bytes []byte) (err error)
 		return err
 	}
 	o.TotalCount = all.TotalCount
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

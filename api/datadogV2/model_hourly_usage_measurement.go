@@ -147,6 +147,7 @@ func (o *HourlyUsageMeasurement) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.UsageType = all.UsageType
 	o.Value = all.Value
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

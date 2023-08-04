@@ -132,6 +132,7 @@ func (o *CloudConfigurationRegoRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Policy = *all.Policy
 	o.ResourceTypes = *all.ResourceTypes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

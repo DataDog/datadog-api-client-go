@@ -101,6 +101,7 @@ func (o *SensitiveDataScannerMetaVersionOnly) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

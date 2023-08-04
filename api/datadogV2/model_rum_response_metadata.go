@@ -237,28 +237,31 @@ func (o *RUMResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Elapsed = all.Elapsed
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Page = all.Page
 	o.RequestId = all.RequestId
-	o.Status = all.Status
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
 	o.Warnings = all.Warnings
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

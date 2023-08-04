@@ -576,16 +576,14 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AgentConstraint = all.AgentConstraint
 	o.Category = all.Category
 	o.CreationAuthorUuId = all.CreationAuthorUuId
 	o.CreationDate = all.CreationDate
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Creator = all.Creator
 	o.DefaultRule = all.DefaultRule
@@ -597,16 +595,21 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.UpdateDate = all.UpdateDate
 	o.UpdatedAt = all.UpdatedAt
 	if all.Updater != nil && all.Updater.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Updater = all.Updater
+	o.Version = all.Version
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Updater = all.Updater
-	o.Version = all.Version
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

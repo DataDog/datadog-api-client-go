@@ -872,6 +872,7 @@ func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = all.Start
 	o.Timezone = all.Timezone
 	o.UpdaterId = all.UpdaterId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

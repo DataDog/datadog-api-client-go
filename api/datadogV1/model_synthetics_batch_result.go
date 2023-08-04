@@ -406,50 +406,45 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Device; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Device = all.Device
 	}
-	if v := all.ExecutionRule; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.TestType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Device = all.Device
 	o.Duration = all.Duration
-	o.ExecutionRule = all.ExecutionRule
+	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ExecutionRule = all.ExecutionRule
+	}
 	o.Location = all.Location
 	o.ResultId = all.ResultId
 	o.Retries = all.Retries
-	o.Status = all.Status
+	if v := all.Status; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
 	o.TestName = all.TestName
 	o.TestPublicId = all.TestPublicId
-	o.TestType = all.TestType
+	if v := all.TestType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TestType = all.TestType
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -101,6 +101,7 @@ func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	o.Ok = all.Ok
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

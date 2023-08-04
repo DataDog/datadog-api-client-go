@@ -133,17 +133,24 @@ func (o *IncidentIntegrationMetadataResponse) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
+	o.Included = all.Included
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Data = *all.Data
-	o.Included = all.Included
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

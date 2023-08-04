@@ -101,6 +101,7 @@ func (o *FastlyAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		return err
 	}
 	o.ApiKey = all.ApiKey
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

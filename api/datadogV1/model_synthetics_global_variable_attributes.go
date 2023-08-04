@@ -101,6 +101,7 @@ func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 	o.RestrictedRoles = all.RestrictedRoles
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

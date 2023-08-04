@@ -236,29 +236,32 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Action; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Action = all.Action
 	}
-	if v := all.Value; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Action = all.Action
 	o.Editable = all.Editable
 	o.Options = all.Options
 	o.Title = all.Title
-	o.Value = all.Value
+	if v := all.Value; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Value = all.Value
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -182,6 +182,7 @@ func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	o.Email = all.Email
 	o.Handle = all.Handle
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

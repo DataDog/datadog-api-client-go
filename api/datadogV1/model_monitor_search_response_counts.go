@@ -206,6 +206,7 @@ func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	o.Tag = all.Tag
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

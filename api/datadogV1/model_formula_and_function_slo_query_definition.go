@@ -297,47 +297,42 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.AdditionalQueryFilters = all.AdditionalQueryFilters
 	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
 	if v := all.GroupMode; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.GroupMode = all.GroupMode
 	}
 	if v := all.Measure; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Measure = *all.Measure
 	}
-	if v := all.SloQueryType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.AdditionalQueryFilters = all.AdditionalQueryFilters
-	o.DataSource = *all.DataSource
-	o.GroupMode = all.GroupMode
-	o.Measure = *all.Measure
 	o.Name = all.Name
 	o.SloId = *all.SloId
-	o.SloQueryType = all.SloQueryType
+	if v := all.SloQueryType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.SloQueryType = all.SloQueryType
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -101,6 +101,7 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ArchiveIds = *all.ArchiveIds
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

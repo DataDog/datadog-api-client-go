@@ -205,6 +205,7 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	o.Metric = *all.Metric
 	o.SearchBy = all.SearchBy
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

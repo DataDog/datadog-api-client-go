@@ -136,6 +136,7 @@ func (o *SyntheticsTestOptionsScheduling) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Timeframes = all.Timeframes
 	o.Timezone = all.Timezone
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

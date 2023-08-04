@@ -136,6 +136,7 @@ func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.DisplayName = all.DisplayName
 	o.Handle = all.Handle
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

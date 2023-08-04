@@ -440,13 +440,11 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Cases = all.Cases
 	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.Filters = all.Filters
@@ -455,18 +453,23 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	o.Message = all.Message
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

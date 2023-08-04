@@ -132,25 +132,28 @@ func (o *IncidentAttachmentPostmortemAttributes) UnmarshalJSON(bytes []byte) (er
 	} else {
 		return err
 	}
-	if v := all.AttachmentType; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	if all.Attachment.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Attachment = *all.Attachment
-	o.AttachmentType = *all.AttachmentType
+	if v := all.AttachmentType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.AttachmentType = *all.AttachmentType
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

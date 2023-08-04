@@ -101,6 +101,7 @@ func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Indexes = all.Indexes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

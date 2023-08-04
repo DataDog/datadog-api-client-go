@@ -202,20 +202,27 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Device; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Device = all.Device
+	}
+	o.Location = all.Location
+	o.PublicId = all.PublicId
+	o.ResultId = all.ResultId
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Device = all.Device
-	o.Location = all.Location
-	o.PublicId = all.PublicId
-	o.ResultId = all.ResultId
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

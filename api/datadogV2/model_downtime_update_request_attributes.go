@@ -374,6 +374,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.NotifyEndTypes = all.NotifyEndTypes
 	o.Schedule = all.Schedule
 	o.Scope = all.Scope
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

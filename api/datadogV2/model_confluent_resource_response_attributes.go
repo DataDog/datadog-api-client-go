@@ -209,6 +209,7 @@ func (o *ConfluentResourceResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Id = all.Id
 	o.ResourceType = *all.ResourceType
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

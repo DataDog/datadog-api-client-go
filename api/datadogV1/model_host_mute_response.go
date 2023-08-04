@@ -206,6 +206,7 @@ func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.End = all.End
 	o.Hostname = all.Hostname
 	o.Message = all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -101,6 +101,7 @@ func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Filters = all.Filters
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

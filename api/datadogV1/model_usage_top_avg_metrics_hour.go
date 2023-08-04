@@ -202,20 +202,27 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.AvgMetricHour = all.AvgMetricHour
+	o.MaxMetricHour = all.MaxMetricHour
 	if v := all.MetricCategory; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.MetricCategory = all.MetricCategory
+	}
+	o.MetricName = all.MetricName
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.AvgMetricHour = all.AvgMetricHour
-	o.MaxMetricHour = all.MaxMetricHour
-	o.MetricCategory = all.MetricCategory
-	o.MetricName = all.MetricName
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

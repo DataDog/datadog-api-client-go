@@ -149,18 +149,25 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+	o.Value = all.Value
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Type = all.Type
-	o.Value = all.Value
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

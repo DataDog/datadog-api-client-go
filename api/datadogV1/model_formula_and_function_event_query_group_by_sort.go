@@ -171,27 +171,30 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Aggregation; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.Aggregation = *all.Aggregation
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.Aggregation = *all.Aggregation
 	o.Metric = all.Metric
-	o.Order = all.Order
+	if v := all.Order; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Order = all.Order
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

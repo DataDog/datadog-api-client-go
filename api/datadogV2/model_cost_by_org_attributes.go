@@ -282,6 +282,7 @@ func (o *CostByOrgAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.TotalCost = all.TotalCost
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

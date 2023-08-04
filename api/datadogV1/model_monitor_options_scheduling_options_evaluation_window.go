@@ -171,6 +171,7 @@ func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) UnmarshalJSON(bytes []
 	o.DayStarts = all.DayStarts
 	o.HourStarts = all.HourStarts
 	o.MonthStarts = all.MonthStarts
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

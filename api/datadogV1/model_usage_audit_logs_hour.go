@@ -223,6 +223,7 @@ func (o *UsageAuditLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.LinesIndexed = all.LinesIndexed
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

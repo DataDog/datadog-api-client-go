@@ -205,6 +205,7 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 	o.IntegrationType = *all.IntegrationType
 	o.Metadata = *all.Metadata
 	o.Status = all.Status
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

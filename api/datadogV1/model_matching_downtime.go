@@ -218,6 +218,7 @@ func (o *MatchingDowntime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = *all.Id
 	o.Scope = all.Scope
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

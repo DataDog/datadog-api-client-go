@@ -101,6 +101,7 @@ func (o *TeamRelationshipsLinks) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Related = all.Related
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

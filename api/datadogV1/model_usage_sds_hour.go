@@ -407,6 +407,7 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.RumScannedBytes = all.RumScannedBytes
 	o.TotalScannedBytes = all.TotalScannedBytes
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

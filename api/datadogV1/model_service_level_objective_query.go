@@ -134,6 +134,7 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Denominator = *all.Denominator
 	o.Numerator = *all.Numerator
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

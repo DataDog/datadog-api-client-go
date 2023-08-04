@@ -206,6 +206,7 @@ func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	o.LogsLiveIndexedLogsUsageAggSum = all.LogsLiveIndexedLogsUsageAggSum
 	o.LogsRehydratedIndexedLogsUsageAggSum = all.LogsRehydratedIndexedLogsUsageAggSum
 	o.Retention = all.Retention
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

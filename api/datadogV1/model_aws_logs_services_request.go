@@ -132,6 +132,7 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AccountId = *all.AccountId
 	o.Services = *all.Services
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

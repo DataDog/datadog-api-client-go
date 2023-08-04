@@ -100,6 +100,7 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ServiceName = *all.ServiceName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

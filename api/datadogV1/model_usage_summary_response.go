@@ -3280,6 +3280,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AgentHostTop99pSum = all.AgentHostTop99pSum
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
 	o.ApmFargateCountAvgSum = all.ApmFargateCountAvgSum
@@ -3336,11 +3338,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.LiveIndexedEventsAggSum = all.LiveIndexedEventsAggSum
 	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
 	if all.LogsByRetention != nil && all.LogsByRetention.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.LogsByRetention = all.LogsByRetention
 	o.MobileRumLiteSessionCountAggSum = all.MobileRumLiteSessionCountAggSum
@@ -3381,8 +3379,17 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99pSum = all.VsphereHostTop99pSum
 	o.VulnManagementHostCountTop99pSum = all.VulnManagementHostCountTop99pSum
 	o.WorkflowExecutionsUsageAggSum = all.WorkflowExecutionsUsageAggSum
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

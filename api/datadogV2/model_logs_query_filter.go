@@ -252,21 +252,28 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.From = all.From
+	o.Indexes = all.Indexes
+	o.Query = all.Query
 	if v := all.StorageTier; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.StorageTier = all.StorageTier
+	}
+	o.To = all.To
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.From = all.From
-	o.Indexes = all.Indexes
-	o.Query = all.Query
-	o.StorageTier = all.StorageTier
-	o.To = all.To
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

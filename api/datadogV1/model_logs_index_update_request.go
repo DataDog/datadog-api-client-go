@@ -243,20 +243,27 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.DailyLimit = all.DailyLimit
 	o.DisableDailyLimit = all.DisableDailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
 	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Filter = *all.Filter
+	o.NumRetentionDays = all.NumRetentionDays
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Filter = *all.Filter
-	o.NumRetentionDays = all.NumRetentionDays
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

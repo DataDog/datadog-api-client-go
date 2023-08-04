@@ -100,17 +100,24 @@ func (o *TeamPermissionSettingUpdateAttributes) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Value; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Value = all.Value
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Value = all.Value
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

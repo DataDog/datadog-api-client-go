@@ -170,6 +170,7 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AddToSignalTimeline = all.AddToSignalTimeline
 	o.IncidentId = *all.IncidentId
 	o.Version = all.Version
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

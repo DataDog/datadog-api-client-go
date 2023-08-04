@@ -101,6 +101,7 @@ func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.CancelledIds = all.CancelledIds
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

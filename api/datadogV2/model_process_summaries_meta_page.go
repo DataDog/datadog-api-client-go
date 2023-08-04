@@ -137,6 +137,7 @@ func (o *ProcessSummariesMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.After = all.After
 	o.Size = all.Size
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

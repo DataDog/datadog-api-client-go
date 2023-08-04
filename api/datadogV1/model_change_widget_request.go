@@ -678,122 +678,81 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.ChangeType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.CompareTo; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.OrderBy; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.OrderDir; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	o.ChangeType = all.ChangeType
-	o.CompareTo = all.CompareTo
+	if v := all.ChangeType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ChangeType = all.ChangeType
+	}
+	if v := all.CompareTo; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CompareTo = all.CompareTo
+	}
 	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
 	o.IncreaseGood = all.IncreaseGood
 	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
 	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	o.OrderBy = all.OrderBy
-	o.OrderDir = all.OrderDir
+	if v := all.OrderBy; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.OrderBy = all.OrderBy
+	}
+	if v := all.OrderDir; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.OrderDir = all.OrderDir
+	}
 	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.ProcessQuery = all.ProcessQuery
 	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
-	o.ResponseFormat = all.ResponseFormat
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ResponseFormat = all.ResponseFormat
+	}
 	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
 	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.SecurityQuery = all.SecurityQuery
+	o.ShowPresent = all.ShowPresent
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.SecurityQuery = all.SecurityQuery
-	o.ShowPresent = all.ShowPresent
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

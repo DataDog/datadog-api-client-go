@@ -138,6 +138,7 @@ func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Count = all.Count
 	o.Interval = all.Interval
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

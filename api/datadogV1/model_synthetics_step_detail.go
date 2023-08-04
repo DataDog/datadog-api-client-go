@@ -645,49 +645,48 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.CheckType; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.PlayingTab; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Type; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.BrowserErrors = all.BrowserErrors
-	o.CheckType = all.CheckType
+	if v := all.CheckType; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CheckType = all.CheckType
+	}
 	o.Description = all.Description
 	o.Duration = all.Duration
 	o.Error = all.Error
-	o.PlayingTab = all.PlayingTab
+	if v := all.PlayingTab; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.PlayingTab = all.PlayingTab
+	}
 	o.ScreenshotBucketKey = all.ScreenshotBucketKey
 	o.Skipped = all.Skipped
 	o.SnapshotBucketKey = all.SnapshotBucketKey
 	o.StepId = all.StepId
 	o.SubTestStepDetails = all.SubTestStepDetails
 	o.TimeToInteractive = all.TimeToInteractive
-	o.Type = all.Type
+	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 	o.Url = all.Url
 	o.Value = all.Value
 	o.VitalsMetrics = all.VitalsMetrics
 	o.Warnings = all.Warnings
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

@@ -112,6 +112,7 @@ func (o *HourlyUsagePagination) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.NextRecordId = all.NextRecordId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

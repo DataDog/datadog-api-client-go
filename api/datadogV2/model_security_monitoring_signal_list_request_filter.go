@@ -181,6 +181,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) 
 	o.From = all.From
 	o.Query = all.Query
 	o.To = all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

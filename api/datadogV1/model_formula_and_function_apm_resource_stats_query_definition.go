@@ -393,23 +393,13 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
-	if v := all.Stat; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	o.DataSource = *all.DataSource
 	o.Env = *all.Env
 	o.GroupBy = all.GroupBy
 	o.Name = *all.Name
@@ -418,9 +408,22 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	o.PrimaryTagValue = all.PrimaryTagValue
 	o.ResourceName = all.ResourceName
 	o.Service = *all.Service
-	o.Stat = *all.Stat
+	if v := all.Stat; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Stat = *all.Stat
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

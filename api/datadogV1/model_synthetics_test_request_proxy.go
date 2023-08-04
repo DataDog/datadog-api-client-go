@@ -135,6 +135,7 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Headers = all.Headers
 	o.Url = *all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

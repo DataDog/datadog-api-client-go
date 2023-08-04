@@ -241,6 +241,7 @@ func (o *IncidentSearchResponseUserFacetData) UnmarshalJSON(bytes []byte) (err e
 	o.Handle = all.Handle
 	o.Name = all.Name
 	o.Uuid = all.Uuid
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

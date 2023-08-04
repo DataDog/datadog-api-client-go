@@ -442,6 +442,7 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.SessionCountFlutter = all.SessionCountFlutter
 	o.SessionCountIos = all.SessionCountIos
 	o.SessionCountReactnative = all.SessionCountReactnative
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

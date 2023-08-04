@@ -576,17 +576,15 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AgentChecks = all.AgentChecks
 	o.AgentVersion = all.AgentVersion
 	o.CpuCores = all.CpuCores
 	o.FbsdV = all.FbsdV
 	o.Gohai = all.Gohai
 	if all.InstallMethod != nil && all.InstallMethod.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.InstallMethod = all.InstallMethod
 	o.MacV = all.MacV
@@ -598,8 +596,17 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.SocketFqdn = all.SocketFqdn
 	o.SocketHostname = all.SocketHostname
 	o.WinV = all.WinV
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
 	}
 
 	return nil

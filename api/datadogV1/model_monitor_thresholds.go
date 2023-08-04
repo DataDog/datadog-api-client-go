@@ -331,6 +331,7 @@ func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 	o.Unknown = all.Unknown
 	o.Warning = all.Warning
 	o.WarningRecovery = all.WarningRecovery
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

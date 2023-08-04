@@ -311,6 +311,7 @@ func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.StatsdInterval = all.StatsdInterval
 	o.Type = all.Type
 	o.Unit = all.Unit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

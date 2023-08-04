@@ -217,6 +217,7 @@ func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	o.Prefix = all.Prefix
 	o.VisibleTags = all.VisibleTags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

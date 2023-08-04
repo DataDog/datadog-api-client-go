@@ -206,6 +206,7 @@ func (o *ApiKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedBy = all.CreatedBy
 	o.Key = all.Key
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

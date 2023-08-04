@@ -136,6 +136,7 @@ func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Id = all.Id
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

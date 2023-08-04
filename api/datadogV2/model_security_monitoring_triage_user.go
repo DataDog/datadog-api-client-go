@@ -251,6 +251,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Uuid = *all.Uuid
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

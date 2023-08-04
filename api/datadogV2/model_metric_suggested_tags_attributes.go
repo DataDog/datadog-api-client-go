@@ -136,6 +136,7 @@ func (o *MetricSuggestedTagsAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.ActiveAggregations = all.ActiveAggregations
 	o.ActiveTags = all.ActiveTags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

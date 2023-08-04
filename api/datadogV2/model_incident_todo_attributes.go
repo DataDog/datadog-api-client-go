@@ -259,6 +259,7 @@ func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Content = *all.Content
 	o.DueDate = all.DueDate
 	o.IncidentId = all.IncidentId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

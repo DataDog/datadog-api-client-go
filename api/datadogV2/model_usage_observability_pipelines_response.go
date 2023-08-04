@@ -101,6 +101,7 @@ func (o *UsageObservabilityPipelinesResponse) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	o.Data = all.Data
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

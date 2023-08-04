@@ -101,6 +101,7 @@ func (o *OnDemandConcurrencyCapAttributes) UnmarshalJSON(bytes []byte) (err erro
 		return err
 	}
 	o.OnDemandConcurrencyCap = all.OnDemandConcurrencyCap
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

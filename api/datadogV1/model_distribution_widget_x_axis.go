@@ -218,6 +218,7 @@ func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 	o.Max = all.Max
 	o.Min = all.Min
 	o.Scale = all.Scale
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

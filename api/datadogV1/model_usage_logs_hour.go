@@ -545,6 +545,7 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.LogsRehydratedIngestedBytes = all.LogsRehydratedIngestedBytes
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

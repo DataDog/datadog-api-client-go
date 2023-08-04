@@ -132,6 +132,7 @@ func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes [
 	}
 	o.DocumentUrl = *all.DocumentUrl
 	o.Title = *all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

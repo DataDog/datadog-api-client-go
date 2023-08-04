@@ -164,19 +164,26 @@ func (o *ServiceDefinitionV2Dot1MSTeams) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Contact = *all.Contact
+	o.Name = all.Name
 	if v := all.Type; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Contact = *all.Contact
-	o.Name = all.Name
-	o.Type = *all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

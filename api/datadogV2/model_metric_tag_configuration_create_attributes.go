@@ -216,20 +216,27 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Aggregations = all.Aggregations
+	o.IncludePercentiles = all.IncludePercentiles
 	if v := all.MetricType; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.MetricType = *all.MetricType
+	}
+	o.Tags = *all.Tags
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Aggregations = all.Aggregations
-	o.IncludePercentiles = all.IncludePercentiles
-	o.MetricType = *all.MetricType
-	o.Tags = *all.Tags
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

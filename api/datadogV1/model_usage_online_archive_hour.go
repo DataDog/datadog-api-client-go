@@ -223,6 +223,7 @@ func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.OnlineArchiveEventsCount = all.OnlineArchiveEventsCount
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

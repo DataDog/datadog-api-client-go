@@ -135,6 +135,7 @@ func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	o.Name = *all.Name
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

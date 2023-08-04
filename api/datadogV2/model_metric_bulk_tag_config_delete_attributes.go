@@ -101,6 +101,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) UnmarshalJSON(bytes []byte) (err e
 		return err
 	}
 	o.Emails = all.Emails
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

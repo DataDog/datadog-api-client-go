@@ -206,6 +206,7 @@ func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	o.PrefixesIpv4ByLocation = all.PrefixesIpv4ByLocation
 	o.PrefixesIpv6 = all.PrefixesIpv6
 	o.PrefixesIpv6ByLocation = all.PrefixesIpv6ByLocation
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

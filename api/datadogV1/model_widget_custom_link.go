@@ -206,6 +206,7 @@ func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 	o.Label = all.Label
 	o.Link = all.Link
 	o.OverrideLabel = all.OverrideLabel
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

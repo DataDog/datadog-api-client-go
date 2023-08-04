@@ -100,6 +100,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(byte
 		return err
 	}
 	o.Query = *all.Query
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

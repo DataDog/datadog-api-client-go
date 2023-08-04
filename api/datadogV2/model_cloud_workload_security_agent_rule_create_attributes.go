@@ -202,6 +202,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	o.Enabled = all.Enabled
 	o.Expression = *all.Expression
 	o.Name = *all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

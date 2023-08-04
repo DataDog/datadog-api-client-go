@@ -171,6 +171,7 @@ func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Code = all.Code
 	o.Details = all.Details
 	o.Message = all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

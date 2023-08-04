@@ -297,6 +297,7 @@ func (o *SharedDashboardInvitesDataObjectAttributes) UnmarshalJSON(bytes []byte)
 	o.InvitationExpiry = all.InvitationExpiry
 	o.SessionExpiry = all.SessionExpiry
 	o.ShareToken = all.ShareToken
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

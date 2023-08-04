@@ -282,6 +282,7 @@ func (o *UsageTimeseriesHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.NumCustomTimeseries = all.NumCustomTimeseries
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

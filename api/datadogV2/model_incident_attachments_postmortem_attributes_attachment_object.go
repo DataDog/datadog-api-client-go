@@ -132,6 +132,7 @@ func (o *IncidentAttachmentsPostmortemAttributesAttachmentObject) UnmarshalJSON(
 	}
 	o.DocumentUrl = *all.DocumentUrl
 	o.Title = *all.Title
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

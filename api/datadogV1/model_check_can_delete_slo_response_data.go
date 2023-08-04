@@ -101,6 +101,7 @@ func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	o.Ok = all.Ok
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

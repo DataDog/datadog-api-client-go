@@ -100,6 +100,7 @@ func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Issues = *all.Issues
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

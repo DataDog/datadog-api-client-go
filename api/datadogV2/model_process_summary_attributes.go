@@ -346,6 +346,7 @@ func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
 	o.User = all.User
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

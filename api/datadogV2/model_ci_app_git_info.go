@@ -579,6 +579,7 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	o.RepositoryUrl = *all.RepositoryUrl
 	o.Sha = *all.Sha
 	o.Tag = all.Tag
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -336,39 +336,38 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Compute = all.Compute
 	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
 	if v := all.EventSize; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.EventSize = all.EventSize
 	}
-	o.Compute = all.Compute
-	o.DataSource = *all.DataSource
-	o.EventSize = all.EventSize
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = *all.QueryString
 	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Sort = all.Sort
+	o.Storage = all.Storage
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Sort = all.Sort
-	o.Storage = all.Storage
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

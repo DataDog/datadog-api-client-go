@@ -451,6 +451,7 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TemplatedName = all.TemplatedName
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

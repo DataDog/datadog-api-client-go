@@ -151,6 +151,7 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.End = all.End
 	o.Start = *all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

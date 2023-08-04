@@ -223,6 +223,7 @@ func (o *UsageIncidentManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonthlyActiveUsers = all.MonthlyActiveUsers
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

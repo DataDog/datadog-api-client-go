@@ -168,19 +168,26 @@ func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.AccountId = all.AccountId
 	if v := all.Namespace; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Namespace = all.Namespace
+	}
+	o.TagFilterStr = all.TagFilterStr
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.AccountId = all.AccountId
-	o.Namespace = all.Namespace
-	o.TagFilterStr = all.TagFilterStr
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

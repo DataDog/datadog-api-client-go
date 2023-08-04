@@ -101,6 +101,7 @@ func (o *ScalarFormulaResponseAtrributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	o.Columns = all.Columns
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

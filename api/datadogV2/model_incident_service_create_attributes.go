@@ -100,6 +100,7 @@ func (o *IncidentServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		return err
 	}
 	o.Name = *all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

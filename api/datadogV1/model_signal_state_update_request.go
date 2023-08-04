@@ -201,28 +201,31 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.ArchiveComment = all.ArchiveComment
 	if v := all.ArchiveReason; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		hasInvalidField = true
+	} else {
+		o.ArchiveReason = all.ArchiveReason
 	}
 	if v := all.State; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.State = *all.State
+	}
+	o.Version = all.Version
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.ArchiveComment = all.ArchiveComment
-	o.ArchiveReason = all.ArchiveReason
-	o.State = *all.State
-	o.Version = all.Version
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

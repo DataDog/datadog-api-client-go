@@ -133,18 +133,25 @@ func (o *ListStreamComputeItems) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.Aggregation; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Aggregation = *all.Aggregation
+	}
+	o.Facet = all.Facet
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Aggregation = *all.Aggregation
-	o.Facet = all.Facet
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

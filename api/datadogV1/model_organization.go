@@ -346,12 +346,10 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Billing = all.Billing
 	o.Created = all.Created
@@ -359,24 +357,25 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.PublicId = all.PublicId
 	if all.Settings != nil && all.Settings.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Settings = all.Settings
 	if all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Subscription = all.Subscription
+	o.Trial = all.Trial
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
-	o.Subscription = all.Subscription
-	o.Trial = all.Trial
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

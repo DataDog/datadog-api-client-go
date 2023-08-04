@@ -202,20 +202,27 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Condition = all.Condition
+	o.Name = all.Name
+	o.Notifications = all.Notifications
 	if v := all.Status; !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = *all.Status
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Condition = all.Condition
-	o.Name = all.Name
-	o.Notifications = all.Notifications
-	o.Status = *all.Status
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

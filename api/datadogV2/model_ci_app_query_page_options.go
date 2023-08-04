@@ -140,6 +140,7 @@ func (o *CIAppQueryPageOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Cursor = all.Cursor
 	o.Limit = all.Limit
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

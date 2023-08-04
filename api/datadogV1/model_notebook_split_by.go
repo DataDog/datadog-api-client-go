@@ -132,6 +132,7 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Keys = *all.Keys
 	o.Tags = *all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

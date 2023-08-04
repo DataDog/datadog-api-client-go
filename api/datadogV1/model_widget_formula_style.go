@@ -136,6 +136,7 @@ func (o *WidgetFormulaStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Palette = all.Palette
 	o.PaletteIndex = all.PaletteIndex
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

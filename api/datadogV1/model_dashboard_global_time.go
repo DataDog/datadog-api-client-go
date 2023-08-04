@@ -100,17 +100,24 @@ func (o *DashboardGlobalTime) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.LiveSpan; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.LiveSpan = all.LiveSpan
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.LiveSpan = all.LiveSpan
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

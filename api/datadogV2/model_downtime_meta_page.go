@@ -101,6 +101,7 @@ func (o *DowntimeMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.TotalFilteredCount = all.TotalFilteredCount
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

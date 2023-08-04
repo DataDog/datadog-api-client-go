@@ -100,17 +100,24 @@ func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ExecutionRule = all.ExecutionRule
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.ExecutionRule = all.ExecutionRule
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil

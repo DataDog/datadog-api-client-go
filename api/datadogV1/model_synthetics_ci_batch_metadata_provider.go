@@ -101,6 +101,7 @@ func (o *SyntheticsCIBatchMetadataProvider) UnmarshalJSON(bytes []byte) (err err
 		return err
 	}
 	o.Name = all.Name
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

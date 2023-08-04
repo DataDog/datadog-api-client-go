@@ -236,21 +236,28 @@ func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	o.Host = all.Host
+	o.Metric = *all.Metric
+	o.Points = *all.Points
+	o.Tags = all.Tags
 	if v := all.Type; v != nil && !v.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-		return nil
-	}
-	o.Host = all.Host
-	o.Metric = *all.Metric
-	o.Points = *all.Points
-	o.Tags = all.Tags
-	o.Type = all.Type
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	return nil
