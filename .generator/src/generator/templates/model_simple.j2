@@ -328,12 +328,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	if o.Items != nil && len(o.Items) > 0 {
 		for _, v := range o.Items {
 			if v.UnparsedObject != nil {
-				err = json.Unmarshal(bytes, &o.UnparsedObject)
-				if err != nil {
-					return err
-				}
-
-				break
+				return json.Unmarshal(bytes, &o.UnparsedObject)
 			}
 		}
 	}
@@ -344,7 +339,6 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 
 {%- else %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
@@ -357,12 +351,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- endfor %}
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
 	{%- set propertyName = attr|attribute_name %}
@@ -408,7 +397,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- set isNullable = spec.nullable %}
 
 	{%- if spec.enum is defined %}
-	if v := all.{{ propertyName }}; {% if attr not in model.get("required", []) and not isNullable %}v != nil && {%- endif %}{%- if isNullable %}v.Get() != nil && !v.Get(){% else %}!v{%- endif %}.IsValid() {
+	if {% if attr not in model.get("required", []) and not isNullable %}all.{{ propertyName }} != nil && {%- endif %}{%- if isNullable %}all.{{ propertyName }}.Get() != nil && !all.{{ propertyName }}.Get(){% else %}!all.{{ propertyName }}{%- endif %}.IsValid() {
 		hasInvalidField = true
 	} else {
 		{%- if attr in model.get("required", []) and not isNullable %}
@@ -447,11 +436,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- if ns.hasCheckedFields %}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	{%- endif %}
 
