@@ -165,7 +165,6 @@ func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Description *string                     `json:"description"`
 		Name        *string                     `json:"name"`
@@ -173,12 +172,7 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *SyntheticsBrowserErrorType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
@@ -200,7 +194,7 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = *all.Description
 	o.Name = *all.Name
 	o.Status = all.Status
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -211,11 +205,7 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

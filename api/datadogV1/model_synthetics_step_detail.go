@@ -611,7 +611,6 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		BrowserErrors       []SyntheticsBrowserError      `json:"browserErrors,omitempty"`
 		CheckType           *SyntheticsCheckType          `json:"checkType,omitempty"`
@@ -632,12 +631,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 		Warnings            []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -648,7 +642,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.BrowserErrors = all.BrowserErrors
-	if v := all.CheckType; v != nil && !v.IsValid() {
+	if all.CheckType != nil && !all.CheckType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CheckType = all.CheckType
@@ -656,7 +650,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.Duration = all.Duration
 	o.Error = all.Error
-	if v := all.PlayingTab; v != nil && !v.IsValid() {
+	if all.PlayingTab != nil && !all.PlayingTab.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.PlayingTab = all.PlayingTab
@@ -667,7 +661,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	o.StepId = all.StepId
 	o.SubTestStepDetails = all.SubTestStepDetails
 	o.TimeToInteractive = all.TimeToInteractive
-	if v := all.Type; v != nil && !v.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -682,11 +676,7 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

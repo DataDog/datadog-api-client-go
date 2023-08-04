@@ -336,7 +336,6 @@ func (o SLOStatus) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CalculationError        datadog.NullableString             `json:"calculation_error,omitempty"`
 		ErrorBudgetRemaining    datadog.NullableFloat64            `json:"error_budget_remaining,omitempty"`
@@ -347,12 +346,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 		State                   *SLOState                          `json:"state,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -368,7 +362,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 	o.RawErrorBudgetRemaining = all.RawErrorBudgetRemaining
 	o.Sli = all.Sli
 	o.SpanPrecision = all.SpanPrecision
-	if v := all.State; v != nil && !v.IsValid() {
+	if all.State != nil && !all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State
@@ -379,11 +373,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

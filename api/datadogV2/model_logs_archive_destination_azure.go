@@ -227,7 +227,6 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Container      *string                          `json:"container"`
 		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
@@ -237,12 +236,7 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		Type           *LogsArchiveDestinationAzureType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Container == nil {
 		return fmt.Errorf("required field container missing")
@@ -272,7 +266,7 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	o.Path = all.Path
 	o.Region = all.Region
 	o.StorageAccount = *all.StorageAccount
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -283,11 +277,7 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

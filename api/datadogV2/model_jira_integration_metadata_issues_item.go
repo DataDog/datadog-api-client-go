@@ -204,7 +204,6 @@ func (o JiraIntegrationMetadataIssuesItem) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Account     *string `json:"account"`
 		IssueKey    *string `json:"issue_key,omitempty"`
@@ -213,12 +212,7 @@ func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err err
 		RedirectUrl *string `json:"redirect_url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Account == nil {
 		return fmt.Errorf("required field account missing")

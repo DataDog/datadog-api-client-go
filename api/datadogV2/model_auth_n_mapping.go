@@ -173,7 +173,6 @@ func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes    *AuthNMappingAttributes    `json:"attributes,omitempty"`
 		Id            *string                    `json:"id"`
@@ -181,12 +180,7 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 		Type          *AuthNMappingsType         `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -211,7 +205,7 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -222,11 +216,7 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -148,19 +148,13 @@ func (o CIAppPipelineEventAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
 		CiLevel    *CIAppPipelineLevel    `json:"ci_level,omitempty"`
 		Tags       []string               `json:"tags,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -171,7 +165,7 @@ func (o *CIAppPipelineEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Attributes = all.Attributes
-	if v := all.CiLevel; v != nil && !v.IsValid() {
+	if all.CiLevel != nil && !all.CiLevel.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CiLevel = all.CiLevel
@@ -183,11 +177,7 @@ func (o *CIAppPipelineEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

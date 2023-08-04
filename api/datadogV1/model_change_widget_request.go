@@ -643,7 +643,6 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
 		ChangeType          *WidgetChangeType                   `json:"change_type,omitempty"`
@@ -665,12 +664,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		ShowPresent         *bool                               `json:"show_present,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -684,12 +678,12 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	if v := all.ChangeType; v != nil && !v.IsValid() {
+	if all.ChangeType != nil && !all.ChangeType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ChangeType = all.ChangeType
 	}
-	if v := all.CompareTo; v != nil && !v.IsValid() {
+	if all.CompareTo != nil && !all.CompareTo.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CompareTo = all.CompareTo
@@ -708,12 +702,12 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	if v := all.OrderBy; v != nil && !v.IsValid() {
+	if all.OrderBy != nil && !all.OrderBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OrderBy = all.OrderBy
 	}
-	if v := all.OrderDir; v != nil && !v.IsValid() {
+	if all.OrderDir != nil && !all.OrderDir.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OrderDir = all.OrderDir
@@ -728,7 +722,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ResponseFormat = all.ResponseFormat
@@ -748,11 +742,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

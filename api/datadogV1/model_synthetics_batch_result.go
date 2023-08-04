@@ -379,7 +379,6 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Device        *SyntheticsDeviceID          `json:"device,omitempty"`
 		Duration      *float64                     `json:"duration,omitempty"`
@@ -393,12 +392,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		TestType      *SyntheticsTestDetailsType   `json:"test_type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -408,13 +402,13 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Device; v != nil && !v.IsValid() {
+	if all.Device != nil && !all.Device.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Device = all.Device
 	}
 	o.Duration = all.Duration
-	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+	if all.ExecutionRule != nil && !all.ExecutionRule.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ExecutionRule = all.ExecutionRule
@@ -422,14 +416,14 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Location = all.Location
 	o.ResultId = all.ResultId
 	o.Retries = all.Retries
-	if v := all.Status; v != nil && !v.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.TestName = all.TestName
 	o.TestPublicId = all.TestPublicId
-	if v := all.TestType; v != nil && !v.IsValid() {
+	if all.TestType != nil && !all.TestType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TestType = all.TestType
@@ -440,11 +434,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -134,19 +134,13 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DataSource  *FunnelSource `json:"data_source"`
 		QueryString *string       `json:"query_string"`
 		Steps       *[]FunnelStep `json:"steps"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DataSource == nil {
 		return fmt.Errorf("required field data_source missing")
@@ -165,7 +159,7 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.DataSource; !v.IsValid() {
+	if !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = *all.DataSource
@@ -178,11 +172,7 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

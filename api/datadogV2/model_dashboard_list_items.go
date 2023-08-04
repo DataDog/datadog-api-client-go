@@ -111,18 +111,12 @@ func (o DashboardListItems) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Dashboards *[]DashboardListItem `json:"dashboards"`
 		Total      *int64               `json:"total,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Dashboards == nil {
 		return fmt.Errorf("required field dashboards missing")

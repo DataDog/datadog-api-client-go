@@ -313,7 +313,6 @@ func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamsResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		FirstOffset *int64  `json:"first_offset,omitempty"`
 		LastOffset  *int64  `json:"last_offset,omitempty"`
@@ -325,12 +324,7 @@ func (o *TeamsResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *string `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

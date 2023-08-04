@@ -115,18 +115,12 @@ func (o AWSTagFilter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSTagFilter) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Namespace    *AWSNamespace `json:"namespace,omitempty"`
 		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -136,7 +130,7 @@ func (o *AWSTagFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Namespace; v != nil && !v.IsValid() {
+	if all.Namespace != nil && !all.Namespace.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Namespace = all.Namespace
@@ -148,11 +142,7 @@ func (o *AWSTagFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

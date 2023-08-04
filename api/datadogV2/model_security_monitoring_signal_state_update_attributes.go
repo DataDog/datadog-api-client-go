@@ -177,7 +177,6 @@ func (o SecurityMonitoringSignalStateUpdateAttributes) MarshalJSON() ([]byte, er
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ArchiveComment *string                                `json:"archive_comment,omitempty"`
 		ArchiveReason  *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
@@ -185,12 +184,7 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 		Version        *int64                                 `json:"version,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.State == nil {
 		return fmt.Errorf("required field state missing")
@@ -204,12 +198,12 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 
 	hasInvalidField := false
 	o.ArchiveComment = all.ArchiveComment
-	if v := all.ArchiveReason; v != nil && !v.IsValid() {
+	if all.ArchiveReason != nil && !all.ArchiveReason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ArchiveReason = all.ArchiveReason
 	}
-	if v := all.State; !v.IsValid() {
+	if !all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = *all.State
@@ -221,11 +215,7 @@ func (o *SecurityMonitoringSignalStateUpdateAttributes) UnmarshalJSON(bytes []by
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

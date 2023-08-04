@@ -188,7 +188,6 @@ func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		IsEnabled *bool                  `json:"is_enabled,omitempty"`
 		Name      *string                `json:"name,omitempty"`
@@ -196,12 +195,7 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		Type      *LogsTraceRemapperType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -217,7 +211,7 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.Sources = all.Sources
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -228,11 +222,7 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -305,7 +305,6 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Compute     []ListStreamComputeItems `json:"compute,omitempty"`
 		DataSource  *ListStreamSource        `json:"data_source"`
@@ -317,12 +316,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Storage     *string                  `json:"storage,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DataSource == nil {
 		return fmt.Errorf("required field data_source missing")
@@ -339,12 +333,12 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Compute = all.Compute
-	if v := all.DataSource; !v.IsValid() {
+	if !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = *all.DataSource
 	}
-	if v := all.EventSize; v != nil && !v.IsValid() {
+	if all.EventSize != nil && !all.EventSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EventSize = all.EventSize
@@ -363,11 +357,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -601,7 +601,6 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CreatedAt        *int64                      `json:"created_at,omitempty"`
 		Creator          *Creator                    `json:"creator,omitempty"`
@@ -621,12 +620,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		WarningThreshold *float64                    `json:"warning_threshold,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -664,12 +658,12 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = *all.Thresholds
-	if v := all.Timeframe; v != nil && !v.IsValid() {
+	if all.Timeframe != nil && !all.Timeframe.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Timeframe = all.Timeframe
 	}
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -681,11 +675,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

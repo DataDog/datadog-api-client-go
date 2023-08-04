@@ -252,7 +252,6 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Columns    []ApmStatsQueryColumnType `json:"columns,omitempty"`
 		Env        *string                   `json:"env"`
@@ -263,12 +262,7 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Service    *string                   `json:"service"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Env == nil {
 		return fmt.Errorf("required field env missing")
@@ -298,7 +292,7 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = *all.Name
 	o.PrimaryTag = *all.PrimaryTag
 	o.Resource = all.Resource
-	if v := all.RowType; !v.IsValid() {
+	if !all.RowType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.RowType = *all.RowType
@@ -310,11 +304,7 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

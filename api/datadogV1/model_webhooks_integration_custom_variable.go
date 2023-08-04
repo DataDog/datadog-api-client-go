@@ -133,19 +133,13 @@ func (o WebhooksIntegrationCustomVariable) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationCustomVariable) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		IsSecret *bool   `json:"is_secret"`
 		Name     *string `json:"name"`
 		Value    *string `json:"value"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.IsSecret == nil {
 		return fmt.Errorf("required field is_secret missing")

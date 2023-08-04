@@ -71,17 +71,11 @@ func (o MuteFindingRequestAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MuteFindingRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Mute *MuteFindingRequestProperties `json:"mute"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Mute == nil {
 		return fmt.Errorf("required field mute missing")
@@ -94,11 +88,7 @@ func (o *MuteFindingRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Mute = *all.Mute
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

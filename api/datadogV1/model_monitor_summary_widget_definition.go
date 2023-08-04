@@ -515,7 +515,6 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ColorPreference   *WidgetColorPreference              `json:"color_preference,omitempty"`
 		Count             *int64                              `json:"count,omitempty"`
@@ -533,12 +532,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Type              *MonitorSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Query == nil {
 		return fmt.Errorf("required field query missing")
@@ -554,13 +548,13 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	hasInvalidField := false
-	if v := all.ColorPreference; v != nil && !v.IsValid() {
+	if all.ColorPreference != nil && !all.ColorPreference.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ColorPreference = all.ColorPreference
 	}
 	o.Count = all.Count
-	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+	if all.DisplayFormat != nil && !all.DisplayFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DisplayFormat = all.DisplayFormat
@@ -569,25 +563,25 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Query = *all.Query
 	o.ShowLastTriggered = all.ShowLastTriggered
 	o.ShowPriority = all.ShowPriority
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort
 	}
 	o.Start = all.Start
-	if v := all.SummaryType; v != nil && !v.IsValid() {
+	if all.SummaryType != nil && !all.SummaryType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SummaryType = all.SummaryType
 	}
 	o.Title = all.Title
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
 	}
 	o.TitleSize = all.TitleSize
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -598,11 +592,7 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -247,7 +247,6 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
 		LastNotifiedTs  *int64                `json:"last_notified_ts,omitempty"`
@@ -257,12 +256,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 		Status          *MonitorOverallStates `json:"status,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -277,7 +271,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastResolvedTs = all.LastResolvedTs
 	o.LastTriggeredTs = all.LastTriggeredTs
 	o.Name = all.Name
-	if v := all.Status; v != nil && !v.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
@@ -288,11 +282,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

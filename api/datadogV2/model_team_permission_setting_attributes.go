@@ -214,7 +214,6 @@ func (o TeamPermissionSettingAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Action   *TeamPermissionSettingSerializerAction `json:"action,omitempty"`
 		Editable *bool                                  `json:"editable,omitempty"`
@@ -223,12 +222,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 		Value    *TeamPermissionSettingValue            `json:"value,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -238,7 +232,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	hasInvalidField := false
-	if v := all.Action; v != nil && !v.IsValid() {
+	if all.Action != nil && !all.Action.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Action = all.Action
@@ -246,7 +240,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Editable = all.Editable
 	o.Options = all.Options
 	o.Title = all.Title
-	if v := all.Value; v != nil && !v.IsValid() {
+	if all.Value != nil && !all.Value.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Value = all.Value
@@ -257,11 +251,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

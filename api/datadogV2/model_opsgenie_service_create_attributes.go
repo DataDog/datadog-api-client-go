@@ -165,7 +165,6 @@ func (o OpsgenieServiceCreateAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CustomUrl      *string                    `json:"custom_url,omitempty"`
 		Name           *string                    `json:"name"`
@@ -173,12 +172,7 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		Region         *OpsgenieServiceRegionType `json:"region"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -200,7 +194,7 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.CustomUrl = all.CustomUrl
 	o.Name = *all.Name
 	o.OpsgenieApiKey = *all.OpsgenieApiKey
-	if v := all.Region; !v.IsValid() {
+	if !all.Region.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Region = *all.Region
@@ -211,11 +205,7 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

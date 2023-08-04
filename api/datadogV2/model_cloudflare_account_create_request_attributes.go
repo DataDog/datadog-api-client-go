@@ -138,19 +138,13 @@ func (o CloudflareAccountCreateRequestAttributes) MarshalJSON() ([]byte, error) 
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApiKey *string `json:"api_key"`
 		Email  *string `json:"email,omitempty"`
 		Name   *string `json:"name"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ApiKey == nil {
 		return fmt.Errorf("required field api_key missing")

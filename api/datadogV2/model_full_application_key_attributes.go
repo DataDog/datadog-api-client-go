@@ -225,7 +225,6 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CreatedAt *string                      `json:"created_at,omitempty"`
 		Key       *string                      `json:"key,omitempty"`
@@ -234,12 +233,7 @@ func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Scopes    datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

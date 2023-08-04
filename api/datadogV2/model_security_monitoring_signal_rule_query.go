@@ -243,7 +243,6 @@ func (o SecurityMonitoringSignalRuleQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation          *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		CorrelatedByFields   []string                                `json:"correlatedByFields,omitempty"`
@@ -253,12 +252,7 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 		RuleId               *string                                 `json:"ruleId"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.RuleId == nil {
 		return fmt.Errorf("required field ruleId missing")
@@ -271,7 +265,7 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 	}
 
 	hasInvalidField := false
-	if v := all.Aggregation; v != nil && !v.IsValid() {
+	if all.Aggregation != nil && !all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
@@ -287,11 +281,7 @@ func (o *SecurityMonitoringSignalRuleQuery) UnmarshalJSON(bytes []byte) (err err
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

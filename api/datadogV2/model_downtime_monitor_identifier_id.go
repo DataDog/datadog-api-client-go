@@ -78,17 +78,11 @@ func (o DowntimeMonitorIdentifierId) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeMonitorIdentifierId) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		MonitorId *int64 `json:"monitor_id"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.MonitorId == nil {
 		return fmt.Errorf("required field monitor_id missing")

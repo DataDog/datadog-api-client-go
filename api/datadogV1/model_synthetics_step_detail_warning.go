@@ -105,18 +105,12 @@ func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Message *string                `json:"message"`
 		Type    *SyntheticsWarningType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Message == nil {
 		return fmt.Errorf("required field message missing")
@@ -133,7 +127,7 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Message = *all.Message
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -144,11 +138,7 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

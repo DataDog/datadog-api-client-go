@@ -348,7 +348,6 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		HasBackground   *bool                      `json:"has_background,omitempty"`
 		HasBorder       *bool                      `json:"has_border,omitempty"`
@@ -361,12 +360,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		VerticalAlign   *WidgetVerticalAlign       `json:"vertical_align,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -384,29 +378,29 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.HasBackground = all.HasBackground
 	o.HasBorder = all.HasBorder
-	if v := all.HorizontalAlign; v != nil && !v.IsValid() {
+	if all.HorizontalAlign != nil && !all.HorizontalAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.HorizontalAlign = all.HorizontalAlign
 	}
-	if v := all.Margin; v != nil && !v.IsValid() {
+	if all.Margin != nil && !all.Margin.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Margin = all.Margin
 	}
-	if v := all.Sizing; v != nil && !v.IsValid() {
+	if all.Sizing != nil && !all.Sizing.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sizing = all.Sizing
 	}
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
 	}
 	o.Url = *all.Url
 	o.UrlDarkTheme = all.UrlDarkTheme
-	if v := all.VerticalAlign; v != nil && !v.IsValid() {
+	if all.VerticalAlign != nil && !all.VerticalAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.VerticalAlign = all.VerticalAlign
@@ -417,11 +411,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -144,19 +144,13 @@ func (o IncidentIntegrationMetadataListResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataListResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Data     *[]IncidentIntegrationMetadataResponseData        `json:"data"`
 		Included []IncidentIntegrationMetadataResponseIncludedItem `json:"included,omitempty"`
 		Meta     *IncidentResponseMeta                             `json:"meta,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Data == nil {
 		return fmt.Errorf("required field data missing")
@@ -181,11 +175,7 @@ func (o *IncidentIntegrationMetadataListResponse) UnmarshalJSON(bytes []byte) (e
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

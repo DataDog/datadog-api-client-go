@@ -82,17 +82,11 @@ func (o SyntheticsTestCiOptions) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ExecutionRule *SyntheticsTestExecutionRule `json:"executionRule,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -102,7 +96,7 @@ func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+	if all.ExecutionRule != nil && !all.ExecutionRule.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ExecutionRule = all.ExecutionRule
@@ -113,11 +107,7 @@ func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

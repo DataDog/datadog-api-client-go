@@ -230,7 +230,6 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		From        *string          `json:"from,omitempty"`
 		Indexes     []string         `json:"indexes,omitempty"`
@@ -239,12 +238,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 		To          *string          `json:"to,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -257,7 +251,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = all.From
 	o.Indexes = all.Indexes
 	o.Query = all.Query
-	if v := all.StorageTier; v != nil && !v.IsValid() {
+	if all.StorageTier != nil && !all.StorageTier.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.StorageTier = all.StorageTier
@@ -269,11 +263,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

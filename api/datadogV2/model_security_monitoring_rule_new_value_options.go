@@ -194,7 +194,6 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ForgetAfter       *SecurityMonitoringRuleNewValueOptionsForgetAfter       `json:"forgetAfter,omitempty"`
 		LearningDuration  *SecurityMonitoringRuleNewValueOptionsLearningDuration  `json:"learningDuration,omitempty"`
@@ -202,12 +201,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 		LearningThreshold *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -217,22 +211,22 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	}
 
 	hasInvalidField := false
-	if v := all.ForgetAfter; v != nil && !v.IsValid() {
+	if all.ForgetAfter != nil && !all.ForgetAfter.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ForgetAfter = all.ForgetAfter
 	}
-	if v := all.LearningDuration; v != nil && !v.IsValid() {
+	if all.LearningDuration != nil && !all.LearningDuration.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningDuration = all.LearningDuration
 	}
-	if v := all.LearningMethod; v != nil && !v.IsValid() {
+	if all.LearningMethod != nil && !all.LearningMethod.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningMethod = all.LearningMethod
 	}
-	if v := all.LearningThreshold; v != nil && !v.IsValid() {
+	if all.LearningThreshold != nil && !all.LearningThreshold.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningThreshold = all.LearningThreshold
@@ -243,11 +237,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

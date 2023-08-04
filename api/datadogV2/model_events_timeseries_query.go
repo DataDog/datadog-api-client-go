@@ -239,7 +239,6 @@ func (o EventsTimeseriesQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Compute    *EventsCompute    `json:"compute"`
 		DataSource *EventsDataSource `json:"data_source"`
@@ -249,12 +248,7 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Search     *EventsSearch     `json:"search,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Compute == nil {
 		return fmt.Errorf("required field compute missing")
@@ -274,7 +268,7 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Compute = *all.Compute
-	if v := all.DataSource; !v.IsValid() {
+	if !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = *all.DataSource
@@ -292,11 +286,7 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

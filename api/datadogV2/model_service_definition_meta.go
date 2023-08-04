@@ -280,7 +280,6 @@ func (o ServiceDefinitionMeta) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		GithubHtmlUrl         *string                         `json:"github-html-url,omitempty"`
 		IngestedSchemaVersion *string                         `json:"ingested-schema-version,omitempty"`
@@ -291,12 +290,7 @@ func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
 		Warnings              []ServiceDefinitionMetaWarnings `json:"warnings,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

@@ -334,7 +334,6 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CreatedAt   *time.Time             `json:"created_at,omitempty"`
 		Description datadog.NullableString `json:"description,omitempty"`
@@ -346,12 +345,7 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		UserCount   *int32                 `json:"user_count,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Handle == nil {
 		return fmt.Errorf("required field handle missing")

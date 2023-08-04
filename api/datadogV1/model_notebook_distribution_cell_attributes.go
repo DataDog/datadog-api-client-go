@@ -190,7 +190,6 @@ func (o NotebookDistributionCellAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Definition *DistributionWidgetDefinition `json:"definition"`
 		GraphSize  *NotebookGraphSize            `json:"graph_size,omitempty"`
@@ -198,12 +197,7 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 		Time       NullableNotebookCellTime      `json:"time,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Definition == nil {
 		return fmt.Errorf("required field definition missing")
@@ -220,7 +214,7 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 		hasInvalidField = true
 	}
 	o.Definition = *all.Definition
-	if v := all.GraphSize; v != nil && !v.IsValid() {
+	if all.GraphSize != nil && !all.GraphSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GraphSize = all.GraphSize
@@ -236,11 +230,7 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -144,19 +144,13 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Compute *LogsMetricCompute  `json:"compute"`
 		Filter  *LogsMetricFilter   `json:"filter,omitempty"`
 		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Compute == nil {
 		return fmt.Errorf("required field compute missing")
@@ -184,11 +178,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

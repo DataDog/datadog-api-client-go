@@ -161,7 +161,6 @@ func (o IncidentTodoAnonymousAssignee) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Icon   *string                              `json:"icon"`
 		Id     *string                              `json:"id"`
@@ -169,12 +168,7 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 		Source *IncidentTodoAnonymousAssigneeSource `json:"source"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Icon == nil {
 		return fmt.Errorf("required field icon missing")
@@ -199,7 +193,7 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 	o.Icon = *all.Icon
 	o.Id = *all.Id
 	o.Name = *all.Name
-	if v := all.Source; !v.IsValid() {
+	if !all.Source.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Source = *all.Source
@@ -210,11 +204,7 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

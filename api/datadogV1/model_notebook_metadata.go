@@ -167,19 +167,13 @@ func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		IsTemplate    *bool                        `json:"is_template,omitempty"`
 		TakeSnapshots *bool                        `json:"take_snapshots,omitempty"`
 		Type          NullableNotebookMetadataType `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -191,7 +185,7 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.IsTemplate = all.IsTemplate
 	o.TakeSnapshots = all.TakeSnapshots
-	if v := all.Type; v.Get() != nil && !v.Get().IsValid() {
+	if all.Type.Get() != nil && !all.Type.Get().IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -202,11 +196,7 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -365,7 +365,6 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Check      *string                          `json:"check"`
 		Group      *string                          `json:"group,omitempty"`
@@ -379,12 +378,7 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type       *CheckStatusWidgetDefinitionType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Check == nil {
 		return fmt.Errorf("required field check missing")
@@ -406,7 +400,7 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Check = *all.Check
 	o.Group = all.Group
 	o.GroupBy = all.GroupBy
-	if v := all.Grouping; !v.IsValid() {
+	if !all.Grouping.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Grouping = *all.Grouping
@@ -417,13 +411,13 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Time = all.Time
 	o.Title = all.Title
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
 	}
 	o.TitleSize = all.TitleSize
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -434,11 +428,7 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

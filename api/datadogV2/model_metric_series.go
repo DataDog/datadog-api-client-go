@@ -337,7 +337,6 @@ func (o MetricSeries) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Interval       *int64            `json:"interval,omitempty"`
 		Metadata       *MetricMetadata   `json:"metadata,omitempty"`
@@ -350,12 +349,7 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 		Unit           *string           `json:"unit,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Metric == nil {
 		return fmt.Errorf("required field metric missing")
@@ -381,7 +375,7 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	o.Resources = all.Resources
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags
-	if v := all.Type; v != nil && !v.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -393,11 +387,7 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

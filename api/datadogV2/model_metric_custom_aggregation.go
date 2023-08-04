@@ -105,18 +105,12 @@ func (o MetricCustomAggregation) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Space *MetricCustomSpaceAggregation `json:"space"`
 		Time  *MetricCustomTimeAggregation  `json:"time"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Space == nil {
 		return fmt.Errorf("required field space missing")
@@ -132,12 +126,12 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Space; !v.IsValid() {
+	if !all.Space.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Space = *all.Space
 	}
-	if v := all.Time; !v.IsValid() {
+	if !all.Time.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Time = *all.Time
@@ -148,11 +142,7 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -135,19 +135,13 @@ func (o NotebookCellUpdateRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *NotebookCellUpdateRequestAttributes `json:"attributes"`
 		Id         *string                              `json:"id"`
 		Type       *NotebookCellResourceType            `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
@@ -168,7 +162,7 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -179,11 +173,7 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

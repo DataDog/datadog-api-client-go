@@ -247,7 +247,6 @@ func (o SensitiveDataScannerMeta) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CountLimit          *int64 `json:"count_limit,omitempty"`
 		GroupCountLimit     *int64 `json:"group_count_limit,omitempty"`
@@ -257,12 +256,7 @@ func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
 		Version             *int64 `json:"version,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

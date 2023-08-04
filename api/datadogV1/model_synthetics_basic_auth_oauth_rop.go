@@ -361,7 +361,6 @@ func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AccessTokenUrl         *string                                         `json:"accessTokenUrl"`
 		Audience               *string                                         `json:"audience,omitempty"`
@@ -375,12 +374,7 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 		Username               *string                                         `json:"username"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.AccessTokenUrl == nil {
 		return fmt.Errorf("required field accessTokenUrl missing")
@@ -409,12 +403,12 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	o.Password = *all.Password
 	o.Resource = all.Resource
 	o.Scope = all.Scope
-	if v := all.TokenApiAuthentication; !v.IsValid() {
+	if !all.TokenApiAuthentication.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TokenApiAuthentication = *all.TokenApiAuthentication
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -426,11 +420,7 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

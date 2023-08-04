@@ -290,7 +290,6 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
 		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
@@ -301,12 +300,7 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 		UsageUnit              *string    `json:"usage_unit,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

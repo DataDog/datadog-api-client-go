@@ -181,7 +181,6 @@ func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApiKey         *ApiKey         `json:"api_key,omitempty"`
 		ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
@@ -189,12 +188,7 @@ func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		User           *User           `json:"user,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -226,11 +220,7 @@ func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

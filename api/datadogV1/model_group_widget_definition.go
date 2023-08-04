@@ -303,7 +303,6 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		BackgroundColor *string                    `json:"background_color,omitempty"`
 		BannerImg       *string                    `json:"banner_img,omitempty"`
@@ -315,12 +314,7 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Widgets         *[]Widget                  `json:"widgets"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.LayoutType == nil {
 		return fmt.Errorf("required field layout_type missing")
@@ -341,19 +335,19 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.BackgroundColor = all.BackgroundColor
 	o.BannerImg = all.BannerImg
-	if v := all.LayoutType; !v.IsValid() {
+	if !all.LayoutType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LayoutType = *all.LayoutType
 	}
 	o.ShowTitle = all.ShowTitle
 	o.Title = all.Title
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
 	}
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -365,11 +359,7 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

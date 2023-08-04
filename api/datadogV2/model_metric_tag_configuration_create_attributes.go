@@ -189,7 +189,6 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
 		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
@@ -197,12 +196,7 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		Tags               *[]string                          `json:"tags"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.MetricType == nil {
 		return fmt.Errorf("required field metric_type missing")
@@ -220,7 +214,7 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	hasInvalidField := false
 	o.Aggregations = all.Aggregations
 	o.IncludePercentiles = all.IncludePercentiles
-	if v := all.MetricType; !v.IsValid() {
+	if !all.MetricType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MetricType = *all.MetricType
@@ -232,11 +226,7 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -182,7 +182,6 @@ func (o SpansCompute) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation *SpansAggregationFunction `json:"aggregation"`
 		Interval    *string                   `json:"interval,omitempty"`
@@ -190,12 +189,7 @@ func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 		Type        *SpansComputeType         `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Aggregation == nil {
 		return fmt.Errorf("required field aggregation missing")
@@ -208,14 +202,14 @@ func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.Aggregation; !v.IsValid() {
+	if !all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = *all.Aggregation
 	}
 	o.Interval = all.Interval
 	o.Metric = all.Metric
-	if v := all.Type; v != nil && !v.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -226,11 +220,7 @@ func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

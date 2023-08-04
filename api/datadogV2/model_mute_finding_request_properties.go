@@ -166,7 +166,6 @@ func (o MuteFindingRequestProperties) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MuteFindingRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Description    *string            `json:"description,omitempty"`
 		ExpirationDate *int64             `json:"expiration_date,omitempty"`
@@ -174,12 +173,7 @@ func (o *MuteFindingRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
 		Reason         *FindingMuteReason `json:"reason"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Muted == nil {
 		return fmt.Errorf("required field muted missing")
@@ -192,18 +186,14 @@ func (o *MuteFindingRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.ExpirationDate = all.ExpirationDate
 	o.Muted = *all.Muted
-	if v := all.Reason; !v.IsValid() {
+	if !all.Reason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Reason = *all.Reason
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -788,7 +788,6 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AcceptSelfSigned             *bool                                `json:"accept_self_signed,omitempty"`
 		AllowInsecure                *bool                                `json:"allow_insecure,omitempty"`
@@ -814,12 +813,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		TickEvery                    *int64                               `json:"tick_every,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -840,7 +834,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.DisableCors = all.DisableCors
 	o.DisableCsp = all.DisableCsp
 	o.FollowRedirects = all.FollowRedirects
-	if v := all.HttpVersion; v != nil && !v.IsValid() {
+	if all.HttpVersion != nil && !all.HttpVersion.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.HttpVersion = all.HttpVersion
@@ -876,11 +870,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

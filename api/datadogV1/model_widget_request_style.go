@@ -148,19 +148,13 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		LineType  *WidgetLineType  `json:"line_type,omitempty"`
 		LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
 		Palette   *string          `json:"palette,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -170,12 +164,12 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if v := all.LineType; v != nil && !v.IsValid() {
+	if all.LineType != nil && !all.LineType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LineType = all.LineType
 	}
-	if v := all.LineWidth; v != nil && !v.IsValid() {
+	if all.LineWidth != nil && !all.LineWidth.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LineWidth = all.LineWidth
@@ -187,11 +181,7 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

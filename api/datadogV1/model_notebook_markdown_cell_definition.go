@@ -107,18 +107,12 @@ func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Text *string                             `json:"text"`
 		Type *NotebookMarkdownCellDefinitionType `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Text == nil {
 		return fmt.Errorf("required field text missing")
@@ -135,7 +129,7 @@ func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error)
 
 	hasInvalidField := false
 	o.Text = *all.Text
-	if v := all.Type; !v.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
@@ -146,11 +140,7 @@ func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

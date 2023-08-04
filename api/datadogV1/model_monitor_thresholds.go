@@ -302,7 +302,6 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Critical         *float64                `json:"critical,omitempty"`
 		CriticalRecovery datadog.NullableFloat64 `json:"critical_recovery,omitempty"`
@@ -312,12 +311,7 @@ func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 		WarningRecovery  datadog.NullableFloat64 `json:"warning_recovery,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {

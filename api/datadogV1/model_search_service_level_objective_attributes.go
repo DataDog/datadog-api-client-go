@@ -646,7 +646,6 @@ func (o SearchServiceLevelObjectiveAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AllTags       []string                     `json:"all_tags,omitempty"`
 		CreatedAt     *int64                       `json:"created_at,omitempty"`
@@ -666,12 +665,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 		Thresholds    []SearchSLOThreshold         `json:"thresholds,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -693,7 +687,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	o.OverallStatus = all.OverallStatus
 	o.Query = all.Query
 	o.ServiceTags = all.ServiceTags
-	if v := all.SloType; v != nil && !v.IsValid() {
+	if all.SloType != nil && !all.SloType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SloType = all.SloType
@@ -710,11 +704,7 @@ func (o *SearchServiceLevelObjectiveAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -330,7 +330,6 @@ func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) 
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ArchiveComment          *string                                `json:"archive_comment,omitempty"`
 		ArchiveCommentTimestamp *int64                                 `json:"archive_comment_timestamp,omitempty"`
@@ -343,12 +342,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		StateUpdateUser         *SecurityMonitoringTriageUser          `json:"state_update_user,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Assignee == nil {
 		return fmt.Errorf("required field assignee missing")
@@ -373,7 +367,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		hasInvalidField = true
 	}
 	o.ArchiveCommentUser = all.ArchiveCommentUser
-	if v := all.ArchiveReason; v != nil && !v.IsValid() {
+	if all.ArchiveReason != nil && !all.ArchiveReason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ArchiveReason = all.ArchiveReason
@@ -383,7 +377,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	o.Assignee = *all.Assignee
 	o.IncidentIds = *all.IncidentIds
-	if v := all.State; !v.IsValid() {
+	if !all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = *all.State
@@ -399,11 +393,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

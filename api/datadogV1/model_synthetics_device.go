@@ -192,7 +192,6 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Height   *int64              `json:"height"`
 		Id       *SyntheticsDeviceID `json:"id"`
@@ -201,12 +200,7 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 		Width    *int64              `json:"width"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Height == nil {
 		return fmt.Errorf("required field height missing")
@@ -229,7 +223,7 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.Height = *all.Height
-	if v := all.Id; !v.IsValid() {
+	if !all.Id.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Id = *all.Id
@@ -243,11 +237,7 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

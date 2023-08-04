@@ -144,19 +144,13 @@ func (o MonitorFormulaAndFunctionEventQueryGroupBy) MarshalJSON() ([]byte, error
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Facet *string                                         `json:"facet"`
 		Limit *int64                                          `json:"limit,omitempty"`
 		Sort  *MonitorFormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Facet == nil {
 		return fmt.Errorf("required field facet missing")
@@ -181,11 +175,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

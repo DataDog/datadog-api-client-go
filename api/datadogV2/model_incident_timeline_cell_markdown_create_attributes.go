@@ -144,19 +144,13 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		CellType  *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
 		Content   *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 		Important *bool                                                `json:"important,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.CellType == nil {
 		return fmt.Errorf("required field cell_type missing")
@@ -172,7 +166,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 
 	hasInvalidField := false
-	if v := all.CellType; !v.IsValid() {
+	if !all.CellType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CellType = *all.CellType
@@ -188,11 +182,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

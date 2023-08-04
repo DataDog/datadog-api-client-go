@@ -182,7 +182,6 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Filter  *LogsQueryFilter     `json:"filter,omitempty"`
 		Options *LogsQueryOptions    `json:"options,omitempty"`
@@ -190,12 +189,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Sort    *LogsSort            `json:"sort,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -217,7 +211,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort
@@ -228,11 +222,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

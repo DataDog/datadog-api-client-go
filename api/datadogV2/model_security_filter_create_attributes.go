@@ -186,7 +186,6 @@ func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters"`
 		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type"`
@@ -195,12 +194,7 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		Query            *string                          `json:"query"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ExclusionFilters == nil {
 		return fmt.Errorf("required field exclusion_filters missing")
@@ -226,7 +220,7 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 
 	hasInvalidField := false
 	o.ExclusionFilters = *all.ExclusionFilters
-	if v := all.FilteredDataType; !v.IsValid() {
+	if !all.FilteredDataType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.FilteredDataType = *all.FilteredDataType
@@ -240,11 +234,7 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -360,7 +360,6 @@ func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApplicationId   *string `json:"application_id"`
 		ClientToken     *string `json:"client_token"`
@@ -375,12 +374,7 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		UpdatedByHandle *string `json:"updated_by_handle"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ApplicationId == nil {
 		return fmt.Errorf("required field application_id missing")

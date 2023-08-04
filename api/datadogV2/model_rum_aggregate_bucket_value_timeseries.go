@@ -54,12 +54,7 @@ func (o *RUMAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err err
 	if o.Items != nil && len(o.Items) > 0 {
 		for _, v := range o.Items {
 			if v.UnparsedObject != nil {
-				err = json.Unmarshal(bytes, &o.UnparsedObject)
-				if err != nil {
-					return err
-				}
-
-				break
+				return json.Unmarshal(bytes, &o.UnparsedObject)
 			}
 		}
 	}

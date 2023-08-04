@@ -391,7 +391,6 @@ func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		PrivateWidgetShare         *bool                                           `json:"private_widget_share,omitempty"`
 		Saml                       *OrganizationSettingsSaml                       `json:"saml,omitempty"`
@@ -405,12 +404,7 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		SamlStrictMode             *OrganizationSettingsSamlStrictMode             `json:"saml_strict_mode,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -425,7 +419,7 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Saml = all.Saml
-	if v := all.SamlAutocreateAccessRole; v.Get() != nil && !v.Get().IsValid() {
+	if all.SamlAutocreateAccessRole.Get() != nil && !all.SamlAutocreateAccessRole.Get().IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SamlAutocreateAccessRole = all.SamlAutocreateAccessRole
@@ -452,11 +446,7 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

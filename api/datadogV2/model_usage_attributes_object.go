@@ -247,7 +247,6 @@ func (o UsageAttributesObject) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		OrgName       *string                 `json:"org_name,omitempty"`
 		ProductFamily *string                 `json:"product_family,omitempty"`
@@ -257,12 +256,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 		UsageType     *HourlyUsageType        `json:"usage_type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -277,7 +271,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.Timeseries = all.Timeseries
-	if v := all.UsageType; v != nil && !v.IsValid() {
+	if all.UsageType != nil && !all.UsageType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.UsageType = all.UsageType
@@ -288,11 +282,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
