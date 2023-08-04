@@ -198,7 +198,6 @@ func (o MonitorDowntimeMatchResponseAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorDowntimeMatchResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		End    datadog.NullableTime `json:"end,omitempty"`
 		Groups []string             `json:"groups,omitempty"`
@@ -206,12 +205,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) UnmarshalJSON(bytes []byte) (er
 		Start  *time.Time           `json:"start,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -223,6 +217,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Groups = all.Groups
 	o.Scope = all.Scope
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

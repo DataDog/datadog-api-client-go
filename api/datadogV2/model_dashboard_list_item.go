@@ -543,7 +543,6 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Author        *Creator                     `json:"author,omitempty"`
 		Created       *time.Time                   `json:"created,omitempty"`
@@ -561,12 +560,7 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 		Url           *string                      `json:"url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -580,20 +574,10 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Type; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
+		hasInvalidField = true
 	}
 	o.Author = all.Author
 	o.Created = all.Created
@@ -607,10 +591,19 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Popularity = all.Popularity
 	o.Tags = all.Tags
 	o.Title = all.Title
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 	o.Url = all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

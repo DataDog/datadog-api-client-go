@@ -181,7 +181,6 @@ func (o ConfluentResourceResponseAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentResourceResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		EnableCustomMetrics *bool    `json:"enable_custom_metrics,omitempty"`
 		Id                  *string  `json:"id,omitempty"`
@@ -189,12 +188,7 @@ func (o *ConfluentResourceResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 		Tags                []string `json:"tags,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ResourceType == nil {
 		return fmt.Errorf("required field resource_type missing")
@@ -209,6 +203,7 @@ func (o *ConfluentResourceResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Id = all.Id
 	o.ResourceType = *all.ResourceType
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

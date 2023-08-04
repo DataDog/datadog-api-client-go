@@ -496,7 +496,6 @@ func (o DowntimeResponseAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Canceled                      datadog.NullableTime            `json:"canceled,omitempty"`
 		Created                       *time.Time                      `json:"created,omitempty"`
@@ -512,12 +511,7 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Status                        *DowntimeStatus                 `json:"status,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -525,14 +519,8 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Canceled = all.Canceled
 	o.Created = all.Created
 	o.DisplayTimezone = all.DisplayTimezone
@@ -544,9 +532,18 @@ func (o *DowntimeResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.NotifyEndTypes = all.NotifyEndTypes
 	o.Schedule = all.Schedule
 	o.Scope = all.Scope
-	o.Status = all.Status
+	if all.Status != nil && !all.Status.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = all.Status
+	}
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

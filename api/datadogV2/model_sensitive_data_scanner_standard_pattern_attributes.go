@@ -181,7 +181,6 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Description *string  `json:"description,omitempty"`
 		Name        *string  `json:"name,omitempty"`
@@ -189,12 +188,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 		Tags        []string `json:"tags,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -206,6 +200,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Tags = all.Tags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

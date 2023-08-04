@@ -225,7 +225,6 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DefaultActivationStatus datadog.NullableBool         `json:"defaultActivationStatus,omitempty"`
 		DefaultGroupByFields    datadog.NullableList[string] `json:"defaultGroupByFields,omitempty"`
@@ -233,12 +232,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 		UserGroupByFields       datadog.NullableList[string] `json:"userGroupByFields,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -250,6 +244,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 	o.DefaultGroupByFields = all.DefaultGroupByFields
 	o.UserActivationStatus = all.UserActivationStatus
 	o.UserGroupByFields = all.UserGroupByFields
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

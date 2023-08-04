@@ -331,7 +331,6 @@ func (o DowntimeCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DisplayTimezone               datadog.NullableString          `json:"display_timezone,omitempty"`
 		Message                       datadog.NullableString          `json:"message,omitempty"`
@@ -343,12 +342,7 @@ func (o *DowntimeCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 		Scope                         *string                         `json:"scope"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.MonitorIdentifier == nil {
 		return fmt.Errorf("required field monitor_identifier missing")
@@ -370,6 +364,7 @@ func (o *DowntimeCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.NotifyEndTypes = all.NotifyEndTypes
 	o.Schedule = all.Schedule
 	o.Scope = *all.Scope
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

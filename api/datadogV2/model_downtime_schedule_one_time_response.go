@@ -127,18 +127,12 @@ func (o DowntimeScheduleOneTimeResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		End   datadog.NullableTime `json:"end,omitempty"`
 		Start *time.Time           `json:"start"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Start == nil {
 		return fmt.Errorf("required field start missing")
@@ -151,6 +145,7 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.End = all.End
 	o.Start = *all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

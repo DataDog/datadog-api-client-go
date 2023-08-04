@@ -2924,7 +2924,6 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AgentHostTop99p                         *int64  `json:"agent_host_top99p,omitempty"`
 		ApmAzureAppServiceHostTop99p            *int64  `json:"apm_azure_app_service_host_top99p,omitempty"`
@@ -3015,12 +3014,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		WorkflowExecutionsUsageSum              *int64  `json:"workflow_executions_usage_sum,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -3115,6 +3109,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99p = all.VsphereHostTop99p
 	o.VulnManagementHostCountTop99p = all.VulnManagementHostCountTop99p
 	o.WorkflowExecutionsUsageSum = all.WorkflowExecutionsUsageSum
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

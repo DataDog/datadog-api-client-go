@@ -132,19 +132,13 @@ func (o MonitorConfigPolicyTagPolicyCreateRequest) MarshalJSON() ([]byte, error)
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorConfigPolicyTagPolicyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		TagKey         *string   `json:"tag_key"`
 		TagKeyRequired *bool     `json:"tag_key_required"`
 		ValidTagValues *[]string `json:"valid_tag_values"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.TagKey == nil {
 		return fmt.Errorf("required field tag_key missing")
@@ -164,6 +158,7 @@ func (o *MonitorConfigPolicyTagPolicyCreateRequest) UnmarshalJSON(bytes []byte) 
 	o.TagKey = *all.TagKey
 	o.TagKeyRequired = *all.TagKeyRequired
 	o.ValidTagValues = *all.ValidTagValues
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

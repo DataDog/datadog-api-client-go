@@ -774,7 +774,6 @@ func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		End             *time.Time                                 `json:"end"`
 		Error           NullableCIAppCIError                       `json:"error,omitempty"`
@@ -798,12 +797,7 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Url             *string                                    `json:"url"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.End == nil {
 		return fmt.Errorf("required field end missing")
@@ -838,28 +832,18 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Level; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.Status; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.End = *all.End
 	o.Error = all.Error
 	o.Git = all.Git
 	o.IsManual = all.IsManual
 	o.IsResumed = all.IsResumed
-	o.Level = *all.Level
+	if !all.Level.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Level = *all.Level
+	}
 	o.Metrics = all.Metrics
 	o.Name = *all.Name
 	o.Node = all.Node
@@ -870,12 +854,21 @@ func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.PreviousAttempt = all.PreviousAttempt
 	o.QueueTime = all.QueueTime
 	o.Start = *all.Start
-	o.Status = *all.Status
+	if !all.Status.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Status = *all.Status
+	}
 	o.Tags = all.Tags
 	o.UniqueId = *all.UniqueId
 	o.Url = *all.Url
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

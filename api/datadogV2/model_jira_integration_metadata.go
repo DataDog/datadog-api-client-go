@@ -78,17 +78,11 @@ func (o JiraIntegrationMetadata) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Issues *[]JiraIntegrationMetadataIssuesItem `json:"issues"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Issues == nil {
 		return fmt.Errorf("required field issues missing")
@@ -100,6 +94,7 @@ func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Issues = *all.Issues
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

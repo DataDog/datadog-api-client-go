@@ -236,7 +236,6 @@ func (o TeamsResponseLinks) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		First *string                `json:"first,omitempty"`
 		Last  datadog.NullableString `json:"last,omitempty"`
@@ -245,12 +244,7 @@ func (o *TeamsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 		Self  *string                `json:"self,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -263,6 +257,7 @@ func (o *TeamsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	o.Next = all.Next
 	o.Prev = all.Prev
 	o.Self = all.Self
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

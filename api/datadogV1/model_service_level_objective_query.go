@@ -107,18 +107,12 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Denominator *string `json:"denominator"`
 		Numerator   *string `json:"numerator"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Denominator == nil {
 		return fmt.Errorf("required field denominator missing")
@@ -134,6 +128,7 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Denominator = *all.Denominator
 	o.Numerator = *all.Numerator
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

@@ -177,7 +177,6 @@ func (o ServiceDefinitionV1Info) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DdService   *string `json:"dd-service"`
 		Description *string `json:"description,omitempty"`
@@ -185,12 +184,7 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 		ServiceTier *string `json:"service-tier,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DdService == nil {
 		return fmt.Errorf("required field dd-service missing")
@@ -205,6 +199,7 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.DisplayName = all.DisplayName
 	o.ServiceTier = all.ServiceTier
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

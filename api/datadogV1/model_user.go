@@ -291,7 +291,6 @@ func (o User) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		AccessRole NullableAccessRole `json:"access_role,omitempty"`
 		Disabled   *bool              `json:"disabled,omitempty"`
@@ -302,12 +301,7 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 		Verified   *bool              `json:"verified,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -315,23 +309,26 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.AccessRole; v.Get() != nil && !v.Get().IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+
+	hasInvalidField := false
+	if all.AccessRole.Get() != nil && !all.AccessRole.Get().IsValid() {
+		hasInvalidField = true
+	} else {
+		o.AccessRole = all.AccessRole
 	}
-	o.AccessRole = all.AccessRole
 	o.Disabled = all.Disabled
 	o.Email = all.Email
 	o.Handle = all.Handle
 	o.Icon = all.Icon
 	o.Name = all.Name
 	o.Verified = all.Verified
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

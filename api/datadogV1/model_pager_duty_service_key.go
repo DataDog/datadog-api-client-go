@@ -78,17 +78,11 @@ func (o PagerDutyServiceKey) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ServiceKey *string `json:"service_key"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ServiceKey == nil {
 		return fmt.Errorf("required field service_key missing")
@@ -100,6 +94,7 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ServiceKey = *all.ServiceKey
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

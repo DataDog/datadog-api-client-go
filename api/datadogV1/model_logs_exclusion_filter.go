@@ -113,18 +113,12 @@ func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Query      *string  `json:"query,omitempty"`
 		SampleRate *float64 `json:"sample_rate"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.SampleRate == nil {
 		return fmt.Errorf("required field sample_rate missing")
@@ -137,6 +131,7 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Query = all.Query
 	o.SampleRate = *all.SampleRate
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

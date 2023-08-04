@@ -148,19 +148,13 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		From     *time.Time `json:"from"`
 		Timezone *string    `json:"timezone,omitempty"`
 		To       *time.Time `json:"to"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.From == nil {
 		return fmt.Errorf("required field from missing")
@@ -177,6 +171,7 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = *all.From
 	o.Timezone = all.Timezone
 	o.To = *all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

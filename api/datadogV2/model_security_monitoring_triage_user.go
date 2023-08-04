@@ -221,7 +221,6 @@ func (o SecurityMonitoringTriageUser) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Handle *string                `json:"handle,omitempty"`
 		Icon   *string                `json:"icon,omitempty"`
@@ -230,12 +229,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 		Uuid   *string                `json:"uuid"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Uuid == nil {
 		return fmt.Errorf("required field uuid missing")
@@ -251,6 +245,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.Name = all.Name
 	o.Uuid = *all.Uuid
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

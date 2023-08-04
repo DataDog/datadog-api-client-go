@@ -622,7 +622,6 @@ func (o SpansAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Attributes      map[string]interface{} `json:"attributes,omitempty"`
 		Custom          map[string]interface{} `json:"custom,omitempty"`
@@ -643,12 +642,7 @@ func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Type            *string                `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -673,6 +667,7 @@ func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TraceId = all.TraceId
 	o.Type = all.Type
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

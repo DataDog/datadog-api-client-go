@@ -78,17 +78,11 @@ func (o PagerDutyServiceName) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ServiceName *string `json:"service_name"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ServiceName == nil {
 		return fmt.Errorf("required field service_name missing")
@@ -100,6 +94,7 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ServiceName = *all.ServiceName
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

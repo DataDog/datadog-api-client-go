@@ -138,19 +138,13 @@ func (o ScatterplotWidgetFormula) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Alias     *string               `json:"alias,omitempty"`
 		Dimension *ScatterplotDimension `json:"dimension"`
 		Formula   *string               `json:"formula"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Dimension == nil {
 		return fmt.Errorf("required field dimension missing")
@@ -164,19 +158,22 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Dimension; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
+
+	hasInvalidField := false
 	o.Alias = all.Alias
-	o.Dimension = *all.Dimension
+	if !all.Dimension.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Dimension = *all.Dimension
+	}
 	o.Formula = *all.Formula
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

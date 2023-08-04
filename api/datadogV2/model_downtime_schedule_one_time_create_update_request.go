@@ -141,18 +141,12 @@ func (o DowntimeScheduleOneTimeCreateUpdateRequest) MarshalJSON() ([]byte, error
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		End   datadog.NullableTime `json:"end,omitempty"`
 		Start datadog.NullableTime `json:"start,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -162,6 +156,7 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnmarshalJSON(bytes []byte)
 	}
 	o.End = all.End
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

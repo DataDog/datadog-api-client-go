@@ -169,7 +169,6 @@ func (o MetricsScalarQuery) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Aggregator *MetricsAggregator `json:"aggregator"`
 		DataSource *MetricsDataSource `json:"data_source"`
@@ -177,12 +176,7 @@ func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Query      *string            `json:"query"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Aggregator == nil {
 		return fmt.Errorf("required field aggregator missing")
@@ -199,28 +193,27 @@ func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	if v := all.Aggregator; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+
+	hasInvalidField := false
+	if !all.Aggregator.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Aggregator = *all.Aggregator
 	}
-	if v := all.DataSource; !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+	if !all.DataSource.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DataSource = *all.DataSource
 	}
-	o.Aggregator = *all.Aggregator
-	o.DataSource = *all.DataSource
 	o.Name = all.Name
 	o.Query = *all.Query
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

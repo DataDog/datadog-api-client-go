@@ -160,19 +160,13 @@ func (o CIAppPipelinesQueryFilter) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelinesQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		From  *string `json:"from,omitempty"`
 		Query *string `json:"query,omitempty"`
 		To    *string `json:"to,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -183,6 +177,7 @@ func (o *CIAppPipelinesQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = all.From
 	o.Query = all.Query
 	o.To = all.To
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

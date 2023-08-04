@@ -2293,7 +2293,6 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		ApiPercentage                        *float64 `json:"api_percentage,omitempty"`
 		ApiUsage                             *float64 `json:"api_usage,omitempty"`
@@ -2365,12 +2364,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		VulnManagementHostsUsage             *float64 `json:"vuln_management_hosts_usage,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -2446,6 +2440,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.UniversalServiceMonitoringUsage = all.UniversalServiceMonitoringUsage
 	o.VulnManagementHostsPercentage = all.VulnManagementHostsPercentage
 	o.VulnManagementHostsUsage = all.VulnManagementHostsUsage
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

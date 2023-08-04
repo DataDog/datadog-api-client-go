@@ -144,19 +144,13 @@ func (o CIAppCreatePipelineEventRequestAttributes) MarshalJSON() ([]byte, error)
 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppCreatePipelineEventRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Env      *string                                            `json:"env,omitempty"`
 		Resource *CIAppCreatePipelineEventRequestAttributesResource `json:"resource"`
 		Service  *string                                            `json:"service,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Resource == nil {
 		return fmt.Errorf("required field resource missing")
@@ -170,6 +164,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) UnmarshalJSON(bytes []byte) 
 	o.Env = all.Env
 	o.Resource = *all.Resource
 	o.Service = all.Service
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

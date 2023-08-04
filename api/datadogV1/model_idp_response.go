@@ -78,17 +78,11 @@ func (o IdpResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Message *string `json:"message"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Message == nil {
 		return fmt.Errorf("required field message missing")
@@ -100,6 +94,7 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Message = *all.Message
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

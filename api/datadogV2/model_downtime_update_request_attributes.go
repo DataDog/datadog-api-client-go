@@ -341,7 +341,6 @@ func (o DowntimeUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		DisplayTimezone               datadog.NullableString          `json:"display_timezone,omitempty"`
 		Message                       datadog.NullableString          `json:"message,omitempty"`
@@ -353,12 +352,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 		Scope                         *string                         `json:"scope,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -374,6 +368,7 @@ func (o *DowntimeUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.NotifyEndTypes = all.NotifyEndTypes
 	o.Schedule = all.Schedule
 	o.Scope = all.Scope
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

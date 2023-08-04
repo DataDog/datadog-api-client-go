@@ -154,19 +154,13 @@ func (o DowntimeScheduleRecurrenceResponse) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleRecurrenceResponse) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Duration *string `json:"duration,omitempty"`
 		Rrule    *string `json:"rrule,omitempty"`
 		Start    *string `json:"start,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -177,6 +171,7 @@ func (o *DowntimeScheduleRecurrenceResponse) UnmarshalJSON(bytes []byte) (err er
 	o.Duration = all.Duration
 	o.Rrule = all.Rrule
 	o.Start = all.Start
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

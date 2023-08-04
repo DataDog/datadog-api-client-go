@@ -81,17 +81,11 @@ func (o DowntimeMonitorIdentifierTags) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeMonitorIdentifierTags) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		MonitorTags *[]string `json:"monitor_tags"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.MonitorTags == nil {
 		return fmt.Errorf("required field monitor_tags missing")
@@ -103,6 +97,7 @@ func (o *DowntimeMonitorIdentifierTags) UnmarshalJSON(bytes []byte) (err error) 
 		return err
 	}
 	o.MonitorTags = *all.MonitorTags
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}

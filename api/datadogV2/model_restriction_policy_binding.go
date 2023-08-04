@@ -108,18 +108,12 @@ func (o RestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
 	all := struct {
 		Principals *[]string `json:"principals"`
 		Relation   *string   `json:"relation"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Principals == nil {
 		return fmt.Errorf("required field principals missing")
@@ -135,6 +129,7 @@ func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Principals = *all.Principals
 	o.Relation = *all.Relation
+
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
 	}
