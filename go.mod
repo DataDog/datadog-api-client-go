@@ -1,6 +1,6 @@
 module github.com/DataDog/datadog-api-client-go/v2
 
-go 1.18
+go 1.19
 
 retract (
 	// Version used to retract v2.0.0 and v2.0.1. DO NOT USE.
