@@ -35,6 +35,8 @@ type DashboardListItem struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// Popularity of the dashboard.
 	Popularity *int32 `json:"popularity,omitempty"`
+	// List of team names representing ownership of a dashboard.
+	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// Title of the dashboard.
 	Title *string `json:"title,omitempty"`
 	// The type of the dashboard.
@@ -362,6 +364,45 @@ func (o *DashboardListItem) SetPopularity(v int32) {
 	o.Popularity = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DashboardListItem) GetTags() []string {
+	if o == nil || o.Tags.Get() == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Tags.Get()
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *DashboardListItem) GetTagsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Tags.Get(), o.Tags.IsSet()
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *DashboardListItem) HasTags() bool {
+	return o != nil && o.Tags.IsSet()
+}
+
+// SetTags gets a reference to the given datadog.NullableList[string] and assigns it to the Tags field.
+func (o *DashboardListItem) SetTags(v []string) {
+	o.Tags.Set(&v)
+}
+
+// SetTagsNil sets the value for Tags to be an explicit nil.
+func (o *DashboardListItem) SetTagsNil() {
+	o.Tags.Set(nil)
+}
+
+// UnsetTags ensures that no value is present for Tags, not even an explicit nil.
+func (o *DashboardListItem) UnsetTags() {
+	o.Tags.Unset()
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DashboardListItem) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -483,6 +524,9 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 	if o.Popularity != nil {
 		toSerialize["popularity"] = o.Popularity
 	}
+	if o.Tags.IsSet() {
+		toSerialize["tags"] = o.Tags.Get()
+	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
@@ -501,19 +545,20 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Author        *Creator               `json:"author,omitempty"`
-		Created       *time.Time             `json:"created,omitempty"`
-		Icon          datadog.NullableString `json:"icon,omitempty"`
-		Id            *string                `json:"id"`
-		IntegrationId datadog.NullableString `json:"integration_id,omitempty"`
-		IsFavorite    *bool                  `json:"is_favorite,omitempty"`
-		IsReadOnly    *bool                  `json:"is_read_only,omitempty"`
-		IsShared      *bool                  `json:"is_shared,omitempty"`
-		Modified      *time.Time             `json:"modified,omitempty"`
-		Popularity    *int32                 `json:"popularity,omitempty"`
-		Title         *string                `json:"title,omitempty"`
-		Type          *DashboardType         `json:"type"`
-		Url           *string                `json:"url,omitempty"`
+		Author        *Creator                     `json:"author,omitempty"`
+		Created       *time.Time                   `json:"created,omitempty"`
+		Icon          datadog.NullableString       `json:"icon,omitempty"`
+		Id            *string                      `json:"id"`
+		IntegrationId datadog.NullableString       `json:"integration_id,omitempty"`
+		IsFavorite    *bool                        `json:"is_favorite,omitempty"`
+		IsReadOnly    *bool                        `json:"is_read_only,omitempty"`
+		IsShared      *bool                        `json:"is_shared,omitempty"`
+		Modified      *time.Time                   `json:"modified,omitempty"`
+		Popularity    *int32                       `json:"popularity,omitempty"`
+		Tags          datadog.NullableList[string] `json:"tags,omitempty"`
+		Title         *string                      `json:"title,omitempty"`
+		Type          *DashboardType               `json:"type"`
+		Url           *string                      `json:"url,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -531,7 +576,7 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created", "icon", "id", "integration_id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "title", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created", "icon", "id", "integration_id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "tags", "title", "type", "url"})
 	} else {
 		return err
 	}
@@ -550,6 +595,7 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsShared = all.IsShared
 	o.Modified = all.Modified
 	o.Popularity = all.Popularity
+	o.Tags = all.Tags
 	o.Title = all.Title
 	if v := all.Type; !v.IsValid() {
 		hasInvalidField = true
