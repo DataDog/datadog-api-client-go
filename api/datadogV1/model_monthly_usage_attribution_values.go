@@ -136,6 +136,22 @@ type MonthlyUsageAttributionValues struct {
 	ProfiledHostPercentage *float64 `json:"profiled_host_percentage,omitempty"`
 	// The profiled hosts usage by tag(s).
 	ProfiledHostUsage *float64 `json:"profiled_host_usage,omitempty"`
+	// The percentage of Sensitive Data Scanner events usage by tag(s).
+	SdsEvtEventsPercentage *float64 `json:"sds_evt_events_percentage,omitempty"`
+	// The Sensitive Data Scanner events usage by tag(s).
+	SdsEvtEventsUsage *float64 `json:"sds_evt_events_usage,omitempty"`
+	// The percentage of Sensitive Data Scanner logs usage by tag(s).
+	SdsLogEventsPercentage *float64 `json:"sds_log_events_percentage,omitempty"`
+	// The Sensitive Data Scanner logs usage by tag(s).
+	SdsLogEventsUsage *float64 `json:"sds_log_events_usage,omitempty"`
+	// The percentage of Sensitive Data Scanner RUM usage by tag(s).
+	SdsRumEventsPercentage *float64 `json:"sds_rum_events_percentage,omitempty"`
+	// The Sensitive Data Scanner RUM usage by tag(s).
+	SdsRumEventsUsage *float64 `json:"sds_rum_events_usage,omitempty"`
+	// The percentage of Sensitive Data Scanner spans usage by tag(s).
+	SdsSpansEventsPercentage *float64 `json:"sds_spans_events_percentage,omitempty"`
+	// The Sensitive Data Scanner spans usage by tag(s).
+	SdsSpansEventsUsage *float64 `json:"sds_spans_events_usage,omitempty"`
 	// The percentage of network device usage by tag(s).
 	SnmpPercentage *float64 `json:"snmp_percentage,omitempty"`
 	// The network device usage by tag(s).
@@ -1906,6 +1922,230 @@ func (o *MonthlyUsageAttributionValues) SetProfiledHostUsage(v float64) {
 	o.ProfiledHostUsage = &v
 }
 
+// GetSdsEvtEventsPercentage returns the SdsEvtEventsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsEvtEventsPercentage() float64 {
+	if o == nil || o.SdsEvtEventsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsEvtEventsPercentage
+}
+
+// GetSdsEvtEventsPercentageOk returns a tuple with the SdsEvtEventsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsEvtEventsPercentageOk() (*float64, bool) {
+	if o == nil || o.SdsEvtEventsPercentage == nil {
+		return nil, false
+	}
+	return o.SdsEvtEventsPercentage, true
+}
+
+// HasSdsEvtEventsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsEvtEventsPercentage() bool {
+	return o != nil && o.SdsEvtEventsPercentage != nil
+}
+
+// SetSdsEvtEventsPercentage gets a reference to the given float64 and assigns it to the SdsEvtEventsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetSdsEvtEventsPercentage(v float64) {
+	o.SdsEvtEventsPercentage = &v
+}
+
+// GetSdsEvtEventsUsage returns the SdsEvtEventsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsEvtEventsUsage() float64 {
+	if o == nil || o.SdsEvtEventsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsEvtEventsUsage
+}
+
+// GetSdsEvtEventsUsageOk returns a tuple with the SdsEvtEventsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsEvtEventsUsageOk() (*float64, bool) {
+	if o == nil || o.SdsEvtEventsUsage == nil {
+		return nil, false
+	}
+	return o.SdsEvtEventsUsage, true
+}
+
+// HasSdsEvtEventsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsEvtEventsUsage() bool {
+	return o != nil && o.SdsEvtEventsUsage != nil
+}
+
+// SetSdsEvtEventsUsage gets a reference to the given float64 and assigns it to the SdsEvtEventsUsage field.
+func (o *MonthlyUsageAttributionValues) SetSdsEvtEventsUsage(v float64) {
+	o.SdsEvtEventsUsage = &v
+}
+
+// GetSdsLogEventsPercentage returns the SdsLogEventsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsLogEventsPercentage() float64 {
+	if o == nil || o.SdsLogEventsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsLogEventsPercentage
+}
+
+// GetSdsLogEventsPercentageOk returns a tuple with the SdsLogEventsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsLogEventsPercentageOk() (*float64, bool) {
+	if o == nil || o.SdsLogEventsPercentage == nil {
+		return nil, false
+	}
+	return o.SdsLogEventsPercentage, true
+}
+
+// HasSdsLogEventsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsLogEventsPercentage() bool {
+	return o != nil && o.SdsLogEventsPercentage != nil
+}
+
+// SetSdsLogEventsPercentage gets a reference to the given float64 and assigns it to the SdsLogEventsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetSdsLogEventsPercentage(v float64) {
+	o.SdsLogEventsPercentage = &v
+}
+
+// GetSdsLogEventsUsage returns the SdsLogEventsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsLogEventsUsage() float64 {
+	if o == nil || o.SdsLogEventsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsLogEventsUsage
+}
+
+// GetSdsLogEventsUsageOk returns a tuple with the SdsLogEventsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsLogEventsUsageOk() (*float64, bool) {
+	if o == nil || o.SdsLogEventsUsage == nil {
+		return nil, false
+	}
+	return o.SdsLogEventsUsage, true
+}
+
+// HasSdsLogEventsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsLogEventsUsage() bool {
+	return o != nil && o.SdsLogEventsUsage != nil
+}
+
+// SetSdsLogEventsUsage gets a reference to the given float64 and assigns it to the SdsLogEventsUsage field.
+func (o *MonthlyUsageAttributionValues) SetSdsLogEventsUsage(v float64) {
+	o.SdsLogEventsUsage = &v
+}
+
+// GetSdsRumEventsPercentage returns the SdsRumEventsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsRumEventsPercentage() float64 {
+	if o == nil || o.SdsRumEventsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsRumEventsPercentage
+}
+
+// GetSdsRumEventsPercentageOk returns a tuple with the SdsRumEventsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsRumEventsPercentageOk() (*float64, bool) {
+	if o == nil || o.SdsRumEventsPercentage == nil {
+		return nil, false
+	}
+	return o.SdsRumEventsPercentage, true
+}
+
+// HasSdsRumEventsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsRumEventsPercentage() bool {
+	return o != nil && o.SdsRumEventsPercentage != nil
+}
+
+// SetSdsRumEventsPercentage gets a reference to the given float64 and assigns it to the SdsRumEventsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetSdsRumEventsPercentage(v float64) {
+	o.SdsRumEventsPercentage = &v
+}
+
+// GetSdsRumEventsUsage returns the SdsRumEventsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsRumEventsUsage() float64 {
+	if o == nil || o.SdsRumEventsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsRumEventsUsage
+}
+
+// GetSdsRumEventsUsageOk returns a tuple with the SdsRumEventsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsRumEventsUsageOk() (*float64, bool) {
+	if o == nil || o.SdsRumEventsUsage == nil {
+		return nil, false
+	}
+	return o.SdsRumEventsUsage, true
+}
+
+// HasSdsRumEventsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsRumEventsUsage() bool {
+	return o != nil && o.SdsRumEventsUsage != nil
+}
+
+// SetSdsRumEventsUsage gets a reference to the given float64 and assigns it to the SdsRumEventsUsage field.
+func (o *MonthlyUsageAttributionValues) SetSdsRumEventsUsage(v float64) {
+	o.SdsRumEventsUsage = &v
+}
+
+// GetSdsSpansEventsPercentage returns the SdsSpansEventsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsSpansEventsPercentage() float64 {
+	if o == nil || o.SdsSpansEventsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsSpansEventsPercentage
+}
+
+// GetSdsSpansEventsPercentageOk returns a tuple with the SdsSpansEventsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsSpansEventsPercentageOk() (*float64, bool) {
+	if o == nil || o.SdsSpansEventsPercentage == nil {
+		return nil, false
+	}
+	return o.SdsSpansEventsPercentage, true
+}
+
+// HasSdsSpansEventsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsSpansEventsPercentage() bool {
+	return o != nil && o.SdsSpansEventsPercentage != nil
+}
+
+// SetSdsSpansEventsPercentage gets a reference to the given float64 and assigns it to the SdsSpansEventsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetSdsSpansEventsPercentage(v float64) {
+	o.SdsSpansEventsPercentage = &v
+}
+
+// GetSdsSpansEventsUsage returns the SdsSpansEventsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetSdsSpansEventsUsage() float64 {
+	if o == nil || o.SdsSpansEventsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SdsSpansEventsUsage
+}
+
+// GetSdsSpansEventsUsageOk returns a tuple with the SdsSpansEventsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetSdsSpansEventsUsageOk() (*float64, bool) {
+	if o == nil || o.SdsSpansEventsUsage == nil {
+		return nil, false
+	}
+	return o.SdsSpansEventsUsage, true
+}
+
+// HasSdsSpansEventsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasSdsSpansEventsUsage() bool {
+	return o != nil && o.SdsSpansEventsUsage != nil
+}
+
+// SetSdsSpansEventsUsage gets a reference to the given float64 and assigns it to the SdsSpansEventsUsage field.
+func (o *MonthlyUsageAttributionValues) SetSdsSpansEventsUsage(v float64) {
+	o.SdsSpansEventsUsage = &v
+}
+
 // GetSnmpPercentage returns the SnmpPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSnmpPercentage() float64 {
 	if o == nil || o.SnmpPercentage == nil {
@@ -2266,6 +2506,30 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.ProfiledHostUsage != nil {
 		toSerialize["profiled_host_usage"] = o.ProfiledHostUsage
 	}
+	if o.SdsEvtEventsPercentage != nil {
+		toSerialize["sds_evt_events_percentage"] = o.SdsEvtEventsPercentage
+	}
+	if o.SdsEvtEventsUsage != nil {
+		toSerialize["sds_evt_events_usage"] = o.SdsEvtEventsUsage
+	}
+	if o.SdsLogEventsPercentage != nil {
+		toSerialize["sds_log_events_percentage"] = o.SdsLogEventsPercentage
+	}
+	if o.SdsLogEventsUsage != nil {
+		toSerialize["sds_log_events_usage"] = o.SdsLogEventsUsage
+	}
+	if o.SdsRumEventsPercentage != nil {
+		toSerialize["sds_rum_events_percentage"] = o.SdsRumEventsPercentage
+	}
+	if o.SdsRumEventsUsage != nil {
+		toSerialize["sds_rum_events_usage"] = o.SdsRumEventsUsage
+	}
+	if o.SdsSpansEventsPercentage != nil {
+		toSerialize["sds_spans_events_percentage"] = o.SdsSpansEventsPercentage
+	}
+	if o.SdsSpansEventsUsage != nil {
+		toSerialize["sds_spans_events_usage"] = o.SdsSpansEventsUsage
+	}
 	if o.SnmpPercentage != nil {
 		toSerialize["snmp_percentage"] = o.SnmpPercentage
 	}
@@ -2356,6 +2620,14 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		ProfiledFargateUsage                 *float64 `json:"profiled_fargate_usage,omitempty"`
 		ProfiledHostPercentage               *float64 `json:"profiled_host_percentage,omitempty"`
 		ProfiledHostUsage                    *float64 `json:"profiled_host_usage,omitempty"`
+		SdsEvtEventsPercentage               *float64 `json:"sds_evt_events_percentage,omitempty"`
+		SdsEvtEventsUsage                    *float64 `json:"sds_evt_events_usage,omitempty"`
+		SdsLogEventsPercentage               *float64 `json:"sds_log_events_percentage,omitempty"`
+		SdsLogEventsUsage                    *float64 `json:"sds_log_events_usage,omitempty"`
+		SdsRumEventsPercentage               *float64 `json:"sds_rum_events_percentage,omitempty"`
+		SdsRumEventsUsage                    *float64 `json:"sds_rum_events_usage,omitempty"`
+		SdsSpansEventsPercentage             *float64 `json:"sds_spans_events_percentage,omitempty"`
+		SdsSpansEventsUsage                  *float64 `json:"sds_spans_events_usage,omitempty"`
 		SnmpPercentage                       *float64 `json:"snmp_percentage,omitempty"`
 		SnmpUsage                            *float64 `json:"snmp_usage,omitempty"`
 		UniversalServiceMonitoringPercentage *float64 `json:"universal_service_monitoring_percentage,omitempty"`
@@ -2368,7 +2640,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_evt_events_percentage", "sds_evt_events_usage", "sds_log_events_percentage", "sds_log_events_usage", "sds_rum_events_percentage", "sds_rum_events_usage", "sds_spans_events_percentage", "sds_spans_events_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -2434,6 +2706,14 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.ProfiledFargateUsage = all.ProfiledFargateUsage
 	o.ProfiledHostPercentage = all.ProfiledHostPercentage
 	o.ProfiledHostUsage = all.ProfiledHostUsage
+	o.SdsEvtEventsPercentage = all.SdsEvtEventsPercentage
+	o.SdsEvtEventsUsage = all.SdsEvtEventsUsage
+	o.SdsLogEventsPercentage = all.SdsLogEventsPercentage
+	o.SdsLogEventsUsage = all.SdsLogEventsUsage
+	o.SdsRumEventsPercentage = all.SdsRumEventsPercentage
+	o.SdsRumEventsUsage = all.SdsRumEventsUsage
+	o.SdsSpansEventsPercentage = all.SdsSpansEventsPercentage
+	o.SdsSpansEventsUsage = all.SdsSpansEventsUsage
 	o.SnmpPercentage = all.SnmpPercentage
 	o.SnmpUsage = all.SnmpUsage
 	o.UniversalServiceMonitoringPercentage = all.UniversalServiceMonitoringPercentage
