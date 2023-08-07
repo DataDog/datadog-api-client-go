@@ -622,6 +622,146 @@ func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetUsageCICommittersDetailedOptionalParameters holds optional parameters for GetUsageCICommittersDetailed.
+type GetUsageCICommittersDetailedOptionalParameters struct {
+	UsageType                *string
+	FilterTimestampEnd       *time.Time
+	FilterIncludeDescendants *bool
+	PageLimit                *int32
+	PageNextRecordId         *string
+}
+
+// NewGetUsageCICommittersDetailedOptionalParameters creates an empty struct for parameters.
+func NewGetUsageCICommittersDetailedOptionalParameters() *GetUsageCICommittersDetailedOptionalParameters {
+	this := GetUsageCICommittersDetailedOptionalParameters{}
+	return &this
+}
+
+// WithUsageType sets the corresponding parameter name and returns the struct.
+func (r *GetUsageCICommittersDetailedOptionalParameters) WithUsageType(usageType string) *GetUsageCICommittersDetailedOptionalParameters {
+	r.UsageType = &usageType
+	return r
+}
+
+// WithFilterTimestampEnd sets the corresponding parameter name and returns the struct.
+func (r *GetUsageCICommittersDetailedOptionalParameters) WithFilterTimestampEnd(filterTimestampEnd time.Time) *GetUsageCICommittersDetailedOptionalParameters {
+	r.FilterTimestampEnd = &filterTimestampEnd
+	return r
+}
+
+// WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetUsageCICommittersDetailedOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetUsageCICommittersDetailedOptionalParameters {
+	r.FilterIncludeDescendants = &filterIncludeDescendants
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *GetUsageCICommittersDetailedOptionalParameters) WithPageLimit(pageLimit int32) *GetUsageCICommittersDetailedOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageNextRecordId sets the corresponding parameter name and returns the struct.
+func (r *GetUsageCICommittersDetailedOptionalParameters) WithPageNextRecordId(pageNextRecordId string) *GetUsageCICommittersDetailedOptionalParameters {
+	r.PageNextRecordId = &pageNextRecordId
+	return r
+}
+
+// GetUsageCICommittersDetailed Get hourly CI Committers Detailed.
+// Get hourly CI Committers Detailed.
+func (a *UsageMeteringApi) GetUsageCICommittersDetailed(ctx _context.Context, filterTimestampStart time.Time, filterUsageType string, o ...GetUsageCICommittersDetailedOptionalParameters) (UsageCICommittersDetailedResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue UsageCICommittersDetailedResponse
+		optionalParams      GetUsageCICommittersDetailedOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageCICommittersDetailedOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetUsageCICommittersDetailed")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/usage/ci_committers_detailed"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[timestamp][start]", datadog.ParameterToString(filterTimestampStart, ""))
+	localVarQueryParams.Add("filter[usage_type]", datadog.ParameterToString(filterUsageType, ""))
+	if optionalParams.UsageType != nil {
+		localVarQueryParams.Add("usage_type", datadog.ParameterToString(*optionalParams.UsageType, ""))
+	}
+	if optionalParams.FilterTimestampEnd != nil {
+		localVarQueryParams.Add("filter[timestamp][end]", datadog.ParameterToString(*optionalParams.FilterTimestampEnd, ""))
+	}
+	if optionalParams.FilterIncludeDescendants != nil {
+		localVarQueryParams.Add("filter[include_descendants]", datadog.ParameterToString(*optionalParams.FilterIncludeDescendants, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageNextRecordId != nil {
+		localVarQueryParams.Add("page[next_record_id]", datadog.ParameterToString(*optionalParams.PageNextRecordId, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetUsageLambdaTracedInvocationsOptionalParameters holds optional parameters for GetUsageLambdaTracedInvocations.
 type GetUsageLambdaTracedInvocationsOptionalParameters struct {
 	EndHr *time.Time
