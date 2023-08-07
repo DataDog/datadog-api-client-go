@@ -248,6 +248,7 @@
 //   - [UsageMeteringApi.GetHistoricalCostByOrg]
 //   - [UsageMeteringApi.GetHourlyUsage]
 //   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]
+//   - [UsageMeteringApi.GetUsageCICommittersDetailed]
 //   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]
 //   - [UsageMeteringApi.GetUsageObservabilityPipelines]
 //   - [UsersApi.CreateUser]
