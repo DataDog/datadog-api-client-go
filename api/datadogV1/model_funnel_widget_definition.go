@@ -13,6 +13,7 @@ import (
 )
 
 // FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
+//
 type FunnelWidgetDefinition struct {
 	// Request payload used to query items.
 	Requests []FunnelWidgetRequest `json:"requests"`
