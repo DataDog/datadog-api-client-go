@@ -15,6 +15,7 @@ type WidgetComparator string
 
 // List of WidgetComparator.
 const (
+	WIDGETCOMPARATOR_EQUAL_TO                 WidgetComparator = "="
 	WIDGETCOMPARATOR_GREATER_THAN             WidgetComparator = ">"
 	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO WidgetComparator = ">="
 	WIDGETCOMPARATOR_LESS_THAN                WidgetComparator = "<"
@@ -22,6 +23,7 @@ const (
 )
 
 var allowedWidgetComparatorEnumValues = []WidgetComparator{
+	WIDGETCOMPARATOR_EQUAL_TO,
 	WIDGETCOMPARATOR_GREATER_THAN,
 	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO,
 	WIDGETCOMPARATOR_LESS_THAN,
