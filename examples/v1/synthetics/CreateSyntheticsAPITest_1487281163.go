@@ -92,6 +92,7 @@ func main() {
 						TokenApiAuthentication: datadogV1.SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_HEADER,
 						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHCLIENTTYPE_OAUTH_CLIENT.Ptr(),
 					}},
+				PersistCookies: datadog.PtrBool(true),
 			},
 		},
 		Locations: []string{

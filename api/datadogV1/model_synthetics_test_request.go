@@ -48,6 +48,8 @@ type SyntheticsTestRequest struct {
 	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
 	// Number of pings to use per test.
 	NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
+	// Persist cookies across redirects.
+	PersistCookies *bool `json:"persistCookies,omitempty"`
 	// Port to use when performing the test.
 	Port *int64 `json:"port,omitempty"`
 	// The proxy to perform the test.
@@ -592,6 +594,34 @@ func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32) {
 	o.NumberOfPackets = &v
 }
 
+// GetPersistCookies returns the PersistCookies field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetPersistCookies() bool {
+	if o == nil || o.PersistCookies == nil {
+		var ret bool
+		return ret
+	}
+	return *o.PersistCookies
+}
+
+// GetPersistCookiesOk returns a tuple with the PersistCookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetPersistCookiesOk() (*bool, bool) {
+	if o == nil || o.PersistCookies == nil {
+		return nil, false
+	}
+	return o.PersistCookies, true
+}
+
+// HasPersistCookies returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasPersistCookies() bool {
+	return o != nil && o.PersistCookies != nil
+}
+
+// SetPersistCookies gets a reference to the given bool and assigns it to the PersistCookies field.
+func (o *SyntheticsTestRequest) SetPersistCookies(v bool) {
+	o.PersistCookies = &v
+}
+
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetPort() int64 {
 	if o == nil || o.Port == nil {
@@ -876,6 +906,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.NumberOfPackets != nil {
 		toSerialize["numberOfPackets"] = o.NumberOfPackets
 	}
+	if o.PersistCookies != nil {
+		toSerialize["persistCookies"] = o.PersistCookies
+	}
 	if o.Port != nil {
 		toSerialize["port"] = o.Port
 	}
@@ -928,6 +961,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Method                   *string                           `json:"method,omitempty"`
 		NoSavingResponseBody     *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets          *int32                            `json:"numberOfPackets,omitempty"`
+		PersistCookies           *bool                             `json:"persistCookies,omitempty"`
 		Port                     *int64                            `json:"port,omitempty"`
 		Proxy                    *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
 		Query                    interface{}                       `json:"query,omitempty"`
@@ -942,7 +976,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
 	} else {
 		return err
 	}
@@ -977,6 +1011,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Method = all.Method
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets
+	o.PersistCookies = all.PersistCookies
 	o.Port = all.Port
 	if all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
