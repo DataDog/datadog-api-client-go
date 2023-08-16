@@ -14,9 +14,12 @@ import (
 
 func main() {
 	body := datadogV1.AzureAccount{
-		Automute:     datadog.PtrBool(true),
-		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
-		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		AppServicePlanFilters: datadog.PtrString("key:value,filter:example"),
+		Automute:              datadog.PtrBool(true),
+		ClientId:              datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientSecret:          datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		CspmEnabled:           datadog.PtrBool(true),
+		CustomMetricsEnabled:  datadog.PtrBool(true),
 		Errors: []string{
 			"*",
 		},
