@@ -12,7 +12,7 @@ import (
 
 // LogsAggregateRequestPage Paging settings
 type LogsAggregateRequestPage struct {
-	// The returned paging point to use to get the next results
+	// The returned paging point to use to get the next results. Note: at most 1000 results can be paged.
 	Cursor *string `json:"cursor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

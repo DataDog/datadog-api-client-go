@@ -15,7 +15,7 @@ type LogsListRequest struct {
 	// The search and filter query settings
 	Filter *LogsQueryFilter `json:"filter,omitempty"`
 	// Global query options that are used during the query.
-	// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+	// Note: you should supply either timezone or time offset, but not both. Otherwise, the query will fail.
 	Options *LogsQueryOptions `json:"options,omitempty"`
 	// Paging attributes for listing logs.
 	Page *LogsListRequestPage `json:"page,omitempty"`

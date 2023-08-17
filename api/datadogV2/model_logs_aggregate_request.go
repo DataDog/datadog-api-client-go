@@ -19,7 +19,7 @@ type LogsAggregateRequest struct {
 	// The rules for the group by
 	GroupBy []LogsGroupBy `json:"group_by,omitempty"`
 	// Global query options that are used during the query.
-	// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+	// Note: you should supply either timezone or time offset, but not both. Otherwise, the query will fail.
 	Options *LogsQueryOptions `json:"options,omitempty"`
 	// Paging settings
 	Page *LogsAggregateRequestPage `json:"page,omitempty"`

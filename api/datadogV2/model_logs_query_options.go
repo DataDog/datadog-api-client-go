@@ -11,7 +11,7 @@ import (
 )
 
 // LogsQueryOptions Global query options that are used during the query.
-// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+// Note: you should supply either timezone or time offset, but not both. Otherwise, the query will fail.
 type LogsQueryOptions struct {
 	// The time offset (in seconds) to apply to the query.
 	TimeOffset *int64 `json:"timeOffset,omitempty"`
