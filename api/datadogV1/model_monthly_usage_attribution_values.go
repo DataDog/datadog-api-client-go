@@ -24,6 +24,10 @@ type MonthlyUsageAttributionValues struct {
 	ApmHostPercentage *float64 `json:"apm_host_percentage,omitempty"`
 	// The APM host usage by tag(s).
 	ApmHostUsage *float64 `json:"apm_host_usage,omitempty"`
+	// The percentage of APM and Universal Service Monitoring host usage by tag(s).
+	ApmUsmPercentage *float64 `json:"apm_usm_percentage,omitempty"`
+	// The APM and Universal Service Monitoring host usage by tag(s).
+	ApmUsmUsage *float64 `json:"apm_usm_usage,omitempty"`
 	// The percentage of Application Security Monitoring ECS Fargate task usage by tag(s).
 	AppsecFargatePercentage *float64 `json:"appsec_fargate_percentage,omitempty"`
 	// The Application Security Monitoring ECS Fargate task usage by tag(s).
@@ -340,6 +344,62 @@ func (o *MonthlyUsageAttributionValues) HasApmHostUsage() bool {
 // SetApmHostUsage gets a reference to the given float64 and assigns it to the ApmHostUsage field.
 func (o *MonthlyUsageAttributionValues) SetApmHostUsage(v float64) {
 	o.ApmHostUsage = &v
+}
+
+// GetApmUsmPercentage returns the ApmUsmPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetApmUsmPercentage() float64 {
+	if o == nil || o.ApmUsmPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmUsmPercentage
+}
+
+// GetApmUsmPercentageOk returns a tuple with the ApmUsmPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetApmUsmPercentageOk() (*float64, bool) {
+	if o == nil || o.ApmUsmPercentage == nil {
+		return nil, false
+	}
+	return o.ApmUsmPercentage, true
+}
+
+// HasApmUsmPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasApmUsmPercentage() bool {
+	return o != nil && o.ApmUsmPercentage != nil
+}
+
+// SetApmUsmPercentage gets a reference to the given float64 and assigns it to the ApmUsmPercentage field.
+func (o *MonthlyUsageAttributionValues) SetApmUsmPercentage(v float64) {
+	o.ApmUsmPercentage = &v
+}
+
+// GetApmUsmUsage returns the ApmUsmUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetApmUsmUsage() float64 {
+	if o == nil || o.ApmUsmUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ApmUsmUsage
+}
+
+// GetApmUsmUsageOk returns a tuple with the ApmUsmUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetApmUsmUsageOk() (*float64, bool) {
+	if o == nil || o.ApmUsmUsage == nil {
+		return nil, false
+	}
+	return o.ApmUsmUsage, true
+}
+
+// HasApmUsmUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasApmUsmUsage() bool {
+	return o != nil && o.ApmUsmUsage != nil
+}
+
+// SetApmUsmUsage gets a reference to the given float64 and assigns it to the ApmUsmUsage field.
+func (o *MonthlyUsageAttributionValues) SetApmUsmUsage(v float64) {
+	o.ApmUsmUsage = &v
 }
 
 // GetAppsecFargatePercentage returns the AppsecFargatePercentage field value if set, zero value otherwise.
@@ -2158,6 +2218,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.ApmHostUsage != nil {
 		toSerialize["apm_host_usage"] = o.ApmHostUsage
 	}
+	if o.ApmUsmPercentage != nil {
+		toSerialize["apm_usm_percentage"] = o.ApmUsmPercentage
+	}
+	if o.ApmUsmUsage != nil {
+		toSerialize["apm_usm_usage"] = o.ApmUsmUsage
+	}
 	if o.AppsecFargatePercentage != nil {
 		toSerialize["appsec_fargate_percentage"] = o.AppsecFargatePercentage
 	}
@@ -2366,6 +2432,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		ApmFargateUsage                      *float64 `json:"apm_fargate_usage,omitempty"`
 		ApmHostPercentage                    *float64 `json:"apm_host_percentage,omitempty"`
 		ApmHostUsage                         *float64 `json:"apm_host_usage,omitempty"`
+		ApmUsmPercentage                     *float64 `json:"apm_usm_percentage,omitempty"`
+		ApmUsmUsage                          *float64 `json:"apm_usm_usage,omitempty"`
 		AppsecFargatePercentage              *float64 `json:"appsec_fargate_percentage,omitempty"`
 		AppsecFargateUsage                   *float64 `json:"appsec_fargate_usage,omitempty"`
 		AppsecPercentage                     *float64 `json:"appsec_percentage,omitempty"`
@@ -2436,7 +2504,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -2446,6 +2514,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.ApmFargateUsage = all.ApmFargateUsage
 	o.ApmHostPercentage = all.ApmHostPercentage
 	o.ApmHostUsage = all.ApmHostUsage
+	o.ApmUsmPercentage = all.ApmUsmPercentage
+	o.ApmUsmUsage = all.ApmUsmUsage
 	o.AppsecFargatePercentage = all.AppsecFargatePercentage
 	o.AppsecFargateUsage = all.AppsecFargateUsage
 	o.AppsecPercentage = all.AppsecPercentage
