@@ -13,7 +13,7 @@ import (
 )
 
 // LogsGroupByHistogram Used to perform a histogram computation (only for measure facets).
-// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+// Note: at most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 type LogsGroupByHistogram struct {
 	// The bin size of the histogram buckets
 	Interval float64 `json:"interval"`

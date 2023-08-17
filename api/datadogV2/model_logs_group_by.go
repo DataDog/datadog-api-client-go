@@ -17,9 +17,10 @@ type LogsGroupBy struct {
 	// The name of the facet to use (required)
 	Facet string `json:"facet"`
 	// Used to perform a histogram computation (only for measure facets).
-	// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+	// Note: at most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 	Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
-	// The maximum buckets to return for this group by
+	// The maximum buckets to return for this group by. Note: at most 10000 buckets are allowed.
+	// If grouping by multiple facets, the product of limits must not exceed 10000.
 	Limit *int64 `json:"limit,omitempty"`
 	// The value to use for logs that don't have the facet used to group by
 	Missing *LogsGroupByMissing `json:"missing,omitempty"`

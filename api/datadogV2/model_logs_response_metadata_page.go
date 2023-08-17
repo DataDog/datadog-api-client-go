@@ -12,7 +12,7 @@ import (
 
 // LogsResponseMetadataPage Paging attributes.
 type LogsResponseMetadataPage struct {
-	// The cursor to use to get the next results, if any. To make the next request, use the same.
+	// The cursor to use to get the next results, if any. To make the next request, use the same
 	// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
