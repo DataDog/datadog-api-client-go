@@ -20,11 +20,11 @@ import (
 //
 // **Notes**:
 //
-//   - The processor only accepts attributes with values or an array of values in the blocks.
-//   - If an attribute cannot be used (object or array of object),
-//     it is replaced by an empty string or the entire operation is skipped depending on your selection.
-//   - If the target attribute already exists, it is overwritten by the result of the template.
-//   - Results of the template cannot exceed 256 characters.
+// - The processor only accepts attributes with values or an array of values in the blocks.
+// - If an attribute cannot be used (object or array of object),
+//   it is replaced by an empty string or the entire operation is skipped depending on your selection.
+// - If the target attribute already exists, it is overwritten by the result of the template.
+// - Results of the template cannot exceed 256 characters.
 type LogsStringBuilderProcessor struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
