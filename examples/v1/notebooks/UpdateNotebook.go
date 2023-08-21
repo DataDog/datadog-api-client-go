@@ -65,7 +65,7 @@ y = 6;
 										Keys: []string{},
 										Tags: []string{},
 									},
-									Time: *datadogV1.NewNullableNotebookCellTime(nil),
+									Time: nil,
 								}},
 							Type: datadogV1.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 						}},

@@ -335,14 +335,14 @@ def _format_oneof(schema, data, name, name_prefix, replace_values, required, nul
                 continue
             if sub_schema.get("nullable") and data is None:
                 # only one schema can be nullable
-                formatted = "nil"
+                return "nil"
             else:
-                sub_schema["nullable"] = False
                 formatted = format_data_with_schema(
                     data,
                     sub_schema,
                     name_prefix=name_prefix,
                     replace_values=replace_values,
+                    nullable=False,
                     **kwargs,
                 )
             if matched == 0:
@@ -379,15 +379,20 @@ def format_data_with_schema(
     default_name=None,
     required=False,
     in_list=False,
+    nullable=None,
     **kwargs,
 ):
     if not schema:
         return ""
 
-    nullable = schema.get("nullable", False)
+    if nullable is None:
+        nullable = schema.get("nullable", False)
     variables = kwargs.get("variables", set())
 
     name = schema_name(schema)
+
+    if "oneOf" in schema:
+        return _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs)
 
     if "enum" in schema:
         if nullable and data is None:
@@ -486,15 +491,8 @@ def format_data_with_schema(
             parameters = f"{parameters}.Ptr()"
         return parameters
 
-    if in_list and nullable:
-        schema = schema.copy()
-        schema["nullable"] = False
-
     if (not required or schema.get("nullable")) and schema.get("type") is not None:
         return reference_to_value(schema, parameters, print_nullable=not in_list, **kwargs)
-
-    if "oneOf" in schema:
-        return _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs)
 
     return parameters
 
@@ -583,13 +581,15 @@ def format_data_with_schema_dict(
     default_name=None,
     required=False,
     in_list=False,
+    nullable=None,
     **kwargs,
 ):
     if not schema:
         return ""
 
     reference = "" if required else "&"
-    nullable = schema.get("nullable", False)
+    if nullable is None:
+        nullable = schema.get("nullable", False)
 
     name = schema_name(schema) or default_name
 
