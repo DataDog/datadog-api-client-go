@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: "{\"data\":{\"attributes\":{\"avatar\":\"\U0001F951\",\"banner\":7,\"handle\"\
+      :\"handle-29fddb97704028c4\",\"hidden_modules\":[\"m3\"],\"name\":\"name-29fddb97704028c4\"\
+      ,\"visible_modules\":[\"m1\",\"m2\"]},\"type\":\"team\"}}\n"
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"type":"team","id":"94ba28ea-3e15-11ee-8d97-da7ad0900002","attributes":{"name":"name-29fddb97704028c4","handle":"handle-29fddb97704028c4","summary":null,"description":null,"avatar":"\ud83e\udd51","banner":7,"visible_modules":["m1","m2"],"hidden_modules":["m3"],"created_at":"2023-08-18T22:21:30.549604+00:00","modified_at":"2023-08-18T22:21:30.549611+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/94ba28ea-3e15-11ee-8d97-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/94ba28ea-3e15-11ee-8d97-da7ad0900002/permission-settings"}}}}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/94ba28ea-3e15-11ee-8d97-da7ad0900002
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

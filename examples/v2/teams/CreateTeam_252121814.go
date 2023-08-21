@@ -1,4 +1,4 @@
-// Update a team returns "OK" response
+// Create a team with V2 fields returns "CREATED" response
 
 package main
 
@@ -13,23 +13,19 @@ import (
 )
 
 func main() {
-	// there is a valid "dd_team" in the system
-	DdTeamDataAttributesHandle := os.Getenv("DD_TEAM_DATA_ATTRIBUTES_HANDLE")
-	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
-
-	body := datadogV2.TeamUpdateRequest{
-		Data: datadogV2.TeamUpdate{
-			Attributes: datadogV2.TeamUpdateAttributes{
-				Handle: DdTeamDataAttributesHandle,
-				Name:   "Example Team updated",
+	body := datadogV2.TeamCreateRequest{
+		Data: datadogV2.TeamCreate{
+			Attributes: datadogV2.TeamCreateAttributes{
+				Handle: "handle-a0fc0297eb519635",
+				Name:   "name-a0fc0297eb519635",
 				Avatar: *datadog.NewNullableString(datadog.PtrString("🥑")),
 				Banner: *datadog.NewNullableInt64(datadog.PtrInt64(7)),
-				HiddenModules: []string{
-					"m3",
-				},
 				VisibleModules: []string{
 					"m1",
 					"m2",
+				},
+				HiddenModules: []string{
+					"m3",
 				},
 			},
 			Type: datadogV2.TEAMTYPE_TEAM,
@@ -39,13 +35,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	resp, r, err := api.UpdateTeam(ctx, DdTeamDataID, body)
+	resp, r, err := api.CreateTeam(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.UpdateTeam`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.CreateTeam`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.UpdateTeam`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.CreateTeam`:\n%s\n", responseContent)
 }
