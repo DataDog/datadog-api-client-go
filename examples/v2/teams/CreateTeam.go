@@ -16,8 +16,8 @@ func main() {
 	body := datadogV2.TeamCreateRequest{
 		Data: datadogV2.TeamCreate{
 			Attributes: datadogV2.TeamCreateAttributes{
-				Handle: "handle-a0fc0297eb519635",
-				Name:   "name-a0fc0297eb519635",
+				Handle: "test-handle-a0fc0297eb519635",
+				Name:   "test-name-a0fc0297eb519635",
 			},
 			Relationships: &datadogV2.TeamCreateRelationships{
 				Users: &datadogV2.RelationshipToUsers{
