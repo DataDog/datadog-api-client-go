@@ -16,8 +16,8 @@ func main() {
 	body := datadogV2.TeamCreateRequest{
 		Data: datadogV2.TeamCreate{
 			Attributes: datadogV2.TeamCreateAttributes{
-				Handle: "handle-a0fc0297eb519635",
-				Name:   "name-a0fc0297eb519635",
+				Handle: "test-handle-a0fc0297eb519635",
+				Name:   "test-name-a0fc0297eb519635",
 				Avatar: *datadog.NewNullableString(datadog.PtrString("🥑")),
 				Banner: *datadog.NewNullableInt64(datadog.PtrInt64(7)),
 				VisibleModules: []string{

@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"handle-d4767872f1c173b0","name":"name-d4767872f1c173b0"},"type":"team"}}
+      {"data":{"attributes":{"handle":"test-handle-9503f929e485f83e","name":"test-name-9503f929e485f83e"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"ac8b5bb4-20d9-11ee-a287-da7ad0900002","attributes":{"name":"name-d4767872f1c173b0","handle":"handle-d4767872f1c173b0","summary":null,"description":null,"created_at":"2023-07-12T17:29:36.985262+00:00","modified_at":"2023-07-12T17:29:36.985267+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"3301859c-405b-11ee-aedf-da7ad0900002","attributes":{"name":"test-name-9503f929e485f83e","handle":"test-handle-9503f929e485f83e","summary":null,"description":null,"avatar":null,"banner":null,"visible_modules":[],"hidden_modules":[],"created_at":"2023-08-21T19:44:53.699451+00:00","modified_at":"2023-08-21T19:44:53.699457+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 201
@@ -22,7 +22,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"label":"Test-Update_a_team_link_returns_OK_response-1689182976","position":0,"url":"https://example.com"},"type":"team_links"}}
+      {"data":{"attributes":{"label":"Test-Update_a_team_link_returns_OK_response-1692647093","position":0,"url":"https://example.com"},"type":"team_links"}}
     form: {}
     headers:
       Accept:
@@ -30,9 +30,9 @@ interactions:
       Content-Type:
       - application/json
     method: POST
-    url: https://api.datadoghq.com/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002/links
+    url: https://api.datadoghq.com/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002/links
   response:
-    body: '{"data":{"type":"team_links","id":"aca6c3a4-20d9-11ee-b74b-da7ad0900002","attributes":{"team_id":"ac8b5bb4-20d9-11ee-a287-da7ad0900002","label":"Test-Update_a_team_link_returns_OK_response-1689182976","url":"https://example.com","position":0}}}
+    body: '{"data":{"type":"team_links","id":"331f8b00-405b-11ee-bdcc-da7ad0900002","attributes":{"team_id":"3301859c-405b-11ee-aedf-da7ad0900002","label":"Test-Update_a_team_link_returns_OK_response-1692647093","url":"https://example.com","position":0}}}
 
       '
     code: 200
@@ -51,9 +51,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002/links/aca6c3a4-20d9-11ee-b74b-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002/links/331f8b00-405b-11ee-bdcc-da7ad0900002
   response:
-    body: '{"data":{"type":"team_links","id":"aca6c3a4-20d9-11ee-b74b-da7ad0900002","attributes":{"team_id":"ac8b5bb4-20d9-11ee-a287-da7ad0900002","label":"New
+    body: '{"data":{"type":"team_links","id":"331f8b00-405b-11ee-bdcc-da7ad0900002","attributes":{"team_id":"3301859c-405b-11ee-aedf-da7ad0900002","label":"New
       Label","url":"https://example.com","position":0}}}
 
       '
@@ -70,7 +70,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002/links/aca6c3a4-20d9-11ee-b74b-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002/links/331f8b00-405b-11ee-bdcc-da7ad0900002
   response:
     body: ''
     code: 204
@@ -84,7 +84,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/ac8b5bb4-20d9-11ee-a287-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/3301859c-405b-11ee-aedf-da7ad0900002
   response:
     body: ''
     code: 204

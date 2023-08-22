@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"handle-5b0810a24cff23de","name":"name-5b0810a24cff23de"},"type":"team"}}
+      {"data":{"attributes":{"handle":"test-handle-e3c0e8f681a17e5d","name":"test-name-e3c0e8f681a17e5d"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"aad53c9a-20d9-11ee-a81e-da7ad0900002","attributes":{"name":"name-5b0810a24cff23de","handle":"handle-5b0810a24cff23de","summary":null,"description":null,"created_at":"2023-07-12T17:29:34.113364+00:00","modified_at":"2023-07-12T17:29:34.113369+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/aad53c9a-20d9-11ee-a81e-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/aad53c9a-20d9-11ee-a81e-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"312a5500-405b-11ee-8490-da7ad0900002","attributes":{"name":"test-name-e3c0e8f681a17e5d","handle":"test-handle-e3c0e8f681a17e5d","summary":null,"description":null,"avatar":null,"banner":null,"visible_modules":[],"hidden_modules":[],"created_at":"2023-08-21T19:44:50.611038+00:00","modified_at":"2023-08-21T19:44:50.611044+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/312a5500-405b-11ee-8490-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/312a5500-405b-11ee-8490-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 201
@@ -27,7 +27,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/aad53c9a-20d9-11ee-a81e-da7ad0900002/links/REPLACE.ME
+    url: https://api.datadoghq.com/api/v2/team/312a5500-405b-11ee-8490-da7ad0900002/links/REPLACE.ME
   response:
     body: '{"errors":["REPLACE.ME is not a valid UUID not found"]}'
     code: 404
@@ -43,7 +43,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/aad53c9a-20d9-11ee-a81e-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/312a5500-405b-11ee-8490-da7ad0900002
   response:
     body: ''
     code: 204

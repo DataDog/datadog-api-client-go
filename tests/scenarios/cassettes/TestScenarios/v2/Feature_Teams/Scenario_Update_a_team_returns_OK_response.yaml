@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"handle-368d558fc674f4d3","name":"name-368d558fc674f4d3"},"type":"team"}}
+      {"data":{"attributes":{"handle":"test-handle-2d88c8b44bfe8721","name":"test-name-2d88c8b44bfe8721"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"94e8c5a6-3e15-11ee-b7c9-da7ad0900002","attributes":{"name":"name-368d558fc674f4d3","handle":"handle-368d558fc674f4d3","summary":null,"description":null,"avatar":null,"banner":null,"visible_modules":[],"hidden_modules":[],"created_at":"2023-08-18T22:21:30.855820+00:00","modified_at":"2023-08-18T22:21:30.855826+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"81011c66-405c-11ee-bec1-da7ad0900002","attributes":{"name":"test-name-2d88c8b44bfe8721","handle":"test-handle-2d88c8b44bfe8721","summary":null,"description":null,"avatar":null,"banner":null,"visible_modules":[],"hidden_modules":[],"created_at":"2023-08-21T19:54:14.055917+00:00","modified_at":"2023-08-21T19:54:14.055923+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 201
@@ -22,7 +22,7 @@ interactions:
     status: 201 Created
 - request:
     body: "{\"data\":{\"attributes\":{\"avatar\":\"\U0001F951\",\"banner\":7,\"handle\"\
-      :\"handle-368d558fc674f4d3\",\"hidden_modules\":[\"m3\"],\"name\":\"name-368d558fc674f4d3\
+      :\"test-handle-2d88c8b44bfe8721\",\"hidden_modules\":[\"m3\"],\"name\":\"test-name-2d88c8b44bfe8721\
       \ updated\",\"visible_modules\":[\"m1\",\"m2\"]},\"type\":\"team\"}}\n"
     form: {}
     headers:
@@ -31,10 +31,10 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002
   response:
-    body: '{"data":{"type":"team","id":"94e8c5a6-3e15-11ee-b7c9-da7ad0900002","attributes":{"name":"name-368d558fc674f4d3
-      updated","handle":"handle-368d558fc674f4d3","summary":null,"description":null,"avatar":"\ud83e\udd51","banner":7,"visible_modules":["m1","m2"],"hidden_modules":["m3"],"created_at":"2023-08-18T22:21:30.855820+00:00","modified_at":"2023-08-18T22:21:31.005082+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002/permission-settings"}}}}}
+    body: '{"data":{"type":"team","id":"81011c66-405c-11ee-bec1-da7ad0900002","attributes":{"name":"test-name-2d88c8b44bfe8721
+      updated","handle":"test-handle-2d88c8b44bfe8721","summary":null,"description":null,"avatar":"\ud83e\udd51","banner":7,"visible_modules":["m1","m2"],"hidden_modules":["m3"],"created_at":"2023-08-21T19:54:14.055917+00:00","modified_at":"2023-08-21T19:54:14.288541+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002/permission-settings"}}}}}
 
       '
     code: 200
@@ -50,7 +50,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/94e8c5a6-3e15-11ee-b7c9-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/81011c66-405c-11ee-bec1-da7ad0900002
   response:
     body: ''
     code: 204
