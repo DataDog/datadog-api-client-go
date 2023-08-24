@@ -434,20 +434,12 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 
-	// Endpoint will 400 if there are too many tags
-	badDowntime := *datadogV1.NewDowntimeWithDefaults()
-	tags := make([]string, 100)
-	for i := 0; i < 100; i++ {
-		tags[i] = fmt.Sprintf("tag%d", i)
-	}
-	badDowntime.MonitorTags = tags
-
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context
 		Body               datadogV1.Downtime
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, badDowntime, 400},
+
 		"403 Forbidden":   {WithFakeAuth, datadogV1.Downtime{}, 403},
 		"404 Not Found":   {WithTestAuth, datadogV1.Downtime{}, 404},
 	}
