@@ -8,6 +8,7 @@ package test
 
 import (
 	"context"
+	"fmt"
 	"gopkg.in/h2non/gock.v1"
 	"strconv"
 	"testing"
@@ -18,13 +19,14 @@ import (
 )
 
 func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadogV1.AzureAccount, datadogV1.AzureAccount, datadogV1.AzureAccount) {
-	tenantName := tests.UniqueEntityName(ctx, t)
-	updatedTenantName := *tenantName + "-updated"
+	// Need something that looks like a UUID
+	tenantName := fmt.Sprintf("aaaaaaaa-bbbb-cccc-dddd-%dee", tests.ClockFromContext(ctx).Now().Unix())
+	updatedTenantName := fmt.Sprintf("aaaaaaaa-bbbb-cccc-dddd-%dff", tests.ClockFromContext(ctx).Now().Unix())
 	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadogV1.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
-		TenantName:   tenantName,
+		TenantName:   &tenantName,
 	}
 
 	var testUpdateAzureAcct = datadogV1.AzureAccount{

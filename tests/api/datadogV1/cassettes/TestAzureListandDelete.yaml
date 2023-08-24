@@ -3,46 +3,41 @@ version: 1
 interactions:
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1618220912","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"Test-TestAzureListandDelete-1618220912"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1692864904","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "157"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "593833938259902897"
+      - "1767590789407948788"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "4345804067768478127"
+      - "3735991913634290079"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
   response:
-    body: '{}'
+    body: |
+      {}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "2"
+      - "3"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:33 GMT
-      Pragma:
-      - no-cache
+      - Thu, 24 Aug 2023 08:15:06 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - Um4CoU685QqAscnxhS5BD+goWu2yX1Jd4zCfGzSsEvPPIm1qURZaF8dlLl/OEY4I
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -55,38 +50,31 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "1331552922567130264"
+      - "1727166978423307032"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "4345804067768478127"
+      - "3735991913634290079"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: GET
   response:
-    body: '[{"tenant_name":"Test-TestAzureListandDelete-1618220912","automute":false,"errors":[],"host_filters":"","client_id":"testc7f6-1234-5678-9101-tt1618220912"}]'
+    body: |
+      [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee","client_id":"testc7f6-1234-5678-9101-tt1692864904","host_filters":"","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:34 GMT
-      Pragma:
-      - no-cache
+      - Thu, 24 Aug 2023 08:15:06 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -94,46 +82,41 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1618220912","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"Test-TestAzureListandDelete-1618220912"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1692864904","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "157"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "6527848848383480438"
+      - "554097172529471676"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "4345804067768478127"
+      - "3735991913634290079"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
-    body: '{}'
+    body: |
+      {}
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "2"
+      - "3"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:35 GMT
-      Pragma:
-      - no-cache
+      - Thu, 24 Aug 2023 08:15:09 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - LcgNasIYBRkNppmD6mCKE9J6iv0eEjosuuHR5V5zw2fWbR54i39C8dhdK8zDq/40
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 200 OK
@@ -141,45 +124,41 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-uu1618220912","tenant_name":"Test-TestAzureListandDelete-1618220912-updated"}
+      {"client_id":"testc7f6-1234-5678-9101-uu1692864904","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ff"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "106"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "598954454118172841"
+      - "4982743346472074692"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "4345804067768478127"
+      - "3735991913634290079"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
-    body: '{"errors": ["Azure Integration not yet installed. Please install before
+    body: '{"errors":["Azure Integration not yet installed. Please install before
       performing this action."]}'
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "98"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:35 GMT
-      Pragma:
-      - no-cache
+      - Thu, 24 Aug 2023 08:15:09 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
@@ -187,45 +166,41 @@ interactions:
     duration: ""
 - request:
     body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1618220912","tenant_name":"Test-TestAzureListandDelete-1618220912"}
+      {"client_id":"testc7f6-1234-5678-9101-tt1692864904","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "106"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
       X-Datadog-Parent-Id:
-      - "154107959966916009"
+      - "395493981674492845"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "4345804067768478127"
+      - "3735991913634290079"
     url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
   response:
-    body: '{"errors": ["Azure Integration not yet installed. Please install before
+    body: '{"errors":["Azure Integration not yet installed. Please install before
       performing this action."]}'
     headers:
-      Cache-Control:
-      - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "98"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:35 GMT
-      Pragma:
-      - no-cache
+      - Thu, 24 Aug 2023 08:15:09 GMT
       Strict-Transport-Security:
-      - max-age=15724800;
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request
