@@ -424,7 +424,7 @@ def get_container_type(operation, attribute_path, stop=None):
 
     if attrs[0] == "body":
         parameter = next(iter(parameter["content"].values()))
-        
+
     if name == attrs[0] and len(attrs) == 1:
         return type_to_go(parameter["schema"])
 
@@ -445,6 +445,8 @@ def get_type_at_path(operation, attribute_path):
     if content is None:
         raise RuntimeError("Default response not found")
     content = content["schema"]
+    if not attribute_path:
+        return get_name(content.get("items"))
     for attr in attribute_path.split("."):
         content = content["properties"][attr]
     return get_name(content.get("items"))
