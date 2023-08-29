@@ -85,7 +85,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	if cfg.RetryConfiguration.BackOffBase < 2 {
 		cfg.RetryConfiguration.BackOffBase = 2
-		log.Printf("WARNING: BackOffBase value is smaller than 2. Setting it to 2.")
+		log.Printf("WARNING: BackOffBase value is less than 2. Defaulting to 2.")
 	}
 
 	c := &APIClient{}
