@@ -7,6 +7,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
+	"gotest.tools/assert"
 )
 
 func TestConfigurationServers(t *testing.T) {
@@ -62,4 +63,18 @@ func TestConfigurationServersAccess(t *testing.T) {
 			assert.Error(err, tc.Err)
 		})
 	}
+}
+
+func TestRetryBackoffBaseNotSmallerThanTwo(t *testing.T) {
+	cfg1 := datadog.NewConfiguration()
+	cfg1.RetryConfiguration.BackOffBase = 1
+	client := datadog.NewAPIClient(cfg1)
+
+	assert.Equal(t, client.Cfg.RetryConfiguration.BackOffBase, 2.0)
+
+	cfg2 := datadog.NewConfiguration()
+	cfg2.RetryConfiguration.BackOffBase = 3
+	client2 := datadog.NewAPIClient(cfg2)
+
+	assert.Equal(t, client2.Cfg.RetryConfiguration.BackOffBase, 3.0)
 }
