@@ -743,6 +743,50 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListMonitorsWithPagination provides a paginated version of ListMonitors returning a channel with all items.
+func (a *MonitorsApi) ListMonitorsWithPagination(ctx _context.Context, o ...ListMonitorsOptionalParameters) (<-chan datadog.PaginationResult[Monitor], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(100)
+	if len(o) == 0 {
+		o = append(o, ListMonitorsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].Page = &page_
+
+	items := make(chan datadog.PaginationResult[Monitor], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListMonitors(ctx, o...)
+			if err != nil {
+				var returnItem Monitor
+				items <- datadog.PaginationResult[Monitor]{returnItem, err}
+				break
+			}
+			results := resp
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[Monitor]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].Page + 1
+			o[0].Page = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // SearchMonitorGroupsOptionalParameters holds optional parameters for SearchMonitorGroups.
 type SearchMonitorGroupsOptionalParameters struct {
 	Query   *string

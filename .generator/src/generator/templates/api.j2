@@ -337,6 +337,11 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
 	}
 	{{ get_container(operation, pagination.limitParam) }} = &pageSize_
+	{%- if pagination.pageParam %}
+	{%- set pageType = get_container_type(operation, pagination.pageParam) %}
+        page_ := {{ pageType }}(0)
+	{{ get_container(operation, pagination.pageParam) }} = &page_
+	{%- endif %}
 	{%- endif %}
 	{%- else %}
 	{%- set limitParamParts = pagination.limitParam.split(".") %}
@@ -363,6 +368,7 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 				items <- datadog.PaginationResult[{{ itemType }}]{returnItem, err}
 				break
 			}
+                        {%- if pagination.resultsPath %}
 			{%- set previous = {"part": ""} %}
 			{%- for part in pagination.resultsPath.split(".") %}
 			resp{{ previous["part"] + (part|attribute_name) }}, ok := resp{{ previous["part"] }}.Get{{ part|attribute_name }}Ok()
@@ -374,6 +380,9 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 			results := *resp{{ previous["part"] }}
 			{%- endif %}
 			{%- endfor %}
+			{%- else %}
+			results := resp
+			{%- endif %}
 
 			for _, item := range results {
 				select {
@@ -414,6 +423,11 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 			{%- set _ = previous.update({"cursor": previous["cursor"] + (part|attribute_name)}) %}
 			{%- endfor %}
 
+			{%- endif %}
+
+			{%- if pagination.pageParam %}
+			pageOffset_ := *{{ get_container(operation, pagination.pageParam) }} + 1
+			{{ get_container(operation, pagination.pageParam) }} = &pageOffset_
 			{%- endif %}
 		}
 		close(items)
