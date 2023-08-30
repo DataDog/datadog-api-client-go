@@ -30,6 +30,8 @@ type GeomapWidgetRequest struct {
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	// The style for the points coming from this request.
+	Style *GeomapWidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -304,6 +306,34 @@ func (o *GeomapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+// GetStyle returns the Style field value if set, zero value otherwise.
+func (o *GeomapWidgetRequest) GetStyle() GeomapWidgetStyle {
+	if o == nil || o.Style == nil {
+		var ret GeomapWidgetStyle
+		return ret
+	}
+	return *o.Style
+}
+
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GeomapWidgetRequest) GetStyleOk() (*GeomapWidgetStyle, bool) {
+	if o == nil || o.Style == nil {
+		return nil, false
+	}
+	return o.Style, true
+}
+
+// HasStyle returns a boolean if a field has been set.
+func (o *GeomapWidgetRequest) HasStyle() bool {
+	return o != nil && o.Style != nil
+}
+
+// SetStyle gets a reference to the given GeomapWidgetStyle and assigns it to the Style field.
+func (o *GeomapWidgetRequest) SetStyle(v GeomapWidgetStyle) {
+	o.Style = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -337,6 +367,9 @@ func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.SecurityQuery != nil {
 		toSerialize["security_query"] = o.SecurityQuery
 	}
+	if o.Style != nil {
+		toSerialize["style"] = o.Style
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -356,13 +389,14 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 		RumQuery       *LogQueryDefinition                 `json:"rum_query,omitempty"`
 		SecurityQuery  *LogQueryDefinition                 `json:"security_query,omitempty"`
+		Style          *GeomapWidgetStyle                  `json:"style,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "formulas", "log_query", "q", "queries", "query", "response_format", "rum_query", "security_query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "formulas", "log_query", "q", "queries", "query", "response_format", "rum_query", "security_query", "style"})
 	} else {
 		return err
 	}
@@ -393,6 +427,10 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Style = all.Style
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
