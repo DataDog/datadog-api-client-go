@@ -233,7 +233,7 @@ func GetResponseStatusCode(resp []reflect.Value) (int, error) {
 	if response == nil {
 		return -1, errors.New("response is nil")
 	}
-	if httpresp, ok := response.(*http.Response); ok {
+	if httpresp, ok := response.(*http.Response); ok && httpresp != nil{
 		return httpresp.StatusCode, nil
 	}
 	return -1, errors.New("response is not an http.Response")

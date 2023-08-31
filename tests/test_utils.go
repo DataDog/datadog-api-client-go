@@ -385,7 +385,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 		}
 		for kv, vv := range rv {
 			if strings.Compare(vv, v[kv]) != 0 {
-				log.Printf("header %s %s does not match %s on possition %d", k, v, rv, kv)
+				log.Printf("header %s %s does not match %s on position %d", k, v, rv, kv)
 				return false
 			}
 		}
