@@ -38,6 +38,8 @@ type SunburstWidgetRequest struct {
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	// Widget style definition.
+	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -424,6 +426,34 @@ func (o *SunburstWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+// GetStyle returns the Style field value if set, zero value otherwise.
+func (o *SunburstWidgetRequest) GetStyle() WidgetStyle {
+	if o == nil || o.Style == nil {
+		var ret WidgetStyle
+		return ret
+	}
+	return *o.Style
+}
+
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SunburstWidgetRequest) GetStyleOk() (*WidgetStyle, bool) {
+	if o == nil || o.Style == nil {
+		return nil, false
+	}
+	return o.Style, true
+}
+
+// HasStyle returns a boolean if a field has been set.
+func (o *SunburstWidgetRequest) HasStyle() bool {
+	return o != nil && o.Style != nil
+}
+
+// SetStyle gets a reference to the given WidgetStyle and assigns it to the Style field.
+func (o *SunburstWidgetRequest) SetStyle(v WidgetStyle) {
+	o.Style = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SunburstWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -469,6 +499,9 @@ func (o SunburstWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.SecurityQuery != nil {
 		toSerialize["security_query"] = o.SecurityQuery
 	}
+	if o.Style != nil {
+		toSerialize["style"] = o.Style
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -492,13 +525,14 @@ func (o *SunburstWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
 		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
+		Style               *WidgetStyle                        `json:"style,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "audit_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "audit_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "style"})
 	} else {
 		return err
 	}
@@ -548,6 +582,10 @@ func (o *SunburstWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Style = all.Style
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
