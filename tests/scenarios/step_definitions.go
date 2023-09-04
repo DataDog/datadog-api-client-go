@@ -215,6 +215,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	if len(result) > 1 {
 		resp := result[len(result)-2].Interface().(*http.Response)
 		if resp == nil {
+			t.Errorf("unexpected error: %v", result[len(result)-1])
 			return
 		}
 		code := resp.StatusCode
@@ -336,7 +337,7 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 
 	templatedValue := Templated(t, GetData(ctx), value)
 
-	if responseValue.Kind() == reflect.Interface && responseValue.IsNil() {
+	if (responseValue.Kind() == reflect.Interface && responseValue.IsNil()) || !responseValue.IsValid() {
 		cmp := is.DeepEqual(templatedValue, "null")()
 		if !cmp.Success() {
 			t.Errorf("%v", cmp)
