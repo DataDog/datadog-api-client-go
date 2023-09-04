@@ -2,7 +2,7 @@ interactions:
 - request:
     body: "--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\
       \nContent-Disposition: form-data; name=\"idp_file\"; filename=\"invalid_idp_metadata.xml\"\
-      \r\nContent-Type: application/xml\r\n\r\n\\u003e?xml version=\"1.0\" encoding=\"\
+      \r\nContent-Type: application/xml\r\n\r\n\\u003c?xml version=\"1.0\" encoding=\"\
       UTF-8\"?\\u003e\ni am \\u003e bad xml\n\r\n--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--\r\
       \n\n"
     form: {}

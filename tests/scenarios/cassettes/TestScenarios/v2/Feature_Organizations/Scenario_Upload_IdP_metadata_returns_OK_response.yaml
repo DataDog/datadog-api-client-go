@@ -2,14 +2,14 @@ interactions:
 - request:
     body: "--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\
       \nContent-Disposition: form-data; name=\"idp_file\"; filename=\"valid_idp_metadata.xml\"\
-      \r\nContent-Type: application/xml\r\n\r\n\\u003e?xml version=\"1.0\" encoding=\"\
-      UTF-8\"?\\u003e\n\\u003ens0:EntityDescriptor xmlns:ns0=\"urn:oasis:names:tc:SAML:2.0:metadata\"\
+      \r\nContent-Type: application/xml\r\n\r\n\\u003c?xml version=\"1.0\" encoding=\"\
+      UTF-8\"?\\u003e\n\\u003cns0:EntityDescriptor xmlns:ns0=\"urn:oasis:names:tc:SAML:2.0:metadata\"\
       \ xmlns:ns1=\"http://www.w3.org/2000/09/xmldsig#\"\n                      entityID=\"\
-      http://localhost:8088/idp.xml\"\\u003e\n    \\u003ens0:IDPSSODescriptor WantAuthnRequestsSigned=\"\
+      http://localhost:8088/idp.xml\"\\u003e\n    \\u003cns0:IDPSSODescriptor WantAuthnRequestsSigned=\"\
       false\"\n                          protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"\
-      \\u003e\n        \\u003ens0:KeyDescriptor use=\"encryption\"\\u003e\n      \
-      \      \\u003ens1:KeyInfo\\u003e\n                \\u003ens1:X509Data\\u003e\n\
-      \                    \\u003ens1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
+      \\u003e\n        \\u003cns0:KeyDescriptor use=\"encryption\"\\u003e\n      \
+      \      \\u003cns1:KeyInfo\\u003e\n                \\u003cns1:X509Data\\u003e\n\
+      \                    \\u003cns1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
       \                        BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
       \                        MTE1WhcNMTAxMDI2MTMzMTE1WjBaMQswCQYDVQQGEwJTRTENMAsGA1UEBxMEVW1l\n\
@@ -25,11 +25,11 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:KeyDescriptor use=\"signing\"\
-      \\u003e\n            \\u003ens1:KeyInfo\\u003e\n                \\u003ens1:X509Data\\\
-      u003e\n                    \\u003ens1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:KeyDescriptor use=\"signing\"\
+      \\u003e\n            \\u003cns1:KeyInfo\\u003e\n                \\u003cns1:X509Data\\\
+      u003e\n                    \\u003cns1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
       \                        BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
       \                        MTE1WhcNMTAxMDI2MTMzMTE1WjBaMQswCQYDVQQGEwJTRTENMAsGA1UEBxMEVW1l\n\
@@ -45,43 +45,43 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:SingleLogoutService Binding=\"\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:SingleLogoutService Binding=\"\
       urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\n                              \
-      \   Location=\"http://localhost:8088/slo/soap\"/\\u003e\n        \\u003ens0:SingleLogoutService\
+      \   Location=\"http://localhost:8088/slo/soap\"/\\u003e\n        \\u003cns0:SingleLogoutService\
       \ Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\"\n             \
       \                    Location=\"http://localhost:8088/slo/post\"/\\u003e\n \
-      \       \\u003ens0:SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\"\
+      \       \\u003cns0:SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\"\
       \n                                 Location=\"http://localhost:8088/slo/redirect\"\
-      /\\u003e\n        \\u003ens0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
+      /\\u003e\n        \\u003cns0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
       \n                                 Location=\"http://localhost:8088/mni/soap\"\
-      /\\u003e\n        \\u003ens0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\"\
+      /\\u003e\n        \\u003cns0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\"\
       \n                                 Location=\"http://localhost:8088/mni/post\"\
-      /\\u003e\n        \\u003ens0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\"\
+      /\\u003e\n        \\u003cns0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\"\
       \n                                 Location=\"http://localhost:8088/mni/redirect\"\
-      /\\u003e\n        \\u003ens0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact\"\
+      /\\u003e\n        \\u003cns0:ManageNameIDService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact\"\
       \n                                 Location=\"http://localhost:8088/mni/art\"\
-      /\\u003e\n        \\u003ens0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:transient\\\
-      u003e/ns0:NameIDFormat\\u003e\n        \\u003ens0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:persistent\\\
-      u003e/ns0:NameIDFormat\\u003e\n        \\u003ens0:SingleSignOnService Binding=\"\
+      /\\u003e\n        \\u003cns0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:transient\\\
+      u003c/ns0:NameIDFormat\\u003e\n        \\u003cns0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:persistent\\\
+      u003c/ns0:NameIDFormat\\u003e\n        \\u003cns0:SingleSignOnService Binding=\"\
       urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\"\n                     \
       \            Location=\"http://localhost:8088/sso/redirect\"/\\u003e\n     \
-      \   \\u003ens0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\"\
+      \   \\u003cns0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST\"\
       \n                                 Location=\"http://localhost:8088/sso/post\"\
-      /\\u003e\n        \\u003ens0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact\"\
+      /\\u003e\n        \\u003cns0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact\"\
       \n                                 Location=\"http://localhost:8088/sso/art\"\
-      /\\u003e\n        \\u003ens0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
+      /\\u003e\n        \\u003cns0:SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
       \n                                 Location=\"http://localhost:8088/sso/ecp\"\
-      /\\u003e\n        \\u003ens0:NameIDMappingService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
+      /\\u003e\n        \\u003cns0:NameIDMappingService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\
       \n                                  Location=\"http://localhost:8088/nim\"/\\\
-      u003e\n        \\u003ens0:AssertionIDRequestService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:URI\"\
+      u003e\n        \\u003cns0:AssertionIDRequestService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:URI\"\
       \n                                       Location=\"http://localhost:8088/airs\"\
-      /\\u003e\n    \\u003e/ns0:IDPSSODescriptor\\u003e\n    \\u003ens0:AuthnAuthorityDescriptor\
+      /\\u003e\n    \\u003c/ns0:IDPSSODescriptor\\u003e\n    \\u003cns0:AuthnAuthorityDescriptor\
       \ protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"\\u003e\n\
-      \        \\u003ens0:KeyDescriptor use=\"encryption\"\\u003e\n            \\\
-      u003ens1:KeyInfo\\u003e\n                \\u003ens1:X509Data\\u003e\n      \
-      \              \\u003ens1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
+      \        \\u003cns0:KeyDescriptor use=\"encryption\"\\u003e\n            \\\
+      u003cns1:KeyInfo\\u003e\n                \\u003cns1:X509Data\\u003e\n      \
+      \              \\u003cns1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
       \                        BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
       \                        MTE1WhcNMTAxMDI2MTMzMTE1WjBaMQswCQYDVQQGEwJTRTENMAsGA1UEBxMEVW1l\n\
@@ -97,11 +97,11 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:KeyDescriptor use=\"signing\"\
-      \\u003e\n            \\u003ens1:KeyInfo\\u003e\n                \\u003ens1:X509Data\\\
-      u003e\n                    \\u003ens1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:KeyDescriptor use=\"signing\"\
+      \\u003e\n            \\u003cns1:KeyInfo\\u003e\n                \\u003cns1:X509Data\\\
+      u003e\n                    \\u003cns1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
       \                        BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
       \                        MTE1WhcNMTAxMDI2MTMzMTE1WjBaMQswCQYDVQQGEwJTRTENMAsGA1UEBxMEVW1l\n\
@@ -117,15 +117,15 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:AuthnQueryService Binding=\"\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:AuthnQueryService Binding=\"\
       urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\n                              \
-      \ Location=\"http://localhost:8088/aqs\"/\\u003e\n    \\u003e/ns0:AuthnAuthorityDescriptor\\\
-      u003e\n    \\u003ens0:AttributeAuthorityDescriptor protocolSupportEnumeration=\"\
-      urn:oasis:names:tc:SAML:2.0:protocol\"\\u003e\n        \\u003ens0:KeyDescriptor\
-      \ use=\"encryption\"\\u003e\n            \\u003ens1:KeyInfo\\u003e\n       \
-      \         \\u003ens1:X509Data\\u003e\n                    \\u003ens1:X509Certificate\\\
+      \ Location=\"http://localhost:8088/aqs\"/\\u003e\n    \\u003c/ns0:AuthnAuthorityDescriptor\\\
+      u003e\n    \\u003cns0:AttributeAuthorityDescriptor protocolSupportEnumeration=\"\
+      urn:oasis:names:tc:SAML:2.0:protocol\"\\u003e\n        \\u003cns0:KeyDescriptor\
+      \ use=\"encryption\"\\u003e\n            \\u003cns1:KeyInfo\\u003e\n       \
+      \         \\u003cns1:X509Data\\u003e\n                    \\u003cns1:X509Certificate\\\
       u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n    \
       \                    BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
@@ -142,11 +142,11 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:KeyDescriptor use=\"signing\"\
-      \\u003e\n            \\u003ens1:KeyInfo\\u003e\n                \\u003ens1:X509Data\\\
-      u003e\n                    \\u003ens1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:KeyDescriptor use=\"signing\"\
+      \\u003e\n            \\u003cns1:KeyInfo\\u003e\n                \\u003cns1:X509Data\\\
+      u003e\n                    \\u003cns1:X509Certificate\\u003eMIIC8jCCAlugAwIBAgIJAJHg2V5J31I8MA0GCSqGSIb3DQEBBQUAMFoxCzAJBgNV\n\
       \                        BAYTAlNFMQ0wCwYDVQQHEwRVbWVhMRgwFgYDVQQKEw9VbWVhIFVuaXZlcnNpdHkx\n\
       \                        EDAOBgNVBAsTB0lUIFVuaXQxEDAOBgNVBAMTB1Rlc3QgU1AwHhcNMDkxMDI2MTMz\n\
       \                        MTE1WhcNMTAxMDI2MTMzMTE1WjBaMQswCQYDVQQGEwJTRTENMAsGA1UEBxMEVW1l\n\
@@ -162,26 +162,26 @@ interactions:
       \                        BQADgYEAMuRwwXRnsiyWzmRikpwinnhTmbooKm5TINPE7A7gSQ710RxioQePPhZO\n\
       \                        zkM27NnHTrCe2rBVg0EGz7QTd1JIwLPvgoj4VTi/fSha/tXrYUaqc9AqU1kWI4WN\n\
       \                        +vffBGQ09mo+6CffuFTZYeOhzP/2stAPwCTU4kxEoiy0KpZMANI=\n\
-      \                    \\u003e/ns1:X509Certificate\\u003e\n                \\\
-      u003e/ns1:X509Data\\u003e\n            \\u003e/ns1:KeyInfo\\u003e\n        \\\
-      u003e/ns0:KeyDescriptor\\u003e\n        \\u003ens0:AttributeService Binding=\"\
+      \                    \\u003c/ns1:X509Certificate\\u003e\n                \\\
+      u003c/ns1:X509Data\\u003e\n            \\u003c/ns1:KeyInfo\\u003e\n        \\\
+      u003c/ns0:KeyDescriptor\\u003e\n        \\u003cns0:AttributeService Binding=\"\
       urn:oasis:names:tc:SAML:2.0:bindings:SOAP\"\n                              Location=\"\
-      http://localhost:8088/attr\"/\\u003e\n        \\u003ens0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:transient\\\
-      u003e/ns0:NameIDFormat\\u003e\n        \\u003ens0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:persistent\\\
-      u003e/ns0:NameIDFormat\\u003e\n    \\u003e/ns0:AttributeAuthorityDescriptor\\\
-      u003e\n    \\u003ens0:Organization\\u003e\n        \\u003ens0:OrganizationName\
-      \ xml:lang=\"en\"\\u003eRolands Identiteter\\u003e/ns0:OrganizationName\\u003e\n\
-      \        \\u003ens0:OrganizationDisplayName xml:lang=\"en\"\\u003eRolands Identiteter\\\
-      u003e/ns0:OrganizationDisplayName\\u003e\n        \\u003ens0:OrganizationURL\
-      \ xml:lang=\"en\"\\u003ehttp://www.example.com\\u003e/ns0:OrganizationURL\\\
-      u003e\n    \\u003e/ns0:Organization\\u003e\n    \\u003ens0:ContactPerson contactType=\"\
-      technical\"\\u003e\n        \\u003ens0:GivenName\\u003eRoland\\u003e/ns0:GivenName\\\
-      u003e\n        \\u003ens0:SurName\\u003eHedberg\\u003e/ns0:SurName\\u003e\n\
-      \        \\u003ens0:EmailAddress\\u003etechnical@example.com\\u003e/ns0:EmailAddress\\\
-      u003e\n    \\u003e/ns0:ContactPerson\\u003e\n    \\u003ens0:ContactPerson contactType=\"\
-      support\"\\u003e\n        \\u003ens0:GivenName\\u003eSupport\\u003e/ns0:GivenName\\\
-      u003e\n        \\u003ens0:EmailAddress\\u003esupport@example.com\\u003e/ns0:EmailAddress\\\
-      u003e\n    \\u003e/ns0:ContactPerson\\u003e\n\\u003e/ns0:EntityDescriptor\\\
+      http://localhost:8088/attr\"/\\u003e\n        \\u003cns0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:transient\\\
+      u003c/ns0:NameIDFormat\\u003e\n        \\u003cns0:NameIDFormat\\u003eurn:oasis:names:tc:SAML:2.0:nameid-format:persistent\\\
+      u003c/ns0:NameIDFormat\\u003e\n    \\u003c/ns0:AttributeAuthorityDescriptor\\\
+      u003e\n    \\u003cns0:Organization\\u003e\n        \\u003cns0:OrganizationName\
+      \ xml:lang=\"en\"\\u003eRolands Identiteter\\u003c/ns0:OrganizationName\\u003e\n\
+      \        \\u003cns0:OrganizationDisplayName xml:lang=\"en\"\\u003eRolands Identiteter\\\
+      u003c/ns0:OrganizationDisplayName\\u003e\n        \\u003cns0:OrganizationURL\
+      \ xml:lang=\"en\"\\u003ehttp://www.example.com\\u003c/ns0:OrganizationURL\\\
+      u003e\n    \\u003c/ns0:Organization\\u003e\n    \\u003cns0:ContactPerson contactType=\"\
+      technical\"\\u003e\n        \\u003cns0:GivenName\\u003eRoland\\u003c/ns0:GivenName\\\
+      u003e\n        \\u003cns0:SurName\\u003eHedberg\\u003c/ns0:SurName\\u003e\n\
+      \        \\u003cns0:EmailAddress\\u003etechnical@example.com\\u003c/ns0:EmailAddress\\\
+      u003e\n    \\u003c/ns0:ContactPerson\\u003e\n    \\u003cns0:ContactPerson contactType=\"\
+      support\"\\u003e\n        \\u003cns0:GivenName\\u003eSupport\\u003c/ns0:GivenName\\\
+      u003e\n        \\u003cns0:EmailAddress\\u003esupport@example.com\\u003c/ns0:EmailAddress\\\
+      u003e\n    \\u003c/ns0:ContactPerson\\u003e\n\\u003c/ns0:EntityDescriptor\\\
       u003e\n\r\n--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx--\r\
       \n\n"
     form: {}
