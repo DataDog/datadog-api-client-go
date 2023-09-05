@@ -13,7 +13,7 @@ import (
 // DowntimeRelationshipsMonitorData Data for the monitor.
 type DowntimeRelationshipsMonitorData struct {
 	// Monitor ID of the downtime.
-	Id *int64 `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	// Monitor resource type.
 	Type *DowntimeIncludedMonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -43,9 +43,9 @@ func NewDowntimeRelationshipsMonitorDataWithDefaults() *DowntimeRelationshipsMon
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *DowntimeRelationshipsMonitorData) GetId() int64 {
+func (o *DowntimeRelationshipsMonitorData) GetId() string {
 	if o == nil || o.Id == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.Id
@@ -53,7 +53,7 @@ func (o *DowntimeRelationshipsMonitorData) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DowntimeRelationshipsMonitorData) GetIdOk() (*int64, bool) {
+func (o *DowntimeRelationshipsMonitorData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *DowntimeRelationshipsMonitorData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *DowntimeRelationshipsMonitorData) SetId(v int64) {
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *DowntimeRelationshipsMonitorData) SetId(v string) {
 	o.Id = &v
 }
 
@@ -120,7 +120,7 @@ func (o DowntimeRelationshipsMonitorData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeRelationshipsMonitorData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *int64                       `json:"id,omitempty"`
+		Id   *string                      `json:"id,omitempty"`
 		Type *DowntimeIncludedMonitorType `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
