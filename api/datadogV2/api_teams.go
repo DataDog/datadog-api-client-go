@@ -1066,6 +1066,54 @@ func (a *TeamsApi) ListTeams(ctx _context.Context, o ...ListTeamsOptionalParamet
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListTeamsWithPagination provides a paginated version of ListTeams returning a channel with all items.
+func (a *TeamsApi) ListTeamsWithPagination(ctx _context.Context, o ...ListTeamsOptionalParameters) (<-chan datadog.PaginationResult[Team], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListTeamsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[Team], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListTeams(ctx, o...)
+			if err != nil {
+				var returnItem Team
+				items <- datadog.PaginationResult[Team]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[Team]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // UpdateTeam Update a team.
 // Update a team using the team's `id`.
 // If the `team_links` relationship is present, the associated links are updated to be in the order they appear in the array, and any existing team links not present are removed.
