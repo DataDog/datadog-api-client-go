@@ -276,6 +276,8 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 type ListDowntimesOptionalParameters struct {
 	CurrentOnly *bool
 	Include     *string
+	PageOffset  *int64
+	PageLimit   *int64
 }
 
 // NewListDowntimesOptionalParameters creates an empty struct for parameters.
@@ -293,6 +295,18 @@ func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *Lis
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithInclude(include string) *ListDowntimesOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListDowntimesOptionalParameters) WithPageOffset(pageOffset int64) *ListDowntimesOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListDowntimesOptionalParameters {
+	r.PageLimit = &pageLimit
 	return r
 }
 
@@ -335,6 +349,12 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -385,6 +405,56 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListDowntimesWithPagination provides a paginated version of ListDowntimes returning a channel with all items.
+func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...ListDowntimesOptionalParameters) (<-chan datadog.PaginationResult[DowntimeResponseData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(30)
+	if len(o) == 0 {
+		o = append(o, ListDowntimesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[DowntimeResponseData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListDowntimes(ctx, o...)
+			if err != nil {
+				var returnItem DowntimeResponseData
+				items <- datadog.PaginationResult[DowntimeResponseData]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[DowntimeResponseData]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // ListMonitorDowntimes Get active downtimes for a monitor.
