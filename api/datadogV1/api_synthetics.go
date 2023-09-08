@@ -1617,8 +1617,8 @@ func (a *SyntheticsApi) ListLocations(ctx _context.Context) (SyntheticsLocations
 
 // ListTestsOptionalParameters holds optional parameters for ListTests.
 type ListTestsOptionalParameters struct {
-	PageSize   *string
-	PageNumber *string
+	PageSize   *int64
+	PageNumber *int64
 }
 
 // NewListTestsOptionalParameters creates an empty struct for parameters.
@@ -1628,13 +1628,13 @@ func NewListTestsOptionalParameters() *ListTestsOptionalParameters {
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListTestsOptionalParameters) WithPageSize(pageSize string) *ListTestsOptionalParameters {
+func (r *ListTestsOptionalParameters) WithPageSize(pageSize int64) *ListTestsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListTestsOptionalParameters) WithPageNumber(pageNumber string) *ListTestsOptionalParameters {
+func (r *ListTestsOptionalParameters) WithPageNumber(pageNumber int64) *ListTestsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1721,6 +1721,54 @@ func (a *SyntheticsApi) ListTests(ctx _context.Context, o ...ListTestsOptionalPa
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListTestsWithPagination provides a paginated version of ListTests returning a channel with all items.
+func (a *SyntheticsApi) ListTestsWithPagination(ctx _context.Context, o ...ListTestsOptionalParameters) (<-chan datadog.PaginationResult[SyntheticsTestDetails], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(100)
+	if len(o) == 0 {
+		o = append(o, ListTestsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[SyntheticsTestDetails], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListTests(ctx, o...)
+			if err != nil {
+				var returnItem SyntheticsTestDetails
+				items <- datadog.PaginationResult[SyntheticsTestDetails]{returnItem, err}
+				break
+			}
+			respTests, ok := resp.GetTestsOk()
+			if !ok {
+				break
+			}
+			results := *respTests
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[SyntheticsTestDetails]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // TriggerCITests Trigger tests from CI/CD pipelines.

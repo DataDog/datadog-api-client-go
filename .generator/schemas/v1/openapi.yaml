@@ -6901,18 +6901,20 @@ components:
     MonitorSearchCount:
       description: Search facets.
       items:
-        description: A facet item.
-        properties:
-          count:
-            description: The number of found monitors with the listed value.
-            format: int64
-            readOnly: true
-            type: integer
-          name:
-            description: The facet value.
-            readOnly: true
-        type: object
+        $ref: '#/components/schemas/MonitorSearchCountItem'
       type: array
+    MonitorSearchCountItem:
+      description: A facet item.
+      properties:
+        count:
+          description: The number of found monitors with the listed value.
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          description: The facet value.
+          readOnly: true
+      type: object
     MonitorSearchResponse:
       description: The response form a monitor search.
       example:
@@ -12165,6 +12167,8 @@ components:
           $ref: '#/components/schemas/LogQueryDefinition'
         security_query:
           $ref: '#/components/schemas/LogQueryDefinition'
+        style:
+          $ref: '#/components/schemas/WidgetStyle'
       type: object
     SyntheticsAPIStep:
       description: The steps used in a Synthetic multistep API test.
@@ -20089,6 +20093,7 @@ components:
             apm_service_catalog_read: View service catalog and service definitions.
             apm_service_catalog_write: Add, modify, and delete service catalog definitions
               when those definitions are maintained by Datadog.
+            create_webhooks: Create webhooks integrations.
             dashboards_public_share: Generate public and authenticated links to share
               dashboards or embeddable graphs externally.
             dashboards_read: View dashboards.
@@ -20834,6 +20839,21 @@ paths:
         required: false
         schema:
           type: boolean
+      - description: The maximum number of dashboards returned in the list.
+        in: query
+        name: count
+        required: false
+        schema:
+          default: 100
+          format: int64
+          type: integer
+      - description: The specific offset to use as the beginning of the returned response.
+        in: query
+        name: start
+        required: false
+        schema:
+          format: int64
+          type: integer
       responses:
         '200':
           content:
@@ -20857,6 +20877,10 @@ paths:
       summary: Get all dashboards
       tags:
       - Dashboards
+      x-pagination:
+        limitParam: count
+        pageOffsetParam: start
+        resultsPath: dashboards
     patch:
       description: Restore dashboards using the specified IDs. If there are any failures,
         no dashboards will be restored (partial success is not allowed).
@@ -26093,6 +26117,7 @@ paths:
         name: count
         required: false
         schema:
+          default: 100
           example: 5
           format: int64
           type: integer
@@ -26177,6 +26202,10 @@ paths:
       summary: Get all notebooks
       tags:
       - Notebooks
+      x-pagination:
+        limitParam: count
+        pageOffsetParam: start
+        resultsPath: data
     post:
       description: Create a notebook using the specified options.
       operationId: CreateNotebook
@@ -27990,14 +28019,19 @@ paths:
       - description: Used for pagination. The number of tests returned in the page.
         in: query
         name: page_size
+        required: false
         schema:
-          type: string
+          default: 100
+          format: int64
+          type: integer
       - description: Used for pagination. Which page you want to retrieve. Starts
           at zero.
         in: query
         name: page_number
+        required: false
         schema:
-          type: string
+          format: int64
+          type: integer
       responses:
         '200':
           content:
@@ -28027,6 +28061,10 @@ paths:
       summary: Get the list of all Synthetic tests
       tags:
       - Synthetics
+      x-pagination:
+        limitParam: page_size
+        pageParam: page_number
+        resultsPath: tests
   /api/v1/synthetics/tests/api:
     post:
       description: Create a Synthetic API test.

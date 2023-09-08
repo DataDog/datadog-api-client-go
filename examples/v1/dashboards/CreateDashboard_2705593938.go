@@ -40,6 +40,9 @@ func main() {
 											Aggregator: datadogV1.FORMULAANDFUNCTIONMETRICAGGREGATION_SUM.Ptr(),
 										}},
 								},
+								Style: &datadogV1.WidgetStyle{
+									Palette: datadog.PtrString("dog_classic"),
+								},
 							},
 						},
 					}},
