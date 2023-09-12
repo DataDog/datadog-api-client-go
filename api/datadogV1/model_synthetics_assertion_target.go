@@ -20,6 +20,8 @@ type SyntheticsAssertionTarget struct {
 	Property *string `json:"property,omitempty"`
 	// Value used by the operator.
 	Target interface{} `json:"target"`
+	// Timings scope for response time assertions.
+	TimingsScope *SyntheticsAssertionTimingsScope `json:"timingsScope,omitempty"`
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -121,6 +123,34 @@ func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
 	o.Target = v
 }
 
+// GetTimingsScope returns the TimingsScope field value if set, zero value otherwise.
+func (o *SyntheticsAssertionTarget) GetTimingsScope() SyntheticsAssertionTimingsScope {
+	if o == nil || o.TimingsScope == nil {
+		var ret SyntheticsAssertionTimingsScope
+		return ret
+	}
+	return *o.TimingsScope
+}
+
+// GetTimingsScopeOk returns a tuple with the TimingsScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAssertionTarget) GetTimingsScopeOk() (*SyntheticsAssertionTimingsScope, bool) {
+	if o == nil || o.TimingsScope == nil {
+		return nil, false
+	}
+	return o.TimingsScope, true
+}
+
+// HasTimingsScope returns a boolean if a field has been set.
+func (o *SyntheticsAssertionTarget) HasTimingsScope() bool {
+	return o != nil && o.TimingsScope != nil
+}
+
+// SetTimingsScope gets a reference to the given SyntheticsAssertionTimingsScope and assigns it to the TimingsScope field.
+func (o *SyntheticsAssertionTarget) SetTimingsScope(v SyntheticsAssertionTimingsScope) {
+	o.TimingsScope = &v
+}
+
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
@@ -155,6 +185,9 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 		toSerialize["property"] = o.Property
 	}
 	toSerialize["target"] = o.Target
+	if o.TimingsScope != nil {
+		toSerialize["timingsScope"] = o.TimingsScope
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -166,10 +199,11 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operator *SyntheticsAssertionOperator `json:"operator"`
-		Property *string                      `json:"property,omitempty"`
-		Target   *interface{}                 `json:"target"`
-		Type     *SyntheticsAssertionType     `json:"type"`
+		Operator     *SyntheticsAssertionOperator     `json:"operator"`
+		Property     *string                          `json:"property,omitempty"`
+		Target       *interface{}                     `json:"target"`
+		TimingsScope *SyntheticsAssertionTimingsScope `json:"timingsScope,omitempty"`
+		Type         *SyntheticsAssertionType         `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -185,7 +219,7 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "property", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "property", "target", "timingsScope", "type"})
 	} else {
 		return err
 	}
@@ -198,6 +232,11 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Property = all.Property
 	o.Target = *all.Target
+	if all.TimingsScope != nil && !all.TimingsScope.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TimingsScope = all.TimingsScope
+	}
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
