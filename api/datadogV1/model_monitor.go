@@ -23,7 +23,7 @@ type Monitor struct {
 	Deleted datadog.NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
-	// A list of active downtimes that match this monitor.
+	// A list of active v1 downtimes that match this monitor.
 	MatchingDowntimes []MatchingDowntime `json:"matching_downtimes,omitempty"`
 	// A message to include with notifications for this monitor.
 	Message *string `json:"message,omitempty"`
