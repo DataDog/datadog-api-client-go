@@ -18,7 +18,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetDowntime", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDowntimesApi(apiClient)
 	resp, r, err := api.GetDowntime(ctx, DowntimeV2DataID, *datadogV2.NewGetDowntimeOptionalParameters())
