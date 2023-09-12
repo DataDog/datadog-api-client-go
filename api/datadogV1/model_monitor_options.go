@@ -101,7 +101,7 @@ type MonitorOptions struct {
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
 	// Configuration options for scheduling.
 	SchedulingOptions *MonitorOptionsSchedulingOptions `json:"scheduling_options,omitempty"`
-	// Information about the downtime applied to the monitor.
+	// Information about the downtime applied to the monitor. Only shows v1 downtimes.
 	// Deprecated
 	Silenced map[string]int64 `json:"silenced,omitempty"`
 	// ID of the corresponding Synthetic check.
