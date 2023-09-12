@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"forwarderDestination":{"accessToken":"secret","endpoint":"https://example.org/my-intake","type":"splunk_hec"},"name":"my-destination","version":0},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom_destinations
+  response:
+    body: '{"data":{"id":"db6771d4-34c3-4fd1-af5d-c248848c611f","attributes":{"version":0,"name":"my-destination","query":"","enabled":true,"bufferMaxBytes":5242880,"bufferTimeoutSeconds":60,"maxRetryDurationSeconds":300,"compression":"GZIP","forwarderDestination":{"type":"splunk_hec","endpoint":"https://example.org/my-intake","accessToken":"__REDACTED_SECRET__"}},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom_destinations/db6771d4-34c3-4fd1-af5d-c248848c611f
+  response:
+    body: '{"meta":{}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

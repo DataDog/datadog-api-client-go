@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"forwarderDestination":{"auth":{"password":"password","type":"basic","username":"username"},"endpoint":"https://example.org/my-intake","type":"http"},"name":"","version":0},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom_destinations
+  response:
+    body: '{"errors":["Invalid custom destination configuration","Custom destination
+      name must not be empty"]}
+
+      '
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1
