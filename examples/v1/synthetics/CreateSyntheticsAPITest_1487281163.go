@@ -25,9 +25,10 @@ func main() {
 					}},
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
-						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   2000,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Operator:     datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+						Target:       2000,
+						Type:         datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						TimingsScope: datadogV1.SYNTHETICSASSERTIONTIMINGSSCOPE_WITHOUT_DNS.Ptr(),
 					}},
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionJSONPathTarget: &datadogV1.SyntheticsAssertionJSONPathTarget{
