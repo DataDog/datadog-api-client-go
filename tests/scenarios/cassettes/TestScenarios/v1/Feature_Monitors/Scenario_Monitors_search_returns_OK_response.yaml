@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -87,9 +88,9 @@ interactions:
       Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response_1641382929","tags":["check_status:paused","probe_dc:aws:us-east-2","testing:browser","check_type:browser"],"org_id":321813,"priority":null,"overall_state_modified":1641383035,"restricted_roles":[],"type":"synthetics
       alert"}],"metadata":{"total_count":199,"page_count":7,"page":0,"per_page":30}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

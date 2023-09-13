@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"series":[{"metric":"static_test_metric_donotdelete","points":[[1685976245,1.1]],"tags":["test:static_test_metric_donotdelete"],"type":"gauge"}]}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"status": "ok"}'
     code: 202
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/json
     status: 202 Accepted
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -31,9 +33,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

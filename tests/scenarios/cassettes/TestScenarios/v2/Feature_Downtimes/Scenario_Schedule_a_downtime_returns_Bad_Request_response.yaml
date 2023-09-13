@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"monitor_identifier":{"monitor_tags":["cat:hat"]},"schedule":{"start":null},"scope":"BAD_SCOPE_MISSING_KEY_VALUE_FORMAT"},"type":"downtime"}}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"errors":["All values must have a key"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

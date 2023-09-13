@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"formulas":[{"formula":"a","limit":{"count":10,"order":"desc"}}],"from":1671612804000,"queries":[{"aggregator":"avg","data_source":"metrics","name":"a","query":"avg:system.cpu.user{*}"}],"to":1671620004000},"type":"scalar_request"}}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"data":{"type":"scalar_response","attributes":{"columns":[{"name":"a","values":[5.173633659114822],"type":"number","meta":{"unit":[{"scale_factor":1.0,"id":17,"name":"percent","plural":"percent","family":"percentage","short_name":"%"},null]}}]}}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

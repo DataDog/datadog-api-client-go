@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -51,9 +52,9 @@ interactions:
       Safari/537.36 Edg/95.0.1020.9 DatadogSynthetics"},"device":{"type":"Desktop","name":"Other"},"context":{"test_playground":true},"type":"action","action":{"resource":{"count":1},"name":"click
       on Make a fetch request","type":"click","target":{"name":"Make a fetch request"},"error":{"count":0},"loading_time":92000000,"id":"e1144cbc-f8bc-448d-8117-17453a5eeff4","long_task":{"count":0}},"browser":{"version":"95.0.1020.9","name":"Edge","version_major":"95"},"os":{"name":"Linux"},"view":{"url_path":"/browser-sdk-test-playground","name":"/browser-sdk-test-playground","in_foreground":true,"url":"https://datadoghq.dev/browser-sdk-test-playground/?client_token=pub8c6977b707967b0b502ba8b3c233a24d&application_id=6ae18142-192f-4582-9633-95121c2a01d7&site=datadoghq.com","referrer":"","url_host":"datadoghq.dev","url_scheme":"https","url_path_group":"/browser-sdk-test-playground","url_query":{"client_token":"pub8c6977b707967b0b502ba8b3c233a24d","application_id":"6ae18142-192f-4582-9633-95121c2a01d7","site":"datadoghq.com"},"id":"30be1cb7-c054-4bd5-8495-e75f4395a11f"}},"tags":["sdk_version:4.5.0","source:browser","source:browser","sdk_version:4.5.0"],"timestamp":"2022-03-01T15:40:44.649Z"},"type":"rum","id":"AQAAAX9GJBbplnjTcwAAAABBWDlHSkNVUEFBRE9IeWF2V0V3WDlBQUY"}],"links":{"next":"https://api.datadoghq.com/api/v2/rum/events?page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWDlHSkJicGxualRjd0FBQUFCQldEbEhTa05WVUVGQlJFOUllV0YyVjBWM1dEbEJRVVkifQ"}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

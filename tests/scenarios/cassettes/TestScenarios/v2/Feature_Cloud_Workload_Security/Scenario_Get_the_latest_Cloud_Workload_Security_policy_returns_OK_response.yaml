@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -803,9 +804,9 @@ interactions:
       \ Created Interactively\n  expression: exec.file.name in [\"useradd\", \"newusers\"\
       ] && exec.tty_name !=\"\"\n"
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/yaml
     status: 200 OK
-version: 1
+version: 2

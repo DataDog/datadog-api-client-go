@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"message":"test message","monitor_identifier":{"monitor_tags":["cat:hat"]},"schedule":{"start":null},"scope":"test:testcanceladowntimereturnsokresponse1685739202"},"type":"downtime"}}
     form: {}
@@ -17,12 +18,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -33,12 +35,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -49,9 +52,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

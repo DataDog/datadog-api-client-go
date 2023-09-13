@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"customer_impacted":false,"title":"Test-Create_an_incident_todo_returns_CREATED_response-1678308256"},"type":"incidents"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"assignees":["@test.user@test.com"],"content":"Restore lost data."},"type":"incident_todos"}}
     form: {}
@@ -37,12 +39,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -53,12 +56,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -69,9 +73,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

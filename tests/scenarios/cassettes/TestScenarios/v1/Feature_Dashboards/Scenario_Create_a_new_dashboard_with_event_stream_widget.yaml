@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_event_stream_widget-1641430230","widgets":[{"definition":{"event_size":"s","query":"example-query","tags_execution":"and","title":"","title_align":"left","title_size":"16","type":"event_stream"},"layout":{"height":38,"width":47,"x":0,"y":0}}]}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"notify_list":[],"description":"","restricted_roles":[],"author_name":null,"template_variables":[],"is_read_only":false,"id":"2dc-bzm-gzi","title":"Test-Create_a_new_dashboard_with_event_stream_widget-1641430230","url":"/dashboard/2dc-bzm-gzi/test-createanewdashboardwitheventstreamwidget-1641430230","created_at":"2022-01-06T00:50:31.037679+00:00","modified_at":"2022-01-06T00:50:31.037679+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"title_size":"16","title":"","title_align":"left","tags_execution":"and","query":"example-query","type":"event_stream","event_size":"s"},"layout":{"y":0,"width":47,"x":0,"height":38},"id":5676594590872385}],"layout_type":"free"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -29,9 +31,9 @@ interactions:
   response:
     body: '{"deleted_dashboard_id":"2dc-bzm-gzi"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

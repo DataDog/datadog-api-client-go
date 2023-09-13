@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -17,9 +18,9 @@ interactions:
       AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36 Edg/101.0.1210.32
       DatadogSynthetics","id":"edge.laptop_large","isMobile":false,"browser":"edge"},"hasArtifacts":true,"passed":true,"duration":7131,"startUrl":"https://docs.datadoghq.com/"},"probe_dc":"aws:ca-central-1","result_id":"5671719892074090418","check":{"type":"browser","config":{"variables":[],"setCookie":"","request":{"url":"https://docs.datadoghq.com/","headers":{},"method":"GET"},"assertions":[],"configVariables":[]},"options":{"rumSettings":{"isEnabled":true,"applicationId":"737d835c-601a-46c1-853a-1af59907cff5","clientTokenId":94668},"retry":{"count":1,"interval":300},"min_location_failed":1,"monitor_options":{"include_tags":true,"notify_no_data":false,"notify_audit":false,"new_host_delay":300,"renotify_interval":0},"noScreenshot":false,"tick_every":3600,"disableCsp":false,"disableCors":false,"device_ids":["chrome.laptop_large","firefox.laptop_large","edge.laptop_large"],"min_failure_duration":600,"ignoreServerCertificateError":false}},"device_id":"edge.laptop_large"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -76,9 +77,9 @@ interactions:
       Test-Go-Update_a_notebook_returns_OK_response-1634026036 notebook text","type":"markdown"}},"type":"notebook_cells","id":"d0hr7ys1"}],"time":{"live_span":"1h"},"metadata":{"is_template":false,"type":null,"take_snapshots":false},"template_variables":null,"status":"published","modified":"2021-10-12T08:07:16.752590+00:00","created":"2021-10-12T08:07:16.752590+00:00","author":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","email":"team-intg-tools-libs-spam@datadoghq.com","icon":"https://secure.gravatar.com/avatar/b7c189b5b4c2c429d7c1e0bc3749330e?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

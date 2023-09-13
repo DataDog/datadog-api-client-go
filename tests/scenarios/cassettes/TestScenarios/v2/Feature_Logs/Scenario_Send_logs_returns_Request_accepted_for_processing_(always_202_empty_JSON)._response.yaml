@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       [{"ddsource":"nginx","ddtags":"env:staging,version:5.1","hostname":"i-012345678","message":"2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World","service":"payment","status":"info"}]
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{}'
     code: 202
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 202 Accepted
-version: 1
+version: 2

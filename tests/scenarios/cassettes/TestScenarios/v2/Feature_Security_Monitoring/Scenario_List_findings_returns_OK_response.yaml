@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -110,9 +111,9 @@ interactions:
       bucket contents are not publicly exposed via bucket policy","id":"8tr-9cl-spc"},"status":"critical","tags":["requirement:AWS","scored:true","cleanup_resource_creator:yong.zuo","region:ap-northeast-1","cleanup_team:cake_solutions_eng","framework:gdpr","control:164.308-a-3-i","cleanup_manager_email:nobumoto.magome_datadoghq.com","requirement:Compliance","cleanup_subproduct:unknown","aws_account:601427279990","requirement:Security-Management-Process","framework:essential-cloud-security-controls","framework:iso-27001","framework:hipaa","requirement:Access-Control","control:164.308-a-1-ii-B","source:s3","user:yong.zuo","framework:pci","account:sandbox","testcloudcustodianremediation:2022-11-20","control:25.2","requirement:Workforce-Security","security:compliance","control:164.312-a-1","cleanup_department:technical_solutions","requirement:Least-Privileged-Access","cloud_provider:aws","cleanup_product:unknown","control:1.3","requirement:Data-Protection","control:7.2.1","control:7.2.2","requirement:Security-of-Processing","control:A.18.1.3","framework:soc-2","scope:s3","control:A.9.2.3","control:32.1a","requirement:Logical-and-Physical-Access-Control","cloudcustodianviolatedpolicy:gather-s3-buckets-older-than-one-year","control:CC6.3","control:CC6.1","cleanup_to_be_deleted:false"]}},{"id":"AgAAAYd5-sugvVI1EQAAAAAAAAAYAAAAAEFZZDUtc3VnQUFEaVZzeE05R0Q4dEFBQQAAACQAAAAAMDE4NzdhMDEtMDRiYS00NTZlLWFmMzMtNTIxNmNkNjVlNDMz","type":"finding","attributes":{"evaluation":"pass","evaluation_changed_at":1681220415000,"mute":{"muted":false},"resource":"kevin-tokyo","resource_discovery_date":1681220415000,"resource_type":"aws_s3_bucket","rule":{"name":"S3
       bucket is not publicly writeable via bucket policy","id":"ocj-ona-5qb"},"status":"critical","tags":["scored:true","region:ap-northeast-1","framework:gdpr","control:164.308-a-3-i","requirement:Compliance","cleanup_subproduct:unknown","cleanup_resource_creator:kevin.huang","cleanup_manager_email:ben.gobel_datadoghq.com","aws_account:601427279990","cleanup_team:cake_t2","requirement:Security-Management-Process","framework:iso-27001","framework:hipaa","requirement:Access-Control","control:164.308-a-1-ii-B","source:s3","framework:pci","account:sandbox","testcloudcustodianremediation:2022-11-20","control:25.2","requirement:Workforce-Security","security:compliance","control:164.312-a-1","cleanup_department:technical_solutions","requirement:Least-Privileged-Access","cloud_provider:aws","cleanup_product:unknown","requirement:Data-Protection","control:7.2.1","control:7.2.2","requirement:Security-of-Processing","control:A.18.1.3","framework:soc-2","scope:s3","user:kevin.huang","control:A.9.2.3","control:32.1a","requirement:Logical-and-Physical-Access-Control","cloudcustodianviolatedpolicy:gather-s3-buckets-older-than-one-year","control:CC6.3","control:CC6.1","cleanup_to_be_deleted:false"]}}],"meta":{"page":{"total_filtered_count":445536,"cursor":"eyJhZnRlciI6IkFnQUFBWWQ1LXN1Z3ZWSTFFUUFBQUFBQUFBQVlBQUFBQUVGWlpEVXRjM1ZuUVVGRWFWWnplRTA1UjBRNGRFRkJRUUFBQUNRQUFBQUFNREU0TnpkaE1ERXRNRFJpWVMwME5UWmxMV0ZtTXpNdE5USXhObU5rTmpWbE5ETXoiLCJ2YWx1ZXMiOlsiY3JpdGljYWwiXX0="},"snapshot_timestamp":1681388763514}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/vnd.api+json
     status: 200 OK
-version: 1
+version: 2

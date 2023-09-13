@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -11,9 +12,9 @@ interactions:
     body: '{"errors":["Query parsing error: ''notastatus'' is not a valid monitor
       status"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

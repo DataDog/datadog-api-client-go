@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"name":"Test-Remove_a_user_from_a_role_returns_OK_response-1652349176"},"type":"roles"}}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"data":{"type":"roles","id":"4cd4ef1e-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":"Test-Remove_a_user_from_a_role_returns_OK_response-1652349176","created_at":"2022-05-12T09:52:56.877176+00:00","modified_at":"2022-05-12T09:52:56.929241+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"},{"type":"permissions","id":"12efc20e-d36c-11eb-a9b8-da7ad0900002"},{"type":"permissions","id":"97971c1c-e895-11eb-b13c-da7ad0900002"},{"type":"permissions","id":"7605ef24-f376-11eb-b90b-da7ad0900002"},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002"}]}}}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"email":"Test-Remove_a_user_from_a_role_returns_OK_response-1652349176@datadoghq.com","title":"user title"},"type":"users"}}
     form: {}
@@ -33,12 +35,13 @@ interactions:
     body: '{"data":{"type":"users","id":"4d2043ce-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":null,"handle":"test-remove_a_user_from_a_role_returns_ok_response-1652349176@datadoghq.com","created_at":"2022-05-12T09:52:57.369469+00:00","modified_at":"2022-05-12T09:52:57.419917+00:00","email":"test-remove_a_user_from_a_role_returns_ok_response-1652349176@datadoghq.com","icon":"https://secure.gravatar.com/avatar/261d7f502028b16119eab34d384cc3fb?s=48&d=retro","title":"user
       title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 2
+  request:
     body: |
       {"data":{"id":"4d2043ce-d1d9-11ec-ad3d-da7ad0900002","type":"users"}}
     form: {}
@@ -53,12 +56,13 @@ interactions:
     body: '{"meta":{"page":{"total_count":1}},"data":[{"type":"users","id":"4d2043ce-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":null,"handle":"test-remove_a_user_from_a_role_returns_ok_response-1652349176@datadoghq.com","created_at":"2022-05-12T09:52:57.369469+00:00","modified_at":"2022-05-12T09:52:57.419917+00:00","email":"test-remove_a_user_from_a_role_returns_ok_response-1652349176@datadoghq.com","icon":"https://secure.gravatar.com/avatar/261d7f502028b16119eab34d384cc3fb?s=48&d=retro","title":"user
       title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[{"type":"roles","id":"4cd4ef1e-d1d9-11ec-ad3d-da7ad0900002"}]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: |
       {"data":{"id":"4d2043ce-d1d9-11ec-ad3d-da7ad0900002","type":"users"}}
     form: {}
@@ -72,12 +76,13 @@ interactions:
   response:
     body: '{"meta":{"page":{"total_count":0}},"data":[]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 4
+  request:
     body: ''
     form: {}
     headers:
@@ -88,10 +93,11 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-- request:
+- id: 5
+  request:
     body: ''
     form: {}
     headers:
@@ -102,7 +108,7 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

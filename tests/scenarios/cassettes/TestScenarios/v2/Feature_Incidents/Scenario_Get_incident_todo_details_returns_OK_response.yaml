@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"customer_impacted":false,"title":"Test-Get_incident_todo_details_returns_OK_response-1678213641"},"type":"incidents"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"assignees":["@test.user@test.com",{"icon":"https://a.slack-edge.com/80588/img/slackbot_48.png","id":"USLACKBOT","name":"Slackbot","source":"slack"}],"content":"Follow up with customer about the impact they saw."},"type":"incident_todos"}}
     form: {}
@@ -37,12 +39,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -56,12 +59,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -72,12 +76,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 4
+  request:
     body: ''
     form: {}
     headers:
@@ -88,9 +93,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

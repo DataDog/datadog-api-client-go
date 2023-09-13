@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetoinvalidapikey1674809971"},"type":"cloudflare-accounts"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"api_key":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"type":"cloudflare-accounts"}}
     form: {}
@@ -36,12 +38,13 @@ interactions:
       Impossible to get zones for the account testupdatecloudflareaccountreturnsbadrequestresponseduetoinvalidapikey1674809971:
       API key or email is unknown."]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -52,9 +55,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

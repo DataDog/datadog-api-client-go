@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"name":"Test-Create_a_new_dashboard_with_slo_widget-1682961456","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_slo_widget-1682961456","widgets":[{"definition":{"additional_query_filters":"!host:excluded_host","global_time_target":"0","show_error_budget":true,"slo_id":"91c07f67612e5483b52e566f81ef101c","time_windows":["7d"],"title_align":"left","title_size":"16","type":"slo","view_mode":"overall","view_type":"detail"},"layout":{"height":21,"width":60,"x":0,"y":0}}]}
     form: {}
@@ -36,12 +38,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -54,12 +57,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -72,9 +76,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"name":"Test-Create_an_SLO_object_returns_Bad_Request_response-1641430270","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"errors":["Invalid payload: must specify monitor_ids"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

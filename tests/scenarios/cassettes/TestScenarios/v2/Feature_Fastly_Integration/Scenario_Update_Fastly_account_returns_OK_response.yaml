@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"api_key":"TestUpdateFastlyaccountreturnsOKresponse1678702217","name":"Test-Update_Fastly_account_returns_OK_response-1678702217","services":[]},"type":"fastly-accounts"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"api_key":"update-secret"},"type":"fastly-accounts"}}
     form: {}
@@ -36,12 +38,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -52,9 +55,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

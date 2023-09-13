@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"open.file.path = sh","name":"testcreateacloudworkloadsecurityagentrulereturnsbadrequestresponse1641924695"},"type":"agent_rule"}}
     form: {}
@@ -15,9 +16,9 @@ interactions:
       `testcreateacloudworkloadsecurityagentrulereturnsbadrequestresponse1641924695`
       definition error: syntax error: 1:18: unexpected token \"sh\" (expected \"~\"))"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

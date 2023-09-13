@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"name":"Test-Revoke_permission_returns_Bad_Request_response-1652349179"},"type":"roles"}}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"data":{"type":"roles","id":"4e9847ba-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":"Test-Revoke_permission_returns_Bad_Request_response-1652349179","created_at":"2022-05-12T09:52:59.834597+00:00","modified_at":"2022-05-12T09:52:59.881343+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"},{"type":"permissions","id":"12efc20e-d36c-11eb-a9b8-da7ad0900002"},{"type":"permissions","id":"97971c1c-e895-11eb-b13c-da7ad0900002"},{"type":"permissions","id":"7605ef24-f376-11eb-b90b-da7ad0900002"},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002"}]}}}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -202,12 +204,13 @@ interactions:
       Generate Metrics","description":"Create custom metrics from RUM events.","created":"2022-04-11T16:26:24.106645+00:00","group_name":"Real
       User Monitoring","display_type":"write","restricted":false}}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: |
       {"data":{"id":"11111111-dead-beef-dead-ffffffffffff","type":"permissions"}}
     form: {}
@@ -221,12 +224,13 @@ interactions:
   response:
     body: '{"errors": ["Invalid permission id: 11111111-dead-beef-dead-ffffffffffff"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -237,7 +241,7 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

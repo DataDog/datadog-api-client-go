@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1641430272","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"data":[{"description":"","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98,"warning_display":"98.","target":95,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"f21337f0ea7059f986448228aaa11f09","name":"Test-Update_an_SLO_returns_Bad_Request_response-1641430272","created_at":1641430273,"tags":[],"modified_at":1641430273,"type":"metric"}],"error":null}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"name":"Test-Update_an_SLO_returns_Bad_Request_response-1641430272","thresholds":[{"target":95,"target_display":"95.0","timeframe":"7d","warning":98,"warning_display":"98.0"}],"type":"monitor"}
     form: {}
@@ -32,12 +34,13 @@ interactions:
   response:
     body: '{"errors":["Invalid payload: must specify the query for count types"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -48,9 +51,9 @@ interactions:
   response:
     body: '{"data":["f21337f0ea7059f986448228aaa11f09"],"error":null}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

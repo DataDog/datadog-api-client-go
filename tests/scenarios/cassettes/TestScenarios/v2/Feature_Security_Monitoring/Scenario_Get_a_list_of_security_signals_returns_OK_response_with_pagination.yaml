@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"filter":{"from":"2022-04-13T11:17:57.080Z","query":"security:attack status:high","to":"2022-04-13T11:32:57.080Z"},"page":{"limit":2},"sort":"timestamp"}
     form: {}
@@ -71,12 +72,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"filter":{"from":"2022-04-13T11:17:57.080Z","query":"security:attack status:high","to":"2022-04-13T11:32:57.080Z"},"page":{"cursor":"eyJhZnRlciI6IkFRQUFBWUFlRFg2UlExTW1SUUFBQUFCQldVRmxSRmcyVWtGQlJEWk9ObWg0UkhOSU9HRjNRVUUifQ","limit":2},"sort":"timestamp"}
     form: {}
@@ -109,9 +111,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

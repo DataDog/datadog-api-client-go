@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"name":"Test-Delete_an_Application_key_returns_No_Content_response-1652349126"},"type":"application_keys"}}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"data":{"type":"application_keys","id":"d2653524-a474-460c-a7c7-75073e8aa1fa","attributes":{"name":"Test-Delete_an_Application_key_returns_No_Content_response-1652349126","created_at":"2022-05-12T09:52:07.427090+00:00","last4":"xxxx","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","scopes":null},"relationships":{"owned_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}}}}'
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -29,10 +31,11 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -43,9 +46,9 @@ interactions:
   response:
     body: '{"errors": ["Application key not found"]}'
     code: 404
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

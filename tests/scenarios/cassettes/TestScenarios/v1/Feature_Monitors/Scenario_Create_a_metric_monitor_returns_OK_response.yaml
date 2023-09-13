@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"message":"some message Notify: @hipchat-channel","name":"Test-Create_a_metric_monitor_returns_OK_response-1673258836","options":{"scheduling_options":{"evaluation_window":{"day_starts":"04:00","month_starts":1}},"thresholds":{"critical":0.5}},"query":"avg(current_1mo):avg:system.load.5{*} \u003e 0.5","type":"metric alert"}
     form: {}
@@ -18,12 +19,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -36,9 +38,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

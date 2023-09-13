@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":false,"path":"@duration"},"filter":{"query":"source:Test-Delete_a_span_based_metric_returns_OK_response-1681838888"},"group_by":[{"path":"resource_name","tag_name":"resource_name"}]},"id":"Test-Delete_a_span_based_metric_returns_OK_response-1681838888","type":"spans_metrics"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -31,12 +33,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -50,9 +53,9 @@ interactions:
 
       '
     code: 404
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

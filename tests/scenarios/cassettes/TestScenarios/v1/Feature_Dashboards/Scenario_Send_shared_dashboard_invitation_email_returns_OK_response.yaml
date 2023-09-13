@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"layout_type":"ordered","title":"Test-Send_shared_dashboard_invitation_email_returns_OK_response-1680883811 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
     form: {}
@@ -16,12 +17,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"dashboard_id":"raa-btt-uqs","dashboard_type":"custom_timeboard","global_time":{"live_span":"1h"},"share_list":["testsendshareddashboardinvitationemailreturnsokresponse1680883811@datadoghq.com"],"share_type":"invite"}
     form: {}
@@ -37,12 +39,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: |
       {"data":{"attributes":{"email":"testsendshareddashboardinvitationemailreturnsokresponse1680883811@datadoghq.com"},"type":"public_dashboard_invitation"}}
     form: {}
@@ -58,12 +61,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 3
+  request:
     body: |
       {"data":{"attributes":{"email":"testsendshareddashboardinvitationemailreturnsokresponse1680883811@datadoghq.com"},"type":"public_dashboard_invitation"}}
     form: {}
@@ -77,12 +81,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 4
+  request:
     body: ''
     form: {}
     headers:
@@ -95,12 +100,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 5
+  request:
     body: ''
     form: {}
     headers:
@@ -113,9 +119,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2
