@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"policy":{"tag_key":"testdeleteamonitorconfigurationpolicyreturnsokresponse1682627700","tag_key_required":false,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"type":"monitor-config-policy"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -31,12 +33,13 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -47,9 +50,9 @@ interactions:
   response:
     body: '{"errors":["Monitor config policy not found"]}'
     code: 404
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

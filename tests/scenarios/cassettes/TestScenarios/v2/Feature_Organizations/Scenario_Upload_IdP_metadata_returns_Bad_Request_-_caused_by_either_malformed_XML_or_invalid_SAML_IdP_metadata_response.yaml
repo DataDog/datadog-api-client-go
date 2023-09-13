@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: "--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\
       \nContent-Disposition: form-data; name=\"idp_file\"; filename=\"invalid_idp_metadata.xml\"\
       \r\nContent-Type: application/xml\r\n\r\n\\u003c?xml version=\"1.0\" encoding=\"\
@@ -16,9 +17,9 @@ interactions:
   response:
     body: '{"errors": ["Invalid metadata"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

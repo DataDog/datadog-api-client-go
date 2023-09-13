@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"compute":[{"aggregation":"pc90","metric":"@duration","type":"total"}],"filter":{"from":"now-15m","query":"@ci.provider.name:(gitlab OR github)","to":"now"},"group_by":[{"facet":"@ci.status","limit":10,"total":false}],"options":{"timezone":"GMT"}}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"meta":{"elapsed":170,"request_id":"pddv1ChYzYWhuN3VqLVR4ZTV4V0Q0LVFDYVB3IiwKHKG6G1xIn05fWwGRsD7MITrTmBASHDayL3wqgBcSDEOG5uEAxWRZVp8G4w","status":"done"},"data":{"buckets":[{"computes":{"c0":236880835985.0375},"by":{"@ci.status":"error"}},{"computes":{"c0":3026515237.0540113},"by":{"@ci.status":"skipped"}},{"computes":{"c0":146575581775.90088},"by":{"@ci.status":"success"}}]}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

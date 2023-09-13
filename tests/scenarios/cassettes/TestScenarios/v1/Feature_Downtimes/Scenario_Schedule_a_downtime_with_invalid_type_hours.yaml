@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"end":1657667266,"message":"Test-Schedule_a_downtime_with_invalid_type_hours-1657663666","monitor_tags":["tag0"],"recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1657663666,"timezone":"Etc/UTC"}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"errors": ["Invalid recurrence type"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

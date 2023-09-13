@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"handle":"test-handle-b98be6aba3b71089","name":"test-name-b98be6aba3b71089"},"type":"team"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 201 Created
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"handle":"test-handle-b98be6aba3b71089","name":"Example Team"},"relationships":{"users":{"data":[]}},"type":"team"}}
     form: {}
@@ -34,12 +36,13 @@ interactions:
   response:
     body: '{"errors":["Team name and handle must be unique"]}'
     code: 409
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 409 Conflict
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -50,7 +53,7 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

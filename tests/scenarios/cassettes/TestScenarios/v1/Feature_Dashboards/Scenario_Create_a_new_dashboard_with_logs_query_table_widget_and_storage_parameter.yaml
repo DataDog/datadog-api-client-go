@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_logs_query_table_widget_and_storage_parameter-1663859189 with query table widget and storage parameter","widgets":[{"definition":{"requests":[{"formulas":[{"cell_display_mode":"bar","conditional_formats":[],"formula":"query1","limit":{"count":50,"order":"desc"}}],"queries":[{"compute":{"aggregation":"count"},"data_source":"logs","group_by":[],"indexes":["*"],"name":"query1","search":{"query":""},"storage":"online_archives"}],"response_format":"scalar"}],"type":"query_table"}}]}
     form: {}
@@ -16,12 +17,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -34,9 +36,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

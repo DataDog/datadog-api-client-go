@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
@@ -17,12 +18,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule Bis","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_bis","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:false"}],"tags":[],"type":"log_detection"}
     form: {}
@@ -40,12 +42,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: |
       {"cases":[{"condition":"a \u003e 0 \u0026\u0026 b \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test signal correlation rule","name":"Test-Create_a_detection_rule_with_type_signal_correlation_returns_OK_response-1666186595_signal_rule","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"event_count","correlatedByFields":["host"],"correlatedQueryIndex":1,"ruleId":"jkf-59u-hro"},{"aggregation":"event_count","correlatedByFields":["host"],"ruleId":"kmj-xjs-f9o"}],"tags":[],"type":"signal_correlation"}
     form: {}
@@ -63,12 +66,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -79,10 +83,11 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-- request:
+- id: 4
+  request:
     body: ''
     form: {}
     headers:
@@ -93,10 +98,11 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-- request:
+- id: 5
+  request:
     body: ''
     form: {}
     headers:
@@ -107,7 +113,7 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

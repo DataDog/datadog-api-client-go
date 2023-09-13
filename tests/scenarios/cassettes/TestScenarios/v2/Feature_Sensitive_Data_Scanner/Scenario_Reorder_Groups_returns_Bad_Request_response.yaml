@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -12,12 +13,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"filter":{"query":"*"},"is_enabled":false,"name":"my-test-group","product_list":["logs"]},"relationships":{"configuration":{"data":{"id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87","type":"sensitive_data_scanner_configuration"}},"rules":{"data":[]}},"type":"sensitive_data_scanner_group"},"meta":{}}
     form: {}
@@ -33,12 +35,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: |
       {"data":{"id":"7957915c634d4dcb581fa154157f5ad9c2947f50be632fb5599862069f4d2d87","relationships":{"groups":{"data":[{"id":"Test-Reorder_Groups_returns_Bad_Request_response-1670579580","type":"sensitive_data_scanner_group"}]}},"type":"sensitive_data_scanner_configuration"},"meta":{}}
     form: {}
@@ -55,12 +58,13 @@ interactions:
 
       '
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-- request:
+- id: 3
+  request:
     body: |
       {"meta":{}}
     form: {}
@@ -76,9 +80,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

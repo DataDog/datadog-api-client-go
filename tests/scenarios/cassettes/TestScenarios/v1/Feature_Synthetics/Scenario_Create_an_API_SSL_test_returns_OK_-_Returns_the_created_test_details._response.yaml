@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"config":{"assertions":[{"operator":"isInMoreThan","target":10,"type":"certificate"}],"request":{"host":"datadoghq.com","port":443}},"locations":["aws:us-east-2"],"message":"BDD test payload: synthetics_api_ssl_test_payload.json","name":"Test-Create_an_API_SSL_test_returns_OK_Returns_the_created_test_details_response-1661864351","options":{"accept_self_signed":true,"checkCertificateRevocation":true,"tick_every":60},"subtype":"ssl","tags":["testing:api"],"type":"api"}
     form: {}
@@ -14,12 +15,13 @@ interactions:
     body: '{"status":"live","public_id":"qrz-a4f-273","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"BDD
       test payload: synthetics_api_ssl_test_payload.json","deleted_at":null,"name":"Test-Create_an_API_SSL_test_returns_OK_Returns_the_created_test_details_response-1661864351","monitor_id":81568628,"type":"api","created_at":"2022-08-30T12:59:12.024188+00:00","modified_at":"2022-08-30T12:59:12.024188+00:00","subtype":"ssl","config":{"request":{"host":"datadoghq.com","port":443},"assertions":[{"operator":"isInMoreThan","type":"certificate","target":10}]},"options":{"accept_self_signed":true,"checkCertificateRevocation":true,"tick_every":60}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"public_ids":["qrz-a4f-273"]}
     form: {}
@@ -33,9 +35,9 @@ interactions:
   response:
     body: '{"deleted_tests":[{"deleted_at":"2022-08-30T12:59:17.464324+00:00","public_id":"qrz-a4f-273"}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

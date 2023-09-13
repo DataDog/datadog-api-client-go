@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"access_role":null,"disabled":false,"email":"test@datadoghq.com","handle":"test@datadoghq.com","name":"test user"}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -31,9 +33,9 @@ interactions:
   response:
     body: '{"errors":["User is already disabled"]}'
     code: 400
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"layout_type":"ordered","tags":["team:foobar"],"title":"Test-Create_a_new_dashboard_with_team_tags_returns_OK_response-1678308832","widgets":[{"definition":{"requests":[{"change_type":"absolute","compare_to":"hour_before","formulas":[{"formula":"hour_before(query1)"},{"formula":"query1"}],"increase_good":true,"order_by":"change","order_dir":"desc","queries":[{"compute":{"aggregation":"count"},"data_source":"logs","group_by":[],"indexes":["*"],"name":"query1","search":{"query":""}}],"response_format":"scalar"}],"time":{},"title":"","title_align":"left","title_size":"16","type":"change"},"layout":{"height":4,"width":4,"x":0,"y":0}}]}
     form: {}
@@ -15,12 +16,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -33,9 +35,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

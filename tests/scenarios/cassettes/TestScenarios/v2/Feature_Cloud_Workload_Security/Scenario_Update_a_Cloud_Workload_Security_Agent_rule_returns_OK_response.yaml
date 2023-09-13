@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1652349088"},"type":"agent_rule"}}
     form: {}
@@ -15,12 +16,13 @@ interactions:
       Agent rule","enabled":true,"defaultRule":false,"version":1,"updater":{"handle":"frog@datadoghq.com","name":null},"updateDate":1652349088786,"creationDate":1652349088786,"expression":"exec.file.name
       == \"sh\""},"type":"agent_rule","id":"ivl-0d3-hga"}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"exec.file.name == \"sh\""},"type":"agent_rule"}}
     form: {}
@@ -36,12 +38,13 @@ interactions:
       Agent rule","enabled":true,"defaultRule":false,"version":2,"updater":{"handle":"frog@datadoghq.com","name":null},"updateDate":1652349089262,"creationDate":1652349088786,"expression":"exec.file.name
       == \"sh\""},"type":"agent_rule","id":"ivl-0d3-hga"}}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -52,9 +55,9 @@ interactions:
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

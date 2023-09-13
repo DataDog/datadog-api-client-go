@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"layout_type":"ordered","title":"Test-Get_a_shared_dashboard_returns_OK_response-1680884023 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
     form: {}
@@ -16,12 +17,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"dashboard_id":"zrc-p5j-6r5","dashboard_type":"custom_timeboard","global_time":{"live_span":"1h"},"share_list":["testgetashareddashboardreturnsokresponse1680884023@datadoghq.com"],"share_type":"invite"}
     form: {}
@@ -37,12 +39,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: ''
     form: {}
     headers:
@@ -55,12 +58,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: ''
     form: {}
     headers:
@@ -73,12 +77,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 4
+  request:
     body: ''
     form: {}
     headers:
@@ -91,9 +96,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

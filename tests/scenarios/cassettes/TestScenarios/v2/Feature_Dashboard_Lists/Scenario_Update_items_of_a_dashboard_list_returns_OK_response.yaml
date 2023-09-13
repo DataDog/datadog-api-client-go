@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"name":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211"}
     form: {}
@@ -13,12 +14,13 @@ interactions:
   response:
     body: '{"is_favorite":false,"name":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-03-21T19:16:51.788428+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-03-21T19:16:51.788437+00:00","id":284066}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: |
       {"layout_type":"ordered","title":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
     form: {}
@@ -33,12 +35,13 @@ interactions:
     body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"niu-g3w-pmy","title":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211
       with Profile Metrics Query","url":"/dashboard/niu-g3w-pmy/test-updateitemsofadashboardlistreturnsokresponse-1647890211-with-profile-metric","created_at":"2022-03-21T19:16:52.105822+00:00","modified_at":"2022-03-21T19:16:52.105822+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"id":7025397435910312}],"layout_type":"ordered"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 2
+  request:
     body: |
       {"layout_type":"free","title":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"},"layout":{"height":10,"width":10,"x":10,"y":10}}]}
     form: {}
@@ -53,12 +56,13 @@ interactions:
     body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"kqn-ck6-7nq","title":"Test-Update_items_of_a_dashboard_list_returns_OK_response-1647890211
       with Profile Metrics Query","url":"/dashboard/kqn-ck6-7nq/test-updateitemsofadashboardlistreturnsokresponse-1647890211-with-profile-metric","created_at":"2022-03-21T19:16:52.400846+00:00","modified_at":"2022-03-21T19:16:52.400846+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"layout":{"y":10,"width":10,"x":10,"height":10},"id":2927684530303517}],"layout_type":"free"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 3
+  request:
     body: |
       {"dashboards":[{"id":"niu-g3w-pmy","type":"custom_timeboard"}]}
     form: {}
@@ -72,12 +76,13 @@ interactions:
   response:
     body: '{"added_dashboards_to_list":[{"type":"custom_timeboard","id":"niu-g3w-pmy"}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 4
+  request:
     body: |
       {"dashboards":[{"id":"kqn-ck6-7nq","type":"custom_screenboard"}]}
     form: {}
@@ -91,12 +96,13 @@ interactions:
   response:
     body: '{"dashboards":[{"type":"custom_screenboard","id":"kqn-ck6-7nq"}]}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 5
+  request:
     body: ''
     form: {}
     headers:
@@ -107,12 +113,13 @@ interactions:
   response:
     body: '{"deleted_dashboard_id":"kqn-ck6-7nq"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 6
+  request:
     body: ''
     form: {}
     headers:
@@ -123,12 +130,13 @@ interactions:
   response:
     body: '{"deleted_dashboard_id":"niu-g3w-pmy"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 7
+  request:
     body: ''
     form: {}
     headers:
@@ -139,9 +147,9 @@ interactions:
   response:
     body: '{"deleted_dashboard_list_id":284066}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

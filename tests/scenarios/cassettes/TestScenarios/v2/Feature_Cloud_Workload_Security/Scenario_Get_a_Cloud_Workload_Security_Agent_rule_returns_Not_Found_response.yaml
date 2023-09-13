@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: ''
     form: {}
     headers:
@@ -10,9 +11,9 @@ interactions:
   response:
     body: '{"errors":["not_found(Agent rule not found: agentRuleId=abc-123-xyz)"]}'
     code: 404
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"scope":"test:testcanceldowntimesbyscopereturnsdowntimesnotfoundresponse1641430245_invalid"}
     form: {}
@@ -13,9 +14,9 @@ interactions:
   response:
     body: '{"errors":["No downtimes found"]}'
     code: 404
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

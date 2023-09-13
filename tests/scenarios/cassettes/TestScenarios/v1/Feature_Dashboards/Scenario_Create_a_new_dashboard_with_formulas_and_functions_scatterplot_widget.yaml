@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget-1641430231","widgets":[{"definition":{"requests":{"table":{"formulas":[{"alias":"my-query1","dimension":"x","formula":"query1"},{"alias":"my-query2","dimension":"y","formula":"query2"}],"queries":[{"aggregator":"avg","data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*} by {service}"},{"aggregator":"avg","data_source":"metrics","name":"query2","query":"avg:system.mem.used{*} by {service}"}],"response_format":"scalar"}},"title":"","title_align":"left","title_size":"16","type":"scatterplot"},"id":5346764334358972,"layout":{"height":2,"width":4,"x":0,"y":0}}]}
     form: {}
@@ -15,12 +16,13 @@ interactions:
       by {service}"},{"aggregator":"avg","data_source":"metrics","name":"query2","query":"avg:system.mem.used{*}
       by {service}"}]}},"title_align":"left","title_size":"16","title":""},"layout":{"y":0,"width":4,"x":0,"height":2},"id":5346764334358972}],"layout_type":"ordered"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -31,9 +33,9 @@ interactions:
   response:
     body: '{"deleted_dashboard_id":"zct-37r-af2"}'
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

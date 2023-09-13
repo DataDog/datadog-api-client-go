@@ -1,5 +1,6 @@
 interactions:
-- request:
+- id: 0
+  request:
     body: |
       {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_run_workflow_widget-1674727559","widgets":[{"definition":{"inputs":[{"name":"environment","value":"$env.value"}],"time":{},"title":"Run workflow title","title_align":"left","title_size":"16","type":"run_workflow","workflow_id":"2e055f16-8b6a-4cdd-b452-17a34c44b160"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
     form: {}
@@ -16,12 +17,13 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-- request:
+- id: 1
+  request:
     body: ''
     form: {}
     headers:
@@ -34,9 +36,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 100ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2
