@@ -24,8 +24,8 @@ import (
 	"time"
 
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
-	"github.com/dnaeon/go-vcr/cassette"
-	"github.com/dnaeon/go-vcr/recorder"
+	"gopkg.in/dnaeon/go-vcr.v3/cassette"
+	"gopkg.in/dnaeon/go-vcr.v3/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/goccy/go-json"
 	"github.com/stretchr/testify/require"
@@ -454,11 +454,11 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 
 // FilterInteraction removes secret arguments from the URL.
 func FilterInteraction(i *cassette.Interaction) error {
-	u, err := url.Parse(i.URL)
+	u, err := url.Parse(i.Request.URL)
 	if err != nil {
 		return err
 	}
-	i.URL = removeURLSecrets(u)
+	i.Request.URL = removeURLSecrets(u)
 	i.Request.Headers.Del("Dd-Api-Key")
 	i.Request.Headers.Del("Dd-Application-Key")
 	// Remove custom URL in report-uri from response
@@ -472,14 +472,18 @@ func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 	var mode recorder.Mode
 	switch GetRecording() {
 	case ModeReplaying:
-		mode = recorder.ModeReplaying
+		mode = recorder.ModeReplayOnly
 	case ModeIgnore:
-		mode = recorder.ModeDisabled
+		mode = recorder.ModePassthrough
 	default:
-		mode = recorder.ModeRecording
+		mode = recorder.ModeRecordOnly
 	}
 
-	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", name), mode, nil)
+	opts := &recorder.Options{
+		CassetteName: fmt.Sprintf("cassettes/%s", name),
+		Mode:         mode,
+	}
+	r, err := recorder.NewWithOptions(opts)
 	if err != nil {
 		return nil, err
 	}
@@ -489,7 +493,7 @@ func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 	}
 
 	r.SetMatcher(MatchInteraction)
-	r.AddFilter(FilterInteraction)
+	r.AddHook(FilterInteraction, recorder.BeforeSaveHook)
 
 	return r, nil
 }
