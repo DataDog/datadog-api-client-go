@@ -31,10 +31,10 @@ func WithFakeAuth(ctx context.Context) context.Context {
 		datadog.ContextAPIKeys,
 		map[string]datadog.APIKey{
 			"apiKeyAuth": {
-				Key: "FAKE_KEY",
+				Key: "00000000000000000000000000000000",
 			},
 			"appKeyAuth": {
-				Key: "FAKE_KEY",
+				Key: "0000000000000000000000000000000000000000",
 			},
 		},
 	)
