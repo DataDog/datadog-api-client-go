@@ -14,9 +14,9 @@ import (
 
 // SplitConfigSortCompute Defines the metric and aggregation used as the sort value.
 type SplitConfigSortCompute struct {
-	// The metric to use for sorting graphs.
-	Aggregation string `json:"aggregation"`
 	// How to aggregate the sort metric for the purposes of ordering.
+	Aggregation string `json:"aggregation"`
+	// The metric to use for sorting graphs.
 	Metric string `json:"metric"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
