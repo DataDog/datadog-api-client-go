@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.RUMApplicationCreateRequest{
 		Data: datadogV2.RUMApplicationCreate{
 			Attributes: datadogV2.RUMApplicationCreateAttributes{
-				Name: "my_new_rum_application",
+				Name: "test-rum-5c67ebb32077e1d9",
 				Type: datadog.PtrString("ios"),
 			},
 			Type: datadogV2.RUMAPPLICATIONCREATETYPE_RUM_APPLICATION_CREATE,
