@@ -21,7 +21,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDashboardListsApi(apiClient)
-	resp, r, err := api.GetDashboardList(ctx, DashboardListID)
+	resp, r, err := api.GetDashboardList(ctx, DashboardListID, *datadogV1.NewGetDashboardListOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.GetDashboardList`: %v\n", err)

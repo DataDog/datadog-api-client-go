@@ -8,6 +8,7 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -160,14 +161,39 @@ func (a *DashboardListsApi) DeleteDashboardList(ctx _context.Context, listId int
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetDashboardListOptionalParameters holds optional parameters for GetDashboardList.
+type GetDashboardListOptionalParameters struct {
+	TestQuery *[]string
+}
+
+// NewGetDashboardListOptionalParameters creates an empty struct for parameters.
+func NewGetDashboardListOptionalParameters() *GetDashboardListOptionalParameters {
+	this := GetDashboardListOptionalParameters{}
+	return &this
+}
+
+// WithTestQuery sets the corresponding parameter name and returns the struct.
+func (r *GetDashboardListOptionalParameters) WithTestQuery(testQuery []string) *GetDashboardListOptionalParameters {
+	r.TestQuery = &testQuery
+	return r
+}
+
 // GetDashboardList Get a dashboard list.
 // Fetch an existing dashboard list's definition.
-func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64) (DashboardList, *_nethttp.Response, error) {
+func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64, o ...GetDashboardListOptionalParameters) (DashboardList, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue DashboardList
+		optionalParams      GetDashboardListOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetDashboardListOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.DashboardListsApi.GetDashboardList")
 	if err != nil {
@@ -180,6 +206,17 @@ func (a *DashboardListsApi) GetDashboardList(ctx _context.Context, listId int64)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.TestQuery != nil {
+		t := *optionalParams.TestQuery
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("test_query", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("test_query", datadog.ParameterToString(t, "multi"))
+		}
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
