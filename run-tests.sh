@@ -37,5 +37,11 @@ cd tests
 staticcheck -checks inherit,-SA1019 ./...
 go mod tidy
 go clean -testcache
-gotestsum --format short-verbose --packages ./... -- -timeout=20m
+
+if [ "$RECORD" == "none" ]; then
+    gotestsum --rerun-fails=1 --format short-verbose --packages ./... -- -timeout=20m
+else
+    gotestsum --format short-verbose --packages ./...
+fi
+
 cd ..
