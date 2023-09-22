@@ -39,9 +39,9 @@ func NewScalarMetaWithDefaults() *ScalarMeta {
 	return &this
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
+// GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ScalarMeta) GetUnit() []Unit {
-	if o == nil || o.Unit == nil {
+	if o == nil {
 		var ret []Unit
 		return ret
 	}
@@ -50,6 +50,7 @@ func (o *ScalarMeta) GetUnit() []Unit {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ScalarMeta) GetUnitOk() (*[]Unit, bool) {
 	if o == nil || o.Unit == nil {
 		return nil, false
