@@ -16,10 +16,10 @@ type DataScalarColumn struct {
 	Meta *ScalarMeta `json:"meta,omitempty"`
 	// The name referencing the formula or query for this column.
 	Name *string `json:"name,omitempty"`
-	// The type of column present.
-	Type *string `json:"type,omitempty"`
+	// The type of column present for numbers.
+	Type *ScalarColumnTypeNumber `json:"type,omitempty"`
 	// The array of numerical values for one formula or query.
-	Values []float64 `json:"values,omitempty"`
+	Values []*float64 `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -31,6 +31,8 @@ type DataScalarColumn struct {
 // will change when the set of required properties is changed.
 func NewDataScalarColumn() *DataScalarColumn {
 	this := DataScalarColumn{}
+	var typeVar ScalarColumnTypeNumber = SCALARCOLUMNTYPENUMBER_NUMBER
+	this.Type = &typeVar
 	return &this
 }
 
@@ -39,6 +41,8 @@ func NewDataScalarColumn() *DataScalarColumn {
 // but it doesn't guarantee that properties required by API are set.
 func NewDataScalarColumnWithDefaults() *DataScalarColumn {
 	this := DataScalarColumn{}
+	var typeVar ScalarColumnTypeNumber = SCALARCOLUMNTYPENUMBER_NUMBER
+	this.Type = &typeVar
 	return &this
 }
 
@@ -99,9 +103,9 @@ func (o *DataScalarColumn) SetName(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *DataScalarColumn) GetType() string {
+func (o *DataScalarColumn) GetType() ScalarColumnTypeNumber {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret ScalarColumnTypeNumber
 		return ret
 	}
 	return *o.Type
@@ -109,7 +113,7 @@ func (o *DataScalarColumn) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataScalarColumn) GetTypeOk() (*string, bool) {
+func (o *DataScalarColumn) GetTypeOk() (*ScalarColumnTypeNumber, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -121,15 +125,15 @@ func (o *DataScalarColumn) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *DataScalarColumn) SetType(v string) {
+// SetType gets a reference to the given ScalarColumnTypeNumber and assigns it to the Type field.
+func (o *DataScalarColumn) SetType(v ScalarColumnTypeNumber) {
 	o.Type = &v
 }
 
 // GetValues returns the Values field value if set, zero value otherwise.
-func (o *DataScalarColumn) GetValues() []float64 {
+func (o *DataScalarColumn) GetValues() []*float64 {
 	if o == nil || o.Values == nil {
-		var ret []float64
+		var ret []*float64
 		return ret
 	}
 	return o.Values
@@ -137,7 +141,7 @@ func (o *DataScalarColumn) GetValues() []float64 {
 
 // GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataScalarColumn) GetValuesOk() (*[]float64, bool) {
+func (o *DataScalarColumn) GetValuesOk() (*[]*float64, bool) {
 	if o == nil || o.Values == nil {
 		return nil, false
 	}
@@ -149,8 +153,8 @@ func (o *DataScalarColumn) HasValues() bool {
 	return o != nil && o.Values != nil
 }
 
-// SetValues gets a reference to the given []float64 and assigns it to the Values field.
-func (o *DataScalarColumn) SetValues(v []float64) {
+// SetValues gets a reference to the given []*float64 and assigns it to the Values field.
+func (o *DataScalarColumn) SetValues(v []*float64) {
 	o.Values = v
 }
 
@@ -182,10 +186,10 @@ func (o DataScalarColumn) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DataScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Meta   *ScalarMeta `json:"meta,omitempty"`
-		Name   *string     `json:"name,omitempty"`
-		Type   *string     `json:"type,omitempty"`
-		Values []float64   `json:"values,omitempty"`
+		Meta   *ScalarMeta             `json:"meta,omitempty"`
+		Name   *string                 `json:"name,omitempty"`
+		Type   *ScalarColumnTypeNumber `json:"type,omitempty"`
+		Values []*float64              `json:"values,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -203,7 +207,11 @@ func (o *DataScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Meta = all.Meta
 	o.Name = all.Name
-	o.Type = all.Type
+	if all.Type != nil && !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 	o.Values = all.Values
 
 	if len(additionalProperties) > 0 {
