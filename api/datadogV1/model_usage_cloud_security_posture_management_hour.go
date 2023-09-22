@@ -12,21 +12,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageCloudSecurityPostureManagementHour Cloud Security Posture Management usage for a given organization for a given hour.
+// UsageCloudSecurityPostureManagementHour Cloud Security Management Pro usage for a given organization for a given hour.
 type UsageCloudSecurityPostureManagementHour struct {
-	// The number of Cloud Security Posture Management Azure app services hosts during a given hour.
+	// The number of Cloud Security Management Pro Azure app services hosts during a given hour.
 	AasHostCount datadog.NullableFloat64 `json:"aas_host_count,omitempty"`
-	// The number of Cloud Security Posture Management AWS hosts during a given hour.
+	// The number of Cloud Security Management Pro AWS hosts during a given hour.
 	AwsHostCount datadog.NullableFloat64 `json:"aws_host_count,omitempty"`
-	// The number of Cloud Security Posture Management Azure hosts during a given hour.
+	// The number of Cloud Security Management Pro Azure hosts during a given hour.
 	AzureHostCount datadog.NullableFloat64 `json:"azure_host_count,omitempty"`
-	// The number of Cloud Security Posture Management hosts during a given hour.
+	// The number of Cloud Security Management Pro hosts during a given hour.
 	ComplianceHostCount datadog.NullableFloat64 `json:"compliance_host_count,omitempty"`
-	// The total number of Cloud Security Posture Management containers during a given hour.
+	// The total number of Cloud Security Management Pro containers during a given hour.
 	ContainerCount datadog.NullableFloat64 `json:"container_count,omitempty"`
-	// The number of Cloud Security Posture Management GCP hosts during a given hour.
+	// The number of Cloud Security Management Pro GCP hosts during a given hour.
 	GcpHostCount datadog.NullableFloat64 `json:"gcp_host_count,omitempty"`
-	// The total number of Cloud Security Posture Management hosts during a given hour.
+	// The total number of Cloud Security Management Pro hosts during a given hour.
 	HostCount datadog.NullableFloat64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`

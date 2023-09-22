@@ -1615,8 +1615,8 @@ func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(end
 	return r
 }
 
-// GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM.
-// Get hourly usage for cloud security posture management (CSPM).
+// GetUsageCloudSecurityPostureManagement Get hourly usage for CSM Pro.
+// Get hourly usage for cloud security management (CSM) pro.
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	var (
