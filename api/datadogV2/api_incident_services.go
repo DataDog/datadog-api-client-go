@@ -277,7 +277,7 @@ func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId
 type ListIncidentServicesOptionalParameters struct {
 	Include    *IncidentRelatedObject
 	PageSize   *int64
-	PageOffset *int64
+	PageOffset *string
 	Filter     *string
 }
 
@@ -300,7 +300,7 @@ func (r *ListIncidentServicesOptionalParameters) WithPageSize(pageSize int64) *L
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListIncidentServicesOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentServicesOptionalParameters {
+func (r *ListIncidentServicesOptionalParameters) WithPageOffset(pageOffset string) *ListIncidentServicesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

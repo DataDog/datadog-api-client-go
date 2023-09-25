@@ -283,7 +283,7 @@ func (a *IncidentTeamsApi) GetIncidentTeam(ctx _context.Context, teamId string, 
 type ListIncidentTeamsOptionalParameters struct {
 	Include    *IncidentRelatedObject
 	PageSize   *int64
-	PageOffset *int64
+	PageOffset *string
 	Filter     *string
 }
 
@@ -306,7 +306,7 @@ func (r *ListIncidentTeamsOptionalParameters) WithPageSize(pageSize int64) *List
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentTeamsOptionalParameters {
+func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset string) *ListIncidentTeamsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

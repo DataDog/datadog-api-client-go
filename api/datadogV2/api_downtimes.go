@@ -253,7 +253,7 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 type ListDowntimesOptionalParameters struct {
 	CurrentOnly *bool
 	Include     *string
-	PageOffset  *int64
+	PageOffset  *string
 	PageLimit   *int64
 }
 
@@ -276,7 +276,7 @@ func (r *ListDowntimesOptionalParameters) WithInclude(include string) *ListDownt
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListDowntimesOptionalParameters) WithPageOffset(pageOffset int64) *ListDowntimesOptionalParameters {
+func (r *ListDowntimesOptionalParameters) WithPageOffset(pageOffset string) *ListDowntimesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

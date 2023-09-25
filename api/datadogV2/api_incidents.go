@@ -1006,7 +1006,7 @@ func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string
 type ListIncidentsOptionalParameters struct {
 	Include    *[]IncidentRelatedObject
 	PageSize   *int64
-	PageOffset *int64
+	PageOffset *string
 }
 
 // NewListIncidentsOptionalParameters creates an empty struct for parameters.
@@ -1028,7 +1028,7 @@ func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListInci
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
+func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset string) *ListIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
@@ -1182,7 +1182,7 @@ type SearchIncidentsOptionalParameters struct {
 	Include    *IncidentRelatedObject
 	Sort       *IncidentSearchSortOrder
 	PageSize   *int64
-	PageOffset *int64
+	PageOffset *string
 }
 
 // NewSearchIncidentsOptionalParameters creates an empty struct for parameters.
@@ -1210,7 +1210,7 @@ func (r *SearchIncidentsOptionalParameters) WithPageSize(pageSize int64) *Search
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *SearchIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *SearchIncidentsOptionalParameters {
+func (r *SearchIncidentsOptionalParameters) WithPageOffset(pageOffset string) *SearchIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
