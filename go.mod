@@ -16,6 +16,7 @@ require (
 )
 
 require (
+	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/golang/protobuf v1.5.3 // indirect
 	golang.org/x/net v0.12.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect

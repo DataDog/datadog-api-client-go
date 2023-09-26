@@ -25,6 +25,7 @@ import (
 
     "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog{{ version|upper }}"
+	"github.com/gofrs/uuid"
 )
 
 func main() {
@@ -33,8 +34,14 @@ func main() {
 	{%- for value, schema in values.items()|sort %}
 	{%- if context._replace_values.is_used(value) %}
 	{#- // {{ schema.description + ' ' + schema.type|wordwrap(width=120, wrapstring="\n	// ") }}) #}
-	{%- if schema.type == 'string' %}
+	{%- if schema.type == 'string' and schema.format != 'uuid'%}
 	{{ value|go_name }} := os.Getenv("{{ value }}")
+	{%- elif schema.type == 'string' and schema.format == 'uuid' %}
+	{{ value|go_name }}, err := uuid.FromString(os.Getenv("{{ value }}"))
+	if err != nil {
+		fmt.Printf("Error parsing UUID: %v\n", err)
+		return
+	}
 	{%- elif schema.type == 'integer' %}
 	{{ value|go_name }}, _ := strconv.ParseInt(os.Getenv("{{ value }}"), 10, {{ '64' if schema.format == 'int64' else '32' }})
 	{%- elif schema.type == 'boolean' %}
