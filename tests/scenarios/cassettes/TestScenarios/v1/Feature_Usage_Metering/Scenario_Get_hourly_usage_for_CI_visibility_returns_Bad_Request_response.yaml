@@ -6,9 +6,9 @@ interactions:
       Accept:
       - application/json;datetime-format=rfc3339
     method: GET
-    url: https://api.datadoghq.com/api/v1/usage/ci-app?start_hr=2022-02-21T14%3A52%3A00.008Z&end_hr=2022-02-19T14%3A52%3A00.008Z
+    url: https://api.datadoghq.com/api/v1/usage/ci-app?start_hr=2023-09-22T19%3A13%3A30.824Z&end_hr=2023-09-20T19%3A13%3A30.824Z
   response:
-    body: '{"errors": ["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
+    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
     duration: ''
     headers:
