@@ -12,7 +12,7 @@ import (
 
 // SpansFilter The spans filter used to index spans.
 type SpansFilter struct {
-	// The search query - following the span search syntax.
+	// The search query - following the [span search syntax](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/).
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
