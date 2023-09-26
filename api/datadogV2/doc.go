@@ -3,6 +3,11 @@
 // Copyright 2019-Present Datadog, Inc.
 
 // List of APIs:
+//   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
+//   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
+//   - [APMRetentionFiltersApi.ListApmRetentionFilters]
+//   - [APMRetentionFiltersApi.ReorderApmRetentionFilters]
+//   - [APMRetentionFiltersApi.UpdateApmRetentionFilter]
 //   - [AuditApi.ListAuditLogs]
 //   - [AuditApi.SearchAuditLogs]
 //   - [AuthNMappingsApi.CreateAuthNMapping]
