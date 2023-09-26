@@ -14,7 +14,7 @@ import (
 
 // SpansFilterCreate The spans filter. Spans matching this filter will be indexed and stored.
 type SpansFilterCreate struct {
-	// The search query - following the span search syntax.
+	// The search query - following the [span search syntax](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/).
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
