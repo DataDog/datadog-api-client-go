@@ -456,7 +456,6 @@ def format_data_with_schema(
                     raise TypeError(f"{x} is not supported type {schema}")
                 return str(x)
 
-
             def open_file(x):
                 return f"func() *os.File {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
 
