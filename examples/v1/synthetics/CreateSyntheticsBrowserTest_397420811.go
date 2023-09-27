@@ -47,7 +47,7 @@ func main() {
 			MinLocationFailed:  datadog.PtrInt64(1),
 			NoScreenshot:       datadog.PtrBool(true),
 			Retry: &datadogV1.SyntheticsTestOptionsRetry{
-				Count:    datadog.PtrInt64(3),
+				Count:    datadog.PtrInt64(2),
 				Interval: datadog.PtrFloat64(10),
 			},
 			TickEvery: datadog.PtrInt64(300),
