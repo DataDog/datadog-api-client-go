@@ -3,7 +3,6 @@ from functools import singledispatch
 import re
 
 import dateutil.parser
-from uuid import UUID
 
 from .utils import snake_case, camel_case, untitle_case, schema_name
 
@@ -452,9 +451,7 @@ def format_data_with_schema(
                 return "true" if x else "false"
 
             def format_uuid(x):
-                if not isinstance(x, UUID):
-                    raise TypeError(f"{x} is not supported type {schema}")
-                return str(x)
+                return f'uuid.MustParse("{x}")'
 
             def open_file(x):
                 return f"func() *os.File {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
