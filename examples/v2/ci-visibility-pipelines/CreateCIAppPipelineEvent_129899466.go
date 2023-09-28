@@ -28,11 +28,6 @@ func main() {
 						PipelineUniqueId: "3eacb6f3-ff04-4e10-8a9c-46e6d054024a",
 						PipelineName:     "Deploy to AWS",
 						Url:              "https://my-ci-provider.example/jobs/my-jobs/run/1",
-						Git: *datadogV2.NewNullableCIAppGitInfo(&datadogV2.CIAppGitInfo{
-							RepositoryUrl: "https://github.com/DataDog/datadog-agent",
-							Sha:           "7f263865994b76066c4612fd1965215e7dcb4cd2",
-							AuthorEmail:   "john.doe@email.com",
-						}),
 					}},
 			},
 			Type: datadogV2.CIAPPCREATEPIPELINEEVENTREQUESTDATATYPE_CIPIPELINE_RESOURCE_REQUEST.Ptr(),
