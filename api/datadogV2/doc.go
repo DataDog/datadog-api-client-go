@@ -5,6 +5,7 @@
 // List of APIs:
 //   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
 //   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
+//   - [APMRetentionFiltersApi.GetApmRetentionFilter]
 //   - [APMRetentionFiltersApi.ListApmRetentionFilters]
 //   - [APMRetentionFiltersApi.ReorderApmRetentionFilters]
 //   - [APMRetentionFiltersApi.UpdateApmRetentionFilter]
