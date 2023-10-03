@@ -24,6 +24,9 @@ import (
 func TestMetrics(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
+	if tests.GetRecording() == tests.ModeIgnore {
+		t.Skipf("Slow test")
+	}
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)

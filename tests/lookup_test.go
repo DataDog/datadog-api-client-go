@@ -13,6 +13,10 @@ var testMap = map[string]interface{}{
 		{"egg": 1},
 		{"egg": 2},
 	},
+	"list": [][]int{
+		[]int{1, 2},
+		[]int{3, 4},
+	},
 }
 
 func TestLookupStringI_Map(t *testing.T) {
@@ -30,4 +34,8 @@ func TestLookupStringI_Map(t *testing.T) {
 
 	_, err = LookupStringI(testMap, "spam[2].egg")
 	assert.Equal(ErrNotFound, err)
+
+	value, err = LookupStringI(testMap, "list[0][1]")
+	assert.Equal(nil, err)
+	assert.Equal(2, value.Interface())
 }

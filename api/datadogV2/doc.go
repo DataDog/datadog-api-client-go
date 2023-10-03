@@ -3,6 +3,12 @@
 // Copyright 2019-Present Datadog, Inc.
 
 // List of APIs:
+//   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
+//   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
+//   - [APMRetentionFiltersApi.GetApmRetentionFilter]
+//   - [APMRetentionFiltersApi.ListApmRetentionFilters]
+//   - [APMRetentionFiltersApi.ReorderApmRetentionFilters]
+//   - [APMRetentionFiltersApi.UpdateApmRetentionFilter]
 //   - [AuditApi.ListAuditLogs]
 //   - [AuditApi.SearchAuditLogs]
 //   - [AuthNMappingsApi.CreateAuthNMapping]
@@ -154,6 +160,11 @@
 //   - [OpsgenieIntegrationApi.ListOpsgenieServices]
 //   - [OpsgenieIntegrationApi.UpdateOpsgenieService]
 //   - [OrganizationsApi.UploadIdPMetadata]
+//   - [PowerpackApi.CreatePowerpack]
+//   - [PowerpackApi.DeletePowerpack]
+//   - [PowerpackApi.GetAllPowerpacks]
+//   - [PowerpackApi.GetPowerpack]
+//   - [PowerpackApi.UpdatePowerpack]
 //   - [ProcessesApi.ListProcesses]
 //   - [RUMApi.AggregateRUMEvents]
 //   - [RUMApi.CreateRUMApplication]

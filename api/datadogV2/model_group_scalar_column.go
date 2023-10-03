@@ -14,8 +14,8 @@ import (
 type GroupScalarColumn struct {
 	// The name of the tag key or group.
 	Name *string `json:"name,omitempty"`
-	// The type of column present.
-	Type *string `json:"type,omitempty"`
+	// The type of column present for groups.
+	Type *ScalarColumnTypeGroup `json:"type,omitempty"`
 	// The array of tag values for each group found for the results of the formulas or queries.
 	Values [][]string `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -29,6 +29,8 @@ type GroupScalarColumn struct {
 // will change when the set of required properties is changed.
 func NewGroupScalarColumn() *GroupScalarColumn {
 	this := GroupScalarColumn{}
+	var typeVar ScalarColumnTypeGroup = SCALARCOLUMNTYPEGROUP_GROUP
+	this.Type = &typeVar
 	return &this
 }
 
@@ -37,6 +39,8 @@ func NewGroupScalarColumn() *GroupScalarColumn {
 // but it doesn't guarantee that properties required by API are set.
 func NewGroupScalarColumnWithDefaults() *GroupScalarColumn {
 	this := GroupScalarColumn{}
+	var typeVar ScalarColumnTypeGroup = SCALARCOLUMNTYPEGROUP_GROUP
+	this.Type = &typeVar
 	return &this
 }
 
@@ -69,9 +73,9 @@ func (o *GroupScalarColumn) SetName(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *GroupScalarColumn) GetType() string {
+func (o *GroupScalarColumn) GetType() ScalarColumnTypeGroup {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret ScalarColumnTypeGroup
 		return ret
 	}
 	return *o.Type
@@ -79,7 +83,7 @@ func (o *GroupScalarColumn) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupScalarColumn) GetTypeOk() (*string, bool) {
+func (o *GroupScalarColumn) GetTypeOk() (*ScalarColumnTypeGroup, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -91,8 +95,8 @@ func (o *GroupScalarColumn) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *GroupScalarColumn) SetType(v string) {
+// SetType gets a reference to the given ScalarColumnTypeGroup and assigns it to the Type field.
+func (o *GroupScalarColumn) SetType(v ScalarColumnTypeGroup) {
 	o.Type = &v
 }
 
@@ -149,9 +153,9 @@ func (o GroupScalarColumn) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GroupScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name   *string    `json:"name,omitempty"`
-		Type   *string    `json:"type,omitempty"`
-		Values [][]string `json:"values,omitempty"`
+		Name   *string                `json:"name,omitempty"`
+		Type   *ScalarColumnTypeGroup `json:"type,omitempty"`
+		Values [][]string             `json:"values,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -162,12 +166,22 @@ func (o *GroupScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Name = all.Name
-	o.Type = all.Type
+	if all.Type != nil && !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 	o.Values = all.Values
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

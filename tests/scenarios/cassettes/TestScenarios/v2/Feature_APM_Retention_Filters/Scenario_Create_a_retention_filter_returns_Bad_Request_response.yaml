@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"filter":{"query":"@http.status_code:200 service:my-service"},"filter_type":"spans-sampling-processor","name":"my retention filter","rate":2},"type":"apm_retention_filter"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters
+  response:
+    body: '{"errors":["Invalid Pipeline","''rate'' must exist and be between 0 and
+      1"]}
+
+      '
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":[{"id":"jdZrilSJQLqzb6Cu7aub9Q","type":"apm_retention_filter"},{"id":"7RBOb7dLSYWI01yc3pIH8w","type":"apm_retention_filter"}]}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters-execution-order
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

@@ -40,13 +40,13 @@ type UsageAttributionValues struct {
 	ContainerPercentage *float64 `json:"container_percentage,omitempty"`
 	// The container usage by tag(s).
 	ContainerUsage *float64 `json:"container_usage,omitempty"`
-	// The percentage of Cloud Security Posture Management container usage by tag(s)
+	// The percentage of Cloud Security Management Pro container usage by tag(s)
 	CspmContainerPercentage *float64 `json:"cspm_container_percentage,omitempty"`
-	// The Cloud Security Posture Management container usage by tag(s)
+	// The Cloud Security Management Pro container usage by tag(s)
 	CspmContainerUsage *float64 `json:"cspm_container_usage,omitempty"`
-	// The percentage of Cloud Security Posture Management host usage by tag(s)
+	// The percentage of Cloud Security Management Pro host usage by tag(s)
 	CspmHostPercentage *float64 `json:"cspm_host_percentage,omitempty"`
-	// The Cloud Security Posture Management host usage by tag(s)
+	// The Cloud Security Management Pro host usage by tag(s)
 	CspmHostUsage *float64 `json:"cspm_host_usage,omitempty"`
 	// The percentage of custom metrics usage by tag(s).
 	CustomTimeseriesPercentage *float64 `json:"custom_timeseries_percentage,omitempty"`

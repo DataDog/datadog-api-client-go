@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageCloudSecurityPostureManagementResponse The response containing the Cloud Security Posture Management usage for each hour for a given organization.
+// UsageCloudSecurityPostureManagementResponse The response containing the Cloud Security Management Pro usage for each hour for a given organization.
 type UsageCloudSecurityPostureManagementResponse struct {
-	// Get hourly usage for Cloud Security Posture Management.
+	// Get hourly usage for Cloud Security Management Pro.
 	Usage []UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetUsageCWS(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadogV1.NewGetUsageCWSOptionalParameters())
+	resp, r, err := api.GetUsageCWS(ctx, time.Now().AddDate(0, 0, -5), *datadogV1.NewGetUsageCWSOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageCWS`: %v\n", err)
