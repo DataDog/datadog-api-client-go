@@ -29,6 +29,7 @@ type WidgetDefinition struct {
 	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
 	NoteWidgetDefinition           *NoteWidgetDefinition
+	PowerpackWidgetDefinition      *PowerpackWidgetDefinition
 	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
 	RunWorkflowWidgetDefinition    *RunWorkflowWidgetDefinition
 	SLOListWidgetDefinition        *SLOListWidgetDefinition
@@ -141,6 +142,11 @@ func MonitorSummaryWidgetDefinitionAsWidgetDefinition(v *MonitorSummaryWidgetDef
 // NoteWidgetDefinitionAsWidgetDefinition is a convenience function that returns NoteWidgetDefinition wrapped in WidgetDefinition.
 func NoteWidgetDefinitionAsWidgetDefinition(v *NoteWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{NoteWidgetDefinition: v}
+}
+
+// PowerpackWidgetDefinitionAsWidgetDefinition is a convenience function that returns PowerpackWidgetDefinition wrapped in WidgetDefinition.
+func PowerpackWidgetDefinitionAsWidgetDefinition(v *PowerpackWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{PowerpackWidgetDefinition: v}
 }
 
 // QueryValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns QueryValueWidgetDefinition wrapped in WidgetDefinition.
@@ -540,6 +546,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.NoteWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into PowerpackWidgetDefinition
+	err = json.Unmarshal(data, &obj.PowerpackWidgetDefinition)
+	if err == nil {
+		if obj.PowerpackWidgetDefinition != nil && obj.PowerpackWidgetDefinition.UnparsedObject == nil {
+			jsonPowerpackWidgetDefinition, _ := json.Marshal(obj.PowerpackWidgetDefinition)
+			if string(jsonPowerpackWidgetDefinition) == "{}" { // empty struct
+				obj.PowerpackWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.PowerpackWidgetDefinition = nil
+		}
+	} else {
+		obj.PowerpackWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into QueryValueWidgetDefinition
 	err = json.Unmarshal(data, &obj.QueryValueWidgetDefinition)
 	if err == nil {
@@ -799,6 +822,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.LogStreamWidgetDefinition = nil
 		obj.MonitorSummaryWidgetDefinition = nil
 		obj.NoteWidgetDefinition = nil
+		obj.PowerpackWidgetDefinition = nil
 		obj.QueryValueWidgetDefinition = nil
 		obj.RunWorkflowWidgetDefinition = nil
 		obj.SLOListWidgetDefinition = nil
@@ -894,6 +918,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.NoteWidgetDefinition != nil {
 		return json.Marshal(&obj.NoteWidgetDefinition)
+	}
+
+	if obj.PowerpackWidgetDefinition != nil {
+		return json.Marshal(&obj.PowerpackWidgetDefinition)
 	}
 
 	if obj.QueryValueWidgetDefinition != nil {
@@ -1034,6 +1062,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.NoteWidgetDefinition != nil {
 		return obj.NoteWidgetDefinition
+	}
+
+	if obj.PowerpackWidgetDefinition != nil {
+		return obj.PowerpackWidgetDefinition
 	}
 
 	if obj.QueryValueWidgetDefinition != nil {
