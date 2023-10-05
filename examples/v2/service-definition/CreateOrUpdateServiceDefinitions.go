@@ -16,6 +16,10 @@ func main() {
 	body := datadogV2.ServiceDefinitionsCreateRequest{
 		ServiceDefinitionV2Dot1: &datadogV2.ServiceDefinitionV2Dot1{
 			Application: datadog.PtrString("my-app"),
+			CiPipelineFingerprints: []string{
+				"j88xdEy0J5lc",
+				"eZ7LMljCk8vo",
+			},
 			Contacts: []datadogV2.ServiceDefinitionV2Dot1Contact{
 				datadogV2.ServiceDefinitionV2Dot1Contact{
 					ServiceDefinitionV2Dot1Email: &datadogV2.ServiceDefinitionV2Dot1Email{

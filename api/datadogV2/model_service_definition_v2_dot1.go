@@ -16,6 +16,8 @@ import (
 type ServiceDefinitionV2Dot1 struct {
 	// Identifier for a group of related services serving a product feature, which the service is a part of.
 	Application *string `json:"application,omitempty"`
+	// A set of CI pipeline fingerprints related to the service.
+	CiPipelineFingerprints []string `json:"ci-pipeline-fingerprints,omitempty"`
 	// A list of contacts related to the services.
 	Contacts []ServiceDefinitionV2Dot1Contact `json:"contacts,omitempty"`
 	// Unique identifier of the service. Must be unique across all services and is used to match with a service in Datadog.
@@ -90,6 +92,34 @@ func (o *ServiceDefinitionV2Dot1) HasApplication() bool {
 // SetApplication gets a reference to the given string and assigns it to the Application field.
 func (o *ServiceDefinitionV2Dot1) SetApplication(v string) {
 	o.Application = &v
+}
+
+// GetCiPipelineFingerprints returns the CiPipelineFingerprints field value if set, zero value otherwise.
+func (o *ServiceDefinitionV2Dot1) GetCiPipelineFingerprints() []string {
+	if o == nil || o.CiPipelineFingerprints == nil {
+		var ret []string
+		return ret
+	}
+	return o.CiPipelineFingerprints
+}
+
+// GetCiPipelineFingerprintsOk returns a tuple with the CiPipelineFingerprints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceDefinitionV2Dot1) GetCiPipelineFingerprintsOk() (*[]string, bool) {
+	if o == nil || o.CiPipelineFingerprints == nil {
+		return nil, false
+	}
+	return &o.CiPipelineFingerprints, true
+}
+
+// HasCiPipelineFingerprints returns a boolean if a field has been set.
+func (o *ServiceDefinitionV2Dot1) HasCiPipelineFingerprints() bool {
+	return o != nil && o.CiPipelineFingerprints != nil
+}
+
+// SetCiPipelineFingerprints gets a reference to the given []string and assigns it to the CiPipelineFingerprints field.
+func (o *ServiceDefinitionV2Dot1) SetCiPipelineFingerprints(v []string) {
+	o.CiPipelineFingerprints = v
 }
 
 // GetContacts returns the Contacts field value if set, zero value otherwise.
@@ -399,6 +429,9 @@ func (o ServiceDefinitionV2Dot1) MarshalJSON() ([]byte, error) {
 	if o.Application != nil {
 		toSerialize["application"] = o.Application
 	}
+	if o.CiPipelineFingerprints != nil {
+		toSerialize["ci-pipeline-fingerprints"] = o.CiPipelineFingerprints
+	}
 	if o.Contacts != nil {
 		toSerialize["contacts"] = o.Contacts
 	}
@@ -438,18 +471,19 @@ func (o ServiceDefinitionV2Dot1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Application   *string                              `json:"application,omitempty"`
-		Contacts      []ServiceDefinitionV2Dot1Contact     `json:"contacts,omitempty"`
-		DdService     *string                              `json:"dd-service"`
-		Description   *string                              `json:"description,omitempty"`
-		Extensions    map[string]interface{}               `json:"extensions,omitempty"`
-		Integrations  *ServiceDefinitionV2Dot1Integrations `json:"integrations,omitempty"`
-		Lifecycle     *string                              `json:"lifecycle,omitempty"`
-		Links         []ServiceDefinitionV2Dot1Link        `json:"links,omitempty"`
-		SchemaVersion *ServiceDefinitionV2Dot1Version      `json:"schema-version"`
-		Tags          []string                             `json:"tags,omitempty"`
-		Team          *string                              `json:"team,omitempty"`
-		Tier          *string                              `json:"tier,omitempty"`
+		Application            *string                              `json:"application,omitempty"`
+		CiPipelineFingerprints []string                             `json:"ci-pipeline-fingerprints,omitempty"`
+		Contacts               []ServiceDefinitionV2Dot1Contact     `json:"contacts,omitempty"`
+		DdService              *string                              `json:"dd-service"`
+		Description            *string                              `json:"description,omitempty"`
+		Extensions             map[string]interface{}               `json:"extensions,omitempty"`
+		Integrations           *ServiceDefinitionV2Dot1Integrations `json:"integrations,omitempty"`
+		Lifecycle              *string                              `json:"lifecycle,omitempty"`
+		Links                  []ServiceDefinitionV2Dot1Link        `json:"links,omitempty"`
+		SchemaVersion          *ServiceDefinitionV2Dot1Version      `json:"schema-version"`
+		Tags                   []string                             `json:"tags,omitempty"`
+		Team                   *string                              `json:"team,omitempty"`
+		Tier                   *string                              `json:"tier,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -462,13 +496,14 @@ func (o *ServiceDefinitionV2Dot1) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application", "contacts", "dd-service", "description", "extensions", "integrations", "lifecycle", "links", "schema-version", "tags", "team", "tier"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"application", "ci-pipeline-fingerprints", "contacts", "dd-service", "description", "extensions", "integrations", "lifecycle", "links", "schema-version", "tags", "team", "tier"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Application = all.Application
+	o.CiPipelineFingerprints = all.CiPipelineFingerprints
 	o.Contacts = all.Contacts
 	o.DdService = *all.DdService
 	o.Description = all.Description
