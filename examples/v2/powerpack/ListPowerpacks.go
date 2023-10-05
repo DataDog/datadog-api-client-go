@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewPowerpackApi(apiClient)
-	resp, r, err := api.GetAllPowerpacks(ctx)
+	resp, r, err := api.ListPowerpacks(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PowerpackApi.GetAllPowerpacks`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PowerpackApi.ListPowerpacks`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `PowerpackApi.GetAllPowerpacks`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `PowerpackApi.ListPowerpacks`:\n%s\n", responseContent)
 }

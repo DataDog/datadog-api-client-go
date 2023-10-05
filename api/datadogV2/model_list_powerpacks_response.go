@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GetAllPowerpacksResponse Response object which includes all powerpack configurations.
-type GetAllPowerpacksResponse struct {
+// ListPowerpacksResponse Response object which includes all powerpack configurations.
+type ListPowerpacksResponse struct {
 	// List of powerpack definitions.
 	Data []PowerpackData `json:"data,omitempty"`
 	// Array of objects related to the users.
@@ -25,25 +25,25 @@ type GetAllPowerpacksResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewGetAllPowerpacksResponse instantiates a new GetAllPowerpacksResponse object.
+// NewListPowerpacksResponse instantiates a new ListPowerpacksResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetAllPowerpacksResponse() *GetAllPowerpacksResponse {
-	this := GetAllPowerpacksResponse{}
+func NewListPowerpacksResponse() *ListPowerpacksResponse {
+	this := ListPowerpacksResponse{}
 	return &this
 }
 
-// NewGetAllPowerpacksResponseWithDefaults instantiates a new GetAllPowerpacksResponse object.
+// NewListPowerpacksResponseWithDefaults instantiates a new ListPowerpacksResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewGetAllPowerpacksResponseWithDefaults() *GetAllPowerpacksResponse {
-	this := GetAllPowerpacksResponse{}
+func NewListPowerpacksResponseWithDefaults() *ListPowerpacksResponse {
+	this := ListPowerpacksResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *GetAllPowerpacksResponse) GetData() []PowerpackData {
+func (o *ListPowerpacksResponse) GetData() []PowerpackData {
 	if o == nil || o.Data == nil {
 		var ret []PowerpackData
 		return ret
@@ -53,7 +53,7 @@ func (o *GetAllPowerpacksResponse) GetData() []PowerpackData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllPowerpacksResponse) GetDataOk() (*[]PowerpackData, bool) {
+func (o *ListPowerpacksResponse) GetDataOk() (*[]PowerpackData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -61,17 +61,17 @@ func (o *GetAllPowerpacksResponse) GetDataOk() (*[]PowerpackData, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *GetAllPowerpacksResponse) HasData() bool {
+func (o *ListPowerpacksResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
 // SetData gets a reference to the given []PowerpackData and assigns it to the Data field.
-func (o *GetAllPowerpacksResponse) SetData(v []PowerpackData) {
+func (o *ListPowerpacksResponse) SetData(v []PowerpackData) {
 	o.Data = v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *GetAllPowerpacksResponse) GetIncluded() []User {
+func (o *ListPowerpacksResponse) GetIncluded() []User {
 	if o == nil || o.Included == nil {
 		var ret []User
 		return ret
@@ -81,7 +81,7 @@ func (o *GetAllPowerpacksResponse) GetIncluded() []User {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllPowerpacksResponse) GetIncludedOk() (*[]User, bool) {
+func (o *ListPowerpacksResponse) GetIncludedOk() (*[]User, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -89,17 +89,17 @@ func (o *GetAllPowerpacksResponse) GetIncludedOk() (*[]User, bool) {
 }
 
 // HasIncluded returns a boolean if a field has been set.
-func (o *GetAllPowerpacksResponse) HasIncluded() bool {
+func (o *ListPowerpacksResponse) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
 // SetIncluded gets a reference to the given []User and assigns it to the Included field.
-func (o *GetAllPowerpacksResponse) SetIncluded(v []User) {
+func (o *ListPowerpacksResponse) SetIncluded(v []User) {
 	o.Included = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
-func (o *GetAllPowerpacksResponse) GetLinks() PowerpackResponseLinks {
+func (o *ListPowerpacksResponse) GetLinks() PowerpackResponseLinks {
 	if o == nil || o.Links == nil {
 		var ret PowerpackResponseLinks
 		return ret
@@ -109,7 +109,7 @@ func (o *GetAllPowerpacksResponse) GetLinks() PowerpackResponseLinks {
 
 // GetLinksOk returns a tuple with the Links field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllPowerpacksResponse) GetLinksOk() (*PowerpackResponseLinks, bool) {
+func (o *ListPowerpacksResponse) GetLinksOk() (*PowerpackResponseLinks, bool) {
 	if o == nil || o.Links == nil {
 		return nil, false
 	}
@@ -117,17 +117,17 @@ func (o *GetAllPowerpacksResponse) GetLinksOk() (*PowerpackResponseLinks, bool) 
 }
 
 // HasLinks returns a boolean if a field has been set.
-func (o *GetAllPowerpacksResponse) HasLinks() bool {
+func (o *ListPowerpacksResponse) HasLinks() bool {
 	return o != nil && o.Links != nil
 }
 
 // SetLinks gets a reference to the given PowerpackResponseLinks and assigns it to the Links field.
-func (o *GetAllPowerpacksResponse) SetLinks(v PowerpackResponseLinks) {
+func (o *ListPowerpacksResponse) SetLinks(v PowerpackResponseLinks) {
 	o.Links = &v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *GetAllPowerpacksResponse) GetMeta() PowerpacksResponseMeta {
+func (o *ListPowerpacksResponse) GetMeta() PowerpacksResponseMeta {
 	if o == nil || o.Meta == nil {
 		var ret PowerpacksResponseMeta
 		return ret
@@ -137,7 +137,7 @@ func (o *GetAllPowerpacksResponse) GetMeta() PowerpacksResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllPowerpacksResponse) GetMetaOk() (*PowerpacksResponseMeta, bool) {
+func (o *ListPowerpacksResponse) GetMetaOk() (*PowerpacksResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -145,17 +145,17 @@ func (o *GetAllPowerpacksResponse) GetMetaOk() (*PowerpacksResponseMeta, bool) {
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *GetAllPowerpacksResponse) HasMeta() bool {
+func (o *ListPowerpacksResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
 // SetMeta gets a reference to the given PowerpacksResponseMeta and assigns it to the Meta field.
-func (o *GetAllPowerpacksResponse) SetMeta(v PowerpacksResponseMeta) {
+func (o *ListPowerpacksResponse) SetMeta(v PowerpacksResponseMeta) {
 	o.Meta = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o GetAllPowerpacksResponse) MarshalJSON() ([]byte, error) {
+func (o ListPowerpacksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -180,7 +180,7 @@ func (o GetAllPowerpacksResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *GetAllPowerpacksResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ListPowerpacksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     []PowerpackData         `json:"data,omitempty"`
 		Included []User                  `json:"included,omitempty"`
