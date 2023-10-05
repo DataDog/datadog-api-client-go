@@ -12,6 +12,8 @@ import (
 
 // MonitorOptionsSchedulingOptions Configuration options for scheduling.
 type MonitorOptionsSchedulingOptions struct {
+	// Configuration options for the custom schedule. **This feature is in private beta.**
+	CustomSchedule *MonitorOptionsCustomSchedule `json:"custom_schedule,omitempty"`
 	// Configuration options for the evaluation window. If `hour_starts` is set, no other fields may be set. Otherwise, `day_starts` and `month_starts` must be set together.
 	EvaluationWindow *MonitorOptionsSchedulingOptionsEvaluationWindow `json:"evaluation_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,6 +36,34 @@ func NewMonitorOptionsSchedulingOptions() *MonitorOptionsSchedulingOptions {
 func NewMonitorOptionsSchedulingOptionsWithDefaults() *MonitorOptionsSchedulingOptions {
 	this := MonitorOptionsSchedulingOptions{}
 	return &this
+}
+
+// GetCustomSchedule returns the CustomSchedule field value if set, zero value otherwise.
+func (o *MonitorOptionsSchedulingOptions) GetCustomSchedule() MonitorOptionsCustomSchedule {
+	if o == nil || o.CustomSchedule == nil {
+		var ret MonitorOptionsCustomSchedule
+		return ret
+	}
+	return *o.CustomSchedule
+}
+
+// GetCustomScheduleOk returns a tuple with the CustomSchedule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptionsSchedulingOptions) GetCustomScheduleOk() (*MonitorOptionsCustomSchedule, bool) {
+	if o == nil || o.CustomSchedule == nil {
+		return nil, false
+	}
+	return o.CustomSchedule, true
+}
+
+// HasCustomSchedule returns a boolean if a field has been set.
+func (o *MonitorOptionsSchedulingOptions) HasCustomSchedule() bool {
+	return o != nil && o.CustomSchedule != nil
+}
+
+// SetCustomSchedule gets a reference to the given MonitorOptionsCustomSchedule and assigns it to the CustomSchedule field.
+func (o *MonitorOptionsSchedulingOptions) SetCustomSchedule(v MonitorOptionsCustomSchedule) {
+	o.CustomSchedule = &v
 }
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
@@ -70,6 +100,9 @@ func (o MonitorOptionsSchedulingOptions) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.CustomSchedule != nil {
+		toSerialize["custom_schedule"] = o.CustomSchedule
+	}
 	if o.EvaluationWindow != nil {
 		toSerialize["evaluation_window"] = o.EvaluationWindow
 	}
@@ -83,6 +116,7 @@ func (o MonitorOptionsSchedulingOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		CustomSchedule   *MonitorOptionsCustomSchedule                    `json:"custom_schedule,omitempty"`
 		EvaluationWindow *MonitorOptionsSchedulingOptionsEvaluationWindow `json:"evaluation_window,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
@@ -90,12 +124,16 @@ func (o *MonitorOptionsSchedulingOptions) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"evaluation_window"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_schedule", "evaluation_window"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.CustomSchedule != nil && all.CustomSchedule.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.CustomSchedule = all.CustomSchedule
 	if all.EvaluationWindow != nil && all.EvaluationWindow.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
