@@ -17,9 +17,27 @@ func main() {
 		Data: &datadogV2.PowerpackData{
 			Attributes: &datadogV2.PowerpackAttributes{
 				Description: datadog.PtrString("Sample powerpack"),
-				GroupWidget: map[string]interface{}{
-					"definition": "{'layout_type': 'ordered', 'show_title': True, 'title': 'Sample Powerpack', 'type': 'group', 'widgets': [{'definition': {'content': 'test', 'type': 'note'}}]}",
-					"layout":     "{'height': 3, 'width': 12, 'x': 0, 'y': 0}",
+				GroupWidget: datadogV2.PowerpackGroupWidget{
+					Definition: datadogV2.PowerpackGroupWidgetDefinition{
+						LayoutType: "ordered",
+						ShowTitle:  datadog.PtrBool(true),
+						Title:      datadog.PtrString("Sample Powerpack"),
+						Type:       "group",
+						Widgets: []datadogV2.PowerpackInnerWidgets{
+							{
+								Definition: map[string]interface{}{
+									"content": "test",
+									"type":    "note",
+								},
+							},
+						},
+					},
+					Layout: &datadogV2.PowerpackGroupWidgetLayout{
+						Height: 3,
+						Width:  12,
+						X:      0,
+						Y:      0,
+					},
 				},
 				Name: "Sample Powerpack",
 				Tags: []string{

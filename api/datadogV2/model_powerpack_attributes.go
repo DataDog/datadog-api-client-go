@@ -16,8 +16,8 @@ import (
 type PowerpackAttributes struct {
 	// Description of this powerpack.
 	Description *string `json:"description,omitempty"`
-	// Templated group of dashboard widgets for the powerpack.
-	GroupWidget map[string]interface{} `json:"group_widget"`
+	// Powerpack group widget definition object.
+	GroupWidget PowerpackGroupWidget `json:"group_widget"`
 	// Name of the powerpack.
 	Name string `json:"name"`
 	// List of tags to identify this powerpack.
@@ -33,7 +33,7 @@ type PowerpackAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewPowerpackAttributes(groupWidget map[string]interface{}, name string) *PowerpackAttributes {
+func NewPowerpackAttributes(groupWidget PowerpackGroupWidget, name string) *PowerpackAttributes {
 	this := PowerpackAttributes{}
 	this.GroupWidget = groupWidget
 	this.Name = name
@@ -77,9 +77,9 @@ func (o *PowerpackAttributes) SetDescription(v string) {
 }
 
 // GetGroupWidget returns the GroupWidget field value.
-func (o *PowerpackAttributes) GetGroupWidget() map[string]interface{} {
+func (o *PowerpackAttributes) GetGroupWidget() PowerpackGroupWidget {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret PowerpackGroupWidget
 		return ret
 	}
 	return o.GroupWidget
@@ -87,7 +87,7 @@ func (o *PowerpackAttributes) GetGroupWidget() map[string]interface{} {
 
 // GetGroupWidgetOk returns a tuple with the GroupWidget field value
 // and a boolean to check if the value has been set.
-func (o *PowerpackAttributes) GetGroupWidgetOk() (*map[string]interface{}, bool) {
+func (o *PowerpackAttributes) GetGroupWidgetOk() (*PowerpackGroupWidget, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *PowerpackAttributes) GetGroupWidgetOk() (*map[string]interface{}, bool)
 }
 
 // SetGroupWidget sets field value.
-func (o *PowerpackAttributes) SetGroupWidget(v map[string]interface{}) {
+func (o *PowerpackAttributes) SetGroupWidget(v PowerpackGroupWidget) {
 	o.GroupWidget = v
 }
 
@@ -206,7 +206,7 @@ func (o PowerpackAttributes) MarshalJSON() ([]byte, error) {
 func (o *PowerpackAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description       *string                     `json:"description,omitempty"`
-		GroupWidget       *map[string]interface{}     `json:"group_widget"`
+		GroupWidget       *PowerpackGroupWidget       `json:"group_widget"`
 		Name              *string                     `json:"name"`
 		Tags              []string                    `json:"tags,omitempty"`
 		TemplateVariables []PowerpackTemplateVariable `json:"template_variables,omitempty"`
@@ -226,7 +226,12 @@ func (o *PowerpackAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Description = all.Description
+	if all.GroupWidget.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.GroupWidget = *all.GroupWidget
 	o.Name = *all.Name
 	o.Tags = all.Tags
@@ -234,6 +239,10 @@ func (o *PowerpackAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
