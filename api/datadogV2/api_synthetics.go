@@ -63,7 +63,7 @@ func (a *SyntheticsApi) GetOnDemandConcurrencyCap(ctx _context.Context) (OnDeman
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v APIErrorResponse
+			var v interface{}
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
@@ -136,7 +136,7 @@ func (a *SyntheticsApi) SetOnDemandConcurrencyCap(ctx _context.Context, body OnD
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v APIErrorResponse
+			var v interface{}
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr

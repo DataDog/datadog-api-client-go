@@ -57,7 +57,7 @@ func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Res
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v APIErrorResponse
+			var v interface{}
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
