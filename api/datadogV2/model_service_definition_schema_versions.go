@@ -18,12 +18,14 @@ const (
 	SERVICEDEFINITIONSCHEMAVERSIONS_V1   ServiceDefinitionSchemaVersions = "v1"
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2   ServiceDefinitionSchemaVersions = "v2"
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2_1 ServiceDefinitionSchemaVersions = "v2.1"
+	SERVICEDEFINITIONSCHEMAVERSIONS_V2_2 ServiceDefinitionSchemaVersions = "v2.2"
 )
 
 var allowedServiceDefinitionSchemaVersionsEnumValues = []ServiceDefinitionSchemaVersions{
 	SERVICEDEFINITIONSCHEMAVERSIONS_V1,
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2,
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2_1,
+	SERVICEDEFINITIONSCHEMAVERSIONS_V2_2,
 }
 
 // GetAllowedValues reeturns the list of possible values.

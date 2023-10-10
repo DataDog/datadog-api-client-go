@@ -1,4 +1,4 @@
-// Create or update service definition returns "CREATED" response
+// Create or update service definition using schema v2-2 returns "CREATED" response
 
 package main
 
@@ -15,18 +15,16 @@ import (
 func main() {
 	body := datadogV2.ServiceDefinitionsCreateRequest{
 		ServiceDefinitionV2Dot2: &datadogV2.ServiceDefinitionV2Dot2{
-			Application: datadog.PtrString("my-app"),
 			Contacts: []datadogV2.ServiceDefinitionV2Dot2Contact{
 				{
-					Contact: "https://teams.microsoft.com/myteam",
-					Name:    datadog.PtrString("My team channel"),
-					Type:    "slack",
+					Contact: "contact@datadoghq.com",
+					Name:    datadog.PtrString("Team Email"),
+					Type:    "email",
 				},
 			},
-			DdService:   "my-service",
-			Description: datadog.PtrString("My service description"),
+			DdService: "service-exampleservicedefinition",
 			Extensions: map[string]interface{}{
-				"myorg/extension": "extensionValue",
+				"myorgextension": "extensionvalue",
 			},
 			Integrations: &datadogV2.ServiceDefinitionV2Dot2Integrations{
 				Opsgenie: &datadogV2.ServiceDefinitionV2Dot2Opsgenie{
@@ -37,33 +35,31 @@ func main() {
 					ServiceUrl: datadog.PtrString("https://my-org.pagerduty.com/service-directory/PMyService"),
 				},
 			},
-			Langauges: []string{
-				"dotnet",
-				"go",
-				"java",
-				"js",
-				"php",
-				"python",
-				"ruby",
-				"c++",
-			},
-			Lifecycle: datadog.PtrString("sandbox"),
 			Links: []datadogV2.ServiceDefinitionV2Dot2Link{
 				{
-					Name:     "Runbook",
-					Provider: datadog.PtrString("Github"),
-					Type:     "runbook",
+					Name: "Runbook",
+					Type: "runbook",
+					Url:  "https://my-runbook",
+				},
+				{
+					Name:     "Source Code",
+					Type:     "repo",
+					Provider: datadog.PtrString("GitHub"),
+					Url:      "https://github.com/DataDog/schema",
+				},
+				{
+					Name:     "Architecture",
+					Type:     "doc",
+					Provider: datadog.PtrString("Gigoogle drivetHub"),
 					Url:      "https://my-runbook",
 				},
 			},
 			SchemaVersion: datadogV2.SERVICEDEFINITIONV2DOT2VERSION_V2_2,
-			ServiceType:   datadog.PtrString("web"),
 			Tags: []string{
 				"my:tag",
 				"service:tag",
 			},
 			Team: datadog.PtrString("my-team"),
-			Tier: datadog.PtrString("High"),
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
