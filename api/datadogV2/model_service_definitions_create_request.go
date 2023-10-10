@@ -10,12 +10,18 @@ import (
 
 // ServiceDefinitionsCreateRequest - Create service definitions request.
 type ServiceDefinitionsCreateRequest struct {
+	ServiceDefinitionV2Dot2 *ServiceDefinitionV2Dot2
 	ServiceDefinitionV2Dot1 *ServiceDefinitionV2Dot1
 	ServiceDefinitionV2     *ServiceDefinitionV2
 	ServiceDefinitionRaw    *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+}
+
+// ServiceDefinitionV2Dot2AsServiceDefinitionsCreateRequest is a convenience function that returns ServiceDefinitionV2Dot2 wrapped in ServiceDefinitionsCreateRequest.
+func ServiceDefinitionV2Dot2AsServiceDefinitionsCreateRequest(v *ServiceDefinitionV2Dot2) ServiceDefinitionsCreateRequest {
+	return ServiceDefinitionsCreateRequest{ServiceDefinitionV2Dot2: v}
 }
 
 // ServiceDefinitionV2Dot1AsServiceDefinitionsCreateRequest is a convenience function that returns ServiceDefinitionV2Dot1 wrapped in ServiceDefinitionsCreateRequest.
@@ -37,6 +43,23 @@ func ServiceDefinitionRawAsServiceDefinitionsCreateRequest(v *string) ServiceDef
 func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into ServiceDefinitionV2Dot2
+	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Dot2)
+	if err == nil {
+		if obj.ServiceDefinitionV2Dot2 != nil && obj.ServiceDefinitionV2Dot2.UnparsedObject == nil {
+			jsonServiceDefinitionV2Dot2, _ := json.Marshal(obj.ServiceDefinitionV2Dot2)
+			if string(jsonServiceDefinitionV2Dot2) == "{}" { // empty struct
+				obj.ServiceDefinitionV2Dot2 = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ServiceDefinitionV2Dot2 = nil
+		}
+	} else {
+		obj.ServiceDefinitionV2Dot2 = nil
+	}
+
 	// try to unmarshal data into ServiceDefinitionV2Dot1
 	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Dot1)
 	if err == nil {
@@ -90,6 +113,7 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
+		obj.ServiceDefinitionV2Dot2 = nil
 		obj.ServiceDefinitionV2Dot1 = nil
 		obj.ServiceDefinitionV2 = nil
 		obj.ServiceDefinitionRaw = nil
@@ -100,6 +124,10 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ServiceDefinitionsCreateRequest) MarshalJSON() ([]byte, error) {
+	if obj.ServiceDefinitionV2Dot2 != nil {
+		return json.Marshal(&obj.ServiceDefinitionV2Dot2)
+	}
+
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return json.Marshal(&obj.ServiceDefinitionV2Dot1)
 	}
@@ -120,6 +148,10 @@ func (obj ServiceDefinitionsCreateRequest) MarshalJSON() ([]byte, error) {
 
 // GetActualInstance returns the actual instance.
 func (obj *ServiceDefinitionsCreateRequest) GetActualInstance() interface{} {
+	if obj.ServiceDefinitionV2Dot2 != nil {
+		return obj.ServiceDefinitionV2Dot2
+	}
+
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return obj.ServiceDefinitionV2Dot1
 	}
