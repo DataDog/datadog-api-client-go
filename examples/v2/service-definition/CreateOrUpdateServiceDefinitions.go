@@ -57,13 +57,13 @@ func main() {
 				},
 			},
 			SchemaVersion: datadogV2.SERVICEDEFINITIONV2DOT2VERSION_V2_2,
-			ServiceType:   datadog.PtrString("web"),
 			Tags: []string{
 				"my:tag",
 				"service:tag",
 			},
 			Team: datadog.PtrString("my-team"),
 			Tier: datadog.PtrString("High"),
+			Type: datadogV2.SERVICEDEFINITIONV2DOT2TYPE_WEB.Ptr(),
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

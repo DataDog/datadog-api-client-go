@@ -34,14 +34,14 @@ type ServiceDefinitionV2Dot2 struct {
 	Links []ServiceDefinitionV2Dot2Link `json:"links,omitempty"`
 	// Schema version being used.
 	SchemaVersion ServiceDefinitionV2Dot2Version `json:"schema-version"`
-	// The type of service. Datadog recognizes the following service types: `database`, `cache`, `function`, `web`, `browser`, and `mobile`.
-	ServiceType *string `json:"service-type,omitempty"`
 	// A set of custom tags.
 	Tags []string `json:"tags,omitempty"`
 	// Team that owns the service. It is used to locate a team defined in Datadog Teams if it exists.
 	Team *string `json:"team,omitempty"`
 	// Importance of the service.
 	Tier *string `json:"tier,omitempty"`
+	// The type of service.
+	Type *ServiceDefinitionV2Dot2Type `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -338,34 +338,6 @@ func (o *ServiceDefinitionV2Dot2) SetSchemaVersion(v ServiceDefinitionV2Dot2Vers
 	o.SchemaVersion = v
 }
 
-// GetServiceType returns the ServiceType field value if set, zero value otherwise.
-func (o *ServiceDefinitionV2Dot2) GetServiceType() string {
-	if o == nil || o.ServiceType == nil {
-		var ret string
-		return ret
-	}
-	return *o.ServiceType
-}
-
-// GetServiceTypeOk returns a tuple with the ServiceType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceDefinitionV2Dot2) GetServiceTypeOk() (*string, bool) {
-	if o == nil || o.ServiceType == nil {
-		return nil, false
-	}
-	return o.ServiceType, true
-}
-
-// HasServiceType returns a boolean if a field has been set.
-func (o *ServiceDefinitionV2Dot2) HasServiceType() bool {
-	return o != nil && o.ServiceType != nil
-}
-
-// SetServiceType gets a reference to the given string and assigns it to the ServiceType field.
-func (o *ServiceDefinitionV2Dot2) SetServiceType(v string) {
-	o.ServiceType = &v
-}
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -450,6 +422,34 @@ func (o *ServiceDefinitionV2Dot2) SetTier(v string) {
 	o.Tier = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ServiceDefinitionV2Dot2) GetType() ServiceDefinitionV2Dot2Type {
+	if o == nil || o.Type == nil {
+		var ret ServiceDefinitionV2Dot2Type
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceDefinitionV2Dot2) GetTypeOk() (*ServiceDefinitionV2Dot2Type, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ServiceDefinitionV2Dot2) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given ServiceDefinitionV2Dot2Type and assigns it to the Type field.
+func (o *ServiceDefinitionV2Dot2) SetType(v ServiceDefinitionV2Dot2Type) {
+	o.Type = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -482,9 +482,6 @@ func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
 		toSerialize["links"] = o.Links
 	}
 	toSerialize["schema-version"] = o.SchemaVersion
-	if o.ServiceType != nil {
-		toSerialize["service-type"] = o.ServiceType
-	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -493,6 +490,9 @@ func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tier != nil {
 		toSerialize["tier"] = o.Tier
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -514,10 +514,10 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 		Lifecycle     *string                              `json:"lifecycle,omitempty"`
 		Links         []ServiceDefinitionV2Dot2Link        `json:"links,omitempty"`
 		SchemaVersion *ServiceDefinitionV2Dot2Version      `json:"schema-version"`
-		ServiceType   *string                              `json:"service-type,omitempty"`
 		Tags          []string                             `json:"tags,omitempty"`
 		Team          *string                              `json:"team,omitempty"`
 		Tier          *string                              `json:"tier,omitempty"`
+		Type          *ServiceDefinitionV2Dot2Type         `json:"type,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -530,7 +530,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application", "contacts", "dd-service", "description", "extensions", "integrations", "langauges", "lifecycle", "links", "schema-version", "service-type", "tags", "team", "tier"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"application", "contacts", "dd-service", "description", "extensions", "integrations", "langauges", "lifecycle", "links", "schema-version", "tags", "team", "tier", "type"})
 	} else {
 		return err
 	}
@@ -553,10 +553,14 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.SchemaVersion = *all.SchemaVersion
 	}
-	o.ServiceType = all.ServiceType
 	o.Tags = all.Tags
 	o.Team = all.Team
 	o.Tier = all.Tier
+	if all.Type != nil && !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
