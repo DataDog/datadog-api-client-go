@@ -437,7 +437,9 @@ func expectArrayContainsObject(t gobdd.StepTest, ctx gobdd.Context, responsePath
 	if responseMap, ok := responseValue.Interface().([]interface{}); ok {
 		for _, responseItem := range responseMap {
 			responseItemValue, err := tests.LookupStringI(responseItem, keyPath)
-			if err != nil {
+			if err == tests.ErrNotFound {
+				continue
+			} else if err != nil {
 				t.Errorf("could not lookup key value: %v", err)
 			}
 			testValue, err := stringToType(templatedValue, responseItemValue.Interface())

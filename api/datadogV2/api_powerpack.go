@@ -221,14 +221,46 @@ func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (P
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListPowerpacksOptionalParameters holds optional parameters for ListPowerpacks.
+type ListPowerpacksOptionalParameters struct {
+	PageLimit  *int64
+	PageOffset *int64
+}
+
+// NewListPowerpacksOptionalParameters creates an empty struct for parameters.
+func NewListPowerpacksOptionalParameters() *ListPowerpacksOptionalParameters {
+	this := ListPowerpacksOptionalParameters{}
+	return &this
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListPowerpacksOptionalParameters) WithPageLimit(pageLimit int64) *ListPowerpacksOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListPowerpacksOptionalParameters) WithPageOffset(pageOffset int64) *ListPowerpacksOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
 // ListPowerpacks Get all powerpacks.
 // Get a list of all powerpacks.
-func (a *PowerpackApi) ListPowerpacks(ctx _context.Context) (ListPowerpacksResponse, *_nethttp.Response, error) {
+func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksOptionalParameters) (ListPowerpacksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ListPowerpacksResponse
+		optionalParams      ListPowerpacksOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListPowerpacksOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.ListPowerpacks")
 	if err != nil {
@@ -240,6 +272,12 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context) (ListPowerpacksRespo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
@@ -289,6 +327,56 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context) (ListPowerpacksRespo
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListPowerpacksWithPagination provides a paginated version of ListPowerpacks returning a channel with all items.
+func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...ListPowerpacksOptionalParameters) (<-chan datadog.PaginationResult[PowerpackData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(25)
+	if len(o) == 0 {
+		o = append(o, ListPowerpacksOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[PowerpackData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListPowerpacks(ctx, o...)
+			if err != nil {
+				var returnItem PowerpackData
+				items <- datadog.PaginationResult[PowerpackData]{returnItem, err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[PowerpackData]{item, nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // UpdatePowerpack Update a powerpack.

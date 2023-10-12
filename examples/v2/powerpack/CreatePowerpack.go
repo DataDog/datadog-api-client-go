@@ -39,7 +39,7 @@ func main() {
 						Y:      0,
 					},
 				},
-				Name: "Sample Powerpack",
+				Name: "Example-Powerpack",
 				Tags: []string{
 					"tag:sample",
 				},
