@@ -44,6 +44,7 @@
 //   - [ConfluentCloudApi.ListConfluentResource]
 //   - [ConfluentCloudApi.UpdateConfluentAccount]
 //   - [ConfluentCloudApi.UpdateConfluentResource]
+//   - [ContainerImagesApi.ListContainerImages]
 //   - [DashboardListsApi.CreateDashboardListItems]
 //   - [DashboardListsApi.DeleteDashboardListItems]
 //   - [DashboardListsApi.GetDashboardListItems]
