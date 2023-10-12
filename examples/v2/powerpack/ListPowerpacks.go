@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewPowerpackApi(apiClient)
-	resp, r, err := api.ListPowerpacks(ctx)
+	resp, r, err := api.ListPowerpacks(ctx, *datadogV2.NewListPowerpacksOptionalParameters().WithPageLimit(1000))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PowerpackApi.ListPowerpacks`: %v\n", err)
