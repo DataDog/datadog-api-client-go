@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -101,13 +99,6 @@ func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
 	)
-
-	operationId := "v2.CreateCIAppPipelineEvent"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityPipelinesApi.CreateCIAppPipelineEvent")
 	if err != nil {
