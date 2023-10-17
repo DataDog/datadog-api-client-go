@@ -13,7 +13,9 @@ import (
 )
 
 func main() {
-	body := datadogV2.OnDemandConcurrencyCapAttributes{}
+	body := datadogV2.OnDemandConcurrencyCapAttributes{
+		OnDemandConcurrencyCap: datadog.PtrFloat64(20),
+	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
