@@ -254,8 +254,8 @@ func TestDashboardLifecycle(t *testing.T) {
 	groupWidgetDefinition := datadogV1.NewGroupWidgetDefinitionWithDefaults()
 	groupWidgetDefinition.SetLayoutType(datadogV1.WIDGETLAYOUTTYPE_ORDERED)
 	groupWidgetDefinition.SetTitle("Test Group Widget")
-	groupWidgetDefinition.SetWidgets([]datadogV1.Widget{
-		*datadogV1.NewWidget(datadogV1.NoteWidgetDefinitionAsWidgetDefinition(groupNoteWidgetDefinition)),
+	groupWidgetDefinition.SetWidgets([]datadogV1.GroupWidgetItem{
+		*datadogV1.NewGroupWidgetItem(datadogV1.NoteWidgetDefinitionAsGroupWidgetItemDefinition(groupNoteWidgetDefinition)),
 	})
 
 	groupWidget := datadogV1.NewWidget(datadogV1.GroupWidgetDefinitionAsWidgetDefinition(groupWidgetDefinition))
