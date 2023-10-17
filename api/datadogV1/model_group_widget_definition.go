@@ -29,7 +29,7 @@ type GroupWidgetDefinition struct {
 	// Type of the group widget.
 	Type GroupWidgetDefinitionType `json:"type"`
 	// List of widget groups.
-	Widgets []Widget `json:"widgets"`
+	Widgets []GroupWidgetItem `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -39,7 +39,7 @@ type GroupWidgetDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGroupWidgetDefinition(layoutType WidgetLayoutType, typeVar GroupWidgetDefinitionType, widgets []Widget) *GroupWidgetDefinition {
+func NewGroupWidgetDefinition(layoutType WidgetLayoutType, typeVar GroupWidgetDefinitionType, widgets []GroupWidgetItem) *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
 	this.LayoutType = layoutType
 	var showTitle bool = true
@@ -248,9 +248,9 @@ func (o *GroupWidgetDefinition) SetType(v GroupWidgetDefinitionType) {
 }
 
 // GetWidgets returns the Widgets field value.
-func (o *GroupWidgetDefinition) GetWidgets() []Widget {
+func (o *GroupWidgetDefinition) GetWidgets() []GroupWidgetItem {
 	if o == nil {
-		var ret []Widget
+		var ret []GroupWidgetItem
 		return ret
 	}
 	return o.Widgets
@@ -258,7 +258,7 @@ func (o *GroupWidgetDefinition) GetWidgets() []Widget {
 
 // GetWidgetsOk returns a tuple with the Widgets field value
 // and a boolean to check if the value has been set.
-func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]Widget, bool) {
+func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]GroupWidgetItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -266,7 +266,7 @@ func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]Widget, bool) {
 }
 
 // SetWidgets sets field value.
-func (o *GroupWidgetDefinition) SetWidgets(v []Widget) {
+func (o *GroupWidgetDefinition) SetWidgets(v []GroupWidgetItem) {
 	o.Widgets = v
 }
 
@@ -311,7 +311,7 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Title           *string                    `json:"title,omitempty"`
 		TitleAlign      *WidgetTextAlign           `json:"title_align,omitempty"`
 		Type            *GroupWidgetDefinitionType `json:"type"`
-		Widgets         *[]Widget                  `json:"widgets"`
+		Widgets         *[]GroupWidgetItem         `json:"widgets"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
