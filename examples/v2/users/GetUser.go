@@ -1,4 +1,4 @@
-// Get user details returns "OK for get user" response
+// Get user details returns "OK" response
 
 package main
 
@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "user" in the system
+	UserDataID := os.Getenv("USER_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsersApi(apiClient)
-	resp, r, err := api.GetUser(ctx, "00000000-0000-9999-0000-000000000000")
+	resp, r, err := api.GetUser(ctx, UserDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser`: %v\n", err)
