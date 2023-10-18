@@ -324,6 +324,7 @@ func NewConfiguration() *Configuration {
 		},
 		unstableOperations: map[string]bool{
 			"v2.ListContainerImages":       false,
+			"v2.ListContainers":            false,
 			"v2.ListEvents":                false,
 			"v2.SearchEvents":              false,
 			"v2.CreateIncident":            false,
