@@ -124,6 +124,10 @@ type MonthlyUsageAttributionValues struct {
 	InvocationsPercentage *float64 `json:"invocations_percentage,omitempty"`
 	// The Lambda invocation usage by tag(s).
 	InvocationsUsage *float64 `json:"invocations_usage,omitempty"`
+	// The percentage of Serverless APM usage by tag(s).
+	LambdaTracedInvocationsPercentage *float64 `json:"lambda_traced_invocations_percentage,omitempty"`
+	// The Serverless APM usage by tag(s).
+	LambdaTracedInvocationsUsage *float64 `json:"lambda_traced_invocations_usage,omitempty"`
 	// The percentage of Synthetic mobile application test usage by tag(s).
 	MobileAppTestingPercentage *float64 `json:"mobile_app_testing_percentage,omitempty"`
 	// The Synthetic mobile application test usage by tag(s).
@@ -1762,6 +1766,62 @@ func (o *MonthlyUsageAttributionValues) SetInvocationsUsage(v float64) {
 	o.InvocationsUsage = &v
 }
 
+// GetLambdaTracedInvocationsPercentage returns the LambdaTracedInvocationsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsPercentage() float64 {
+	if o == nil || o.LambdaTracedInvocationsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaTracedInvocationsPercentage
+}
+
+// GetLambdaTracedInvocationsPercentageOk returns a tuple with the LambdaTracedInvocationsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsPercentageOk() (*float64, bool) {
+	if o == nil || o.LambdaTracedInvocationsPercentage == nil {
+		return nil, false
+	}
+	return o.LambdaTracedInvocationsPercentage, true
+}
+
+// HasLambdaTracedInvocationsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasLambdaTracedInvocationsPercentage() bool {
+	return o != nil && o.LambdaTracedInvocationsPercentage != nil
+}
+
+// SetLambdaTracedInvocationsPercentage gets a reference to the given float64 and assigns it to the LambdaTracedInvocationsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetLambdaTracedInvocationsPercentage(v float64) {
+	o.LambdaTracedInvocationsPercentage = &v
+}
+
+// GetLambdaTracedInvocationsUsage returns the LambdaTracedInvocationsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsUsage() float64 {
+	if o == nil || o.LambdaTracedInvocationsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.LambdaTracedInvocationsUsage
+}
+
+// GetLambdaTracedInvocationsUsageOk returns a tuple with the LambdaTracedInvocationsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsUsageOk() (*float64, bool) {
+	if o == nil || o.LambdaTracedInvocationsUsage == nil {
+		return nil, false
+	}
+	return o.LambdaTracedInvocationsUsage, true
+}
+
+// HasLambdaTracedInvocationsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasLambdaTracedInvocationsUsage() bool {
+	return o != nil && o.LambdaTracedInvocationsUsage != nil
+}
+
+// SetLambdaTracedInvocationsUsage gets a reference to the given float64 and assigns it to the LambdaTracedInvocationsUsage field.
+func (o *MonthlyUsageAttributionValues) SetLambdaTracedInvocationsUsage(v float64) {
+	o.LambdaTracedInvocationsUsage = &v
+}
+
 // GetMobileAppTestingPercentage returns the MobileAppTestingPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetMobileAppTestingPercentage() float64 {
 	if o == nil || o.MobileAppTestingPercentage == nil {
@@ -2608,6 +2668,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.InvocationsUsage != nil {
 		toSerialize["invocations_usage"] = o.InvocationsUsage
 	}
+	if o.LambdaTracedInvocationsPercentage != nil {
+		toSerialize["lambda_traced_invocations_percentage"] = o.LambdaTracedInvocationsPercentage
+	}
+	if o.LambdaTracedInvocationsUsage != nil {
+		toSerialize["lambda_traced_invocations_usage"] = o.LambdaTracedInvocationsUsage
+	}
 	if o.MobileAppTestingPercentage != nil {
 		toSerialize["mobile_app_testing_percentage"] = o.MobileAppTestingPercentage
 	}
@@ -2746,6 +2812,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		InfraHostUsage                       *float64 `json:"infra_host_usage,omitempty"`
 		InvocationsPercentage                *float64 `json:"invocations_percentage,omitempty"`
 		InvocationsUsage                     *float64 `json:"invocations_usage,omitempty"`
+		LambdaTracedInvocationsPercentage    *float64 `json:"lambda_traced_invocations_percentage,omitempty"`
+		LambdaTracedInvocationsUsage         *float64 `json:"lambda_traced_invocations_usage,omitempty"`
 		MobileAppTestingPercentage           *float64 `json:"mobile_app_testing_percentage,omitempty"`
 		MobileAppTestingUsage                *float64 `json:"mobile_app_testing_usage,omitempty"`
 		NdmNetflowPercentage                 *float64 `json:"ndm_netflow_percentage,omitempty"`
@@ -2776,7 +2844,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -2836,6 +2904,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.InfraHostUsage = all.InfraHostUsage
 	o.InvocationsPercentage = all.InvocationsPercentage
 	o.InvocationsUsage = all.InvocationsUsage
+	o.LambdaTracedInvocationsPercentage = all.LambdaTracedInvocationsPercentage
+	o.LambdaTracedInvocationsUsage = all.LambdaTracedInvocationsUsage
 	o.MobileAppTestingPercentage = all.MobileAppTestingPercentage
 	o.MobileAppTestingUsage = all.MobileAppTestingUsage
 	o.NdmNetflowPercentage = all.NdmNetflowPercentage
