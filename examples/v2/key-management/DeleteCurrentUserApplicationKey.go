@@ -12,11 +12,14 @@ import (
 )
 
 func main() {
+	// there is a valid "application_key" in the system
+	ApplicationKeyDataID := os.Getenv("APPLICATION_KEY_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewKeyManagementApi(apiClient)
-	r, err := api.DeleteCurrentUserApplicationKey(ctx, "app_key_id")
+	r, err := api.DeleteCurrentUserApplicationKey(ctx, ApplicationKeyDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteCurrentUserApplicationKey`: %v\n", err)

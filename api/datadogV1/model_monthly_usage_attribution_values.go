@@ -44,6 +44,10 @@ type MonthlyUsageAttributionValues struct {
 	CiVisibilityItrPercentage *float64 `json:"ci_visibility_itr_percentage,omitempty"`
 	// The Git committers for Intelligent Test Runner usage by tag(s).
 	CiVisibilityItrUsage *float64 `json:"ci_visibility_itr_usage,omitempty"`
+	// The percentage of Cloud Security Information and Event Management usage by tag(s).
+	CloudSiemPercentage *float64 `json:"cloud_siem_percentage,omitempty"`
+	// The Cloud Security Information and Event Management usage by tag(s).
+	CloudSiemUsage *float64 `json:"cloud_siem_usage,omitempty"`
 	// The percentage of container usage without the Datadog Agent by tag(s).
 	ContainerExclAgentPercentage *float64 `json:"container_excl_agent_percentage,omitempty"`
 	// The container usage without the Datadog Agent by tag(s).
@@ -124,6 +128,10 @@ type MonthlyUsageAttributionValues struct {
 	MobileAppTestingPercentage *float64 `json:"mobile_app_testing_percentage,omitempty"`
 	// The Synthetic mobile application test usage by tag(s).
 	MobileAppTestingUsage *float64 `json:"mobile_app_testing_usage,omitempty"`
+	// The percentage of Network Device Monitoring NetFlow usage by tag(s).
+	NdmNetflowPercentage *float64 `json:"ndm_netflow_percentage,omitempty"`
+	// The Network Device Monitoring NetFlow usage by tag(s).
+	NdmNetflowUsage *float64 `json:"ndm_netflow_usage,omitempty"`
 	// The percentage of network host usage by tag(s).
 	NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
 	// The network host usage by tag(s).
@@ -632,6 +640,62 @@ func (o *MonthlyUsageAttributionValues) HasCiVisibilityItrUsage() bool {
 // SetCiVisibilityItrUsage gets a reference to the given float64 and assigns it to the CiVisibilityItrUsage field.
 func (o *MonthlyUsageAttributionValues) SetCiVisibilityItrUsage(v float64) {
 	o.CiVisibilityItrUsage = &v
+}
+
+// GetCloudSiemPercentage returns the CloudSiemPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetCloudSiemPercentage() float64 {
+	if o == nil || o.CloudSiemPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CloudSiemPercentage
+}
+
+// GetCloudSiemPercentageOk returns a tuple with the CloudSiemPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetCloudSiemPercentageOk() (*float64, bool) {
+	if o == nil || o.CloudSiemPercentage == nil {
+		return nil, false
+	}
+	return o.CloudSiemPercentage, true
+}
+
+// HasCloudSiemPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasCloudSiemPercentage() bool {
+	return o != nil && o.CloudSiemPercentage != nil
+}
+
+// SetCloudSiemPercentage gets a reference to the given float64 and assigns it to the CloudSiemPercentage field.
+func (o *MonthlyUsageAttributionValues) SetCloudSiemPercentage(v float64) {
+	o.CloudSiemPercentage = &v
+}
+
+// GetCloudSiemUsage returns the CloudSiemUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetCloudSiemUsage() float64 {
+	if o == nil || o.CloudSiemUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.CloudSiemUsage
+}
+
+// GetCloudSiemUsageOk returns a tuple with the CloudSiemUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetCloudSiemUsageOk() (*float64, bool) {
+	if o == nil || o.CloudSiemUsage == nil {
+		return nil, false
+	}
+	return o.CloudSiemUsage, true
+}
+
+// HasCloudSiemUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasCloudSiemUsage() bool {
+	return o != nil && o.CloudSiemUsage != nil
+}
+
+// SetCloudSiemUsage gets a reference to the given float64 and assigns it to the CloudSiemUsage field.
+func (o *MonthlyUsageAttributionValues) SetCloudSiemUsage(v float64) {
+	o.CloudSiemUsage = &v
 }
 
 // GetContainerExclAgentPercentage returns the ContainerExclAgentPercentage field value if set, zero value otherwise.
@@ -1754,6 +1818,62 @@ func (o *MonthlyUsageAttributionValues) SetMobileAppTestingUsage(v float64) {
 	o.MobileAppTestingUsage = &v
 }
 
+// GetNdmNetflowPercentage returns the NdmNetflowPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetNdmNetflowPercentage() float64 {
+	if o == nil || o.NdmNetflowPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.NdmNetflowPercentage
+}
+
+// GetNdmNetflowPercentageOk returns a tuple with the NdmNetflowPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetNdmNetflowPercentageOk() (*float64, bool) {
+	if o == nil || o.NdmNetflowPercentage == nil {
+		return nil, false
+	}
+	return o.NdmNetflowPercentage, true
+}
+
+// HasNdmNetflowPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasNdmNetflowPercentage() bool {
+	return o != nil && o.NdmNetflowPercentage != nil
+}
+
+// SetNdmNetflowPercentage gets a reference to the given float64 and assigns it to the NdmNetflowPercentage field.
+func (o *MonthlyUsageAttributionValues) SetNdmNetflowPercentage(v float64) {
+	o.NdmNetflowPercentage = &v
+}
+
+// GetNdmNetflowUsage returns the NdmNetflowUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetNdmNetflowUsage() float64 {
+	if o == nil || o.NdmNetflowUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.NdmNetflowUsage
+}
+
+// GetNdmNetflowUsageOk returns a tuple with the NdmNetflowUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetNdmNetflowUsageOk() (*float64, bool) {
+	if o == nil || o.NdmNetflowUsage == nil {
+		return nil, false
+	}
+	return o.NdmNetflowUsage, true
+}
+
+// HasNdmNetflowUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasNdmNetflowUsage() bool {
+	return o != nil && o.NdmNetflowUsage != nil
+}
+
+// SetNdmNetflowUsage gets a reference to the given float64 and assigns it to the NdmNetflowUsage field.
+func (o *MonthlyUsageAttributionValues) SetNdmNetflowUsage(v float64) {
+	o.NdmNetflowUsage = &v
+}
+
 // GetNpmHostPercentage returns the NpmHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNpmHostPercentage() float64 {
 	if o == nil || o.NpmHostPercentage == nil {
@@ -2368,6 +2488,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.CiVisibilityItrUsage != nil {
 		toSerialize["ci_visibility_itr_usage"] = o.CiVisibilityItrUsage
 	}
+	if o.CloudSiemPercentage != nil {
+		toSerialize["cloud_siem_percentage"] = o.CloudSiemPercentage
+	}
+	if o.CloudSiemUsage != nil {
+		toSerialize["cloud_siem_usage"] = o.CloudSiemUsage
+	}
 	if o.ContainerExclAgentPercentage != nil {
 		toSerialize["container_excl_agent_percentage"] = o.ContainerExclAgentPercentage
 	}
@@ -2488,6 +2614,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.MobileAppTestingUsage != nil {
 		toSerialize["mobile_app_testing_usage"] = o.MobileAppTestingUsage
 	}
+	if o.NdmNetflowPercentage != nil {
+		toSerialize["ndm_netflow_percentage"] = o.NdmNetflowPercentage
+	}
+	if o.NdmNetflowUsage != nil {
+		toSerialize["ndm_netflow_usage"] = o.NdmNetflowUsage
+	}
 	if o.NpmHostPercentage != nil {
 		toSerialize["npm_host_percentage"] = o.NpmHostPercentage
 	}
@@ -2574,6 +2706,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		BrowserUsage                         *float64 `json:"browser_usage,omitempty"`
 		CiVisibilityItrPercentage            *float64 `json:"ci_visibility_itr_percentage,omitempty"`
 		CiVisibilityItrUsage                 *float64 `json:"ci_visibility_itr_usage,omitempty"`
+		CloudSiemPercentage                  *float64 `json:"cloud_siem_percentage,omitempty"`
+		CloudSiemUsage                       *float64 `json:"cloud_siem_usage,omitempty"`
 		ContainerExclAgentPercentage         *float64 `json:"container_excl_agent_percentage,omitempty"`
 		ContainerExclAgentUsage              *float64 `json:"container_excl_agent_usage,omitempty"`
 		ContainerPercentage                  *float64 `json:"container_percentage,omitempty"`
@@ -2614,6 +2748,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		InvocationsUsage                     *float64 `json:"invocations_usage,omitempty"`
 		MobileAppTestingPercentage           *float64 `json:"mobile_app_testing_percentage,omitempty"`
 		MobileAppTestingUsage                *float64 `json:"mobile_app_testing_usage,omitempty"`
+		NdmNetflowPercentage                 *float64 `json:"ndm_netflow_percentage,omitempty"`
+		NdmNetflowUsage                      *float64 `json:"ndm_netflow_usage,omitempty"`
 		NpmHostPercentage                    *float64 `json:"npm_host_percentage,omitempty"`
 		NpmHostUsage                         *float64 `json:"npm_host_usage,omitempty"`
 		ObsPipelineBytesPercentage           *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
@@ -2640,7 +2776,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "browser_percentage", "browser_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "infra_host_percentage", "infra_host_usage", "invocations_percentage", "invocations_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -2660,6 +2796,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.BrowserUsage = all.BrowserUsage
 	o.CiVisibilityItrPercentage = all.CiVisibilityItrPercentage
 	o.CiVisibilityItrUsage = all.CiVisibilityItrUsage
+	o.CloudSiemPercentage = all.CloudSiemPercentage
+	o.CloudSiemUsage = all.CloudSiemUsage
 	o.ContainerExclAgentPercentage = all.ContainerExclAgentPercentage
 	o.ContainerExclAgentUsage = all.ContainerExclAgentUsage
 	o.ContainerPercentage = all.ContainerPercentage
@@ -2700,6 +2838,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.InvocationsUsage = all.InvocationsUsage
 	o.MobileAppTestingPercentage = all.MobileAppTestingPercentage
 	o.MobileAppTestingUsage = all.MobileAppTestingUsage
+	o.NdmNetflowPercentage = all.NdmNetflowPercentage
+	o.NdmNetflowUsage = all.NdmNetflowUsage
 	o.NpmHostPercentage = all.NpmHostPercentage
 	o.NpmHostUsage = all.NpmHostUsage
 	o.ObsPipelineBytesPercentage = all.ObsPipelineBytesPercentage

@@ -13,15 +13,13 @@ import (
 )
 
 func main() {
+	// there is a valid "service_account_user" in the system
+	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
+
 	body := datadogV2.ApplicationKeyCreateRequest{
 		Data: datadogV2.ApplicationKeyCreateData{
 			Attributes: datadogV2.ApplicationKeyCreateAttributes{
-				Name: "Application Key for managing dashboards",
-				Scopes: *datadog.NewNullableList(&[]string{
-					"dashboards_read",
-					"dashboards_write",
-					"dashboards_public_share",
-				}),
+				Name: "Example-Service-Account",
 			},
 			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},
@@ -30,7 +28,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceAccountsApi(apiClient)
-	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", body)
+	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountApplicationKey`: %v\n", err)

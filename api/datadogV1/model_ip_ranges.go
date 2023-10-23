@@ -18,6 +18,8 @@ type IPRanges struct {
 	Api *IPPrefixesAPI `json:"api,omitempty"`
 	// Available prefix information for the APM endpoints.
 	Apm *IPPrefixesAPM `json:"apm,omitempty"`
+	// Available prefix information for all Datadog endpoints.
+	Global *IPPrefixesGlobal `json:"global,omitempty"`
 	// Available prefix information for the Logs endpoints.
 	Logs *IPPrefixesLogs `json:"logs,omitempty"`
 	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
@@ -140,6 +142,34 @@ func (o *IPRanges) HasApm() bool {
 // SetApm gets a reference to the given IPPrefixesAPM and assigns it to the Apm field.
 func (o *IPRanges) SetApm(v IPPrefixesAPM) {
 	o.Apm = &v
+}
+
+// GetGlobal returns the Global field value if set, zero value otherwise.
+func (o *IPRanges) GetGlobal() IPPrefixesGlobal {
+	if o == nil || o.Global == nil {
+		var ret IPPrefixesGlobal
+		return ret
+	}
+	return *o.Global
+}
+
+// GetGlobalOk returns a tuple with the Global field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPRanges) GetGlobalOk() (*IPPrefixesGlobal, bool) {
+	if o == nil || o.Global == nil {
+		return nil, false
+	}
+	return o.Global, true
+}
+
+// HasGlobal returns a boolean if a field has been set.
+func (o *IPRanges) HasGlobal() bool {
+	return o != nil && o.Global != nil
+}
+
+// SetGlobal gets a reference to the given IPPrefixesGlobal and assigns it to the Global field.
+func (o *IPRanges) SetGlobal(v IPPrefixesGlobal) {
+	o.Global = &v
 }
 
 // GetLogs returns the Logs field value if set, zero value otherwise.
@@ -409,6 +439,9 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 	if o.Apm != nil {
 		toSerialize["apm"] = o.Apm
 	}
+	if o.Global != nil {
+		toSerialize["global"] = o.Global
+	}
 	if o.Logs != nil {
 		toSerialize["logs"] = o.Logs
 	}
@@ -449,6 +482,7 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 		Agents                     *IPPrefixesAgents                     `json:"agents,omitempty"`
 		Api                        *IPPrefixesAPI                        `json:"api,omitempty"`
 		Apm                        *IPPrefixesAPM                        `json:"apm,omitempty"`
+		Global                     *IPPrefixesGlobal                     `json:"global,omitempty"`
 		Logs                       *IPPrefixesLogs                       `json:"logs,omitempty"`
 		Modified                   *string                               `json:"modified,omitempty"`
 		Orchestrator               *IPPrefixesOrchestrator               `json:"orchestrator,omitempty"`
@@ -464,7 +498,7 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agents", "api", "apm", "logs", "modified", "orchestrator", "process", "remote-configuration", "synthetics", "synthetics-private-locations", "version", "webhooks"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agents", "api", "apm", "global", "logs", "modified", "orchestrator", "process", "remote-configuration", "synthetics", "synthetics-private-locations", "version", "webhooks"})
 	} else {
 		return err
 	}
@@ -482,6 +516,10 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Apm = all.Apm
+	if all.Global != nil && all.Global.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Global = all.Global
 	if all.Logs != nil && all.Logs.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

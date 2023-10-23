@@ -12,11 +12,14 @@ import (
 )
 
 func main() {
+	// there is a valid "confluent_account" in the system
+	ConfluentAccountDataID := os.Getenv("CONFLUENT_ACCOUNT_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewConfluentCloudApi(apiClient)
-	r, err := api.DeleteConfluentAccount(ctx, "account_id")
+	r, err := api.DeleteConfluentAccount(ctx, ConfluentAccountDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfluentCloudApi.DeleteConfluentAccount`: %v\n", err)

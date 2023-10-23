@@ -126,8 +126,6 @@ type MonitorOptions struct {
 // will change when the set of required properties is changed.
 func NewMonitorOptions() *MonitorOptions {
 	this := MonitorOptions{}
-	var escalationMessage string = "none"
-	this.EscalationMessage = &escalationMessage
 	var includeTags bool = true
 	this.IncludeTags = &includeTags
 	var minFailureDuration int64 = 0
@@ -152,8 +150,6 @@ func NewMonitorOptions() *MonitorOptions {
 // but it doesn't guarantee that properties required by API are set.
 func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this := MonitorOptions{}
-	var escalationMessage string = "none"
-	this.EscalationMessage = &escalationMessage
 	var includeTags bool = true
 	this.IncludeTags = &includeTags
 	var minFailureDuration int64 = 0

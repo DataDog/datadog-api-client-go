@@ -13,6 +13,7 @@ type ServiceDefinitionSchema struct {
 	ServiceDefinitionV1     *ServiceDefinitionV1
 	ServiceDefinitionV2     *ServiceDefinitionV2
 	ServiceDefinitionV2Dot1 *ServiceDefinitionV2Dot1
+	ServiceDefinitionV2Dot2 *ServiceDefinitionV2Dot2
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func ServiceDefinitionV2AsServiceDefinitionSchema(v *ServiceDefinitionV2) Servic
 // ServiceDefinitionV2Dot1AsServiceDefinitionSchema is a convenience function that returns ServiceDefinitionV2Dot1 wrapped in ServiceDefinitionSchema.
 func ServiceDefinitionV2Dot1AsServiceDefinitionSchema(v *ServiceDefinitionV2Dot1) ServiceDefinitionSchema {
 	return ServiceDefinitionSchema{ServiceDefinitionV2Dot1: v}
+}
+
+// ServiceDefinitionV2Dot2AsServiceDefinitionSchema is a convenience function that returns ServiceDefinitionV2Dot2 wrapped in ServiceDefinitionSchema.
+func ServiceDefinitionV2Dot2AsServiceDefinitionSchema(v *ServiceDefinitionV2Dot2) ServiceDefinitionSchema {
+	return ServiceDefinitionSchema{ServiceDefinitionV2Dot2: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *ServiceDefinitionSchema) UnmarshalJSON(data []byte) error {
 		obj.ServiceDefinitionV2Dot1 = nil
 	}
 
+	// try to unmarshal data into ServiceDefinitionV2Dot2
+	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Dot2)
+	if err == nil {
+		if obj.ServiceDefinitionV2Dot2 != nil && obj.ServiceDefinitionV2Dot2.UnparsedObject == nil {
+			jsonServiceDefinitionV2Dot2, _ := json.Marshal(obj.ServiceDefinitionV2Dot2)
+			if string(jsonServiceDefinitionV2Dot2) == "{}" { // empty struct
+				obj.ServiceDefinitionV2Dot2 = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ServiceDefinitionV2Dot2 = nil
+		}
+	} else {
+		obj.ServiceDefinitionV2Dot2 = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ServiceDefinitionV1 = nil
 		obj.ServiceDefinitionV2 = nil
 		obj.ServiceDefinitionV2Dot1 = nil
+		obj.ServiceDefinitionV2Dot2 = nil
 		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj ServiceDefinitionSchema) MarshalJSON() ([]byte, error) {
 
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return json.Marshal(&obj.ServiceDefinitionV2Dot1)
+	}
+
+	if obj.ServiceDefinitionV2Dot2 != nil {
+		return json.Marshal(&obj.ServiceDefinitionV2Dot2)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *ServiceDefinitionSchema) GetActualInstance() interface{} {
 
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return obj.ServiceDefinitionV2Dot1
+	}
+
+	if obj.ServiceDefinitionV2Dot2 != nil {
+		return obj.ServiceDefinitionV2Dot2
 	}
 
 	// all schemas are nil
