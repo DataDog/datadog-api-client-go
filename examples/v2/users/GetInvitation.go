@@ -10,11 +10,12 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// the "user" has a "user_invitation"
-	UserInvitationID := os.Getenv("USER_INVITATION_ID")
+	UserInvitationID := uuid.MustParse(os.Getenv("USER_INVITATION_ID"))
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

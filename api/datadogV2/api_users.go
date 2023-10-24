@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/google/uuid"
 )
 
 // UsersApi service type
@@ -153,7 +154,7 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.R
 
 // GetInvitation Get a user invitation.
 // Returns a single user invitation by its UUID.
-func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
+func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid uuid.UUID) (UserInvitationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}

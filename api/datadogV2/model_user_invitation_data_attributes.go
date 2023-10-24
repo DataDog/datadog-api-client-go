@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/goccy/go-json"
+	"github.com/google/uuid"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -21,7 +22,7 @@ type UserInvitationDataAttributes struct {
 	// Type of invitation.
 	InviteType *string `json:"invite_type,omitempty"`
 	// UUID of the user invitation.
-	Uuid *string `json:"uuid,omitempty"`
+	Uuid *uuid.UUID `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -129,9 +130,9 @@ func (o *UserInvitationDataAttributes) SetInviteType(v string) {
 }
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
-func (o *UserInvitationDataAttributes) GetUuid() string {
+func (o *UserInvitationDataAttributes) GetUuid() uuid.UUID {
 	if o == nil || o.Uuid == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return *o.Uuid
@@ -139,7 +140,7 @@ func (o *UserInvitationDataAttributes) GetUuid() string {
 
 // GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserInvitationDataAttributes) GetUuidOk() (*string, bool) {
+func (o *UserInvitationDataAttributes) GetUuidOk() (*uuid.UUID, bool) {
 	if o == nil || o.Uuid == nil {
 		return nil, false
 	}
@@ -151,8 +152,8 @@ func (o *UserInvitationDataAttributes) HasUuid() bool {
 	return o != nil && o.Uuid != nil
 }
 
-// SetUuid gets a reference to the given string and assigns it to the Uuid field.
-func (o *UserInvitationDataAttributes) SetUuid(v string) {
+// SetUuid gets a reference to the given uuid.UUID and assigns it to the Uuid field.
+func (o *UserInvitationDataAttributes) SetUuid(v uuid.UUID) {
 	o.Uuid = &v
 }
 
@@ -195,7 +196,7 @@ func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt  *time.Time `json:"created_at,omitempty"`
 		ExpiresAt  *time.Time `json:"expires_at,omitempty"`
 		InviteType *string    `json:"invite_type,omitempty"`
-		Uuid       *string    `json:"uuid,omitempty"`
+		Uuid       *uuid.UUID `json:"uuid,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)

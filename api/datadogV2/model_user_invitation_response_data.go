@@ -6,6 +6,7 @@ package datadogV2
 
 import (
 	"github.com/goccy/go-json"
+	"github.com/google/uuid"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -15,7 +16,7 @@ type UserInvitationResponseData struct {
 	// Attributes of a user invitation.
 	Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
 	// ID of the user invitation.
-	Id *string `json:"id,omitempty"`
+	Id *uuid.UUID `json:"id,omitempty"`
 	// Relationships data for user invitation.
 	Relationships *UserInvitationRelationships `json:"relationships,omitempty"`
 	// User invitations type.
@@ -75,9 +76,9 @@ func (o *UserInvitationResponseData) SetAttributes(v UserInvitationDataAttribute
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *UserInvitationResponseData) GetId() string {
+func (o *UserInvitationResponseData) GetId() uuid.UUID {
 	if o == nil || o.Id == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return *o.Id
@@ -85,7 +86,7 @@ func (o *UserInvitationResponseData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserInvitationResponseData) GetIdOk() (*string, bool) {
+func (o *UserInvitationResponseData) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -97,8 +98,8 @@ func (o *UserInvitationResponseData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *UserInvitationResponseData) SetId(v string) {
+// SetId gets a reference to the given uuid.UUID and assigns it to the Id field.
+func (o *UserInvitationResponseData) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
@@ -187,7 +188,7 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *UserInvitationDataAttributes `json:"attributes,omitempty"`
-		Id            *string                       `json:"id,omitempty"`
+		Id            *uuid.UUID                    `json:"id,omitempty"`
 		Relationships *UserInvitationRelationships  `json:"relationships,omitempty"`
 		Type          *UserInvitationsType          `json:"type,omitempty"`
 	}{}
