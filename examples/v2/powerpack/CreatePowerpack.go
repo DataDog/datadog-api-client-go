@@ -38,6 +38,7 @@ func main() {
 						X:      0,
 						Y:      0,
 					},
+					LiveSpan: datadogV2.WIDGETLIVESPAN_PAST_ONE_HOUR.Ptr(),
 				},
 				Name: "Example-Powerpack",
 				Tags: []string{

@@ -18,6 +18,8 @@ type PowerpackGroupWidget struct {
 	Definition PowerpackGroupWidgetDefinition `json:"definition"`
 	// Powerpack group widget layout.
 	Layout *PowerpackGroupWidgetLayout `json:"layout,omitempty"`
+	// The available timeframes depend on the widget you are using.
+	LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -92,6 +94,34 @@ func (o *PowerpackGroupWidget) SetLayout(v PowerpackGroupWidgetLayout) {
 	o.Layout = &v
 }
 
+// GetLiveSpan returns the LiveSpan field value if set, zero value otherwise.
+func (o *PowerpackGroupWidget) GetLiveSpan() WidgetLiveSpan {
+	if o == nil || o.LiveSpan == nil {
+		var ret WidgetLiveSpan
+		return ret
+	}
+	return *o.LiveSpan
+}
+
+// GetLiveSpanOk returns a tuple with the LiveSpan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PowerpackGroupWidget) GetLiveSpanOk() (*WidgetLiveSpan, bool) {
+	if o == nil || o.LiveSpan == nil {
+		return nil, false
+	}
+	return o.LiveSpan, true
+}
+
+// HasLiveSpan returns a boolean if a field has been set.
+func (o *PowerpackGroupWidget) HasLiveSpan() bool {
+	return o != nil && o.LiveSpan != nil
+}
+
+// SetLiveSpan gets a reference to the given WidgetLiveSpan and assigns it to the LiveSpan field.
+func (o *PowerpackGroupWidget) SetLiveSpan(v WidgetLiveSpan) {
+	o.LiveSpan = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackGroupWidget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -101,6 +131,9 @@ func (o PowerpackGroupWidget) MarshalJSON() ([]byte, error) {
 	toSerialize["definition"] = o.Definition
 	if o.Layout != nil {
 		toSerialize["layout"] = o.Layout
+	}
+	if o.LiveSpan != nil {
+		toSerialize["live_span"] = o.LiveSpan
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -114,6 +147,7 @@ func (o *PowerpackGroupWidget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Definition *PowerpackGroupWidgetDefinition `json:"definition"`
 		Layout     *PowerpackGroupWidgetLayout     `json:"layout,omitempty"`
+		LiveSpan   *WidgetLiveSpan                 `json:"live_span,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -123,7 +157,7 @@ func (o *PowerpackGroupWidget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "layout"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "layout", "live_span"})
 	} else {
 		return err
 	}
@@ -137,6 +171,11 @@ func (o *PowerpackGroupWidget) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Layout = all.Layout
+	if all.LiveSpan != nil && !all.LiveSpan.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.LiveSpan = all.LiveSpan
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
