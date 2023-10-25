@@ -917,6 +917,7 @@ type ListTeamsOptionalParameters struct {
 	Include       *[]ListTeamsInclude
 	FilterKeyword *string
 	FilterMe      *bool
+	FieldsTeam    *[]TeamsField
 }
 
 // NewListTeamsOptionalParameters creates an empty struct for parameters.
@@ -958,6 +959,12 @@ func (r *ListTeamsOptionalParameters) WithFilterKeyword(filterKeyword string) *L
 // WithFilterMe sets the corresponding parameter name and returns the struct.
 func (r *ListTeamsOptionalParameters) WithFilterMe(filterMe bool) *ListTeamsOptionalParameters {
 	r.FilterMe = &filterMe
+	return r
+}
+
+// WithFieldsTeam sets the corresponding parameter name and returns the struct.
+func (r *ListTeamsOptionalParameters) WithFieldsTeam(fieldsTeam []TeamsField) *ListTeamsOptionalParameters {
+	r.FieldsTeam = &fieldsTeam
 	return r
 }
 
@@ -1014,6 +1021,9 @@ func (a *TeamsApi) ListTeams(ctx _context.Context, o ...ListTeamsOptionalParamet
 	}
 	if optionalParams.FilterMe != nil {
 		localVarQueryParams.Add("filter[me]", datadog.ParameterToString(*optionalParams.FilterMe, ""))
+	}
+	if optionalParams.FieldsTeam != nil {
+		localVarQueryParams.Add("fields[team]", datadog.ParameterToString(*optionalParams.FieldsTeam, "csv"))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

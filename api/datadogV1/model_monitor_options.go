@@ -80,7 +80,7 @@ type MonitorOptions struct {
 	// For example, a query grouped by `cluster` and `namespace` cannot notify on `region`.
 	// Setting `notify_by` to `[*]` configures the monitor to notify as a simple-alert.
 	NotifyBy []string `json:"notify_by,omitempty"`
-	// A Boolean indicating whether this monitor notifies when data stops reporting.
+	// A Boolean indicating whether this monitor notifies when data stops reporting. Defaults to `false`.
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
 	// Controls how groups or monitors are treated if an evaluation does not return any data points.
 	// The default option results in different behavior depending on the monitor query type.
@@ -138,8 +138,6 @@ func NewMonitorOptions() *MonitorOptions {
 	this.NotificationPresetName = &notificationPresetName
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
-	var notifyNoData bool = false
-	this.NotifyNoData = &notifyNoData
 	this.RenotifyInterval = *datadog.NewNullableInt64(nil)
 	this.TimeoutH = *datadog.NewNullableInt64(nil)
 	return &this
@@ -162,8 +160,6 @@ func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this.NotificationPresetName = &notificationPresetName
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
-	var notifyNoData bool = false
-	this.NotifyNoData = &notifyNoData
 	this.RenotifyInterval = *datadog.NewNullableInt64(nil)
 	this.TimeoutH = *datadog.NewNullableInt64(nil)
 	return &this
