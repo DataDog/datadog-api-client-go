@@ -4,11 +4,14 @@
 
 // List of APIs:
 //   - [AWSIntegrationApi.CreateAWSAccount]
+//   - [AWSIntegrationApi.CreateAWSEventBridgeSource]
 //   - [AWSIntegrationApi.CreateAWSTagFilter]
 //   - [AWSIntegrationApi.CreateNewAWSExternalID]
 //   - [AWSIntegrationApi.DeleteAWSAccount]
+//   - [AWSIntegrationApi.DeleteAWSEventBridgeSource]
 //   - [AWSIntegrationApi.DeleteAWSTagFilter]
 //   - [AWSIntegrationApi.ListAWSAccounts]
+//   - [AWSIntegrationApi.ListAWSEventBridgeSources]
 //   - [AWSIntegrationApi.ListAWSTagFilters]
 //   - [AWSIntegrationApi.ListAvailableAWSNamespaces]
 //   - [AWSIntegrationApi.UpdateAWSAccount]

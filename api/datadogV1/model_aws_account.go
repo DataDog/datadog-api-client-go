@@ -22,7 +22,8 @@ type AWSAccount struct {
 	AccountSpecificNamespaceRules map[string]bool `json:"account_specific_namespace_rules,omitempty"`
 	// Whether Datadog collects cloud security posture management resources from your AWS account. This includes additional resources not covered under the general `resource_collection`.
 	CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
-	// An array of AWS regions to exclude from metrics collection.
+	// An array of [AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints)
+	// to exclude from metrics collection.
 	ExcludedRegions []string `json:"excluded_regions,omitempty"`
 	// The array of EC2 tags (in the form `key:value`) defines a filter that Datadog uses when collecting metrics from EC2.
 	// Wildcards, such as `?` (for single characters) and `*` (for multiple characters) can also be used.
