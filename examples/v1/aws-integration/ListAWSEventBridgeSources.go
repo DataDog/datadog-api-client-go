@@ -1,4 +1,4 @@
-// Delete an AWS integration returns "OK" response
+// Get all Amazon EventBridge sources returns "OK" response
 
 package main
 
@@ -13,21 +13,17 @@ import (
 )
 
 func main() {
-	body := datadogV1.AWSAccountDeleteRequest{
-		AccountId: datadog.PtrString("123456789012"),
-		RoleName:  datadog.PtrString("DatadogAWSIntegrationRole"),
-	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewAWSIntegrationApi(apiClient)
-	resp, r, err := api.DeleteAWSAccount(ctx, body)
+	resp, r, err := api.ListAWSEventBridgeSources(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.ListAWSEventBridgeSources`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.DeleteAWSAccount`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `AWSIntegrationApi.ListAWSEventBridgeSources`:\n%s\n", responseContent)
 }

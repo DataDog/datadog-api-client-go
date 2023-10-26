@@ -125,7 +125,9 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - error-tracking: `error-tracking alert`
 // - database-monitoring: `database-monitoring alert`
 //
-// **Note**: Synthetic monitors are created through the Synthetics API. See the [Synthetics API] (https://docs.datadoghq.com/api/latest/synthetics/) documentation for more information.
+// **Notes**:
+// - Synthetic monitors are created through the Synthetics API. See the [Synthetics API] (https://docs.datadoghq.com/api/latest/synthetics/) documentation for more information.
+// - Log monitors require an unscoped App Key.
 //
 // #### Query Types
 //
@@ -1174,6 +1176,8 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 
 // ValidateMonitor Validate a monitor.
 // Validate the monitor provided in the request.
+//
+// **Note**: Log monitors require an unscoped App Key.
 func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
