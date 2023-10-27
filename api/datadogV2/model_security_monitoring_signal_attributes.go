@@ -16,7 +16,7 @@ import (
 // associated values.
 type SecurityMonitoringSignalAttributes struct {
 	// A JSON object of attributes in the security signal.
-	Attributes map[string]interface{} `json:"attributes,omitempty"`
+	Custom map[string]interface{} `json:"custom,omitempty"`
 	// The message in the security signal defined by the rule that generated the signal.
 	Message *string `json:"message,omitempty"`
 	// An array of tags associated with the security signal.
@@ -45,32 +45,32 @@ func NewSecurityMonitoringSignalAttributesWithDefaults() *SecurityMonitoringSign
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *SecurityMonitoringSignalAttributes) GetAttributes() map[string]interface{} {
-	if o == nil || o.Attributes == nil {
+// GetCustom returns the Custom field value if set, zero value otherwise.
+func (o *SecurityMonitoringSignalAttributes) GetCustom() map[string]interface{} {
+	if o == nil || o.Custom == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Attributes
+	return o.Custom
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringSignalAttributes) GetAttributesOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Attributes == nil {
+func (o *SecurityMonitoringSignalAttributes) GetCustomOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Custom == nil {
 		return nil, false
 	}
-	return &o.Attributes, true
+	return &o.Custom, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *SecurityMonitoringSignalAttributes) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
+// HasCustom returns a boolean if a field has been set.
+func (o *SecurityMonitoringSignalAttributes) HasCustom() bool {
+	return o != nil && o.Custom != nil
 }
 
-// SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-func (o *SecurityMonitoringSignalAttributes) SetAttributes(v map[string]interface{}) {
-	o.Attributes = v
+// SetCustom gets a reference to the given map[string]interface{} and assigns it to the Custom field.
+func (o *SecurityMonitoringSignalAttributes) SetCustom(v map[string]interface{}) {
+	o.Custom = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -163,8 +163,8 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
+	if o.Custom != nil {
+		toSerialize["custom"] = o.Custom
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
@@ -189,21 +189,21 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Message    *string                `json:"message,omitempty"`
-		Tags       []string               `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Custom    map[string]interface{} `json:"custom,omitempty"`
+		Message   *string                `json:"message,omitempty"`
+		Tags      []string               `json:"tags,omitempty"`
+		Timestamp *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "message", "tags", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom", "message", "tags", "timestamp"})
 	} else {
 		return err
 	}
-	o.Attributes = all.Attributes
+	o.Custom = all.Custom
 	o.Message = all.Message
 	o.Tags = all.Tags
 	o.Timestamp = all.Timestamp
