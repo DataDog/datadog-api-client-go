@@ -15,6 +15,8 @@ require (
 	golang.org/x/oauth2 v0.10.0
 )
 
+require github.com/google/uuid v1.3.1 // indirect
+
 require (
 	github.com/golang/protobuf v1.5.3 // indirect
 	golang.org/x/net v0.17.0 // indirect

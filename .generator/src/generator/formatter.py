@@ -154,6 +154,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
             "date-time": "time.Time" if not nullable else f"{nullable_prefix}Time",
             "email": "string" if not nullable else f"{nullable_prefix}String",
             "binary": "*os.File",
+            "uuid": "uuid.UUID" if not nullable else f"{nullable_prefix}String",
             None: "string" if not nullable else f"{nullable_prefix}String",
         }[type_format]
     if type_name == "boolean":
@@ -449,6 +450,9 @@ def format_data_with_schema(
                     raise TypeError(f"{x} is not supported type {schema}")
                 return "true" if x else "false"
 
+            def format_uuid(x):
+                return f'uuid.MustParse("{x}")'
+
             def open_file(x):
                 return f"func() *os.File {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
 
@@ -462,6 +466,7 @@ def format_data_with_schema(
                 "boolean": format_bool,
                 "string": format_string,
                 "email": format_string,
+                "uuid": format_uuid,
                 "binary": open_file,
                 None: format_interface,
             }[schema.get("format", schema.get("type"))]
