@@ -21,6 +21,9 @@ type AzureAccount struct {
 	ClientId *string `json:"client_id,omitempty"`
 	// Your Azure web application secret key.
 	ClientSecret *string `json:"client_secret,omitempty"`
+	// Limit the Azure container apps that are pulled into Datadog using tags.
+	// Only container apps that match one of the defined tags are imported into Datadog.
+	ContainerAppFilters *string `json:"container_app_filters,omitempty"`
 	// Enable Cloud Security Management Misconfigurations for your organization.
 	CspmEnabled *bool `json:"cspm_enabled,omitempty"`
 	// Enable custom metrics for your organization.
@@ -168,6 +171,34 @@ func (o *AzureAccount) HasClientSecret() bool {
 // SetClientSecret gets a reference to the given string and assigns it to the ClientSecret field.
 func (o *AzureAccount) SetClientSecret(v string) {
 	o.ClientSecret = &v
+}
+
+// GetContainerAppFilters returns the ContainerAppFilters field value if set, zero value otherwise.
+func (o *AzureAccount) GetContainerAppFilters() string {
+	if o == nil || o.ContainerAppFilters == nil {
+		var ret string
+		return ret
+	}
+	return *o.ContainerAppFilters
+}
+
+// GetContainerAppFiltersOk returns a tuple with the ContainerAppFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureAccount) GetContainerAppFiltersOk() (*string, bool) {
+	if o == nil || o.ContainerAppFilters == nil {
+		return nil, false
+	}
+	return o.ContainerAppFilters, true
+}
+
+// HasContainerAppFilters returns a boolean if a field has been set.
+func (o *AzureAccount) HasContainerAppFilters() bool {
+	return o != nil && o.ContainerAppFilters != nil
+}
+
+// SetContainerAppFilters gets a reference to the given string and assigns it to the ContainerAppFilters field.
+func (o *AzureAccount) SetContainerAppFilters(v string) {
+	o.ContainerAppFilters = &v
 }
 
 // GetCspmEnabled returns the CspmEnabled field value if set, zero value otherwise.
@@ -384,6 +415,9 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 	if o.ClientSecret != nil {
 		toSerialize["client_secret"] = o.ClientSecret
 	}
+	if o.ContainerAppFilters != nil {
+		toSerialize["container_app_filters"] = o.ContainerAppFilters
+	}
 	if o.CspmEnabled != nil {
 		toSerialize["cspm_enabled"] = o.CspmEnabled
 	}
@@ -419,6 +453,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 		Automute              *bool    `json:"automute,omitempty"`
 		ClientId              *string  `json:"client_id,omitempty"`
 		ClientSecret          *string  `json:"client_secret,omitempty"`
+		ContainerAppFilters   *string  `json:"container_app_filters,omitempty"`
 		CspmEnabled           *bool    `json:"cspm_enabled,omitempty"`
 		CustomMetricsEnabled  *bool    `json:"custom_metrics_enabled,omitempty"`
 		Errors                []string `json:"errors,omitempty"`
@@ -432,7 +467,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"app_service_plan_filters", "automute", "client_id", "client_secret", "cspm_enabled", "custom_metrics_enabled", "errors", "host_filters", "new_client_id", "new_tenant_name", "tenant_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"app_service_plan_filters", "automute", "client_id", "client_secret", "container_app_filters", "cspm_enabled", "custom_metrics_enabled", "errors", "host_filters", "new_client_id", "new_tenant_name", "tenant_name"})
 	} else {
 		return err
 	}
@@ -440,6 +475,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.Automute = all.Automute
 	o.ClientId = all.ClientId
 	o.ClientSecret = all.ClientSecret
+	o.ContainerAppFilters = all.ContainerAppFilters
 	o.CspmEnabled = all.CspmEnabled
 	o.CustomMetricsEnabled = all.CustomMetricsEnabled
 	o.Errors = all.Errors
