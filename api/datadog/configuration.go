@@ -323,6 +323,7 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"v2.CreateCIAppPipelineEvent":  false,
 			"v2.ListContainerImages":       false,
 			"v2.ListContainers":            false,
 			"v2.ListEvents":                false,
