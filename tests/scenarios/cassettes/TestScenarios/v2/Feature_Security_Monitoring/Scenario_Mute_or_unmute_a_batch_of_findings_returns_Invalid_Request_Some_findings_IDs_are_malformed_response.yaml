@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"mute":{"expiration_date":1778721573794,"muted":true,"reason":"ACCEPTED_RISK"}},"id":"dbe5f567-192b-4404-b908-29b70e1c9f76","meta":{"findings":[{"finding_id":"AQAAAYbb1i0gijTHEQAAAABBWWJiMWkwZ0FBQ2FuNzBJVGZXZ3B3QUE"}]},"type":"finding"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/posture_management/findings
+  response:
+    body: '{"errors":[{"status":"422","title":"Invalid Request","detail":"Some findings
+      IDs are malformed"}]}'
+    code: 422
+    duration: ''
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 422 Unprocessable Entity
+version: 1

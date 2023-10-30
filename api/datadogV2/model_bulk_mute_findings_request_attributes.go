@@ -10,36 +10,36 @@ import (
 	"github.com/goccy/go-json"
 )
 
-// MuteFindingRequestAttributes The mute properties to be updated.
-type MuteFindingRequestAttributes struct {
-	// Object containing the new mute properties of the finding.
-	Mute MuteFindingRequestProperties `json:"mute"`
+// BulkMuteFindingsRequestAttributes The mute properties to be updated.
+type BulkMuteFindingsRequestAttributes struct {
+	// Object containing the new mute properties of the findings.
+	Mute BulkMuteFindingsRequestProperties `json:"mute"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewMuteFindingRequestAttributes instantiates a new MuteFindingRequestAttributes object.
+// NewBulkMuteFindingsRequestAttributes instantiates a new BulkMuteFindingsRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteFindingRequestAttributes(mute MuteFindingRequestProperties) *MuteFindingRequestAttributes {
-	this := MuteFindingRequestAttributes{}
+func NewBulkMuteFindingsRequestAttributes(mute BulkMuteFindingsRequestProperties) *BulkMuteFindingsRequestAttributes {
+	this := BulkMuteFindingsRequestAttributes{}
 	this.Mute = mute
 	return &this
 }
 
-// NewMuteFindingRequestAttributesWithDefaults instantiates a new MuteFindingRequestAttributes object.
+// NewBulkMuteFindingsRequestAttributesWithDefaults instantiates a new BulkMuteFindingsRequestAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteFindingRequestAttributesWithDefaults() *MuteFindingRequestAttributes {
-	this := MuteFindingRequestAttributes{}
+func NewBulkMuteFindingsRequestAttributesWithDefaults() *BulkMuteFindingsRequestAttributes {
+	this := BulkMuteFindingsRequestAttributes{}
 	return &this
 }
 
 // GetMute returns the Mute field value.
-func (o *MuteFindingRequestAttributes) GetMute() MuteFindingRequestProperties {
+func (o *BulkMuteFindingsRequestAttributes) GetMute() BulkMuteFindingsRequestProperties {
 	if o == nil {
-		var ret MuteFindingRequestProperties
+		var ret BulkMuteFindingsRequestProperties
 		return ret
 	}
 	return o.Mute
@@ -47,7 +47,7 @@ func (o *MuteFindingRequestAttributes) GetMute() MuteFindingRequestProperties {
 
 // GetMuteOk returns a tuple with the Mute field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestAttributes) GetMuteOk() (*MuteFindingRequestProperties, bool) {
+func (o *BulkMuteFindingsRequestAttributes) GetMuteOk() (*BulkMuteFindingsRequestProperties, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -55,12 +55,12 @@ func (o *MuteFindingRequestAttributes) GetMuteOk() (*MuteFindingRequestPropertie
 }
 
 // SetMute sets field value.
-func (o *MuteFindingRequestAttributes) SetMute(v MuteFindingRequestProperties) {
+func (o *BulkMuteFindingsRequestAttributes) SetMute(v BulkMuteFindingsRequestProperties) {
 	o.Mute = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteFindingRequestAttributes) MarshalJSON() ([]byte, error) {
+func (o BulkMuteFindingsRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -70,9 +70,9 @@ func (o MuteFindingRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteFindingRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BulkMuteFindingsRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Mute *MuteFindingRequestProperties `json:"mute"`
+		Mute *BulkMuteFindingsRequestProperties `json:"mute"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)

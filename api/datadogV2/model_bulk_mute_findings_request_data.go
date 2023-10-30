@@ -12,12 +12,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteFindingRequestData Data object containing the new mute properties of the finding.
-type MuteFindingRequestData struct {
+// BulkMuteFindingsRequestData Data object containing the new bulk mute properties of the finding.
+type BulkMuteFindingsRequestData struct {
 	// The mute properties to be updated.
-	Attributes MuteFindingRequestAttributes `json:"attributes"`
-	// The unique ID for this finding.
+	Attributes BulkMuteFindingsRequestAttributes `json:"attributes"`
+	// UUID to identify the request
 	Id string `json:"id"`
+	// Meta object containing the findings to be updated.
+	Meta BulkMuteFindingsRequestMeta `json:"meta"`
 	// The JSON:API type for findings.
 	Type FindingType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -25,32 +27,33 @@ type MuteFindingRequestData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMuteFindingRequestData instantiates a new MuteFindingRequestData object.
+// NewBulkMuteFindingsRequestData instantiates a new BulkMuteFindingsRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteFindingRequestData(attributes MuteFindingRequestAttributes, id string, typeVar FindingType) *MuteFindingRequestData {
-	this := MuteFindingRequestData{}
+func NewBulkMuteFindingsRequestData(attributes BulkMuteFindingsRequestAttributes, id string, meta BulkMuteFindingsRequestMeta, typeVar FindingType) *BulkMuteFindingsRequestData {
+	this := BulkMuteFindingsRequestData{}
 	this.Attributes = attributes
 	this.Id = id
+	this.Meta = meta
 	this.Type = typeVar
 	return &this
 }
 
-// NewMuteFindingRequestDataWithDefaults instantiates a new MuteFindingRequestData object.
+// NewBulkMuteFindingsRequestDataWithDefaults instantiates a new BulkMuteFindingsRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteFindingRequestDataWithDefaults() *MuteFindingRequestData {
-	this := MuteFindingRequestData{}
+func NewBulkMuteFindingsRequestDataWithDefaults() *BulkMuteFindingsRequestData {
+	this := BulkMuteFindingsRequestData{}
 	var typeVar FindingType = FINDINGTYPE_FINDING
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *MuteFindingRequestData) GetAttributes() MuteFindingRequestAttributes {
+func (o *BulkMuteFindingsRequestData) GetAttributes() BulkMuteFindingsRequestAttributes {
 	if o == nil {
-		var ret MuteFindingRequestAttributes
+		var ret BulkMuteFindingsRequestAttributes
 		return ret
 	}
 	return o.Attributes
@@ -58,7 +61,7 @@ func (o *MuteFindingRequestData) GetAttributes() MuteFindingRequestAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestData) GetAttributesOk() (*MuteFindingRequestAttributes, bool) {
+func (o *BulkMuteFindingsRequestData) GetAttributesOk() (*BulkMuteFindingsRequestAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +69,12 @@ func (o *MuteFindingRequestData) GetAttributesOk() (*MuteFindingRequestAttribute
 }
 
 // SetAttributes sets field value.
-func (o *MuteFindingRequestData) SetAttributes(v MuteFindingRequestAttributes) {
+func (o *BulkMuteFindingsRequestData) SetAttributes(v BulkMuteFindingsRequestAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *MuteFindingRequestData) GetId() string {
+func (o *BulkMuteFindingsRequestData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -81,7 +84,7 @@ func (o *MuteFindingRequestData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestData) GetIdOk() (*string, bool) {
+func (o *BulkMuteFindingsRequestData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,12 +92,35 @@ func (o *MuteFindingRequestData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *MuteFindingRequestData) SetId(v string) {
+func (o *BulkMuteFindingsRequestData) SetId(v string) {
 	o.Id = v
 }
 
+// GetMeta returns the Meta field value.
+func (o *BulkMuteFindingsRequestData) GetMeta() BulkMuteFindingsRequestMeta {
+	if o == nil {
+		var ret BulkMuteFindingsRequestMeta
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *BulkMuteFindingsRequestData) GetMetaOk() (*BulkMuteFindingsRequestMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value.
+func (o *BulkMuteFindingsRequestData) SetMeta(v BulkMuteFindingsRequestMeta) {
+	o.Meta = v
+}
+
 // GetType returns the Type field value.
-func (o *MuteFindingRequestData) GetType() FindingType {
+func (o *BulkMuteFindingsRequestData) GetType() FindingType {
 	if o == nil {
 		var ret FindingType
 		return ret
@@ -104,7 +130,7 @@ func (o *MuteFindingRequestData) GetType() FindingType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestData) GetTypeOk() (*FindingType, bool) {
+func (o *BulkMuteFindingsRequestData) GetTypeOk() (*FindingType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,18 +138,19 @@ func (o *MuteFindingRequestData) GetTypeOk() (*FindingType, bool) {
 }
 
 // SetType sets field value.
-func (o *MuteFindingRequestData) SetType(v FindingType) {
+func (o *BulkMuteFindingsRequestData) SetType(v FindingType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteFindingRequestData) MarshalJSON() ([]byte, error) {
+func (o BulkMuteFindingsRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
+	toSerialize["meta"] = o.Meta
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -133,11 +160,12 @@ func (o MuteFindingRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteFindingRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BulkMuteFindingsRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *MuteFindingRequestAttributes `json:"attributes"`
-		Id         *string                       `json:"id"`
-		Type       *FindingType                  `json:"type"`
+		Attributes *BulkMuteFindingsRequestAttributes `json:"attributes"`
+		Id         *string                            `json:"id"`
+		Meta       *BulkMuteFindingsRequestMeta       `json:"meta"`
+		Type       *FindingType                       `json:"type"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)
@@ -148,12 +176,15 @@ func (o *MuteFindingRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
+	if all.Meta == nil {
+		return fmt.Errorf("required field meta missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "type"})
 	} else {
 		return err
 	}
@@ -164,6 +195,10 @@ func (o *MuteFindingRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
+	if all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = *all.Meta
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
