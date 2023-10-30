@@ -12,37 +12,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteFindingRequest The new mute finding request.
-type MuteFindingRequest struct {
-	// Data object containing the new mute properties of the finding.
-	Data MuteFindingRequestData `json:"data"`
+// BulkMuteFindingsResponse The expected response schema.
+type BulkMuteFindingsResponse struct {
+	// Data object containing the ID of the request that was updated.
+	Data BulkMuteFindingsResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMuteFindingRequest instantiates a new MuteFindingRequest object.
+// NewBulkMuteFindingsResponse instantiates a new BulkMuteFindingsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteFindingRequest(data MuteFindingRequestData) *MuteFindingRequest {
-	this := MuteFindingRequest{}
+func NewBulkMuteFindingsResponse(data BulkMuteFindingsResponseData) *BulkMuteFindingsResponse {
+	this := BulkMuteFindingsResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewMuteFindingRequestWithDefaults instantiates a new MuteFindingRequest object.
+// NewBulkMuteFindingsResponseWithDefaults instantiates a new BulkMuteFindingsResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteFindingRequestWithDefaults() *MuteFindingRequest {
-	this := MuteFindingRequest{}
+func NewBulkMuteFindingsResponseWithDefaults() *BulkMuteFindingsResponse {
+	this := BulkMuteFindingsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *MuteFindingRequest) GetData() MuteFindingRequestData {
+func (o *BulkMuteFindingsResponse) GetData() BulkMuteFindingsResponseData {
 	if o == nil {
-		var ret MuteFindingRequestData
+		var ret BulkMuteFindingsResponseData
 		return ret
 	}
 	return o.Data
@@ -50,7 +50,7 @@ func (o *MuteFindingRequest) GetData() MuteFindingRequestData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequest) GetDataOk() (*MuteFindingRequestData, bool) {
+func (o *BulkMuteFindingsResponse) GetDataOk() (*BulkMuteFindingsResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,12 +58,12 @@ func (o *MuteFindingRequest) GetDataOk() (*MuteFindingRequestData, bool) {
 }
 
 // SetData sets field value.
-func (o *MuteFindingRequest) SetData(v MuteFindingRequestData) {
+func (o *BulkMuteFindingsResponse) SetData(v BulkMuteFindingsResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteFindingRequest) MarshalJSON() ([]byte, error) {
+func (o BulkMuteFindingsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -77,9 +77,9 @@ func (o MuteFindingRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteFindingRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BulkMuteFindingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *MuteFindingRequestData `json:"data"`
+		Data *BulkMuteFindingsResponseData `json:"data"`
 	}{}
 	if err = json.Unmarshal(bytes, &all); err != nil {
 		return json.Unmarshal(bytes, &o.UnparsedObject)

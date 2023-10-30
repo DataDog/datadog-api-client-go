@@ -10,15 +10,15 @@ import (
 	"github.com/goccy/go-json"
 )
 
-// MuteFindingRequestProperties Object containing the new mute properties of the finding.
-type MuteFindingRequestProperties struct {
-	// Additional information about the reason why this finding is muted or unmuted. This field has a maximum limit of 280 characters.
+// BulkMuteFindingsRequestProperties Object containing the new mute properties of the findings.
+type BulkMuteFindingsRequestProperties struct {
+	// Additional information about the reason why those findings are muted or unmuted. This field has a maximum limit of 280 characters.
 	Description *string `json:"description,omitempty"`
 	// The expiration date of the mute or unmute action (Unix ms). It must be set to a value greater than the current timestamp.
 	// If this field is not provided, the finding will be muted or unmuted indefinitely, which is equivalent to setting the expiration date to 9999999999999.
 	//
 	ExpirationDate *int64 `json:"expiration_date,omitempty"`
-	// Whether this finding is muted or unmuted.
+	// Whether those findings should be muted or unmuted.
 	Muted bool `json:"muted"`
 	// The reason why this finding is muted or unmuted.
 	Reason FindingMuteReason `json:"reason"`
@@ -26,27 +26,27 @@ type MuteFindingRequestProperties struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewMuteFindingRequestProperties instantiates a new MuteFindingRequestProperties object.
+// NewBulkMuteFindingsRequestProperties instantiates a new BulkMuteFindingsRequestProperties object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteFindingRequestProperties(muted bool, reason FindingMuteReason) *MuteFindingRequestProperties {
-	this := MuteFindingRequestProperties{}
+func NewBulkMuteFindingsRequestProperties(muted bool, reason FindingMuteReason) *BulkMuteFindingsRequestProperties {
+	this := BulkMuteFindingsRequestProperties{}
 	this.Muted = muted
 	this.Reason = reason
 	return &this
 }
 
-// NewMuteFindingRequestPropertiesWithDefaults instantiates a new MuteFindingRequestProperties object.
+// NewBulkMuteFindingsRequestPropertiesWithDefaults instantiates a new BulkMuteFindingsRequestProperties object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteFindingRequestPropertiesWithDefaults() *MuteFindingRequestProperties {
-	this := MuteFindingRequestProperties{}
+func NewBulkMuteFindingsRequestPropertiesWithDefaults() *BulkMuteFindingsRequestProperties {
+	this := BulkMuteFindingsRequestProperties{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MuteFindingRequestProperties) GetDescription() string {
+func (o *BulkMuteFindingsRequestProperties) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *MuteFindingRequestProperties) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestProperties) GetDescriptionOk() (*string, bool) {
+func (o *BulkMuteFindingsRequestProperties) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -64,17 +64,17 @@ func (o *MuteFindingRequestProperties) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *MuteFindingRequestProperties) HasDescription() bool {
+func (o *BulkMuteFindingsRequestProperties) HasDescription() bool {
 	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MuteFindingRequestProperties) SetDescription(v string) {
+func (o *BulkMuteFindingsRequestProperties) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *MuteFindingRequestProperties) GetExpirationDate() int64 {
+func (o *BulkMuteFindingsRequestProperties) GetExpirationDate() int64 {
 	if o == nil || o.ExpirationDate == nil {
 		var ret int64
 		return ret
@@ -84,7 +84,7 @@ func (o *MuteFindingRequestProperties) GetExpirationDate() int64 {
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestProperties) GetExpirationDateOk() (*int64, bool) {
+func (o *BulkMuteFindingsRequestProperties) GetExpirationDateOk() (*int64, bool) {
 	if o == nil || o.ExpirationDate == nil {
 		return nil, false
 	}
@@ -92,17 +92,17 @@ func (o *MuteFindingRequestProperties) GetExpirationDateOk() (*int64, bool) {
 }
 
 // HasExpirationDate returns a boolean if a field has been set.
-func (o *MuteFindingRequestProperties) HasExpirationDate() bool {
+func (o *BulkMuteFindingsRequestProperties) HasExpirationDate() bool {
 	return o != nil && o.ExpirationDate != nil
 }
 
 // SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
-func (o *MuteFindingRequestProperties) SetExpirationDate(v int64) {
+func (o *BulkMuteFindingsRequestProperties) SetExpirationDate(v int64) {
 	o.ExpirationDate = &v
 }
 
 // GetMuted returns the Muted field value.
-func (o *MuteFindingRequestProperties) GetMuted() bool {
+func (o *BulkMuteFindingsRequestProperties) GetMuted() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -112,7 +112,7 @@ func (o *MuteFindingRequestProperties) GetMuted() bool {
 
 // GetMutedOk returns a tuple with the Muted field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestProperties) GetMutedOk() (*bool, bool) {
+func (o *BulkMuteFindingsRequestProperties) GetMutedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,12 +120,12 @@ func (o *MuteFindingRequestProperties) GetMutedOk() (*bool, bool) {
 }
 
 // SetMuted sets field value.
-func (o *MuteFindingRequestProperties) SetMuted(v bool) {
+func (o *BulkMuteFindingsRequestProperties) SetMuted(v bool) {
 	o.Muted = v
 }
 
 // GetReason returns the Reason field value.
-func (o *MuteFindingRequestProperties) GetReason() FindingMuteReason {
+func (o *BulkMuteFindingsRequestProperties) GetReason() FindingMuteReason {
 	if o == nil {
 		var ret FindingMuteReason
 		return ret
@@ -135,7 +135,7 @@ func (o *MuteFindingRequestProperties) GetReason() FindingMuteReason {
 
 // GetReasonOk returns a tuple with the Reason field value
 // and a boolean to check if the value has been set.
-func (o *MuteFindingRequestProperties) GetReasonOk() (*FindingMuteReason, bool) {
+func (o *BulkMuteFindingsRequestProperties) GetReasonOk() (*FindingMuteReason, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -143,12 +143,12 @@ func (o *MuteFindingRequestProperties) GetReasonOk() (*FindingMuteReason, bool) 
 }
 
 // SetReason sets field value.
-func (o *MuteFindingRequestProperties) SetReason(v FindingMuteReason) {
+func (o *BulkMuteFindingsRequestProperties) SetReason(v FindingMuteReason) {
 	o.Reason = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteFindingRequestProperties) MarshalJSON() ([]byte, error) {
+func (o BulkMuteFindingsRequestProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -165,7 +165,7 @@ func (o MuteFindingRequestProperties) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteFindingRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BulkMuteFindingsRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description    *string            `json:"description,omitempty"`
 		ExpirationDate *int64             `json:"expiration_date,omitempty"`
