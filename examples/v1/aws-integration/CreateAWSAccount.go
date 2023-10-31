@@ -17,7 +17,6 @@ func main() {
 		AccountId: datadog.PtrString("123456789012"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
-			"opswork":      false,
 		},
 		CspmResourceCollectionEnabled: datadog.PtrBool(true),
 		ExcludedRegions: []string{
