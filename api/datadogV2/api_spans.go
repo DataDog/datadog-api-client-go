@@ -194,7 +194,7 @@ func (a *SpansApi) ListSpansWithPagination(ctx _context.Context, body SpansListR
 			resp, _, err := a.ListSpans(ctx, body)
 			if err != nil {
 				var returnItem Span
-				items <- datadog.PaginationResult[Span]{returnItem, err}
+				items <- datadog.PaginationResult[Span]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -205,7 +205,7 @@ func (a *SpansApi) ListSpansWithPagination(ctx _context.Context, body SpansListR
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Span]{item, nil}:
+				case items <- datadog.PaginationResult[Span]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -406,7 +406,7 @@ func (a *SpansApi) ListSpansGetWithPagination(ctx _context.Context, o ...ListSpa
 			resp, _, err := a.ListSpansGet(ctx, o...)
 			if err != nil {
 				var returnItem Span
-				items <- datadog.PaginationResult[Span]{returnItem, err}
+				items <- datadog.PaginationResult[Span]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -417,7 +417,7 @@ func (a *SpansApi) ListSpansGetWithPagination(ctx _context.Context, o ...ListSpa
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Span]{item, nil}:
+				case items <- datadog.PaginationResult[Span]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

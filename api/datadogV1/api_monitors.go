@@ -746,14 +746,14 @@ func (a *MonitorsApi) ListMonitorsWithPagination(ctx _context.Context, o ...List
 			resp, _, err := a.ListMonitors(ctx, o...)
 			if err != nil {
 				var returnItem Monitor
-				items <- datadog.PaginationResult[Monitor]{returnItem, err}
+				items <- datadog.PaginationResult[Monitor]{Item: returnItem, Error: err}
 				break
 			}
 			results := resp
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Monitor]{item, nil}:
+				case items <- datadog.PaginationResult[Monitor]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

@@ -180,7 +180,7 @@ func (a *ContainerImagesApi) ListContainerImagesWithPagination(ctx _context.Cont
 			resp, _, err := a.ListContainerImages(ctx, o...)
 			if err != nil {
 				var returnItem ContainerImageItem
-				items <- datadog.PaginationResult[ContainerImageItem]{returnItem, err}
+				items <- datadog.PaginationResult[ContainerImageItem]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -191,7 +191,7 @@ func (a *ContainerImagesApi) ListContainerImagesWithPagination(ctx _context.Cont
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[ContainerImageItem]{item, nil}:
+				case items <- datadog.PaginationResult[ContainerImageItem]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

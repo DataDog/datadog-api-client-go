@@ -812,7 +812,7 @@ func (a *ServiceLevelObjectivesApi) ListSLOsWithPagination(ctx _context.Context,
 			resp, _, err := a.ListSLOs(ctx, o...)
 			if err != nil {
 				var returnItem ServiceLevelObjective
-				items <- datadog.PaginationResult[ServiceLevelObjective]{returnItem, err}
+				items <- datadog.PaginationResult[ServiceLevelObjective]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -823,7 +823,7 @@ func (a *ServiceLevelObjectivesApi) ListSLOsWithPagination(ctx _context.Context,
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[ServiceLevelObjective]{item, nil}:
+				case items <- datadog.PaginationResult[ServiceLevelObjective]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

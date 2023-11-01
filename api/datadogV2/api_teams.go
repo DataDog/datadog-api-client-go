@@ -1096,7 +1096,7 @@ func (a *TeamsApi) ListTeamsWithPagination(ctx _context.Context, o ...ListTeamsO
 			resp, _, err := a.ListTeams(ctx, o...)
 			if err != nil {
 				var returnItem Team
-				items <- datadog.PaginationResult[Team]{returnItem, err}
+				items <- datadog.PaginationResult[Team]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1107,7 +1107,7 @@ func (a *TeamsApi) ListTeamsWithPagination(ctx _context.Context, o ...ListTeamsO
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Team]{item, nil}:
+				case items <- datadog.PaginationResult[Team]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
