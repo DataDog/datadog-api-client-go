@@ -428,7 +428,7 @@ func (a *NotebooksApi) ListNotebooksWithPagination(ctx _context.Context, o ...Li
 			resp, _, err := a.ListNotebooks(ctx, o...)
 			if err != nil {
 				var returnItem NotebooksResponseData
-				items <- datadog.PaginationResult[NotebooksResponseData]{returnItem, err}
+				items <- datadog.PaginationResult[NotebooksResponseData]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -439,7 +439,7 @@ func (a *NotebooksApi) ListNotebooksWithPagination(ctx _context.Context, o ...Li
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[NotebooksResponseData]{item, nil}:
+				case items <- datadog.PaginationResult[NotebooksResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

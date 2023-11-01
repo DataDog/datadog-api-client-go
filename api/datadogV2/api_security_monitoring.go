@@ -1096,7 +1096,7 @@ func (a *SecurityMonitoringApi) ListFindingsWithPagination(ctx _context.Context,
 			resp, _, err := a.ListFindings(ctx, o...)
 			if err != nil {
 				var returnItem Finding
-				items <- datadog.PaginationResult[Finding]{returnItem, err}
+				items <- datadog.PaginationResult[Finding]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1107,7 +1107,7 @@ func (a *SecurityMonitoringApi) ListFindingsWithPagination(ctx _context.Context,
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Finding]{item, nil}:
+				case items <- datadog.PaginationResult[Finding]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -1482,7 +1482,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 			resp, _, err := a.ListSecurityMonitoringSignals(ctx, o...)
 			if err != nil {
 				var returnItem SecurityMonitoringSignal
-				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1493,7 +1493,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
+				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -1728,7 +1728,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 			resp, _, err := a.SearchSecurityMonitoringSignals(ctx, o...)
 			if err != nil {
 				var returnItem SecurityMonitoringSignal
-				items <- datadog.PaginationResult[SecurityMonitoringSignal]{returnItem, err}
+				items <- datadog.PaginationResult[SecurityMonitoringSignal]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -1739,7 +1739,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{item, nil}:
+				case items <- datadog.PaginationResult[SecurityMonitoringSignal]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

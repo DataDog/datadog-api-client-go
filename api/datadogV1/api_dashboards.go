@@ -832,7 +832,7 @@ func (a *DashboardsApi) ListDashboardsWithPagination(ctx _context.Context, o ...
 			resp, _, err := a.ListDashboards(ctx, o...)
 			if err != nil {
 				var returnItem DashboardSummaryDefinition
-				items <- datadog.PaginationResult[DashboardSummaryDefinition]{returnItem, err}
+				items <- datadog.PaginationResult[DashboardSummaryDefinition]{Item: returnItem, Error: err}
 				break
 			}
 			respDashboards, ok := resp.GetDashboardsOk()
@@ -843,7 +843,7 @@ func (a *DashboardsApi) ListDashboardsWithPagination(ctx _context.Context, o ...
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[DashboardSummaryDefinition]{item, nil}:
+				case items <- datadog.PaginationResult[DashboardSummaryDefinition]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

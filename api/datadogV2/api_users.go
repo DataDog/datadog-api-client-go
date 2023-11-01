@@ -606,7 +606,7 @@ func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersO
 			resp, _, err := a.ListUsers(ctx, o...)
 			if err != nil {
 				var returnItem User
-				items <- datadog.PaginationResult[User]{returnItem, err}
+				items <- datadog.PaginationResult[User]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -617,7 +617,7 @@ func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersO
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[User]{item, nil}:
+				case items <- datadog.PaginationResult[User]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

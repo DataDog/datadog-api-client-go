@@ -395,7 +395,7 @@ func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...Li
 			resp, _, err := a.ListDowntimes(ctx, o...)
 			if err != nil {
 				var returnItem DowntimeResponseData
-				items <- datadog.PaginationResult[DowntimeResponseData]{returnItem, err}
+				items <- datadog.PaginationResult[DowntimeResponseData]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -406,7 +406,7 @@ func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...Li
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[DowntimeResponseData]{item, nil}:
+				case items <- datadog.PaginationResult[DowntimeResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

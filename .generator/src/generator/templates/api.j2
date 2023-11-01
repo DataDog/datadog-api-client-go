@@ -365,7 +365,7 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 			resp, _, err := a.{{ operation.operationId }}(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 			if err != nil {
 				var returnItem {{ itemType }}
-				items <- datadog.PaginationResult[{{ itemType }}]{returnItem, err}
+				items <- datadog.PaginationResult[{{ itemType }}]{Item: returnItem, Error: err}
 				break
 			}
                         {%- if pagination.resultsPath %}
@@ -386,7 +386,7 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[{{ itemType }}]{item, nil}:
+				case items <- datadog.PaginationResult[{{ itemType }}]{Item: item, Error: nil}:
 				case <-ctx.Done():
 				close(items)
 				return

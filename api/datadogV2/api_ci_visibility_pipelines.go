@@ -341,7 +341,7 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _co
 			resp, _, err := a.ListCIAppPipelineEvents(ctx, o...)
 			if err != nil {
 				var returnItem CIAppPipelineEvent
-				items <- datadog.PaginationResult[CIAppPipelineEvent]{returnItem, err}
+				items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -352,7 +352,7 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _co
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[CIAppPipelineEvent]{item, nil}:
+				case items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -508,7 +508,7 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _
 			resp, _, err := a.SearchCIAppPipelineEvents(ctx, o...)
 			if err != nil {
 				var returnItem CIAppPipelineEvent
-				items <- datadog.PaginationResult[CIAppPipelineEvent]{returnItem, err}
+				items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -519,7 +519,7 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[CIAppPipelineEvent]{item, nil}:
+				case items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
