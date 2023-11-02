@@ -33,6 +33,10 @@ type MetricTagConfigurationAttributes struct {
 	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Timestamp when the tag configuration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// When set to true, the configuration will exclude the configured tags and include any other submitted tags.
+	// When set to false, the configuration will include the configured tags and exclude any other submitted tags.
+	// Defaults to false. Requires `tags` property.
+	ExcludeTagsMode *bool `json:"exclude_tags_mode,omitempty"`
 	// Toggle to include or exclude percentile aggregations for distribution metrics.
 	// Only present when the `metric_type` is `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
@@ -122,6 +126,34 @@ func (o *MetricTagConfigurationAttributes) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *MetricTagConfigurationAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetExcludeTagsMode returns the ExcludeTagsMode field value if set, zero value otherwise.
+func (o *MetricTagConfigurationAttributes) GetExcludeTagsMode() bool {
+	if o == nil || o.ExcludeTagsMode == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ExcludeTagsMode
+}
+
+// GetExcludeTagsModeOk returns a tuple with the ExcludeTagsMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricTagConfigurationAttributes) GetExcludeTagsModeOk() (*bool, bool) {
+	if o == nil || o.ExcludeTagsMode == nil {
+		return nil, false
+	}
+	return o.ExcludeTagsMode, true
+}
+
+// HasExcludeTagsMode returns a boolean if a field has been set.
+func (o *MetricTagConfigurationAttributes) HasExcludeTagsMode() bool {
+	return o != nil && o.ExcludeTagsMode != nil
+}
+
+// SetExcludeTagsMode gets a reference to the given bool and assigns it to the ExcludeTagsMode field.
+func (o *MetricTagConfigurationAttributes) SetExcludeTagsMode(v bool) {
+	o.ExcludeTagsMode = &v
 }
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
@@ -252,6 +284,9 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.ExcludeTagsMode != nil {
+		toSerialize["exclude_tags_mode"] = o.ExcludeTagsMode
+	}
 	if o.IncludePercentiles != nil {
 		toSerialize["include_percentiles"] = o.IncludePercentiles
 	}
@@ -280,6 +315,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
 		CreatedAt          *time.Time                         `json:"created_at,omitempty"`
+		ExcludeTagsMode    *bool                              `json:"exclude_tags_mode,omitempty"`
 		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
 		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
 		ModifiedAt         *time.Time                         `json:"modified_at,omitempty"`
@@ -290,7 +326,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregations", "created_at", "include_percentiles", "metric_type", "modified_at", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregations", "created_at", "exclude_tags_mode", "include_percentiles", "metric_type", "modified_at", "tags"})
 	} else {
 		return err
 	}
@@ -298,6 +334,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	hasInvalidField := false
 	o.Aggregations = all.Aggregations
 	o.CreatedAt = all.CreatedAt
+	o.ExcludeTagsMode = all.ExcludeTagsMode
 	o.IncludePercentiles = all.IncludePercentiles
 	if all.MetricType != nil && !all.MetricType.IsValid() {
 		hasInvalidField = true
