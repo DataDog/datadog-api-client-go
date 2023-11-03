@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/scorecard/rules/2a4f524e-168a-429d-bb75-7b1ffeab0cbb
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"rule not found:
+      2a4f524e-168a-429d-bb75-7b1ffeab0cbb"}]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 1
