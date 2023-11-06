@@ -288,9 +288,10 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 
 			// enable unstable operation
 			configInterface := undoClientInterface.MethodByName("GetConfig").Call(nil)[0]
-			if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{reflect.ValueOf(undo.Undo.OperationID)})[0].Bool() {
+			undoOperationID := reflect.ValueOf(fmt.Sprintf("%s.%s", version, undo.Undo.OperationID))
+			if configInterface.MethodByName("IsUnstableOperation").Call([]reflect.Value{undoOperationID})[0].Bool() {
 				configInterface.MethodByName("SetUnstableOperationEnabled").Call([]reflect.Value{
-					reflect.ValueOf(undo.Undo.OperationID), reflect.ValueOf(true),
+					undoOperationID, reflect.ValueOf(true),
 				})
 			}
 

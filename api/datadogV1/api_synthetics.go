@@ -1743,7 +1743,7 @@ func (a *SyntheticsApi) ListTestsWithPagination(ctx _context.Context, o ...ListT
 			resp, _, err := a.ListTests(ctx, o...)
 			if err != nil {
 				var returnItem SyntheticsTestDetails
-				items <- datadog.PaginationResult[SyntheticsTestDetails]{returnItem, err}
+				items <- datadog.PaginationResult[SyntheticsTestDetails]{Item: returnItem, Error: err}
 				break
 			}
 			respTests, ok := resp.GetTestsOk()
@@ -1754,7 +1754,7 @@ func (a *SyntheticsApi) ListTestsWithPagination(ctx _context.Context, o ...ListT
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[SyntheticsTestDetails]{item, nil}:
+				case items <- datadog.PaginationResult[SyntheticsTestDetails]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

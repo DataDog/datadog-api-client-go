@@ -347,7 +347,7 @@ func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...L
 			resp, _, err := a.ListPowerpacks(ctx, o...)
 			if err != nil {
 				var returnItem PowerpackData
-				items <- datadog.PaginationResult[PowerpackData]{returnItem, err}
+				items <- datadog.PaginationResult[PowerpackData]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -358,7 +358,7 @@ func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...L
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[PowerpackData]{item, nil}:
+				case items <- datadog.PaginationResult[PowerpackData]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

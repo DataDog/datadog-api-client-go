@@ -258,7 +258,7 @@ func (c *APIClient) PrepareRequest(
 						return nil, err
 					}
 				} else { // form value
-					w.WriteField(k, iv)
+					_ = w.WriteField(k, iv)
 				}
 			}
 		}

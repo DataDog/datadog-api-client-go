@@ -347,7 +347,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrectionWithPagination(ct
 			resp, _, err := a.ListSLOCorrection(ctx, o...)
 			if err != nil {
 				var returnItem SLOCorrection
-				items <- datadog.PaginationResult[SLOCorrection]{returnItem, err}
+				items <- datadog.PaginationResult[SLOCorrection]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -358,7 +358,7 @@ func (a *ServiceLevelObjectiveCorrectionsApi) ListSLOCorrectionWithPagination(ct
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[SLOCorrection]{item, nil}:
+				case items <- datadog.PaginationResult[SLOCorrection]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

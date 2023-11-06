@@ -180,7 +180,7 @@ func (a *ContainersApi) ListContainersWithPagination(ctx _context.Context, o ...
 			resp, _, err := a.ListContainers(ctx, o...)
 			if err != nil {
 				var returnItem ContainerItem
-				items <- datadog.PaginationResult[ContainerItem]{returnItem, err}
+				items <- datadog.PaginationResult[ContainerItem]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -191,7 +191,7 @@ func (a *ContainersApi) ListContainersWithPagination(ctx _context.Context, o ...
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[ContainerItem]{item, nil}:
+				case items <- datadog.PaginationResult[ContainerItem]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return

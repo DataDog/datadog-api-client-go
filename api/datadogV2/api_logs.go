@@ -223,7 +223,7 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 			resp, _, err := a.ListLogs(ctx, o...)
 			if err != nil {
 				var returnItem Log
-				items <- datadog.PaginationResult[Log]{returnItem, err}
+				items <- datadog.PaginationResult[Log]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -234,7 +234,7 @@ func (a *LogsApi) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOpti
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Log]{item, nil}:
+				case items <- datadog.PaginationResult[Log]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
@@ -459,7 +459,7 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 			resp, _, err := a.ListLogsGet(ctx, o...)
 			if err != nil {
 				var returnItem Log
-				items <- datadog.PaginationResult[Log]{returnItem, err}
+				items <- datadog.PaginationResult[Log]{Item: returnItem, Error: err}
 				break
 			}
 			respData, ok := resp.GetDataOk()
@@ -470,7 +470,7 @@ func (a *LogsApi) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsG
 
 			for _, item := range results {
 				select {
-				case items <- datadog.PaginationResult[Log]{item, nil}:
+				case items <- datadog.PaginationResult[Log]{Item: item, Error: nil}:
 				case <-ctx.Done():
 					close(items)
 					return
