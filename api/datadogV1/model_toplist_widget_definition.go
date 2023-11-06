@@ -18,6 +18,8 @@ type ToplistWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of top list widget requests.
 	Requests []ToplistWidgetRequest `json:"requests"`
+	// Style customization for a top list widget.
+	Style *ToplistWidgetStyle `json:"style,omitempty"`
 	// Time setting for the widget.
 	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
@@ -103,6 +105,34 @@ func (o *ToplistWidgetDefinition) GetRequestsOk() (*[]ToplistWidgetRequest, bool
 // SetRequests sets field value.
 func (o *ToplistWidgetDefinition) SetRequests(v []ToplistWidgetRequest) {
 	o.Requests = v
+}
+
+// GetStyle returns the Style field value if set, zero value otherwise.
+func (o *ToplistWidgetDefinition) GetStyle() ToplistWidgetStyle {
+	if o == nil || o.Style == nil {
+		var ret ToplistWidgetStyle
+		return ret
+	}
+	return *o.Style
+}
+
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ToplistWidgetDefinition) GetStyleOk() (*ToplistWidgetStyle, bool) {
+	if o == nil || o.Style == nil {
+		return nil, false
+	}
+	return o.Style, true
+}
+
+// HasStyle returns a boolean if a field has been set.
+func (o *ToplistWidgetDefinition) HasStyle() bool {
+	return o != nil && o.Style != nil
+}
+
+// SetStyle gets a reference to the given ToplistWidgetStyle and assigns it to the Style field.
+func (o *ToplistWidgetDefinition) SetStyle(v ToplistWidgetStyle) {
+	o.Style = &v
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
@@ -250,6 +280,9 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
 	toSerialize["requests"] = o.Requests
+	if o.Style != nil {
+		toSerialize["style"] = o.Style
+	}
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -275,6 +308,7 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
 		Requests    *[]ToplistWidgetRequest      `json:"requests"`
+		Style       *ToplistWidgetStyle          `json:"style,omitempty"`
 		Time        *WidgetTime                  `json:"time,omitempty"`
 		Title       *string                      `json:"title,omitempty"`
 		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
@@ -292,7 +326,7 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "requests", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "requests", "style", "time", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
@@ -300,6 +334,10 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Requests = *all.Requests
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Style = all.Style
 	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
