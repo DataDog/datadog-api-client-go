@@ -30,7 +30,15 @@ func main() {
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadogV1.WidgetTime{},
-						Type:       datadogV1.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
+						Style: &datadogV1.ToplistWidgetStyle{
+							Display: &datadogV1.ToplistWidgetDisplay{
+								ToplistWidgetStacked: &datadogV1.ToplistWidgetStacked{
+									Type:   datadogV1.TOPLISTWIDGETSTACKEDTYPE_STACKED,
+									Legend: datadogV1.TOPLISTWIDGETLEGEND_INLINE,
+								}},
+							Scaling: datadogV1.TOPLISTWIDGETSCALING_RELATIVE.Ptr(),
+						},
+						Type: datadogV1.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
 						Requests: []datadogV1.ToplistWidgetRequest{
 							{
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
