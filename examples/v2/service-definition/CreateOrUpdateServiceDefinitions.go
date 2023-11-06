@@ -37,7 +37,7 @@ func main() {
 					ServiceUrl: datadog.PtrString("https://my-org.pagerduty.com/service-directory/PMyService"),
 				},
 			},
-			Langauges: []string{
+			Languages: []string{
 				"dotnet",
 				"go",
 				"java",
