@@ -26,7 +26,6 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateScorecardRule", true)
-	configuration.SetUnstableOperationEnabled("v2.CreateScorecardOutcomesBatch", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceScorecardsApi(apiClient)
 	resp, r, err := api.CreateScorecardRule(ctx, body)
