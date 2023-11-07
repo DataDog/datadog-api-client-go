@@ -21,9 +21,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
+	"github.com/goccy/go-json"
 )
 
 var templateFunctions = map[string]func(map[string]interface{}, string) string{
@@ -233,7 +233,7 @@ func GetResponseStatusCode(resp []reflect.Value) (int, error) {
 	if response == nil {
 		return -1, errors.New("response is nil")
 	}
-	if httpresp, ok := response.(*http.Response); ok && httpresp != nil{
+	if httpresp, ok := response.(*http.Response); ok && httpresp != nil {
 		return httpresp.StatusCode, nil
 	}
 	return -1, errors.New("response is not an http.Response")
