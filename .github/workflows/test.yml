@@ -91,8 +91,12 @@ jobs:
           go-version: ${{ matrix.go-version }}
           cache: true
           cache-dependency-path: tests/go.sum
-      - name: Test
+      - name: Test with encoding/json
         run: ./run-tests.sh
+      - name: Test with goccy/go-json
+        run: ./run-tests.sh
+        env:
+          TESTARGS: "--tags=goccy_gojson"
 
   examples:
     runs-on: ubuntu-latest
