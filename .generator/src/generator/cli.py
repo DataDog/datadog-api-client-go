@@ -71,6 +71,8 @@ def cli(specs, output):
         "utils.go": env.get_template("utils.j2"),
         "zstd.go": env.get_template("zstd.j2"),
         "no_zstd.go": env.get_template("no_zstd.j2"),
+        "encoding_json.go": env.get_template("encoding_json.j2"),
+        "goccy_gojson.go": env.get_template("goccy_gojson.j2"),
     }
 
     test_scenarios_files = {
