@@ -33,6 +33,7 @@ import (
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	"gopkg.in/DataDog/dd-trace-go.v1/profiler"
 )
 
 // RecordingMode defines valid usage of cassette recorder
@@ -157,6 +158,10 @@ func ConfigureTracer(m *testing.M) {
 	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
 		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
 	}
+	if err := profiler.Start(); err != nil {
+		log.Fatal(err)
+	}
+	defer profiler.Stop()
 	code := ddtesting.Run(m, tracerOptions...)
 	os.Exit(code)
 }
