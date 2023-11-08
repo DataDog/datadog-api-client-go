@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppGroupByMissing - The value to use for logs that don't have the facet used to group-by.
@@ -32,10 +32,10 @@ func (obj *CIAppGroupByMissing) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CIAppGroupByMissingString
-	err = json.Unmarshal(data, &obj.CIAppGroupByMissingString)
+	err = datadog.Unmarshal(data, &obj.CIAppGroupByMissingString)
 	if err == nil {
 		if obj.CIAppGroupByMissingString != nil {
-			jsonCIAppGroupByMissingString, _ := json.Marshal(obj.CIAppGroupByMissingString)
+			jsonCIAppGroupByMissingString, _ := datadog.Marshal(obj.CIAppGroupByMissingString)
 			if string(jsonCIAppGroupByMissingString) == "{}" { // empty struct
 				obj.CIAppGroupByMissingString = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *CIAppGroupByMissing) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CIAppGroupByMissingNumber
-	err = json.Unmarshal(data, &obj.CIAppGroupByMissingNumber)
+	err = datadog.Unmarshal(data, &obj.CIAppGroupByMissingNumber)
 	if err == nil {
 		if obj.CIAppGroupByMissingNumber != nil {
-			jsonCIAppGroupByMissingNumber, _ := json.Marshal(obj.CIAppGroupByMissingNumber)
+			jsonCIAppGroupByMissingNumber, _ := datadog.Marshal(obj.CIAppGroupByMissingNumber)
 			if string(jsonCIAppGroupByMissingNumber) == "{}" { // empty struct
 				obj.CIAppGroupByMissingNumber = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *CIAppGroupByMissing) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.CIAppGroupByMissingString = nil
 		obj.CIAppGroupByMissingNumber = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *CIAppGroupByMissing) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj CIAppGroupByMissing) MarshalJSON() ([]byte, error) {
 	if obj.CIAppGroupByMissingString != nil {
-		return json.Marshal(&obj.CIAppGroupByMissingString)
+		return datadog.Marshal(&obj.CIAppGroupByMissingString)
 	}
 
 	if obj.CIAppGroupByMissingNumber != nil {
-		return json.Marshal(&obj.CIAppGroupByMissingNumber)
+		return datadog.Marshal(&obj.CIAppGroupByMissingNumber)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -224,7 +222,7 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 func (o LogContent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
@@ -252,7 +250,7 @@ func (o LogContent) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -265,11 +263,11 @@ func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
 		Tags       []string               `json:"tags,omitempty"`
 		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "host", "message", "service", "tags", "timestamp"})
 	} else {
 		return err

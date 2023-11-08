@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -159,7 +157,7 @@ func (o *MetricBulkTagConfigStatusAttributes) SetTags(v []string) {
 func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Emails != nil {
 		toSerialize["emails"] = o.Emails
@@ -177,7 +175,7 @@ func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -188,11 +186,11 @@ func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err e
 		Status          *string  `json:"status,omitempty"`
 		Tags            []string `json:"tags,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"emails", "exclude_tags_mode", "status", "tags"})
 	} else {
 		return err

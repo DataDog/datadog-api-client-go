@@ -8,8 +8,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -127,7 +125,7 @@ func (o *RoleCreateAttributes) SetName(v string) {
 func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
@@ -148,7 +146,7 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -158,14 +156,14 @@ func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
 		Name       *string    `json:"name"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "modified_at", "name"})
 	} else {
 		return err

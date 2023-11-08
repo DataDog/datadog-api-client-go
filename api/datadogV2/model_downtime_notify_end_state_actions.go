@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeNotifyEndStateActions Action that will trigger a monitor notification if the downtime is in the `notify_end_types` state.
@@ -32,7 +32,7 @@ func (v *DowntimeNotifyEndStateActions) GetAllowedValues() []DowntimeNotifyEndSt
 // UnmarshalJSON deserializes the given payload.
 func (v *DowntimeNotifyEndStateActions) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

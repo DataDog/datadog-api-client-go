@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RUMGroupByMissing - The value to use for logs that don't have the facet used to group by.
@@ -32,10 +32,10 @@ func (obj *RUMGroupByMissing) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into RUMGroupByMissingString
-	err = json.Unmarshal(data, &obj.RUMGroupByMissingString)
+	err = datadog.Unmarshal(data, &obj.RUMGroupByMissingString)
 	if err == nil {
 		if obj.RUMGroupByMissingString != nil {
-			jsonRUMGroupByMissingString, _ := json.Marshal(obj.RUMGroupByMissingString)
+			jsonRUMGroupByMissingString, _ := datadog.Marshal(obj.RUMGroupByMissingString)
 			if string(jsonRUMGroupByMissingString) == "{}" { // empty struct
 				obj.RUMGroupByMissingString = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *RUMGroupByMissing) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RUMGroupByMissingNumber
-	err = json.Unmarshal(data, &obj.RUMGroupByMissingNumber)
+	err = datadog.Unmarshal(data, &obj.RUMGroupByMissingNumber)
 	if err == nil {
 		if obj.RUMGroupByMissingNumber != nil {
-			jsonRUMGroupByMissingNumber, _ := json.Marshal(obj.RUMGroupByMissingNumber)
+			jsonRUMGroupByMissingNumber, _ := datadog.Marshal(obj.RUMGroupByMissingNumber)
 			if string(jsonRUMGroupByMissingNumber) == "{}" { // empty struct
 				obj.RUMGroupByMissingNumber = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *RUMGroupByMissing) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.RUMGroupByMissingString = nil
 		obj.RUMGroupByMissingNumber = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *RUMGroupByMissing) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj RUMGroupByMissing) MarshalJSON() ([]byte, error) {
 	if obj.RUMGroupByMissingString != nil {
-		return json.Marshal(&obj.RUMGroupByMissingString)
+		return datadog.Marshal(&obj.RUMGroupByMissingString)
 	}
 
 	if obj.RUMGroupByMissingNumber != nil {
-		return json.Marshal(&obj.RUMGroupByMissingNumber)
+		return datadog.Marshal(&obj.RUMGroupByMissingNumber)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

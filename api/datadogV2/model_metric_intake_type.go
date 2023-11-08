@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricIntakeType The type of metric. The available types are `0` (unspecified), `1` (count), `2` (rate), and `3` (gauge).
@@ -36,7 +36,7 @@ func (v *MetricIntakeType) GetAllowedValues() []MetricIntakeType {
 // UnmarshalJSON deserializes the given payload.
 func (v *MetricIntakeType) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -98,7 +96,7 @@ func (o *SensitiveDataScannerCreateGroupResponse) SetMeta(v SensitiveDataScanner
 func (o SensitiveDataScannerCreateGroupResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
@@ -110,7 +108,7 @@ func (o SensitiveDataScannerCreateGroupResponse) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -119,11 +117,11 @@ func (o *SensitiveDataScannerCreateGroupResponse) UnmarshalJSON(bytes []byte) (e
 		Data *SensitiveDataScannerGroupResponse   `json:"data,omitempty"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
@@ -144,7 +142,7 @@ func (o *SensitiveDataScannerCreateGroupResponse) UnmarshalJSON(bytes []byte) (e
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

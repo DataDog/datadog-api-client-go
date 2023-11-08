@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -66,14 +64,14 @@ func (o *SplitDimension) SetOneGraphPer(v string) {
 func (o SplitDimension) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["one_graph_per"] = o.OneGraphPer
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -81,14 +79,14 @@ func (o *SplitDimension) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		OneGraphPer *string `json:"one_graph_per"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.OneGraphPer == nil {
 		return fmt.Errorf("required field one_graph_per missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"one_graph_per"})
 	} else {
 		return err

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionsCreateRequest - Create service definitions request.
@@ -44,10 +44,10 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ServiceDefinitionV2Dot2
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Dot2)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2Dot2)
 	if err == nil {
 		if obj.ServiceDefinitionV2Dot2 != nil && obj.ServiceDefinitionV2Dot2.UnparsedObject == nil {
-			jsonServiceDefinitionV2Dot2, _ := json.Marshal(obj.ServiceDefinitionV2Dot2)
+			jsonServiceDefinitionV2Dot2, _ := datadog.Marshal(obj.ServiceDefinitionV2Dot2)
 			if string(jsonServiceDefinitionV2Dot2) == "{}" { // empty struct
 				obj.ServiceDefinitionV2Dot2 = nil
 			} else {
@@ -61,10 +61,10 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ServiceDefinitionV2Dot1
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Dot1)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2Dot1)
 	if err == nil {
 		if obj.ServiceDefinitionV2Dot1 != nil && obj.ServiceDefinitionV2Dot1.UnparsedObject == nil {
-			jsonServiceDefinitionV2Dot1, _ := json.Marshal(obj.ServiceDefinitionV2Dot1)
+			jsonServiceDefinitionV2Dot1, _ := datadog.Marshal(obj.ServiceDefinitionV2Dot1)
 			if string(jsonServiceDefinitionV2Dot1) == "{}" { // empty struct
 				obj.ServiceDefinitionV2Dot1 = nil
 			} else {
@@ -78,10 +78,10 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ServiceDefinitionV2
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2)
 	if err == nil {
 		if obj.ServiceDefinitionV2 != nil && obj.ServiceDefinitionV2.UnparsedObject == nil {
-			jsonServiceDefinitionV2, _ := json.Marshal(obj.ServiceDefinitionV2)
+			jsonServiceDefinitionV2, _ := datadog.Marshal(obj.ServiceDefinitionV2)
 			if string(jsonServiceDefinitionV2) == "{}" { // empty struct
 				obj.ServiceDefinitionV2 = nil
 			} else {
@@ -95,10 +95,10 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ServiceDefinitionRaw
-	err = json.Unmarshal(data, &obj.ServiceDefinitionRaw)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionRaw)
 	if err == nil {
 		if obj.ServiceDefinitionRaw != nil {
-			jsonServiceDefinitionRaw, _ := json.Marshal(obj.ServiceDefinitionRaw)
+			jsonServiceDefinitionRaw, _ := datadog.Marshal(obj.ServiceDefinitionRaw)
 			if string(jsonServiceDefinitionRaw) == "{}" { // empty struct
 				obj.ServiceDefinitionRaw = nil
 			} else {
@@ -117,7 +117,7 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 		obj.ServiceDefinitionV2Dot1 = nil
 		obj.ServiceDefinitionV2 = nil
 		obj.ServiceDefinitionRaw = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -125,23 +125,23 @@ func (obj *ServiceDefinitionsCreateRequest) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ServiceDefinitionsCreateRequest) MarshalJSON() ([]byte, error) {
 	if obj.ServiceDefinitionV2Dot2 != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2Dot2)
+		return datadog.Marshal(&obj.ServiceDefinitionV2Dot2)
 	}
 
 	if obj.ServiceDefinitionV2Dot1 != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2Dot1)
+		return datadog.Marshal(&obj.ServiceDefinitionV2Dot1)
 	}
 
 	if obj.ServiceDefinitionV2 != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2)
+		return datadog.Marshal(&obj.ServiceDefinitionV2)
 	}
 
 	if obj.ServiceDefinitionRaw != nil {
-		return json.Marshal(&obj.ServiceDefinitionRaw)
+		return datadog.Marshal(&obj.ServiceDefinitionRaw)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

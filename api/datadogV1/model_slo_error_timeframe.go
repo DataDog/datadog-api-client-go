@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOErrorTimeframe The timeframe of the threshold associated with this error
@@ -37,7 +37,7 @@ func (v *SLOErrorTimeframe) GetAllowedValues() []SLOErrorTimeframe {
 // UnmarshalJSON deserializes the given payload.
 func (v *SLOErrorTimeframe) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

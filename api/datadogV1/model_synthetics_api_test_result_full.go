@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -251,7 +249,7 @@ func (o *SyntheticsAPITestResultFull) SetStatus(v SyntheticsTestMonitorStatus) {
 func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Check != nil {
 		toSerialize["check"] = o.Check
@@ -278,7 +276,7 @@ func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -292,11 +290,11 @@ func (o *SyntheticsAPITestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 		ResultId     *string                           `json:"result_id,omitempty"`
 		Status       *SyntheticsTestMonitorStatus      `json:"status,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"check", "check_time", "check_version", "probe_dc", "result", "result_id", "status"})
 	} else {
 		return err
@@ -326,7 +324,7 @@ func (o *SyntheticsAPITestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

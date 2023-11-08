@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WebhooksIntegrationEncoding Encoding type. Can be given either `json` or `form`.
@@ -32,7 +32,7 @@ func (v *WebhooksIntegrationEncoding) GetAllowedValues() []WebhooksIntegrationEn
 // UnmarshalJSON deserializes the given payload.
 func (v *WebhooksIntegrationEncoding) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorDeviceID ID of the device the Synthetics monitor is running on. Same as `SyntheticsDeviceID`.
@@ -46,7 +46,7 @@ func (v *MonitorDeviceID) GetAllowedValues() []MonitorDeviceID {
 // UnmarshalJSON deserializes the given payload.
 func (v *MonitorDeviceID) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

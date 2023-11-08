@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SpansGroupByTotal - A resulting object to put the given computes in over all the matching records.
@@ -38,10 +38,10 @@ func (obj *SpansGroupByTotal) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SpansGroupByTotalBoolean
-	err = json.Unmarshal(data, &obj.SpansGroupByTotalBoolean)
+	err = datadog.Unmarshal(data, &obj.SpansGroupByTotalBoolean)
 	if err == nil {
 		if obj.SpansGroupByTotalBoolean != nil {
-			jsonSpansGroupByTotalBoolean, _ := json.Marshal(obj.SpansGroupByTotalBoolean)
+			jsonSpansGroupByTotalBoolean, _ := datadog.Marshal(obj.SpansGroupByTotalBoolean)
 			if string(jsonSpansGroupByTotalBoolean) == "{}" { // empty struct
 				obj.SpansGroupByTotalBoolean = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *SpansGroupByTotal) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SpansGroupByTotalString
-	err = json.Unmarshal(data, &obj.SpansGroupByTotalString)
+	err = datadog.Unmarshal(data, &obj.SpansGroupByTotalString)
 	if err == nil {
 		if obj.SpansGroupByTotalString != nil {
-			jsonSpansGroupByTotalString, _ := json.Marshal(obj.SpansGroupByTotalString)
+			jsonSpansGroupByTotalString, _ := datadog.Marshal(obj.SpansGroupByTotalString)
 			if string(jsonSpansGroupByTotalString) == "{}" { // empty struct
 				obj.SpansGroupByTotalString = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *SpansGroupByTotal) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SpansGroupByTotalNumber
-	err = json.Unmarshal(data, &obj.SpansGroupByTotalNumber)
+	err = datadog.Unmarshal(data, &obj.SpansGroupByTotalNumber)
 	if err == nil {
 		if obj.SpansGroupByTotalNumber != nil {
-			jsonSpansGroupByTotalNumber, _ := json.Marshal(obj.SpansGroupByTotalNumber)
+			jsonSpansGroupByTotalNumber, _ := datadog.Marshal(obj.SpansGroupByTotalNumber)
 			if string(jsonSpansGroupByTotalNumber) == "{}" { // empty struct
 				obj.SpansGroupByTotalNumber = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *SpansGroupByTotal) UnmarshalJSON(data []byte) error {
 		obj.SpansGroupByTotalBoolean = nil
 		obj.SpansGroupByTotalString = nil
 		obj.SpansGroupByTotalNumber = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *SpansGroupByTotal) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SpansGroupByTotal) MarshalJSON() ([]byte, error) {
 	if obj.SpansGroupByTotalBoolean != nil {
-		return json.Marshal(&obj.SpansGroupByTotalBoolean)
+		return datadog.Marshal(&obj.SpansGroupByTotalBoolean)
 	}
 
 	if obj.SpansGroupByTotalString != nil {
-		return json.Marshal(&obj.SpansGroupByTotalString)
+		return datadog.Marshal(&obj.SpansGroupByTotalString)
 	}
 
 	if obj.SpansGroupByTotalNumber != nil {
-		return json.Marshal(&obj.SpansGroupByTotalNumber)
+		return datadog.Marshal(&obj.SpansGroupByTotalNumber)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

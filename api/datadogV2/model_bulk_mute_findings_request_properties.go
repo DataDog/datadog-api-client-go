@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // BulkMuteFindingsRequestProperties Object containing the new mute properties of the findings.
@@ -151,7 +151,7 @@ func (o *BulkMuteFindingsRequestProperties) SetReason(v FindingMuteReason) {
 func (o BulkMuteFindingsRequestProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
@@ -161,7 +161,7 @@ func (o BulkMuteFindingsRequestProperties) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["muted"] = o.Muted
 	toSerialize["reason"] = o.Reason
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -172,8 +172,8 @@ func (o *BulkMuteFindingsRequestProperties) UnmarshalJSON(bytes []byte) (err err
 		Muted          *bool              `json:"muted"`
 		Reason         *FindingMuteReason `json:"reason"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Muted == nil {
 		return fmt.Errorf("required field muted missing")
@@ -193,7 +193,7 @@ func (o *BulkMuteFindingsRequestProperties) UnmarshalJSON(bytes []byte) (err err
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

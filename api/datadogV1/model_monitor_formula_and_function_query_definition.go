@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.
@@ -26,10 +26,10 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 	var err error
 	match := 0
 	// try to unmarshal data into MonitorFormulaAndFunctionEventQueryDefinition
-	err = json.Unmarshal(data, &obj.MonitorFormulaAndFunctionEventQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.MonitorFormulaAndFunctionEventQueryDefinition)
 	if err == nil {
 		if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil && obj.MonitorFormulaAndFunctionEventQueryDefinition.UnparsedObject == nil {
-			jsonMonitorFormulaAndFunctionEventQueryDefinition, _ := json.Marshal(obj.MonitorFormulaAndFunctionEventQueryDefinition)
+			jsonMonitorFormulaAndFunctionEventQueryDefinition, _ := datadog.Marshal(obj.MonitorFormulaAndFunctionEventQueryDefinition)
 			if string(jsonMonitorFormulaAndFunctionEventQueryDefinition) == "{}" { // empty struct
 				obj.MonitorFormulaAndFunctionEventQueryDefinition = nil
 			} else {
@@ -45,7 +45,7 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorFormulaAndFunctionEventQueryDefinition = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -53,11 +53,11 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
-		return json.Marshal(&obj.MonitorFormulaAndFunctionEventQueryDefinition)
+		return datadog.Marshal(&obj.MonitorFormulaAndFunctionEventQueryDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -27,7 +27,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/goccy/go-json"
 	"golang.org/x/oauth2"
 )
 
@@ -431,7 +430,7 @@ func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err err
 		} else {
 			return errors.New("unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined")
 		}
-	} else if err = json.Unmarshal(b, v); err != nil { // simple model
+	} else if err = Unmarshal(b, v); err != nil { // simple model
 		return err
 	}
 	return nil
@@ -480,7 +479,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if s, ok := body.(*string); ok {
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
-		err = json.NewEncoder(bodyBuf).Encode(body)
+		err = newEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
 		err = xml.NewEncoder(bodyBuf).Encode(body)
 	}

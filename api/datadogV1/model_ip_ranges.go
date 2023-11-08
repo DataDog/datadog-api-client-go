@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -428,7 +426,7 @@ func (o *IPRanges) SetWebhooks(v IPPrefixesWebhooks) {
 func (o IPRanges) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Agents != nil {
 		toSerialize["agents"] = o.Agents
@@ -473,7 +471,7 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -493,11 +491,11 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 		Version                    *int64                                `json:"version,omitempty"`
 		Webhooks                   *IPPrefixesWebhooks                   `json:"webhooks,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"agents", "api", "apm", "global", "logs", "modified", "orchestrator", "process", "remote-configuration", "synthetics", "synthetics-private-locations", "version", "webhooks"})
 	} else {
 		return err
@@ -556,7 +554,7 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

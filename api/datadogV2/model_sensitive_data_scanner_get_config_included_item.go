@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerGetConfigIncludedItem - An object related to the configuration.
@@ -32,10 +32,10 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 	var err error
 	match := 0
 	// try to unmarshal data into SensitiveDataScannerRuleIncludedItem
-	err = json.Unmarshal(data, &obj.SensitiveDataScannerRuleIncludedItem)
+	err = datadog.Unmarshal(data, &obj.SensitiveDataScannerRuleIncludedItem)
 	if err == nil {
 		if obj.SensitiveDataScannerRuleIncludedItem != nil && obj.SensitiveDataScannerRuleIncludedItem.UnparsedObject == nil {
-			jsonSensitiveDataScannerRuleIncludedItem, _ := json.Marshal(obj.SensitiveDataScannerRuleIncludedItem)
+			jsonSensitiveDataScannerRuleIncludedItem, _ := datadog.Marshal(obj.SensitiveDataScannerRuleIncludedItem)
 			if string(jsonSensitiveDataScannerRuleIncludedItem) == "{}" { // empty struct
 				obj.SensitiveDataScannerRuleIncludedItem = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 	}
 
 	// try to unmarshal data into SensitiveDataScannerGroupIncludedItem
-	err = json.Unmarshal(data, &obj.SensitiveDataScannerGroupIncludedItem)
+	err = datadog.Unmarshal(data, &obj.SensitiveDataScannerGroupIncludedItem)
 	if err == nil {
 		if obj.SensitiveDataScannerGroupIncludedItem != nil && obj.SensitiveDataScannerGroupIncludedItem.UnparsedObject == nil {
-			jsonSensitiveDataScannerGroupIncludedItem, _ := json.Marshal(obj.SensitiveDataScannerGroupIncludedItem)
+			jsonSensitiveDataScannerGroupIncludedItem, _ := datadog.Marshal(obj.SensitiveDataScannerGroupIncludedItem)
 			if string(jsonSensitiveDataScannerGroupIncludedItem) == "{}" { // empty struct
 				obj.SensitiveDataScannerGroupIncludedItem = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 		// reset to nil
 		obj.SensitiveDataScannerRuleIncludedItem = nil
 		obj.SensitiveDataScannerGroupIncludedItem = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SensitiveDataScannerGetConfigIncludedItem) MarshalJSON() ([]byte, error) {
 	if obj.SensitiveDataScannerRuleIncludedItem != nil {
-		return json.Marshal(&obj.SensitiveDataScannerRuleIncludedItem)
+		return datadog.Marshal(&obj.SensitiveDataScannerRuleIncludedItem)
 	}
 
 	if obj.SensitiveDataScannerGroupIncludedItem != nil {
-		return json.Marshal(&obj.SensitiveDataScannerGroupIncludedItem)
+		return datadog.Marshal(&obj.SensitiveDataScannerGroupIncludedItem)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

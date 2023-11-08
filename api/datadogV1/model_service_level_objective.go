@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -548,7 +546,7 @@ func (o *ServiceLevelObjective) SetWarningThreshold(v float64) {
 func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
@@ -596,7 +594,7 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -619,8 +617,8 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		Type             *SLOType                    `json:"type"`
 		WarningThreshold *float64                    `json:"warning_threshold,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -632,7 +630,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
 	} else {
 		return err
@@ -675,7 +673,7 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

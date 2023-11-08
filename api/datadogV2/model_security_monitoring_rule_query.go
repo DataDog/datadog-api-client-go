@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringRuleQuery - Query for matching rule.
@@ -32,10 +32,10 @@ func (obj *SecurityMonitoringRuleQuery) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SecurityMonitoringStandardRuleQuery
-	err = json.Unmarshal(data, &obj.SecurityMonitoringStandardRuleQuery)
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringStandardRuleQuery)
 	if err == nil {
 		if obj.SecurityMonitoringStandardRuleQuery != nil && obj.SecurityMonitoringStandardRuleQuery.UnparsedObject == nil {
-			jsonSecurityMonitoringStandardRuleQuery, _ := json.Marshal(obj.SecurityMonitoringStandardRuleQuery)
+			jsonSecurityMonitoringStandardRuleQuery, _ := datadog.Marshal(obj.SecurityMonitoringStandardRuleQuery)
 			if string(jsonSecurityMonitoringStandardRuleQuery) == "{}" { // empty struct
 				obj.SecurityMonitoringStandardRuleQuery = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *SecurityMonitoringRuleQuery) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SecurityMonitoringSignalRuleQuery
-	err = json.Unmarshal(data, &obj.SecurityMonitoringSignalRuleQuery)
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringSignalRuleQuery)
 	if err == nil {
 		if obj.SecurityMonitoringSignalRuleQuery != nil && obj.SecurityMonitoringSignalRuleQuery.UnparsedObject == nil {
-			jsonSecurityMonitoringSignalRuleQuery, _ := json.Marshal(obj.SecurityMonitoringSignalRuleQuery)
+			jsonSecurityMonitoringSignalRuleQuery, _ := datadog.Marshal(obj.SecurityMonitoringSignalRuleQuery)
 			if string(jsonSecurityMonitoringSignalRuleQuery) == "{}" { // empty struct
 				obj.SecurityMonitoringSignalRuleQuery = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *SecurityMonitoringRuleQuery) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.SecurityMonitoringStandardRuleQuery = nil
 		obj.SecurityMonitoringSignalRuleQuery = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *SecurityMonitoringRuleQuery) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 	if obj.SecurityMonitoringStandardRuleQuery != nil {
-		return json.Marshal(&obj.SecurityMonitoringStandardRuleQuery)
+		return datadog.Marshal(&obj.SecurityMonitoringStandardRuleQuery)
 	}
 
 	if obj.SecurityMonitoringSignalRuleQuery != nil {
-		return json.Marshal(&obj.SecurityMonitoringSignalRuleQuery)
+		return datadog.Marshal(&obj.SecurityMonitoringSignalRuleQuery)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -92,7 +90,7 @@ func (o *SLOHistoryResponseErrorWithType) SetErrorType(v string) {
 func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["error_message"] = o.ErrorMessage
 	toSerialize["error_type"] = o.ErrorType
@@ -100,7 +98,7 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -109,8 +107,8 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		ErrorMessage *string `json:"error_message"`
 		ErrorType    *string `json:"error_type"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ErrorMessage == nil {
 		return fmt.Errorf("required field error_message missing")
@@ -119,7 +117,7 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 		return fmt.Errorf("required field error_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type"})
 	} else {
 		return err

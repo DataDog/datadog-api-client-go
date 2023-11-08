@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsGroupByMissing - The value to use for logs that don't have the facet used to group by
@@ -32,10 +32,10 @@ func (obj *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into LogsGroupByMissingString
-	err = json.Unmarshal(data, &obj.LogsGroupByMissingString)
+	err = datadog.Unmarshal(data, &obj.LogsGroupByMissingString)
 	if err == nil {
 		if obj.LogsGroupByMissingString != nil {
-			jsonLogsGroupByMissingString, _ := json.Marshal(obj.LogsGroupByMissingString)
+			jsonLogsGroupByMissingString, _ := datadog.Marshal(obj.LogsGroupByMissingString)
 			if string(jsonLogsGroupByMissingString) == "{}" { // empty struct
 				obj.LogsGroupByMissingString = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LogsGroupByMissingNumber
-	err = json.Unmarshal(data, &obj.LogsGroupByMissingNumber)
+	err = datadog.Unmarshal(data, &obj.LogsGroupByMissingNumber)
 	if err == nil {
 		if obj.LogsGroupByMissingNumber != nil {
-			jsonLogsGroupByMissingNumber, _ := json.Marshal(obj.LogsGroupByMissingNumber)
+			jsonLogsGroupByMissingNumber, _ := datadog.Marshal(obj.LogsGroupByMissingNumber)
 			if string(jsonLogsGroupByMissingNumber) == "{}" { // empty struct
 				obj.LogsGroupByMissingNumber = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.LogsGroupByMissingString = nil
 		obj.LogsGroupByMissingNumber = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 	if obj.LogsGroupByMissingString != nil {
-		return json.Marshal(&obj.LogsGroupByMissingString)
+		return datadog.Marshal(&obj.LogsGroupByMissingString)
 	}
 
 	if obj.LogsGroupByMissingNumber != nil {
-		return json.Marshal(&obj.LogsGroupByMissingNumber)
+		return datadog.Marshal(&obj.LogsGroupByMissingNumber)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

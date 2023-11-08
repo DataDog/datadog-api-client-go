@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SpansAggregateBucketValue - A bucket value, can be either a timeseries or a single value.
@@ -38,10 +38,10 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SpansAggregateBucketValueSingleString
-	err = json.Unmarshal(data, &obj.SpansAggregateBucketValueSingleString)
+	err = datadog.Unmarshal(data, &obj.SpansAggregateBucketValueSingleString)
 	if err == nil {
 		if obj.SpansAggregateBucketValueSingleString != nil {
-			jsonSpansAggregateBucketValueSingleString, _ := json.Marshal(obj.SpansAggregateBucketValueSingleString)
+			jsonSpansAggregateBucketValueSingleString, _ := datadog.Marshal(obj.SpansAggregateBucketValueSingleString)
 			if string(jsonSpansAggregateBucketValueSingleString) == "{}" { // empty struct
 				obj.SpansAggregateBucketValueSingleString = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SpansAggregateBucketValueSingleNumber
-	err = json.Unmarshal(data, &obj.SpansAggregateBucketValueSingleNumber)
+	err = datadog.Unmarshal(data, &obj.SpansAggregateBucketValueSingleNumber)
 	if err == nil {
 		if obj.SpansAggregateBucketValueSingleNumber != nil {
-			jsonSpansAggregateBucketValueSingleNumber, _ := json.Marshal(obj.SpansAggregateBucketValueSingleNumber)
+			jsonSpansAggregateBucketValueSingleNumber, _ := datadog.Marshal(obj.SpansAggregateBucketValueSingleNumber)
 			if string(jsonSpansAggregateBucketValueSingleNumber) == "{}" { // empty struct
 				obj.SpansAggregateBucketValueSingleNumber = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SpansAggregateBucketValueTimeseries
-	err = json.Unmarshal(data, &obj.SpansAggregateBucketValueTimeseries)
+	err = datadog.Unmarshal(data, &obj.SpansAggregateBucketValueTimeseries)
 	if err == nil {
 		if obj.SpansAggregateBucketValueTimeseries != nil {
-			jsonSpansAggregateBucketValueTimeseries, _ := json.Marshal(obj.SpansAggregateBucketValueTimeseries)
+			jsonSpansAggregateBucketValueTimeseries, _ := datadog.Marshal(obj.SpansAggregateBucketValueTimeseries)
 			if string(jsonSpansAggregateBucketValueTimeseries) == "{}" { // empty struct
 				obj.SpansAggregateBucketValueTimeseries = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 		obj.SpansAggregateBucketValueSingleString = nil
 		obj.SpansAggregateBucketValueSingleNumber = nil
 		obj.SpansAggregateBucketValueTimeseries = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SpansAggregateBucketValue) MarshalJSON() ([]byte, error) {
 	if obj.SpansAggregateBucketValueSingleString != nil {
-		return json.Marshal(&obj.SpansAggregateBucketValueSingleString)
+		return datadog.Marshal(&obj.SpansAggregateBucketValueSingleString)
 	}
 
 	if obj.SpansAggregateBucketValueSingleNumber != nil {
-		return json.Marshal(&obj.SpansAggregateBucketValueSingleNumber)
+		return datadog.Marshal(&obj.SpansAggregateBucketValueSingleNumber)
 	}
 
 	if obj.SpansAggregateBucketValueTimeseries != nil {
-		return json.Marshal(&obj.SpansAggregateBucketValueTimeseries)
+		return datadog.Marshal(&obj.SpansAggregateBucketValueTimeseries)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

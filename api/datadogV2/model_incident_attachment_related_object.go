@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentAttachmentRelatedObject The object related to an incident attachment.
@@ -30,7 +30,7 @@ func (v *IncidentAttachmentRelatedObject) GetAllowedValues() []IncidentAttachmen
 // UnmarshalJSON deserializes the given payload.
 func (v *IncidentAttachmentRelatedObject) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

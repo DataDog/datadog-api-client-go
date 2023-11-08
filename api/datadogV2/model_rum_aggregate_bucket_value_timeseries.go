@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RUMAggregateBucketValueTimeseries A timeseries array.
@@ -37,24 +37,24 @@ func NewRUMAggregateBucketValueTimeseriesWithDefaults() *RUMAggregateBucketValue
 func (o RUMAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 	toSerialize := make([]interface{}, len(o.Items))
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	for i, item := range o.Items {
 		toSerialize[i] = item
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {
-	if err = json.Unmarshal(bytes, &o.Items); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &o.Items); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	if o.Items != nil && len(o.Items) > 0 {
 		for _, v := range o.Items {
 			if v.UnparsedObject != nil {
-				return json.Unmarshal(bytes, &o.UnparsedObject)
+				return datadog.Unmarshal(bytes, &o.UnparsedObject)
 			}
 		}
 	}

@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -138,7 +136,7 @@ func (o *SensitiveDataScannerTextReplacement) SetType(v SensitiveDataScannerText
 func (o SensitiveDataScannerTextReplacement) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.NumberOfChars != nil {
 		toSerialize["number_of_chars"] = o.NumberOfChars
@@ -153,7 +151,7 @@ func (o SensitiveDataScannerTextReplacement) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -163,11 +161,11 @@ func (o *SensitiveDataScannerTextReplacement) UnmarshalJSON(bytes []byte) (err e
 		ReplacementString *string                                  `json:"replacement_string,omitempty"`
 		Type              *SensitiveDataScannerTextReplacementType `json:"type,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"number_of_chars", "replacement_string", "type"})
 	} else {
 		return err
@@ -187,7 +185,7 @@ func (o *SensitiveDataScannerTextReplacement) UnmarshalJSON(bytes []byte) (err e
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

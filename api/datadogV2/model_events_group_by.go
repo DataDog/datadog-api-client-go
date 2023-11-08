@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -126,7 +124,7 @@ func (o *EventsGroupBy) SetSort(v EventsGroupBySort) {
 func (o EventsGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["facet"] = o.Facet
 	if o.Limit != nil {
@@ -139,7 +137,7 @@ func (o EventsGroupBy) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -149,14 +147,14 @@ func (o *EventsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		Limit *int32             `json:"limit,omitempty"`
 		Sort  *EventsGroupBySort `json:"sort,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Facet == nil {
 		return fmt.Errorf("required field facet missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "limit", "sort"})
 	} else {
 		return err
@@ -175,7 +173,7 @@ func (o *EventsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

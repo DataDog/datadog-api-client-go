@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ToplistWidgetDisplay - Top list widget display options.
@@ -32,10 +32,10 @@ func (obj *ToplistWidgetDisplay) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ToplistWidgetStacked
-	err = json.Unmarshal(data, &obj.ToplistWidgetStacked)
+	err = datadog.Unmarshal(data, &obj.ToplistWidgetStacked)
 	if err == nil {
 		if obj.ToplistWidgetStacked != nil && obj.ToplistWidgetStacked.UnparsedObject == nil {
-			jsonToplistWidgetStacked, _ := json.Marshal(obj.ToplistWidgetStacked)
+			jsonToplistWidgetStacked, _ := datadog.Marshal(obj.ToplistWidgetStacked)
 			if string(jsonToplistWidgetStacked) == "{}" { // empty struct
 				obj.ToplistWidgetStacked = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *ToplistWidgetDisplay) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ToplistWidgetFlat
-	err = json.Unmarshal(data, &obj.ToplistWidgetFlat)
+	err = datadog.Unmarshal(data, &obj.ToplistWidgetFlat)
 	if err == nil {
 		if obj.ToplistWidgetFlat != nil && obj.ToplistWidgetFlat.UnparsedObject == nil {
-			jsonToplistWidgetFlat, _ := json.Marshal(obj.ToplistWidgetFlat)
+			jsonToplistWidgetFlat, _ := datadog.Marshal(obj.ToplistWidgetFlat)
 			if string(jsonToplistWidgetFlat) == "{}" { // empty struct
 				obj.ToplistWidgetFlat = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *ToplistWidgetDisplay) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.ToplistWidgetStacked = nil
 		obj.ToplistWidgetFlat = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *ToplistWidgetDisplay) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ToplistWidgetDisplay) MarshalJSON() ([]byte, error) {
 	if obj.ToplistWidgetStacked != nil {
-		return json.Marshal(&obj.ToplistWidgetStacked)
+		return datadog.Marshal(&obj.ToplistWidgetStacked)
 	}
 
 	if obj.ToplistWidgetFlat != nil {
-		return json.Marshal(&obj.ToplistWidgetFlat)
+		return datadog.Marshal(&obj.ToplistWidgetFlat)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CloudWorkloadSecurityAgentRuleType The type of the resource. The value should always be `agent_rule`.
@@ -30,7 +30,7 @@ func (v *CloudWorkloadSecurityAgentRuleType) GetAllowedValues() []CloudWorkloadS
 // UnmarshalJSON deserializes the given payload.
 func (v *CloudWorkloadSecurityAgentRuleType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

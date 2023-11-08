@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionMetricAggregation The aggregation methods available for metrics queries.
@@ -44,7 +44,7 @@ func (v *FormulaAndFunctionMetricAggregation) GetAllowedValues() []FormulaAndFun
 // UnmarshalJSON deserializes the given payload.
 func (v *FormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

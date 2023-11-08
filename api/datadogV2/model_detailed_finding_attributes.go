@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -368,7 +366,7 @@ func (o *DetailedFindingAttributes) SetTags(v []string) {
 func (o DetailedFindingAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Evaluation != nil {
 		toSerialize["evaluation"] = o.Evaluation
@@ -407,7 +405,7 @@ func (o DetailedFindingAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -425,11 +423,11 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Status                *FindingStatus     `json:"status,omitempty"`
 		Tags                  []string           `json:"tags,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"evaluation", "evaluation_changed_at", "message", "mute", "resource", "resource_configuration", "resource_discovery_date", "resource_type", "rule", "status", "tags"})
 	} else {
 		return err
@@ -467,7 +465,7 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

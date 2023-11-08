@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -129,7 +127,7 @@ func (o *AWSEventBridgeAccountConfiguration) SetTags(v []string) {
 func (o AWSEventBridgeAccountConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AccountId != nil {
 		toSerialize["accountId"] = o.AccountId
@@ -144,7 +142,7 @@ func (o AWSEventBridgeAccountConfiguration) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -154,11 +152,11 @@ func (o *AWSEventBridgeAccountConfiguration) UnmarshalJSON(bytes []byte) (err er
 		EventHubs []AWSEventBridgeSource `json:"eventHubs,omitempty"`
 		Tags      []string               `json:"tags,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"accountId", "eventHubs", "tags"})
 	} else {
 		return err

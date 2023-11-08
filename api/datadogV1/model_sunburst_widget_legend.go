@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SunburstWidgetLegend - Configuration of the legend.
@@ -32,10 +32,10 @@ func (obj *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SunburstWidgetLegendTable
-	err = json.Unmarshal(data, &obj.SunburstWidgetLegendTable)
+	err = datadog.Unmarshal(data, &obj.SunburstWidgetLegendTable)
 	if err == nil {
 		if obj.SunburstWidgetLegendTable != nil && obj.SunburstWidgetLegendTable.UnparsedObject == nil {
-			jsonSunburstWidgetLegendTable, _ := json.Marshal(obj.SunburstWidgetLegendTable)
+			jsonSunburstWidgetLegendTable, _ := datadog.Marshal(obj.SunburstWidgetLegendTable)
 			if string(jsonSunburstWidgetLegendTable) == "{}" { // empty struct
 				obj.SunburstWidgetLegendTable = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SunburstWidgetLegendInlineAutomatic
-	err = json.Unmarshal(data, &obj.SunburstWidgetLegendInlineAutomatic)
+	err = datadog.Unmarshal(data, &obj.SunburstWidgetLegendInlineAutomatic)
 	if err == nil {
 		if obj.SunburstWidgetLegendInlineAutomatic != nil && obj.SunburstWidgetLegendInlineAutomatic.UnparsedObject == nil {
-			jsonSunburstWidgetLegendInlineAutomatic, _ := json.Marshal(obj.SunburstWidgetLegendInlineAutomatic)
+			jsonSunburstWidgetLegendInlineAutomatic, _ := datadog.Marshal(obj.SunburstWidgetLegendInlineAutomatic)
 			if string(jsonSunburstWidgetLegendInlineAutomatic) == "{}" { // empty struct
 				obj.SunburstWidgetLegendInlineAutomatic = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.SunburstWidgetLegendTable = nil
 		obj.SunburstWidgetLegendInlineAutomatic = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 	if obj.SunburstWidgetLegendTable != nil {
-		return json.Marshal(&obj.SunburstWidgetLegendTable)
+		return datadog.Marshal(&obj.SunburstWidgetLegendTable)
 	}
 
 	if obj.SunburstWidgetLegendInlineAutomatic != nil {
-		return json.Marshal(&obj.SunburstWidgetLegendInlineAutomatic)
+		return datadog.Marshal(&obj.SunburstWidgetLegendInlineAutomatic)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

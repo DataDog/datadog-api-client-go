@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ContainerImageItem - Possible Container Image models.
@@ -32,10 +32,10 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ContainerImage
-	err = json.Unmarshal(data, &obj.ContainerImage)
+	err = datadog.Unmarshal(data, &obj.ContainerImage)
 	if err == nil {
 		if obj.ContainerImage != nil && obj.ContainerImage.UnparsedObject == nil {
-			jsonContainerImage, _ := json.Marshal(obj.ContainerImage)
+			jsonContainerImage, _ := datadog.Marshal(obj.ContainerImage)
 			if string(jsonContainerImage) == "{}" { // empty struct
 				obj.ContainerImage = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ContainerImageGroup
-	err = json.Unmarshal(data, &obj.ContainerImageGroup)
+	err = datadog.Unmarshal(data, &obj.ContainerImageGroup)
 	if err == nil {
 		if obj.ContainerImageGroup != nil && obj.ContainerImageGroup.UnparsedObject == nil {
-			jsonContainerImageGroup, _ := json.Marshal(obj.ContainerImageGroup)
+			jsonContainerImageGroup, _ := datadog.Marshal(obj.ContainerImageGroup)
 			if string(jsonContainerImageGroup) == "{}" { // empty struct
 				obj.ContainerImageGroup = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.ContainerImage = nil
 		obj.ContainerImageGroup = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ContainerImageItem) MarshalJSON() ([]byte, error) {
 	if obj.ContainerImage != nil {
-		return json.Marshal(&obj.ContainerImage)
+		return datadog.Marshal(&obj.ContainerImage)
 	}
 
 	if obj.ContainerImageGroup != nil {
-		return json.Marshal(&obj.ContainerImageGroup)
+		return datadog.Marshal(&obj.ContainerImageGroup)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

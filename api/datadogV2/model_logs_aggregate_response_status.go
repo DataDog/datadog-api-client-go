@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsAggregateResponseStatus The status of the response
@@ -32,7 +32,7 @@ func (v *LogsAggregateResponseStatus) GetAllowedValues() []LogsAggregateResponse
 // UnmarshalJSON deserializes the given payload.
 func (v *LogsAggregateResponseStatus) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

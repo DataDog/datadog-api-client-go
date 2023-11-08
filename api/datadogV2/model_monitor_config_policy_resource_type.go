@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorConfigPolicyResourceType Monitor configuration policy resource type.
@@ -30,7 +30,7 @@ func (v *MonitorConfigPolicyResourceType) GetAllowedValues() []MonitorConfigPoli
 // UnmarshalJSON deserializes the given payload.
 func (v *MonitorConfigPolicyResourceType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

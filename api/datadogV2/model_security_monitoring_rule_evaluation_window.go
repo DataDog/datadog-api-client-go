@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringRuleEvaluationWindow A time window is specified to match when at least one of the cases matches true. This is a sliding window
@@ -45,7 +45,7 @@ func (v *SecurityMonitoringRuleEvaluationWindow) GetAllowedValues() []SecurityMo
 // UnmarshalJSON deserializes the given payload.
 func (v *SecurityMonitoringRuleEvaluationWindow) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

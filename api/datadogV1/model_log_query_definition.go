@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -188,7 +186,7 @@ func (o *LogQueryDefinition) SetSearch(v LogQueryDefinitionSearch) {
 func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Compute != nil {
 		toSerialize["compute"] = o.Compute
@@ -209,7 +207,7 @@ func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -221,11 +219,11 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		MultiCompute []LogsQueryCompute          `json:"multi_compute,omitempty"`
 		Search       *LogQueryDefinitionSearch   `json:"search,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "group_by", "index", "multi_compute", "search"})
 	} else {
 		return err
@@ -249,7 +247,7 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

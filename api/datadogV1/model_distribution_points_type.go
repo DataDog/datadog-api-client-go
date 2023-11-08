@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DistributionPointsType The type of the distribution point.
@@ -30,7 +30,7 @@ func (v *DistributionPointsType) GetAllowedValues() []DistributionPointsType {
 // UnmarshalJSON deserializes the given payload.
 func (v *DistributionPointsType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

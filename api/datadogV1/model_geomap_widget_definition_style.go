@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -92,7 +90,7 @@ func (o *GeomapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["palette"] = o.Palette
 	toSerialize["palette_flip"] = o.PaletteFlip
@@ -100,7 +98,7 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -109,8 +107,8 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		Palette     *string `json:"palette"`
 		PaletteFlip *bool   `json:"palette_flip"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Palette == nil {
 		return fmt.Errorf("required field palette missing")
@@ -119,7 +117,7 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field palette_flip missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"palette", "palette_flip"})
 	} else {
 		return err

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppCreatePipelineEventRequestAttributesResource - Details of the CI pipeline event.
@@ -44,10 +44,10 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 	var err error
 	match := 0
 	// try to unmarshal data into CIAppPipelineEventPipeline
-	err = json.Unmarshal(data, &obj.CIAppPipelineEventPipeline)
+	err = datadog.Unmarshal(data, &obj.CIAppPipelineEventPipeline)
 	if err == nil {
 		if obj.CIAppPipelineEventPipeline != nil && obj.CIAppPipelineEventPipeline.UnparsedObject == nil {
-			jsonCIAppPipelineEventPipeline, _ := json.Marshal(obj.CIAppPipelineEventPipeline)
+			jsonCIAppPipelineEventPipeline, _ := datadog.Marshal(obj.CIAppPipelineEventPipeline)
 			if string(jsonCIAppPipelineEventPipeline) == "{}" { // empty struct
 				obj.CIAppPipelineEventPipeline = nil
 			} else {
@@ -61,10 +61,10 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 	}
 
 	// try to unmarshal data into CIAppPipelineEventStage
-	err = json.Unmarshal(data, &obj.CIAppPipelineEventStage)
+	err = datadog.Unmarshal(data, &obj.CIAppPipelineEventStage)
 	if err == nil {
 		if obj.CIAppPipelineEventStage != nil && obj.CIAppPipelineEventStage.UnparsedObject == nil {
-			jsonCIAppPipelineEventStage, _ := json.Marshal(obj.CIAppPipelineEventStage)
+			jsonCIAppPipelineEventStage, _ := datadog.Marshal(obj.CIAppPipelineEventStage)
 			if string(jsonCIAppPipelineEventStage) == "{}" { // empty struct
 				obj.CIAppPipelineEventStage = nil
 			} else {
@@ -78,10 +78,10 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 	}
 
 	// try to unmarshal data into CIAppPipelineEventJob
-	err = json.Unmarshal(data, &obj.CIAppPipelineEventJob)
+	err = datadog.Unmarshal(data, &obj.CIAppPipelineEventJob)
 	if err == nil {
 		if obj.CIAppPipelineEventJob != nil && obj.CIAppPipelineEventJob.UnparsedObject == nil {
-			jsonCIAppPipelineEventJob, _ := json.Marshal(obj.CIAppPipelineEventJob)
+			jsonCIAppPipelineEventJob, _ := datadog.Marshal(obj.CIAppPipelineEventJob)
 			if string(jsonCIAppPipelineEventJob) == "{}" { // empty struct
 				obj.CIAppPipelineEventJob = nil
 			} else {
@@ -95,10 +95,10 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 	}
 
 	// try to unmarshal data into CIAppPipelineEventStep
-	err = json.Unmarshal(data, &obj.CIAppPipelineEventStep)
+	err = datadog.Unmarshal(data, &obj.CIAppPipelineEventStep)
 	if err == nil {
 		if obj.CIAppPipelineEventStep != nil && obj.CIAppPipelineEventStep.UnparsedObject == nil {
-			jsonCIAppPipelineEventStep, _ := json.Marshal(obj.CIAppPipelineEventStep)
+			jsonCIAppPipelineEventStep, _ := datadog.Marshal(obj.CIAppPipelineEventStep)
 			if string(jsonCIAppPipelineEventStep) == "{}" { // empty struct
 				obj.CIAppPipelineEventStep = nil
 			} else {
@@ -117,7 +117,7 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 		obj.CIAppPipelineEventStage = nil
 		obj.CIAppPipelineEventJob = nil
 		obj.CIAppPipelineEventStep = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -125,23 +125,23 @@ func (obj *CIAppCreatePipelineEventRequestAttributesResource) UnmarshalJSON(data
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj CIAppCreatePipelineEventRequestAttributesResource) MarshalJSON() ([]byte, error) {
 	if obj.CIAppPipelineEventPipeline != nil {
-		return json.Marshal(&obj.CIAppPipelineEventPipeline)
+		return datadog.Marshal(&obj.CIAppPipelineEventPipeline)
 	}
 
 	if obj.CIAppPipelineEventStage != nil {
-		return json.Marshal(&obj.CIAppPipelineEventStage)
+		return datadog.Marshal(&obj.CIAppPipelineEventStage)
 	}
 
 	if obj.CIAppPipelineEventJob != nil {
-		return json.Marshal(&obj.CIAppPipelineEventJob)
+		return datadog.Marshal(&obj.CIAppPipelineEventJob)
 	}
 
 	if obj.CIAppPipelineEventStep != nil {
-		return json.Marshal(&obj.CIAppPipelineEventStep)
+		return datadog.Marshal(&obj.CIAppPipelineEventStep)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

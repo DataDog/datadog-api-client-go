@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -304,7 +302,7 @@ func (o *SLOStatus) SetState(v SLOState) {
 func (o SLOStatus) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CalculationError.IsSet() {
 		toSerialize["calculation_error"] = o.CalculationError.Get()
@@ -331,7 +329,7 @@ func (o SLOStatus) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -345,11 +343,11 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 		SpanPrecision           datadog.NullableInt64              `json:"span_precision,omitempty"`
 		State                   *SLOState                          `json:"state,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"calculation_error", "error_budget_remaining", "indexed_at", "raw_error_budget_remaining", "sli", "span_precision", "state"})
 	} else {
 		return err
@@ -373,7 +371,7 @@ func (o *SLOStatus) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

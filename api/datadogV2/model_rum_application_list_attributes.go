@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -308,7 +306,7 @@ func (o *RUMApplicationListAttributes) SetUpdatedByHandle(v string) {
 func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["application_id"] = o.ApplicationId
 	toSerialize["created_at"] = o.CreatedAt
@@ -328,7 +326,7 @@ func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -345,8 +343,8 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		UpdatedAt       *int64  `json:"updated_at"`
 		UpdatedByHandle *string `json:"updated_by_handle"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ApplicationId == nil {
 		return fmt.Errorf("required field application_id missing")
@@ -373,7 +371,7 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field updated_by_handle missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"application_id", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "type", "updated_at", "updated_by_handle"})
 	} else {
 		return err
