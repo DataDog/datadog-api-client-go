@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // TimeseriesFormulaResponseType The type of the resource. The value should always be timeseries_response.

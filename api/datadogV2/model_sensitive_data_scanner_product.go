@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SensitiveDataScannerProduct Datadog product onto which Sensitive Data Scanner can be activated.

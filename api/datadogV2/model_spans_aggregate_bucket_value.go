@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SpansAggregateBucketValue - A bucket value, can be either a timeseries or a single value.

@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.

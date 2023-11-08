@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // TargetFormatType If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.

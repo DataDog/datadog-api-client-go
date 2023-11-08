@@ -5,14 +5,14 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SplitGraphWidgetDefinition The split graph widget allows you to create repeating units of a graph - one for each value in a group (for example: one per service)
+//
 type SplitGraphWidgetDefinition struct {
 	// Normalize y axes across graphs
 	HasUniformYAxes *bool `json:"has_uniform_y_axes,omitempty"`

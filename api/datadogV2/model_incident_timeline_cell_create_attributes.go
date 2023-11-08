@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.

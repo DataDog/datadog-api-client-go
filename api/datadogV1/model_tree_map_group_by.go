@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // TreeMapGroupBy (deprecated) The attribute formerly used to group elements in the widget.

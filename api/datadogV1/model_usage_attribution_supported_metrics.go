@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // UsageAttributionSupportedMetrics Supported fields for usage attribution requests (valid requests contain one or more metrics, or `*` for all).

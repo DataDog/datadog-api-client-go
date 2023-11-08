@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // WidgetImageSizing How to size the image on the widget. The values are based on the image `object-fit` CSS properties.

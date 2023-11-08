@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // DowntimeNotifyEndStateTypes State that will trigger a monitor notification when the `notify_end_types` action occurs.

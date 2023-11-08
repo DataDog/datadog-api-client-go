@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SyntheticsGlobalVariableParseTestOptionsType Property of the Synthetic Test Response to use for a Synthetic global variable.
