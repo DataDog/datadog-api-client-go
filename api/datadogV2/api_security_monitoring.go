@@ -959,7 +959,6 @@ func (r *ListFindingsOptionalParameters) WithFilterStatus(filterStatus FindingSt
 // - Core attributes, including status, evaluation, high-level resource details, muted state, and rule details.
 // - `evaluation_changed_at` and `resource_discovery_date` time stamps.
 // - An array of associated tags.
-//
 func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFindingsOptionalParameters) (ListFindingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
