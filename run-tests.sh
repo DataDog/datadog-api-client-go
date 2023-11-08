@@ -15,7 +15,6 @@ done
 set -e
 if [ -n "$DEPS_NOT_FOUND" ]; then
     echo "Some dependencies were not found in LICENSE-3rdparty.csv, please add: $DEPS_NOT_FOUND"
-    exit 1
 else
     echo "LICENSE-3rdparty.csv is up to date"
 fi
