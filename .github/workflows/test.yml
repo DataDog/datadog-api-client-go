@@ -79,6 +79,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.19.x, 1.20.x]
+        go-build-tags: ["--tags=goccy_gojson", ""]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     if: (github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) || github.event_name == 'schedule'
@@ -91,12 +92,10 @@ jobs:
           go-version: ${{ matrix.go-version }}
           cache: true
           cache-dependency-path: tests/go.sum
-      - name: Test with encoding/json
-        run: ./run-tests.sh
-      - name: Test with goccy/go-json
+      - name: Test
         run: ./run-tests.sh
         env:
-          TESTARGS: "--tags=goccy_gojson"
+          TESTARGS: ${{ matrix.go-build-tags }}
 
   examples:
     runs-on: ubuntu-latest
