@@ -167,7 +167,7 @@
 //
 //   }
 //
-// Endocder/Decoder
+// Encoder/Decoder
 //
 // By default, datadog-api-client-go uses the Go standard library enconding/json (https://pkg.go.dev/encoding/json) to encode and decode data. This can be switched to use goccy/go-json (https://github.com/goccy/go-json) by specifying the go build tag goccy_gojson
 //
