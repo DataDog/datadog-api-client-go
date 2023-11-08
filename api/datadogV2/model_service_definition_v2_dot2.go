@@ -27,7 +27,7 @@ type ServiceDefinitionV2Dot2 struct {
 	// Third party integrations that Datadog supports.
 	Integrations *ServiceDefinitionV2Dot2Integrations `json:"integrations,omitempty"`
 	// The service's programming language. Datadog recognizes the following languages: `dotnet`, `go`, `java`, `js`, `php`, `python`, `ruby`, and `c++`.
-	Langauges []string `json:"langauges,omitempty"`
+	Languages []string `json:"languages,omitempty"`
 	// The current life cycle phase of the service.
 	Lifecycle *string `json:"lifecycle,omitempty"`
 	// A list of links related to the services.
@@ -231,32 +231,32 @@ func (o *ServiceDefinitionV2Dot2) SetIntegrations(v ServiceDefinitionV2Dot2Integ
 	o.Integrations = &v
 }
 
-// GetLangauges returns the Langauges field value if set, zero value otherwise.
-func (o *ServiceDefinitionV2Dot2) GetLangauges() []string {
-	if o == nil || o.Langauges == nil {
+// GetLanguages returns the Languages field value if set, zero value otherwise.
+func (o *ServiceDefinitionV2Dot2) GetLanguages() []string {
+	if o == nil || o.Languages == nil {
 		var ret []string
 		return ret
 	}
-	return o.Langauges
+	return o.Languages
 }
 
-// GetLangaugesOk returns a tuple with the Langauges field value if set, nil otherwise
+// GetLanguagesOk returns a tuple with the Languages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceDefinitionV2Dot2) GetLangaugesOk() (*[]string, bool) {
-	if o == nil || o.Langauges == nil {
+func (o *ServiceDefinitionV2Dot2) GetLanguagesOk() (*[]string, bool) {
+	if o == nil || o.Languages == nil {
 		return nil, false
 	}
-	return &o.Langauges, true
+	return &o.Languages, true
 }
 
-// HasLangauges returns a boolean if a field has been set.
-func (o *ServiceDefinitionV2Dot2) HasLangauges() bool {
-	return o != nil && o.Langauges != nil
+// HasLanguages returns a boolean if a field has been set.
+func (o *ServiceDefinitionV2Dot2) HasLanguages() bool {
+	return o != nil && o.Languages != nil
 }
 
-// SetLangauges gets a reference to the given []string and assigns it to the Langauges field.
-func (o *ServiceDefinitionV2Dot2) SetLangauges(v []string) {
-	o.Langauges = v
+// SetLanguages gets a reference to the given []string and assigns it to the Languages field.
+func (o *ServiceDefinitionV2Dot2) SetLanguages(v []string) {
+	o.Languages = v
 }
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
@@ -472,8 +472,8 @@ func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
 	if o.Integrations != nil {
 		toSerialize["integrations"] = o.Integrations
 	}
-	if o.Langauges != nil {
-		toSerialize["langauges"] = o.Langauges
+	if o.Languages != nil {
+		toSerialize["languages"] = o.Languages
 	}
 	if o.Lifecycle != nil {
 		toSerialize["lifecycle"] = o.Lifecycle
@@ -510,7 +510,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 		Description   *string                              `json:"description,omitempty"`
 		Extensions    map[string]interface{}               `json:"extensions,omitempty"`
 		Integrations  *ServiceDefinitionV2Dot2Integrations `json:"integrations,omitempty"`
-		Langauges     []string                             `json:"langauges,omitempty"`
+		Languages     []string                             `json:"languages,omitempty"`
 		Lifecycle     *string                              `json:"lifecycle,omitempty"`
 		Links         []ServiceDefinitionV2Dot2Link        `json:"links,omitempty"`
 		SchemaVersion *ServiceDefinitionV2Dot2Version      `json:"schema-version"`
@@ -530,7 +530,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application", "contacts", "dd-service", "description", "extensions", "integrations", "langauges", "lifecycle", "links", "schema-version", "tags", "team", "tier", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"application", "contacts", "dd-service", "description", "extensions", "integrations", "languages", "lifecycle", "links", "schema-version", "tags", "team", "tier", "type"})
 	} else {
 		return err
 	}
@@ -545,7 +545,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
-	o.Langauges = all.Langauges
+	o.Languages = all.Languages
 	o.Lifecycle = all.Lifecycle
 	o.Links = all.Links
 	if !all.SchemaVersion.IsValid() {
